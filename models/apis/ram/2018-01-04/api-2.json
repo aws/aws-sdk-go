@@ -53,7 +53,8 @@
         {"shape":"OperationNotPermittedException"},
         {"shape":"ServerInternalException"},
         {"shape":"ServiceUnavailableException"},
-        {"shape":"UnknownResourceException"}
+        {"shape":"UnknownResourceException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "AssociateResourceSharePermission":{
@@ -760,7 +761,8 @@
       "members":{
         "resourceShareInvitationArn":{"shape":"String"},
         "nextToken":{"shape":"String"},
-        "maxResults":{"shape":"MaxResults"}
+        "maxResults":{"shape":"MaxResults"},
+        "resourceRegionScope":{"shape":"ResourceRegionScopeFilter"}
       }
     },
     "ListPendingInvitationResourcesResponse":{
@@ -825,7 +827,8 @@
       "type":"structure",
       "members":{
         "nextToken":{"shape":"String"},
-        "maxResults":{"shape":"MaxResults"}
+        "maxResults":{"shape":"MaxResults"},
+        "resourceRegionScope":{"shape":"ResourceRegionScopeFilter"}
       }
     },
     "ListResourceTypesResponse":{
@@ -845,7 +848,8 @@
         "resourceArns":{"shape":"ResourceArnList"},
         "resourceShareArns":{"shape":"ResourceShareArnList"},
         "nextToken":{"shape":"String"},
-        "maxResults":{"shape":"MaxResults"}
+        "maxResults":{"shape":"MaxResults"},
+        "resourceRegionScope":{"shape":"ResourceRegionScopeFilter"}
       }
     },
     "ListResourcesResponse":{
@@ -956,7 +960,8 @@
         "status":{"shape":"ResourceStatus"},
         "statusMessage":{"shape":"String"},
         "creationTime":{"shape":"DateTime"},
-        "lastUpdatedTime":{"shape":"DateTime"}
+        "lastUpdatedTime":{"shape":"DateTime"},
+        "resourceRegionScope":{"shape":"ResourceRegionScope"}
       }
     },
     "ResourceArnList":{
@@ -981,6 +986,21 @@
       "enum":[
         "SELF",
         "OTHER-ACCOUNTS"
+      ]
+    },
+    "ResourceRegionScope":{
+      "type":"string",
+      "enum":[
+        "REGIONAL",
+        "GLOBAL"
+      ]
+    },
+    "ResourceRegionScopeFilter":{
+      "type":"string",
+      "enum":[
+        "ALL",
+        "REGIONAL",
+        "GLOBAL"
       ]
     },
     "ResourceShare":{
@@ -1194,7 +1214,8 @@
       "type":"structure",
       "members":{
         "resourceType":{"shape":"String"},
-        "serviceName":{"shape":"String"}
+        "serviceName":{"shape":"String"},
+        "resourceRegionScope":{"shape":"ResourceRegionScope"}
       }
     },
     "ServiceNameAndResourceTypeList":{
@@ -1276,6 +1297,15 @@
     "TagValueList":{
       "type":"list",
       "member":{"shape":"TagValue"}
+    },
+    "ThrottlingException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":429},
+      "exception":true
     },
     "UnknownResourceException":{
       "type":"structure",

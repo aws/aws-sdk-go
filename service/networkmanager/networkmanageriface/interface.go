@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS Network Manager.
 //    func myFunc(svc networkmanageriface.NetworkManagerAPI) bool {
-//        // Make svc.AssociateCustomerGateway request
+//        // Make svc.AcceptAttachment request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockNetworkManagerClient struct {
 //        networkmanageriface.NetworkManagerAPI
 //    }
-//    func (m *mockNetworkManagerClient) AssociateCustomerGateway(input *networkmanager.AssociateCustomerGatewayInput) (*networkmanager.AssociateCustomerGatewayOutput, error) {
+//    func (m *mockNetworkManagerClient) AcceptAttachment(input *networkmanager.AcceptAttachmentInput) (*networkmanager.AcceptAttachmentOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,14 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type NetworkManagerAPI interface {
+	AcceptAttachment(*networkmanager.AcceptAttachmentInput) (*networkmanager.AcceptAttachmentOutput, error)
+	AcceptAttachmentWithContext(aws.Context, *networkmanager.AcceptAttachmentInput, ...request.Option) (*networkmanager.AcceptAttachmentOutput, error)
+	AcceptAttachmentRequest(*networkmanager.AcceptAttachmentInput) (*request.Request, *networkmanager.AcceptAttachmentOutput)
+
+	AssociateConnectPeer(*networkmanager.AssociateConnectPeerInput) (*networkmanager.AssociateConnectPeerOutput, error)
+	AssociateConnectPeerWithContext(aws.Context, *networkmanager.AssociateConnectPeerInput, ...request.Option) (*networkmanager.AssociateConnectPeerOutput, error)
+	AssociateConnectPeerRequest(*networkmanager.AssociateConnectPeerInput) (*request.Request, *networkmanager.AssociateConnectPeerOutput)
+
 	AssociateCustomerGateway(*networkmanager.AssociateCustomerGatewayInput) (*networkmanager.AssociateCustomerGatewayOutput, error)
 	AssociateCustomerGatewayWithContext(aws.Context, *networkmanager.AssociateCustomerGatewayInput, ...request.Option) (*networkmanager.AssociateCustomerGatewayOutput, error)
 	AssociateCustomerGatewayRequest(*networkmanager.AssociateCustomerGatewayInput) (*request.Request, *networkmanager.AssociateCustomerGatewayOutput)
@@ -72,9 +80,21 @@ type NetworkManagerAPI interface {
 	AssociateTransitGatewayConnectPeerWithContext(aws.Context, *networkmanager.AssociateTransitGatewayConnectPeerInput, ...request.Option) (*networkmanager.AssociateTransitGatewayConnectPeerOutput, error)
 	AssociateTransitGatewayConnectPeerRequest(*networkmanager.AssociateTransitGatewayConnectPeerInput) (*request.Request, *networkmanager.AssociateTransitGatewayConnectPeerOutput)
 
+	CreateConnectAttachment(*networkmanager.CreateConnectAttachmentInput) (*networkmanager.CreateConnectAttachmentOutput, error)
+	CreateConnectAttachmentWithContext(aws.Context, *networkmanager.CreateConnectAttachmentInput, ...request.Option) (*networkmanager.CreateConnectAttachmentOutput, error)
+	CreateConnectAttachmentRequest(*networkmanager.CreateConnectAttachmentInput) (*request.Request, *networkmanager.CreateConnectAttachmentOutput)
+
+	CreateConnectPeer(*networkmanager.CreateConnectPeerInput) (*networkmanager.CreateConnectPeerOutput, error)
+	CreateConnectPeerWithContext(aws.Context, *networkmanager.CreateConnectPeerInput, ...request.Option) (*networkmanager.CreateConnectPeerOutput, error)
+	CreateConnectPeerRequest(*networkmanager.CreateConnectPeerInput) (*request.Request, *networkmanager.CreateConnectPeerOutput)
+
 	CreateConnection(*networkmanager.CreateConnectionInput) (*networkmanager.CreateConnectionOutput, error)
 	CreateConnectionWithContext(aws.Context, *networkmanager.CreateConnectionInput, ...request.Option) (*networkmanager.CreateConnectionOutput, error)
 	CreateConnectionRequest(*networkmanager.CreateConnectionInput) (*request.Request, *networkmanager.CreateConnectionOutput)
+
+	CreateCoreNetwork(*networkmanager.CreateCoreNetworkInput) (*networkmanager.CreateCoreNetworkOutput, error)
+	CreateCoreNetworkWithContext(aws.Context, *networkmanager.CreateCoreNetworkInput, ...request.Option) (*networkmanager.CreateCoreNetworkOutput, error)
+	CreateCoreNetworkRequest(*networkmanager.CreateCoreNetworkInput) (*request.Request, *networkmanager.CreateCoreNetworkOutput)
 
 	CreateDevice(*networkmanager.CreateDeviceInput) (*networkmanager.CreateDeviceOutput, error)
 	CreateDeviceWithContext(aws.Context, *networkmanager.CreateDeviceInput, ...request.Option) (*networkmanager.CreateDeviceOutput, error)
@@ -92,9 +112,33 @@ type NetworkManagerAPI interface {
 	CreateSiteWithContext(aws.Context, *networkmanager.CreateSiteInput, ...request.Option) (*networkmanager.CreateSiteOutput, error)
 	CreateSiteRequest(*networkmanager.CreateSiteInput) (*request.Request, *networkmanager.CreateSiteOutput)
 
+	CreateSiteToSiteVpnAttachment(*networkmanager.CreateSiteToSiteVpnAttachmentInput) (*networkmanager.CreateSiteToSiteVpnAttachmentOutput, error)
+	CreateSiteToSiteVpnAttachmentWithContext(aws.Context, *networkmanager.CreateSiteToSiteVpnAttachmentInput, ...request.Option) (*networkmanager.CreateSiteToSiteVpnAttachmentOutput, error)
+	CreateSiteToSiteVpnAttachmentRequest(*networkmanager.CreateSiteToSiteVpnAttachmentInput) (*request.Request, *networkmanager.CreateSiteToSiteVpnAttachmentOutput)
+
+	CreateVpcAttachment(*networkmanager.CreateVpcAttachmentInput) (*networkmanager.CreateVpcAttachmentOutput, error)
+	CreateVpcAttachmentWithContext(aws.Context, *networkmanager.CreateVpcAttachmentInput, ...request.Option) (*networkmanager.CreateVpcAttachmentOutput, error)
+	CreateVpcAttachmentRequest(*networkmanager.CreateVpcAttachmentInput) (*request.Request, *networkmanager.CreateVpcAttachmentOutput)
+
+	DeleteAttachment(*networkmanager.DeleteAttachmentInput) (*networkmanager.DeleteAttachmentOutput, error)
+	DeleteAttachmentWithContext(aws.Context, *networkmanager.DeleteAttachmentInput, ...request.Option) (*networkmanager.DeleteAttachmentOutput, error)
+	DeleteAttachmentRequest(*networkmanager.DeleteAttachmentInput) (*request.Request, *networkmanager.DeleteAttachmentOutput)
+
+	DeleteConnectPeer(*networkmanager.DeleteConnectPeerInput) (*networkmanager.DeleteConnectPeerOutput, error)
+	DeleteConnectPeerWithContext(aws.Context, *networkmanager.DeleteConnectPeerInput, ...request.Option) (*networkmanager.DeleteConnectPeerOutput, error)
+	DeleteConnectPeerRequest(*networkmanager.DeleteConnectPeerInput) (*request.Request, *networkmanager.DeleteConnectPeerOutput)
+
 	DeleteConnection(*networkmanager.DeleteConnectionInput) (*networkmanager.DeleteConnectionOutput, error)
 	DeleteConnectionWithContext(aws.Context, *networkmanager.DeleteConnectionInput, ...request.Option) (*networkmanager.DeleteConnectionOutput, error)
 	DeleteConnectionRequest(*networkmanager.DeleteConnectionInput) (*request.Request, *networkmanager.DeleteConnectionOutput)
+
+	DeleteCoreNetwork(*networkmanager.DeleteCoreNetworkInput) (*networkmanager.DeleteCoreNetworkOutput, error)
+	DeleteCoreNetworkWithContext(aws.Context, *networkmanager.DeleteCoreNetworkInput, ...request.Option) (*networkmanager.DeleteCoreNetworkOutput, error)
+	DeleteCoreNetworkRequest(*networkmanager.DeleteCoreNetworkInput) (*request.Request, *networkmanager.DeleteCoreNetworkOutput)
+
+	DeleteCoreNetworkPolicyVersion(*networkmanager.DeleteCoreNetworkPolicyVersionInput) (*networkmanager.DeleteCoreNetworkPolicyVersionOutput, error)
+	DeleteCoreNetworkPolicyVersionWithContext(aws.Context, *networkmanager.DeleteCoreNetworkPolicyVersionInput, ...request.Option) (*networkmanager.DeleteCoreNetworkPolicyVersionOutput, error)
+	DeleteCoreNetworkPolicyVersionRequest(*networkmanager.DeleteCoreNetworkPolicyVersionInput) (*request.Request, *networkmanager.DeleteCoreNetworkPolicyVersionOutput)
 
 	DeleteDevice(*networkmanager.DeleteDeviceInput) (*networkmanager.DeleteDeviceOutput, error)
 	DeleteDeviceWithContext(aws.Context, *networkmanager.DeleteDeviceInput, ...request.Option) (*networkmanager.DeleteDeviceOutput, error)
@@ -107,6 +151,10 @@ type NetworkManagerAPI interface {
 	DeleteLink(*networkmanager.DeleteLinkInput) (*networkmanager.DeleteLinkOutput, error)
 	DeleteLinkWithContext(aws.Context, *networkmanager.DeleteLinkInput, ...request.Option) (*networkmanager.DeleteLinkOutput, error)
 	DeleteLinkRequest(*networkmanager.DeleteLinkInput) (*request.Request, *networkmanager.DeleteLinkOutput)
+
+	DeleteResourcePolicy(*networkmanager.DeleteResourcePolicyInput) (*networkmanager.DeleteResourcePolicyOutput, error)
+	DeleteResourcePolicyWithContext(aws.Context, *networkmanager.DeleteResourcePolicyInput, ...request.Option) (*networkmanager.DeleteResourcePolicyOutput, error)
+	DeleteResourcePolicyRequest(*networkmanager.DeleteResourcePolicyInput) (*request.Request, *networkmanager.DeleteResourcePolicyOutput)
 
 	DeleteSite(*networkmanager.DeleteSiteInput) (*networkmanager.DeleteSiteOutput, error)
 	DeleteSiteWithContext(aws.Context, *networkmanager.DeleteSiteInput, ...request.Option) (*networkmanager.DeleteSiteOutput, error)
@@ -123,6 +171,10 @@ type NetworkManagerAPI interface {
 	DescribeGlobalNetworksPages(*networkmanager.DescribeGlobalNetworksInput, func(*networkmanager.DescribeGlobalNetworksOutput, bool) bool) error
 	DescribeGlobalNetworksPagesWithContext(aws.Context, *networkmanager.DescribeGlobalNetworksInput, func(*networkmanager.DescribeGlobalNetworksOutput, bool) bool, ...request.Option) error
 
+	DisassociateConnectPeer(*networkmanager.DisassociateConnectPeerInput) (*networkmanager.DisassociateConnectPeerOutput, error)
+	DisassociateConnectPeerWithContext(aws.Context, *networkmanager.DisassociateConnectPeerInput, ...request.Option) (*networkmanager.DisassociateConnectPeerOutput, error)
+	DisassociateConnectPeerRequest(*networkmanager.DisassociateConnectPeerInput) (*request.Request, *networkmanager.DisassociateConnectPeerOutput)
+
 	DisassociateCustomerGateway(*networkmanager.DisassociateCustomerGatewayInput) (*networkmanager.DisassociateCustomerGatewayOutput, error)
 	DisassociateCustomerGatewayWithContext(aws.Context, *networkmanager.DisassociateCustomerGatewayInput, ...request.Option) (*networkmanager.DisassociateCustomerGatewayOutput, error)
 	DisassociateCustomerGatewayRequest(*networkmanager.DisassociateCustomerGatewayInput) (*request.Request, *networkmanager.DisassociateCustomerGatewayOutput)
@@ -135,12 +187,46 @@ type NetworkManagerAPI interface {
 	DisassociateTransitGatewayConnectPeerWithContext(aws.Context, *networkmanager.DisassociateTransitGatewayConnectPeerInput, ...request.Option) (*networkmanager.DisassociateTransitGatewayConnectPeerOutput, error)
 	DisassociateTransitGatewayConnectPeerRequest(*networkmanager.DisassociateTransitGatewayConnectPeerInput) (*request.Request, *networkmanager.DisassociateTransitGatewayConnectPeerOutput)
 
+	ExecuteCoreNetworkChangeSet(*networkmanager.ExecuteCoreNetworkChangeSetInput) (*networkmanager.ExecuteCoreNetworkChangeSetOutput, error)
+	ExecuteCoreNetworkChangeSetWithContext(aws.Context, *networkmanager.ExecuteCoreNetworkChangeSetInput, ...request.Option) (*networkmanager.ExecuteCoreNetworkChangeSetOutput, error)
+	ExecuteCoreNetworkChangeSetRequest(*networkmanager.ExecuteCoreNetworkChangeSetInput) (*request.Request, *networkmanager.ExecuteCoreNetworkChangeSetOutput)
+
+	GetConnectAttachment(*networkmanager.GetConnectAttachmentInput) (*networkmanager.GetConnectAttachmentOutput, error)
+	GetConnectAttachmentWithContext(aws.Context, *networkmanager.GetConnectAttachmentInput, ...request.Option) (*networkmanager.GetConnectAttachmentOutput, error)
+	GetConnectAttachmentRequest(*networkmanager.GetConnectAttachmentInput) (*request.Request, *networkmanager.GetConnectAttachmentOutput)
+
+	GetConnectPeer(*networkmanager.GetConnectPeerInput) (*networkmanager.GetConnectPeerOutput, error)
+	GetConnectPeerWithContext(aws.Context, *networkmanager.GetConnectPeerInput, ...request.Option) (*networkmanager.GetConnectPeerOutput, error)
+	GetConnectPeerRequest(*networkmanager.GetConnectPeerInput) (*request.Request, *networkmanager.GetConnectPeerOutput)
+
+	GetConnectPeerAssociations(*networkmanager.GetConnectPeerAssociationsInput) (*networkmanager.GetConnectPeerAssociationsOutput, error)
+	GetConnectPeerAssociationsWithContext(aws.Context, *networkmanager.GetConnectPeerAssociationsInput, ...request.Option) (*networkmanager.GetConnectPeerAssociationsOutput, error)
+	GetConnectPeerAssociationsRequest(*networkmanager.GetConnectPeerAssociationsInput) (*request.Request, *networkmanager.GetConnectPeerAssociationsOutput)
+
+	GetConnectPeerAssociationsPages(*networkmanager.GetConnectPeerAssociationsInput, func(*networkmanager.GetConnectPeerAssociationsOutput, bool) bool) error
+	GetConnectPeerAssociationsPagesWithContext(aws.Context, *networkmanager.GetConnectPeerAssociationsInput, func(*networkmanager.GetConnectPeerAssociationsOutput, bool) bool, ...request.Option) error
+
 	GetConnections(*networkmanager.GetConnectionsInput) (*networkmanager.GetConnectionsOutput, error)
 	GetConnectionsWithContext(aws.Context, *networkmanager.GetConnectionsInput, ...request.Option) (*networkmanager.GetConnectionsOutput, error)
 	GetConnectionsRequest(*networkmanager.GetConnectionsInput) (*request.Request, *networkmanager.GetConnectionsOutput)
 
 	GetConnectionsPages(*networkmanager.GetConnectionsInput, func(*networkmanager.GetConnectionsOutput, bool) bool) error
 	GetConnectionsPagesWithContext(aws.Context, *networkmanager.GetConnectionsInput, func(*networkmanager.GetConnectionsOutput, bool) bool, ...request.Option) error
+
+	GetCoreNetwork(*networkmanager.GetCoreNetworkInput) (*networkmanager.GetCoreNetworkOutput, error)
+	GetCoreNetworkWithContext(aws.Context, *networkmanager.GetCoreNetworkInput, ...request.Option) (*networkmanager.GetCoreNetworkOutput, error)
+	GetCoreNetworkRequest(*networkmanager.GetCoreNetworkInput) (*request.Request, *networkmanager.GetCoreNetworkOutput)
+
+	GetCoreNetworkChangeSet(*networkmanager.GetCoreNetworkChangeSetInput) (*networkmanager.GetCoreNetworkChangeSetOutput, error)
+	GetCoreNetworkChangeSetWithContext(aws.Context, *networkmanager.GetCoreNetworkChangeSetInput, ...request.Option) (*networkmanager.GetCoreNetworkChangeSetOutput, error)
+	GetCoreNetworkChangeSetRequest(*networkmanager.GetCoreNetworkChangeSetInput) (*request.Request, *networkmanager.GetCoreNetworkChangeSetOutput)
+
+	GetCoreNetworkChangeSetPages(*networkmanager.GetCoreNetworkChangeSetInput, func(*networkmanager.GetCoreNetworkChangeSetOutput, bool) bool) error
+	GetCoreNetworkChangeSetPagesWithContext(aws.Context, *networkmanager.GetCoreNetworkChangeSetInput, func(*networkmanager.GetCoreNetworkChangeSetOutput, bool) bool, ...request.Option) error
+
+	GetCoreNetworkPolicy(*networkmanager.GetCoreNetworkPolicyInput) (*networkmanager.GetCoreNetworkPolicyOutput, error)
+	GetCoreNetworkPolicyWithContext(aws.Context, *networkmanager.GetCoreNetworkPolicyInput, ...request.Option) (*networkmanager.GetCoreNetworkPolicyOutput, error)
+	GetCoreNetworkPolicyRequest(*networkmanager.GetCoreNetworkPolicyInput) (*request.Request, *networkmanager.GetCoreNetworkPolicyOutput)
 
 	GetCustomerGatewayAssociations(*networkmanager.GetCustomerGatewayAssociationsInput) (*networkmanager.GetCustomerGatewayAssociationsOutput, error)
 	GetCustomerGatewayAssociationsWithContext(aws.Context, *networkmanager.GetCustomerGatewayAssociationsInput, ...request.Option) (*networkmanager.GetCustomerGatewayAssociationsOutput, error)
@@ -202,9 +288,17 @@ type NetworkManagerAPI interface {
 	GetNetworkTelemetryPages(*networkmanager.GetNetworkTelemetryInput, func(*networkmanager.GetNetworkTelemetryOutput, bool) bool) error
 	GetNetworkTelemetryPagesWithContext(aws.Context, *networkmanager.GetNetworkTelemetryInput, func(*networkmanager.GetNetworkTelemetryOutput, bool) bool, ...request.Option) error
 
+	GetResourcePolicy(*networkmanager.GetResourcePolicyInput) (*networkmanager.GetResourcePolicyOutput, error)
+	GetResourcePolicyWithContext(aws.Context, *networkmanager.GetResourcePolicyInput, ...request.Option) (*networkmanager.GetResourcePolicyOutput, error)
+	GetResourcePolicyRequest(*networkmanager.GetResourcePolicyInput) (*request.Request, *networkmanager.GetResourcePolicyOutput)
+
 	GetRouteAnalysis(*networkmanager.GetRouteAnalysisInput) (*networkmanager.GetRouteAnalysisOutput, error)
 	GetRouteAnalysisWithContext(aws.Context, *networkmanager.GetRouteAnalysisInput, ...request.Option) (*networkmanager.GetRouteAnalysisOutput, error)
 	GetRouteAnalysisRequest(*networkmanager.GetRouteAnalysisInput) (*request.Request, *networkmanager.GetRouteAnalysisOutput)
+
+	GetSiteToSiteVpnAttachment(*networkmanager.GetSiteToSiteVpnAttachmentInput) (*networkmanager.GetSiteToSiteVpnAttachmentOutput, error)
+	GetSiteToSiteVpnAttachmentWithContext(aws.Context, *networkmanager.GetSiteToSiteVpnAttachmentInput, ...request.Option) (*networkmanager.GetSiteToSiteVpnAttachmentOutput, error)
+	GetSiteToSiteVpnAttachmentRequest(*networkmanager.GetSiteToSiteVpnAttachmentInput) (*request.Request, *networkmanager.GetSiteToSiteVpnAttachmentOutput)
 
 	GetSites(*networkmanager.GetSitesInput) (*networkmanager.GetSitesOutput, error)
 	GetSitesWithContext(aws.Context, *networkmanager.GetSitesInput, ...request.Option) (*networkmanager.GetSitesOutput, error)
@@ -227,13 +321,61 @@ type NetworkManagerAPI interface {
 	GetTransitGatewayRegistrationsPages(*networkmanager.GetTransitGatewayRegistrationsInput, func(*networkmanager.GetTransitGatewayRegistrationsOutput, bool) bool) error
 	GetTransitGatewayRegistrationsPagesWithContext(aws.Context, *networkmanager.GetTransitGatewayRegistrationsInput, func(*networkmanager.GetTransitGatewayRegistrationsOutput, bool) bool, ...request.Option) error
 
+	GetVpcAttachment(*networkmanager.GetVpcAttachmentInput) (*networkmanager.GetVpcAttachmentOutput, error)
+	GetVpcAttachmentWithContext(aws.Context, *networkmanager.GetVpcAttachmentInput, ...request.Option) (*networkmanager.GetVpcAttachmentOutput, error)
+	GetVpcAttachmentRequest(*networkmanager.GetVpcAttachmentInput) (*request.Request, *networkmanager.GetVpcAttachmentOutput)
+
+	ListAttachments(*networkmanager.ListAttachmentsInput) (*networkmanager.ListAttachmentsOutput, error)
+	ListAttachmentsWithContext(aws.Context, *networkmanager.ListAttachmentsInput, ...request.Option) (*networkmanager.ListAttachmentsOutput, error)
+	ListAttachmentsRequest(*networkmanager.ListAttachmentsInput) (*request.Request, *networkmanager.ListAttachmentsOutput)
+
+	ListAttachmentsPages(*networkmanager.ListAttachmentsInput, func(*networkmanager.ListAttachmentsOutput, bool) bool) error
+	ListAttachmentsPagesWithContext(aws.Context, *networkmanager.ListAttachmentsInput, func(*networkmanager.ListAttachmentsOutput, bool) bool, ...request.Option) error
+
+	ListConnectPeers(*networkmanager.ListConnectPeersInput) (*networkmanager.ListConnectPeersOutput, error)
+	ListConnectPeersWithContext(aws.Context, *networkmanager.ListConnectPeersInput, ...request.Option) (*networkmanager.ListConnectPeersOutput, error)
+	ListConnectPeersRequest(*networkmanager.ListConnectPeersInput) (*request.Request, *networkmanager.ListConnectPeersOutput)
+
+	ListConnectPeersPages(*networkmanager.ListConnectPeersInput, func(*networkmanager.ListConnectPeersOutput, bool) bool) error
+	ListConnectPeersPagesWithContext(aws.Context, *networkmanager.ListConnectPeersInput, func(*networkmanager.ListConnectPeersOutput, bool) bool, ...request.Option) error
+
+	ListCoreNetworkPolicyVersions(*networkmanager.ListCoreNetworkPolicyVersionsInput) (*networkmanager.ListCoreNetworkPolicyVersionsOutput, error)
+	ListCoreNetworkPolicyVersionsWithContext(aws.Context, *networkmanager.ListCoreNetworkPolicyVersionsInput, ...request.Option) (*networkmanager.ListCoreNetworkPolicyVersionsOutput, error)
+	ListCoreNetworkPolicyVersionsRequest(*networkmanager.ListCoreNetworkPolicyVersionsInput) (*request.Request, *networkmanager.ListCoreNetworkPolicyVersionsOutput)
+
+	ListCoreNetworkPolicyVersionsPages(*networkmanager.ListCoreNetworkPolicyVersionsInput, func(*networkmanager.ListCoreNetworkPolicyVersionsOutput, bool) bool) error
+	ListCoreNetworkPolicyVersionsPagesWithContext(aws.Context, *networkmanager.ListCoreNetworkPolicyVersionsInput, func(*networkmanager.ListCoreNetworkPolicyVersionsOutput, bool) bool, ...request.Option) error
+
+	ListCoreNetworks(*networkmanager.ListCoreNetworksInput) (*networkmanager.ListCoreNetworksOutput, error)
+	ListCoreNetworksWithContext(aws.Context, *networkmanager.ListCoreNetworksInput, ...request.Option) (*networkmanager.ListCoreNetworksOutput, error)
+	ListCoreNetworksRequest(*networkmanager.ListCoreNetworksInput) (*request.Request, *networkmanager.ListCoreNetworksOutput)
+
+	ListCoreNetworksPages(*networkmanager.ListCoreNetworksInput, func(*networkmanager.ListCoreNetworksOutput, bool) bool) error
+	ListCoreNetworksPagesWithContext(aws.Context, *networkmanager.ListCoreNetworksInput, func(*networkmanager.ListCoreNetworksOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*networkmanager.ListTagsForResourceInput) (*networkmanager.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *networkmanager.ListTagsForResourceInput, ...request.Option) (*networkmanager.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*networkmanager.ListTagsForResourceInput) (*request.Request, *networkmanager.ListTagsForResourceOutput)
 
+	PutCoreNetworkPolicy(*networkmanager.PutCoreNetworkPolicyInput) (*networkmanager.PutCoreNetworkPolicyOutput, error)
+	PutCoreNetworkPolicyWithContext(aws.Context, *networkmanager.PutCoreNetworkPolicyInput, ...request.Option) (*networkmanager.PutCoreNetworkPolicyOutput, error)
+	PutCoreNetworkPolicyRequest(*networkmanager.PutCoreNetworkPolicyInput) (*request.Request, *networkmanager.PutCoreNetworkPolicyOutput)
+
+	PutResourcePolicy(*networkmanager.PutResourcePolicyInput) (*networkmanager.PutResourcePolicyOutput, error)
+	PutResourcePolicyWithContext(aws.Context, *networkmanager.PutResourcePolicyInput, ...request.Option) (*networkmanager.PutResourcePolicyOutput, error)
+	PutResourcePolicyRequest(*networkmanager.PutResourcePolicyInput) (*request.Request, *networkmanager.PutResourcePolicyOutput)
+
 	RegisterTransitGateway(*networkmanager.RegisterTransitGatewayInput) (*networkmanager.RegisterTransitGatewayOutput, error)
 	RegisterTransitGatewayWithContext(aws.Context, *networkmanager.RegisterTransitGatewayInput, ...request.Option) (*networkmanager.RegisterTransitGatewayOutput, error)
 	RegisterTransitGatewayRequest(*networkmanager.RegisterTransitGatewayInput) (*request.Request, *networkmanager.RegisterTransitGatewayOutput)
+
+	RejectAttachment(*networkmanager.RejectAttachmentInput) (*networkmanager.RejectAttachmentOutput, error)
+	RejectAttachmentWithContext(aws.Context, *networkmanager.RejectAttachmentInput, ...request.Option) (*networkmanager.RejectAttachmentOutput, error)
+	RejectAttachmentRequest(*networkmanager.RejectAttachmentInput) (*request.Request, *networkmanager.RejectAttachmentOutput)
+
+	RestoreCoreNetworkPolicyVersion(*networkmanager.RestoreCoreNetworkPolicyVersionInput) (*networkmanager.RestoreCoreNetworkPolicyVersionOutput, error)
+	RestoreCoreNetworkPolicyVersionWithContext(aws.Context, *networkmanager.RestoreCoreNetworkPolicyVersionInput, ...request.Option) (*networkmanager.RestoreCoreNetworkPolicyVersionOutput, error)
+	RestoreCoreNetworkPolicyVersionRequest(*networkmanager.RestoreCoreNetworkPolicyVersionInput) (*request.Request, *networkmanager.RestoreCoreNetworkPolicyVersionOutput)
 
 	StartRouteAnalysis(*networkmanager.StartRouteAnalysisInput) (*networkmanager.StartRouteAnalysisOutput, error)
 	StartRouteAnalysisWithContext(aws.Context, *networkmanager.StartRouteAnalysisInput, ...request.Option) (*networkmanager.StartRouteAnalysisOutput, error)
@@ -250,6 +392,10 @@ type NetworkManagerAPI interface {
 	UpdateConnection(*networkmanager.UpdateConnectionInput) (*networkmanager.UpdateConnectionOutput, error)
 	UpdateConnectionWithContext(aws.Context, *networkmanager.UpdateConnectionInput, ...request.Option) (*networkmanager.UpdateConnectionOutput, error)
 	UpdateConnectionRequest(*networkmanager.UpdateConnectionInput) (*request.Request, *networkmanager.UpdateConnectionOutput)
+
+	UpdateCoreNetwork(*networkmanager.UpdateCoreNetworkInput) (*networkmanager.UpdateCoreNetworkOutput, error)
+	UpdateCoreNetworkWithContext(aws.Context, *networkmanager.UpdateCoreNetworkInput, ...request.Option) (*networkmanager.UpdateCoreNetworkOutput, error)
+	UpdateCoreNetworkRequest(*networkmanager.UpdateCoreNetworkInput) (*request.Request, *networkmanager.UpdateCoreNetworkOutput)
 
 	UpdateDevice(*networkmanager.UpdateDeviceInput) (*networkmanager.UpdateDeviceOutput, error)
 	UpdateDeviceWithContext(aws.Context, *networkmanager.UpdateDeviceInput, ...request.Option) (*networkmanager.UpdateDeviceOutput, error)
@@ -270,6 +416,10 @@ type NetworkManagerAPI interface {
 	UpdateSite(*networkmanager.UpdateSiteInput) (*networkmanager.UpdateSiteOutput, error)
 	UpdateSiteWithContext(aws.Context, *networkmanager.UpdateSiteInput, ...request.Option) (*networkmanager.UpdateSiteOutput, error)
 	UpdateSiteRequest(*networkmanager.UpdateSiteInput) (*request.Request, *networkmanager.UpdateSiteOutput)
+
+	UpdateVpcAttachment(*networkmanager.UpdateVpcAttachmentInput) (*networkmanager.UpdateVpcAttachmentOutput, error)
+	UpdateVpcAttachmentWithContext(aws.Context, *networkmanager.UpdateVpcAttachmentInput, ...request.Option) (*networkmanager.UpdateVpcAttachmentOutput, error)
+	UpdateVpcAttachmentRequest(*networkmanager.UpdateVpcAttachmentInput) (*request.Request, *networkmanager.UpdateVpcAttachmentOutput)
 }
 
 var _ NetworkManagerAPI = (*networkmanager.NetworkManager)(nil)

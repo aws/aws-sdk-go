@@ -58,7 +58,9 @@ func (c *RAM) AcceptResourceShareInvitationRequest(input *AcceptResourceShareInv
 // AcceptResourceShareInvitation API operation for AWS Resource Access Manager.
 //
 // Accepts an invitation to a resource share from another Amazon Web Services
-// account.
+// account. After you accept the invitation, the resources included in the resource
+// share are available to interact with in the relevant Amazon Web Services
+// Management Consoles and tools.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -75,16 +77,16 @@ func (c *RAM) AcceptResourceShareInvitationRequest(input *AcceptResourceShareInv
 //   The requested operation is not permitted.
 //
 //   * ResourceShareInvitationArnNotFoundException
-//   The Amazon Resource Name (ARN) for an invitation was not found.
+//   The specified Amazon Resource Name (ARN) for an invitation was not found.
 //
 //   * ResourceShareInvitationAlreadyAcceptedException
-//   The invitation was already accepted.
+//   The specified invitation was already accepted.
 //
 //   * ResourceShareInvitationAlreadyRejectedException
-//   The invitation was already rejected.
+//   The specified invitation was already rejected.
 //
 //   * ResourceShareInvitationExpiredException
-//   The invitation is expired.
+//   The specified invitation is expired.
 //
 //   * ServerInternalException
 //   The service could not respond to the request due to an internal problem.
@@ -93,12 +95,12 @@ func (c *RAM) AcceptResourceShareInvitationRequest(input *AcceptResourceShareInv
 //   The service is not available.
 //
 //   * InvalidClientTokenException
-//   A client token is not valid.
+//   The client token is not valid.
 //
 //   * IdempotentParameterMismatchException
-//   A client token input parameter was reused with an operation, but at least
-//   one of the other input parameters is different from the previous call to
-//   the operation.
+//   The client token input parameter was matched one used with a previous call
+//   to the operation, but at least one of the other input parameters is different
+//   from the previous call.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ram-2018-01-04/AcceptResourceShareInvitation
 func (c *RAM) AcceptResourceShareInvitation(input *AcceptResourceShareInvitationInput) (*AcceptResourceShareInvitationOutput, error) {
@@ -166,8 +168,10 @@ func (c *RAM) AssociateResourceShareRequest(input *AssociateResourceShareInput) 
 
 // AssociateResourceShare API operation for AWS Resource Access Manager.
 //
-// Associates the specified resource share with the specified principals and
-// resources.
+// Adds the specified list of principals and list of resources to a resource
+// share. Principals that already have access to this resource share immediately
+// receive access to the added resources. Newly added principals immediately
+// receive access to the resources shared in this resource share.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -178,9 +182,9 @@ func (c *RAM) AssociateResourceShareRequest(input *AssociateResourceShareInput) 
 //
 // Returned Error Types:
 //   * IdempotentParameterMismatchException
-//   A client token input parameter was reused with an operation, but at least
-//   one of the other input parameters is different from the previous call to
-//   the operation.
+//   The client token input parameter was matched one used with a previous call
+//   to the operation, but at least one of the other input parameters is different
+//   from the previous call.
 //
 //   * UnknownResourceException
 //   A specified resource was not found.
@@ -189,7 +193,7 @@ func (c *RAM) AssociateResourceShareRequest(input *AssociateResourceShareInput) 
 //   The requested state transition is not valid.
 //
 //   * ResourceShareLimitExceededException
-//   The requested resource share exceeds the limit for your account.
+//   This request would exceed the limit for resource shares for your account.
 //
 //   * MalformedArnException
 //   The format of an Amazon Resource Name (ARN) is not valid.
@@ -198,7 +202,7 @@ func (c *RAM) AssociateResourceShareRequest(input *AssociateResourceShareInput) 
 //   The requested state transition is not valid.
 //
 //   * InvalidClientTokenException
-//   A client token is not valid.
+//   The client token is not valid.
 //
 //   * InvalidParameterException
 //   A parameter is not valid.
@@ -214,6 +218,10 @@ func (c *RAM) AssociateResourceShareRequest(input *AssociateResourceShareInput) 
 //
 //   * UnknownResourceException
 //   A specified resource was not found.
+//
+//   * ThrottlingException
+//   You exceeded the rate at which you are allowed to perform this operation.
+//   Please try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ram-2018-01-04/AssociateResourceShare
 func (c *RAM) AssociateResourceShare(input *AssociateResourceShareInput) (*AssociateResourceShareOutput, error) {
@@ -281,7 +289,11 @@ func (c *RAM) AssociateResourceSharePermissionRequest(input *AssociateResourceSh
 
 // AssociateResourceSharePermission API operation for AWS Resource Access Manager.
 //
-// Associates a permission with a resource share.
+// Adds or replaces the RAM permission for a resource type included in a resource
+// share. You can have exactly one permission associated with each resource
+// type in the resource share. You can add a new RAM permission only if there
+// are currently no resources of that resource type currently in the resource
+// share.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -301,7 +313,7 @@ func (c *RAM) AssociateResourceSharePermissionRequest(input *AssociateResourceSh
 //   A parameter is not valid.
 //
 //   * InvalidClientTokenException
-//   A client token is not valid.
+//   The client token is not valid.
 //
 //   * ServerInternalException
 //   The service could not respond to the request due to an internal problem.
@@ -378,10 +390,10 @@ func (c *RAM) CreateResourceShareRequest(input *CreateResourceShareInput) (req *
 
 // CreateResourceShare API operation for AWS Resource Access Manager.
 //
-// Creates a resource share. You must provide a list of the Amazon Resource
-// Names (ARNs) for the resources you want to share. You must also specify who
-// you want to share the resources with, and the permissions that you grant
-// them.
+// Creates a resource share. You can provide a list of the Amazon Resource Names
+// (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+// for the resources that you want to share, a list of principals you want to
+// share the resources with, and the permissions to grant those principals.
 //
 // Sharing a resource makes it available for use by principals outside of the
 // Amazon Web Services account that created the resource. Sharing doesn't change
@@ -397,9 +409,9 @@ func (c *RAM) CreateResourceShareRequest(input *CreateResourceShareInput) (req *
 //
 // Returned Error Types:
 //   * IdempotentParameterMismatchException
-//   A client token input parameter was reused with an operation, but at least
-//   one of the other input parameters is different from the previous call to
-//   the operation.
+//   The client token input parameter was matched one used with a previous call
+//   to the operation, but at least one of the other input parameters is different
+//   from the previous call.
 //
 //   * InvalidStateTransitionException
 //   The requested state transition is not valid.
@@ -411,7 +423,7 @@ func (c *RAM) CreateResourceShareRequest(input *CreateResourceShareInput) (req *
 //   The format of an Amazon Resource Name (ARN) is not valid.
 //
 //   * InvalidClientTokenException
-//   A client token is not valid.
+//   The client token is not valid.
 //
 //   * InvalidParameterException
 //   A parameter is not valid.
@@ -420,10 +432,10 @@ func (c *RAM) CreateResourceShareRequest(input *CreateResourceShareInput) (req *
 //   The requested operation is not permitted.
 //
 //   * ResourceShareLimitExceededException
-//   The requested resource share exceeds the limit for your account.
+//   This request would exceed the limit for resource shares for your account.
 //
 //   * TagPolicyViolationException
-//   The specified tag is a reserved word and cannot be used.
+//   The specified tag key is a reserved word and can't be used.
 //
 //   * ServerInternalException
 //   The service could not respond to the request due to an internal problem.
@@ -497,7 +509,9 @@ func (c *RAM) DeleteResourceShareRequest(input *DeleteResourceShareInput) (req *
 
 // DeleteResourceShare API operation for AWS Resource Access Manager.
 //
-// Deletes the specified resource share.
+// Deletes the specified resource share. This doesn't delete any of the resources
+// that were associated with the resource share; it only stops the sharing of
+// those resources outside of the Amazon Web Services account that created them.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -511,9 +525,9 @@ func (c *RAM) DeleteResourceShareRequest(input *DeleteResourceShareInput) (req *
 //   The requested operation is not permitted.
 //
 //   * IdempotentParameterMismatchException
-//   A client token input parameter was reused with an operation, but at least
-//   one of the other input parameters is different from the previous call to
-//   the operation.
+//   The client token input parameter was matched one used with a previous call
+//   to the operation, but at least one of the other input parameters is different
+//   from the previous call.
 //
 //   * InvalidStateTransitionException
 //   The requested state transition is not valid.
@@ -525,7 +539,7 @@ func (c *RAM) DeleteResourceShareRequest(input *DeleteResourceShareInput) (req *
 //   The format of an Amazon Resource Name (ARN) is not valid.
 //
 //   * InvalidClientTokenException
-//   A client token is not valid.
+//   The client token is not valid.
 //
 //   * InvalidParameterException
 //   A parameter is not valid.
@@ -614,12 +628,12 @@ func (c *RAM) DisassociateResourceShareRequest(input *DisassociateResourceShareI
 //
 // Returned Error Types:
 //   * IdempotentParameterMismatchException
-//   A client token input parameter was reused with an operation, but at least
-//   one of the other input parameters is different from the previous call to
-//   the operation.
+//   The client token input parameter was matched one used with a previous call
+//   to the operation, but at least one of the other input parameters is different
+//   from the previous call.
 //
 //   * ResourceShareLimitExceededException
-//   The requested resource share exceeds the limit for your account.
+//   This request would exceed the limit for resource shares for your account.
 //
 //   * MalformedArnException
 //   The format of an Amazon Resource Name (ARN) is not valid.
@@ -628,7 +642,7 @@ func (c *RAM) DisassociateResourceShareRequest(input *DisassociateResourceShareI
 //   The requested state transition is not valid.
 //
 //   * InvalidClientTokenException
-//   A client token is not valid.
+//   The client token is not valid.
 //
 //   * InvalidParameterException
 //   A parameter is not valid.
@@ -711,7 +725,10 @@ func (c *RAM) DisassociateResourceSharePermissionRequest(input *DisassociateReso
 
 // DisassociateResourceSharePermission API operation for AWS Resource Access Manager.
 //
-// Disassociates an RAM permission from a resource share.
+// Disassociates an RAM permission from a resource share. Permission changes
+// take effect immediately. You can remove a RAM permission from a resource
+// share only if there are currently no resources of the relevant resource type
+// currently attached to the resource share.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -731,7 +748,7 @@ func (c *RAM) DisassociateResourceSharePermissionRequest(input *DisassociateReso
 //   A parameter is not valid.
 //
 //   * InvalidClientTokenException
-//   A client token is not valid.
+//   The client token is not valid.
 //
 //   * ServerInternalException
 //   The service could not respond to the request due to an internal problem.
@@ -811,9 +828,16 @@ func (c *RAM) EnableSharingWithAwsOrganizationRequest(input *EnableSharingWithAw
 
 // EnableSharingWithAwsOrganization API operation for AWS Resource Access Manager.
 //
-// Enables resource sharing within your organization in Organizations.
+// Enables resource sharing within your organization in Organizations. Calling
+// this operation enables RAM to retrieve information about the organization
+// and its structure. This lets you share resources with all of the accounts
+// in an organization by specifying the organization's ID, or all of the accounts
+// in an organizational unit (OU) by specifying the OU's ID. Until you enable
+// sharing within the organization, you can specify only individual Amazon Web
+// Services accounts, or for supported resource types, IAM users and roles.
 //
-// The caller must be the master account for the organization.
+// You must call this operation from an IAM user or role in the organization's
+// management account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -998,7 +1022,8 @@ func (c *RAM) GetResourcePoliciesRequest(input *GetResourcePoliciesInput) (req *
 
 // GetResourcePolicies API operation for AWS Resource Access Manager.
 //
-// Gets the policies for the specified resources that you own and have shared.
+// Retrieves the resource policies for the specified resources that you own
+// and have shared.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1018,7 +1043,7 @@ func (c *RAM) GetResourcePoliciesRequest(input *GetResourcePoliciesInput) (req *
 //   A parameter is not valid.
 //
 //   * ResourceArnNotFoundException
-//   An Amazon Resource Name (ARN) was not found.
+//   The specified Amazon Resource Name (ARN) was not found.
 //
 //   * ServerInternalException
 //   The service could not respond to the request due to an internal problem.
@@ -1150,7 +1175,8 @@ func (c *RAM) GetResourceShareAssociationsRequest(input *GetResourceShareAssocia
 
 // GetResourceShareAssociations API operation for AWS Resource Access Manager.
 //
-// Gets the resources or principals for the resource shares that you own.
+// Retrieves the resource and principal associations for resource shares that
+// you own.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1305,7 +1331,7 @@ func (c *RAM) GetResourceShareInvitationsRequest(input *GetResourceShareInvitati
 
 // GetResourceShareInvitations API operation for AWS Resource Access Manager.
 //
-// Gets the invitations that you have received for resource shares.
+// Retrieves details about invitations that you have received for resource shares.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1316,7 +1342,7 @@ func (c *RAM) GetResourceShareInvitationsRequest(input *GetResourceShareInvitati
 //
 // Returned Error Types:
 //   * ResourceShareInvitationArnNotFoundException
-//   The Amazon Resource Name (ARN) for an invitation was not found.
+//   The specified Amazon Resource Name (ARN) for an invitation was not found.
 //
 //   * InvalidMaxResultsException
 //   The specified value for MaxResults is not valid.
@@ -1463,7 +1489,7 @@ func (c *RAM) GetResourceSharesRequest(input *GetResourceSharesInput) (req *requ
 
 // GetResourceShares API operation for AWS Resource Access Manager.
 //
-// Gets the resource shares that you own or the resource shares that are shared
+// Retrieves details about the resource shares that you own or that are shared
 // with you.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1616,8 +1642,9 @@ func (c *RAM) ListPendingInvitationResourcesRequest(input *ListPendingInvitation
 
 // ListPendingInvitationResources API operation for AWS Resource Access Manager.
 //
-// Lists the resources in a resource share that is shared with you but that
-// the invitation is still pending for.
+// Lists the resources in a resource share that is shared with you but for which
+// the invitation is still PENDING. That means that you haven't accepted or
+// rejected the invitation and the invitation hasn't expired.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1643,16 +1670,16 @@ func (c *RAM) ListPendingInvitationResourcesRequest(input *ListPendingInvitation
 //   The service is not available.
 //
 //   * ResourceShareInvitationArnNotFoundException
-//   The Amazon Resource Name (ARN) for an invitation was not found.
+//   The specified Amazon Resource Name (ARN) for an invitation was not found.
 //
 //   * MissingRequiredParameterException
 //   A required input parameter is missing.
 //
 //   * ResourceShareInvitationAlreadyRejectedException
-//   The invitation was already rejected.
+//   The specified invitation was already rejected.
 //
 //   * ResourceShareInvitationExpiredException
-//   The invitation is expired.
+//   The specified invitation is expired.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ram-2018-01-04/ListPendingInvitationResources
 func (c *RAM) ListPendingInvitationResources(input *ListPendingInvitationResourcesInput) (*ListPendingInvitationResourcesOutput, error) {
@@ -1778,7 +1805,8 @@ func (c *RAM) ListPermissionsRequest(input *ListPermissionsInput) (req *request.
 
 // ListPermissions API operation for AWS Resource Access Manager.
 //
-// Lists the RAM permissions.
+// Retrieves a list of available RAM permissions that you can use for the supported
+// resource types.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1927,7 +1955,7 @@ func (c *RAM) ListPrincipalsRequest(input *ListPrincipalsInput) (req *request.Re
 
 // ListPrincipals API operation for AWS Resource Access Manager.
 //
-// Lists the principals that you have shared resources with or that have shared
+// Lists the principals that you are sharing resources with or that are sharing
 // resources with you.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2235,7 +2263,7 @@ func (c *RAM) ListResourceTypesRequest(input *ListResourceTypesInput) (req *requ
 
 // ListResourceTypes API operation for AWS Resource Access Manager.
 //
-// Lists the shareable resource types supported by RAM.
+// Lists the resource types that can be shared by RAM.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2531,16 +2559,15 @@ func (c *RAM) PromoteResourceShareCreatedFromPolicyRequest(input *PromoteResourc
 
 // PromoteResourceShareCreatedFromPolicy API operation for AWS Resource Access Manager.
 //
-// Resource shares that were created by attaching a policy to a resource are
-// visible only to the resource share owner, and the resource share cannot be
-// modified in RAM.
+// When you attach a resource-based permission policy to a resource, it automatically
+// creates a resource share. However, resource shares created this way are visible
+// only to the resource share owner, and the resource share can't be modified
+// in RAM.
 //
-// Use this API action to promote the resource share. When you promote the resource
-// share, it becomes:
-//
-//    * Visible to all principals that it is shared with.
-//
-//    * Modifiable in RAM.
+// You can use this operation to promote the resource share to a full RAM resource
+// share. When you promote a resource share, you can then manage the resource
+// share in RAM and it becomes visible to all of the principals you shared it
+// with.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2554,7 +2581,7 @@ func (c *RAM) PromoteResourceShareCreatedFromPolicyRequest(input *PromoteResourc
 //   The format of an Amazon Resource Name (ARN) is not valid.
 //
 //   * ResourceShareLimitExceededException
-//   The requested resource share exceeds the limit for your account.
+//   This request would exceed the limit for resource shares for your account.
 //
 //   * OperationNotPermittedException
 //   The requested operation is not permitted.
@@ -2658,16 +2685,16 @@ func (c *RAM) RejectResourceShareInvitationRequest(input *RejectResourceShareInv
 //   The requested operation is not permitted.
 //
 //   * ResourceShareInvitationArnNotFoundException
-//   The Amazon Resource Name (ARN) for an invitation was not found.
+//   The specified Amazon Resource Name (ARN) for an invitation was not found.
 //
 //   * ResourceShareInvitationAlreadyAcceptedException
-//   The invitation was already accepted.
+//   The specified invitation was already accepted.
 //
 //   * ResourceShareInvitationAlreadyRejectedException
-//   The invitation was already rejected.
+//   The specified invitation was already rejected.
 //
 //   * ResourceShareInvitationExpiredException
-//   The invitation is expired.
+//   The specified invitation is expired.
 //
 //   * ServerInternalException
 //   The service could not respond to the request due to an internal problem.
@@ -2676,12 +2703,12 @@ func (c *RAM) RejectResourceShareInvitationRequest(input *RejectResourceShareInv
 //   The service is not available.
 //
 //   * InvalidClientTokenException
-//   A client token is not valid.
+//   The client token is not valid.
 //
 //   * IdempotentParameterMismatchException
-//   A client token input parameter was reused with an operation, but at least
-//   one of the other input parameters is different from the previous call to
-//   the operation.
+//   The client token input parameter was matched one used with a previous call
+//   to the operation, but at least one of the other input parameters is different
+//   from the previous call.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ram-2018-01-04/RejectResourceShareInvitation
 func (c *RAM) RejectResourceShareInvitation(input *RejectResourceShareInvitationInput) (*RejectResourceShareInvitationOutput, error) {
@@ -2750,7 +2777,9 @@ func (c *RAM) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 
 // TagResource API operation for AWS Resource Access Manager.
 //
-// Adds the specified tags to the specified resource share that you own.
+// Adds the specified tag keys and values to the specified resource share. The
+// tags are attached only to the resource share, not to the resources that are
+// in the resource share.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2770,13 +2799,13 @@ func (c *RAM) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 //   A specified resource was not found.
 //
 //   * TagLimitExceededException
-//   The requested tags exceed the limit for your account.
+//   This request would exceed the limit for tags for your account.
 //
 //   * ResourceArnNotFoundException
-//   An Amazon Resource Name (ARN) was not found.
+//   The specified Amazon Resource Name (ARN) was not found.
 //
 //   * TagPolicyViolationException
-//   The specified tag is a reserved word and cannot be used.
+//   The specified tag key is a reserved word and can't be used.
 //
 //   * ServerInternalException
 //   The service could not respond to the request due to an internal problem.
@@ -2851,7 +2880,8 @@ func (c *RAM) UntagResourceRequest(input *UntagResourceInput) (req *request.Requ
 
 // UntagResource API operation for AWS Resource Access Manager.
 //
-// Removes the specified tags from the specified resource share that you own.
+// Removes the specified tag key and value pairs from the specified resource
+// share.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2936,7 +2966,7 @@ func (c *RAM) UpdateResourceShareRequest(input *UpdateResourceShareInput) (req *
 
 // UpdateResourceShare API operation for AWS Resource Access Manager.
 //
-// Updates the specified resource share that you own.
+// Modifies some of the properties of the specified resource share.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2947,9 +2977,9 @@ func (c *RAM) UpdateResourceShareRequest(input *UpdateResourceShareInput) (req *
 //
 // Returned Error Types:
 //   * IdempotentParameterMismatchException
-//   A client token input parameter was reused with an operation, but at least
-//   one of the other input parameters is different from the previous call to
-//   the operation.
+//   The client token input parameter was matched one used with a previous call
+//   to the operation, but at least one of the other input parameters is different
+//   from the previous call.
 //
 //   * MissingRequiredParameterException
 //   A required input parameter is missing.
@@ -2961,7 +2991,7 @@ func (c *RAM) UpdateResourceShareRequest(input *UpdateResourceShareInput) (req *
 //   The format of an Amazon Resource Name (ARN) is not valid.
 //
 //   * InvalidClientTokenException
-//   A client token is not valid.
+//   The client token is not valid.
 //
 //   * InvalidParameterException
 //   A parameter is not valid.
@@ -3000,11 +3030,19 @@ func (c *RAM) UpdateResourceShareWithContext(ctx aws.Context, input *UpdateResou
 type AcceptResourceShareInvitationInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// Specifies a unique, case-sensitive identifier that you provide to ensure
+	// the idempotency of the request. This lets you safely retry the request without
+	// accidentally performing the same operation a second time. Passing the same
+	// value to a later call to an operation requires that you also pass the same
+	// value for all other parameters. We recommend that you use a UUID type of
+	// value. (https://wikipedia.org/wiki/Universally_unique_identifier).
+	//
+	// If you don't provide this value, then Amazon Web Services generates a random
+	// one for you.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the invitation.
+	// The Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the invitation that you want to accept.
 	//
 	// ResourceShareInvitationArn is a required field
 	ResourceShareInvitationArn *string `locationName:"resourceShareInvitationArn" type:"string" required:"true"`
@@ -3056,11 +3094,13 @@ func (s *AcceptResourceShareInvitationInput) SetResourceShareInvitationArn(v str
 type AcceptResourceShareInvitationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// The idempotency identifier associated with this request. If you want to repeat
+	// the same operation in an idempotent manner then you must include this value
+	// in the clientToken request parameter of that later call. All other parameters
+	// must also have the same values that you used in the first call.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// Information about the invitation.
+	// An object that contains information about the specified invitation.
 	ResourceShareInvitation *ResourceShareInvitation `locationName:"resourceShareInvitation" type:"structure"`
 }
 
@@ -3097,32 +3137,49 @@ func (s *AcceptResourceShareInvitationOutput) SetResourceShareInvitation(v *Reso
 type AssociateResourceShareInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// Specifies a unique, case-sensitive identifier that you provide to ensure
+	// the idempotency of the request. This lets you safely retry the request without
+	// accidentally performing the same operation a second time. Passing the same
+	// value to a later call to an operation requires that you also pass the same
+	// value for all other parameters. We recommend that you use a UUID type of
+	// value. (https://wikipedia.org/wiki/Universally_unique_identifier).
+	//
+	// If you don't provide this value, then Amazon Web Services generates a random
+	// one for you.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// The principals to associate with the resource share. The possible values
-	// are:
+	// Specifies a list of principals to whom you want to the resource share. This
+	// can be null if you want to add only resources.
 	//
-	//    * An Amazon Web Services account ID
+	// What the principals can do with the resources in the share is determined
+	// by the RAM permissions that you associate with the resource share. See AssociateResourceSharePermission.
 	//
-	//    * An Amazon Resource Name (ARN) of an organization in Organizations
+	// You can include the following values:
 	//
-	//    * An ARN of an organizational unit (OU) in Organizations
+	//    * An Amazon Web Services account ID, for example: 123456789012
 	//
-	//    * An ARN of an IAM role
+	//    * An Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	//    of an organization in Organizations, for example: organizations::123456789012:organization/o-exampleorgid
 	//
-	//    * An ARN of an IAM user
+	//    * An ARN of an organizational unit (OU) in Organizations, for example:
+	//    organizations::123456789012:ou/o-exampleorgid/ou-examplerootid-exampleouid123
 	//
-	// Not all resource types can be shared with IAM roles and IAM users. For more
-	// information, see Sharing with IAM roles and IAM users (https://docs.aws.amazon.com/ram/latest/userguide/permissions.html#permissions-rbp-supported-resource-types)
+	//    * An ARN of an IAM role, for example: iam::123456789012:role/rolename
+	//
+	//    * An ARN of an IAM user, for example: iam::123456789012user/username
+	//
+	// Not all resource types can be shared with IAM roles and users. For more information,
+	// see Sharing with IAM roles and users (https://docs.aws.amazon.com/ram/latest/userguide/permissions.html#permissions-rbp-supported-resource-types)
 	// in the Resource Access Manager User Guide.
 	Principals []*string `locationName:"principals" type:"list"`
 
-	// The Amazon Resource Names (ARNs) of the resources.
+	// Specifies a list of Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resources that you want to share. This can be null if you want to
+	// add only principals.
 	ResourceArns []*string `locationName:"resourceArns" type:"list"`
 
-	// The Amazon Resource Name (ARN) of the resource share.
+	// Specifies the Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resource share that you want to add principals or resources to.
 	//
 	// ResourceShareArn is a required field
 	ResourceShareArn *string `locationName:"resourceShareArn" type:"string" required:"true"`
@@ -3186,11 +3243,13 @@ func (s *AssociateResourceShareInput) SetResourceShareArn(v string) *AssociateRe
 type AssociateResourceShareOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// The idempotency identifier associated with this request. If you want to repeat
+	// the same operation in an idempotent manner then you must include this value
+	// in the clientToken request parameter of that later call. All other parameters
+	// must also have the same values that you used in the first call.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// Information about the associations.
+	// An array of objects that contain information about the associations.
 	ResourceShareAssociations []*ResourceShareAssociation `locationName:"resourceShareAssociations" type:"list"`
 }
 
@@ -3227,25 +3286,45 @@ func (s *AssociateResourceShareOutput) SetResourceShareAssociations(v []*Resourc
 type AssociateResourceSharePermissionInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// Specifies a unique, case-sensitive identifier that you provide to ensure
+	// the idempotency of the request. This lets you safely retry the request without
+	// accidentally performing the same operation a second time. Passing the same
+	// value to a later call to an operation requires that you also pass the same
+	// value for all other parameters. We recommend that you use a UUID type of
+	// value. (https://wikipedia.org/wiki/Universally_unique_identifier).
+	//
+	// If you don't provide this value, then Amazon Web Services generates a random
+	// one for you.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the RAM permission to associate with the
-	// resource share.
+	// Specifies the Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the RAM permission to associate with the resource share. To find the ARN
+	// for a permission, use either the ListPermissions operation or go to the Permissions
+	// library (https://console.aws.amazon.com/ram/home#Permissions:) page in the
+	// RAM console and then choose the name of the permission. The ARN is displayed
+	// on the detail page.
 	//
 	// PermissionArn is a required field
 	PermissionArn *string `locationName:"permissionArn" type:"string" required:"true"`
 
-	// The version of the RAM permissions to associate with the resource share.
+	// Specifies the version of the RAM permission to associate with the resource
+	// share. If you don't specify this parameter, the operation uses the version
+	// designated as the default.
 	PermissionVersion *int64 `locationName:"permissionVersion" type:"integer"`
 
-	// Indicates whether the permission should replace the permissions that are
-	// currently associated with the resource share. Use true to replace the current
-	// permissions. Use false to add the permission to the current permission.
+	// Specifies whether the specified permission should replace or add to the existing
+	// permission associated with the resource share. Use true to replace the current
+	// permissions. Use false to add the permission to the current permission. The
+	// default value is false.
+	//
+	// A resource share can have only one permission per resource type. If a resource
+	// share already has a permission for the specified resource type and you don't
+	// set replace to true then the operation returns an error. This helps prevent
+	// accidental overwriting of a permission.
 	Replace *bool `locationName:"replace" type:"boolean"`
 
-	// The Amazon Resource Name (ARN) of the resource share.
+	// Specifies the Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resource share to which you want to add or replace permissions.
 	//
 	// ResourceShareArn is a required field
 	ResourceShareArn *string `locationName:"resourceShareArn" type:"string" required:"true"`
@@ -3318,11 +3397,14 @@ func (s *AssociateResourceSharePermissionInput) SetResourceShareArn(v string) *A
 type AssociateResourceSharePermissionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// The idempotency identifier associated with this request. If you want to repeat
+	// the same operation in an idempotent manner then you must include this value
+	// in the clientToken request parameter of that later call. All other parameters
+	// must also have the same values that you used in the first call.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// Indicates whether the request succeeded.
+	// A return value of true indicates that the request succeeded. A value of false
+	// indicates that the request failed.
 	ReturnValue *bool `locationName:"returnValue" type:"boolean"`
 }
 
@@ -3359,47 +3441,64 @@ func (s *AssociateResourceSharePermissionOutput) SetReturnValue(v bool) *Associa
 type CreateResourceShareInput struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether principals outside your organization in Organizations can
-	// be associated with a resource share.
+	// Specifies whether principals outside your organization in Organizations can
+	// be associated with a resource share. A value of true lets you share with
+	// individual Amazon Web Services accounts that are not in your organization.
+	// A value of false only has meaning if your account is a member of an Amazon
+	// Web Services Organization. The default value is true.
 	AllowExternalPrincipals *bool `locationName:"allowExternalPrincipals" type:"boolean"`
 
-	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// Specifies a unique, case-sensitive identifier that you provide to ensure
+	// the idempotency of the request. This lets you safely retry the request without
+	// accidentally performing the same operation a second time. Passing the same
+	// value to a later call to an operation requires that you also pass the same
+	// value for all other parameters. We recommend that you use a UUID type of
+	// value. (https://wikipedia.org/wiki/Universally_unique_identifier).
+	//
+	// If you don't provide this value, then Amazon Web Services generates a random
+	// one for you.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// The name of the resource share.
+	// Specifies the name of the resource share.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The Amazon Resource Names (ARNs) of the permissions to associate with the
-	// resource share. If you do not specify an ARN for the permission, RAM automatically
-	// attaches the default version of the permission for each resource type. Only
-	// one permission can be associated with each resource type in a resource share.
+	// Specifies the Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the RAM permission to associate with the resource share. If you do not
+	// specify an ARN for the permission, RAM automatically attaches the default
+	// version of the permission for each resource type. You can associate only
+	// one permission with each resource type included in the resource share.
 	PermissionArns []*string `locationName:"permissionArns" type:"list"`
 
-	// The principals to associate with the resource share. The possible values
-	// are:
+	// Specifies a list of one or more principals to associate with the resource
+	// share.
 	//
-	//    * An Amazon Web Services account ID
+	// You can include the following values:
 	//
-	//    * An Amazon Resource Name (ARN) of an organization in Organizations
+	//    * An Amazon Web Services account ID, for example: 123456789012
 	//
-	//    * An ARN of an organizational unit (OU) in Organizations
+	//    * An Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	//    of an organization in Organizations, for example: organizations::123456789012:organization/o-exampleorgid
 	//
-	//    * An ARN of an IAM role
+	//    * An ARN of an organizational unit (OU) in Organizations, for example:
+	//    organizations::123456789012:ou/o-exampleorgid/ou-examplerootid-exampleouid123
 	//
-	//    * An ARN of an IAM user
+	//    * An ARN of an IAM role, for example: iam::123456789012:role/rolename
 	//
-	// Not all resource types can be shared with IAM roles and IAM users. For more
-	// information, see Sharing with IAM roles and IAM users (https://docs.aws.amazon.com/ram/latest/userguide/permissions.html#permissions-rbp-supported-resource-types)
+	//    * An ARN of an IAM user, for example: iam::123456789012user/username
+	//
+	// Not all resource types can be shared with IAM roles and users. For more information,
+	// see Sharing with IAM roles and users (https://docs.aws.amazon.com/ram/latest/userguide/permissions.html#permissions-rbp-supported-resource-types)
 	// in the Resource Access Manager User Guide.
 	Principals []*string `locationName:"principals" type:"list"`
 
-	// The ARNs of the resources to associate with the resource share.
+	// Specifies a list of one or more ARNs of the resources to associate with the
+	// resource share.
 	ResourceArns []*string `locationName:"resourceArns" type:"list"`
 
-	// One or more tags.
+	// Specifies one or more tags to attach to the resource share itself. It doesn't
+	// attach the tags to the resources associated with the resource share.
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
@@ -3479,11 +3578,13 @@ func (s *CreateResourceShareInput) SetTags(v []*Tag) *CreateResourceShareInput {
 type CreateResourceShareOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// The idempotency identifier associated with this request. If you want to repeat
+	// the same operation in an idempotent manner then you must include this value
+	// in the clientToken request parameter of that later call. All other parameters
+	// must also have the same values that you used in the first call.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// Information about the resource share.
+	// An object with information about the new resource share.
 	ResourceShare *ResourceShare `locationName:"resourceShare" type:"structure"`
 }
 
@@ -3520,11 +3621,19 @@ func (s *CreateResourceShareOutput) SetResourceShare(v *ResourceShare) *CreateRe
 type DeleteResourceShareInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// Specifies a unique, case-sensitive identifier that you provide to ensure
+	// the idempotency of the request. This lets you safely retry the request without
+	// accidentally performing the same operation a second time. Passing the same
+	// value to a later call to an operation requires that you also pass the same
+	// value for all other parameters. We recommend that you use a UUID type of
+	// value. (https://wikipedia.org/wiki/Universally_unique_identifier).
+	//
+	// If you don't provide this value, then Amazon Web Services generates a random
+	// one for you.
 	ClientToken *string `location:"querystring" locationName:"clientToken" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the resource share.
+	// Specifies the Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resource share to delete.
 	//
 	// ResourceShareArn is a required field
 	ResourceShareArn *string `location:"querystring" locationName:"resourceShareArn" type:"string" required:"true"`
@@ -3576,11 +3685,14 @@ func (s *DeleteResourceShareInput) SetResourceShareArn(v string) *DeleteResource
 type DeleteResourceShareOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// The idempotency identifier associated with this request. If you want to repeat
+	// the same operation in an idempotent manner then you must include this value
+	// in the clientToken request parameter of that later call. All other parameters
+	// must also have the same values that you used in the first call.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// Indicates whether the request succeeded.
+	// A return value of true indicates that the request succeeded. A value of false
+	// indicates that the request failed.
 	ReturnValue *bool `locationName:"returnValue" type:"boolean"`
 }
 
@@ -3617,17 +3729,47 @@ func (s *DeleteResourceShareOutput) SetReturnValue(v bool) *DeleteResourceShareO
 type DisassociateResourceShareInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// Specifies a unique, case-sensitive identifier that you provide to ensure
+	// the idempotency of the request. This lets you safely retry the request without
+	// accidentally performing the same operation a second time. Passing the same
+	// value to a later call to an operation requires that you also pass the same
+	// value for all other parameters. We recommend that you use a UUID type of
+	// value. (https://wikipedia.org/wiki/Universally_unique_identifier).
+	//
+	// If you don't provide this value, then Amazon Web Services generates a random
+	// one for you.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// The principals.
+	// Specifies a list of one or more principals that no longer are to have access
+	// to the resources in this resource share.
+	//
+	// You can include the following values:
+	//
+	//    * An Amazon Web Services account ID, for example: 123456789012
+	//
+	//    * An Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	//    of an organization in Organizations, for example: organizations::123456789012:organization/o-exampleorgid
+	//
+	//    * An ARN of an organizational unit (OU) in Organizations, for example:
+	//    organizations::123456789012:ou/o-exampleorgid/ou-examplerootid-exampleouid123
+	//
+	//    * An ARN of an IAM role, for example: iam::123456789012:role/rolename
+	//
+	//    * An ARN of an IAM user, for example: iam::123456789012user/username
+	//
+	// Not all resource types can be shared with IAM roles and users. For more information,
+	// see Sharing with IAM roles and users (https://docs.aws.amazon.com/ram/latest/userguide/permissions.html#permissions-rbp-supported-resource-types)
+	// in the Resource Access Manager User Guide.
 	Principals []*string `locationName:"principals" type:"list"`
 
-	// The Amazon Resource Names (ARNs) of the resources.
+	// Specifies a list of Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// for one or more resources that you want to remove from the resource share.
+	// After the operation runs, these resources are no longer shared with principals
+	// outside of the Amazon Web Services account that created the resources.
 	ResourceArns []*string `locationName:"resourceArns" type:"list"`
 
-	// The Amazon Resource Name (ARN) of the resource share.
+	// Specifies Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resource share that you want to remove resources from.
 	//
 	// ResourceShareArn is a required field
 	ResourceShareArn *string `locationName:"resourceShareArn" type:"string" required:"true"`
@@ -3691,11 +3833,14 @@ func (s *DisassociateResourceShareInput) SetResourceShareArn(v string) *Disassoc
 type DisassociateResourceShareOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// The idempotency identifier associated with this request. If you want to repeat
+	// the same operation in an idempotent manner then you must include this value
+	// in the clientToken request parameter of that later call. All other parameters
+	// must also have the same values that you used in the first call.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// Information about the associations.
+	// An array of objects that contain information about the updated associations
+	// for this resource share.
 	ResourceShareAssociations []*ResourceShareAssociation `locationName:"resourceShareAssociations" type:"list"`
 }
 
@@ -3732,17 +3877,26 @@ func (s *DisassociateResourceShareOutput) SetResourceShareAssociations(v []*Reso
 type DisassociateResourceSharePermissionInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// Specifies a unique, case-sensitive identifier that you provide to ensure
+	// the idempotency of the request. This lets you safely retry the request without
+	// accidentally performing the same operation a second time. Passing the same
+	// value to a later call to an operation requires that you also pass the same
+	// value for all other parameters. We recommend that you use a UUID type of
+	// value. (https://wikipedia.org/wiki/Universally_unique_identifier).
+	//
+	// If you don't provide this value, then Amazon Web Services generates a random
+	// one for you.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the permission to disassociate from the
-	// resource share.
+	// The Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the permission to disassociate from the resource share. Changes to permissions
+	// take effect immediately.
 	//
 	// PermissionArn is a required field
 	PermissionArn *string `locationName:"permissionArn" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the resource share.
+	// The Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resource share from which you want to disassociate a permission.
 	//
 	// ResourceShareArn is a required field
 	ResourceShareArn *string `locationName:"resourceShareArn" type:"string" required:"true"`
@@ -3803,11 +3957,14 @@ func (s *DisassociateResourceSharePermissionInput) SetResourceShareArn(v string)
 type DisassociateResourceSharePermissionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// The idempotency identifier associated with this request. If you want to repeat
+	// the same operation in an idempotent manner then you must include this value
+	// in the clientToken request parameter of that later call. All other parameters
+	// must also have the same values that you used in the first call.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// Indicates whether the request succeeded.
+	// A return value of true indicates that the request succeeded. A value of false
+	// indicates that the request failed.
 	ReturnValue *bool `locationName:"returnValue" type:"boolean"`
 }
 
@@ -3866,7 +4023,8 @@ func (s EnableSharingWithAwsOrganizationInput) GoString() string {
 type EnableSharingWithAwsOrganizationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether the request succeeded.
+	// A return value of true indicates that the request succeeded. A value of false
+	// indicates that the request failed.
 	ReturnValue *bool `locationName:"returnValue" type:"boolean"`
 }
 
@@ -3897,12 +4055,18 @@ func (s *EnableSharingWithAwsOrganizationOutput) SetReturnValue(v bool) *EnableS
 type GetPermissionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the permission.
+	// Specifies the Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the permission whose contents you want to retrieve. To find the ARN for
+	// a permission, use either the ListPermissions operation or go to the Permissions
+	// library (https://console.aws.amazon.com/ram/home#Permissions:) page in the
+	// RAM console and then choose the name of the permission. The ARN is displayed
+	// on the detail page.
 	//
 	// PermissionArn is a required field
 	PermissionArn *string `locationName:"permissionArn" type:"string" required:"true"`
 
-	// The identifier for the version of the permission.
+	// Specifies identifier for the version of the RAM permission to retrieve. If
+	// you don't specify this parameter, the operation retrieves the default version.
 	PermissionVersion *int64 `locationName:"permissionVersion" type:"integer"`
 }
 
@@ -3952,7 +4116,7 @@ func (s *GetPermissionInput) SetPermissionVersion(v int64) *GetPermissionInput {
 type GetPermissionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the permission.
+	// An object that contains information about the permission.
 	Permission *ResourceSharePermissionDetail `locationName:"permission" type:"structure"`
 }
 
@@ -3983,17 +4147,29 @@ func (s *GetPermissionOutput) SetPermission(v *ResourceSharePermissionDetail) *G
 type GetResourcePoliciesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to return with a single call. To retrieve the
-	// remaining results, make another call with the returned nextToken value.
+	// Specifies the total number of results that you want included on each page
+	// of the response. If you do not include this parameter, it defaults to a value
+	// that is specific to the operation. If additional items exist beyond the number
+	// you specify, the NextToken response element is returned with a value (not
+	// null). Include the specified value as the NextToken request parameter in
+	// the next call to the operation to get the next part of the results. Note
+	// that the service might return fewer results than the maximum even when there
+	// are more results available. You should check NextToken after every operation
+	// to ensure that you receive all of the results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token for the next page of results.
+	// Specifies that you want to receive the next page of results. Valid only if
+	// you received a NextToken response in the previous request. If you did, it
+	// indicates that more output is available. Set this parameter to the value
+	// provided by the previous call's NextToken response to request the next page
+	// of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The principal.
+	// Specifies the principal.
 	Principal *string `locationName:"principal" type:"string"`
 
-	// The Amazon Resource Names (ARNs) of the resources.
+	// Specifies the Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resources whose policies you want to retrieve.
 	//
 	// ResourceArns is a required field
 	ResourceArns []*string `locationName:"resourceArns" type:"list" required:"true"`
@@ -4060,11 +4236,14 @@ func (s *GetResourcePoliciesInput) SetResourceArns(v []*string) *GetResourcePoli
 type GetResourcePoliciesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to use to retrieve the next page of results. This value is null
-	// when there are no more results to return.
+	// If present, this value indicates that more output is available than is included
+	// in the current response. Use this value in the NextToken request parameter
+	// in a subsequent call to the operation to get the next part of the output.
+	// You should repeat this until the NextToken response element comes back as
+	// null. This indicates that this is the last page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// A key policy document, in JSON format.
+	// An array of resource policy documents in JSON format.
 	Policies []*string `locationName:"policies" type:"list"`
 }
 
@@ -4101,32 +4280,55 @@ func (s *GetResourcePoliciesOutput) SetPolicies(v []*string) *GetResourcePolicie
 type GetResourceShareAssociationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The association status.
+	// Specifies that you want to retrieve only associations with this status.
 	AssociationStatus *string `locationName:"associationStatus" type:"string" enum:"ResourceShareAssociationStatus"`
 
-	// The association type. Specify PRINCIPAL to list the principals that are associated
-	// with the specified resource share. Specify RESOURCE to list the resources
-	// that are associated with the specified resource share.
+	// Specifies whether you want to retrieve the associations that involve a specified
+	// resource or principal.
+	//
+	//    * PRINCIPAL – list the principals that are associated with the specified
+	//    resource share.
+	//
+	//    * RESOURCE – list the resources that are associated with the specified
+	//    resource share.
 	//
 	// AssociationType is a required field
 	AssociationType *string `locationName:"associationType" type:"string" required:"true" enum:"ResourceShareAssociationType"`
 
-	// The maximum number of results to return with a single call. To retrieve the
-	// remaining results, make another call with the returned nextToken value.
+	// Specifies the total number of results that you want included on each page
+	// of the response. If you do not include this parameter, it defaults to a value
+	// that is specific to the operation. If additional items exist beyond the number
+	// you specify, the NextToken response element is returned with a value (not
+	// null). Include the specified value as the NextToken request parameter in
+	// the next call to the operation to get the next part of the results. Note
+	// that the service might return fewer results than the maximum even when there
+	// are more results available. You should check NextToken after every operation
+	// to ensure that you receive all of the results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token for the next page of results.
+	// Specifies that you want to receive the next page of results. Valid only if
+	// you received a NextToken response in the previous request. If you did, it
+	// indicates that more output is available. Set this parameter to the value
+	// provided by the previous call's NextToken response to request the next page
+	// of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The principal. You cannot specify this parameter if the association type
-	// is RESOURCE.
+	// Specifies the ID of the principal whose resource shares you want to retrieve.
+	// This can be an Amazon Web Services account ID, an organization ID, an organizational
+	// unit ID, or the Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of an individual IAM user or role.
+	//
+	// You cannot specify this parameter if the association type is RESOURCE.
 	Principal *string `locationName:"principal" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the resource. You cannot specify this parameter
-	// if the association type is PRINCIPAL.
+	// Specifies the Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resource whose resource shares you want to retrieve.
+	//
+	// You cannot specify this parameter if the association type is PRINCIPAL.
 	ResourceArn *string `locationName:"resourceArn" type:"string"`
 
-	// The Amazon Resource Names (ARN) of the resource shares.
+	// Specifies a list of Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resource share whose associations you want to retrieve.
 	ResourceShareArns []*string `locationName:"resourceShareArns" type:"list"`
 }
 
@@ -4209,11 +4411,14 @@ func (s *GetResourceShareAssociationsInput) SetResourceShareArns(v []*string) *G
 type GetResourceShareAssociationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to use to retrieve the next page of results. This value is null
-	// when there are no more results to return.
+	// If present, this value indicates that more output is available than is included
+	// in the current response. Use this value in the NextToken request parameter
+	// in a subsequent call to the operation to get the next part of the output.
+	// You should repeat this until the NextToken response element comes back as
+	// null. This indicates that this is the last page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// Information about the associations.
+	// An array of objects that contain the details about the associations.
 	ResourceShareAssociations []*ResourceShareAssociation `locationName:"resourceShareAssociations" type:"list"`
 }
 
@@ -4250,17 +4455,30 @@ func (s *GetResourceShareAssociationsOutput) SetResourceShareAssociations(v []*R
 type GetResourceShareInvitationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to return with a single call. To retrieve the
-	// remaining results, make another call with the returned nextToken value.
+	// Specifies the total number of results that you want included on each page
+	// of the response. If you do not include this parameter, it defaults to a value
+	// that is specific to the operation. If additional items exist beyond the number
+	// you specify, the NextToken response element is returned with a value (not
+	// null). Include the specified value as the NextToken request parameter in
+	// the next call to the operation to get the next part of the results. Note
+	// that the service might return fewer results than the maximum even when there
+	// are more results available. You should check NextToken after every operation
+	// to ensure that you receive all of the results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token for the next page of results.
+	// Specifies that you want to receive the next page of results. Valid only if
+	// you received a NextToken response in the previous request. If you did, it
+	// indicates that more output is available. Set this parameter to the value
+	// provided by the previous call's NextToken response to request the next page
+	// of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The Amazon Resource Names (ARN) of the resource shares.
+	// Specifies that you want details about invitations only for the resource shares
+	// described by this list of Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	ResourceShareArns []*string `locationName:"resourceShareArns" type:"list"`
 
-	// The Amazon Resource Names (ARN) of the invitations.
+	// Specifies the Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resource share invitations you want information about.
 	ResourceShareInvitationArns []*string `locationName:"resourceShareInvitationArns" type:"list"`
 }
 
@@ -4322,11 +4540,14 @@ func (s *GetResourceShareInvitationsInput) SetResourceShareInvitationArns(v []*s
 type GetResourceShareInvitationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to use to retrieve the next page of results. This value is null
-	// when there are no more results to return.
+	// If present, this value indicates that more output is available than is included
+	// in the current response. Use this value in the NextToken request parameter
+	// in a subsequent call to the operation to get the next part of the output.
+	// You should repeat this until the NextToken response element comes back as
+	// null. This indicates that this is the last page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// Information about the invitations.
+	// An array of objects that contain the details about the invitations.
 	ResourceShareInvitations []*ResourceShareInvitation `locationName:"resourceShareInvitations" type:"list"`
 }
 
@@ -4363,32 +4584,52 @@ func (s *GetResourceShareInvitationsOutput) SetResourceShareInvitations(v []*Res
 type GetResourceSharesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to return with a single call. To retrieve the
-	// remaining results, make another call with the returned nextToken value.
+	// Specifies the total number of results that you want included on each page
+	// of the response. If you do not include this parameter, it defaults to a value
+	// that is specific to the operation. If additional items exist beyond the number
+	// you specify, the NextToken response element is returned with a value (not
+	// null). Include the specified value as the NextToken request parameter in
+	// the next call to the operation to get the next part of the results. Note
+	// that the service might return fewer results than the maximum even when there
+	// are more results available. You should check NextToken after every operation
+	// to ensure that you receive all of the results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The name of the resource share.
+	// Specifies the name of an individual resource share that you want to retrieve
+	// details about.
 	Name *string `locationName:"name" type:"string"`
 
-	// The token for the next page of results.
+	// Specifies that you want to receive the next page of results. Valid only if
+	// you received a NextToken response in the previous request. If you did, it
+	// indicates that more output is available. Set this parameter to the value
+	// provided by the previous call's NextToken response to request the next page
+	// of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the RAM permission that is associated with
-	// the resource share.
+	// Specifies that you want to retrieve details of only those resource shares
+	// that use the RAM permission with this Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	PermissionArn *string `locationName:"permissionArn" type:"string"`
 
-	// The type of owner.
+	// Specifies that you want to retrieve details of only those resource shares
+	// that match the following:
+	//
+	//    * SELF – resources that you are sharing
+	//
+	//    * OTHER-ACCOUNTS – resources that other accounts share with you
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" type:"string" required:"true" enum:"ResourceOwner"`
 
-	// The Amazon Resource Names (ARNs) of the resource shares.
+	// Specifies the Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of individual resource shares that you want information about.
 	ResourceShareArns []*string `locationName:"resourceShareArns" type:"list"`
 
-	// The status of the resource share.
+	// Specifies that you want to retrieve details of only those resource shares
+	// that have this status.
 	ResourceShareStatus *string `locationName:"resourceShareStatus" type:"string" enum:"ResourceShareStatus"`
 
-	// One or more tag filters.
+	// Specifies that you want to retrieve details of only those resource shares
+	// that match the specified tag keys and values.
 	TagFilters []*TagFilter `locationName:"tagFilters" type:"list"`
 }
 
@@ -4477,11 +4718,14 @@ func (s *GetResourceSharesInput) SetTagFilters(v []*TagFilter) *GetResourceShare
 type GetResourceSharesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to use to retrieve the next page of results. This value is null
-	// when there are no more results to return.
+	// If present, this value indicates that more output is available than is included
+	// in the current response. Use this value in the NextToken request parameter
+	// in a subsequent call to the operation to get the next part of the output.
+	// You should repeat this until the NextToken response element comes back as
+	// null. This indicates that this is the last page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// Information about the resource shares.
+	// An array of objects that contain the information about the resource shares.
 	ResourceShares []*ResourceShare `locationName:"resourceShares" type:"list"`
 }
 
@@ -4515,9 +4759,9 @@ func (s *GetResourceSharesOutput) SetResourceShares(v []*ResourceShare) *GetReso
 	return s
 }
 
-// A client token input parameter was reused with an operation, but at least
-// one of the other input parameters is different from the previous call to
-// the operation.
+// The client token input parameter was matched one used with a previous call
+// to the operation, but at least one of the other input parameters is different
+// from the previous call.
 type IdempotentParameterMismatchException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4581,7 +4825,7 @@ func (s *IdempotentParameterMismatchException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A client token is not valid.
+// The client token is not valid.
 type InvalidClientTokenException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4968,14 +5212,41 @@ func (s *InvalidStateTransitionException) RequestID() string {
 type ListPendingInvitationResourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to return with a single call. To retrieve the
-	// remaining results, make another call with the returned nextToken value.
+	// Specifies the total number of results that you want included on each page
+	// of the response. If you do not include this parameter, it defaults to a value
+	// that is specific to the operation. If additional items exist beyond the number
+	// you specify, the NextToken response element is returned with a value (not
+	// null). Include the specified value as the NextToken request parameter in
+	// the next call to the operation to get the next part of the results. Note
+	// that the service might return fewer results than the maximum even when there
+	// are more results available. You should check NextToken after every operation
+	// to ensure that you receive all of the results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token for the next page of results.
+	// Specifies that you want to receive the next page of results. Valid only if
+	// you received a NextToken response in the previous request. If you did, it
+	// indicates that more output is available. Set this parameter to the value
+	// provided by the previous call's NextToken response to request the next page
+	// of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the invitation.
+	// Specifies that you want the results to include only resources that have the
+	// specified scope.
+	//
+	//    * ALL – the results include both global and regional resources or resource
+	//    types.
+	//
+	//    * GLOBAL – the results include only global resources or resource types.
+	//
+	//    * REGIONAL – the results include only regional resources or resource
+	//    types.
+	//
+	// The default value is ALL.
+	ResourceRegionScope *string `locationName:"resourceRegionScope" type:"string" enum:"ResourceRegionScopeFilter"`
+
+	// Specifies the Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the invitation. You can use GetResourceShareInvitations to find the ARN
+	// of the invitation.
 	//
 	// ResourceShareInvitationArn is a required field
 	ResourceShareInvitationArn *string `locationName:"resourceShareInvitationArn" type:"string" required:"true"`
@@ -5027,6 +5298,12 @@ func (s *ListPendingInvitationResourcesInput) SetNextToken(v string) *ListPendin
 	return s
 }
 
+// SetResourceRegionScope sets the ResourceRegionScope field's value.
+func (s *ListPendingInvitationResourcesInput) SetResourceRegionScope(v string) *ListPendingInvitationResourcesInput {
+	s.ResourceRegionScope = &v
+	return s
+}
+
 // SetResourceShareInvitationArn sets the ResourceShareInvitationArn field's value.
 func (s *ListPendingInvitationResourcesInput) SetResourceShareInvitationArn(v string) *ListPendingInvitationResourcesInput {
 	s.ResourceShareInvitationArn = &v
@@ -5036,11 +5313,15 @@ func (s *ListPendingInvitationResourcesInput) SetResourceShareInvitationArn(v st
 type ListPendingInvitationResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to use to retrieve the next page of results. This value is null
-	// when there are no more results to return.
+	// If present, this value indicates that more output is available than is included
+	// in the current response. Use this value in the NextToken request parameter
+	// in a subsequent call to the operation to get the next part of the output.
+	// You should repeat this until the NextToken response element comes back as
+	// null. This indicates that this is the last page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// Information about the resources included the resource share.
+	// An array of objects that contain the information about the resources included
+	// the specified resource share.
 	Resources []*Resource `locationName:"resources" type:"list"`
 }
 
@@ -5077,15 +5358,28 @@ func (s *ListPendingInvitationResourcesOutput) SetResources(v []*Resource) *List
 type ListPermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to return with a single call. To retrieve the
-	// remaining results, make another call with the returned nextToken value.
+	// Specifies the total number of results that you want included on each page
+	// of the response. If you do not include this parameter, it defaults to a value
+	// that is specific to the operation. If additional items exist beyond the number
+	// you specify, the NextToken response element is returned with a value (not
+	// null). Include the specified value as the NextToken request parameter in
+	// the next call to the operation to get the next part of the results. Note
+	// that the service might return fewer results than the maximum even when there
+	// are more results available. You should check NextToken after every operation
+	// to ensure that you receive all of the results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token for the next page of results.
+	// Specifies that you want to receive the next page of results. Valid only if
+	// you received a NextToken response in the previous request. If you did, it
+	// indicates that more output is available. Set this parameter to the value
+	// provided by the previous call's NextToken response to request the next page
+	// of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// Specifies the resource type for which to list permissions. For example, to
-	// list only permissions that apply to EC2 subnets, specify ec2:Subnet.
+	// Specifies that you want to list permissions for only the specified resource
+	// type. For example, to list only permissions that apply to EC2 subnets, specify
+	// ec2:Subnet. You can use the ListResourceTypes operation to get the specific
+	// string required.
 	ResourceType *string `locationName:"resourceType" type:"string"`
 }
 
@@ -5141,11 +5435,14 @@ func (s *ListPermissionsInput) SetResourceType(v string) *ListPermissionsInput {
 type ListPermissionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to use to retrieve the next page of results. This value is null
-	// when there are no more results to return.
+	// If present, this value indicates that more output is available than is included
+	// in the current response. Use this value in the NextToken request parameter
+	// in a subsequent call to the operation to get the next part of the output.
+	// You should repeat this until the NextToken response element comes back as
+	// null. This indicates that this is the last page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// Information about the permissions.
+	// An array of objects with information about the permissions.
 	Permissions []*ResourceSharePermissionSummary `locationName:"permissions" type:"list"`
 }
 
@@ -5182,39 +5479,68 @@ func (s *ListPermissionsOutput) SetPermissions(v []*ResourceSharePermissionSumma
 type ListPrincipalsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to return with a single call. To retrieve the
-	// remaining results, make another call with the returned nextToken value.
+	// Specifies the total number of results that you want included on each page
+	// of the response. If you do not include this parameter, it defaults to a value
+	// that is specific to the operation. If additional items exist beyond the number
+	// you specify, the NextToken response element is returned with a value (not
+	// null). Include the specified value as the NextToken request parameter in
+	// the next call to the operation to get the next part of the results. Note
+	// that the service might return fewer results than the maximum even when there
+	// are more results available. You should check NextToken after every operation
+	// to ensure that you receive all of the results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token for the next page of results.
+	// Specifies that you want to receive the next page of results. Valid only if
+	// you received a NextToken response in the previous request. If you did, it
+	// indicates that more output is available. Set this parameter to the value
+	// provided by the previous call's NextToken response to request the next page
+	// of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The principals.
+	// Specifies that you want to list information for only the listed principals.
+	//
+	// You can include the following values:
+	//
+	//    * An Amazon Web Services account ID, for example: 123456789012
+	//
+	//    * An Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	//    of an organization in Organizations, for example: organizations::123456789012:organization/o-exampleorgid
+	//
+	//    * An ARN of an organizational unit (OU) in Organizations, for example:
+	//    organizations::123456789012:ou/o-exampleorgid/ou-examplerootid-exampleouid123
+	//
+	//    * An ARN of an IAM role, for example: iam::123456789012:role/rolename
+	//
+	//    * An ARN of an IAM user, for example: iam::123456789012user/username
+	//
+	// Not all resource types can be shared with IAM roles and users. For more information,
+	// see Sharing with IAM roles and users (https://docs.aws.amazon.com/ram/latest/userguide/permissions.html#permissions-rbp-supported-resource-types)
+	// in the Resource Access Manager User Guide.
 	Principals []*string `locationName:"principals" type:"list"`
 
-	// The Amazon Resource Name (ARN) of the resource.
+	// Specifies that you want to list principal information for the resource share
+	// with the specified Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	ResourceArn *string `locationName:"resourceArn" type:"string"`
 
-	// The type of owner.
+	// Specifies that you want to list information for only resource shares that
+	// match the following:
+	//
+	//    * SELF – resources that you are sharing
+	//
+	//    * OTHER-ACCOUNTS – resources that other accounts share with you
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" type:"string" required:"true" enum:"ResourceOwner"`
 
-	// The Amazon Resource Names (ARN) of the resource shares.
+	// Specifies that you want to list information for only principals associated
+	// with the resource shares specified by a list the Amazon Resource Names (ARNs)
+	// (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	ResourceShareArns []*string `locationName:"resourceShareArns" type:"list"`
 
-	// The resource type.
+	// Specifies that you want to list information for only principals associated
+	// with resource shares that include the specified resource type.
 	//
-	// Valid values: acm-pca:CertificateAuthority | appmesh:Mesh | codebuild:Project
-	// | codebuild:ReportGroup | ec2:CapacityReservation | ec2:DedicatedHost | ec2:LocalGatewayRouteTable
-	// | ec2:PrefixList | ec2:Subnet | ec2:TrafficMirrorTarget | ec2:TransitGateway
-	// | imagebuilder:Component | imagebuilder:Image | imagebuilder:ImageRecipe
-	// | imagebuilder:ContainerRecipe | glue:Catalog | glue:Database | glue:Table
-	// | license-manager:LicenseConfiguration I network-firewall:FirewallPolicy
-	// | network-firewall:StatefulRuleGroup | network-firewall:StatelessRuleGroup
-	// | outposts:Outpost | resource-groups:Group | rds:Cluster | route53resolver:FirewallRuleGroup
-	// |route53resolver:ResolverQueryLogConfig | route53resolver:ResolverRule |
-	// s3-outposts:Outpost | ssm-contacts:Contact | ssm-incidents:ResponsePlan
+	// For a list of valid values, query the ListResourceTypes operation.
 	ResourceType *string `locationName:"resourceType" type:"string"`
 }
 
@@ -5297,11 +5623,14 @@ func (s *ListPrincipalsInput) SetResourceType(v string) *ListPrincipalsInput {
 type ListPrincipalsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to use to retrieve the next page of results. This value is null
-	// when there are no more results to return.
+	// If present, this value indicates that more output is available than is included
+	// in the current response. Use this value in the NextToken request parameter
+	// in a subsequent call to the operation to get the next part of the output.
+	// You should repeat this until the NextToken response element comes back as
+	// null. This indicates that this is the last page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The principals.
+	// An array of objects that contain the details about the principals.
 	Principals []*Principal `locationName:"principals" type:"list"`
 }
 
@@ -5338,14 +5667,26 @@ func (s *ListPrincipalsOutput) SetPrincipals(v []*Principal) *ListPrincipalsOutp
 type ListResourceSharePermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to return with a single call. To retrieve the
-	// remaining results, make another call with the returned nextToken value.
+	// Specifies the total number of results that you want included on each page
+	// of the response. If you do not include this parameter, it defaults to a value
+	// that is specific to the operation. If additional items exist beyond the number
+	// you specify, the NextToken response element is returned with a value (not
+	// null). Include the specified value as the NextToken request parameter in
+	// the next call to the operation to get the next part of the results. Note
+	// that the service might return fewer results than the maximum even when there
+	// are more results available. You should check NextToken after every operation
+	// to ensure that you receive all of the results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token for the next page of results.
+	// Specifies that you want to receive the next page of results. Valid only if
+	// you received a NextToken response in the previous request. If you did, it
+	// indicates that more output is available. Set this parameter to the value
+	// provided by the previous call's NextToken response to request the next page
+	// of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the resource share.
+	// Specifies the Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resource share for which you want to retrieve the associated permissions.
 	//
 	// ResourceShareArn is a required field
 	ResourceShareArn *string `locationName:"resourceShareArn" type:"string" required:"true"`
@@ -5406,11 +5747,15 @@ func (s *ListResourceSharePermissionsInput) SetResourceShareArn(v string) *ListR
 type ListResourceSharePermissionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to use to retrieve the next page of results. This value is null
-	// when there are no more results to return.
+	// If present, this value indicates that more output is available than is included
+	// in the current response. Use this value in the NextToken request parameter
+	// in a subsequent call to the operation to get the next part of the output.
+	// You should repeat this until the NextToken response element comes back as
+	// null. This indicates that this is the last page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The permissions associated with the resource share.
+	// An array of objects that describe the permissions associated with the resource
+	// share.
 	Permissions []*ResourceSharePermissionSummary `locationName:"permissions" type:"list"`
 }
 
@@ -5447,12 +5792,37 @@ func (s *ListResourceSharePermissionsOutput) SetPermissions(v []*ResourceSharePe
 type ListResourceTypesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to return with a single call. To retrieve the
-	// remaining results, make another call with the returned nextToken value.
+	// Specifies the total number of results that you want included on each page
+	// of the response. If you do not include this parameter, it defaults to a value
+	// that is specific to the operation. If additional items exist beyond the number
+	// you specify, the NextToken response element is returned with a value (not
+	// null). Include the specified value as the NextToken request parameter in
+	// the next call to the operation to get the next part of the results. Note
+	// that the service might return fewer results than the maximum even when there
+	// are more results available. You should check NextToken after every operation
+	// to ensure that you receive all of the results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token for the next page of results.
+	// Specifies that you want to receive the next page of results. Valid only if
+	// you received a NextToken response in the previous request. If you did, it
+	// indicates that more output is available. Set this parameter to the value
+	// provided by the previous call's NextToken response to request the next page
+	// of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Specifies that you want the results to include only resources that have the
+	// specified scope.
+	//
+	//    * ALL – the results include both global and regional resources or resource
+	//    types.
+	//
+	//    * GLOBAL – the results include only global resources or resource types.
+	//
+	//    * REGIONAL – the results include only regional resources or resource
+	//    types.
+	//
+	// The default value is ALL.
+	ResourceRegionScope *string `locationName:"resourceRegionScope" type:"string" enum:"ResourceRegionScopeFilter"`
 }
 
 // String returns the string representation.
@@ -5498,14 +5868,24 @@ func (s *ListResourceTypesInput) SetNextToken(v string) *ListResourceTypesInput 
 	return s
 }
 
+// SetResourceRegionScope sets the ResourceRegionScope field's value.
+func (s *ListResourceTypesInput) SetResourceRegionScope(v string) *ListResourceTypesInput {
+	s.ResourceRegionScope = &v
+	return s
+}
+
 type ListResourceTypesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to use to retrieve the next page of results. This value is null
-	// when there are no more results to return.
+	// If present, this value indicates that more output is available than is included
+	// in the current response. Use this value in the NextToken request parameter
+	// in a subsequent call to the operation to get the next part of the output.
+	// You should repeat this until the NextToken response element comes back as
+	// null. This indicates that this is the last page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The shareable resource types supported by RAM.
+	// An array of objects that contain information about the resource types that
+	// can be shared using RAM.
 	ResourceTypes []*ServiceNameAndResourceType `locationName:"resourceTypes" type:"list"`
 }
 
@@ -5542,39 +5922,63 @@ func (s *ListResourceTypesOutput) SetResourceTypes(v []*ServiceNameAndResourceTy
 type ListResourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to return with a single call. To retrieve the
-	// remaining results, make another call with the returned nextToken value.
+	// Specifies the total number of results that you want included on each page
+	// of the response. If you do not include this parameter, it defaults to a value
+	// that is specific to the operation. If additional items exist beyond the number
+	// you specify, the NextToken response element is returned with a value (not
+	// null). Include the specified value as the NextToken request parameter in
+	// the next call to the operation to get the next part of the results. Note
+	// that the service might return fewer results than the maximum even when there
+	// are more results available. You should check NextToken after every operation
+	// to ensure that you receive all of the results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token for the next page of results.
+	// Specifies that you want to receive the next page of results. Valid only if
+	// you received a NextToken response in the previous request. If you did, it
+	// indicates that more output is available. Set this parameter to the value
+	// provided by the previous call's NextToken response to request the next page
+	// of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The principal.
+	// Specifies that you want to list only the resource shares that are associated
+	// with the specified principal.
 	Principal *string `locationName:"principal" type:"string"`
 
-	// The Amazon Resource Names (ARNs) of the resources.
+	// Specifies that you want to list only the resource shares that include resources
+	// with the specified Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	ResourceArns []*string `locationName:"resourceArns" type:"list"`
 
-	// The type of owner.
+	// Specifies that you want to list only the resource shares that match the following:
+	//
+	//    * SELF – resources that you are sharing
+	//
+	//    * OTHER-ACCOUNTS – resources that other accounts share with you
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" type:"string" required:"true" enum:"ResourceOwner"`
 
-	// The Amazon Resource Names (ARN) of the resource shares.
+	// Specifies that you want the results to include only resources that have the
+	// specified scope.
+	//
+	//    * ALL – the results include both global and regional resources or resource
+	//    types.
+	//
+	//    * GLOBAL – the results include only global resources or resource types.
+	//
+	//    * REGIONAL – the results include only regional resources or resource
+	//    types.
+	//
+	// The default value is ALL.
+	ResourceRegionScope *string `locationName:"resourceRegionScope" type:"string" enum:"ResourceRegionScopeFilter"`
+
+	// Specifies that you want to list only resources in the resource shares identified
+	// by the specified Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	ResourceShareArns []*string `locationName:"resourceShareArns" type:"list"`
 
-	// The resource type.
+	// Specifies that you want to list only the resource shares that include resources
+	// of the specified resource type.
 	//
-	// Valid values: acm-pca:CertificateAuthority | appmesh:Mesh | codebuild:Project
-	// | codebuild:ReportGroup | ec2:CapacityReservation | ec2:DedicatedHost | ec2:LocalGatewayRouteTable
-	// | ec2:PrefixList | ec2:Subnet | ec2:TrafficMirrorTarget | ec2:TransitGateway
-	// | imagebuilder:Component | imagebuilder:Image | imagebuilder:ImageRecipe
-	// | imagebuilder:ContainerRecipe | glue:Catalog | glue:Database | glue:Table
-	// | license-manager:LicenseConfiguration I network-firewall:FirewallPolicy
-	// | network-firewall:StatefulRuleGroup | network-firewall:StatelessRuleGroup
-	// | outposts:Outpost | resource-groups:Group | rds:Cluster | route53resolver:FirewallRuleGroup
-	// |route53resolver:ResolverQueryLogConfig | route53resolver:ResolverRule |
-	// s3-outposts:Outpost | ssm-contacts:Contact | ssm-incidents:ResponsePlan
+	// For valid values, query the ListResourceTypes operation.
 	ResourceType *string `locationName:"resourceType" type:"string"`
 }
 
@@ -5642,6 +6046,12 @@ func (s *ListResourcesInput) SetResourceOwner(v string) *ListResourcesInput {
 	return s
 }
 
+// SetResourceRegionScope sets the ResourceRegionScope field's value.
+func (s *ListResourcesInput) SetResourceRegionScope(v string) *ListResourcesInput {
+	s.ResourceRegionScope = &v
+	return s
+}
+
 // SetResourceShareArns sets the ResourceShareArns field's value.
 func (s *ListResourcesInput) SetResourceShareArns(v []*string) *ListResourcesInput {
 	s.ResourceShareArns = v
@@ -5657,11 +6067,14 @@ func (s *ListResourcesInput) SetResourceType(v string) *ListResourcesInput {
 type ListResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to use to retrieve the next page of results. This value is null
-	// when there are no more results to return.
+	// If present, this value indicates that more output is available than is included
+	// in the current response. Use this value in the NextToken request parameter
+	// in a subsequent call to the operation to get the next part of the output.
+	// You should repeat this until the NextToken response element comes back as
+	// null. This indicates that this is the last page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// Information about the resources.
+	// An array of objects that contain information about the resources.
 	Resources []*Resource `locationName:"resources" type:"list"`
 }
 
@@ -5891,7 +6304,7 @@ func (s *OperationNotPermittedException) RequestID() string {
 type Principal struct {
 	_ struct{} `type:"structure"`
 
-	// The time when the principal was associated with the resource share.
+	// The date and time when the principal was associated with the resource share.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// Indicates whether the principal belongs to the same organization in Organizations
@@ -5901,10 +6314,11 @@ type Principal struct {
 	// The ID of the principal.
 	Id *string `locationName:"id" type:"string"`
 
-	// The time when the association was last updated.
+	// The date and time when the association was last updated.
 	LastUpdatedTime *time.Time `locationName:"lastUpdatedTime" type:"timestamp"`
 
-	// The Amazon Resource Name (ARN) of the resource share.
+	// The Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of a resource share the principal is associated with.
 	ResourceShareArn *string `locationName:"resourceShareArn" type:"string"`
 }
 
@@ -5959,7 +6373,8 @@ func (s *Principal) SetResourceShareArn(v string) *Principal {
 type PromoteResourceShareCreatedFromPolicyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Resource Name (ARN) of the resource share to promote.
+	// Specifies the Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resource share to promote.
 	//
 	// ResourceShareArn is a required field
 	ResourceShareArn *string `location:"querystring" locationName:"resourceShareArn" type:"string" required:"true"`
@@ -6005,7 +6420,8 @@ func (s *PromoteResourceShareCreatedFromPolicyInput) SetResourceShareArn(v strin
 type PromoteResourceShareCreatedFromPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether the request succeeded.
+	// A return value of true indicates that the request succeeded. A value of false
+	// indicates that the request failed.
 	ReturnValue *bool `locationName:"returnValue" type:"boolean"`
 }
 
@@ -6036,11 +6452,19 @@ func (s *PromoteResourceShareCreatedFromPolicyOutput) SetReturnValue(v bool) *Pr
 type RejectResourceShareInvitationInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// Specifies a unique, case-sensitive identifier that you provide to ensure
+	// the idempotency of the request. This lets you safely retry the request without
+	// accidentally performing the same operation a second time. Passing the same
+	// value to a later call to an operation requires that you also pass the same
+	// value for all other parameters. We recommend that you use a UUID type of
+	// value. (https://wikipedia.org/wiki/Universally_unique_identifier).
+	//
+	// If you don't provide this value, then Amazon Web Services generates a random
+	// one for you.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the invitation.
+	// Specifies the Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the invitation that you want to reject.
 	//
 	// ResourceShareInvitationArn is a required field
 	ResourceShareInvitationArn *string `locationName:"resourceShareInvitationArn" type:"string" required:"true"`
@@ -6092,11 +6516,13 @@ func (s *RejectResourceShareInvitationInput) SetResourceShareInvitationArn(v str
 type RejectResourceShareInvitationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// The idempotency identifier associated with this request. If you want to repeat
+	// the same operation in an idempotent manner then you must include this value
+	// in the clientToken request parameter of that later call. All other parameters
+	// must also have the same values that you used in the first call.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// Information about the invitation.
+	// An object that contains the details about the rejected invitation.
 	ResourceShareInvitation *ResourceShareInvitation `locationName:"resourceShareInvitation" type:"structure"`
 }
 
@@ -6130,33 +6556,45 @@ func (s *RejectResourceShareInvitationOutput) SetResourceShareInvitation(v *Reso
 	return s
 }
 
-// Describes a resource associated with a resource share.
+// Describes a resource associated with a resource share in RAM.
 type Resource struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource.
+	// The Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resource.
 	Arn *string `locationName:"arn" type:"string"`
 
-	// The time when the resource was associated with the resource share.
+	// The date and time when the resource was associated with the resource share.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
-	// The time when the association was last updated.
+	// The date an time when the association was last updated.
 	LastUpdatedTime *time.Time `locationName:"lastUpdatedTime" type:"timestamp"`
 
-	// The Amazon Resource Name (ARN) of the resource group. This value is returned
-	// only if the resource is a resource group.
+	// The Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resource group. This value is available only if the resource is part
+	// of a resource group.
 	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the resource share.
+	// Specifies the scope of visibility of this resource:
+	//
+	//    * REGIONAL – The resource can be accessed only by using requests that
+	//    target the Amazon Web Services Region in which the resource exists.
+	//
+	//    * GLOBAL – The resource can be accessed from any Amazon Web Services
+	//    Region.
+	ResourceRegionScope *string `locationName:"resourceRegionScope" type:"string" enum:"ResourceRegionScope"`
+
+	// The Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resource share this resource is associated with.
 	ResourceShareArn *string `locationName:"resourceShareArn" type:"string"`
 
-	// The status of the resource.
+	// The current status of the resource.
 	Status *string `locationName:"status" type:"string" enum:"ResourceStatus"`
 
 	// A message about the status of the resource.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
-	// The resource type.
+	// The resource type. This takes the form of: service-code:resource-code
 	Type *string `locationName:"type" type:"string"`
 }
 
@@ -6202,6 +6640,12 @@ func (s *Resource) SetResourceGroupArn(v string) *Resource {
 	return s
 }
 
+// SetResourceRegionScope sets the ResourceRegionScope field's value.
+func (s *Resource) SetResourceRegionScope(v string) *Resource {
+	s.ResourceRegionScope = &v
+	return s
+}
+
 // SetResourceShareArn sets the ResourceShareArn field's value.
 func (s *Resource) SetResourceShareArn(v string) *Resource {
 	s.ResourceShareArn = &v
@@ -6226,7 +6670,7 @@ func (s *Resource) SetType(v string) *Resource {
 	return s
 }
 
-// An Amazon Resource Name (ARN) was not found.
+// The specified Amazon Resource Name (ARN) was not found.
 type ResourceArnNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6290,7 +6734,7 @@ func (s *ResourceArnNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Describes a resource share.
+// Describes a resource share in RAM.
 type ResourceShare struct {
 	_ struct{} `type:"structure"`
 
@@ -6298,26 +6742,27 @@ type ResourceShare struct {
 	// be associated with a resource share.
 	AllowExternalPrincipals *bool `locationName:"allowExternalPrincipals" type:"boolean"`
 
-	// The time when the resource share was created.
+	// The date and time when the resource share was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// Indicates how the resource share was created. Possible values include:
 	//
 	//    * CREATED_FROM_POLICY - Indicates that the resource share was created
-	//    from an Amazon Web Services Identity and Access Management (Amazon Web
-	//    Services IAM) policy attached to a resource. These resource shares are
-	//    visible only to the Amazon Web Services account that created it. They
-	//    cannot be modified in RAM.
+	//    from an Identity and Access Management (IAM) resource-based permission
+	//    policy attached to the resource. This type of resource share is visible
+	//    only to the Amazon Web Services account that created it. You can't modify
+	//    it in RAM unless you promote it. For more information, see PromoteResourceShareCreatedFromPolicy.
 	//
 	//    * PROMOTING_TO_STANDARD - The resource share is in the process of being
 	//    promoted. For more information, see PromoteResourceShareCreatedFromPolicy.
 	//
 	//    * STANDARD - Indicates that the resource share was created in RAM using
-	//    the console or APIs. These resource shares are visible to all principals.
-	//    They can be modified in RAM.
+	//    the console or APIs. These resource shares are visible to all principals
+	//    you share the resource share with. You can modify these resource shares
+	//    in RAM using the console or APIs.
 	FeatureSet *string `locationName:"featureSet" type:"string" enum:"ResourceShareFeatureSet"`
 
-	// The time when the resource share was last updated.
+	// The date and time when the resource share was last updated.
 	LastUpdatedTime *time.Time `locationName:"lastUpdatedTime" type:"timestamp"`
 
 	// The name of the resource share.
@@ -6326,16 +6771,17 @@ type ResourceShare struct {
 	// The ID of the Amazon Web Services account that owns the resource share.
 	OwningAccountId *string `locationName:"owningAccountId" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the resource share.
+	// The Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resource share
 	ResourceShareArn *string `locationName:"resourceShareArn" type:"string"`
 
-	// The status of the resource share.
+	// The current status of the resource share.
 	Status *string `locationName:"status" type:"string" enum:"ResourceShareStatus"`
 
 	// A message about the status of the resource share.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
-	// The tags for the resource share.
+	// The tag key and value pairs attached to the resource share.
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
@@ -6417,45 +6863,43 @@ func (s *ResourceShare) SetTags(v []*Tag) *ResourceShare {
 	return s
 }
 
-// Describes an association with a resource share.
+// Describes an association with a resource share and either a principal or
+// a resource.
 type ResourceShareAssociation struct {
 	_ struct{} `type:"structure"`
 
-	// The associated entity. For resource associations, this is the Amazon Resource
-	// Name (ARN) of the resource. For principal associations, this is one of the
-	// following:
+	// The associated entity. This can be either of the following:
 	//
-	//    * An Amazon Web Services account ID
+	//    * For a resource association, this is the Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	//    of the resource.
 	//
-	//    * An ARN of an organization in Organizations
-	//
-	//    * An ARN of an organizational unit (OU) in Organizations
-	//
-	//    * An ARN of an IAM role
-	//
-	//    * An ARN of an IAM user
+	//    * For principal associations, this is one of the following: The ID of
+	//    an Amazon Web Services account The Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	//    of an organization in Organizations The ARN of an organizational unit
+	//    (OU) in Organizations The ARN of an IAM role The ARN of an IAM user
 	AssociatedEntity *string `locationName:"associatedEntity" type:"string"`
 
-	// The association type.
+	// The type of entity included in this association.
 	AssociationType *string `locationName:"associationType" type:"string" enum:"ResourceShareAssociationType"`
 
-	// The time when the association was created.
+	// The date and time when the association was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// Indicates whether the principal belongs to the same organization in Organizations
 	// as the Amazon Web Services account that owns the resource share.
 	External *bool `locationName:"external" type:"boolean"`
 
-	// The time when the association was last updated.
+	// The date and time when the association was last updated.
 	LastUpdatedTime *time.Time `locationName:"lastUpdatedTime" type:"timestamp"`
 
-	// The Amazon Resource Name (ARN) of the resource share.
+	// The Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resource share.
 	ResourceShareArn *string `locationName:"resourceShareArn" type:"string"`
 
 	// The name of the resource share.
 	ResourceShareName *string `locationName:"resourceShareName" type:"string"`
 
-	// The status of the association.
+	// The current status of the association.
 	Status *string `locationName:"status" type:"string" enum:"ResourceShareAssociationStatus"`
 
 	// A message about the status of the association.
@@ -6534,7 +6978,8 @@ func (s *ResourceShareAssociation) SetStatusMessage(v string) *ResourceShareAsso
 	return s
 }
 
-// Describes an invitation to join a resource share.
+// Describes an invitation for an Amazon Web Services account to join a resource
+// share.
 type ResourceShareInvitation struct {
 	_ struct{} `type:"structure"`
 
@@ -6544,20 +6989,22 @@ type ResourceShareInvitation struct {
 	// The ID of the Amazon Web Services account that received the invitation.
 	ReceiverAccountId *string `locationName:"receiverAccountId" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the IAM user or IAM role that received
-	// the invitation.
+	// The Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the IAM user or role that received the invitation.
 	ReceiverArn *string `locationName:"receiverArn" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the resource share.
+	// The Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resource share
 	ResourceShareArn *string `locationName:"resourceShareArn" type:"string"`
 
 	// To view the resources associated with a pending resource share invitation,
-	// use ListPendingInvitationResources (https://docs.aws.amazon.com/ram/latest/APIReference/API_ListPendingInvitationResources.html).
+	// use ListPendingInvitationResources.
 	//
 	// Deprecated: This member has been deprecated. Use ListPendingInvitationResources.
 	ResourceShareAssociations []*ResourceShareAssociation `locationName:"resourceShareAssociations" deprecated:"true" type:"list"`
 
-	// The Amazon Resource Name (ARN) of the invitation.
+	// The Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the invitation.
 	ResourceShareInvitationArn *string `locationName:"resourceShareInvitationArn" type:"string"`
 
 	// The name of the resource share.
@@ -6566,7 +7013,7 @@ type ResourceShareInvitation struct {
 	// The ID of the Amazon Web Services account that sent the invitation.
 	SenderAccountId *string `locationName:"senderAccountId" type:"string"`
 
-	// The status of the invitation.
+	// The current status of the invitation.
 	Status *string `locationName:"status" type:"string" enum:"ResourceShareInvitationStatus"`
 }
 
@@ -6642,7 +7089,7 @@ func (s *ResourceShareInvitation) SetStatus(v string) *ResourceShareInvitation {
 	return s
 }
 
-// The invitation was already accepted.
+// The specified invitation was already accepted.
 type ResourceShareInvitationAlreadyAcceptedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6706,7 +7153,7 @@ func (s *ResourceShareInvitationAlreadyAcceptedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The invitation was already rejected.
+// The specified invitation was already rejected.
 type ResourceShareInvitationAlreadyRejectedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6770,7 +7217,7 @@ func (s *ResourceShareInvitationAlreadyRejectedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The Amazon Resource Name (ARN) for an invitation was not found.
+// The specified Amazon Resource Name (ARN) for an invitation was not found.
 type ResourceShareInvitationArnNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6834,7 +7281,7 @@ func (s *ResourceShareInvitationArnNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The invitation is expired.
+// The specified invitation is expired.
 type ResourceShareInvitationExpiredException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6898,7 +7345,7 @@ func (s *ResourceShareInvitationExpiredException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The requested resource share exceeds the limit for your account.
+// This request would exceed the limit for resource shares for your account.
 type ResourceShareLimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6966,35 +7413,36 @@ func (s *ResourceShareLimitExceededException) RequestID() string {
 type ResourceSharePermissionDetail struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the permission.
+	// The Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of this RAM permission.
 	Arn *string `locationName:"arn" type:"string"`
 
 	// The date and time when the permission was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
-	// Specifies whether the version of the permission is set to the default version
-	// for this permission.
+	// Specifies whether the version of the permission represented in this structure
+	// is the default version for this permission.
 	DefaultVersion *bool `locationName:"defaultVersion" type:"boolean"`
 
-	// Specifies whether the version of the permission is set to the default version
-	// for this resource type.
+	// Specifies whether the version of the permission represented in this structure
+	// is the default version for all resources of this resource type.
 	IsResourceTypeDefault *bool `locationName:"isResourceTypeDefault" type:"boolean"`
 
 	// The date and time when the permission was last updated.
 	LastUpdatedTime *time.Time `locationName:"lastUpdatedTime" type:"timestamp"`
 
-	// The name of the permission.
+	// The name of this permission.
 	Name *string `locationName:"name" type:"string"`
 
 	// The permission's effect and actions in JSON format. The effect indicates
-	// whether the actions are allowed or denied. The actions list the API actions
-	// to which the principal is granted or denied access.
+	// whether the specified actions are allowed or denied. The actions list the
+	// operations to which the principal is granted or denied access.
 	Permission *string `locationName:"permission" type:"string"`
 
-	// The resource type to which the permission applies.
+	// The resource type to which this permission applies.
 	ResourceType *string `locationName:"resourceType" type:"string"`
 
-	// The identifier for the version of the permission.
+	// The version of the permission represented in this structure.
 	Version *string `locationName:"version" type:"string"`
 }
 
@@ -7070,37 +7518,39 @@ func (s *ResourceSharePermissionDetail) SetVersion(v string) *ResourceSharePermi
 	return s
 }
 
-// Information about a permission that is associated with a resource share.
+// Information about an RAM permission that is associated with a resource share
+// and any of its resources of a specified type.
 type ResourceSharePermissionSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the permission.
+	// The Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the permission you want information about.
 	Arn *string `locationName:"arn" type:"string"`
 
 	// The date and time when the permission was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
-	// Specifies whether the version of the permission is set to the default version
-	// for this permission.
+	// Specifies whether the version of the permission represented in this structure
+	// is the default version for this permission.
 	DefaultVersion *bool `locationName:"defaultVersion" type:"boolean"`
 
-	// Specifies whether the version of the permission is set to the default version
-	// for this resource type.
+	// Specifies whether the version of the permission represented in this structure
+	// is the default version for all resources of this resource type.
 	IsResourceTypeDefault *bool `locationName:"isResourceTypeDefault" type:"boolean"`
 
 	// The date and time when the permission was last updated.
 	LastUpdatedTime *time.Time `locationName:"lastUpdatedTime" type:"timestamp"`
 
-	// The name of the permission.
+	// The name of this permission.
 	Name *string `locationName:"name" type:"string"`
 
-	// The type of resource to which the permission applies.
+	// The type of resource to which this permission applies.
 	ResourceType *string `locationName:"resourceType" type:"string"`
 
 	// The current status of the permission.
 	Status *string `locationName:"status" type:"string"`
 
-	// The identifier for the version of the permission.
+	// The version of the permission represented in this structure.
 	Version *string `locationName:"version" type:"string"`
 }
 
@@ -7240,15 +7690,25 @@ func (s *ServerInternalException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Information about the shareable resource types and the Amazon Web Services
-// services to which they belong.
+// Information about a shareable resource type and the Amazon Web Services service
+// to which resources of that type belong.
 type ServiceNameAndResourceType struct {
 	_ struct{} `type:"structure"`
 
-	// The shareable resource types.
+	// Specifies the scope of visibility of resources of this type:
+	//
+	//    * REGIONAL – The resource can be accessed only by using requests that
+	//    target the Amazon Web Services Region in which the resource exists.
+	//
+	//    * GLOBAL – The resource can be accessed from any Amazon Web Services
+	//    Region.
+	ResourceRegionScope *string `locationName:"resourceRegionScope" type:"string" enum:"ResourceRegionScope"`
+
+	// The type of the resource.
 	ResourceType *string `locationName:"resourceType" type:"string"`
 
-	// The name of the Amazon Web Services services to which the resources belong.
+	// The name of the Amazon Web Services service to which resources of this type
+	// belong.
 	ServiceName *string `locationName:"serviceName" type:"string"`
 }
 
@@ -7268,6 +7728,12 @@ func (s ServiceNameAndResourceType) String() string {
 // value will be replaced with "sensitive".
 func (s ServiceNameAndResourceType) GoString() string {
 	return s.String()
+}
+
+// SetResourceRegionScope sets the ResourceRegionScope field's value.
+func (s *ServiceNameAndResourceType) SetResourceRegionScope(v string) *ServiceNameAndResourceType {
+	s.ResourceRegionScope = &v
+	return s
 }
 
 // SetResourceType sets the ResourceType field's value.
@@ -7346,14 +7812,23 @@ func (s *ServiceUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Information about a tag.
+// A structure containing a tag. A tag is metadata that you can attach to your
+// resources to help organize and categorize them. You can also use them to
+// help you secure your resources. For more information, see Controlling access
+// to Amazon Web Services resources using tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html).
+//
+// For more information about tags, see Tagging Amazon Web Services resources
+// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html) in the Amazon
+// Web Services General Reference Guide.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
-	// The key of the tag.
+	// The key, or name, attached to the tag. Every tag must have a key. Key names
+	// are case sensitive.
 	Key *string `locationName:"key" type:"string"`
 
-	// The value of the tag.
+	// The string value attached to the tag. The value can be an empty string. Key
+	// values are case sensitive.
 	Value *string `locationName:"value" type:"string"`
 }
 
@@ -7387,14 +7862,16 @@ func (s *Tag) SetValue(v string) *Tag {
 	return s
 }
 
-// Used to filter information based on tags.
+// A tag key and optional list of possible values that you can use to filter
+// results for tagged resources.
 type TagFilter struct {
 	_ struct{} `type:"structure"`
 
-	// The tag key.
+	// The tag key. This must have a valid string value and can't be empty.
 	TagKey *string `locationName:"tagKey" type:"string"`
 
-	// The tag values.
+	// A list of zero or more tag values. If no values are provided, then the filter
+	// matches any tag with the specified key, regardless of its value.
 	TagValues []*string `locationName:"tagValues" type:"list"`
 }
 
@@ -7428,7 +7905,7 @@ func (s *TagFilter) SetTagValues(v []*string) *TagFilter {
 	return s
 }
 
-// The requested tags exceed the limit for your account.
+// This request would exceed the limit for tags for your account.
 type TagLimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7492,7 +7969,7 @@ func (s *TagLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified tag is a reserved word and cannot be used.
+// The specified tag key is a reserved word and can't be used.
 type TagPolicyViolationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7559,12 +8036,15 @@ func (s *TagPolicyViolationException) RequestID() string {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource share.
+	// Specifies the Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resource share that you want to add tags to.
 	//
 	// ResourceShareArn is a required field
 	ResourceShareArn *string `locationName:"resourceShareArn" type:"string" required:"true"`
 
-	// One or more tags.
+	// A list of one or more tag key and value pairs. The tag key must be present
+	// and not be an empty string. The tag value must be present but can be an empty
+	// string.
 	//
 	// Tags is a required field
 	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
@@ -7638,6 +8118,71 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// You exceeded the rate at which you are allowed to perform this operation.
+// Please try again later.
+type ThrottlingException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s *ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s *ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ThrottlingException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ThrottlingException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // A specified resource was not found.
 type UnknownResourceException struct {
 	_            struct{}                  `type:"structure"`
@@ -7705,12 +8250,14 @@ func (s *UnknownResourceException) RequestID() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource share.
+	// Specifies the Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resource share that you want to remove tags from. The tags are removed
+	// from the resource share, not the resources in the resource share.
 	//
 	// ResourceShareArn is a required field
 	ResourceShareArn *string `locationName:"resourceShareArn" type:"string" required:"true"`
 
-	// The tag keys of the tags to remove.
+	// Specifies a list of one or more tag keys that you want to remove.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `locationName:"tagKeys" type:"list" required:"true"`
@@ -7787,18 +8334,26 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateResourceShareInput struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether principals outside your organization in Organizations can
+	// Specifies whether principals outside your organization in Organizations can
 	// be associated with a resource share.
 	AllowExternalPrincipals *bool `locationName:"allowExternalPrincipals" type:"boolean"`
 
-	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// Specifies a unique, case-sensitive identifier that you provide to ensure
+	// the idempotency of the request. This lets you safely retry the request without
+	// accidentally performing the same operation a second time. Passing the same
+	// value to a later call to an operation requires that you also pass the same
+	// value for all other parameters. We recommend that you use a UUID type of
+	// value. (https://wikipedia.org/wiki/Universally_unique_identifier).
+	//
+	// If you don't provide this value, then Amazon Web Services generates a random
+	// one for you.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// The name of the resource share.
+	// If specified, the new name that you want to attach to the resource share.
 	Name *string `locationName:"name" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the resource share.
+	// Specifies the Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the resource share that you want to modify.
 	//
 	// ResourceShareArn is a required field
 	ResourceShareArn *string `locationName:"resourceShareArn" type:"string" required:"true"`
@@ -7862,8 +8417,10 @@ func (s *UpdateResourceShareInput) SetResourceShareArn(v string) *UpdateResource
 type UpdateResourceShareOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// The idempotency identifier associated with this request. If you want to repeat
+	// the same operation in an idempotent manner then you must include this value
+	// in the clientToken request parameter of that later call. All other parameters
+	// must also have the same values that you used in the first call.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
 	// Information about the resource share.
@@ -7913,6 +8470,42 @@ func ResourceOwner_Values() []string {
 	return []string{
 		ResourceOwnerSelf,
 		ResourceOwnerOtherAccounts,
+	}
+}
+
+const (
+	// ResourceRegionScopeRegional is a ResourceRegionScope enum value
+	ResourceRegionScopeRegional = "REGIONAL"
+
+	// ResourceRegionScopeGlobal is a ResourceRegionScope enum value
+	ResourceRegionScopeGlobal = "GLOBAL"
+)
+
+// ResourceRegionScope_Values returns all elements of the ResourceRegionScope enum
+func ResourceRegionScope_Values() []string {
+	return []string{
+		ResourceRegionScopeRegional,
+		ResourceRegionScopeGlobal,
+	}
+}
+
+const (
+	// ResourceRegionScopeFilterAll is a ResourceRegionScopeFilter enum value
+	ResourceRegionScopeFilterAll = "ALL"
+
+	// ResourceRegionScopeFilterRegional is a ResourceRegionScopeFilter enum value
+	ResourceRegionScopeFilterRegional = "REGIONAL"
+
+	// ResourceRegionScopeFilterGlobal is a ResourceRegionScopeFilter enum value
+	ResourceRegionScopeFilterGlobal = "GLOBAL"
+)
+
+// ResourceRegionScopeFilter_Values returns all elements of the ResourceRegionScopeFilter enum
+func ResourceRegionScopeFilter_Values() []string {
+	return []string{
+		ResourceRegionScopeFilterAll,
+		ResourceRegionScopeFilterRegional,
+		ResourceRegionScopeFilterGlobal,
 	}
 }
 
