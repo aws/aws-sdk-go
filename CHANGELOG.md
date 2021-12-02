@@ -1,3 +1,11 @@
+Release v1.42.18 (2021-12-02)
+===
+
+### Service Client Updates
+* `service/amplifyuibuilder`: Adds new service
+* `service/networkmanager`: Updates service API, documentation, and paginators
+* `service/ram`: Updates service API and documentation
+
 Release v1.42.17 (2021-12-01)
 ===
 

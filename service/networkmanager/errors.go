@@ -21,6 +21,12 @@ const (
 	// can cause an inconsistent state.
 	ErrCodeConflictException = "ConflictException"
 
+	// ErrCodeCoreNetworkPolicyException for service response error code
+	// "CoreNetworkPolicyException".
+	//
+	// Describes a core network policy exception.
+	ErrCodeCoreNetworkPolicyException = "CoreNetworkPolicyException"
+
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
@@ -55,6 +61,7 @@ const (
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccessDeniedException":         newErrorAccessDeniedException,
 	"ConflictException":             newErrorConflictException,
+	"CoreNetworkPolicyException":    newErrorCoreNetworkPolicyException,
 	"InternalServerException":       newErrorInternalServerException,
 	"ResourceNotFoundException":     newErrorResourceNotFoundException,
 	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,

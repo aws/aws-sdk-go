@@ -11,15 +11,15 @@ const (
 	// ErrCodeIdempotentParameterMismatchException for service response error code
 	// "IdempotentParameterMismatchException".
 	//
-	// A client token input parameter was reused with an operation, but at least
-	// one of the other input parameters is different from the previous call to
-	// the operation.
+	// The client token input parameter was matched one used with a previous call
+	// to the operation, but at least one of the other input parameters is different
+	// from the previous call.
 	ErrCodeIdempotentParameterMismatchException = "IdempotentParameterMismatchException"
 
 	// ErrCodeInvalidClientTokenException for service response error code
 	// "InvalidClientTokenException".
 	//
-	// A client token is not valid.
+	// The client token is not valid.
 	ErrCodeInvalidClientTokenException = "InvalidClientTokenException"
 
 	// ErrCodeInvalidMaxResultsException for service response error code
@@ -73,37 +73,37 @@ const (
 	// ErrCodeResourceArnNotFoundException for service response error code
 	// "ResourceArnNotFoundException".
 	//
-	// An Amazon Resource Name (ARN) was not found.
+	// The specified Amazon Resource Name (ARN) was not found.
 	ErrCodeResourceArnNotFoundException = "ResourceArnNotFoundException"
 
 	// ErrCodeResourceShareInvitationAlreadyAcceptedException for service response error code
 	// "ResourceShareInvitationAlreadyAcceptedException".
 	//
-	// The invitation was already accepted.
+	// The specified invitation was already accepted.
 	ErrCodeResourceShareInvitationAlreadyAcceptedException = "ResourceShareInvitationAlreadyAcceptedException"
 
 	// ErrCodeResourceShareInvitationAlreadyRejectedException for service response error code
 	// "ResourceShareInvitationAlreadyRejectedException".
 	//
-	// The invitation was already rejected.
+	// The specified invitation was already rejected.
 	ErrCodeResourceShareInvitationAlreadyRejectedException = "ResourceShareInvitationAlreadyRejectedException"
 
 	// ErrCodeResourceShareInvitationArnNotFoundException for service response error code
 	// "ResourceShareInvitationArnNotFoundException".
 	//
-	// The Amazon Resource Name (ARN) for an invitation was not found.
+	// The specified Amazon Resource Name (ARN) for an invitation was not found.
 	ErrCodeResourceShareInvitationArnNotFoundException = "ResourceShareInvitationArnNotFoundException"
 
 	// ErrCodeResourceShareInvitationExpiredException for service response error code
 	// "ResourceShareInvitationExpiredException".
 	//
-	// The invitation is expired.
+	// The specified invitation is expired.
 	ErrCodeResourceShareInvitationExpiredException = "ResourceShareInvitationExpiredException"
 
 	// ErrCodeResourceShareLimitExceededException for service response error code
 	// "ResourceShareLimitExceededException".
 	//
-	// The requested resource share exceeds the limit for your account.
+	// This request would exceed the limit for resource shares for your account.
 	ErrCodeResourceShareLimitExceededException = "ResourceShareLimitExceededException"
 
 	// ErrCodeServerInternalException for service response error code
@@ -121,14 +121,21 @@ const (
 	// ErrCodeTagLimitExceededException for service response error code
 	// "TagLimitExceededException".
 	//
-	// The requested tags exceed the limit for your account.
+	// This request would exceed the limit for tags for your account.
 	ErrCodeTagLimitExceededException = "TagLimitExceededException"
 
 	// ErrCodeTagPolicyViolationException for service response error code
 	// "TagPolicyViolationException".
 	//
-	// The specified tag is a reserved word and cannot be used.
+	// The specified tag key is a reserved word and can't be used.
 	ErrCodeTagPolicyViolationException = "TagPolicyViolationException"
+
+	// ErrCodeThrottlingException for service response error code
+	// "ThrottlingException".
+	//
+	// You exceeded the rate at which you are allowed to perform this operation.
+	// Please try again later.
+	ErrCodeThrottlingException = "ThrottlingException"
 
 	// ErrCodeUnknownResourceException for service response error code
 	// "UnknownResourceException".
@@ -158,5 +165,6 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ServiceUnavailableException":                     newErrorServiceUnavailableException,
 	"TagLimitExceededException":                       newErrorTagLimitExceededException,
 	"TagPolicyViolationException":                     newErrorTagPolicyViolationException,
+	"ThrottlingException":                             newErrorThrottlingException,
 	"UnknownResourceException":                        newErrorUnknownResourceException,
 }
