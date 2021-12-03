@@ -2493,7 +2493,9 @@
       "type":"string",
       "enum":[
         "Male",
-        "Female"
+        "Female",
+        "Nonbinary",
+        "Unlisted"
       ]
     },
     "Label":{

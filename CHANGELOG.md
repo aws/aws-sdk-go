@@ -1,3 +1,10 @@
+Release v1.42.19 (2021-12-03)
+===
+
+### Service Client Updates
+* `service/rekognition`: Updates service API and documentation
+  * This release added new KnownGender types for Celebrity Recognition.
+
 Release v1.42.18 (2021-12-02)
 ===
 

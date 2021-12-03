@@ -77,7 +77,7 @@ func (c *Rekognition) CompareFacesRequest(input *CompareFacesInput) (req *reques
 //
 // In response, the operation returns an array of face matches ordered by similarity
 // score in descending order. For each face match, the response provides a bounding
-// box of the face, facial landmarks, pose details (pitch, role, and yaw), quality
+// box of the face, facial landmarks, pose details (pitch, roll, and yaw), quality
 // (brightness and sharpness), and confidence value (indicating the level of
 // confidence that the bounding box contains a face). The response also provides
 // a similarity score, which indicates how closely the faces match.
@@ -2784,8 +2784,8 @@ func (c *Rekognition) DetectTextRequest(input *DetectTextInput) (req *request.Re
 // TextDetections. Each TextDetection element provides information about a single
 // word or line of text that was detected in the image.
 //
-// A word is one or more ISO basic latin script characters that are not separated
-// by spaces. DetectText can detect up to 100 words in an image.
+// A word is one or more script characters that are not separated by spaces.
+// DetectText can detect up to 100 words in an image.
 //
 // A line is a string of equally spaced words. A line isn't necessarily a complete
 // sentence. For example, a driver's license number is detected as a line. A
@@ -8241,6 +8241,7 @@ type Celebrity struct {
 	Id *string `type:"string"`
 
 	// The known gender identity for the celebrity that matches the provided ID.
+	// The known gender identity can be Male, Female, Nonbinary, or Unlisted.
 	KnownGender *KnownGender `type:"structure"`
 
 	// The confidence, in percentage, that Amazon Rekognition has that the recognized
@@ -15538,6 +15539,7 @@ func (s *KinesisVideoStream) SetArn(v string) *KinesisVideoStream {
 }
 
 // The known gender identity for the celebrity that matches the provided ID.
+// The known gender identity can be Male, Female, Nonbinary, or Unlisted.
 type KnownGender struct {
 	_ struct{} `type:"structure"`
 
@@ -21964,6 +21966,12 @@ const (
 
 	// KnownGenderTypeFemale is a KnownGenderType enum value
 	KnownGenderTypeFemale = "Female"
+
+	// KnownGenderTypeNonbinary is a KnownGenderType enum value
+	KnownGenderTypeNonbinary = "Nonbinary"
+
+	// KnownGenderTypeUnlisted is a KnownGenderType enum value
+	KnownGenderTypeUnlisted = "Unlisted"
 )
 
 // KnownGenderType_Values returns all elements of the KnownGenderType enum
@@ -21971,6 +21979,8 @@ func KnownGenderType_Values() []string {
 	return []string{
 		KnownGenderTypeMale,
 		KnownGenderTypeFemale,
+		KnownGenderTypeNonbinary,
+		KnownGenderTypeUnlisted,
 	}
 }
 
