@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS AppSync.
 //    func myFunc(svc appsynciface.AppSyncAPI) bool {
-//        // Make svc.CreateApiCache request
+//        // Make svc.AssociateApi request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockAppSyncClient struct {
 //        appsynciface.AppSyncAPI
 //    }
-//    func (m *mockAppSyncClient) CreateApiCache(input *appsync.CreateApiCacheInput) (*appsync.CreateApiCacheOutput, error) {
+//    func (m *mockAppSyncClient) AssociateApi(input *appsync.AssociateApiInput) (*appsync.AssociateApiOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type AppSyncAPI interface {
+	AssociateApi(*appsync.AssociateApiInput) (*appsync.AssociateApiOutput, error)
+	AssociateApiWithContext(aws.Context, *appsync.AssociateApiInput, ...request.Option) (*appsync.AssociateApiOutput, error)
+	AssociateApiRequest(*appsync.AssociateApiInput) (*request.Request, *appsync.AssociateApiOutput)
+
 	CreateApiCache(*appsync.CreateApiCacheInput) (*appsync.CreateApiCacheOutput, error)
 	CreateApiCacheWithContext(aws.Context, *appsync.CreateApiCacheInput, ...request.Option) (*appsync.CreateApiCacheOutput, error)
 	CreateApiCacheRequest(*appsync.CreateApiCacheInput) (*request.Request, *appsync.CreateApiCacheOutput)
@@ -71,6 +75,10 @@ type AppSyncAPI interface {
 	CreateDataSource(*appsync.CreateDataSourceInput) (*appsync.CreateDataSourceOutput, error)
 	CreateDataSourceWithContext(aws.Context, *appsync.CreateDataSourceInput, ...request.Option) (*appsync.CreateDataSourceOutput, error)
 	CreateDataSourceRequest(*appsync.CreateDataSourceInput) (*request.Request, *appsync.CreateDataSourceOutput)
+
+	CreateDomainName(*appsync.CreateDomainNameInput) (*appsync.CreateDomainNameOutput, error)
+	CreateDomainNameWithContext(aws.Context, *appsync.CreateDomainNameInput, ...request.Option) (*appsync.CreateDomainNameOutput, error)
+	CreateDomainNameRequest(*appsync.CreateDomainNameInput) (*request.Request, *appsync.CreateDomainNameOutput)
 
 	CreateFunction(*appsync.CreateFunctionInput) (*appsync.CreateFunctionOutput, error)
 	CreateFunctionWithContext(aws.Context, *appsync.CreateFunctionInput, ...request.Option) (*appsync.CreateFunctionOutput, error)
@@ -100,6 +108,10 @@ type AppSyncAPI interface {
 	DeleteDataSourceWithContext(aws.Context, *appsync.DeleteDataSourceInput, ...request.Option) (*appsync.DeleteDataSourceOutput, error)
 	DeleteDataSourceRequest(*appsync.DeleteDataSourceInput) (*request.Request, *appsync.DeleteDataSourceOutput)
 
+	DeleteDomainName(*appsync.DeleteDomainNameInput) (*appsync.DeleteDomainNameOutput, error)
+	DeleteDomainNameWithContext(aws.Context, *appsync.DeleteDomainNameInput, ...request.Option) (*appsync.DeleteDomainNameOutput, error)
+	DeleteDomainNameRequest(*appsync.DeleteDomainNameInput) (*request.Request, *appsync.DeleteDomainNameOutput)
+
 	DeleteFunction(*appsync.DeleteFunctionInput) (*appsync.DeleteFunctionOutput, error)
 	DeleteFunctionWithContext(aws.Context, *appsync.DeleteFunctionInput, ...request.Option) (*appsync.DeleteFunctionOutput, error)
 	DeleteFunctionRequest(*appsync.DeleteFunctionInput) (*request.Request, *appsync.DeleteFunctionOutput)
@@ -116,9 +128,17 @@ type AppSyncAPI interface {
 	DeleteTypeWithContext(aws.Context, *appsync.DeleteTypeInput, ...request.Option) (*appsync.DeleteTypeOutput, error)
 	DeleteTypeRequest(*appsync.DeleteTypeInput) (*request.Request, *appsync.DeleteTypeOutput)
 
+	DisassociateApi(*appsync.DisassociateApiInput) (*appsync.DisassociateApiOutput, error)
+	DisassociateApiWithContext(aws.Context, *appsync.DisassociateApiInput, ...request.Option) (*appsync.DisassociateApiOutput, error)
+	DisassociateApiRequest(*appsync.DisassociateApiInput) (*request.Request, *appsync.DisassociateApiOutput)
+
 	FlushApiCache(*appsync.FlushApiCacheInput) (*appsync.FlushApiCacheOutput, error)
 	FlushApiCacheWithContext(aws.Context, *appsync.FlushApiCacheInput, ...request.Option) (*appsync.FlushApiCacheOutput, error)
 	FlushApiCacheRequest(*appsync.FlushApiCacheInput) (*request.Request, *appsync.FlushApiCacheOutput)
+
+	GetApiAssociation(*appsync.GetApiAssociationInput) (*appsync.GetApiAssociationOutput, error)
+	GetApiAssociationWithContext(aws.Context, *appsync.GetApiAssociationInput, ...request.Option) (*appsync.GetApiAssociationOutput, error)
+	GetApiAssociationRequest(*appsync.GetApiAssociationInput) (*request.Request, *appsync.GetApiAssociationOutput)
 
 	GetApiCache(*appsync.GetApiCacheInput) (*appsync.GetApiCacheOutput, error)
 	GetApiCacheWithContext(aws.Context, *appsync.GetApiCacheInput, ...request.Option) (*appsync.GetApiCacheOutput, error)
@@ -127,6 +147,10 @@ type AppSyncAPI interface {
 	GetDataSource(*appsync.GetDataSourceInput) (*appsync.GetDataSourceOutput, error)
 	GetDataSourceWithContext(aws.Context, *appsync.GetDataSourceInput, ...request.Option) (*appsync.GetDataSourceOutput, error)
 	GetDataSourceRequest(*appsync.GetDataSourceInput) (*request.Request, *appsync.GetDataSourceOutput)
+
+	GetDomainName(*appsync.GetDomainNameInput) (*appsync.GetDomainNameOutput, error)
+	GetDomainNameWithContext(aws.Context, *appsync.GetDomainNameInput, ...request.Option) (*appsync.GetDomainNameOutput, error)
+	GetDomainNameRequest(*appsync.GetDomainNameInput) (*request.Request, *appsync.GetDomainNameOutput)
 
 	GetFunction(*appsync.GetFunctionInput) (*appsync.GetFunctionOutput, error)
 	GetFunctionWithContext(aws.Context, *appsync.GetFunctionInput, ...request.Option) (*appsync.GetFunctionOutput, error)
@@ -159,6 +183,10 @@ type AppSyncAPI interface {
 	ListDataSources(*appsync.ListDataSourcesInput) (*appsync.ListDataSourcesOutput, error)
 	ListDataSourcesWithContext(aws.Context, *appsync.ListDataSourcesInput, ...request.Option) (*appsync.ListDataSourcesOutput, error)
 	ListDataSourcesRequest(*appsync.ListDataSourcesInput) (*request.Request, *appsync.ListDataSourcesOutput)
+
+	ListDomainNames(*appsync.ListDomainNamesInput) (*appsync.ListDomainNamesOutput, error)
+	ListDomainNamesWithContext(aws.Context, *appsync.ListDomainNamesInput, ...request.Option) (*appsync.ListDomainNamesOutput, error)
+	ListDomainNamesRequest(*appsync.ListDomainNamesInput) (*request.Request, *appsync.ListDomainNamesOutput)
 
 	ListFunctions(*appsync.ListFunctionsInput) (*appsync.ListFunctionsOutput, error)
 	ListFunctionsWithContext(aws.Context, *appsync.ListFunctionsInput, ...request.Option) (*appsync.ListFunctionsOutput, error)
@@ -207,6 +235,10 @@ type AppSyncAPI interface {
 	UpdateDataSource(*appsync.UpdateDataSourceInput) (*appsync.UpdateDataSourceOutput, error)
 	UpdateDataSourceWithContext(aws.Context, *appsync.UpdateDataSourceInput, ...request.Option) (*appsync.UpdateDataSourceOutput, error)
 	UpdateDataSourceRequest(*appsync.UpdateDataSourceInput) (*request.Request, *appsync.UpdateDataSourceOutput)
+
+	UpdateDomainName(*appsync.UpdateDomainNameInput) (*appsync.UpdateDomainNameOutput, error)
+	UpdateDomainNameWithContext(aws.Context, *appsync.UpdateDomainNameInput, ...request.Option) (*appsync.UpdateDomainNameOutput, error)
+	UpdateDomainNameRequest(*appsync.UpdateDomainNameInput) (*request.Request, *appsync.UpdateDomainNameOutput)
 
 	UpdateFunction(*appsync.UpdateFunctionInput) (*appsync.UpdateFunctionOutput, error)
 	UpdateFunctionWithContext(aws.Context, *appsync.UpdateFunctionInput, ...request.Option) (*appsync.UpdateFunctionOutput, error)

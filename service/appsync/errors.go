@@ -11,7 +11,7 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// You do not have access to perform this operation on this resource.
+	// You don't have access to perform this operation on this resource.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeApiKeyLimitExceededException for service response error code
@@ -75,7 +75,7 @@ const (
 	// ErrCodeUnauthorizedException for service response error code
 	// "UnauthorizedException".
 	//
-	// You are not authorized to perform this operation.
+	// You aren't authorized to perform this operation.
 	ErrCodeUnauthorizedException = "UnauthorizedException"
 )
 

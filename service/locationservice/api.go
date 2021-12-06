@@ -380,6 +380,9 @@ func (c *LocationService) BatchEvaluateGeofencesRequest(input *BatchEvaluateGeof
 // The last geofence that a device was observed within is tracked for 30 days
 // after the most recent device position update.
 //
+// Geofence evaluation uses the given device position. It does not account for
+// the optional Accuracy of a DevicePositionUpdate.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -674,9 +677,20 @@ func (c *LocationService) BatchUpdateDevicePositionRequest(input *BatchUpdateDev
 // against linked geofence collections, and location data is stored at a maximum
 // of one position per 30 second interval. If your update frequency is more
 // often than every 30 seconds, only one update per 30 seconds is stored for
-// each unique device ID. When PositionFiltering is set to DistanceBased filtering,
-// location data is stored and evaluated against linked geofence collections
-// only if the device has moved more than 30 m (98.4 ft).
+// each unique device ID.
+//
+// When PositionFiltering is set to DistanceBased filtering, location data is
+// stored and evaluated against linked geofence collections only if the device
+// has moved more than 30 m (98.4 ft).
+//
+// When PositionFiltering is set to AccuracyBased filtering, location data is
+// stored and evaluated against linked geofence collections only if the device
+// has moved more than the measured accuracy. For example, if two consecutive
+// updates from a device have a horizontal accuracy of 5 m and 10 m, the second
+// update is neither stored or evaluated if the device has moved less than 15
+// m. If PositionFiltering is set to AccuracyBased filtering, Amazon Location
+// uses the default value { "Horizontal": 0} when accuracy is not provided on
+// a DevicePositionUpdate.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1079,6 +1093,7 @@ func (c *LocationService) CreatePlaceIndexRequest(input *CreatePlaceIndexInput) 
 // Creates a place index resource in your AWS account. Use a place index resource
 // to geocode addresses and other text queries by using the SearchPlaceIndexForText
 // operation, and reverse geocode coordinates by using the SearchPlaceIndexForPosition
+// operation, and enable autosuggestions by using the SearchPlaceIndexForSuggestions
 // operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4629,6 +4644,111 @@ func (c *LocationService) SearchPlaceIndexForPositionWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+const opSearchPlaceIndexForSuggestions = "SearchPlaceIndexForSuggestions"
+
+// SearchPlaceIndexForSuggestionsRequest generates a "aws/request.Request" representing the
+// client's request for the SearchPlaceIndexForSuggestions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchPlaceIndexForSuggestions for more information on using the SearchPlaceIndexForSuggestions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SearchPlaceIndexForSuggestionsRequest method.
+//    req, resp := client.SearchPlaceIndexForSuggestionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/SearchPlaceIndexForSuggestions
+func (c *LocationService) SearchPlaceIndexForSuggestionsRequest(input *SearchPlaceIndexForSuggestionsInput) (req *request.Request, output *SearchPlaceIndexForSuggestionsOutput) {
+	op := &request.Operation{
+		Name:       opSearchPlaceIndexForSuggestions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/places/v0/indexes/{IndexName}/search/suggestions",
+	}
+
+	if input == nil {
+		input = &SearchPlaceIndexForSuggestionsInput{}
+	}
+
+	output = &SearchPlaceIndexForSuggestionsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("places.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// SearchPlaceIndexForSuggestions API operation for Amazon Location Service.
+//
+// Generates suggestions for addresses and points of interest based on partial
+// or misspelled free-form text. This operation is also known as autocomplete,
+// autosuggest, or fuzzy matching.
+//
+// Optional parameters let you narrow your search results by bounding box or
+// country, or bias your search toward a specific position on the globe.
+//
+// You can search for suggested place names near a specified position by using
+// BiasPosition, or filter results within a bounding box by using FilterBBox.
+// These parameters are mutually exclusive; using both BiasPosition and FilterBBox
+// in the same command returns an error.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Location Service's
+// API operation SearchPlaceIndexForSuggestions for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request has failed to process because of an unknown server error, exception,
+//   or failure.
+//
+//   * ResourceNotFoundException
+//   The resource that you've entered was not found in your AWS account.
+//
+//   * AccessDeniedException
+//   The request was denied because of insufficient access or permissions. Check
+//   with an administrator to verify your permissions.
+//
+//   * ValidationException
+//   The input failed to meet the constraints specified by the AWS service.
+//
+//   * ThrottlingException
+//   The request was denied because of request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/SearchPlaceIndexForSuggestions
+func (c *LocationService) SearchPlaceIndexForSuggestions(input *SearchPlaceIndexForSuggestionsInput) (*SearchPlaceIndexForSuggestionsOutput, error) {
+	req, out := c.SearchPlaceIndexForSuggestionsRequest(input)
+	return out, req.Send()
+}
+
+// SearchPlaceIndexForSuggestionsWithContext is the same as SearchPlaceIndexForSuggestions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchPlaceIndexForSuggestions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LocationService) SearchPlaceIndexForSuggestionsWithContext(ctx aws.Context, input *SearchPlaceIndexForSuggestionsInput, opts ...request.Option) (*SearchPlaceIndexForSuggestionsOutput, error) {
+	req, out := c.SearchPlaceIndexForSuggestionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opSearchPlaceIndexForText = "SearchPlaceIndexForText"
 
 // SearchPlaceIndexForTextRequest generates a "aws/request.Request" representing the
@@ -8132,6 +8252,15 @@ type CreateTrackerInput struct {
 	//    to paginate through. Distance-based filtering can also reduce the effects
 	//    of GPS noise when displaying device trajectories on a map.
 	//
+	//    * AccuracyBased - If the device has moved less than the measured accuracy,
+	//    location updates are ignored. For example, if two consecutive updates
+	//    from a device have a horizontal accuracy of 5 m and 10 m, the second update
+	//    is ignored if the device has moved less than 15 m. Ignored location updates
+	//    are neither evaluated against linked geofence collections, nor stored.
+	//    This can reduce the effects of GPS noise when displaying device trajectories
+	//    on a map, and can help control your costs by reducing the number of geofence
+	//    evaluations.
+	//
 	// This field is optional. If not specified, the default value is TimeBased.
 	PositionFiltering *string `type:"string" enum:"PositionFiltering"`
 
@@ -9639,6 +9768,9 @@ func (s *DescribeTrackerOutput) SetUpdateTime(v time.Time) *DescribeTrackerOutpu
 type DevicePosition struct {
 	_ struct{} `type:"structure"`
 
+	// The accuracy of the device position.
+	Accuracy *PositionalAccuracy `type:"structure"`
+
 	// The device whose position you retrieved.
 	DeviceId *string `min:"1" type:"string"`
 
@@ -9650,6 +9782,13 @@ type DevicePosition struct {
 	//
 	// Position is a required field
 	Position []*float64 `min:"2" type:"list" required:"true" sensitive:"true"`
+
+	// The properties associated with the position.
+	//
+	// PositionProperties is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DevicePosition's
+	// String and GoString methods.
+	PositionProperties map[string]*string `type:"map" sensitive:"true"`
 
 	// The timestamp for when the tracker resource received the device position
 	// in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html) format:
@@ -9683,6 +9822,12 @@ func (s DevicePosition) GoString() string {
 	return s.String()
 }
 
+// SetAccuracy sets the Accuracy field's value.
+func (s *DevicePosition) SetAccuracy(v *PositionalAccuracy) *DevicePosition {
+	s.Accuracy = v
+	return s
+}
+
 // SetDeviceId sets the DeviceId field's value.
 func (s *DevicePosition) SetDeviceId(v string) *DevicePosition {
 	s.DeviceId = &v
@@ -9692,6 +9837,12 @@ func (s *DevicePosition) SetDeviceId(v string) *DevicePosition {
 // SetPosition sets the Position field's value.
 func (s *DevicePosition) SetPosition(v []*float64) *DevicePosition {
 	s.Position = v
+	return s
+}
+
+// SetPositionProperties sets the PositionProperties field's value.
+func (s *DevicePosition) SetPositionProperties(v map[string]*string) *DevicePosition {
+	s.PositionProperties = v
 	return s
 }
 
@@ -9711,6 +9862,9 @@ func (s *DevicePosition) SetSampleTime(v time.Time) *DevicePosition {
 type DevicePositionUpdate struct {
 	_ struct{} `type:"structure"`
 
+	// The accuracy of the device position.
+	Accuracy *PositionalAccuracy `type:"structure"`
+
 	// The device associated to the position update.
 	//
 	// DeviceId is a required field
@@ -9725,6 +9879,17 @@ type DevicePositionUpdate struct {
 	//
 	// Position is a required field
 	Position []*float64 `min:"2" type:"list" required:"true" sensitive:"true"`
+
+	// Associates one of more properties with the position update. A property is
+	// a key-value pair stored with the position update and added to any geofence
+	// event the update may trigger.
+	//
+	// Format: "key" : "value"
+	//
+	// PositionProperties is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DevicePositionUpdate's
+	// String and GoString methods.
+	PositionProperties map[string]*string `type:"map" sensitive:"true"`
 
 	// The timestamp at which the device's position was determined. Uses ISO 8601
 	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ
@@ -9769,11 +9934,22 @@ func (s *DevicePositionUpdate) Validate() error {
 	if s.SampleTime == nil {
 		invalidParams.Add(request.NewErrParamRequired("SampleTime"))
 	}
+	if s.Accuracy != nil {
+		if err := s.Accuracy.Validate(); err != nil {
+			invalidParams.AddNested("Accuracy", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccuracy sets the Accuracy field's value.
+func (s *DevicePositionUpdate) SetAccuracy(v *PositionalAccuracy) *DevicePositionUpdate {
+	s.Accuracy = v
+	return s
 }
 
 // SetDeviceId sets the DeviceId field's value.
@@ -9785,6 +9961,12 @@ func (s *DevicePositionUpdate) SetDeviceId(v string) *DevicePositionUpdate {
 // SetPosition sets the Position field's value.
 func (s *DevicePositionUpdate) SetPosition(v []*float64) *DevicePositionUpdate {
 	s.Position = v
+	return s
+}
+
+// SetPositionProperties sets the PositionProperties field's value.
+func (s *DevicePositionUpdate) SetPositionProperties(v map[string]*string) *DevicePositionUpdate {
+	s.PositionProperties = v
 	return s
 }
 
@@ -10166,6 +10348,9 @@ func (s *GetDevicePositionInput) SetTrackerName(v string) *GetDevicePositionInpu
 type GetDevicePositionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The accuracy of the device position.
+	Accuracy *PositionalAccuracy `type:"structure"`
+
 	// The device whose position you retrieved.
 	DeviceId *string `min:"1" type:"string"`
 
@@ -10177,6 +10362,13 @@ type GetDevicePositionOutput struct {
 	//
 	// Position is a required field
 	Position []*float64 `min:"2" type:"list" required:"true" sensitive:"true"`
+
+	// The properties associated with the position.
+	//
+	// PositionProperties is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetDevicePositionOutput's
+	// String and GoString methods.
+	PositionProperties map[string]*string `type:"map" sensitive:"true"`
 
 	// The timestamp for when the tracker resource received the device position
 	// in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html) format:
@@ -10210,6 +10402,12 @@ func (s GetDevicePositionOutput) GoString() string {
 	return s.String()
 }
 
+// SetAccuracy sets the Accuracy field's value.
+func (s *GetDevicePositionOutput) SetAccuracy(v *PositionalAccuracy) *GetDevicePositionOutput {
+	s.Accuracy = v
+	return s
+}
+
 // SetDeviceId sets the DeviceId field's value.
 func (s *GetDevicePositionOutput) SetDeviceId(v string) *GetDevicePositionOutput {
 	s.DeviceId = &v
@@ -10219,6 +10417,12 @@ func (s *GetDevicePositionOutput) SetDeviceId(v string) *GetDevicePositionOutput
 // SetPosition sets the Position field's value.
 func (s *GetDevicePositionOutput) SetPosition(v []*float64) *GetDevicePositionOutput {
 	s.Position = v
+	return s
+}
+
+// SetPositionProperties sets the PositionProperties field's value.
+func (s *GetDevicePositionOutput) SetPositionProperties(v map[string]*string) *GetDevicePositionOutput {
+	s.PositionProperties = v
 	return s
 }
 
@@ -11242,6 +11446,9 @@ func (s *ListDevicePositionsOutput) SetNextToken(v string) *ListDevicePositionsO
 type ListDevicePositionsResponseEntry struct {
 	_ struct{} `type:"structure"`
 
+	// The accuracy of the device position.
+	Accuracy *PositionalAccuracy `type:"structure"`
+
 	// The ID of the device for this position.
 	//
 	// DeviceId is a required field
@@ -11255,6 +11462,13 @@ type ListDevicePositionsResponseEntry struct {
 	//
 	// Position is a required field
 	Position []*float64 `min:"2" type:"list" required:"true" sensitive:"true"`
+
+	// The properties associated with the position.
+	//
+	// PositionProperties is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ListDevicePositionsResponseEntry's
+	// String and GoString methods.
+	PositionProperties map[string]*string `type:"map" sensitive:"true"`
 
 	// The timestamp at which the device position was determined. Uses ISO 8601
 	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
@@ -11281,6 +11495,12 @@ func (s ListDevicePositionsResponseEntry) GoString() string {
 	return s.String()
 }
 
+// SetAccuracy sets the Accuracy field's value.
+func (s *ListDevicePositionsResponseEntry) SetAccuracy(v *PositionalAccuracy) *ListDevicePositionsResponseEntry {
+	s.Accuracy = v
+	return s
+}
+
 // SetDeviceId sets the DeviceId field's value.
 func (s *ListDevicePositionsResponseEntry) SetDeviceId(v string) *ListDevicePositionsResponseEntry {
 	s.DeviceId = &v
@@ -11290,6 +11510,12 @@ func (s *ListDevicePositionsResponseEntry) SetDeviceId(v string) *ListDevicePosi
 // SetPosition sets the Position field's value.
 func (s *ListDevicePositionsResponseEntry) SetPosition(v []*float64) *ListDevicePositionsResponseEntry {
 	s.Position = v
+	return s
+}
+
+// SetPositionProperties sets the PositionProperties field's value.
+func (s *ListDevicePositionsResponseEntry) SetPositionProperties(v map[string]*string) *ListDevicePositionsResponseEntry {
+	s.PositionProperties = v
 	return s
 }
 
@@ -12987,6 +13213,54 @@ func (s *PlaceGeometry) SetPoint(v []*float64) *PlaceGeometry {
 	return s
 }
 
+// Defines the level of certainty of the position.
+type PositionalAccuracy struct {
+	_ struct{} `type:"structure"`
+
+	// Estimated maximum distance, in meters, between the measured position and
+	// the true position of a device, along the Earth's surface.
+	//
+	// Horizontal is a required field
+	Horizontal *float64 `type:"double" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PositionalAccuracy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PositionalAccuracy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PositionalAccuracy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PositionalAccuracy"}
+	if s.Horizontal == nil {
+		invalidParams.Add(request.NewErrParamRequired("Horizontal"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHorizontal sets the Horizontal field's value.
+func (s *PositionalAccuracy) SetHorizontal(v float64) *PositionalAccuracy {
+	s.Horizontal = &v
+	return s
+}
+
 type PutGeofenceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13243,6 +13517,41 @@ func (s *SearchForPositionResult) SetDistance(v float64) *SearchForPositionResul
 // SetPlace sets the Place field's value.
 func (s *SearchForPositionResult) SetPlace(v *Place) *SearchForPositionResult {
 	s.Place = v
+	return s
+}
+
+// Contains a place suggestion resulting from a place suggestion query that
+// is run on a place index resource.
+type SearchForSuggestionsResult struct {
+	_ struct{} `type:"structure"`
+
+	// The text of the place suggestion, typically formatted as an address string.
+	//
+	// Text is a required field
+	Text *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchForSuggestionsResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchForSuggestionsResult) GoString() string {
+	return s.String()
+}
+
+// SetText sets the Text field's value.
+func (s *SearchForSuggestionsResult) SetText(v string) *SearchForSuggestionsResult {
+	s.Text = &v
 	return s
 }
 
@@ -13544,6 +13853,352 @@ func (s *SearchPlaceIndexForPositionSummary) SetPosition(v []*float64) *SearchPl
 	return s
 }
 
+type SearchPlaceIndexForSuggestionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional parameter that indicates a preference for place suggestions that
+	// are closer to a specified position.
+	//
+	// If provided, this parameter must contain a pair of numbers. The first number
+	// represents the X coordinate, or longitude; the second number represents the
+	// Y coordinate, or latitude.
+	//
+	// For example, [-123.1174, 49.2847] represents the position with longitude
+	// -123.1174 and latitude 49.2847.
+	//
+	// BiasPosition and FilterBBox are mutually exclusive. Specifying both options
+	// results in an error.
+	//
+	// BiasPosition is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SearchPlaceIndexForSuggestionsInput's
+	// String and GoString methods.
+	BiasPosition []*float64 `min:"2" type:"list" sensitive:"true"`
+
+	// An optional parameter that limits the search results by returning only suggestions
+	// within a specified bounding box.
+	//
+	// If provided, this parameter must contain a total of four consecutive numbers
+	// in two pairs. The first pair of numbers represents the X and Y coordinates
+	// (longitude and latitude, respectively) of the southwest corner of the bounding
+	// box; the second pair of numbers represents the X and Y coordinates (longitude
+	// and latitude, respectively) of the northeast corner of the bounding box.
+	//
+	// For example, [-12.7935, -37.4835, -12.0684, -36.9542] represents a bounding
+	// box where the southwest corner has longitude -12.7935 and latitude -37.4835,
+	// and the northeast corner has longitude -12.0684 and latitude -36.9542.
+	//
+	// FilterBBox and BiasPosition are mutually exclusive. Specifying both options
+	// results in an error.
+	//
+	// FilterBBox is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SearchPlaceIndexForSuggestionsInput's
+	// String and GoString methods.
+	FilterBBox []*float64 `min:"4" type:"list" sensitive:"true"`
+
+	// An optional parameter that limits the search results by returning only suggestions
+	// within the provided list of countries.
+	//
+	//    * Use the ISO 3166 (https://www.iso.org/iso-3166-country-codes.html) 3-digit
+	//    country code. For example, Australia uses three upper-case characters:
+	//    AUS.
+	FilterCountries []*string `min:"1" type:"list"`
+
+	// The name of the place index resource you want to use for the search.
+	//
+	// IndexName is a required field
+	IndexName *string `location:"uri" locationName:"IndexName" min:"1" type:"string" required:"true"`
+
+	// The preferred language used to return results. The value must be a valid
+	// BCP 47 (https://tools.ietf.org/search/bcp47) language tag, for example, en
+	// for English.
+	//
+	// This setting affects the languages used in the results. It does not change
+	// which results are returned. If the language is not specified, or not supported
+	// for a particular result, the partner automatically chooses a language for
+	// the result.
+	//
+	// Used only when the partner selected is Here.
+	Language *string `min:"2" type:"string"`
+
+	// An optional parameter. The maximum number of results returned per request.
+	//
+	// The default: 5
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The free-form partial text to use to generate place suggestions. For example,
+	// eiffel tow.
+	//
+	// Text is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SearchPlaceIndexForSuggestionsInput's
+	// String and GoString methods.
+	//
+	// Text is a required field
+	Text *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchPlaceIndexForSuggestionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchPlaceIndexForSuggestionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchPlaceIndexForSuggestionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchPlaceIndexForSuggestionsInput"}
+	if s.BiasPosition != nil && len(s.BiasPosition) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("BiasPosition", 2))
+	}
+	if s.FilterBBox != nil && len(s.FilterBBox) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("FilterBBox", 4))
+	}
+	if s.FilterCountries != nil && len(s.FilterCountries) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilterCountries", 1))
+	}
+	if s.IndexName == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexName"))
+	}
+	if s.IndexName != nil && len(*s.IndexName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexName", 1))
+	}
+	if s.Language != nil && len(*s.Language) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Language", 2))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Text == nil {
+		invalidParams.Add(request.NewErrParamRequired("Text"))
+	}
+	if s.Text != nil && len(*s.Text) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Text", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBiasPosition sets the BiasPosition field's value.
+func (s *SearchPlaceIndexForSuggestionsInput) SetBiasPosition(v []*float64) *SearchPlaceIndexForSuggestionsInput {
+	s.BiasPosition = v
+	return s
+}
+
+// SetFilterBBox sets the FilterBBox field's value.
+func (s *SearchPlaceIndexForSuggestionsInput) SetFilterBBox(v []*float64) *SearchPlaceIndexForSuggestionsInput {
+	s.FilterBBox = v
+	return s
+}
+
+// SetFilterCountries sets the FilterCountries field's value.
+func (s *SearchPlaceIndexForSuggestionsInput) SetFilterCountries(v []*string) *SearchPlaceIndexForSuggestionsInput {
+	s.FilterCountries = v
+	return s
+}
+
+// SetIndexName sets the IndexName field's value.
+func (s *SearchPlaceIndexForSuggestionsInput) SetIndexName(v string) *SearchPlaceIndexForSuggestionsInput {
+	s.IndexName = &v
+	return s
+}
+
+// SetLanguage sets the Language field's value.
+func (s *SearchPlaceIndexForSuggestionsInput) SetLanguage(v string) *SearchPlaceIndexForSuggestionsInput {
+	s.Language = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchPlaceIndexForSuggestionsInput) SetMaxResults(v int64) *SearchPlaceIndexForSuggestionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *SearchPlaceIndexForSuggestionsInput) SetText(v string) *SearchPlaceIndexForSuggestionsInput {
+	s.Text = &v
+	return s
+}
+
+type SearchPlaceIndexForSuggestionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of place suggestions that best match the search text.
+	//
+	// Results is a required field
+	Results []*SearchForSuggestionsResult `type:"list" required:"true"`
+
+	// Contains a summary of the request. Echoes the input values for BiasPosition,
+	// FilterBBox, FilterCountries, Language, MaxResults, and Text. Also includes
+	// the DataSource of the place index.
+	//
+	// Summary is a required field
+	Summary *SearchPlaceIndexForSuggestionsSummary `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchPlaceIndexForSuggestionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchPlaceIndexForSuggestionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetResults sets the Results field's value.
+func (s *SearchPlaceIndexForSuggestionsOutput) SetResults(v []*SearchForSuggestionsResult) *SearchPlaceIndexForSuggestionsOutput {
+	s.Results = v
+	return s
+}
+
+// SetSummary sets the Summary field's value.
+func (s *SearchPlaceIndexForSuggestionsOutput) SetSummary(v *SearchPlaceIndexForSuggestionsSummary) *SearchPlaceIndexForSuggestionsOutput {
+	s.Summary = v
+	return s
+}
+
+// A summary of the request sent by using SearchPlaceIndexForSuggestions.
+type SearchPlaceIndexForSuggestionsSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the coordinates for the optional bias position specified in the
+	// request.
+	//
+	// This parameter contains a pair of numbers. The first number represents the
+	// X coordinate, or longitude; the second number represents the Y coordinate,
+	// or latitude.
+	//
+	// For example, [-123.1174, 49.2847] represents the position with longitude
+	// -123.1174 and latitude 49.2847.
+	//
+	// BiasPosition is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SearchPlaceIndexForSuggestionsSummary's
+	// String and GoString methods.
+	BiasPosition []*float64 `min:"2" type:"list" sensitive:"true"`
+
+	// The geospatial data provider attached to the place index resource specified
+	// in the request. Values can be one of the following:
+	//
+	//    * Esri
+	//
+	//    * Here
+	//
+	// For more information about data providers, see Amazon Location Service data
+	// providers (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
+	//
+	// DataSource is a required field
+	DataSource *string `type:"string" required:"true"`
+
+	// Contains the coordinates for the optional bounding box specified in the request.
+	//
+	// FilterBBox is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SearchPlaceIndexForSuggestionsSummary's
+	// String and GoString methods.
+	FilterBBox []*float64 `min:"4" type:"list" sensitive:"true"`
+
+	// Contains the optional country filter specified in the request.
+	FilterCountries []*string `min:"1" type:"list"`
+
+	// The preferred language used to return results. Matches the language in the
+	// request. The value is a valid BCP 47 (https://tools.ietf.org/search/bcp47)
+	// language tag, for example, en for English.
+	Language *string `min:"2" type:"string"`
+
+	// Contains the optional result count limit specified in the request.
+	MaxResults *int64 `type:"integer"`
+
+	// The free-form partial text input specified in the request.
+	//
+	// Text is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SearchPlaceIndexForSuggestionsSummary's
+	// String and GoString methods.
+	//
+	// Text is a required field
+	Text *string `type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchPlaceIndexForSuggestionsSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchPlaceIndexForSuggestionsSummary) GoString() string {
+	return s.String()
+}
+
+// SetBiasPosition sets the BiasPosition field's value.
+func (s *SearchPlaceIndexForSuggestionsSummary) SetBiasPosition(v []*float64) *SearchPlaceIndexForSuggestionsSummary {
+	s.BiasPosition = v
+	return s
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *SearchPlaceIndexForSuggestionsSummary) SetDataSource(v string) *SearchPlaceIndexForSuggestionsSummary {
+	s.DataSource = &v
+	return s
+}
+
+// SetFilterBBox sets the FilterBBox field's value.
+func (s *SearchPlaceIndexForSuggestionsSummary) SetFilterBBox(v []*float64) *SearchPlaceIndexForSuggestionsSummary {
+	s.FilterBBox = v
+	return s
+}
+
+// SetFilterCountries sets the FilterCountries field's value.
+func (s *SearchPlaceIndexForSuggestionsSummary) SetFilterCountries(v []*string) *SearchPlaceIndexForSuggestionsSummary {
+	s.FilterCountries = v
+	return s
+}
+
+// SetLanguage sets the Language field's value.
+func (s *SearchPlaceIndexForSuggestionsSummary) SetLanguage(v string) *SearchPlaceIndexForSuggestionsSummary {
+	s.Language = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchPlaceIndexForSuggestionsSummary) SetMaxResults(v int64) *SearchPlaceIndexForSuggestionsSummary {
+	s.MaxResults = &v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *SearchPlaceIndexForSuggestionsSummary) SetText(v string) *SearchPlaceIndexForSuggestionsSummary {
+	s.Text = &v
+	return s
+}
+
 type SearchPlaceIndexForTextInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13776,6 +14431,13 @@ type SearchPlaceIndexForTextSummary struct {
 
 	// Contains the coordinates for the optional bias position specified in the
 	// request.
+	//
+	// This parameter contains a pair of numbers. The first number represents the
+	// X coordinate, or longitude; the second number represents the Y coordinate,
+	// or latitude.
+	//
+	// For example, [-123.1174, 49.2847] represents the position with longitude
+	// -123.1174 and latitude 49.2847.
 	//
 	// BiasPosition is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SearchPlaceIndexForTextSummary's
@@ -15044,9 +15706,19 @@ type UpdateTrackerInput struct {
 	//    * DistanceBased - If the device has moved less than 30 m (98.4 ft), location
 	//    updates are ignored. Location updates within this distance are neither
 	//    evaluated against linked geofence collections, nor stored. This helps
-	//    control costs by reducing the number of geofence evaluations and device
-	//    positions to retrieve. Distance-based filtering can also reduce the jitter
-	//    effect when displaying device trajectory on a map.
+	//    control costs by reducing the number of geofence evaluations and historical
+	//    device positions to paginate through. Distance-based filtering can also
+	//    reduce the effects of GPS noise when displaying device trajectories on
+	//    a map.
+	//
+	//    * AccuracyBased - If the device has moved less than the measured accuracy,
+	//    location updates are ignored. For example, if two consecutive updates
+	//    from a device have a horizontal accuracy of 5 m and 10 m, the second update
+	//    is ignored if the device has moved less than 15 m. Ignored location updates
+	//    are neither evaluated against linked geofence collections, nor stored.
+	//    This helps educe the effects of GPS noise when displaying device trajectories
+	//    on a map, and can help control costs by reducing the number of geofence
+	//    evaluations.
 	PositionFiltering *string `type:"string" enum:"PositionFiltering"`
 
 	// Updates the pricing plan for the tracker resource.

@@ -1,3 +1,12 @@
+Release v1.42.20 (2021-12-06)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/location`: Updates service API and documentation
+* `service/route53`: Updates service API and documentation
+  * Add PriorRequestNotComplete exception to UpdateHostedZoneComment API
+
 Release v1.42.19 (2021-12-03)
 ===
 
