@@ -13,6 +13,21 @@
     "uid":"appsync-2017-07-25"
   },
   "operations":{
+    "AssociateApi":{
+      "name":"AssociateApi",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/domainnames/{domainName}/apiassociation"
+      },
+      "input":{"shape":"AssociateApiRequest"},
+      "output":{"shape":"AssociateApiResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
     "CreateApiCache":{
       "name":"CreateApiCache",
       "http":{
@@ -61,6 +76,20 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "CreateDomainName":{
+      "name":"CreateDomainName",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/domainnames"
+      },
+      "input":{"shape":"CreateDomainNameRequest"},
+      "output":{"shape":"CreateDomainNameResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"BadRequestException"},
         {"shape":"InternalFailureException"}
       ]
     },
@@ -174,6 +203,22 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "DeleteDomainName":{
+      "name":"DeleteDomainName",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v1/domainnames/{domainName}"
+      },
+      "input":{"shape":"DeleteDomainNameRequest"},
+      "output":{"shape":"DeleteDomainNameResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
     "DeleteFunction":{
       "name":"DeleteFunction",
       "http":{
@@ -237,6 +282,22 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "DisassociateApi":{
+      "name":"DisassociateApi",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v1/domainnames/{domainName}/apiassociation"
+      },
+      "input":{"shape":"DisassociateApiRequest"},
+      "output":{"shape":"DisassociateApiResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
     "FlushApiCache":{
       "name":"FlushApiCache",
       "http":{
@@ -251,6 +312,21 @@
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
         {"shape":"InternalFailureException"}
+      ]
+    },
+    "GetApiAssociation":{
+      "name":"GetApiAssociation",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/domainnames/{domainName}/apiassociation"
+      },
+      "input":{"shape":"GetApiAssociationRequest"},
+      "output":{"shape":"GetApiAssociationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "GetApiCache":{
@@ -283,6 +359,21 @@
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
         {"shape":"InternalFailureException"}
+      ]
+    },
+    "GetDomainName":{
+      "name":"GetDomainName",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/domainnames/{domainName}"
+      },
+      "input":{"shape":"GetDomainNameRequest"},
+      "output":{"shape":"GetDomainNameResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "GetFunction":{
@@ -402,6 +493,20 @@
         {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "ListDomainNames":{
+      "name":"ListDomainNames",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/domainnames"
+      },
+      "input":{"shape":"ListDomainNamesRequest"},
+      "output":{"shape":"ListDomainNamesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"BadRequestException"},
         {"shape":"InternalFailureException"}
       ]
     },
@@ -596,6 +701,22 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "UpdateDomainName":{
+      "name":"UpdateDomainName",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/domainnames/{domainName}"
+      },
+      "input":{"shape":"UpdateDomainNameRequest"},
+      "output":{"shape":"UpdateDomainNameResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
     "UpdateFunction":{
       "name":"UpdateFunction",
       "http":{
@@ -682,6 +803,15 @@
       "type":"list",
       "member":{"shape":"AdditionalAuthenticationProvider"}
     },
+    "ApiAssociation":{
+      "type":"structure",
+      "members":{
+        "domainName":{"shape":"DomainName"},
+        "apiId":{"shape":"String"},
+        "associationStatus":{"shape":"AssociationStatus"},
+        "deploymentDetail":{"shape":"String"}
+      }
+    },
     "ApiCache":{
       "type":"structure",
       "members":{
@@ -767,6 +897,35 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "AssociateApiRequest":{
+      "type":"structure",
+      "required":[
+        "domainName",
+        "apiId"
+      ],
+      "members":{
+        "domainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"domainName"
+        },
+        "apiId":{"shape":"String"}
+      }
+    },
+    "AssociateApiResponse":{
+      "type":"structure",
+      "members":{
+        "apiAssociation":{"shape":"ApiAssociation"}
+      }
+    },
+    "AssociationStatus":{
+      "type":"string",
+      "enum":[
+        "PROCESSING",
+        "FAILED",
+        "SUCCESS"
+      ]
+    },
     "AuthenticationType":{
       "type":"string",
       "enum":[
@@ -817,6 +976,12 @@
     "CachingKeys":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "CertificateArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:[a-z-]*:(acm|iam):[a-z0-9-]*:\\d{12}:(certificate|server-certificate)/[0-9A-Za-z_/-]*$"
     },
     "CognitoUserPoolConfig":{
       "type":"structure",
@@ -929,6 +1094,24 @@
       "type":"structure",
       "members":{
         "dataSource":{"shape":"DataSource"}
+      }
+    },
+    "CreateDomainNameRequest":{
+      "type":"structure",
+      "required":[
+        "domainName",
+        "certificateArn"
+      ],
+      "members":{
+        "domainName":{"shape":"DomainName"},
+        "certificateArn":{"shape":"CertificateArn"},
+        "description":{"shape":"Description"}
+      }
+    },
+    "CreateDomainNameResponse":{
+      "type":"structure",
+      "members":{
+        "domainNameConfig":{"shape":"DomainNameConfig"}
       }
     },
     "CreateFunctionRequest":{
@@ -1144,6 +1327,22 @@
       "members":{
       }
     },
+    "DeleteDomainNameRequest":{
+      "type":"structure",
+      "required":["domainName"],
+      "members":{
+        "domainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"domainName"
+        }
+      }
+    },
+    "DeleteDomainNameResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteFunctionRequest":{
       "type":"structure",
       "required":[
@@ -1246,6 +1445,48 @@
         "deltaSyncTableTTL":{"shape":"Long"}
       }
     },
+    "Description":{
+      "type":"string",
+      "max":255,
+      "min":0,
+      "pattern":"^.*$"
+    },
+    "DisassociateApiRequest":{
+      "type":"structure",
+      "required":["domainName"],
+      "members":{
+        "domainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"domainName"
+        }
+      }
+    },
+    "DisassociateApiResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DomainName":{
+      "type":"string",
+      "max":253,
+      "min":1,
+      "pattern":"^(\\*[\\w\\d-]*\\.)?([\\w\\d-]+\\.)+[\\w\\d-]+$"
+    },
+    "DomainNameConfig":{
+      "type":"structure",
+      "members":{
+        "domainName":{"shape":"DomainName"},
+        "description":{"shape":"Description"},
+        "certificateArn":{"shape":"CertificateArn"},
+        "appsyncDomainName":{"shape":"String"},
+        "hostedZoneId":{"shape":"String"}
+      }
+    },
+    "DomainNameConfigs":{
+      "type":"list",
+      "member":{"shape":"DomainNameConfig"}
+    },
     "DynamodbDataSourceConfig":{
       "type":"structure",
       "required":[
@@ -1318,6 +1559,23 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "GetApiAssociationRequest":{
+      "type":"structure",
+      "required":["domainName"],
+      "members":{
+        "domainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"domainName"
+        }
+      }
+    },
+    "GetApiAssociationResponse":{
+      "type":"structure",
+      "members":{
+        "apiAssociation":{"shape":"ApiAssociation"}
+      }
+    },
     "GetApiCacheRequest":{
       "type":"structure",
       "required":["apiId"],
@@ -1358,6 +1616,23 @@
       "type":"structure",
       "members":{
         "dataSource":{"shape":"DataSource"}
+      }
+    },
+    "GetDomainNameRequest":{
+      "type":"structure",
+      "required":["domainName"],
+      "members":{
+        "domainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"domainName"
+        }
+      }
+    },
+    "GetDomainNameResponse":{
+      "type":"structure",
+      "members":{
+        "domainNameConfig":{"shape":"DomainNameConfig"}
       }
     },
     "GetFunctionRequest":{
@@ -1642,6 +1917,28 @@
       "type":"structure",
       "members":{
         "dataSources":{"shape":"DataSources"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListDomainNamesRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListDomainNamesResponse":{
+      "type":"structure",
+      "members":{
+        "domainNameConfigs":{"shape":"DomainNameConfigs"},
         "nextToken":{"shape":"PaginationToken"}
       }
     },
@@ -2182,6 +2479,24 @@
       "type":"structure",
       "members":{
         "dataSource":{"shape":"DataSource"}
+      }
+    },
+    "UpdateDomainNameRequest":{
+      "type":"structure",
+      "required":["domainName"],
+      "members":{
+        "domainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"domainName"
+        },
+        "description":{"shape":"Description"}
+      }
+    },
+    "UpdateDomainNameResponse":{
+      "type":"structure",
+      "members":{
+        "domainNameConfig":{"shape":"DomainNameConfig"}
       }
     },
     "UpdateFunctionRequest":{

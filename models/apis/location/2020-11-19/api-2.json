@@ -775,6 +775,24 @@
       ],
       "endpoint":{"hostPrefix":"places."}
     },
+    "SearchPlaceIndexForSuggestions":{
+      "name":"SearchPlaceIndexForSuggestions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/places/v0/indexes/{IndexName}/search/suggestions",
+        "responseCode":200
+      },
+      "input":{"shape":"SearchPlaceIndexForSuggestionsRequest"},
+      "output":{"shape":"SearchPlaceIndexForSuggestionsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"places."}
+    },
     "SearchPlaceIndexForText":{
       "name":"SearchPlaceIndexForText",
       "http":{
@@ -1821,8 +1839,10 @@
         "SampleTime"
       ],
       "members":{
+        "Accuracy":{"shape":"PositionalAccuracy"},
         "DeviceId":{"shape":"Id"},
         "Position":{"shape":"Position"},
+        "PositionProperties":{"shape":"PropertyMap"},
         "ReceivedTime":{"shape":"Timestamp"},
         "SampleTime":{"shape":"Timestamp"}
       }
@@ -1839,8 +1859,10 @@
         "SampleTime"
       ],
       "members":{
+        "Accuracy":{"shape":"PositionalAccuracy"},
         "DeviceId":{"shape":"Id"},
         "Position":{"shape":"Position"},
+        "PositionProperties":{"shape":"PropertyMap"},
         "SampleTime":{"shape":"Timestamp"}
       }
     },
@@ -1949,8 +1971,10 @@
         "SampleTime"
       ],
       "members":{
+        "Accuracy":{"shape":"PositionalAccuracy"},
         "DeviceId":{"shape":"Id"},
         "Position":{"shape":"Position"},
+        "PositionProperties":{"shape":"PropertyMap"},
         "ReceivedTime":{"shape":"Timestamp"},
         "SampleTime":{"shape":"Timestamp"}
       }
@@ -2274,8 +2298,10 @@
         "SampleTime"
       ],
       "members":{
+        "Accuracy":{"shape":"PositionalAccuracy"},
         "DeviceId":{"shape":"Id"},
         "Position":{"shape":"Position"},
+        "PositionProperties":{"shape":"PropertyMap"},
         "SampleTime":{"shape":"Timestamp"}
       }
     },
@@ -2643,6 +2669,19 @@
         "AccuracyBased"
       ]
     },
+    "PositionalAccuracy":{
+      "type":"structure",
+      "required":["Horizontal"],
+      "members":{
+        "Horizontal":{"shape":"PositionalAccuracyHorizontalDouble"}
+      }
+    },
+    "PositionalAccuracyHorizontalDouble":{
+      "type":"double",
+      "box":true,
+      "max":10000,
+      "min":0
+    },
     "PricingPlan":{
       "type":"string",
       "enum":[
@@ -2650,6 +2689,24 @@
         "MobileAssetTracking",
         "MobileAssetManagement"
       ]
+    },
+    "PropertyMap":{
+      "type":"map",
+      "key":{"shape":"PropertyMapKeyString"},
+      "value":{"shape":"PropertyMapValueString"},
+      "max":3,
+      "min":0,
+      "sensitive":true
+    },
+    "PropertyMapKeyString":{
+      "type":"string",
+      "max":20,
+      "min":1
+    },
+    "PropertyMapValueString":{
+      "type":"string",
+      "max":40,
+      "min":1
     },
     "PutGeofenceRequest":{
       "type":"structure",
@@ -2731,6 +2788,17 @@
       "type":"list",
       "member":{"shape":"SearchForPositionResult"}
     },
+    "SearchForSuggestionsResult":{
+      "type":"structure",
+      "required":["Text"],
+      "members":{
+        "Text":{"shape":"String"}
+      }
+    },
+    "SearchForSuggestionsResultList":{
+      "type":"list",
+      "member":{"shape":"SearchForSuggestionsResult"}
+    },
     "SearchForTextResult":{
       "type":"structure",
       "required":["Place"],
@@ -2794,6 +2862,59 @@
         "Language":{"shape":"LanguageTag"},
         "MaxResults":{"shape":"PlaceIndexSearchResultLimit"},
         "Position":{"shape":"Position"}
+      }
+    },
+    "SearchPlaceIndexForSuggestionsRequest":{
+      "type":"structure",
+      "required":[
+        "IndexName",
+        "Text"
+      ],
+      "members":{
+        "BiasPosition":{"shape":"Position"},
+        "FilterBBox":{"shape":"BoundingBox"},
+        "FilterCountries":{"shape":"CountryCodeList"},
+        "IndexName":{
+          "shape":"ResourceName",
+          "location":"uri",
+          "locationName":"IndexName"
+        },
+        "Language":{"shape":"LanguageTag"},
+        "MaxResults":{"shape":"SearchPlaceIndexForSuggestionsRequestMaxResultsInteger"},
+        "Text":{"shape":"SyntheticSearchPlaceIndexForSuggestionsRequestString"}
+      }
+    },
+    "SearchPlaceIndexForSuggestionsRequestMaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":15,
+      "min":1
+    },
+    "SearchPlaceIndexForSuggestionsResponse":{
+      "type":"structure",
+      "required":[
+        "Results",
+        "Summary"
+      ],
+      "members":{
+        "Results":{"shape":"SearchForSuggestionsResultList"},
+        "Summary":{"shape":"SearchPlaceIndexForSuggestionsSummary"}
+      }
+    },
+    "SearchPlaceIndexForSuggestionsSummary":{
+      "type":"structure",
+      "required":[
+        "DataSource",
+        "Text"
+      ],
+      "members":{
+        "BiasPosition":{"shape":"Position"},
+        "DataSource":{"shape":"String"},
+        "FilterBBox":{"shape":"BoundingBox"},
+        "FilterCountries":{"shape":"CountryCodeList"},
+        "Language":{"shape":"LanguageTag"},
+        "MaxResults":{"shape":"Integer"},
+        "Text":{"shape":"SyntheticSearchPlaceIndexForSuggestionsSummaryString"}
       }
     },
     "SearchPlaceIndexForTextRequest":{
@@ -2895,6 +3016,16 @@
       "member":{"shape":"Step"}
     },
     "String":{"type":"string"},
+    "SyntheticSearchPlaceIndexForSuggestionsRequestString":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "sensitive":true
+    },
+    "SyntheticSearchPlaceIndexForSuggestionsSummaryString":{
+      "type":"string",
+      "sensitive":true
+    },
     "SyntheticSearchPlaceIndexForTextRequestString":{
       "type":"string",
       "max":200,

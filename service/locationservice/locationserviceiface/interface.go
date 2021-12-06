@@ -255,6 +255,10 @@ type LocationServiceAPI interface {
 	SearchPlaceIndexForPositionWithContext(aws.Context, *locationservice.SearchPlaceIndexForPositionInput, ...request.Option) (*locationservice.SearchPlaceIndexForPositionOutput, error)
 	SearchPlaceIndexForPositionRequest(*locationservice.SearchPlaceIndexForPositionInput) (*request.Request, *locationservice.SearchPlaceIndexForPositionOutput)
 
+	SearchPlaceIndexForSuggestions(*locationservice.SearchPlaceIndexForSuggestionsInput) (*locationservice.SearchPlaceIndexForSuggestionsOutput, error)
+	SearchPlaceIndexForSuggestionsWithContext(aws.Context, *locationservice.SearchPlaceIndexForSuggestionsInput, ...request.Option) (*locationservice.SearchPlaceIndexForSuggestionsOutput, error)
+	SearchPlaceIndexForSuggestionsRequest(*locationservice.SearchPlaceIndexForSuggestionsInput) (*request.Request, *locationservice.SearchPlaceIndexForSuggestionsOutput)
+
 	SearchPlaceIndexForText(*locationservice.SearchPlaceIndexForTextInput) (*locationservice.SearchPlaceIndexForTextOutput, error)
 	SearchPlaceIndexForTextWithContext(aws.Context, *locationservice.SearchPlaceIndexForTextInput, ...request.Option) (*locationservice.SearchPlaceIndexForTextOutput, error)
 	SearchPlaceIndexForTextRequest(*locationservice.SearchPlaceIndexForTextInput) (*request.Request, *locationservice.SearchPlaceIndexForTextOutput)
