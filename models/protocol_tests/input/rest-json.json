@@ -1406,7 +1406,10 @@
         },
         "serialized": {
           "uri": "/?Bar=%7B%22Foo%22%3A%22Bar%22%7D",
-          "headers": {"X-Amz-Foo": "eyJGb28iOiJCYXIifQ=="},
+          "headers": {
+            "X-Amz-Foo": "eyJGb28iOiJCYXIifQ==",
+            "Content-Type": "application/json"
+          },
           "body": "{\"BodyField\":\"{\\\"Foo\\\":\\\"Bar\\\"}\"}"
         }
       },
@@ -1427,7 +1430,9 @@
         },
         "serialized": {
           "uri": "/",
-          "headers": {},
+          "headers": {
+            "Content-Type": "application/json"
+          },
           "body": "{\"BodyListField\":[\"{\\\"Foo\\\":\\\"Bar\\\"}\"]}"
         }
       },
@@ -1445,8 +1450,10 @@
         },
         "serialized": {
           "uri": "/",
-          "headers": {},
-          "body": ""
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": "{}"
         }
       }
     ]
@@ -1893,6 +1900,27 @@
           "body": "{\"testConfig\": {\"timeout\": 10}}",
           "headers": {
             "x-amz-test-id": "t-12345",
+            "Content-Type": "application/json"
+          },
+          "host": "rest-test.amazonaws.com"
+        }
+      },
+      {
+        "given": {
+          "name": "TestBodyNoParams",
+          "input": {
+            "shape": "TestBodyRequest"
+          },
+          "http": {
+            "method": "POST",
+            "requestUri": "/body"
+          }
+        },
+        "params": {},
+        "serialized": {
+          "uri": "/body",
+          "body": "{}",
+          "headers": {
             "Content-Type": "application/json"
           },
           "host": "rest-test.amazonaws.com"
