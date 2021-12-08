@@ -1937,6 +1937,97 @@ func (c *Outposts) UntagResourceWithContext(ctx aws.Context, input *UntagResourc
 	return out, req.Send()
 }
 
+const opUpdateOutpost = "UpdateOutpost"
+
+// UpdateOutpostRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateOutpost operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateOutpost for more information on using the UpdateOutpost
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateOutpostRequest method.
+//    req, resp := client.UpdateOutpostRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/UpdateOutpost
+func (c *Outposts) UpdateOutpostRequest(input *UpdateOutpostInput) (req *request.Request, output *UpdateOutpostOutput) {
+	op := &request.Operation{
+		Name:       opUpdateOutpost,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/outposts/{OutpostId}",
+	}
+
+	if input == nil {
+		input = &UpdateOutpostInput{}
+	}
+
+	output = &UpdateOutpostOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateOutpost API operation for AWS Outposts.
+//
+// Updates an Outpost.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation UpdateOutpost for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   A parameter is not valid.
+//
+//   * ConflictException
+//   Updating or deleting this resource can cause an inconsistent state.
+//
+//   * NotFoundException
+//   The specified request is not valid.
+//
+//   * AccessDeniedException
+//   You do not have permission to perform this operation.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/UpdateOutpost
+func (c *Outposts) UpdateOutpost(input *UpdateOutpostInput) (*UpdateOutpostOutput, error) {
+	req, out := c.UpdateOutpostRequest(input)
+	return out, req.Send()
+}
+
+// UpdateOutpostWithContext is the same as UpdateOutpost with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateOutpost for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) UpdateOutpostWithContext(ctx aws.Context, input *UpdateOutpostInput, opts ...request.Option) (*UpdateOutpostOutput, error) {
+	req, out := c.UpdateOutpostRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateSite = "UpdateSite"
 
 // UpdateSiteRequest generates a "aws/request.Request" representing the
@@ -2841,7 +2932,7 @@ type CreateOutpostInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// The ID of the site.
+	// The ID or the Amazon Resource Name (ARN) of the site.
 	//
 	// SiteId is a required field
 	SiteId *string `min:"1" type:"string" required:"true"`
@@ -3138,7 +3229,7 @@ func (s *CreateSiteOutput) SetSite(v *Site) *CreateSiteOutput {
 type DeleteOutpostInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the Outpost.
+	// The ID or the Amazon Resource Name (ARN) of the Outpost.
 	//
 	// OutpostId is a required field
 	OutpostId *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
@@ -3209,7 +3300,7 @@ func (s DeleteOutpostOutput) GoString() string {
 type DeleteSiteInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the site.
+	// The ID or the Amazon Resource Name (ARN) of the site.
 	//
 	// SiteId is a required field
 	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
@@ -3490,7 +3581,7 @@ func (s *GetOrderOutput) SetOrder(v *Order) *GetOrderOutput {
 type GetOutpostInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the Outpost.
+	// The ID or the Amazon Resource Name (ARN) of the Outpost.
 	//
 	// OutpostId is a required field
 	OutpostId *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
@@ -3545,7 +3636,7 @@ type GetOutpostInstanceTypesInput struct {
 	// The pagination token.
 	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
 
-	// The ID of the Outpost.
+	// The ID or the Amazon Resource Name (ARN) of the Outpost.
 	//
 	// OutpostId is a required field
 	OutpostId *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
@@ -3706,7 +3797,7 @@ type GetSiteAddressInput struct {
 	// AddressType is a required field
 	AddressType *string `location:"querystring" locationName:"AddressType" type:"string" required:"true" enum:"AddressType"`
 
-	// The ID of the site.
+	// The ID or the Amazon Resource Name (ARN) of the site.
 	//
 	// SiteId is a required field
 	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
@@ -3813,7 +3904,7 @@ func (s *GetSiteAddressOutput) SetSiteId(v string) *GetSiteAddressOutput {
 type GetSiteInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the site.
+	// The ID or the Amazon Resource Name (ARN) of the site.
 	//
 	// SiteId is a required field
 	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
@@ -5535,6 +5626,116 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateOutpostInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the Outpost.
+	Description *string `type:"string"`
+
+	// The name of the Outpost.
+	Name *string `min:"1" type:"string"`
+
+	// The ID or the Amazon Resource Name (ARN) of the Outpost.
+	//
+	// OutpostId is a required field
+	OutpostId *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
+
+	// The type of hardware for this Outpost.
+	SupportedHardwareType *string `type:"string" enum:"SupportedHardwareType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOutpostInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOutpostInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateOutpostInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateOutpostInput"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.OutpostId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutpostId"))
+	}
+	if s.OutpostId != nil && len(*s.OutpostId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutpostId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateOutpostInput) SetDescription(v string) *UpdateOutpostInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateOutpostInput) SetName(v string) *UpdateOutpostInput {
+	s.Name = &v
+	return s
+}
+
+// SetOutpostId sets the OutpostId field's value.
+func (s *UpdateOutpostInput) SetOutpostId(v string) *UpdateOutpostInput {
+	s.OutpostId = &v
+	return s
+}
+
+// SetSupportedHardwareType sets the SupportedHardwareType field's value.
+func (s *UpdateOutpostInput) SetSupportedHardwareType(v string) *UpdateOutpostInput {
+	s.SupportedHardwareType = &v
+	return s
+}
+
+type UpdateOutpostOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about an Outpost.
+	Outpost *Outpost `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOutpostOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOutpostOutput) GoString() string {
+	return s.String()
+}
+
+// SetOutpost sets the Outpost field's value.
+func (s *UpdateOutpostOutput) SetOutpost(v *Outpost) *UpdateOutpostOutput {
+	s.Outpost = v
+	return s
+}
+
 type UpdateSiteAddressInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5548,7 +5749,7 @@ type UpdateSiteAddressInput struct {
 	// AddressType is a required field
 	AddressType *string `type:"string" required:"true" enum:"AddressType"`
 
-	// The ID of the site.
+	// The ID or the Amazon Resource Name (ARN) of the site.
 	//
 	// SiteId is a required field
 	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
@@ -5669,7 +5870,7 @@ type UpdateSiteInput struct {
 	// Notes about a site.
 	Notes *string `min:"1" type:"string"`
 
-	// The ID of the site.
+	// The ID or the Amazon Resource Name (ARN) of the site.
 	//
 	// SiteId is a required field
 	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
@@ -5842,7 +6043,7 @@ type UpdateSiteRackPhysicalPropertiesInput struct {
 	//    * Three-phase AC feed: 346 V to 480 V, 50 Hz or 60 Hz
 	PowerPhase *string `type:"string" enum:"PowerPhase"`
 
-	// The ID of the site.
+	// The ID or the Amazon Resource Name (ARN) of the site.
 	//
 	// SiteId is a required field
 	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`

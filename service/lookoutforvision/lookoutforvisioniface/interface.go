@@ -92,6 +92,10 @@ type LookoutForVisionAPI interface {
 	DescribeModelWithContext(aws.Context, *lookoutforvision.DescribeModelInput, ...request.Option) (*lookoutforvision.DescribeModelOutput, error)
 	DescribeModelRequest(*lookoutforvision.DescribeModelInput) (*request.Request, *lookoutforvision.DescribeModelOutput)
 
+	DescribeModelPackagingJob(*lookoutforvision.DescribeModelPackagingJobInput) (*lookoutforvision.DescribeModelPackagingJobOutput, error)
+	DescribeModelPackagingJobWithContext(aws.Context, *lookoutforvision.DescribeModelPackagingJobInput, ...request.Option) (*lookoutforvision.DescribeModelPackagingJobOutput, error)
+	DescribeModelPackagingJobRequest(*lookoutforvision.DescribeModelPackagingJobInput) (*request.Request, *lookoutforvision.DescribeModelPackagingJobOutput)
+
 	DescribeProject(*lookoutforvision.DescribeProjectInput) (*lookoutforvision.DescribeProjectOutput, error)
 	DescribeProjectWithContext(aws.Context, *lookoutforvision.DescribeProjectInput, ...request.Option) (*lookoutforvision.DescribeProjectOutput, error)
 	DescribeProjectRequest(*lookoutforvision.DescribeProjectInput) (*request.Request, *lookoutforvision.DescribeProjectOutput)
@@ -106,6 +110,13 @@ type LookoutForVisionAPI interface {
 
 	ListDatasetEntriesPages(*lookoutforvision.ListDatasetEntriesInput, func(*lookoutforvision.ListDatasetEntriesOutput, bool) bool) error
 	ListDatasetEntriesPagesWithContext(aws.Context, *lookoutforvision.ListDatasetEntriesInput, func(*lookoutforvision.ListDatasetEntriesOutput, bool) bool, ...request.Option) error
+
+	ListModelPackagingJobs(*lookoutforvision.ListModelPackagingJobsInput) (*lookoutforvision.ListModelPackagingJobsOutput, error)
+	ListModelPackagingJobsWithContext(aws.Context, *lookoutforvision.ListModelPackagingJobsInput, ...request.Option) (*lookoutforvision.ListModelPackagingJobsOutput, error)
+	ListModelPackagingJobsRequest(*lookoutforvision.ListModelPackagingJobsInput) (*request.Request, *lookoutforvision.ListModelPackagingJobsOutput)
+
+	ListModelPackagingJobsPages(*lookoutforvision.ListModelPackagingJobsInput, func(*lookoutforvision.ListModelPackagingJobsOutput, bool) bool) error
+	ListModelPackagingJobsPagesWithContext(aws.Context, *lookoutforvision.ListModelPackagingJobsInput, func(*lookoutforvision.ListModelPackagingJobsOutput, bool) bool, ...request.Option) error
 
 	ListModels(*lookoutforvision.ListModelsInput) (*lookoutforvision.ListModelsOutput, error)
 	ListModelsWithContext(aws.Context, *lookoutforvision.ListModelsInput, ...request.Option) (*lookoutforvision.ListModelsOutput, error)
@@ -128,6 +139,10 @@ type LookoutForVisionAPI interface {
 	StartModel(*lookoutforvision.StartModelInput) (*lookoutforvision.StartModelOutput, error)
 	StartModelWithContext(aws.Context, *lookoutforvision.StartModelInput, ...request.Option) (*lookoutforvision.StartModelOutput, error)
 	StartModelRequest(*lookoutforvision.StartModelInput) (*request.Request, *lookoutforvision.StartModelOutput)
+
+	StartModelPackagingJob(*lookoutforvision.StartModelPackagingJobInput) (*lookoutforvision.StartModelPackagingJobOutput, error)
+	StartModelPackagingJobWithContext(aws.Context, *lookoutforvision.StartModelPackagingJobInput, ...request.Option) (*lookoutforvision.StartModelPackagingJobOutput, error)
+	StartModelPackagingJobRequest(*lookoutforvision.StartModelPackagingJobInput) (*request.Request, *lookoutforvision.StartModelPackagingJobOutput)
 
 	StopModel(*lookoutforvision.StopModelInput) (*lookoutforvision.StopModelOutput, error)
 	StopModelWithContext(aws.Context, *lookoutforvision.StopModelInput, ...request.Option) (*lookoutforvision.StopModelOutput, error)

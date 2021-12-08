@@ -3224,6 +3224,14 @@
         "OpenSearchAction$type": "<p>The type of document you are storing.</p>"
       }
     },
+    "EnableCachingForHttp": {
+      "base": null,
+      "refs": {
+        "AuthorizerDescription$enableCachingForHttp": "<p>When <code>true</code>, the result from the authorizer’s Lambda function is cached for the time specified in <code>refreshAfterInSeconds</code>. The cached result is used while the device reuses the same HTTP connection.</p>",
+        "CreateAuthorizerRequest$enableCachingForHttp": "<p>When <code>true</code>, the result from the authorizer’s Lambda function is cached for clients that use persistent HTTP connections. The results are cached for the time specified by the Lambda function in <code>refreshAfterInSeconds</code>. This value does not affect authorization of clients that use MQTT connections.</p> <p>The default value is <code>false</code>.</p>",
+        "UpdateAuthorizerRequest$enableCachingForHttp": "<p>When <code>true</code>, the result from the authorizer’s Lambda function is cached for the time specified in <code>refreshAfterInSeconds</code>. The cached result is used while the device reuses the same HTTP connection.</p>"
+      }
+    },
     "EnableIoTLoggingParams": {
       "base": "<p>Parameters used when defining a mitigation action that enable Amazon Web Services IoT Core logging.</p>",
       "refs": {

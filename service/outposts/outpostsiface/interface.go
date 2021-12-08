@@ -148,6 +148,10 @@ type OutpostsAPI interface {
 	UntagResourceWithContext(aws.Context, *outposts.UntagResourceInput, ...request.Option) (*outposts.UntagResourceOutput, error)
 	UntagResourceRequest(*outposts.UntagResourceInput) (*request.Request, *outposts.UntagResourceOutput)
 
+	UpdateOutpost(*outposts.UpdateOutpostInput) (*outposts.UpdateOutpostOutput, error)
+	UpdateOutpostWithContext(aws.Context, *outposts.UpdateOutpostInput, ...request.Option) (*outposts.UpdateOutpostOutput, error)
+	UpdateOutpostRequest(*outposts.UpdateOutpostInput) (*request.Request, *outposts.UpdateOutpostOutput)
+
 	UpdateSite(*outposts.UpdateSiteInput) (*outposts.UpdateSiteOutput, error)
 	UpdateSiteWithContext(aws.Context, *outposts.UpdateSiteInput, ...request.Option) (*outposts.UpdateSiteOutput, error)
 	UpdateSiteRequest(*outposts.UpdateSiteInput) (*request.Request, *outposts.UpdateSiteOutput)

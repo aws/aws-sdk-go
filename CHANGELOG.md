@@ -1,3 +1,21 @@
+Release v1.42.21 (2021-12-08)
+===
+
+### Service Client Updates
+* `service/comprehendmedical`: Updates service API and documentation
+* `service/health`: Updates service documentation
+  * Documentation updates for AWS Health
+* `service/iot`: Updates service API and documentation
+  * This release allows customer to enable caching of custom authorizer on HTTP protocol for clients that use persistent or Keep-Alive connection in order to reduce the number of Lambda invocations.
+* `service/logs`: Updates service API and documentation
+  * This release adds AWS Organizations support as condition key in destination policy for cross account Subscriptions in CloudWatch Logs.
+* `service/lookoutvision`: Updates service API, documentation, and paginators
+* `service/outposts`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * This release added a new Ambarella device(amba_cv2) compilation support for Sagemaker Neo.
+* `service/support`: Updates service documentation
+  * Documentation updates for AWS Support.
+
 Release v1.42.20 (2021-12-06)
 ===
 

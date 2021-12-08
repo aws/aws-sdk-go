@@ -74,6 +74,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DescribeSNOMEDCTInferenceJob":{
+      "name":"DescribeSNOMEDCTInferenceJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeSNOMEDCTInferenceJobRequest"},
+      "output":{"shape":"DescribeSNOMEDCTInferenceJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DetectEntities":{
       "name":"DetectEntities",
       "http":{
@@ -161,6 +176,23 @@
         {"shape":"TextSizeLimitExceededException"}
       ]
     },
+    "InferSNOMEDCT":{
+      "name":"InferSNOMEDCT",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"InferSNOMEDCTRequest"},
+      "output":{"shape":"InferSNOMEDCTResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidEncodingException"},
+        {"shape":"TextSizeLimitExceededException"}
+      ]
+    },
     "ListEntitiesDetectionV2Jobs":{
       "name":"ListEntitiesDetectionV2Jobs",
       "http":{
@@ -214,6 +246,21 @@
       },
       "input":{"shape":"ListRxNormInferenceJobsRequest"},
       "output":{"shape":"ListRxNormInferenceJobsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ValidationException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListSNOMEDCTInferenceJobs":{
+      "name":"ListSNOMEDCTInferenceJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListSNOMEDCTInferenceJobsRequest"},
+      "output":{"shape":"ListSNOMEDCTInferenceJobsResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"ValidationException"},
@@ -281,6 +328,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "StartSNOMEDCTInferenceJob":{
+      "name":"StartSNOMEDCTInferenceJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartSNOMEDCTInferenceJobRequest"},
+      "output":{"shape":"StartSNOMEDCTInferenceJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "StopEntitiesDetectionV2Job":{
       "name":"StopEntitiesDetectionV2Job",
       "http":{
@@ -336,6 +398,21 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
       ]
+    },
+    "StopSNOMEDCTInferenceJob":{
+      "name":"StopSNOMEDCTInferenceJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopSNOMEDCTInferenceJobRequest"},
+      "output":{"shape":"StopSNOMEDCTInferenceJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
     }
   },
   "shapes":{
@@ -372,6 +449,12 @@
       "type":"string",
       "max":20000,
       "min":1
+    },
+    "Characters":{
+      "type":"structure",
+      "members":{
+        "OriginalTextCharacters":{"shape":"Integer"}
+      }
     },
     "ClientRequestTokenString":{
       "type":"string",
@@ -463,6 +546,19 @@
         "ComprehendMedicalAsyncJobProperties":{"shape":"ComprehendMedicalAsyncJobProperties"}
       }
     },
+    "DescribeSNOMEDCTInferenceJobRequest":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
+    "DescribeSNOMEDCTInferenceJobResponse":{
+      "type":"structure",
+      "members":{
+        "ComprehendMedicalAsyncJobProperties":{"shape":"ComprehendMedicalAsyncJobProperties"}
+      }
+    },
     "DetectEntitiesRequest":{
       "type":"structure",
       "required":["Text"],
@@ -544,6 +640,7 @@
       "type":"string",
       "enum":[
         "NAME",
+        "DX_NAME",
         "DOSAGE",
         "ROUTE_OR_MODE",
         "FORM",
@@ -557,13 +654,16 @@
         "TEST_NAME",
         "TEST_VALUE",
         "TEST_UNITS",
+        "TEST_UNIT",
         "PROCEDURE_NAME",
         "TREATMENT_NAME",
         "DATE",
         "AGE",
         "CONTACT_POINT",
+        "PHONE_OR_FAX",
         "EMAIL",
         "IDENTIFIER",
+        "ID",
         "URL",
         "ADDRESS",
         "PROFESSION",
@@ -729,6 +829,24 @@
         "ModelVersion":{"shape":"String"}
       }
     },
+    "InferSNOMEDCTRequest":{
+      "type":"structure",
+      "required":["Text"],
+      "members":{
+        "Text":{"shape":"OntologyLinkingBoundedLengthString"}
+      }
+    },
+    "InferSNOMEDCTResponse":{
+      "type":"structure",
+      "required":["Entities"],
+      "members":{
+        "Entities":{"shape":"SNOMEDCTEntityList"},
+        "PaginationToken":{"shape":"String"},
+        "ModelVersion":{"shape":"String"},
+        "SNOMEDCTDetails":{"shape":"SNOMEDCTDetails"},
+        "Characters":{"shape":"Characters"}
+      }
+    },
     "InputDataConfig":{
       "type":"structure",
       "required":["S3Bucket"],
@@ -854,6 +972,21 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "ListSNOMEDCTInferenceJobsRequest":{
+      "type":"structure",
+      "members":{
+        "Filter":{"shape":"ComprehendMedicalAsyncJobFilter"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"MaxResultsInteger"}
+      }
+    },
+    "ListSNOMEDCTInferenceJobsResponse":{
+      "type":"structure",
+      "members":{
+        "ComprehendMedicalAsyncJobPropertiesList":{"shape":"ComprehendMedicalAsyncJobPropertiesList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "ManifestFilePath":{
       "type":"string",
       "max":4096,
@@ -897,6 +1030,7 @@
         "ACUITY",
         "TEST_VALUE",
         "TEST_UNITS",
+        "TEST_UNIT",
         "DIRECTION",
         "SYSTEM_ORGAN_SITE"
       ]
@@ -1004,6 +1138,124 @@
       "type":"string",
       "max":1024,
       "pattern":".*"
+    },
+    "SNOMEDCTAttribute":{
+      "type":"structure",
+      "members":{
+        "Category":{"shape":"SNOMEDCTEntityCategory"},
+        "Type":{"shape":"SNOMEDCTAttributeType"},
+        "Score":{"shape":"Float"},
+        "RelationshipScore":{"shape":"Float"},
+        "RelationshipType":{"shape":"SNOMEDCTRelationshipType"},
+        "Id":{"shape":"Integer"},
+        "BeginOffset":{"shape":"Integer"},
+        "EndOffset":{"shape":"Integer"},
+        "Text":{"shape":"String"},
+        "Traits":{"shape":"SNOMEDCTTraitList"},
+        "SNOMEDCTConcepts":{"shape":"SNOMEDCTConceptList"}
+      }
+    },
+    "SNOMEDCTAttributeList":{
+      "type":"list",
+      "member":{"shape":"SNOMEDCTAttribute"}
+    },
+    "SNOMEDCTAttributeType":{
+      "type":"string",
+      "enum":[
+        "ACUITY",
+        "QUALITY",
+        "DIRECTION",
+        "SYSTEM_ORGAN_SITE",
+        "TEST_VALUE",
+        "TEST_UNIT"
+      ]
+    },
+    "SNOMEDCTConcept":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"String"},
+        "Code":{"shape":"String"},
+        "Score":{"shape":"Float"}
+      }
+    },
+    "SNOMEDCTConceptList":{
+      "type":"list",
+      "member":{"shape":"SNOMEDCTConcept"}
+    },
+    "SNOMEDCTDetails":{
+      "type":"structure",
+      "members":{
+        "Edition":{"shape":"String"},
+        "Language":{"shape":"String"},
+        "VersionDate":{"shape":"String"}
+      }
+    },
+    "SNOMEDCTEntity":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"Integer"},
+        "Text":{"shape":"OntologyLinkingBoundedLengthString"},
+        "Category":{"shape":"SNOMEDCTEntityCategory"},
+        "Type":{"shape":"SNOMEDCTEntityType"},
+        "Score":{"shape":"Float"},
+        "BeginOffset":{"shape":"Integer"},
+        "EndOffset":{"shape":"Integer"},
+        "Attributes":{"shape":"SNOMEDCTAttributeList"},
+        "Traits":{"shape":"SNOMEDCTTraitList"},
+        "SNOMEDCTConcepts":{"shape":"SNOMEDCTConceptList"}
+      }
+    },
+    "SNOMEDCTEntityCategory":{
+      "type":"string",
+      "enum":[
+        "MEDICAL_CONDITION",
+        "ANATOMY",
+        "TEST_TREATMENT_PROCEDURE"
+      ]
+    },
+    "SNOMEDCTEntityList":{
+      "type":"list",
+      "member":{"shape":"SNOMEDCTEntity"}
+    },
+    "SNOMEDCTEntityType":{
+      "type":"string",
+      "enum":[
+        "DX_NAME",
+        "TEST_NAME",
+        "PROCEDURE_NAME",
+        "TREATMENT_NAME"
+      ]
+    },
+    "SNOMEDCTRelationshipType":{
+      "type":"string",
+      "enum":[
+        "ACUITY",
+        "QUALITY",
+        "TEST_VALUE",
+        "TEST_UNITS",
+        "DIRECTION",
+        "SYSTEM_ORGAN_SITE"
+      ]
+    },
+    "SNOMEDCTTrait":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"SNOMEDCTTraitName"},
+        "Score":{"shape":"Float"}
+      }
+    },
+    "SNOMEDCTTraitList":{
+      "type":"list",
+      "member":{"shape":"SNOMEDCTTrait"}
+    },
+    "SNOMEDCTTraitName":{
+      "type":"string",
+      "enum":[
+        "NEGATION",
+        "DIAGNOSIS",
+        "SIGN",
+        "SYMPTOM"
+      ]
     },
     "ServiceUnavailableException":{
       "type":"structure",
@@ -1120,6 +1372,33 @@
         "JobId":{"shape":"JobId"}
       }
     },
+    "StartSNOMEDCTInferenceJobRequest":{
+      "type":"structure",
+      "required":[
+        "InputDataConfig",
+        "OutputDataConfig",
+        "DataAccessRoleArn",
+        "LanguageCode"
+      ],
+      "members":{
+        "InputDataConfig":{"shape":"InputDataConfig"},
+        "OutputDataConfig":{"shape":"OutputDataConfig"},
+        "DataAccessRoleArn":{"shape":"IamRoleArn"},
+        "JobName":{"shape":"JobName"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestTokenString",
+          "idempotencyToken":true
+        },
+        "KMSKey":{"shape":"KMSKey"},
+        "LanguageCode":{"shape":"LanguageCode"}
+      }
+    },
+    "StartSNOMEDCTInferenceJobResponse":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
     "StopEntitiesDetectionV2JobRequest":{
       "type":"structure",
       "required":["JobId"],
@@ -1167,6 +1446,19 @@
       }
     },
     "StopRxNormInferenceJobResponse":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
+    "StopSNOMEDCTInferenceJobRequest":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
+    "StopSNOMEDCTInferenceJobResponse":{
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"}

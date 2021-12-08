@@ -8,11 +8,11 @@
 // You can use the API operations to get information about events that might
 // affect your Amazon Web Services services and resources.
 //
-//    * You must have a Business or Enterprise Support plan from Amazon Web
-//    Services Support (http://aws.amazon.com/premiumsupport/) to use the Health
-//    API. If you call the Health API from an Amazon Web Services account that
-//    doesn't have a Business or Enterprise Support plan, you receive a SubscriptionRequiredException
-//    error.
+//    * You must have a Business, Enterprise On-Ramp, or Enterprise Support
+//    plan from Amazon Web Services Support (http://aws.amazon.com/premiumsupport/)
+//    to use the Health API. If you call the Health API from an Amazon Web Services
+//    account that doesn't have a Business, Enterprise On-Ramp, or Enterprise
+//    Support plan, you receive a SubscriptionRequiredException error.
 //
 //    * You can use the Health endpoint health.us-east-1.amazonaws.com (HTTPS)
 //    to call the Health API operations. Health supports a multi-Region application

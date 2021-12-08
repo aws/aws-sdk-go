@@ -1604,11 +1604,11 @@ func (c *Health) EnableHealthServiceAccessForOrganizationRequest(input *EnableHe
 //
 // To call this operation, you must meet the following requirements:
 //
-//    * You must have a Business or Enterprise Support plan from Amazon Web
-//    Services Support (http://aws.amazon.com/premiumsupport/) to use the Health
-//    API. If you call the Health API from an Amazon Web Services account that
-//    doesn't have a Business or Enterprise Support plan, you receive a SubscriptionRequiredException
-//    error.
+//    * You must have a Business, Enterprise On-Ramp, or Enterprise Support
+//    plan from Amazon Web Services Support (http://aws.amazon.com/premiumsupport/)
+//    to use the Health API. If you call the Health API from an Amazon Web Services
+//    account that doesn't have a Business, Enterprise On-Ramp, or Enterprise
+//    Support plan, you receive a SubscriptionRequiredException error.
 //
 //    * You must have permission to call this operation from the organization's
 //    management account. For example IAM policies, see Health identity-based
@@ -4553,8 +4553,8 @@ type OrganizationEventDetailsErrorItem struct {
 	//    a null value for the Amazon Web Services account ID in the request.
 	//
 	//    * Your Amazon Web Services account doesn't include the Amazon Web Services
-	//    Support plan required to use the Health API. You must have either a Business
-	//    or Enterprise Support plan.
+	//    Support plan required to use the Health API. You must have either a Business,
+	//    Enterprise On-Ramp, or Enterprise Support plan.
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 
 	// The name of the error.
