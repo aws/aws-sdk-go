@@ -27901,6 +27901,11 @@ type AuthorizerDescription struct {
 	// The UNIX timestamp of when the authorizer was created.
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
 
+	// When true, the result from the authorizer’s Lambda function is cached for
+	// the time specified in refreshAfterInSeconds. The cached result is used while
+	// the device reuses the same HTTP connection.
+	EnableCachingForHttp *bool `locationName:"enableCachingForHttp" type:"boolean"`
+
 	// The UNIX timestamp of when the authorizer was last updated.
 	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
 
@@ -27957,6 +27962,12 @@ func (s *AuthorizerDescription) SetAuthorizerName(v string) *AuthorizerDescripti
 // SetCreationDate sets the CreationDate field's value.
 func (s *AuthorizerDescription) SetCreationDate(v time.Time) *AuthorizerDescription {
 	s.CreationDate = &v
+	return s
+}
+
+// SetEnableCachingForHttp sets the EnableCachingForHttp field's value.
+func (s *AuthorizerDescription) SetEnableCachingForHttp(v bool) *AuthorizerDescription {
+	s.EnableCachingForHttp = &v
 	return s
 }
 
@@ -30944,6 +30955,14 @@ type CreateAuthorizerInput struct {
 	// AuthorizerName is a required field
 	AuthorizerName *string `location:"uri" locationName:"authorizerName" min:"1" type:"string" required:"true"`
 
+	// When true, the result from the authorizer’s Lambda function is cached for
+	// clients that use persistent HTTP connections. The results are cached for
+	// the time specified by the Lambda function in refreshAfterInSeconds. This
+	// value does not affect authorization of clients that use MQTT connections.
+	//
+	// The default value is false.
+	EnableCachingForHttp *bool `locationName:"enableCachingForHttp" type:"boolean"`
+
 	// Specifies whether IoT validates the token signature in an authorization request.
 	SigningDisabled *bool `locationName:"signingDisabled" type:"boolean"`
 
@@ -31026,6 +31045,12 @@ func (s *CreateAuthorizerInput) SetAuthorizerFunctionArn(v string) *CreateAuthor
 // SetAuthorizerName sets the AuthorizerName field's value.
 func (s *CreateAuthorizerInput) SetAuthorizerName(v string) *CreateAuthorizerInput {
 	s.AuthorizerName = &v
+	return s
+}
+
+// SetEnableCachingForHttp sets the EnableCachingForHttp field's value.
+func (s *CreateAuthorizerInput) SetEnableCachingForHttp(v bool) *CreateAuthorizerInput {
+	s.EnableCachingForHttp = &v
 	return s
 }
 
@@ -63728,6 +63753,11 @@ type UpdateAuthorizerInput struct {
 	// AuthorizerName is a required field
 	AuthorizerName *string `location:"uri" locationName:"authorizerName" min:"1" type:"string" required:"true"`
 
+	// When true, the result from the authorizer’s Lambda function is cached for
+	// the time specified in refreshAfterInSeconds. The cached result is used while
+	// the device reuses the same HTTP connection.
+	EnableCachingForHttp *bool `locationName:"enableCachingForHttp" type:"boolean"`
+
 	// The status of the update authorizer request.
 	Status *string `locationName:"status" type:"string" enum:"AuthorizerStatus"`
 
@@ -63784,6 +63814,12 @@ func (s *UpdateAuthorizerInput) SetAuthorizerFunctionArn(v string) *UpdateAuthor
 // SetAuthorizerName sets the AuthorizerName field's value.
 func (s *UpdateAuthorizerInput) SetAuthorizerName(v string) *UpdateAuthorizerInput {
 	s.AuthorizerName = &v
+	return s
+}
+
+// SetEnableCachingForHttp sets the EnableCachingForHttp field's value.
+func (s *UpdateAuthorizerInput) SetEnableCachingForHttp(v bool) *UpdateAuthorizerInput {
+	s.EnableCachingForHttp = &v
 	return s
 }
 

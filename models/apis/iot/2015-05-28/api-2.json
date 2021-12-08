@@ -4508,12 +4508,14 @@
         "status":{"shape":"AuthorizerStatus"},
         "creationDate":{"shape":"DateType"},
         "lastModifiedDate":{"shape":"DateType"},
-        "signingDisabled":{"shape":"BooleanKey"}
+        "signingDisabled":{"shape":"BooleanKey"},
+        "enableCachingForHttp":{"shape":"EnableCachingForHttp"}
       }
     },
     "AuthorizerFunctionArn":{
       "type":"string",
-      "max":2048
+      "max":2048,
+      "pattern":"[\\s\\S]*"
     },
     "AuthorizerName":{
       "type":"string",
@@ -4992,11 +4994,14 @@
     "CertificatePem":{
       "type":"string",
       "max":65536,
-      "min":1
+      "min":1,
+      "pattern":"[\\s\\S]*"
     },
     "CertificateSigningRequest":{
       "type":"string",
-      "min":1
+      "max":4096,
+      "min":1,
+      "pattern":"[\\s\\S]*"
     },
     "CertificateStateException":{
       "type":"structure",
@@ -5262,7 +5267,8 @@
         "tokenSigningPublicKeys":{"shape":"PublicKeyMap"},
         "status":{"shape":"AuthorizerStatus"},
         "tags":{"shape":"TagList"},
-        "signingDisabled":{"shape":"BooleanKey"}
+        "signingDisabled":{"shape":"BooleanKey"},
+        "enableCachingForHttp":{"shape":"EnableCachingForHttp"}
       }
     },
     "CreateAuthorizerResponse":{
@@ -7579,7 +7585,8 @@
     "DomainName":{
       "type":"string",
       "max":253,
-      "min":1
+      "min":1,
+      "pattern":"[\\s\\S]*"
     },
     "DomainType":{
       "type":"string",
@@ -7674,6 +7681,7 @@
     "ElasticsearchId":{"type":"string"},
     "ElasticsearchIndex":{"type":"string"},
     "ElasticsearchType":{"type":"string"},
+    "EnableCachingForHttp":{"type":"boolean"},
     "EnableIoTLoggingParams":{
       "type":"structure",
       "required":[
@@ -7700,7 +7708,8 @@
     "EndpointAddress":{"type":"string"},
     "EndpointType":{
       "type":"string",
-      "max":128
+      "max":128,
+      "pattern":"[\\s\\S]*"
     },
     "Environment":{
       "type":"string",
@@ -8264,12 +8273,14 @@
     "HttpHeaderName":{
       "type":"string",
       "max":8192,
-      "min":1
+      "min":1,
+      "pattern":"[\\s\\S]*"
     },
     "HttpHeaderValue":{
       "type":"string",
       "max":8192,
-      "min":1
+      "min":1,
+      "pattern":"[\\s\\S]*"
     },
     "HttpHeaders":{
       "type":"map",
@@ -8279,7 +8290,8 @@
     "HttpQueryString":{
       "type":"string",
       "max":4096,
-      "min":1
+      "min":1,
+      "pattern":"[\\s\\S]*"
     },
     "HttpUrlDestinationConfiguration":{
       "type":"structure",
@@ -8682,7 +8694,8 @@
     },
     "KeyValue":{
       "type":"string",
-      "max":5120
+      "max":5120,
+      "pattern":"[\\s\\S]*"
     },
     "KinesisAction":{
       "type":"structure",
@@ -10515,7 +10528,8 @@
     },
     "Message":{
       "type":"string",
-      "max":128
+      "max":128,
+      "pattern":"[\\s\\S]*"
     },
     "MessageFormat":{
       "type":"string",
@@ -10652,7 +10666,8 @@
     "MqttClientId":{
       "type":"string",
       "max":65535,
-      "min":1
+      "min":1,
+      "pattern":"[\\s\\S]*"
     },
     "MqttContext":{
       "type":"structure",
@@ -10670,7 +10685,8 @@
     "MqttUsername":{
       "type":"string",
       "max":65535,
-      "min":1
+      "min":1,
+      "pattern":"[\\s\\S]*"
     },
     "NamedShadowIndexingMode":{
       "type":"string",
@@ -10827,7 +10843,12 @@
       "max":250,
       "min":1
     },
-    "Parameter":{"type":"string"},
+    "Parameter":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"[\\s\\S]*"
+    },
     "ParameterKey":{
       "type":"string",
       "max":128,
@@ -10897,7 +10918,12 @@
       }
     },
     "PolicyArn":{"type":"string"},
-    "PolicyDocument":{"type":"string"},
+    "PolicyDocument":{
+      "type":"string",
+      "max":404600,
+      "min":0,
+      "pattern":"[\\s\\S]*"
+    },
     "PolicyDocuments":{
       "type":"list",
       "member":{"shape":"PolicyDocument"}
@@ -11362,7 +11388,8 @@
     },
     "Resource":{
       "type":"string",
-      "max":2048
+      "max":2048,
+      "pattern":"[\\s\\S]*"
     },
     "ResourceAlreadyExistsException":{
       "type":"structure",
@@ -11667,7 +11694,8 @@
     "ServerName":{
       "type":"string",
       "max":253,
-      "min":1
+      "min":1,
+      "pattern":"[\\s\\S]*"
     },
     "ServiceName":{"type":"string"},
     "ServiceType":{
@@ -12197,7 +12225,12 @@
       }
     },
     "TemplateArn":{"type":"string"},
-    "TemplateBody":{"type":"string"},
+    "TemplateBody":{
+      "type":"string",
+      "max":10240,
+      "min":0,
+      "pattern":"[\\s\\S]*"
+    },
     "TemplateDescription":{
       "type":"string",
       "max":500,
@@ -12545,7 +12578,8 @@
     "Token":{
       "type":"string",
       "max":6144,
-      "min":1
+      "min":1,
+      "pattern":"[\\s\\S]*"
     },
     "TokenKeyName":{
       "type":"string",
@@ -12786,7 +12820,8 @@
         "authorizerFunctionArn":{"shape":"AuthorizerFunctionArn"},
         "tokenKeyName":{"shape":"TokenKeyName"},
         "tokenSigningPublicKeys":{"shape":"PublicKeyMap"},
-        "status":{"shape":"AuthorizerStatus"}
+        "status":{"shape":"AuthorizerStatus"},
+        "enableCachingForHttp":{"shape":"EnableCachingForHttp"}
       }
     },
     "UpdateAuthorizerResponse":{
@@ -13294,7 +13329,12 @@
       "type":"list",
       "member":{"shape":"ValidationError"}
     },
-    "Value":{"type":"string"},
+    "Value":{
+      "type":"string",
+      "max":4096,
+      "min":0,
+      "pattern":"[\\s\\S]*"
+    },
     "Variance":{"type":"double"},
     "VerificationState":{
       "type":"string",

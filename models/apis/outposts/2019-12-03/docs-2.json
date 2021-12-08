@@ -21,6 +21,7 @@
     "ListTagsForResource": "<p>Lists the tags for the specified resource.</p>",
     "TagResource": "<p>Adds tags to the specified resource.</p>",
     "UntagResource": "<p>Removes tags from the specified resource.</p>",
+    "UpdateOutpost": "<p> Updates an Outpost. </p>",
     "UpdateSite": "<p> Updates the site. </p>",
     "UpdateSiteAddress": "<p> Updates the site address. </p> <p> To update a site address with an order <code>IN_PROGRESS</code>, you must wait for the order to complete or cancel the order. </p> <p>You can update the operating address before you place an order at the site, or after all Outposts that belong to the site have been deactivated. </p>",
     "UpdateSiteRackPhysicalProperties": "<p>Update the physical and logistical details for a rack at a site. For more information about hardware requirements for racks, see <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/outposts-requirements.html#checklist\">Network readiness checklist</a> in the Amazon Web Services Outposts User Guide. </p> <p>To update a rack at a site with an order of <code>IN_PROGRESS</code>, you must wait for the order to complete or cancel the order.</p>"
@@ -586,6 +587,7 @@
       "refs": {
         "CreateOutpostOutput$Outpost": null,
         "GetOutpostOutput$Outpost": null,
+        "UpdateOutpostOutput$Outpost": null,
         "outpostListDefinition$member": null
       }
     },
@@ -600,17 +602,19 @@
       "base": "<p>The description of the Outpost.</p>",
       "refs": {
         "CreateOutpostInput$Description": null,
-        "Outpost$Description": null
+        "Outpost$Description": null,
+        "UpdateOutpostInput$Description": null
       }
     },
     "OutpostId": {
       "base": null,
       "refs": {
-        "DeleteOutpostInput$OutpostId": "<p> The ID of the Outpost. </p>",
-        "GetOutpostInput$OutpostId": "<p> The ID of the Outpost. </p>",
-        "GetOutpostInstanceTypesInput$OutpostId": "<p> The ID of the Outpost. </p>",
+        "DeleteOutpostInput$OutpostId": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>",
+        "GetOutpostInput$OutpostId": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>",
+        "GetOutpostInstanceTypesInput$OutpostId": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>",
         "GetOutpostInstanceTypesOutput$OutpostId": "<p> The ID of the Outpost. </p>",
-        "Outpost$OutpostId": "<p> The ID of the Outpost. </p>"
+        "Outpost$OutpostId": "<p> The ID of the Outpost. </p>",
+        "UpdateOutpostInput$OutpostId": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>"
       }
     },
     "OutpostIdOnly": {
@@ -631,7 +635,8 @@
       "base": "<p>The name of the Outpost.</p>",
       "refs": {
         "CreateOutpostInput$Name": null,
-        "Outpost$Name": null
+        "Outpost$Name": null,
+        "UpdateOutpostInput$Name": null
       }
     },
     "OwnerId": {
@@ -737,18 +742,18 @@
       }
     },
     "SiteId": {
-      "base": "<p>The ID of the site.</p>",
+      "base": "<p> The ID of the site. </p>",
       "refs": {
-        "CreateOutpostInput$SiteId": null,
-        "DeleteSiteInput$SiteId": null,
-        "GetSiteAddressInput$SiteId": null,
+        "CreateOutpostInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p>",
+        "DeleteSiteInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p>",
+        "GetSiteAddressInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p>",
         "GetSiteAddressOutput$SiteId": null,
-        "GetSiteInput$SiteId": null,
+        "GetSiteInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p>",
         "Outpost$SiteId": null,
         "Site$SiteId": null,
-        "UpdateSiteAddressInput$SiteId": null,
-        "UpdateSiteInput$SiteId": null,
-        "UpdateSiteRackPhysicalPropertiesInput$SiteId": null
+        "UpdateSiteAddressInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p>",
+        "UpdateSiteInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p>",
+        "UpdateSiteRackPhysicalPropertiesInput$SiteId": "<p> The ID or the Amazon Resource Name (ARN) of the site. </p>"
       }
     },
     "SiteName": {
@@ -793,7 +798,8 @@
       "base": null,
       "refs": {
         "CreateOutpostInput$SupportedHardwareType": "<p> The type of hardware for this Outpost. </p>",
-        "Outpost$SupportedHardwareType": "<p> The hardware type. </p>"
+        "Outpost$SupportedHardwareType": "<p> The hardware type. </p>",
+        "UpdateOutpostInput$SupportedHardwareType": "<p> The type of hardware for this Outpost. </p>"
       }
     },
     "SupportedStorageEnum": {
@@ -882,6 +888,16 @@
       }
     },
     "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateOutpostInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateOutpostOutput": {
       "base": null,
       "refs": {
       }

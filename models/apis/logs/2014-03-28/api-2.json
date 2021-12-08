@@ -486,6 +486,7 @@
       "output":{"shape":"PutQueryDefinitionResponse"},
       "errors":[
         {"shape":"InvalidParameterException"},
+        {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceUnavailableException"}
       ]
@@ -1088,6 +1089,7 @@
       "type":"list",
       "member":{"shape":"FilteredLogEvent"}
     },
+    "ForceUpdate":{"type":"boolean"},
     "GetLogEventsRequest":{
       "type":"structure",
       "required":[
@@ -1410,7 +1412,8 @@
       ],
       "members":{
         "destinationName":{"shape":"DestinationName"},
-        "accessPolicy":{"shape":"AccessPolicy"}
+        "accessPolicy":{"shape":"AccessPolicy"},
+        "forceUpdate":{"shape":"ForceUpdate"}
       }
     },
     "PutDestinationRequest":{

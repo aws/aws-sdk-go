@@ -77158,6 +77158,8 @@ func (s *PipelineExecution) SetPipelineParameters(v []*Parameter) *PipelineExecu
 type PipelineExecutionStep struct {
 	_ struct{} `type:"structure"`
 
+	AttemptCount *int64 `type:"integer"`
+
 	// If this pipeline execution step was cached, details on the cache hit.
 	CacheHitResult *CacheHitResult `type:"structure"`
 
@@ -77197,6 +77199,12 @@ func (s PipelineExecutionStep) String() string {
 // value will be replaced with "sensitive".
 func (s PipelineExecutionStep) GoString() string {
 	return s.String()
+}
+
+// SetAttemptCount sets the AttemptCount field's value.
+func (s *PipelineExecutionStep) SetAttemptCount(v int64) *PipelineExecutionStep {
+	s.AttemptCount = &v
+	return s
 }
 
 // SetCacheHitResult sets the CacheHitResult field's value.
@@ -97301,6 +97309,9 @@ const (
 	// TargetDeviceSitaraAm57x is a TargetDevice enum value
 	TargetDeviceSitaraAm57x = "sitara_am57x"
 
+	// TargetDeviceAmbaCv2 is a TargetDevice enum value
+	TargetDeviceAmbaCv2 = "amba_cv2"
+
 	// TargetDeviceAmbaCv22 is a TargetDevice enum value
 	TargetDeviceAmbaCv22 = "amba_cv22"
 
@@ -97350,6 +97361,7 @@ func TargetDevice_Values() []string {
 		TargetDeviceQcs605,
 		TargetDeviceQcs603,
 		TargetDeviceSitaraAm57x,
+		TargetDeviceAmbaCv2,
 		TargetDeviceAmbaCv22,
 		TargetDeviceAmbaCv25,
 		TargetDeviceX86Win32,

@@ -5227,6 +5227,12 @@
         "ParameterRanges$IntegerParameterRanges": "<p>The array of <a>IntegerParameterRange</a> objects that specify ranges of integer hyperparameters that a hyperparameter tuning job searches.</p>"
       }
     },
+    "IntegerValue": {
+      "base": null,
+      "refs": {
+        "PipelineExecutionStep$AttemptCount": null
+      }
+    },
     "InvocationsMaxRetries": {
       "base": null,
       "refs": {

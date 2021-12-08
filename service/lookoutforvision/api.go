@@ -508,7 +508,7 @@ func (c *LookoutForVision) DeleteModelRequest(input *DeleteModelInput) (req *req
 // To stop a running model, use the StopModel operation.
 //
 // It might take a few seconds to delete a model. To determine if a model has
-// been deleted, call ListProjects and check if the version of the model (ModelVersion)
+// been deleted, call ListModels and check if the version of the model (ModelVersion)
 // is in the Models array.
 //
 // This operation requires permissions to perform the lookoutvision:DeleteModel
@@ -863,6 +863,105 @@ func (c *LookoutForVision) DescribeModel(input *DescribeModelInput) (*DescribeMo
 // for more information on using Contexts.
 func (c *LookoutForVision) DescribeModelWithContext(ctx aws.Context, input *DescribeModelInput, opts ...request.Option) (*DescribeModelOutput, error) {
 	req, out := c.DescribeModelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeModelPackagingJob = "DescribeModelPackagingJob"
+
+// DescribeModelPackagingJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeModelPackagingJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeModelPackagingJob for more information on using the DescribeModelPackagingJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeModelPackagingJobRequest method.
+//    req, resp := client.DescribeModelPackagingJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutvision-2020-11-20/DescribeModelPackagingJob
+func (c *LookoutForVision) DescribeModelPackagingJobRequest(input *DescribeModelPackagingJobInput) (req *request.Request, output *DescribeModelPackagingJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeModelPackagingJob,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-11-20/projects/{projectName}/modelpackagingjobs/{jobName}",
+	}
+
+	if input == nil {
+		input = &DescribeModelPackagingJobInput{}
+	}
+
+	output = &DescribeModelPackagingJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeModelPackagingJob API operation for Amazon Lookout for Vision.
+//
+// Describes an Amazon Lookout for Vision model packaging job.
+//
+// This operation requires permissions to perform the lookoutvision:DescribeModelPackagingJob
+// operation.
+//
+// For more information, see Using your Amazon Lookout for Vision model on an
+// edge device in the Amazon Lookout for Vision Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Vision's
+// API operation DescribeModelPackagingJob for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * InternalServerException
+//   Amazon Lookout for Vision experienced a service issue. Try your call again.
+//
+//   * ValidationException
+//   An input validation error occured. For example, invalid characters in a project
+//   name, or if a pagination token is invalid.
+//
+//   * ResourceNotFoundException
+//   The resource could not be found.
+//
+//   * ThrottlingException
+//   Amazon Lookout for Vision is temporarily unable to process the request. Try
+//   your call again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutvision-2020-11-20/DescribeModelPackagingJob
+func (c *LookoutForVision) DescribeModelPackagingJob(input *DescribeModelPackagingJobInput) (*DescribeModelPackagingJobOutput, error) {
+	req, out := c.DescribeModelPackagingJobRequest(input)
+	return out, req.Send()
+}
+
+// DescribeModelPackagingJobWithContext is the same as DescribeModelPackagingJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeModelPackagingJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutForVision) DescribeModelPackagingJobWithContext(ctx aws.Context, input *DescribeModelPackagingJobInput, opts ...request.Option) (*DescribeModelPackagingJobOutput, error) {
+	req, out := c.DescribeModelPackagingJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1234,6 +1333,163 @@ func (c *LookoutForVision) ListDatasetEntriesPagesWithContext(ctx aws.Context, i
 	return p.Err()
 }
 
+const opListModelPackagingJobs = "ListModelPackagingJobs"
+
+// ListModelPackagingJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListModelPackagingJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListModelPackagingJobs for more information on using the ListModelPackagingJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListModelPackagingJobsRequest method.
+//    req, resp := client.ListModelPackagingJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutvision-2020-11-20/ListModelPackagingJobs
+func (c *LookoutForVision) ListModelPackagingJobsRequest(input *ListModelPackagingJobsInput) (req *request.Request, output *ListModelPackagingJobsOutput) {
+	op := &request.Operation{
+		Name:       opListModelPackagingJobs,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-11-20/projects/{projectName}/modelpackagingjobs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListModelPackagingJobsInput{}
+	}
+
+	output = &ListModelPackagingJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListModelPackagingJobs API operation for Amazon Lookout for Vision.
+//
+// Lists the model packaging jobs created for an Amazon Lookout for Vision project.
+//
+// This operation requires permissions to perform the lookoutvision:ListModelPackagingJobs
+// operation.
+//
+// For more information, see Using your Amazon Lookout for Vision model on an
+// edge device in the Amazon Lookout for Vision Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Vision's
+// API operation ListModelPackagingJobs for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * InternalServerException
+//   Amazon Lookout for Vision experienced a service issue. Try your call again.
+//
+//   * ValidationException
+//   An input validation error occured. For example, invalid characters in a project
+//   name, or if a pagination token is invalid.
+//
+//   * ResourceNotFoundException
+//   The resource could not be found.
+//
+//   * ThrottlingException
+//   Amazon Lookout for Vision is temporarily unable to process the request. Try
+//   your call again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutvision-2020-11-20/ListModelPackagingJobs
+func (c *LookoutForVision) ListModelPackagingJobs(input *ListModelPackagingJobsInput) (*ListModelPackagingJobsOutput, error) {
+	req, out := c.ListModelPackagingJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListModelPackagingJobsWithContext is the same as ListModelPackagingJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListModelPackagingJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutForVision) ListModelPackagingJobsWithContext(ctx aws.Context, input *ListModelPackagingJobsInput, opts ...request.Option) (*ListModelPackagingJobsOutput, error) {
+	req, out := c.ListModelPackagingJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListModelPackagingJobsPages iterates over the pages of a ListModelPackagingJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListModelPackagingJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListModelPackagingJobs operation.
+//    pageNum := 0
+//    err := client.ListModelPackagingJobsPages(params,
+//        func(page *lookoutforvision.ListModelPackagingJobsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *LookoutForVision) ListModelPackagingJobsPages(input *ListModelPackagingJobsInput, fn func(*ListModelPackagingJobsOutput, bool) bool) error {
+	return c.ListModelPackagingJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListModelPackagingJobsPagesWithContext same as ListModelPackagingJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutForVision) ListModelPackagingJobsPagesWithContext(ctx aws.Context, input *ListModelPackagingJobsInput, fn func(*ListModelPackagingJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListModelPackagingJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListModelPackagingJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListModelPackagingJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListModels = "ListModels"
 
 // ListModelsRequest generates a "aws/request.Request" representing the
@@ -1285,6 +1541,9 @@ func (c *LookoutForVision) ListModelsRequest(input *ListModelsInput) (req *reque
 // ListModels API operation for Amazon Lookout for Vision.
 //
 // Lists the versions of a model in an Amazon Lookout for Vision project.
+//
+// The ListModels operation is eventually consistent. Recent calls to CreateModel
+// might take a while to appear in the response from ListProjects.
 //
 // This operation requires permissions to perform the lookoutvision:ListModels
 // operation.
@@ -1442,6 +1701,9 @@ func (c *LookoutForVision) ListProjectsRequest(input *ListProjectsInput) (req *r
 // ListProjects API operation for Amazon Lookout for Vision.
 //
 // Lists the Amazon Lookout for Vision projects in your AWS account.
+//
+// The ListProjects operation is eventually consistent. Recent calls to CreateProject
+// and DeleteProject might take a while to appear in the response from ListProjects.
 //
 // This operation requires permissions to perform the lookoutvision:ListProjects
 // operation.
@@ -1757,6 +2019,135 @@ func (c *LookoutForVision) StartModel(input *StartModelInput) (*StartModelOutput
 // for more information on using Contexts.
 func (c *LookoutForVision) StartModelWithContext(ctx aws.Context, input *StartModelInput, opts ...request.Option) (*StartModelOutput, error) {
 	req, out := c.StartModelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartModelPackagingJob = "StartModelPackagingJob"
+
+// StartModelPackagingJobRequest generates a "aws/request.Request" representing the
+// client's request for the StartModelPackagingJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartModelPackagingJob for more information on using the StartModelPackagingJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartModelPackagingJobRequest method.
+//    req, resp := client.StartModelPackagingJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutvision-2020-11-20/StartModelPackagingJob
+func (c *LookoutForVision) StartModelPackagingJobRequest(input *StartModelPackagingJobInput) (req *request.Request, output *StartModelPackagingJobOutput) {
+	op := &request.Operation{
+		Name:       opStartModelPackagingJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2020-11-20/projects/{projectName}/modelpackagingjobs",
+	}
+
+	if input == nil {
+		input = &StartModelPackagingJobInput{}
+	}
+
+	output = &StartModelPackagingJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartModelPackagingJob API operation for Amazon Lookout for Vision.
+//
+// Starts an Amazon Lookout for Vision model packaging job. A model packaging
+// job creates an AWS IoT Greengrass component for a Lookout for Vision model.
+// You can use the component to deploy your model to an edge device managed
+// by Greengrass.
+//
+// Use the DescribeModelPackagingJob API to determine the current status of
+// the job. The model packaging job is complete if the value of Status is SUCCEEDED.
+//
+// To deploy the component to the target device, use the component name and
+// component version with the AWS IoT Greengrass CreateDeployment (https://docs.aws.amazon.com/greengrass/v2/APIReference/API_CreateDeployment.html)
+// API.
+//
+// This operation requires the following permissions:
+//
+//    * lookoutvision:StartModelPackagingJobs
+//
+//    * s3:PutObject
+//
+//    * s3:GetBucketLocation
+//
+//    * greengrass:CreateComponentVersion
+//
+//    * greengrass:DescribeComponent
+//
+//    * (Optional) greengrass:TagResource. Only required if you want to tag
+//    the component.
+//
+// For more information, see Using your Amazon Lookout for Vision model on an
+// edge device in the Amazon Lookout for Vision Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Vision's
+// API operation StartModelPackagingJob for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * InternalServerException
+//   Amazon Lookout for Vision experienced a service issue. Try your call again.
+//
+//   * ValidationException
+//   An input validation error occured. For example, invalid characters in a project
+//   name, or if a pagination token is invalid.
+//
+//   * ConflictException
+//   The update or deletion of a resource caused an inconsistent state.
+//
+//   * ResourceNotFoundException
+//   The resource could not be found.
+//
+//   * ThrottlingException
+//   Amazon Lookout for Vision is temporarily unable to process the request. Try
+//   your call again.
+//
+//   * ServiceQuotaExceededException
+//   A service quota was exceeded the allowed limit. For more information, see
+//   Limits in Amazon Lookout for Vision in the Amazon Lookout for Vision Developer
+//   Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutvision-2020-11-20/StartModelPackagingJob
+func (c *LookoutForVision) StartModelPackagingJob(input *StartModelPackagingJobInput) (*StartModelPackagingJobOutput, error) {
+	req, out := c.StartModelPackagingJobRequest(input)
+	return out, req.Send()
+}
+
+// StartModelPackagingJobWithContext is the same as StartModelPackagingJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartModelPackagingJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutForVision) StartModelPackagingJobWithContext(ctx aws.Context, input *StartModelPackagingJobInput, opts ...request.Option) (*StartModelPackagingJobOutput, error) {
+	req, out := c.StartModelPackagingJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2117,9 +2508,20 @@ func (c *LookoutForVision) UpdateDatasetEntriesRequest(input *UpdateDatasetEntri
 
 // UpdateDatasetEntries API operation for Amazon Lookout for Vision.
 //
-// Adds one or more JSON Line entries to a dataset. A JSON Line includes information
-// about an image used for training or testing an Amazon Lookout for Vision
-// model. The following is an example JSON Line.
+// Adds or updates one or more JSON Line entries in a dataset. A JSON Line includes
+// information about an image used for training or testing an Amazon Lookout
+// for Vision model.
+//
+// To update an existing JSON Line, use the source-ref field to identify the
+// JSON Line. The JSON line that you supply replaces the existing JSON line.
+// Any existing annotations that are not in the new JSON line are removed from
+// the dataset.
+//
+// For more information, see Defining JSON lines for anomaly classification
+// in the Amazon Lookout for Vision Developer Guide.
+//
+// The images you reference in the source-ref field of a JSON line, must be
+// in the same S3 bucket as the existing images in the dataset.
 //
 // Updating a dataset might take a while to complete. To check the current status,
 // call DescribeDataset and check the Status field in the response.
@@ -2319,13 +2721,19 @@ type CreateDatasetInput struct {
 	_ struct{} `type:"structure"`
 
 	// ClientToken is an idempotency token that ensures a call to CreateDataset
-	// completes only once. You choose the value to pass. For example, An issue,
-	// such as an network outage, might prevent you from getting a response from
-	// CreateDataset. In this case, safely retry your call to CreateDataset by using
-	// the same ClientToken parameter value. An error occurs if the other input
-	// parameters are not the same as in the first request. Using a different value
-	// for ClientToken is considered a new call to CreateDataset. An idempotency
-	// token is active for 8 hours.
+	// completes only once. You choose the value to pass. For example, An issue
+	// might prevent you from getting a response from CreateDataset. In this case,
+	// safely retry your call to CreateDataset by using the same ClientToken parameter
+	// value.
+	//
+	// If you don't supply a value for ClientToken, the AWS SDK you are using inserts
+	// a value for you. This prevents retries after a network error from making
+	// multiple dataset creation requests. You'll need to provide your own value
+	// for other use cases.
+	//
+	// An error occurs if the other input parameters are not the same as in the
+	// first request. Using a different value for ClientToken is considered a new
+	// call to CreateDataset. An idempotency token is active for 8 hours.
 	ClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The location of the manifest file that Amazon Lookout for Vision uses to
@@ -2459,23 +2867,27 @@ type CreateModelInput struct {
 	_ struct{} `type:"structure"`
 
 	// ClientToken is an idempotency token that ensures a call to CreateModel completes
-	// only once. You choose the value to pass. For example, An issue, such as an
-	// network outage, might prevent you from getting a response from CreateModel.
-	// In this case, safely retry your call to CreateModel by using the same ClientToken
-	// parameter value. An error occurs if the other input parameters are not the
-	// same as in the first request. Using a different value for ClientToken is
-	// considered a new call to CreateModel. An idempotency token is active for
-	// 8 hours.
+	// only once. You choose the value to pass. For example, An issue might prevent
+	// you from getting a response from CreateModel. In this case, safely retry
+	// your call to CreateModel by using the same ClientToken parameter value.
+	//
+	// If you don't supply a value for ClientToken, the AWS SDK you are using inserts
+	// a value for you. This prevents retries after a network error from starting
+	// multiple training jobs. You'll need to provide your own value for other use
+	// cases.
+	//
+	// An error occurs if the other input parameters are not the same as in the
+	// first request. Using a different value for ClientToken is considered a new
+	// call to CreateModel. An idempotency token is active for 8 hours.
 	ClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
 	// A description for the version of the model.
 	Description *string `min:"1" type:"string"`
 
-	// The identifier for your AWS Key Management Service (AWS KMS) customer master
-	// key (CMK). The key is used to encrypt training and test images copied into
-	// the service for model training. Your source images are unaffected. If this
-	// parameter is not specified, the copied images are encrypted by a key that
-	// AWS owns and manages.
+	// The identifier for your AWS KMS key. The key is used to encrypt training
+	// and test images copied into the service for model training. Your source images
+	// are unaffected. If this parameter is not specified, the copied images are
+	// encrypted by a key that AWS owns and manages.
 	KmsKeyId *string `min:"1" type:"string"`
 
 	// The location where Amazon Lookout for Vision saves the training results.
@@ -2624,13 +3036,19 @@ type CreateProjectInput struct {
 	_ struct{} `type:"structure"`
 
 	// ClientToken is an idempotency token that ensures a call to CreateProject
-	// completes only once. You choose the value to pass. For example, An issue,
-	// such as an network outage, might prevent you from getting a response from
-	// CreateProject. In this case, safely retry your call to CreateProject by using
-	// the same ClientToken parameter value. An error occurs if the other input
-	// parameters are not the same as in the first request. Using a different value
-	// for ClientToken is considered a new call to CreateProject. An idempotency
-	// token is active for 8 hours.
+	// completes only once. You choose the value to pass. For example, An issue
+	// might prevent you from getting a response from CreateProject. In this case,
+	// safely retry your call to CreateProject by using the same ClientToken parameter
+	// value.
+	//
+	// If you don't supply a value for ClientToken, the AWS SDK you are using inserts
+	// a value for you. This prevents retries after a network error from making
+	// multiple project creation requests. You'll need to provide your own value
+	// for other use cases.
+	//
+	// An error occurs if the other input parameters are not the same as in the
+	// first request. Using a different value for ClientToken is considered a new
+	// call to CreateProject. An idempotency token is active for 8 hours.
 	ClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The name for the project.
@@ -2913,7 +3331,8 @@ func (s *DatasetImageStats) SetTotal(v int64) *DatasetImageStats {
 	return s
 }
 
-// Sumary information for an Amazon Lookout for Vision dataset.
+// Summary information for an Amazon Lookout for Vision dataset. For more information,
+// see DescribeDataset and ProjectDescription.
 type DatasetMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -3024,13 +3443,19 @@ type DeleteDatasetInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ClientToken is an idempotency token that ensures a call to DeleteDataset
-	// completes only once. You choose the value to pass. For example, An issue,
-	// such as an network outage, might prevent you from getting a response from
-	// DeleteDataset. In this case, safely retry your call to DeleteDataset by using
-	// the same ClientToken parameter value. An error occurs if the other input
-	// parameters are not the same as in the first request. Using a different value
-	// for ClientToken is considered a new call to DeleteDataset. An idempotency
-	// token is active for 8 hours.
+	// completes only once. You choose the value to pass. For example, An issue
+	// might prevent you from getting a response from DeleteDataset. In this case,
+	// safely retry your call to DeleteDataset by using the same ClientToken parameter
+	// value.
+	//
+	// If you don't supply a value for ClientToken, the AWS SDK you are using inserts
+	// a value for you. This prevents retries after a network error from making
+	// multiple deletetion requests. You'll need to provide your own value for other
+	// use cases.
+	//
+	// An error occurs if the other input parameters are not the same as in the
+	// first request. Using a different value for ClientToken is considered a new
+	// call to DeleteDataset. An idempotency token is active for 8 hours.
 	ClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The type of the dataset to delete. Specify train to delete the training dataset.
@@ -3133,13 +3558,18 @@ type DeleteModelInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ClientToken is an idempotency token that ensures a call to DeleteModel completes
-	// only once. You choose the value to pass. For example, An issue, such as an
-	// network outage, might prevent you from getting a response from DeleteModel.
-	// In this case, safely retry your call to DeleteModel by using the same ClientToken
-	// parameter value. An error occurs if the other input parameters are not the
-	// same as in the first request. Using a different value for ClientToken is
-	// considered a new call to DeleteModel. An idempotency token is active for
-	// 8 hours.
+	// only once. You choose the value to pass. For example, an issue might prevent
+	// you from getting a response from DeleteModel. In this case, safely retry
+	// your call to DeleteModel by using the same ClientToken parameter value.
+	//
+	// If you don't supply a value for ClientToken, the AWS SDK you are using inserts
+	// a value for you. This prevents retries after a network error from making
+	// multiple model deletion requests. You'll need to provide your own value for
+	// other use cases.
+	//
+	// An error occurs if the other input parameters are not the same as in the
+	// first request. Using a different value for ClientToken is considered a new
+	// call to DeleteModel. An idempotency token is active for 8 hours.
 	ClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The version of the model that you want to delete.
@@ -3249,13 +3679,19 @@ type DeleteProjectInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ClientToken is an idempotency token that ensures a call to DeleteProject
-	// completes only once. You choose the value to pass. For example, An issue,
-	// such as an network outage, might prevent you from getting a response from
-	// DeleteProject. In this case, safely retry your call to DeleteProject by using
-	// the same ClientToken parameter value. An error occurs if the other input
-	// parameters are not the same as in the first request. Using a different value
-	// for ClientToken is considered a new call to DeleteProject. An idempotency
-	// token is active for 8 hours.
+	// completes only once. You choose the value to pass. For example, An issue
+	// might prevent you from getting a response from DeleteProject. In this case,
+	// safely retry your call to DeleteProject by using the same ClientToken parameter
+	// value.
+	//
+	// If you don't supply a value for ClientToken, the AWS SDK you are using inserts
+	// a value for you. This prevents retries after a network error from making
+	// multiple project deletion requests. You'll need to provide your own value
+	// for other use cases.
+	//
+	// An error occurs if the other input parameters are not the same as in the
+	// first request. Using a different value for ClientToken is considered a new
+	// call to DeleteProject. An idempotency token is active for 8 hours.
 	ClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The name of the project to delete.
@@ -3540,6 +3976,104 @@ func (s *DescribeModelOutput) SetModelDescription(v *ModelDescription) *Describe
 	return s
 }
 
+type DescribeModelPackagingJobInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The job name for the model packaging job.
+	//
+	// JobName is a required field
+	JobName *string `location:"uri" locationName:"jobName" min:"1" type:"string" required:"true"`
+
+	// The name of the project that contains the model packaging job that you want
+	// to describe.
+	//
+	// ProjectName is a required field
+	ProjectName *string `location:"uri" locationName:"projectName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeModelPackagingJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeModelPackagingJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeModelPackagingJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeModelPackagingJobInput"}
+	if s.JobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobName"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.ProjectName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProjectName"))
+	}
+	if s.ProjectName != nil && len(*s.ProjectName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobName sets the JobName field's value.
+func (s *DescribeModelPackagingJobInput) SetJobName(v string) *DescribeModelPackagingJobInput {
+	s.JobName = &v
+	return s
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *DescribeModelPackagingJobInput) SetProjectName(v string) *DescribeModelPackagingJobInput {
+	s.ProjectName = &v
+	return s
+}
+
+type DescribeModelPackagingJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the model packaging job.
+	ModelPackagingDescription *ModelPackagingDescription `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeModelPackagingJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeModelPackagingJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetModelPackagingDescription sets the ModelPackagingDescription field's value.
+func (s *DescribeModelPackagingJobOutput) SetModelPackagingDescription(v *ModelPackagingDescription) *DescribeModelPackagingJobOutput {
+	s.ModelPackagingDescription = v
+	return s
+}
+
 type DescribeProjectInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -3799,6 +4333,221 @@ func (s *DetectAnomalyResult) SetIsAnomalous(v bool) *DetectAnomalyResult {
 // SetSource sets the Source field's value.
 func (s *DetectAnomalyResult) SetSource(v *ImageSource) *DetectAnomalyResult {
 	s.Source = v
+	return s
+}
+
+// Configuration information for the AWS IoT Greengrass component created in
+// a model packaging job. For more information, see StartModelPackagingJob.
+//
+// You can't specify a component with the same ComponentName and Componentversion
+// as an existing component with the same component name and component version.
+type GreengrassConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Additional compiler options for the Greengrass component. Currently, only
+	// NVIDIA Graphics Processing Units (GPU) are supported.
+	//
+	// For more information, see Compiler options in the Amazon Lookout for Vision
+	// Developer Guide.
+	//
+	// CompilerOptions is a required field
+	CompilerOptions *string `min:"3" type:"string" required:"true"`
+
+	// A description for the AWS IoT Greengrass component.
+	ComponentDescription *string `min:"1" type:"string"`
+
+	// A name for the AWS IoT Greengrass component.
+	//
+	// ComponentName is a required field
+	ComponentName *string `min:"1" type:"string" required:"true"`
+
+	// A Version for the AWS IoT Greengrass component. If you don't provide a value,
+	// a default value of Model Version.0.0 is used.
+	ComponentVersion *string `min:"1" type:"string"`
+
+	// An S3 location in which Lookout for Vision stores the component artifacts.
+	//
+	// S3OutputLocation is a required field
+	S3OutputLocation *S3Location `type:"structure" required:"true"`
+
+	// A set of tags (key-value pairs) that you want to attach to the AWS IoT Greengrass
+	// component.
+	Tags []*Tag `type:"list"`
+
+	// The target device for the model. Currently the only supported value is jetson_xavier.
+	// If you specify TargetDevice, you can't specify TargetPlatform.
+	TargetDevice *string `type:"string" enum:"TargetDevice"`
+
+	// The target platform for the model. If you specify TargetPlatform, you can't
+	// specify TargetDevice.
+	TargetPlatform *TargetPlatform `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GreengrassConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GreengrassConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GreengrassConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GreengrassConfiguration"}
+	if s.CompilerOptions == nil {
+		invalidParams.Add(request.NewErrParamRequired("CompilerOptions"))
+	}
+	if s.CompilerOptions != nil && len(*s.CompilerOptions) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("CompilerOptions", 3))
+	}
+	if s.ComponentDescription != nil && len(*s.ComponentDescription) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ComponentDescription", 1))
+	}
+	if s.ComponentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComponentName"))
+	}
+	if s.ComponentName != nil && len(*s.ComponentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ComponentName", 1))
+	}
+	if s.ComponentVersion != nil && len(*s.ComponentVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ComponentVersion", 1))
+	}
+	if s.S3OutputLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3OutputLocation"))
+	}
+	if s.S3OutputLocation != nil {
+		if err := s.S3OutputLocation.Validate(); err != nil {
+			invalidParams.AddNested("S3OutputLocation", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TargetPlatform != nil {
+		if err := s.TargetPlatform.Validate(); err != nil {
+			invalidParams.AddNested("TargetPlatform", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCompilerOptions sets the CompilerOptions field's value.
+func (s *GreengrassConfiguration) SetCompilerOptions(v string) *GreengrassConfiguration {
+	s.CompilerOptions = &v
+	return s
+}
+
+// SetComponentDescription sets the ComponentDescription field's value.
+func (s *GreengrassConfiguration) SetComponentDescription(v string) *GreengrassConfiguration {
+	s.ComponentDescription = &v
+	return s
+}
+
+// SetComponentName sets the ComponentName field's value.
+func (s *GreengrassConfiguration) SetComponentName(v string) *GreengrassConfiguration {
+	s.ComponentName = &v
+	return s
+}
+
+// SetComponentVersion sets the ComponentVersion field's value.
+func (s *GreengrassConfiguration) SetComponentVersion(v string) *GreengrassConfiguration {
+	s.ComponentVersion = &v
+	return s
+}
+
+// SetS3OutputLocation sets the S3OutputLocation field's value.
+func (s *GreengrassConfiguration) SetS3OutputLocation(v *S3Location) *GreengrassConfiguration {
+	s.S3OutputLocation = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *GreengrassConfiguration) SetTags(v []*Tag) *GreengrassConfiguration {
+	s.Tags = v
+	return s
+}
+
+// SetTargetDevice sets the TargetDevice field's value.
+func (s *GreengrassConfiguration) SetTargetDevice(v string) *GreengrassConfiguration {
+	s.TargetDevice = &v
+	return s
+}
+
+// SetTargetPlatform sets the TargetPlatform field's value.
+func (s *GreengrassConfiguration) SetTargetPlatform(v *TargetPlatform) *GreengrassConfiguration {
+	s.TargetPlatform = v
+	return s
+}
+
+// Information about the AWS IoT Greengrass component created by a model packaging
+// job.
+type GreengrassOutputDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the component.
+	ComponentName *string `min:"1" type:"string"`
+
+	// The version of the component.
+	ComponentVersion *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the component.
+	ComponentVersionArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GreengrassOutputDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GreengrassOutputDetails) GoString() string {
+	return s.String()
+}
+
+// SetComponentName sets the ComponentName field's value.
+func (s *GreengrassOutputDetails) SetComponentName(v string) *GreengrassOutputDetails {
+	s.ComponentName = &v
+	return s
+}
+
+// SetComponentVersion sets the ComponentVersion field's value.
+func (s *GreengrassOutputDetails) SetComponentVersion(v string) *GreengrassOutputDetails {
+	s.ComponentVersion = &v
+	return s
+}
+
+// SetComponentVersionArn sets the ComponentVersionArn field's value.
+func (s *GreengrassOutputDetails) SetComponentVersionArn(v string) *GreengrassOutputDetails {
+	s.ComponentVersionArn = &v
 	return s
 }
 
@@ -4169,6 +4918,123 @@ func (s *ListDatasetEntriesOutput) SetDatasetEntries(v []*string) *ListDatasetEn
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListDatasetEntriesOutput) SetNextToken(v string) *ListDatasetEntriesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListModelPackagingJobsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results to return per paginated call. The largest value
+	// you can specify is 100. If you specify a value greater than 100, a ValidationException
+	// error occurs. The default value is 100.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// If the previous response was incomplete (because there is more results to
+	// retrieve), Amazon Lookout for Vision returns a pagination token in the response.
+	// You can use this pagination token to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The name of the project for which you want to list the model packaging jobs.
+	//
+	// ProjectName is a required field
+	ProjectName *string `location:"uri" locationName:"projectName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListModelPackagingJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListModelPackagingJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListModelPackagingJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListModelPackagingJobsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ProjectName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProjectName"))
+	}
+	if s.ProjectName != nil && len(*s.ProjectName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListModelPackagingJobsInput) SetMaxResults(v int64) *ListModelPackagingJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListModelPackagingJobsInput) SetNextToken(v string) *ListModelPackagingJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *ListModelPackagingJobsInput) SetProjectName(v string) *ListModelPackagingJobsInput {
+	s.ProjectName = &v
+	return s
+}
+
+type ListModelPackagingJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the model packaging jobs created for the specified Amazon Lookout
+	// for Vision project.
+	ModelPackagingJobs []*ModelPackagingJobMetadata `type:"list"`
+
+	// If the previous response was incomplete (because there is more results to
+	// retrieve), Amazon Lookout for Vision returns a pagination token in the response.
+	// You can use this pagination token to retrieve the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListModelPackagingJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListModelPackagingJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetModelPackagingJobs sets the ModelPackagingJobs field's value.
+func (s *ListModelPackagingJobsOutput) SetModelPackagingJobs(v []*ModelPackagingJobMetadata) *ListModelPackagingJobsOutput {
+	s.ModelPackagingJobs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListModelPackagingJobsOutput) SetNextToken(v string) *ListModelPackagingJobsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -4687,6 +5553,326 @@ func (s *ModelMetadata) SetStatusMessage(v string) *ModelMetadata {
 	return s
 }
 
+// Configuration information for a Amazon Lookout for Vision model packaging
+// job. For more information, see StartModelPackagingJob.
+type ModelPackagingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration information for the AWS IoT Greengrass component in a model
+	// packaging job.
+	//
+	// Greengrass is a required field
+	Greengrass *GreengrassConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelPackagingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelPackagingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModelPackagingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModelPackagingConfiguration"}
+	if s.Greengrass == nil {
+		invalidParams.Add(request.NewErrParamRequired("Greengrass"))
+	}
+	if s.Greengrass != nil {
+		if err := s.Greengrass.Validate(); err != nil {
+			invalidParams.AddNested("Greengrass", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGreengrass sets the Greengrass field's value.
+func (s *ModelPackagingConfiguration) SetGreengrass(v *GreengrassConfiguration) *ModelPackagingConfiguration {
+	s.Greengrass = v
+	return s
+}
+
+// Information about a model packaging job. For more information, see DescribeModelPackagingJob.
+type ModelPackagingDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The Unix timestamp for the time and date that the model packaging job was
+	// created.
+	CreationTimestamp *time.Time `type:"timestamp"`
+
+	// The name of the model packaging job.
+	JobName *string `min:"1" type:"string"`
+
+	// The Unix timestamp for the time and date that the model packaging job was
+	// last updated.
+	LastUpdatedTimestamp *time.Time `type:"timestamp"`
+
+	// The configuration information used in the model packaging job.
+	ModelPackagingConfiguration *ModelPackagingConfiguration `type:"structure"`
+
+	// The description for the model packaging job.
+	ModelPackagingJobDescription *string `min:"1" type:"string"`
+
+	// The AWS service used to package the job. Currently Lookout for Vision can
+	// package jobs with AWS IoT Greengrass.
+	ModelPackagingMethod *string `min:"1" type:"string"`
+
+	// Information about the output of the model packaging job. For more information,
+	// see DescribeModelPackagingJob.
+	ModelPackagingOutputDetails *ModelPackagingOutputDetails `type:"structure"`
+
+	// The version of the model used in the model packaging job.
+	ModelVersion *string `min:"1" type:"string"`
+
+	// The name of the project that's associated with a model that's in the model
+	// package.
+	ProjectName *string `min:"1" type:"string"`
+
+	// The status of the model packaging job.
+	Status *string `type:"string" enum:"ModelPackagingJobStatus"`
+
+	// The status message for the model packaging job.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelPackagingDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelPackagingDescription) GoString() string {
+	return s.String()
+}
+
+// SetCreationTimestamp sets the CreationTimestamp field's value.
+func (s *ModelPackagingDescription) SetCreationTimestamp(v time.Time) *ModelPackagingDescription {
+	s.CreationTimestamp = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *ModelPackagingDescription) SetJobName(v string) *ModelPackagingDescription {
+	s.JobName = &v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *ModelPackagingDescription) SetLastUpdatedTimestamp(v time.Time) *ModelPackagingDescription {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetModelPackagingConfiguration sets the ModelPackagingConfiguration field's value.
+func (s *ModelPackagingDescription) SetModelPackagingConfiguration(v *ModelPackagingConfiguration) *ModelPackagingDescription {
+	s.ModelPackagingConfiguration = v
+	return s
+}
+
+// SetModelPackagingJobDescription sets the ModelPackagingJobDescription field's value.
+func (s *ModelPackagingDescription) SetModelPackagingJobDescription(v string) *ModelPackagingDescription {
+	s.ModelPackagingJobDescription = &v
+	return s
+}
+
+// SetModelPackagingMethod sets the ModelPackagingMethod field's value.
+func (s *ModelPackagingDescription) SetModelPackagingMethod(v string) *ModelPackagingDescription {
+	s.ModelPackagingMethod = &v
+	return s
+}
+
+// SetModelPackagingOutputDetails sets the ModelPackagingOutputDetails field's value.
+func (s *ModelPackagingDescription) SetModelPackagingOutputDetails(v *ModelPackagingOutputDetails) *ModelPackagingDescription {
+	s.ModelPackagingOutputDetails = v
+	return s
+}
+
+// SetModelVersion sets the ModelVersion field's value.
+func (s *ModelPackagingDescription) SetModelVersion(v string) *ModelPackagingDescription {
+	s.ModelVersion = &v
+	return s
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *ModelPackagingDescription) SetProjectName(v string) *ModelPackagingDescription {
+	s.ProjectName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ModelPackagingDescription) SetStatus(v string) *ModelPackagingDescription {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *ModelPackagingDescription) SetStatusMessage(v string) *ModelPackagingDescription {
+	s.StatusMessage = &v
+	return s
+}
+
+// Metadata for a model packaging job. For more information, see ListModelPackagingJobs.
+type ModelPackagingJobMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The Unix timestamp for the time and date that the model packaging job was
+	// created.
+	CreationTimestamp *time.Time `type:"timestamp"`
+
+	// The name of the model packaging job.
+	JobName *string `min:"1" type:"string"`
+
+	// The Unix timestamp for the time and date that the model packaging job was
+	// last updated.
+	LastUpdatedTimestamp *time.Time `type:"timestamp"`
+
+	// The description for the model packaging job.
+	ModelPackagingJobDescription *string `min:"1" type:"string"`
+
+	// The AWS service used to package the job. Currently Lookout for Vision can
+	// package jobs with AWS IoT Greengrass.
+	ModelPackagingMethod *string `min:"1" type:"string"`
+
+	// The version of the model that is in the model package.
+	ModelVersion *string `min:"1" type:"string"`
+
+	// The project that contains the model that is in the model package.
+	ProjectName *string `min:"1" type:"string"`
+
+	// The status of the model packaging job.
+	Status *string `type:"string" enum:"ModelPackagingJobStatus"`
+
+	// The status message for the model packaging job.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelPackagingJobMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelPackagingJobMetadata) GoString() string {
+	return s.String()
+}
+
+// SetCreationTimestamp sets the CreationTimestamp field's value.
+func (s *ModelPackagingJobMetadata) SetCreationTimestamp(v time.Time) *ModelPackagingJobMetadata {
+	s.CreationTimestamp = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *ModelPackagingJobMetadata) SetJobName(v string) *ModelPackagingJobMetadata {
+	s.JobName = &v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *ModelPackagingJobMetadata) SetLastUpdatedTimestamp(v time.Time) *ModelPackagingJobMetadata {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetModelPackagingJobDescription sets the ModelPackagingJobDescription field's value.
+func (s *ModelPackagingJobMetadata) SetModelPackagingJobDescription(v string) *ModelPackagingJobMetadata {
+	s.ModelPackagingJobDescription = &v
+	return s
+}
+
+// SetModelPackagingMethod sets the ModelPackagingMethod field's value.
+func (s *ModelPackagingJobMetadata) SetModelPackagingMethod(v string) *ModelPackagingJobMetadata {
+	s.ModelPackagingMethod = &v
+	return s
+}
+
+// SetModelVersion sets the ModelVersion field's value.
+func (s *ModelPackagingJobMetadata) SetModelVersion(v string) *ModelPackagingJobMetadata {
+	s.ModelVersion = &v
+	return s
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *ModelPackagingJobMetadata) SetProjectName(v string) *ModelPackagingJobMetadata {
+	s.ProjectName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ModelPackagingJobMetadata) SetStatus(v string) *ModelPackagingJobMetadata {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *ModelPackagingJobMetadata) SetStatusMessage(v string) *ModelPackagingJobMetadata {
+	s.StatusMessage = &v
+	return s
+}
+
+// Information about the output from a model packaging job.
+type ModelPackagingOutputDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the AWS IoT Greengrass component in a model packaging job.
+	Greengrass *GreengrassOutputDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelPackagingOutputDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelPackagingOutputDetails) GoString() string {
+	return s.String()
+}
+
+// SetGreengrass sets the Greengrass field's value.
+func (s *ModelPackagingOutputDetails) SetGreengrass(v *GreengrassOutputDetails) *ModelPackagingOutputDetails {
+	s.Greengrass = v
+	return s
+}
+
 // Information about the evaluation performance of a trained model.
 type ModelPerformance struct {
 	_ struct{} `type:"structure"`
@@ -5018,17 +6204,20 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Information about the location training output.
+// Information about the location of training output or the output of a model
+// packaging job.
 type S3Location struct {
 	_ struct{} `type:"structure"`
 
-	// The S3 bucket that contains the training output.
+	// The S3 bucket that contains the training or model packaging job output. If
+	// you are training a model, the bucket must in your AWS account. If you use
+	// an S3 bucket for a model packaging job, the S3 bucket must be in the same
+	// AWS Region and AWS account in which you use AWS IoT Greengrass.
 	//
 	// Bucket is a required field
 	Bucket *string `min:"3" type:"string" required:"true"`
 
-	// The path of the folder, within the S3 bucket, that contains the training
-	// output.
+	// The path of the folder, within the S3 bucket, that contains the output.
 	Prefix *string `type:"string"`
 }
 
@@ -5164,19 +6353,24 @@ type StartModelInput struct {
 	_ struct{} `type:"structure"`
 
 	// ClientToken is an idempotency token that ensures a call to StartModel completes
-	// only once. You choose the value to pass. For example, An issue, such as an
-	// network outage, might prevent you from getting a response from StartModel.
-	// In this case, safely retry your call to StartModel by using the same ClientToken
-	// parameter value. An error occurs if the other input parameters are not the
-	// same as in the first request. Using a different value for ClientToken is
-	// considered a new call to StartModel. An idempotency token is active for 8
-	// hours.
+	// only once. You choose the value to pass. For example, An issue might prevent
+	// you from getting a response from StartModel. In this case, safely retry your
+	// call to StartModel by using the same ClientToken parameter value.
+	//
+	// If you don't supply a value for ClientToken, the AWS SDK you are using inserts
+	// a value for you. This prevents retries after a network error from making
+	// multiple start requests. You'll need to provide your own value for other
+	// use cases.
+	//
+	// An error occurs if the other input parameters are not the same as in the
+	// first request. Using a different value for ClientToken is considered a new
+	// call to StartModel. An idempotency token is active for 8 hours.
 	ClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The minimum number of inference units to use. A single inference unit represents
-	// 1 hour of processing and can support up to 5 Transaction Pers Second (TPS).
-	// Use a higher number to increase the TPS throughput of your model. You are
-	// charged for the number of inference units that you use.
+	// 1 hour of processing. Use a higher number to increase the TPS throughput
+	// of your model. You are charged for the number of inference units that you
+	// use.
 	//
 	// MinInferenceUnits is a required field
 	MinInferenceUnits *int64 `min:"1" type:"integer" required:"true"`
@@ -5296,17 +6490,190 @@ func (s *StartModelOutput) SetStatus(v string) *StartModelOutput {
 	return s
 }
 
+type StartModelPackagingJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// ClientToken is an idempotency token that ensures a call to StartModelPackagingJob
+	// completes only once. You choose the value to pass. For example, An issue
+	// might prevent you from getting a response from StartModelPackagingJob. In
+	// this case, safely retry your call to StartModelPackagingJob by using the
+	// same ClientToken parameter value.
+	//
+	// If you don't supply a value for ClientToken, the AWS SDK you are using inserts
+	// a value for you. This prevents retries after a network error from making
+	// multiple dataset creation requests. You'll need to provide your own value
+	// for other use cases.
+	//
+	// An error occurs if the other input parameters are not the same as in the
+	// first request. Using a different value for ClientToken is considered a new
+	// call to StartModelPackagingJob. An idempotency token is active for 8 hours.
+	ClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The configuration for the model packaging job.
+	//
+	// Configuration is a required field
+	Configuration *ModelPackagingConfiguration `type:"structure" required:"true"`
+
+	// A description for the model packaging job.
+	Description *string `min:"1" type:"string"`
+
+	// A name for the model packaging job. If you don't supply a value, the service
+	// creates a job name for you.
+	JobName *string `min:"1" type:"string"`
+
+	// The version of the model within the project that you want to package.
+	//
+	// ModelVersion is a required field
+	ModelVersion *string `min:"1" type:"string" required:"true"`
+
+	// The name of the project which contains the version of the model that you
+	// want to package.
+	//
+	// ProjectName is a required field
+	ProjectName *string `location:"uri" locationName:"projectName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartModelPackagingJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartModelPackagingJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartModelPackagingJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartModelPackagingJobInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Configuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("Configuration"))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.ModelVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelVersion"))
+	}
+	if s.ModelVersion != nil && len(*s.ModelVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelVersion", 1))
+	}
+	if s.ProjectName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProjectName"))
+	}
+	if s.ProjectName != nil && len(*s.ProjectName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectName", 1))
+	}
+	if s.Configuration != nil {
+		if err := s.Configuration.Validate(); err != nil {
+			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartModelPackagingJobInput) SetClientToken(v string) *StartModelPackagingJobInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *StartModelPackagingJobInput) SetConfiguration(v *ModelPackagingConfiguration) *StartModelPackagingJobInput {
+	s.Configuration = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *StartModelPackagingJobInput) SetDescription(v string) *StartModelPackagingJobInput {
+	s.Description = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *StartModelPackagingJobInput) SetJobName(v string) *StartModelPackagingJobInput {
+	s.JobName = &v
+	return s
+}
+
+// SetModelVersion sets the ModelVersion field's value.
+func (s *StartModelPackagingJobInput) SetModelVersion(v string) *StartModelPackagingJobInput {
+	s.ModelVersion = &v
+	return s
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *StartModelPackagingJobInput) SetProjectName(v string) *StartModelPackagingJobInput {
+	s.ProjectName = &v
+	return s
+}
+
+type StartModelPackagingJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The job name for the model packaging job. If you don't supply a job name
+	// in the JobName input parameter, the service creates a job name for you.
+	JobName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartModelPackagingJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartModelPackagingJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobName sets the JobName field's value.
+func (s *StartModelPackagingJobOutput) SetJobName(v string) *StartModelPackagingJobOutput {
+	s.JobName = &v
+	return s
+}
+
 type StopModelInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ClientToken is an idempotency token that ensures a call to StopModel completes
-	// only once. You choose the value to pass. For example, An issue, such as an
-	// network outage, might prevent you from getting a response from StopModel.
-	// In this case, safely retry your call to StopModel by using the same ClientToken
-	// parameter value. An error occurs if the other input parameters are not the
-	// same as in the first request. Using a different value for ClientToken is
-	// considered a new call to StopModel. An idempotency token is active for 8
-	// hours.
+	// only once. You choose the value to pass. For example, An issue might prevent
+	// you from getting a response from StopModel. In this case, safely retry your
+	// call to StopModel by using the same ClientToken parameter value.
+	//
+	// If you don't supply a value for ClientToken, the AWS SDK you are using inserts
+	// a value for you. This prevents retries after a network error from making
+	// multiple stop requests. You'll need to provide your own value for other use
+	// cases.
+	//
+	// An error occurs if the other input parameters are not the same as in the
+	// first request. Using a different value for ClientToken is considered a new
+	// call to StopModel. An idempotency token is active for 8 hours.
 	ClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The version of the model that you want to stop.
@@ -5572,6 +6939,86 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// The platform on which a model runs on an AWS IoT Greengrass core device.
+type TargetPlatform struct {
+	_ struct{} `type:"structure"`
+
+	// The target accelerator for the model. NVIDIA (Nvidia graphics processing
+	// unit) is the only accelerator that is currently supported. You must also
+	// specify the gpu-code, trt-ver, and cuda-ver compiler options.
+	//
+	// Accelerator is a required field
+	Accelerator *string `type:"string" required:"true" enum:"TargetPlatformAccelerator"`
+
+	// The target architecture for the model. The currently supported architectures
+	// are X86_64 (64-bit version of the x86 instruction set) and ARM_64 (ARMv8
+	// 64-bit CPU).
+	//
+	// Arch is a required field
+	Arch *string `type:"string" required:"true" enum:"TargetPlatformArch"`
+
+	// The target operating system for the model. Linux is the only operating system
+	// that is currently supported.
+	//
+	// Os is a required field
+	Os *string `type:"string" required:"true" enum:"TargetPlatformOs"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetPlatform) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetPlatform) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TargetPlatform) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TargetPlatform"}
+	if s.Accelerator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Accelerator"))
+	}
+	if s.Arch == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arch"))
+	}
+	if s.Os == nil {
+		invalidParams.Add(request.NewErrParamRequired("Os"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccelerator sets the Accelerator field's value.
+func (s *TargetPlatform) SetAccelerator(v string) *TargetPlatform {
+	s.Accelerator = &v
+	return s
+}
+
+// SetArch sets the Arch field's value.
+func (s *TargetPlatform) SetArch(v string) *TargetPlatform {
+	s.Arch = &v
+	return s
+}
+
+// SetOs sets the Os field's value.
+func (s *TargetPlatform) SetOs(v string) *TargetPlatform {
+	s.Os = &v
+	return s
+}
+
 // Amazon Lookout for Vision is temporarily unable to process the request. Try
 // your call again.
 type ThrottlingException struct {
@@ -5742,13 +7189,19 @@ type UpdateDatasetEntriesInput struct {
 	Changes []byte `min:"1" type:"blob" required:"true"`
 
 	// ClientToken is an idempotency token that ensures a call to UpdateDatasetEntries
-	// completes only once. You choose the value to pass. For example, An issue,
-	// such as an network outage, might prevent you from getting a response from
-	// UpdateDatasetEntries. In this case, safely retry your call to UpdateDatasetEntries
-	// by using the same ClientToken parameter value. An error occurs if the other
-	// input parameters are not the same as in the first request. Using a different
-	// value for ClientToken is considered a new call to UpdateDatasetEntries. An
-	// idempotency token is active for 8 hours.
+	// completes only once. You choose the value to pass. For example, An issue
+	// might prevent you from getting a response from UpdateDatasetEntries. In this
+	// case, safely retry your call to UpdateDatasetEntries by using the same ClientToken
+	// parameter value.
+	//
+	// If you don't supply a value for ClientToken, the AWS SDK you are using inserts
+	// a value for you. This prevents retries after a network error from making
+	// multiple updates with the same dataset entries. You'll need to provide your
+	// own value for other use cases.
+	//
+	// An error occurs if the other input parameters are not the same as in the
+	// first request. Using a different value for ClientToken is considered a new
+	// call to UpdateDatasetEntries. An idempotency token is active for 8 hours.
 	ClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The type of the dataset that you want to update. Specify train to update
@@ -6010,6 +7463,30 @@ func ModelHostingStatus_Values() []string {
 }
 
 const (
+	// ModelPackagingJobStatusCreated is a ModelPackagingJobStatus enum value
+	ModelPackagingJobStatusCreated = "CREATED"
+
+	// ModelPackagingJobStatusRunning is a ModelPackagingJobStatus enum value
+	ModelPackagingJobStatusRunning = "RUNNING"
+
+	// ModelPackagingJobStatusSucceeded is a ModelPackagingJobStatus enum value
+	ModelPackagingJobStatusSucceeded = "SUCCEEDED"
+
+	// ModelPackagingJobStatusFailed is a ModelPackagingJobStatus enum value
+	ModelPackagingJobStatusFailed = "FAILED"
+)
+
+// ModelPackagingJobStatus_Values returns all elements of the ModelPackagingJobStatus enum
+func ModelPackagingJobStatus_Values() []string {
+	return []string{
+		ModelPackagingJobStatusCreated,
+		ModelPackagingJobStatusRunning,
+		ModelPackagingJobStatusSucceeded,
+		ModelPackagingJobStatusFailed,
+	}
+}
+
+const (
 	// ModelStatusTraining is a ModelStatus enum value
 	ModelStatusTraining = "TRAINING"
 
@@ -6065,6 +7542,9 @@ const (
 
 	// ResourceTypeTrial is a ResourceType enum value
 	ResourceTypeTrial = "TRIAL"
+
+	// ResourceTypeModelPackageJob is a ResourceType enum value
+	ResourceTypeModelPackageJob = "MODEL_PACKAGE_JOB"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -6074,5 +7554,58 @@ func ResourceType_Values() []string {
 		ResourceTypeDataset,
 		ResourceTypeModel,
 		ResourceTypeTrial,
+		ResourceTypeModelPackageJob,
+	}
+}
+
+const (
+	// TargetDeviceJetsonXavier is a TargetDevice enum value
+	TargetDeviceJetsonXavier = "jetson_xavier"
+)
+
+// TargetDevice_Values returns all elements of the TargetDevice enum
+func TargetDevice_Values() []string {
+	return []string{
+		TargetDeviceJetsonXavier,
+	}
+}
+
+const (
+	// TargetPlatformAcceleratorNvidia is a TargetPlatformAccelerator enum value
+	TargetPlatformAcceleratorNvidia = "NVIDIA"
+)
+
+// TargetPlatformAccelerator_Values returns all elements of the TargetPlatformAccelerator enum
+func TargetPlatformAccelerator_Values() []string {
+	return []string{
+		TargetPlatformAcceleratorNvidia,
+	}
+}
+
+const (
+	// TargetPlatformArchArm64 is a TargetPlatformArch enum value
+	TargetPlatformArchArm64 = "ARM64"
+
+	// TargetPlatformArchX8664 is a TargetPlatformArch enum value
+	TargetPlatformArchX8664 = "X86_64"
+)
+
+// TargetPlatformArch_Values returns all elements of the TargetPlatformArch enum
+func TargetPlatformArch_Values() []string {
+	return []string{
+		TargetPlatformArchArm64,
+		TargetPlatformArchX8664,
+	}
+}
+
+const (
+	// TargetPlatformOsLinux is a TargetPlatformOs enum value
+	TargetPlatformOsLinux = "LINUX"
+)
+
+// TargetPlatformOs_Values returns all elements of the TargetPlatformOs enum
+func TargetPlatformOs_Values() []string {
+	return []string{
+		TargetPlatformOsLinux,
 	}
 }

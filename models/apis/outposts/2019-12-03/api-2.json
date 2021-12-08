@@ -298,6 +298,22 @@
         {"shape":"NotFoundException"}
       ]
     },
+    "UpdateOutpost":{
+      "name":"UpdateOutpost",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/outposts/{OutpostId}"
+      },
+      "input":{"shape":"UpdateOutpostInput"},
+      "output":{"shape":"UpdateOutpostOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "UpdateSite":{
       "name":"UpdateSite",
       "http":{
@@ -1417,6 +1433,26 @@
     "UntagResourceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateOutpostInput":{
+      "type":"structure",
+      "required":["OutpostId"],
+      "members":{
+        "OutpostId":{
+          "shape":"OutpostId",
+          "location":"uri",
+          "locationName":"OutpostId"
+        },
+        "Name":{"shape":"OutpostName"},
+        "Description":{"shape":"OutpostDescription"},
+        "SupportedHardwareType":{"shape":"SupportedHardwareType"}
+      }
+    },
+    "UpdateOutpostOutput":{
+      "type":"structure",
+      "members":{
+        "Outpost":{"shape":"Outpost"}
       }
     },
     "UpdateSiteAddressInput":{

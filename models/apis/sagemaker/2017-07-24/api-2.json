@@ -5581,7 +5581,7 @@
     "CustomImages":{
       "type":"list",
       "member":{"shape":"CustomImage"},
-      "max":30
+      "max":200
     },
     "CustomerMetadataKey":{
       "type":"string",
@@ -9613,6 +9613,7 @@
       "max":20,
       "min":0
     },
+    "IntegerValue":{"type":"integer"},
     "InvocationsMaxRetries":{
       "type":"integer",
       "max":3,
@@ -12910,6 +12911,7 @@
         "EndTime":{"shape":"Timestamp"},
         "StepStatus":{"shape":"StepStatus"},
         "CacheHitResult":{"shape":"CacheHitResult"},
+        "AttemptCount":{"shape":"IntegerValue"},
         "FailureReason":{"shape":"FailureReason"},
         "Metadata":{"shape":"PipelineExecutionStepMetadata"}
       }
@@ -15039,6 +15041,7 @@
         "qcs605",
         "qcs603",
         "sitara_am57x",
+        "amba_cv2",
         "amba_cv22",
         "amba_cv25",
         "x86_win32",
