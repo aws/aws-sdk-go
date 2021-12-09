@@ -14,7 +14,16 @@ import (
 	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/internal/shareddefaults"
+	"github.com/aws/aws-sdk-go/service/sts"
 )
+
+// CredentialsProviderOptions specifies additional options for configuring
+// credentials providers.
+type CredentialsProviderOptions struct {
+	// WebIdentityRoleProviderOptions configures a WebIdentityRoleProvider,
+	// such as setting its ExpiryWindow.
+	WebIdentityRoleProviderOptions func(*stscreds.WebIdentityRoleProvider)
+}
 
 func resolveCredentials(cfg *aws.Config,
 	envCfg envConfig, sharedCfg sharedConfig,
@@ -40,6 +49,7 @@ func resolveCredentials(cfg *aws.Config,
 			envCfg.WebIdentityTokenFilePath,
 			envCfg.RoleARN,
 			envCfg.RoleSessionName,
+			sessOpts.CredentialsProviderOptions,
 		)
 
 	default:
@@ -59,6 +69,7 @@ var WebIdentityEmptyTokenFilePathErr = awserr.New(stscreds.ErrCodeWebIdentity, "
 func assumeWebIdentity(cfg *aws.Config, handlers request.Handlers,
 	filepath string,
 	roleARN, sessionName string,
+	options *CredentialsProviderOptions,
 ) (*credentials.Credentials, error) {
 
 	if len(filepath) == 0 {
@@ -69,17 +80,16 @@ func assumeWebIdentity(cfg *aws.Config, handlers request.Handlers,
 		return nil, WebIdentityEmptyRoleARNErr
 	}
 
-	creds := stscreds.NewWebIdentityCredentials(
-		&Session{
-			Config:   cfg,
-			Handlers: handlers.Copy(),
-		},
-		roleARN,
-		sessionName,
-		filepath,
-	)
+	svc := sts.New(&Session{
+		Config:   cfg,
+		Handlers: handlers.Copy(),
+	})
 
-	return creds, nil
+	p := stscreds.NewWebIdentityRoleProvider(svc, roleARN, sessionName, filepath)
+	if options != nil && options.WebIdentityRoleProviderOptions != nil {
+		options.WebIdentityRoleProviderOptions(p)
+	}
+	return credentials.NewCredentials(p), nil
 }
 
 func resolveCredsFromProfile(cfg *aws.Config,
@@ -114,6 +124,7 @@ func resolveCredsFromProfile(cfg *aws.Config,
 			sharedCfg.WebIdentityTokenFile,
 			sharedCfg.RoleARN,
 			sharedCfg.RoleSessionName,
+			sessOpts.CredentialsProviderOptions,
 		)
 
 	case sharedCfg.hasSSOConfiguration():
