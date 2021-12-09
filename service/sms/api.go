@@ -151,8 +151,8 @@ func (c *SMS) CreateReplicationJobRequest(input *CreateReplicationJobInput) (req
 // CreateReplicationJob API operation for AWS Server Migration Service.
 //
 // Creates a replication job. The replication job schedules periodic replication
-// runs to replicate your server to AWS. Each replication run creates an Amazon
-// Machine Image (AMI).
+// runs to replicate your server to Amazon Web Services. Each replication run
+// creates an Amazon Machine Image (AMI).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -258,8 +258,8 @@ func (c *SMS) DeleteAppRequest(input *DeleteAppInput) (req *request.Request, out
 // DeleteApp API operation for AWS Server Migration Service.
 //
 // Deletes the specified application. Optionally deletes the launched stack
-// associated with the application and all AWS SMS replication jobs for servers
-// in the application.
+// associated with the application and all Server Migration Service replication
+// jobs for servers in the application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -634,8 +634,9 @@ func (c *SMS) DeleteReplicationJobRequest(input *DeleteReplicationJobInput) (req
 // Deletes the specified replication job.
 //
 // After you delete a replication job, there are no further replication runs.
-// AWS deletes the contents of the Amazon S3 bucket used to store AWS SMS artifacts.
-// The AMIs created by the replication runs are not deleted.
+// Amazon Web Services deletes the contents of the Amazon S3 bucket used to
+// store Server Migration Service artifacts. The AMIs created by the replication
+// runs are not deleted.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -818,7 +819,7 @@ func (c *SMS) DisassociateConnectorRequest(input *DisassociateConnectorInput) (r
 
 // DisassociateConnector API operation for AWS Server Migration Service.
 //
-// Disassociates the specified connector from AWS SMS.
+// Disassociates the specified connector from Server Migration Service.
 //
 // After you disassociate a connector, it is no longer available to support
 // replication jobs.
@@ -1003,7 +1004,7 @@ func (c *SMS) GenerateTemplateRequest(input *GenerateTemplateInput) (req *reques
 
 // GenerateTemplate API operation for AWS Server Migration Service.
 //
-// Generates an AWS CloudFormation template based on the current launch configuration
+// Generates an CloudFormation template based on the current launch configuration
 // and writes it to an Amazon S3 object in the customer’s Amazon S3 bucket.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1564,7 +1565,7 @@ func (c *SMS) GetConnectorsRequest(input *GetConnectorsInput) (req *request.Requ
 
 // GetConnectors API operation for AWS Server Migration Service.
 //
-// Describes the connectors registered with the AWS SMS.
+// Describes the connectors registered with the Server Migration Service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2134,7 +2135,7 @@ func (c *SMS) ImportAppCatalogRequest(input *ImportAppCatalogInput) (req *reques
 
 // ImportAppCatalog API operation for AWS Server Migration Service.
 //
-// Allows application import from AWS Migration Hub.
+// Allows application import from Migration Hub.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2324,7 +2325,7 @@ func (c *SMS) LaunchAppRequest(input *LaunchAppInput) (req *request.Request, out
 
 // LaunchApp API operation for AWS Server Migration Service.
 //
-// Launches the specified application as a stack in AWS CloudFormation.
+// Launches the specified application as a stack in CloudFormation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2509,7 +2510,8 @@ func (c *SMS) NotifyAppValidationOutputRequest(input *NotifyAppValidationOutputI
 
 // NotifyAppValidationOutput API operation for AWS Server Migration Service.
 //
-// Provides information to AWS SMS about whether application validation is successful.
+// Provides information to Server Migration Service about whether application
+// validation is successful.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3552,7 +3554,8 @@ type AppSummary struct {
 	// A message related to the replication status of the application.
 	ReplicationStatusMessage *string `locationName:"replicationStatusMessage" type:"string"`
 
-	// The name of the service role in the customer's account used by AWS SMS.
+	// The name of the service role in the customer's account used by Server Migration
+	// Service.
 	RoleName *string `locationName:"roleName" type:"string"`
 
 	// Status of the application.
@@ -3935,8 +3938,8 @@ type CreateAppInput struct {
 	// The name of the new application.
 	Name *string `locationName:"name" type:"string"`
 
-	// The name of the service role in the customer's account to be used by AWS
-	// SMS.
+	// The name of the service role in the customer's account to be used by Server
+	// Migration Service.
 	RoleName *string `locationName:"roleName" type:"string"`
 
 	// The server groups to include in the application.
@@ -4084,7 +4087,7 @@ type CreateReplicationJobInput struct {
 	// the maximum number is reached and a new AMI is created.
 	NumberOfRecentAmisToKeep *int64 `locationName:"numberOfRecentAmisToKeep" type:"integer"`
 
-	// The name of the IAM role to be used by the AWS SMS.
+	// The name of the IAM role to be used by the Server Migration Service.
 	RoleName *string `locationName:"roleName" type:"string"`
 
 	// Indicates whether to run the replication job one time.
@@ -4792,10 +4795,10 @@ func (s *GenerateChangeSetOutput) SetS3Location(v *S3Location) *GenerateChangeSe
 type GenerateTemplateInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the application associated with the AWS CloudFormation template.
+	// The ID of the application associated with the CloudFormation template.
 	AppId *string `locationName:"appId" type:"string"`
 
-	// The format for generating the AWS CloudFormation template.
+	// The format for generating the CloudFormation template.
 	TemplateFormat *string `locationName:"templateFormat" type:"string" enum:"OutputFormat"`
 }
 
@@ -4932,7 +4935,7 @@ type GetAppLaunchConfigurationOutput struct {
 	// replication is complete.
 	AutoLaunch *bool `locationName:"autoLaunch" type:"boolean"`
 
-	// The name of the service role in the customer's account that AWS CloudFormation
+	// The name of the service role in the customer's account that CloudFormation
 	// uses to launch the application.
 	RoleName *string `locationName:"roleName" type:"string"`
 
@@ -5661,9 +5664,9 @@ type ImportAppCatalogInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the service role. If you omit this parameter, we create a service-linked
-	// role for AWS Migration Hub in your account. Otherwise, the role that you
-	// provide must have the policy and trust policy (https://docs.aws.amazon.com/migrationhub/latest/ug/new-customer-setup.html#sms-managed)
-	// described in the AWS Migration Hub User Guide.
+	// role for Migration Hub in your account. Otherwise, the role that you provide
+	// must have the policy and trust policy (https://docs.aws.amazon.com/migrationhub/latest/ug/new-customer-setup.html#sms-managed)
+	// described in the Migration Hub User Guide.
 	RoleName *string `locationName:"roleName" type:"string"`
 }
 
@@ -6409,8 +6412,8 @@ type PutAppLaunchConfigurationInput struct {
 	// replication is complete.
 	AutoLaunch *bool `locationName:"autoLaunch" type:"boolean"`
 
-	// The name of service role in the customer's account that AWS CloudFormation
-	// uses to launch the application.
+	// The name of service role in the customer's account that CloudFormation uses
+	// to launch the application.
 	RoleName *string `locationName:"roleName" type:"string"`
 
 	// Information about the launch configurations for server groups in the application.
@@ -6718,7 +6721,7 @@ type ReplicationJob struct {
 	// Information about the replication runs.
 	ReplicationRunList []*ReplicationRun `locationName:"replicationRunList" type:"list"`
 
-	// The name of the IAM role to be used by AWS SMS.
+	// The name of the IAM role to be used by Server Migration Service.
 	RoleName *string `locationName:"roleName" type:"string"`
 
 	// Indicates whether to run the replication job one time.
@@ -7327,7 +7330,7 @@ func (s *SSMOutput) SetS3Location(v *S3Location) *SSMOutput {
 type SSMValidationParameters struct {
 	_ struct{} `type:"structure"`
 
-	// The command to run the validation script
+	// The command to run the validation script.
 	Command *string `locationName:"command" min:"1" type:"string"`
 
 	// The timeout interval, in seconds.
@@ -7799,7 +7802,7 @@ type ServerLaunchConfiguration struct {
 	// The instance type to use when launching the server.
 	InstanceType *string `locationName:"instanceType" type:"string"`
 
-	// The logical ID of the server in the AWS CloudFormation template.
+	// The logical ID of the server in the CloudFormation template.
 	LogicalId *string `locationName:"logicalId" type:"string"`
 
 	// The ID of the security group that applies to the launched server.
@@ -8737,7 +8740,8 @@ type UpdateAppInput struct {
 	// The new name of the application.
 	Name *string `locationName:"name" type:"string"`
 
-	// The name of the service role in the customer's account used by AWS SMS.
+	// The name of the service role in the customer's account used by Server Migration
+	// Service.
 	RoleName *string `locationName:"roleName" type:"string"`
 
 	// The server groups in the application to update.
@@ -8894,7 +8898,7 @@ type UpdateReplicationJobInput struct {
 	// ReplicationJobId is a required field
 	ReplicationJobId *string `locationName:"replicationJobId" type:"string" required:"true"`
 
-	// The name of the IAM role to be used by AWS SMS.
+	// The name of the IAM role to be used by Server Migration Service.
 	RoleName *string `locationName:"roleName" type:"string"`
 }
 

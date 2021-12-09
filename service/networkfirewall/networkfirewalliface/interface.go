@@ -116,6 +116,10 @@ type NetworkFirewallAPI interface {
 	DescribeRuleGroupWithContext(aws.Context, *networkfirewall.DescribeRuleGroupInput, ...request.Option) (*networkfirewall.DescribeRuleGroupOutput, error)
 	DescribeRuleGroupRequest(*networkfirewall.DescribeRuleGroupInput) (*request.Request, *networkfirewall.DescribeRuleGroupOutput)
 
+	DescribeRuleGroupMetadata(*networkfirewall.DescribeRuleGroupMetadataInput) (*networkfirewall.DescribeRuleGroupMetadataOutput, error)
+	DescribeRuleGroupMetadataWithContext(aws.Context, *networkfirewall.DescribeRuleGroupMetadataInput, ...request.Option) (*networkfirewall.DescribeRuleGroupMetadataOutput, error)
+	DescribeRuleGroupMetadataRequest(*networkfirewall.DescribeRuleGroupMetadataInput) (*request.Request, *networkfirewall.DescribeRuleGroupMetadataOutput)
+
 	DisassociateSubnets(*networkfirewall.DisassociateSubnetsInput) (*networkfirewall.DisassociateSubnetsOutput, error)
 	DisassociateSubnetsWithContext(aws.Context, *networkfirewall.DisassociateSubnetsInput, ...request.Option) (*networkfirewall.DisassociateSubnetsOutput, error)
 	DisassociateSubnetsRequest(*networkfirewall.DisassociateSubnetsInput) (*request.Request, *networkfirewall.DisassociateSubnetsOutput)

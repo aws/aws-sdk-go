@@ -1,32 +1,32 @@
 {
   "version": "2.0",
-  "service": "<fullname>AWS Server Migration Service</fullname> <p>AWS Server Migration Service (AWS SMS) makes it easier and faster for you to migrate your on-premises workloads to AWS. To learn more about AWS SMS, see the following resources:</p> <ul> <li> <p> <a href=\"http://aws.amazon.com/server-migration-service/\">AWS Server Migration Service product page</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/server-migration-service/latest/userguide/\">AWS Server Migration Service User Guide</a> </p> </li> </ul>",
+  "service": "<important> <p> <b>Product update</b> </p> <p>As of March 31, 2022, Amazon Web Services will discontinue Server Migration Service (Amazon Web Services SMS). Going forward, we recommend <a href=\"http://aws.amazon.com/application-migration-service\">Amazon Web Services Application Migration Service</a> (Amazon Web Services MGN) as the primary migration service for lift-and-shift migrations.</p> <p>You can initiate new migration jobs in Server Migration Service until January 1, 2022. Complete these active migration projects by March 31, 2022. For more information, see <a href=\"http://aws.amazon.com/application-migration-service/when-to-choose-aws-mgn/\">When to Choose AWS Application Migration Service</a>.</p> </important> <p>Server Migration Service (Server Migration Service) makes it easier and faster for you to migrate your on-premises workloads to Amazon Web Services. To learn more about Server Migration Service, see the following resources:</p> <ul> <li> <p> <a href=\"http://aws.amazon.com/server-migration-service/\">Server Migration Service product page</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/server-migration-service/latest/userguide/\">Server Migration Service User Guide</a> </p> </li> </ul>",
   "operations": {
     "CreateApp": "<p>Creates an application. An application consists of one or more server groups. Each server group contain one or more servers.</p>",
-    "CreateReplicationJob": "<p>Creates a replication job. The replication job schedules periodic replication runs to replicate your server to AWS. Each replication run creates an Amazon Machine Image (AMI).</p>",
-    "DeleteApp": "<p>Deletes the specified application. Optionally deletes the launched stack associated with the application and all AWS SMS replication jobs for servers in the application.</p>",
+    "CreateReplicationJob": "<p>Creates a replication job. The replication job schedules periodic replication runs to replicate your server to Amazon Web Services. Each replication run creates an Amazon Machine Image (AMI).</p>",
+    "DeleteApp": "<p>Deletes the specified application. Optionally deletes the launched stack associated with the application and all Server Migration Service replication jobs for servers in the application.</p>",
     "DeleteAppLaunchConfiguration": "<p>Deletes the launch configuration for the specified application.</p>",
     "DeleteAppReplicationConfiguration": "<p>Deletes the replication configuration for the specified application.</p>",
     "DeleteAppValidationConfiguration": "<p>Deletes the validation configuration for the specified application.</p>",
-    "DeleteReplicationJob": "<p>Deletes the specified replication job.</p> <p>After you delete a replication job, there are no further replication runs. AWS deletes the contents of the Amazon S3 bucket used to store AWS SMS artifacts. The AMIs created by the replication runs are not deleted.</p>",
+    "DeleteReplicationJob": "<p>Deletes the specified replication job.</p> <p>After you delete a replication job, there are no further replication runs. Amazon Web Services deletes the contents of the Amazon S3 bucket used to store Server Migration Service artifacts. The AMIs created by the replication runs are not deleted.</p>",
     "DeleteServerCatalog": "<p>Deletes all servers from your server catalog.</p>",
-    "DisassociateConnector": "<p>Disassociates the specified connector from AWS SMS.</p> <p>After you disassociate a connector, it is no longer available to support replication jobs.</p>",
+    "DisassociateConnector": "<p>Disassociates the specified connector from Server Migration Service.</p> <p>After you disassociate a connector, it is no longer available to support replication jobs.</p>",
     "GenerateChangeSet": "<p>Generates a target change set for a currently launched stack and writes it to an Amazon S3 object in the customer’s Amazon S3 bucket.</p>",
-    "GenerateTemplate": "<p>Generates an AWS CloudFormation template based on the current launch configuration and writes it to an Amazon S3 object in the customer’s Amazon S3 bucket.</p>",
+    "GenerateTemplate": "<p>Generates an CloudFormation template based on the current launch configuration and writes it to an Amazon S3 object in the customer’s Amazon S3 bucket.</p>",
     "GetApp": "<p>Retrieve information about the specified application.</p>",
     "GetAppLaunchConfiguration": "<p>Retrieves the application launch configuration associated with the specified application.</p>",
     "GetAppReplicationConfiguration": "<p>Retrieves the application replication configuration associated with the specified application.</p>",
     "GetAppValidationConfiguration": "<p>Retrieves information about a configuration for validating an application.</p>",
     "GetAppValidationOutput": "<p>Retrieves output from validating an application.</p>",
-    "GetConnectors": "<p>Describes the connectors registered with the AWS SMS.</p>",
+    "GetConnectors": "<p>Describes the connectors registered with the Server Migration Service.</p>",
     "GetReplicationJobs": "<p>Describes the specified replication job or all of your replication jobs.</p>",
     "GetReplicationRuns": "<p>Describes the replication runs for the specified replication job.</p>",
     "GetServers": "<p>Describes the servers in your server catalog.</p> <p>Before you can describe your servers, you must import them using <a>ImportServerCatalog</a>.</p>",
-    "ImportAppCatalog": "<p>Allows application import from AWS Migration Hub.</p>",
+    "ImportAppCatalog": "<p>Allows application import from Migration Hub.</p>",
     "ImportServerCatalog": "<p>Gathers a complete list of on-premises servers. Connectors must be installed and monitoring all servers to import.</p> <p>This call returns immediately, but might take additional time to retrieve all the servers.</p>",
-    "LaunchApp": "<p>Launches the specified application as a stack in AWS CloudFormation.</p>",
+    "LaunchApp": "<p>Launches the specified application as a stack in CloudFormation.</p>",
     "ListApps": "<p>Retrieves summaries for all applications.</p>",
-    "NotifyAppValidationOutput": "<p>Provides information to AWS SMS about whether application validation is successful.</p>",
+    "NotifyAppValidationOutput": "<p>Provides information to Server Migration Service about whether application validation is successful.</p>",
     "PutAppLaunchConfiguration": "<p>Creates or updates the launch configuration for the specified application.</p>",
     "PutAppReplicationConfiguration": "<p>Creates or updates the replication configuration for the specified application.</p>",
     "PutAppValidationConfiguration": "<p>Creates or updates a validation configuration for the specified application.</p>",
@@ -63,7 +63,7 @@
         "DeleteAppReplicationConfigurationRequest$appId": "<p>The ID of the application.</p>",
         "DeleteAppRequest$appId": "<p>The ID of the application.</p>",
         "GenerateChangeSetRequest$appId": "<p>The ID of the application associated with the change set.</p>",
-        "GenerateTemplateRequest$appId": "<p>The ID of the application associated with the AWS CloudFormation template.</p>",
+        "GenerateTemplateRequest$appId": "<p>The ID of the application associated with the CloudFormation template.</p>",
         "GetAppLaunchConfigurationRequest$appId": "<p>The ID of the application.</p>",
         "GetAppLaunchConfigurationResponse$appId": "<p>The ID of the application.</p>",
         "GetAppReplicationConfigurationRequest$appId": "<p>The ID of the application.</p>",
@@ -218,7 +218,7 @@
     "Command": {
       "base": null,
       "refs": {
-        "SSMValidationParameters$command": "<p>The command to run the validation script</p>"
+        "SSMValidationParameters$command": "<p>The command to run the validation script.</p>"
       }
     },
     "Connector": {
@@ -647,7 +647,7 @@
     "LogicalId": {
       "base": null,
       "refs": {
-        "ServerLaunchConfiguration$logicalId": "<p>The logical ID of the server in the AWS CloudFormation template.</p>"
+        "ServerLaunchConfiguration$logicalId": "<p>The logical ID of the server in the CloudFormation template.</p>"
       }
     },
     "MacAddress": {
@@ -733,7 +733,7 @@
       "base": null,
       "refs": {
         "GenerateChangeSetRequest$changesetFormat": "<p>The format for the change set.</p>",
-        "GenerateTemplateRequest$templateFormat": "<p>The format for generating the AWS CloudFormation template.</p>"
+        "GenerateTemplateRequest$templateFormat": "<p>The format for generating the CloudFormation template.</p>"
       }
     },
     "PutAppLaunchConfigurationRequest": {
@@ -884,16 +884,16 @@
     "RoleName": {
       "base": null,
       "refs": {
-        "AppSummary$roleName": "<p>The name of the service role in the customer's account used by AWS SMS.</p>",
-        "CreateAppRequest$roleName": "<p>The name of the service role in the customer's account to be used by AWS SMS.</p>",
-        "CreateReplicationJobRequest$roleName": "<p>The name of the IAM role to be used by the AWS SMS.</p>",
-        "GetAppLaunchConfigurationResponse$roleName": "<p>The name of the service role in the customer's account that AWS CloudFormation uses to launch the application.</p>",
-        "ImportAppCatalogRequest$roleName": "<p>The name of the service role. If you omit this parameter, we create a service-linked role for AWS Migration Hub in your account. Otherwise, the role that you provide must have the <a href=\"https://docs.aws.amazon.com/migrationhub/latest/ug/new-customer-setup.html#sms-managed\">policy and trust policy</a> described in the <i>AWS Migration Hub User Guide</i>.</p>",
-        "PutAppLaunchConfigurationRequest$roleName": "<p>The name of service role in the customer's account that AWS CloudFormation uses to launch the application.</p>",
-        "ReplicationJob$roleName": "<p>The name of the IAM role to be used by AWS SMS.</p>",
+        "AppSummary$roleName": "<p>The name of the service role in the customer's account used by Server Migration Service.</p>",
+        "CreateAppRequest$roleName": "<p>The name of the service role in the customer's account to be used by Server Migration Service.</p>",
+        "CreateReplicationJobRequest$roleName": "<p>The name of the IAM role to be used by the Server Migration Service.</p>",
+        "GetAppLaunchConfigurationResponse$roleName": "<p>The name of the service role in the customer's account that CloudFormation uses to launch the application.</p>",
+        "ImportAppCatalogRequest$roleName": "<p>The name of the service role. If you omit this parameter, we create a service-linked role for Migration Hub in your account. Otherwise, the role that you provide must have the <a href=\"https://docs.aws.amazon.com/migrationhub/latest/ug/new-customer-setup.html#sms-managed\">policy and trust policy</a> described in the <i>Migration Hub User Guide</i>.</p>",
+        "PutAppLaunchConfigurationRequest$roleName": "<p>The name of service role in the customer's account that CloudFormation uses to launch the application.</p>",
+        "ReplicationJob$roleName": "<p>The name of the IAM role to be used by Server Migration Service.</p>",
         "ServerLaunchConfiguration$iamInstanceProfileName": "<p>The name of the IAM instance profile.</p>",
-        "UpdateAppRequest$roleName": "<p>The name of the service role in the customer's account used by AWS SMS.</p>",
-        "UpdateReplicationJobRequest$roleName": "<p>The name of the IAM role to be used by AWS SMS.</p>"
+        "UpdateAppRequest$roleName": "<p>The name of the service role in the customer's account used by Server Migration Service.</p>",
+        "UpdateReplicationJobRequest$roleName": "<p>The name of the IAM role to be used by Server Migration Service.</p>"
       }
     },
     "RunOnce": {

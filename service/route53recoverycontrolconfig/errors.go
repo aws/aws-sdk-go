@@ -11,14 +11,13 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// 403 response - AccessDeniedException. You do not have sufficient access to
-	// perform this action.
+	// 403 response - You do not have sufficient access to perform this action.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
-	// 409 response - ConflictException.
+	// 409 response - ConflictException. You might be using a predefined variable.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeInternalServerException for service response error code
@@ -30,27 +29,29 @@ const (
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// 404 response - The query string contains a syntax error or resource not found.
+	// 404 response - MalformedQueryString. The query string contains a syntax error
+	// or resource not found..
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeServiceQuotaExceededException for service response error code
 	// "ServiceQuotaExceededException".
 	//
-	// 402 response
+	// 402 response - You attempted to create more resources than the service allows
+	// based on service quotas.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
-	// 429 response - ThrottlingException.
+	// 429 response - LimitExceededException or TooManyRequestsException.
 	ErrCodeThrottlingException = "ThrottlingException"
 
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
 	// 400 response - Multiple causes. For example, you might have a malformed query
-	// string and input parameter might be out of range, or you used parameters
-	// together incorrectly.
+	// string and input parameter might be out of range, or you might have used
+	// parameters together incorrectly.
 	ErrCodeValidationException = "ValidationException"
 )
 
