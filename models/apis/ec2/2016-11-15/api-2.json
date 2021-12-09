@@ -17487,7 +17487,7 @@
       "type":"structure",
       "members":{
         "ElasticGpuId":{
-          "shape":"String",
+          "shape":"ElasticGpuId",
           "locationName":"elasticGpuId"
         },
         "ElasticGpuAssociationId":{

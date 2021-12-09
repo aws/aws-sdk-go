@@ -2510,6 +2510,9 @@ type EC2API interface {
 	WaitUntilInstanceTerminated(*ec2.DescribeInstancesInput) error
 	WaitUntilInstanceTerminatedWithContext(aws.Context, *ec2.DescribeInstancesInput, ...request.WaiterOption) error
 
+	WaitUntilInternetGatewayExists(*ec2.DescribeInternetGatewaysInput) error
+	WaitUntilInternetGatewayExistsWithContext(aws.Context, *ec2.DescribeInternetGatewaysInput, ...request.WaiterOption) error
+
 	WaitUntilKeyPairExists(*ec2.DescribeKeyPairsInput) error
 	WaitUntilKeyPairExistsWithContext(aws.Context, *ec2.DescribeKeyPairsInput, ...request.WaiterOption) error
 

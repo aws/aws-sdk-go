@@ -16,6 +16,7 @@
     "DescribeLoggingConfiguration": "<p>Returns the logging configuration for the specified firewall. </p>",
     "DescribeResourcePolicy": "<p>Retrieves a resource policy that you created in a <a>PutResourcePolicy</a> request. </p>",
     "DescribeRuleGroup": "<p>Returns the data objects for the specified rule group. </p>",
+    "DescribeRuleGroupMetadata": "<p>High-level information about a rule group, returned by operations like create and describe. You can use the information provided in the metadata to retrieve and manage a rule group. You can retrieve all objects for a rule group by calling <a>DescribeRuleGroup</a>. </p>",
     "DisassociateSubnets": "<p>Removes the specified subnet associations from the firewall. This removes the firewall endpoints from the subnets and removes any network filtering protections that the endpoints were providing. </p>",
     "ListFirewallPolicies": "<p>Retrieves the metadata for the firewall policies that you have defined. Depending on your setting for max results and the number of firewall policies, a single call might not return the full list. </p>",
     "ListFirewalls": "<p>Retrieves the metadata for the firewalls that you have defined. If you provide VPC identifiers in your request, this returns only the firewalls for those VPCs.</p> <p>Depending on your setting for max results and the number of firewalls, a single call might not return the full list. </p>",
@@ -27,7 +28,7 @@
     "UpdateFirewallDeleteProtection": "<p>Modifies the flag, <code>DeleteProtection</code>, which indicates whether it is possible to delete the firewall. If the flag is set to <code>TRUE</code>, the firewall is protected against deletion. This setting helps protect against accidentally deleting a firewall that's in use. </p>",
     "UpdateFirewallDescription": "<p>Modifies the description for the specified firewall. Use the description to help you identify the firewall when you're working with it. </p>",
     "UpdateFirewallPolicy": "<p>Updates the properties of the specified firewall policy.</p>",
-    "UpdateFirewallPolicyChangeProtection": "<p/>",
+    "UpdateFirewallPolicyChangeProtection": "<p>Modifies the flag, <code>ChangeProtection</code>, which indicates whether it is possible to change the firewall. If the flag is set to <code>TRUE</code>, the firewall is protected from changes. This setting helps protect against accidentally changing a firewall that's in use.</p>",
     "UpdateLoggingConfiguration": "<p>Sets the logging configuration for the specified firewall. </p> <p>To change the logging configuration, retrieve the <a>LoggingConfiguration</a> by calling <a>DescribeLoggingConfiguration</a>, then change it and provide the modified object to this update call. You must change the logging configuration one <a>LogDestinationConfig</a> at a time inside the retrieved <a>LoggingConfiguration</a> object. </p> <p>You can perform only one of the following actions in any call to <code>UpdateLoggingConfiguration</code>: </p> <ul> <li> <p>Create a new log destination object by adding a single <code>LogDestinationConfig</code> array element to <code>LogDestinationConfigs</code>.</p> </li> <li> <p>Delete a log destination object by removing a single <code>LogDestinationConfig</code> array element from <code>LogDestinationConfigs</code>.</p> </li> <li> <p>Change the <code>LogDestination</code> setting in a single <code>LogDestinationConfig</code> array element.</p> </li> </ul> <p>You can't change the <code>LogDestinationType</code> or <code>LogType</code> in a <code>LogDestinationConfig</code>. To change these settings, delete the existing <code>LogDestinationConfig</code> object and create a new one, using two separate calls to this update operation.</p>",
     "UpdateRuleGroup": "<p>Updates the rule settings for the specified rule group. You use a rule group by reference in one or more firewall policies. When you modify a rule group, you modify all firewall policies that use the rule group. </p> <p>To update a rule group, first call <a>DescribeRuleGroup</a> to retrieve the current <a>RuleGroup</a> object, update the object as needed, and then provide the updated object to this call. </p>",
     "UpdateSubnetChangeProtection": "<p/>"
@@ -127,7 +128,7 @@
         "Firewall$SubnetChangeProtection": "<p>A setting indicating whether the firewall is protected against changes to the subnet associations. Use this setting to protect against accidentally modifying the subnet associations for a firewall that is in use. When you create a firewall, the operation initializes this setting to <code>TRUE</code>.</p>",
         "Firewall$FirewallPolicyChangeProtection": "<p>A setting indicating whether the firewall is protected against a change to the firewall policy association. Use this setting to protect against accidentally modifying the firewall policy for a firewall that is in use. When you create a firewall, the operation initializes this setting to <code>TRUE</code>.</p>",
         "UpdateFirewallDeleteProtectionRequest$DeleteProtection": "<p>A flag indicating whether it is possible to delete the firewall. A setting of <code>TRUE</code> indicates that the firewall is protected against deletion. Use this setting to protect against accidentally deleting a firewall that is in use. When you create a firewall, the operation initializes this flag to <code>TRUE</code>.</p>",
-        "UpdateFirewallDeleteProtectionResponse$DeleteProtection": "<p/>",
+        "UpdateFirewallDeleteProtectionResponse$DeleteProtection": "<p>A flag indicating whether it is possible to delete the firewall. A setting of <code>TRUE</code> indicates that the firewall is protected against deletion. Use this setting to protect against accidentally deleting a firewall that is in use. When you create a firewall, the operation initializes this flag to <code>TRUE</code>.</p>",
         "UpdateFirewallPolicyChangeProtectionRequest$FirewallPolicyChangeProtection": "<p>A setting indicating whether the firewall is protected against a change to the firewall policy association. Use this setting to protect against accidentally modifying the firewall policy for a firewall that is in use. When you create a firewall, the operation initializes this setting to <code>TRUE</code>.</p>",
         "UpdateFirewallPolicyChangeProtectionResponse$FirewallPolicyChangeProtection": "<p>A setting indicating whether the firewall is protected against a change to the firewall policy association. Use this setting to protect against accidentally modifying the firewall policy for a firewall that is in use. When you create a firewall, the operation initializes this setting to <code>TRUE</code>.</p>",
         "UpdateFirewallPolicyRequest$DryRun": "<p>Indicates whether you want Network Firewall to just check the validity of the request, rather than run the request. </p> <p>If set to <code>TRUE</code>, Network Firewall checks whether the request can run successfully, but doesn't actually make the requested changes. The call returns the value that the request would return if you ran it with dry run set to <code>FALSE</code>, but doesn't make additions or changes to your resources. This option allows you to make sure that you have the required permissions to run the request and that your request parameters are valid. </p> <p>If set to <code>FALSE</code>, Network Firewall makes the requested changes to your resources. </p>",
@@ -274,6 +275,16 @@
       "refs": {
       }
     },
+    "DescribeRuleGroupMetadataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRuleGroupMetadataResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeRuleGroupRequest": {
       "base": null,
       "refs": {
@@ -290,6 +301,7 @@
         "CreateFirewallPolicyRequest$Description": "<p>A description of the firewall policy.</p>",
         "CreateFirewallRequest$Description": "<p>A description of the firewall.</p>",
         "CreateRuleGroupRequest$Description": "<p>A description of the rule group. </p>",
+        "DescribeRuleGroupMetadataResponse$Description": "<p>Returns the metadata objects for the specified rule group. </p>",
         "Firewall$Description": "<p>A description of the firewall.</p>",
         "FirewallPolicyResponse$Description": "<p>A description of the firewall policy.</p>",
         "RuleGroupResponse$Description": "<p>A description of the rule group. </p>",
@@ -599,6 +611,12 @@
         "RuleGroupResponse$NumberOfAssociations": "<p>The number of firewall policies that use this rule group.</p>"
       }
     },
+    "OverrideAction": {
+      "base": null,
+      "refs": {
+        "StatefulRuleGroupOverride$Action": "<p>The action that changes the rule group from <code>DROP</code> to <code>ALERT</code>. This only applies to managed rule groups.</p>"
+      }
+    },
     "PaginationMaxResults": {
       "base": null,
       "refs": {
@@ -733,6 +751,8 @@
         "DescribeLoggingConfigurationRequest$FirewallArn": "<p>The Amazon Resource Name (ARN) of the firewall.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DescribeLoggingConfigurationResponse$FirewallArn": "<p>The Amazon Resource Name (ARN) of the firewall.</p>",
         "DescribeResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the rule group or firewall policy whose resource policy you want to retrieve. </p>",
+        "DescribeRuleGroupMetadataRequest$RuleGroupArn": "<p>The descriptive name of the rule group. You can't change the name of a rule group after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
+        "DescribeRuleGroupMetadataResponse$RuleGroupArn": "<p>The descriptive name of the rule group. You can't change the name of a rule group after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DescribeRuleGroupRequest$RuleGroupArn": "<p>The Amazon Resource Name (ARN) of the rule group.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DisassociateSubnetsRequest$FirewallArn": "<p>The Amazon Resource Name (ARN) of the firewall.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DisassociateSubnetsResponse$FirewallArn": "<p>The Amazon Resource Name (ARN) of the firewall.</p>",
@@ -771,6 +791,12 @@
         "RuleGroupResponse$RuleGroupId": "<p>The unique identifier for the rule group. </p>"
       }
     },
+    "ResourceManagedStatus": {
+      "base": null,
+      "refs": {
+        "ListRuleGroupsRequest$Scope": "<p>The scope of the request. The default setting of <code>ACCOUNT</code> or a setting of <code>NULL</code> returns all of the rule groups in your account. A setting of <code>MANAGED</code> returns all available managed rule groups.</p>"
+      }
+    },
     "ResourceName": {
       "base": null,
       "refs": {
@@ -787,6 +813,8 @@
         "DescribeFirewallPolicyRequest$FirewallPolicyName": "<p>The descriptive name of the firewall policy. You can't change the name of a firewall policy after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DescribeFirewallRequest$FirewallName": "<p>The descriptive name of the firewall. You can't change the name of a firewall after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DescribeLoggingConfigurationRequest$FirewallName": "<p>The descriptive name of the firewall. You can't change the name of a firewall after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
+        "DescribeRuleGroupMetadataRequest$RuleGroupName": "<p>The descriptive name of the rule group. You can't change the name of a rule group after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
+        "DescribeRuleGroupMetadataResponse$RuleGroupName": "<p>The descriptive name of the rule group. You can't change the name of a rule group after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DescribeRuleGroupRequest$RuleGroupName": "<p>The descriptive name of the rule group. You can't change the name of a rule group after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DisassociateSubnetsRequest$FirewallName": "<p>The descriptive name of the firewall. You can't change the name of a firewall after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>",
         "DisassociateSubnetsResponse$FirewallName": "<p>The descriptive name of the firewall. You can't change the name of a firewall after you create it.</p>",
@@ -832,6 +860,7 @@
       "base": null,
       "refs": {
         "CreateRuleGroupRequest$Capacity": "<p>The maximum operating resources that this rule group can use. Rule group capacity is fixed at creation. When you update a rule group, you are limited to this capacity. When you reference a rule group from a firewall policy, Network Firewall reserves this capacity for the rule group. </p> <p>You can retrieve the capacity that would be required for a rule group before you create the rule group by calling <a>CreateRuleGroup</a> with <code>DryRun</code> set to <code>TRUE</code>. </p> <note> <p>You can't change or exceed this capacity when you update the rule group, so leave room for your rule group to grow. </p> </note> <p> <b>Capacity for a stateless rule group</b> </p> <p>For a stateless rule group, the capacity required is the sum of the capacity requirements of the individual rules that you expect to have in the rule group. </p> <p>To calculate the capacity requirement of a single rule, multiply the capacity requirement values of each of the rule's match settings:</p> <ul> <li> <p>A match setting with no criteria specified has a value of 1. </p> </li> <li> <p>A match setting with <code>Any</code> specified has a value of 1. </p> </li> <li> <p>All other match settings have a value equal to the number of elements provided in the setting. For example, a protocol setting [\"UDP\"] and a source setting [\"10.0.0.0/24\"] each have a value of 1. A protocol setting [\"UDP\",\"TCP\"] has a value of 2. A source setting [\"10.0.0.0/24\",\"10.0.0.1/24\",\"10.0.0.2/24\"] has a value of 3. </p> </li> </ul> <p>A rule with no criteria specified in any of its match settings has a capacity requirement of 1. A rule with protocol setting [\"UDP\",\"TCP\"], source setting [\"10.0.0.0/24\",\"10.0.0.1/24\",\"10.0.0.2/24\"], and a single specification or no specification for each of the other match settings has a capacity requirement of 6. </p> <p> <b>Capacity for a stateful rule group</b> </p> <p>For a stateful rule group, the minimum capacity required is the number of individual rules that you expect to have in the rule group. </p>",
+        "DescribeRuleGroupMetadataResponse$Capacity": "<p>The maximum operating resources that this rule group can use. Rule group capacity is fixed at creation. When you update a rule group, you are limited to this capacity. When you reference a rule group from a firewall policy, Network Firewall reserves this capacity for the rule group. </p> <p>You can retrieve the capacity that would be required for a rule group before you create the rule group by calling <a>CreateRuleGroup</a> with <code>DryRun</code> set to <code>TRUE</code>. </p>",
         "FirewallPolicyResponse$ConsumedStatelessRuleCapacity": "<p>The number of capacity units currently consumed by the policy's stateless rules.</p>",
         "FirewallPolicyResponse$ConsumedStatefulRuleCapacity": "<p>The number of capacity units currently consumed by the policy's stateful rules.</p>",
         "RuleGroupResponse$Capacity": "<p>The maximum operating resources that this rule group can use. Rule group capacity is fixed at creation. When you update a rule group, you are limited to this capacity. When you reference a rule group from a firewall policy, Network Firewall reserves this capacity for the rule group. </p> <p>You can retrieve the capacity that would be required for a rule group before you create the rule group by calling <a>CreateRuleGroup</a> with <code>DryRun</code> set to <code>TRUE</code>. </p>",
@@ -872,6 +901,8 @@
       "refs": {
         "CreateRuleGroupRequest$Type": "<p>Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains stateless rules. If it is stateful, it contains stateful rules. </p>",
         "DeleteRuleGroupRequest$Type": "<p>Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains stateless rules. If it is stateful, it contains stateful rules. </p> <note> <p>This setting is required for requests that do not include the <code>RuleGroupARN</code>.</p> </note>",
+        "DescribeRuleGroupMetadataRequest$Type": "<p>Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains stateless rules. If it is stateful, it contains stateful rules. </p> <note> <p>This setting is required for requests that do not include the <code>RuleGroupARN</code>.</p> </note>",
+        "DescribeRuleGroupMetadataResponse$Type": "<p>Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains stateless rules. If it is stateful, it contains stateful rules. </p> <note> <p>This setting is required for requests that do not include the <code>RuleGroupARN</code>.</p> </note>",
         "DescribeRuleGroupRequest$Type": "<p>Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains stateless rules. If it is stateful, it contains stateful rules. </p> <note> <p>This setting is required for requests that do not include the <code>RuleGroupARN</code>.</p> </note>",
         "RuleGroupResponse$Type": "<p>Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains stateless rules. If it is stateful, it contains stateful rules. </p>",
         "UpdateRuleGroupRequest$Type": "<p>Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains stateless rules. If it is stateful, it contains stateful rules. </p> <note> <p>This setting is required for requests that do not include the <code>RuleGroupARN</code>.</p> </note>"
@@ -898,14 +929,14 @@
     "RuleOrder": {
       "base": null,
       "refs": {
-        "StatefulEngineOptions$RuleOrder": "<p>Indicates how to manage the order of stateful rule evaluation for the policy. By default, Network Firewall leaves the rule evaluation order up to the Suricata rule processing engine. If you set this to <code>STRICT_ORDER</code>, your rules are evaluated in the exact order that you provide them in the policy. With strict ordering, the rule groups are evaluated by order of priority, starting from the lowest number, and the rules in each rule group are processed in the order that they're defined. </p>",
-        "StatefulRuleOptions$RuleOrder": "<p>Indicates how to manage the order of the rule evaluation for the rule group. By default, Network Firewall leaves the rule evaluation order up to the Suricata rule processing engine. If you set this to <code>STRICT_ORDER</code>, your rules are evaluated in the exact order that they're listed in your Suricata rules string. </p>"
+        "StatefulEngineOptions$RuleOrder": "<p>Indicates how to manage the order of stateful rule evaluation for the policy. <code>DEFAULT_ACTION_ORDER</code> is the default behavior. Stateful rules are provided to the rule engine as Suricata compatible strings, and Suricata evaluates them based on certain settings. For more information, see <a href=\"https://docs.aws.amazon.com/network-firewall/latest/developerguide/suricata-rule-evaluation-order.html\">Evaluation order for stateful rules</a> in the <i>AWS Network Firewall Developer Guide</i>. </p>",
+        "StatefulRuleOptions$RuleOrder": "<p>Indicates how to manage the order of the rule evaluation for the rule group. <code>DEFAULT_ACTION_ORDER</code> is the default behavior. Stateful rules are provided to the rule engine as Suricata compatible strings, and Suricata evaluates them based on certain settings. For more information, see <a href=\"https://docs.aws.amazon.com/network-firewall/latest/developerguide/suricata-rule-evaluation-order.html\">Evaluation order for stateful rules</a> in the <i>AWS Network Firewall Developer Guide</i>. </p>"
       }
     },
     "RuleTargets": {
       "base": null,
       "refs": {
-        "RulesSourceList$Targets": "<p>The domains that you want to inspect for in your traffic flows. To provide multiple domains, separate them with commas. Valid domain specifications are the following:</p> <ul> <li> <p>Explicit names. For example, <code>abc.example.com</code> matches only the domain <code>abc.example.com</code>.</p> </li> <li> <p>Names that use a domain wildcard, which you indicate with an initial '<code>.</code>'. For example,<code>.example.com</code> matches <code>example.com</code> and matches all subdomains of <code>example.com</code>, such as <code>abc.example.com</code> and <code>www.example.com</code>. </p> </li> </ul>"
+        "RulesSourceList$Targets": "<p>The domains that you want to inspect for in your traffic flows. Valid domain specifications are the following:</p> <ul> <li> <p>Explicit names. For example, <code>abc.example.com</code> matches only the domain <code>abc.example.com</code>.</p> </li> <li> <p>Names that use a domain wildcard, which you indicate with an initial '<code>.</code>'. For example,<code>.example.com</code> matches <code>example.com</code> and matches all subdomains of <code>example.com</code>, such as <code>abc.example.com</code> and <code>www.example.com</code>. </p> </li> </ul>"
       }
     },
     "RuleVariableName": {
@@ -968,7 +999,7 @@
     "StatefulActions": {
       "base": null,
       "refs": {
-        "FirewallPolicy$StatefulDefaultActions": "<p>The default actions to take on a packet that doesn't match any stateful rules.</p>"
+        "FirewallPolicy$StatefulDefaultActions": "<p>The default actions to take on a packet that doesn't match any stateful rules. The stateful default action is optional, and is only valid when using the strict rule order.</p> <p>Valid values of the stateful default action:</p> <ul> <li> <p>aws:drop_strict</p> </li> <li> <p>aws:drop_established</p> </li> <li> <p>aws:alert_strict</p> </li> <li> <p>aws:alert_established</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/network-firewall/latest/developerguide/suricata-strict-rule-evaluation-order.html\">Strict evaluation order</a> in the <i>AWS Network Firewall Developer Guide</i>. </p>"
       }
     },
     "StatefulEngineOptions": {
@@ -989,6 +1020,12 @@
         "Header$Direction": "<p>The direction of traffic flow to inspect. If set to <code>ANY</code>, the inspection matches bidirectional traffic, both from the source to the destination and from the destination to the source. If set to <code>FORWARD</code>, the inspection only matches traffic going from the source to the destination. </p>"
       }
     },
+    "StatefulRuleGroupOverride": {
+      "base": "<p>The setting that allows the policy owner to change the behavior of the rule group within a policy. </p>",
+      "refs": {
+        "StatefulRuleGroupReference$Override": "<p>The action that allows the policy owner to override the behavior of the rule group within a policy.</p>"
+      }
+    },
     "StatefulRuleGroupReference": {
       "base": "<p>Identifier for a single stateful rule group, used in a firewall policy to refer to a rule group. </p>",
       "refs": {
@@ -1004,6 +1041,7 @@
     "StatefulRuleOptions": {
       "base": "<p>Additional options governing how Network Firewall handles the rule group. You can only use these for stateful rule groups.</p>",
       "refs": {
+        "DescribeRuleGroupMetadataResponse$StatefulRuleOptions": null,
         "RuleGroup$StatefulRuleOptions": "<p>Additional options governing how Network Firewall handles stateful rules. The policies where you use your stateful rule group must have stateful rule options settings that are compatible with these settings.</p>"
       }
     },

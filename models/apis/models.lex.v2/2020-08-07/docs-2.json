@@ -1313,6 +1313,16 @@
         "ListExportsResponse$exportSummaries": "<p>Summary information for the exports that meet the filter criteria specified in the request. The length of the list is specified in the <code>maxResults</code> parameter. If there are more exports available, the <code>nextToken</code> field contains a token to get the next page of results.</p>"
       }
     },
+    "ExternalSourceSetting": {
+      "base": "<p>Provides information about the external source of the slot type's definition.</p>",
+      "refs": {
+        "CreateSlotTypeRequest$externalSourceSetting": "<p>Sets the type of external information used to create the slot type.</p>",
+        "CreateSlotTypeResponse$externalSourceSetting": "<p>The type of external information used to create the slot type.</p>",
+        "DescribeSlotTypeResponse$externalSourceSetting": null,
+        "UpdateSlotTypeRequest$externalSourceSetting": null,
+        "UpdateSlotTypeResponse$externalSourceSetting": null
+      }
+    },
     "FailureReason": {
       "base": null,
       "refs": {
@@ -1401,6 +1411,18 @@
       "base": "<p>Provides information for updating the user on the progress of fulfilling an intent.</p>",
       "refs": {
         "FulfillmentCodeHookSettings$fulfillmentUpdatesSpecification": "<p>Provides settings for update messages sent to the user for long-running Lambda fulfillment functions. Fulfillment updates can be used only with streaming conversations.</p>"
+      }
+    },
+    "GrammarSlotTypeSetting": {
+      "base": "<p>Settings requried for a slot type based on a grammar that you provide.</p>",
+      "refs": {
+        "ExternalSourceSetting$grammarSlotTypeSetting": "<p>Settings required for a slot type based on a grammar that you provide.</p>"
+      }
+    },
+    "GrammarSlotTypeSource": {
+      "base": "<p>Describes the Amazon S3 bucket name and location for the grammar that is the source for the slot type.</p>",
+      "refs": {
+        "GrammarSlotTypeSetting$source": "<p>The source of the grammar used to create the slot type.</p>"
       }
     },
     "HitCount": {
@@ -1783,6 +1805,7 @@
       "base": null,
       "refs": {
         "EncryptionSetting$kmsKeyArn": "<p>The KMS key ARN used to encrypt the metadata associated with the bot recommendation.</p>",
+        "GrammarSlotTypeSource$kmsKeyArn": "<p>The Amazon KMS key required to decrypt the contents of the grammar, if any.</p>",
         "S3BucketLogDestination$kmsKeyArn": "<p>The Amazon Resource Name (ARN) of an AWS Key Management Service (KMS) key for encrypting audio log files stored in an S3 bucket.</p>",
         "S3BucketTranscriptSource$kmsKeyArn": "<p>The ARN of the KMS key that customer use to encrypt their Amazon S3 bucket. Only use this field if your bucket is encrypted using a customer managed KMS key.</p>"
       }
@@ -2355,6 +2378,19 @@
         "KendraConfiguration$queryFilterString": "<p>A query filter that Amazon Lex sends to Amazon Kendra to filter the response from a query. The filter is in the format defined by Amazon Kendra. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/filtering.html\">Filtering queries</a>.</p>"
       }
     },
+    "RecommendedAction": {
+      "base": null,
+      "refs": {
+        "RecommendedActions$member": null
+      }
+    },
+    "RecommendedActions": {
+      "base": null,
+      "refs": {
+        "DescribeBotLocaleResponse$recommendedActions": "<p>Recommended actions to take to resolve an error in the <code>failureReasons</code> field.</p>",
+        "UpdateBotLocaleResponse$recommendedActions": "<p>Recommended actions to take to resolve an error in the <code>failureReasons</code> field.</p>"
+      }
+    },
     "RecommendedIntentSummary": {
       "base": "<p>An object that contains a summary of a recommended intent.</p>",
       "refs": {
@@ -2451,6 +2487,7 @@
     "S3BucketName": {
       "base": null,
       "refs": {
+        "GrammarSlotTypeSource$s3BucketName": "<p>The name of the S3 bucket that contains the grammar source.</p>",
         "S3BucketTranscriptSource$s3BucketName": "<p>The name of the bucket containing the transcript and the associated metadata.</p>"
       }
     },
@@ -2458,6 +2495,12 @@
       "base": "<p>The object representing the Amazon S3 bucket containing the transcript, as well as the associated metadata.</p>",
       "refs": {
         "TranscriptSourceSetting$s3BucketTranscriptSource": "<p>Indicates the setting of the Amazon S3 bucket where the transcript is stored.</p>"
+      }
+    },
+    "S3ObjectPath": {
+      "base": null,
+      "refs": {
+        "GrammarSlotTypeSource$s3ObjectKey": "<p>The path to the grammar in the S3 bucket.</p>"
       }
     },
     "SSMLMessage": {
@@ -2657,6 +2700,12 @@
       "base": null,
       "refs": {
         "ListSlotsResponse$slotSummaries": "<p>Summary information for the slots that meet the filter criteria specified in the request. The length of the list is specified in the <code>maxResults</code> parameter of the request. If there are more slots available, the <code>nextToken</code> field contains a token to get the next page of results.</p>"
+      }
+    },
+    "SlotTypeCategory": {
+      "base": null,
+      "refs": {
+        "SlotTypeSummary$slotTypeCategory": "<p>Indicates the type of the slot type.</p> <ul> <li> <p> <code>Custom</code> - A slot type that you created using custom values. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/custom-slot-types.html\">Creating custom slot types</a>.</p> </li> <li> <p> <code>Extended</code> - A slot type created by extending the AMAZON.AlphaNumeric built-in slot type. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/built-in-slot-alphanumerice.html\">AMAZON.AlphaNumeric</a>.</p> </li> <li> <p> <code>ExternalGrammar</code> - A slot type using a custom GRXML grammar to define values. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/building-grxml.html\">Using a custom grammar slot type</a>.</p> </li> </ul>"
       }
     },
     "SlotTypeFilter": {
@@ -3144,7 +3193,7 @@
     "VoiceEngine": {
       "base": null,
       "refs": {
-        "VoiceSettings$engine": "<p>Indicates the type of Amazon Polly voice that Amazon Lex should use for voice interaction with the user. For more information, see <a href=\"https://docs.aws.amazon.com/polly/latest/dg/voicelist.html\">Voices in Amazon Polly</a>.</p>"
+        "VoiceSettings$engine": "<p>Indicates the type of Amazon Polly voice that Amazon Lex should use for voice interaction with the user. For more information, see the <a href=\"https://docs.aws.amazon.com/polly/latest/dg/API_SynthesizeSpeech.html#polly-SynthesizeSpeech-request-Engine\"> <code>engine</code> parameter of the <code>SynthesizeSpeech</code> operation</a> in the <i>Amazon Polly developer guide</i>.</p> <p>If you do not specify a value, the default is <code>standard</code>.</p>"
       }
     },
     "VoiceId": {

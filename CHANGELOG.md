@@ -1,3 +1,18 @@
+Release v1.42.22 (2021-12-09)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API, documentation, and waiters
+  * Adds waiters support for internet gateways.
+* `service/models.lex.v2`: Updates service API and documentation
+* `service/network-firewall`: Updates service API and documentation
+* `service/route53-recovery-control-config`: Updates service API and documentation
+* `service/route53domains`: Updates service API, documentation, and paginators
+  * Amazon Route 53 domain registration APIs now support filtering and sorting in the ListDomains API, deleting a domain by using the DeleteDomain API and getting domain pricing information by using the ListPrices API.
+* `service/savingsplans`: Updates service documentation
+* `service/sms`: Updates service documentation
+  * This release adds SMS discontinuation information to the API and CLI references.
+
 Release v1.42.21 (2021-12-08)
 ===
 

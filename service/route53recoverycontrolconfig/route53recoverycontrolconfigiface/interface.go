@@ -143,6 +143,18 @@ type Route53RecoveryControlConfigAPI interface {
 	ListSafetyRulesPages(*route53recoverycontrolconfig.ListSafetyRulesInput, func(*route53recoverycontrolconfig.ListSafetyRulesOutput, bool) bool) error
 	ListSafetyRulesPagesWithContext(aws.Context, *route53recoverycontrolconfig.ListSafetyRulesInput, func(*route53recoverycontrolconfig.ListSafetyRulesOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*route53recoverycontrolconfig.ListTagsForResourceInput) (*route53recoverycontrolconfig.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *route53recoverycontrolconfig.ListTagsForResourceInput, ...request.Option) (*route53recoverycontrolconfig.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*route53recoverycontrolconfig.ListTagsForResourceInput) (*request.Request, *route53recoverycontrolconfig.ListTagsForResourceOutput)
+
+	TagResource(*route53recoverycontrolconfig.TagResourceInput) (*route53recoverycontrolconfig.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *route53recoverycontrolconfig.TagResourceInput, ...request.Option) (*route53recoverycontrolconfig.TagResourceOutput, error)
+	TagResourceRequest(*route53recoverycontrolconfig.TagResourceInput) (*request.Request, *route53recoverycontrolconfig.TagResourceOutput)
+
+	UntagResource(*route53recoverycontrolconfig.UntagResourceInput) (*route53recoverycontrolconfig.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *route53recoverycontrolconfig.UntagResourceInput, ...request.Option) (*route53recoverycontrolconfig.UntagResourceOutput, error)
+	UntagResourceRequest(*route53recoverycontrolconfig.UntagResourceInput) (*request.Request, *route53recoverycontrolconfig.UntagResourceOutput)
+
 	UpdateControlPanel(*route53recoverycontrolconfig.UpdateControlPanelInput) (*route53recoverycontrolconfig.UpdateControlPanelOutput, error)
 	UpdateControlPanelWithContext(aws.Context, *route53recoverycontrolconfig.UpdateControlPanelInput, ...request.Option) (*route53recoverycontrolconfig.UpdateControlPanelOutput, error)
 	UpdateControlPanelRequest(*route53recoverycontrolconfig.UpdateControlPanelInput) (*request.Request, *route53recoverycontrolconfig.UpdateControlPanelOutput)

@@ -11841,6 +11841,9 @@ type CreateSlotTypeInput struct {
 	// slot type in lists.
 	Description *string `locationName:"description" type:"string"`
 
+	// Sets the type of external information used to create the slot type.
+	ExternalSourceSetting *ExternalSourceSetting `locationName:"externalSourceSetting" type:"structure"`
+
 	// The identifier of the language and locale that the slot type will be used
 	// in. The string must match one of the supported locales. All of the bots,
 	// intents, and slots used by the slot type must have the same locale. For more
@@ -11879,9 +11882,7 @@ type CreateSlotTypeInput struct {
 	//
 	// If you don't specify the valueSelectionSetting parameter, the default is
 	// OriginalValue.
-	//
-	// ValueSelectionSetting is a required field
-	ValueSelectionSetting *SlotValueSelectionSetting `locationName:"valueSelectionSetting" type:"structure" required:"true"`
+	ValueSelectionSetting *SlotValueSelectionSetting `locationName:"valueSelectionSetting" type:"structure"`
 }
 
 // String returns the string representation.
@@ -11932,8 +11933,10 @@ func (s *CreateSlotTypeInput) Validate() error {
 	if s.SlotTypeValues != nil && len(s.SlotTypeValues) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SlotTypeValues", 1))
 	}
-	if s.ValueSelectionSetting == nil {
-		invalidParams.Add(request.NewErrParamRequired("ValueSelectionSetting"))
+	if s.ExternalSourceSetting != nil {
+		if err := s.ExternalSourceSetting.Validate(); err != nil {
+			invalidParams.AddNested("ExternalSourceSetting", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.SlotTypeValues != nil {
 		for i, v := range s.SlotTypeValues {
@@ -11972,6 +11975,12 @@ func (s *CreateSlotTypeInput) SetBotVersion(v string) *CreateSlotTypeInput {
 // SetDescription sets the Description field's value.
 func (s *CreateSlotTypeInput) SetDescription(v string) *CreateSlotTypeInput {
 	s.Description = &v
+	return s
+}
+
+// SetExternalSourceSetting sets the ExternalSourceSetting field's value.
+func (s *CreateSlotTypeInput) SetExternalSourceSetting(v *ExternalSourceSetting) *CreateSlotTypeInput {
+	s.ExternalSourceSetting = v
 	return s
 }
 
@@ -12019,6 +12028,9 @@ type CreateSlotTypeOutput struct {
 
 	// The description specified for the slot type.
 	Description *string `locationName:"description" type:"string"`
+
+	// The type of external information used to create the slot type.
+	ExternalSourceSetting *ExternalSourceSetting `locationName:"externalSourceSetting" type:"structure"`
 
 	// The specified language and local specified for the slot type.
 	LocaleId *string `locationName:"localeId" type:"string"`
@@ -12080,6 +12092,12 @@ func (s *CreateSlotTypeOutput) SetCreationDateTime(v time.Time) *CreateSlotTypeO
 // SetDescription sets the Description field's value.
 func (s *CreateSlotTypeOutput) SetDescription(v string) *CreateSlotTypeOutput {
 	s.Description = &v
+	return s
+}
+
+// SetExternalSourceSetting sets the ExternalSourceSetting field's value.
+func (s *CreateSlotTypeOutput) SetExternalSourceSetting(v *ExternalSourceSetting) *CreateSlotTypeOutput {
+	s.ExternalSourceSetting = v
 	return s
 }
 
@@ -14163,6 +14181,9 @@ type DescribeBotLocaleOutput struct {
 	// an utterance.
 	NluIntentConfidenceThreshold *float64 `locationName:"nluIntentConfidenceThreshold" type:"double"`
 
+	// Recommended actions to take to resolve an error in the failureReasons field.
+	RecommendedActions []*string `locationName:"recommendedActions" type:"list"`
+
 	// The number of slot types defined for the locale.
 	SlotTypesCount *int64 `locationName:"slotTypesCount" type:"integer"`
 
@@ -14263,6 +14284,12 @@ func (s *DescribeBotLocaleOutput) SetLocaleName(v string) *DescribeBotLocaleOutp
 // SetNluIntentConfidenceThreshold sets the NluIntentConfidenceThreshold field's value.
 func (s *DescribeBotLocaleOutput) SetNluIntentConfidenceThreshold(v float64) *DescribeBotLocaleOutput {
 	s.NluIntentConfidenceThreshold = &v
+	return s
+}
+
+// SetRecommendedActions sets the RecommendedActions field's value.
+func (s *DescribeBotLocaleOutput) SetRecommendedActions(v []*string) *DescribeBotLocaleOutput {
+	s.RecommendedActions = v
 	return s
 }
 
@@ -15871,6 +15898,9 @@ type DescribeSlotTypeOutput struct {
 	// The description specified for the slot type.
 	Description *string `locationName:"description" type:"string"`
 
+	// Provides information about the external source of the slot type's definition.
+	ExternalSourceSetting *ExternalSourceSetting `locationName:"externalSourceSetting" type:"structure"`
+
 	// A timestamp of the date and time that the slot type was last updated.
 	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
 
@@ -15934,6 +15964,12 @@ func (s *DescribeSlotTypeOutput) SetCreationDateTime(v time.Time) *DescribeSlotT
 // SetDescription sets the Description field's value.
 func (s *DescribeSlotTypeOutput) SetDescription(v string) *DescribeSlotTypeOutput {
 	s.Description = &v
+	return s
+}
+
+// SetExternalSourceSetting sets the ExternalSourceSetting field's value.
+func (s *DescribeSlotTypeOutput) SetExternalSourceSetting(v *ExternalSourceSetting) *DescribeSlotTypeOutput {
+	s.ExternalSourceSetting = v
 	return s
 }
 
@@ -16384,6 +16420,53 @@ func (s *ExportSummary) SetResourceSpecification(v *ExportResourceSpecification)
 	return s
 }
 
+// Provides information about the external source of the slot type's definition.
+type ExternalSourceSetting struct {
+	_ struct{} `type:"structure"`
+
+	// Settings required for a slot type based on a grammar that you provide.
+	GrammarSlotTypeSetting *GrammarSlotTypeSetting `locationName:"grammarSlotTypeSetting" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExternalSourceSetting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExternalSourceSetting) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExternalSourceSetting) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExternalSourceSetting"}
+	if s.GrammarSlotTypeSetting != nil {
+		if err := s.GrammarSlotTypeSetting.Validate(); err != nil {
+			invalidParams.AddNested("GrammarSlotTypeSetting", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGrammarSlotTypeSetting sets the GrammarSlotTypeSetting field's value.
+func (s *ExternalSourceSetting) SetGrammarSlotTypeSetting(v *GrammarSlotTypeSetting) *ExternalSourceSetting {
+	s.GrammarSlotTypeSetting = v
+	return s
+}
+
 // Determines if a Lambda function should be invoked for a specific intent.
 type FulfillmentCodeHookSettings struct {
 	_ struct{} `type:"structure"`
@@ -16737,6 +16820,133 @@ func (s *FulfillmentUpdatesSpecification) SetTimeoutInSeconds(v int64) *Fulfillm
 // SetUpdateResponse sets the UpdateResponse field's value.
 func (s *FulfillmentUpdatesSpecification) SetUpdateResponse(v *FulfillmentUpdateResponseSpecification) *FulfillmentUpdatesSpecification {
 	s.UpdateResponse = v
+	return s
+}
+
+// Settings requried for a slot type based on a grammar that you provide.
+type GrammarSlotTypeSetting struct {
+	_ struct{} `type:"structure"`
+
+	// The source of the grammar used to create the slot type.
+	Source *GrammarSlotTypeSource `locationName:"source" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GrammarSlotTypeSetting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GrammarSlotTypeSetting) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GrammarSlotTypeSetting) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GrammarSlotTypeSetting"}
+	if s.Source != nil {
+		if err := s.Source.Validate(); err != nil {
+			invalidParams.AddNested("Source", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSource sets the Source field's value.
+func (s *GrammarSlotTypeSetting) SetSource(v *GrammarSlotTypeSource) *GrammarSlotTypeSetting {
+	s.Source = v
+	return s
+}
+
+// Describes the Amazon S3 bucket name and location for the grammar that is
+// the source for the slot type.
+type GrammarSlotTypeSource struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon KMS key required to decrypt the contents of the grammar, if any.
+	KmsKeyArn *string `locationName:"kmsKeyArn" min:"20" type:"string"`
+
+	// The name of the S3 bucket that contains the grammar source.
+	//
+	// S3BucketName is a required field
+	S3BucketName *string `locationName:"s3BucketName" min:"3" type:"string" required:"true"`
+
+	// The path to the grammar in the S3 bucket.
+	//
+	// S3ObjectKey is a required field
+	S3ObjectKey *string `locationName:"s3ObjectKey" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GrammarSlotTypeSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GrammarSlotTypeSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GrammarSlotTypeSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GrammarSlotTypeSource"}
+	if s.KmsKeyArn != nil && len(*s.KmsKeyArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyArn", 20))
+	}
+	if s.S3BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3BucketName"))
+	}
+	if s.S3BucketName != nil && len(*s.S3BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("S3BucketName", 3))
+	}
+	if s.S3ObjectKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3ObjectKey"))
+	}
+	if s.S3ObjectKey != nil && len(*s.S3ObjectKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("S3ObjectKey", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *GrammarSlotTypeSource) SetKmsKeyArn(v string) *GrammarSlotTypeSource {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *GrammarSlotTypeSource) SetS3BucketName(v string) *GrammarSlotTypeSource {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetS3ObjectKey sets the S3ObjectKey field's value.
+func (s *GrammarSlotTypeSource) SetS3ObjectKey(v string) *GrammarSlotTypeSource {
+	s.S3ObjectKey = &v
 	return s
 }
 
@@ -22917,6 +23127,18 @@ type SlotTypeSummary struct {
 	// slot type.
 	ParentSlotTypeSignature *string `locationName:"parentSlotTypeSignature" type:"string"`
 
+	// Indicates the type of the slot type.
+	//
+	//    * Custom - A slot type that you created using custom values. For more
+	//    information, see Creating custom slot types (https://docs.aws.amazon.com/lexv2/latest/dg/custom-slot-types.html).
+	//
+	//    * Extended - A slot type created by extending the AMAZON.AlphaNumeric
+	//    built-in slot type. For more information, see AMAZON.AlphaNumeric (https://docs.aws.amazon.com/lexv2/latest/dg/built-in-slot-alphanumerice.html).
+	//
+	//    * ExternalGrammar - A slot type using a custom GRXML grammar to define
+	//    values. For more information, see Using a custom grammar slot type (https://docs.aws.amazon.com/lexv2/latest/dg/building-grxml.html).
+	SlotTypeCategory *string `locationName:"slotTypeCategory" type:"string" enum:"SlotTypeCategory"`
+
 	// The unique identifier assigned to the slot type.
 	SlotTypeId *string `locationName:"slotTypeId" min:"10" type:"string"`
 
@@ -22957,6 +23179,12 @@ func (s *SlotTypeSummary) SetLastUpdatedDateTime(v time.Time) *SlotTypeSummary {
 // SetParentSlotTypeSignature sets the ParentSlotTypeSignature field's value.
 func (s *SlotTypeSummary) SetParentSlotTypeSignature(v string) *SlotTypeSummary {
 	s.ParentSlotTypeSignature = &v
+	return s
+}
+
+// SetSlotTypeCategory sets the SlotTypeCategory field's value.
+func (s *SlotTypeSummary) SetSlotTypeCategory(v string) *SlotTypeSummary {
+	s.SlotTypeCategory = &v
 	return s
 }
 
@@ -24837,6 +25065,9 @@ type UpdateBotLocaleOutput struct {
 	// an utterance.
 	NluIntentConfidenceThreshold *float64 `locationName:"nluIntentConfidenceThreshold" type:"double"`
 
+	// Recommended actions to take to resolve an error in the failureReasons field.
+	RecommendedActions []*string `locationName:"recommendedActions" type:"list"`
+
 	// The updated Amazon Polly voice to use for voice interaction with the user.
 	VoiceSettings *VoiceSettings `locationName:"voiceSettings" type:"structure"`
 }
@@ -24916,6 +25147,12 @@ func (s *UpdateBotLocaleOutput) SetLocaleName(v string) *UpdateBotLocaleOutput {
 // SetNluIntentConfidenceThreshold sets the NluIntentConfidenceThreshold field's value.
 func (s *UpdateBotLocaleOutput) SetNluIntentConfidenceThreshold(v float64) *UpdateBotLocaleOutput {
 	s.NluIntentConfidenceThreshold = &v
+	return s
+}
+
+// SetRecommendedActions sets the RecommendedActions field's value.
+func (s *UpdateBotLocaleOutput) SetRecommendedActions(v []*string) *UpdateBotLocaleOutput {
+	s.RecommendedActions = v
 	return s
 }
 
@@ -26387,6 +26624,9 @@ type UpdateSlotTypeInput struct {
 	// The new description of the slot type.
 	Description *string `locationName:"description" type:"string"`
 
+	// Provides information about the external source of the slot type's definition.
+	ExternalSourceSetting *ExternalSourceSetting `locationName:"externalSourceSetting" type:"structure"`
+
 	// The identifier of the language and locale that contains the slot type. The
 	// string must match one of the supported locales. For more information, see
 	// Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
@@ -26414,9 +26654,7 @@ type UpdateSlotTypeInput struct {
 
 	// The strategy that Amazon Lex should use when deciding on a value from the
 	// list of slot type values.
-	//
-	// ValueSelectionSetting is a required field
-	ValueSelectionSetting *SlotValueSelectionSetting `locationName:"valueSelectionSetting" type:"structure" required:"true"`
+	ValueSelectionSetting *SlotValueSelectionSetting `locationName:"valueSelectionSetting" type:"structure"`
 }
 
 // String returns the string representation.
@@ -26473,8 +26711,10 @@ func (s *UpdateSlotTypeInput) Validate() error {
 	if s.SlotTypeValues != nil && len(s.SlotTypeValues) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SlotTypeValues", 1))
 	}
-	if s.ValueSelectionSetting == nil {
-		invalidParams.Add(request.NewErrParamRequired("ValueSelectionSetting"))
+	if s.ExternalSourceSetting != nil {
+		if err := s.ExternalSourceSetting.Validate(); err != nil {
+			invalidParams.AddNested("ExternalSourceSetting", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.SlotTypeValues != nil {
 		for i, v := range s.SlotTypeValues {
@@ -26513,6 +26753,12 @@ func (s *UpdateSlotTypeInput) SetBotVersion(v string) *UpdateSlotTypeInput {
 // SetDescription sets the Description field's value.
 func (s *UpdateSlotTypeInput) SetDescription(v string) *UpdateSlotTypeInput {
 	s.Description = &v
+	return s
+}
+
+// SetExternalSourceSetting sets the ExternalSourceSetting field's value.
+func (s *UpdateSlotTypeInput) SetExternalSourceSetting(v *ExternalSourceSetting) *UpdateSlotTypeInput {
+	s.ExternalSourceSetting = v
 	return s
 }
 
@@ -26566,6 +26812,9 @@ type UpdateSlotTypeOutput struct {
 
 	// The updated description of the slot type.
 	Description *string `locationName:"description" type:"string"`
+
+	// Provides information about the external source of the slot type's definition.
+	ExternalSourceSetting *ExternalSourceSetting `locationName:"externalSourceSetting" type:"structure"`
 
 	// A timestamp of the date and time that the slot type was last updated.
 	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
@@ -26630,6 +26879,12 @@ func (s *UpdateSlotTypeOutput) SetCreationDateTime(v time.Time) *UpdateSlotTypeO
 // SetDescription sets the Description field's value.
 func (s *UpdateSlotTypeOutput) SetDescription(v string) *UpdateSlotTypeOutput {
 	s.Description = &v
+	return s
+}
+
+// SetExternalSourceSetting sets the ExternalSourceSetting field's value.
+func (s *UpdateSlotTypeOutput) SetExternalSourceSetting(v *ExternalSourceSetting) *UpdateSlotTypeOutput {
+	s.ExternalSourceSetting = v
 	return s
 }
 
@@ -26798,8 +27053,11 @@ type VoiceSettings struct {
 	_ struct{} `type:"structure"`
 
 	// Indicates the type of Amazon Polly voice that Amazon Lex should use for voice
-	// interaction with the user. For more information, see Voices in Amazon Polly
-	// (https://docs.aws.amazon.com/polly/latest/dg/voicelist.html).
+	// interaction with the user. For more information, see the engine parameter
+	// of the SynthesizeSpeech operation (https://docs.aws.amazon.com/polly/latest/dg/API_SynthesizeSpeech.html#polly-SynthesizeSpeech-request-Engine)
+	// in the Amazon Polly developer guide.
+	//
+	// If you do not specify a value, the default is standard.
 	Engine *string `locationName:"engine" type:"string" enum:"VoiceEngine"`
 
 	// The identifier of the Amazon Polly voice to use.
@@ -27580,14 +27838,38 @@ func SlotSortAttribute_Values() []string {
 }
 
 const (
+	// SlotTypeCategoryCustom is a SlotTypeCategory enum value
+	SlotTypeCategoryCustom = "Custom"
+
+	// SlotTypeCategoryExtended is a SlotTypeCategory enum value
+	SlotTypeCategoryExtended = "Extended"
+
+	// SlotTypeCategoryExternalGrammar is a SlotTypeCategory enum value
+	SlotTypeCategoryExternalGrammar = "ExternalGrammar"
+)
+
+// SlotTypeCategory_Values returns all elements of the SlotTypeCategory enum
+func SlotTypeCategory_Values() []string {
+	return []string{
+		SlotTypeCategoryCustom,
+		SlotTypeCategoryExtended,
+		SlotTypeCategoryExternalGrammar,
+	}
+}
+
+const (
 	// SlotTypeFilterNameSlotTypeName is a SlotTypeFilterName enum value
 	SlotTypeFilterNameSlotTypeName = "SlotTypeName"
+
+	// SlotTypeFilterNameExternalSourceType is a SlotTypeFilterName enum value
+	SlotTypeFilterNameExternalSourceType = "ExternalSourceType"
 )
 
 // SlotTypeFilterName_Values returns all elements of the SlotTypeFilterName enum
 func SlotTypeFilterName_Values() []string {
 	return []string{
 		SlotTypeFilterNameSlotTypeName,
+		SlotTypeFilterNameExternalSourceType,
 	}
 }
 

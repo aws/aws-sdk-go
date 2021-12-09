@@ -1477,6 +1477,106 @@ func (c *NetworkFirewall) DescribeRuleGroupWithContext(ctx aws.Context, input *D
 	return out, req.Send()
 }
 
+const opDescribeRuleGroupMetadata = "DescribeRuleGroupMetadata"
+
+// DescribeRuleGroupMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRuleGroupMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeRuleGroupMetadata for more information on using the DescribeRuleGroupMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeRuleGroupMetadataRequest method.
+//    req, resp := client.DescribeRuleGroupMetadataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/DescribeRuleGroupMetadata
+func (c *NetworkFirewall) DescribeRuleGroupMetadataRequest(input *DescribeRuleGroupMetadataInput) (req *request.Request, output *DescribeRuleGroupMetadataOutput) {
+	op := &request.Operation{
+		Name:       opDescribeRuleGroupMetadata,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeRuleGroupMetadataInput{}
+	}
+
+	output = &DescribeRuleGroupMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeRuleGroupMetadata API operation for AWS Network Firewall.
+//
+// High-level information about a rule group, returned by operations like create
+// and describe. You can use the information provided in the metadata to retrieve
+// and manage a rule group. You can retrieve all objects for a rule group by
+// calling DescribeRuleGroup.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Network Firewall's
+// API operation DescribeRuleGroupMetadata for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The operation failed because of a problem with your request. Examples include:
+//
+//      * You specified an unsupported parameter name or value.
+//
+//      * You tried to update a property with a value that isn't among the available
+//      types.
+//
+//      * Your request references an ARN that is malformed, or corresponds to
+//      a resource that isn't valid in the context of the request.
+//
+//   * ResourceNotFoundException
+//   Unable to locate a resource using the parameters that you provided.
+//
+//   * ThrottlingException
+//   Unable to process the request due to throttling limitations.
+//
+//   * InternalServerError
+//   Your request is valid, but Network Firewall couldn’t perform the operation
+//   because of a system problem. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/DescribeRuleGroupMetadata
+func (c *NetworkFirewall) DescribeRuleGroupMetadata(input *DescribeRuleGroupMetadataInput) (*DescribeRuleGroupMetadataOutput, error) {
+	req, out := c.DescribeRuleGroupMetadataRequest(input)
+	return out, req.Send()
+}
+
+// DescribeRuleGroupMetadataWithContext is the same as DescribeRuleGroupMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRuleGroupMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkFirewall) DescribeRuleGroupMetadataWithContext(ctx aws.Context, input *DescribeRuleGroupMetadataInput, opts ...request.Option) (*DescribeRuleGroupMetadataOutput, error) {
+	req, out := c.DescribeRuleGroupMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisassociateSubnets = "DisassociateSubnets"
 
 // DisassociateSubnetsRequest generates a "aws/request.Request" representing the
@@ -2115,6 +2215,13 @@ func (c *NetworkFirewall) ListTagsForResourceRequest(input *ListTagsForResourceI
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
+//   * ThrottlingException
+//   Unable to process the request due to throttling limitations.
+//
+//   * InternalServerError
+//   Your request is valid, but Network Firewall couldn’t perform the operation
+//   because of a system problem. Retry your request.
+//
 //   * ResourceNotFoundException
 //   Unable to locate a resource using the parameters that you provided.
 //
@@ -2388,6 +2495,13 @@ func (c *NetworkFirewall) TagResourceRequest(input *TagResourceInput) (req *requ
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
+//   * ThrottlingException
+//   Unable to process the request due to throttling limitations.
+//
+//   * InternalServerError
+//   Your request is valid, but Network Firewall couldn’t perform the operation
+//   because of a system problem. Retry your request.
+//
 //   * ResourceNotFoundException
 //   Unable to locate a resource using the parameters that you provided.
 //
@@ -2486,6 +2600,13 @@ func (c *NetworkFirewall) UntagResourceRequest(input *UntagResourceInput) (req *
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
+//   * ThrottlingException
+//   Unable to process the request due to throttling limitations.
+//
+//   * InternalServerError
+//   Your request is valid, but Network Firewall couldn’t perform the operation
+//   because of a system problem. Retry your request.
+//
 //   * ResourceNotFoundException
 //   Unable to locate a resource using the parameters that you provided.
 //
@@ -2872,6 +2993,11 @@ func (c *NetworkFirewall) UpdateFirewallPolicyChangeProtectionRequest(input *Upd
 }
 
 // UpdateFirewallPolicyChangeProtection API operation for AWS Network Firewall.
+//
+// Modifies the flag, ChangeProtection, which indicates whether it is possible
+// to change the firewall. If the flag is set to TRUE, the firewall is protected
+// from changes. This setting helps protect against accidentally changing a
+// firewall that's in use.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5435,6 +5561,178 @@ func (s *DescribeRuleGroupInput) SetType(v string) *DescribeRuleGroupInput {
 	return s
 }
 
+type DescribeRuleGroupMetadataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The descriptive name of the rule group. You can't change the name of a rule
+	// group after you create it.
+	//
+	// You must specify the ARN or the name, and you can specify both.
+	RuleGroupArn *string `min:"1" type:"string"`
+
+	// The descriptive name of the rule group. You can't change the name of a rule
+	// group after you create it.
+	//
+	// You must specify the ARN or the name, and you can specify both.
+	RuleGroupName *string `min:"1" type:"string"`
+
+	// Indicates whether the rule group is stateless or stateful. If the rule group
+	// is stateless, it contains stateless rules. If it is stateful, it contains
+	// stateful rules.
+	//
+	// This setting is required for requests that do not include the RuleGroupARN.
+	Type *string `type:"string" enum:"RuleGroupType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRuleGroupMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRuleGroupMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRuleGroupMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRuleGroupMetadataInput"}
+	if s.RuleGroupArn != nil && len(*s.RuleGroupArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleGroupArn", 1))
+	}
+	if s.RuleGroupName != nil && len(*s.RuleGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleGroupName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRuleGroupArn sets the RuleGroupArn field's value.
+func (s *DescribeRuleGroupMetadataInput) SetRuleGroupArn(v string) *DescribeRuleGroupMetadataInput {
+	s.RuleGroupArn = &v
+	return s
+}
+
+// SetRuleGroupName sets the RuleGroupName field's value.
+func (s *DescribeRuleGroupMetadataInput) SetRuleGroupName(v string) *DescribeRuleGroupMetadataInput {
+	s.RuleGroupName = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DescribeRuleGroupMetadataInput) SetType(v string) *DescribeRuleGroupMetadataInput {
+	s.Type = &v
+	return s
+}
+
+type DescribeRuleGroupMetadataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum operating resources that this rule group can use. Rule group
+	// capacity is fixed at creation. When you update a rule group, you are limited
+	// to this capacity. When you reference a rule group from a firewall policy,
+	// Network Firewall reserves this capacity for the rule group.
+	//
+	// You can retrieve the capacity that would be required for a rule group before
+	// you create the rule group by calling CreateRuleGroup with DryRun set to TRUE.
+	Capacity *int64 `type:"integer"`
+
+	// Returns the metadata objects for the specified rule group.
+	Description *string `type:"string"`
+
+	// The descriptive name of the rule group. You can't change the name of a rule
+	// group after you create it.
+	//
+	// You must specify the ARN or the name, and you can specify both.
+	//
+	// RuleGroupArn is a required field
+	RuleGroupArn *string `min:"1" type:"string" required:"true"`
+
+	// The descriptive name of the rule group. You can't change the name of a rule
+	// group after you create it.
+	//
+	// You must specify the ARN or the name, and you can specify both.
+	//
+	// RuleGroupName is a required field
+	RuleGroupName *string `min:"1" type:"string" required:"true"`
+
+	// Additional options governing how Network Firewall handles the rule group.
+	// You can only use these for stateful rule groups.
+	StatefulRuleOptions *StatefulRuleOptions `type:"structure"`
+
+	// Indicates whether the rule group is stateless or stateful. If the rule group
+	// is stateless, it contains stateless rules. If it is stateful, it contains
+	// stateful rules.
+	//
+	// This setting is required for requests that do not include the RuleGroupARN.
+	Type *string `type:"string" enum:"RuleGroupType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRuleGroupMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRuleGroupMetadataOutput) GoString() string {
+	return s.String()
+}
+
+// SetCapacity sets the Capacity field's value.
+func (s *DescribeRuleGroupMetadataOutput) SetCapacity(v int64) *DescribeRuleGroupMetadataOutput {
+	s.Capacity = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeRuleGroupMetadataOutput) SetDescription(v string) *DescribeRuleGroupMetadataOutput {
+	s.Description = &v
+	return s
+}
+
+// SetRuleGroupArn sets the RuleGroupArn field's value.
+func (s *DescribeRuleGroupMetadataOutput) SetRuleGroupArn(v string) *DescribeRuleGroupMetadataOutput {
+	s.RuleGroupArn = &v
+	return s
+}
+
+// SetRuleGroupName sets the RuleGroupName field's value.
+func (s *DescribeRuleGroupMetadataOutput) SetRuleGroupName(v string) *DescribeRuleGroupMetadataOutput {
+	s.RuleGroupName = &v
+	return s
+}
+
+// SetStatefulRuleOptions sets the StatefulRuleOptions field's value.
+func (s *DescribeRuleGroupMetadataOutput) SetStatefulRuleOptions(v *StatefulRuleOptions) *DescribeRuleGroupMetadataOutput {
+	s.StatefulRuleOptions = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DescribeRuleGroupMetadataOutput) SetType(v string) *DescribeRuleGroupMetadataOutput {
+	s.Type = &v
+	return s
+}
+
 type DescribeRuleGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5946,6 +6244,21 @@ type FirewallPolicy struct {
 	_ struct{} `type:"structure"`
 
 	// The default actions to take on a packet that doesn't match any stateful rules.
+	// The stateful default action is optional, and is only valid when using the
+	// strict rule order.
+	//
+	// Valid values of the stateful default action:
+	//
+	//    * aws:drop_strict
+	//
+	//    * aws:drop_established
+	//
+	//    * aws:alert_strict
+	//
+	//    * aws:alert_established
+	//
+	// For more information, see Strict evaluation order (https://docs.aws.amazon.com/network-firewall/latest/developerguide/suricata-strict-rule-evaluation-order.html)
+	// in the AWS Network Firewall Developer Guide.
 	StatefulDefaultActions []*string `type:"list"`
 
 	// Additional options governing how Network Firewall handles stateful rules.
@@ -7266,6 +7579,11 @@ type ListRuleGroupsInput struct {
 	// retrieve the next batch of objects, use the token returned from the prior
 	// request in your next request.
 	NextToken *string `min:"1" type:"string"`
+
+	// The scope of the request. The default setting of ACCOUNT or a setting of
+	// NULL returns all of the rule groups in your account. A setting of MANAGED
+	// returns all available managed rule groups.
+	Scope *string `type:"string" enum:"ResourceManagedStatus"`
 }
 
 // String returns the string representation.
@@ -7311,6 +7629,12 @@ func (s *ListRuleGroupsInput) SetMaxResults(v int64) *ListRuleGroupsInput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListRuleGroupsInput) SetNextToken(v string) *ListRuleGroupsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *ListRuleGroupsInput) SetScope(v string) *ListRuleGroupsInput {
+	s.Scope = &v
 	return s
 }
 
@@ -8917,9 +9241,8 @@ type RulesSourceList struct {
 	// TargetTypes is a required field
 	TargetTypes []*string `type:"list" required:"true"`
 
-	// The domains that you want to inspect for in your traffic flows. To provide
-	// multiple domains, separate them with commas. Valid domain specifications
-	// are the following:
+	// The domains that you want to inspect for in your traffic flows. Valid domain
+	// specifications are the following:
 	//
 	//    * Explicit names. For example, abc.example.com matches only the domain
 	//    abc.example.com.
@@ -8993,12 +9316,11 @@ type StatefulEngineOptions struct {
 	_ struct{} `type:"structure"`
 
 	// Indicates how to manage the order of stateful rule evaluation for the policy.
-	// By default, Network Firewall leaves the rule evaluation order up to the Suricata
-	// rule processing engine. If you set this to STRICT_ORDER, your rules are evaluated
-	// in the exact order that you provide them in the policy. With strict ordering,
-	// the rule groups are evaluated by order of priority, starting from the lowest
-	// number, and the rules in each rule group are processed in the order that
-	// they're defined.
+	// DEFAULT_ACTION_ORDER is the default behavior. Stateful rules are provided
+	// to the rule engine as Suricata compatible strings, and Suricata evaluates
+	// them based on certain settings. For more information, see Evaluation order
+	// for stateful rules (https://docs.aws.amazon.com/network-firewall/latest/developerguide/suricata-rule-evaluation-order.html)
+	// in the AWS Network Firewall Developer Guide.
 	RuleOrder *string `type:"string" enum:"RuleOrder"`
 }
 
@@ -9136,10 +9458,48 @@ func (s *StatefulRule) SetRuleOptions(v []*RuleOption) *StatefulRule {
 	return s
 }
 
+// The setting that allows the policy owner to change the behavior of the rule
+// group within a policy.
+type StatefulRuleGroupOverride struct {
+	_ struct{} `type:"structure"`
+
+	// The action that changes the rule group from DROP to ALERT. This only applies
+	// to managed rule groups.
+	Action *string `type:"string" enum:"OverrideAction"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StatefulRuleGroupOverride) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StatefulRuleGroupOverride) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *StatefulRuleGroupOverride) SetAction(v string) *StatefulRuleGroupOverride {
+	s.Action = &v
+	return s
+}
+
 // Identifier for a single stateful rule group, used in a firewall policy to
 // refer to a rule group.
 type StatefulRuleGroupReference struct {
 	_ struct{} `type:"structure"`
+
+	// The action that allows the policy owner to override the behavior of the rule
+	// group within a policy.
+	Override *StatefulRuleGroupOverride `type:"structure"`
 
 	// An integer setting that indicates the order in which to run the stateful
 	// rule groups in a single FirewallPolicy. This setting only applies to firewall
@@ -9198,6 +9558,12 @@ func (s *StatefulRuleGroupReference) Validate() error {
 	return nil
 }
 
+// SetOverride sets the Override field's value.
+func (s *StatefulRuleGroupReference) SetOverride(v *StatefulRuleGroupOverride) *StatefulRuleGroupReference {
+	s.Override = v
+	return s
+}
+
 // SetPriority sets the Priority field's value.
 func (s *StatefulRuleGroupReference) SetPriority(v int64) *StatefulRuleGroupReference {
 	s.Priority = &v
@@ -9216,9 +9582,11 @@ type StatefulRuleOptions struct {
 	_ struct{} `type:"structure"`
 
 	// Indicates how to manage the order of the rule evaluation for the rule group.
-	// By default, Network Firewall leaves the rule evaluation order up to the Suricata
-	// rule processing engine. If you set this to STRICT_ORDER, your rules are evaluated
-	// in the exact order that they're listed in your Suricata rules string.
+	// DEFAULT_ACTION_ORDER is the default behavior. Stateful rules are provided
+	// to the rule engine as Suricata compatible strings, and Suricata evaluates
+	// them based on certain settings. For more information, see Evaluation order
+	// for stateful rules (https://docs.aws.amazon.com/network-firewall/latest/developerguide/suricata-rule-evaluation-order.html)
+	// in the AWS Network Firewall Developer Guide.
 	RuleOrder *string `type:"string" enum:"RuleOrder"`
 }
 
@@ -10147,6 +10515,10 @@ func (s *UpdateFirewallDeleteProtectionInput) SetUpdateToken(v string) *UpdateFi
 type UpdateFirewallDeleteProtectionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A flag indicating whether it is possible to delete the firewall. A setting
+	// of TRUE indicates that the firewall is protected against deletion. Use this
+	// setting to protect against accidentally deleting a firewall that is in use.
+	// When you create a firewall, the operation initializes this flag to TRUE.
 	DeleteProtection *bool `type:"boolean"`
 
 	// The Amazon Resource Name (ARN) of the firewall.
@@ -11386,6 +11758,18 @@ func LogType_Values() []string {
 }
 
 const (
+	// OverrideActionDropToAlert is a OverrideAction enum value
+	OverrideActionDropToAlert = "DROP_TO_ALERT"
+)
+
+// OverrideAction_Values returns all elements of the OverrideAction enum
+func OverrideAction_Values() []string {
+	return []string{
+		OverrideActionDropToAlert,
+	}
+}
+
+const (
 	// PerObjectSyncStatusPending is a PerObjectSyncStatus enum value
 	PerObjectSyncStatusPending = "PENDING"
 
@@ -11398,6 +11782,22 @@ func PerObjectSyncStatus_Values() []string {
 	return []string{
 		PerObjectSyncStatusPending,
 		PerObjectSyncStatusInSync,
+	}
+}
+
+const (
+	// ResourceManagedStatusManaged is a ResourceManagedStatus enum value
+	ResourceManagedStatusManaged = "MANAGED"
+
+	// ResourceManagedStatusAccount is a ResourceManagedStatus enum value
+	ResourceManagedStatusAccount = "ACCOUNT"
+)
+
+// ResourceManagedStatus_Values returns all elements of the ResourceManagedStatus enum
+func ResourceManagedStatus_Values() []string {
+	return []string{
+		ResourceManagedStatusManaged,
+		ResourceManagedStatusAccount,
 	}
 }
 

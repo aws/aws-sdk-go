@@ -23,7 +23,8 @@
       "errors":[
         {"shape":"InvalidInput"},
         {"shape":"OperationLimitExceeded"},
-        {"shape":"DomainLimitExceeded"}
+        {"shape":"DomainLimitExceeded"},
+        {"shape":"UnsupportedTLD"}
       ]
     },
     "CancelDomainTransferToAnotherAwsAccount":{
@@ -36,7 +37,8 @@
       "output":{"shape":"CancelDomainTransferToAnotherAwsAccountResponse"},
       "errors":[
         {"shape":"InvalidInput"},
-        {"shape":"OperationLimitExceeded"}
+        {"shape":"OperationLimitExceeded"},
+        {"shape":"UnsupportedTLD"}
       ]
     },
     "CheckDomainAvailability":{
@@ -62,6 +64,21 @@
       "output":{"shape":"CheckDomainTransferabilityResponse"},
       "errors":[
         {"shape":"InvalidInput"},
+        {"shape":"UnsupportedTLD"}
+      ]
+    },
+    "DeleteDomain":{
+      "name":"DeleteDomain",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDomainRequest"},
+      "output":{"shape":"DeleteDomainResponse"},
+      "errors":[
+        {"shape":"InvalidInput"},
+        {"shape":"DuplicateRequest"},
+        {"shape":"TLDRulesViolation"},
         {"shape":"UnsupportedTLD"}
       ]
     },
@@ -214,6 +231,19 @@
         {"shape":"InvalidInput"}
       ]
     },
+    "ListPrices":{
+      "name":"ListPrices",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListPricesRequest"},
+      "output":{"shape":"ListPricesResponse"},
+      "errors":[
+        {"shape":"InvalidInput"},
+        {"shape":"UnsupportedTLD"}
+      ]
+    },
     "ListTagsForDomain":{
       "name":"ListTagsForDomain",
       "http":{
@@ -255,7 +285,8 @@
       "output":{"shape":"RejectDomainTransferFromAnotherAwsAccountResponse"},
       "errors":[
         {"shape":"InvalidInput"},
-        {"shape":"OperationLimitExceeded"}
+        {"shape":"OperationLimitExceeded"},
+        {"shape":"UnsupportedTLD"}
       ]
     },
     "RenewDomain":{
@@ -329,7 +360,8 @@
       "errors":[
         {"shape":"InvalidInput"},
         {"shape":"OperationLimitExceeded"},
-        {"shape":"DuplicateRequest"}
+        {"shape":"DuplicateRequest"},
+        {"shape":"UnsupportedTLD"}
       ]
     },
     "UpdateDomainContact":{
@@ -427,6 +459,8 @@
     },
     "AccountId":{
       "type":"string",
+      "max":12,
+      "min":12,
       "pattern":"^(\\d{12})$"
     },
     "AddressLine":{
@@ -536,6 +570,7 @@
     "CountryCode":{
       "type":"string",
       "enum":[
+        "AC",
         "AD",
         "AE",
         "AF",
@@ -551,6 +586,7 @@
         "AT",
         "AU",
         "AW",
+        "AX",
         "AZ",
         "BA",
         "BB",
@@ -565,9 +601,11 @@
         "BM",
         "BN",
         "BO",
+        "BQ",
         "BR",
         "BS",
         "BT",
+        "BV",
         "BW",
         "BY",
         "BZ",
@@ -586,6 +624,7 @@
         "CR",
         "CU",
         "CV",
+        "CW",
         "CX",
         "CY",
         "CZ",
@@ -598,6 +637,7 @@
         "EC",
         "EE",
         "EG",
+        "EH",
         "ER",
         "ES",
         "ET",
@@ -611,18 +651,23 @@
         "GB",
         "GD",
         "GE",
+        "GF",
+        "GG",
         "GH",
         "GI",
         "GL",
         "GM",
         "GN",
+        "GP",
         "GQ",
         "GR",
+        "GS",
         "GT",
         "GU",
         "GW",
         "GY",
         "HK",
+        "HM",
         "HN",
         "HR",
         "HT",
@@ -632,10 +677,12 @@
         "IL",
         "IM",
         "IN",
+        "IO",
         "IQ",
         "IR",
         "IS",
         "IT",
+        "JE",
         "JM",
         "JO",
         "JP",
@@ -674,6 +721,7 @@
         "MN",
         "MO",
         "MP",
+        "MQ",
         "MR",
         "MS",
         "MT",
@@ -686,6 +734,7 @@
         "NA",
         "NC",
         "NE",
+        "NF",
         "NG",
         "NI",
         "NL",
@@ -705,10 +754,12 @@
         "PM",
         "PN",
         "PR",
+        "PS",
         "PT",
         "PW",
         "PY",
         "QA",
+        "RE",
         "RO",
         "RS",
         "RU",
@@ -721,18 +772,22 @@
         "SG",
         "SH",
         "SI",
+        "SJ",
         "SK",
         "SL",
         "SM",
         "SN",
         "SO",
         "SR",
+        "SS",
         "ST",
         "SV",
+        "SX",
         "SY",
         "SZ",
         "TC",
         "TD",
+        "TF",
         "TG",
         "TH",
         "TJ",
@@ -741,6 +796,7 @@
         "TM",
         "TN",
         "TO",
+        "TP",
         "TR",
         "TT",
         "TV",
@@ -767,8 +823,26 @@
         "ZW"
       ]
     },
+    "Currency":{
+      "type":"string",
+      "max":3,
+      "min":3
+    },
     "CurrentExpiryYear":{"type":"integer"},
     "DNSSec":{"type":"string"},
+    "DeleteDomainRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{"shape":"DomainName"}
+      }
+    },
+    "DeleteDomainResponse":{
+      "type":"structure",
+      "members":{
+        "OperationId":{"shape":"OperationId"}
+      }
+    },
     "DeleteTagsForDomainRequest":{
       "type":"structure",
       "required":[
@@ -839,6 +913,26 @@
     "DomainName":{
       "type":"string",
       "max":255
+    },
+    "DomainPrice":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"DomainPriceName"},
+        "RegistrationPrice":{"shape":"PriceWithCurrency"},
+        "TransferPrice":{"shape":"PriceWithCurrency"},
+        "RenewalPrice":{"shape":"PriceWithCurrency"},
+        "ChangeOwnershipPrice":{"shape":"PriceWithCurrency"},
+        "RestorationPrice":{"shape":"PriceWithCurrency"}
+      }
+    },
+    "DomainPriceList":{
+      "type":"list",
+      "member":{"shape":"DomainPrice"}
+    },
+    "DomainPriceName":{
+      "type":"string",
+      "max":255,
+      "min":1
     },
     "DomainStatus":{"type":"string"},
     "DomainStatusList":{
@@ -965,14 +1059,38 @@
         "SG_ID_NUMBER",
         "VAT_NUMBER",
         "UK_CONTACT_TYPE",
-        "UK_COMPANY_NUMBER"
+        "UK_COMPANY_NUMBER",
+        "EU_COUNTRY_OF_CITIZENSHIP"
       ]
     },
     "ExtraParamValue":{
       "type":"string",
-      "max":2048
+      "max":2048,
+      "sensitive":true
     },
-    "FIAuthKey":{"type":"string"},
+    "FIAuthKey":{
+      "type":"string",
+      "max":255,
+      "min":0,
+      "sensitive":true
+    },
+    "FilterCondition":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Operator",
+        "Values"
+      ],
+      "members":{
+        "Name":{"shape":"ListDomainsAttributeName"},
+        "Operator":{"shape":"Operator"},
+        "Values":{"shape":"Values"}
+      }
+    },
+    "FilterConditions":{
+      "type":"list",
+      "member":{"shape":"FilterCondition"}
+    },
     "GetContactReachabilityStatusRequest":{
       "type":"structure",
       "members":{
@@ -1089,9 +1207,18 @@
       "type":"string",
       "max":3
     },
+    "ListDomainsAttributeName":{
+      "type":"string",
+      "enum":[
+        "DomainName",
+        "Expiry"
+      ]
+    },
     "ListDomainsRequest":{
       "type":"structure",
       "members":{
+        "FilterConditions":{"shape":"FilterConditions"},
+        "SortCondition":{"shape":"SortCondition"},
         "Marker":{"shape":"PageMarker"},
         "MaxItems":{"shape":"PageMaxItems"}
       }
@@ -1117,6 +1244,22 @@
       "required":["Operations"],
       "members":{
         "Operations":{"shape":"OperationSummaryList"},
+        "NextPageMarker":{"shape":"PageMarker"}
+      }
+    },
+    "ListPricesRequest":{
+      "type":"structure",
+      "members":{
+        "Tld":{"shape":"TldName"},
+        "Marker":{"shape":"PageMarker"},
+        "MaxItems":{"shape":"PageMaxItems"}
+      }
+    },
+    "ListPricesResponse":{
+      "type":"structure",
+      "required":["Prices"],
+      "members":{
+        "Prices":{"shape":"DomainPriceList"},
         "NextPageMarker":{"shape":"PageMarker"}
       }
     },
@@ -1209,6 +1352,14 @@
         "INTERNAL_TRANSFER_IN_DOMAIN"
       ]
     },
+    "Operator":{
+      "type":"string",
+      "enum":[
+        "LE",
+        "GE",
+        "BEGINS_WITH"
+      ]
+    },
     "PageMarker":{
       "type":"string",
       "max":4096
@@ -1218,6 +1369,17 @@
       "max":100
     },
     "Price":{"type":"double"},
+    "PriceWithCurrency":{
+      "type":"structure",
+      "required":[
+        "Price",
+        "Currency"
+      ],
+      "members":{
+        "Price":{"shape":"Price"},
+        "Currency":{"shape":"Currency"}
+      }
+    },
     "ReachabilityStatus":{
       "type":"string",
       "enum":[
@@ -1320,6 +1482,24 @@
         "AuthCode":{"shape":"DomainAuthCode"}
       }
     },
+    "SortCondition":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "SortOrder"
+      ],
+      "members":{
+        "Name":{"shape":"ListDomainsAttributeName"},
+        "SortOrder":{"shape":"SortOrder"}
+      }
+    },
+    "SortOrder":{
+      "type":"string",
+      "enum":[
+        "ASC",
+        "DESC"
+      ]
+    },
     "State":{
       "type":"string",
       "max":255
@@ -1339,7 +1519,11 @@
         "Value":{"shape":"TagValue"}
       }
     },
-    "TagKey":{"type":"string"},
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
     "TagKeyList":{
       "type":"list",
       "member":{"shape":"TagKey"}
@@ -1348,8 +1532,17 @@
       "type":"list",
       "member":{"shape":"Tag"}
     },
-    "TagValue":{"type":"string"},
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "Timestamp":{"type":"timestamp"},
+    "TldName":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
     "TransferDomainRequest":{
       "type":"structure",
       "required":[
@@ -1482,6 +1675,17 @@
       "type":"structure",
       "members":{
       }
+    },
+    "Value":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "Values":{
+      "type":"list",
+      "member":{"shape":"Value"},
+      "max":1,
+      "min":1
     },
     "ViewBillingRequest":{
       "type":"structure",

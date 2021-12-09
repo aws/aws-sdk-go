@@ -2162,7 +2162,6 @@
       "type":"structure",
       "required":[
         "slotTypeName",
-        "valueSelectionSetting",
         "botId",
         "botVersion",
         "localeId"
@@ -2187,7 +2186,8 @@
           "shape":"LocaleId",
           "location":"uri",
           "locationName":"localeId"
-        }
+        },
+        "externalSourceSetting":{"shape":"ExternalSourceSetting"}
       }
     },
     "CreateSlotTypeResponse":{
@@ -2202,7 +2202,8 @@
         "botId":{"shape":"Id"},
         "botVersion":{"shape":"DraftBotVersion"},
         "localeId":{"shape":"LocaleId"},
-        "creationDateTime":{"shape":"Timestamp"}
+        "creationDateTime":{"shape":"Timestamp"},
+        "externalSourceSetting":{"shape":"ExternalSourceSetting"}
       }
     },
     "CreateUploadUrlRequest":{
@@ -2666,7 +2667,8 @@
         "creationDateTime":{"shape":"Timestamp"},
         "lastUpdatedDateTime":{"shape":"Timestamp"},
         "lastBuildSubmittedDateTime":{"shape":"Timestamp"},
-        "botLocaleHistoryEvents":{"shape":"BotLocaleHistoryEventsList"}
+        "botLocaleHistoryEvents":{"shape":"BotLocaleHistoryEventsList"},
+        "recommendedActions":{"shape":"RecommendedActions"}
       }
     },
     "DescribeBotRecommendationRequest":{
@@ -2996,7 +2998,8 @@
         "botVersion":{"shape":"BotVersion"},
         "localeId":{"shape":"LocaleId"},
         "creationDateTime":{"shape":"Timestamp"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "externalSourceSetting":{"shape":"ExternalSourceSetting"}
       }
     },
     "Description":{
@@ -3109,6 +3112,12 @@
       "type":"list",
       "member":{"shape":"ExportSummary"}
     },
+    "ExternalSourceSetting":{
+      "type":"structure",
+      "members":{
+        "grammarSlotTypeSetting":{"shape":"GrammarSlotTypeSetting"}
+      }
+    },
     "FailureReason":{"type":"string"},
     "FailureReasons":{
       "type":"list",
@@ -3188,6 +3197,24 @@
         "startResponse":{"shape":"FulfillmentStartResponseSpecification"},
         "updateResponse":{"shape":"FulfillmentUpdateResponseSpecification"},
         "timeoutInSeconds":{"shape":"FulfillmentTimeout"}
+      }
+    },
+    "GrammarSlotTypeSetting":{
+      "type":"structure",
+      "members":{
+        "source":{"shape":"GrammarSlotTypeSource"}
+      }
+    },
+    "GrammarSlotTypeSource":{
+      "type":"structure",
+      "required":[
+        "s3BucketName",
+        "s3ObjectKey"
+      ],
+      "members":{
+        "s3BucketName":{"shape":"S3BucketName"},
+        "s3ObjectKey":{"shape":"S3ObjectPath"},
+        "kmsKeyArn":{"shape":"KmsKeyArn"}
       }
     },
     "HitCount":{"type":"integer"},
@@ -4108,6 +4135,11 @@
       "max":5000,
       "min":1
     },
+    "RecommendedAction":{"type":"string"},
+    "RecommendedActions":{
+      "type":"list",
+      "member":{"shape":"RecommendedAction"}
+    },
     "RecommendedIntentSummary":{
       "type":"structure",
       "members":{
@@ -4203,6 +4235,12 @@
         "transcriptFilter":{"shape":"TranscriptFilter"},
         "kmsKeyArn":{"shape":"KmsKeyArn"}
       }
+    },
+    "S3ObjectPath":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"[\\.\\-\\!\\*\\_\\'\\(\\)a-zA-Z0-9][\\.\\-\\!\\*\\_\\'\\(\\)\\/a-zA-Z0-9]*$"
     },
     "SSMLMessage":{
       "type":"structure",
@@ -4434,6 +4472,14 @@
       "type":"list",
       "member":{"shape":"SlotSummary"}
     },
+    "SlotTypeCategory":{
+      "type":"string",
+      "enum":[
+        "Custom",
+        "Extended",
+        "ExternalGrammar"
+      ]
+    },
     "SlotTypeFilter":{
       "type":"structure",
       "required":[
@@ -4449,7 +4495,10 @@
     },
     "SlotTypeFilterName":{
       "type":"string",
-      "enum":["SlotTypeName"]
+      "enum":[
+        "SlotTypeName",
+        "ExternalSourceType"
+      ]
     },
     "SlotTypeFilterOperator":{
       "type":"string",
@@ -4496,7 +4545,8 @@
         "slotTypeName":{"shape":"Name"},
         "description":{"shape":"Description"},
         "parentSlotTypeSignature":{"shape":"SlotTypeSignature"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "slotTypeCategory":{"shape":"SlotTypeCategory"}
       }
     },
     "SlotTypeSummaryList":{
@@ -4875,7 +4925,8 @@
         "botLocaleStatus":{"shape":"BotLocaleStatus"},
         "failureReasons":{"shape":"FailureReasons"},
         "creationDateTime":{"shape":"Timestamp"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "recommendedActions":{"shape":"RecommendedActions"}
       }
     },
     "UpdateBotRecommendationRequest":{
@@ -5147,7 +5198,6 @@
       "required":[
         "slotTypeId",
         "slotTypeName",
-        "valueSelectionSetting",
         "botId",
         "botVersion",
         "localeId"
@@ -5177,7 +5227,8 @@
           "shape":"LocaleId",
           "location":"uri",
           "locationName":"localeId"
-        }
+        },
+        "externalSourceSetting":{"shape":"ExternalSourceSetting"}
       }
     },
     "UpdateSlotTypeResponse":{
@@ -5193,7 +5244,8 @@
         "botVersion":{"shape":"DraftBotVersion"},
         "localeId":{"shape":"LocaleId"},
         "creationDateTime":{"shape":"Timestamp"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "externalSourceSetting":{"shape":"ExternalSourceSetting"}
       }
     },
     "Utterance":{"type":"string"},

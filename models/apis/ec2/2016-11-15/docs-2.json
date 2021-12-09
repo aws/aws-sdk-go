@@ -7231,6 +7231,7 @@
     "ElasticGpuId": {
       "base": null,
       "refs": {
+        "ElasticGpuAssociation$ElasticGpuId": "<p>The ID of the Elastic Graphics accelerator.</p>",
         "ElasticGpuIdSet$member": null
       }
     },
@@ -16626,7 +16627,6 @@
         "EbsBlockDevice$KmsKeyId": "<p>Identifier (key ID, key alias, ID ARN, or alias ARN) for a customer managed CMK under which the EBS volume is encrypted.</p> <p>This parameter is only supported on <code>BlockDeviceMapping</code> objects called by <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html\">RunInstances</a>, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RequestSpotFleet.html\">RequestSpotFleet</a>, and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RequestSpotInstances.html\">RequestSpotInstances</a>.</p>",
         "EbsBlockDevice$OutpostArn": "<p>The ARN of the Outpost on which the snapshot is stored.</p>",
         "EbsInstanceBlockDevice$VolumeId": "<p>The ID of the EBS volume.</p>",
-        "ElasticGpuAssociation$ElasticGpuId": "<p>The ID of the Elastic Graphics accelerator.</p>",
         "ElasticGpuAssociation$ElasticGpuAssociationId": "<p>The ID of the association.</p>",
         "ElasticGpuAssociation$ElasticGpuAssociationState": "<p>The state of the association between the instance and the Elastic Graphics accelerator.</p>",
         "ElasticGpuAssociation$ElasticGpuAssociationTime": "<p>The time the Elastic Graphics accelerator was associated with the instance.</p>",

@@ -76,6 +76,10 @@ type Route53DomainsAPI interface {
 	CheckDomainTransferabilityWithContext(aws.Context, *route53domains.CheckDomainTransferabilityInput, ...request.Option) (*route53domains.CheckDomainTransferabilityOutput, error)
 	CheckDomainTransferabilityRequest(*route53domains.CheckDomainTransferabilityInput) (*request.Request, *route53domains.CheckDomainTransferabilityOutput)
 
+	DeleteDomain(*route53domains.DeleteDomainInput) (*route53domains.DeleteDomainOutput, error)
+	DeleteDomainWithContext(aws.Context, *route53domains.DeleteDomainInput, ...request.Option) (*route53domains.DeleteDomainOutput, error)
+	DeleteDomainRequest(*route53domains.DeleteDomainInput) (*request.Request, *route53domains.DeleteDomainOutput)
+
 	DeleteTagsForDomain(*route53domains.DeleteTagsForDomainInput) (*route53domains.DeleteTagsForDomainOutput, error)
 	DeleteTagsForDomainWithContext(aws.Context, *route53domains.DeleteTagsForDomainInput, ...request.Option) (*route53domains.DeleteTagsForDomainOutput, error)
 	DeleteTagsForDomainRequest(*route53domains.DeleteTagsForDomainInput) (*request.Request, *route53domains.DeleteTagsForDomainOutput)
@@ -125,6 +129,13 @@ type Route53DomainsAPI interface {
 
 	ListOperationsPages(*route53domains.ListOperationsInput, func(*route53domains.ListOperationsOutput, bool) bool) error
 	ListOperationsPagesWithContext(aws.Context, *route53domains.ListOperationsInput, func(*route53domains.ListOperationsOutput, bool) bool, ...request.Option) error
+
+	ListPrices(*route53domains.ListPricesInput) (*route53domains.ListPricesOutput, error)
+	ListPricesWithContext(aws.Context, *route53domains.ListPricesInput, ...request.Option) (*route53domains.ListPricesOutput, error)
+	ListPricesRequest(*route53domains.ListPricesInput) (*request.Request, *route53domains.ListPricesOutput)
+
+	ListPricesPages(*route53domains.ListPricesInput, func(*route53domains.ListPricesOutput, bool) bool) error
+	ListPricesPagesWithContext(aws.Context, *route53domains.ListPricesInput, func(*route53domains.ListPricesOutput, bool) bool, ...request.Option) error
 
 	ListTagsForDomain(*route53domains.ListTagsForDomainInput) (*route53domains.ListTagsForDomainOutput, error)
 	ListTagsForDomainWithContext(aws.Context, *route53domains.ListTagsForDomainInput, ...request.Option) (*route53domains.ListTagsForDomainOutput, error)
@@ -177,6 +188,9 @@ type Route53DomainsAPI interface {
 	ViewBilling(*route53domains.ViewBillingInput) (*route53domains.ViewBillingOutput, error)
 	ViewBillingWithContext(aws.Context, *route53domains.ViewBillingInput, ...request.Option) (*route53domains.ViewBillingOutput, error)
 	ViewBillingRequest(*route53domains.ViewBillingInput) (*request.Request, *route53domains.ViewBillingOutput)
+
+	ViewBillingPages(*route53domains.ViewBillingInput, func(*route53domains.ViewBillingOutput, bool) bool) error
+	ViewBillingPagesWithContext(aws.Context, *route53domains.ViewBillingInput, func(*route53domains.ViewBillingOutput, bool) bool, ...request.Option) error
 }
 
 var _ Route53DomainsAPI = (*route53domains.Route53Domains)(nil)
