@@ -668,7 +668,7 @@ func (o *Operation) GenerateAction() error {
 		description = strings.ReplaceAll(description, "\n ", "")
 
 		actionParameters[memberName] = plugin.ActionParameter{
-			Type:        memberInfo.GoTypeElem(),
+			Type:        convertGoToBlinkType(memberInfo.Shape.Type),
 			Description: strings.TrimSpace(description),
 			Required: func(name string, requiredList []string) bool {
 				for _, req := range requiredList {
@@ -739,6 +739,27 @@ func (o *Operation) GenerateAction() error {
 	}
 
 	return nil
+}
+
+func convertGoToBlinkType(goType string) string {
+	switch goType {
+	case "structure", "map","jsonvalue":
+		return "code:json"
+	case "list":
+		return "array"
+	case "boolean":
+		return "bool"
+	case "string", "character", "blob":
+		return "string"
+	case "byte", "short", "integer", "long":
+		return "int64"
+	case "float", "double":
+		return "float64"
+	case "timestamp":
+		return "date-time"
+	default:
+		panic("Unsupported shape type: " + goType)
+	}
 }
 
 // tplInfSig defines the template for rendering an Operation's signature within an Interface definition.
