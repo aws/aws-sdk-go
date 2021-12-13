@@ -1,3 +1,10 @@
+Release v1.42.23 (2021-12-13)
+===
+
+### Service Client Updates
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for Secrets Manager
+
 Release v1.42.22 (2021-12-09)
 ===
 
