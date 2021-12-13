@@ -64,7 +64,7 @@
 // the requests successfully made to Secrets Manager, who made the request,
 // when it was made, and so on. For more about Amazon Web Services Secrets Manager
 // and support for Amazon Web Services CloudTrail, see Logging Amazon Web Services
-// Secrets Manager Events with Amazon Web Services CloudTrail (http://docs.aws.amazon.com/secretsmanager/latest/userguide/monitoring.html#monitoring_cloudtrail)
+// Secrets Manager Events with Amazon Web Services CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/monitoring.html#monitoring_cloudtrail)
 // in the Amazon Web Services Secrets Manager User Guide. To learn more about
 // CloudTrail, including enabling it and find your log files, see the Amazon
 // Web Services CloudTrail User Guide (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/what_is_cloud_trail_top_level.html).
