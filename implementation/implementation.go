@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/aws/aws-sdk-go/aws/defaults"
 	"io/ioutil"
 	"math/rand"
 	"net/http"
@@ -2032,11 +2033,40 @@ func getActionParameters(request *plugin.ExecuteActionRequest) (*ActionParameter
 func createAWSSessionByContext(region string, context *plugin.ActionContext, timeout int32) (*session.Session, error) {
 	awsCredentials, err := context.GetCredentials("aws")
 	if err != nil {
-		log.Errorf("Failed to get AWS awsCredentials: %v", err)
-		return nil, err
+		return createSessionWithNoCredentials(region, timeout)
 	}
 
-	return createAWSSessionByCredentials(region, awsCredentials, timeout)
+	sess, err := createAWSSessionByCredentials(region, awsCredentials, timeout)
+	if err != nil {
+		return createSessionWithNoCredentials(region, timeout)
+	}
+
+	return sess, nil
+}
+
+func createSessionWithNoCredentials(region string, timeout int32) (*session.Session, error) {
+	log.Debug("Creating session with no credentials")
+
+	defaultAWSConfiguration := defaults.Get().Config
+	if defaultAWSConfiguration == nil {
+		return nil, errors.New("failed to get default aws configuration")
+	}
+
+	awsConfig := &aws.Config{
+		Region:      aws.String(region),
+		Credentials: defaultAWSConfiguration.Credentials,
+	}
+
+	if timeout > 0 {
+		awsConfig.HTTPClient = &http.Client{Timeout: time.Duration(timeout) * time.Second}
+	}
+
+	awsSession, err := session.NewSession(awsConfig)
+	if err != nil {
+		return nil, fmt.Errorf("unable to create session with error: %v", err)
+	}
+
+	return awsSession, nil
 }
 
 // access keys have to be both set
@@ -2132,12 +2162,20 @@ func createAWSSessionByCredentials(region string, awsCredentials map[string]inte
 	// checking whether the session is going to be with regular aws access keys or a role needed to be assumed
 	switch sessionType {
 	case "roleBased":
-		sess, _ := session.NewSession(&aws.Config{
+		awsConfig := &aws.Config{
 			Region: aws.String(region),
-		})
+		}
+
+		if timeout > 0 {
+			awsConfig.HTTPClient = &http.Client{Timeout: time.Duration(timeout) * time.Second}
+		}
+
+		sess, err := session.NewSession(awsConfig)
+		if err != nil {
+			return nil, fmt.Errorf("unable to create session with error: %v", err)
+		}
 
 		svc := sts.New(sess)
-		var err error
 		access, secret, sessionToken, err = assumeRole(svc, k, v)
 		if err != nil {
 			return nil, fmt.Errorf("unable to assume role with error: %w", err)
