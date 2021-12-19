@@ -623,7 +623,7 @@
       "refs": {
         "GetDatabasesRequest$MaxResults": "<p>The maximum number of databases to return in one response.</p>",
         "GetTableVersionsRequest$MaxResults": "<p>The maximum number of table versions to return in one response.</p>",
-        "GetTablesRequest$MaxResults": "<p>The maximum number of tables to return in a single response.</p>",
+        "GetTablesRequest$MaxResults": "<p>The maximum number of tables to return in a single response. Truncated at 100.</p>",
         "GetUserDefinedFunctionsRequest$MaxResults": "<p>The maximum number of functions to return in one response.</p>"
       }
     },
