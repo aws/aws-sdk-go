@@ -439,8 +439,8 @@ func (c *Redshift) AuthorizeDataShareRequest(input *AuthorizeDataShareInput) (re
 // AuthorizeDataShare API operation for Amazon Redshift.
 //
 // From a data producer account, authorizes the sharing of a datashare with
-// one or more consumer accounts. To authorize a datashare for a data consumer,
-// the producer account must have the correct access privileges.
+// one or more consumer accounts or managing entities. To authorize a datashare
+// for a data consumer, the producer account must have the correct access privileges.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13321,6 +13321,9 @@ type AssociateDataShareConsumerOutput struct {
 	// and data consumers.
 	DataShareAssociations []*DataShareAssociation `type:"list"`
 
+	// The identifier of a datashare to show its managing entity.
+	ManagedBy *string `type:"string"`
+
 	// The Amazon Resource Name (ARN) of the producer.
 	ProducerArn *string `type:"string"`
 }
@@ -13358,6 +13361,12 @@ func (s *AssociateDataShareConsumerOutput) SetDataShareArn(v string) *AssociateD
 // SetDataShareAssociations sets the DataShareAssociations field's value.
 func (s *AssociateDataShareConsumerOutput) SetDataShareAssociations(v []*DataShareAssociation) *AssociateDataShareConsumerOutput {
 	s.DataShareAssociations = v
+	return s
+}
+
+// SetManagedBy sets the ManagedBy field's value.
+func (s *AssociateDataShareConsumerOutput) SetManagedBy(v string) *AssociateDataShareConsumerOutput {
+	s.ManagedBy = &v
 	return s
 }
 
@@ -13553,7 +13562,8 @@ type AuthorizeDataShareInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the data consumer that is authorized to access the datashare.
-	// This identifier is an Amazon Web Services account ID.
+	// This identifier is an Amazon Web Services account ID or a keyword, such as
+	// ADX.
 	//
 	// ConsumerIdentifier is a required field
 	ConsumerIdentifier *string `type:"string" required:"true"`
@@ -13628,6 +13638,9 @@ type AuthorizeDataShareOutput struct {
 	// and data consumers.
 	DataShareAssociations []*DataShareAssociation `type:"list"`
 
+	// The identifier of a datashare to show its managing entity.
+	ManagedBy *string `type:"string"`
+
 	// The Amazon Resource Name (ARN) of the producer.
 	ProducerArn *string `type:"string"`
 }
@@ -13665,6 +13678,12 @@ func (s *AuthorizeDataShareOutput) SetDataShareArn(v string) *AuthorizeDataShare
 // SetDataShareAssociations sets the DataShareAssociations field's value.
 func (s *AuthorizeDataShareOutput) SetDataShareAssociations(v []*DataShareAssociation) *AuthorizeDataShareOutput {
 	s.DataShareAssociations = v
+	return s
+}
+
+// SetManagedBy sets the ManagedBy field's value.
+func (s *AuthorizeDataShareOutput) SetManagedBy(v string) *AuthorizeDataShareOutput {
+	s.ManagedBy = &v
 	return s
 }
 
@@ -18591,6 +18610,9 @@ type DataShare struct {
 	// and data consumers.
 	DataShareAssociations []*DataShareAssociation `type:"list"`
 
+	// The identifier of a datashare to show its managing entity.
+	ManagedBy *string `type:"string"`
+
 	// The Amazon Resource Name (ARN) of the producer.
 	ProducerArn *string `type:"string"`
 }
@@ -18628,6 +18650,12 @@ func (s *DataShare) SetDataShareArn(v string) *DataShare {
 // SetDataShareAssociations sets the DataShareAssociations field's value.
 func (s *DataShare) SetDataShareAssociations(v []*DataShareAssociation) *DataShare {
 	s.DataShareAssociations = v
+	return s
+}
+
+// SetManagedBy sets the ManagedBy field's value.
+func (s *DataShare) SetManagedBy(v string) *DataShare {
+	s.ManagedBy = &v
 	return s
 }
 
@@ -18780,7 +18808,8 @@ type DeauthorizeDataShareInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the data consumer that is to have authorization removed
-	// from the datashare. This identifier is an Amazon Web Services account ID.
+	// from the datashare. This identifier is an Amazon Web Services account ID
+	// or a keyword, such as ADX.
 	//
 	// ConsumerIdentifier is a required field
 	ConsumerIdentifier *string `type:"string" required:"true"`
@@ -18854,6 +18883,9 @@ type DeauthorizeDataShareOutput struct {
 	// and data consumers.
 	DataShareAssociations []*DataShareAssociation `type:"list"`
 
+	// The identifier of a datashare to show its managing entity.
+	ManagedBy *string `type:"string"`
+
 	// The Amazon Resource Name (ARN) of the producer.
 	ProducerArn *string `type:"string"`
 }
@@ -18891,6 +18923,12 @@ func (s *DeauthorizeDataShareOutput) SetDataShareArn(v string) *DeauthorizeDataS
 // SetDataShareAssociations sets the DataShareAssociations field's value.
 func (s *DeauthorizeDataShareOutput) SetDataShareAssociations(v []*DataShareAssociation) *DeauthorizeDataShareOutput {
 	s.DataShareAssociations = v
+	return s
+}
+
+// SetManagedBy sets the ManagedBy field's value.
+func (s *DeauthorizeDataShareOutput) SetManagedBy(v string) *DeauthorizeDataShareOutput {
+	s.ManagedBy = &v
 	return s
 }
 
@@ -25296,6 +25334,9 @@ type DisassociateDataShareConsumerOutput struct {
 	// and data consumers.
 	DataShareAssociations []*DataShareAssociation `type:"list"`
 
+	// The identifier of a datashare to show its managing entity.
+	ManagedBy *string `type:"string"`
+
 	// The Amazon Resource Name (ARN) of the producer.
 	ProducerArn *string `type:"string"`
 }
@@ -25333,6 +25374,12 @@ func (s *DisassociateDataShareConsumerOutput) SetDataShareArn(v string) *Disasso
 // SetDataShareAssociations sets the DataShareAssociations field's value.
 func (s *DisassociateDataShareConsumerOutput) SetDataShareAssociations(v []*DataShareAssociation) *DisassociateDataShareConsumerOutput {
 	s.DataShareAssociations = v
+	return s
+}
+
+// SetManagedBy sets the ManagedBy field's value.
+func (s *DisassociateDataShareConsumerOutput) SetManagedBy(v string) *DisassociateDataShareConsumerOutput {
+	s.ManagedBy = &v
 	return s
 }
 
@@ -30389,6 +30436,9 @@ type RejectDataShareOutput struct {
 	// and data consumers.
 	DataShareAssociations []*DataShareAssociation `type:"list"`
 
+	// The identifier of a datashare to show its managing entity.
+	ManagedBy *string `type:"string"`
+
 	// The Amazon Resource Name (ARN) of the producer.
 	ProducerArn *string `type:"string"`
 }
@@ -30426,6 +30476,12 @@ func (s *RejectDataShareOutput) SetDataShareArn(v string) *RejectDataShareOutput
 // SetDataShareAssociations sets the DataShareAssociations field's value.
 func (s *RejectDataShareOutput) SetDataShareAssociations(v []*DataShareAssociation) *RejectDataShareOutput {
 	s.DataShareAssociations = v
+	return s
+}
+
+// SetManagedBy sets the ManagedBy field's value.
+func (s *RejectDataShareOutput) SetManagedBy(v string) *RejectDataShareOutput {
+	s.ManagedBy = &v
 	return s
 }
 

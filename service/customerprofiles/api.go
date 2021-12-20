@@ -1282,8 +1282,6 @@ func (c *CustomerProfiles) GetMatchesRequest(input *GetMatchesInput) (req *reque
 
 // GetMatches API operation for Amazon Connect Customer Profiles.
 //
-// This API is in preview release for Amazon Connect and subject to change.
-//
 // Before calling this API, use CreateDomain (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_CreateDomain.html)
 // or UpdateDomain (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html)
 // to enable identity resolution: set Matching to true.
@@ -2327,8 +2325,6 @@ func (c *CustomerProfiles) MergeProfilesRequest(input *MergeProfilesInput) (req 
 }
 
 // MergeProfiles API operation for Amazon Connect Customer Profiles.
-//
-// This API is in preview release for Amazon Connect and subject to change.
 //
 // Runs an AWS Lambda job that does the following:
 //
@@ -6160,9 +6156,14 @@ type GetIntegrationOutput struct {
 	LastUpdatedAt *time.Time `type:"timestamp" required:"true"`
 
 	// The name of the profile object type.
-	//
-	// ObjectTypeName is a required field
-	ObjectTypeName *string `min:"1" type:"string" required:"true"`
+	ObjectTypeName *string `min:"1" type:"string"`
+
+	// A map in which each key is an event type from an external application such
+	// as Segment or Shopify, and each value is an ObjectTypeName (template) used
+	// to ingest the event. It supports the following event types: SegmentIdentify,
+	// ShopifyCreateCustomers, ShopifyUpdateCustomers, ShopifyCreateDraftOrders,
+	// ShopifyUpdateDraftOrders, ShopifyCreateOrders, and ShopifyUpdatedOrders.
+	ObjectTypeNames map[string]*string `type:"map"`
 
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
@@ -6212,6 +6213,12 @@ func (s *GetIntegrationOutput) SetLastUpdatedAt(v time.Time) *GetIntegrationOutp
 // SetObjectTypeName sets the ObjectTypeName field's value.
 func (s *GetIntegrationOutput) SetObjectTypeName(v string) *GetIntegrationOutput {
 	s.ObjectTypeName = &v
+	return s
+}
+
+// SetObjectTypeNames sets the ObjectTypeNames field's value.
+func (s *GetIntegrationOutput) SetObjectTypeNames(v map[string]*string) *GetIntegrationOutput {
+	s.ObjectTypeNames = v
 	return s
 }
 
@@ -7440,9 +7447,14 @@ type ListIntegrationItem struct {
 	LastUpdatedAt *time.Time `type:"timestamp" required:"true"`
 
 	// The name of the profile object type.
-	//
-	// ObjectTypeName is a required field
-	ObjectTypeName *string `min:"1" type:"string" required:"true"`
+	ObjectTypeName *string `min:"1" type:"string"`
+
+	// A map in which each key is an event type from an external application such
+	// as Segment or Shopify, and each value is an ObjectTypeName (template) used
+	// to ingest the event. It supports the following event types: SegmentIdentify,
+	// ShopifyCreateCustomers, ShopifyUpdateCustomers, ShopifyCreateDraftOrders,
+	// ShopifyUpdateDraftOrders, ShopifyCreateOrders, and ShopifyUpdatedOrders.
+	ObjectTypeNames map[string]*string `type:"map"`
 
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
@@ -7492,6 +7504,12 @@ func (s *ListIntegrationItem) SetLastUpdatedAt(v time.Time) *ListIntegrationItem
 // SetObjectTypeName sets the ObjectTypeName field's value.
 func (s *ListIntegrationItem) SetObjectTypeName(v string) *ListIntegrationItem {
 	s.ObjectTypeName = &v
+	return s
+}
+
+// SetObjectTypeNames sets the ObjectTypeNames field's value.
+func (s *ListIntegrationItem) SetObjectTypeNames(v map[string]*string) *ListIntegrationItem {
+	s.ObjectTypeNames = v
 	return s
 }
 
@@ -7966,8 +7984,8 @@ type ListProfileObjectsInput struct {
 	NextToken *string `location:"querystring" locationName:"next-token" min:"1" type:"string"`
 
 	// Applies a filter to the response to include profile objects with the specified
-	// index values. This filter is only supported for ObjectTypeName _asset and
-	// _case.
+	// index values. This filter is only supported for ObjectTypeName _asset, _case
+	// and _order.
 	ObjectFilter *ObjectFilter `type:"structure"`
 
 	// The name of the profile object type.
@@ -8616,13 +8634,14 @@ func (s *MergeProfilesOutput) SetMessage(v string) *MergeProfilesOutput {
 
 // The filter applied to ListProfileObjects response to include profile objects
 // with the specified index values. This filter is only supported for ObjectTypeName
-// _asset and _case.
+// _asset, _case and _order.
 type ObjectFilter struct {
 	_ struct{} `type:"structure"`
 
 	// A searchable identifier of a standard profile object. The predefined keys
 	// you can use to search for _asset include: _assetId, _assetName, _serialNumber.
-	// The predefined keys you can use to search for _case include: _caseId.
+	// The predefined keys you can use to search for _case include: _caseId. The
+	// predefined keys you can use to search for _order include: _orderId.
 	//
 	// KeyName is a required field
 	KeyName *string `min:"1" type:"string" required:"true"`
@@ -8760,15 +8779,15 @@ type ObjectTypeKey struct {
 	FieldNames []*string `type:"list"`
 
 	// The types of keys that a ProfileObject can have. Each ProfileObject can have
-	// only 1 UNIQUE key but multiple PROFILE keys. PROFILE, ASSET or CASE means
-	// that this key can be used to tie an object to a PROFILE, ASSET or CASE respectively.
-	// UNIQUE means that it can be used to uniquely identify an object. If a key
-	// a is marked as SECONDARY, it will be used to search for profiles after all
-	// other PROFILE keys have been searched. A LOOKUP_ONLY key is only used to
-	// match a profile but is not persisted to be used for searching of the profile.
-	// A NEW_ONLY key is only used if the profile does not already exist before
-	// the object is ingested, otherwise it is only used for matching objects to
-	// profiles.
+	// only 1 UNIQUE key but multiple PROFILE keys. PROFILE, ASSET, CASE, or ORDER
+	// means that this key can be used to tie an object to a PROFILE, ASSET, CASE,
+	// or ORDER respectively. UNIQUE means that it can be used to uniquely identify
+	// an object. If a key a is marked as SECONDARY, it will be used to search for
+	// profiles after all other PROFILE keys have been searched. A LOOKUP_ONLY key
+	// is only used to match a profile but is not persisted to be used for searching
+	// of the profile. A NEW_ONLY key is only used if the profile does not already
+	// exist before the object is ingested, otherwise it is only used for matching
+	// objects to profiles.
 	StandardIdentifiers []*string `type:"list"`
 }
 
@@ -9039,9 +9058,14 @@ type PutIntegrationInput struct {
 	FlowDefinition *FlowDefinition `type:"structure"`
 
 	// The name of the profile object type.
-	//
-	// ObjectTypeName is a required field
-	ObjectTypeName *string `min:"1" type:"string" required:"true"`
+	ObjectTypeName *string `min:"1" type:"string"`
+
+	// A map in which each key is an event type from an external application such
+	// as Segment or Shopify, and each value is an ObjectTypeName (template) used
+	// to ingest the event. It supports the following event types: SegmentIdentify,
+	// ShopifyCreateCustomers, ShopifyUpdateCustomers, ShopifyCreateDraftOrders,
+	// ShopifyUpdateDraftOrders, ShopifyCreateOrders, and ShopifyUpdatedOrders.
+	ObjectTypeNames map[string]*string `type:"map"`
 
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
@@ -9076,9 +9100,6 @@ func (s *PutIntegrationInput) Validate() error {
 	}
 	if s.DomainName != nil && len(*s.DomainName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
-	}
-	if s.ObjectTypeName == nil {
-		invalidParams.Add(request.NewErrParamRequired("ObjectTypeName"))
 	}
 	if s.ObjectTypeName != nil && len(*s.ObjectTypeName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ObjectTypeName", 1))
@@ -9119,6 +9140,12 @@ func (s *PutIntegrationInput) SetObjectTypeName(v string) *PutIntegrationInput {
 	return s
 }
 
+// SetObjectTypeNames sets the ObjectTypeNames field's value.
+func (s *PutIntegrationInput) SetObjectTypeNames(v map[string]*string) *PutIntegrationInput {
+	s.ObjectTypeNames = v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *PutIntegrationInput) SetTags(v map[string]*string) *PutIntegrationInput {
 	s.Tags = v
@@ -9150,9 +9177,14 @@ type PutIntegrationOutput struct {
 	LastUpdatedAt *time.Time `type:"timestamp" required:"true"`
 
 	// The name of the profile object type.
-	//
-	// ObjectTypeName is a required field
-	ObjectTypeName *string `min:"1" type:"string" required:"true"`
+	ObjectTypeName *string `min:"1" type:"string"`
+
+	// A map in which each key is an event type from an external application such
+	// as Segment or Shopify, and each value is an ObjectTypeName (template) used
+	// to ingest the event. It supports the following event types: SegmentIdentify,
+	// ShopifyCreateCustomers, ShopifyUpdateCustomers, ShopifyCreateDraftOrders,
+	// ShopifyUpdateDraftOrders, ShopifyCreateOrders, and ShopifyUpdatedOrders.
+	ObjectTypeNames map[string]*string `type:"map"`
 
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
@@ -9202,6 +9234,12 @@ func (s *PutIntegrationOutput) SetLastUpdatedAt(v time.Time) *PutIntegrationOutp
 // SetObjectTypeName sets the ObjectTypeName field's value.
 func (s *PutIntegrationOutput) SetObjectTypeName(v string) *PutIntegrationOutput {
 	s.ObjectTypeName = &v
+	return s
+}
+
+// SetObjectTypeNames sets the ObjectTypeNames field's value.
+func (s *PutIntegrationOutput) SetObjectTypeNames(v map[string]*string) *PutIntegrationOutput {
+	s.ObjectTypeNames = v
 	return s
 }
 
@@ -10069,9 +10107,11 @@ type SearchProfilesInput struct {
 	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
 
 	// A searchable identifier of a customer profile. The predefined keys you can
-	// use to search include: _account, _profileId, _fullName, _phone, _email, _ctrContactId,
-	// _marketoLeadId, _salesforceAccountId, _salesforceContactId, _zendeskUserId,
-	// _zendeskExternalId, _serviceNowSystemId.
+	// use to search include: _account, _profileId, _assetId, _caseId, _orderId,
+	// _fullName, _phone, _email, _ctrContactId, _marketoLeadId, _salesforceAccountId,
+	// _salesforceContactId, _salesforceAssetId, _zendeskUserId, _zendeskExternalId,
+	// _zendeskTicketId, _serviceNowSystemId, _serviceNowIncidentId, _segmentUserId,
+	// _shopifyCustomerId, _shopifyOrderId.
 	//
 	// KeyName is a required field
 	KeyName *string `min:"1" type:"string" required:"true"`
@@ -12199,6 +12239,9 @@ const (
 
 	// StandardIdentifierNewOnly is a StandardIdentifier enum value
 	StandardIdentifierNewOnly = "NEW_ONLY"
+
+	// StandardIdentifierOrder is a StandardIdentifier enum value
+	StandardIdentifierOrder = "ORDER"
 )
 
 // StandardIdentifier_Values returns all elements of the StandardIdentifier enum
@@ -12211,6 +12254,7 @@ func StandardIdentifier_Values() []string {
 		StandardIdentifierSecondary,
 		StandardIdentifierLookupOnly,
 		StandardIdentifierNewOnly,
+		StandardIdentifierOrder,
 	}
 }
 

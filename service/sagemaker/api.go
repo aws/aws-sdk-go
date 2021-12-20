@@ -26974,6 +26974,10 @@ type AutoMLChannel struct {
 	// You can use Gzip or None. The default value is None.
 	CompressionType *string `type:"string" enum:"CompressionType"`
 
+	// The content type of the data from the input source. You can use text/csv;header=present
+	// or x-application/vnd.amazon+parquet. The default value is text/csv;header=present.
+	ContentType *string `type:"string"`
+
 	// The data source for an AutoML channel.
 	//
 	// DataSource is a required field
@@ -27031,6 +27035,12 @@ func (s *AutoMLChannel) Validate() error {
 // SetCompressionType sets the CompressionType field's value.
 func (s *AutoMLChannel) SetCompressionType(v string) *AutoMLChannel {
 	s.CompressionType = &v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *AutoMLChannel) SetContentType(v string) *AutoMLChannel {
+	s.ContentType = &v
 	return s
 }
 

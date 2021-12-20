@@ -305,6 +305,10 @@
           "shape":"TimestampEpoch",
           "box":true
         },
+        "activeFromTimestamp":{
+          "shape":"TimestampEpoch",
+          "box":true
+        },
         "updatesChangesetId":{"shape":"ChangesetId"},
         "updatedByChangesetId":{"shape":"ChangesetId"}
       }
@@ -434,9 +438,7 @@
       "required":[
         "datasetTitle",
         "kind",
-        "datasetDescription",
-        "permissionGroupParams",
-        "alias"
+        "permissionGroupParams"
       ],
       "members":{
         "clientToken":{
@@ -472,7 +474,9 @@
       "type":"structure",
       "required":["destinationType"],
       "members":{
-        "destinationType":{"shape":"DataViewDestinationType"}
+        "destinationType":{"shape":"DataViewDestinationType"},
+        "s3DestinationExportFileFormat":{"shape":"ExportFileFormat"},
+        "s3DestinationExportFileFormatOptions":{"shape":"S3DestinationFormatOptions"}
       }
     },
     "DataViewErrorInfo":{
@@ -542,7 +546,7 @@
     "DatasetArn":{"type":"string"},
     "DatasetDescription":{
       "type":"string",
-      "max":256,
+      "max":1000,
       "min":1,
       "pattern":"[\\s\\S]*\\S[\\s\\S]*"
     },
@@ -631,6 +635,13 @@
       "type":"string",
       "max":1000
     },
+    "ExportFileFormat":{
+      "type":"string",
+      "enum":[
+        "PARQUET",
+        "DELIMITED_TEXT"
+      ]
+    },
     "FormatParams":{
       "type":"map",
       "key":{"shape":"StringMapKey"},
@@ -668,6 +679,10 @@
         "status":{"shape":"IngestionStatus"},
         "errorInfo":{"shape":"ChangesetErrorInfo"},
         "activeUntilTimestamp":{
+          "shape":"TimestampEpoch",
+          "box":true
+        },
+        "activeFromTimestamp":{
           "shape":"TimestampEpoch",
           "box":true
         },
@@ -941,6 +956,11 @@
       "max":100,
       "min":1
     },
+    "S3DestinationFormatOptions":{
+      "type":"map",
+      "key":{"shape":"StringMapKey"},
+      "value":{"shape":"StringMapValue"}
+    },
     "SchemaDefinition":{
       "type":"structure",
       "members":{
@@ -1037,8 +1057,7 @@
       "required":[
         "datasetId",
         "datasetTitle",
-        "kind",
-        "alias"
+        "kind"
       ],
       "members":{
         "clientToken":{

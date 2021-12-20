@@ -3255,7 +3255,8 @@
         "DataShareArn":{"shape":"String"},
         "ProducerArn":{"shape":"String"},
         "AllowPubliclyAccessibleConsumers":{"shape":"Boolean"},
-        "DataShareAssociations":{"shape":"DataShareAssociationList"}
+        "DataShareAssociations":{"shape":"DataShareAssociationList"},
+        "ManagedBy":{"shape":"String"}
       }
     },
     "DataShareAssociation":{

@@ -1117,7 +1117,6 @@
       "required":[
         "DomainName",
         "Uri",
-        "ObjectTypeName",
         "CreatedAt",
         "LastUpdatedAt"
       ],
@@ -1127,7 +1126,8 @@
         "ObjectTypeName":{"shape":"typeName"},
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "ObjectTypeNames":{"shape":"ObjectTypeNames"}
       }
     },
     "GetMatchesRequest":{
@@ -1412,7 +1412,6 @@
       "required":[
         "DomainName",
         "Uri",
-        "ObjectTypeName",
         "CreatedAt",
         "LastUpdatedAt"
       ],
@@ -1422,7 +1421,8 @@
         "ObjectTypeName":{"shape":"typeName"},
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "ObjectTypeNames":{"shape":"ObjectTypeNames"}
       }
     },
     "ListIntegrationsRequest":{
@@ -1715,6 +1715,11 @@
       "type":"list",
       "member":{"shape":"ObjectTypeKey"}
     },
+    "ObjectTypeNames":{
+      "type":"map",
+      "key":{"shape":"string1To255"},
+      "value":{"shape":"typeName"}
+    },
     "OperatorPropertiesKeys":{
       "type":"string",
       "enum":[
@@ -1802,10 +1807,7 @@
     },
     "PutIntegrationRequest":{
       "type":"structure",
-      "required":[
-        "DomainName",
-        "ObjectTypeName"
-      ],
+      "required":["DomainName"],
       "members":{
         "DomainName":{
           "shape":"name",
@@ -1815,7 +1817,8 @@
         "Uri":{"shape":"string1To255"},
         "ObjectTypeName":{"shape":"typeName"},
         "Tags":{"shape":"TagMap"},
-        "FlowDefinition":{"shape":"FlowDefinition"}
+        "FlowDefinition":{"shape":"FlowDefinition"},
+        "ObjectTypeNames":{"shape":"ObjectTypeNames"}
       }
     },
     "PutIntegrationResponse":{
@@ -1823,7 +1826,6 @@
       "required":[
         "DomainName",
         "Uri",
-        "ObjectTypeName",
         "CreatedAt",
         "LastUpdatedAt"
       ],
@@ -1833,7 +1835,8 @@
         "ObjectTypeName":{"shape":"typeName"},
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "ObjectTypeNames":{"shape":"ObjectTypeNames"}
       }
     },
     "PutProfileObjectRequest":{
@@ -2139,7 +2142,8 @@
         "UNIQUE",
         "SECONDARY",
         "LOOKUP_ONLY",
-        "NEW_ONLY"
+        "NEW_ONLY",
+        "ORDER"
       ]
     },
     "StandardIdentifierList":{

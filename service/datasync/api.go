@@ -286,6 +286,88 @@ func (c *DataSync) CreateLocationEfsWithContext(ctx aws.Context, input *CreateLo
 	return out, req.Send()
 }
 
+const opCreateLocationFsxLustre = "CreateLocationFsxLustre"
+
+// CreateLocationFsxLustreRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLocationFsxLustre operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLocationFsxLustre for more information on using the CreateLocationFsxLustre
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateLocationFsxLustreRequest method.
+//    req, resp := client.CreateLocationFsxLustreRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationFsxLustre
+func (c *DataSync) CreateLocationFsxLustreRequest(input *CreateLocationFsxLustreInput) (req *request.Request, output *CreateLocationFsxLustreOutput) {
+	op := &request.Operation{
+		Name:       opCreateLocationFsxLustre,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLocationFsxLustreInput{}
+	}
+
+	output = &CreateLocationFsxLustreOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLocationFsxLustre API operation for AWS DataSync.
+//
+// Creates an endpoint for an Amazon FSx for Lustre file system.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation CreateLocationFsxLustre for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * InternalException
+//   This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationFsxLustre
+func (c *DataSync) CreateLocationFsxLustre(input *CreateLocationFsxLustreInput) (*CreateLocationFsxLustreOutput, error) {
+	req, out := c.CreateLocationFsxLustreRequest(input)
+	return out, req.Send()
+}
+
+// CreateLocationFsxLustreWithContext is the same as CreateLocationFsxLustre with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLocationFsxLustre for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) CreateLocationFsxLustreWithContext(ctx aws.Context, input *CreateLocationFsxLustreInput, opts ...request.Option) (*CreateLocationFsxLustreOutput, error) {
+	req, out := c.CreateLocationFsxLustreRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateLocationFsxWindows = "CreateLocationFsxWindows"
 
 // CreateLocationFsxWindowsRequest generates a "aws/request.Request" representing the
@@ -1300,6 +1382,89 @@ func (c *DataSync) DescribeLocationEfs(input *DescribeLocationEfsInput) (*Descri
 // for more information on using Contexts.
 func (c *DataSync) DescribeLocationEfsWithContext(ctx aws.Context, input *DescribeLocationEfsInput, opts ...request.Option) (*DescribeLocationEfsOutput, error) {
 	req, out := c.DescribeLocationEfsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeLocationFsxLustre = "DescribeLocationFsxLustre"
+
+// DescribeLocationFsxLustreRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeLocationFsxLustre operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeLocationFsxLustre for more information on using the DescribeLocationFsxLustre
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeLocationFsxLustreRequest method.
+//    req, resp := client.DescribeLocationFsxLustreRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationFsxLustre
+func (c *DataSync) DescribeLocationFsxLustreRequest(input *DescribeLocationFsxLustreInput) (req *request.Request, output *DescribeLocationFsxLustreOutput) {
+	op := &request.Operation{
+		Name:       opDescribeLocationFsxLustre,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeLocationFsxLustreInput{}
+	}
+
+	output = &DescribeLocationFsxLustreOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeLocationFsxLustre API operation for AWS DataSync.
+//
+// Returns metadata, such as the path information about an Amazon FSx for Lustre
+// location.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation DescribeLocationFsxLustre for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * InternalException
+//   This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationFsxLustre
+func (c *DataSync) DescribeLocationFsxLustre(input *DescribeLocationFsxLustreInput) (*DescribeLocationFsxLustreOutput, error) {
+	req, out := c.DescribeLocationFsxLustreRequest(input)
+	return out, req.Send()
+}
+
+// DescribeLocationFsxLustreWithContext is the same as DescribeLocationFsxLustre with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeLocationFsxLustre for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) DescribeLocationFsxLustreWithContext(ctx aws.Context, input *DescribeLocationFsxLustreInput, opts ...request.Option) (*DescribeLocationFsxLustreOutput, error) {
+	req, out := c.DescribeLocationFsxLustreRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3977,6 +4142,135 @@ func (s *CreateLocationEfsOutput) SetLocationArn(v string) *CreateLocationEfsOut
 	return s
 }
 
+type CreateLocationFsxLustreInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the FSx for Lustre file system.
+	//
+	// FsxFilesystemArn is a required field
+	FsxFilesystemArn *string `type:"string" required:"true"`
+
+	// The Amazon Resource Names (ARNs) of the security groups that are used to
+	// configure the FSx for Lustre file system.
+	//
+	// SecurityGroupArns is a required field
+	SecurityGroupArns []*string `min:"1" type:"list" required:"true"`
+
+	// A subdirectory in the location's path. This subdirectory in the FSx for Lustre
+	// file system is used to read data from the FSx for Lustre source location
+	// or write data to the FSx for Lustre destination.
+	Subdirectory *string `type:"string"`
+
+	// The key-value pair that represents a tag that you want to add to the resource.
+	// The value can be an empty string. This value helps you manage, filter, and
+	// search for your resources. We recommend that you create a name tag for your
+	// location.
+	Tags []*TagListEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxLustreInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxLustreInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLocationFsxLustreInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLocationFsxLustreInput"}
+	if s.FsxFilesystemArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FsxFilesystemArn"))
+	}
+	if s.SecurityGroupArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupArns"))
+	}
+	if s.SecurityGroupArns != nil && len(s.SecurityGroupArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupArns", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFsxFilesystemArn sets the FsxFilesystemArn field's value.
+func (s *CreateLocationFsxLustreInput) SetFsxFilesystemArn(v string) *CreateLocationFsxLustreInput {
+	s.FsxFilesystemArn = &v
+	return s
+}
+
+// SetSecurityGroupArns sets the SecurityGroupArns field's value.
+func (s *CreateLocationFsxLustreInput) SetSecurityGroupArns(v []*string) *CreateLocationFsxLustreInput {
+	s.SecurityGroupArns = v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *CreateLocationFsxLustreInput) SetSubdirectory(v string) *CreateLocationFsxLustreInput {
+	s.Subdirectory = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateLocationFsxLustreInput) SetTags(v []*TagListEntry) *CreateLocationFsxLustreInput {
+	s.Tags = v
+	return s
+}
+
+type CreateLocationFsxLustreOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the FSx for Lustre file system location
+	// that's created.
+	LocationArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxLustreOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxLustreOutput) GoString() string {
+	return s.String()
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *CreateLocationFsxLustreOutput) SetLocationArn(v string) *CreateLocationFsxLustreOutput {
+	s.LocationArn = &v
+	return s
+}
+
 type CreateLocationFsxWindowsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3999,14 +4293,14 @@ type CreateLocationFsxWindowsInput struct {
 	// Password is a required field
 	Password *string `type:"string" required:"true" sensitive:"true"`
 
-	// The Amazon Resource Names (ARNs) of the security groups that are to use to
+	// The Amazon Resource Names (ARNs) of the security groups that are used to
 	// configure the FSx for Windows File Server file system.
 	//
 	// SecurityGroupArns is a required field
 	SecurityGroupArns []*string `min:"1" type:"list" required:"true"`
 
-	// A subdirectory in the location’s path. This subdirectory in the Amazon
-	// FSx for Windows File Server file system is used to read data from the Amazon
+	// A subdirectory in the location's path. This subdirectory in the Amazon FSx
+	// for Windows File Server file system is used to read data from the Amazon
 	// FSx for Windows File Server source location or write data to the FSx for
 	// Windows File Server destination.
 	Subdirectory *string `type:"string"`
@@ -5830,6 +6124,111 @@ func (s *DescribeLocationEfsOutput) SetLocationArn(v string) *DescribeLocationEf
 // SetLocationUri sets the LocationUri field's value.
 func (s *DescribeLocationEfsOutput) SetLocationUri(v string) *DescribeLocationEfsOutput {
 	s.LocationUri = &v
+	return s
+}
+
+type DescribeLocationFsxLustreInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the FSx for Lustre location to describe.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxLustreInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxLustreInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeLocationFsxLustreInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeLocationFsxLustreInput"}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationFsxLustreInput) SetLocationArn(v string) *DescribeLocationFsxLustreInput {
+	s.LocationArn = &v
+	return s
+}
+
+type DescribeLocationFsxLustreOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time that the FSx for Lustre location was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the FSx for Lustre location that was described.
+	LocationArn *string `type:"string"`
+
+	// The URI of the FSx for Lustre location that was described.
+	LocationUri *string `type:"string"`
+
+	// The Amazon Resource Names (ARNs) of the security groups that are configured
+	// for the FSx for Lustre file system.
+	SecurityGroupArns []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxLustreOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxLustreOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeLocationFsxLustreOutput) SetCreationTime(v time.Time) *DescribeLocationFsxLustreOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationFsxLustreOutput) SetLocationArn(v string) *DescribeLocationFsxLustreOutput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetLocationUri sets the LocationUri field's value.
+func (s *DescribeLocationFsxLustreOutput) SetLocationUri(v string) *DescribeLocationFsxLustreOutput {
+	s.LocationUri = &v
+	return s
+}
+
+// SetSecurityGroupArns sets the SecurityGroupArns field's value.
+func (s *DescribeLocationFsxLustreOutput) SetSecurityGroupArns(v []*string) *DescribeLocationFsxLustreOutput {
+	s.SecurityGroupArns = v
 	return s
 }
 
@@ -8054,7 +8453,7 @@ type LocationListEntry struct {
 	// is the prefix path that you want to mount and use as the root of the location.
 	LocationArn *string `type:"string"`
 
-	// Represents a list of URLs of a location. LocationUri returns an array that
+	// Represents a list of URIs of a location. LocationUri returns an array that
 	// contains a list of locations when the ListLocations (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListLocations.html)
 	// operation is called.
 	//

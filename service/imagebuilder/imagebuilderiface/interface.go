@@ -168,6 +168,10 @@ type ImagebuilderAPI interface {
 	ImportComponentWithContext(aws.Context, *imagebuilder.ImportComponentInput, ...request.Option) (*imagebuilder.ImportComponentOutput, error)
 	ImportComponentRequest(*imagebuilder.ImportComponentInput) (*request.Request, *imagebuilder.ImportComponentOutput)
 
+	ImportVmImage(*imagebuilder.ImportVmImageInput) (*imagebuilder.ImportVmImageOutput, error)
+	ImportVmImageWithContext(aws.Context, *imagebuilder.ImportVmImageInput, ...request.Option) (*imagebuilder.ImportVmImageOutput, error)
+	ImportVmImageRequest(*imagebuilder.ImportVmImageInput) (*request.Request, *imagebuilder.ImportVmImageOutput)
+
 	ListComponentBuildVersions(*imagebuilder.ListComponentBuildVersionsInput) (*imagebuilder.ListComponentBuildVersionsOutput, error)
 	ListComponentBuildVersionsWithContext(aws.Context, *imagebuilder.ListComponentBuildVersionsInput, ...request.Option) (*imagebuilder.ListComponentBuildVersionsOutput, error)
 	ListComponentBuildVersionsRequest(*imagebuilder.ListComponentBuildVersionsInput) (*request.Request, *imagebuilder.ListComponentBuildVersionsOutput)

@@ -1,3 +1,22 @@
+Release v1.42.24 (2021-12-20)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service documentation
+  * Documentation updates for Amazon API Gateway
+* `service/customer-profiles`: Updates service API and documentation
+* `service/datasync`: Updates service API and documentation
+* `service/devops-guru`: Updates service API, documentation, and paginators
+* `service/finspace-data`: Updates service API and documentation
+* `service/forecast`: Updates service API and documentation
+* `service/imagebuilder`: Updates service API and documentation
+* `service/location`: Updates service API and documentation
+* `service/redshift`: Updates service API and documentation
+  * This release adds API support for managed Redshift datashares. Customers can now interact with a Redshift datashare that is managed by a different service, such as AWS Data Exchange.
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds a new ContentType field in AutoMLChannel for SageMaker CreateAutoMLJob InputDataConfig.
+* `service/securityhub`: Updates service API and documentation
+
 Release v1.42.23 (2021-12-13)
 ===
 

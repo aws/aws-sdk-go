@@ -1147,6 +1147,7 @@
         "ForecastHorizon":{"shape":"Integer"},
         "ForecastTypes":{"shape":"ForecastTypes"},
         "ForecastFrequency":{"shape":"Frequency"},
+        "ForecastDimensions":{"shape":"ForecastDimensions"},
         "DatasetImportJobArns":{"shape":"ArnList"},
         "DataConfig":{"shape":"DataConfig"},
         "EncryptionConfig":{"shape":"EncryptionConfig"},
