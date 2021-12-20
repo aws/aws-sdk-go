@@ -53,6 +53,19 @@
         {"shape":"InternalException"}
       ]
     },
+    "CreateLocationFsxLustre":{
+      "name":"CreateLocationFsxLustre",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLocationFsxLustreRequest"},
+      "output":{"shape":"CreateLocationFsxLustreResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "CreateLocationFsxWindows":{
       "name":"CreateLocationFsxWindows",
       "http":{
@@ -204,6 +217,19 @@
       },
       "input":{"shape":"DescribeLocationEfsRequest"},
       "output":{"shape":"DescribeLocationEfsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "DescribeLocationFsxLustre":{
+      "name":"DescribeLocationFsxLustre",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocationFsxLustreRequest"},
+      "output":{"shape":"DescribeLocationFsxLustreResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalException"}
@@ -605,6 +631,25 @@
         "LocationArn":{"shape":"LocationArn"}
       }
     },
+    "CreateLocationFsxLustreRequest":{
+      "type":"structure",
+      "required":[
+        "FsxFilesystemArn",
+        "SecurityGroupArns"
+      ],
+      "members":{
+        "FsxFilesystemArn":{"shape":"FsxFilesystemArn"},
+        "SecurityGroupArns":{"shape":"Ec2SecurityGroupArnList"},
+        "Subdirectory":{"shape":"FsxLustreSubdirectory"},
+        "Tags":{"shape":"InputTagList"}
+      }
+    },
+    "CreateLocationFsxLustreResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
     "CreateLocationFsxWindowsRequest":{
       "type":"structure",
       "required":[
@@ -843,6 +888,22 @@
         "LocationArn":{"shape":"LocationArn"},
         "LocationUri":{"shape":"LocationUri"},
         "Ec2Config":{"shape":"Ec2Config"},
+        "CreationTime":{"shape":"Time"}
+      }
+    },
+    "DescribeLocationFsxLustreRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "DescribeLocationFsxLustreResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "LocationUri":{"shape":"LocationUri"},
+        "SecurityGroupArns":{"shape":"Ec2SecurityGroupArnList"},
         "CreationTime":{"shape":"Time"}
       }
     },
@@ -1111,6 +1172,11 @@
       "max":128,
       "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):fsx:[a-z\\-0-9]*:[0-9]{12}:file-system/fs-.*$"
     },
+    "FsxLustreSubdirectory":{
+      "type":"string",
+      "max":4096,
+      "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\$\\p{Zs}]+$"
+    },
     "FsxWindowsSubdirectory":{
       "type":"string",
       "max":4096,
@@ -1368,7 +1434,7 @@
     "LocationUri":{
       "type":"string",
       "max":4356,
-      "pattern":"^(efs|nfs|s3|smb|fsxw)://[a-zA-Z0-9.\\-]+$"
+      "pattern":"^(efs|nfs|s3|smb|fsxw|fsxl)://[a-zA-Z0-9.\\-]+$"
     },
     "LogGroupArn":{
       "type":"string",

@@ -1631,6 +1631,9 @@ func (s *ChangesetErrorInfo) SetErrorMessage(v string) *ChangesetErrorInfo {
 type ChangesetSummary struct {
 	_ struct{} `type:"structure"`
 
+	// Milliseconds since UTC epoch
+	ActiveFromTimestamp *int64 `locationName:"activeFromTimestamp" type:"long"`
+
 	// Time until which the Changeset is active. The value is determined as Epoch
 	// time in milliseconds. For example, the value for Monday, November 1, 2021
 	// 12:00:00 PM UTC is specified as 1635768000000.
@@ -1708,6 +1711,12 @@ func (s ChangesetSummary) String() string {
 // value will be replaced with "sensitive".
 func (s ChangesetSummary) GoString() string {
 	return s.String()
+}
+
+// SetActiveFromTimestamp sets the ActiveFromTimestamp field's value.
+func (s *ChangesetSummary) SetActiveFromTimestamp(v int64) *ChangesetSummary {
+	s.ActiveFromTimestamp = &v
+	return s
 }
 
 // SetActiveUntilTimestamp sets the ActiveUntilTimestamp field's value.
@@ -2238,17 +2247,13 @@ type CreateDatasetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique resource identifier for a Dataset.
-	//
-	// Alias is a required field
-	Alias *string `locationName:"alias" min:"1" type:"string" required:"true"`
+	Alias *string `locationName:"alias" min:"1" type:"string"`
 
 	// A token used to ensure idempotency.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// Description of a Dataset.
-	//
-	// DatasetDescription is a required field
-	DatasetDescription *string `locationName:"datasetDescription" min:"1" type:"string" required:"true"`
+	DatasetDescription *string `locationName:"datasetDescription" min:"1" type:"string"`
 
 	// Display title for a FinSpace Dataset.
 	//
@@ -2297,17 +2302,11 @@ func (s CreateDatasetInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateDatasetInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateDatasetInput"}
-	if s.Alias == nil {
-		invalidParams.Add(request.NewErrParamRequired("Alias"))
-	}
 	if s.Alias != nil && len(*s.Alias) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Alias", 1))
 	}
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
-	}
-	if s.DatasetDescription == nil {
-		invalidParams.Add(request.NewErrParamRequired("DatasetDescription"))
 	}
 	if s.DatasetDescription != nil && len(*s.DatasetDescription) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatasetDescription", 1))
@@ -2481,6 +2480,11 @@ type DataViewDestinationTypeParams struct {
 	//
 	// DestinationType is a required field
 	DestinationType *string `locationName:"destinationType" type:"string" required:"true"`
+
+	// Data View Export File Format
+	S3DestinationExportFileFormat *string `locationName:"s3DestinationExportFileFormat" type:"string" enum:"ExportFileFormat"`
+
+	S3DestinationExportFileFormatOptions map[string]*string `locationName:"s3DestinationExportFileFormatOptions" type:"map"`
 }
 
 // String returns the string representation.
@@ -2517,6 +2521,18 @@ func (s *DataViewDestinationTypeParams) Validate() error {
 // SetDestinationType sets the DestinationType field's value.
 func (s *DataViewDestinationTypeParams) SetDestinationType(v string) *DataViewDestinationTypeParams {
 	s.DestinationType = &v
+	return s
+}
+
+// SetS3DestinationExportFileFormat sets the S3DestinationExportFileFormat field's value.
+func (s *DataViewDestinationTypeParams) SetS3DestinationExportFileFormat(v string) *DataViewDestinationTypeParams {
+	s.S3DestinationExportFileFormat = &v
+	return s
+}
+
+// SetS3DestinationExportFileFormatOptions sets the S3DestinationExportFileFormatOptions field's value.
+func (s *DataViewDestinationTypeParams) SetS3DestinationExportFileFormatOptions(v map[string]*string) *DataViewDestinationTypeParams {
+	s.S3DestinationExportFileFormatOptions = v
 	return s
 }
 
@@ -3088,6 +3104,9 @@ func (s *GetChangesetInput) SetDatasetId(v string) *GetChangesetInput {
 type GetChangesetOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Milliseconds since UTC epoch
+	ActiveFromTimestamp *int64 `locationName:"activeFromTimestamp" type:"long"`
+
 	// Time until which the Changeset is active. The value is determined as Epoch
 	// time in milliseconds. For example, the value for Monday, November 1, 2021
 	// 12:00:00 PM UTC is specified as 1635768000000.
@@ -3154,6 +3173,12 @@ func (s GetChangesetOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetChangesetOutput) GoString() string {
 	return s.String()
+}
+
+// SetActiveFromTimestamp sets the ActiveFromTimestamp field's value.
+func (s *GetChangesetOutput) SetActiveFromTimestamp(v int64) *GetChangesetOutput {
+	s.ActiveFromTimestamp = &v
+	return s
 }
 
 // SetActiveUntilTimestamp sets the ActiveUntilTimestamp field's value.
@@ -4734,9 +4759,7 @@ type UpdateDatasetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique resource identifier for a Dataset.
-	//
-	// Alias is a required field
-	Alias *string `locationName:"alias" min:"1" type:"string" required:"true"`
+	Alias *string `locationName:"alias" min:"1" type:"string"`
 
 	// A token used to ensure idempotency.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
@@ -4788,9 +4811,6 @@ func (s UpdateDatasetInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateDatasetInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateDatasetInput"}
-	if s.Alias == nil {
-		invalidParams.Add(request.NewErrParamRequired("Alias"))
-	}
 	if s.Alias != nil && len(*s.Alias) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Alias", 1))
 	}
@@ -5159,6 +5179,23 @@ func ErrorCategory_Values() []string {
 		ErrorCategoryInternalServiceException,
 		ErrorCategoryCancelled,
 		ErrorCategoryUserRecoverable,
+	}
+}
+
+// Data View Export File Format
+const (
+	// ExportFileFormatParquet is a ExportFileFormat enum value
+	ExportFileFormatParquet = "PARQUET"
+
+	// ExportFileFormatDelimitedText is a ExportFileFormat enum value
+	ExportFileFormatDelimitedText = "DELIMITED_TEXT"
+)
+
+// ExportFileFormat_Values returns all elements of the ExportFileFormat enum
+func ExportFileFormat_Values() []string {
+	return []string{
+		ExportFileFormatParquet,
+		ExportFileFormatDelimitedText,
 	}
 }
 

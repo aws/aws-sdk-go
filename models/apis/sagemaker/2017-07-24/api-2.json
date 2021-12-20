@@ -3486,7 +3486,8 @@
       "members":{
         "DataSource":{"shape":"AutoMLDataSource"},
         "CompressionType":{"shape":"CompressionType"},
-        "TargetAttributeName":{"shape":"TargetAttributeName"}
+        "TargetAttributeName":{"shape":"TargetAttributeName"},
+        "ContentType":{"shape":"ContentType"}
       }
     },
     "AutoMLContainerDefinition":{

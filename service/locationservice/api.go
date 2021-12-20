@@ -7434,13 +7434,12 @@ type CreateGeofenceCollectionInput struct {
 	// Enter a key ID, key ARN, alias name, or alias ARN.
 	KmsKeyId *string `min:"1" type:"string"`
 
-	// Specifies the pricing plan for the geofence collection.
+	// Optionally specifies the pricing plan for the geofence collection. Defaults
+	// to RequestBasedUsage.
 	//
 	// For additional details and restrictions on each pricing plan option, see
 	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
-	//
-	// PricingPlan is a required field
-	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+	PricingPlan *string `type:"string" enum:"PricingPlan"`
 
 	// Specifies the data provider for the geofence collection.
 	//
@@ -7510,9 +7509,6 @@ func (s *CreateGeofenceCollectionInput) Validate() error {
 	}
 	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
-	}
-	if s.PricingPlan == nil {
-		invalidParams.Add(request.NewErrParamRequired("PricingPlan"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7641,13 +7637,11 @@ type CreateMapInput struct {
 	// MapName is a required field
 	MapName *string `min:"1" type:"string" required:"true"`
 
-	// Specifies the pricing plan for your map resource.
+	// Optionally specifies the pricing plan for the map resource. Defaults to RequestBasedUsage.
 	//
 	// For additional details and restrictions on each pricing plan option, see
 	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
-	//
-	// PricingPlan is a required field
-	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+	PricingPlan *string `type:"string" enum:"PricingPlan"`
 
 	// Applies one or more tags to the map resource. A tag is a key-value pair helps
 	// manage, identify, search, and filter your resources by labelling them.
@@ -7700,9 +7694,6 @@ func (s *CreateMapInput) Validate() error {
 	}
 	if s.MapName != nil && len(*s.MapName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MapName", 1))
-	}
-	if s.PricingPlan == nil {
-		invalidParams.Add(request.NewErrParamRequired("PricingPlan"))
 	}
 	if s.Configuration != nil {
 		if err := s.Configuration.Validate(); err != nil {
@@ -7853,13 +7844,12 @@ type CreatePlaceIndexInput struct {
 	// IndexName is a required field
 	IndexName *string `min:"1" type:"string" required:"true"`
 
-	// Specifies the pricing plan for your place index resource.
+	// Optionally specifies the pricing plan for the place index resource. Defaults
+	// to RequestBasedUsage.
 	//
 	// For additional details and restrictions on each pricing plan option, see
 	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
-	//
-	// PricingPlan is a required field
-	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+	PricingPlan *string `type:"string" enum:"PricingPlan"`
 
 	// Applies one or more tags to the place index resource. A tag is a key-value
 	// pair that helps you manage, identify, search, and filter your resources.
@@ -7912,9 +7902,6 @@ func (s *CreatePlaceIndexInput) Validate() error {
 	}
 	if s.IndexName != nil && len(*s.IndexName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("IndexName", 1))
-	}
-	if s.PricingPlan == nil {
-		invalidParams.Add(request.NewErrParamRequired("PricingPlan"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8060,13 +8047,12 @@ type CreateRouteCalculatorInput struct {
 	// The optional description for the route calculator resource.
 	Description *string `type:"string"`
 
-	// Specifies the pricing plan for your route calculator resource.
+	// Optionally specifies the pricing plan for the route calculator resource.
+	// Defaults to RequestBasedUsage.
 	//
 	// For additional details and restrictions on each pricing plan option, see
 	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
-	//
-	// PricingPlan is a required field
-	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+	PricingPlan *string `type:"string" enum:"PricingPlan"`
 
 	// Applies one or more tags to the route calculator resource. A tag is a key-value
 	// pair helps manage, identify, search, and filter your resources by labelling
@@ -8122,9 +8108,6 @@ func (s *CreateRouteCalculatorInput) Validate() error {
 	}
 	if s.DataSource == nil {
 		invalidParams.Add(request.NewErrParamRequired("DataSource"))
-	}
-	if s.PricingPlan == nil {
-		invalidParams.Add(request.NewErrParamRequired("PricingPlan"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8264,13 +8247,12 @@ type CreateTrackerInput struct {
 	// This field is optional. If not specified, the default value is TimeBased.
 	PositionFiltering *string `type:"string" enum:"PositionFiltering"`
 
-	// Specifies the pricing plan for the tracker resource.
+	// Optionally specifies the pricing plan for the tracker resource. Defaults
+	// to RequestBasedUsage.
 	//
 	// For additional details and restrictions on each pricing plan option, see
 	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
-	//
-	// PricingPlan is a required field
-	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+	PricingPlan *string `type:"string" enum:"PricingPlan"`
 
 	// Specifies the data provider for the tracker resource.
 	//
@@ -8347,9 +8329,6 @@ func (s *CreateTrackerInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateTrackerInput"}
 	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
-	}
-	if s.PricingPlan == nil {
-		invalidParams.Add(request.NewErrParamRequired("PricingPlan"))
 	}
 	if s.TrackerName == nil {
 		invalidParams.Add(request.NewErrParamRequired("TrackerName"))

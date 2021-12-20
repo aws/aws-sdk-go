@@ -23712,7 +23712,7 @@ func (s *PutRestApiInput) SetRestApiId(v string) *PutRestApiInput {
 type QuotaSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of requests that can be made in a given time period.
+	// The target maximum number of requests that can be made in a given time period.
 	Limit *int64 `locationName:"limit" type:"integer"`
 
 	// The day that a time period starts. For example, with a time period of WEEK,
@@ -24995,12 +24995,11 @@ func (s *TestInvokeMethodOutput) SetStatus(v int64) *TestInvokeMethodOutput {
 type ThrottleSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The API request burst limit, the maximum rate limit over a time ranging from
-	// one to a few seconds, depending upon whether the underlying token bucket
-	// is at its full capacity.
+	// The API target request burst rate limit. This allows more requests through
+	// for a period of time than the target rate limit.
 	BurstLimit *int64 `locationName:"burstLimit" type:"integer"`
 
-	// The API request steady-state rate limit.
+	// The API target request rate limit.
 	RateLimit *float64 `locationName:"rateLimit" type:"double"`
 }
 
@@ -27299,8 +27298,12 @@ func (s *Usage) SetUsagePlanId(v string) *Usage {
 	return s
 }
 
-// Represents a usage plan than can specify who can assess associated API stages
-// with specified request limits and quotas.
+// Represents a usage plan used to specify who can assess associated API stages.
+// Optionally, target request rate and quota limits can be set. In some cases
+// clients can exceed the targets that you set. Don’t rely on usage plans
+// to control costs. Consider using AWS Budgets (https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html)
+// to monitor costs and AWS WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html)
+// to manage API requests.
 //
 // In a usage plan, you associate an API by specifying the API's Id and a stage
 // name of the specified API. You add plan customers by adding API keys to the
@@ -27326,13 +27329,14 @@ type UsagePlan struct {
 	// a SaaS product on AWS Marketplace.
 	ProductCode *string `locationName:"productCode" type:"string"`
 
-	// The maximum number of permitted requests per a given unit time interval.
+	// The target maximum number of permitted requests per a given unit time interval.
 	Quota *QuotaSettings `locationName:"quota" type:"structure"`
 
 	// The collection of tags. Each tag element is associated with a given resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// The request throttle limits of a usage plan.
+	// Map containing method level throttling information for API stage in a usage
+	// plan.
 	Throttle *ThrottleSettings `locationName:"throttle" type:"structure"`
 }
 

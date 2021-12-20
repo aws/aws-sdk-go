@@ -349,6 +349,12 @@
         "DataViewErrorInfo$errorMessage": "<p>The text of the error message.</p>"
       }
     },
+    "ExportFileFormat": {
+      "base": "Data View Export File Format",
+      "refs": {
+        "DataViewDestinationTypeParams$s3DestinationExportFileFormat": null
+      }
+    },
     "FormatParams": {
       "base": "Format Parameters of a Changeset",
       "refs": {
@@ -529,6 +535,12 @@
         "ListDatasetsRequest$maxResults": "<p>The maximum number of results per page.</p>"
       }
     },
+    "S3DestinationFormatOptions": {
+      "base": null,
+      "refs": {
+        "DataViewDestinationTypeParams$s3DestinationExportFileFormatOptions": null
+      }
+    },
     "SchemaDefinition": {
       "base": "<p>Definition for a schema on a tabular Dataset.</p>",
       "refs": {
@@ -572,6 +584,7 @@
       "base": null,
       "refs": {
         "FormatParams$key": null,
+        "S3DestinationFormatOptions$key": null,
         "SourceParams$key": null
       }
     },
@@ -579,6 +592,7 @@
       "base": null,
       "refs": {
         "FormatParams$value": null,
+        "S3DestinationFormatOptions$value": null,
         "SourceParams$value": null
       }
     },
@@ -606,6 +620,7 @@
       "refs": {
         "ChangesetSummary$createTime": "<p>The timestamp at which the Changeset was created in FinSpace. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "ChangesetSummary$activeUntilTimestamp": "<p>Time until which the Changeset is active. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "ChangesetSummary$activeFromTimestamp": null,
         "CreateDataViewRequest$asOfTimestamp": "<p>Beginning time to use for the Dataview. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "DataViewSummary$asOfTimestamp": "<p>Time range to use for the Dataview. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "DataViewSummary$createTime": "<p>The timestamp at which the Dataview was created in FinSpace. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
@@ -614,6 +629,7 @@
         "Dataset$lastModifiedTime": "<p>The last time that the Dataset was modified. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "GetChangesetResponse$createTime": "<p>The timestamp at which the Changeset was created in FinSpace. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "GetChangesetResponse$activeUntilTimestamp": "<p>Time until which the Changeset is active. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetChangesetResponse$activeFromTimestamp": null,
         "GetDataViewResponse$asOfTimestamp": "<p>Time range to use for the Dataview. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "GetDataViewResponse$lastModifiedTime": "<p>The last time that a Dataview was modified. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "GetDataViewResponse$createTime": "<p>The timestamp at which the Dataview was created in FinSpace. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
