@@ -136,6 +136,13 @@ type LookoutMetricsAPI interface {
 	ListAnomalyDetectorsPages(*lookoutmetrics.ListAnomalyDetectorsInput, func(*lookoutmetrics.ListAnomalyDetectorsOutput, bool) bool) error
 	ListAnomalyDetectorsPagesWithContext(aws.Context, *lookoutmetrics.ListAnomalyDetectorsInput, func(*lookoutmetrics.ListAnomalyDetectorsOutput, bool) bool, ...request.Option) error
 
+	ListAnomalyGroupRelatedMetrics(*lookoutmetrics.ListAnomalyGroupRelatedMetricsInput) (*lookoutmetrics.ListAnomalyGroupRelatedMetricsOutput, error)
+	ListAnomalyGroupRelatedMetricsWithContext(aws.Context, *lookoutmetrics.ListAnomalyGroupRelatedMetricsInput, ...request.Option) (*lookoutmetrics.ListAnomalyGroupRelatedMetricsOutput, error)
+	ListAnomalyGroupRelatedMetricsRequest(*lookoutmetrics.ListAnomalyGroupRelatedMetricsInput) (*request.Request, *lookoutmetrics.ListAnomalyGroupRelatedMetricsOutput)
+
+	ListAnomalyGroupRelatedMetricsPages(*lookoutmetrics.ListAnomalyGroupRelatedMetricsInput, func(*lookoutmetrics.ListAnomalyGroupRelatedMetricsOutput, bool) bool) error
+	ListAnomalyGroupRelatedMetricsPagesWithContext(aws.Context, *lookoutmetrics.ListAnomalyGroupRelatedMetricsInput, func(*lookoutmetrics.ListAnomalyGroupRelatedMetricsOutput, bool) bool, ...request.Option) error
+
 	ListAnomalyGroupSummaries(*lookoutmetrics.ListAnomalyGroupSummariesInput) (*lookoutmetrics.ListAnomalyGroupSummariesOutput, error)
 	ListAnomalyGroupSummariesWithContext(aws.Context, *lookoutmetrics.ListAnomalyGroupSummariesInput, ...request.Option) (*lookoutmetrics.ListAnomalyGroupSummariesOutput, error)
 	ListAnomalyGroupSummariesRequest(*lookoutmetrics.ListAnomalyGroupSummariesInput) (*request.Request, *lookoutmetrics.ListAnomalyGroupSummariesOutput)

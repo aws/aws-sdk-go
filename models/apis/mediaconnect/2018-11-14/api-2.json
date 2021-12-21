@@ -1202,6 +1202,10 @@
           "shape": "__string",
           "locationName": "remoteId"
         },
+        "SenderControlPort": {
+          "shape": "__integer",
+          "locationName": "senderControlPort"
+        },
         "SmoothingLatency": {
           "shape": "__integer",
           "locationName": "smoothingLatency"
@@ -2484,7 +2488,8 @@
         "rist",
         "st2110-jpegxs",
         "cdi",
-        "srt-listener"
+        "srt-listener",
+        "fujitsu-qos"
       ]
     },
     "PurchaseOfferingRequest": {
@@ -2878,6 +2883,14 @@
           "shape": "Protocol",
           "locationName": "protocol"
         },
+        "SenderControlPort": {
+          "shape": "__integer",
+          "locationName": "senderControlPort"
+        },
+        "SenderIpAddress": {
+          "shape": "__string",
+          "locationName": "senderIpAddress"
+        },
         "StreamId": {
           "shape": "__string",
           "locationName": "streamId"
@@ -2926,6 +2939,14 @@
         "Name": {
           "shape": "__string",
           "locationName": "name"
+        },
+        "SenderControlPort": {
+          "shape": "__integer",
+          "locationName": "senderControlPort"
+        },
+        "SenderIpAddress": {
+          "shape": "__string",
+          "locationName": "senderIpAddress"
         },
         "SourceArn": {
           "shape": "__string",
@@ -3114,6 +3135,14 @@
         "RemoteId": {
           "shape": "__string",
           "locationName": "remoteId"
+        },
+        "SenderControlPort": {
+          "shape": "__integer",
+          "locationName": "senderControlPort"
+        },
+        "SenderIpAddress": {
+          "shape": "__string",
+          "locationName": "senderIpAddress"
         },
         "SmoothingLatency": {
           "shape": "__integer",
@@ -3363,6 +3392,14 @@
           "shape": "__string",
           "locationName": "remoteId"
         },
+        "SenderControlPort": {
+          "shape": "__integer",
+          "locationName": "senderControlPort"
+        },
+        "SenderIpAddress": {
+          "shape": "__string",
+          "locationName": "senderIpAddress"
+        },
         "SmoothingLatency": {
           "shape": "__integer",
           "locationName": "smoothingLatency"
@@ -3467,6 +3504,14 @@
         "Protocol": {
           "shape": "Protocol",
           "locationName": "protocol"
+        },
+        "SenderControlPort": {
+          "shape": "__integer",
+          "locationName": "senderControlPort"
+        },
+        "SenderIpAddress": {
+          "shape": "__string",
+          "locationName": "senderIpAddress"
         },
         "SourceArn": {
           "shape": "__string",

@@ -34,7 +34,7 @@
     "ListStreamingImages": "<p>List the streaming image resources available to this studio.</p> <p>This list will contain both images provided by Amazon Web Services, as well as streaming images that you have created in your studio.</p>",
     "ListStreamingSessions": "<p>Lists the streaming image resources in a studio.</p>",
     "ListStudioComponents": "<p>Lists the StudioComponents in a studio.</p>",
-    "ListStudioMembers": "<p>Get all users in a given studio membership.</p>",
+    "ListStudioMembers": "<p>Get all users in a given studio membership.</p> <note> <p> <code>ListStudioMembers</code> only returns admin members.</p> </note>",
     "ListStudios": "<p>List studios in your Amazon Web Services account in the requested Amazon Web Services Region.</p>",
     "ListTagsForResource": "<p>Gets the tags for a resource, given its Amazon Resource Names (ARN).</p> <p>This operation supports ARNs for all resource types in Nimble Studio that support tags, including studio, studio component, launch profile, streaming image, and streaming session. All resources that can be tagged will contain an ARN property, so you do not have to create this ARN yourself.</p>",
     "PutLaunchProfileMembers": "<p>Add/update users with given persona to launch profile membership.</p>",
@@ -52,12 +52,12 @@
   },
   "shapes": {
     "AcceptEulasRequest": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "AcceptEulasResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -98,13 +98,13 @@
       }
     },
     "ActiveDirectoryDnsIpAddress": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "ActiveDirectoryDnsIpAddressList$member": null
       }
     },
     "ActiveDirectoryDnsIpAddressList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "LaunchProfileInitializationActiveDirectory$dnsIpAddresses": "<p>The DNS IP address.</p>"
       }
@@ -157,62 +157,62 @@
       }
     },
     "CreateLaunchProfileRequest": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "CreateLaunchProfileResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "CreateStreamingImageRequest": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "CreateStreamingImageResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "CreateStreamingSessionRequest": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "CreateStreamingSessionResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "CreateStreamingSessionStreamRequest": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "CreateStreamingSessionStreamResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "CreateStudioComponentRequest": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "CreateStudioComponentResponse": {
-      "base": "<p/>",
+      "base": null,
       "refs": {
       }
     },
     "CreateStudioRequest": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "CreateStudioResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -222,7 +222,7 @@
       }
     },
     "DeleteLaunchProfileMemberResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -232,7 +232,7 @@
       }
     },
     "DeleteLaunchProfileResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -242,7 +242,7 @@
       }
     },
     "DeleteStreamingImageResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -252,7 +252,7 @@
       }
     },
     "DeleteStreamingSessionResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -262,7 +262,7 @@
       }
     },
     "DeleteStudioComponentResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -272,7 +272,7 @@
       }
     },
     "DeleteStudioMemberResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -282,32 +282,32 @@
       }
     },
     "DeleteStudioResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "DirectoryId": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "ActiveDirectoryConfiguration$directoryId": "<p>The directory ID of the Directory Service for Microsoft Active Directory to access using this studio component.</p>",
         "LaunchProfileInitializationActiveDirectory$directoryId": "<p>The directory ID of the Directory Service for Microsoft Active Directory to access using this launch profile.</p>"
       }
     },
     "EC2ImageId": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "CreateStreamingImageRequest$ec2ImageId": "<p>The ID of an EC2 machine image with which to create this streaming image.</p>",
         "StreamingImage$ec2ImageId": "<p>The ID of an EC2 machine image with which to create the streaming image.</p>"
       }
     },
     "EC2SubnetId": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "EC2SubnetIdList$member": null
       }
     },
     "EC2SubnetIdList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "CreateLaunchProfileRequest$ec2SubnetIds": "<p>Specifies the IDs of the EC2 subnets where streaming sessions will be accessible from. These subnets must support the specified instance types. </p>",
         "LaunchProfile$ec2SubnetIds": "<p>Unique identifiers for a collection of EC2 subnets.</p>"
@@ -333,7 +333,7 @@
       }
     },
     "EulaAcceptanceList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "AcceptEulasResponse$eulaAcceptances": "<p>A collection of EULA acceptances.</p>",
         "ListEulaAcceptancesResponse$eulaAcceptances": "<p>A collection of EULA acceptances.</p>"
@@ -347,20 +347,20 @@
       }
     },
     "EulaIdList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "AcceptEulasRequest$eulaIds": "<p>The EULA ID.</p>",
         "StreamingImage$eulaIds": "<p>The list of EULAs that must be accepted before a Streaming Session can be started using this streaming image.</p>"
       }
     },
     "EulaList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "ListEulasResponse$eulas": "<p>A collection of EULA resources.</p>"
       }
     },
     "EulaName": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "Eula$name": "<p>The name for the EULA.</p>"
       }
@@ -383,7 +383,7 @@
       }
     },
     "GetEulaResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -393,7 +393,7 @@
       }
     },
     "GetLaunchProfileDetailsResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -403,7 +403,7 @@
       }
     },
     "GetLaunchProfileInitializationResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -413,7 +413,7 @@
       }
     },
     "GetLaunchProfileMemberResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -423,7 +423,7 @@
       }
     },
     "GetLaunchProfileResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -433,7 +433,7 @@
       }
     },
     "GetStreamingImageResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -443,7 +443,7 @@
       }
     },
     "GetStreamingSessionResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -453,7 +453,7 @@
       }
     },
     "GetStreamingSessionStreamResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -463,7 +463,7 @@
       }
     },
     "GetStudioComponentResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -473,7 +473,7 @@
       }
     },
     "GetStudioMemberResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -483,7 +483,7 @@
       }
     },
     "GetStudioResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -512,45 +512,45 @@
       }
     },
     "LaunchProfileId": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "LaunchProfile$launchProfileId": "<p>The launch profile ID.</p>",
         "LaunchProfileInitialization$launchProfileId": "<p>The launch profile ID.</p>"
       }
     },
     "LaunchProfileInitialization": {
-      "base": "<p>A Launch Profile Initialization contains information required for a workstation or server to connect to a launch profile</p> <p>This includes scripts, endpoints, security groups, subnets, and other configuration.</p>",
+      "base": "<p>A Launch Profile Initialization contains information required for a workstation or server to connect to a launch profile.</p> <p>This includes scripts, endpoints, security groups, subnets, and other configuration.</p>",
       "refs": {
         "GetLaunchProfileInitializationResponse$launchProfileInitialization": "<p>The launch profile initialization.</p>"
       }
     },
     "LaunchProfileInitializationActiveDirectory": {
-      "base": "<p/>",
+      "base": "<p>The Launch Profile Initialization Active Directory contains information required for the launch profile to connect to the Active Directory.</p>",
       "refs": {
         "LaunchProfileInitialization$activeDirectory": "<p>A LaunchProfileInitializationActiveDirectory resource.</p>"
       }
     },
     "LaunchProfileInitializationScript": {
-      "base": "<p/>",
+      "base": "<p>The Launch Profile Initialization Script is used when start streaming session runs.</p>",
       "refs": {
         "LaunchProfileInitializationScriptList$member": null
       }
     },
     "LaunchProfileInitializationScriptList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "LaunchProfileInitialization$systemInitializationScripts": "<p>The system initializtion scripts.</p>",
         "LaunchProfileInitialization$userInitializationScripts": "<p>The user initializtion scripts.</p>"
       }
     },
     "LaunchProfileList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "ListLaunchProfilesResponse$launchProfiles": "<p>A collection of launch profiles.</p>"
       }
     },
     "LaunchProfileMembership": {
-      "base": "<p/>",
+      "base": "<p>Launch profile membership enables your studio admins to delegate launch profile access to other studio users in the Nimble Studio portal without needing to write or maintain complex IAM policies. A launch profile member is a user association from your studio identity source who is granted permissions to a launch profile.</p> <p>A launch profile member (type USER) provides the following permissions to that launch profile:</p> <ul> <li> <p>GetLaunchProfile</p> </li> <li> <p>GetLaunchProfileInitialization</p> </li> <li> <p>GetLaunchProfileMembers</p> </li> <li> <p>GetLaunchProfileMember</p> </li> <li> <p>CreateStreamingSession</p> </li> <li> <p>GetLaunchProfileDetails</p> </li> </ul>",
       "refs": {
         "GetLaunchProfileMemberResponse$member": "<p>The member.</p>",
         "LaunchProfileMembershipList$member": null,
@@ -558,13 +558,13 @@
       }
     },
     "LaunchProfileMembershipList": {
-      "base": "<p/>",
+      "base": null,
       "refs": {
         "ListLaunchProfileMembersResponse$members": "<p>A list of members.</p>"
       }
     },
     "LaunchProfileName": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "CreateLaunchProfileRequest$name": "<p>The name for the launch profile.</p>",
         "LaunchProfile$name": "<p>A friendly name for the launch profile.</p>",
@@ -573,7 +573,7 @@
       }
     },
     "LaunchProfilePersona": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "LaunchProfileMembership$persona": "<p>The persona.</p>",
         "NewLaunchProfileMember$persona": "<p>The persona.</p>",
@@ -581,7 +581,7 @@
       }
     },
     "LaunchProfilePlatform": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "LaunchProfileInitialization$platform": "<p>The platform of the launch platform, either WINDOWS or LINUX.</p>",
         "StudioComponentInitializationScript$platform": "<p>The platform of the initialization script, either WINDOWS or LINUX.</p>"
@@ -596,7 +596,7 @@
       }
     },
     "LaunchProfileProtocolVersionList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "CreateLaunchProfileRequest$launchProfileProtocolVersions": "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>",
         "LaunchProfile$launchProfileProtocolVersions": "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>",
@@ -604,25 +604,25 @@
       }
     },
     "LaunchProfileSecurityGroupIdList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "LaunchProfileInitialization$ec2SecurityGroupIds": "<p>The EC2 security groups that control access to the studio component.</p>"
       }
     },
     "LaunchProfileState": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "LaunchProfile$state": "<p>The current state.</p>"
       }
     },
     "LaunchProfileStatusCode": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "LaunchProfile$statusCode": "<p>The status code.</p>"
       }
     },
     "LaunchProfileStudioComponentIdList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "CreateLaunchProfileRequest$studioComponentIds": "<p>Unique identifiers for a collection of studio components that can be used with this launch profile.</p>",
         "LaunchProfile$studioComponentIds": "<p>Unique identifiers for a collection of studio components that can be used with this launch profile.</p>",
@@ -642,7 +642,7 @@
       }
     },
     "LinuxMountPoint": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "SharedFileSystemConfiguration$linuxMountPoint": "<p>The mount location for a shared file system on a Linux virtual workstation.</p>"
       }
@@ -653,7 +653,7 @@
       }
     },
     "ListEulaAcceptancesResponse": {
-      "base": "<p/>",
+      "base": null,
       "refs": {
       }
     },
@@ -663,7 +663,7 @@
       }
     },
     "ListEulasResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -673,7 +673,7 @@
       }
     },
     "ListLaunchProfileMembersResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -683,7 +683,7 @@
       }
     },
     "ListLaunchProfilesResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -693,7 +693,7 @@
       }
     },
     "ListStreamingImagesResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -703,7 +703,7 @@
       }
     },
     "ListStreamingSessionsResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -713,7 +713,7 @@
       }
     },
     "ListStudioComponentsResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -723,7 +723,7 @@
       }
     },
     "ListStudioMembersResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -733,7 +733,7 @@
       }
     },
     "ListStudiosResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -743,7 +743,7 @@
       }
     },
     "ListTagsForResourceResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -757,31 +757,31 @@
       }
     },
     "NewLaunchProfileMember": {
-      "base": "<p/>",
+      "base": "<p>A new member that is added to a launch profile.</p>",
       "refs": {
         "NewLaunchProfileMemberList$member": null
       }
     },
     "NewLaunchProfileMemberList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "PutLaunchProfileMembersRequest$members": "<p>A list of members.</p>"
       }
     },
     "NewStudioMember": {
-      "base": "<p/>",
+      "base": "<p>A new studio user's membership.</p>",
       "refs": {
         "NewStudioMemberList$member": null
       }
     },
     "NewStudioMemberList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "PutStudioMembersRequest$members": "<p>A list of members.</p>"
       }
     },
     "PutLaunchProfileMembersRequest": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -791,17 +791,17 @@
       }
     },
     "PutStudioMembersRequest": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "PutStudioMembersResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "Region": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "Studio$homeRegion": "<p>The Amazon Web Services Region where the studio resource is located.</p>"
       }
@@ -830,7 +830,7 @@
       }
     },
     "SecurityGroupId": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "LaunchProfileSecurityGroupIdList$member": null,
         "StudioComponentSecurityGroupIdList$member": null
@@ -863,7 +863,7 @@
       }
     },
     "StartStudioSSOConfigurationRepairResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -891,7 +891,7 @@
       }
     },
     "StreamConfigurationMaxSessionLengthInMinutes": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "StreamConfiguration$maxSessionLengthInMinutes": "<p>The length of time, in minutes, that a streaming session can be active before it is stopped or terminated. After this point, Nimble Studio automatically terminates or stops the session. The default length of time is 690 minutes, and the maximum length of time is 30 days.</p>",
         "StreamConfigurationCreate$maxSessionLengthInMinutes": "<p>The length of time, in minutes, that a streaming session can be active before it is stopped or terminated. After this point, Nimble Studio automatically terminates or stops the session. The default length of time is 690 minutes, and the maximum length of time is 30 days.</p>"
@@ -901,11 +901,18 @@
       "base": null,
       "refs": {
         "StreamConfiguration$maxStoppedSessionLengthInMinutes": "<p>Integer that determines if you can start and stop your sessions and how long a session can stay in the STOPPED state. The default value is 0. The maximum value is 5760.</p> <p>If the value is missing or set to 0, your sessions can’t be stopped. If you then call StopStreamingSession, the session fails. If the time that a session stays in the READY state exceeds the maxSessionLengthInMinutes value, the session will automatically be terminated by AWS (instead of stopped).</p> <p>If the value is set to a positive number, the session can be stopped. You can call StopStreamingSession to stop sessions in the READY state. If the time that a session stays in the READY state exceeds the maxSessionLengthInMinutes value, the session will automatically be stopped by AWS (instead of terminated).</p>",
-        "StreamConfigurationCreate$maxStoppedSessionLengthInMinutes": "<p>The length of time, in minutes, that a streaming session can be active before it is stopped or terminated. After this point, Nimble Studio automatically terminates or stops the session. The default length of time is 690 minutes, and the maximum length of time is 30 days.</p>"
+        "StreamConfigurationCreate$maxStoppedSessionLengthInMinutes": "<p>Integer that determines if you can start and stop your sessions and how long a session can stay in the STOPPED state. The default value is 0. The maximum value is 5760.</p> <p>If the value is missing or set to 0, your sessions can’t be stopped. If you then call StopStreamingSession, the session fails. If the time that a session stays in the READY state exceeds the maxSessionLengthInMinutes value, the session will automatically be terminated by AWS (instead of stopped).</p> <p>If the value is set to a positive number, the session can be stopped. You can call StopStreamingSession to stop sessions in the READY state. If the time that a session stays in the READY state exceeds the maxSessionLengthInMinutes value, the session will automatically be stopped by AWS (instead of terminated).</p>"
+      }
+    },
+    "StreamConfigurationSessionStorage": {
+      "base": "<p>The configuration for a streaming session’s upload storage.</p>",
+      "refs": {
+        "StreamConfiguration$sessionStorage": "<p>(Optional) The upload storage for a streaming session.</p>",
+        "StreamConfigurationCreate$sessionStorage": "<p>(Optional) The upload storage for a streaming workstation that is created using this launch profile.</p>"
       }
     },
     "StreamingClipboardMode": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "StreamConfiguration$clipboardMode": "<p>Enable or disable the use of the system clipboard to copy and paste between the streaming session and streaming client.</p>",
         "StreamConfigurationCreate$clipboardMode": "<p>Enable or disable the use of the system clipboard to copy and paste between the streaming session and streaming client.</p>"
@@ -918,7 +925,7 @@
         "DeleteStreamingImageResponse$streamingImage": "<p>The streaming image.</p>",
         "GetStreamingImageResponse$streamingImage": "<p>The streaming image.</p>",
         "StreamingImageList$member": null,
-        "UpdateStreamingImageResponse$streamingImage": "<p/>"
+        "UpdateStreamingImageResponse$streamingImage": null
       }
     },
     "StreamingImageEncryptionConfiguration": {
@@ -928,19 +935,19 @@
       }
     },
     "StreamingImageEncryptionConfigurationKeyArn": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "StreamingImageEncryptionConfiguration$keyArn": "<p>The ARN for a KMS key that is used to encrypt studio data.</p>"
       }
     },
     "StreamingImageEncryptionConfigurationKeyType": {
-      "base": "<p/>",
+      "base": null,
       "refs": {
         "StreamingImageEncryptionConfiguration$keyType": "<p>The type of KMS key that is used to encrypt studio data.</p>"
       }
     },
     "StreamingImageId": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "CreateStreamingSessionRequest$streamingImageId": "<p>The ID of the streaming image.</p>",
         "StreamingImage$streamingImageId": "<p>The ID of the streaming image.</p>",
@@ -956,7 +963,7 @@
       }
     },
     "StreamingImageList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "GetLaunchProfileDetailsResponse$streamingImages": "<p>A collection of streaming images.</p>",
         "ListStreamingImagesResponse$streamingImages": "<p>A collection of streaming images.</p>"
@@ -975,7 +982,7 @@
       }
     },
     "StreamingImageState": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "StreamingImage$state": "<p>The current state.</p>"
       }
@@ -987,7 +994,7 @@
       }
     },
     "StreamingInstanceType": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "CreateStreamingSessionRequest$ec2InstanceType": "<p>The EC2 Instance type used for the streaming session.</p>",
         "StreamingInstanceTypeList$member": null
@@ -1012,13 +1019,13 @@
       }
     },
     "StreamingSessionId": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "StreamingSession$sessionId": "<p>The session ID.</p>"
       }
     },
     "StreamingSessionList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "ListStreamingSessionsResponse$sessions": "<p>A collection of streaming sessions.</p>"
       }
@@ -1030,9 +1037,39 @@
       }
     },
     "StreamingSessionStatusCode": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "StreamingSession$statusCode": "<p>The status code.</p>"
+      }
+    },
+    "StreamingSessionStorageMode": {
+      "base": null,
+      "refs": {
+        "StreamingSessionStorageModeList$member": null
+      }
+    },
+    "StreamingSessionStorageModeList": {
+      "base": null,
+      "refs": {
+        "StreamConfigurationSessionStorage$mode": "<p>Allows artists to upload files to their workstations. The only valid option is <code>UPLOAD</code>.</p>"
+      }
+    },
+    "StreamingSessionStorageRoot": {
+      "base": "<p>The upload storage root location (folder) on streaming workstations where files are uploaded.</p>",
+      "refs": {
+        "StreamConfigurationSessionStorage$root": "<p>The configuration for the upload storage root of the streaming session.</p>"
+      }
+    },
+    "StreamingSessionStorageRootPathLinux": {
+      "base": null,
+      "refs": {
+        "StreamingSessionStorageRoot$linux": "<p>The folder path in Linux workstations where files are uploaded. The default path is <code>$HOME/Downloads</code>.</p>"
+      }
+    },
+    "StreamingSessionStorageRootPathWindows": {
+      "base": null,
+      "refs": {
+        "StreamingSessionStorageRoot$windows": "<p>The folder path in Windows workstations where files are uploaded. The default path is <code>%HOMEPATH%\\Downloads</code>.</p>"
       }
     },
     "StreamingSessionStream": {
@@ -1043,19 +1080,19 @@
       }
     },
     "StreamingSessionStreamExpirationInSeconds": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "CreateStreamingSessionStreamRequest$expirationInSeconds": "<p>The expiration time in seconds.</p>"
       }
     },
     "StreamingSessionStreamState": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "StreamingSessionStream$state": "<p>The current state.</p>"
       }
     },
     "StreamingSessionStreamStatusCode": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "StreamingSessionStream$statusCode": "<p>The streaming session stream status code.</p>"
       }
@@ -1278,7 +1315,7 @@
       }
     },
     "StudioComponentDescription": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "CreateStudioComponentRequest$description": "<p>The description.</p>",
         "StudioComponent$description": "<p>A human-readable description for the studio component resource.</p>",
@@ -1287,7 +1324,7 @@
       }
     },
     "StudioComponentId": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "LaunchProfileInitializationActiveDirectory$studioComponentId": "<p>The unique identifier for a studio component resource.</p>",
         "LaunchProfileInitializationScript$studioComponentId": "<p>The unique identifier for a studio component resource.</p>",
@@ -1302,14 +1339,14 @@
       }
     },
     "StudioComponentInitializationScriptContent": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "LaunchProfileInitializationScript$script": "<p>The initialization script.</p>",
         "StudioComponentInitializationScript$script": "<p>The initialization script.</p>"
       }
     },
     "StudioComponentInitializationScriptList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "CreateStudioComponentRequest$initializationScripts": "<p>Initialization scripts for studio components.</p>",
         "StudioComponent$initializationScripts": "<p>Initialization scripts for studio components.</p>",
@@ -1317,19 +1354,19 @@
       }
     },
     "StudioComponentInitializationScriptRunContext": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "StudioComponentInitializationScript$runContext": "<p>The method to use when running the initialization script.</p>"
       }
     },
     "StudioComponentList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "ListStudioComponentsResponse$studioComponents": "<p>A collection of studio components.</p>"
       }
     },
     "StudioComponentName": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "CreateStudioComponentRequest$name": "<p>The name for the studio component.</p>",
         "LaunchProfileInitializationActiveDirectory$studioComponentName": "<p>The name for the studio component.</p>",
@@ -1340,7 +1377,7 @@
       }
     },
     "StudioComponentScriptParameterKeyValueList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "CreateStudioComponentRequest$scriptParameters": "<p>Parameters for the studio component scripts.</p>",
         "StudioComponent$scriptParameters": "<p>Parameters for the studio component scripts.</p>",
@@ -1348,7 +1385,7 @@
       }
     },
     "StudioComponentSecurityGroupIdList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "CreateStudioComponentRequest$ec2SecurityGroupIds": "<p>The EC2 security groups that control access to the studio component.</p>",
         "StudioComponent$ec2SecurityGroupIds": "<p>The EC2 security groups that control access to the studio component.</p>",
@@ -1368,7 +1405,7 @@
       }
     },
     "StudioComponentSubtype": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "CreateStudioComponentRequest$subtype": "<p>The specific subtype of a studio component.</p>",
         "StudioComponent$subtype": "<p>The specific subtype of a studio component.</p>",
@@ -1377,19 +1414,19 @@
       }
     },
     "StudioComponentSummary": {
-      "base": "<p/>",
+      "base": "<p>The studio component's summary.</p>",
       "refs": {
         "StudioComponentSummaryList$member": null
       }
     },
     "StudioComponentSummaryList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "GetLaunchProfileDetailsResponse$studioComponentSummaries": "<p>A collection of studio component summaries.</p>"
       }
     },
     "StudioComponentType": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "CreateStudioComponentRequest$type": "<p>The type of the studio component.</p>",
         "StudioComponent$type": "<p>The type of the studio component.</p>",
@@ -1417,7 +1454,7 @@
       }
     },
     "StudioList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "ListStudiosResponse$studios": "<p>A collection of studios.</p>"
       }
@@ -1430,27 +1467,27 @@
       }
     },
     "StudioMembershipList": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
-        "ListStudioMembersResponse$members": "<p>A list of members.</p>"
+        "ListStudioMembersResponse$members": "<p>A list of admin members.</p>"
       }
     },
     "StudioName": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "CreateStudioRequest$studioName": "<p>The studio name that is used in the URL of the Nimble Studio portal when accessed by Nimble Studio users.</p>",
         "Studio$studioName": "<p>The name of the studio, as included in the URL when accessing it in the Nimble Studio portal.</p>"
       }
     },
     "StudioPersona": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "NewStudioMember$persona": "<p>The persona.</p>",
         "StudioMembership$persona": "<p>The persona.</p>"
       }
     },
     "StudioState": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "Studio$state": "<p>The current state of the studio resource.</p>"
       }
@@ -1480,7 +1517,7 @@
       }
     },
     "SyntheticCreateStudioRequestStudioDisplayName": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "CreateStudioRequest$displayName": "<p>A friendly name for the studio.</p>"
       }
@@ -1517,7 +1554,7 @@
       }
     },
     "SyntheticStudioStudioDisplayName": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "Studio$displayName": "<p>A friendly name for the studio.</p>"
       }
@@ -1535,13 +1572,13 @@
       }
     },
     "SyntheticUpdateStudioRequestStudioDisplayName": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "UpdateStudioRequest$displayName": "<p>A friendly name for the studio.</p>"
       }
     },
     "TagResourceRequest": {
-      "base": "<p/>",
+      "base": null,
       "refs": {
       }
     },
@@ -1551,7 +1588,7 @@
       }
     },
     "Tags": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "CreateLaunchProfileRequest$tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
         "CreateStreamingImageRequest$tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
@@ -1573,7 +1610,7 @@
       }
     },
     "Timestamp": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "Eula$createdAt": "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
         "Eula$updatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
@@ -1607,7 +1644,7 @@
       }
     },
     "UpdateLaunchProfileMemberRequest": {
-      "base": "<p/>",
+      "base": null,
       "refs": {
       }
     },
@@ -1617,42 +1654,42 @@
       }
     },
     "UpdateLaunchProfileRequest": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "UpdateLaunchProfileResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "UpdateStreamingImageRequest": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "UpdateStreamingImageResponse": {
-      "base": "<p/>",
+      "base": null,
       "refs": {
       }
     },
     "UpdateStudioComponentRequest": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "UpdateStudioComponentResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "UpdateStudioRequest": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
     "UpdateStudioResponse": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
       }
     },
@@ -1662,7 +1699,7 @@
       }
     },
     "WindowsMountDrive": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": null,
       "refs": {
         "SharedFileSystemConfiguration$windowsMountDrive": "<p>The mount location for a shared file system on a Windows virtual workstation.</p>"
       }

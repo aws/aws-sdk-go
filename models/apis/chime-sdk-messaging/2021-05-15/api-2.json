@@ -1112,7 +1112,9 @@
       "members":{
         "MessageId":{"shape":"MessageId"},
         "Content":{"shape":"NonEmptyContent"},
-        "Metadata":{"shape":"Metadata"}
+        "Metadata":{"shape":"Metadata"},
+        "PushNotification":{"shape":"PushNotificationConfiguration"},
+        "MessageAttributes":{"shape":"MessageAttributeMap"}
       }
     },
     "ChannelMessagePersistenceType":{
@@ -2398,11 +2400,6 @@
     },
     "PushNotificationConfiguration":{
       "type":"structure",
-      "required":[
-        "Title",
-        "Body",
-        "Type"
-      ],
       "members":{
         "Title":{"shape":"PushNotificationTitle"},
         "Body":{"shape":"PushNotificationBody"},

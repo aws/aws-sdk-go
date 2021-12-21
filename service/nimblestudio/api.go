@@ -3759,6 +3759,8 @@ func (c *NimbleStudio) ListStudioMembersRequest(input *ListStudioMembersInput) (
 //
 // Get all users in a given studio membership.
 //
+// ListStudioMembers only returns admin members.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6429,7 +6431,7 @@ type CreateStudioComponentInput struct {
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The EC2 security groups that control access to the studio component.
-	Ec2SecurityGroupIds []*string `locationName:"ec2SecurityGroupIds" min:"1" type:"list"`
+	Ec2SecurityGroupIds []*string `locationName:"ec2SecurityGroupIds" type:"list"`
 
 	// Initialization scripts for studio components.
 	InitializationScripts []*StudioComponentInitializationScript `locationName:"initializationScripts" type:"list"`
@@ -6491,9 +6493,6 @@ func (s *CreateStudioComponentInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateStudioComponentInput"}
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
-	}
-	if s.Ec2SecurityGroupIds != nil && len(s.Ec2SecurityGroupIds) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Ec2SecurityGroupIds", 1))
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
@@ -9087,7 +9086,7 @@ func (s *LaunchProfile) SetUpdatedBy(v string) *LaunchProfile {
 }
 
 // A Launch Profile Initialization contains information required for a workstation
-// or server to connect to a launch profile
+// or server to connect to a launch profile.
 //
 // This includes scripts, endpoints, security groups, subnets, and other configuration.
 type LaunchProfileInitialization struct {
@@ -9198,6 +9197,8 @@ func (s *LaunchProfileInitialization) SetUserInitializationScripts(v []*LaunchPr
 	return s
 }
 
+// The Launch Profile Initialization Active Directory contains information required
+// for the launch profile to connect to the Active Directory.
 type LaunchProfileInitializationActiveDirectory struct {
 	_ struct{} `type:"structure"`
 
@@ -9292,6 +9293,8 @@ func (s *LaunchProfileInitializationActiveDirectory) SetStudioComponentName(v st
 	return s
 }
 
+// The Launch Profile Initialization Script is used when start streaming session
+// runs.
 type LaunchProfileInitializationScript struct {
 	_ struct{} `type:"structure"`
 
@@ -9349,6 +9352,26 @@ func (s *LaunchProfileInitializationScript) SetStudioComponentName(v string) *La
 	return s
 }
 
+// Launch profile membership enables your studio admins to delegate launch profile
+// access to other studio users in the Nimble Studio portal without needing
+// to write or maintain complex IAM policies. A launch profile member is a user
+// association from your studio identity source who is granted permissions to
+// a launch profile.
+//
+// A launch profile member (type USER) provides the following permissions to
+// that launch profile:
+//
+//    * GetLaunchProfile
+//
+//    * GetLaunchProfileInitialization
+//
+//    * GetLaunchProfileMembers
+//
+//    * GetLaunchProfileMember
+//
+//    * CreateStreamingSession
+//
+//    * GetLaunchProfileDetails
 type LaunchProfileMembership struct {
 	_ struct{} `type:"structure"`
 
@@ -10320,7 +10343,7 @@ func (s *ListStudioMembersInput) SetStudioId(v string) *ListStudioMembersInput {
 type ListStudioMembersOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of members.
+	// A list of admin members.
 	Members []*StudioMembership `locationName:"members" type:"list"`
 
 	// The token for the next set of results, or null if there are no more results.
@@ -10512,6 +10535,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+// A new member that is added to a launch profile.
 type NewLaunchProfileMember struct {
 	_ struct{} `type:"structure"`
 
@@ -10572,6 +10596,7 @@ func (s *NewLaunchProfileMember) SetPrincipalId(v string) *NewLaunchProfileMembe
 	return s
 }
 
+// A new studio user's membership.
 type NewStudioMember struct {
 	_ struct{} `type:"structure"`
 
@@ -11542,6 +11567,9 @@ type StreamConfiguration struct {
 	// value, the session will automatically be stopped by AWS (instead of terminated).
 	MaxStoppedSessionLengthInMinutes *int64 `locationName:"maxStoppedSessionLengthInMinutes" type:"integer"`
 
+	// (Optional) The upload storage for a streaming session.
+	SessionStorage *StreamConfigurationSessionStorage `locationName:"sessionStorage" type:"structure"`
+
 	// The streaming images that users can select from when launching a streaming
 	// session with this launch profile.
 	//
@@ -11591,6 +11619,12 @@ func (s *StreamConfiguration) SetMaxStoppedSessionLengthInMinutes(v int64) *Stre
 	return s
 }
 
+// SetSessionStorage sets the SessionStorage field's value.
+func (s *StreamConfiguration) SetSessionStorage(v *StreamConfigurationSessionStorage) *StreamConfiguration {
+	s.SessionStorage = v
+	return s
+}
+
 // SetStreamingImageIds sets the StreamingImageIds field's value.
 func (s *StreamConfiguration) SetStreamingImageIds(v []*string) *StreamConfiguration {
 	s.StreamingImageIds = v
@@ -11619,11 +11653,24 @@ type StreamConfigurationCreate struct {
 	// and the maximum length of time is 30 days.
 	MaxSessionLengthInMinutes *int64 `locationName:"maxSessionLengthInMinutes" min:"1" type:"integer"`
 
-	// The length of time, in minutes, that a streaming session can be active before
-	// it is stopped or terminated. After this point, Nimble Studio automatically
-	// terminates or stops the session. The default length of time is 690 minutes,
-	// and the maximum length of time is 30 days.
+	// Integer that determines if you can start and stop your sessions and how long
+	// a session can stay in the STOPPED state. The default value is 0. The maximum
+	// value is 5760.
+	//
+	// If the value is missing or set to 0, your sessions can’t be stopped. If
+	// you then call StopStreamingSession, the session fails. If the time that a
+	// session stays in the READY state exceeds the maxSessionLengthInMinutes value,
+	// the session will automatically be terminated by AWS (instead of stopped).
+	//
+	// If the value is set to a positive number, the session can be stopped. You
+	// can call StopStreamingSession to stop sessions in the READY state. If the
+	// time that a session stays in the READY state exceeds the maxSessionLengthInMinutes
+	// value, the session will automatically be stopped by AWS (instead of terminated).
 	MaxStoppedSessionLengthInMinutes *int64 `locationName:"maxStoppedSessionLengthInMinutes" type:"integer"`
+
+	// (Optional) The upload storage for a streaming workstation that is created
+	// using this launch profile.
+	SessionStorage *StreamConfigurationSessionStorage `locationName:"sessionStorage" type:"structure"`
 
 	// The streaming images that users can select from when launching a streaming
 	// session with this launch profile.
@@ -11671,6 +11718,11 @@ func (s *StreamConfigurationCreate) Validate() error {
 	if s.StreamingImageIds != nil && len(s.StreamingImageIds) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("StreamingImageIds", 1))
 	}
+	if s.SessionStorage != nil {
+		if err := s.SessionStorage.Validate(); err != nil {
+			invalidParams.AddNested("SessionStorage", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -11702,9 +11754,80 @@ func (s *StreamConfigurationCreate) SetMaxStoppedSessionLengthInMinutes(v int64)
 	return s
 }
 
+// SetSessionStorage sets the SessionStorage field's value.
+func (s *StreamConfigurationCreate) SetSessionStorage(v *StreamConfigurationSessionStorage) *StreamConfigurationCreate {
+	s.SessionStorage = v
+	return s
+}
+
 // SetStreamingImageIds sets the StreamingImageIds field's value.
 func (s *StreamConfigurationCreate) SetStreamingImageIds(v []*string) *StreamConfigurationCreate {
 	s.StreamingImageIds = v
+	return s
+}
+
+// The configuration for a streaming session’s upload storage.
+type StreamConfigurationSessionStorage struct {
+	_ struct{} `type:"structure"`
+
+	// Allows artists to upload files to their workstations. The only valid option
+	// is UPLOAD.
+	//
+	// Mode is a required field
+	Mode []*string `locationName:"mode" min:"1" type:"list" required:"true"`
+
+	// The configuration for the upload storage root of the streaming session.
+	Root *StreamingSessionStorageRoot `locationName:"root" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamConfigurationSessionStorage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamConfigurationSessionStorage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StreamConfigurationSessionStorage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StreamConfigurationSessionStorage"}
+	if s.Mode == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mode"))
+	}
+	if s.Mode != nil && len(s.Mode) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Mode", 1))
+	}
+	if s.Root != nil {
+		if err := s.Root.Validate(); err != nil {
+			invalidParams.AddNested("Root", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMode sets the Mode field's value.
+func (s *StreamConfigurationSessionStorage) SetMode(v []*string) *StreamConfigurationSessionStorage {
+	s.Mode = v
+	return s
+}
+
+// SetRoot sets the Root field's value.
+func (s *StreamConfigurationSessionStorage) SetRoot(v *StreamingSessionStorageRoot) *StreamConfigurationSessionStorage {
+	s.Root = v
 	return s
 }
 
@@ -12119,6 +12242,74 @@ func (s *StreamingSession) SetUpdatedBy(v string) *StreamingSession {
 	return s
 }
 
+// The upload storage root location (folder) on streaming workstations where
+// files are uploaded.
+type StreamingSessionStorageRoot struct {
+	_ struct{} `type:"structure"`
+
+	// The folder path in Linux workstations where files are uploaded. The default
+	// path is $HOME/Downloads.
+	//
+	// Linux is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StreamingSessionStorageRoot's
+	// String and GoString methods.
+	Linux *string `locationName:"linux" min:"1" type:"string" sensitive:"true"`
+
+	// The folder path in Windows workstations where files are uploaded. The default
+	// path is %HOMEPATH%\Downloads.
+	//
+	// Windows is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StreamingSessionStorageRoot's
+	// String and GoString methods.
+	Windows *string `locationName:"windows" min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamingSessionStorageRoot) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamingSessionStorageRoot) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StreamingSessionStorageRoot) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StreamingSessionStorageRoot"}
+	if s.Linux != nil && len(*s.Linux) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Linux", 1))
+	}
+	if s.Windows != nil && len(*s.Windows) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Windows", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLinux sets the Linux field's value.
+func (s *StreamingSessionStorageRoot) SetLinux(v string) *StreamingSessionStorageRoot {
+	s.Linux = &v
+	return s
+}
+
+// SetWindows sets the Windows field's value.
+func (s *StreamingSessionStorageRoot) SetWindows(v string) *StreamingSessionStorageRoot {
+	s.Windows = &v
+	return s
+}
+
 // A stream is an active connection to a streaming session, enabling a studio
 // user to control the streaming session using a compatible client. Streaming
 // session streams are compatible with the NICE DCV web client, included in
@@ -12452,7 +12643,7 @@ type StudioComponent struct {
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The EC2 security groups that control access to the studio component.
-	Ec2SecurityGroupIds []*string `locationName:"ec2SecurityGroupIds" min:"1" type:"list"`
+	Ec2SecurityGroupIds []*string `locationName:"ec2SecurityGroupIds" type:"list"`
 
 	// Initialization scripts for studio components.
 	InitializationScripts []*StudioComponentInitializationScript `locationName:"initializationScripts" type:"list"`
@@ -12780,6 +12971,7 @@ func (s *StudioComponentInitializationScript) SetScript(v string) *StudioCompone
 	return s
 }
 
+// The studio component's summary.
 type StudioComponentSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -13743,7 +13935,7 @@ type UpdateStudioComponentInput struct {
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The EC2 security groups that control access to the studio component.
-	Ec2SecurityGroupIds []*string `locationName:"ec2SecurityGroupIds" min:"1" type:"list"`
+	Ec2SecurityGroupIds []*string `locationName:"ec2SecurityGroupIds" type:"list"`
 
 	// Initialization scripts for studio components.
 	InitializationScripts []*StudioComponentInitializationScript `locationName:"initializationScripts" type:"list"`
@@ -13802,9 +13994,6 @@ func (s *UpdateStudioComponentInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateStudioComponentInput"}
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
-	}
-	if s.Ec2SecurityGroupIds != nil && len(s.Ec2SecurityGroupIds) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Ec2SecurityGroupIds", 1))
 	}
 	if s.StudioComponentId == nil {
 		invalidParams.Add(request.NewErrParamRequired("StudioComponentId"))
@@ -14362,6 +14551,9 @@ const (
 
 	// StreamingImageStatusCodeInternalError is a StreamingImageStatusCode enum value
 	StreamingImageStatusCodeInternalError = "INTERNAL_ERROR"
+
+	// StreamingImageStatusCodeAccessDenied is a StreamingImageStatusCode enum value
+	StreamingImageStatusCodeAccessDenied = "ACCESS_DENIED"
 )
 
 // StreamingImageStatusCode_Values returns all elements of the StreamingImageStatusCode enum
@@ -14373,6 +14565,7 @@ func StreamingImageStatusCode_Values() []string {
 		StreamingImageStatusCodeStreamingImageDeleted,
 		StreamingImageStatusCodeStreamingImageUpdateInProgress,
 		StreamingImageStatusCodeInternalError,
+		StreamingImageStatusCodeAccessDenied,
 	}
 }
 
@@ -14526,6 +14719,18 @@ func StreamingSessionStatusCode_Values() []string {
 		StreamingSessionStatusCodeStreamingSessionStarted,
 		StreamingSessionStatusCodeStreamingSessionStopInProgress,
 		StreamingSessionStatusCodeStreamingSessionStartInProgress,
+	}
+}
+
+const (
+	// StreamingSessionStorageModeUpload is a StreamingSessionStorageMode enum value
+	StreamingSessionStorageModeUpload = "UPLOAD"
+)
+
+// StreamingSessionStorageMode_Values returns all elements of the StreamingSessionStorageMode enum
+func StreamingSessionStorageMode_Values() []string {
+	return []string{
+		StreamingSessionStorageModeUpload,
 	}
 }
 

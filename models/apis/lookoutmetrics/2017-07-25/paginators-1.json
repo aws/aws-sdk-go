@@ -20,6 +20,11 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults"
     },
+    "ListAnomalyGroupRelatedMetrics": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "ListAnomalyGroupSummaries": {
       "input_token": "NextToken",
       "output_token": "NextToken",

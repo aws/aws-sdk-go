@@ -13,6 +13,7 @@
     "CreateUser": "<p>Creates a user who can be used in Amazon WorkMail by calling the <a>RegisterToWorkMail</a> operation.</p>",
     "DeleteAccessControlRule": "<p>Deletes an access control rule for the specified WorkMail organization.</p> <note> <p>Deleting already deleted and non-existing rules does not produce an error. In those cases, the service sends back an HTTP 200 response with an empty HTTP body.</p> </note>",
     "DeleteAlias": "<p>Remove one or more specified aliases from a set of aliases for a given user.</p>",
+    "DeleteEmailMonitoringConfiguration": "<p>Deletes the email monitoring configuration for a specified organization.</p>",
     "DeleteGroup": "<p>Deletes a group from Amazon WorkMail.</p>",
     "DeleteMailboxPermissions": "<p>Deletes permissions granted to a member (user or group).</p>",
     "DeleteMobileDeviceAccessOverride": "<p>Deletes the mobile device access override for the given WorkMail organization, user, and device.</p> <note> <p>Deleting already deleted and non-existing overrides does not produce an error. In those cases, the service sends back an HTTP 200 response with an empty HTTP body.</p> </note>",
@@ -23,6 +24,7 @@
     "DeleteUser": "<p>Deletes a user from Amazon WorkMail and all subsequent systems. Before you can delete a user, the user state must be <code>DISABLED</code>. Use the <a>DescribeUser</a> action to confirm the user state.</p> <p>Deleting a user is permanent and cannot be undone. WorkMail archives user mailboxes for 30 days before they are permanently removed.</p>",
     "DeregisterFromWorkMail": "<p>Mark a user, group, or resource as no longer used in Amazon WorkMail. This action disassociates the mailbox and schedules it for clean-up. WorkMail keeps mailboxes for 30 days before they are permanently removed. The functionality in the console is <i>Disable</i>.</p>",
     "DeregisterMailDomain": "<p>Removes a domain from Amazon WorkMail, stops email routing to WorkMail, and removes the authorization allowing WorkMail use. SES keeps the domain because other applications may use it. You must first remove any email address used by WorkMail entities before you remove the domain.</p>",
+    "DescribeEmailMonitoringConfiguration": "<p>Describes the current email monitoring configuration for a specified organization.</p>",
     "DescribeGroup": "<p>Returns the data available for the group.</p>",
     "DescribeInboundDmarcSettings": "<p>Lists the settings in a DMARC policy for a specified organization.</p>",
     "DescribeMailboxExportJob": "<p>Describes the current status of a mailbox export job.</p>",
@@ -52,6 +54,7 @@
     "ListTagsForResource": "<p>Lists the tags applied to an Amazon WorkMail organization resource.</p>",
     "ListUsers": "<p>Returns summaries of the organization's users.</p>",
     "PutAccessControlRule": "<p>Adds a new access control rule for the specified organization. The rule allows or denies access to the organization for the specified IPv4 addresses, access protocol actions, and user IDs. Adding a new rule with the same name as an existing rule replaces the older rule.</p>",
+    "PutEmailMonitoringConfiguration": "<p>Creates or updates the email monitoring configuration for a specified organization.</p>",
     "PutInboundDmarcSettings": "<p>Enables or disables a DMARC policy for a given organization.</p>",
     "PutMailboxPermissions": "<p>Sets permissions for a user, group, or resource. This replaces any pre-existing permissions.</p>",
     "PutMobileDeviceAccessOverride": "<p>Creates or updates a mobile device access override for the given WorkMail organization, user, and device.</p>",
@@ -285,6 +288,16 @@
       "refs": {
       }
     },
+    "DeleteEmailMonitoringConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteEmailMonitoringConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteGroupRequest": {
       "base": null,
       "refs": {
@@ -381,6 +394,16 @@
       }
     },
     "DeregisterMailDomainResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeEmailMonitoringConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeEmailMonitoringConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -989,6 +1012,13 @@
       "refs": {
       }
     },
+    "LogGroupArn": {
+      "base": null,
+      "refs": {
+        "DescribeEmailMonitoringConfigurationResponse$LogGroupArn": "<p>The Amazon Resource Name (ARN) of the CloudWatch Log group associated with the email monitoring configuration.</p>",
+        "PutEmailMonitoringConfigurationRequest$LogGroupArn": "<p>The Amazon Resource Name (ARN) of the CloudWatch Log group associated with the email monitoring configuration.</p>"
+      }
+    },
     "MailDomainInUseException": {
       "base": "<p>The domain you're trying to change is in use by another user or organization in your account. See the error message for details.</p>",
       "refs": {
@@ -1217,6 +1247,7 @@
         "CreateUserRequest$OrganizationId": "<p>The identifier of the organization for which the user is created.</p>",
         "DeleteAccessControlRuleRequest$OrganizationId": "<p>The identifier for the organization.</p>",
         "DeleteAliasRequest$OrganizationId": "<p>The identifier for the organization under which the user exists.</p>",
+        "DeleteEmailMonitoringConfigurationRequest$OrganizationId": "<p>The ID of the organization from which the email monitoring configuration is deleted.</p>",
         "DeleteGroupRequest$OrganizationId": "<p>The organization that contains the group.</p>",
         "DeleteMailboxPermissionsRequest$OrganizationId": "<p>The identifier of the organization under which the member (user or group) exists.</p>",
         "DeleteMobileDeviceAccessOverrideRequest$OrganizationId": "<p>The Amazon WorkMail organization for which the access override will be deleted.</p>",
@@ -1228,6 +1259,7 @@
         "DeleteUserRequest$OrganizationId": "<p>The organization that contains the user to be deleted.</p>",
         "DeregisterFromWorkMailRequest$OrganizationId": "<p>The identifier for the organization under which the Amazon WorkMail entity exists.</p>",
         "DeregisterMailDomainRequest$OrganizationId": "<p>The Amazon WorkMail organization for which the domain will be deregistered.</p>",
+        "DescribeEmailMonitoringConfigurationRequest$OrganizationId": "<p>The ID of the organization for which the email monitoring configuration is described.</p>",
         "DescribeGroupRequest$OrganizationId": "<p>The identifier for the organization under which the group exists.</p>",
         "DescribeInboundDmarcSettingsRequest$OrganizationId": "<p>Lists the ID of the given organization.</p>",
         "DescribeMailboxExportJobRequest$OrganizationId": "<p>The organization ID.</p>",
@@ -1257,6 +1289,7 @@
         "ListUsersRequest$OrganizationId": "<p>The identifier for the organization under which the users exist.</p>",
         "OrganizationSummary$OrganizationId": "<p>The identifier associated with the organization.</p>",
         "PutAccessControlRuleRequest$OrganizationId": "<p>The identifier of the organization.</p>",
+        "PutEmailMonitoringConfigurationRequest$OrganizationId": "<p>The ID of the organization for which the email monitoring configuration is set.</p>",
         "PutInboundDmarcSettingsRequest$OrganizationId": "<p>The ID of the organization that you are applying the DMARC policy to. </p>",
         "PutMailboxPermissionsRequest$OrganizationId": "<p>The identifier of the organization under which the user, group, or resource exists.</p>",
         "PutMobileDeviceAccessOverrideRequest$OrganizationId": "<p>Identifies the Amazon WorkMail organization for which you create the override.</p>",
@@ -1353,6 +1386,16 @@
       }
     },
     "PutAccessControlRuleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutEmailMonitoringConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutEmailMonitoringConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -1499,7 +1542,9 @@
     "RoleArn": {
       "base": null,
       "refs": {
+        "DescribeEmailMonitoringConfigurationResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM Role associated with the email monitoring configuration.</p>",
         "DescribeMailboxExportJobResponse$RoleArn": "<p>The ARN of the AWS Identity and Access Management (IAM) role that grants write permission to the Amazon Simple Storage Service (Amazon S3) bucket.</p>",
+        "PutEmailMonitoringConfigurationRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM Role associated with the email monitoring configuration.</p>",
         "StartMailboxExportJobRequest$RoleArn": "<p>The ARN of the AWS Identity and Access Management (IAM) role that grants write permission to the S3 bucket.</p>"
       }
     },

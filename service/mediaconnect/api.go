@@ -4025,10 +4025,11 @@ type AddOutputRequest struct {
 	Destination *string `locationName:"destination" type:"string"`
 
 	// The type of key used for the encryption. If no keyType is provided, the service
-	// will use the default setting (static-key).
+	// will use the default setting (static-key). Allowable encryption types: static-key.
 	Encryption *Encryption `locationName:"encryption" type:"structure"`
 
-	// The maximum latency in milliseconds for Zixi-based streams.
+	// The maximum latency in milliseconds. This parameter applies only to RIST-based,
+	// Zixi-based, and Fujitsu-based streams.
 	MaxLatency *int64 `locationName:"maxLatency" type:"integer"`
 
 	// The media streams that are associated with the output, and the parameters
@@ -4055,6 +4056,10 @@ type AddOutputRequest struct {
 
 	// The remote ID for the Zixi-pull output stream.
 	RemoteId *string `locationName:"remoteId" type:"string"`
+
+	// The port that the flow uses to send outbound requests to initiate connection
+	// with the sender.
+	SenderControlPort *int64 `locationName:"senderControlPort" type:"integer"`
 
 	// The smoothing latency in milliseconds for RIST, RTP, and RTP-FEC streams.
 	SmoothingLatency *int64 `locationName:"smoothingLatency" type:"integer"`
@@ -4176,6 +4181,12 @@ func (s *AddOutputRequest) SetProtocol(v string) *AddOutputRequest {
 // SetRemoteId sets the RemoteId field's value.
 func (s *AddOutputRequest) SetRemoteId(v string) *AddOutputRequest {
 	s.RemoteId = &v
+	return s
+}
+
+// SetSenderControlPort sets the SenderControlPort field's value.
+func (s *AddOutputRequest) SetSenderControlPort(v int64) *AddOutputRequest {
+	s.SenderControlPort = &v
 	return s
 }
 
@@ -4356,7 +4367,7 @@ type CreateFlowInput struct {
 	// The settings for the source of the flow.
 	Source *SetSourceRequest `locationName:"source" type:"structure"`
 
-	// The settings for source failover
+	// The settings for source failover.
 	SourceFailoverConfig *FailoverConfig `locationName:"sourceFailoverConfig" type:"structure"`
 
 	Sources []*SetSourceRequest `locationName:"sources" type:"list"`
@@ -5382,7 +5393,7 @@ func (s *Entitlement) SetSubscribers(v []*string) *Entitlement {
 	return s
 }
 
-// The settings for source failover
+// The settings for source failover.
 type FailoverConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -5491,7 +5502,7 @@ type Flow struct {
 	// Source is a required field
 	Source *Source `locationName:"source" type:"structure" required:"true"`
 
-	// The settings for source failover
+	// The settings for source failover.
 	SourceFailoverConfig *FailoverConfig `locationName:"sourceFailoverConfig" type:"structure"`
 
 	Sources []*Source `locationName:"sources" type:"list"`
@@ -5856,7 +5867,7 @@ type GrantEntitlementRequest struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The type of encryption that will be used on the output that is associated
-	// with this entitlement.
+	// with this entitlement. Allowable encryption types: static-key, speke.
 	Encryption *Encryption `locationName:"encryption" type:"structure"`
 
 	// An indication of whether the new entitlement should be enabled or disabled
@@ -8838,6 +8849,7 @@ type SetSourceRequest struct {
 	_ struct{} `type:"structure"`
 
 	// The type of encryption that is used on the content ingested from this source.
+	// Allowable encryption types: static-key.
 	Decryption *Encryption `locationName:"decryption" type:"structure"`
 
 	// A description for the source. This value is not used or seen outside of the
@@ -8855,8 +8867,8 @@ type SetSourceRequest struct {
 	// The smoothing max bitrate for RIST, RTP, and RTP-FEC streams.
 	MaxBitrate *int64 `locationName:"maxBitrate" type:"integer"`
 
-	// The maximum latency in milliseconds. This parameter applies only to RIST-based
-	// and Zixi-based streams.
+	// The maximum latency in milliseconds. This parameter applies only to RIST-based,
+	// Zixi-based, and Fujitsu-based streams.
 	MaxLatency *int64 `locationName:"maxLatency" type:"integer"`
 
 	// The size of the buffer (in milliseconds) to use to sync incoming source data.
@@ -8878,6 +8890,14 @@ type SetSourceRequest struct {
 
 	// The protocol that is used by the source.
 	Protocol *string `locationName:"protocol" type:"string" enum:"Protocol"`
+
+	// The port that the flow uses to send outbound requests to initiate connection
+	// with the sender.
+	SenderControlPort *int64 `locationName:"senderControlPort" type:"integer"`
+
+	// The IP address that the flow communicates with to initiate connection with
+	// the sender.
+	SenderIpAddress *string `locationName:"senderIpAddress" type:"string"`
 
 	// The stream ID that you want to use for this transport. This parameter applies
 	// only to Zixi-based streams.
@@ -9001,6 +9021,18 @@ func (s *SetSourceRequest) SetProtocol(v string) *SetSourceRequest {
 	return s
 }
 
+// SetSenderControlPort sets the SenderControlPort field's value.
+func (s *SetSourceRequest) SetSenderControlPort(v int64) *SetSourceRequest {
+	s.SenderControlPort = &v
+	return s
+}
+
+// SetSenderIpAddress sets the SenderIpAddress field's value.
+func (s *SetSourceRequest) SetSenderIpAddress(v string) *SetSourceRequest {
+	s.SenderIpAddress = &v
+	return s
+}
+
 // SetStreamId sets the StreamId field's value.
 func (s *SetSourceRequest) SetStreamId(v string) *SetSourceRequest {
 	s.StreamId = &v
@@ -9052,6 +9084,14 @@ type Source struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The port that the flow uses to send outbound requests to initiate connection
+	// with the sender.
+	SenderControlPort *int64 `locationName:"senderControlPort" type:"integer"`
+
+	// The IP address that the flow communicates with to initiate connection with
+	// the sender.
+	SenderIpAddress *string `locationName:"senderIpAddress" type:"string"`
 
 	// The ARN of the source.
 	//
@@ -9133,6 +9173,18 @@ func (s *Source) SetMediaStreamSourceConfigurations(v []*MediaStreamSourceConfig
 // SetName sets the Name field's value.
 func (s *Source) SetName(v string) *Source {
 	s.Name = &v
+	return s
+}
+
+// SetSenderControlPort sets the SenderControlPort field's value.
+func (s *Source) SetSenderControlPort(v int64) *Source {
+	s.SenderControlPort = &v
+	return s
+}
+
+// SetSenderIpAddress sets the SenderIpAddress field's value.
+func (s *Source) SetSenderIpAddress(v string) *Source {
+	s.SenderIpAddress = &v
 	return s
 }
 
@@ -9533,8 +9585,8 @@ type Transport struct {
 	// The smoothing max bitrate for RIST, RTP, and RTP-FEC streams.
 	MaxBitrate *int64 `locationName:"maxBitrate" type:"integer"`
 
-	// The maximum latency in milliseconds. This parameter applies only to RIST-based
-	// and Zixi-based streams.
+	// The maximum latency in milliseconds. This parameter applies only to RIST-based,
+	// Zixi-based, and Fujitsu-based streams.
 	MaxLatency *int64 `locationName:"maxLatency" type:"integer"`
 
 	// The size of the buffer (in milliseconds) to use to sync incoming source data.
@@ -9554,6 +9606,14 @@ type Transport struct {
 
 	// The remote ID for the Zixi-pull stream.
 	RemoteId *string `locationName:"remoteId" type:"string"`
+
+	// The port that the flow uses to send outbound requests to initiate connection
+	// with the sender.
+	SenderControlPort *int64 `locationName:"senderControlPort" type:"integer"`
+
+	// The IP address that the flow communicates with to initiate connection with
+	// the sender.
+	SenderIpAddress *string `locationName:"senderIpAddress" type:"string"`
 
 	// The smoothing latency in milliseconds for RIST, RTP, and RTP-FEC streams.
 	SmoothingLatency *int64 `locationName:"smoothingLatency" type:"integer"`
@@ -9620,6 +9680,18 @@ func (s *Transport) SetProtocol(v string) *Transport {
 // SetRemoteId sets the RemoteId field's value.
 func (s *Transport) SetRemoteId(v string) *Transport {
 	s.RemoteId = &v
+	return s
+}
+
+// SetSenderControlPort sets the SenderControlPort field's value.
+func (s *Transport) SetSenderControlPort(v int64) *Transport {
+	s.SenderControlPort = &v
+	return s
+}
+
+// SetSenderIpAddress sets the SenderIpAddress field's value.
+func (s *Transport) SetSenderIpAddress(v string) *Transport {
+	s.SenderIpAddress = &v
 	return s
 }
 
@@ -9835,7 +9907,7 @@ func (s *UpdateEncryption) SetUrl(v string) *UpdateEncryption {
 	return s
 }
 
-// The settings for source failover
+// The settings for source failover.
 type UpdateFailoverConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -9906,7 +9978,7 @@ type UpdateFlowEntitlementInput struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The type of encryption that will be used on the output associated with this
-	// entitlement.
+	// entitlement. Allowable encryption types: static-key, speke.
 	Encryption *UpdateEncryption `locationName:"encryption" type:"structure"`
 
 	// EntitlementArn is a required field
@@ -10052,7 +10124,7 @@ type UpdateFlowInput struct {
 	// FlowArn is a required field
 	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
 
-	// The settings for source failover
+	// The settings for source failover.
 	SourceFailoverConfig *UpdateFailoverConfig `locationName:"sourceFailoverConfig" type:"structure"`
 }
 
@@ -10302,7 +10374,7 @@ type UpdateFlowOutputInput struct {
 	Destination *string `locationName:"destination" type:"string"`
 
 	// The type of key used for the encryption. If no keyType is provided, the service
-	// will use the default setting (static-key).
+	// will use the default setting (static-key). Allowable encryption types: static-key.
 	Encryption *UpdateEncryption `locationName:"encryption" type:"structure"`
 
 	// FlowArn is a required field
@@ -10333,6 +10405,14 @@ type UpdateFlowOutputInput struct {
 
 	// The remote ID for the Zixi-pull stream.
 	RemoteId *string `locationName:"remoteId" type:"string"`
+
+	// The port that the flow uses to send outbound requests to initiate connection
+	// with the sender.
+	SenderControlPort *int64 `locationName:"senderControlPort" type:"integer"`
+
+	// The IP address that the flow communicates with to initiate connection with
+	// the sender.
+	SenderIpAddress *string `locationName:"senderIpAddress" type:"string"`
 
 	// The smoothing latency in milliseconds for RIST, RTP, and RTP-FEC streams.
 	SmoothingLatency *int64 `locationName:"smoothingLatency" type:"integer"`
@@ -10467,6 +10547,18 @@ func (s *UpdateFlowOutputInput) SetRemoteId(v string) *UpdateFlowOutputInput {
 	return s
 }
 
+// SetSenderControlPort sets the SenderControlPort field's value.
+func (s *UpdateFlowOutputInput) SetSenderControlPort(v int64) *UpdateFlowOutputInput {
+	s.SenderControlPort = &v
+	return s
+}
+
+// SetSenderIpAddress sets the SenderIpAddress field's value.
+func (s *UpdateFlowOutputInput) SetSenderIpAddress(v string) *UpdateFlowOutputInput {
+	s.SenderIpAddress = &v
+	return s
+}
+
 // SetSmoothingLatency sets the SmoothingLatency field's value.
 func (s *UpdateFlowOutputInput) SetSmoothingLatency(v int64) *UpdateFlowOutputInput {
 	s.SmoothingLatency = &v
@@ -10531,7 +10623,8 @@ func (s *UpdateFlowOutputOutput) SetOutput(v *Output) *UpdateFlowOutputOutput {
 type UpdateFlowSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The type of encryption used on the content ingested from this source.
+	// The type of encryption used on the content ingested from this source. Allowable
+	// encryption types: static-key.
 	Decryption *UpdateEncryption `locationName:"decryption" type:"structure"`
 
 	// A description for the source. This value is not used or seen outside of the
@@ -10552,8 +10645,8 @@ type UpdateFlowSourceInput struct {
 	// The smoothing max bitrate for RIST, RTP, and RTP-FEC streams.
 	MaxBitrate *int64 `locationName:"maxBitrate" type:"integer"`
 
-	// The maximum latency in milliseconds. This parameter applies only to RIST-based
-	// and Zixi-based streams.
+	// The maximum latency in milliseconds. This parameter applies only to RIST-based,
+	// Zixi-based, and Fujitsu-based streams.
 	MaxLatency *int64 `locationName:"maxLatency" type:"integer"`
 
 	// The size of the buffer (in milliseconds) to use to sync incoming source data.
@@ -10572,6 +10665,12 @@ type UpdateFlowSourceInput struct {
 
 	// The protocol that is used by the source.
 	Protocol *string `locationName:"protocol" type:"string" enum:"Protocol"`
+
+	SenderControlPort *int64 `locationName:"senderControlPort" type:"integer"`
+
+	// The IP address that the flow communicates with to initiate connection with
+	// the sender.
+	SenderIpAddress *string `locationName:"senderIpAddress" type:"string"`
 
 	// SourceArn is a required field
 	SourceArn *string `location:"uri" locationName:"sourceArn" type:"string" required:"true"`
@@ -10705,6 +10804,18 @@ func (s *UpdateFlowSourceInput) SetProtocol(v string) *UpdateFlowSourceInput {
 	return s
 }
 
+// SetSenderControlPort sets the SenderControlPort field's value.
+func (s *UpdateFlowSourceInput) SetSenderControlPort(v int64) *UpdateFlowSourceInput {
+	s.SenderControlPort = &v
+	return s
+}
+
+// SetSenderIpAddress sets the SenderIpAddress field's value.
+func (s *UpdateFlowSourceInput) SetSenderIpAddress(v string) *UpdateFlowSourceInput {
+	s.SenderIpAddress = &v
+	return s
+}
+
 // SetSourceArn sets the SourceArn field's value.
 func (s *UpdateFlowSourceInput) SetSourceArn(v string) *UpdateFlowSourceInput {
 	s.SourceArn = &v
@@ -10775,7 +10886,7 @@ func (s *UpdateFlowSourceOutput) SetSource(v *Source) *UpdateFlowSourceOutput {
 type VpcInterface struct {
 	_ struct{} `type:"structure"`
 
-	// Immutable and has to be a unique against other VpcInterfaces in this Flow
+	// Immutable and has to be a unique against other VpcInterfaces in this Flow.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
@@ -11224,6 +11335,9 @@ const (
 
 	// ProtocolSrtListener is a Protocol enum value
 	ProtocolSrtListener = "srt-listener"
+
+	// ProtocolFujitsuQos is a Protocol enum value
+	ProtocolFujitsuQos = "fujitsu-qos"
 )
 
 // Protocol_Values returns all elements of the Protocol enum
@@ -11237,6 +11351,7 @@ func Protocol_Values() []string {
 		ProtocolSt2110Jpegxs,
 		ProtocolCdi,
 		ProtocolSrtListener,
+		ProtocolFujitsuQos,
 	}
 }
 

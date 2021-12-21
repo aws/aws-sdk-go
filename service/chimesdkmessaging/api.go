@@ -6465,6 +6465,10 @@ type ChannelMessageCallback struct {
 	// String and GoString methods.
 	Content *string `min:"1" type:"string" sensitive:"true"`
 
+	// The attributes for the message, used for message filtering along with a FilterRule
+	// defined in the PushNotificationPreferences.
+	MessageAttributes map[string]*MessageAttributeValue `type:"map"`
+
 	// The message ID.
 	//
 	// MessageId is a required field
@@ -6476,6 +6480,9 @@ type ChannelMessageCallback struct {
 	// replaced with "sensitive" in string returned by ChannelMessageCallback's
 	// String and GoString methods.
 	Metadata *string `type:"string" sensitive:"true"`
+
+	// The push notification configuration of the message.
+	PushNotification *PushNotificationConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6521,6 +6528,12 @@ func (s *ChannelMessageCallback) SetContent(v string) *ChannelMessageCallback {
 	return s
 }
 
+// SetMessageAttributes sets the MessageAttributes field's value.
+func (s *ChannelMessageCallback) SetMessageAttributes(v map[string]*MessageAttributeValue) *ChannelMessageCallback {
+	s.MessageAttributes = v
+	return s
+}
+
 // SetMessageId sets the MessageId field's value.
 func (s *ChannelMessageCallback) SetMessageId(v string) *ChannelMessageCallback {
 	s.MessageId = &v
@@ -6530,6 +6543,12 @@ func (s *ChannelMessageCallback) SetMessageId(v string) *ChannelMessageCallback 
 // SetMetadata sets the Metadata field's value.
 func (s *ChannelMessageCallback) SetMetadata(v string) *ChannelMessageCallback {
 	s.Metadata = &v
+	return s
+}
+
+// SetPushNotification sets the PushNotification field's value.
+func (s *ChannelMessageCallback) SetPushNotification(v *PushNotificationConfiguration) *ChannelMessageCallback {
+	s.PushNotification = v
 	return s
 }
 
@@ -10167,10 +10186,9 @@ type ListChannelMembershipsInput struct {
 	// String and GoString methods.
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string" sensitive:"true"`
 
-	// The membership type of a user, DEFAULT or HIDDEN. Default members are always
-	// returned as part of ListChannelMemberships. Hidden members are only returned
-	// if the type filter in ListChannelMemberships equals HIDDEN. Otherwise hidden
-	// members are not returned.
+	// The membership type of a user, DEFAULT or HIDDEN. Default members are returned
+	// as part of ListChannelMemberships if no type is specified. Hidden members
+	// are only returned if the type filter in ListChannelMemberships equals HIDDEN.
 	Type *string `location:"querystring" locationName:"type" type:"string" enum:"ChannelMembershipType"`
 }
 
@@ -11399,24 +11417,18 @@ type PushNotificationConfiguration struct {
 	// Body is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PushNotificationConfiguration's
 	// String and GoString methods.
-	//
-	// Body is a required field
-	Body *string `type:"string" required:"true" sensitive:"true"`
+	Body *string `type:"string" sensitive:"true"`
 
 	// The title of the push notification.
 	//
 	// Title is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PushNotificationConfiguration's
 	// String and GoString methods.
-	//
-	// Title is a required field
-	Title *string `type:"string" required:"true" sensitive:"true"`
+	Title *string `type:"string" sensitive:"true"`
 
 	// Enum value that indicates the type of the push notification for a message.
 	// DEFAULT: Normal mobile push notification. VOIP: VOIP mobile push notification.
-	//
-	// Type is a required field
-	Type *string `type:"string" required:"true" enum:"PushNotificationType"`
+	Type *string `type:"string" enum:"PushNotificationType"`
 }
 
 // String returns the string representation.
@@ -11435,25 +11447,6 @@ func (s PushNotificationConfiguration) String() string {
 // value will be replaced with "sensitive".
 func (s PushNotificationConfiguration) GoString() string {
 	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *PushNotificationConfiguration) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "PushNotificationConfiguration"}
-	if s.Body == nil {
-		invalidParams.Add(request.NewErrParamRequired("Body"))
-	}
-	if s.Title == nil {
-		invalidParams.Add(request.NewErrParamRequired("Title"))
-	}
-	if s.Type == nil {
-		invalidParams.Add(request.NewErrParamRequired("Type"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
 }
 
 // SetBody sets the Body field's value.
@@ -11981,11 +11974,6 @@ func (s *SendChannelMessageInput) Validate() error {
 	}
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
-	}
-	if s.PushNotification != nil {
-		if err := s.PushNotification.Validate(); err != nil {
-			invalidParams.AddNested("PushNotification", err.(request.ErrInvalidParams))
-		}
 	}
 
 	if invalidParams.Len() > 0 {
