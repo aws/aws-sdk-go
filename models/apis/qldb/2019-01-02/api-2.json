@@ -454,7 +454,8 @@
         "InclusiveStartTime":{"shape":"Timestamp"},
         "ExclusiveEndTime":{"shape":"Timestamp"},
         "S3ExportConfiguration":{"shape":"S3ExportConfiguration"},
-        "RoleArn":{"shape":"Arn"}
+        "RoleArn":{"shape":"Arn"},
+        "OutputFormat":{"shape":"OutputFormat"}
       }
     },
     "ExportJournalToS3Response":{
@@ -607,7 +608,8 @@
         "InclusiveStartTime":{"shape":"Timestamp"},
         "ExclusiveEndTime":{"shape":"Timestamp"},
         "S3ExportConfiguration":{"shape":"S3ExportConfiguration"},
-        "RoleArn":{"shape":"Arn"}
+        "RoleArn":{"shape":"Arn"},
+        "OutputFormat":{"shape":"OutputFormat"}
       }
     },
     "JournalS3ExportList":{
@@ -801,6 +803,14 @@
       "max":1024,
       "min":4,
       "pattern":"^[A-Za-z-0-9+/=]+$"
+    },
+    "OutputFormat":{
+      "type":"string",
+      "enum":[
+        "ION_BINARY",
+        "ION_TEXT",
+        "JSON"
+      ]
     },
     "ParameterName":{"type":"string"},
     "PermissionsMode":{

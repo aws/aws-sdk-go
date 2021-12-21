@@ -598,6 +598,7 @@
         "IdentityProviderType":{"shape":"IdentityProviderType"},
         "LoggingRole":{"shape":"Role"},
         "Protocols":{"shape":"Protocols"},
+        "ProtocolDetails":{"shape":"ProtocolDetails"},
         "SecurityPolicyName":{"shape":"SecurityPolicyName"},
         "Tags":{"shape":"Tags"},
         "WorkflowDetails":{"shape":"WorkflowDetails"}
@@ -1451,7 +1452,8 @@
     "ProtocolDetails":{
       "type":"structure",
       "members":{
-        "PassiveIp":{"shape":"PassiveIp"}
+        "PassiveIp":{"shape":"PassiveIp"},
+        "TlsSessionResumptionMode":{"shape":"TlsSessionResumptionMode"}
       }
     },
     "Protocols":{
@@ -1799,6 +1801,14 @@
         "RetryAfterSeconds":{"shape":"RetryAfterSeconds"}
       },
       "exception":true
+    },
+    "TlsSessionResumptionMode":{
+      "type":"string",
+      "enum":[
+        "DISABLED",
+        "ENABLED",
+        "ENFORCED"
+      ]
     },
     "UntagResourceRequest":{
       "type":"structure",

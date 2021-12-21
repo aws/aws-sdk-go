@@ -277,6 +277,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListAnomalyGroupRelatedMetrics":{
+      "name":"ListAnomalyGroupRelatedMetrics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListAnomalyGroupRelatedMetrics"
+      },
+      "input":{"shape":"ListAnomalyGroupRelatedMetricsRequest"},
+      "output":{"shape":"ListAnomalyGroupRelatedMetricsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "ListAnomalyGroupSummaries":{
       "name":"ListAnomalyGroupSummaries",
       "http":{
@@ -1076,6 +1092,19 @@
       "min":1
     },
     "Integer":{"type":"integer"},
+    "InterMetricImpactDetails":{
+      "type":"structure",
+      "members":{
+        "MetricName":{"shape":"MetricName"},
+        "AnomalyGroupId":{"shape":"UUID"},
+        "RelationshipType":{"shape":"RelationshipType"},
+        "ContributionPercentage":{"shape":"MetricChangePercentage"}
+      }
+    },
+    "InterMetricImpactList":{
+      "type":"list",
+      "member":{"shape":"InterMetricImpactDetails"}
+    },
     "InternalServerException":{
       "type":"structure",
       "required":["Message"],
@@ -1160,6 +1189,30 @@
       "type":"structure",
       "members":{
         "AnomalyDetectorSummaryList":{"shape":"AnomalyDetectorSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAnomalyGroupRelatedMetricsRequest":{
+      "type":"structure",
+      "required":[
+        "AnomalyDetectorArn",
+        "AnomalyGroupId"
+      ],
+      "members":{
+        "AnomalyDetectorArn":{"shape":"Arn"},
+        "AnomalyGroupId":{"shape":"UUID"},
+        "RelationshipTypeFilter":{"shape":"RelationshipType"},
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true
+        },
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAnomalyGroupRelatedMetricsResponse":{
+      "type":"structure",
+      "members":{
+        "InterMetricImpactList":{"shape":"InterMetricImpactList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -1270,6 +1323,11 @@
         "AggregationFunction":{"shape":"AggregationFunction"},
         "Namespace":{"shape":"Namespace"}
       }
+    },
+    "MetricChangePercentage":{
+      "type":"double",
+      "max":100.0,
+      "min":0.0
     },
     "MetricLevelImpact":{
       "type":"structure",
@@ -1455,6 +1513,13 @@
         "RoleArn":{"shape":"Arn"},
         "VpcConfiguration":{"shape":"VpcConfiguration"}
       }
+    },
+    "RelationshipType":{
+      "type":"string",
+      "enum":[
+        "CAUSE_OF_INPUT_ANOMALY_GROUP",
+        "EFFECT_OF_INPUT_ANOMALY_GROUP"
+      ]
     },
     "ResourceId":{"type":"string"},
     "ResourceNotFoundException":{

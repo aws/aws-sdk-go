@@ -18,6 +18,7 @@
     "GetSampleData": "<p>Returns a selection of sample records from an Amazon S3 datasource.</p>",
     "ListAlerts": "<p>Lists the alerts attached to a detector.</p> <p>Amazon Lookout for Metrics API actions are eventually consistent. If you do a read operation on a resource immediately after creating or modifying it, use retries to allow time for the write operation to complete.</p>",
     "ListAnomalyDetectors": "<p>Lists the detectors in the current AWS Region.</p> <p>Amazon Lookout for Metrics API actions are eventually consistent. If you do a read operation on a resource immediately after creating or modifying it, use retries to allow time for the write operation to complete.</p>",
+    "ListAnomalyGroupRelatedMetrics": "<p>Returns a list of measures that are potential causes or effects of an anomaly group.</p>",
     "ListAnomalyGroupSummaries": "<p>Returns a list of anomaly groups.</p>",
     "ListAnomalyGroupTimeSeries": "<p>Gets a list of anomalous metrics for a measure in an anomaly group.</p>",
     "ListMetricSets": "<p>Lists the datasets in the current AWS Region.</p> <p>Amazon Lookout for Metrics API actions are eventually consistent. If you do a read operation on a resource immediately after creating or modifying it, use retries to allow time for the write operation to complete.</p>",
@@ -238,6 +239,7 @@
         "LambdaConfiguration$RoleArn": "<p>The ARN of an IAM role that has permission to invoke the Lambda function.</p>",
         "LambdaConfiguration$LambdaArn": "<p>The ARN of the Lambda function.</p>",
         "ListAlertsRequest$AnomalyDetectorArn": "<p>The ARN of the alert's detector.</p>",
+        "ListAnomalyGroupRelatedMetricsRequest$AnomalyDetectorArn": "<p>The Amazon Resource Name (ARN) of the anomaly detector.</p>",
         "ListAnomalyGroupSummariesRequest$AnomalyDetectorArn": "<p>The Amazon Resource Name (ARN) of the anomaly detector.</p>",
         "ListAnomalyGroupTimeSeriesRequest$AnomalyDetectorArn": "<p>The Amazon Resource Name (ARN) of the anomaly detector.</p>",
         "ListMetricSetsRequest$AnomalyDetectorArn": "<p>The ARN of the anomaly detector containing the metrics sets to list.</p>",
@@ -614,6 +616,18 @@
         "MetricLevelImpact$NumTimeSeries": "<p>The number of anomalous metrics for the measure.</p>"
       }
     },
+    "InterMetricImpactDetails": {
+      "base": "<p>Aggregated details about the measures contributing to the anomaly group, and the measures potentially impacted by the anomaly group.</p> <p/>",
+      "refs": {
+        "InterMetricImpactList$member": null
+      }
+    },
+    "InterMetricImpactList": {
+      "base": null,
+      "refs": {
+        "ListAnomalyGroupRelatedMetricsResponse$InterMetricImpactList": "<p>Aggregated details about the measures contributing to the anomaly group, and the measures potentially impacted by the anomaly group.</p>"
+      }
+    },
     "InternalServerException": {
       "base": "<p>The request processing has failed because of an unknown error, exception, or failure.</p>",
       "refs": {
@@ -677,6 +691,16 @@
       "refs": {
       }
     },
+    "ListAnomalyGroupRelatedMetricsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAnomalyGroupRelatedMetricsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListAnomalyGroupSummariesRequest": {
       "base": null,
       "refs": {
@@ -724,6 +748,7 @@
         "GetFeedbackRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "ListAlertsRequest$MaxResults": "<p>The maximum number of results that will be displayed by the request.</p>",
         "ListAnomalyDetectorsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "ListAnomalyGroupRelatedMetricsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "ListAnomalyGroupSummariesRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "ListAnomalyGroupTimeSeriesRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "ListMetricSetsRequest$MaxResults": "<p>The maximum number of results to return.</p>"
@@ -746,6 +771,12 @@
       "base": "<p>A calculation made by contrasting a measure and a dimension from your source data.</p>",
       "refs": {
         "MetricList$member": null
+      }
+    },
+    "MetricChangePercentage": {
+      "base": null,
+      "refs": {
+        "InterMetricImpactDetails$ContributionPercentage": "<p>For potential causes (<code>CAUSE_OF_INPUT_ANOMALY_GROUP</code>), the percentage contribution the measure has in causing the anomalies.</p>"
       }
     },
     "MetricLevelImpact": {
@@ -773,6 +804,7 @@
       "refs": {
         "AnomalyGroup$PrimaryMetricName": "<p>The name of the primary affected measure for the group.</p>",
         "AnomalyGroupSummary$PrimaryMetricName": "<p>The name of the primary affected measure for the group.</p>",
+        "InterMetricImpactDetails$MetricName": "<p>The name of the measure.</p>",
         "ListAnomalyGroupTimeSeriesRequest$MetricName": "<p>The name of the measure field.</p>",
         "ListAnomalyGroupTimeSeriesResponse$MetricName": "<p>The name of the measure field.</p>",
         "MetricLevelImpact$MetricName": "<p>The name of the measure.</p>"
@@ -844,6 +876,8 @@
         "ListAlertsResponse$NextToken": "<p>If the response is truncated, the service returns this token. To retrieve the next set of results, use this token in the next request.</p>",
         "ListAnomalyDetectorsRequest$NextToken": "<p>If the result of the previous request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.</p>",
         "ListAnomalyDetectorsResponse$NextToken": "<p>If the response is truncated, the service returns this token. To retrieve the next set of results, use the token in the next request.</p>",
+        "ListAnomalyGroupRelatedMetricsRequest$NextToken": "<p>Specify the pagination token that's returned by a previous request to retrieve the next page of results.</p>",
+        "ListAnomalyGroupRelatedMetricsResponse$NextToken": "<p>The pagination token that's included if more results are available.</p>",
         "ListAnomalyGroupSummariesRequest$NextToken": "<p>Specify the pagination token that's returned by a previous request to retrieve the next page of results.</p>",
         "ListAnomalyGroupSummariesResponse$NextToken": "<p>The pagination token that's included if more results are available.</p>",
         "ListAnomalyGroupTimeSeriesRequest$NextToken": "<p>Specify the pagination token that's returned by a previous request to retrieve the next page of results.</p>",
@@ -923,6 +957,13 @@
       "base": "<p>Provides information about the Amazon Redshift database configuration.</p>",
       "refs": {
         "MetricSource$RedshiftSourceConfig": "<p>An object containing information about the Amazon Redshift database configuration.</p>"
+      }
+    },
+    "RelationshipType": {
+      "base": null,
+      "refs": {
+        "InterMetricImpactDetails$RelationshipType": "<p>Whether a measure is a potential cause of the anomaly group (<code>CAUSE_OF_INPUT_ANOMALY_GROUP</code>), or whether the measure is impacted by the anomaly group (<code>EFFECT_OF_INPUT_ANOMALY_GROUP</code>).</p>",
+        "ListAnomalyGroupRelatedMetricsRequest$RelationshipTypeFilter": "<p>Filter for potential causes (<code>CAUSE_OF_INPUT_ANOMALY_GROUP</code>) or downstream effects (<code>EFFECT_OF_INPUT_ANOMALY_GROUP</code>) of the anomaly group.</p>"
       }
     },
     "ResourceId": {
@@ -1187,6 +1228,8 @@
         "AnomalyGroupTimeSeries$AnomalyGroupId": "<p>The ID of the anomaly group.</p>",
         "AnomalyGroupTimeSeriesFeedback$AnomalyGroupId": "<p>The ID of the anomaly group.</p>",
         "GetAnomalyGroupRequest$AnomalyGroupId": "<p>The ID of the anomaly group.</p>",
+        "InterMetricImpactDetails$AnomalyGroupId": "<p>The ID of the anomaly group.</p>",
+        "ListAnomalyGroupRelatedMetricsRequest$AnomalyGroupId": "<p>The ID of the anomaly group.</p>",
         "ListAnomalyGroupTimeSeriesRequest$AnomalyGroupId": "<p>The ID of the anomaly group.</p>",
         "ListAnomalyGroupTimeSeriesResponse$AnomalyGroupId": "<p>The ID of the anomaly group.</p>"
       }

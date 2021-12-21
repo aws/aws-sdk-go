@@ -147,7 +147,7 @@ func (c *QLDB) CreateLedgerRequest(input *CreateLedgerInput) (req *request.Reque
 
 // CreateLedger API operation for Amazon QLDB.
 //
-// Creates a new ledger in your account in the current Region.
+// Creates a new ledger in your Amazon Web Services account in the current Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -592,8 +592,15 @@ func (c *QLDB) ExportJournalToS3Request(input *ExportJournalToS3Input) (req *req
 // ExportJournalToS3 API operation for Amazon QLDB.
 //
 // Exports journal contents within a date and time range from a ledger into
-// a specified Amazon Simple Storage Service (Amazon S3) bucket. The data is
-// written as files in Amazon Ion format.
+// a specified Amazon Simple Storage Service (Amazon S3) bucket. A journal export
+// job can write the data objects in either the text or binary representation
+// of Amazon Ion format, or in JSON Lines text format.
+//
+// In JSON Lines format, each journal block in the exported data object is a
+// valid JSON object that is delimited by a newline. You can use this format
+// to easily integrate JSON exports with analytics tools such as Glue and Amazon
+// Athena because these services can parse newline-delimited JSON automatically.
+// For more information about the format, see JSON Lines (https://jsonlines.org/).
 //
 // If the ledger with the given Name doesn't exist, then throws ResourceNotFoundException.
 //
@@ -1112,7 +1119,7 @@ func (c *QLDB) ListJournalS3ExportsRequest(input *ListJournalS3ExportsInput) (re
 // ListJournalS3Exports API operation for Amazon QLDB.
 //
 // Returns an array of journal export job descriptions for all ledgers that
-// are associated with the current account and Region.
+// are associated with the current Amazon Web Services account and Region.
 //
 // This action returns a maximum of MaxResults items, and is paginated so that
 // you can retrieve all the items by calling ListJournalS3Exports multiple times.
@@ -1392,7 +1399,7 @@ func (c *QLDB) ListLedgersRequest(input *ListLedgersInput) (req *request.Request
 // ListLedgers API operation for Amazon QLDB.
 //
 // Returns an array of ledger summaries that are associated with the current
-// account and Region.
+// Amazon Web Services account and Region.
 //
 // This action returns a maximum of 100 items and is paginated so that you can
 // retrieve all the items by calling ListLedgers multiple times.
@@ -2113,8 +2120,8 @@ type CreateLedgerInput struct {
 	//
 	// To specify a customer managed KMS key, you can use its key ID, Amazon Resource
 	// Name (ARN), alias name, or alias ARN. When using an alias name, prefix it
-	// with "alias/". To specify a key in a different account, you must use the
-	// key ARN or alias ARN.
+	// with "alias/". To specify a key in a different Amazon Web Services account,
+	// you must use the key ARN or alias ARN.
 	//
 	// For example:
 	//
@@ -2131,7 +2138,7 @@ type CreateLedgerInput struct {
 	KmsKey *string `type:"string"`
 
 	// The name of the ledger that you want to create. The name must be unique among
-	// all of the ledgers in your account in the current Region.
+	// all of the ledgers in your Amazon Web Services account in the current Region.
 	//
 	// Naming constraints for ledger names are defined in Quotas in Amazon QLDB
 	// (https://docs.aws.amazon.com/qldb/latest/developerguide/limits.html#limits.naming)
@@ -2777,13 +2784,21 @@ type ExportJournalToS3Input struct {
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
 
+	// The output format of your exported journal data. If this parameter is not
+	// specified, the exported data defaults to ION_TEXT format.
+	OutputFormat *string `type:"string" enum:"OutputFormat"`
+
 	// The Amazon Resource Name (ARN) of the IAM role that grants QLDB permissions
 	// for a journal export job to do the following:
 	//
 	//    * Write objects into your Amazon Simple Storage Service (Amazon S3) bucket.
 	//
-	//    * (Optional) Use your customer master key (CMK) in Key Management Service
-	//    (KMS) for server-side encryption of your exported data.
+	//    * (Optional) Use your customer managed key in Key Management Service (KMS)
+	//    for server-side encryption of your exported data.
+	//
+	// To pass a role to QLDB when requesting a journal export, you must have permissions
+	// to perform the iam:PassRole action on the IAM role resource. This is required
+	// for all journal export requests.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -2864,6 +2879,12 @@ func (s *ExportJournalToS3Input) SetInclusiveStartTime(v time.Time) *ExportJourn
 // SetName sets the Name field's value.
 func (s *ExportJournalToS3Input) SetName(v string) *ExportJournalToS3Input {
 	s.Name = &v
+	return s
+}
+
+// SetOutputFormat sets the OutputFormat field's value.
+func (s *ExportJournalToS3Input) SetOutputFormat(v string) *ExportJournalToS3Input {
+	s.OutputFormat = &v
 	return s
 }
 
@@ -3545,7 +3566,7 @@ func (s *JournalKinesisStreamDescription) SetStreamName(v string) *JournalKinesi
 type JournalS3ExportDescription struct {
 	_ struct{} `type:"structure"`
 
-	// The exclusive end date and time for the range of journal contents that are
+	// The exclusive end date and time for the range of journal contents that was
 	// specified in the original export request.
 	//
 	// ExclusiveEndTime is a required field
@@ -3564,7 +3585,7 @@ type JournalS3ExportDescription struct {
 	ExportId *string `min:"22" type:"string" required:"true"`
 
 	// The inclusive start date and time for the range of journal contents that
-	// are specified in the original export request.
+	// was specified in the original export request.
 	//
 	// InclusiveStartTime is a required field
 	InclusiveStartTime *time.Time `type:"timestamp" required:"true"`
@@ -3574,13 +3595,16 @@ type JournalS3ExportDescription struct {
 	// LedgerName is a required field
 	LedgerName *string `min:"1" type:"string" required:"true"`
 
+	// The output format of the exported journal data.
+	OutputFormat *string `type:"string" enum:"OutputFormat"`
+
 	// The Amazon Resource Name (ARN) of the IAM role that grants QLDB permissions
 	// for a journal export job to do the following:
 	//
 	//    * Write objects into your Amazon Simple Storage Service (Amazon S3) bucket.
 	//
-	//    * (Optional) Use your customer master key (CMK) in Key Management Service
-	//    (KMS) for server-side encryption of your exported data.
+	//    * (Optional) Use your customer managed key in Key Management Service (KMS)
+	//    for server-side encryption of your exported data.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -3642,6 +3666,12 @@ func (s *JournalS3ExportDescription) SetInclusiveStartTime(v time.Time) *Journal
 // SetLedgerName sets the LedgerName field's value.
 func (s *JournalS3ExportDescription) SetLedgerName(v string) *JournalS3ExportDescription {
 	s.LedgerName = &v
+	return s
+}
+
+// SetOutputFormat sets the OutputFormat field's value.
+func (s *JournalS3ExportDescription) SetOutputFormat(v string) *JournalS3ExportDescription {
+	s.OutputFormat = &v
 	return s
 }
 
@@ -4241,7 +4271,7 @@ type ListJournalS3ExportsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The array of journal export job descriptions for all ledgers that are associated
-	// with the current account and Region.
+	// with the current Amazon Web Services account and Region.
 	JournalS3Exports []*JournalS3ExportDescription `type:"list"`
 
 	//    * If NextToken is empty, then the last page of results has been processed
@@ -4345,8 +4375,8 @@ func (s *ListLedgersInput) SetNextToken(v string) *ListLedgersInput {
 type ListLedgersOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The array of ledger summaries that are associated with the current account
-	// and Region.
+	// The array of ledger summaries that are associated with the current Amazon
+	// Web Services account and Region.
 	Ledgers []*LedgerSummary `type:"list"`
 
 	// A pagination token, indicating whether there are more results available:
@@ -4757,8 +4787,8 @@ func (s *ResourcePreconditionNotMetException) RequestID() string {
 type S3EncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of a symmetric customer master key (CMK) in
-	// Key Management Service (KMS). Amazon S3 does not support asymmetric CMKs.
+	// The Amazon Resource Name (ARN) of a symmetric key in Key Management Service
+	// (KMS). Amazon S3 does not support asymmetric KMS keys.
 	//
 	// You must provide a KmsKeyArn if you specify SSE_KMS as the ObjectEncryptionType.
 	//
@@ -4959,6 +4989,10 @@ type StreamJournalToKinesisInput struct {
 
 	// The Amazon Resource Name (ARN) of the IAM role that grants QLDB permissions
 	// for a journal stream to write data records to a Kinesis Data Streams resource.
+	//
+	// To pass a role to QLDB when requesting a journal stream, you must have permissions
+	// to perform the iam:PassRole action on the IAM role resource. This is required
+	// for all journal stream requests.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -5317,8 +5351,8 @@ type UpdateLedgerInput struct {
 	//
 	// To specify a customer managed KMS key, you can use its key ID, Amazon Resource
 	// Name (ARN), alias name, or alias ARN. When using an alias name, prefix it
-	// with "alias/". To specify a key in a different account, you must use the
-	// key ARN or alias ARN.
+	// with "alias/". To specify a key in a different Amazon Web Services account,
+	// you must use the key ARN or alias ARN.
 	//
 	// For example:
 	//
@@ -5735,6 +5769,26 @@ func LedgerState_Values() []string {
 		LedgerStateActive,
 		LedgerStateDeleting,
 		LedgerStateDeleted,
+	}
+}
+
+const (
+	// OutputFormatIonBinary is a OutputFormat enum value
+	OutputFormatIonBinary = "ION_BINARY"
+
+	// OutputFormatIonText is a OutputFormat enum value
+	OutputFormatIonText = "ION_TEXT"
+
+	// OutputFormatJson is a OutputFormat enum value
+	OutputFormatJson = "JSON"
+)
+
+// OutputFormat_Values returns all elements of the OutputFormat enum
+func OutputFormat_Values() []string {
+	return []string{
+		OutputFormatIonBinary,
+		OutputFormatIonText,
+		OutputFormatJson,
 	}
 }
 

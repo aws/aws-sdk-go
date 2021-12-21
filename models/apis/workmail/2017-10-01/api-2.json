@@ -208,6 +208,21 @@
       ],
       "idempotent":true
     },
+    "DeleteEmailMonitoringConfiguration":{
+      "name":"DeleteEmailMonitoringConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteEmailMonitoringConfigurationRequest"},
+      "output":{"shape":"DeleteEmailMonitoringConfigurationResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ],
+      "idempotent":true
+    },
     "DeleteGroup":{
       "name":"DeleteGroup",
       "http":{
@@ -369,6 +384,22 @@
         {"shape":"OrganizationStateException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidCustomSesConfigurationException"}
+      ],
+      "idempotent":true
+    },
+    "DescribeEmailMonitoringConfiguration":{
+      "name":"DescribeEmailMonitoringConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeEmailMonitoringConfigurationRequest"},
+      "output":{"shape":"DescribeEmailMonitoringConfigurationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
       ],
       "idempotent":true
     },
@@ -818,6 +849,22 @@
         {"shape":"OrganizationNotFoundException"},
         {"shape":"OrganizationStateException"}
       ]
+    },
+    "PutEmailMonitoringConfiguration":{
+      "name":"PutEmailMonitoringConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutEmailMonitoringConfigurationRequest"},
+      "output":{"shape":"PutEmailMonitoringConfigurationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ],
+      "idempotent":true
     },
     "PutInboundDmarcSettings":{
       "name":"PutInboundDmarcSettings",
@@ -1391,6 +1438,18 @@
       "members":{
       }
     },
+    "DeleteEmailMonitoringConfigurationRequest":{
+      "type":"structure",
+      "required":["OrganizationId"],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"}
+      }
+    },
+    "DeleteEmailMonitoringConfigurationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteGroupRequest":{
       "type":"structure",
       "required":[
@@ -1559,6 +1618,20 @@
     "DeregisterMailDomainResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DescribeEmailMonitoringConfigurationRequest":{
+      "type":"structure",
+      "required":["OrganizationId"],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"}
+      }
+    },
+    "DescribeEmailMonitoringConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "RoleArn":{"shape":"RoleArn"},
+        "LogGroupArn":{"shape":"LogGroupArn"}
       }
     },
     "DescribeGroupRequest":{
@@ -2375,6 +2448,12 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "LogGroupArn":{
+      "type":"string",
+      "max":562,
+      "min":47,
+      "pattern":"arn:aws:logs:[a-z\\-0-9]*:[0-9]{12}:log-group:([\\.\\-_/#A-Za-z0-9]+):\\*$"
+    },
     "MailDomainInUseException":{
       "type":"structure",
       "members":{
@@ -2678,6 +2757,24 @@
       }
     },
     "PutAccessControlRuleResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutEmailMonitoringConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "RoleArn",
+        "LogGroupArn"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "RoleArn":{"shape":"RoleArn"},
+        "LogGroupArn":{"shape":"LogGroupArn"}
+      }
+    },
+    "PutEmailMonitoringConfigurationResponse":{
       "type":"structure",
       "members":{
       }

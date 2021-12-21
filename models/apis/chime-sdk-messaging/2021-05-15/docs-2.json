@@ -223,7 +223,7 @@
         "BatchCreateChannelMembershipRequest$Type": "<p>The membership type of a user, <code>DEFAULT</code> or <code>HIDDEN</code>. Default members are always returned as part of <code>ListChannelMemberships</code>. Hidden members are only returned if the type filter in <code>ListChannelMemberships</code> equals <code>HIDDEN</code>. Otherwise hidden members are not returned. This is only supported by moderators.</p>",
         "ChannelMembership$Type": "<p>The membership type set for the channel member.</p>",
         "CreateChannelMembershipRequest$Type": "<p>The membership type of a user, <code>DEFAULT</code> or <code>HIDDEN</code>. Default members are always returned as part of <code>ListChannelMemberships</code>. Hidden members are only returned if the type filter in <code>ListChannelMemberships</code> equals <code>HIDDEN</code>. Otherwise hidden members are not returned. This is only supported by moderators.</p>",
-        "ListChannelMembershipsRequest$Type": "<p>The membership type of a user, <code>DEFAULT</code> or <code>HIDDEN</code>. Default members are always returned as part of <code>ListChannelMemberships</code>. Hidden members are only returned if the type filter in <code>ListChannelMemberships</code> equals <code>HIDDEN</code>. Otherwise hidden members are not returned.</p>"
+        "ListChannelMembershipsRequest$Type": "<p>The membership type of a user, <code>DEFAULT</code> or <code>HIDDEN</code>. Default members are returned as part of <code>ListChannelMemberships</code> if no type is specified. Hidden members are only returned if the type filter in <code>ListChannelMemberships</code> equals <code>HIDDEN</code>.</p>"
       }
     },
     "ChannelMessage": {
@@ -896,6 +896,7 @@
       "base": null,
       "refs": {
         "ChannelMessage$MessageAttributes": "<p>The attributes for the message, used for message filtering along with a <code>FilterRule</code> defined in the <code>PushNotificationPreferences</code>.</p>",
+        "ChannelMessageCallback$MessageAttributes": "<p>The attributes for the message, used for message filtering along with a <code>FilterRule</code> defined in the <code>PushNotificationPreferences</code>. </p>",
         "ChannelMessageSummary$MessageAttributes": "<p>The message attribues listed in a the summary of a channel message.</p>",
         "SendChannelMessageRequest$MessageAttributes": "<p>The attributes for the message, used for message filtering along with a <code>FilterRule</code> defined in the <code>PushNotificationPreferences</code>.</p>"
       }
@@ -1049,6 +1050,7 @@
     "PushNotificationConfiguration": {
       "base": "<p>The push notification configuration of the message.</p>",
       "refs": {
+        "ChannelMessageCallback$PushNotification": "<p>The push notification configuration of the message.</p>",
         "SendChannelMessageRequest$PushNotification": "<p>The push notification configuration of the message.</p>"
       }
     },

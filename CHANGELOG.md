@@ -1,3 +1,18 @@
+Release v1.42.25 (2021-12-21)
+===
+
+### Service Client Updates
+* `service/chime-sdk-messaging`: Updates service API and documentation
+* `service/imagebuilder`: Updates service documentation
+* `service/lookoutmetrics`: Updates service API, documentation, and paginators
+* `service/mediaconnect`: Updates service API and documentation
+* `service/nimble`: Updates service API and documentation
+* `service/qldb`: Updates service API and documentation
+* `service/transfer`: Updates service API and documentation
+  * Property for Transfer Family used with the FTPS protocol. TLS Session Resumption provides a mechanism to resume or share a negotiated secret key between the control and data connection for an FTPS session.
+* `service/workmail`: Updates service API and documentation
+  * This release allows customers to change their email monitoring configuration in Amazon WorkMail.
+
 Release v1.42.24 (2021-12-20)
 ===
 

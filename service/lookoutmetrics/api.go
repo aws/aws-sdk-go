@@ -1816,6 +1816,160 @@ func (c *LookoutMetrics) ListAnomalyDetectorsPagesWithContext(ctx aws.Context, i
 	return p.Err()
 }
 
+const opListAnomalyGroupRelatedMetrics = "ListAnomalyGroupRelatedMetrics"
+
+// ListAnomalyGroupRelatedMetricsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAnomalyGroupRelatedMetrics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAnomalyGroupRelatedMetrics for more information on using the ListAnomalyGroupRelatedMetrics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAnomalyGroupRelatedMetricsRequest method.
+//    req, resp := client.ListAnomalyGroupRelatedMetricsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutmetrics-2017-07-25/ListAnomalyGroupRelatedMetrics
+func (c *LookoutMetrics) ListAnomalyGroupRelatedMetricsRequest(input *ListAnomalyGroupRelatedMetricsInput) (req *request.Request, output *ListAnomalyGroupRelatedMetricsOutput) {
+	op := &request.Operation{
+		Name:       opListAnomalyGroupRelatedMetrics,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListAnomalyGroupRelatedMetrics",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAnomalyGroupRelatedMetricsInput{}
+	}
+
+	output = &ListAnomalyGroupRelatedMetricsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAnomalyGroupRelatedMetrics API operation for Amazon Lookout for Metrics.
+//
+// Returns a list of measures that are potential causes or effects of an anomaly
+// group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Metrics's
+// API operation ListAnomalyGroupRelatedMetrics for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource cannot be found. Check the ARN of the resource and
+//   try again.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by the AWS service.
+//   Check your input values and try again.
+//
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception,
+//   or failure.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * TooManyRequestsException
+//   The request was denied due to too many requests being submitted at the same
+//   time.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutmetrics-2017-07-25/ListAnomalyGroupRelatedMetrics
+func (c *LookoutMetrics) ListAnomalyGroupRelatedMetrics(input *ListAnomalyGroupRelatedMetricsInput) (*ListAnomalyGroupRelatedMetricsOutput, error) {
+	req, out := c.ListAnomalyGroupRelatedMetricsRequest(input)
+	return out, req.Send()
+}
+
+// ListAnomalyGroupRelatedMetricsWithContext is the same as ListAnomalyGroupRelatedMetrics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAnomalyGroupRelatedMetrics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutMetrics) ListAnomalyGroupRelatedMetricsWithContext(ctx aws.Context, input *ListAnomalyGroupRelatedMetricsInput, opts ...request.Option) (*ListAnomalyGroupRelatedMetricsOutput, error) {
+	req, out := c.ListAnomalyGroupRelatedMetricsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAnomalyGroupRelatedMetricsPages iterates over the pages of a ListAnomalyGroupRelatedMetrics operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAnomalyGroupRelatedMetrics method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAnomalyGroupRelatedMetrics operation.
+//    pageNum := 0
+//    err := client.ListAnomalyGroupRelatedMetricsPages(params,
+//        func(page *lookoutmetrics.ListAnomalyGroupRelatedMetricsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *LookoutMetrics) ListAnomalyGroupRelatedMetricsPages(input *ListAnomalyGroupRelatedMetricsInput, fn func(*ListAnomalyGroupRelatedMetricsOutput, bool) bool) error {
+	return c.ListAnomalyGroupRelatedMetricsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAnomalyGroupRelatedMetricsPagesWithContext same as ListAnomalyGroupRelatedMetricsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutMetrics) ListAnomalyGroupRelatedMetricsPagesWithContext(ctx aws.Context, input *ListAnomalyGroupRelatedMetricsInput, fn func(*ListAnomalyGroupRelatedMetricsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAnomalyGroupRelatedMetricsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAnomalyGroupRelatedMetricsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAnomalyGroupRelatedMetricsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListAnomalyGroupSummaries = "ListAnomalyGroupSummaries"
 
 // ListAnomalyGroupSummariesRequest generates a "aws/request.Request" representing the
@@ -5771,6 +5925,68 @@ func (s *GetSampleDataOutput) SetSampleRows(v [][]*string) *GetSampleDataOutput 
 	return s
 }
 
+// Aggregated details about the measures contributing to the anomaly group,
+// and the measures potentially impacted by the anomaly group.
+type InterMetricImpactDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the anomaly group.
+	AnomalyGroupId *string `type:"string"`
+
+	// For potential causes (CAUSE_OF_INPUT_ANOMALY_GROUP), the percentage contribution
+	// the measure has in causing the anomalies.
+	ContributionPercentage *float64 `type:"double"`
+
+	// The name of the measure.
+	MetricName *string `type:"string"`
+
+	// Whether a measure is a potential cause of the anomaly group (CAUSE_OF_INPUT_ANOMALY_GROUP),
+	// or whether the measure is impacted by the anomaly group (EFFECT_OF_INPUT_ANOMALY_GROUP).
+	RelationshipType *string `type:"string" enum:"RelationshipType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InterMetricImpactDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InterMetricImpactDetails) GoString() string {
+	return s.String()
+}
+
+// SetAnomalyGroupId sets the AnomalyGroupId field's value.
+func (s *InterMetricImpactDetails) SetAnomalyGroupId(v string) *InterMetricImpactDetails {
+	s.AnomalyGroupId = &v
+	return s
+}
+
+// SetContributionPercentage sets the ContributionPercentage field's value.
+func (s *InterMetricImpactDetails) SetContributionPercentage(v float64) *InterMetricImpactDetails {
+	s.ContributionPercentage = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *InterMetricImpactDetails) SetMetricName(v string) *InterMetricImpactDetails {
+	s.MetricName = &v
+	return s
+}
+
+// SetRelationshipType sets the RelationshipType field's value.
+func (s *InterMetricImpactDetails) SetRelationshipType(v string) *InterMetricImpactDetails {
+	s.RelationshipType = &v
+	return s
+}
+
 // The request processing has failed because of an unknown error, exception,
 // or failure.
 type InternalServerException struct {
@@ -6182,6 +6398,142 @@ func (s *ListAnomalyDetectorsOutput) SetAnomalyDetectorSummaryList(v []*AnomalyD
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListAnomalyDetectorsOutput) SetNextToken(v string) *ListAnomalyDetectorsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAnomalyGroupRelatedMetricsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the anomaly detector.
+	//
+	// AnomalyDetectorArn is a required field
+	AnomalyDetectorArn *string `type:"string" required:"true"`
+
+	// The ID of the anomaly group.
+	//
+	// AnomalyGroupId is a required field
+	AnomalyGroupId *string `type:"string" required:"true"`
+
+	// The maximum number of results to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Specify the pagination token that's returned by a previous request to retrieve
+	// the next page of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// Filter for potential causes (CAUSE_OF_INPUT_ANOMALY_GROUP) or downstream
+	// effects (EFFECT_OF_INPUT_ANOMALY_GROUP) of the anomaly group.
+	RelationshipTypeFilter *string `type:"string" enum:"RelationshipType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomalyGroupRelatedMetricsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomalyGroupRelatedMetricsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAnomalyGroupRelatedMetricsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAnomalyGroupRelatedMetricsInput"}
+	if s.AnomalyDetectorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnomalyDetectorArn"))
+	}
+	if s.AnomalyGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnomalyGroupId"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnomalyDetectorArn sets the AnomalyDetectorArn field's value.
+func (s *ListAnomalyGroupRelatedMetricsInput) SetAnomalyDetectorArn(v string) *ListAnomalyGroupRelatedMetricsInput {
+	s.AnomalyDetectorArn = &v
+	return s
+}
+
+// SetAnomalyGroupId sets the AnomalyGroupId field's value.
+func (s *ListAnomalyGroupRelatedMetricsInput) SetAnomalyGroupId(v string) *ListAnomalyGroupRelatedMetricsInput {
+	s.AnomalyGroupId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAnomalyGroupRelatedMetricsInput) SetMaxResults(v int64) *ListAnomalyGroupRelatedMetricsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAnomalyGroupRelatedMetricsInput) SetNextToken(v string) *ListAnomalyGroupRelatedMetricsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRelationshipTypeFilter sets the RelationshipTypeFilter field's value.
+func (s *ListAnomalyGroupRelatedMetricsInput) SetRelationshipTypeFilter(v string) *ListAnomalyGroupRelatedMetricsInput {
+	s.RelationshipTypeFilter = &v
+	return s
+}
+
+type ListAnomalyGroupRelatedMetricsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Aggregated details about the measures contributing to the anomaly group,
+	// and the measures potentially impacted by the anomaly group.
+	InterMetricImpactList []*InterMetricImpactDetails `type:"list"`
+
+	// The pagination token that's included if more results are available.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomalyGroupRelatedMetricsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomalyGroupRelatedMetricsOutput) GoString() string {
+	return s.String()
+}
+
+// SetInterMetricImpactList sets the InterMetricImpactList field's value.
+func (s *ListAnomalyGroupRelatedMetricsOutput) SetInterMetricImpactList(v []*InterMetricImpactDetails) *ListAnomalyGroupRelatedMetricsOutput {
+	s.InterMetricImpactList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAnomalyGroupRelatedMetricsOutput) SetNextToken(v string) *ListAnomalyGroupRelatedMetricsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -8815,6 +9167,22 @@ func JsonFileCompression_Values() []string {
 	return []string{
 		JsonFileCompressionNone,
 		JsonFileCompressionGzip,
+	}
+}
+
+const (
+	// RelationshipTypeCauseOfInputAnomalyGroup is a RelationshipType enum value
+	RelationshipTypeCauseOfInputAnomalyGroup = "CAUSE_OF_INPUT_ANOMALY_GROUP"
+
+	// RelationshipTypeEffectOfInputAnomalyGroup is a RelationshipType enum value
+	RelationshipTypeEffectOfInputAnomalyGroup = "EFFECT_OF_INPUT_ANOMALY_GROUP"
+)
+
+// RelationshipType_Values returns all elements of the RelationshipType enum
+func RelationshipType_Values() []string {
+	return []string{
+		RelationshipTypeCauseOfInputAnomalyGroup,
+		RelationshipTypeEffectOfInputAnomalyGroup,
 	}
 }
 

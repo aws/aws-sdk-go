@@ -1114,6 +1114,94 @@ func (c *WorkMail) DeleteAliasWithContext(ctx aws.Context, input *DeleteAliasInp
 	return out, req.Send()
 }
 
+const opDeleteEmailMonitoringConfiguration = "DeleteEmailMonitoringConfiguration"
+
+// DeleteEmailMonitoringConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEmailMonitoringConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEmailMonitoringConfiguration for more information on using the DeleteEmailMonitoringConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteEmailMonitoringConfigurationRequest method.
+//    req, resp := client.DeleteEmailMonitoringConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeleteEmailMonitoringConfiguration
+func (c *WorkMail) DeleteEmailMonitoringConfigurationRequest(input *DeleteEmailMonitoringConfigurationInput) (req *request.Request, output *DeleteEmailMonitoringConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEmailMonitoringConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteEmailMonitoringConfigurationInput{}
+	}
+
+	output = &DeleteEmailMonitoringConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteEmailMonitoringConfiguration API operation for Amazon WorkMail.
+//
+// Deletes the email monitoring configuration for a specified organization.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation DeleteEmailMonitoringConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeleteEmailMonitoringConfiguration
+func (c *WorkMail) DeleteEmailMonitoringConfiguration(input *DeleteEmailMonitoringConfigurationInput) (*DeleteEmailMonitoringConfigurationOutput, error) {
+	req, out := c.DeleteEmailMonitoringConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEmailMonitoringConfigurationWithContext is the same as DeleteEmailMonitoringConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEmailMonitoringConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) DeleteEmailMonitoringConfigurationWithContext(ctx aws.Context, input *DeleteEmailMonitoringConfigurationInput, opts ...request.Option) (*DeleteEmailMonitoringConfigurationOutput, error) {
+	req, out := c.DeleteEmailMonitoringConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteGroup = "DeleteGroup"
 
 // DeleteGroupRequest generates a "aws/request.Request" representing the
@@ -2071,6 +2159,96 @@ func (c *WorkMail) DeregisterMailDomain(input *DeregisterMailDomainInput) (*Dere
 // for more information on using Contexts.
 func (c *WorkMail) DeregisterMailDomainWithContext(ctx aws.Context, input *DeregisterMailDomainInput, opts ...request.Option) (*DeregisterMailDomainOutput, error) {
 	req, out := c.DeregisterMailDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeEmailMonitoringConfiguration = "DescribeEmailMonitoringConfiguration"
+
+// DescribeEmailMonitoringConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEmailMonitoringConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeEmailMonitoringConfiguration for more information on using the DescribeEmailMonitoringConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeEmailMonitoringConfigurationRequest method.
+//    req, resp := client.DescribeEmailMonitoringConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DescribeEmailMonitoringConfiguration
+func (c *WorkMail) DescribeEmailMonitoringConfigurationRequest(input *DescribeEmailMonitoringConfigurationInput) (req *request.Request, output *DescribeEmailMonitoringConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEmailMonitoringConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeEmailMonitoringConfigurationInput{}
+	}
+
+	output = &DescribeEmailMonitoringConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeEmailMonitoringConfiguration API operation for Amazon WorkMail.
+//
+// Describes the current email monitoring configuration for a specified organization.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation DescribeEmailMonitoringConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource cannot be found.
+//
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DescribeEmailMonitoringConfiguration
+func (c *WorkMail) DescribeEmailMonitoringConfiguration(input *DescribeEmailMonitoringConfigurationInput) (*DescribeEmailMonitoringConfigurationOutput, error) {
+	req, out := c.DescribeEmailMonitoringConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeEmailMonitoringConfigurationWithContext is the same as DescribeEmailMonitoringConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEmailMonitoringConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) DescribeEmailMonitoringConfigurationWithContext(ctx aws.Context, input *DescribeEmailMonitoringConfigurationInput, opts ...request.Option) (*DescribeEmailMonitoringConfigurationOutput, error) {
+	req, out := c.DescribeEmailMonitoringConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5331,6 +5509,97 @@ func (c *WorkMail) PutAccessControlRuleWithContext(ctx aws.Context, input *PutAc
 	return out, req.Send()
 }
 
+const opPutEmailMonitoringConfiguration = "PutEmailMonitoringConfiguration"
+
+// PutEmailMonitoringConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the PutEmailMonitoringConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutEmailMonitoringConfiguration for more information on using the PutEmailMonitoringConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutEmailMonitoringConfigurationRequest method.
+//    req, resp := client.PutEmailMonitoringConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/PutEmailMonitoringConfiguration
+func (c *WorkMail) PutEmailMonitoringConfigurationRequest(input *PutEmailMonitoringConfigurationInput) (req *request.Request, output *PutEmailMonitoringConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutEmailMonitoringConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutEmailMonitoringConfigurationInput{}
+	}
+
+	output = &PutEmailMonitoringConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutEmailMonitoringConfiguration API operation for Amazon WorkMail.
+//
+// Creates or updates the email monitoring configuration for a specified organization.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation PutEmailMonitoringConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource cannot be found.
+//
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/PutEmailMonitoringConfiguration
+func (c *WorkMail) PutEmailMonitoringConfiguration(input *PutEmailMonitoringConfigurationInput) (*PutEmailMonitoringConfigurationOutput, error) {
+	req, out := c.PutEmailMonitoringConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// PutEmailMonitoringConfigurationWithContext is the same as PutEmailMonitoringConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutEmailMonitoringConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) PutEmailMonitoringConfigurationWithContext(ctx aws.Context, input *PutEmailMonitoringConfigurationInput, opts ...request.Option) (*PutEmailMonitoringConfigurationOutput, error) {
+	req, out := c.PutEmailMonitoringConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutInboundDmarcSettings = "PutInboundDmarcSettings"
 
 // PutInboundDmarcSettingsRequest generates a "aws/request.Request" representing the
@@ -8375,6 +8644,78 @@ func (s DeleteAliasOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteEmailMonitoringConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the organization from which the email monitoring configuration
+	// is deleted.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEmailMonitoringConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEmailMonitoringConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEmailMonitoringConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEmailMonitoringConfigurationInput"}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *DeleteEmailMonitoringConfigurationInput) SetOrganizationId(v string) *DeleteEmailMonitoringConfigurationInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type DeleteEmailMonitoringConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEmailMonitoringConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEmailMonitoringConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9326,6 +9667,98 @@ func (s DeregisterMailDomainOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DeregisterMailDomainOutput) GoString() string {
 	return s.String()
+}
+
+type DescribeEmailMonitoringConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the organization for which the email monitoring configuration is
+	// described.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEmailMonitoringConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEmailMonitoringConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeEmailMonitoringConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeEmailMonitoringConfigurationInput"}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *DescribeEmailMonitoringConfigurationInput) SetOrganizationId(v string) *DescribeEmailMonitoringConfigurationInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type DescribeEmailMonitoringConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the CloudWatch Log group associated with
+	// the email monitoring configuration.
+	LogGroupArn *string `min:"47" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the IAM Role associated with the email
+	// monitoring configuration.
+	RoleArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEmailMonitoringConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEmailMonitoringConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetLogGroupArn sets the LogGroupArn field's value.
+func (s *DescribeEmailMonitoringConfigurationOutput) SetLogGroupArn(v string) *DescribeEmailMonitoringConfigurationOutput {
+	s.LogGroupArn = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DescribeEmailMonitoringConfigurationOutput) SetRoleArn(v string) *DescribeEmailMonitoringConfigurationOutput {
+	s.RoleArn = &v
+	return s
 }
 
 type DescribeGroupInput struct {
@@ -15065,6 +15498,114 @@ func (s PutAccessControlRuleOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s PutAccessControlRuleOutput) GoString() string {
+	return s.String()
+}
+
+type PutEmailMonitoringConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the CloudWatch Log group associated with
+	// the email monitoring configuration.
+	//
+	// LogGroupArn is a required field
+	LogGroupArn *string `min:"47" type:"string" required:"true"`
+
+	// The ID of the organization for which the email monitoring configuration is
+	// set.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the IAM Role associated with the email
+	// monitoring configuration.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutEmailMonitoringConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutEmailMonitoringConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutEmailMonitoringConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutEmailMonitoringConfigurationInput"}
+	if s.LogGroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LogGroupArn"))
+	}
+	if s.LogGroupArn != nil && len(*s.LogGroupArn) < 47 {
+		invalidParams.Add(request.NewErrParamMinLen("LogGroupArn", 47))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLogGroupArn sets the LogGroupArn field's value.
+func (s *PutEmailMonitoringConfigurationInput) SetLogGroupArn(v string) *PutEmailMonitoringConfigurationInput {
+	s.LogGroupArn = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *PutEmailMonitoringConfigurationInput) SetOrganizationId(v string) *PutEmailMonitoringConfigurationInput {
+	s.OrganizationId = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *PutEmailMonitoringConfigurationInput) SetRoleArn(v string) *PutEmailMonitoringConfigurationInput {
+	s.RoleArn = &v
+	return s
+}
+
+type PutEmailMonitoringConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutEmailMonitoringConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutEmailMonitoringConfigurationOutput) GoString() string {
 	return s.String()
 }
 
