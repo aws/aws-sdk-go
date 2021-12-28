@@ -667,8 +667,14 @@ func (o *Operation) GenerateAction() error {
 		description = strings.ReplaceAll(description, "\\", "")
 		description = strings.ReplaceAll(description, "\n ", "")
 
+		paramType := memberInfo.Shape.Type
+		blinkType := getTypeForUniqueCases(memberName, paramType)
+		if blinkType == paramType {
+			blinkType = convertGoToBlinkType(paramType)
+		}
+
 		actionParameters[memberName] = plugin.ActionParameter{
-			Type:        memberInfo.GoTypeElem(),
+			Type:        blinkType,
 			Description: strings.TrimSpace(description),
 			Required: func(name string, requiredList []string) bool {
 				for _, req := range requiredList {
@@ -680,24 +686,6 @@ func (o *Operation) GenerateAction() error {
 			}(memberName, requiredMembers),
 		}
 	}
-
-	/*
-		outputShape := o.API.Shapes[o.OutputRef.ShapeName]
-		actionOutput := plugin.Output{
-			Name:   outputShape.ShapeName,
-			Fields: func(shape *Shape) []plugin.Field {
-				var fields []plugin.Field
-				for _, memberName := range shape.MemberNames() {
-					memberInfo := shape.MemberRefs[memberName]
-					fields = append(fields, plugin.Field{
-						Name: memberName,
-						Type: memberInfo.GoTypeElem(),
-					})
-				}
-				return fields
-			}(outputShape),
-		}
-	*/
 
 	description := strings.ReplaceAll(o.Documentation, "//", "")
 	description = strings.ReplaceAll(description, "\\", "")
@@ -739,6 +727,34 @@ func (o *Operation) GenerateAction() error {
 	}
 
 	return nil
+}
+
+func convertGoToBlinkType(goType string) string {
+	switch goType {
+	case "structure", "map", "jsonvalue":
+		return "code:json"
+	case "list":
+		return "array"
+	case "boolean":
+		return "bool"
+	case "string", "character", "blob":
+		return "string"
+	case "byte", "short", "integer", "long":
+		return "int64"
+	case "float", "double":
+		return "float64"
+	case "timestamp":
+		return "date-time"
+	default:
+		panic("Unsupported shape type: " + goType)
+	}
+}
+
+func getTypeForUniqueCases(paramName string, currentType string) string {
+	if paramName == "PolicyDocument" {
+		return "code:json"
+	}
+	return currentType
 }
 
 // tplInfSig defines the template for rendering an Operation's signature within an Interface definition.
