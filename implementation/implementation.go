@@ -2066,6 +2066,10 @@ func createSessionWithNoCredentials(region string, timeout int32) (*session.Sess
 		return nil, fmt.Errorf("unable to create session with error: %v", err)
 	}
 
+	if _, err = awsSession.Config.Credentials.Get(); err != nil {
+		return nil, errors.New("Neither a connection nor identity based access were provided")
+	}
+
 	return awsSession, nil
 }
 
