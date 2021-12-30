@@ -1,0 +1,22 @@
+name: GetRoleEffectivePermissions
+description: Get the role's effective permissions from AWS.
+enabled: true
+entry_point: api.go
+parameters:
+  roleArn:
+    type: string
+    description: The role's arn.
+    placeholder: ""
+    required: true
+    default: ""
+    pattern: ""
+    options: []
+  awsRegion:
+    type: string
+    description: AWS Region(s), More than 1 region can be provided seperated by ",", Use "*" to run on all regions
+    placeholder: ""
+    required: false
+    default: us-east-1
+    pattern: ""
+    options: []
+output: null
