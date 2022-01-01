@@ -14656,13 +14656,21 @@
             "credentialScope" : {
               "region" : "us-gov-east-1"
             },
-            "hostname" : "ec2.us-gov-east-1.amazonaws.com"
+            "hostname" : "ec2.us-gov-east-1.amazonaws.com",
+            "variants" : [ {
+              "hostname" : "ec2.us-gov-east-1.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
           },
           "us-gov-west-1" : {
             "credentialScope" : {
               "region" : "us-gov-west-1"
             },
-            "hostname" : "ec2.us-gov-west-1.amazonaws.com"
+            "hostname" : "ec2.us-gov-west-1.amazonaws.com",
+            "variants" : [ {
+              "hostname" : "ec2.us-gov-west-1.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
           }
         }
       },
