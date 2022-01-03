@@ -21631,16 +21631,16 @@ func (c *SageMaker) StopPipelineExecutionRequest(input *StopPipelineExecutionInp
 //
 // A pipeline execution won't stop while a callback step is running. When you
 // call StopPipelineExecution on a pipeline execution with a running callback
-// step, SageMaker Pipelines sends an additional Amazon SQS message to the specified
-// SQS queue. The body of the SQS message contains a "Status" field which is
-// set to "Stopping".
+// step, Amazon SageMaker Pipelines sends an additional Amazon SQS message to
+// the specified SQS queue. The body of the SQS message contains a "Status"
+// field which is set to "Stopping".
 //
 // You should add logic to your Amazon SQS message consumer to take any needed
 // action (for example, resource cleanup) upon receipt of the message followed
 // by a call to SendPipelineExecutionStepSuccess or SendPipelineExecutionStepFailure.
 //
-// Only when SageMaker Pipelines receives one of these calls will it stop the
-// pipeline execution.
+// Only when Amazon SageMaker Pipelines receives one of these calls will it
+// stop the pipeline execution.
 //
 // Lambda Step
 //
@@ -21897,11 +21897,11 @@ func (c *SageMaker) StopTransformJobRequest(input *StopTransformJobInput) (req *
 
 // StopTransformJob API operation for Amazon SageMaker Service.
 //
-// Stops a transform job.
+// Stops a batch transform job.
 //
 // When Amazon SageMaker receives a StopTransformJob request, the status of
 // the job changes to Stopping. After Amazon SageMaker stops the job, the status
-// is set to Stopped. When you stop a transform job before it is completed,
+// is set to Stopped. When you stop a batch transform job before it is completed,
 // Amazon SageMaker doesn't store the job's output in Amazon S3.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -32122,7 +32122,7 @@ type CreateDomainInput struct {
 	// A collection of Domain settings.
 	DomainSettings *DomainSettings `type:"structure"`
 
-	// This member is deprecated and replaced with KmsKeyId.
+	// Use KmsKeyId.
 	//
 	// Deprecated: This property is deprecated, use KmsKeyId instead.
 	HomeEfsFileSystemKmsKeyId *string `deprecated:"true" type:"string"`
@@ -36407,10 +36407,16 @@ type CreatePipelineInput struct {
 	// of the operation. An idempotent operation completes no more than one time.
 	ClientRequestToken *string `min:"32" type:"string" idempotencyToken:"true"`
 
+	// This is the configuration that controls the parallelism of the pipeline.
+	// If specified, it applies to all runs of this pipeline by default.
+	ParallelismConfiguration *ParallelismConfiguration `type:"structure"`
+
 	// The JSON pipeline definition of the pipeline.
-	//
-	// PipelineDefinition is a required field
-	PipelineDefinition *string `min:"1" type:"string" required:"true"`
+	PipelineDefinition *string `min:"1" type:"string"`
+
+	// The location of the pipeline definition stored in Amazon S3. If specified,
+	// SageMaker will retrieve the pipeline definition from this location.
+	PipelineDefinitionS3Location *PipelineDefinitionS3Location `type:"structure"`
 
 	// A description of the pipeline.
 	PipelineDescription *string `type:"string"`
@@ -36457,9 +36463,6 @@ func (s *CreatePipelineInput) Validate() error {
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 32 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 32))
 	}
-	if s.PipelineDefinition == nil {
-		invalidParams.Add(request.NewErrParamRequired("PipelineDefinition"))
-	}
 	if s.PipelineDefinition != nil && len(*s.PipelineDefinition) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("PipelineDefinition", 1))
 	}
@@ -36477,6 +36480,16 @@ func (s *CreatePipelineInput) Validate() error {
 	}
 	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.ParallelismConfiguration != nil {
+		if err := s.ParallelismConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ParallelismConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PipelineDefinitionS3Location != nil {
+		if err := s.PipelineDefinitionS3Location.Validate(); err != nil {
+			invalidParams.AddNested("PipelineDefinitionS3Location", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
@@ -36501,9 +36514,21 @@ func (s *CreatePipelineInput) SetClientRequestToken(v string) *CreatePipelineInp
 	return s
 }
 
+// SetParallelismConfiguration sets the ParallelismConfiguration field's value.
+func (s *CreatePipelineInput) SetParallelismConfiguration(v *ParallelismConfiguration) *CreatePipelineInput {
+	s.ParallelismConfiguration = v
+	return s
+}
+
 // SetPipelineDefinition sets the PipelineDefinition field's value.
 func (s *CreatePipelineInput) SetPipelineDefinition(v string) *CreatePipelineInput {
 	s.PipelineDefinition = &v
+	return s
+}
+
+// SetPipelineDefinitionS3Location sets the PipelineDefinitionS3Location field's value.
+func (s *CreatePipelineInput) SetPipelineDefinitionS3Location(v *PipelineDefinitionS3Location) *CreatePipelineInput {
+	s.PipelineDefinitionS3Location = v
 	return s
 }
 
@@ -45462,7 +45487,7 @@ type DescribeDomainOutput struct {
 	// The ID of the Amazon Elastic File System (EFS) managed by this Domain.
 	HomeEfsFileSystemId *string `type:"string"`
 
-	// This member is deprecated and replaced with KmsKeyId.
+	// Use KmsKeyId.
 	//
 	// Deprecated: This property is deprecated, use KmsKeyId instead.
 	HomeEfsFileSystemKmsKeyId *string `deprecated:"true" type:"string"`
@@ -50051,6 +50076,9 @@ type DescribePipelineExecutionOutput struct {
 	// The time when the pipeline execution was modified last.
 	LastModifiedTime *time.Time `type:"timestamp"`
 
+	// The parallelism configuration applied to the pipeline.
+	ParallelismConfiguration *ParallelismConfiguration `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the pipeline.
 	PipelineArn *string `type:"string"`
 
@@ -50115,6 +50143,12 @@ func (s *DescribePipelineExecutionOutput) SetLastModifiedBy(v *UserContext) *Des
 // SetLastModifiedTime sets the LastModifiedTime field's value.
 func (s *DescribePipelineExecutionOutput) SetLastModifiedTime(v time.Time) *DescribePipelineExecutionOutput {
 	s.LastModifiedTime = &v
+	return s
+}
+
+// SetParallelismConfiguration sets the ParallelismConfiguration field's value.
+func (s *DescribePipelineExecutionOutput) SetParallelismConfiguration(v *ParallelismConfiguration) *DescribePipelineExecutionOutput {
+	s.ParallelismConfiguration = v
 	return s
 }
 
@@ -50223,6 +50257,9 @@ type DescribePipelineOutput struct {
 	// The time when the pipeline was last run.
 	LastRunTime *time.Time `type:"timestamp"`
 
+	// Lists the parallelism configuration applied to the pipeline.
+	ParallelismConfiguration *ParallelismConfiguration `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the pipeline.
 	PipelineArn *string `type:"string"`
 
@@ -50290,6 +50327,12 @@ func (s *DescribePipelineOutput) SetLastModifiedTime(v time.Time) *DescribePipel
 // SetLastRunTime sets the LastRunTime field's value.
 func (s *DescribePipelineOutput) SetLastRunTime(v time.Time) *DescribePipelineOutput {
 	s.LastRunTime = &v
+	return s
+}
+
+// SetParallelismConfiguration sets the ParallelismConfiguration field's value.
+func (s *DescribePipelineOutput) SetParallelismConfiguration(v *ParallelismConfiguration) *DescribePipelineOutput {
+	s.ParallelismConfiguration = v
 	return s
 }
 
@@ -53662,6 +53705,65 @@ func (s *DriftCheckModelQuality) SetConstraints(v *MetricsSource) *DriftCheckMod
 // SetStatistics sets the Statistics field's value.
 func (s *DriftCheckModelQuality) SetStatistics(v *MetricsSource) *DriftCheckModelQuality {
 	s.Statistics = v
+	return s
+}
+
+// The configurations and outcomes of an Amazon EMR step execution.
+type EMRStepMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the EMR cluster.
+	ClusterId *string `type:"string"`
+
+	// The path to the log file where the cluster step's failure root cause is recorded.
+	LogFilePath *string `type:"string"`
+
+	// The identifier of the EMR cluster step.
+	StepId *string `type:"string"`
+
+	// The name of the EMR cluster step.
+	StepName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EMRStepMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EMRStepMetadata) GoString() string {
+	return s.String()
+}
+
+// SetClusterId sets the ClusterId field's value.
+func (s *EMRStepMetadata) SetClusterId(v string) *EMRStepMetadata {
+	s.ClusterId = &v
+	return s
+}
+
+// SetLogFilePath sets the LogFilePath field's value.
+func (s *EMRStepMetadata) SetLogFilePath(v string) *EMRStepMetadata {
+	s.LogFilePath = &v
+	return s
+}
+
+// SetStepId sets the StepId field's value.
+func (s *EMRStepMetadata) SetStepId(v string) *EMRStepMetadata {
+	s.StepId = &v
+	return s
+}
+
+// SetStepName sets the StepName field's value.
+func (s *EMRStepMetadata) SetStepName(v string) *EMRStepMetadata {
+	s.StepName = &v
 	return s
 }
 
@@ -60212,11 +60314,12 @@ type InputConfig struct {
 	// Framework is a required field
 	Framework *string `type:"string" required:"true" enum:"Framework"`
 
-	// Specifies the framework version to use.
+	// Specifies the framework version to use. This API field is only supported
+	// for the PyTorch and TensorFlow frameworks.
 	//
-	// This API field is only supported for PyTorch framework versions 1.4, 1.5,
-	// and 1.6 for cloud instance target devices: ml_c4, ml_c5, ml_m4, ml_m5, ml_p2,
-	// ml_p3, and ml_g4dn.
+	// For information about framework versions supported for cloud targets and
+	// edge devices, see Cloud Supported Instance Types and Frameworks (https://docs.aws.amazon.com/sagemaker/latest/dg/neo-supported-cloud.html)
+	// and Edge Supported Frameworks (https://docs.aws.amazon.com/sagemaker/latest/dg/neo-supported-devices-edge-frameworks.html).
 	FrameworkVersion *string `min:"3" type:"string"`
 
 	// The S3 path where the model artifacts, which result from model training,
@@ -76301,6 +76404,58 @@ func (s *OutputParameter) SetValue(v string) *OutputParameter {
 	return s
 }
 
+// Configuration that controls the parallelism of the pipeline. By default,
+// the parallelism configuration specified applies to all executions of the
+// pipeline unless overridden.
+type ParallelismConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The max number of steps that can be executed in parallel.
+	//
+	// MaxParallelExecutionSteps is a required field
+	MaxParallelExecutionSteps *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParallelismConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParallelismConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ParallelismConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ParallelismConfiguration"}
+	if s.MaxParallelExecutionSteps == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxParallelExecutionSteps"))
+	}
+	if s.MaxParallelExecutionSteps != nil && *s.MaxParallelExecutionSteps < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxParallelExecutionSteps", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxParallelExecutionSteps sets the MaxParallelExecutionSteps field's value.
+func (s *ParallelismConfiguration) SetMaxParallelExecutionSteps(v int64) *ParallelismConfiguration {
+	s.MaxParallelExecutionSteps = &v
+	return s
+}
+
 // Assigns a value to a named Pipeline parameter.
 type Parameter struct {
 	_ struct{} `type:"structure"`
@@ -76919,6 +77074,9 @@ type Pipeline struct {
 	// The time when the pipeline was last run.
 	LastRunTime *time.Time `type:"timestamp"`
 
+	// The parallelism configuration applied to the pipeline.
+	ParallelismConfiguration *ParallelismConfiguration `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the pipeline.
 	PipelineArn *string `type:"string"`
 
@@ -76989,6 +77147,12 @@ func (s *Pipeline) SetLastRunTime(v time.Time) *Pipeline {
 	return s
 }
 
+// SetParallelismConfiguration sets the ParallelismConfiguration field's value.
+func (s *Pipeline) SetParallelismConfiguration(v *ParallelismConfiguration) *Pipeline {
+	s.ParallelismConfiguration = v
+	return s
+}
+
 // SetPipelineArn sets the PipelineArn field's value.
 func (s *Pipeline) SetPipelineArn(v string) *Pipeline {
 	s.PipelineArn = &v
@@ -77031,6 +77195,86 @@ func (s *Pipeline) SetTags(v []*Tag) *Pipeline {
 	return s
 }
 
+// The location of the pipeline definition stored in Amazon S3.
+type PipelineDefinitionS3Location struct {
+	_ struct{} `type:"structure"`
+
+	// Name of the S3 bucket.
+	//
+	// Bucket is a required field
+	Bucket *string `min:"3" type:"string" required:"true"`
+
+	// The object key (or key name) uniquely identifies the object in an S3 bucket.
+	//
+	// ObjectKey is a required field
+	ObjectKey *string `min:"1" type:"string" required:"true"`
+
+	// Version Id of the pipeline definition file. If not specified, Amazon SageMaker
+	// will retrieve the latest version.
+	VersionId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineDefinitionS3Location) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineDefinitionS3Location) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PipelineDefinitionS3Location) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PipelineDefinitionS3Location"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+	if s.ObjectKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("ObjectKey"))
+	}
+	if s.ObjectKey != nil && len(*s.ObjectKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ObjectKey", 1))
+	}
+	if s.VersionId != nil && len(*s.VersionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *PipelineDefinitionS3Location) SetBucket(v string) *PipelineDefinitionS3Location {
+	s.Bucket = &v
+	return s
+}
+
+// SetObjectKey sets the ObjectKey field's value.
+func (s *PipelineDefinitionS3Location) SetObjectKey(v string) *PipelineDefinitionS3Location {
+	s.ObjectKey = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *PipelineDefinitionS3Location) SetVersionId(v string) *PipelineDefinitionS3Location {
+	s.VersionId = &v
+	return s
+}
+
 // An execution of a pipeline.
 type PipelineExecution struct {
 	_ struct{} `type:"structure"`
@@ -77051,6 +77295,9 @@ type PipelineExecution struct {
 
 	// The time that the pipeline execution was last modified.
 	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The parallelism configuration applied to the pipeline execution.
+	ParallelismConfiguration *ParallelismConfiguration `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the pipeline that was executed.
 	PipelineArn *string `type:"string"`
@@ -77122,6 +77369,12 @@ func (s *PipelineExecution) SetLastModifiedTime(v time.Time) *PipelineExecution 
 	return s
 }
 
+// SetParallelismConfiguration sets the ParallelismConfiguration field's value.
+func (s *PipelineExecution) SetParallelismConfiguration(v *ParallelismConfiguration) *PipelineExecution {
+	s.ParallelismConfiguration = v
+	return s
+}
+
 // SetPipelineArn sets the PipelineArn field's value.
 func (s *PipelineExecution) SetPipelineArn(v string) *PipelineExecution {
 	s.PipelineArn = &v
@@ -77168,6 +77421,8 @@ func (s *PipelineExecution) SetPipelineParameters(v []*Parameter) *PipelineExecu
 type PipelineExecutionStep struct {
 	_ struct{} `type:"structure"`
 
+	// The current attempt of the execution step. For more information, see Retry
+	// Policy for Amazon SageMaker Pipelines steps (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/sagemaker/latest/dg/pipelines-retry-policy.html).
 	AttemptCount *int64 `type:"integer"`
 
 	// If this pipeline execution step was cached, details on the cache hit.
@@ -77185,6 +77440,12 @@ type PipelineExecutionStep struct {
 
 	// The time that the step started executing.
 	StartTime *time.Time `type:"timestamp"`
+
+	// The description of the step.
+	StepDescription *string `type:"string"`
+
+	// The display name of the step.
+	StepDisplayName *string `type:"string"`
 
 	// The name of the step that is executed.
 	StepName *string `type:"string"`
@@ -77247,6 +77508,18 @@ func (s *PipelineExecutionStep) SetStartTime(v time.Time) *PipelineExecutionStep
 	return s
 }
 
+// SetStepDescription sets the StepDescription field's value.
+func (s *PipelineExecutionStep) SetStepDescription(v string) *PipelineExecutionStep {
+	s.StepDescription = &v
+	return s
+}
+
+// SetStepDisplayName sets the StepDisplayName field's value.
+func (s *PipelineExecutionStep) SetStepDisplayName(v string) *PipelineExecutionStep {
+	s.StepDisplayName = &v
+	return s
+}
+
 // SetStepName sets the StepName field's value.
 func (s *PipelineExecutionStep) SetStepName(v string) *PipelineExecutionStep {
 	s.StepName = &v
@@ -77291,6 +77564,9 @@ type PipelineExecutionStepMetadata struct {
 
 	// The outcome of the condition evaluation that was run by this step execution.
 	Condition *ConditionStepMetadata `type:"structure"`
+
+	// The configurations and outcomes of an EMR step execution.
+	EMR *EMRStepMetadata `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the Lambda function that was run by this
 	// step execution and a list of output parameters.
@@ -77375,6 +77651,12 @@ func (s *PipelineExecutionStepMetadata) SetClarifyCheck(v *ClarifyCheckStepMetad
 // SetCondition sets the Condition field's value.
 func (s *PipelineExecutionStepMetadata) SetCondition(v *ConditionStepMetadata) *PipelineExecutionStepMetadata {
 	s.Condition = v
+	return s
+}
+
+// SetEMR sets the EMR field's value.
+func (s *PipelineExecutionStepMetadata) SetEMR(v *EMRStepMetadata) *PipelineExecutionStepMetadata {
+	s.EMR = v
 	return s
 }
 
@@ -82270,6 +82552,10 @@ type RetryPipelineExecutionInput struct {
 	// of the operation. An idempotent operation completes no more than once.
 	ClientRequestToken *string `min:"32" type:"string" idempotencyToken:"true"`
 
+	// This configuration, if specified, overrides the parallelism configuration
+	// of the parent pipeline.
+	ParallelismConfiguration *ParallelismConfiguration `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the pipeline execution.
 	//
 	// PipelineExecutionArn is a required field
@@ -82303,6 +82589,11 @@ func (s *RetryPipelineExecutionInput) Validate() error {
 	if s.PipelineExecutionArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PipelineExecutionArn"))
 	}
+	if s.ParallelismConfiguration != nil {
+		if err := s.ParallelismConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ParallelismConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -82313,6 +82604,12 @@ func (s *RetryPipelineExecutionInput) Validate() error {
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *RetryPipelineExecutionInput) SetClientRequestToken(v string) *RetryPipelineExecutionInput {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetParallelismConfiguration sets the ParallelismConfiguration field's value.
+func (s *RetryPipelineExecutionInput) SetParallelismConfiguration(v *ParallelismConfiguration) *RetryPipelineExecutionInput {
+	s.ParallelismConfiguration = v
 	return s
 }
 
@@ -84125,6 +84422,10 @@ type StartPipelineExecutionInput struct {
 	// of the operation. An idempotent operation completes no more than once.
 	ClientRequestToken *string `min:"32" type:"string" idempotencyToken:"true"`
 
+	// This configuration, if specified, overrides the parallelism configuration
+	// of the parent pipeline for this specific run.
+	ParallelismConfiguration *ParallelismConfiguration `type:"structure"`
+
 	// The description of the pipeline execution.
 	PipelineExecutionDescription *string `type:"string"`
 
@@ -84173,6 +84474,11 @@ func (s *StartPipelineExecutionInput) Validate() error {
 	if s.PipelineName != nil && len(*s.PipelineName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("PipelineName", 1))
 	}
+	if s.ParallelismConfiguration != nil {
+		if err := s.ParallelismConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ParallelismConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.PipelineParameters != nil {
 		for i, v := range s.PipelineParameters {
 			if v == nil {
@@ -84193,6 +84499,12 @@ func (s *StartPipelineExecutionInput) Validate() error {
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *StartPipelineExecutionInput) SetClientRequestToken(v string) *StartPipelineExecutionInput {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetParallelismConfiguration sets the ParallelismConfiguration field's value.
+func (s *StartPipelineExecutionInput) SetParallelismConfiguration(v *ParallelismConfiguration) *StartPipelineExecutionInput {
+	s.ParallelismConfiguration = v
 	return s
 }
 
@@ -85051,7 +85363,7 @@ func (s StopTrainingJobOutput) GoString() string {
 type StopTransformJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the transform job to stop.
+	// The name of the batch transform job to stop.
 	//
 	// TransformJobName is a required field
 	TransformJobName *string `min:"1" type:"string" required:"true"`
@@ -91105,6 +91417,10 @@ func (s UpdateNotebookInstanceOutput) GoString() string {
 type UpdatePipelineExecutionInput struct {
 	_ struct{} `type:"structure"`
 
+	// This configuration, if specified, overrides the parallelism configuration
+	// of the parent pipeline for this specific run.
+	ParallelismConfiguration *ParallelismConfiguration `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the pipeline execution.
 	//
 	// PipelineExecutionArn is a required field
@@ -91144,11 +91460,22 @@ func (s *UpdatePipelineExecutionInput) Validate() error {
 	if s.PipelineExecutionDisplayName != nil && len(*s.PipelineExecutionDisplayName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("PipelineExecutionDisplayName", 1))
 	}
+	if s.ParallelismConfiguration != nil {
+		if err := s.ParallelismConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ParallelismConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetParallelismConfiguration sets the ParallelismConfiguration field's value.
+func (s *UpdatePipelineExecutionInput) SetParallelismConfiguration(v *ParallelismConfiguration) *UpdatePipelineExecutionInput {
+	s.ParallelismConfiguration = v
+	return s
 }
 
 // SetPipelineExecutionArn sets the PipelineExecutionArn field's value.
@@ -91203,8 +91530,15 @@ func (s *UpdatePipelineExecutionOutput) SetPipelineExecutionArn(v string) *Updat
 type UpdatePipelineInput struct {
 	_ struct{} `type:"structure"`
 
+	// If specified, it applies to all executions of this pipeline by default.
+	ParallelismConfiguration *ParallelismConfiguration `type:"structure"`
+
 	// The JSON pipeline definition.
 	PipelineDefinition *string `min:"1" type:"string"`
+
+	// The location of the pipeline definition stored in Amazon S3. If specified,
+	// SageMaker will retrieve the pipeline definition from this location.
+	PipelineDefinitionS3Location *PipelineDefinitionS3Location `type:"structure"`
 
 	// The description of the pipeline.
 	PipelineDescription *string `type:"string"`
@@ -91257,6 +91591,16 @@ func (s *UpdatePipelineInput) Validate() error {
 	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
 	}
+	if s.ParallelismConfiguration != nil {
+		if err := s.ParallelismConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ParallelismConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PipelineDefinitionS3Location != nil {
+		if err := s.PipelineDefinitionS3Location.Validate(); err != nil {
+			invalidParams.AddNested("PipelineDefinitionS3Location", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -91264,9 +91608,21 @@ func (s *UpdatePipelineInput) Validate() error {
 	return nil
 }
 
+// SetParallelismConfiguration sets the ParallelismConfiguration field's value.
+func (s *UpdatePipelineInput) SetParallelismConfiguration(v *ParallelismConfiguration) *UpdatePipelineInput {
+	s.ParallelismConfiguration = v
+	return s
+}
+
 // SetPipelineDefinition sets the PipelineDefinition field's value.
 func (s *UpdatePipelineInput) SetPipelineDefinition(v string) *UpdatePipelineInput {
 	s.PipelineDefinition = &v
+	return s
+}
+
+// SetPipelineDefinitionS3Location sets the PipelineDefinitionS3Location field's value.
+func (s *UpdatePipelineInput) SetPipelineDefinitionS3Location(v *PipelineDefinitionS3Location) *UpdatePipelineInput {
+	s.PipelineDefinitionS3Location = v
 	return s
 }
 

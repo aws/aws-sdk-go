@@ -1409,8 +1409,8 @@ func (c *RDS) CreateCustomDBEngineVersionRequest(input *CreateCustomDBEngineVers
 // Amazon RDS, which is a fully managed service, supplies the Amazon Machine
 // Image (AMI) and database software. The Amazon RDS database software is preinstalled,
 // so you need only select a DB engine and version, and create your database.
-// With Amazon RDS Custom, you upload your database installation files in Amazon
-// S3.
+// With Amazon RDS Custom for Oracle, you upload your database installation
+// files in Amazon S3.
 //
 // When you create a custom engine version, you specify the files in a JSON
 // document called a CEV manifest. This document describes installation .zip
@@ -18373,9 +18373,9 @@ type CreateCustomDBEngineVersionInput struct {
 	Engine *string `min:"1" type:"string" required:"true"`
 
 	// The name of your CEV. The name format is 19.customized_string . For example,
-	// a valid name is 19.my_cev1. This setting is required for RDS Custom, but
-	// optional for Amazon RDS. The combination of Engine and EngineVersion is unique
-	// per customer per Region.
+	// a valid name is 19.my_cev1. This setting is required for RDS Custom for Oracle,
+	// but optional for Amazon RDS. The combination of Engine and EngineVersion
+	// is unique per customer per Region.
 	//
 	// EngineVersion is a required field
 	EngineVersion *string `min:"1" type:"string" required:"true"`
@@ -19282,7 +19282,7 @@ type CreateDBClusterInput struct {
 	//
 	//    * aurora (for MySQL 5.6-compatible Aurora)
 	//
-	//    * aurora-mysql (for MySQL 5.7-compatible Aurora)
+	//    * aurora-mysql (for MySQL 5.7-compatible and MySQL 8.0-compatible Aurora)
 	//
 	//    * aurora-postgresql
 	//
@@ -19331,8 +19331,8 @@ type CreateDBClusterInput struct {
 	//
 	// aws rds describe-db-engine-versions --engine aurora --query "DBEngineVersions[].EngineVersion"
 	//
-	// To list all of the available engine versions for MySQL 5.7-compatible Aurora,
-	// use the following command:
+	// To list all of the available engine versions for MySQL 5.7-compatible and
+	// MySQL 8.0-compatible Aurora, use the following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-mysql --query "DBEngineVersions[].EngineVersion"
 	//
@@ -19653,11 +19653,11 @@ type CreateDBClusterInput struct {
 	//
 	// This setting is required to create a Multi-AZ DB cluster.
 	//
-	// Valid values: standard | gp2 | io1
+	// Valid values: io1
 	//
-	// If you specify io1, also include a value for the Iops parameter.
+	// When specified, a value for the Iops parameter is required.
 	//
-	// Default: io1 if the Iops parameter is specified, otherwise gp2
+	// Default: io1
 	//
 	// Valid for: Multi-AZ DB clusters only
 	StorageType *string `type:"string"`
@@ -20054,7 +20054,7 @@ type CreateDBClusterParameterGroupInput struct {
 	//
 	// Aurora MySQL
 	//
-	// Example: aurora5.6, aurora-mysql5.7
+	// Example: aurora5.6, aurora-mysql5.7, aurora-mysql8.0
 	//
 	// Aurora PostgreSQL
 	//
@@ -20086,7 +20086,7 @@ type CreateDBClusterParameterGroupInput struct {
 	//
 	//    * aurora (for MySQL 5.6-compatible Aurora)
 	//
-	//    * aurora-mysql (for MySQL 5.7-compatible Aurora)
+	//    * aurora-mysql (for MySQL 5.7-compatible and MySQL 8.0-compatible Aurora)
 	//
 	//    * aurora-postgresql
 	//
@@ -20339,9 +20339,11 @@ type CreateDBInstanceInput struct {
 	//
 	// Constraints to the amount of storage for each storage type are the following:
 	//
-	//    * General Purpose (SSD) storage (gp2): Must be an integer from 40 to 65536.
+	//    * General Purpose (SSD) storage (gp2): Must be an integer from 40 to 65536
+	//    for RDS Custom for Oracle, 16384 for RDS Custom for SQL Server.
 	//
-	//    * Provisioned IOPS storage (io1): Must be an integer from 40 to 65536.
+	//    * Provisioned IOPS storage (io1): Must be an integer from 40 to 65536
+	//    for RDS Custom for Oracle, 16384 for RDS Custom for SQL Server.
 	//
 	// MySQL
 	//
@@ -20388,15 +20390,15 @@ type CreateDBInstanceInput struct {
 	// Constraints to the amount of storage for each storage type are the following:
 	//
 	//    * General Purpose (SSD) storage (gp2): Enterprise and Standard editions:
-	//    Must be an integer from 200 to 16384. Web and Express editions: Must be
+	//    Must be an integer from 20 to 16384. Web and Express editions: Must be
 	//    an integer from 20 to 16384.
 	//
 	//    * Provisioned IOPS storage (io1): Enterprise and Standard editions: Must
-	//    be an integer from 200 to 16384. Web and Express editions: Must be an
+	//    be an integer from 100 to 16384. Web and Express editions: Must be an
 	//    integer from 100 to 16384.
 	//
 	//    * Magnetic storage (standard): Enterprise and Standard editions: Must
-	//    be an integer from 200 to 1024. Web and Express editions: Must be an integer
+	//    be an integer from 20 to 1024. Web and Express editions: Must be an integer
 	//    from 20 to 1024.
 	AllocatedStorage *int64 `type:"integer"`
 
@@ -20411,6 +20413,10 @@ type CreateDBInstanceInput struct {
 	// The Availability Zone (AZ) where the database will be created. For information
 	// on Amazon Web Services Regions and Availability Zones, see Regions and Availability
 	// Zones (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html).
+	//
+	// Amazon Aurora
+	//
+	// Not applicable. Availability Zones are managed by the DB cluster.
 	//
 	// Default: A random, system-chosen Availability Zone in the endpoint's Amazon
 	// Web Services Region.
@@ -20446,7 +20452,7 @@ type CreateDBInstanceInput struct {
 	//
 	//    * Can't be set to 0 if the DB instance is a source to read replicas
 	//
-	//    * Can't be set to 0 or 35 for an RDS Custom DB instance
+	//    * Can't be set to 0 or 35 for an RDS Custom for Oracle DB instance
 	BackupRetentionPeriod *int64 `type:"integer"`
 
 	// Specifies where automated backups and manual snapshots are stored.
@@ -20585,7 +20591,7 @@ type CreateDBInstanceInput struct {
 	//
 	//    * Can't be longer than 8 characters
 	//
-	// Amazon RDS Custom
+	// Amazon RDS Custom for Oracle
 	//
 	// The Oracle System ID (SID) of the created RDS Custom DB instance. If you
 	// don't specify a value, the default value is ORCL.
@@ -20599,6 +20605,10 @@ type CreateDBInstanceInput struct {
 	//    * It must contain a letter.
 	//
 	//    * It can't be a word reserved by the database engine.
+	//
+	// Amazon RDS Custom for SQL Server
+	//
+	// Not applicable. Must be null.
 	//
 	// SQL Server
 	//
@@ -20765,11 +20775,17 @@ type CreateDBInstanceInput struct {
 	//
 	//    * aurora (for MySQL 5.6-compatible Aurora)
 	//
-	//    * aurora-mysql (for MySQL 5.7-compatible Aurora)
+	//    * aurora-mysql (for MySQL 5.7-compatible and MySQL 8.0-compatible Aurora)
 	//
 	//    * aurora-postgresql
 	//
-	//    * custom-oracle-ee (for RDS Custom instances)
+	//    * custom-oracle-ee (for RDS Custom for Oracle instances)
+	//
+	//    * custom-sqlserver-ee (for RDS Custom for SQL Server instances)
+	//
+	//    * custom-sqlserver-se (for RDS Custom for SQL Server instances)
+	//
+	//    * custom-sqlserver-web (for RDS Custom for SQL Server instances)
 	//
 	//    * mariadb
 	//
@@ -20809,13 +20825,18 @@ type CreateDBInstanceInput struct {
 	// Not applicable. The version number of the database engine to be used by the
 	// DB instance is managed by the DB cluster.
 	//
-	// Amazon RDS Custom
+	// Amazon RDS Custom for Oracle
 	//
 	// A custom engine version (CEV) that you have previously created. This setting
-	// is required for RDS Custom. The CEV name has the following format: 19.customized_string
-	// . An example identifier is 19.my_cev1. For more information, see Creating
-	// an RDS Custom DB instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-creating.html#custom-creating.create)
+	// is required for RDS Custom for Oracle. The CEV name has the following format:
+	// 19.customized_string . An example identifier is 19.my_cev1. For more information,
+	// see Creating an RDS Custom for Oracle DB instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-creating.html#custom-creating.create)
 	// in the Amazon RDS User Guide..
+	//
+	// Amazon RDS Custom for SQL Server
+	//
+	// See RDS Custom for SQL Server general requirements (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-reqs-limits.html#custom-reqs-limits.reqsMS)
+	// in the Amazon RDS User Guide.
 	//
 	// MariaDB
 	//
@@ -20872,10 +20893,10 @@ type CreateDBInstanceInput struct {
 	//
 	// Amazon RDS Custom
 	//
-	// A KMS key is required for RDS Custom Oracle instances. For most RDS engines,
-	// if you leave this parameter empty while enabling StorageEncrypted, the engine
-	// uses the default KMS key. However, RDS Custom for Oracle doesn't use the
-	// default key when this parameter is empty. You must explicitly specify a key.
+	// A KMS key is required for RDS Custom instances. For most RDS engines, if
+	// you leave this parameter empty while enabling StorageEncrypted, the engine
+	// uses the default KMS key. However, RDS Custom doesn't use the default key
+	// when this parameter is empty. You must explicitly specify a key.
 	KmsKeyId *string `type:"string"`
 
 	// License model information for this DB instance.
@@ -21150,8 +21171,8 @@ type CreateDBInstanceInput struct {
 	// A value that indicates whether the DB instance is encrypted. By default,
 	// it isn't encrypted.
 	//
-	// For RDS Custom Oracle instances, either set this parameter to true or leave
-	// it unset. If you set this parameter to false, RDS reports an error.
+	// For RDS Custom instances, either set this parameter to true or leave it unset.
+	// If you set this parameter to false, RDS reports an error.
 	//
 	// Amazon Aurora
 	//
@@ -22298,7 +22319,7 @@ type CreateDBParameterGroupInput struct {
 	//
 	//    * aurora (for MySQL 5.6-compatible Aurora)
 	//
-	//    * aurora-mysql (for MySQL 5.7-compatible Aurora)
+	//    * aurora-mysql (for MySQL 5.7-compatible and MySQL 8.0-compatible Aurora)
 	//
 	//    * aurora-postgresql
 	//
@@ -24002,7 +24023,7 @@ type DBCluster struct {
 	// Specifies whether the DB cluster is encrypted.
 	StorageEncrypted *bool `type:"boolean"`
 
-	// The storage type associated with DB instance.
+	// The storage type associated with the DB cluster.
 	//
 	// This setting is only for non-Aurora Multi-AZ DB clusters.
 	StorageType *string `type:"string"`
@@ -24916,7 +24937,14 @@ type DBClusterSnapshot struct {
 	// a null value.
 	SourceDBClusterSnapshotArn *string `type:"string"`
 
-	// Specifies the status of this DB cluster snapshot.
+	// Specifies the status of this DB cluster snapshot. Valid statuses are the
+	// following:
+	//
+	//    * available
+	//
+	//    * copying
+	//
+	//    * creating
 	Status *string `type:"string"`
 
 	// Specifies whether the DB cluster snapshot is encrypted.
@@ -31558,7 +31586,7 @@ type DescribeDBEngineVersionsInput struct {
 	//
 	//    * aurora (for MySQL 5.6-compatible Aurora)
 	//
-	//    * aurora-mysql (for MySQL 5.7-compatible Aurora)
+	//    * aurora-mysql (for MySQL 5.7-compatible and MySQL 8.0-compatible Aurora)
 	//
 	//    * aurora-postgresql
 	//
@@ -35232,7 +35260,7 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 	//
 	//    * aurora (for MySQL 5.6-compatible Aurora)
 	//
-	//    * aurora-mysql (for MySQL 5.7-compatible Aurora)
+	//    * aurora-mysql (for MySQL 5.7-compatible and MySQL 8.0-compatible Aurora)
 	//
 	//    * aurora-postgresql
 	//
@@ -38413,8 +38441,8 @@ type ModifyCustomDBEngineVersionInput struct {
 	Engine *string `min:"1" type:"string" required:"true"`
 
 	// The custom engine version (CEV) that you want to modify. This option is required
-	// for RDS Custom, but optional for Amazon RDS. The combination of Engine and
-	// EngineVersion is unique per customer per Amazon Web Services Region.
+	// for RDS Custom for Oracle, but optional for Amazon RDS. The combination of
+	// Engine and EngineVersion is unique per customer per Amazon Web Services Region.
 	//
 	// EngineVersion is a required field
 	EngineVersion *string `min:"1" type:"string" required:"true"`
@@ -39199,8 +39227,8 @@ type ModifyDBClusterInput struct {
 	//
 	// aws rds describe-db-engine-versions --engine aurora --query "DBEngineVersions[].EngineVersion"
 	//
-	// To list all of the available engine versions for MySQL 5.7-compatible Aurora,
-	// use the following command:
+	// To list all of the available engine versions for MySQL 5.7-compatible and
+	// MySQL 8.0-compatible Aurora, use the following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-mysql --query "DBEngineVersions[].EngineVersion"
 	//
@@ -39365,11 +39393,11 @@ type ModifyDBClusterInput struct {
 
 	// Specifies the storage type to be associated with the DB cluster.
 	//
-	// Valid values: standard | gp2 | io1
+	// Valid values: io1
 	//
-	// If you specify io1, you must also include a value for the Iops parameter.
+	// When specified, a value for the Iops parameter is required.
 	//
-	// Default: io1 if the Iops parameter is specified, otherwise gp2
+	// Default: io1
 	//
 	// Valid for: Multi-AZ DB clusters only
 	StorageType *string `type:"string"`
@@ -39906,9 +39934,8 @@ type ModifyDBInstanceInput struct {
 	// the next maintenance window. Some parameter changes can cause an outage and
 	// are applied on the next call to RebootDBInstance, or the next failure reboot.
 	// Review the table of parameters in Modifying a DB Instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.DBInstance.Modifying.html)
-	// in the Amazon RDS User Guide. to see the impact of enabling or disabling
-	// ApplyImmediately for each modified parameter and to determine when the changes
-	// are applied.
+	// in the Amazon RDS User Guide to see the impact of enabling or disabling ApplyImmediately
+	// for each modified parameter and to determine when the changes are applied.
 	ApplyImmediately *bool `type:"boolean"`
 
 	// A value that indicates whether minor version upgrades are applied automatically
@@ -39963,7 +39990,7 @@ type ModifyDBInstanceInput struct {
 	//
 	//    * It must be a value from 0 to 35. It can't be set to 0 if the DB instance
 	//    is a source to read replicas. It can't be set to 0 or 35 for an RDS Custom
-	//    DB instance.
+	//    for Oracle DB instance.
 	//
 	//    * It can be specified for a MySQL read replica only if the source is running
 	//    MySQL 5.6 or later.
@@ -40030,7 +40057,7 @@ type ModifyDBInstanceInput struct {
 	// The change is applied during the next maintenance window, unless ApplyImmediately
 	// is enabled for this request.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// This setting doesn't apply to RDS Custom for Oracle.
 	//
 	// Default: Uses existing setting
 	DBInstanceClass *string `type:"string"`
@@ -40213,8 +40240,8 @@ type ModifyDBInstanceInput struct {
 	// to the default minor version if the current minor version is lower. For information
 	// about valid engine versions, see CreateDBInstance, or call DescribeDBEngineVersions.
 	//
-	// In RDS Custom, this parameter is supported for read replicas only if they
-	// are in the PATCH_DB_FAILURE lifecycle.
+	// In RDS Custom for Oracle, this parameter is supported for read replicas only
+	// if they are in the PATCH_DB_FAILURE lifecycle.
 	EngineVersion *string `type:"string"`
 
 	// The new Provisioned IOPS (I/O operations per second) value for the RDS instance.
@@ -40476,8 +40503,6 @@ type ModifyDBInstanceInput struct {
 	//
 	// Changes to the PubliclyAccessible parameter are applied immediately regardless
 	// of the value of the ApplyImmediately parameter.
-	//
-	// This setting doesn't apply to RDS Custom.
 	PubliclyAccessible *bool `type:"boolean"`
 
 	// A value that sets the open mode of a replica database to either mounted or
@@ -40923,7 +40948,7 @@ type ModifyDBParameterGroupInput struct {
 
 	// An array of parameter names, values, and the application methods for the
 	// parameter update. At least one parameter name, value, and application method
-	// method must be supplied; later arguments are optional. A maximum of 20 parameters
+	// must be supplied; later arguments are optional. A maximum of 20 parameters
 	// can be modified in a single request.
 	//
 	// Valid Values (for the application method): immediate | pending-reboot
@@ -40933,9 +40958,17 @@ type ModifyDBParameterGroupInput struct {
 	//
 	// When the application method is immediate, changes to dynamic parameters are
 	// applied immediately to the DB instances associated with the parameter group.
+	//
 	// When the application method is pending-reboot, changes to dynamic and static
 	// parameters are applied after a reboot without failover to the DB instances
 	// associated with the parameter group.
+	//
+	// You can't use pending-reboot with dynamic parameters on RDS for SQL Server
+	// DB instances. Use immediate.
+	//
+	// For more information on modifying DB parameters, see Working with DB parameter
+	// groups (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html)
+	// in the Amazon RDS User Guide.
 	//
 	// Parameters is a required field
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list" required:"true"`
@@ -41880,7 +41913,7 @@ type ModifyGlobalClusterInput struct {
 	// == `true`].[EngineVersion]'
 	//
 	// To list all of the available engine versions for aurora-mysql (for MySQL
-	// 5.7-compatible Aurora), use the following command:
+	// 5.7-compatible and MySQL 8.0-compatible Aurora), use the following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-mysql --query '*[]|[?SupportsGlobalDatabases
 	// == `true`].[EngineVersion]'
@@ -45546,7 +45579,7 @@ type RestoreDBClusterFromS3Input struct {
 	// The name of the database engine to be used for this DB cluster.
 	//
 	// Valid Values: aurora (for MySQL 5.6-compatible Aurora), aurora-mysql (for
-	// MySQL 5.7-compatible Aurora), and aurora-postgresql
+	// MySQL 5.7-compatible and MySQL 8.0-compatible Aurora), and aurora-postgresql
 	//
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
@@ -45559,7 +45592,7 @@ type RestoreDBClusterFromS3Input struct {
 	// aws rds describe-db-engine-versions --engine aurora --query "DBEngineVersions[].EngineVersion"
 	//
 	// To list all of the available engine versions for aurora-mysql (for MySQL
-	// 5.7-compatible Aurora), use the following command:
+	// 5.7-compatible and MySQL 8.0-compatible Aurora), use the following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-mysql --query "DBEngineVersions[].EngineVersion"
 	//
@@ -45570,7 +45603,8 @@ type RestoreDBClusterFromS3Input struct {
 	//
 	// Aurora MySQL
 	//
-	// Example: 5.6.10a, 5.6.mysql_aurora.1.19.2, 5.7.12, 5.7.mysql_aurora.2.04.5
+	// Example: 5.6.10a, 5.6.mysql_aurora.1.19.2, 5.7.12, 5.7.mysql_aurora.2.04.5,
+	// 8.0.mysql_aurora.3.01.0
 	//
 	// Aurora PostgreSQL
 	//
@@ -46155,8 +46189,8 @@ type RestoreDBClusterFromSnapshotInput struct {
 	//
 	// aws rds describe-db-engine-versions --engine aurora --query "DBEngineVersions[].EngineVersion"
 	//
-	// To list all of the available engine versions for MySQL 5.7-compatible Aurora,
-	// use the following command:
+	// To list all of the available engine versions for MySQL 5.7-compatible and
+	// MySQL 8.0-compatible Aurora, use the following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-mysql --query "DBEngineVersions[].EngineVersion"
 	//
@@ -46305,11 +46339,11 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// Specifies the storage type to be associated with the each DB instance in
 	// the Multi-AZ DB cluster.
 	//
-	// Valid values: standard | gp2 | io1
+	// Valid values: io1
 	//
-	// If you specify io1, you must also include a value for the Iops parameter.
+	// When specified, a value for the Iops parameter is required.
 	//
-	// Default: io1 if the Iops parameter is specified, otherwise gp2
+	// Default: io1
 	//
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	StorageType *string `type:"string"`
@@ -46844,11 +46878,11 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// Specifies the storage type to be associated with the each DB instance in
 	// the Multi-AZ DB cluster.
 	//
-	// Valid values: standard | gp2 | io1
+	// Valid values: io1
 	//
-	// If you specify io1, also include a value for the Iops parameter.
+	// When specified, a value for the Iops parameter is required.
 	//
-	// Default: io1 if the Iops parameter is specified, otherwise gp2
+	// Default: io1
 	//
 	// Valid for: Multi-AZ DB clusters only
 	StorageType *string `type:"string"`

@@ -13,6 +13,97 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opAssociateServiceRoleToAccount = "AssociateServiceRoleToAccount"
+
+// AssociateServiceRoleToAccountRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateServiceRoleToAccount operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateServiceRoleToAccount for more information on using the AssociateServiceRoleToAccount
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateServiceRoleToAccountRequest method.
+//    req, resp := client.AssociateServiceRoleToAccountRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/AssociateServiceRoleToAccount
+func (c *GreengrassV2) AssociateServiceRoleToAccountRequest(input *AssociateServiceRoleToAccountInput) (req *request.Request, output *AssociateServiceRoleToAccountOutput) {
+	op := &request.Operation{
+		Name:       opAssociateServiceRoleToAccount,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/greengrass/servicerole",
+	}
+
+	if input == nil {
+		input = &AssociateServiceRoleToAccountInput{}
+	}
+
+	output = &AssociateServiceRoleToAccountOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateServiceRoleToAccount API operation for AWS IoT Greengrass V2.
+//
+// Associates a Greengrass service role with IoT Greengrass for your Amazon
+// Web Services account in this Amazon Web Services Region. IoT Greengrass uses
+// this role to verify the identity of client devices and manage core device
+// connectivity information. The role must include the AWSGreengrassResourceAccessRolePolicy
+// (https://console.aws.amazon.com/iam/home#/policies/arn:awsiam::aws:policy/service-role/AWSGreengrassResourceAccessRolePolicy)
+// managed policy or a custom policy that defines equivalent permissions for
+// the IoT Greengrass features that you use. For more information, see Greengrass
+// service role (https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-service-role.html)
+// in the IoT Greengrass Version 2 Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Greengrass V2's
+// API operation AssociateServiceRoleToAccount for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters.
+//
+//   * InternalServerException
+//   IoT Greengrass can't process your request right now. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/AssociateServiceRoleToAccount
+func (c *GreengrassV2) AssociateServiceRoleToAccount(input *AssociateServiceRoleToAccountInput) (*AssociateServiceRoleToAccountOutput, error) {
+	req, out := c.AssociateServiceRoleToAccountRequest(input)
+	return out, req.Send()
+}
+
+// AssociateServiceRoleToAccountWithContext is the same as AssociateServiceRoleToAccount with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateServiceRoleToAccount for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GreengrassV2) AssociateServiceRoleToAccountWithContext(ctx aws.Context, input *AssociateServiceRoleToAccountInput, opts ...request.Option) (*AssociateServiceRoleToAccountOutput, error) {
+	req, out := c.AssociateServiceRoleToAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchAssociateClientDeviceWithCoreDevice = "BatchAssociateClientDeviceWithCoreDevice"
 
 // BatchAssociateClientDeviceWithCoreDeviceRequest generates a "aws/request.Request" representing the
@@ -57,7 +148,7 @@ func (c *GreengrassV2) BatchAssociateClientDeviceWithCoreDeviceRequest(input *Ba
 
 // BatchAssociateClientDeviceWithCoreDevice API operation for AWS IoT Greengrass V2.
 //
-// Associate a list of client devices with a core device. Use this API operation
+// Associates a list of client devices with a core device. Use this API operation
 // to specify which client devices can discover a core device through cloud
 // discovery. With cloud discovery, client devices connect to IoT Greengrass
 // to retrieve associated core devices' connectivity information and certificates.
@@ -163,7 +254,7 @@ func (c *GreengrassV2) BatchDisassociateClientDeviceFromCoreDeviceRequest(input 
 
 // BatchDisassociateClientDeviceFromCoreDevice API operation for AWS IoT Greengrass V2.
 //
-// Disassociate a list of client devices from a core device. After you disassociate
+// Disassociates a list of client devices from a core device. After you disassociate
 // a client device from a core device, the client device won't be able to use
 // cloud discovery to retrieve the core device's connectivity information and
 // certificates.
@@ -858,6 +949,90 @@ func (c *GreengrassV2) DescribeComponentWithContext(ctx aws.Context, input *Desc
 	return out, req.Send()
 }
 
+const opDisassociateServiceRoleFromAccount = "DisassociateServiceRoleFromAccount"
+
+// DisassociateServiceRoleFromAccountRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateServiceRoleFromAccount operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateServiceRoleFromAccount for more information on using the DisassociateServiceRoleFromAccount
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateServiceRoleFromAccountRequest method.
+//    req, resp := client.DisassociateServiceRoleFromAccountRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/DisassociateServiceRoleFromAccount
+func (c *GreengrassV2) DisassociateServiceRoleFromAccountRequest(input *DisassociateServiceRoleFromAccountInput) (req *request.Request, output *DisassociateServiceRoleFromAccountOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateServiceRoleFromAccount,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/greengrass/servicerole",
+	}
+
+	if input == nil {
+		input = &DisassociateServiceRoleFromAccountInput{}
+	}
+
+	output = &DisassociateServiceRoleFromAccountOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DisassociateServiceRoleFromAccount API operation for AWS IoT Greengrass V2.
+//
+// Disassociates the Greengrass service role from IoT Greengrass for your Amazon
+// Web Services account in this Amazon Web Services Region. Without a service
+// role, IoT Greengrass can't verify the identity of client devices or manage
+// core device connectivity information. For more information, see Greengrass
+// service role (https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-service-role.html)
+// in the IoT Greengrass Version 2 Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Greengrass V2's
+// API operation DisassociateServiceRoleFromAccount for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   IoT Greengrass can't process your request right now. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/DisassociateServiceRoleFromAccount
+func (c *GreengrassV2) DisassociateServiceRoleFromAccount(input *DisassociateServiceRoleFromAccountInput) (*DisassociateServiceRoleFromAccountOutput, error) {
+	req, out := c.DisassociateServiceRoleFromAccountRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateServiceRoleFromAccountWithContext is the same as DisassociateServiceRoleFromAccount with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateServiceRoleFromAccount for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GreengrassV2) DisassociateServiceRoleFromAccountWithContext(ctx aws.Context, input *DisassociateServiceRoleFromAccountInput, opts ...request.Option) (*DisassociateServiceRoleFromAccountOutput, error) {
+	req, out := c.DisassociateServiceRoleFromAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetComponent = "GetComponent"
 
 // GetComponentRequest generates a "aws/request.Request" representing the
@@ -1049,6 +1224,97 @@ func (c *GreengrassV2) GetComponentVersionArtifactWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
+const opGetConnectivityInfo = "GetConnectivityInfo"
+
+// GetConnectivityInfoRequest generates a "aws/request.Request" representing the
+// client's request for the GetConnectivityInfo operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetConnectivityInfo for more information on using the GetConnectivityInfo
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetConnectivityInfoRequest method.
+//    req, resp := client.GetConnectivityInfoRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/GetConnectivityInfo
+func (c *GreengrassV2) GetConnectivityInfoRequest(input *GetConnectivityInfoInput) (req *request.Request, output *GetConnectivityInfoOutput) {
+	op := &request.Operation{
+		Name:       opGetConnectivityInfo,
+		HTTPMethod: "GET",
+		HTTPPath:   "/greengrass/things/{thingName}/connectivityInfo",
+	}
+
+	if input == nil {
+		input = &GetConnectivityInfoInput{}
+	}
+
+	output = &GetConnectivityInfoOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetConnectivityInfo API operation for AWS IoT Greengrass V2.
+//
+// Retrieves connectivity information for a Greengrass core device.
+//
+// Connectivity information includes endpoints and ports where client devices
+// can connect to an MQTT broker on the core device. When a client device calls
+// the Greengrass discovery API (https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-discover-api.html),
+// IoT Greengrass returns connectivity information for all of the core devices
+// where the client device can connect. For more information, see Connect client
+// devices to core devices (https://docs.aws.amazon.com/greengrass/v2/developerguide/connect-client-devices.html)
+// in the IoT Greengrass Version 2 Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Greengrass V2's
+// API operation GetConnectivityInfo for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters.
+//
+//   * InternalServerException
+//   IoT Greengrass can't process your request right now. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/GetConnectivityInfo
+func (c *GreengrassV2) GetConnectivityInfo(input *GetConnectivityInfoInput) (*GetConnectivityInfoOutput, error) {
+	req, out := c.GetConnectivityInfoRequest(input)
+	return out, req.Send()
+}
+
+// GetConnectivityInfoWithContext is the same as GetConnectivityInfo with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetConnectivityInfo for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GreengrassV2) GetConnectivityInfoWithContext(ctx aws.Context, input *GetConnectivityInfoInput, opts ...request.Option) (*GetConnectivityInfoOutput, error) {
+	req, out := c.GetConnectivityInfoRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetCoreDevice = "GetCoreDevice"
 
 // GetCoreDeviceRequest generates a "aws/request.Request" representing the
@@ -1233,6 +1499,90 @@ func (c *GreengrassV2) GetDeployment(input *GetDeploymentInput) (*GetDeploymentO
 // for more information on using Contexts.
 func (c *GreengrassV2) GetDeploymentWithContext(ctx aws.Context, input *GetDeploymentInput, opts ...request.Option) (*GetDeploymentOutput, error) {
 	req, out := c.GetDeploymentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetServiceRoleForAccount = "GetServiceRoleForAccount"
+
+// GetServiceRoleForAccountRequest generates a "aws/request.Request" representing the
+// client's request for the GetServiceRoleForAccount operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetServiceRoleForAccount for more information on using the GetServiceRoleForAccount
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetServiceRoleForAccountRequest method.
+//    req, resp := client.GetServiceRoleForAccountRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/GetServiceRoleForAccount
+func (c *GreengrassV2) GetServiceRoleForAccountRequest(input *GetServiceRoleForAccountInput) (req *request.Request, output *GetServiceRoleForAccountOutput) {
+	op := &request.Operation{
+		Name:       opGetServiceRoleForAccount,
+		HTTPMethod: "GET",
+		HTTPPath:   "/greengrass/servicerole",
+	}
+
+	if input == nil {
+		input = &GetServiceRoleForAccountInput{}
+	}
+
+	output = &GetServiceRoleForAccountOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetServiceRoleForAccount API operation for AWS IoT Greengrass V2.
+//
+// Gets the service role associated with IoT Greengrass for your Amazon Web
+// Services account in this Amazon Web Services Region. IoT Greengrass uses
+// this role to verify the identity of client devices and manage core device
+// connectivity information. For more information, see Greengrass service role
+// (https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-service-role.html)
+// in the IoT Greengrass Version 2 Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Greengrass V2's
+// API operation GetServiceRoleForAccount for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   IoT Greengrass can't process your request right now. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/GetServiceRoleForAccount
+func (c *GreengrassV2) GetServiceRoleForAccount(input *GetServiceRoleForAccountInput) (*GetServiceRoleForAccountOutput, error) {
+	req, out := c.GetServiceRoleForAccountRequest(input)
+	return out, req.Send()
+}
+
+// GetServiceRoleForAccountWithContext is the same as GetServiceRoleForAccount with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetServiceRoleForAccount for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GreengrassV2) GetServiceRoleForAccountWithContext(ctx aws.Context, input *GetServiceRoleForAccountInput, opts ...request.Option) (*GetServiceRoleForAccountOutput, error) {
+	req, out := c.GetServiceRoleForAccountRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2674,6 +3024,97 @@ func (c *GreengrassV2) UntagResourceWithContext(ctx aws.Context, input *UntagRes
 	return out, req.Send()
 }
 
+const opUpdateConnectivityInfo = "UpdateConnectivityInfo"
+
+// UpdateConnectivityInfoRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateConnectivityInfo operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateConnectivityInfo for more information on using the UpdateConnectivityInfo
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateConnectivityInfoRequest method.
+//    req, resp := client.UpdateConnectivityInfoRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/UpdateConnectivityInfo
+func (c *GreengrassV2) UpdateConnectivityInfoRequest(input *UpdateConnectivityInfoInput) (req *request.Request, output *UpdateConnectivityInfoOutput) {
+	op := &request.Operation{
+		Name:       opUpdateConnectivityInfo,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/greengrass/things/{thingName}/connectivityInfo",
+	}
+
+	if input == nil {
+		input = &UpdateConnectivityInfoInput{}
+	}
+
+	output = &UpdateConnectivityInfoOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateConnectivityInfo API operation for AWS IoT Greengrass V2.
+//
+// Updates connectivity information for a Greengrass core device.
+//
+// Connectivity information includes endpoints and ports where client devices
+// can connect to an MQTT broker on the core device. When a client device calls
+// the Greengrass discovery API (https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-discover-api.html),
+// IoT Greengrass returns connectivity information for all of the core devices
+// where the client device can connect. For more information, see Connect client
+// devices to core devices (https://docs.aws.amazon.com/greengrass/v2/developerguide/connect-client-devices.html)
+// in the IoT Greengrass Version 2 Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Greengrass V2's
+// API operation UpdateConnectivityInfo for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters.
+//
+//   * InternalServerException
+//   IoT Greengrass can't process your request right now. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/UpdateConnectivityInfo
+func (c *GreengrassV2) UpdateConnectivityInfo(input *UpdateConnectivityInfoInput) (*UpdateConnectivityInfoOutput, error) {
+	req, out := c.UpdateConnectivityInfoRequest(input)
+	return out, req.Send()
+}
+
+// UpdateConnectivityInfoWithContext is the same as UpdateConnectivityInfo with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateConnectivityInfo for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GreengrassV2) UpdateConnectivityInfoWithContext(ctx aws.Context, input *UpdateConnectivityInfoInput, opts ...request.Option) (*UpdateConnectivityInfoOutput, error) {
+	req, out := c.UpdateConnectivityInfoRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // You don't have permission to perform the action.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
@@ -2839,6 +3280,86 @@ func (s *AssociateClientDeviceWithCoreDeviceErrorEntry) SetMessage(v string) *As
 // SetThingName sets the ThingName field's value.
 func (s *AssociateClientDeviceWithCoreDeviceErrorEntry) SetThingName(v string) *AssociateClientDeviceWithCoreDeviceErrorEntry {
 	s.ThingName = &v
+	return s
+}
+
+type AssociateServiceRoleToAccountInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the service role to associate with IoT
+	// Greengrass for your Amazon Web Services account in this Amazon Web Services
+	// Region.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"RoleArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateServiceRoleToAccountInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateServiceRoleToAccountInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateServiceRoleToAccountInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateServiceRoleToAccountInput"}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *AssociateServiceRoleToAccountInput) SetRoleArn(v string) *AssociateServiceRoleToAccountInput {
+	s.RoleArn = &v
+	return s
+}
+
+type AssociateServiceRoleToAccountOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the service role was associated with IoT Greengrass for your
+	// Amazon Web Services account in this Amazon Web Services Region.
+	AssociatedAt *string `locationName:"AssociatedAt" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateServiceRoleToAccountOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateServiceRoleToAccountOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociatedAt sets the AssociatedAt field's value.
+func (s *AssociateServiceRoleToAccountOutput) SetAssociatedAt(v string) *AssociateServiceRoleToAccountOutput {
+	s.AssociatedAt = &v
 	return s
 }
 
@@ -3061,8 +3582,8 @@ func (s *BatchDisassociateClientDeviceFromCoreDeviceInput) SetEntries(v []*Disas
 type BatchDisassociateClientDeviceFromCoreDeviceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of errors (if any) for the entries in the request. Each error entry
-	// contains the name of the IoT thing that failed to disassociate.
+	// The list of any errors for the entries in the request. Each error entry contains
+	// the name of the IoT thing that failed to disassociate.
 	ErrorEntries []*DisassociateClientDeviceFromCoreDeviceErrorEntry `locationName:"errorEntries" min:"1" type:"list"`
 }
 
@@ -3916,6 +4437,70 @@ func (s *ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Contains information about an endpoint and port where client devices can
+// connect to an MQTT broker on a Greengrass core device.
+type ConnectivityInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The IP address or DNS address where client devices can connect to an MQTT
+	// broker on the Greengrass core device.
+	HostAddress *string `locationName:"HostAddress" type:"string"`
+
+	// An ID for the connectivity information.
+	Id *string `locationName:"Id" type:"string"`
+
+	// Additional metadata to provide to client devices that connect to this core
+	// device.
+	Metadata *string `locationName:"Metadata" type:"string"`
+
+	// The port where the MQTT broker operates on the core device. This port is
+	// typically 8883, which is the default port for the MQTT broker component that
+	// runs on core devices.
+	PortNumber *int64 `locationName:"PortNumber" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectivityInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectivityInfo) GoString() string {
+	return s.String()
+}
+
+// SetHostAddress sets the HostAddress field's value.
+func (s *ConnectivityInfo) SetHostAddress(v string) *ConnectivityInfo {
+	s.HostAddress = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ConnectivityInfo) SetId(v string) *ConnectivityInfo {
+	s.Id = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *ConnectivityInfo) SetMetadata(v string) *ConnectivityInfo {
+	s.Metadata = &v
+	return s
+}
+
+// SetPortNumber sets the PortNumber field's value.
+func (s *ConnectivityInfo) SetPortNumber(v int64) *ConnectivityInfo {
+	s.PortNumber = &v
+	return s
 }
 
 // Contains information about a Greengrass core device, which is an IoT thing
@@ -5063,6 +5648,60 @@ func (s *DisassociateClientDeviceFromCoreDeviceErrorEntry) SetThingName(v string
 	return s
 }
 
+type DisassociateServiceRoleFromAccountInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateServiceRoleFromAccountInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateServiceRoleFromAccountInput) GoString() string {
+	return s.String()
+}
+
+type DisassociateServiceRoleFromAccountOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the service role was disassociated from IoT Greengrass for
+	// your Amazon Web Services account in this Amazon Web Services Region.
+	DisassociatedAt *string `locationName:"DisassociatedAt" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateServiceRoleFromAccountOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateServiceRoleFromAccountOutput) GoString() string {
+	return s.String()
+}
+
+// SetDisassociatedAt sets the DisassociatedAt field's value.
+func (s *DisassociateServiceRoleFromAccountOutput) SetDisassociatedAt(v string) *DisassociateServiceRoleFromAccountOutput {
+	s.DisassociatedAt = &v
+	return s
+}
+
 // Contains information about a deployment job that IoT Greengrass sends to
 // a Greengrass core device.
 type EffectiveDeployment struct {
@@ -5413,6 +6052,95 @@ func (s *GetComponentVersionArtifactOutput) SetPreSignedUrl(v string) *GetCompon
 	return s
 }
 
+type GetConnectivityInfoInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the core device. This is also the name of the IoT thing.
+	//
+	// ThingName is a required field
+	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConnectivityInfoInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConnectivityInfoInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetConnectivityInfoInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetConnectivityInfoInput"}
+	if s.ThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingName"))
+	}
+	if s.ThingName != nil && len(*s.ThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetThingName sets the ThingName field's value.
+func (s *GetConnectivityInfoInput) SetThingName(v string) *GetConnectivityInfoInput {
+	s.ThingName = &v
+	return s
+}
+
+type GetConnectivityInfoOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The connectivity information for the core device.
+	ConnectivityInfo []*ConnectivityInfo `locationName:"ConnectivityInfo" type:"list"`
+
+	// A message about the connectivity information request.
+	Message *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConnectivityInfoOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConnectivityInfoOutput) GoString() string {
+	return s.String()
+}
+
+// SetConnectivityInfo sets the ConnectivityInfo field's value.
+func (s *GetConnectivityInfoOutput) SetConnectivityInfo(v []*ConnectivityInfo) *GetConnectivityInfoOutput {
+	s.ConnectivityInfo = v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *GetConnectivityInfoOutput) SetMessage(v string) *GetConnectivityInfoOutput {
+	s.Message = &v
+	return s
+}
+
 type GetCoreDeviceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -5754,6 +6482,70 @@ func (s *GetDeploymentOutput) SetTags(v map[string]*string) *GetDeploymentOutput
 // SetTargetArn sets the TargetArn field's value.
 func (s *GetDeploymentOutput) SetTargetArn(v string) *GetDeploymentOutput {
 	s.TargetArn = &v
+	return s
+}
+
+type GetServiceRoleForAccountInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetServiceRoleForAccountInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetServiceRoleForAccountInput) GoString() string {
+	return s.String()
+}
+
+type GetServiceRoleForAccountOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the service role was associated with IoT Greengrass for your
+	// Amazon Web Services account in this Amazon Web Services Region.
+	AssociatedAt *string `locationName:"AssociatedAt" type:"string"`
+
+	// The ARN of the service role that is associated with IoT Greengrass for your
+	// Amazon Web Services account in this Amazon Web Services Region.
+	RoleArn *string `locationName:"RoleArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetServiceRoleForAccountOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetServiceRoleForAccountOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociatedAt sets the AssociatedAt field's value.
+func (s *GetServiceRoleForAccountOutput) SetAssociatedAt(v string) *GetServiceRoleForAccountOutput {
+	s.AssociatedAt = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *GetServiceRoleForAccountOutput) SetRoleArn(v string) *GetServiceRoleForAccountOutput {
+	s.RoleArn = &v
 	return s
 }
 
@@ -8559,6 +9351,109 @@ func (s UntagResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
+}
+
+type UpdateConnectivityInfoInput struct {
+	_ struct{} `type:"structure"`
+
+	// The connectivity information for the core device.
+	//
+	// ConnectivityInfo is a required field
+	ConnectivityInfo []*ConnectivityInfo `locationName:"ConnectivityInfo" type:"list" required:"true"`
+
+	// The name of the core device. This is also the name of the IoT thing.
+	//
+	// ThingName is a required field
+	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectivityInfoInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectivityInfoInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateConnectivityInfoInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateConnectivityInfoInput"}
+	if s.ConnectivityInfo == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectivityInfo"))
+	}
+	if s.ThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingName"))
+	}
+	if s.ThingName != nil && len(*s.ThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectivityInfo sets the ConnectivityInfo field's value.
+func (s *UpdateConnectivityInfoInput) SetConnectivityInfo(v []*ConnectivityInfo) *UpdateConnectivityInfoInput {
+	s.ConnectivityInfo = v
+	return s
+}
+
+// SetThingName sets the ThingName field's value.
+func (s *UpdateConnectivityInfoInput) SetThingName(v string) *UpdateConnectivityInfoInput {
+	s.ThingName = &v
+	return s
+}
+
+type UpdateConnectivityInfoOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A message about the connectivity information update request.
+	Message *string `locationName:"Message" type:"string"`
+
+	// The new version of the connectivity information for the core device.
+	Version *string `locationName:"Version" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectivityInfoOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectivityInfoOutput) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *UpdateConnectivityInfoOutput) SetMessage(v string) *UpdateConnectivityInfoOutput {
+	s.Message = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *UpdateConnectivityInfoOutput) SetVersion(v string) *UpdateConnectivityInfoOutput {
+	s.Version = &v
+	return s
 }
 
 // The request isn't valid. This can occur if your request contains malformed

@@ -1,3 +1,16 @@
+Release v1.42.26 (2022-01-03)
+===
+
+### Service Client Updates
+* `service/detective`: Updates service API, documentation, and paginators
+* `service/greengrassv2`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added strength levels to the Sharpness Filter and now permits OGG files to be specified as sidecar audio inputs.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Multiple doc-only updates for Relational Database Service (RDS)
+* `service/sagemaker`: Updates service API and documentation
+  * The release allows users to pass pipeline definitions as Amazon S3 locations and control the pipeline execution concurrency using ParallelismConfiguration. It also adds support of EMR jobs as pipeline steps.
+
 Release v1.42.25 (2021-12-21)
 ===
 
