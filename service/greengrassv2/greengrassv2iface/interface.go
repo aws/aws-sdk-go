@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS IoT Greengrass V2.
 //    func myFunc(svc greengrassv2iface.GreengrassV2API) bool {
-//        // Make svc.BatchAssociateClientDeviceWithCoreDevice request
+//        // Make svc.AssociateServiceRoleToAccount request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockGreengrassV2Client struct {
 //        greengrassv2iface.GreengrassV2API
 //    }
-//    func (m *mockGreengrassV2Client) BatchAssociateClientDeviceWithCoreDevice(input *greengrassv2.BatchAssociateClientDeviceWithCoreDeviceInput) (*greengrassv2.BatchAssociateClientDeviceWithCoreDeviceOutput, error) {
+//    func (m *mockGreengrassV2Client) AssociateServiceRoleToAccount(input *greengrassv2.AssociateServiceRoleToAccountInput) (*greengrassv2.AssociateServiceRoleToAccountOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type GreengrassV2API interface {
+	AssociateServiceRoleToAccount(*greengrassv2.AssociateServiceRoleToAccountInput) (*greengrassv2.AssociateServiceRoleToAccountOutput, error)
+	AssociateServiceRoleToAccountWithContext(aws.Context, *greengrassv2.AssociateServiceRoleToAccountInput, ...request.Option) (*greengrassv2.AssociateServiceRoleToAccountOutput, error)
+	AssociateServiceRoleToAccountRequest(*greengrassv2.AssociateServiceRoleToAccountInput) (*request.Request, *greengrassv2.AssociateServiceRoleToAccountOutput)
+
 	BatchAssociateClientDeviceWithCoreDevice(*greengrassv2.BatchAssociateClientDeviceWithCoreDeviceInput) (*greengrassv2.BatchAssociateClientDeviceWithCoreDeviceOutput, error)
 	BatchAssociateClientDeviceWithCoreDeviceWithContext(aws.Context, *greengrassv2.BatchAssociateClientDeviceWithCoreDeviceInput, ...request.Option) (*greengrassv2.BatchAssociateClientDeviceWithCoreDeviceOutput, error)
 	BatchAssociateClientDeviceWithCoreDeviceRequest(*greengrassv2.BatchAssociateClientDeviceWithCoreDeviceInput) (*request.Request, *greengrassv2.BatchAssociateClientDeviceWithCoreDeviceOutput)
@@ -92,6 +96,10 @@ type GreengrassV2API interface {
 	DescribeComponentWithContext(aws.Context, *greengrassv2.DescribeComponentInput, ...request.Option) (*greengrassv2.DescribeComponentOutput, error)
 	DescribeComponentRequest(*greengrassv2.DescribeComponentInput) (*request.Request, *greengrassv2.DescribeComponentOutput)
 
+	DisassociateServiceRoleFromAccount(*greengrassv2.DisassociateServiceRoleFromAccountInput) (*greengrassv2.DisassociateServiceRoleFromAccountOutput, error)
+	DisassociateServiceRoleFromAccountWithContext(aws.Context, *greengrassv2.DisassociateServiceRoleFromAccountInput, ...request.Option) (*greengrassv2.DisassociateServiceRoleFromAccountOutput, error)
+	DisassociateServiceRoleFromAccountRequest(*greengrassv2.DisassociateServiceRoleFromAccountInput) (*request.Request, *greengrassv2.DisassociateServiceRoleFromAccountOutput)
+
 	GetComponent(*greengrassv2.GetComponentInput) (*greengrassv2.GetComponentOutput, error)
 	GetComponentWithContext(aws.Context, *greengrassv2.GetComponentInput, ...request.Option) (*greengrassv2.GetComponentOutput, error)
 	GetComponentRequest(*greengrassv2.GetComponentInput) (*request.Request, *greengrassv2.GetComponentOutput)
@@ -100,6 +108,10 @@ type GreengrassV2API interface {
 	GetComponentVersionArtifactWithContext(aws.Context, *greengrassv2.GetComponentVersionArtifactInput, ...request.Option) (*greengrassv2.GetComponentVersionArtifactOutput, error)
 	GetComponentVersionArtifactRequest(*greengrassv2.GetComponentVersionArtifactInput) (*request.Request, *greengrassv2.GetComponentVersionArtifactOutput)
 
+	GetConnectivityInfo(*greengrassv2.GetConnectivityInfoInput) (*greengrassv2.GetConnectivityInfoOutput, error)
+	GetConnectivityInfoWithContext(aws.Context, *greengrassv2.GetConnectivityInfoInput, ...request.Option) (*greengrassv2.GetConnectivityInfoOutput, error)
+	GetConnectivityInfoRequest(*greengrassv2.GetConnectivityInfoInput) (*request.Request, *greengrassv2.GetConnectivityInfoOutput)
+
 	GetCoreDevice(*greengrassv2.GetCoreDeviceInput) (*greengrassv2.GetCoreDeviceOutput, error)
 	GetCoreDeviceWithContext(aws.Context, *greengrassv2.GetCoreDeviceInput, ...request.Option) (*greengrassv2.GetCoreDeviceOutput, error)
 	GetCoreDeviceRequest(*greengrassv2.GetCoreDeviceInput) (*request.Request, *greengrassv2.GetCoreDeviceOutput)
@@ -107,6 +119,10 @@ type GreengrassV2API interface {
 	GetDeployment(*greengrassv2.GetDeploymentInput) (*greengrassv2.GetDeploymentOutput, error)
 	GetDeploymentWithContext(aws.Context, *greengrassv2.GetDeploymentInput, ...request.Option) (*greengrassv2.GetDeploymentOutput, error)
 	GetDeploymentRequest(*greengrassv2.GetDeploymentInput) (*request.Request, *greengrassv2.GetDeploymentOutput)
+
+	GetServiceRoleForAccount(*greengrassv2.GetServiceRoleForAccountInput) (*greengrassv2.GetServiceRoleForAccountOutput, error)
+	GetServiceRoleForAccountWithContext(aws.Context, *greengrassv2.GetServiceRoleForAccountInput, ...request.Option) (*greengrassv2.GetServiceRoleForAccountOutput, error)
+	GetServiceRoleForAccountRequest(*greengrassv2.GetServiceRoleForAccountInput) (*request.Request, *greengrassv2.GetServiceRoleForAccountOutput)
 
 	ListClientDevicesAssociatedWithCoreDevice(*greengrassv2.ListClientDevicesAssociatedWithCoreDeviceInput) (*greengrassv2.ListClientDevicesAssociatedWithCoreDeviceOutput, error)
 	ListClientDevicesAssociatedWithCoreDeviceWithContext(aws.Context, *greengrassv2.ListClientDevicesAssociatedWithCoreDeviceInput, ...request.Option) (*greengrassv2.ListClientDevicesAssociatedWithCoreDeviceOutput, error)
@@ -172,6 +188,10 @@ type GreengrassV2API interface {
 	UntagResource(*greengrassv2.UntagResourceInput) (*greengrassv2.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *greengrassv2.UntagResourceInput, ...request.Option) (*greengrassv2.UntagResourceOutput, error)
 	UntagResourceRequest(*greengrassv2.UntagResourceInput) (*request.Request, *greengrassv2.UntagResourceOutput)
+
+	UpdateConnectivityInfo(*greengrassv2.UpdateConnectivityInfoInput) (*greengrassv2.UpdateConnectivityInfoOutput, error)
+	UpdateConnectivityInfoWithContext(aws.Context, *greengrassv2.UpdateConnectivityInfoInput, ...request.Option) (*greengrassv2.UpdateConnectivityInfoOutput, error)
+	UpdateConnectivityInfoRequest(*greengrassv2.UpdateConnectivityInfoInput) (*request.Request, *greengrassv2.UpdateConnectivityInfoOutput)
 }
 
 var _ GreengrassV2API = (*greengrassv2.GreengrassV2)(nil)

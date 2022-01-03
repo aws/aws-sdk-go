@@ -3818,6 +3818,12 @@
       "min":1,
       "pattern":"[^ ~^:?*\\[]+"
     },
+    "BucketName":{
+      "type":"string",
+      "max":63,
+      "min":3,
+      "pattern":"[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]"
+    },
     "CacheHitResult":{
       "type":"structure",
       "members":{
@@ -5245,7 +5251,6 @@
       "type":"structure",
       "required":[
         "PipelineName",
-        "PipelineDefinition",
         "ClientRequestToken",
         "RoleArn"
       ],
@@ -5253,13 +5258,15 @@
         "PipelineName":{"shape":"PipelineName"},
         "PipelineDisplayName":{"shape":"PipelineName"},
         "PipelineDefinition":{"shape":"PipelineDefinition"},
+        "PipelineDefinitionS3Location":{"shape":"PipelineDefinitionS3Location"},
         "PipelineDescription":{"shape":"PipelineDescription"},
         "ClientRequestToken":{
           "shape":"IdempotencyToken",
           "idempotencyToken":true
         },
         "RoleArn":{"shape":"RoleArn"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "ParallelismConfiguration":{"shape":"ParallelismConfiguration"}
       }
     },
     "CreatePipelineResponse":{
@@ -7276,7 +7283,8 @@
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
         "CreatedBy":{"shape":"UserContext"},
-        "LastModifiedBy":{"shape":"UserContext"}
+        "LastModifiedBy":{"shape":"UserContext"},
+        "ParallelismConfiguration":{"shape":"ParallelismConfiguration"}
       }
     },
     "DescribePipelineRequest":{
@@ -7300,7 +7308,8 @@
         "LastModifiedTime":{"shape":"Timestamp"},
         "LastRunTime":{"shape":"Timestamp"},
         "CreatedBy":{"shape":"UserContext"},
-        "LastModifiedBy":{"shape":"UserContext"}
+        "LastModifiedBy":{"shape":"UserContext"},
+        "ParallelismConfiguration":{"shape":"ParallelismConfiguration"}
       }
     },
     "DescribeProcessingJobRequest":{
@@ -7908,6 +7917,15 @@
       "members":{
         "Statistics":{"shape":"MetricsSource"},
         "Constraints":{"shape":"MetricsSource"}
+      }
+    },
+    "EMRStepMetadata":{
+      "type":"structure",
+      "members":{
+        "ClusterId":{"shape":"String256"},
+        "StepId":{"shape":"String256"},
+        "StepName":{"shape":"String256"},
+        "LogFilePath":{"shape":"String1024"}
       }
     },
     "Edge":{
@@ -9713,6 +9731,12 @@
       "max":1,
       "min":1
     },
+    "Key":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":".+"
+    },
     "KmsKeyId":{
       "type":"string",
       "max":2048,
@@ -11277,6 +11301,10 @@
       "type":"integer",
       "min":1
     },
+    "MaxParallelExecutionSteps":{
+      "type":"integer",
+      "min":1
+    },
     "MaxParallelOfTests":{
       "type":"integer",
       "min":1
@@ -12691,6 +12719,13 @@
       "max":8192,
       "pattern":".*"
     },
+    "ParallelismConfiguration":{
+      "type":"structure",
+      "required":["MaxParallelExecutionSteps"],
+      "members":{
+        "MaxParallelExecutionSteps":{"shape":"MaxParallelExecutionSteps"}
+      }
+    },
     "Parameter":{
       "type":"structure",
       "required":[
@@ -12835,6 +12870,7 @@
         "LastRunTime":{"shape":"Timestamp"},
         "CreatedBy":{"shape":"UserContext"},
         "LastModifiedBy":{"shape":"UserContext"},
+        "ParallelismConfiguration":{"shape":"ParallelismConfiguration"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -12848,6 +12884,18 @@
       "max":1048576,
       "min":1,
       "pattern":".*(?:[ \\r\\n\\t].*)*"
+    },
+    "PipelineDefinitionS3Location":{
+      "type":"structure",
+      "required":[
+        "Bucket",
+        "ObjectKey"
+      ],
+      "members":{
+        "Bucket":{"shape":"BucketName"},
+        "ObjectKey":{"shape":"Key"},
+        "VersionId":{"shape":"VersionId"}
+      }
     },
     "PipelineDescription":{
       "type":"string",
@@ -12869,6 +12917,7 @@
         "LastModifiedTime":{"shape":"Timestamp"},
         "CreatedBy":{"shape":"UserContext"},
         "LastModifiedBy":{"shape":"UserContext"},
+        "ParallelismConfiguration":{"shape":"ParallelismConfiguration"},
         "PipelineParameters":{"shape":"ParameterList"}
       }
     },
@@ -12908,6 +12957,8 @@
       "type":"structure",
       "members":{
         "StepName":{"shape":"StepName"},
+        "StepDisplayName":{"shape":"StepDisplayName"},
+        "StepDescription":{"shape":"StepDescription"},
         "StartTime":{"shape":"Timestamp"},
         "EndTime":{"shape":"Timestamp"},
         "StepStatus":{"shape":"StepStatus"},
@@ -12936,7 +12987,8 @@
         "Callback":{"shape":"CallbackStepMetadata"},
         "Lambda":{"shape":"LambdaStepMetadata"},
         "QualityCheck":{"shape":"QualityCheckStepMetadata"},
-        "ClarifyCheck":{"shape":"ClarifyCheckStepMetadata"}
+        "ClarifyCheck":{"shape":"ClarifyCheckStepMetadata"},
+        "EMR":{"shape":"EMRStepMetadata"}
       }
     },
     "PipelineExecutionSummary":{
@@ -14202,7 +14254,8 @@
         "ClientRequestToken":{
           "shape":"IdempotencyToken",
           "idempotencyToken":true
-        }
+        },
+        "ParallelismConfiguration":{"shape":"ParallelismConfiguration"}
       }
     },
     "RetryPipelineExecutionResponse":{
@@ -14717,7 +14770,8 @@
         "ClientRequestToken":{
           "shape":"IdempotencyToken",
           "idempotencyToken":true
-        }
+        },
+        "ParallelismConfiguration":{"shape":"ParallelismConfiguration"}
       }
     },
     "StartPipelineExecutionResponse":{
@@ -14732,10 +14786,22 @@
       "pattern":".*"
     },
     "StatusMessage":{"type":"string"},
-    "StepName":{
+    "StepDescription":{
+      "type":"string",
+      "max":3072,
+      "min":0,
+      "pattern":".*"
+    },
+    "StepDisplayName":{
       "type":"string",
       "max":256,
+      "min":0,
       "pattern":".*"
+    },
+    "StepName":{
+      "type":"string",
+      "max":64,
+      "pattern":"^[A-Za-z0-9\\-_]*$"
     },
     "StepStatus":{
       "type":"string",
@@ -16185,7 +16251,8 @@
       "members":{
         "PipelineExecutionArn":{"shape":"PipelineExecutionArn"},
         "PipelineExecutionDescription":{"shape":"PipelineExecutionDescription"},
-        "PipelineExecutionDisplayName":{"shape":"PipelineExecutionName"}
+        "PipelineExecutionDisplayName":{"shape":"PipelineExecutionName"},
+        "ParallelismConfiguration":{"shape":"ParallelismConfiguration"}
       }
     },
     "UpdatePipelineExecutionResponse":{
@@ -16201,8 +16268,10 @@
         "PipelineName":{"shape":"PipelineName"},
         "PipelineDisplayName":{"shape":"PipelineName"},
         "PipelineDefinition":{"shape":"PipelineDefinition"},
+        "PipelineDefinitionS3Location":{"shape":"PipelineDefinitionS3Location"},
         "PipelineDescription":{"shape":"PipelineDescription"},
-        "RoleArn":{"shape":"RoleArn"}
+        "RoleArn":{"shape":"RoleArn"},
+        "ParallelismConfiguration":{"shape":"ParallelismConfiguration"}
       }
     },
     "UpdatePipelineResponse":{
@@ -16444,6 +16513,12 @@
     "VariantWeight":{
       "type":"float",
       "min":0
+    },
+    "VersionId":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":".+"
     },
     "VersionedArnOrName":{
       "type":"string",

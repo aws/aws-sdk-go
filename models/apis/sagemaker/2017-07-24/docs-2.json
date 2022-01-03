@@ -224,10 +224,10 @@
     "StopLabelingJob": "<p>Stops a running labeling job. A job that is stopped cannot be restarted. Any results obtained before the job is stopped are placed in the Amazon S3 output bucket.</p>",
     "StopMonitoringSchedule": "<p>Stops a previously started monitoring schedule.</p>",
     "StopNotebookInstance": "<p>Terminates the ML compute instance. Before terminating the instance, Amazon SageMaker disconnects the ML storage volume from it. Amazon SageMaker preserves the ML storage volume. Amazon SageMaker stops charging you for the ML compute instance when you call <code>StopNotebookInstance</code>.</p> <p>To access data on the ML storage volume for a notebook instance that has been terminated, call the <code>StartNotebookInstance</code> API. <code>StartNotebookInstance</code> launches another ML compute instance, configures it, and attaches the preserved ML storage volume so you can continue your work. </p>",
-    "StopPipelineExecution": "<p>Stops a pipeline execution.</p> <p> <b>Callback Step</b> </p> <p>A pipeline execution won't stop while a callback step is running. When you call <code>StopPipelineExecution</code> on a pipeline execution with a running callback step, SageMaker Pipelines sends an additional Amazon SQS message to the specified SQS queue. The body of the SQS message contains a \"Status\" field which is set to \"Stopping\".</p> <p>You should add logic to your Amazon SQS message consumer to take any needed action (for example, resource cleanup) upon receipt of the message followed by a call to <code>SendPipelineExecutionStepSuccess</code> or <code>SendPipelineExecutionStepFailure</code>.</p> <p>Only when SageMaker Pipelines receives one of these calls will it stop the pipeline execution.</p> <p> <b>Lambda Step</b> </p> <p>A pipeline execution can't be stopped while a lambda step is running because the Lambda function invoked by the lambda step can't be stopped. If you attempt to stop the execution while the Lambda function is running, the pipeline waits for the Lambda function to finish or until the timeout is hit, whichever occurs first, and then stops. If the Lambda function finishes, the pipeline execution status is <code>Stopped</code>. If the timeout is hit the pipeline execution status is <code>Failed</code>.</p>",
+    "StopPipelineExecution": "<p>Stops a pipeline execution.</p> <p> <b>Callback Step</b> </p> <p>A pipeline execution won't stop while a callback step is running. When you call <code>StopPipelineExecution</code> on a pipeline execution with a running callback step, Amazon SageMaker Pipelines sends an additional Amazon SQS message to the specified SQS queue. The body of the SQS message contains a \"Status\" field which is set to \"Stopping\".</p> <p>You should add logic to your Amazon SQS message consumer to take any needed action (for example, resource cleanup) upon receipt of the message followed by a call to <code>SendPipelineExecutionStepSuccess</code> or <code>SendPipelineExecutionStepFailure</code>.</p> <p>Only when Amazon SageMaker Pipelines receives one of these calls will it stop the pipeline execution.</p> <p> <b>Lambda Step</b> </p> <p>A pipeline execution can't be stopped while a lambda step is running because the Lambda function invoked by the lambda step can't be stopped. If you attempt to stop the execution while the Lambda function is running, the pipeline waits for the Lambda function to finish or until the timeout is hit, whichever occurs first, and then stops. If the Lambda function finishes, the pipeline execution status is <code>Stopped</code>. If the timeout is hit the pipeline execution status is <code>Failed</code>.</p>",
     "StopProcessingJob": "<p>Stops a processing job.</p>",
     "StopTrainingJob": "<p>Stops a training job. To stop a job, Amazon SageMaker sends the algorithm the <code>SIGTERM</code> signal, which delays job termination for 120 seconds. Algorithms might use this 120-second window to save the model artifacts, so the results of the training is not lost. </p> <p>When it receives a <code>StopTrainingJob</code> request, Amazon SageMaker changes the status of the job to <code>Stopping</code>. After Amazon SageMaker stops the job, it sets the status to <code>Stopped</code>.</p>",
-    "StopTransformJob": "<p>Stops a transform job.</p> <p>When Amazon SageMaker receives a <code>StopTransformJob</code> request, the status of the job changes to <code>Stopping</code>. After Amazon SageMaker stops the job, the status is set to <code>Stopped</code>. When you stop a transform job before it is completed, Amazon SageMaker doesn't store the job's output in Amazon S3.</p>",
+    "StopTransformJob": "<p>Stops a batch transform job.</p> <p>When Amazon SageMaker receives a <code>StopTransformJob</code> request, the status of the job changes to <code>Stopping</code>. After Amazon SageMaker stops the job, the status is set to <code>Stopped</code>. When you stop a batch transform job before it is completed, Amazon SageMaker doesn't store the job's output in Amazon S3.</p>",
     "UpdateAction": "<p>Updates an action.</p>",
     "UpdateAppImageConfig": "<p>Updates the properties of an AppImageConfig.</p>",
     "UpdateArtifact": "<p>Updates an artifact.</p>",
@@ -1170,6 +1170,12 @@
       "base": null,
       "refs": {
         "GitConfig$Branch": "<p>The default branch for the Git repository.</p>"
+      }
+    },
+    "BucketName": {
+      "base": null,
+      "refs": {
+        "PipelineDefinitionS3Location$Bucket": "<p>Name of the S3 bucket.</p>"
       }
     },
     "CacheHitResult": {
@@ -3570,6 +3576,12 @@
         "DriftCheckBaselines$ModelQuality": "<p>Represents the drift check model quality baselines that can be used when the model monitor is set using the model package.</p>"
       }
     },
+    "EMRStepMetadata": {
+      "base": "<p>The configurations and outcomes of an Amazon EMR step execution.</p>",
+      "refs": {
+        "PipelineExecutionStepMetadata$EMR": "<p>The configurations and outcomes of an EMR step execution.</p>"
+      }
+    },
     "Edge": {
       "base": "<p>A directed edge connecting two lineage entities.</p>",
       "refs": {
@@ -4532,7 +4544,7 @@
     "FrameworkVersion": {
       "base": null,
       "refs": {
-        "InputConfig$FrameworkVersion": "<p>Specifies the framework version to use.</p> <p>This API field is only supported for PyTorch framework versions <code>1.4</code>, <code>1.5</code>, and <code>1.6</code> for cloud instance target devices: <code>ml_c4</code>, <code>ml_c5</code>, <code>ml_m4</code>, <code>ml_m5</code>, <code>ml_p2</code>, <code>ml_p3</code>, and <code>ml_g4dn</code>.</p>",
+        "InputConfig$FrameworkVersion": "<p>Specifies the framework version to use. This API field is only supported for the PyTorch and TensorFlow frameworks.</p> <p>For information about framework versions supported for cloud targets and edge devices, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/neo-supported-cloud.html\">Cloud Supported Instance Types and Frameworks</a> and <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/neo-supported-devices-edge-frameworks.html\">Edge Supported Frameworks</a>.</p>",
         "ModelPackageContainerDefinition$FrameworkVersion": "<p>The framework version of the Model Package Container Image.</p>"
       }
     },
@@ -5231,7 +5243,7 @@
     "IntegerValue": {
       "base": null,
       "refs": {
-        "PipelineExecutionStep$AttemptCount": null
+        "PipelineExecutionStep$AttemptCount": "<p>The current attempt of the execution step. For more information, see <a href=\"https://docs.aws.amazon.com/https:/docs.aws.amazon.com/sagemaker/latest/dg/pipelines-retry-policy.html\">Retry Policy for Amazon SageMaker Pipelines steps</a>.</p>"
       }
     },
     "InvocationsMaxRetries": {
@@ -5341,6 +5353,12 @@
         "KernelGatewayImageConfig$KernelSpecs": "<p>The specification of the Jupyter kernels in the image.</p>"
       }
     },
+    "Key": {
+      "base": null,
+      "refs": {
+        "PipelineDefinitionS3Location$ObjectKey": "<p>The object key (or key name) uniquely identifies the object in an S3 bucket. </p>"
+      }
+    },
     "KmsKeyId": {
       "base": null,
       "refs": {
@@ -5348,14 +5366,14 @@
         "AthenaDatasetDefinition$KmsKeyId": "<p>The Amazon Web Services Key Management Service (Amazon Web Services KMS) key that Amazon SageMaker uses to encrypt data generated from an Athena query execution.</p>",
         "AutoMLOutputDataConfig$KmsKeyId": "<p>The Amazon Web Services KMS encryption key ID.</p>",
         "AutoMLSecurityConfig$VolumeKmsKeyId": "<p>The key used to encrypt stored data.</p>",
-        "CreateDomainRequest$HomeEfsFileSystemKmsKeyId": "<p>This member is deprecated and replaced with <code>KmsKeyId</code>.</p>",
+        "CreateDomainRequest$HomeEfsFileSystemKmsKeyId": "<p>Use <code>KmsKeyId</code>.</p>",
         "CreateDomainRequest$KmsKeyId": "<p>SageMaker uses Amazon Web Services KMS to encrypt the EFS volume attached to the domain with an Amazon Web Services managed key by default. For more control, specify a customer managed key.</p>",
         "CreateEdgePackagingJobRequest$ResourceKey": "<p>The Amazon Web Services KMS key to use when encrypting the EBS volume the edge packaging job runs on.</p>",
         "CreateEndpointConfigInput$KmsKeyId": "<p>The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint.</p> <p>The KmsKeyId can be any of the following formats: </p> <ul> <li> <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Key ARN: <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Alias name: <code>alias/ExampleAlias</code> </p> </li> <li> <p>Alias name ARN: <code>arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias</code> </p> </li> </ul> <p>The KMS key policy must grant permission to the IAM role that you specify in your <code>CreateEndpoint</code>, <code>UpdateEndpoint</code> requests. For more information, refer to the Amazon Web Services Key Management Service section<a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html\"> Using Key Policies in Amazon Web Services KMS </a> </p> <note> <p>Certain Nitro-based instances include local storage, dependent on the instance type. Local storage volumes are encrypted using a hardware module on the instance. You can't request a <code>KmsKeyId</code> when using an instance type with local storage. If any of the models that you specify in the <code>ProductionVariants</code> parameter use nitro-based instances with local storage, do not specify a value for the <code>KmsKeyId</code> parameter. If you specify a value for <code>KmsKeyId</code> when using any nitro-based instances with local storage, the call to <code>CreateEndpointConfig</code> fails.</p> <p>For a list of instance types that support local instance storage, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes\">Instance Store Volumes</a>.</p> <p>For more information about local instance storage encryption, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html\">SSD Instance Store Volumes</a>.</p> </note>",
         "CreateNotebookInstanceInput$KmsKeyId": "<p>The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service key that Amazon SageMaker uses to encrypt data on the storage volume attached to your notebook instance. The KMS key you provide must be enabled. For information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html\">Enabling and Disabling Keys</a> in the <i>Amazon Web Services Key Management Service Developer Guide</i>.</p>",
         "DataCaptureConfig$KmsKeyId": "<p/>",
         "DataCaptureConfigSummary$KmsKeyId": "<p/>",
-        "DescribeDomainResponse$HomeEfsFileSystemKmsKeyId": "<p>This member is deprecated and replaced with <code>KmsKeyId</code>.</p>",
+        "DescribeDomainResponse$HomeEfsFileSystemKmsKeyId": "<p>Use <code>KmsKeyId</code>.</p>",
         "DescribeDomainResponse$KmsKeyId": "<p>The Amazon Web Services KMS customer managed key used to encrypt the EFS volume attached to the domain.</p>",
         "DescribeEdgePackagingJobResponse$ResourceKey": "<p>The Amazon Web Services KMS key to use when encrypting the EBS volume the job run on.</p>",
         "DescribeEndpointConfigOutput$KmsKeyId": "<p>Amazon Web Services KMS key ID Amazon SageMaker uses to encrypt data when storing it on the ML storage volume attached to the instance.</p>",
@@ -6344,6 +6362,12 @@
       "base": null,
       "refs": {
         "ResourceLimits$MaxNumberOfTrainingJobs": "<p>The maximum number of training jobs that a hyperparameter tuning job can launch.</p>"
+      }
+    },
+    "MaxParallelExecutionSteps": {
+      "base": null,
+      "refs": {
+        "ParallelismConfiguration$MaxParallelExecutionSteps": "<p>The max number of steps that can be executed in parallel. </p>"
       }
     },
     "MaxParallelOfTests": {
@@ -7930,6 +7954,20 @@
         "ListModelsOutput$NextToken": "<p> If the response is truncated, Amazon SageMaker returns this token. To retrieve the next set of models, use it in the subsequent request. </p>"
       }
     },
+    "ParallelismConfiguration": {
+      "base": "<p>Configuration that controls the parallelism of the pipeline. By default, the parallelism configuration specified applies to all executions of the pipeline unless overridden.</p>",
+      "refs": {
+        "CreatePipelineRequest$ParallelismConfiguration": "<p>This is the configuration that controls the parallelism of the pipeline. If specified, it applies to all runs of this pipeline by default.</p>",
+        "DescribePipelineExecutionResponse$ParallelismConfiguration": "<p>The parallelism configuration applied to the pipeline.</p>",
+        "DescribePipelineResponse$ParallelismConfiguration": "<p>Lists the parallelism configuration applied to the pipeline.</p>",
+        "Pipeline$ParallelismConfiguration": "<p>The parallelism configuration applied to the pipeline.</p>",
+        "PipelineExecution$ParallelismConfiguration": "<p>The parallelism configuration applied to the pipeline execution.</p>",
+        "RetryPipelineExecutionRequest$ParallelismConfiguration": "<p>This configuration, if specified, overrides the parallelism configuration of the parent pipeline.</p>",
+        "StartPipelineExecutionRequest$ParallelismConfiguration": "<p>This configuration, if specified, overrides the parallelism configuration of the parent pipeline for this specific run.</p>",
+        "UpdatePipelineExecutionRequest$ParallelismConfiguration": "<p>This configuration, if specified, overrides the parallelism configuration of the parent pipeline for this specific run.</p>",
+        "UpdatePipelineRequest$ParallelismConfiguration": "<p>If specified, it applies to all executions of this pipeline by default.</p>"
+      }
+    },
     "Parameter": {
       "base": "<p>Assigns a value to a named Pipeline parameter.</p>",
       "refs": {
@@ -8078,6 +8116,13 @@
         "DescribePipelineDefinitionForExecutionResponse$PipelineDefinition": "<p>The JSON pipeline definition.</p>",
         "DescribePipelineResponse$PipelineDefinition": "<p>The JSON pipeline definition.</p>",
         "UpdatePipelineRequest$PipelineDefinition": "<p>The JSON pipeline definition.</p>"
+      }
+    },
+    "PipelineDefinitionS3Location": {
+      "base": "<p>The location of the pipeline definition stored in Amazon S3.</p>",
+      "refs": {
+        "CreatePipelineRequest$PipelineDefinitionS3Location": "<p>The location of the pipeline definition stored in Amazon S3. If specified, SageMaker will retrieve the pipeline definition from this location.</p>",
+        "UpdatePipelineRequest$PipelineDefinitionS3Location": "<p>The location of the pipeline definition stored in Amazon S3. If specified, SageMaker will retrieve the pipeline definition from this location.</p>"
       }
     },
     "PipelineDescription": {
@@ -9781,6 +9826,18 @@
         "SecondaryStatusTransition$StatusMessage": "<p>A detailed description of the progress within a secondary status. </p> <p>Amazon SageMaker provides secondary statuses and status messages that apply to each of them:</p> <dl> <dt>Starting</dt> <dd> <ul> <li> <p>Starting the training job.</p> </li> <li> <p>Launching requested ML instances.</p> </li> <li> <p>Insufficient capacity error from EC2 while launching instances, retrying!</p> </li> <li> <p>Launched instance was unhealthy, replacing it!</p> </li> <li> <p>Preparing the instances for training.</p> </li> </ul> </dd> <dt>Training</dt> <dd> <ul> <li> <p>Downloading the training image.</p> </li> <li> <p>Training image download completed. Training in progress.</p> </li> </ul> </dd> </dl> <important> <p>Status messages are subject to change. Therefore, we recommend not including them in code that programmatically initiates actions. For examples, don't use status messages in if statements.</p> </important> <p>To have an overview of your training job's progress, view <code>TrainingJobStatus</code> and <code>SecondaryStatus</code> in <a>DescribeTrainingJob</a>, and <code>StatusMessage</code> together. For example, at the start of a training job, you might see the following:</p> <ul> <li> <p> <code>TrainingJobStatus</code> - InProgress</p> </li> <li> <p> <code>SecondaryStatus</code> - Training</p> </li> <li> <p> <code>StatusMessage</code> - Downloading the training image</p> </li> </ul>"
       }
     },
+    "StepDescription": {
+      "base": null,
+      "refs": {
+        "PipelineExecutionStep$StepDescription": "<p>The description of the step.</p>"
+      }
+    },
+    "StepDisplayName": {
+      "base": null,
+      "refs": {
+        "PipelineExecutionStep$StepDisplayName": "<p>The display name of the step.</p>"
+      }
+    },
     "StepName": {
       "base": null,
       "refs": {
@@ -9931,6 +9988,7 @@
         "CreateDomainResponse$Url": "<p>The URL to the created domain.</p>",
         "DescribeDomainResponse$Url": "<p>The domain's URL.</p>",
         "DomainDetails$Url": "<p>The domain's URL.</p>",
+        "EMRStepMetadata$LogFilePath": "<p>The path to the log file where the cluster step's failure root cause is recorded.</p>",
         "OutputParameter$Value": "<p>The value of the output parameter.</p>",
         "Parameter$Value": "<p>The literal value for the parameter.</p>",
         "QualityCheckStepMetadata$BaselineUsedForDriftCheckStatistics": "<p>The Amazon S3 URI of the baseline statistics file used for the drift check.</p>",
@@ -9989,6 +10047,9 @@
         "DescribeContextResponse$ContextType": "<p>The type of the context.</p>",
         "DescribeDomainResponse$SingleSignOnManagedApplicationInstanceId": "<p>The SSO managed application instance ID.</p>",
         "DescribeUserProfileResponse$SingleSignOnUserValue": "<p>The SSO user value.</p>",
+        "EMRStepMetadata$ClusterId": "<p>The identifier of the EMR cluster.</p>",
+        "EMRStepMetadata$StepId": "<p>The identifier of the EMR cluster step.</p>",
+        "EMRStepMetadata$StepName": "<p>The name of the EMR cluster step.</p>",
         "LambdaStepMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the Lambda function that was run by this step execution.</p>",
         "ListActionsRequest$ActionType": "<p>A filter that returns only actions of the specified type.</p>",
         "ListArtifactsRequest$ArtifactType": "<p>A filter that returns only artifacts of the specified type.</p>",
@@ -10977,7 +11038,7 @@
         "CreateTransformJobRequest$TransformJobName": "<p>The name of the transform job. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account. </p>",
         "DescribeTransformJobRequest$TransformJobName": "<p>The name of the transform job that you want to view details of.</p>",
         "DescribeTransformJobResponse$TransformJobName": "<p>The name of the transform job.</p>",
-        "StopTransformJobRequest$TransformJobName": "<p>The name of the transform job to stop.</p>",
+        "StopTransformJobRequest$TransformJobName": "<p>The name of the batch transform job to stop.</p>",
         "TransformJob$TransformJobName": "<p>The name of the transform job.</p>",
         "TransformJobSummary$TransformJobName": "<p>The name of the transform job.</p>"
       }
@@ -11677,6 +11738,12 @@
         "ProductionVariant$InitialVariantWeight": "<p>Determines initial traffic distribution among all of the models that you specify in the endpoint configuration. The traffic to a production variant is determined by the ratio of the <code>VariantWeight</code> to the sum of all <code>VariantWeight</code> values across all ProductionVariants. If unspecified, it defaults to 1.0. </p>",
         "ProductionVariantSummary$CurrentWeight": "<p>The weight associated with the variant.</p>",
         "ProductionVariantSummary$DesiredWeight": "<p>The requested weight, as specified in the <code>UpdateEndpointWeightsAndCapacities</code> request. </p>"
+      }
+    },
+    "VersionId": {
+      "base": null,
+      "refs": {
+        "PipelineDefinitionS3Location$VersionId": "<p>Version Id of the pipeline definition file. If not specified, Amazon SageMaker will retrieve the latest version.</p>"
       }
     },
     "VersionedArnOrName": {

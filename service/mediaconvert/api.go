@@ -19796,13 +19796,23 @@ type NoiseReducerTemporalFilterSettings struct {
 	// and creates better VQ for low bitrate outputs.
 	AggressiveMode *int64 `locationName:"aggressiveMode" type:"integer"`
 
-	// Optional. When you set Noise reducer (noiseReducer) to Temporal (TEMPORAL),
-	// you can use this setting to apply sharpening. The default behavior, Auto
-	// (AUTO), allows the transcoder to determine whether to apply filtering, depending
-	// on input type and quality. When you set Noise reducer to Temporal, your output
-	// bandwidth is reduced. When Post temporal sharpening is also enabled, that
-	// bandwidth reduction is smaller.
+	// When you set Noise reducer (noiseReducer) to Temporal (TEMPORAL), the sharpness
+	// of your output is reduced. You can optionally use Post temporal sharpening
+	// (PostTemporalSharpening) to apply sharpening to the edges of your output.
+	// The default behavior, Auto (AUTO), allows the transcoder to determine whether
+	// to apply sharpening, depending on your input type and quality. When you set
+	// Post temporal sharpening to Enabled (ENABLED), specify how much sharpening
+	// is applied using Post temporal sharpening strength (PostTemporalSharpeningStrength).
+	// Set Post temporal sharpening to Disabled (DISABLED) to not apply sharpening.
 	PostTemporalSharpening *string `locationName:"postTemporalSharpening" type:"string" enum:"NoiseFilterPostTemporalSharpening"`
+
+	// Use Post temporal sharpening strength (PostTemporalSharpeningStrength) to
+	// define the amount of sharpening the transcoder applies to your output. Set
+	// Post temporal sharpening strength to Low (LOW), or leave blank, to apply
+	// a low amount of sharpening. Set Post temporal sharpening strength to Medium
+	// (MEDIUM) to apply medium amount of sharpening. Set Post temporal sharpening
+	// strength to High (HIGH) to apply a high amount of sharpening.
+	PostTemporalSharpeningStrength *string `locationName:"postTemporalSharpeningStrength" type:"string" enum:"NoiseFilterPostTemporalSharpeningStrength"`
 
 	// The speed of the filter (higher number is faster). Low setting reduces bit
 	// rate at the cost of transcode time, high setting improves transcode time
@@ -19857,6 +19867,12 @@ func (s *NoiseReducerTemporalFilterSettings) SetAggressiveMode(v int64) *NoiseRe
 // SetPostTemporalSharpening sets the PostTemporalSharpening field's value.
 func (s *NoiseReducerTemporalFilterSettings) SetPostTemporalSharpening(v string) *NoiseReducerTemporalFilterSettings {
 	s.PostTemporalSharpening = &v
+	return s
+}
+
+// SetPostTemporalSharpeningStrength sets the PostTemporalSharpeningStrength field's value.
+func (s *NoiseReducerTemporalFilterSettings) SetPostTemporalSharpeningStrength(v string) *NoiseReducerTemporalFilterSettings {
+	s.PostTemporalSharpeningStrength = &v
 	return s
 }
 
@@ -33904,12 +33920,14 @@ func NielsenUniqueTicPerAudioTrackType_Values() []string {
 	}
 }
 
-// Optional. When you set Noise reducer (noiseReducer) to Temporal (TEMPORAL),
-// you can use this setting to apply sharpening. The default behavior, Auto
-// (AUTO), allows the transcoder to determine whether to apply filtering, depending
-// on input type and quality. When you set Noise reducer to Temporal, your output
-// bandwidth is reduced. When Post temporal sharpening is also enabled, that
-// bandwidth reduction is smaller.
+// When you set Noise reducer (noiseReducer) to Temporal (TEMPORAL), the sharpness
+// of your output is reduced. You can optionally use Post temporal sharpening
+// (PostTemporalSharpening) to apply sharpening to the edges of your output.
+// The default behavior, Auto (AUTO), allows the transcoder to determine whether
+// to apply sharpening, depending on your input type and quality. When you set
+// Post temporal sharpening to Enabled (ENABLED), specify how much sharpening
+// is applied using Post temporal sharpening strength (PostTemporalSharpeningStrength).
+// Set Post temporal sharpening to Disabled (DISABLED) to not apply sharpening.
 const (
 	// NoiseFilterPostTemporalSharpeningDisabled is a NoiseFilterPostTemporalSharpening enum value
 	NoiseFilterPostTemporalSharpeningDisabled = "DISABLED"
@@ -33927,6 +33945,32 @@ func NoiseFilterPostTemporalSharpening_Values() []string {
 		NoiseFilterPostTemporalSharpeningDisabled,
 		NoiseFilterPostTemporalSharpeningEnabled,
 		NoiseFilterPostTemporalSharpeningAuto,
+	}
+}
+
+// Use Post temporal sharpening strength (PostTemporalSharpeningStrength) to
+// define the amount of sharpening the transcoder applies to your output. Set
+// Post temporal sharpening strength to Low (LOW), or leave blank, to apply
+// a low amount of sharpening. Set Post temporal sharpening strength to Medium
+// (MEDIUM) to apply medium amount of sharpening. Set Post temporal sharpening
+// strength to High (HIGH) to apply a high amount of sharpening.
+const (
+	// NoiseFilterPostTemporalSharpeningStrengthLow is a NoiseFilterPostTemporalSharpeningStrength enum value
+	NoiseFilterPostTemporalSharpeningStrengthLow = "LOW"
+
+	// NoiseFilterPostTemporalSharpeningStrengthMedium is a NoiseFilterPostTemporalSharpeningStrength enum value
+	NoiseFilterPostTemporalSharpeningStrengthMedium = "MEDIUM"
+
+	// NoiseFilterPostTemporalSharpeningStrengthHigh is a NoiseFilterPostTemporalSharpeningStrength enum value
+	NoiseFilterPostTemporalSharpeningStrengthHigh = "HIGH"
+)
+
+// NoiseFilterPostTemporalSharpeningStrength_Values returns all elements of the NoiseFilterPostTemporalSharpeningStrength enum
+func NoiseFilterPostTemporalSharpeningStrength_Values() []string {
+	return []string{
+		NoiseFilterPostTemporalSharpeningStrengthLow,
+		NoiseFilterPostTemporalSharpeningStrengthMedium,
+		NoiseFilterPostTemporalSharpeningStrengthHigh,
 	}
 }
 

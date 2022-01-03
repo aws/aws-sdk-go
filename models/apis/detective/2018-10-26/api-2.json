@@ -83,6 +83,32 @@
         {"shape":"ValidationException"}
       ]
     },
+    "DescribeOrganizationConfiguration":{
+      "name":"DescribeOrganizationConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/orgs/describeOrganizationConfiguration"
+      },
+      "input":{"shape":"DescribeOrganizationConfigurationRequest"},
+      "output":{"shape":"DescribeOrganizationConfigurationResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "DisableOrganizationAdminAccount":{
+      "name":"DisableOrganizationAdminAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/orgs/disableAdminAccount"
+      },
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "DisassociateMembership":{
       "name":"DisassociateMembership",
       "http":{
@@ -95,6 +121,19 @@
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
+      ]
+    },
+    "EnableOrganizationAdminAccount":{
+      "name":"EnableOrganizationAdminAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/orgs/enableAdminAccount"
+      },
+      "input":{"shape":"EnableOrganizationAdminAccountRequest"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "GetMembers":{
@@ -149,6 +188,20 @@
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
+      ]
+    },
+    "ListOrganizationAdminAccounts":{
+      "name":"ListOrganizationAdminAccounts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/orgs/adminAccountslist"
+      },
+      "input":{"shape":"ListOrganizationAdminAccountsRequest"},
+      "output":{"shape":"ListOrganizationAdminAccountsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "ListTagsForResource":{
@@ -224,6 +277,19 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"}
       ]
+    },
+    "UpdateOrganizationConfiguration":{
+      "name":"UpdateOrganizationConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/orgs/updateOrganizationConfiguration"
+      },
+      "input":{"shape":"UpdateOrganizationConfigurationRequest"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"TooManyRequestsException"}
+      ]
     }
   },
   "shapes":{
@@ -262,6 +328,18 @@
       "member":{"shape":"Account"},
       "max":50,
       "min":1
+    },
+    "Administrator":{
+      "type":"structure",
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "GraphArn":{"shape":"GraphArn"},
+        "DelegationTime":{"shape":"Timestamp"}
+      }
+    },
+    "AdministratorList":{
+      "type":"list",
+      "member":{"shape":"Administrator"}
     },
     "Boolean":{"type":"boolean"},
     "ByteValue":{"type":"long"},
@@ -330,6 +408,19 @@
         "UnprocessedAccounts":{"shape":"UnprocessedAccountList"}
       }
     },
+    "DescribeOrganizationConfigurationRequest":{
+      "type":"structure",
+      "required":["GraphArn"],
+      "members":{
+        "GraphArn":{"shape":"GraphArn"}
+      }
+    },
+    "DescribeOrganizationConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "AutoEnable":{"shape":"Boolean"}
+      }
+    },
     "DisassociateMembershipRequest":{
       "type":"structure",
       "required":["GraphArn"],
@@ -347,6 +438,13 @@
       "type":"string",
       "max":1000,
       "min":1
+    },
+    "EnableOrganizationAdminAccountRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{"shape":"AccountId"}
+      }
     },
     "ErrorMessage":{"type":"string"},
     "GetMembersRequest":{
@@ -390,6 +488,13 @@
       "error":{"httpStatusCode":500},
       "exception":true
     },
+    "InvitationType":{
+      "type":"string",
+      "enum":[
+        "INVITATION",
+        "ORGANIZATION"
+      ]
+    },
     "ListGraphsRequest":{
       "type":"structure",
       "members":{
@@ -431,6 +536,20 @@
       "type":"structure",
       "members":{
         "MemberDetails":{"shape":"MemberDetailList"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListOrganizationAdminAccountsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"PaginationToken"},
+        "MaxResults":{"shape":"MemberResultsLimit"}
+      }
+    },
+    "ListOrganizationAdminAccountsResponse":{
+      "type":"structure",
+      "members":{
+        "Administrators":{"shape":"AdministratorList"},
         "NextToken":{"shape":"PaginationToken"}
       }
     },
@@ -478,7 +597,8 @@
           "shape":"Timestamp",
           "deprecated":true,
           "deprecatedMessage":"This property is deprecated. Use VolumeUsageUpdatedTime instead."
-        }
+        },
+        "InvitationType":{"shape":"InvitationType"}
       }
     },
     "MemberDetailList":{
@@ -595,6 +715,14 @@
       "type":"timestamp",
       "timestampFormat":"iso8601"
     },
+    "TooManyRequestsException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":429},
+      "exception":true
+    },
     "UnprocessedAccount":{
       "type":"structure",
       "members":{
@@ -629,6 +757,14 @@
     "UntagResourceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateOrganizationConfigurationRequest":{
+      "type":"structure",
+      "required":["GraphArn"],
+      "members":{
+        "GraphArn":{"shape":"GraphArn"},
+        "AutoEnable":{"shape":"Boolean"}
       }
     },
     "ValidationException":{

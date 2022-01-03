@@ -3,7 +3,6 @@
   "metadata":{
     "apiVersion":"2020-11-30",
     "endpointPrefix":"greengrass",
-    "jsonVersion":"1.1",
     "protocol":"rest-json",
     "serviceAbbreviation":"AWS GreengrassV2",
     "serviceFullName":"AWS IoT Greengrass V2",
@@ -12,6 +11,20 @@
     "uid":"greengrassv2-2020-11-30"
   },
   "operations":{
+    "AssociateServiceRoleToAccount":{
+      "name":"AssociateServiceRoleToAccount",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/greengrass/servicerole",
+        "responseCode":200
+      },
+      "input":{"shape":"AssociateServiceRoleToAccountRequest"},
+      "output":{"shape":"AssociateServiceRoleToAccountResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "BatchAssociateClientDeviceWithCoreDevice":{
       "name":"BatchAssociateClientDeviceWithCoreDevice",
       "http":{
@@ -150,6 +163,19 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DisassociateServiceRoleFromAccount":{
+      "name":"DisassociateServiceRoleFromAccount",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/greengrass/servicerole",
+        "responseCode":200
+      },
+      "input":{"shape":"DisassociateServiceRoleFromAccountRequest"},
+      "output":{"shape":"DisassociateServiceRoleFromAccountResponse"},
+      "errors":[
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetComponent":{
       "name":"GetComponent",
       "http":{
@@ -179,6 +205,20 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetConnectivityInfo":{
+      "name":"GetConnectivityInfo",
+      "http":{
+        "method":"GET",
+        "requestUri":"/greengrass/things/{thingName}/connectivityInfo",
+        "responseCode":200
+      },
+      "input":{"shape":"GetConnectivityInfoRequest"},
+      "output":{"shape":"GetConnectivityInfoResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -212,6 +252,19 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "GetServiceRoleForAccount":{
+      "name":"GetServiceRoleForAccount",
+      "http":{
+        "method":"GET",
+        "requestUri":"/greengrass/servicerole",
+        "responseCode":200
+      },
+      "input":{"shape":"GetServiceRoleForAccountRequest"},
+      "output":{"shape":"GetServiceRoleForAccountResponse"},
+      "errors":[
+        {"shape":"InternalServerException"}
       ]
     },
     "ListClientDevicesAssociatedWithCoreDevice":{
@@ -382,6 +435,20 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"}
       ]
+    },
+    "UpdateConnectivityInfo":{
+      "name":"UpdateConnectivityInfo",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/greengrass/things/{thingName}/connectivityInfo",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateConnectivityInfoRequest"},
+      "output":{"shape":"UpdateConnectivityInfoResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
     }
   },
   "shapes":{
@@ -420,6 +487,25 @@
       "member":{"shape":"AssociateClientDeviceWithCoreDeviceErrorEntry"},
       "max":100,
       "min":1
+    },
+    "AssociateServiceRoleToAccountRequest":{
+      "type":"structure",
+      "required":["roleArn"],
+      "members":{
+        "roleArn":{
+          "shape":"String",
+          "locationName":"RoleArn"
+        }
+      }
+    },
+    "AssociateServiceRoleToAccountResponse":{
+      "type":"structure",
+      "members":{
+        "associatedAt":{
+          "shape":"String",
+          "locationName":"AssociatedAt"
+        }
+      }
     },
     "AssociatedClientDevice":{
       "type":"structure",
@@ -681,6 +767,27 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "ConnectivityInfo":{
+      "type":"structure",
+      "members":{
+        "id":{
+          "shape":"String",
+          "locationName":"Id"
+        },
+        "hostAddress":{
+          "shape":"String",
+          "locationName":"HostAddress"
+        },
+        "portNumber":{
+          "shape":"PortNumberInt",
+          "locationName":"PortNumber"
+        },
+        "metadata":{
+          "shape":"String",
+          "locationName":"Metadata"
+        }
+      }
+    },
     "CoreDevice":{
       "type":"structure",
       "members":{
@@ -936,6 +1043,20 @@
       "max":100,
       "min":1
     },
+    "DisassociateServiceRoleFromAccountRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DisassociateServiceRoleFromAccountResponse":{
+      "type":"structure",
+      "members":{
+        "disassociatedAt":{
+          "shape":"String",
+          "locationName":"DisassociatedAt"
+        }
+      }
+    },
     "EffectiveDeployment":{
       "type":"structure",
       "required":[
@@ -1039,6 +1160,30 @@
         "preSignedUrl":{"shape":"NonEmptyString"}
       }
     },
+    "GetConnectivityInfoRequest":{
+      "type":"structure",
+      "required":["thingName"],
+      "members":{
+        "thingName":{
+          "shape":"CoreDeviceThingName",
+          "location":"uri",
+          "locationName":"thingName"
+        }
+      }
+    },
+    "GetConnectivityInfoResponse":{
+      "type":"structure",
+      "members":{
+        "connectivityInfo":{
+          "shape":"connectivityInfoList",
+          "locationName":"ConnectivityInfo"
+        },
+        "message":{
+          "shape":"String",
+          "locationName":"Message"
+        }
+      }
+    },
     "GetCoreDeviceRequest":{
       "type":"structure",
       "required":["coreDeviceThingName"],
@@ -1089,6 +1234,24 @@
         "creationTimestamp":{"shape":"Timestamp"},
         "isLatestForTarget":{"shape":"IsLatestForTarget"},
         "tags":{"shape":"TagMap"}
+      }
+    },
+    "GetServiceRoleForAccountRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetServiceRoleForAccountResponse":{
+      "type":"structure",
+      "members":{
+        "associatedAt":{
+          "shape":"String",
+          "locationName":"AssociatedAt"
+        },
+        "roleArn":{
+          "shape":"String",
+          "locationName":"RoleArn"
+        }
       }
     },
     "InstalledComponent":{
@@ -1683,6 +1846,11 @@
       "key":{"shape":"NonEmptyString"},
       "value":{"shape":"NonEmptyString"}
     },
+    "PortNumberInt":{
+      "type":"integer",
+      "max":65535,
+      "min":0
+    },
     "PublisherString":{"type":"string"},
     "Reason":{"type":"string"},
     "RecipeBlob":{"type":"blob"},
@@ -1871,6 +2039,37 @@
       "members":{
       }
     },
+    "UpdateConnectivityInfoRequest":{
+      "type":"structure",
+      "required":[
+        "thingName",
+        "connectivityInfo"
+      ],
+      "members":{
+        "thingName":{
+          "shape":"CoreDeviceThingName",
+          "location":"uri",
+          "locationName":"thingName"
+        },
+        "connectivityInfo":{
+          "shape":"connectivityInfoList",
+          "locationName":"ConnectivityInfo"
+        }
+      }
+    },
+    "UpdateConnectivityInfoResponse":{
+      "type":"structure",
+      "members":{
+        "version":{
+          "shape":"String",
+          "locationName":"Version"
+        },
+        "message":{
+          "shape":"String",
+          "locationName":"Message"
+        }
+      }
+    },
     "ValidationException":{
       "type":"structure",
       "required":["message"],
@@ -1905,6 +2104,10 @@
         "FIELD_VALIDATION_FAILED",
         "OTHER"
       ]
+    },
+    "connectivityInfoList":{
+      "type":"list",
+      "member":{"shape":"ConnectivityInfo"}
     }
   }
 }
