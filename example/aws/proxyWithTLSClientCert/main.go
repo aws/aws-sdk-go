@@ -17,7 +17,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
-	"golang.org/x/net/http2"
 )
 
 // Example of creating an HTTP Client configured with a client TLS
@@ -51,10 +50,6 @@ func main() {
 	// Copy of net/http.DefaultTransport with TLS config loaded
 	tr := defaultHTTPTransport()
 	tr.TLSClientConfig = tlsCfg
-
-	// re-enable HTTP/2 because modifing TLS config will prevent auto support
-	// for HTTP/2.
-	http2.ConfigureTransport(tr)
 
 	// Configure the SDK's session with the HTTP client with TLS client
 	// certificate support enabled. This session will be used to create all
@@ -120,5 +115,6 @@ func defaultHTTPTransport() *http.Transport {
 		IdleConnTimeout:       90 * time.Second,
 		TLSHandshakeTimeout:   10 * time.Second,
 		ExpectContinueTimeout: 1 * time.Second,
+		ForceAttemptHTTP2:     true,
 	}
 }
