@@ -4694,9 +4694,9 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 // If you request all facial attributes (by using the detectionAttributes parameter),
 // Amazon Rekognition returns detailed facial attributes, such as facial landmarks
 // (for example, location of eye and mouth) and other facial attributes. If
-// you provide the same image, specify the same collection, and use the same
-// external ID in the IndexFaces operation, Amazon Rekognition doesn't save
-// duplicate face metadata.
+// you provide the same image, specify the same collection, use the same external
+// ID, and use the same model version in the IndexFaces operation, Amazon Rekognition
+// doesn't save duplicate face metadata.
 //
 // The input image is passed either as base64-encoded image bytes, or as a reference
 // to an image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon
@@ -8977,8 +8977,8 @@ type CreateCollectionOutput struct {
 	// permissions on your resources.
 	CollectionArn *string `type:"string"`
 
-	// Version number of the face detection model associated with the collection
-	// you are creating.
+	// Latest face model being used with the collection. For more information, see
+	// Model versioning (https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html).
 	FaceModelVersion *string `type:"string"`
 
 	// HTTP status code indicating the result of the operation.
@@ -12408,6 +12408,10 @@ type Face struct {
 
 	// Unique identifier that Amazon Rekognition assigns to the input image.
 	ImageId *string `type:"string"`
+
+	// The version of the face detect and storage model that was used when indexing
+	// the face vector.
+	IndexFacesModelVersion *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -12455,6 +12459,12 @@ func (s *Face) SetFaceId(v string) *Face {
 // SetImageId sets the ImageId field's value.
 func (s *Face) SetImageId(v string) *Face {
 	s.ImageId = &v
+	return s
+}
+
+// SetIndexFacesModelVersion sets the IndexFacesModelVersion field's value.
+func (s *Face) SetIndexFacesModelVersion(v string) *Face {
+	s.IndexFacesModelVersion = &v
 	return s
 }
 
@@ -15024,8 +15034,8 @@ func (s *IndexFacesInput) SetQualityFilter(v string) *IndexFacesInput {
 type IndexFacesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The version number of the face detection model that's associated with the
-	// input collection (CollectionId).
+	// Latest face model being used with the collection. For more information, see
+	// Model versioning (https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html).
 	FaceModelVersion *string `type:"string"`
 
 	// An array of faces detected and added to the collection. For more information,
@@ -15845,10 +15855,10 @@ type ListCollectionsOutput struct {
 	// An array of collection IDs.
 	CollectionIds []*string `type:"list"`
 
-	// Version numbers of the face detection models associated with the collections
-	// in the array CollectionIds. For example, the value of FaceModelVersions[2]
-	// is the version number for the face detection model used by the collection
-	// in CollectionId[2].
+	// Latest face models being used with the corresponding collections in the array.
+	// For more information, see Model versioning (https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html).
+	// For example, the value of FaceModelVersions[2] is the version number for
+	// the face detection model used by the collection in CollectionId[2].
 	FaceModelVersions []*string `type:"list"`
 
 	// If the result is truncated, the response provides a NextToken that you can
@@ -16251,8 +16261,8 @@ func (s *ListFacesInput) SetNextToken(v string) *ListFacesInput {
 type ListFacesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Version number of the face detection model associated with the input collection
-	// (CollectionId).
+	// Latest face model being used with the collection. For more information, see
+	// Model versioning (https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html).
 	FaceModelVersion *string `type:"string"`
 
 	// An array of Face objects.
@@ -18183,8 +18193,8 @@ type SearchFacesByImageOutput struct {
 	// the match.
 	FaceMatches []*FaceMatch `type:"list"`
 
-	// Version number of the face detection model associated with the input collection
-	// (CollectionId).
+	// Latest face model being used with the collection. For more information, see
+	// Model versioning (https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html).
 	FaceModelVersion *string `type:"string"`
 
 	// The bounding box around the face in the input image that Amazon Rekognition
@@ -18331,8 +18341,8 @@ type SearchFacesOutput struct {
 	// in the match.
 	FaceMatches []*FaceMatch `type:"list"`
 
-	// Version number of the face detection model associated with the input collection
-	// (CollectionId).
+	// Latest face model being used with the collection. For more information, see
+	// Model versioning (https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html).
 	FaceModelVersion *string `type:"string"`
 
 	// ID of the face that was searched for matches in a collection.

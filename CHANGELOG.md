@@ -1,3 +1,18 @@
+Release v1.42.27 (2022-01-04)
+===
+
+### Service Client Updates
+* `service/rekognition`: Updates service API and documentation
+  * This release introduces a new field IndexFacesModelVersion, which is the version of the face detect and storage model that was used when indexing the face vector.
+* `service/s3`: Updates service documentation and examples
+  * Minor doc-based updates based on feedback bugs received.
+* `service/s3control`: Updates service documentation
+  * Documentation updates for the renaming of Glacier to Glacier Flexible Retrieval.
+
+### SDK Enhancements
+
+* `aws/session`: Add options for customizing the construction of credential providers. Currently only supported for `stscreds.WebIdentityRoleProvider`.
+
 Release v1.42.26 (2022-01-03)
 ===
 
