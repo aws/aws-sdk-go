@@ -19,6 +19,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/credentials/stscreds"
 	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -811,6 +812,56 @@ func TestSessionAssumeRole_WithMFA_ExtendedDuration(t *testing.T) {
 	}
 	if e, a := "AssumeRoleProvider", creds.ProviderName; !strings.Contains(a, e) {
 		t.Errorf("expect %v, to be in %v", e, a)
+	}
+}
+
+func TestSessionAssumeRoleWithWebIdentity_Options(t *testing.T) {
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
+
+	os.Setenv("AWS_REGION", "us-east-1")
+	os.Setenv("AWS_ROLE_ARN", "web_identity_role_arn")
+	os.Setenv("AWS_WEB_IDENTITY_TOKEN_FILE", "./testdata/wit.txt")
+
+	endpointResolver, teardown := setupCredentialsEndpoints(t)
+	defer teardown()
+
+	optionsCalled := false
+
+	sess, err := NewSessionWithOptions(Options{
+		Config: aws.Config{
+			EndpointResolver: endpointResolver,
+		},
+		CredentialsProviderOptions: &CredentialsProviderOptions{
+			WebIdentityRoleProviderOptions: func(*stscreds.WebIdentityRoleProvider) {
+				optionsCalled = true
+			},
+		},
+	})
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
+
+	if !optionsCalled {
+		t.Errorf("expect options func to be called")
+	}
+
+	creds, err := sess.Config.Credentials.Get()
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
+
+	if e, a := "WEB_IDENTITY_AKID", creds.AccessKeyID; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "WEB_IDENTITY_SECRET", creds.SecretAccessKey; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "WEB_IDENTITY_SESSION_TOKEN", creds.SessionToken; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := stscreds.WebIdentityProviderName, creds.ProviderName; e != a {
+		t.Errorf("expect %v,got %v", e, a)
 	}
 }
 
