@@ -69,7 +69,7 @@ var WebIdentityEmptyTokenFilePathErr = awserr.New(stscreds.ErrCodeWebIdentity, "
 func assumeWebIdentity(cfg *aws.Config, handlers request.Handlers,
 	filepath string,
 	roleARN, sessionName string,
-	options *CredentialsProviderOptions,
+	credOptions *CredentialsProviderOptions,
 ) (*credentials.Credentials, error) {
 
 	if len(filepath) == 0 {
@@ -85,10 +85,12 @@ func assumeWebIdentity(cfg *aws.Config, handlers request.Handlers,
 		Handlers: handlers.Copy(),
 	})
 
-	p := stscreds.NewWebIdentityRoleProvider(svc, roleARN, sessionName, filepath)
-	if options != nil && options.WebIdentityRoleProviderOptions != nil {
-		options.WebIdentityRoleProviderOptions(p)
+	var optFns []func(*stscreds.WebIdentityRoleProvider)
+	if credOptions != nil && credOptions.WebIdentityRoleProviderOptions != nil {
+		optFns = append(optFns, credOptions.WebIdentityRoleProviderOptions)
 	}
+
+	p := stscreds.NewWebIdentityRoleProviderWithOptions(svc, roleARN, sessionName, stscreds.FetchTokenPath(filepath), optFns...)
 	return credentials.NewCredentials(p), nil
 }
 
