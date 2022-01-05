@@ -2098,6 +2098,206 @@ func (c *LakeFormation) GetTableObjectsPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
+const opGetTemporaryGluePartitionCredentials = "GetTemporaryGluePartitionCredentials"
+
+// GetTemporaryGluePartitionCredentialsRequest generates a "aws/request.Request" representing the
+// client's request for the GetTemporaryGluePartitionCredentials operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetTemporaryGluePartitionCredentials for more information on using the GetTemporaryGluePartitionCredentials
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetTemporaryGluePartitionCredentialsRequest method.
+//    req, resp := client.GetTemporaryGluePartitionCredentialsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetTemporaryGluePartitionCredentials
+func (c *LakeFormation) GetTemporaryGluePartitionCredentialsRequest(input *GetTemporaryGluePartitionCredentialsInput) (req *request.Request, output *GetTemporaryGluePartitionCredentialsOutput) {
+	op := &request.Operation{
+		Name:       opGetTemporaryGluePartitionCredentials,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetTemporaryGluePartitionCredentials",
+	}
+
+	if input == nil {
+		input = &GetTemporaryGluePartitionCredentialsInput{}
+	}
+
+	output = &GetTemporaryGluePartitionCredentialsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetTemporaryGluePartitionCredentials API operation for AWS Lake Formation.
+//
+// This API is identical to GetTemporaryTableCredentials except that this is
+// used when the target Data Catalog resource is of type Partition. Lake Formation
+// restricts the permission of the vended credentials with the same scope down
+// policy which restricts access to a single Amazon S3 prefix.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation GetTemporaryGluePartitionCredentials for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * PermissionTypeMismatchException
+//   The engine does not support filtering data based on the enforced permissions.
+//   For example, if you call the GetTemporaryGlueTableCredentials operation with
+//   SupportedPermissionType equal to ColumnPermission, but cell-level permissions
+//   exist on the table, this exception is thrown.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetTemporaryGluePartitionCredentials
+func (c *LakeFormation) GetTemporaryGluePartitionCredentials(input *GetTemporaryGluePartitionCredentialsInput) (*GetTemporaryGluePartitionCredentialsOutput, error) {
+	req, out := c.GetTemporaryGluePartitionCredentialsRequest(input)
+	return out, req.Send()
+}
+
+// GetTemporaryGluePartitionCredentialsWithContext is the same as GetTemporaryGluePartitionCredentials with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetTemporaryGluePartitionCredentials for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) GetTemporaryGluePartitionCredentialsWithContext(ctx aws.Context, input *GetTemporaryGluePartitionCredentialsInput, opts ...request.Option) (*GetTemporaryGluePartitionCredentialsOutput, error) {
+	req, out := c.GetTemporaryGluePartitionCredentialsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetTemporaryGlueTableCredentials = "GetTemporaryGlueTableCredentials"
+
+// GetTemporaryGlueTableCredentialsRequest generates a "aws/request.Request" representing the
+// client's request for the GetTemporaryGlueTableCredentials operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetTemporaryGlueTableCredentials for more information on using the GetTemporaryGlueTableCredentials
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetTemporaryGlueTableCredentialsRequest method.
+//    req, resp := client.GetTemporaryGlueTableCredentialsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetTemporaryGlueTableCredentials
+func (c *LakeFormation) GetTemporaryGlueTableCredentialsRequest(input *GetTemporaryGlueTableCredentialsInput) (req *request.Request, output *GetTemporaryGlueTableCredentialsOutput) {
+	op := &request.Operation{
+		Name:       opGetTemporaryGlueTableCredentials,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetTemporaryGlueTableCredentials",
+	}
+
+	if input == nil {
+		input = &GetTemporaryGlueTableCredentialsInput{}
+	}
+
+	output = &GetTemporaryGlueTableCredentialsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetTemporaryGlueTableCredentials API operation for AWS Lake Formation.
+//
+// Allows a caller in a secure environment to assume a role with permission
+// to access Amazon S3. In order to vend such credentials, Lake Formation assumes
+// the role associated with a registered location, for example an Amazon S3
+// bucket, with a scope down policy which restricts the access to a single prefix.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation GetTemporaryGlueTableCredentials for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * PermissionTypeMismatchException
+//   The engine does not support filtering data based on the enforced permissions.
+//   For example, if you call the GetTemporaryGlueTableCredentials operation with
+//   SupportedPermissionType equal to ColumnPermission, but cell-level permissions
+//   exist on the table, this exception is thrown.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetTemporaryGlueTableCredentials
+func (c *LakeFormation) GetTemporaryGlueTableCredentials(input *GetTemporaryGlueTableCredentialsInput) (*GetTemporaryGlueTableCredentialsOutput, error) {
+	req, out := c.GetTemporaryGlueTableCredentialsRequest(input)
+	return out, req.Send()
+}
+
+// GetTemporaryGlueTableCredentialsWithContext is the same as GetTemporaryGlueTableCredentials with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetTemporaryGlueTableCredentials for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) GetTemporaryGlueTableCredentialsWithContext(ctx aws.Context, input *GetTemporaryGlueTableCredentialsInput, opts ...request.Option) (*GetTemporaryGlueTableCredentialsOutput, error) {
+	req, out := c.GetTemporaryGlueTableCredentialsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetWorkUnitResults = "GetWorkUnitResults"
 
 // GetWorkUnitResultsRequest generates a "aws/request.Request" representing the
@@ -4956,6 +5156,40 @@ func (s *AlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A structure used to include auditing information on the privileged API.
+type AuditContext struct {
+	_ struct{} `type:"structure"`
+
+	// The filter engine can populate the 'AdditionalAuditContext' information with
+	// the request ID for you to track. This information will be displayed in CloudTrail
+	// log in your account.
+	AdditionalAuditContext *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuditContext) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuditContext) GoString() string {
+	return s.String()
+}
+
+// SetAdditionalAuditContext sets the AdditionalAuditContext field's value.
+func (s *AuditContext) SetAdditionalAuditContext(v string) *AuditContext {
+	s.AdditionalAuditContext = &v
+	return s
+}
+
 type BatchGrantPermissionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5797,6 +6031,8 @@ type DataCellsFilter struct {
 	ColumnNames []*string `type:"list"`
 
 	// A wildcard with exclusions.
+	//
+	// You must specify either a ColumnNames list or the ColumnWildCard.
 	ColumnWildcard *ColumnWildcard `type:"structure"`
 
 	// A database in the Glue Data Catalog.
@@ -5998,8 +6234,7 @@ func (s *DataCellsFilterResource) SetTableName(v string) *DataCellsFilterResourc
 	return s
 }
 
-// The AWS Lake Formation principal. Supported principals are IAM users or IAM
-// roles.
+// The Lake Formation principal. Supported principals are IAM users or IAM roles.
 type DataLakePrincipal struct {
 	_ struct{} `type:"structure"`
 
@@ -6050,6 +6285,25 @@ func (s *DataLakePrincipal) SetDataLakePrincipalIdentifier(v string) *DataLakePr
 type DataLakeSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Whether to allow Amazon EMR clusters to access data managed by Lake Formation.
+	//
+	// If true, you allow Amazon EMR clusters to access data in Amazon S3 locations
+	// that are registered with Lake Formation.
+	//
+	// If false or null, no Amazon EMR clusters will be able to access data in Amazon
+	// S3 locations that are registered with Lake Formation.
+	//
+	// For more information, see (Optional) Allow Data Filtering on Amazon EMR (https://docs-aws.amazon.com/lake-formation/latest/dg/getting-started-setup.html#emr-switch).
+	AllowExternalDataFiltering *bool `type:"boolean"`
+
+	// Lake Formation relies on a privileged process secured by Amazon EMR or the
+	// third party integrator to tag the user's role while assuming it. Lake Formation
+	// will publish the acceptable key-value pair, for example key = "LakeFormationTrustedCaller"
+	// and value = "TRUE" and the third party integrator must properly tag the temporary
+	// security credentials that will be used to call Lake Formation's administrative
+	// APIs.
+	AuthorizedSessionTagValueList []*string `type:"list"`
+
 	// Specifies whether access control on newly created database is managed by
 	// Lake Formation permissions or exclusively by IAM permissions. You can override
 	// this default setting when you create a database.
@@ -6086,6 +6340,10 @@ type DataLakeSettings struct {
 	// A list of Lake Formation principals. Supported principals are IAM users or
 	// IAM roles.
 	DataLakeAdmins []*DataLakePrincipal `type:"list"`
+
+	// A list of the account IDs of Amazon Web Services accounts with Amazon EMR
+	// clusters that are to perform data filtering.>
+	ExternalDataFilteringAllowList []*DataLakePrincipal `type:"list"`
 
 	// A list of the resource-owning account IDs that the caller's account can use
 	// to share their user access details (user ARNs). The user ARNs can be logged
@@ -6147,11 +6405,33 @@ func (s *DataLakeSettings) Validate() error {
 			}
 		}
 	}
+	if s.ExternalDataFilteringAllowList != nil {
+		for i, v := range s.ExternalDataFilteringAllowList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ExternalDataFilteringAllowList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAllowExternalDataFiltering sets the AllowExternalDataFiltering field's value.
+func (s *DataLakeSettings) SetAllowExternalDataFiltering(v bool) *DataLakeSettings {
+	s.AllowExternalDataFiltering = &v
+	return s
+}
+
+// SetAuthorizedSessionTagValueList sets the AuthorizedSessionTagValueList field's value.
+func (s *DataLakeSettings) SetAuthorizedSessionTagValueList(v []*string) *DataLakeSettings {
+	s.AuthorizedSessionTagValueList = v
+	return s
 }
 
 // SetCreateDatabaseDefaultPermissions sets the CreateDatabaseDefaultPermissions field's value.
@@ -6169,6 +6449,12 @@ func (s *DataLakeSettings) SetCreateTableDefaultPermissions(v []*PrincipalPermis
 // SetDataLakeAdmins sets the DataLakeAdmins field's value.
 func (s *DataLakeSettings) SetDataLakeAdmins(v []*DataLakePrincipal) *DataLakeSettings {
 	s.DataLakeAdmins = v
+	return s
+}
+
+// SetExternalDataFilteringAllowList sets the ExternalDataFilteringAllowList field's value.
+func (s *DataLakeSettings) SetExternalDataFilteringAllowList(v []*DataLakePrincipal) *DataLakeSettings {
+	s.ExternalDataFilteringAllowList = v
 	return s
 }
 
@@ -8136,6 +8422,336 @@ func (s *GetTableObjectsOutput) SetObjects(v []*PartitionObjects) *GetTableObjec
 	return s
 }
 
+type GetTemporaryGluePartitionCredentialsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure representing context to access a resource (column names, query
+	// ID, etc).
+	AuditContext *AuditContext `type:"structure"`
+
+	// The time period, between 900 and 21,600 seconds, for the timeout of the temporary
+	// credentials.
+	DurationSeconds *int64 `min:"900" type:"integer"`
+
+	// A list of partition values identifying a single partition.
+	//
+	// Partition is a required field
+	Partition *PartitionValueList `type:"structure" required:"true"`
+
+	// Filters the request based on the user having been granted a list of specified
+	// permissions on the requested resource(s).
+	Permissions []*string `type:"list"`
+
+	// A list of supported permission types for the partition. Valid values are
+	// COLUMN_PERMISSION and CELL_FILTER_PERMISSION.
+	//
+	// SupportedPermissionTypes is a required field
+	SupportedPermissionTypes []*string `min:"1" type:"list" required:"true"`
+
+	// The ARN of the partitions' table.
+	//
+	// TableArn is a required field
+	TableArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTemporaryGluePartitionCredentialsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTemporaryGluePartitionCredentialsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetTemporaryGluePartitionCredentialsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetTemporaryGluePartitionCredentialsInput"}
+	if s.DurationSeconds != nil && *s.DurationSeconds < 900 {
+		invalidParams.Add(request.NewErrParamMinValue("DurationSeconds", 900))
+	}
+	if s.Partition == nil {
+		invalidParams.Add(request.NewErrParamRequired("Partition"))
+	}
+	if s.SupportedPermissionTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("SupportedPermissionTypes"))
+	}
+	if s.SupportedPermissionTypes != nil && len(s.SupportedPermissionTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SupportedPermissionTypes", 1))
+	}
+	if s.TableArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableArn"))
+	}
+	if s.Partition != nil {
+		if err := s.Partition.Validate(); err != nil {
+			invalidParams.AddNested("Partition", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuditContext sets the AuditContext field's value.
+func (s *GetTemporaryGluePartitionCredentialsInput) SetAuditContext(v *AuditContext) *GetTemporaryGluePartitionCredentialsInput {
+	s.AuditContext = v
+	return s
+}
+
+// SetDurationSeconds sets the DurationSeconds field's value.
+func (s *GetTemporaryGluePartitionCredentialsInput) SetDurationSeconds(v int64) *GetTemporaryGluePartitionCredentialsInput {
+	s.DurationSeconds = &v
+	return s
+}
+
+// SetPartition sets the Partition field's value.
+func (s *GetTemporaryGluePartitionCredentialsInput) SetPartition(v *PartitionValueList) *GetTemporaryGluePartitionCredentialsInput {
+	s.Partition = v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *GetTemporaryGluePartitionCredentialsInput) SetPermissions(v []*string) *GetTemporaryGluePartitionCredentialsInput {
+	s.Permissions = v
+	return s
+}
+
+// SetSupportedPermissionTypes sets the SupportedPermissionTypes field's value.
+func (s *GetTemporaryGluePartitionCredentialsInput) SetSupportedPermissionTypes(v []*string) *GetTemporaryGluePartitionCredentialsInput {
+	s.SupportedPermissionTypes = v
+	return s
+}
+
+// SetTableArn sets the TableArn field's value.
+func (s *GetTemporaryGluePartitionCredentialsInput) SetTableArn(v string) *GetTemporaryGluePartitionCredentialsInput {
+	s.TableArn = &v
+	return s
+}
+
+type GetTemporaryGluePartitionCredentialsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The access key ID for the temporary credentials.
+	AccessKeyId *string `type:"string"`
+
+	// The date and time when the temporary credentials expire.
+	Expiration *time.Time `type:"timestamp"`
+
+	// The secret key for the temporary credentials.
+	SecretAccessKey *string `type:"string"`
+
+	// The session token for the temporary credentials.
+	SessionToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTemporaryGluePartitionCredentialsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTemporaryGluePartitionCredentialsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessKeyId sets the AccessKeyId field's value.
+func (s *GetTemporaryGluePartitionCredentialsOutput) SetAccessKeyId(v string) *GetTemporaryGluePartitionCredentialsOutput {
+	s.AccessKeyId = &v
+	return s
+}
+
+// SetExpiration sets the Expiration field's value.
+func (s *GetTemporaryGluePartitionCredentialsOutput) SetExpiration(v time.Time) *GetTemporaryGluePartitionCredentialsOutput {
+	s.Expiration = &v
+	return s
+}
+
+// SetSecretAccessKey sets the SecretAccessKey field's value.
+func (s *GetTemporaryGluePartitionCredentialsOutput) SetSecretAccessKey(v string) *GetTemporaryGluePartitionCredentialsOutput {
+	s.SecretAccessKey = &v
+	return s
+}
+
+// SetSessionToken sets the SessionToken field's value.
+func (s *GetTemporaryGluePartitionCredentialsOutput) SetSessionToken(v string) *GetTemporaryGluePartitionCredentialsOutput {
+	s.SessionToken = &v
+	return s
+}
+
+type GetTemporaryGlueTableCredentialsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure representing context to access a resource (column names, query
+	// ID, etc).
+	AuditContext *AuditContext `type:"structure"`
+
+	// The time period, between 900 and 21,600 seconds, for the timeout of the temporary
+	// credentials.
+	DurationSeconds *int64 `min:"900" type:"integer"`
+
+	// Filters the request based on the user having been granted a list of specified
+	// permissions on the requested resource(s).
+	Permissions []*string `type:"list"`
+
+	// A list of supported permission types for the table. Valid values are COLUMN_PERMISSION
+	// and CELL_FILTER_PERMISSION.
+	//
+	// SupportedPermissionTypes is a required field
+	SupportedPermissionTypes []*string `min:"1" type:"list" required:"true"`
+
+	// The ARN identifying a table in the Data Catalog for the temporary credentials
+	// request.
+	//
+	// TableArn is a required field
+	TableArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTemporaryGlueTableCredentialsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTemporaryGlueTableCredentialsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetTemporaryGlueTableCredentialsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetTemporaryGlueTableCredentialsInput"}
+	if s.DurationSeconds != nil && *s.DurationSeconds < 900 {
+		invalidParams.Add(request.NewErrParamMinValue("DurationSeconds", 900))
+	}
+	if s.SupportedPermissionTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("SupportedPermissionTypes"))
+	}
+	if s.SupportedPermissionTypes != nil && len(s.SupportedPermissionTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SupportedPermissionTypes", 1))
+	}
+	if s.TableArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuditContext sets the AuditContext field's value.
+func (s *GetTemporaryGlueTableCredentialsInput) SetAuditContext(v *AuditContext) *GetTemporaryGlueTableCredentialsInput {
+	s.AuditContext = v
+	return s
+}
+
+// SetDurationSeconds sets the DurationSeconds field's value.
+func (s *GetTemporaryGlueTableCredentialsInput) SetDurationSeconds(v int64) *GetTemporaryGlueTableCredentialsInput {
+	s.DurationSeconds = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *GetTemporaryGlueTableCredentialsInput) SetPermissions(v []*string) *GetTemporaryGlueTableCredentialsInput {
+	s.Permissions = v
+	return s
+}
+
+// SetSupportedPermissionTypes sets the SupportedPermissionTypes field's value.
+func (s *GetTemporaryGlueTableCredentialsInput) SetSupportedPermissionTypes(v []*string) *GetTemporaryGlueTableCredentialsInput {
+	s.SupportedPermissionTypes = v
+	return s
+}
+
+// SetTableArn sets the TableArn field's value.
+func (s *GetTemporaryGlueTableCredentialsInput) SetTableArn(v string) *GetTemporaryGlueTableCredentialsInput {
+	s.TableArn = &v
+	return s
+}
+
+type GetTemporaryGlueTableCredentialsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The access key ID for the temporary credentials.
+	AccessKeyId *string `type:"string"`
+
+	// The date and time when the temporary credentials expire.
+	Expiration *time.Time `type:"timestamp"`
+
+	// The secret key for the temporary credentials.
+	SecretAccessKey *string `type:"string"`
+
+	// The session token for the temporary credentials.
+	SessionToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTemporaryGlueTableCredentialsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTemporaryGlueTableCredentialsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessKeyId sets the AccessKeyId field's value.
+func (s *GetTemporaryGlueTableCredentialsOutput) SetAccessKeyId(v string) *GetTemporaryGlueTableCredentialsOutput {
+	s.AccessKeyId = &v
+	return s
+}
+
+// SetExpiration sets the Expiration field's value.
+func (s *GetTemporaryGlueTableCredentialsOutput) SetExpiration(v time.Time) *GetTemporaryGlueTableCredentialsOutput {
+	s.Expiration = &v
+	return s
+}
+
+// SetSecretAccessKey sets the SecretAccessKey field's value.
+func (s *GetTemporaryGlueTableCredentialsOutput) SetSecretAccessKey(v string) *GetTemporaryGlueTableCredentialsOutput {
+	s.SecretAccessKey = &v
+	return s
+}
+
+// SetSessionToken sets the SessionToken field's value.
+func (s *GetTemporaryGlueTableCredentialsOutput) SetSessionToken(v string) *GetTemporaryGlueTableCredentialsOutput {
+	s.SessionToken = &v
+	return s
+}
+
 type GetWorkUnitResultsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9951,6 +10567,124 @@ func (s *PartitionObjects) SetObjects(v []*TableObject) *PartitionObjects {
 func (s *PartitionObjects) SetPartitionValues(v []*string) *PartitionObjects {
 	s.PartitionValues = v
 	return s
+}
+
+// Contains a list of values defining partitions.
+type PartitionValueList struct {
+	_ struct{} `type:"structure"`
+
+	// The list of partition values.
+	//
+	// Values is a required field
+	Values []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PartitionValueList) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PartitionValueList) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PartitionValueList) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PartitionValueList"}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil && len(s.Values) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Values", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValues sets the Values field's value.
+func (s *PartitionValueList) SetValues(v []*string) *PartitionValueList {
+	s.Values = v
+	return s
+}
+
+// The engine does not support filtering data based on the enforced permissions.
+// For example, if you call the GetTemporaryGlueTableCredentials operation with
+// SupportedPermissionType equal to ColumnPermission, but cell-level permissions
+// exist on the table, this exception is thrown.
+type PermissionTypeMismatchException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message describing the problem.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PermissionTypeMismatchException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PermissionTypeMismatchException) GoString() string {
+	return s.String()
+}
+
+func newErrorPermissionTypeMismatchException(v protocol.ResponseMetadata) error {
+	return &PermissionTypeMismatchException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *PermissionTypeMismatchException) Code() string {
+	return "PermissionTypeMismatchException"
+}
+
+// Message returns the exception's message.
+func (s *PermissionTypeMismatchException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *PermissionTypeMismatchException) OrigErr() error {
+	return nil
+}
+
+func (s *PermissionTypeMismatchException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *PermissionTypeMismatchException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *PermissionTypeMismatchException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Statistics related to the processing of a query statement.
@@ -13218,6 +13952,22 @@ func Permission_Values() []string {
 		PermissionDeleteTag,
 		PermissionDescribeTag,
 		PermissionAssociateTag,
+	}
+}
+
+const (
+	// PermissionTypeColumnPermission is a PermissionType enum value
+	PermissionTypeColumnPermission = "COLUMN_PERMISSION"
+
+	// PermissionTypeCellFilterPermission is a PermissionType enum value
+	PermissionTypeCellFilterPermission = "CELL_FILTER_PERMISSION"
+)
+
+// PermissionType_Values returns all elements of the PermissionType enum
+func PermissionType_Values() []string {
+	return []string{
+		PermissionTypeColumnPermission,
+		PermissionTypeCellFilterPermission,
 	}
 }
 

@@ -2178,6 +2178,10 @@ type EC2API interface {
 	ModifyVpcEndpointServiceConfigurationWithContext(aws.Context, *ec2.ModifyVpcEndpointServiceConfigurationInput, ...request.Option) (*ec2.ModifyVpcEndpointServiceConfigurationOutput, error)
 	ModifyVpcEndpointServiceConfigurationRequest(*ec2.ModifyVpcEndpointServiceConfigurationInput) (*request.Request, *ec2.ModifyVpcEndpointServiceConfigurationOutput)
 
+	ModifyVpcEndpointServicePayerResponsibility(*ec2.ModifyVpcEndpointServicePayerResponsibilityInput) (*ec2.ModifyVpcEndpointServicePayerResponsibilityOutput, error)
+	ModifyVpcEndpointServicePayerResponsibilityWithContext(aws.Context, *ec2.ModifyVpcEndpointServicePayerResponsibilityInput, ...request.Option) (*ec2.ModifyVpcEndpointServicePayerResponsibilityOutput, error)
+	ModifyVpcEndpointServicePayerResponsibilityRequest(*ec2.ModifyVpcEndpointServicePayerResponsibilityInput) (*request.Request, *ec2.ModifyVpcEndpointServicePayerResponsibilityOutput)
+
 	ModifyVpcEndpointServicePermissions(*ec2.ModifyVpcEndpointServicePermissionsInput) (*ec2.ModifyVpcEndpointServicePermissionsOutput, error)
 	ModifyVpcEndpointServicePermissionsWithContext(aws.Context, *ec2.ModifyVpcEndpointServicePermissionsInput, ...request.Option) (*ec2.ModifyVpcEndpointServicePermissionsOutput, error)
 	ModifyVpcEndpointServicePermissionsRequest(*ec2.ModifyVpcEndpointServicePermissionsInput) (*request.Request, *ec2.ModifyVpcEndpointServicePermissionsOutput)

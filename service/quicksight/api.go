@@ -487,7 +487,8 @@ func (c *QuickSight) CreateDataSetRequest(input *CreateDataSetInput) (req *reque
 
 // CreateDataSet API operation for Amazon QuickSight.
 //
-// Creates a dataset.
+// Creates a dataset. This operation doesn't support datasets that include uploaded
+// files as a source.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1236,7 +1237,11 @@ func (c *QuickSight) CreateIngestionRequest(input *CreateIngestionInput) (req *r
 
 // CreateIngestion API operation for Amazon QuickSight.
 //
-// Creates and starts a new SPICE ingestion on a dataset
+// Creates and starts a new SPICE ingestion for a dataset. You can manually
+// refresh datasets in an Enterprise edition account 32 times in a 24-hour period.
+// You can manually refresh datasets in a Standard edition account 8 times in
+// a 24-hour period. Each 24-hour period is measured starting 24 hours before
+// the current date and time.
 //
 // Any ingestions operating on tagged datasets inherit the same tags automatically
 // for use in access control. For an example, see How do I create an IAM policy
@@ -4251,7 +4256,8 @@ func (c *QuickSight) DescribeDataSetRequest(input *DescribeDataSetInput) (req *r
 
 // DescribeDataSet API operation for Amazon QuickSight.
 //
-// Describes a dataset.
+// Describes a dataset. This operation doesn't support datasets that include
+// uploaded files as a source.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11125,7 +11131,8 @@ func (c *QuickSight) UpdateDataSetRequest(input *UpdateDataSetInput) (req *reque
 
 // UpdateDataSet API operation for Amazon QuickSight.
 //
-// Updates a dataset.
+// Updates a dataset. This operation doesn't support datasets that include uploaded
+// files as a source.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

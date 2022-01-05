@@ -3105,6 +3105,8 @@ type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// You get this resource when you call CreateReturnShippingLabel more than once
+	// when other requests are not completed. .
 	ConflictResource *string `min:"1" type:"string"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -3411,6 +3413,11 @@ func (s *CreateClusterInput) Validate() error {
 			invalidParams.AddNested("Resources", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.TaxDocuments != nil {
+		if err := s.TaxDocuments.Validate(); err != nil {
+			invalidParams.AddNested("TaxDocuments", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3682,6 +3689,11 @@ func (s *CreateJobInput) Validate() error {
 	if s.Resources != nil {
 		if err := s.Resources.Validate(); err != nil {
 			invalidParams.AddNested("Resources", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TaxDocuments != nil {
+		if err := s.TaxDocuments.Validate(); err != nil {
+			invalidParams.AddNested("TaxDocuments", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -5041,7 +5053,7 @@ type INDTaxDocuments struct {
 
 	// The Goods and Services Tax (GST) documents required in Amazon Web Services
 	// Region in India.
-	GSTIN *string `type:"string"`
+	GSTIN *string `min:"15" type:"string"`
 }
 
 // String returns the string representation.
@@ -5060,6 +5072,19 @@ func (s INDTaxDocuments) String() string {
 // value will be replaced with "sensitive".
 func (s INDTaxDocuments) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *INDTaxDocuments) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "INDTaxDocuments"}
+	if s.GSTIN != nil && len(*s.GSTIN) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("GSTIN", 15))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetGSTIN sets the GSTIN field's value.
@@ -7233,6 +7258,21 @@ func (s TaxDocuments) String() string {
 // value will be replaced with "sensitive".
 func (s TaxDocuments) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TaxDocuments) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TaxDocuments"}
+	if s.IND != nil {
+		if err := s.IND.Validate(); err != nil {
+			invalidParams.AddNested("IND", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetIND sets the IND field's value.

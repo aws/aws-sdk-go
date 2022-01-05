@@ -1455,6 +1455,13 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "IpFamily":{
+      "type":"string",
+      "enum":[
+        "ipv4",
+        "ipv6"
+      ]
+    },
     "Issue":{
       "type":"structure",
       "members":{
@@ -1470,13 +1477,16 @@
     "KubernetesNetworkConfigRequest":{
       "type":"structure",
       "members":{
-        "serviceIpv4Cidr":{"shape":"String"}
+        "serviceIpv4Cidr":{"shape":"String"},
+        "ipFamily":{"shape":"IpFamily"}
       }
     },
     "KubernetesNetworkConfigResponse":{
       "type":"structure",
       "members":{
-        "serviceIpv4Cidr":{"shape":"String"}
+        "serviceIpv4Cidr":{"shape":"String"},
+        "serviceIpv6Cidr":{"shape":"String"},
+        "ipFamily":{"shape":"IpFamily"}
       }
     },
     "LaunchTemplateSpecification":{

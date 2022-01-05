@@ -14,6 +14,18 @@ const (
 	// An API error occurred. Wait a few minutes and try again.
 	ErrCodeConcurrentModificationException = "ConcurrentModificationException"
 
+	// ErrCodeEntitlementAlreadyExistsException for service response error code
+	// "EntitlementAlreadyExistsException".
+	//
+	// The entitlement already exists.
+	ErrCodeEntitlementAlreadyExistsException = "EntitlementAlreadyExistsException"
+
+	// ErrCodeEntitlementNotFoundException for service response error code
+	// "EntitlementNotFoundException".
+	//
+	// The entitlement can't be found.
+	ErrCodeEntitlementNotFoundException = "EntitlementNotFoundException"
+
 	// ErrCodeIncompatibleImageException for service response error code
 	// "IncompatibleImageException".
 	//
@@ -86,6 +98,8 @@ const (
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ConcurrentModificationException":      newErrorConcurrentModificationException,
+	"EntitlementAlreadyExistsException":    newErrorEntitlementAlreadyExistsException,
+	"EntitlementNotFoundException":         newErrorEntitlementNotFoundException,
 	"IncompatibleImageException":           newErrorIncompatibleImageException,
 	"InvalidAccountStatusException":        newErrorInvalidAccountStatusException,
 	"InvalidParameterCombinationException": newErrorInvalidParameterCombinationException,

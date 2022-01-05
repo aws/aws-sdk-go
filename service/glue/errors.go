@@ -126,6 +126,10 @@ const (
 	// The operation timed out.
 	ErrCodeOperationTimeoutException = "OperationTimeoutException"
 
+	// ErrCodePermissionTypeMismatchException for service response error code
+	// "PermissionTypeMismatchException".
+	ErrCodePermissionTypeMismatchException = "PermissionTypeMismatchException"
+
 	// ErrCodeResourceNotReadyException for service response error code
 	// "ResourceNotReadyException".
 	//
@@ -190,6 +194,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"MLTransformNotReadyException":         newErrorMLTransformNotReadyException,
 	"NoScheduleException":                  newErrorNoScheduleException,
 	"OperationTimeoutException":            newErrorOperationTimeoutException,
+	"PermissionTypeMismatchException":      newErrorPermissionTypeMismatchException,
 	"ResourceNotReadyException":            newErrorResourceNotReadyException,
 	"ResourceNumberLimitExceededException": newErrorResourceNumberLimitExceededException,
 	"SchedulerNotRunningException":         newErrorSchedulerNotRunningException,

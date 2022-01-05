@@ -3963,6 +3963,15 @@
       "input":{"shape":"ModifyVpcEndpointServiceConfigurationRequest"},
       "output":{"shape":"ModifyVpcEndpointServiceConfigurationResult"}
     },
+    "ModifyVpcEndpointServicePayerResponsibility":{
+      "name":"ModifyVpcEndpointServicePayerResponsibility",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyVpcEndpointServicePayerResponsibilityRequest"},
+      "output":{"shape":"ModifyVpcEndpointServicePayerResponsibilityResult"}
+    },
     "ModifyVpcEndpointServicePermissions":{
       "name":"ModifyVpcEndpointServicePermissions",
       "http":{
@@ -20579,7 +20588,7 @@
           "locationName":"instanceFamily"
         },
         "OfferingId":{
-          "shape":"String",
+          "shape":"OfferingId",
           "locationName":"offeringId"
         },
         "PaymentOption":{
@@ -20655,7 +20664,7 @@
           "locationName":"hostIdSet"
         },
         "HostReservationId":{
-          "shape":"String",
+          "shape":"HostReservationId",
           "locationName":"hostReservationId"
         },
         "HourlyPrice":{
@@ -20667,7 +20676,7 @@
           "locationName":"instanceFamily"
         },
         "OfferingId":{
-          "shape":"String",
+          "shape":"OfferingId",
           "locationName":"offeringId"
         },
         "PaymentOption":{
@@ -27680,6 +27689,27 @@
         }
       }
     },
+    "ModifyVpcEndpointServicePayerResponsibilityRequest":{
+      "type":"structure",
+      "required":[
+        "ServiceId",
+        "PayerResponsibility"
+      ],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "ServiceId":{"shape":"VpcEndpointServiceId"},
+        "PayerResponsibility":{"shape":"PayerResponsibility"}
+      }
+    },
+    "ModifyVpcEndpointServicePayerResponsibilityResult":{
+      "type":"structure",
+      "members":{
+        "ReturnValue":{
+          "shape":"Boolean",
+          "locationName":"return"
+        }
+      }
+    },
     "ModifyVpcEndpointServicePermissionsRequest":{
       "type":"structure",
       "required":["ServiceId"],
@@ -29216,6 +29246,10 @@
         "ResourceStatement":{"shape":"ResourceStatementRequest"}
       }
     },
+    "PayerResponsibility":{
+      "type":"string",
+      "enum":["ServiceOwner"]
+    },
     "PaymentOption":{
       "type":"string",
       "enum":[
@@ -30287,7 +30321,7 @@
           "locationName":"hostIdSet"
         },
         "HostReservationId":{
-          "shape":"String",
+          "shape":"HostReservationId",
           "locationName":"hostReservationId"
         },
         "HourlyPrice":{
@@ -33648,6 +33682,10 @@
           "shape":"PrivateDnsNameConfiguration",
           "locationName":"privateDnsNameConfiguration"
         },
+        "PayerResponsibility":{
+          "shape":"PayerResponsibility",
+          "locationName":"payerResponsibility"
+        },
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
@@ -33707,6 +33745,10 @@
         "ManagesVpcEndpoints":{
           "shape":"Boolean",
           "locationName":"managesVpcEndpoints"
+        },
+        "PayerResponsibility":{
+          "shape":"PayerResponsibility",
+          "locationName":"payerResponsibility"
         },
         "Tags":{
           "shape":"TagList",

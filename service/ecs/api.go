@@ -4222,7 +4222,7 @@ func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *request.Request, output 
 // manually on specific container instances.
 //
 // The Amazon ECS API follows an eventual consistency model. This is because
-// the distributed nature of the system supporting the API. This means that
+// of the distributed nature of the system supporting the API. This means that
 // the result of an API command you run that affects your Amazon ECS resources
 // might not be immediately visible to all subsequent commands you run. Keep
 // this in mind when you carry out an API command that immediately follows a
@@ -6048,7 +6048,7 @@ type Attachment struct {
 	Id *string `locationName:"id" type:"string"`
 
 	// The status of the attachment. Valid values are PRECREATED, CREATED, ATTACHING,
-	// ATTACHED, DETACHING, DETACHED, and DELETED.
+	// ATTACHED, DETACHING, DETACHED, DELETED, and FAILED.
 	Status *string `locationName:"status" type:"string"`
 
 	// The type of the attachment, such as ElasticNetworkInterface.
@@ -6322,7 +6322,7 @@ type AutoScalingGroupProvider struct {
 
 	// The managed termination protection setting to use for the Auto Scaling group
 	// capacity provider. This determines whether the Auto Scaling group has managed
-	// termination protection.
+	// termination protection. The default is disabled.
 	//
 	// When using managed termination protection, managed scaling must also be used
 	// otherwise managed termination protection doesn't work.
@@ -22937,7 +22937,7 @@ type UpdateContainerInstancesStateInput struct {
 	// cluster is assumed.
 	Cluster *string `locationName:"cluster" type:"string"`
 
-	// A list of container instance IDs or full ARN entries.
+	// A list of up to 10 container instance IDs or full ARN entries.
 	//
 	// ContainerInstances is a required field
 	ContainerInstances []*string `locationName:"containerInstances" type:"list" required:"true"`

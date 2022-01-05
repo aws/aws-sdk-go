@@ -1,3 +1,28 @@
+Release v1.42.28 (2022-01-05)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * Includes APIs for App Entitlement management regarding entitlement and entitled application association.
+* `service/cloudtrail`: Updates service API, documentation, and paginators
+  * This release adds support for CloudTrail Lake, a new feature that lets you run SQL-based queries on events that you have aggregated into event data stores. New APIs have been added for creating and managing event data stores, and creating, running, and managing queries in CloudTrail Lake.
+* `service/ec2`: Updates service API and documentation
+  * This release adds a new API called ModifyVpcEndpointServicePayerResponsibility which allows VPC endpoint service owners to take payer responsibility of their VPC Endpoint connections.
+* `service/ecs`: Updates service documentation
+  * Documentation update for ticket fixes.
+* `service/eks`: Updates service API and documentation
+* `service/glue`: Updates service API, documentation, and paginators
+  * Add Delta Lake target support for Glue Crawler and 3rd Party Support for Lake Formation
+* `service/iot`: Updates service API and documentation
+  * This release adds an automatic retry mechanism for AWS IoT Jobs. You can now define a maximum number of retries for each Job rollout, along with the criteria to trigger the retry for FAILED/TIMED_OUT/ALL(both FAILED an TIMED_OUT) job.
+* `service/lakeformation`: Updates service API and documentation
+* `service/quicksight`: Updates service documentation
+  * Multiple Doc-only updates for Amazon QuickSight.
+* `service/sagemaker`: Updates service API
+  * Amazon SageMaker now supports running training jobs on ml.g5 instance types.
+* `service/snowball`: Updates service API, documentation, and examples
+  * Updating validation rules for interfaces used in the Snowball API to tighten security of service.
+
 Release v1.42.27 (2022-01-04)
 ===
 

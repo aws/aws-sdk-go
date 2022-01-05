@@ -796,7 +796,7 @@
         "ClusterMetadata$Description": "<p>The optional description of the cluster.</p>",
         "CompatibleImage$AmiId": "<p>The unique identifier for an individual Snow device AMI.</p>",
         "CompatibleImage$Name": "<p>The optional name of a compatible image.</p>",
-        "ConflictException$ConflictResource": null,
+        "ConflictException$ConflictResource": "<p>You get this resource when you call <code>CreateReturnShippingLabel</code> more than once when other requests are not completed. .</p>",
         "ConflictException$Message": null,
         "CreateAddressResult$AddressId": "<p>The automatically generated ID for a specific address. You'll use this ID when you create a job to specify which address you want the Snow device for that job shipped to.</p>",
         "CreateClusterRequest$Description": "<p>An optional description of this specific cluster, for example <code>Environmental Data Cluster-01</code>.</p>",

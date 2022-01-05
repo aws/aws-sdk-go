@@ -32267,7 +32267,7 @@ func (s *CreateFleetMetricOutput) SetMetricName(v string) *CreateFleetMetricOutp
 type CreateJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// Allows you to create criteria to abort a job.
+	// Allows you to create the criteria to abort a job.
 	AbortConfig *AbortConfig `locationName:"abortConfig" type:"structure"`
 
 	// A short text description of the job.
@@ -32292,6 +32292,9 @@ type CreateJobInput struct {
 	// where bucket is your bucket name and key is the object in the bucket to which
 	// you are linking.
 	DocumentSource *string `locationName:"documentSource" min:"1" type:"string"`
+
+	// Allows you to create the criteria to retry a job.
+	JobExecutionsRetryConfig *JobExecutionsRetryConfig `locationName:"jobExecutionsRetryConfig" type:"structure"`
 
 	// Allows you to create a staged rollout of the job.
 	JobExecutionsRolloutConfig *JobExecutionsRolloutConfig `locationName:"jobExecutionsRolloutConfig" type:"structure"`
@@ -32390,6 +32393,11 @@ func (s *CreateJobInput) Validate() error {
 			invalidParams.AddNested("AbortConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.JobExecutionsRetryConfig != nil {
+		if err := s.JobExecutionsRetryConfig.Validate(); err != nil {
+			invalidParams.AddNested("JobExecutionsRetryConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.JobExecutionsRolloutConfig != nil {
 		if err := s.JobExecutionsRolloutConfig.Validate(); err != nil {
 			invalidParams.AddNested("JobExecutionsRolloutConfig", err.(request.ErrInvalidParams))
@@ -32444,6 +32452,12 @@ func (s *CreateJobInput) SetDocumentParameters(v map[string]*string) *CreateJobI
 // SetDocumentSource sets the DocumentSource field's value.
 func (s *CreateJobInput) SetDocumentSource(v string) *CreateJobInput {
 	s.DocumentSource = &v
+	return s
+}
+
+// SetJobExecutionsRetryConfig sets the JobExecutionsRetryConfig field's value.
+func (s *CreateJobInput) SetJobExecutionsRetryConfig(v *JobExecutionsRetryConfig) *CreateJobInput {
+	s.JobExecutionsRetryConfig = v
 	return s
 }
 
@@ -32581,6 +32595,9 @@ type CreateJobTemplateInput struct {
 	// The ARN of the job to use as the basis for the job template.
 	JobArn *string `locationName:"jobArn" type:"string"`
 
+	// Allows you to create the criteria to retry a job.
+	JobExecutionsRetryConfig *JobExecutionsRetryConfig `locationName:"jobExecutionsRetryConfig" type:"structure"`
+
 	// Allows you to create a staged rollout of a job.
 	JobExecutionsRolloutConfig *JobExecutionsRolloutConfig `locationName:"jobExecutionsRolloutConfig" type:"structure"`
 
@@ -32641,6 +32658,11 @@ func (s *CreateJobTemplateInput) Validate() error {
 			invalidParams.AddNested("AbortConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.JobExecutionsRetryConfig != nil {
+		if err := s.JobExecutionsRetryConfig.Validate(); err != nil {
+			invalidParams.AddNested("JobExecutionsRetryConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.JobExecutionsRolloutConfig != nil {
 		if err := s.JobExecutionsRolloutConfig.Validate(); err != nil {
 			invalidParams.AddNested("JobExecutionsRolloutConfig", err.(request.ErrInvalidParams))
@@ -32695,6 +32717,12 @@ func (s *CreateJobTemplateInput) SetDocumentSource(v string) *CreateJobTemplateI
 // SetJobArn sets the JobArn field's value.
 func (s *CreateJobTemplateInput) SetJobArn(v string) *CreateJobTemplateInput {
 	s.JobArn = &v
+	return s
+}
+
+// SetJobExecutionsRetryConfig sets the JobExecutionsRetryConfig field's value.
+func (s *CreateJobTemplateInput) SetJobExecutionsRetryConfig(v *JobExecutionsRetryConfig) *CreateJobTemplateInput {
+	s.JobExecutionsRetryConfig = v
 	return s
 }
 
@@ -40151,6 +40179,10 @@ type DescribeJobTemplateOutput struct {
 	// An S3 link to the job document.
 	DocumentSource *string `locationName:"documentSource" min:"1" type:"string"`
 
+	// The configuration that determines how many retries are allowed for each failure
+	// type for a job.
+	JobExecutionsRetryConfig *JobExecutionsRetryConfig `locationName:"jobExecutionsRetryConfig" type:"structure"`
+
 	// Allows you to create a staged rollout of a job.
 	JobExecutionsRolloutConfig *JobExecutionsRolloutConfig `locationName:"jobExecutionsRolloutConfig" type:"structure"`
 
@@ -40215,6 +40247,12 @@ func (s *DescribeJobTemplateOutput) SetDocument(v string) *DescribeJobTemplateOu
 // SetDocumentSource sets the DocumentSource field's value.
 func (s *DescribeJobTemplateOutput) SetDocumentSource(v string) *DescribeJobTemplateOutput {
 	s.DocumentSource = &v
+	return s
+}
+
+// SetJobExecutionsRetryConfig sets the JobExecutionsRetryConfig field's value.
+func (s *DescribeJobTemplateOutput) SetJobExecutionsRetryConfig(v *JobExecutionsRetryConfig) *DescribeJobTemplateOutput {
+	s.JobExecutionsRetryConfig = v
 	return s
 }
 
@@ -46658,6 +46696,9 @@ type Job struct {
 	// An ARN identifying the job with format "arn:aws:iot:region:account:job/jobId".
 	JobArn *string `locationName:"jobArn" type:"string"`
 
+	// The configuration for the criteria to retry the job.
+	JobExecutionsRetryConfig *JobExecutionsRetryConfig `locationName:"jobExecutionsRetryConfig" type:"structure"`
+
 	// Allows you to create a staged rollout of a job.
 	JobExecutionsRolloutConfig *JobExecutionsRolloutConfig `locationName:"jobExecutionsRolloutConfig" type:"structure"`
 
@@ -46775,6 +46816,12 @@ func (s *Job) SetForceCanceled(v bool) *Job {
 // SetJobArn sets the JobArn field's value.
 func (s *Job) SetJobArn(v string) *Job {
 	s.JobArn = &v
+	return s
+}
+
+// SetJobExecutionsRetryConfig sets the JobExecutionsRetryConfig field's value.
+func (s *Job) SetJobExecutionsRetryConfig(v *JobExecutionsRetryConfig) *Job {
+	s.JobExecutionsRetryConfig = v
 	return s
 }
 
@@ -47029,6 +47076,10 @@ type JobExecutionSummary struct {
 	// The time, in seconds since the epoch, when the job execution was queued.
 	QueuedAt *time.Time `locationName:"queuedAt" type:"timestamp"`
 
+	// The number that indicates how many retry attempts have been completed for
+	// this job on this device.
+	RetryAttempt *int64 `locationName:"retryAttempt" type:"integer"`
+
 	// The time, in seconds since the epoch, when the job execution started.
 	StartedAt *time.Time `locationName:"startedAt" type:"timestamp"`
 
@@ -47069,6 +47120,12 @@ func (s *JobExecutionSummary) SetLastUpdatedAt(v time.Time) *JobExecutionSummary
 // SetQueuedAt sets the QueuedAt field's value.
 func (s *JobExecutionSummary) SetQueuedAt(v time.Time) *JobExecutionSummary {
 	s.QueuedAt = &v
+	return s
+}
+
+// SetRetryAttempt sets the RetryAttempt field's value.
+func (s *JobExecutionSummary) SetRetryAttempt(v int64) *JobExecutionSummary {
+	s.RetryAttempt = &v
 	return s
 }
 
@@ -47163,6 +47220,68 @@ func (s *JobExecutionSummaryForThing) SetJobExecutionSummary(v *JobExecutionSumm
 // SetJobId sets the JobId field's value.
 func (s *JobExecutionSummaryForThing) SetJobId(v string) *JobExecutionSummaryForThing {
 	s.JobId = &v
+	return s
+}
+
+// The configuration that determines how many retries are allowed for each failure
+// type for a job.
+type JobExecutionsRetryConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The list of criteria that determines how many retries are allowed for each
+	// failure type for a job.
+	//
+	// CriteriaList is a required field
+	CriteriaList []*RetryCriteria `locationName:"criteriaList" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobExecutionsRetryConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobExecutionsRetryConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JobExecutionsRetryConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JobExecutionsRetryConfig"}
+	if s.CriteriaList == nil {
+		invalidParams.Add(request.NewErrParamRequired("CriteriaList"))
+	}
+	if s.CriteriaList != nil && len(s.CriteriaList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CriteriaList", 1))
+	}
+	if s.CriteriaList != nil {
+		for i, v := range s.CriteriaList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CriteriaList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCriteriaList sets the CriteriaList field's value.
+func (s *JobExecutionsRetryConfig) SetCriteriaList(v []*RetryCriteria) *JobExecutionsRetryConfig {
+	s.CriteriaList = v
 	return s
 }
 
@@ -50245,6 +50364,9 @@ func (s *ListJobExecutionsForJobOutput) SetNextToken(v string) *ListJobExecution
 type ListJobExecutionsForThingInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The unique identifier you assigned to this job when it was created.
+	JobId *string `location:"querystring" locationName:"jobId" min:"1" type:"string"`
+
 	// The maximum number of results to be returned per request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -50293,6 +50415,9 @@ func (s ListJobExecutionsForThingInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListJobExecutionsForThingInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListJobExecutionsForThingInput"}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -50310,6 +50435,12 @@ func (s *ListJobExecutionsForThingInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *ListJobExecutionsForThingInput) SetJobId(v string) *ListJobExecutionsForThingInput {
+	s.JobId = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -57944,6 +58075,68 @@ func (s *ResourceRegistrationFailureException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The criteria that determines how many retries are allowed for each failure
+// type for a job.
+type RetryCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// The type of job execution failures that can initiate a job retry.
+	//
+	// FailureType is a required field
+	FailureType *string `locationName:"failureType" type:"string" required:"true" enum:"RetryableFailureType"`
+
+	// The number of retries allowed for a failure type for the job.
+	//
+	// NumberOfRetries is a required field
+	NumberOfRetries *int64 `locationName:"numberOfRetries" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetryCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetryCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetryCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetryCriteria"}
+	if s.FailureType == nil {
+		invalidParams.Add(request.NewErrParamRequired("FailureType"))
+	}
+	if s.NumberOfRetries == nil {
+		invalidParams.Add(request.NewErrParamRequired("NumberOfRetries"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFailureType sets the FailureType field's value.
+func (s *RetryCriteria) SetFailureType(v string) *RetryCriteria {
+	s.FailureType = &v
+	return s
+}
+
+// SetNumberOfRetries sets the NumberOfRetries field's value.
+func (s *RetryCriteria) SetNumberOfRetries(v int64) *RetryCriteria {
+	s.NumberOfRetries = &v
+	return s
+}
+
 // Role alias description.
 type RoleAliasDescription struct {
 	_ struct{} `type:"structure"`
@@ -65167,6 +65360,9 @@ type UpdateJobInput struct {
 	// A short text description of the job.
 	Description *string `locationName:"description" type:"string"`
 
+	// Allows you to create the criteria to retry a job.
+	JobExecutionsRetryConfig *JobExecutionsRetryConfig `locationName:"jobExecutionsRetryConfig" type:"structure"`
+
 	// Allows you to create a staged rollout of the job.
 	JobExecutionsRolloutConfig *JobExecutionsRolloutConfig `locationName:"jobExecutionsRolloutConfig" type:"structure"`
 
@@ -65231,6 +65427,11 @@ func (s *UpdateJobInput) Validate() error {
 			invalidParams.AddNested("AbortConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.JobExecutionsRetryConfig != nil {
+		if err := s.JobExecutionsRetryConfig.Validate(); err != nil {
+			invalidParams.AddNested("JobExecutionsRetryConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.JobExecutionsRolloutConfig != nil {
 		if err := s.JobExecutionsRolloutConfig.Validate(); err != nil {
 			invalidParams.AddNested("JobExecutionsRolloutConfig", err.(request.ErrInvalidParams))
@@ -65257,6 +65458,12 @@ func (s *UpdateJobInput) SetAbortConfig(v *AbortConfig) *UpdateJobInput {
 // SetDescription sets the Description field's value.
 func (s *UpdateJobInput) SetDescription(v string) *UpdateJobInput {
 	s.Description = &v
+	return s
+}
+
+// SetJobExecutionsRetryConfig sets the JobExecutionsRetryConfig field's value.
+func (s *UpdateJobInput) SetJobExecutionsRetryConfig(v *JobExecutionsRetryConfig) *UpdateJobInput {
+	s.JobExecutionsRetryConfig = v
 	return s
 }
 
@@ -68666,6 +68873,26 @@ func ResourceType_Values() []string {
 		ResourceTypeAccountSettings,
 		ResourceTypeRoleAlias,
 		ResourceTypeIamRole,
+	}
+}
+
+const (
+	// RetryableFailureTypeFailed is a RetryableFailureType enum value
+	RetryableFailureTypeFailed = "FAILED"
+
+	// RetryableFailureTypeTimedOut is a RetryableFailureType enum value
+	RetryableFailureTypeTimedOut = "TIMED_OUT"
+
+	// RetryableFailureTypeAll is a RetryableFailureType enum value
+	RetryableFailureTypeAll = "ALL"
+)
+
+// RetryableFailureType_Values returns all elements of the RetryableFailureType enum
+func RetryableFailureType_Values() []string {
+	return []string{
+		RetryableFailureTypeFailed,
+		RetryableFailureTypeTimedOut,
+		RetryableFailureTypeAll,
 	}
 }
 

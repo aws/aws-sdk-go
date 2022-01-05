@@ -249,7 +249,7 @@
     "AbortConfig": {
       "base": "<p>The criteria that determine when and how a job abort takes place.</p>",
       "refs": {
-        "CreateJobRequest$abortConfig": "<p>Allows you to create criteria to abort a job.</p>",
+        "CreateJobRequest$abortConfig": "<p>Allows you to create the criteria to abort a job.</p>",
         "CreateJobTemplateRequest$abortConfig": null,
         "DescribeJobTemplateResponse$abortConfig": null,
         "Job$abortConfig": "<p>Configuration for criteria to abort the job.</p>",
@@ -4140,6 +4140,16 @@
         "ListJobExecutionsForThingResponse$executionSummaries": "<p>A list of job execution summaries.</p>"
       }
     },
+    "JobExecutionsRetryConfig": {
+      "base": "<p>The configuration that determines how many retries are allowed for each failure type for a job.</p>",
+      "refs": {
+        "CreateJobRequest$jobExecutionsRetryConfig": "<p>Allows you to create the criteria to retry a job.</p>",
+        "CreateJobTemplateRequest$jobExecutionsRetryConfig": "<p>Allows you to create the criteria to retry a job.</p>",
+        "DescribeJobTemplateResponse$jobExecutionsRetryConfig": "<p>The configuration that determines how many retries are allowed for each failure type for a job.</p>",
+        "Job$jobExecutionsRetryConfig": "<p>The configuration for the criteria to retry the job.</p>",
+        "UpdateJobRequest$jobExecutionsRetryConfig": "<p>Allows you to create the criteria to retry a job.</p>"
+      }
+    },
     "JobExecutionsRolloutConfig": {
       "base": "<p>Allows you to create a staged rollout of a job.</p>",
       "refs": {
@@ -4170,6 +4180,7 @@
         "JobExecutionSummaryForThing$jobId": "<p>The unique identifier you assigned to this job when it was created.</p>",
         "JobSummary$jobId": "<p>The unique identifier you assigned to this job when it was created.</p>",
         "ListJobExecutionsForJobRequest$jobId": "<p>The unique identifier you assigned to this job when it was created.</p>",
+        "ListJobExecutionsForThingRequest$jobId": "<p>The unique identifier you assigned to this job when it was created.</p>",
         "UpdateJobRequest$jobId": "<p>The ID of the job to be updated.</p>"
       }
     },
@@ -5435,6 +5446,12 @@
         "MetricValue$numbers": "<p> The numeral values of a metric. </p>"
       }
     },
+    "NumberOfRetries": {
+      "base": null,
+      "refs": {
+        "RetryCriteria$numberOfRetries": "<p>The number of retries allowed for a failure type for the job.</p>"
+      }
+    },
     "NumberOfThings": {
       "base": null,
       "refs": {
@@ -6376,6 +6393,30 @@
       "base": null,
       "refs": {
         "AuthInfo$resources": "<p>The resources for which the principal is being authorized to perform the specified action.</p>"
+      }
+    },
+    "RetryAttempt": {
+      "base": null,
+      "refs": {
+        "JobExecutionSummary$retryAttempt": "<p>The number that indicates how many retry attempts have been completed for this job on this device.</p>"
+      }
+    },
+    "RetryCriteria": {
+      "base": "<p>The criteria that determines how many retries are allowed for each failure type for a job.</p>",
+      "refs": {
+        "RetryCriteriaList$member": null
+      }
+    },
+    "RetryCriteriaList": {
+      "base": null,
+      "refs": {
+        "JobExecutionsRetryConfig$criteriaList": "<p>The list of criteria that determines how many retries are allowed for each failure type for a job.</p>"
+      }
+    },
+    "RetryableFailureType": {
+      "base": null,
+      "refs": {
+        "RetryCriteria$failureType": "<p>The type of job execution failures that can initiate a job retry.</p>"
       }
     },
     "RoleAlias": {

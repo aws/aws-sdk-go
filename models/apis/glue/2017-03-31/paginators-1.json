@@ -92,6 +92,11 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
+    "GetUnfilteredPartitionsMetadata": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "GetUserDefinedFunctions": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

@@ -354,6 +354,40 @@
         {"shape":"ResourceNotReadyException"}
       ]
     },
+    "GetTemporaryGluePartitionCredentials":{
+      "name":"GetTemporaryGluePartitionCredentials",
+      "http":{
+        "method":"POST",
+        "requestUri":"/GetTemporaryGluePartitionCredentials"
+      },
+      "input":{"shape":"GetTemporaryGluePartitionCredentialsRequest"},
+      "output":{"shape":"GetTemporaryGluePartitionCredentialsResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"PermissionTypeMismatchException"}
+      ]
+    },
+    "GetTemporaryGlueTableCredentials":{
+      "name":"GetTemporaryGlueTableCredentials",
+      "http":{
+        "method":"POST",
+        "requestUri":"/GetTemporaryGlueTableCredentials"
+      },
+      "input":{"shape":"GetTemporaryGlueTableCredentialsRequest"},
+      "output":{"shape":"GetTemporaryGlueTableCredentialsResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"PermissionTypeMismatchException"}
+      ]
+    },
     "GetWorkUnitResults":{
       "name":"GetWorkUnitResults",
       "http":{
@@ -699,6 +733,7 @@
       },
       "exception":true
     },
+    "AccessKeyIdString":{"type":"string"},
     "AddLFTagsToResourceRequest":{
       "type":"structure",
       "required":[
@@ -742,6 +777,22 @@
         "Message":{"shape":"MessageString"}
       },
       "exception":true
+    },
+    "AuditContext":{
+      "type":"structure",
+      "members":{
+        "AdditionalAuditContext":{"shape":"AuditContextString"}
+      }
+    },
+    "AuditContextString":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
+    },
+    "AuthorizedSessionTagValueList":{
+      "type":"list",
+      "member":{"shape":"NameString"}
     },
     "BatchGrantPermissionsRequest":{
       "type":"structure",
@@ -907,6 +958,12 @@
       "members":{
       }
     },
+    "CredentialTimeoutDurationSecondInteger":{
+      "type":"integer",
+      "box":true,
+      "max":43200,
+      "min":900
+    },
     "DataCellsFilter":{
       "type":"structure",
       "required":[
@@ -974,7 +1031,10 @@
         "DataLakeAdmins":{"shape":"DataLakePrincipalList"},
         "CreateDatabaseDefaultPermissions":{"shape":"PrincipalPermissionsList"},
         "CreateTableDefaultPermissions":{"shape":"PrincipalPermissionsList"},
-        "TrustedResourceOwners":{"shape":"TrustedResourceOwners"}
+        "TrustedResourceOwners":{"shape":"TrustedResourceOwners"},
+        "AllowExternalDataFiltering":{"shape":"NullableBoolean"},
+        "ExternalDataFilteringAllowList":{"shape":"DataLakePrincipalList"},
+        "AuthorizedSessionTagValueList":{"shape":"AuthorizedSessionTagValueList"}
       }
     },
     "DataLocationResource":{
@@ -1137,6 +1197,7 @@
         "WorkUnitsExecutedCount":{"shape":"NumberOfItems"}
       }
     },
+    "ExpirationTimestamp":{"type":"timestamp"},
     "ExpiredException":{
       "type":"structure",
       "members":{
@@ -1311,6 +1372,54 @@
       "members":{
         "Objects":{"shape":"PartitionedTableObjectsList"},
         "NextToken":{"shape":"TokenString"}
+      }
+    },
+    "GetTemporaryGluePartitionCredentialsRequest":{
+      "type":"structure",
+      "required":[
+        "TableArn",
+        "Partition",
+        "SupportedPermissionTypes"
+      ],
+      "members":{
+        "TableArn":{"shape":"ResourceArnString"},
+        "Partition":{"shape":"PartitionValueList"},
+        "Permissions":{"shape":"PermissionList"},
+        "DurationSeconds":{"shape":"CredentialTimeoutDurationSecondInteger"},
+        "AuditContext":{"shape":"AuditContext"},
+        "SupportedPermissionTypes":{"shape":"PermissionTypeList"}
+      }
+    },
+    "GetTemporaryGluePartitionCredentialsResponse":{
+      "type":"structure",
+      "members":{
+        "AccessKeyId":{"shape":"AccessKeyIdString"},
+        "SecretAccessKey":{"shape":"SecretAccessKeyString"},
+        "SessionToken":{"shape":"SessionTokenString"},
+        "Expiration":{"shape":"ExpirationTimestamp"}
+      }
+    },
+    "GetTemporaryGlueTableCredentialsRequest":{
+      "type":"structure",
+      "required":[
+        "TableArn",
+        "SupportedPermissionTypes"
+      ],
+      "members":{
+        "TableArn":{"shape":"ResourceArnString"},
+        "Permissions":{"shape":"PermissionList"},
+        "DurationSeconds":{"shape":"CredentialTimeoutDurationSecondInteger"},
+        "AuditContext":{"shape":"AuditContext"},
+        "SupportedPermissionTypes":{"shape":"PermissionTypeList"}
+      }
+    },
+    "GetTemporaryGlueTableCredentialsResponse":{
+      "type":"structure",
+      "members":{
+        "AccessKeyId":{"shape":"AccessKeyIdString"},
+        "SecretAccessKey":{"shape":"SecretAccessKeyString"},
+        "SessionToken":{"shape":"SessionTokenString"},
+        "Expiration":{"shape":"ExpirationTimestamp"}
       }
     },
     "GetWorkUnitResultsRequest":{
@@ -1651,6 +1760,13 @@
         "Objects":{"shape":"TableObjectList"}
       }
     },
+    "PartitionValueList":{
+      "type":"structure",
+      "required":["Values"],
+      "members":{
+        "Values":{"shape":"ValueStringList"}
+      }
+    },
     "PartitionValueString":{
       "type":"string",
       "max":1024
@@ -1688,6 +1804,26 @@
     "PermissionList":{
       "type":"list",
       "member":{"shape":"Permission"}
+    },
+    "PermissionType":{
+      "type":"string",
+      "enum":[
+        "COLUMN_PERMISSION",
+        "CELL_FILTER_PERMISSION"
+      ]
+    },
+    "PermissionTypeList":{
+      "type":"list",
+      "member":{"shape":"PermissionType"},
+      "max":255,
+      "min":1
+    },
+    "PermissionTypeMismatchException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"MessageString"}
+      },
+      "exception":true
     },
     "PlanningStatistics":{
       "type":"structure",
@@ -1932,6 +2068,8 @@
         "TableList":{"shape":"TableLFTagsList"}
       }
     },
+    "SecretAccessKeyString":{"type":"string"},
+    "SessionTokenString":{"type":"string"},
     "StartQueryPlanningRequest":{
       "type":"structure",
       "required":[
@@ -2256,6 +2394,12 @@
       "members":{
         "Result":{"shape":"Result"}
       }
+    },
+    "ValueString":{"type":"string"},
+    "ValueStringList":{
+      "type":"list",
+      "member":{"shape":"ValueString"},
+      "min":1
     },
     "VirtualObject":{
       "type":"structure",

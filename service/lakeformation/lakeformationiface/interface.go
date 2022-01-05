@@ -150,6 +150,14 @@ type LakeFormationAPI interface {
 	GetTableObjectsPages(*lakeformation.GetTableObjectsInput, func(*lakeformation.GetTableObjectsOutput, bool) bool) error
 	GetTableObjectsPagesWithContext(aws.Context, *lakeformation.GetTableObjectsInput, func(*lakeformation.GetTableObjectsOutput, bool) bool, ...request.Option) error
 
+	GetTemporaryGluePartitionCredentials(*lakeformation.GetTemporaryGluePartitionCredentialsInput) (*lakeformation.GetTemporaryGluePartitionCredentialsOutput, error)
+	GetTemporaryGluePartitionCredentialsWithContext(aws.Context, *lakeformation.GetTemporaryGluePartitionCredentialsInput, ...request.Option) (*lakeformation.GetTemporaryGluePartitionCredentialsOutput, error)
+	GetTemporaryGluePartitionCredentialsRequest(*lakeformation.GetTemporaryGluePartitionCredentialsInput) (*request.Request, *lakeformation.GetTemporaryGluePartitionCredentialsOutput)
+
+	GetTemporaryGlueTableCredentials(*lakeformation.GetTemporaryGlueTableCredentialsInput) (*lakeformation.GetTemporaryGlueTableCredentialsOutput, error)
+	GetTemporaryGlueTableCredentialsWithContext(aws.Context, *lakeformation.GetTemporaryGlueTableCredentialsInput, ...request.Option) (*lakeformation.GetTemporaryGlueTableCredentialsOutput, error)
+	GetTemporaryGlueTableCredentialsRequest(*lakeformation.GetTemporaryGlueTableCredentialsInput) (*request.Request, *lakeformation.GetTemporaryGlueTableCredentialsOutput)
+
 	GetWorkUnitResults(*lakeformation.GetWorkUnitResultsInput) (*lakeformation.GetWorkUnitResultsOutput, error)
 	GetWorkUnitResultsWithContext(aws.Context, *lakeformation.GetWorkUnitResultsInput, ...request.Option) (*lakeformation.GetWorkUnitResultsOutput, error)
 	GetWorkUnitResultsRequest(*lakeformation.GetWorkUnitResultsInput) (*request.Request, *lakeformation.GetWorkUnitResultsOutput)
