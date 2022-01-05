@@ -5489,6 +5489,7 @@
         "tags":{"shape":"TagList"},
         "namespaceId":{"shape":"NamespaceId"},
         "jobTemplateArn":{"shape":"JobTemplateArn"},
+        "jobExecutionsRetryConfig":{"shape":"JobExecutionsRetryConfig"},
         "documentParameters":{"shape":"ParameterMap"}
       }
     },
@@ -5520,7 +5521,8 @@
         "jobExecutionsRolloutConfig":{"shape":"JobExecutionsRolloutConfig"},
         "abortConfig":{"shape":"AbortConfig"},
         "timeoutConfig":{"shape":"TimeoutConfig"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "jobExecutionsRetryConfig":{"shape":"JobExecutionsRetryConfig"}
       }
     },
     "CreateJobTemplateResponse":{
@@ -7003,7 +7005,8 @@
         "presignedUrlConfig":{"shape":"PresignedUrlConfig"},
         "jobExecutionsRolloutConfig":{"shape":"JobExecutionsRolloutConfig"},
         "abortConfig":{"shape":"AbortConfig"},
-        "timeoutConfig":{"shape":"TimeoutConfig"}
+        "timeoutConfig":{"shape":"TimeoutConfig"},
+        "jobExecutionsRetryConfig":{"shape":"JobExecutionsRetryConfig"}
       }
     },
     "DescribeManagedJobTemplateRequest":{
@@ -8485,6 +8488,7 @@
         "timeoutConfig":{"shape":"TimeoutConfig"},
         "namespaceId":{"shape":"NamespaceId"},
         "jobTemplateArn":{"shape":"JobTemplateArn"},
+        "jobExecutionsRetryConfig":{"shape":"JobExecutionsRetryConfig"},
         "documentParameters":{"shape":"ParameterMap"}
       }
     },
@@ -8554,7 +8558,8 @@
         "queuedAt":{"shape":"DateType"},
         "startedAt":{"shape":"DateType"},
         "lastUpdatedAt":{"shape":"DateType"},
-        "executionNumber":{"shape":"ExecutionNumber"}
+        "executionNumber":{"shape":"ExecutionNumber"},
+        "retryAttempt":{"shape":"RetryAttempt"}
       }
     },
     "JobExecutionSummaryForJob":{
@@ -8578,6 +8583,13 @@
     "JobExecutionSummaryForThingList":{
       "type":"list",
       "member":{"shape":"JobExecutionSummaryForThing"}
+    },
+    "JobExecutionsRetryConfig":{
+      "type":"structure",
+      "required":["criteriaList"],
+      "members":{
+        "criteriaList":{"shape":"RetryCriteriaList"}
+      }
     },
     "JobExecutionsRolloutConfig":{
       "type":"structure",
@@ -9391,6 +9403,11 @@
           "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
+        },
+        "jobId":{
+          "shape":"JobId",
+          "location":"querystring",
+          "locationName":"jobId"
         }
       }
     },
@@ -10726,6 +10743,11 @@
       "type":"list",
       "member":{"shape":"Number"}
     },
+    "NumberOfRetries":{
+      "type":"integer",
+      "max":10,
+      "min":0
+    },
     "NumberOfThings":{
       "type":"integer",
       "min":1
@@ -11453,6 +11475,32 @@
     "Resources":{
       "type":"list",
       "member":{"shape":"Resource"}
+    },
+    "RetryAttempt":{"type":"integer"},
+    "RetryCriteria":{
+      "type":"structure",
+      "required":[
+        "failureType",
+        "numberOfRetries"
+      ],
+      "members":{
+        "failureType":{"shape":"RetryableFailureType"},
+        "numberOfRetries":{"shape":"NumberOfRetries"}
+      }
+    },
+    "RetryCriteriaList":{
+      "type":"list",
+      "member":{"shape":"RetryCriteria"},
+      "max":2,
+      "min":1
+    },
+    "RetryableFailureType":{
+      "type":"string",
+      "enum":[
+        "FAILED",
+        "TIMED_OUT",
+        "ALL"
+      ]
     },
     "RoleAlias":{
       "type":"string",
@@ -13071,7 +13119,8 @@
           "shape":"NamespaceId",
           "location":"querystring",
           "locationName":"namespaceId"
-        }
+        },
+        "jobExecutionsRetryConfig":{"shape":"JobExecutionsRetryConfig"}
       }
     },
     "UpdateMitigationActionRequest":{

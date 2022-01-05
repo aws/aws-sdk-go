@@ -98007,6 +98007,30 @@ const (
 
 	// TrainingInstanceTypeMlC5n18xlarge is a TrainingInstanceType enum value
 	TrainingInstanceTypeMlC5n18xlarge = "ml.c5n.18xlarge"
+
+	// TrainingInstanceTypeMlG5Xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlG5Xlarge = "ml.g5.xlarge"
+
+	// TrainingInstanceTypeMlG52xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlG52xlarge = "ml.g5.2xlarge"
+
+	// TrainingInstanceTypeMlG54xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlG54xlarge = "ml.g5.4xlarge"
+
+	// TrainingInstanceTypeMlG58xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlG58xlarge = "ml.g5.8xlarge"
+
+	// TrainingInstanceTypeMlG516xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlG516xlarge = "ml.g5.16xlarge"
+
+	// TrainingInstanceTypeMlG512xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlG512xlarge = "ml.g5.12xlarge"
+
+	// TrainingInstanceTypeMlG524xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlG524xlarge = "ml.g5.24xlarge"
+
+	// TrainingInstanceTypeMlG548xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlG548xlarge = "ml.g5.48xlarge"
 )
 
 // TrainingInstanceType_Values returns all elements of the TrainingInstanceType enum
@@ -98051,6 +98075,14 @@ func TrainingInstanceType_Values() []string {
 		TrainingInstanceTypeMlC5n4xlarge,
 		TrainingInstanceTypeMlC5n9xlarge,
 		TrainingInstanceTypeMlC5n18xlarge,
+		TrainingInstanceTypeMlG5Xlarge,
+		TrainingInstanceTypeMlG52xlarge,
+		TrainingInstanceTypeMlG54xlarge,
+		TrainingInstanceTypeMlG58xlarge,
+		TrainingInstanceTypeMlG516xlarge,
+		TrainingInstanceTypeMlG512xlarge,
+		TrainingInstanceTypeMlG524xlarge,
+		TrainingInstanceTypeMlG548xlarge,
 	}
 }
 

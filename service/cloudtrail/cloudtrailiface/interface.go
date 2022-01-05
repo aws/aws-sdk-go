@@ -64,17 +64,37 @@ type CloudTrailAPI interface {
 	AddTagsWithContext(aws.Context, *cloudtrail.AddTagsInput, ...request.Option) (*cloudtrail.AddTagsOutput, error)
 	AddTagsRequest(*cloudtrail.AddTagsInput) (*request.Request, *cloudtrail.AddTagsOutput)
 
+	CancelQuery(*cloudtrail.CancelQueryInput) (*cloudtrail.CancelQueryOutput, error)
+	CancelQueryWithContext(aws.Context, *cloudtrail.CancelQueryInput, ...request.Option) (*cloudtrail.CancelQueryOutput, error)
+	CancelQueryRequest(*cloudtrail.CancelQueryInput) (*request.Request, *cloudtrail.CancelQueryOutput)
+
+	CreateEventDataStore(*cloudtrail.CreateEventDataStoreInput) (*cloudtrail.CreateEventDataStoreOutput, error)
+	CreateEventDataStoreWithContext(aws.Context, *cloudtrail.CreateEventDataStoreInput, ...request.Option) (*cloudtrail.CreateEventDataStoreOutput, error)
+	CreateEventDataStoreRequest(*cloudtrail.CreateEventDataStoreInput) (*request.Request, *cloudtrail.CreateEventDataStoreOutput)
+
 	CreateTrail(*cloudtrail.CreateTrailInput) (*cloudtrail.CreateTrailOutput, error)
 	CreateTrailWithContext(aws.Context, *cloudtrail.CreateTrailInput, ...request.Option) (*cloudtrail.CreateTrailOutput, error)
 	CreateTrailRequest(*cloudtrail.CreateTrailInput) (*request.Request, *cloudtrail.CreateTrailOutput)
+
+	DeleteEventDataStore(*cloudtrail.DeleteEventDataStoreInput) (*cloudtrail.DeleteEventDataStoreOutput, error)
+	DeleteEventDataStoreWithContext(aws.Context, *cloudtrail.DeleteEventDataStoreInput, ...request.Option) (*cloudtrail.DeleteEventDataStoreOutput, error)
+	DeleteEventDataStoreRequest(*cloudtrail.DeleteEventDataStoreInput) (*request.Request, *cloudtrail.DeleteEventDataStoreOutput)
 
 	DeleteTrail(*cloudtrail.DeleteTrailInput) (*cloudtrail.DeleteTrailOutput, error)
 	DeleteTrailWithContext(aws.Context, *cloudtrail.DeleteTrailInput, ...request.Option) (*cloudtrail.DeleteTrailOutput, error)
 	DeleteTrailRequest(*cloudtrail.DeleteTrailInput) (*request.Request, *cloudtrail.DeleteTrailOutput)
 
+	DescribeQuery(*cloudtrail.DescribeQueryInput) (*cloudtrail.DescribeQueryOutput, error)
+	DescribeQueryWithContext(aws.Context, *cloudtrail.DescribeQueryInput, ...request.Option) (*cloudtrail.DescribeQueryOutput, error)
+	DescribeQueryRequest(*cloudtrail.DescribeQueryInput) (*request.Request, *cloudtrail.DescribeQueryOutput)
+
 	DescribeTrails(*cloudtrail.DescribeTrailsInput) (*cloudtrail.DescribeTrailsOutput, error)
 	DescribeTrailsWithContext(aws.Context, *cloudtrail.DescribeTrailsInput, ...request.Option) (*cloudtrail.DescribeTrailsOutput, error)
 	DescribeTrailsRequest(*cloudtrail.DescribeTrailsInput) (*request.Request, *cloudtrail.DescribeTrailsOutput)
+
+	GetEventDataStore(*cloudtrail.GetEventDataStoreInput) (*cloudtrail.GetEventDataStoreOutput, error)
+	GetEventDataStoreWithContext(aws.Context, *cloudtrail.GetEventDataStoreInput, ...request.Option) (*cloudtrail.GetEventDataStoreOutput, error)
+	GetEventDataStoreRequest(*cloudtrail.GetEventDataStoreInput) (*request.Request, *cloudtrail.GetEventDataStoreOutput)
 
 	GetEventSelectors(*cloudtrail.GetEventSelectorsInput) (*cloudtrail.GetEventSelectorsOutput, error)
 	GetEventSelectorsWithContext(aws.Context, *cloudtrail.GetEventSelectorsInput, ...request.Option) (*cloudtrail.GetEventSelectorsOutput, error)
@@ -84,6 +104,13 @@ type CloudTrailAPI interface {
 	GetInsightSelectorsWithContext(aws.Context, *cloudtrail.GetInsightSelectorsInput, ...request.Option) (*cloudtrail.GetInsightSelectorsOutput, error)
 	GetInsightSelectorsRequest(*cloudtrail.GetInsightSelectorsInput) (*request.Request, *cloudtrail.GetInsightSelectorsOutput)
 
+	GetQueryResults(*cloudtrail.GetQueryResultsInput) (*cloudtrail.GetQueryResultsOutput, error)
+	GetQueryResultsWithContext(aws.Context, *cloudtrail.GetQueryResultsInput, ...request.Option) (*cloudtrail.GetQueryResultsOutput, error)
+	GetQueryResultsRequest(*cloudtrail.GetQueryResultsInput) (*request.Request, *cloudtrail.GetQueryResultsOutput)
+
+	GetQueryResultsPages(*cloudtrail.GetQueryResultsInput, func(*cloudtrail.GetQueryResultsOutput, bool) bool) error
+	GetQueryResultsPagesWithContext(aws.Context, *cloudtrail.GetQueryResultsInput, func(*cloudtrail.GetQueryResultsOutput, bool) bool, ...request.Option) error
+
 	GetTrail(*cloudtrail.GetTrailInput) (*cloudtrail.GetTrailOutput, error)
 	GetTrailWithContext(aws.Context, *cloudtrail.GetTrailInput, ...request.Option) (*cloudtrail.GetTrailOutput, error)
 	GetTrailRequest(*cloudtrail.GetTrailInput) (*request.Request, *cloudtrail.GetTrailOutput)
@@ -92,12 +119,26 @@ type CloudTrailAPI interface {
 	GetTrailStatusWithContext(aws.Context, *cloudtrail.GetTrailStatusInput, ...request.Option) (*cloudtrail.GetTrailStatusOutput, error)
 	GetTrailStatusRequest(*cloudtrail.GetTrailStatusInput) (*request.Request, *cloudtrail.GetTrailStatusOutput)
 
+	ListEventDataStores(*cloudtrail.ListEventDataStoresInput) (*cloudtrail.ListEventDataStoresOutput, error)
+	ListEventDataStoresWithContext(aws.Context, *cloudtrail.ListEventDataStoresInput, ...request.Option) (*cloudtrail.ListEventDataStoresOutput, error)
+	ListEventDataStoresRequest(*cloudtrail.ListEventDataStoresInput) (*request.Request, *cloudtrail.ListEventDataStoresOutput)
+
+	ListEventDataStoresPages(*cloudtrail.ListEventDataStoresInput, func(*cloudtrail.ListEventDataStoresOutput, bool) bool) error
+	ListEventDataStoresPagesWithContext(aws.Context, *cloudtrail.ListEventDataStoresInput, func(*cloudtrail.ListEventDataStoresOutput, bool) bool, ...request.Option) error
+
 	ListPublicKeys(*cloudtrail.ListPublicKeysInput) (*cloudtrail.ListPublicKeysOutput, error)
 	ListPublicKeysWithContext(aws.Context, *cloudtrail.ListPublicKeysInput, ...request.Option) (*cloudtrail.ListPublicKeysOutput, error)
 	ListPublicKeysRequest(*cloudtrail.ListPublicKeysInput) (*request.Request, *cloudtrail.ListPublicKeysOutput)
 
 	ListPublicKeysPages(*cloudtrail.ListPublicKeysInput, func(*cloudtrail.ListPublicKeysOutput, bool) bool) error
 	ListPublicKeysPagesWithContext(aws.Context, *cloudtrail.ListPublicKeysInput, func(*cloudtrail.ListPublicKeysOutput, bool) bool, ...request.Option) error
+
+	ListQueries(*cloudtrail.ListQueriesInput) (*cloudtrail.ListQueriesOutput, error)
+	ListQueriesWithContext(aws.Context, *cloudtrail.ListQueriesInput, ...request.Option) (*cloudtrail.ListQueriesOutput, error)
+	ListQueriesRequest(*cloudtrail.ListQueriesInput) (*request.Request, *cloudtrail.ListQueriesOutput)
+
+	ListQueriesPages(*cloudtrail.ListQueriesInput, func(*cloudtrail.ListQueriesOutput, bool) bool) error
+	ListQueriesPagesWithContext(aws.Context, *cloudtrail.ListQueriesInput, func(*cloudtrail.ListQueriesOutput, bool) bool, ...request.Option) error
 
 	ListTags(*cloudtrail.ListTagsInput) (*cloudtrail.ListTagsOutput, error)
 	ListTagsWithContext(aws.Context, *cloudtrail.ListTagsInput, ...request.Option) (*cloudtrail.ListTagsOutput, error)
@@ -132,13 +173,25 @@ type CloudTrailAPI interface {
 	RemoveTagsWithContext(aws.Context, *cloudtrail.RemoveTagsInput, ...request.Option) (*cloudtrail.RemoveTagsOutput, error)
 	RemoveTagsRequest(*cloudtrail.RemoveTagsInput) (*request.Request, *cloudtrail.RemoveTagsOutput)
 
+	RestoreEventDataStore(*cloudtrail.RestoreEventDataStoreInput) (*cloudtrail.RestoreEventDataStoreOutput, error)
+	RestoreEventDataStoreWithContext(aws.Context, *cloudtrail.RestoreEventDataStoreInput, ...request.Option) (*cloudtrail.RestoreEventDataStoreOutput, error)
+	RestoreEventDataStoreRequest(*cloudtrail.RestoreEventDataStoreInput) (*request.Request, *cloudtrail.RestoreEventDataStoreOutput)
+
 	StartLogging(*cloudtrail.StartLoggingInput) (*cloudtrail.StartLoggingOutput, error)
 	StartLoggingWithContext(aws.Context, *cloudtrail.StartLoggingInput, ...request.Option) (*cloudtrail.StartLoggingOutput, error)
 	StartLoggingRequest(*cloudtrail.StartLoggingInput) (*request.Request, *cloudtrail.StartLoggingOutput)
 
+	StartQuery(*cloudtrail.StartQueryInput) (*cloudtrail.StartQueryOutput, error)
+	StartQueryWithContext(aws.Context, *cloudtrail.StartQueryInput, ...request.Option) (*cloudtrail.StartQueryOutput, error)
+	StartQueryRequest(*cloudtrail.StartQueryInput) (*request.Request, *cloudtrail.StartQueryOutput)
+
 	StopLogging(*cloudtrail.StopLoggingInput) (*cloudtrail.StopLoggingOutput, error)
 	StopLoggingWithContext(aws.Context, *cloudtrail.StopLoggingInput, ...request.Option) (*cloudtrail.StopLoggingOutput, error)
 	StopLoggingRequest(*cloudtrail.StopLoggingInput) (*request.Request, *cloudtrail.StopLoggingOutput)
+
+	UpdateEventDataStore(*cloudtrail.UpdateEventDataStoreInput) (*cloudtrail.UpdateEventDataStoreOutput, error)
+	UpdateEventDataStoreWithContext(aws.Context, *cloudtrail.UpdateEventDataStoreInput, ...request.Option) (*cloudtrail.UpdateEventDataStoreOutput, error)
+	UpdateEventDataStoreRequest(*cloudtrail.UpdateEventDataStoreInput) (*request.Request, *cloudtrail.UpdateEventDataStoreOutput)
 
 	UpdateTrail(*cloudtrail.UpdateTrailInput) (*cloudtrail.UpdateTrailOutput, error)
 	UpdateTrailWithContext(aws.Context, *cloudtrail.UpdateTrailInput, ...request.Option) (*cloudtrail.UpdateTrailOutput, error)

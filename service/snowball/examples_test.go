@@ -587,7 +587,7 @@ func ExampleSnowball_UpdateCluster_shared00() {
 	input := &snowball.UpdateClusterInput{
 		AddressId:   aws.String("ADID1234ab12-3eec-4eb3-9be6-9374c10eb51b"),
 		ClusterId:   aws.String("CID123e4567-e89b-12d3-a456-426655440000"),
-		Description: aws.String("Updated the address to send this to image processing - RJ"),
+		Description: aws.String("updated-cluster-name"),
 	}
 
 	result, err := svc.UpdateCluster(input)
@@ -627,7 +627,7 @@ func ExampleSnowball_UpdateJob_shared00() {
 	svc := snowball.New(session.New())
 	input := &snowball.UpdateJobInput{
 		AddressId:                  aws.String("ADID1234ab12-3eec-4eb3-9be6-9374c10eb51b"),
-		Description:                aws.String("Upgraded to Edge, shipped to Finance Dept, and requested faster shipping speed - TS."),
+		Description:                aws.String("updated-job-name"),
 		JobId:                      aws.String("JID123e4567-e89b-12d3-a456-426655440000"),
 		ShippingOption:             aws.String("NEXT_DAY"),
 		SnowballCapacityPreference: aws.String("T100"),

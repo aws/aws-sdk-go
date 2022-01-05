@@ -107,6 +107,9 @@
     "GetTags": "<p>Retrieves a list of tags associated with a resource.</p>",
     "GetTrigger": "<p>Retrieves the definition of a trigger.</p>",
     "GetTriggers": "<p>Gets all the triggers associated with a job.</p>",
+    "GetUnfilteredPartitionMetadata": null,
+    "GetUnfilteredPartitionsMetadata": null,
+    "GetUnfilteredTableMetadata": null,
     "GetUserDefinedFunction": "<p>Retrieves a specified function definition from the Data Catalog.</p>",
     "GetUserDefinedFunctions": "<p>Retrieves multiple function definitions from the Data Catalog.</p>",
     "GetWorkflow": "<p>Retrieves resource metadata for a workflow.</p>",
@@ -175,6 +178,12 @@
       "refs": {
       }
     },
+    "AccountId": {
+      "base": null,
+      "refs": {
+        "LakeFormationConfiguration$AccountId": null
+      }
+    },
     "Action": {
       "base": "<p>Defines an action to be initiated by a trigger.</p>",
       "refs": {
@@ -204,6 +213,20 @@
       "base": null,
       "refs": {
         "JobRun$Attempt": "<p>The number of the attempt to run this job.</p>"
+      }
+    },
+    "AuditContext": {
+      "base": null,
+      "refs": {
+        "GetUnfilteredPartitionMetadataRequest$AuditContext": null,
+        "GetUnfilteredPartitionsMetadataRequest$AuditContext": null,
+        "GetUnfilteredTableMetadataRequest$AuditContext": null
+      }
+    },
+    "AuditContextString": {
+      "base": null,
+      "refs": {
+        "AuditContext$AdditionalAuditContext": null
       }
     },
     "BackfillError": {
@@ -553,9 +576,12 @@
         "CrawlerMetrics$StillEstimating": "<p>True if the crawler is still estimating how long it will take to complete this run.</p>",
         "GetConnectionRequest$HidePassword": "<p>Allows you to retrieve the connection metadata without returning the password. For instance, the AWS Glue console uses this flag to retrieve the connection, and does not display the password. Set this parameter when the caller might not have permission to use the KMS key to decrypt the password, but it does have permission to access the rest of the connection properties.</p>",
         "GetConnectionsRequest$HidePassword": "<p>Allows you to retrieve the connection metadata without returning the password. For instance, the AWS Glue console uses this flag to retrieve the connection, and does not display the password. Set this parameter when the caller might not have permission to use the KMS key to decrypt the password, but it does have permission to access the rest of the connection properties.</p>",
+        "GetUnfilteredPartitionMetadataResponse$IsRegisteredWithLakeFormation": null,
+        "GetUnfilteredTableMetadataResponse$IsRegisteredWithLakeFormation": null,
         "StorageDescriptor$Compressed": "<p> <code>True</code> if the data in the table is compressed, or <code>False</code> if not.</p>",
         "StorageDescriptor$StoredAsSubDirectories": "<p> <code>True</code> if the table data is stored in subdirectories, or <code>False</code> if not.</p>",
-        "Table$IsRegisteredWithLakeFormation": "<p>Indicates whether the table has been registered with Lake Formation.</p>"
+        "Table$IsRegisteredWithLakeFormation": "<p>Indicates whether the table has been registered with Lake Formation.</p>",
+        "UnfilteredPartition$IsRegisteredWithLakeFormation": null
       }
     },
     "BooleanColumnStatisticsData": {
@@ -669,6 +695,9 @@
         "GetTableVersionRequest$CatalogId": "<p>The ID of the Data Catalog where the tables reside. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "GetTableVersionsRequest$CatalogId": "<p>The ID of the Data Catalog where the tables reside. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "GetTablesRequest$CatalogId": "<p>The ID of the Data Catalog where the tables reside. If none is provided, the Amazon Web Services account ID is used by default.</p>",
+        "GetUnfilteredPartitionMetadataRequest$CatalogId": null,
+        "GetUnfilteredPartitionsMetadataRequest$CatalogId": null,
+        "GetUnfilteredTableMetadataRequest$CatalogId": null,
         "GetUserDefinedFunctionRequest$CatalogId": "<p>The ID of the Data Catalog where the function to be retrieved is located. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "GetUserDefinedFunctionsRequest$CatalogId": "<p>The ID of the Data Catalog where the functions to be retrieved are located. If none is provided, the Amazon Web Services account ID is used by default.</p>",
         "ImportCatalogToGlueRequest$CatalogId": "<p>The ID of the catalog to import. Currently, this should be the Amazon Web Services account ID.</p>",
@@ -865,6 +894,18 @@
         "SchemaColumn$Name": "<p>The name of the column.</p>"
       }
     },
+    "ColumnRowFilter": {
+      "base": null,
+      "refs": {
+        "ColumnRowFilterList$member": null
+      }
+    },
+    "ColumnRowFilterList": {
+      "base": null,
+      "refs": {
+        "GetUnfilteredTableMetadataResponse$CellFilters": null
+      }
+    },
     "ColumnStatistics": {
       "base": "<p>Represents the generated column-level statistics for a table or partition.</p>",
       "refs": {
@@ -1009,6 +1050,8 @@
     "ConnectionName": {
       "base": null,
       "refs": {
+        "CatalogTarget$ConnectionName": "<p>The name of the connection for an Amazon S3-backed Data Catalog table to be a target of the crawl when using a <code>Catalog</code> connection type paired with a <code>NETWORK</code> Connection type.</p>",
+        "DeltaTarget$ConnectionName": "<p>The name of the connection to use to connect to the Delta table target.</p>",
         "JdbcTarget$ConnectionName": "<p>The name of the connection to use to connect to the JDBC target.</p>",
         "MongoDBTarget$ConnectionName": "<p>The name of the connection to use to connect to the Amazon DocumentDB or MongoDB target.</p>",
         "S3Target$ConnectionName": "<p>The name of a connection which allows a job or crawler to access data in Amazon S3 within an Amazon Virtual Private Cloud environment (Amazon VPC).</p>"
@@ -1761,6 +1804,18 @@
     "DeleteWorkflowResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "DeltaTarget": {
+      "base": "<p>Specifies a Delta data store to crawl one or more Delta tables.</p>",
+      "refs": {
+        "DeltaTargetList$member": null
+      }
+    },
+    "DeltaTargetList": {
+      "base": null,
+      "refs": {
+        "CrawlerTargets$DeltaTargets": "<p>Specifies Delta data store targets.</p>"
       }
     },
     "DescriptionString": {
@@ -2671,6 +2726,36 @@
       "refs": {
       }
     },
+    "GetUnfilteredPartitionMetadataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetUnfilteredPartitionMetadataResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetUnfilteredPartitionsMetadataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetUnfilteredPartitionsMetadataResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetUnfilteredTableMetadataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetUnfilteredTableMetadataResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetUserDefinedFunctionRequest": {
       "base": null,
       "refs": {
@@ -3143,6 +3228,14 @@
         "TaskRunProperties$LabelingSetGenerationTaskRunProperties": "<p>The configuration properties for a labeling set generation task run.</p>"
       }
     },
+    "LakeFormationConfiguration": {
+      "base": null,
+      "refs": {
+        "Crawler$LakeFormationConfiguration": null,
+        "CreateCrawlerRequest$LakeFormationConfiguration": null,
+        "UpdateCrawlerRequest$LakeFormationConfiguration": null
+      }
+    },
     "Language": {
       "base": null,
       "refs": {
@@ -3300,7 +3393,14 @@
     "LocationString": {
       "base": null,
       "refs": {
+        "LocationStringList$member": null,
         "StorageDescriptor$Location": "<p>The physical location of the table. By default, this takes the form of the warehouse location, followed by the database location in the warehouse, followed by the table name.</p>"
+      }
+    },
+    "LocationStringList": {
+      "base": null,
+      "refs": {
+        "StorageDescriptor$AdditionalLocations": null
       }
     },
     "LogGroup": {
@@ -3448,6 +3548,7 @@
         "MLTransformNotReadyException$Message": "<p>A message describing the problem.</p>",
         "NoScheduleException$Message": "<p>A message describing the problem.</p>",
         "OperationTimeoutException$Message": "<p>A message describing the problem.</p>",
+        "PermissionTypeMismatchException$Message": null,
         "ResourceNotReadyException$Message": "<p>A message describing the problem.</p>",
         "ResourceNumberLimitExceededException$Message": "<p>A message describing the problem.</p>",
         "SchedulerNotRunningException$Message": "<p>A message describing the problem.</p>",
@@ -3551,6 +3652,7 @@
         "Column$Name": "<p>The name of the <code>Column</code>.</p>",
         "ColumnError$ColumnName": "<p>The name of the column that failed.</p>",
         "ColumnImportance$ColumnName": "<p>The name of a column.</p>",
+        "ColumnRowFilter$ColumnName": null,
         "ColumnStatistics$ColumnName": "<p>Name of column which statistics belong to.</p>",
         "Condition$JobName": "<p>The name of the job whose <code>JobRuns</code> this condition applies to, and on which this trigger waits.</p>",
         "Condition$CrawlerName": "<p>The name of the crawler to which this condition applies.</p>",
@@ -3661,6 +3763,12 @@
         "GetTablesRequest$DatabaseName": "<p>The database in the catalog whose tables to list. For Hive compatibility, this name is entirely lowercase.</p>",
         "GetTriggerRequest$Name": "<p>The name of the trigger to retrieve.</p>",
         "GetTriggersRequest$DependentJobName": "<p>The name of the job to retrieve triggers for. The trigger that can start this job is returned, and if there is no such trigger, all triggers are returned.</p>",
+        "GetUnfilteredPartitionMetadataRequest$DatabaseName": null,
+        "GetUnfilteredPartitionMetadataRequest$TableName": null,
+        "GetUnfilteredPartitionsMetadataRequest$DatabaseName": null,
+        "GetUnfilteredPartitionsMetadataRequest$TableName": null,
+        "GetUnfilteredTableMetadataRequest$DatabaseName": null,
+        "GetUnfilteredTableMetadataRequest$Name": null,
         "GetUserDefinedFunctionRequest$DatabaseName": "<p>The name of the catalog database where the function is located.</p>",
         "GetUserDefinedFunctionRequest$FunctionName": "<p>The name of the function.</p>",
         "GetUserDefinedFunctionsRequest$DatabaseName": "<p>The name of the catalog database where the functions are located. If none is provided, functions from all the databases across the catalog will be returned.</p>",
@@ -3775,8 +3883,11 @@
       "base": null,
       "refs": {
         "BatchDeleteConnectionResponse$Succeeded": "<p>A list of names of the connection definitions that were successfully deleted.</p>",
+        "GetUnfilteredPartitionMetadataResponse$AuthorizedColumns": null,
+        "GetUnfilteredTableMetadataResponse$AuthorizedColumns": null,
         "SkewedInfo$SkewedColumnNames": "<p>A list of names of columns that contain skewed values.</p>",
-        "StorageDescriptor$BucketColumns": "<p>A list of reducer grouping columns, clustering columns, and bucketing columns in the table.</p>"
+        "StorageDescriptor$BucketColumns": "<p>A list of reducer grouping columns, clustering columns, and bucketing columns in the table.</p>",
+        "UnfilteredPartition$AuthorizedColumns": null
       }
     },
     "NoScheduleException": {
@@ -3878,6 +3989,7 @@
         "CreateCsvClassifierRequest$AllowSingleColumn": "<p>Enables the processing of files that contain only one column.</p>",
         "CsvClassifier$DisableValueTrimming": "<p>Specifies not to trim values before identifying the type of column values. The default value is <code>true</code>.</p>",
         "CsvClassifier$AllowSingleColumn": "<p>Enables the processing of files that contain only one column.</p>",
+        "DeltaTarget$WriteManifest": "<p>Specifies whether to write the manifest files to the Delta table path.</p>",
         "DynamoDBTarget$scanAll": "<p>Indicates whether to scan all the records, or to sample rows from the table. Scanning all the records can take a long time when the table is not a high throughput table.</p> <p>A value of <code>true</code> means to scan all records, while a value of <code>false</code> means to sample the records. If no value is specified, the value defaults to <code>true</code>.</p>",
         "FindMatchesParameters$EnforceProvidedLabels": "<p>The value to switch on or off to force the output to match the provided labels from users. If the value is <code>True</code>, the <code>find matches</code> transform forces the output to match the provided labels. The results override the normal conflation results. If the value is <code>False</code>, the <code>find matches</code> transform does not ensure all the labels provided are respected, and the results rely on the trained model.</p> <p>Note that setting this value to true may increase the conflation execution time.</p>",
         "GetBlueprintRequest$IncludeBlueprint": "<p>Specifies whether or not to include the blueprint in the response.</p>",
@@ -3885,6 +3997,7 @@
         "GetWorkflowRequest$IncludeGraph": "<p>Specifies whether to include a graph when returning the workflow resource metadata.</p>",
         "GetWorkflowRunRequest$IncludeGraph": "<p>Specifies whether to include the workflow graph in response or not.</p>",
         "GetWorkflowRunsRequest$IncludeGraph": "<p>Specifies whether to include the workflow graph in response or not.</p>",
+        "LakeFormationConfiguration$UseLakeFormationCredentials": null,
         "MongoDBTarget$ScanAll": "<p>Indicates whether to scan all the records, or to sample rows from the table. Scanning all the records can take a long time when the table is not a high throughput table.</p> <p>A value of <code>true</code> means to scan all records, while a value of <code>false</code> means to sample the records. If no value is specified, the value defaults to <code>true</code>.</p>",
         "UpdateCsvClassifierRequest$DisableValueTrimming": "<p>Specifies not to trim values before identifying the type of column values. The default value is true.</p>",
         "UpdateCsvClassifierRequest$AllowSingleColumn": "<p>Enables the processing of files that contain only one column.</p>"
@@ -4012,6 +4125,7 @@
         "GetResourcePoliciesRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "GetSecurityConfigurationsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetTriggersRequest$MaxResults": "<p>The maximum size of the response.</p>",
+        "GetUnfilteredPartitionsMetadataRequest$MaxResults": null,
         "GetWorkflowRunsRequest$MaxResults": "<p>The maximum number of workflow runs to be included in the response.</p>",
         "ListBlueprintsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListCrawlersRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
@@ -4058,7 +4172,9 @@
       "base": "<p>Represents a slice of table data.</p>",
       "refs": {
         "GetPartitionResponse$Partition": "<p>The requested information, in the form of a <code>Partition</code> object.</p>",
-        "PartitionList$member": null
+        "GetUnfilteredPartitionMetadataResponse$Partition": null,
+        "PartitionList$member": null,
+        "UnfilteredPartition$Partition": null
       }
     },
     "PartitionError": {
@@ -4148,6 +4264,7 @@
     "PathList": {
       "base": null,
       "refs": {
+        "DeltaTarget$DeltaTables": "<p>A list of the Amazon S3 paths to the Delta tables.</p>",
         "JdbcTarget$Exclusions": "<p>A list of glob patterns used to exclude from the crawl. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html\">Catalog Tables with a Crawler</a>.</p>",
         "S3Target$Exclusions": "<p>A list of glob patterns used to exclude from the crawl. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html\">Catalog Tables with a Crawler</a>.</p>"
       }
@@ -4162,6 +4279,25 @@
       "base": null,
       "refs": {
         "PrincipalPermissions$Permissions": "<p>The permissions that are granted to the principal.</p>"
+      }
+    },
+    "PermissionType": {
+      "base": null,
+      "refs": {
+        "PermissionTypeList$member": null
+      }
+    },
+    "PermissionTypeList": {
+      "base": null,
+      "refs": {
+        "GetUnfilteredPartitionMetadataRequest$SupportedPermissionTypes": null,
+        "GetUnfilteredPartitionsMetadataRequest$SupportedPermissionTypes": null,
+        "GetUnfilteredTableMetadataRequest$SupportedPermissionTypes": null
+      }
+    },
+    "PermissionTypeMismatchException": {
+      "base": null,
+      "refs": {
       }
     },
     "PhysicalConnectionRequirements": {
@@ -4202,7 +4338,9 @@
     "PredicateString": {
       "base": null,
       "refs": {
-        "GetPartitionsRequest$Expression": "<p>An expression that filters the partitions to be returned.</p> <p>The expression uses SQL syntax similar to the SQL <code>WHERE</code> filter clause. The SQL statement parser <a href=\"http://jsqlparser.sourceforge.net/home.php\">JSQLParser</a> parses the expression. </p> <p> <i>Operators</i>: The following are the operators that you can use in the <code>Expression</code> API call:</p> <dl> <dt>=</dt> <dd> <p>Checks whether the values of the two operands are equal; if yes, then the condition becomes true.</p> <p>Example: Assume 'variable a' holds 10 and 'variable b' holds 20. </p> <p>(a = b) is not true.</p> </dd> <dt>&lt; &gt;</dt> <dd> <p>Checks whether the values of two operands are equal; if the values are not equal, then the condition becomes true.</p> <p>Example: (a &lt; &gt; b) is true.</p> </dd> <dt>&gt;</dt> <dd> <p>Checks whether the value of the left operand is greater than the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &gt; b) is not true.</p> </dd> <dt>&lt;</dt> <dd> <p>Checks whether the value of the left operand is less than the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &lt; b) is true.</p> </dd> <dt>&gt;=</dt> <dd> <p>Checks whether the value of the left operand is greater than or equal to the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &gt;= b) is not true.</p> </dd> <dt>&lt;=</dt> <dd> <p>Checks whether the value of the left operand is less than or equal to the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &lt;= b) is true.</p> </dd> <dt>AND, OR, IN, BETWEEN, LIKE, NOT, IS NULL</dt> <dd> <p>Logical operators.</p> </dd> </dl> <p> <i>Supported Partition Key Types</i>: The following are the supported partition keys.</p> <ul> <li> <p> <code>string</code> </p> </li> <li> <p> <code>date</code> </p> </li> <li> <p> <code>timestamp</code> </p> </li> <li> <p> <code>int</code> </p> </li> <li> <p> <code>bigint</code> </p> </li> <li> <p> <code>long</code> </p> </li> <li> <p> <code>tinyint</code> </p> </li> <li> <p> <code>smallint</code> </p> </li> <li> <p> <code>decimal</code> </p> </li> </ul> <p>If an type is encountered that is not valid, an exception is thrown. </p> <p>The following list shows the valid operators on each type. When you define a crawler, the <code>partitionKey</code> type is created as a <code>STRING</code>, to be compatible with the catalog partitions. </p> <p> <i>Sample API Call</i>: </p>"
+        "ColumnRowFilter$RowFilterExpression": null,
+        "GetPartitionsRequest$Expression": "<p>An expression that filters the partitions to be returned.</p> <p>The expression uses SQL syntax similar to the SQL <code>WHERE</code> filter clause. The SQL statement parser <a href=\"http://jsqlparser.sourceforge.net/home.php\">JSQLParser</a> parses the expression. </p> <p> <i>Operators</i>: The following are the operators that you can use in the <code>Expression</code> API call:</p> <dl> <dt>=</dt> <dd> <p>Checks whether the values of the two operands are equal; if yes, then the condition becomes true.</p> <p>Example: Assume 'variable a' holds 10 and 'variable b' holds 20. </p> <p>(a = b) is not true.</p> </dd> <dt>&lt; &gt;</dt> <dd> <p>Checks whether the values of two operands are equal; if the values are not equal, then the condition becomes true.</p> <p>Example: (a &lt; &gt; b) is true.</p> </dd> <dt>&gt;</dt> <dd> <p>Checks whether the value of the left operand is greater than the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &gt; b) is not true.</p> </dd> <dt>&lt;</dt> <dd> <p>Checks whether the value of the left operand is less than the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &lt; b) is true.</p> </dd> <dt>&gt;=</dt> <dd> <p>Checks whether the value of the left operand is greater than or equal to the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &gt;= b) is not true.</p> </dd> <dt>&lt;=</dt> <dd> <p>Checks whether the value of the left operand is less than or equal to the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &lt;= b) is true.</p> </dd> <dt>AND, OR, IN, BETWEEN, LIKE, NOT, IS NULL</dt> <dd> <p>Logical operators.</p> </dd> </dl> <p> <i>Supported Partition Key Types</i>: The following are the supported partition keys.</p> <ul> <li> <p> <code>string</code> </p> </li> <li> <p> <code>date</code> </p> </li> <li> <p> <code>timestamp</code> </p> </li> <li> <p> <code>int</code> </p> </li> <li> <p> <code>bigint</code> </p> </li> <li> <p> <code>long</code> </p> </li> <li> <p> <code>tinyint</code> </p> </li> <li> <p> <code>smallint</code> </p> </li> <li> <p> <code>decimal</code> </p> </li> </ul> <p>If an type is encountered that is not valid, an exception is thrown. </p> <p>The following list shows the valid operators on each type. When you define a crawler, the <code>partitionKey</code> type is created as a <code>STRING</code>, to be compatible with the catalog partitions. </p> <p> <i>Sample API Call</i>: </p>",
+        "GetUnfilteredPartitionsMetadataRequest$Expression": null
       }
     },
     "PrincipalPermissions": {
@@ -4805,7 +4943,8 @@
     "Segment": {
       "base": "<p>Defines a non-overlapping region of a table's partitions, allowing multiple requests to be run in parallel.</p>",
       "refs": {
-        "GetPartitionsRequest$Segment": "<p>The segment of the table's partitions to scan in this request.</p>"
+        "GetPartitionsRequest$Segment": "<p>The segment of the table's partitions to scan in this request.</p>",
+        "GetUnfilteredPartitionsMetadataRequest$Segment": null
       }
     },
     "SerDeInfo": {
@@ -5019,6 +5158,7 @@
       "base": "<p>Represents a collection of related data organized in columns and rows.</p>",
       "refs": {
         "GetTableResponse$Table": "<p>The <code>Table</code> object that defines the specified table.</p>",
+        "GetUnfilteredTableMetadataResponse$Table": null,
         "TableList$member": null,
         "TableVersion$Table": "<p>The table in question.</p>"
       }
@@ -5326,6 +5466,8 @@
         "GetTableVersionsResponse$NextToken": "<p>A continuation token, if the list of available versions does not include the last one.</p>",
         "GetTablesRequest$NextToken": "<p>A continuation token, included if this is a continuation call.</p>",
         "GetTablesResponse$NextToken": "<p>A continuation token, present if the current list segment is not the last.</p>",
+        "GetUnfilteredPartitionsMetadataRequest$NextToken": null,
+        "GetUnfilteredPartitionsMetadataResponse$NextToken": null,
         "GetUserDefinedFunctionsRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
         "GetUserDefinedFunctionsResponse$NextToken": "<p>A continuation token, if the list of functions returned does not include the last requested function.</p>",
         "ListCrawlersRequest$NextToken": "<p>A continuation token, if this is a continuation request.</p>",
@@ -5486,6 +5628,18 @@
         "Database$LocationUri": "<p>The location of the database (for example, an HDFS path).</p>",
         "DatabaseInput$LocationUri": "<p>The location of the database (for example, an HDFS path). </p>",
         "ResourceUri$Uri": "<p>The URI for accessing the resource.</p>"
+      }
+    },
+    "UnfilteredPartition": {
+      "base": null,
+      "refs": {
+        "UnfilteredPartitionList$member": null
+      }
+    },
+    "UnfilteredPartitionList": {
+      "base": null,
+      "refs": {
+        "GetUnfilteredPartitionsMetadataResponse$UnfilteredPartitions": null
       }
     },
     "UntagResourceRequest": {
@@ -5782,6 +5936,7 @@
         "DeletePartitionRequest$PartitionValues": "<p>The values that define the partition.</p>",
         "GetColumnStatisticsForPartitionRequest$PartitionValues": "<p>A list of partition values identifying the partition.</p>",
         "GetPartitionRequest$PartitionValues": "<p>The values that define the partition.</p>",
+        "GetUnfilteredPartitionMetadataRequest$PartitionValues": null,
         "Partition$Values": "<p>The values of the partition.</p>",
         "PartitionError$PartitionValues": "<p>The values that define the partition.</p>",
         "PartitionInput$Values": "<p>The values of the partition. Although this parameter is not required by the SDK, you must specify this parameter for a valid input.</p> <p>The values for the keys for the new partition must be passed as an array of String objects that must be ordered in the same order as the partition keys appearing in the Amazon S3 prefix. Otherwise Glue will add the values to the wrong keys.</p>",

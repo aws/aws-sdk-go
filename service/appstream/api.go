@@ -105,6 +105,98 @@ func (c *AppStream) AssociateApplicationFleetWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opAssociateApplicationToEntitlement = "AssociateApplicationToEntitlement"
+
+// AssociateApplicationToEntitlementRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateApplicationToEntitlement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateApplicationToEntitlement for more information on using the AssociateApplicationToEntitlement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateApplicationToEntitlementRequest method.
+//    req, resp := client.AssociateApplicationToEntitlementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/AssociateApplicationToEntitlement
+func (c *AppStream) AssociateApplicationToEntitlementRequest(input *AssociateApplicationToEntitlementInput) (req *request.Request, output *AssociateApplicationToEntitlementOutput) {
+	op := &request.Operation{
+		Name:       opAssociateApplicationToEntitlement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AssociateApplicationToEntitlementInput{}
+	}
+
+	output = &AssociateApplicationToEntitlementOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateApplicationToEntitlement API operation for Amazon AppStream.
+//
+// Associates an application to entitle.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation AssociateApplicationToEntitlement for usage and error information.
+//
+// Returned Error Types:
+//   * OperationNotPermittedException
+//   The attempted operation is not permitted.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * EntitlementNotFoundException
+//   The entitlement can't be found.
+//
+//   * LimitExceededException
+//   The requested limit exceeds the permitted limit for an account.
+//
+//   * OperationNotPermittedException
+//   The attempted operation is not permitted.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/AssociateApplicationToEntitlement
+func (c *AppStream) AssociateApplicationToEntitlement(input *AssociateApplicationToEntitlementInput) (*AssociateApplicationToEntitlementOutput, error) {
+	req, out := c.AssociateApplicationToEntitlementRequest(input)
+	return out, req.Send()
+}
+
+// AssociateApplicationToEntitlementWithContext is the same as AssociateApplicationToEntitlement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateApplicationToEntitlement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) AssociateApplicationToEntitlementWithContext(ctx aws.Context, input *AssociateApplicationToEntitlementInput, opts ...request.Option) (*AssociateApplicationToEntitlementOutput, error) {
+	req, out := c.AssociateApplicationToEntitlementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAssociateFleet = "AssociateFleet"
 
 // AssociateFleetRequest generates a "aws/request.Request" representing the
@@ -751,6 +843,99 @@ func (c *AppStream) CreateDirectoryConfig(input *CreateDirectoryConfigInput) (*C
 // for more information on using Contexts.
 func (c *AppStream) CreateDirectoryConfigWithContext(ctx aws.Context, input *CreateDirectoryConfigInput, opts ...request.Option) (*CreateDirectoryConfigOutput, error) {
 	req, out := c.CreateDirectoryConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateEntitlement = "CreateEntitlement"
+
+// CreateEntitlementRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEntitlement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateEntitlement for more information on using the CreateEntitlement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateEntitlementRequest method.
+//    req, resp := client.CreateEntitlementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateEntitlement
+func (c *AppStream) CreateEntitlementRequest(input *CreateEntitlementInput) (req *request.Request, output *CreateEntitlementOutput) {
+	op := &request.Operation{
+		Name:       opCreateEntitlement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateEntitlementInput{}
+	}
+
+	output = &CreateEntitlementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateEntitlement API operation for Amazon AppStream.
+//
+// Creates a new entitlement. Entitlements control access to specific applications
+// within a stack, based on user attributes. Entitlements apply to SAML 2.0
+// federated user identities. Amazon AppStream 2.0 user pool and streaming URL
+// users are entitled to all applications in a stack. Entitlements don't apply
+// to the desktop stream view application, or to applications managed by a dynamic
+// app provider using the Dynamic Application Framework.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation CreateEntitlement for usage and error information.
+//
+// Returned Error Types:
+//   * OperationNotPermittedException
+//   The attempted operation is not permitted.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * LimitExceededException
+//   The requested limit exceeds the permitted limit for an account.
+//
+//   * EntitlementAlreadyExistsException
+//   The entitlement already exists.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateEntitlement
+func (c *AppStream) CreateEntitlement(input *CreateEntitlementInput) (*CreateEntitlementOutput, error) {
+	req, out := c.CreateEntitlementRequest(input)
+	return out, req.Send()
+}
+
+// CreateEntitlementWithContext is the same as CreateEntitlement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateEntitlement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) CreateEntitlementWithContext(ctx aws.Context, input *CreateEntitlementInput, opts ...request.Option) (*CreateEntitlementOutput, error) {
+	req, out := c.CreateEntitlementRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1798,6 +1983,98 @@ func (c *AppStream) DeleteDirectoryConfigWithContext(ctx aws.Context, input *Del
 	return out, req.Send()
 }
 
+const opDeleteEntitlement = "DeleteEntitlement"
+
+// DeleteEntitlementRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEntitlement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEntitlement for more information on using the DeleteEntitlement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteEntitlementRequest method.
+//    req, resp := client.DeleteEntitlementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteEntitlement
+func (c *AppStream) DeleteEntitlementRequest(input *DeleteEntitlementInput) (req *request.Request, output *DeleteEntitlementOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEntitlement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteEntitlementInput{}
+	}
+
+	output = &DeleteEntitlementOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteEntitlement API operation for Amazon AppStream.
+//
+// Deletes the specified entitlement.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation DeleteEntitlement for usage and error information.
+//
+// Returned Error Types:
+//   * OperationNotPermittedException
+//   The attempted operation is not permitted.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * EntitlementNotFoundException
+//   The entitlement can't be found.
+//
+//   * OperationNotPermittedException
+//   The attempted operation is not permitted.
+//
+//   * ConcurrentModificationException
+//   An API error occurred. Wait a few minutes and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteEntitlement
+func (c *AppStream) DeleteEntitlement(input *DeleteEntitlementInput) (*DeleteEntitlementOutput, error) {
+	req, out := c.DeleteEntitlementRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEntitlementWithContext is the same as DeleteEntitlement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEntitlement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DeleteEntitlementWithContext(ctx aws.Context, input *DeleteEntitlementInput, opts ...request.Option) (*DeleteEntitlementOutput, error) {
+	req, out := c.DeleteEntitlementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteFleet = "DeleteFleet"
 
 // DeleteFleetRequest generates a "aws/request.Request" representing the
@@ -2206,6 +2483,9 @@ func (c *AppStream) DeleteStackRequest(input *DeleteStackInput) (req *request.Re
 //
 //   * ResourceNotFoundException
 //   The specified resource was not found.
+//
+//   * OperationNotPermittedException
+//   The attempted operation is not permitted.
 //
 //   * ConcurrentModificationException
 //   An API error occurred. Wait a few minutes and try again.
@@ -2724,6 +3004,91 @@ func (c *AppStream) DescribeDirectoryConfigs(input *DescribeDirectoryConfigsInpu
 // for more information on using Contexts.
 func (c *AppStream) DescribeDirectoryConfigsWithContext(ctx aws.Context, input *DescribeDirectoryConfigsInput, opts ...request.Option) (*DescribeDirectoryConfigsOutput, error) {
 	req, out := c.DescribeDirectoryConfigsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeEntitlements = "DescribeEntitlements"
+
+// DescribeEntitlementsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEntitlements operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeEntitlements for more information on using the DescribeEntitlements
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeEntitlementsRequest method.
+//    req, resp := client.DescribeEntitlementsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeEntitlements
+func (c *AppStream) DescribeEntitlementsRequest(input *DescribeEntitlementsInput) (req *request.Request, output *DescribeEntitlementsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEntitlements,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeEntitlementsInput{}
+	}
+
+	output = &DescribeEntitlementsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeEntitlements API operation for Amazon AppStream.
+//
+// Retrieves a list that describes one of more entitlements.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation DescribeEntitlements for usage and error information.
+//
+// Returned Error Types:
+//   * OperationNotPermittedException
+//   The attempted operation is not permitted.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * EntitlementNotFoundException
+//   The entitlement can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeEntitlements
+func (c *AppStream) DescribeEntitlements(input *DescribeEntitlementsInput) (*DescribeEntitlementsOutput, error) {
+	req, out := c.DescribeEntitlementsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeEntitlementsWithContext is the same as DescribeEntitlements with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEntitlements for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DescribeEntitlementsWithContext(ctx aws.Context, input *DescribeEntitlementsInput, opts ...request.Option) (*DescribeEntitlementsOutput, error) {
+	req, out := c.DescribeEntitlementsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3755,6 +4120,95 @@ func (c *AppStream) DisassociateApplicationFleetWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opDisassociateApplicationFromEntitlement = "DisassociateApplicationFromEntitlement"
+
+// DisassociateApplicationFromEntitlementRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateApplicationFromEntitlement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateApplicationFromEntitlement for more information on using the DisassociateApplicationFromEntitlement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateApplicationFromEntitlementRequest method.
+//    req, resp := client.DisassociateApplicationFromEntitlementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DisassociateApplicationFromEntitlement
+func (c *AppStream) DisassociateApplicationFromEntitlementRequest(input *DisassociateApplicationFromEntitlementInput) (req *request.Request, output *DisassociateApplicationFromEntitlementOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateApplicationFromEntitlement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DisassociateApplicationFromEntitlementInput{}
+	}
+
+	output = &DisassociateApplicationFromEntitlementOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateApplicationFromEntitlement API operation for Amazon AppStream.
+//
+// Deletes the specified application from the specified entitlement.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation DisassociateApplicationFromEntitlement for usage and error information.
+//
+// Returned Error Types:
+//   * OperationNotPermittedException
+//   The attempted operation is not permitted.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * EntitlementNotFoundException
+//   The entitlement can't be found.
+//
+//   * OperationNotPermittedException
+//   The attempted operation is not permitted.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DisassociateApplicationFromEntitlement
+func (c *AppStream) DisassociateApplicationFromEntitlement(input *DisassociateApplicationFromEntitlementInput) (*DisassociateApplicationFromEntitlementOutput, error) {
+	req, out := c.DisassociateApplicationFromEntitlementRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateApplicationFromEntitlementWithContext is the same as DisassociateApplicationFromEntitlement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateApplicationFromEntitlement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DisassociateApplicationFromEntitlementWithContext(ctx aws.Context, input *DisassociateApplicationFromEntitlementInput, opts ...request.Option) (*DisassociateApplicationFromEntitlementOutput, error) {
+	req, out := c.DisassociateApplicationFromEntitlementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisassociateFleet = "DisassociateFleet"
 
 // DisassociateFleetRequest generates a "aws/request.Request" representing the
@@ -4147,6 +4601,91 @@ func (c *AppStream) ListAssociatedStacks(input *ListAssociatedStacksInput) (*Lis
 // for more information on using Contexts.
 func (c *AppStream) ListAssociatedStacksWithContext(ctx aws.Context, input *ListAssociatedStacksInput, opts ...request.Option) (*ListAssociatedStacksOutput, error) {
 	req, out := c.ListAssociatedStacksRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListEntitledApplications = "ListEntitledApplications"
+
+// ListEntitledApplicationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListEntitledApplications operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEntitledApplications for more information on using the ListEntitledApplications
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListEntitledApplicationsRequest method.
+//    req, resp := client.ListEntitledApplicationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ListEntitledApplications
+func (c *AppStream) ListEntitledApplicationsRequest(input *ListEntitledApplicationsInput) (req *request.Request, output *ListEntitledApplicationsOutput) {
+	op := &request.Operation{
+		Name:       opListEntitledApplications,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListEntitledApplicationsInput{}
+	}
+
+	output = &ListEntitledApplicationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEntitledApplications API operation for Amazon AppStream.
+//
+// Retrieves a list of entitled applications.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation ListEntitledApplications for usage and error information.
+//
+// Returned Error Types:
+//   * OperationNotPermittedException
+//   The attempted operation is not permitted.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * EntitlementNotFoundException
+//   The entitlement can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ListEntitledApplications
+func (c *AppStream) ListEntitledApplications(input *ListEntitledApplicationsInput) (*ListEntitledApplicationsOutput, error) {
+	req, out := c.ListEntitledApplicationsRequest(input)
+	return out, req.Send()
+}
+
+// ListEntitledApplicationsWithContext is the same as ListEntitledApplications with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEntitledApplications for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) ListEntitledApplicationsWithContext(ctx aws.Context, input *ListEntitledApplicationsInput, opts ...request.Option) (*ListEntitledApplicationsOutput, error) {
+	req, out := c.ListEntitledApplicationsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4955,6 +5494,94 @@ func (c *AppStream) UpdateDirectoryConfig(input *UpdateDirectoryConfigInput) (*U
 // for more information on using Contexts.
 func (c *AppStream) UpdateDirectoryConfigWithContext(ctx aws.Context, input *UpdateDirectoryConfigInput, opts ...request.Option) (*UpdateDirectoryConfigOutput, error) {
 	req, out := c.UpdateDirectoryConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateEntitlement = "UpdateEntitlement"
+
+// UpdateEntitlementRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateEntitlement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateEntitlement for more information on using the UpdateEntitlement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateEntitlementRequest method.
+//    req, resp := client.UpdateEntitlementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateEntitlement
+func (c *AppStream) UpdateEntitlementRequest(input *UpdateEntitlementInput) (req *request.Request, output *UpdateEntitlementOutput) {
+	op := &request.Operation{
+		Name:       opUpdateEntitlement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateEntitlementInput{}
+	}
+
+	output = &UpdateEntitlementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateEntitlement API operation for Amazon AppStream.
+//
+// Updates the specified entitlement.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation UpdateEntitlement for usage and error information.
+//
+// Returned Error Types:
+//   * OperationNotPermittedException
+//   The attempted operation is not permitted.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * EntitlementNotFoundException
+//   The entitlement can't be found.
+//
+//   * ConcurrentModificationException
+//   An API error occurred. Wait a few minutes and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateEntitlement
+func (c *AppStream) UpdateEntitlement(input *UpdateEntitlementInput) (*UpdateEntitlementOutput, error) {
+	req, out := c.UpdateEntitlementRequest(input)
+	return out, req.Send()
+}
+
+// UpdateEntitlementWithContext is the same as UpdateEntitlement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateEntitlement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) UpdateEntitlementWithContext(ctx aws.Context, input *UpdateEntitlementInput, opts ...request.Option) (*UpdateEntitlementOutput, error) {
+	req, out := c.UpdateEntitlementRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5851,6 +6478,105 @@ func (s AssociateApplicationFleetOutput) GoString() string {
 func (s *AssociateApplicationFleetOutput) SetApplicationFleetAssociation(v *ApplicationFleetAssociation) *AssociateApplicationFleetOutput {
 	s.ApplicationFleetAssociation = v
 	return s
+}
+
+type AssociateApplicationToEntitlementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the application.
+	//
+	// ApplicationIdentifier is a required field
+	ApplicationIdentifier *string `min:"1" type:"string" required:"true"`
+
+	// The name of the entitlement.
+	//
+	// EntitlementName is a required field
+	EntitlementName *string `type:"string" required:"true"`
+
+	// The name of the stack.
+	//
+	// StackName is a required field
+	StackName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateApplicationToEntitlementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateApplicationToEntitlementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateApplicationToEntitlementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateApplicationToEntitlementInput"}
+	if s.ApplicationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationIdentifier"))
+	}
+	if s.ApplicationIdentifier != nil && len(*s.ApplicationIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationIdentifier", 1))
+	}
+	if s.EntitlementName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntitlementName"))
+	}
+	if s.StackName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StackName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationIdentifier sets the ApplicationIdentifier field's value.
+func (s *AssociateApplicationToEntitlementInput) SetApplicationIdentifier(v string) *AssociateApplicationToEntitlementInput {
+	s.ApplicationIdentifier = &v
+	return s
+}
+
+// SetEntitlementName sets the EntitlementName field's value.
+func (s *AssociateApplicationToEntitlementInput) SetEntitlementName(v string) *AssociateApplicationToEntitlementInput {
+	s.EntitlementName = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *AssociateApplicationToEntitlementInput) SetStackName(v string) *AssociateApplicationToEntitlementInput {
+	s.StackName = &v
+	return s
+}
+
+type AssociateApplicationToEntitlementOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateApplicationToEntitlementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateApplicationToEntitlementOutput) GoString() string {
+	return s.String()
 }
 
 type AssociateFleetInput struct {
@@ -6873,6 +7599,147 @@ func (s CreateDirectoryConfigOutput) GoString() string {
 // SetDirectoryConfig sets the DirectoryConfig field's value.
 func (s *CreateDirectoryConfigOutput) SetDirectoryConfig(v *DirectoryConfig) *CreateDirectoryConfigOutput {
 	s.DirectoryConfig = v
+	return s
+}
+
+type CreateEntitlementInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether all or selected apps are entitled.
+	//
+	// AppVisibility is a required field
+	AppVisibility *string `type:"string" required:"true" enum:"AppVisibility"`
+
+	// The attributes of the entitlement.
+	//
+	// Attributes is a required field
+	Attributes []*EntitlementAttribute `min:"1" type:"list" required:"true"`
+
+	// The description of the entitlement.
+	Description *string `type:"string"`
+
+	// The name of the entitlement.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The name of the stack with which the entitlement is associated.
+	//
+	// StackName is a required field
+	StackName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEntitlementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEntitlementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEntitlementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEntitlementInput"}
+	if s.AppVisibility == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppVisibility"))
+	}
+	if s.Attributes == nil {
+		invalidParams.Add(request.NewErrParamRequired("Attributes"))
+	}
+	if s.Attributes != nil && len(s.Attributes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Attributes", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.StackName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StackName"))
+	}
+	if s.Attributes != nil {
+		for i, v := range s.Attributes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Attributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppVisibility sets the AppVisibility field's value.
+func (s *CreateEntitlementInput) SetAppVisibility(v string) *CreateEntitlementInput {
+	s.AppVisibility = &v
+	return s
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *CreateEntitlementInput) SetAttributes(v []*EntitlementAttribute) *CreateEntitlementInput {
+	s.Attributes = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateEntitlementInput) SetDescription(v string) *CreateEntitlementInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateEntitlementInput) SetName(v string) *CreateEntitlementInput {
+	s.Name = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *CreateEntitlementInput) SetStackName(v string) *CreateEntitlementInput {
+	s.StackName = &v
+	return s
+}
+
+type CreateEntitlementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The entitlement.
+	Entitlement *Entitlement `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEntitlementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEntitlementOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntitlement sets the Entitlement field's value.
+func (s *CreateEntitlementOutput) SetEntitlement(v *Entitlement) *CreateEntitlementOutput {
+	s.Entitlement = v
 	return s
 }
 
@@ -8659,6 +9526,88 @@ func (s DeleteDirectoryConfigOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteEntitlementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the entitlement.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The name of the stack with which the entitlement is associated.
+	//
+	// StackName is a required field
+	StackName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEntitlementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEntitlementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEntitlementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEntitlementInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.StackName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StackName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteEntitlementInput) SetName(v string) *DeleteEntitlementInput {
+	s.Name = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *DeleteEntitlementInput) SetStackName(v string) *DeleteEntitlementInput {
+	s.StackName = &v
+	return s
+}
+
+type DeleteEntitlementOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEntitlementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEntitlementOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteFleetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9589,6 +10538,122 @@ func (s *DescribeDirectoryConfigsOutput) SetDirectoryConfigs(v []*DirectoryConfi
 
 // SetNextToken sets the NextToken field's value.
 func (s *DescribeDirectoryConfigsOutput) SetNextToken(v string) *DescribeDirectoryConfigsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeEntitlementsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum size of each page of results.
+	MaxResults *int64 `type:"integer"`
+
+	// The name of the entitlement.
+	Name *string `type:"string"`
+
+	// The pagination token used to retrieve the next page of results for this operation.
+	NextToken *string `min:"1" type:"string"`
+
+	// The name of the stack with which the entitlement is associated.
+	//
+	// StackName is a required field
+	StackName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEntitlementsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEntitlementsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeEntitlementsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeEntitlementsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.StackName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StackName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeEntitlementsInput) SetMaxResults(v int64) *DescribeEntitlementsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeEntitlementsInput) SetName(v string) *DescribeEntitlementsInput {
+	s.Name = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeEntitlementsInput) SetNextToken(v string) *DescribeEntitlementsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *DescribeEntitlementsInput) SetStackName(v string) *DescribeEntitlementsInput {
+	s.StackName = &v
+	return s
+}
+
+type DescribeEntitlementsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The entitlements.
+	Entitlements []*Entitlement `type:"list"`
+
+	// The pagination token used to retrieve the next page of results for this operation.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEntitlementsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEntitlementsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntitlements sets the Entitlements field's value.
+func (s *DescribeEntitlementsOutput) SetEntitlements(v []*Entitlement) *DescribeEntitlementsOutput {
+	s.Entitlements = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeEntitlementsOutput) SetNextToken(v string) *DescribeEntitlementsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -10871,6 +11936,105 @@ func (s DisassociateApplicationFleetOutput) GoString() string {
 	return s.String()
 }
 
+type DisassociateApplicationFromEntitlementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the application to remove from the entitlement.
+	//
+	// ApplicationIdentifier is a required field
+	ApplicationIdentifier *string `min:"1" type:"string" required:"true"`
+
+	// The name of the entitlement.
+	//
+	// EntitlementName is a required field
+	EntitlementName *string `type:"string" required:"true"`
+
+	// The name of the stack with which the entitlement is associated.
+	//
+	// StackName is a required field
+	StackName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateApplicationFromEntitlementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateApplicationFromEntitlementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateApplicationFromEntitlementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateApplicationFromEntitlementInput"}
+	if s.ApplicationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationIdentifier"))
+	}
+	if s.ApplicationIdentifier != nil && len(*s.ApplicationIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationIdentifier", 1))
+	}
+	if s.EntitlementName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntitlementName"))
+	}
+	if s.StackName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StackName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationIdentifier sets the ApplicationIdentifier field's value.
+func (s *DisassociateApplicationFromEntitlementInput) SetApplicationIdentifier(v string) *DisassociateApplicationFromEntitlementInput {
+	s.ApplicationIdentifier = &v
+	return s
+}
+
+// SetEntitlementName sets the EntitlementName field's value.
+func (s *DisassociateApplicationFromEntitlementInput) SetEntitlementName(v string) *DisassociateApplicationFromEntitlementInput {
+	s.EntitlementName = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *DisassociateApplicationFromEntitlementInput) SetStackName(v string) *DisassociateApplicationFromEntitlementInput {
+	s.StackName = &v
+	return s
+}
+
+type DisassociateApplicationFromEntitlementOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateApplicationFromEntitlementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateApplicationFromEntitlementOutput) GoString() string {
+	return s.String()
+}
+
 type DisassociateFleetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11093,6 +12257,357 @@ func (s EnableUserOutput) String() string {
 // value will be replaced with "sensitive".
 func (s EnableUserOutput) GoString() string {
 	return s.String()
+}
+
+// The application associated to an entitlement. Access is controlled based
+// on user attributes.
+type EntitledApplication struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the application.
+	//
+	// ApplicationIdentifier is a required field
+	ApplicationIdentifier *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntitledApplication) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntitledApplication) GoString() string {
+	return s.String()
+}
+
+// SetApplicationIdentifier sets the ApplicationIdentifier field's value.
+func (s *EntitledApplication) SetApplicationIdentifier(v string) *EntitledApplication {
+	s.ApplicationIdentifier = &v
+	return s
+}
+
+// Specifies an entitlement. Entitlements control access to specific applications
+// within a stack, based on user attributes. Entitlements apply to SAML 2.0
+// federated user identities. Amazon AppStream 2.0 user pool and streaming URL
+// users are entitled to all applications in a stack. Entitlements don't apply
+// to the desktop stream view application, or to applications managed by a dynamic
+// app provider using the Dynamic Application Framework.
+type Entitlement struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether all or selected apps are entitled.
+	//
+	// AppVisibility is a required field
+	AppVisibility *string `type:"string" required:"true" enum:"AppVisibility"`
+
+	// The attributes of the entitlement.
+	//
+	// Attributes is a required field
+	Attributes []*EntitlementAttribute `min:"1" type:"list" required:"true"`
+
+	// The time when the entitlement was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The description of the entitlement.
+	Description *string `type:"string"`
+
+	// The time when the entitlement was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The name of the entitlement.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The name of the stack with which the entitlement is associated.
+	//
+	// StackName is a required field
+	StackName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Entitlement) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Entitlement) GoString() string {
+	return s.String()
+}
+
+// SetAppVisibility sets the AppVisibility field's value.
+func (s *Entitlement) SetAppVisibility(v string) *Entitlement {
+	s.AppVisibility = &v
+	return s
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *Entitlement) SetAttributes(v []*EntitlementAttribute) *Entitlement {
+	s.Attributes = v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *Entitlement) SetCreatedTime(v time.Time) *Entitlement {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Entitlement) SetDescription(v string) *Entitlement {
+	s.Description = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *Entitlement) SetLastModifiedTime(v time.Time) *Entitlement {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Entitlement) SetName(v string) *Entitlement {
+	s.Name = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *Entitlement) SetStackName(v string) *Entitlement {
+	s.StackName = &v
+	return s
+}
+
+// The entitlement already exists.
+type EntitlementAlreadyExistsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The error message in the exception.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntitlementAlreadyExistsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntitlementAlreadyExistsException) GoString() string {
+	return s.String()
+}
+
+func newErrorEntitlementAlreadyExistsException(v protocol.ResponseMetadata) error {
+	return &EntitlementAlreadyExistsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *EntitlementAlreadyExistsException) Code() string {
+	return "EntitlementAlreadyExistsException"
+}
+
+// Message returns the exception's message.
+func (s *EntitlementAlreadyExistsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *EntitlementAlreadyExistsException) OrigErr() error {
+	return nil
+}
+
+func (s *EntitlementAlreadyExistsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *EntitlementAlreadyExistsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *EntitlementAlreadyExistsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// An attribute associated with an entitlement. Application entitlements work
+// by matching a supported SAML 2.0 attribute name to a value when a user identity
+// federates to an Amazon AppStream 2.0 SAML application.
+type EntitlementAttribute struct {
+	_ struct{} `type:"structure"`
+
+	// A supported AWS IAM SAML PrincipalTag attribute that is matched to the associated
+	// value when a user identity federates into an Amazon AppStream 2.0 SAML application.
+	//
+	// The following are valid values:
+	//
+	//    * roles
+	//
+	//    * department
+	//
+	//    * organization
+	//
+	//    * groups
+	//
+	//    * title
+	//
+	//    * costCenter
+	//
+	//    * userType
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// A value that is matched to a supported SAML attribute name when a user identity
+	// federates into an Amazon AppStream 2.0 SAML application.
+	//
+	// Value is a required field
+	Value *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntitlementAttribute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntitlementAttribute) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EntitlementAttribute) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EntitlementAttribute"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *EntitlementAttribute) SetName(v string) *EntitlementAttribute {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *EntitlementAttribute) SetValue(v string) *EntitlementAttribute {
+	s.Value = &v
+	return s
+}
+
+// The entitlement can't be found.
+type EntitlementNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The error message in the exception.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntitlementNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntitlementNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorEntitlementNotFoundException(v protocol.ResponseMetadata) error {
+	return &EntitlementNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *EntitlementNotFoundException) Code() string {
+	return "EntitlementNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *EntitlementNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *EntitlementNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *EntitlementNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *EntitlementNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *EntitlementNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type ExpireSessionInput struct {
@@ -12716,6 +14231,127 @@ func (s *ListAssociatedStacksOutput) SetNames(v []*string) *ListAssociatedStacks
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListAssociatedStacksOutput) SetNextToken(v string) *ListAssociatedStacksOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEntitledApplicationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the entitlement.
+	//
+	// EntitlementName is a required field
+	EntitlementName *string `type:"string" required:"true"`
+
+	// The maximum size of each page of results.
+	MaxResults *int64 `type:"integer"`
+
+	// The pagination token used to retrieve the next page of results for this operation.
+	NextToken *string `min:"1" type:"string"`
+
+	// The name of the stack with which the entitlement is associated.
+	//
+	// StackName is a required field
+	StackName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEntitledApplicationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEntitledApplicationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEntitledApplicationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEntitledApplicationsInput"}
+	if s.EntitlementName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntitlementName"))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.StackName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StackName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntitlementName sets the EntitlementName field's value.
+func (s *ListEntitledApplicationsInput) SetEntitlementName(v string) *ListEntitledApplicationsInput {
+	s.EntitlementName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEntitledApplicationsInput) SetMaxResults(v int64) *ListEntitledApplicationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEntitledApplicationsInput) SetNextToken(v string) *ListEntitledApplicationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *ListEntitledApplicationsInput) SetStackName(v string) *ListEntitledApplicationsInput {
+	s.StackName = &v
+	return s
+}
+
+type ListEntitledApplicationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The entitled applications.
+	EntitledApplications []*EntitledApplication `type:"list"`
+
+	// The pagination token used to retrieve the next page of results for this operation.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEntitledApplicationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEntitledApplicationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntitledApplications sets the EntitledApplications field's value.
+func (s *ListEntitledApplicationsOutput) SetEntitledApplications(v []*EntitledApplication) *ListEntitledApplicationsOutput {
+	s.EntitledApplications = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEntitledApplicationsOutput) SetNextToken(v string) *ListEntitledApplicationsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -14714,6 +16350,137 @@ func (s *UpdateDirectoryConfigOutput) SetDirectoryConfig(v *DirectoryConfig) *Up
 	return s
 }
 
+type UpdateEntitlementInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether all or only selected apps are entitled.
+	AppVisibility *string `type:"string" enum:"AppVisibility"`
+
+	// The attributes of the entitlement.
+	Attributes []*EntitlementAttribute `min:"1" type:"list"`
+
+	// The description of the entitlement.
+	Description *string `type:"string"`
+
+	// The name of the entitlement.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The name of the stack with which the entitlement is associated.
+	//
+	// StackName is a required field
+	StackName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEntitlementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEntitlementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateEntitlementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateEntitlementInput"}
+	if s.Attributes != nil && len(s.Attributes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Attributes", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.StackName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StackName"))
+	}
+	if s.Attributes != nil {
+		for i, v := range s.Attributes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Attributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppVisibility sets the AppVisibility field's value.
+func (s *UpdateEntitlementInput) SetAppVisibility(v string) *UpdateEntitlementInput {
+	s.AppVisibility = &v
+	return s
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *UpdateEntitlementInput) SetAttributes(v []*EntitlementAttribute) *UpdateEntitlementInput {
+	s.Attributes = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateEntitlementInput) SetDescription(v string) *UpdateEntitlementInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateEntitlementInput) SetName(v string) *UpdateEntitlementInput {
+	s.Name = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *UpdateEntitlementInput) SetStackName(v string) *UpdateEntitlementInput {
+	s.StackName = &v
+	return s
+}
+
+type UpdateEntitlementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The entitlement.
+	Entitlement *Entitlement `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEntitlementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEntitlementOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntitlement sets the Entitlement field's value.
+func (s *UpdateEntitlementOutput) SetEntitlement(v *Entitlement) *UpdateEntitlementOutput {
+	s.Entitlement = v
+	return s
+}
+
 type UpdateFleetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15916,6 +17683,22 @@ func Action_Values() []string {
 		ActionPrintingToLocalDevice,
 		ActionDomainPasswordSignin,
 		ActionDomainSmartCardSignin,
+	}
+}
+
+const (
+	// AppVisibilityAll is a AppVisibility enum value
+	AppVisibilityAll = "ALL"
+
+	// AppVisibilityAssociated is a AppVisibility enum value
+	AppVisibilityAssociated = "ASSOCIATED"
+)
+
+// AppVisibility_Values returns all elements of the AppVisibility enum
+func AppVisibility_Values() []string {
+	return []string{
+		AppVisibilityAll,
+		AppVisibilityAssociated,
 	}
 }
 

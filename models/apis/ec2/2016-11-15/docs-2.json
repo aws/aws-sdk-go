@@ -446,6 +446,7 @@
     "ModifyVpcEndpoint": "<p>Modifies attributes of a specified VPC endpoint. The attributes that you can modify depend on the type of VPC endpoint (interface, gateway, or Gateway Load Balancer). For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints.html\">VPC Endpoints</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "ModifyVpcEndpointConnectionNotification": "<p>Modifies a connection notification for VPC endpoint or VPC endpoint service. You can change the SNS topic for the notification, or the events for which to be notified. </p>",
     "ModifyVpcEndpointServiceConfiguration": "<p>Modifies the attributes of your VPC endpoint service configuration. You can change the Network Load Balancers or Gateway Load Balancers for your service, and you can specify whether acceptance is required for requests to connect to your endpoint service through an interface VPC endpoint.</p> <p>If you set or modify the private DNS name, you must prove that you own the private DNS domain name. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-services-dns-validation.html\">VPC Endpoint Service Private DNS Name Verification</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
+    "ModifyVpcEndpointServicePayerResponsibility": "<p>Modifies the payer responsibility for your VPC endpoint service.</p>",
     "ModifyVpcEndpointServicePermissions": "<p>Modifies the permissions for your <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html\">VPC endpoint service</a>. You can add or remove permissions for service consumers (IAM users, IAM roles, and Amazon Web Services accounts) to connect to your endpoint service.</p> <p>If you grant permissions to all principals, the service is public. Any users who know the name of a public service can send a request to attach an endpoint. If the service does not require manual approval, attachments are automatically approved.</p>",
     "ModifyVpcPeeringConnectionOptions": "<p>Modifies the VPC peering connection options on one side of a VPC peering connection. You can do the following:</p> <ul> <li> <p>Enable/disable communication over the peering connection between an EC2-Classic instance that's linked to your VPC (using ClassicLink) and instances in the peer VPC.</p> </li> <li> <p>Enable/disable communication over the peering connection between instances in your VPC and an EC2-Classic instance that's linked to the peer VPC.</p> </li> <li> <p>Enable/disable the ability to resolve public DNS hostnames to private IP addresses when queried from instances in the peer VPC.</p> </li> </ul> <p>If the peered VPCs are in the same Amazon Web Services account, you can enable DNS resolution for queries from the local VPC. This ensures that queries from the local VPC resolve to private IP addresses in the peer VPC. This option is not available if the peered VPCs are in different different Amazon Web Services accounts or different Regions. For peered VPCs in different Amazon Web Services accounts, each Amazon Web Services account owner must initiate a separate request to modify the peering connection options. For inter-region peering connections, you must use the Region for the requester VPC to modify the requester VPC peering options and the Region for the accepter VPC to modify the accepter VPC peering options. To verify which VPCs are the accepter and the requester for a VPC peering connection, use the <a>DescribeVpcPeeringConnections</a> command.</p>",
     "ModifyVpcTenancy": "<p>Modifies the instance tenancy attribute of the specified VPC. You can change the instance tenancy attribute of a VPC to <code>default</code> only. You cannot change the instance tenancy attribute to <code>dedicated</code>.</p> <p>After you modify the tenancy of the VPC, any new instances that you launch into the VPC have a tenancy of <code>default</code>, unless you specify otherwise during launch. The tenancy of any existing instances in the VPC is not affected.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html\">Dedicated Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
@@ -2192,6 +2193,8 @@
         "ModifyVpcEndpointServiceConfigurationRequest$RemovePrivateDnsName": "<p>(Interface endpoint configuration) Removes the private DNS name of the endpoint service.</p>",
         "ModifyVpcEndpointServiceConfigurationRequest$AcceptanceRequired": "<p>Indicates whether requests to create an endpoint to your service must be accepted.</p>",
         "ModifyVpcEndpointServiceConfigurationResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
+        "ModifyVpcEndpointServicePayerResponsibilityRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "ModifyVpcEndpointServicePayerResponsibilityResult$ReturnValue": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "ModifyVpcEndpointServicePermissionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyVpcEndpointServicePermissionsResult$ReturnValue": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "ModifyVpcPeeringConnectionOptionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -8840,7 +8843,9 @@
     "HostReservationId": {
       "base": null,
       "refs": {
-        "HostReservationIdSet$member": null
+        "HostReservation$HostReservationId": "<p>The ID of the reservation that specifies the associated Dedicated Hosts.</p>",
+        "HostReservationIdSet$member": null,
+        "Purchase$HostReservationId": "<p>The ID of the reservation.</p>"
       }
     },
     "HostReservationIdSet": {
@@ -12500,6 +12505,16 @@
       "refs": {
       }
     },
+    "ModifyVpcEndpointServicePayerResponsibilityRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyVpcEndpointServicePayerResponsibilityResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ModifyVpcEndpointServicePermissionsRequest": {
       "base": null,
       "refs": {
@@ -13206,6 +13221,8 @@
       "refs": {
         "DescribeHostReservationOfferingsRequest$OfferingId": "<p>The ID of the reservation offering.</p>",
         "GetHostReservationPurchasePreviewRequest$OfferingId": "<p>The offering ID of the reservation.</p>",
+        "HostOffering$OfferingId": "<p>The ID of the offering.</p>",
+        "HostReservation$OfferingId": "<p>The ID of the reservation. This remains the same regardless of which Dedicated Hosts are associated with it.</p>",
         "PurchaseHostReservationRequest$OfferingId": "<p>The ID of the offering.</p>"
       }
     },
@@ -13315,6 +13332,14 @@
       "refs": {
         "AccessScopePathRequest$Source": "<p>The source.</p>",
         "AccessScopePathRequest$Destination": "<p>The destination.</p>"
+      }
+    },
+    "PayerResponsibility": {
+      "base": null,
+      "refs": {
+        "ModifyVpcEndpointServicePayerResponsibilityRequest$PayerResponsibility": "<p>The entity that is responsible for the endpoint costs. The default is the endpoint owner. If you set the payer responsibility to the service owner, you cannot set it back to the endpoint owner.</p>",
+        "ServiceConfiguration$PayerResponsibility": "<p>The payer responsibility.</p>",
+        "ServiceDetail$PayerResponsibility": "<p>The payer responsibility.</p>"
       }
     },
     "PaymentOption": {
@@ -16788,14 +16813,11 @@
         "HostInstance$OwnerId": "<p>The ID of the Amazon Web Services account that owns the instance.</p>",
         "HostOffering$HourlyPrice": "<p>The hourly price of the offering.</p>",
         "HostOffering$InstanceFamily": "<p>The instance family of the offering.</p>",
-        "HostOffering$OfferingId": "<p>The ID of the offering.</p>",
         "HostOffering$UpfrontPrice": "<p>The upfront price of the offering. Does not apply to No Upfront offerings.</p>",
         "HostProperties$InstanceType": "<p>The instance type supported by the Dedicated Host. For example, <code>m5.large</code>. If the host supports multiple instance types, no <b>instanceType</b> is returned.</p>",
         "HostProperties$InstanceFamily": "<p>The instance family supported by the Dedicated Host. For example, <code>m5</code>.</p>",
-        "HostReservation$HostReservationId": "<p>The ID of the reservation that specifies the associated Dedicated Hosts.</p>",
         "HostReservation$HourlyPrice": "<p>The hourly price of the reservation.</p>",
         "HostReservation$InstanceFamily": "<p>The instance family of the Dedicated Host Reservation. The instance family on the Dedicated Host must be the same in order for it to benefit from the reservation.</p>",
-        "HostReservation$OfferingId": "<p>The ID of the reservation. This remains the same regardless of which Dedicated Hosts are associated with it.</p>",
         "HostReservation$UpfrontPrice": "<p>The upfront price of the reservation.</p>",
         "IKEVersionsListValue$Value": "<p>The IKE version.</p>",
         "IKEVersionsRequestListValue$Value": "<p>The IKE version.</p>",
@@ -17280,7 +17302,6 @@
         "PublicIpv4Pool$NetworkBorderGroup": "<p>The name of the location from which the address pool is advertised. A network border group is a unique set of Availability Zones or Local Zones from where Amazon Web Services advertises public IP addresses.</p>",
         "PublicIpv4PoolRange$FirstAddress": "<p>The first IP address in the range.</p>",
         "PublicIpv4PoolRange$LastAddress": "<p>The last IP address in the range.</p>",
-        "Purchase$HostReservationId": "<p>The ID of the reservation.</p>",
         "Purchase$HourlyPrice": "<p>The hourly price of the reservation per hour.</p>",
         "Purchase$InstanceFamily": "<p>The instance family on the Dedicated Host that the reservation can be associated with.</p>",
         "Purchase$UpfrontPrice": "<p>The upfront price of the reservation.</p>",
@@ -19896,6 +19917,7 @@
         "CreateVpcEndpointConnectionNotificationRequest$ServiceId": "<p>The ID of the endpoint service.</p>",
         "DescribeVpcEndpointServicePermissionsRequest$ServiceId": "<p>The ID of the service.</p>",
         "ModifyVpcEndpointServiceConfigurationRequest$ServiceId": "<p>The ID of the service.</p>",
+        "ModifyVpcEndpointServicePayerResponsibilityRequest$ServiceId": "<p>The ID of the service.</p>",
         "ModifyVpcEndpointServicePermissionsRequest$ServiceId": "<p>The ID of the service.</p>",
         "RejectVpcEndpointConnectionsRequest$ServiceId": "<p>The ID of the service.</p>",
         "StartVpcEndpointServicePrivateDnsVerificationRequest$ServiceId": "<p>The ID of the endpoint service.</p>",

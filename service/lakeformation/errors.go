@@ -62,6 +62,15 @@ const (
 	// The operation timed out.
 	ErrCodeOperationTimeoutException = "OperationTimeoutException"
 
+	// ErrCodePermissionTypeMismatchException for service response error code
+	// "PermissionTypeMismatchException".
+	//
+	// The engine does not support filtering data based on the enforced permissions.
+	// For example, if you call the GetTemporaryGlueTableCredentials operation with
+	// SupportedPermissionType equal to ColumnPermission, but cell-level permissions
+	// exist on the table, this exception is thrown.
+	ErrCodePermissionTypeMismatchException = "PermissionTypeMismatchException"
+
 	// ErrCodeResourceNotReadyException for service response error code
 	// "ResourceNotReadyException".
 	//
@@ -124,6 +133,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InternalServiceException":             newErrorInternalServiceException,
 	"InvalidInputException":                newErrorInvalidInputException,
 	"OperationTimeoutException":            newErrorOperationTimeoutException,
+	"PermissionTypeMismatchException":      newErrorPermissionTypeMismatchException,
 	"ResourceNotReadyException":            newErrorResourceNotReadyException,
 	"ResourceNumberLimitExceededException": newErrorResourceNumberLimitExceededException,
 	"StatisticsNotReadyYetException":       newErrorStatisticsNotReadyYetException,

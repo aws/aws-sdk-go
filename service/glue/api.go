@@ -10583,6 +10583,337 @@ func (c *Glue) GetTriggersPagesWithContext(ctx aws.Context, input *GetTriggersIn
 	return p.Err()
 }
 
+const opGetUnfilteredPartitionMetadata = "GetUnfilteredPartitionMetadata"
+
+// GetUnfilteredPartitionMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the GetUnfilteredPartitionMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetUnfilteredPartitionMetadata for more information on using the GetUnfilteredPartitionMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetUnfilteredPartitionMetadataRequest method.
+//    req, resp := client.GetUnfilteredPartitionMetadataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetUnfilteredPartitionMetadata
+func (c *Glue) GetUnfilteredPartitionMetadataRequest(input *GetUnfilteredPartitionMetadataInput) (req *request.Request, output *GetUnfilteredPartitionMetadataOutput) {
+	op := &request.Operation{
+		Name:       opGetUnfilteredPartitionMetadata,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetUnfilteredPartitionMetadataInput{}
+	}
+
+	output = &GetUnfilteredPartitionMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetUnfilteredPartitionMetadata API operation for AWS Glue.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation GetUnfilteredPartitionMetadata for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * EncryptionException
+//   An encryption operation failed.
+//
+//   * PermissionTypeMismatchException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetUnfilteredPartitionMetadata
+func (c *Glue) GetUnfilteredPartitionMetadata(input *GetUnfilteredPartitionMetadataInput) (*GetUnfilteredPartitionMetadataOutput, error) {
+	req, out := c.GetUnfilteredPartitionMetadataRequest(input)
+	return out, req.Send()
+}
+
+// GetUnfilteredPartitionMetadataWithContext is the same as GetUnfilteredPartitionMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetUnfilteredPartitionMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetUnfilteredPartitionMetadataWithContext(ctx aws.Context, input *GetUnfilteredPartitionMetadataInput, opts ...request.Option) (*GetUnfilteredPartitionMetadataOutput, error) {
+	req, out := c.GetUnfilteredPartitionMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetUnfilteredPartitionsMetadata = "GetUnfilteredPartitionsMetadata"
+
+// GetUnfilteredPartitionsMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the GetUnfilteredPartitionsMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetUnfilteredPartitionsMetadata for more information on using the GetUnfilteredPartitionsMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetUnfilteredPartitionsMetadataRequest method.
+//    req, resp := client.GetUnfilteredPartitionsMetadataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetUnfilteredPartitionsMetadata
+func (c *Glue) GetUnfilteredPartitionsMetadataRequest(input *GetUnfilteredPartitionsMetadataInput) (req *request.Request, output *GetUnfilteredPartitionsMetadataOutput) {
+	op := &request.Operation{
+		Name:       opGetUnfilteredPartitionsMetadata,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetUnfilteredPartitionsMetadataInput{}
+	}
+
+	output = &GetUnfilteredPartitionsMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetUnfilteredPartitionsMetadata API operation for AWS Glue.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation GetUnfilteredPartitionsMetadata for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * EncryptionException
+//   An encryption operation failed.
+//
+//   * PermissionTypeMismatchException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetUnfilteredPartitionsMetadata
+func (c *Glue) GetUnfilteredPartitionsMetadata(input *GetUnfilteredPartitionsMetadataInput) (*GetUnfilteredPartitionsMetadataOutput, error) {
+	req, out := c.GetUnfilteredPartitionsMetadataRequest(input)
+	return out, req.Send()
+}
+
+// GetUnfilteredPartitionsMetadataWithContext is the same as GetUnfilteredPartitionsMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetUnfilteredPartitionsMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetUnfilteredPartitionsMetadataWithContext(ctx aws.Context, input *GetUnfilteredPartitionsMetadataInput, opts ...request.Option) (*GetUnfilteredPartitionsMetadataOutput, error) {
+	req, out := c.GetUnfilteredPartitionsMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetUnfilteredPartitionsMetadataPages iterates over the pages of a GetUnfilteredPartitionsMetadata operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetUnfilteredPartitionsMetadata method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetUnfilteredPartitionsMetadata operation.
+//    pageNum := 0
+//    err := client.GetUnfilteredPartitionsMetadataPages(params,
+//        func(page *glue.GetUnfilteredPartitionsMetadataOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Glue) GetUnfilteredPartitionsMetadataPages(input *GetUnfilteredPartitionsMetadataInput, fn func(*GetUnfilteredPartitionsMetadataOutput, bool) bool) error {
+	return c.GetUnfilteredPartitionsMetadataPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetUnfilteredPartitionsMetadataPagesWithContext same as GetUnfilteredPartitionsMetadataPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetUnfilteredPartitionsMetadataPagesWithContext(ctx aws.Context, input *GetUnfilteredPartitionsMetadataInput, fn func(*GetUnfilteredPartitionsMetadataOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetUnfilteredPartitionsMetadataInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetUnfilteredPartitionsMetadataRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetUnfilteredPartitionsMetadataOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opGetUnfilteredTableMetadata = "GetUnfilteredTableMetadata"
+
+// GetUnfilteredTableMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the GetUnfilteredTableMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetUnfilteredTableMetadata for more information on using the GetUnfilteredTableMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetUnfilteredTableMetadataRequest method.
+//    req, resp := client.GetUnfilteredTableMetadataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetUnfilteredTableMetadata
+func (c *Glue) GetUnfilteredTableMetadataRequest(input *GetUnfilteredTableMetadataInput) (req *request.Request, output *GetUnfilteredTableMetadataOutput) {
+	op := &request.Operation{
+		Name:       opGetUnfilteredTableMetadata,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetUnfilteredTableMetadataInput{}
+	}
+
+	output = &GetUnfilteredTableMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetUnfilteredTableMetadata API operation for AWS Glue.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation GetUnfilteredTableMetadata for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * EncryptionException
+//   An encryption operation failed.
+//
+//   * PermissionTypeMismatchException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetUnfilteredTableMetadata
+func (c *Glue) GetUnfilteredTableMetadata(input *GetUnfilteredTableMetadataInput) (*GetUnfilteredTableMetadataOutput, error) {
+	req, out := c.GetUnfilteredTableMetadataRequest(input)
+	return out, req.Send()
+}
+
+// GetUnfilteredTableMetadataWithContext is the same as GetUnfilteredTableMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetUnfilteredTableMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetUnfilteredTableMetadataWithContext(ctx aws.Context, input *GetUnfilteredTableMetadataInput, opts ...request.Option) (*GetUnfilteredTableMetadataOutput, error) {
+	req, out := c.GetUnfilteredTableMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetUserDefinedFunction = "GetUserDefinedFunction"
 
 // GetUserDefinedFunctionRequest generates a "aws/request.Request" representing the
@@ -17229,6 +17560,36 @@ func (s *AlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type AuditContext struct {
+	_ struct{} `type:"structure"`
+
+	AdditionalAuditContext *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuditContext) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuditContext) GoString() string {
+	return s.String()
+}
+
+// SetAdditionalAuditContext sets the AdditionalAuditContext field's value.
+func (s *AuditContext) SetAdditionalAuditContext(v string) *AuditContext {
+	s.AdditionalAuditContext = &v
+	return s
+}
+
 // A list of errors that can occur when registering partition indexes for an
 // existing table.
 //
@@ -19729,6 +20090,11 @@ func (s *CatalogImportStatus) SetImportedBy(v string) *CatalogImportStatus {
 type CatalogTarget struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the connection for an Amazon S3-backed Data Catalog table to
+	// be a target of the crawl when using a Catalog connection type paired with
+	// a NETWORK Connection type.
+	ConnectionName *string `type:"string"`
+
 	// The name of the database to be synchronized.
 	//
 	// DatabaseName is a required field
@@ -19778,6 +20144,12 @@ func (s *CatalogTarget) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetConnectionName sets the ConnectionName field's value.
+func (s *CatalogTarget) SetConnectionName(v string) *CatalogTarget {
+	s.ConnectionName = &v
+	return s
 }
 
 // SetDatabaseName sets the DatabaseName field's value.
@@ -20406,6 +20778,44 @@ func (s *ColumnImportance) SetColumnName(v string) *ColumnImportance {
 // SetImportance sets the Importance field's value.
 func (s *ColumnImportance) SetImportance(v float64) *ColumnImportance {
 	s.Importance = &v
+	return s
+}
+
+type ColumnRowFilter struct {
+	_ struct{} `type:"structure"`
+
+	ColumnName *string `min:"1" type:"string"`
+
+	RowFilterExpression *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColumnRowFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColumnRowFilter) GoString() string {
+	return s.String()
+}
+
+// SetColumnName sets the ColumnName field's value.
+func (s *ColumnRowFilter) SetColumnName(v string) *ColumnRowFilter {
+	s.ColumnName = &v
+	return s
+}
+
+// SetRowFilterExpression sets the RowFilterExpression field's value.
+func (s *ColumnRowFilter) SetRowFilterExpression(v string) *ColumnRowFilter {
+	s.RowFilterExpression = &v
 	return s
 }
 
@@ -21659,6 +22069,8 @@ type Crawler struct {
 	// A description of the crawler.
 	Description *string `type:"string"`
 
+	LakeFormationConfiguration *LakeFormationConfiguration `type:"structure"`
+
 	// The status of the last crawl, and potentially error information if an error
 	// occurred.
 	LastCrawl *LastCrawlInfo `type:"structure"`
@@ -21756,6 +22168,12 @@ func (s *Crawler) SetDatabaseName(v string) *Crawler {
 // SetDescription sets the Description field's value.
 func (s *Crawler) SetDescription(v string) *Crawler {
 	s.Description = &v
+	return s
+}
+
+// SetLakeFormationConfiguration sets the LakeFormationConfiguration field's value.
+func (s *Crawler) SetLakeFormationConfiguration(v *LakeFormationConfiguration) *Crawler {
+	s.LakeFormationConfiguration = v
 	return s
 }
 
@@ -22161,6 +22579,9 @@ type CrawlerTargets struct {
 	// Specifies Glue Data Catalog targets.
 	CatalogTargets []*CatalogTarget `type:"list"`
 
+	// Specifies Delta data store targets.
+	DeltaTargets []*DeltaTarget `type:"list"`
+
 	// Specifies Amazon DynamoDB targets.
 	DynamoDBTargets []*DynamoDBTarget `type:"list"`
 
@@ -22215,6 +22636,12 @@ func (s *CrawlerTargets) Validate() error {
 // SetCatalogTargets sets the CatalogTargets field's value.
 func (s *CrawlerTargets) SetCatalogTargets(v []*CatalogTarget) *CrawlerTargets {
 	s.CatalogTargets = v
+	return s
+}
+
+// SetDeltaTargets sets the DeltaTargets field's value.
+func (s *CrawlerTargets) SetDeltaTargets(v []*DeltaTarget) *CrawlerTargets {
+	s.DeltaTargets = v
 	return s
 }
 
@@ -22587,6 +23014,8 @@ type CreateCrawlerInput struct {
 	// A description of the new crawler.
 	Description *string `type:"string"`
 
+	LakeFormationConfiguration *LakeFormationConfiguration `type:"structure"`
+
 	// Specifies data lineage configuration settings for the crawler.
 	LineageConfiguration *LineageConfiguration `type:"structure"`
 
@@ -22701,6 +23130,12 @@ func (s *CreateCrawlerInput) SetDatabaseName(v string) *CreateCrawlerInput {
 // SetDescription sets the Description field's value.
 func (s *CreateCrawlerInput) SetDescription(v string) *CreateCrawlerInput {
 	s.Description = &v
+	return s
+}
+
+// SetLakeFormationConfiguration sets the LakeFormationConfiguration field's value.
+func (s *CreateCrawlerInput) SetLakeFormationConfiguration(v *LakeFormationConfiguration) *CreateCrawlerInput {
+	s.LakeFormationConfiguration = v
 	return s
 }
 
@@ -28541,6 +28976,56 @@ func (s DeleteWorkflowOutput) GoString() string {
 // SetName sets the Name field's value.
 func (s *DeleteWorkflowOutput) SetName(v string) *DeleteWorkflowOutput {
 	s.Name = &v
+	return s
+}
+
+// Specifies a Delta data store to crawl one or more Delta tables.
+type DeltaTarget struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the connection to use to connect to the Delta table target.
+	ConnectionName *string `type:"string"`
+
+	// A list of the Amazon S3 paths to the Delta tables.
+	DeltaTables []*string `type:"list"`
+
+	// Specifies whether to write the manifest files to the Delta table path.
+	WriteManifest *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeltaTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeltaTarget) GoString() string {
+	return s.String()
+}
+
+// SetConnectionName sets the ConnectionName field's value.
+func (s *DeltaTarget) SetConnectionName(v string) *DeltaTarget {
+	s.ConnectionName = &v
+	return s
+}
+
+// SetDeltaTables sets the DeltaTables field's value.
+func (s *DeltaTarget) SetDeltaTables(v []*string) *DeltaTarget {
+	s.DeltaTables = v
+	return s
+}
+
+// SetWriteManifest sets the WriteManifest field's value.
+func (s *DeltaTarget) SetWriteManifest(v bool) *DeltaTarget {
+	s.WriteManifest = &v
 	return s
 }
 
@@ -35740,6 +36225,500 @@ func (s *GetTriggersOutput) SetTriggers(v []*Trigger) *GetTriggersOutput {
 	return s
 }
 
+type GetUnfilteredPartitionMetadataInput struct {
+	_ struct{} `type:"structure"`
+
+	AuditContext *AuditContext `type:"structure"`
+
+	// CatalogId is a required field
+	CatalogId *string `min:"1" type:"string" required:"true"`
+
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	// PartitionValues is a required field
+	PartitionValues []*string `type:"list" required:"true"`
+
+	// SupportedPermissionTypes is a required field
+	SupportedPermissionTypes []*string `min:"1" type:"list" required:"true"`
+
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUnfilteredPartitionMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUnfilteredPartitionMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetUnfilteredPartitionMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetUnfilteredPartitionMetadataInput"}
+	if s.CatalogId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CatalogId"))
+	}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.PartitionValues == nil {
+		invalidParams.Add(request.NewErrParamRequired("PartitionValues"))
+	}
+	if s.SupportedPermissionTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("SupportedPermissionTypes"))
+	}
+	if s.SupportedPermissionTypes != nil && len(s.SupportedPermissionTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SupportedPermissionTypes", 1))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuditContext sets the AuditContext field's value.
+func (s *GetUnfilteredPartitionMetadataInput) SetAuditContext(v *AuditContext) *GetUnfilteredPartitionMetadataInput {
+	s.AuditContext = v
+	return s
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *GetUnfilteredPartitionMetadataInput) SetCatalogId(v string) *GetUnfilteredPartitionMetadataInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *GetUnfilteredPartitionMetadataInput) SetDatabaseName(v string) *GetUnfilteredPartitionMetadataInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetPartitionValues sets the PartitionValues field's value.
+func (s *GetUnfilteredPartitionMetadataInput) SetPartitionValues(v []*string) *GetUnfilteredPartitionMetadataInput {
+	s.PartitionValues = v
+	return s
+}
+
+// SetSupportedPermissionTypes sets the SupportedPermissionTypes field's value.
+func (s *GetUnfilteredPartitionMetadataInput) SetSupportedPermissionTypes(v []*string) *GetUnfilteredPartitionMetadataInput {
+	s.SupportedPermissionTypes = v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *GetUnfilteredPartitionMetadataInput) SetTableName(v string) *GetUnfilteredPartitionMetadataInput {
+	s.TableName = &v
+	return s
+}
+
+type GetUnfilteredPartitionMetadataOutput struct {
+	_ struct{} `type:"structure"`
+
+	AuthorizedColumns []*string `type:"list"`
+
+	IsRegisteredWithLakeFormation *bool `type:"boolean"`
+
+	// Represents a slice of table data.
+	Partition *Partition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUnfilteredPartitionMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUnfilteredPartitionMetadataOutput) GoString() string {
+	return s.String()
+}
+
+// SetAuthorizedColumns sets the AuthorizedColumns field's value.
+func (s *GetUnfilteredPartitionMetadataOutput) SetAuthorizedColumns(v []*string) *GetUnfilteredPartitionMetadataOutput {
+	s.AuthorizedColumns = v
+	return s
+}
+
+// SetIsRegisteredWithLakeFormation sets the IsRegisteredWithLakeFormation field's value.
+func (s *GetUnfilteredPartitionMetadataOutput) SetIsRegisteredWithLakeFormation(v bool) *GetUnfilteredPartitionMetadataOutput {
+	s.IsRegisteredWithLakeFormation = &v
+	return s
+}
+
+// SetPartition sets the Partition field's value.
+func (s *GetUnfilteredPartitionMetadataOutput) SetPartition(v *Partition) *GetUnfilteredPartitionMetadataOutput {
+	s.Partition = v
+	return s
+}
+
+type GetUnfilteredPartitionsMetadataInput struct {
+	_ struct{} `type:"structure"`
+
+	AuditContext *AuditContext `type:"structure"`
+
+	// CatalogId is a required field
+	CatalogId *string `min:"1" type:"string" required:"true"`
+
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	Expression *string `type:"string"`
+
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	NextToken *string `type:"string"`
+
+	// Defines a non-overlapping region of a table's partitions, allowing multiple
+	// requests to be run in parallel.
+	Segment *Segment `type:"structure"`
+
+	// SupportedPermissionTypes is a required field
+	SupportedPermissionTypes []*string `min:"1" type:"list" required:"true"`
+
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUnfilteredPartitionsMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUnfilteredPartitionsMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetUnfilteredPartitionsMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetUnfilteredPartitionsMetadataInput"}
+	if s.CatalogId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CatalogId"))
+	}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.SupportedPermissionTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("SupportedPermissionTypes"))
+	}
+	if s.SupportedPermissionTypes != nil && len(s.SupportedPermissionTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SupportedPermissionTypes", 1))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+	if s.Segment != nil {
+		if err := s.Segment.Validate(); err != nil {
+			invalidParams.AddNested("Segment", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuditContext sets the AuditContext field's value.
+func (s *GetUnfilteredPartitionsMetadataInput) SetAuditContext(v *AuditContext) *GetUnfilteredPartitionsMetadataInput {
+	s.AuditContext = v
+	return s
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *GetUnfilteredPartitionsMetadataInput) SetCatalogId(v string) *GetUnfilteredPartitionsMetadataInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *GetUnfilteredPartitionsMetadataInput) SetDatabaseName(v string) *GetUnfilteredPartitionsMetadataInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetExpression sets the Expression field's value.
+func (s *GetUnfilteredPartitionsMetadataInput) SetExpression(v string) *GetUnfilteredPartitionsMetadataInput {
+	s.Expression = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetUnfilteredPartitionsMetadataInput) SetMaxResults(v int64) *GetUnfilteredPartitionsMetadataInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetUnfilteredPartitionsMetadataInput) SetNextToken(v string) *GetUnfilteredPartitionsMetadataInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSegment sets the Segment field's value.
+func (s *GetUnfilteredPartitionsMetadataInput) SetSegment(v *Segment) *GetUnfilteredPartitionsMetadataInput {
+	s.Segment = v
+	return s
+}
+
+// SetSupportedPermissionTypes sets the SupportedPermissionTypes field's value.
+func (s *GetUnfilteredPartitionsMetadataInput) SetSupportedPermissionTypes(v []*string) *GetUnfilteredPartitionsMetadataInput {
+	s.SupportedPermissionTypes = v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *GetUnfilteredPartitionsMetadataInput) SetTableName(v string) *GetUnfilteredPartitionsMetadataInput {
+	s.TableName = &v
+	return s
+}
+
+type GetUnfilteredPartitionsMetadataOutput struct {
+	_ struct{} `type:"structure"`
+
+	NextToken *string `type:"string"`
+
+	UnfilteredPartitions []*UnfilteredPartition `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUnfilteredPartitionsMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUnfilteredPartitionsMetadataOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetUnfilteredPartitionsMetadataOutput) SetNextToken(v string) *GetUnfilteredPartitionsMetadataOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUnfilteredPartitions sets the UnfilteredPartitions field's value.
+func (s *GetUnfilteredPartitionsMetadataOutput) SetUnfilteredPartitions(v []*UnfilteredPartition) *GetUnfilteredPartitionsMetadataOutput {
+	s.UnfilteredPartitions = v
+	return s
+}
+
+type GetUnfilteredTableMetadataInput struct {
+	_ struct{} `type:"structure"`
+
+	AuditContext *AuditContext `type:"structure"`
+
+	// CatalogId is a required field
+	CatalogId *string `min:"1" type:"string" required:"true"`
+
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// SupportedPermissionTypes is a required field
+	SupportedPermissionTypes []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUnfilteredTableMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUnfilteredTableMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetUnfilteredTableMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetUnfilteredTableMetadataInput"}
+	if s.CatalogId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CatalogId"))
+	}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.SupportedPermissionTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("SupportedPermissionTypes"))
+	}
+	if s.SupportedPermissionTypes != nil && len(s.SupportedPermissionTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SupportedPermissionTypes", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuditContext sets the AuditContext field's value.
+func (s *GetUnfilteredTableMetadataInput) SetAuditContext(v *AuditContext) *GetUnfilteredTableMetadataInput {
+	s.AuditContext = v
+	return s
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *GetUnfilteredTableMetadataInput) SetCatalogId(v string) *GetUnfilteredTableMetadataInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *GetUnfilteredTableMetadataInput) SetDatabaseName(v string) *GetUnfilteredTableMetadataInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetUnfilteredTableMetadataInput) SetName(v string) *GetUnfilteredTableMetadataInput {
+	s.Name = &v
+	return s
+}
+
+// SetSupportedPermissionTypes sets the SupportedPermissionTypes field's value.
+func (s *GetUnfilteredTableMetadataInput) SetSupportedPermissionTypes(v []*string) *GetUnfilteredTableMetadataInput {
+	s.SupportedPermissionTypes = v
+	return s
+}
+
+type GetUnfilteredTableMetadataOutput struct {
+	_ struct{} `type:"structure"`
+
+	AuthorizedColumns []*string `type:"list"`
+
+	CellFilters []*ColumnRowFilter `type:"list"`
+
+	IsRegisteredWithLakeFormation *bool `type:"boolean"`
+
+	// Represents a collection of related data organized in columns and rows.
+	Table *TableData `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUnfilteredTableMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUnfilteredTableMetadataOutput) GoString() string {
+	return s.String()
+}
+
+// SetAuthorizedColumns sets the AuthorizedColumns field's value.
+func (s *GetUnfilteredTableMetadataOutput) SetAuthorizedColumns(v []*string) *GetUnfilteredTableMetadataOutput {
+	s.AuthorizedColumns = v
+	return s
+}
+
+// SetCellFilters sets the CellFilters field's value.
+func (s *GetUnfilteredTableMetadataOutput) SetCellFilters(v []*ColumnRowFilter) *GetUnfilteredTableMetadataOutput {
+	s.CellFilters = v
+	return s
+}
+
+// SetIsRegisteredWithLakeFormation sets the IsRegisteredWithLakeFormation field's value.
+func (s *GetUnfilteredTableMetadataOutput) SetIsRegisteredWithLakeFormation(v bool) *GetUnfilteredTableMetadataOutput {
+	s.IsRegisteredWithLakeFormation = &v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *GetUnfilteredTableMetadataOutput) SetTable(v *TableData) *GetUnfilteredTableMetadataOutput {
+	s.Table = v
+	return s
+}
+
 type GetUserDefinedFunctionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -38287,6 +39266,44 @@ func (s LabelingSetGenerationTaskRunProperties) GoString() string {
 // SetOutputS3Path sets the OutputS3Path field's value.
 func (s *LabelingSetGenerationTaskRunProperties) SetOutputS3Path(v string) *LabelingSetGenerationTaskRunProperties {
 	s.OutputS3Path = &v
+	return s
+}
+
+type LakeFormationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	AccountId *string `type:"string"`
+
+	UseLakeFormationCredentials *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LakeFormationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LakeFormationConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *LakeFormationConfiguration) SetAccountId(v string) *LakeFormationConfiguration {
+	s.AccountId = &v
+	return s
+}
+
+// SetUseLakeFormationCredentials sets the UseLakeFormationCredentials field's value.
+func (s *LakeFormationConfiguration) SetUseLakeFormationCredentials(v bool) *LakeFormationConfiguration {
+	s.UseLakeFormationCredentials = &v
 	return s
 }
 
@@ -41150,6 +42167,69 @@ func (s *PartitionValueList) Validate() error {
 func (s *PartitionValueList) SetValues(v []*string) *PartitionValueList {
 	s.Values = v
 	return s
+}
+
+type PermissionTypeMismatchException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PermissionTypeMismatchException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PermissionTypeMismatchException) GoString() string {
+	return s.String()
+}
+
+func newErrorPermissionTypeMismatchException(v protocol.ResponseMetadata) error {
+	return &PermissionTypeMismatchException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *PermissionTypeMismatchException) Code() string {
+	return "PermissionTypeMismatchException"
+}
+
+// Message returns the exception's message.
+func (s *PermissionTypeMismatchException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *PermissionTypeMismatchException) OrigErr() error {
+	return nil
+}
+
+func (s *PermissionTypeMismatchException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *PermissionTypeMismatchException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *PermissionTypeMismatchException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Specifies the physical requirements for a connection.
@@ -45643,6 +46723,8 @@ func (s StopWorkflowRunOutput) GoString() string {
 type StorageDescriptor struct {
 	_ struct{} `type:"structure"`
 
+	AdditionalLocations []*string `type:"list"`
+
 	// A list of reducer grouping columns, clustering columns, and bucketing columns
 	// in the table.
 	BucketColumns []*string `type:"list"`
@@ -45747,6 +46829,12 @@ func (s *StorageDescriptor) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAdditionalLocations sets the AdditionalLocations field's value.
+func (s *StorageDescriptor) SetAdditionalLocations(v []*string) *StorageDescriptor {
+	s.AdditionalLocations = v
+	return s
 }
 
 // SetBucketColumns sets the BucketColumns field's value.
@@ -47596,6 +48684,53 @@ func (s *TriggerUpdate) SetSchedule(v string) *TriggerUpdate {
 	return s
 }
 
+type UnfilteredPartition struct {
+	_ struct{} `type:"structure"`
+
+	AuthorizedColumns []*string `type:"list"`
+
+	IsRegisteredWithLakeFormation *bool `type:"boolean"`
+
+	// Represents a slice of table data.
+	Partition *Partition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnfilteredPartition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnfilteredPartition) GoString() string {
+	return s.String()
+}
+
+// SetAuthorizedColumns sets the AuthorizedColumns field's value.
+func (s *UnfilteredPartition) SetAuthorizedColumns(v []*string) *UnfilteredPartition {
+	s.AuthorizedColumns = v
+	return s
+}
+
+// SetIsRegisteredWithLakeFormation sets the IsRegisteredWithLakeFormation field's value.
+func (s *UnfilteredPartition) SetIsRegisteredWithLakeFormation(v bool) *UnfilteredPartition {
+	s.IsRegisteredWithLakeFormation = &v
+	return s
+}
+
+// SetPartition sets the Partition field's value.
+func (s *UnfilteredPartition) SetPartition(v *Partition) *UnfilteredPartition {
+	s.Partition = v
+	return s
+}
+
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -48307,6 +49442,8 @@ type UpdateCrawlerInput struct {
 	// A description of the new crawler.
 	Description *string `type:"string"`
 
+	LakeFormationConfiguration *LakeFormationConfiguration `type:"structure"`
+
 	// Specifies data lineage configuration settings for the crawler.
 	LineageConfiguration *LineageConfiguration `type:"structure"`
 
@@ -48405,6 +49542,12 @@ func (s *UpdateCrawlerInput) SetDatabaseName(v string) *UpdateCrawlerInput {
 // SetDescription sets the Description field's value.
 func (s *UpdateCrawlerInput) SetDescription(v string) *UpdateCrawlerInput {
 	s.Description = &v
+	return s
+}
+
+// SetLakeFormationConfiguration sets the LakeFormationConfiguration field's value.
+func (s *UpdateCrawlerInput) SetLakeFormationConfiguration(v *LakeFormationConfiguration) *UpdateCrawlerInput {
+	s.LakeFormationConfiguration = v
 	return s
 }
 
@@ -51798,6 +52941,22 @@ func Permission_Values() []string {
 		PermissionCreateDatabase,
 		PermissionCreateTable,
 		PermissionDataLocationAccess,
+	}
+}
+
+const (
+	// PermissionTypeColumnPermission is a PermissionType enum value
+	PermissionTypeColumnPermission = "COLUMN_PERMISSION"
+
+	// PermissionTypeCellFilterPermission is a PermissionType enum value
+	PermissionTypeCellFilterPermission = "CELL_FILTER_PERMISSION"
+)
+
+// PermissionType_Values returns all elements of the PermissionType enum
+func PermissionType_Values() []string {
+	return []string{
+		PermissionTypeColumnPermission,
+		PermissionTypeCellFilterPermission,
 	}
 }
 

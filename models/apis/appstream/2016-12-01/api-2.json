@@ -29,6 +29,22 @@
         {"shape":"OperationNotPermittedException"}
       ]
     },
+    "AssociateApplicationToEntitlement":{
+      "name":"AssociateApplicationToEntitlement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateApplicationToEntitlementRequest"},
+      "output":{"shape":"AssociateApplicationToEntitlementResult"},
+      "errors":[
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"EntitlementNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"OperationNotPermittedException"}
+      ]
+    },
     "AssociateFleet":{
       "name":"AssociateFleet",
       "http":{
@@ -135,6 +151,21 @@
         {"shape":"InvalidAccountStatusException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"InvalidRoleException"}
+      ]
+    },
+    "CreateEntitlement":{
+      "name":"CreateEntitlement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateEntitlementRequest"},
+      "output":{"shape":"CreateEntitlementResult"},
+      "errors":[
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"EntitlementAlreadyExistsException"}
       ]
     },
     "CreateFleet":{
@@ -317,6 +348,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DeleteEntitlement":{
+      "name":"DeleteEntitlement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteEntitlementRequest"},
+      "output":{"shape":"DeleteEntitlementResult"},
+      "errors":[
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"EntitlementNotFoundException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
     "DeleteFleet":{
       "name":"DeleteFleet",
       "http":{
@@ -384,6 +431,7 @@
       "errors":[
         {"shape":"ResourceInUseException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"OperationNotPermittedException"},
         {"shape":"ConcurrentModificationException"}
       ]
     },
@@ -461,6 +509,20 @@
       "output":{"shape":"DescribeDirectoryConfigsResult"},
       "errors":[
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DescribeEntitlements":{
+      "name":"DescribeEntitlements",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeEntitlementsRequest"},
+      "output":{"shape":"DescribeEntitlementsResult"},
+      "errors":[
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"EntitlementNotFoundException"}
       ]
     },
     "DescribeFleets":{
@@ -602,6 +664,21 @@
         {"shape":"OperationNotPermittedException"}
       ]
     },
+    "DisassociateApplicationFromEntitlement":{
+      "name":"DisassociateApplicationFromEntitlement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateApplicationFromEntitlementRequest"},
+      "output":{"shape":"DisassociateApplicationFromEntitlementResult"},
+      "errors":[
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"EntitlementNotFoundException"},
+        {"shape":"OperationNotPermittedException"}
+      ]
+    },
     "DisassociateFleet":{
       "name":"DisassociateFleet",
       "http":{
@@ -656,6 +733,20 @@
       },
       "input":{"shape":"ListAssociatedStacksRequest"},
       "output":{"shape":"ListAssociatedStacksResult"}
+    },
+    "ListEntitledApplications":{
+      "name":"ListEntitledApplications",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListEntitledApplicationsRequest"},
+      "output":{"shape":"ListEntitledApplicationsResult"},
+      "errors":[
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"EntitlementNotFoundException"}
+      ]
     },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
@@ -787,6 +878,21 @@
         {"shape":"InvalidRoleException"}
       ]
     },
+    "UpdateEntitlement":{
+      "name":"UpdateEntitlement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateEntitlementRequest"},
+      "output":{"shape":"UpdateEntitlementResult"},
+      "errors":[
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"EntitlementNotFoundException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
     "UpdateFleet":{
       "name":"UpdateFleet",
       "http":{
@@ -907,6 +1013,13 @@
       "type":"list",
       "member":{"shape":"AppBlock"}
     },
+    "AppVisibility":{
+      "type":"string",
+      "enum":[
+        "ALL",
+        "ASSOCIATED"
+      ]
+    },
     "Application":{
       "type":"structure",
       "members":{
@@ -1004,6 +1117,24 @@
       "type":"structure",
       "members":{
         "ApplicationFleetAssociation":{"shape":"ApplicationFleetAssociation"}
+      }
+    },
+    "AssociateApplicationToEntitlementRequest":{
+      "type":"structure",
+      "required":[
+        "StackName",
+        "EntitlementName",
+        "ApplicationIdentifier"
+      ],
+      "members":{
+        "StackName":{"shape":"Name"},
+        "EntitlementName":{"shape":"Name"},
+        "ApplicationIdentifier":{"shape":"String"}
+      }
+    },
+    "AssociateApplicationToEntitlementResult":{
+      "type":"structure",
+      "members":{
       }
     },
     "AssociateFleetRequest":{
@@ -1180,6 +1311,28 @@
       "type":"structure",
       "members":{
         "DirectoryConfig":{"shape":"DirectoryConfig"}
+      }
+    },
+    "CreateEntitlementRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "StackName",
+        "AppVisibility",
+        "Attributes"
+      ],
+      "members":{
+        "Name":{"shape":"Name"},
+        "StackName":{"shape":"Name"},
+        "Description":{"shape":"Description"},
+        "AppVisibility":{"shape":"AppVisibility"},
+        "Attributes":{"shape":"EntitlementAttributeList"}
+      }
+    },
+    "CreateEntitlementResult":{
+      "type":"structure",
+      "members":{
+        "Entitlement":{"shape":"Entitlement"}
       }
     },
     "CreateFleetRequest":{
@@ -1395,6 +1548,22 @@
       "members":{
       }
     },
+    "DeleteEntitlementRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "StackName"
+      ],
+      "members":{
+        "Name":{"shape":"Name"},
+        "StackName":{"shape":"Name"}
+      }
+    },
+    "DeleteEntitlementResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteFleetRequest":{
       "type":"structure",
       "required":["Name"],
@@ -1545,6 +1714,23 @@
       "type":"structure",
       "members":{
         "DirectoryConfigs":{"shape":"DirectoryConfigList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeEntitlementsRequest":{
+      "type":"structure",
+      "required":["StackName"],
+      "members":{
+        "Name":{"shape":"Name"},
+        "StackName":{"shape":"Name"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"Integer"}
+      }
+    },
+    "DescribeEntitlementsResult":{
+      "type":"structure",
+      "members":{
+        "Entitlements":{"shape":"EntitlementList"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -1756,6 +1942,24 @@
       "members":{
       }
     },
+    "DisassociateApplicationFromEntitlementRequest":{
+      "type":"structure",
+      "required":[
+        "StackName",
+        "EntitlementName",
+        "ApplicationIdentifier"
+      ],
+      "members":{
+        "StackName":{"shape":"Name"},
+        "EntitlementName":{"shape":"Name"},
+        "ApplicationIdentifier":{"shape":"String"}
+      }
+    },
+    "DisassociateApplicationFromEntitlementResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DisassociateFleetRequest":{
       "type":"structure",
       "required":[
@@ -1819,6 +2023,69 @@
       "type":"structure",
       "members":{
       }
+    },
+    "EntitledApplication":{
+      "type":"structure",
+      "required":["ApplicationIdentifier"],
+      "members":{
+        "ApplicationIdentifier":{"shape":"String"}
+      }
+    },
+    "EntitledApplicationList":{
+      "type":"list",
+      "member":{"shape":"EntitledApplication"}
+    },
+    "Entitlement":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "StackName",
+        "AppVisibility",
+        "Attributes"
+      ],
+      "members":{
+        "Name":{"shape":"Name"},
+        "StackName":{"shape":"Name"},
+        "Description":{"shape":"Description"},
+        "AppVisibility":{"shape":"AppVisibility"},
+        "Attributes":{"shape":"EntitlementAttributeList"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"}
+      }
+    },
+    "EntitlementAlreadyExistsException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "EntitlementAttribute":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Value"
+      ],
+      "members":{
+        "Name":{"shape":"String"},
+        "Value":{"shape":"String"}
+      }
+    },
+    "EntitlementAttributeList":{
+      "type":"list",
+      "member":{"shape":"EntitlementAttribute"},
+      "min":1
+    },
+    "EntitlementList":{
+      "type":"list",
+      "member":{"shape":"Entitlement"}
+    },
+    "EntitlementNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
     },
     "ErrorMessage":{"type":"string"},
     "ExpireSessionRequest":{
@@ -2146,6 +2413,26 @@
       "type":"structure",
       "members":{
         "Names":{"shape":"StringList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListEntitledApplicationsRequest":{
+      "type":"structure",
+      "required":[
+        "StackName",
+        "EntitlementName"
+      ],
+      "members":{
+        "StackName":{"shape":"Name"},
+        "EntitlementName":{"shape":"Name"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"Integer"}
+      }
+    },
+    "ListEntitledApplicationsResult":{
+      "type":"structure",
+      "members":{
+        "EntitledApplications":{"shape":"EntitledApplicationList"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -2651,6 +2938,26 @@
       "type":"structure",
       "members":{
         "DirectoryConfig":{"shape":"DirectoryConfig"}
+      }
+    },
+    "UpdateEntitlementRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "StackName"
+      ],
+      "members":{
+        "Name":{"shape":"Name"},
+        "StackName":{"shape":"Name"},
+        "Description":{"shape":"Description"},
+        "AppVisibility":{"shape":"AppVisibility"},
+        "Attributes":{"shape":"EntitlementAttributeList"}
+      }
+    },
+    "UpdateEntitlementResult":{
+      "type":"structure",
+      "members":{
+        "Entitlement":{"shape":"Entitlement"}
       }
     },
     "UpdateFleetRequest":{

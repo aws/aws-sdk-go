@@ -534,6 +534,21 @@ type GlueAPI interface {
 	GetTriggersPages(*glue.GetTriggersInput, func(*glue.GetTriggersOutput, bool) bool) error
 	GetTriggersPagesWithContext(aws.Context, *glue.GetTriggersInput, func(*glue.GetTriggersOutput, bool) bool, ...request.Option) error
 
+	GetUnfilteredPartitionMetadata(*glue.GetUnfilteredPartitionMetadataInput) (*glue.GetUnfilteredPartitionMetadataOutput, error)
+	GetUnfilteredPartitionMetadataWithContext(aws.Context, *glue.GetUnfilteredPartitionMetadataInput, ...request.Option) (*glue.GetUnfilteredPartitionMetadataOutput, error)
+	GetUnfilteredPartitionMetadataRequest(*glue.GetUnfilteredPartitionMetadataInput) (*request.Request, *glue.GetUnfilteredPartitionMetadataOutput)
+
+	GetUnfilteredPartitionsMetadata(*glue.GetUnfilteredPartitionsMetadataInput) (*glue.GetUnfilteredPartitionsMetadataOutput, error)
+	GetUnfilteredPartitionsMetadataWithContext(aws.Context, *glue.GetUnfilteredPartitionsMetadataInput, ...request.Option) (*glue.GetUnfilteredPartitionsMetadataOutput, error)
+	GetUnfilteredPartitionsMetadataRequest(*glue.GetUnfilteredPartitionsMetadataInput) (*request.Request, *glue.GetUnfilteredPartitionsMetadataOutput)
+
+	GetUnfilteredPartitionsMetadataPages(*glue.GetUnfilteredPartitionsMetadataInput, func(*glue.GetUnfilteredPartitionsMetadataOutput, bool) bool) error
+	GetUnfilteredPartitionsMetadataPagesWithContext(aws.Context, *glue.GetUnfilteredPartitionsMetadataInput, func(*glue.GetUnfilteredPartitionsMetadataOutput, bool) bool, ...request.Option) error
+
+	GetUnfilteredTableMetadata(*glue.GetUnfilteredTableMetadataInput) (*glue.GetUnfilteredTableMetadataOutput, error)
+	GetUnfilteredTableMetadataWithContext(aws.Context, *glue.GetUnfilteredTableMetadataInput, ...request.Option) (*glue.GetUnfilteredTableMetadataOutput, error)
+	GetUnfilteredTableMetadataRequest(*glue.GetUnfilteredTableMetadataInput) (*request.Request, *glue.GetUnfilteredTableMetadataOutput)
+
 	GetUserDefinedFunction(*glue.GetUserDefinedFunctionInput) (*glue.GetUserDefinedFunctionOutput, error)
 	GetUserDefinedFunctionWithContext(aws.Context, *glue.GetUserDefinedFunctionInput, ...request.Option) (*glue.GetUserDefinedFunctionOutput, error)
 	GetUserDefinedFunctionRequest(*glue.GetUserDefinedFunctionInput) (*request.Request, *glue.GetUserDefinedFunctionOutput)
