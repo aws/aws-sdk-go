@@ -473,9 +473,10 @@
       "base": "<p>Slate VOD source configuration.</p>",
       "refs": {
         "AdBreak$Slate": "<p>Ad break slate configuration.</p>",
-        "Channel$FillerSlate": "<p>Contains information about the slate used to fill gaps between programs in the schedule. You must configure FillerSlate if your channel uses an LINEAR PlaybackMode.</p>",
-        "CreateChannelRequest$FillerSlate": "<p>The slate used to fill gaps between programs in the schedule. You must configure filler slate if your channel uses a LINEAR PlaybackMode.</p>",
-        "DescribeChannelResponse$FillerSlate": "<p>Contains information about the slate used to fill gaps between programs in the schedule.</p>"
+        "Channel$FillerSlate": "<p>The slate used to fill gaps between programs in the schedule. You must configure filler slate if your channel uses the LINEAR PlaybackMode. MediaTailor doesn't support filler slate for channels using the LOOP PlaybackMode.</p>",
+        "CreateChannelRequest$FillerSlate": "<p>The slate used to fill gaps between programs in the schedule. You must configure filler slate if your channel uses the LINEAR PlaybackMode. MediaTailor doesn't support filler slate for channels using the LOOP PlaybackMode.</p>",
+        "DescribeChannelResponse$FillerSlate": "<p>Contains information about the slate used to fill gaps between programs in the schedule.</p>",
+        "UpdateChannelRequest$FillerSlate": "<p>The slate used to fill gaps between programs in the schedule. You must configure filler slate if your channel uses the LINEAR PlaybackMode. MediaTailor doesn't support filler slate for channels using the LOOP PlaybackMode.</p>"
       }
     },
     "SourceLocation": {

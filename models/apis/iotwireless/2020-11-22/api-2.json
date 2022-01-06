@@ -383,6 +383,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "DeleteQueuedMessages":{
+      "name":"DeleteQueuedMessages",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/wireless-devices/{Id}/data",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteQueuedMessagesRequest"},
+      "output":{"shape":"DeleteQueuedMessagesResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "DeleteServiceProfile":{
       "name":"DeleteServiceProfile",
       "http":{
@@ -1002,6 +1019,22 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "ListQueuedMessages":{
+      "name":"ListQueuedMessages",
+      "http":{
+        "method":"GET",
+        "requestUri":"/wireless-devices/{Id}/data"
+      },
+      "input":{"shape":"ListQueuedMessagesRequest"},
+      "output":{"shape":"ListQueuedMessagesResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "ListServiceProfiles":{
@@ -1993,6 +2026,35 @@
       "members":{
       }
     },
+    "DeleteQueuedMessagesRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "MessageId"
+      ],
+      "members":{
+        "Id":{
+          "shape":"WirelessDeviceId",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "MessageId":{
+          "shape":"MessageId",
+          "location":"querystring",
+          "locationName":"messageId"
+        },
+        "WirelessDeviceType":{
+          "shape":"WirelessDeviceType",
+          "location":"querystring",
+          "locationName":"WirelessDeviceType"
+        }
+      }
+    },
+    "DeleteQueuedMessagesResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteServiceProfileRequest":{
       "type":"structure",
       "required":["Id"],
@@ -2328,6 +2390,19 @@
       "max":256
     },
     "Double":{"type":"double"},
+    "DownlinkQueueMessage":{
+      "type":"structure",
+      "members":{
+        "MessageId":{"shape":"MessageId"},
+        "TransmitMode":{"shape":"TransmitMode"},
+        "ReceivedAt":{"shape":"ISODateTimeString"},
+        "LoRaWAN":{"shape":"LoRaWANSendDataToDevice"}
+      }
+    },
+    "DownlinkQueueMessagesList":{
+      "type":"list",
+      "member":{"shape":"DownlinkQueueMessage"}
+    },
     "DrMax":{
       "type":"integer",
       "max":15,
@@ -3091,6 +3166,39 @@
       "members":{
         "NextToken":{"shape":"NextToken"},
         "Sidewalk":{"shape":"SidewalkAccountList"}
+      }
+    },
+    "ListQueuedMessagesRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"WirelessDeviceId",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "WirelessDeviceType":{
+          "shape":"WirelessDeviceType",
+          "location":"querystring",
+          "locationName":"WirelessDeviceType"
+        }
+      }
+    },
+    "ListQueuedMessagesResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "DownlinkQueueMessagesList":{"shape":"DownlinkQueueMessagesList"}
       }
     },
     "ListServiceProfilesRequest":{

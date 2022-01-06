@@ -860,6 +860,17 @@
         "UpdateResolverRequest$responseMappingTemplate": "<p>The new response mapping template.</p>"
       }
     },
+    "MaxBatchSize": {
+      "base": null,
+      "refs": {
+        "CreateFunctionRequest$maxBatchSize": "<p>The maximum batching size for a resolver.</p>",
+        "CreateResolverRequest$maxBatchSize": "<p>The maximum batching size for a resolver.</p>",
+        "FunctionConfiguration$maxBatchSize": "<p>The maximum batching size for a resolver.</p>",
+        "Resolver$maxBatchSize": "<p>The maximum batching size for a resolver.</p>",
+        "UpdateFunctionRequest$maxBatchSize": "<p>The maximum batching size for a resolver.</p>",
+        "UpdateResolverRequest$maxBatchSize": "<p>The maximum batching size for a resolver.</p>"
+      }
+    },
     "MaxResults": {
       "base": null,
       "refs": {

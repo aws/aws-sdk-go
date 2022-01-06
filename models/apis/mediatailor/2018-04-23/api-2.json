@@ -882,8 +882,8 @@
       "required": [
         "Name",
         "PlaybackConfigurationName",
-        "Consumption",
-        "Retrieval"
+        "Retrieval",
+        "Consumption"
       ],
       "type": "structure"
     },
@@ -939,8 +939,8 @@
         "ChannelName",
         "ProgramName",
         "VodSourceName",
-        "ScheduleConfiguration",
-        "SourceLocationName"
+        "SourceLocationName",
+        "ScheduleConfiguration"
       ],
       "type": "structure"
     },
@@ -2337,8 +2337,8 @@
       },
       "required": [
         "VodSourceName",
-        "ChannelName",
         "SourceLocationName",
+        "ChannelName",
         "Arn",
         "ProgramName"
       ],
@@ -2533,6 +2533,9 @@
           "location": "uri",
           "locationName": "channelName",
           "shape": "__string"
+        },
+        "FillerSlate": {
+          "shape": "SlateSource"
         },
         "Outputs": {
           "shape": "RequestOutputs"

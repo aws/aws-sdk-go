@@ -6275,6 +6275,9 @@ type CreateFunctionInput struct {
 	// FunctionVersion is a required field
 	FunctionVersion *string `locationName:"functionVersion" type:"string" required:"true"`
 
+	// The maximum batching size for a resolver.
+	MaxBatchSize *int64 `locationName:"maxBatchSize" type:"integer"`
+
 	// The Function name. The function name does not have to be unique.
 	//
 	// Name is a required field
@@ -6370,6 +6373,12 @@ func (s *CreateFunctionInput) SetDescription(v string) *CreateFunctionInput {
 // SetFunctionVersion sets the FunctionVersion field's value.
 func (s *CreateFunctionInput) SetFunctionVersion(v string) *CreateFunctionInput {
 	s.FunctionVersion = &v
+	return s
+}
+
+// SetMaxBatchSize sets the MaxBatchSize field's value.
+func (s *CreateFunctionInput) SetMaxBatchSize(v int64) *CreateFunctionInput {
+	s.MaxBatchSize = &v
 	return s
 }
 
@@ -6646,6 +6655,9 @@ type CreateResolverInput struct {
 	//    a pipeline resolver to run a GraphQL query against multiple data sources.
 	Kind *string `locationName:"kind" type:"string" enum:"ResolverKind"`
 
+	// The maximum batching size for a resolver.
+	MaxBatchSize *int64 `locationName:"maxBatchSize" type:"integer"`
+
 	// The PipelineConfig.
 	PipelineConfig *PipelineConfig `locationName:"pipelineConfig" type:"structure"`
 
@@ -6754,6 +6766,12 @@ func (s *CreateResolverInput) SetFieldName(v string) *CreateResolverInput {
 // SetKind sets the Kind field's value.
 func (s *CreateResolverInput) SetKind(v string) *CreateResolverInput {
 	s.Kind = &v
+	return s
+}
+
+// SetMaxBatchSize sets the MaxBatchSize field's value.
+func (s *CreateResolverInput) SetMaxBatchSize(v int64) *CreateResolverInput {
+	s.MaxBatchSize = &v
 	return s
 }
 
@@ -8182,6 +8200,9 @@ type FunctionConfiguration struct {
 	// version of the template is supported.
 	FunctionVersion *string `locationName:"functionVersion" type:"string"`
 
+	// The maximum batching size for a resolver.
+	MaxBatchSize *int64 `locationName:"maxBatchSize" type:"integer"`
+
 	// The name of the Function object.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
@@ -8244,6 +8265,12 @@ func (s *FunctionConfiguration) SetFunctionId(v string) *FunctionConfiguration {
 // SetFunctionVersion sets the FunctionVersion field's value.
 func (s *FunctionConfiguration) SetFunctionVersion(v string) *FunctionConfiguration {
 	s.FunctionVersion = &v
+	return s
+}
+
+// SetMaxBatchSize sets the MaxBatchSize field's value.
+func (s *FunctionConfiguration) SetMaxBatchSize(v int64) *FunctionConfiguration {
+	s.MaxBatchSize = &v
 	return s
 }
 
@@ -11200,6 +11227,9 @@ type Resolver struct {
 	//    a pipeline resolver to run a GraphQL query against multiple data sources.
 	Kind *string `locationName:"kind" type:"string" enum:"ResolverKind"`
 
+	// The maximum batching size for a resolver.
+	MaxBatchSize *int64 `locationName:"maxBatchSize" type:"integer"`
+
 	// The PipelineConfig.
 	PipelineConfig *PipelineConfig `locationName:"pipelineConfig" type:"structure"`
 
@@ -11258,6 +11288,12 @@ func (s *Resolver) SetFieldName(v string) *Resolver {
 // SetKind sets the Kind field's value.
 func (s *Resolver) SetKind(v string) *Resolver {
 	s.Kind = &v
+	return s
+}
+
+// SetMaxBatchSize sets the MaxBatchSize field's value.
+func (s *Resolver) SetMaxBatchSize(v int64) *Resolver {
+	s.MaxBatchSize = &v
 	return s
 }
 
@@ -12376,6 +12412,9 @@ type UpdateFunctionInput struct {
 	// FunctionVersion is a required field
 	FunctionVersion *string `locationName:"functionVersion" type:"string" required:"true"`
 
+	// The maximum batching size for a resolver.
+	MaxBatchSize *int64 `locationName:"maxBatchSize" type:"integer"`
+
 	// The Function name.
 	//
 	// Name is a required field
@@ -12483,6 +12522,12 @@ func (s *UpdateFunctionInput) SetFunctionId(v string) *UpdateFunctionInput {
 // SetFunctionVersion sets the FunctionVersion field's value.
 func (s *UpdateFunctionInput) SetFunctionVersion(v string) *UpdateFunctionInput {
 	s.FunctionVersion = &v
+	return s
+}
+
+// SetMaxBatchSize sets the MaxBatchSize field's value.
+func (s *UpdateFunctionInput) SetMaxBatchSize(v int64) *UpdateFunctionInput {
+	s.MaxBatchSize = &v
 	return s
 }
 
@@ -12758,6 +12803,9 @@ type UpdateResolverInput struct {
 	//    a pipeline resolver to run a GraphQL query against multiple data sources.
 	Kind *string `locationName:"kind" type:"string" enum:"ResolverKind"`
 
+	// The maximum batching size for a resolver.
+	MaxBatchSize *int64 `locationName:"maxBatchSize" type:"integer"`
+
 	// The PipelineConfig.
 	PipelineConfig *PipelineConfig `locationName:"pipelineConfig" type:"structure"`
 
@@ -12866,6 +12914,12 @@ func (s *UpdateResolverInput) SetFieldName(v string) *UpdateResolverInput {
 // SetKind sets the Kind field's value.
 func (s *UpdateResolverInput) SetKind(v string) *UpdateResolverInput {
 	s.Kind = &v
+	return s
+}
+
+// SetMaxBatchSize sets the MaxBatchSize field's value.
+func (s *UpdateResolverInput) SetMaxBatchSize(v int64) *UpdateResolverInput {
+	s.MaxBatchSize = &v
 	return s
 }
 

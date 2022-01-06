@@ -3752,9 +3752,9 @@ type Channel struct {
 	// The timestamp of when the channel was created.
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
-	// Contains information about the slate used to fill gaps between programs in
-	// the schedule. You must configure FillerSlate if your channel uses an LINEAR
-	// PlaybackMode.
+	// The slate used to fill gaps between programs in the schedule. You must configure
+	// filler slate if your channel uses the LINEAR PlaybackMode. MediaTailor doesn't
+	// support filler slate for channels using the LOOP PlaybackMode.
 	FillerSlate *SlateSource `type:"structure"`
 
 	// The timestamp of when the channel was last modified.
@@ -3970,7 +3970,8 @@ type CreateChannelInput struct {
 	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
 
 	// The slate used to fill gaps between programs in the schedule. You must configure
-	// filler slate if your channel uses a LINEAR PlaybackMode.
+	// filler slate if your channel uses the LINEAR PlaybackMode. MediaTailor doesn't
+	// support filler slate for channels using the LOOP PlaybackMode.
 	FillerSlate *SlateSource `type:"structure"`
 
 	// The channel's output properties.
@@ -9894,6 +9895,11 @@ type UpdateChannelInput struct {
 	// ChannelName is a required field
 	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
 
+	// The slate used to fill gaps between programs in the schedule. You must configure
+	// filler slate if your channel uses the LINEAR PlaybackMode. MediaTailor doesn't
+	// support filler slate for channels using the LOOP PlaybackMode.
+	FillerSlate *SlateSource `type:"structure"`
+
 	// The channel's output properties.
 	//
 	// Outputs is a required field
@@ -9950,6 +9956,12 @@ func (s *UpdateChannelInput) Validate() error {
 // SetChannelName sets the ChannelName field's value.
 func (s *UpdateChannelInput) SetChannelName(v string) *UpdateChannelInput {
 	s.ChannelName = &v
+	return s
+}
+
+// SetFillerSlate sets the FillerSlate field's value.
+func (s *UpdateChannelInput) SetFillerSlate(v *SlateSource) *UpdateChannelInput {
+	s.FillerSlate = v
 	return s
 }
 

@@ -1,3 +1,17 @@
+Release v1.42.29 (2022-01-06)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release introduces On-Demand Capacity Reservation support for Cluster Placement Groups, adds Tags on instance Metadata, and includes documentation updates for Amazon EC2.
+* `service/es`: Updates service API and documentation
+  * Amazon OpenSearch Service adds support for Fine Grained Access Control for existing domains running Elasticsearch version 6.7 and above
+* `service/iotwireless`: Updates service API, documentation, and paginators
+* `service/mediatailor`: Updates service API and documentation
+* `service/mwaa`: Updates service API and documentation
+* `service/opensearch`: Updates service API and documentation
+
 Release v1.42.28 (2022-01-05)
 ===
 

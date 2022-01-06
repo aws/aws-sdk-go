@@ -249,8 +249,10 @@
       "refs": {
         "AdvancedSecurityOptions$Enabled": "<p>True if advanced security is enabled.</p>",
         "AdvancedSecurityOptions$InternalUserDatabaseEnabled": "<p>True if the internal user database is enabled.</p>",
+        "AdvancedSecurityOptions$AnonymousAuthEnabled": "<p>True if Anonymous auth is enabled. Anonymous auth can be enabled only when AdvancedSecurity is enabled on existing domains.</p>",
         "AdvancedSecurityOptionsInput$Enabled": "<p>True if advanced security is enabled.</p>",
         "AdvancedSecurityOptionsInput$InternalUserDatabaseEnabled": "<p>True if the internal user database is enabled.</p>",
+        "AdvancedSecurityOptionsInput$AnonymousAuthEnabled": "<p>True if Anonymous auth is enabled. Anonymous auth can be enabled only when AdvancedSecurity is enabled on existing domains.</p>",
         "AutoTuneStatus$PendingDeletion": "<p>Indicates whether the domain is being deleted.</p>",
         "ClusterConfig$DedicatedMasterEnabled": "<p>A boolean value to indicate whether a dedicated master node is enabled. See <a href=\"http://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains.html#managedomains-dedicatedmasternodes\" target=\"_blank\">Dedicated master nodes in Amazon OpenSearch Service </a> for more information. </p>",
         "ClusterConfig$ZoneAwarenessEnabled": "<p>A boolean value to indicate whether zone awareness is enabled. See <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-multiaz.html\" target=\"_blank\">Configuring a multi-AZ domain in Amazon OpenSearch Service </a> for more information. </p>",
@@ -608,6 +610,12 @@
     "DescribeReservedInstancesResponse": {
       "base": "<p>Container for results from <code>DescribeReservedInstances</code> </p>",
       "refs": {
+      }
+    },
+    "DisableTimestamp": {
+      "base": null,
+      "refs": {
+        "AdvancedSecurityOptions$AnonymousAuthDisableDate": "<p>Specifies the Anonymous Auth Disable Date when Anonymous Auth is enabled.</p>"
       }
     },
     "DisabledOperationException": {
