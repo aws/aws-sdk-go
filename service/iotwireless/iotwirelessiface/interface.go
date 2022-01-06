@@ -144,6 +144,10 @@ type IoTWirelessAPI interface {
 	DeleteMulticastGroupWithContext(aws.Context, *iotwireless.DeleteMulticastGroupInput, ...request.Option) (*iotwireless.DeleteMulticastGroupOutput, error)
 	DeleteMulticastGroupRequest(*iotwireless.DeleteMulticastGroupInput) (*request.Request, *iotwireless.DeleteMulticastGroupOutput)
 
+	DeleteQueuedMessages(*iotwireless.DeleteQueuedMessagesInput) (*iotwireless.DeleteQueuedMessagesOutput, error)
+	DeleteQueuedMessagesWithContext(aws.Context, *iotwireless.DeleteQueuedMessagesInput, ...request.Option) (*iotwireless.DeleteQueuedMessagesOutput, error)
+	DeleteQueuedMessagesRequest(*iotwireless.DeleteQueuedMessagesInput) (*request.Request, *iotwireless.DeleteQueuedMessagesOutput)
+
 	DeleteServiceProfile(*iotwireless.DeleteServiceProfileInput) (*iotwireless.DeleteServiceProfileOutput, error)
 	DeleteServiceProfileWithContext(aws.Context, *iotwireless.DeleteServiceProfileInput, ...request.Option) (*iotwireless.DeleteServiceProfileOutput, error)
 	DeleteServiceProfileRequest(*iotwireless.DeleteServiceProfileInput) (*request.Request, *iotwireless.DeleteServiceProfileOutput)
@@ -310,6 +314,13 @@ type IoTWirelessAPI interface {
 	ListPartnerAccounts(*iotwireless.ListPartnerAccountsInput) (*iotwireless.ListPartnerAccountsOutput, error)
 	ListPartnerAccountsWithContext(aws.Context, *iotwireless.ListPartnerAccountsInput, ...request.Option) (*iotwireless.ListPartnerAccountsOutput, error)
 	ListPartnerAccountsRequest(*iotwireless.ListPartnerAccountsInput) (*request.Request, *iotwireless.ListPartnerAccountsOutput)
+
+	ListQueuedMessages(*iotwireless.ListQueuedMessagesInput) (*iotwireless.ListQueuedMessagesOutput, error)
+	ListQueuedMessagesWithContext(aws.Context, *iotwireless.ListQueuedMessagesInput, ...request.Option) (*iotwireless.ListQueuedMessagesOutput, error)
+	ListQueuedMessagesRequest(*iotwireless.ListQueuedMessagesInput) (*request.Request, *iotwireless.ListQueuedMessagesOutput)
+
+	ListQueuedMessagesPages(*iotwireless.ListQueuedMessagesInput, func(*iotwireless.ListQueuedMessagesOutput, bool) bool) error
+	ListQueuedMessagesPagesWithContext(aws.Context, *iotwireless.ListQueuedMessagesInput, func(*iotwireless.ListQueuedMessagesOutput, bool) bool, ...request.Option) error
 
 	ListServiceProfiles(*iotwireless.ListServiceProfilesInput) (*iotwireless.ListServiceProfilesOutput, error)
 	ListServiceProfilesWithContext(aws.Context, *iotwireless.ListServiceProfilesInput, ...request.Option) (*iotwireless.ListServiceProfilesOutput, error)

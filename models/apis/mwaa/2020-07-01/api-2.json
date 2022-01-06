@@ -222,13 +222,13 @@
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"^[a-z]+([a-z._]*[a-z]+)?$"
+      "pattern":"^[a-z]+([a-z0-9._]*[a-z0-9_]+)?$"
     },
     "ConfigValue":{
       "type":"string",
-      "max":256,
+      "max":65536,
       "min":1,
-      "pattern":".*"
+      "pattern":"^[ -~]+$"
     },
     "CreateCliTokenRequest":{
       "type":"structure",
@@ -469,6 +469,7 @@
       "members":{
         "CreatedAt":{"shape":"UpdateCreatedAt"},
         "Error":{"shape":"UpdateError"},
+        "Source":{"shape":"UpdateSource"},
         "Status":{"shape":"UpdateStatus"}
       }
     },
@@ -869,6 +870,12 @@
       "members":{
         "SecurityGroupIds":{"shape":"SecurityGroupList"}
       }
+    },
+    "UpdateSource":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^.+$"
     },
     "UpdateStatus":{
       "type":"string",

@@ -1134,7 +1134,8 @@
         "requestMappingTemplate":{"shape":"MappingTemplate"},
         "responseMappingTemplate":{"shape":"MappingTemplate"},
         "functionVersion":{"shape":"String"},
-        "syncConfig":{"shape":"SyncConfig"}
+        "syncConfig":{"shape":"SyncConfig"},
+        "maxBatchSize":{"shape":"MaxBatchSize"}
       }
     },
     "CreateFunctionResponse":{
@@ -1192,7 +1193,8 @@
         "kind":{"shape":"ResolverKind"},
         "pipelineConfig":{"shape":"PipelineConfig"},
         "syncConfig":{"shape":"SyncConfig"},
-        "cachingConfig":{"shape":"CachingConfig"}
+        "cachingConfig":{"shape":"CachingConfig"},
+        "maxBatchSize":{"shape":"MaxBatchSize"}
       }
     },
     "CreateResolverResponse":{
@@ -1548,7 +1550,8 @@
         "requestMappingTemplate":{"shape":"MappingTemplate"},
         "responseMappingTemplate":{"shape":"MappingTemplate"},
         "functionVersion":{"shape":"String"},
-        "syncConfig":{"shape":"SyncConfig"}
+        "syncConfig":{"shape":"SyncConfig"},
+        "maxBatchSize":{"shape":"MaxBatchSize"}
       }
     },
     "Functions":{
@@ -2138,7 +2141,13 @@
     "MappingTemplate":{
       "type":"string",
       "max":65536,
-      "min":1
+      "min":1,
+      "pattern":"^.*$"
+    },
+    "MaxBatchSize":{
+      "type":"integer",
+      "max":2000,
+      "min":0
     },
     "MaxResults":{
       "type":"integer",
@@ -2226,7 +2235,8 @@
         "kind":{"shape":"ResolverKind"},
         "pipelineConfig":{"shape":"PipelineConfig"},
         "syncConfig":{"shape":"SyncConfig"},
-        "cachingConfig":{"shape":"CachingConfig"}
+        "cachingConfig":{"shape":"CachingConfig"},
+        "maxBatchSize":{"shape":"MaxBatchSize"}
       }
     },
     "ResolverKind":{
@@ -2339,7 +2349,8 @@
     },
     "TagValue":{
       "type":"string",
-      "max":256
+      "max":256,
+      "pattern":"^[\\s\\w+-=\\.:/@]*$"
     },
     "Type":{
       "type":"structure",
@@ -2525,7 +2536,8 @@
         "requestMappingTemplate":{"shape":"MappingTemplate"},
         "responseMappingTemplate":{"shape":"MappingTemplate"},
         "functionVersion":{"shape":"String"},
-        "syncConfig":{"shape":"SyncConfig"}
+        "syncConfig":{"shape":"SyncConfig"},
+        "maxBatchSize":{"shape":"MaxBatchSize"}
       }
     },
     "UpdateFunctionResponse":{
@@ -2591,7 +2603,8 @@
         "kind":{"shape":"ResolverKind"},
         "pipelineConfig":{"shape":"PipelineConfig"},
         "syncConfig":{"shape":"SyncConfig"},
-        "cachingConfig":{"shape":"CachingConfig"}
+        "cachingConfig":{"shape":"CachingConfig"},
+        "maxBatchSize":{"shape":"MaxBatchSize"}
       }
     },
     "UpdateResolverResponse":{

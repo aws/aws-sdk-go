@@ -702,7 +702,9 @@
       "members":{
         "Enabled":{"shape":"Boolean"},
         "InternalUserDatabaseEnabled":{"shape":"Boolean"},
-        "SAMLOptions":{"shape":"SAMLOptionsOutput"}
+        "SAMLOptions":{"shape":"SAMLOptionsOutput"},
+        "AnonymousAuthDisableDate":{"shape":"DisableTimestamp"},
+        "AnonymousAuthEnabled":{"shape":"Boolean"}
       }
     },
     "AdvancedSecurityOptionsInput":{
@@ -711,7 +713,8 @@
         "Enabled":{"shape":"Boolean"},
         "InternalUserDatabaseEnabled":{"shape":"Boolean"},
         "MasterUserOptions":{"shape":"MasterUserOptions"},
-        "SAMLOptions":{"shape":"SAMLOptionsInput"}
+        "SAMLOptions":{"shape":"SAMLOptionsInput"},
+        "AnonymousAuthEnabled":{"shape":"Boolean"}
       }
     },
     "AdvancedSecurityOptionsStatus":{
@@ -1354,6 +1357,7 @@
         "ReservedInstances":{"shape":"ReservedInstanceList"}
       }
     },
+    "DisableTimestamp":{"type":"timestamp"},
     "DisabledOperationException":{
       "type":"structure",
       "members":{

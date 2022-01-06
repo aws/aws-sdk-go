@@ -4856,6 +4856,13 @@ func (s *AdvancedOptionsStatus) SetStatus(v *OptionStatus) *AdvancedOptionsStatu
 type AdvancedSecurityOptions struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the Anonymous Auth Disable Date when Anonymous Auth is enabled.
+	AnonymousAuthDisableDate *time.Time `type:"timestamp"`
+
+	// True if Anonymous auth is enabled. Anonymous auth can be enabled only when
+	// AdvancedSecurity is enabled on existing domains.
+	AnonymousAuthEnabled *bool `type:"boolean"`
+
 	// True if advanced security is enabled.
 	Enabled *bool `type:"boolean"`
 
@@ -4884,6 +4891,18 @@ func (s AdvancedSecurityOptions) GoString() string {
 	return s.String()
 }
 
+// SetAnonymousAuthDisableDate sets the AnonymousAuthDisableDate field's value.
+func (s *AdvancedSecurityOptions) SetAnonymousAuthDisableDate(v time.Time) *AdvancedSecurityOptions {
+	s.AnonymousAuthDisableDate = &v
+	return s
+}
+
+// SetAnonymousAuthEnabled sets the AnonymousAuthEnabled field's value.
+func (s *AdvancedSecurityOptions) SetAnonymousAuthEnabled(v bool) *AdvancedSecurityOptions {
+	s.AnonymousAuthEnabled = &v
+	return s
+}
+
 // SetEnabled sets the Enabled field's value.
 func (s *AdvancedSecurityOptions) SetEnabled(v bool) *AdvancedSecurityOptions {
 	s.Enabled = &v
@@ -4907,6 +4926,10 @@ func (s *AdvancedSecurityOptions) SetSAMLOptions(v *SAMLOptionsOutput_) *Advance
 // (if internal database is enabled), and master user ARN (if IAM is enabled).
 type AdvancedSecurityOptionsInput_ struct {
 	_ struct{} `type:"structure"`
+
+	// True if Anonymous auth is enabled. Anonymous auth can be enabled only when
+	// AdvancedSecurity is enabled on existing domains.
+	AnonymousAuthEnabled *bool `type:"boolean"`
 
 	// True if advanced security is enabled.
 	Enabled *bool `type:"boolean"`
@@ -4957,6 +4980,12 @@ func (s *AdvancedSecurityOptionsInput_) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAnonymousAuthEnabled sets the AnonymousAuthEnabled field's value.
+func (s *AdvancedSecurityOptionsInput_) SetAnonymousAuthEnabled(v bool) *AdvancedSecurityOptionsInput_ {
+	s.AnonymousAuthEnabled = &v
+	return s
 }
 
 // SetEnabled sets the Enabled field's value.

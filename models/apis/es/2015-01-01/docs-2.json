@@ -242,8 +242,10 @@
       "refs": {
         "AdvancedSecurityOptions$Enabled": "<p>True if advanced security is enabled.</p>",
         "AdvancedSecurityOptions$InternalUserDatabaseEnabled": "<p>True if the internal user database is enabled.</p>",
+        "AdvancedSecurityOptions$AnonymousAuthEnabled": "<p>True if Anonymous auth is enabled. Anonymous auth can be enabled only when AdvancedSecurity is enabled on existing domains.</p>",
         "AdvancedSecurityOptionsInput$Enabled": "<p>True if advanced security is enabled.</p>",
         "AdvancedSecurityOptionsInput$InternalUserDatabaseEnabled": "<p>True if the internal user database is enabled.</p>",
+        "AdvancedSecurityOptionsInput$AnonymousAuthEnabled": "<p>True if Anonymous auth is enabled. Anonymous auth can be enabled only when AdvancedSecurity is enabled on existing domains.</p>",
         "AutoTuneStatus$PendingDeletion": "<p>Indicates whether the Elasticsearch domain is being deleted.</p>",
         "CognitoOptions$Enabled": "<p>Specifies the option to enable Cognito for Kibana authentication.</p>",
         "ColdStorageOptions$Enabled": "<p>Enable cold storage option. Accepted values true or false</p>",
@@ -581,6 +583,12 @@
     "DescribeReservedElasticsearchInstancesResponse": {
       "base": "<p>Container for results from <code>DescribeReservedElasticsearchInstances</code></p>",
       "refs": {
+      }
+    },
+    "DisableTimestamp": {
+      "base": null,
+      "refs": {
+        "AdvancedSecurityOptions$AnonymousAuthDisableDate": "<p>Specifies the Anonymous Auth Disable Date when Anonymous Auth is enabled.</p>"
       }
     },
     "DisabledOperationException": {

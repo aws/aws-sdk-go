@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>AWS IoT Wireless API documentation</p>",
+  "service": "<p>AWS IoT Wireless provides bi-directional communication between internet-connected wireless devices and the AWS Cloud. To onboard both LoRaWAN and Sidewalk devices to AWS IoT, use the IoT Wireless API. These wireless devices use the Low Power Wide Area Networking (LPWAN) communication protocol to communicate with AWS IoT.</p> <p>Using the API, you can perform create, read, update, and delete operations for your wireless devices, gateways, destinations, and profiles. After onboarding your devices, you can use the API operations to set log levels and monitor your devices with CloudWatch.</p> <p>You can also use the API operations to create multicast groups and schedule a multicast session for sending a downlink message to devices in the group. By using Firmware Updates Over-The-Air (FUOTA) API operations, you can create a FUOTA task and schedule a session to update the firmware of individual devices or an entire group of devices in a multicast group.</p>",
   "operations": {
     "AssociateAwsAccountWithPartnerAccount": "<p>Associates a partner account with your AWS account.</p>",
     "AssociateMulticastGroupWithFuotaTask": "<p>Associate a multicast group with a FUOTA task.</p>",
@@ -23,6 +23,7 @@
     "DeleteDeviceProfile": "<p>Deletes a device profile.</p>",
     "DeleteFuotaTask": "<p>Deletes a FUOTA task.</p>",
     "DeleteMulticastGroup": "<p>Deletes a multicast group if it is not in use by a fuota task.</p>",
+    "DeleteQueuedMessages": "<p> The operation to delete queued messages. </p>",
     "DeleteServiceProfile": "<p>Deletes a service profile.</p>",
     "DeleteWirelessDevice": "<p>Deletes a wireless device.</p>",
     "DeleteWirelessGateway": "<p>Deletes a wireless gateway.</p>",
@@ -61,6 +62,7 @@
     "ListMulticastGroups": "<p>Lists the multicast groups registered to your AWS account.</p>",
     "ListMulticastGroupsByFuotaTask": "<p>List all multicast groups associated with a fuota task.</p>",
     "ListPartnerAccounts": "<p>Lists the partner accounts associated with your AWS account.</p>",
+    "ListQueuedMessages": "<p>The operation to list queued messages. </p>",
     "ListServiceProfiles": "<p>Lists the service profiles registered to your AWS account.</p>",
     "ListTagsForResource": "<p>Lists the tags (metadata) you have assigned to the resource.</p>",
     "ListWirelessDevices": "<p>Lists the wireless devices registered to your AWS account.</p>",
@@ -461,6 +463,16 @@
       "refs": {
       }
     },
+    "DeleteQueuedMessagesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteQueuedMessagesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteServiceProfileRequest": {
       "base": null,
       "refs": {
@@ -764,6 +776,18 @@
       "refs": {
         "LoRaWANGatewayMetadata$Snr": "<p>The SNR value.</p>",
         "LoRaWANGatewayMetadata$Rssi": "<p>The RSSI value.</p>"
+      }
+    },
+    "DownlinkQueueMessage": {
+      "base": "<p>The message in downlink queue.</p>",
+      "refs": {
+        "DownlinkQueueMessagesList$member": null
+      }
+    },
+    "DownlinkQueueMessagesList": {
+      "base": null,
+      "refs": {
+        "ListQueuedMessagesResponse$DownlinkQueueMessagesList": "<p>The messages in downlink queue.</p>"
       }
     },
     "DrMax": {
@@ -1152,6 +1176,7 @@
     "ISODateTimeString": {
       "base": null,
       "refs": {
+        "DownlinkQueueMessage$ReceivedAt": "<p>The timestamp that Iot Wireless received the message.</p>",
         "GetWirelessDeviceStatisticsResponse$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p>",
         "GetWirelessGatewayStatisticsResponse$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p>",
         "GetWirelessGatewayTaskResponse$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p>",
@@ -1276,6 +1301,16 @@
       }
     },
     "ListPartnerAccountsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListQueuedMessagesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListQueuedMessagesResponse": {
       "base": null,
       "refs": {
       }
@@ -1440,6 +1475,7 @@
     "LoRaWANSendDataToDevice": {
       "base": "<p>LoRaWAN router info.</p>",
       "refs": {
+        "DownlinkQueueMessage$LoRaWAN": null,
         "WirelessMetadata$LoRaWAN": "<p>LoRaWAN device info.</p>"
       }
     },
@@ -1514,6 +1550,7 @@
         "ListMulticastGroupsByFuotaTaskRequest$MaxResults": null,
         "ListMulticastGroupsRequest$MaxResults": null,
         "ListPartnerAccountsRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
+        "ListQueuedMessagesRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
         "ListServiceProfilesRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
         "ListWirelessDevicesRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
         "ListWirelessGatewayTaskDefinitionsRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
@@ -1541,6 +1578,8 @@
     "MessageId": {
       "base": null,
       "refs": {
+        "DeleteQueuedMessagesRequest$MessageId": "<p>if messageID==\"*\", the queue for a particular wireless deviceId will be purged, otherwise, the specific message with messageId will be deleted </p>",
+        "DownlinkQueueMessage$MessageId": "<p> The messageId allocated by IoT Wireless for tracing purpose</p>",
         "SendDataToWirelessDeviceResponse$MessageId": "<p>The ID of the message sent to the wireless device.</p>"
       }
     },
@@ -1685,6 +1724,8 @@
         "ListMulticastGroupsResponse$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListPartnerAccountsRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListPartnerAccountsResponse$NextToken": "<p>The token to use to get the next set of results, or <b>null</b> if there are no additional results.</p>",
+        "ListQueuedMessagesRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
+        "ListQueuedMessagesResponse$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListServiceProfilesRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListServiceProfilesResponse$NextToken": "<p>The token to use to get the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListWirelessDevicesRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
@@ -2330,6 +2371,7 @@
     "TransmitMode": {
       "base": null,
       "refs": {
+        "DownlinkQueueMessage$TransmitMode": "<p>The transmit mode to use to send data to the wireless device. Can be: <code>0</code> for UM (unacknowledge mode) or <code>1</code> for AM (acknowledge mode).</p>",
         "SendDataToWirelessDeviceRequest$TransmitMode": "<p>The transmit mode to use to send data to the wireless device. Can be: <code>0</code> for UM (unacknowledge mode) or <code>1</code> for AM (acknowledge mode).</p>"
       }
     },
@@ -2522,6 +2564,7 @@
         "AssociateWirelessDeviceWithThingRequest$Id": "<p>The ID of the resource to update.</p>",
         "CreateWirelessDeviceResponse$Id": "<p>The ID of the new wireless device.</p>",
         "CreateWirelessGatewayResponse$Id": "<p>The ID of the new wireless gateway.</p>",
+        "DeleteQueuedMessagesRequest$Id": "<p>Id of a given wireless device which messages will be deleted </p>",
         "DeleteWirelessDeviceRequest$Id": "<p>The ID of the resource to delete.</p>",
         "DisassociateWirelessDeviceFromFuotaTaskRequest$WirelessDeviceId": null,
         "DisassociateWirelessDeviceFromMulticastGroupRequest$WirelessDeviceId": null,
@@ -2529,6 +2572,7 @@
         "GetWirelessDeviceResponse$Id": "<p>The ID of the wireless device.</p>",
         "GetWirelessDeviceStatisticsRequest$WirelessDeviceId": "<p>The ID of the wireless device for which to get the data.</p>",
         "GetWirelessDeviceStatisticsResponse$WirelessDeviceId": "<p>The ID of the wireless device.</p>",
+        "ListQueuedMessagesRequest$Id": "<p>Id of a given wireless device which the downlink packets are targeted </p>",
         "SendDataToWirelessDeviceRequest$Id": "<p>The ID of the wireless device to receive the data.</p>",
         "TestWirelessDeviceRequest$Id": "<p>The ID of the wireless device to test.</p>",
         "UpdateWirelessDeviceRequest$Id": "<p>The ID of the resource to update.</p>",
@@ -2588,7 +2632,9 @@
       "base": null,
       "refs": {
         "CreateWirelessDeviceRequest$Type": "<p>The wireless device type.</p>",
+        "DeleteQueuedMessagesRequest$WirelessDeviceType": "<p>The wireless device type, it is either Sidewalk or LoRaWAN. </p>",
         "GetWirelessDeviceResponse$Type": "<p>The wireless device type.</p>",
+        "ListQueuedMessagesRequest$WirelessDeviceType": "<p>The wireless device type, it is either Sidewalk or LoRaWAN.</p>",
         "ListWirelessDevicesRequest$WirelessDeviceType": "<p>A filter to list only the wireless devices that use this wireless device type.</p>",
         "WirelessDeviceLogOption$Type": "<p>The wireless device type.</p>",
         "WirelessDeviceStatistics$Type": "<p>The wireless device type.</p>"

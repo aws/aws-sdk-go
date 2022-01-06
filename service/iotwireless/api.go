@@ -1985,6 +1985,98 @@ func (c *IoTWireless) DeleteMulticastGroupWithContext(ctx aws.Context, input *De
 	return out, req.Send()
 }
 
+const opDeleteQueuedMessages = "DeleteQueuedMessages"
+
+// DeleteQueuedMessagesRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteQueuedMessages operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteQueuedMessages for more information on using the DeleteQueuedMessages
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteQueuedMessagesRequest method.
+//    req, resp := client.DeleteQueuedMessagesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/DeleteQueuedMessages
+func (c *IoTWireless) DeleteQueuedMessagesRequest(input *DeleteQueuedMessagesInput) (req *request.Request, output *DeleteQueuedMessagesOutput) {
+	op := &request.Operation{
+		Name:       opDeleteQueuedMessages,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/wireless-devices/{Id}/data",
+	}
+
+	if input == nil {
+		input = &DeleteQueuedMessagesInput{}
+	}
+
+	output = &DeleteQueuedMessagesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteQueuedMessages API operation for AWS IoT Wireless.
+//
+// The operation to delete queued messages.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation DeleteQueuedMessages for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/DeleteQueuedMessages
+func (c *IoTWireless) DeleteQueuedMessages(input *DeleteQueuedMessagesInput) (*DeleteQueuedMessagesOutput, error) {
+	req, out := c.DeleteQueuedMessagesRequest(input)
+	return out, req.Send()
+}
+
+// DeleteQueuedMessagesWithContext is the same as DeleteQueuedMessages with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteQueuedMessages for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) DeleteQueuedMessagesWithContext(ctx aws.Context, input *DeleteQueuedMessagesInput, opts ...request.Option) (*DeleteQueuedMessagesOutput, error) {
+	req, out := c.DeleteQueuedMessagesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteServiceProfile = "DeleteServiceProfile"
 
 // DeleteServiceProfileRequest generates a "aws/request.Request" representing the
@@ -5740,6 +5832,155 @@ func (c *IoTWireless) ListPartnerAccountsWithContext(ctx aws.Context, input *Lis
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListQueuedMessages = "ListQueuedMessages"
+
+// ListQueuedMessagesRequest generates a "aws/request.Request" representing the
+// client's request for the ListQueuedMessages operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListQueuedMessages for more information on using the ListQueuedMessages
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListQueuedMessagesRequest method.
+//    req, resp := client.ListQueuedMessagesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ListQueuedMessages
+func (c *IoTWireless) ListQueuedMessagesRequest(input *ListQueuedMessagesInput) (req *request.Request, output *ListQueuedMessagesOutput) {
+	op := &request.Operation{
+		Name:       opListQueuedMessages,
+		HTTPMethod: "GET",
+		HTTPPath:   "/wireless-devices/{Id}/data",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListQueuedMessagesInput{}
+	}
+
+	output = &ListQueuedMessagesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListQueuedMessages API operation for AWS IoT Wireless.
+//
+// The operation to list queued messages.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation ListQueuedMessages for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ListQueuedMessages
+func (c *IoTWireless) ListQueuedMessages(input *ListQueuedMessagesInput) (*ListQueuedMessagesOutput, error) {
+	req, out := c.ListQueuedMessagesRequest(input)
+	return out, req.Send()
+}
+
+// ListQueuedMessagesWithContext is the same as ListQueuedMessages with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListQueuedMessages for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) ListQueuedMessagesWithContext(ctx aws.Context, input *ListQueuedMessagesInput, opts ...request.Option) (*ListQueuedMessagesOutput, error) {
+	req, out := c.ListQueuedMessagesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListQueuedMessagesPages iterates over the pages of a ListQueuedMessages operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListQueuedMessages method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListQueuedMessages operation.
+//    pageNum := 0
+//    err := client.ListQueuedMessagesPages(params,
+//        func(page *iotwireless.ListQueuedMessagesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoTWireless) ListQueuedMessagesPages(input *ListQueuedMessagesInput, fn func(*ListQueuedMessagesOutput, bool) bool) error {
+	return c.ListQueuedMessagesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListQueuedMessagesPagesWithContext same as ListQueuedMessagesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) ListQueuedMessagesPagesWithContext(ctx aws.Context, input *ListQueuedMessagesInput, fn func(*ListQueuedMessagesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListQueuedMessagesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListQueuedMessagesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListQueuedMessagesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListServiceProfiles = "ListServiceProfiles"
@@ -10871,6 +11112,101 @@ func (s DeleteMulticastGroupOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteQueuedMessagesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Id of a given wireless device which messages will be deleted
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// if messageID=="*", the queue for a particular wireless deviceId will be purged,
+	// otherwise, the specific message with messageId will be deleted
+	//
+	// MessageId is a required field
+	MessageId *string `location:"querystring" locationName:"messageId" type:"string" required:"true"`
+
+	// The wireless device type, it is either Sidewalk or LoRaWAN.
+	WirelessDeviceType *string `location:"querystring" locationName:"WirelessDeviceType" type:"string" enum:"WirelessDeviceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteQueuedMessagesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteQueuedMessagesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteQueuedMessagesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteQueuedMessagesInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.MessageId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MessageId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteQueuedMessagesInput) SetId(v string) *DeleteQueuedMessagesInput {
+	s.Id = &v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *DeleteQueuedMessagesInput) SetMessageId(v string) *DeleteQueuedMessagesInput {
+	s.MessageId = &v
+	return s
+}
+
+// SetWirelessDeviceType sets the WirelessDeviceType field's value.
+func (s *DeleteQueuedMessagesInput) SetWirelessDeviceType(v string) *DeleteQueuedMessagesInput {
+	s.WirelessDeviceType = &v
+	return s
+}
+
+type DeleteQueuedMessagesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteQueuedMessagesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteQueuedMessagesOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteServiceProfileInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -11947,6 +12283,66 @@ func (s DisassociateWirelessGatewayFromThingOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DisassociateWirelessGatewayFromThingOutput) GoString() string {
 	return s.String()
+}
+
+// The message in downlink queue.
+type DownlinkQueueMessage struct {
+	_ struct{} `type:"structure"`
+
+	// LoRaWAN router info.
+	LoRaWAN *LoRaWANSendDataToDevice `type:"structure"`
+
+	// The messageId allocated by IoT Wireless for tracing purpose
+	MessageId *string `type:"string"`
+
+	// The timestamp that Iot Wireless received the message.
+	ReceivedAt *string `type:"string"`
+
+	// The transmit mode to use to send data to the wireless device. Can be: 0 for
+	// UM (unacknowledge mode) or 1 for AM (acknowledge mode).
+	TransmitMode *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DownlinkQueueMessage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DownlinkQueueMessage) GoString() string {
+	return s.String()
+}
+
+// SetLoRaWAN sets the LoRaWAN field's value.
+func (s *DownlinkQueueMessage) SetLoRaWAN(v *LoRaWANSendDataToDevice) *DownlinkQueueMessage {
+	s.LoRaWAN = v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *DownlinkQueueMessage) SetMessageId(v string) *DownlinkQueueMessage {
+	s.MessageId = &v
+	return s
+}
+
+// SetReceivedAt sets the ReceivedAt field's value.
+func (s *DownlinkQueueMessage) SetReceivedAt(v string) *DownlinkQueueMessage {
+	s.ReceivedAt = &v
+	return s
+}
+
+// SetTransmitMode sets the TransmitMode field's value.
+func (s *DownlinkQueueMessage) SetTransmitMode(v int64) *DownlinkQueueMessage {
+	s.TransmitMode = &v
+	return s
 }
 
 // List of FPort assigned for different LoRaWAN application packages to use
@@ -14841,6 +15237,124 @@ func (s *ListPartnerAccountsOutput) SetNextToken(v string) *ListPartnerAccountsO
 // SetSidewalk sets the Sidewalk field's value.
 func (s *ListPartnerAccountsOutput) SetSidewalk(v []*SidewalkAccountInfoWithFingerprint) *ListPartnerAccountsOutput {
 	s.Sidewalk = v
+	return s
+}
+
+type ListQueuedMessagesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Id of a given wireless device which the downlink packets are targeted
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The maximum number of results to return in this operation.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The wireless device type, it is either Sidewalk or LoRaWAN.
+	WirelessDeviceType *string `location:"querystring" locationName:"WirelessDeviceType" type:"string" enum:"WirelessDeviceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListQueuedMessagesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListQueuedMessagesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListQueuedMessagesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListQueuedMessagesInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *ListQueuedMessagesInput) SetId(v string) *ListQueuedMessagesInput {
+	s.Id = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListQueuedMessagesInput) SetMaxResults(v int64) *ListQueuedMessagesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListQueuedMessagesInput) SetNextToken(v string) *ListQueuedMessagesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWirelessDeviceType sets the WirelessDeviceType field's value.
+func (s *ListQueuedMessagesInput) SetWirelessDeviceType(v string) *ListQueuedMessagesInput {
+	s.WirelessDeviceType = &v
+	return s
+}
+
+type ListQueuedMessagesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The messages in downlink queue.
+	DownlinkQueueMessagesList []*DownlinkQueueMessage `type:"list"`
+
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListQueuedMessagesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListQueuedMessagesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDownlinkQueueMessagesList sets the DownlinkQueueMessagesList field's value.
+func (s *ListQueuedMessagesOutput) SetDownlinkQueueMessagesList(v []*DownlinkQueueMessage) *ListQueuedMessagesOutput {
+	s.DownlinkQueueMessagesList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListQueuedMessagesOutput) SetNextToken(v string) *ListQueuedMessagesOutput {
+	s.NextToken = &v
 	return s
 }
 
