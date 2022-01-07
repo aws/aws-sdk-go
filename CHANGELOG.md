@@ -1,3 +1,10 @@
+Release v1.42.30 (2022-01-07)
+===
+
+### Service Client Updates
+* `service/medialive`: Updates service API and documentation
+  * This release adds support for selecting the Program Date Time (PDT) Clock source algorithm for HLS outputs.
+
 Release v1.42.29 (2022-01-06)
 ===
 
