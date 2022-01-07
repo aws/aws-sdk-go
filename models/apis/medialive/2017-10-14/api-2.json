@@ -7058,6 +7058,10 @@
           "shape": "HlsProgramDateTime",
           "locationName": "programDateTime"
         },
+        "ProgramDateTimeClock": {
+          "shape": "HlsProgramDateTimeClock",
+          "locationName": "programDateTimeClock"
+        },
         "ProgramDateTimePeriod": {
           "shape": "__integerMin0Max3600",
           "locationName": "programDateTimePeriod"
@@ -7264,6 +7268,13 @@
       "enum": [
         "EXCLUDE",
         "INCLUDE"
+      ]
+    },
+    "HlsProgramDateTimeClock": {
+      "type": "string",
+      "enum": [
+        "INITIALIZE_FROM_OUTPUT_TIMECODE",
+        "SYSTEM_CLOCK"
       ]
     },
     "HlsRedundantManifest": {

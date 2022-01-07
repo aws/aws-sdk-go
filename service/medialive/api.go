@@ -17054,10 +17054,17 @@ type HlsGroupSettings struct {
 	OutputSelection *string `locationName:"outputSelection" type:"string" enum:"HlsOutputSelection"`
 
 	// Includes or excludes EXT-X-PROGRAM-DATE-TIME tag in .m3u8 manifest files.
-	// The value is calculated as follows: either the program date and time are
-	// initialized using the input timecode source, or the time is initialized using
-	// the input timecode source and the date is initialized using the timestampOffset.
+	// The value is calculated using the program date time clock.
 	ProgramDateTime *string `locationName:"programDateTime" type:"string" enum:"HlsProgramDateTime"`
+
+	// Specifies the algorithm used to drive the HLS EXT-X-PROGRAM-DATE-TIME clock.
+	// Options include:INITIALIZE_FROM_OUTPUT_TIMECODE: The PDT clock is initialized
+	// as a function of the first output timecode, then incremented by the EXTINF
+	// duration of each encoded segment.SYSTEM_CLOCK: The PDT clock is initialized
+	// as a function of the UTC wall clock, then incremented by the EXTINF duration
+	// of each encoded segment. If the PDT clock diverges from the wall clock by
+	// more than 500ms, it is resynchronized to the wall clock.
+	ProgramDateTimeClock *string `locationName:"programDateTimeClock" type:"string" enum:"HlsProgramDateTimeClock"`
 
 	// Period of insertion of EXT-X-PROGRAM-DATE-TIME entry, in seconds.
 	ProgramDateTimePeriod *int64 `locationName:"programDateTimePeriod" type:"integer"`
@@ -17361,6 +17368,12 @@ func (s *HlsGroupSettings) SetOutputSelection(v string) *HlsGroupSettings {
 // SetProgramDateTime sets the ProgramDateTime field's value.
 func (s *HlsGroupSettings) SetProgramDateTime(v string) *HlsGroupSettings {
 	s.ProgramDateTime = &v
+	return s
+}
+
+// SetProgramDateTimeClock sets the ProgramDateTimeClock field's value.
+func (s *HlsGroupSettings) SetProgramDateTimeClock(v string) *HlsGroupSettings {
+	s.ProgramDateTimeClock = &v
 	return s
 }
 
@@ -33450,6 +33463,23 @@ func HlsProgramDateTime_Values() []string {
 	return []string{
 		HlsProgramDateTimeExclude,
 		HlsProgramDateTimeInclude,
+	}
+}
+
+// Hls Program Date Time Clock
+const (
+	// HlsProgramDateTimeClockInitializeFromOutputTimecode is a HlsProgramDateTimeClock enum value
+	HlsProgramDateTimeClockInitializeFromOutputTimecode = "INITIALIZE_FROM_OUTPUT_TIMECODE"
+
+	// HlsProgramDateTimeClockSystemClock is a HlsProgramDateTimeClock enum value
+	HlsProgramDateTimeClockSystemClock = "SYSTEM_CLOCK"
+)
+
+// HlsProgramDateTimeClock_Values returns all elements of the HlsProgramDateTimeClock enum
+func HlsProgramDateTimeClock_Values() []string {
+	return []string{
+		HlsProgramDateTimeClockInitializeFromOutputTimecode,
+		HlsProgramDateTimeClockSystemClock,
 	}
 }
 
