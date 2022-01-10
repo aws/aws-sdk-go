@@ -4914,8 +4914,8 @@ type CreateProfileJobInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// Represents an Amazon S3 location (bucket name and object key) where DataBrew
-	// can read input data, or write output from a job.
+	// Represents an Amazon S3 location (bucket name, bucket owner, and object key)
+	// where DataBrew can read input data, or write output from a job.
 	//
 	// OutputLocation is a required field
 	OutputLocation *S3Location `type:"structure" required:"true"`
@@ -6318,8 +6318,8 @@ type DatabaseInputDefinition struct {
 	// used as the input for DataBrew projects and jobs.
 	QueryString *string `min:"1" type:"string"`
 
-	// Represents an Amazon S3 location (bucket name and object key) where DataBrew
-	// can read input data, or write output from a job.
+	// Represents an Amazon S3 location (bucket name, bucket owner, and object key)
+	// where DataBrew can read input data, or write output from a job.
 	TempDirectory *S3Location `type:"structure"`
 }
 
@@ -12088,6 +12088,8 @@ type Rule struct {
 	// should be no columnn reference in the left side of a condition, for example,
 	// is_between :val1 and :val2.
 	//
+	// For more information, see Available checks (https://docs.aws.amazon.com/databrew/latest/dg/profile.data-quality-available-checks.html)
+	//
 	// CheckExpression is a required field
 	CheckExpression *string `min:"4" type:"string" required:"true"`
 
@@ -12338,8 +12340,8 @@ func (s *RulesetItem) SetTargetArn(v string) *RulesetItem {
 	return s
 }
 
-// Represents an Amazon S3 location (bucket name and object key) where DataBrew
-// can read input data, or write output from a job.
+// Represents an Amazon S3 location (bucket name, bucket owner, and object key)
+// where DataBrew can read input data, or write output from a job.
 type S3Location struct {
 	_ struct{} `type:"structure"`
 
@@ -12347,6 +12349,9 @@ type S3Location struct {
 	//
 	// Bucket is a required field
 	Bucket *string `min:"3" type:"string" required:"true"`
+
+	// The Amazon Web Services account ID of the bucket owner.
+	BucketOwner *string `min:"12" type:"string"`
 
 	// The unique name of the object in the bucket.
 	Key *string `min:"1" type:"string"`
@@ -12379,6 +12384,9 @@ func (s *S3Location) Validate() error {
 	if s.Bucket != nil && len(*s.Bucket) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
 	}
+	if s.BucketOwner != nil && len(*s.BucketOwner) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketOwner", 12))
+	}
 	if s.Key != nil && len(*s.Key) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
 	}
@@ -12392,6 +12400,12 @@ func (s *S3Location) Validate() error {
 // SetBucket sets the Bucket field's value.
 func (s *S3Location) SetBucket(v string) *S3Location {
 	s.Bucket = &v
+	return s
+}
+
+// SetBucketOwner sets the BucketOwner field's value.
+func (s *S3Location) SetBucketOwner(v string) *S3Location {
+	s.BucketOwner = &v
 	return s
 }
 
@@ -13710,8 +13724,8 @@ type UpdateProfileJobInput struct {
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
 
-	// Represents an Amazon S3 location (bucket name and object key) where DataBrew
-	// can read input data, or write output from a job.
+	// Represents an Amazon S3 location (bucket name, bucket owner, and object key)
+	// where DataBrew can read input data, or write output from a job.
 	//
 	// OutputLocation is a required field
 	OutputLocation *S3Location `type:"structure" required:"true"`

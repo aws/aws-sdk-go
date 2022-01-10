@@ -1,3 +1,14 @@
+Release v1.42.31 (2022-01-10)
+===
+
+### Service Client Updates
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/databrew`: Updates service API and documentation
+* `service/ec2`: Updates service API, documentation, and paginators
+  * New feature: Updated EC2 API to support faster launching for Windows images. Optimized images are pre-provisioned, using snapshots to launch instances up to 65% faster.
+* `service/lookoutmetrics`: Updates service API and documentation
+* `service/transcribe`: Updates service documentation
+
 Release v1.42.30 (2022-01-07)
 ===
 

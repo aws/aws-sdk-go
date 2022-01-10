@@ -2967,6 +2967,10 @@ func (c *LookoutMetrics) UpdateMetricSetRequest(input *UpdateMetricSetInput) (re
 //   The request was denied due to too many requests being submitted at the same
 //   time.
 //
+//   * ServiceQuotaExceededException
+//   The request exceeded the service's quotas. Check the service quotas and try
+//   again.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutmetrics-2017-07-25/UpdateMetricSet
 func (c *LookoutMetrics) UpdateMetricSet(input *UpdateMetricSetInput) (*UpdateMetricSetOutput, error) {
 	req, out := c.UpdateMetricSetRequest(input)
@@ -3880,15 +3884,11 @@ type AppFlowConfig struct {
 	_ struct{} `type:"structure"`
 
 	// name of the flow.
-	//
-	// FlowName is a required field
-	FlowName *string `type:"string" required:"true"`
+	FlowName *string `type:"string"`
 
 	// An IAM role that gives Amazon Lookout for Metrics permission to access the
 	// flow.
-	//
-	// RoleArn is a required field
-	RoleArn *string `type:"string" required:"true"`
+	RoleArn *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -3907,22 +3907,6 @@ func (s AppFlowConfig) String() string {
 // value will be replaced with "sensitive".
 func (s AppFlowConfig) GoString() string {
 	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *AppFlowConfig) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "AppFlowConfig"}
-	if s.FlowName == nil {
-		invalidParams.Add(request.NewErrParamRequired("FlowName"))
-	}
-	if s.RoleArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
 }
 
 // SetFlowName sets the FlowName field's value.
@@ -4011,9 +3995,7 @@ type CloudWatchConfig struct {
 
 	// An IAM role that gives Amazon Lookout for Metrics permission to access data
 	// in Amazon CloudWatch.
-	//
-	// RoleArn is a required field
-	RoleArn *string `type:"string" required:"true"`
+	RoleArn *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -4032,19 +4014,6 @@ func (s CloudWatchConfig) String() string {
 // value will be replaced with "sensitive".
 func (s CloudWatchConfig) GoString() string {
 	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *CloudWatchConfig) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "CloudWatchConfig"}
-	if s.RoleArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
 }
 
 // SetRoleArn sets the RoleArn field's value.
@@ -5129,8 +5098,11 @@ type DescribeAnomalyDetectorOutput struct {
 	// The time at which the detector was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The reason that the detector failed, if any.
+	// The reason that the detector failed.
 	FailureReason *string `type:"string"`
+
+	// The process that caused the detector to fail.
+	FailureType *string `type:"string" enum:"AnomalyDetectorFailureType"`
 
 	// The ARN of the KMS key to use to encrypt your data.
 	KmsKeyArn *string `min:"20" type:"string"`
@@ -5193,6 +5165,12 @@ func (s *DescribeAnomalyDetectorOutput) SetCreationTime(v time.Time) *DescribeAn
 // SetFailureReason sets the FailureReason field's value.
 func (s *DescribeAnomalyDetectorOutput) SetFailureReason(v string) *DescribeAnomalyDetectorOutput {
 	s.FailureReason = &v
+	return s
+}
+
+// SetFailureType sets the FailureType field's value.
+func (s *DescribeAnomalyDetectorOutput) SetFailureType(v string) *DescribeAnomalyDetectorOutput {
+	s.FailureType = &v
 	return s
 }
 
@@ -7283,16 +7261,6 @@ func (s MetricSource) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *MetricSource) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "MetricSource"}
-	if s.AppFlowConfig != nil {
-		if err := s.AppFlowConfig.Validate(); err != nil {
-			invalidParams.AddNested("AppFlowConfig", err.(request.ErrInvalidParams))
-		}
-	}
-	if s.CloudWatchConfig != nil {
-		if err := s.CloudWatchConfig.Validate(); err != nil {
-			invalidParams.AddNested("CloudWatchConfig", err.(request.ErrInvalidParams))
-		}
-	}
 	if s.RDSSourceConfig != nil {
 		if err := s.RDSSourceConfig.Validate(); err != nil {
 			invalidParams.AddNested("RDSSourceConfig", err.(request.ErrInvalidParams))
@@ -7437,45 +7405,29 @@ type RDSSourceConfig struct {
 	_ struct{} `type:"structure"`
 
 	// A string identifying the database instance.
-	//
-	// DBInstanceIdentifier is a required field
-	DBInstanceIdentifier *string `min:"1" type:"string" required:"true"`
+	DBInstanceIdentifier *string `min:"1" type:"string"`
 
 	// The host name of the database.
-	//
-	// DatabaseHost is a required field
-	DatabaseHost *string `min:"1" type:"string" required:"true"`
+	DatabaseHost *string `min:"1" type:"string"`
 
 	// The name of the RDS database.
-	//
-	// DatabaseName is a required field
-	DatabaseName *string `min:"1" type:"string" required:"true"`
+	DatabaseName *string `min:"1" type:"string"`
 
 	// The port number where the database can be accessed.
-	//
-	// DatabasePort is a required field
-	DatabasePort *int64 `min:"1" type:"integer" required:"true"`
+	DatabasePort *int64 `min:"1" type:"integer"`
 
 	// The Amazon Resource Name (ARN) of the role.
-	//
-	// RoleArn is a required field
-	RoleArn *string `type:"string" required:"true"`
+	RoleArn *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the AWS Secrets Manager role.
-	//
-	// SecretManagerArn is a required field
-	SecretManagerArn *string `type:"string" required:"true"`
+	SecretManagerArn *string `type:"string"`
 
 	// The name of the table in the database.
-	//
-	// TableName is a required field
-	TableName *string `min:"1" type:"string" required:"true"`
+	TableName *string `min:"1" type:"string"`
 
 	// An object containing information about the Amazon Virtual Private Cloud (VPC)
 	// configuration.
-	//
-	// VpcConfiguration is a required field
-	VpcConfiguration *VpcConfiguration `type:"structure" required:"true"`
+	VpcConfiguration *VpcConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7499,44 +7451,20 @@ func (s RDSSourceConfig) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *RDSSourceConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RDSSourceConfig"}
-	if s.DBInstanceIdentifier == nil {
-		invalidParams.Add(request.NewErrParamRequired("DBInstanceIdentifier"))
-	}
 	if s.DBInstanceIdentifier != nil && len(*s.DBInstanceIdentifier) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DBInstanceIdentifier", 1))
-	}
-	if s.DatabaseHost == nil {
-		invalidParams.Add(request.NewErrParamRequired("DatabaseHost"))
 	}
 	if s.DatabaseHost != nil && len(*s.DatabaseHost) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatabaseHost", 1))
 	}
-	if s.DatabaseName == nil {
-		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
-	}
 	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
-	}
-	if s.DatabasePort == nil {
-		invalidParams.Add(request.NewErrParamRequired("DatabasePort"))
 	}
 	if s.DatabasePort != nil && *s.DatabasePort < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("DatabasePort", 1))
 	}
-	if s.RoleArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
-	}
-	if s.SecretManagerArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("SecretManagerArn"))
-	}
-	if s.TableName == nil {
-		invalidParams.Add(request.NewErrParamRequired("TableName"))
-	}
 	if s.TableName != nil && len(*s.TableName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
-	}
-	if s.VpcConfiguration == nil {
-		invalidParams.Add(request.NewErrParamRequired("VpcConfiguration"))
 	}
 	if s.VpcConfiguration != nil {
 		if err := s.VpcConfiguration.Validate(); err != nil {
@@ -7603,44 +7531,28 @@ type RedshiftSourceConfig struct {
 	_ struct{} `type:"structure"`
 
 	// A string identifying the Redshift cluster.
-	//
-	// ClusterIdentifier is a required field
-	ClusterIdentifier *string `min:"1" type:"string" required:"true"`
+	ClusterIdentifier *string `min:"1" type:"string"`
 
 	// The name of the database host.
-	//
-	// DatabaseHost is a required field
-	DatabaseHost *string `min:"1" type:"string" required:"true"`
+	DatabaseHost *string `min:"1" type:"string"`
 
 	// The Redshift database name.
-	//
-	// DatabaseName is a required field
-	DatabaseName *string `min:"1" type:"string" required:"true"`
+	DatabaseName *string `min:"1" type:"string"`
 
 	// The port number where the database can be accessed.
-	//
-	// DatabasePort is a required field
-	DatabasePort *int64 `min:"1" type:"integer" required:"true"`
+	DatabasePort *int64 `min:"1" type:"integer"`
 
 	// The Amazon Resource Name (ARN) of the role providing access to the database.
-	//
-	// RoleArn is a required field
-	RoleArn *string `type:"string" required:"true"`
+	RoleArn *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the AWS Secrets Manager role.
-	//
-	// SecretManagerArn is a required field
-	SecretManagerArn *string `type:"string" required:"true"`
+	SecretManagerArn *string `type:"string"`
 
 	// The table name of the Redshift database.
-	//
-	// TableName is a required field
-	TableName *string `min:"1" type:"string" required:"true"`
+	TableName *string `min:"1" type:"string"`
 
 	// Contains information about the Amazon Virtual Private Cloud (VPC) configuration.
-	//
-	// VpcConfiguration is a required field
-	VpcConfiguration *VpcConfiguration `type:"structure" required:"true"`
+	VpcConfiguration *VpcConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7664,44 +7576,20 @@ func (s RedshiftSourceConfig) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *RedshiftSourceConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RedshiftSourceConfig"}
-	if s.ClusterIdentifier == nil {
-		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
-	}
 	if s.ClusterIdentifier != nil && len(*s.ClusterIdentifier) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClusterIdentifier", 1))
-	}
-	if s.DatabaseHost == nil {
-		invalidParams.Add(request.NewErrParamRequired("DatabaseHost"))
 	}
 	if s.DatabaseHost != nil && len(*s.DatabaseHost) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatabaseHost", 1))
 	}
-	if s.DatabaseName == nil {
-		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
-	}
 	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
-	}
-	if s.DatabasePort == nil {
-		invalidParams.Add(request.NewErrParamRequired("DatabasePort"))
 	}
 	if s.DatabasePort != nil && *s.DatabasePort < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("DatabasePort", 1))
 	}
-	if s.RoleArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
-	}
-	if s.SecretManagerArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("SecretManagerArn"))
-	}
-	if s.TableName == nil {
-		invalidParams.Add(request.NewErrParamRequired("TableName"))
-	}
 	if s.TableName != nil && len(*s.TableName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
-	}
-	if s.VpcConfiguration == nil {
-		invalidParams.Add(request.NewErrParamRequired("VpcConfiguration"))
 	}
 	if s.VpcConfiguration != nil {
 		if err := s.VpcConfiguration.Validate(); err != nil {
@@ -7847,9 +7735,7 @@ type S3SourceConfig struct {
 
 	// The ARN of an IAM role that has read and write access permissions to the
 	// source S3 bucket.
-	//
-	// RoleArn is a required field
-	RoleArn *string `type:"string" required:"true"`
+	RoleArn *string `type:"string"`
 
 	// A list of templated paths to the source files.
 	TemplatedPathList []*string `min:"1" type:"list"`
@@ -7878,9 +7764,6 @@ func (s *S3SourceConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "S3SourceConfig"}
 	if s.HistoricalDataPathList != nil && len(s.HistoricalDataPathList) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("HistoricalDataPathList", 1))
-	}
-	if s.RoleArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
 	}
 	if s.TemplatedPathList != nil && len(s.TemplatedPathList) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TemplatedPathList", 1))
@@ -9067,6 +8950,26 @@ func AnomalyDetectionTaskStatus_Values() []string {
 		AnomalyDetectionTaskStatusCompleted,
 		AnomalyDetectionTaskStatusFailed,
 		AnomalyDetectionTaskStatusFailedToSchedule,
+	}
+}
+
+const (
+	// AnomalyDetectorFailureTypeActivationFailure is a AnomalyDetectorFailureType enum value
+	AnomalyDetectorFailureTypeActivationFailure = "ACTIVATION_FAILURE"
+
+	// AnomalyDetectorFailureTypeBackTestActivationFailure is a AnomalyDetectorFailureType enum value
+	AnomalyDetectorFailureTypeBackTestActivationFailure = "BACK_TEST_ACTIVATION_FAILURE"
+
+	// AnomalyDetectorFailureTypeDeletionFailure is a AnomalyDetectorFailureType enum value
+	AnomalyDetectorFailureTypeDeletionFailure = "DELETION_FAILURE"
+)
+
+// AnomalyDetectorFailureType_Values returns all elements of the AnomalyDetectorFailureType enum
+func AnomalyDetectorFailureType_Values() []string {
+	return []string{
+		AnomalyDetectorFailureTypeActivationFailure,
+		AnomalyDetectorFailureTypeBackTestActivationFailure,
+		AnomalyDetectorFailureTypeDeletionFailure,
 	}
 }
 

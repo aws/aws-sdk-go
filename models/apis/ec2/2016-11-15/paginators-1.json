@@ -111,6 +111,12 @@
     "DescribeExportTasks": {
       "result_key": "ExportTasks"
     },
+    "DescribeFastLaunchImages": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "FastLaunchImages"
+    },
     "DescribeFastSnapshotRestores": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

@@ -212,6 +212,7 @@
     "DescribeElasticGpus": "<p>Describes the Elastic Graphics accelerator associated with your instances. For more information about Elastic Graphics, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/elastic-graphics.html\">Amazon Elastic Graphics</a>.</p>",
     "DescribeExportImageTasks": "<p>Describes the specified export image tasks or all of your export image tasks.</p>",
     "DescribeExportTasks": "<p>Describes the specified export instance tasks or all of your export instance tasks.</p>",
+    "DescribeFastLaunchImages": "<p>Describe details for Windows AMIs that are configured for faster launching.</p>",
     "DescribeFastSnapshotRestores": "<p>Describes the state of fast snapshot restores for your snapshots.</p>",
     "DescribeFleetHistory": "<p>Describes the events for the specified EC2 Fleet during the specified time.</p> <p>EC2 Fleet events are delayed by up to 30 seconds before they can be described. This ensures that you can query by the last evaluated time and not miss a recorded event. EC2 Fleet events are available for 48 hours.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/fleet-monitor.html\">Monitor fleet events using Amazon EventBridge</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "DescribeFleetInstances": "<p>Describes the running instances for the specified EC2 Fleet.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet.html#monitor-ec2-fleet\">Monitoring your EC2 Fleet</a> in the <i>Amazon EC2 User Guide</i>.</p>",
@@ -326,6 +327,7 @@
     "DetachVolume": "<p>Detaches an EBS volume from an instance. Make sure to unmount any file systems on the device within your operating system before detaching the volume. Failure to do so can result in the volume becoming stuck in the <code>busy</code> state while detaching. If this happens, detachment can be delayed indefinitely until you unmount the volume, force detachment, reboot the instance, or all three. If an EBS volume is the root device of an instance, it can't be detached while the instance is running. To detach the root volume, stop the instance first.</p> <p>When a volume with an Amazon Web Services Marketplace product code is detached from an instance, the product code is no longer associated with the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html\">Detach an Amazon EBS volume</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DetachVpnGateway": "<p>Detaches a virtual private gateway from a VPC. You do this if you're planning to turn off the VPC and not use it anymore. You can confirm a virtual private gateway has been completely detached from a VPC by describing the virtual private gateway (any attachments to the virtual private gateway are also described).</p> <p>You must wait for the attachment's state to switch to <code>detached</code> before you can delete the VPC or attach a different VPC to the virtual private gateway.</p>",
     "DisableEbsEncryptionByDefault": "<p>Disables EBS encryption by default for your account in the current Region.</p> <p>After you disable encryption by default, you can still create encrypted volumes by enabling encryption when you create each volume.</p> <p>Disabling encryption by default does not change the encryption status of your existing volumes.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "DisableFastLaunch": "<p>Discontinue faster launching for a Windows AMI, and clean up existing pre-provisioned snapshots. When you disable faster launching, the AMI uses the standard launch process for each instance. All pre-provisioned snapshots must be removed before you can enable faster launching again.</p>",
     "DisableFastSnapshotRestores": "<p>Disables fast snapshot restores for the specified snapshots in the specified Availability Zones.</p>",
     "DisableImageDeprecation": "<p>Cancels the deprecation of the specified AMI.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-deprecate.html\">Deprecate an AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DisableIpamOrganizationAdminAccount": "<p>Disable the IPAM account. For more information, see <a href=\"/vpc/latest/ipam/enable-integ-ipam.html\">Enable integration with Organizations</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>",
@@ -346,6 +348,7 @@
     "DisassociateTrunkInterface": "<note> <p>This API action is currently in <b>limited preview only</b>. If you are interested in using this feature, contact your account manager.</p> </note> <p>Removes an association between a branch network interface with a trunk network interface.</p>",
     "DisassociateVpcCidrBlock": "<p>Disassociates a CIDR block from a VPC. To disassociate the CIDR block, you must specify its association ID. You can get the association ID by using <a>DescribeVpcs</a>. You must detach or delete all gateways and resources that are associated with the CIDR block before you can disassociate it. </p> <p>You cannot disassociate the CIDR block with which you originally created the VPC (the primary CIDR block).</p>",
     "EnableEbsEncryptionByDefault": "<p>Enables EBS encryption by default for your account in the current Region.</p> <p>After you enable encryption by default, the EBS volumes that you create are always encrypted, either using the default KMS key or the KMS key that you specified when you created each volume. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You can specify the default KMS key for encryption by default using <a>ModifyEbsDefaultKmsKeyId</a> or <a>ResetEbsDefaultKmsKeyId</a>.</p> <p>Enabling encryption by default has no effect on the encryption status of your existing volumes.</p> <p>After you enable encryption by default, you can no longer launch instances using instance types that do not support encryption. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances\">Supported instance types</a>.</p>",
+    "EnableFastLaunch": "<p>When you enable faster launching for a Windows AMI, images are pre-provisioned, using snapshots to launch instances up to 65% faster. To create the optimized Windows image, Amazon EC2 launches an instance and runs through Sysprep steps, rebooting as required. Then it creates a set of reserved snapshots that are used for subsequent launches. The reserved snapshots are automatically replenished as they are used, depending on your settings for launch frequency.</p>",
     "EnableFastSnapshotRestores": "<p>Enables fast snapshot restores for the specified snapshots in the specified Availability Zones.</p> <p>You get the full benefit of fast snapshot restores after they enter the <code>enabled</code> state. To get the current state of fast snapshot restores, use <a>DescribeFastSnapshotRestores</a>. To disable fast snapshot restores, use <a>DisableFastSnapshotRestores</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-fast-snapshot-restore.html\">Amazon EBS fast snapshot restore</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "EnableImageDeprecation": "<p>Enables deprecation of the specified AMI at the specified date and time.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-deprecate.html\">Deprecate an AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "EnableIpamOrganizationAdminAccount": "<p>Enable an Organizations member account as the IPAM admin account. You cannot select the Organizations management account as the IPAM admin account. For more information, see <a href=\"/vpc/latest/ipam/enable-integ-ipam.html\">Enable integration with Organizations</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>",
@@ -1862,6 +1865,7 @@
         "DescribeEgressOnlyInternetGatewaysRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeElasticGpusRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeExportImageTasksRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DescribeFastLaunchImagesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeFastSnapshotRestoresRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeFleetHistoryRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeFleetInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1977,6 +1981,8 @@
         "DetachVpnGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableEbsEncryptionByDefaultRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableEbsEncryptionByDefaultResult$EbsEncryptionByDefault": "<p>The updated status of encryption by default.</p>",
+        "DisableFastLaunchRequest$Force": "<p>Forces the image settings to turn off faster launching for your Windows AMI. This parameter overrides any errors that are encountered while cleaning up resources in your account.</p>",
+        "DisableFastLaunchRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableFastSnapshotRestoresRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableImageDeprecationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableImageDeprecationResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
@@ -2006,6 +2012,7 @@
         "EbsInstanceBlockDeviceSpecification$DeleteOnTermination": "<p>Indicates whether the volume is deleted on instance termination.</p>",
         "EnableEbsEncryptionByDefaultRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableEbsEncryptionByDefaultResult$EbsEncryptionByDefault": "<p>The updated status of encryption by default.</p>",
+        "EnableFastLaunchRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableFastSnapshotRestoresRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableImageDeprecationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableImageDeprecationResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
@@ -5336,6 +5343,34 @@
       "refs": {
       }
     },
+    "DescribeFastLaunchImagesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFastLaunchImagesRequestMaxResults": {
+      "base": null,
+      "refs": {
+        "DescribeFastLaunchImagesRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another request with the returned NextToken value. If this parameter is not specified, then all results are returned.</p>"
+      }
+    },
+    "DescribeFastLaunchImagesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFastLaunchImagesSuccessItem": {
+      "base": "<p>Describe details about a fast-launch enabled Windows image that meets the requested criteria. Criteria are defined by the <code>DescribeFastLaunchImages</code> action filters.</p>",
+      "refs": {
+        "DescribeFastLaunchImagesSuccessSet$member": null
+      }
+    },
+    "DescribeFastLaunchImagesSuccessSet": {
+      "base": null,
+      "refs": {
+        "DescribeFastLaunchImagesResult$FastLaunchImages": "<p>A collection of details about the fast-launch enabled Windows images that meet the requested criteria.</p>"
+      }
+    },
     "DescribeFastSnapshotRestoreSuccessItem": {
       "base": "<p>Describes fast snapshot restores for a snapshot.</p>",
       "refs": {
@@ -6745,6 +6780,16 @@
       "refs": {
       }
     },
+    "DisableFastLaunchRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisableFastLaunchResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DisableFastSnapshotRestoreErrorItem": {
       "base": "<p>Contains information about the errors that occurred when disabling fast snapshot restores.</p>",
       "refs": {
@@ -7351,6 +7396,16 @@
       "refs": {
       }
     },
+    "EnableFastLaunchRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "EnableFastLaunchResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "EnableFastSnapshotRestoreErrorItem": {
       "base": "<p>Contains information about the errors that occurred when enabling fast snapshot restores.</p>",
       "refs": {
@@ -7733,6 +7788,56 @@
         "DeleteQueuedReservedInstancesResult$FailedQueuedPurchaseDeletions": "<p>Information about the queued purchases that could not be deleted.</p>"
       }
     },
+    "FastLaunchImageIdList": {
+      "base": null,
+      "refs": {
+        "DescribeFastLaunchImagesRequest$ImageIds": "<p>Details for one or more Windows AMI image IDs.</p>"
+      }
+    },
+    "FastLaunchLaunchTemplateSpecificationRequest": {
+      "base": "<p>Request to create a launch template for a fast-launch enabled Windows AMI.</p> <note> <p>Note - You can specify either the <code>LaunchTemplateName</code> or the <code>LaunchTemplateId</code>, but not both.</p> </note>",
+      "refs": {
+        "EnableFastLaunchRequest$LaunchTemplate": "<p>The launch template to use when launching Windows instances from pre-provisioned snapshots. Launch template parameters can include either the name or ID of the launch template, but not both.</p>"
+      }
+    },
+    "FastLaunchLaunchTemplateSpecificationResponse": {
+      "base": "<p>Identifies the launch template to use for faster launching of the Windows AMI.</p>",
+      "refs": {
+        "DescribeFastLaunchImagesSuccessItem$LaunchTemplate": "<p>The launch template that the fast-launch enabled Windows AMI uses when it launches Windows instances from pre-provisioned snapshots.</p>",
+        "DisableFastLaunchResult$LaunchTemplate": "<p>The launch template that was used to launch Windows instances from pre-provisioned snapshots.</p>",
+        "EnableFastLaunchResult$LaunchTemplate": "<p>The launch template that is used when launching Windows instances from pre-provisioned snapshots.</p>"
+      }
+    },
+    "FastLaunchResourceType": {
+      "base": null,
+      "refs": {
+        "DescribeFastLaunchImagesSuccessItem$ResourceType": "<p>The resource type that is used for pre-provisioning the Windows AMI. Supported values include: <code>snapshot</code>.</p>",
+        "DisableFastLaunchResult$ResourceType": "<p>The pre-provisioning resource type that must be cleaned after turning off faster launching for the Windows AMI. Supported values include: <code>snapshot</code>.</p>",
+        "EnableFastLaunchResult$ResourceType": "<p>The type of resource that was defined for pre-provisioning the Windows AMI for faster launching.</p>"
+      }
+    },
+    "FastLaunchSnapshotConfigurationRequest": {
+      "base": "<p>Configuration settings for creating and managing pre-provisioned snapshots for a fast-launch enabled Windows AMI.</p>",
+      "refs": {
+        "EnableFastLaunchRequest$SnapshotConfiguration": "<p>Configuration settings for creating and managing the snapshots that are used for pre-provisioning the Windows AMI for faster launching. The associated <code>ResourceType</code> must be <code>snapshot</code>.</p>"
+      }
+    },
+    "FastLaunchSnapshotConfigurationResponse": {
+      "base": "<p>Configuration settings for creating and managing pre-provisioned snapshots for a fast-launch enabled Windows AMI.</p>",
+      "refs": {
+        "DescribeFastLaunchImagesSuccessItem$SnapshotConfiguration": "<p>A group of parameters that are used for pre-provisioning the associated Windows AMI using snapshots.</p>",
+        "DisableFastLaunchResult$SnapshotConfiguration": "<p>Parameters that were used for faster launching for the Windows AMI before faster launching was turned off. This informs the clean-up process.</p>",
+        "EnableFastLaunchResult$SnapshotConfiguration": "<p>The configuration settings that were defined for creating and managing the pre-provisioned snapshots for faster launching of the Windows AMI. This property is returned when the associated <code>resourceType</code> is <code>snapshot</code>.</p>"
+      }
+    },
+    "FastLaunchStateCode": {
+      "base": null,
+      "refs": {
+        "DescribeFastLaunchImagesSuccessItem$State": "<p>The current state of faster launching for the specified Windows AMI.</p>",
+        "DisableFastLaunchResult$State": "<p>The current state of faster launching for the specified Windows AMI.</p>",
+        "EnableFastLaunchResult$State": "<p>The current state of faster launching for the specified Windows AMI.</p>"
+      }
+    },
     "FastSnapshotRestoreStateCode": {
       "base": null,
       "refs": {
@@ -7781,6 +7886,7 @@
         "DescribeElasticGpusRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>availability-zone</code> - The Availability Zone in which the Elastic Graphics accelerator resides.</p> </li> <li> <p> <code>elastic-gpu-health</code> - The status of the Elastic Graphics accelerator (<code>OK</code> | <code>IMPAIRED</code>).</p> </li> <li> <p> <code>elastic-gpu-state</code> - The state of the Elastic Graphics accelerator (<code>ATTACHED</code>).</p> </li> <li> <p> <code>elastic-gpu-type</code> - The type of Elastic Graphics accelerator; for example, <code>eg1.medium</code>.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance to which the Elastic Graphics accelerator is associated.</p> </li> </ul>",
         "DescribeExportImageTasksRequest$Filters": "<p>Filter tasks using the <code>task-state</code> filter and one of the following values: <code>active</code>, <code>completed</code>, <code>deleting</code>, or <code>deleted</code>.</p>",
         "DescribeExportTasksRequest$Filters": "<p>the filters for the export tasks.</p>",
+        "DescribeFastLaunchImagesRequest$Filters": "<p>Use the following filters to streamline results.</p> <ul> <li> <p> <code>resource-type</code> - The resource type for pre-provisioning.</p> </li> <li> <p> <code>launch-template</code> - The launch template that is associated with the pre-provisioned Windows AMI.</p> </li> <li> <p> <code>owner-id</code> - The owner ID for the pre-provisioning resource.</p> </li> <li> <p> <code>state</code> - The current state of fast launching for the Windows AMI.</p> </li> </ul>",
         "DescribeFastSnapshotRestoresRequest$Filters": "<p>The filters. The possible values are:</p> <ul> <li> <p> <code>availability-zone</code>: The Availability Zone of the snapshot.</p> </li> <li> <p> <code>owner-id</code>: The ID of the Amazon Web Services account that enabled fast snapshot restore on the snapshot.</p> </li> <li> <p> <code>snapshot-id</code>: The ID of the snapshot.</p> </li> <li> <p> <code>state</code>: The state of fast snapshot restores for the snapshot (<code>enabling</code> | <code>optimizing</code> | <code>enabled</code> | <code>disabling</code> | <code>disabled</code>).</p> </li> </ul>",
         "DescribeFleetInstancesRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>instance-type</code> - The instance type.</p> </li> </ul>",
         "DescribeFleetsRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>activity-status</code> - The progress of the EC2 Fleet ( <code>error</code> | <code>pending-fulfillment</code> | <code>pending-termination</code> | <code>fulfilled</code>).</p> </li> <li> <p> <code>excess-capacity-termination-policy</code> - Indicates whether to terminate running instances if the target capacity is decreased below the current EC2 Fleet size (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>fleet-state</code> - The state of the EC2 Fleet (<code>submitted</code> | <code>active</code> | <code>deleted</code> | <code>failed</code> | <code>deleted-running</code> | <code>deleted-terminating</code> | <code>modifying</code>).</p> </li> <li> <p> <code>replace-unhealthy-instances</code> - Indicates whether EC2 Fleet should replace unhealthy instances (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>type</code> - The type of request (<code>instant</code> | <code>request</code> | <code>maintain</code>).</p> </li> </ul>",
@@ -9038,10 +9144,16 @@
       "refs": {
         "CreateStoreImageTaskRequest$ImageId": "<p>The ID of the AMI.</p>",
         "DeregisterImageRequest$ImageId": "<p>The ID of the AMI.</p>",
+        "DescribeFastLaunchImagesSuccessItem$ImageId": "<p>The image ID that identifies the fast-launch enabled Windows image.</p>",
         "DescribeImageAttributeRequest$ImageId": "<p>The ID of the AMI.</p>",
+        "DisableFastLaunchRequest$ImageId": "<p>The ID of the image for which you’re turning off faster launching, and removing pre-provisioned snapshots.</p>",
+        "DisableFastLaunchResult$ImageId": "<p>The ID of the image for which faster-launching has been turned off.</p>",
         "DisableImageDeprecationRequest$ImageId": "<p>The ID of the AMI.</p>",
+        "EnableFastLaunchRequest$ImageId": "<p>The ID of the image for which you’re enabling faster launching.</p>",
+        "EnableFastLaunchResult$ImageId": "<p>The image ID that identifies the Windows AMI for which faster launching was enabled.</p>",
         "EnableImageDeprecationRequest$ImageId": "<p>The ID of the AMI.</p>",
         "ExportImageRequest$ImageId": "<p>The ID of the image.</p>",
+        "FastLaunchImageIdList$member": null,
         "ImageIdList$member": null,
         "ImageIdStringList$member": null,
         "ModifyImageAttributeRequest$ImageId": "<p>The ID of the AMI.</p>",
@@ -10095,6 +10207,7 @@
         "CreateVolumeRequest$Throughput": "<p>The throughput to provision for a volume, with a maximum of 1,000 MiB/s.</p> <p>This parameter is valid only for <code>gp3</code> volumes.</p> <p>Valid Range: Minimum value of 125. Maximum value of 1000.</p>",
         "DeleteNetworkAclEntryRequest$RuleNumber": "<p>The rule number of the entry to delete.</p>",
         "DescribeElasticGpusResult$MaxResults": "<p>The total number of items to return. If the total number of items available is more than the value specified in max-items then a Next-Token will be provided in the output that you can use to resume pagination.</p>",
+        "DescribeFastLaunchImagesSuccessItem$MaxParallelLaunches": "<p>The maximum number of parallel instances that are launched for creating resources.</p>",
         "DescribeFleetHistoryRequest$MaxResults": "<p>The maximum number of results to return in a single call. Specify a value between 1 and 1000. The default value is 1000. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>",
         "DescribeFleetInstancesRequest$MaxResults": "<p>The maximum number of results to return in a single call. Specify a value between 1 and 1000. The default value is 1000. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>",
         "DescribeFleetsRequest$MaxResults": "<p>The maximum number of results to return in a single call. Specify a value between 1 and 1000. The default value is 1000. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>",
@@ -10128,9 +10241,14 @@
         "DescribeVpcEndpointServicePermissionsRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results of the initial request can be seen by sending another request with the returned <code>NextToken</code> value. This value can be between 5 and 1,000; if <code>MaxResults</code> is given a value larger than 1,000, only 1,000 results are returned.</p>",
         "DescribeVpcEndpointServicesRequest$MaxResults": "<p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p> <p>Constraint: If the value is greater than 1,000, we return only 1,000 items.</p>",
         "DescribeVpcEndpointsRequest$MaxResults": "<p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p> <p>Constraint: If the value is greater than 1,000, we return only 1,000 items.</p>",
+        "DisableFastLaunchResult$MaxParallelLaunches": "<p>The maximum number of parallel instances to launch for creating resources.</p>",
         "EbsBlockDevice$Iops": "<p>The number of I/O operations per second (IOPS). For <code>gp3</code>, <code>io1</code>, and <code>io2</code> volumes, this represents the number of IOPS that are provisioned for the volume. For <code>gp2</code> volumes, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting.</p> <p>The following are the supported values for each volume type:</p> <ul> <li> <p> <code>gp3</code>: 3,000-16,000 IOPS</p> </li> <li> <p> <code>io1</code>: 100-64,000 IOPS</p> </li> <li> <p> <code>io2</code>: 100-64,000 IOPS</p> </li> </ul> <p>For <code>io1</code> and <code>io2</code> volumes, we guarantee 64,000 IOPS only for <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances\">Instances built on the Nitro System</a>. Other instance families guarantee performance up to 32,000 IOPS.</p> <p>This parameter is required for <code>io1</code> and <code>io2</code> volumes. The default for <code>gp3</code> volumes is 3,000 IOPS. This parameter is not supported for <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or <code>standard</code> volumes.</p>",
         "EbsBlockDevice$VolumeSize": "<p>The size of the volume, in GiBs. You must specify either a snapshot ID or a volume size. If you specify a snapshot, the default is the snapshot size. You can specify a volume size that is equal to or larger than the snapshot size.</p> <p>The following are the supported volumes sizes for each volume type:</p> <ul> <li> <p> <code>gp2</code> and <code>gp3</code>:1-16,384</p> </li> <li> <p> <code>io1</code> and <code>io2</code>: 4-16,384</p> </li> <li> <p> <code>st1</code> and <code>sc1</code>: 125-16,384</p> </li> <li> <p> <code>standard</code>: 1-1,024</p> </li> </ul>",
         "EbsBlockDevice$Throughput": "<p>The throughput that the volume supports, in MiB/s.</p> <p>This parameter is valid only for <code>gp3</code> volumes.</p> <p>Valid Range: Minimum value of 125. Maximum value of 1000.</p>",
+        "EnableFastLaunchRequest$MaxParallelLaunches": "<p>The maximum number of parallel instances to launch for creating resources.</p>",
+        "EnableFastLaunchResult$MaxParallelLaunches": "<p>The maximum number of parallel instances to launch for creating resources.</p>",
+        "FastLaunchSnapshotConfigurationRequest$TargetResourceCount": "<p>The number of pre-provisioned snapshots to keep on hand for a fast-launch enabled Windows AMI.</p>",
+        "FastLaunchSnapshotConfigurationResponse$TargetResourceCount": "<p>The number of pre-provisioned snapshots requested to keep on hand for a fast-launch enabled Windows AMI.</p>",
         "FleetCapacityReservation$TotalInstanceCount": "<p>The total number of instances for which the Capacity Reservation reserves capacity.</p>",
         "FleetSpotCapacityRebalance$TerminationDelay": "<p>The amount of time (in seconds) that Amazon EC2 waits before terminating the old Spot Instance after launching a new replacement Spot Instance.</p> <p>Required when <code>ReplacementStrategy</code> is set to <code>launch-before-terminate</code>.</p> <p>Not valid when <code>ReplacementStrategy</code> is set to <code>launch</code>.</p> <p>Valid values: Minimum value of <code>120</code> seconds. Maximum value of <code>7200</code> seconds.</p>",
         "FleetSpotCapacityRebalanceRequest$TerminationDelay": "<p>The amount of time (in seconds) that Amazon EC2 waits before terminating the old Spot Instance after launching a new replacement Spot Instance.</p> <p>Required when <code>ReplacementStrategy</code> is set to <code>launch-before-terminate</code>.</p> <p>Not valid when <code>ReplacementStrategy</code> is set to <code>launch</code>.</p> <p>Valid values: Minimum value of <code>120</code> seconds. Maximum value of <code>7200</code> seconds.</p>",
@@ -11293,6 +11411,8 @@
         "DeleteLaunchTemplateRequest$LaunchTemplateId": "<p>The ID of the launch template. You must specify either the launch template ID or launch template name in the request.</p>",
         "DeleteLaunchTemplateVersionsRequest$LaunchTemplateId": "<p>The ID of the launch template. You must specify either the launch template ID or launch template name in the request.</p>",
         "DescribeLaunchTemplateVersionsRequest$LaunchTemplateId": "<p>The ID of the launch template. To describe one or more versions of a specified launch template, you must specify either the launch template ID or the launch template name in the request. To describe all the latest or default launch template versions in your account, you must omit this parameter.</p>",
+        "FastLaunchLaunchTemplateSpecificationRequest$LaunchTemplateId": "<p>The ID of the launch template to use for faster launching for a Windows AMI.</p>",
+        "FastLaunchLaunchTemplateSpecificationResponse$LaunchTemplateId": "<p>The ID of the launch template for faster launching of the associated Windows AMI.</p>",
         "FleetLaunchTemplateSpecificationRequest$LaunchTemplateId": "<p>The ID of the launch template. If you specify the template ID, you can't specify the template name.</p>",
         "LaunchTemplateIdStringList$member": null,
         "LaunchTemplateSpecification$LaunchTemplateId": "<p>The ID of the launch template.</p>",
@@ -12035,6 +12155,7 @@
         "CreateCapacityReservationFleetRequest$EndDate": "<p>The date and time at which the Capacity Reservation Fleet expires. When the Capacity Reservation Fleet expires, its state changes to <code>expired</code> and all of the Capacity Reservations in the Fleet expire.</p> <p>The Capacity Reservation Fleet expires within an hour after the specified time. For example, if you specify <code>5/31/2019</code>, <code>13:30:55</code>, the Capacity Reservation Fleet is guaranteed to expire between <code>13:30:55</code> and <code>14:30:55</code> on <code>5/31/2019</code>. </p>",
         "CreateCapacityReservationFleetResult$CreateTime": "<p>The date and time at which the Capacity Reservation Fleet was created.</p>",
         "CreateCapacityReservationFleetResult$EndDate": "<p>The date and time at which the Capacity Reservation Fleet expires.</p>",
+        "DescribeFastLaunchImagesSuccessItem$StateTransitionTime": "<p>The time that faster launching for the Windows AMI changed to the current state.</p>",
         "DescribeFastSnapshotRestoreSuccessItem$EnablingTime": "<p>The time at which fast snapshot restores entered the <code>enabling</code> state.</p>",
         "DescribeFastSnapshotRestoreSuccessItem$OptimizingTime": "<p>The time at which fast snapshot restores entered the <code>optimizing</code> state.</p>",
         "DescribeFastSnapshotRestoreSuccessItem$EnabledTime": "<p>The time at which fast snapshot restores entered the <code>enabled</code> state.</p>",
@@ -12044,11 +12165,13 @@
         "DescribeNetworkInsightsAccessScopeAnalysesRequest$AnalysisStartTimeEnd": "<p>Filters the results based on the start time. The analysis must have started on or before this time.</p>",
         "DescribeNetworkInsightsAnalysesRequest$AnalysisStartTime": "<p>The time when the network insights analyses started.</p>",
         "DescribeNetworkInsightsAnalysesRequest$AnalysisEndTime": "<p>The time when the network insights analyses ended.</p>",
+        "DisableFastLaunchResult$StateTransitionTime": "<p>The time that the state changed for faster launching for the Windows AMI.</p>",
         "DisableFastSnapshotRestoreSuccessItem$EnablingTime": "<p>The time at which fast snapshot restores entered the <code>enabling</code> state.</p>",
         "DisableFastSnapshotRestoreSuccessItem$OptimizingTime": "<p>The time at which fast snapshot restores entered the <code>optimizing</code> state.</p>",
         "DisableFastSnapshotRestoreSuccessItem$EnabledTime": "<p>The time at which fast snapshot restores entered the <code>enabled</code> state.</p>",
         "DisableFastSnapshotRestoreSuccessItem$DisablingTime": "<p>The time at which fast snapshot restores entered the <code>disabling</code> state.</p>",
         "DisableFastSnapshotRestoreSuccessItem$DisabledTime": "<p>The time at which fast snapshot restores entered the <code>disabled</code> state.</p>",
+        "EnableFastLaunchResult$StateTransitionTime": "<p>The time that the state changed for faster launching for the Windows AMI.</p>",
         "EnableFastSnapshotRestoreSuccessItem$EnablingTime": "<p>The time at which fast snapshot restores entered the <code>enabling</code> state.</p>",
         "EnableFastSnapshotRestoreSuccessItem$OptimizingTime": "<p>The time at which fast snapshot restores entered the <code>optimizing</code> state.</p>",
         "EnableFastSnapshotRestoreSuccessItem$EnabledTime": "<p>The time at which fast snapshot restores entered the <code>enabled</code> state.</p>",
@@ -12954,6 +13077,13 @@
         "DescribeNetworkInsightsPathsResult$NetworkInsightsPaths": "<p>Information about the paths.</p>"
       }
     },
+    "NetworkInsightsResourceId": {
+      "base": null,
+      "refs": {
+        "CreateNetworkInsightsPathRequest$Source": "<p>The Amazon Web Services resource that is the source of the path.</p>",
+        "CreateNetworkInsightsPathRequest$Destination": "<p>The Amazon Web Services resource that is the destination of the path.</p>"
+      }
+    },
     "NetworkInterface": {
       "base": "<p>Describes a network interface.</p>",
       "refs": {
@@ -13164,6 +13294,8 @@
         "DescribeClientVpnTargetNetworksResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeExportImageTasksRequest$NextToken": "<p>A token that indicates the next page of results.</p>",
         "DescribeExportImageTasksResult$NextToken": "<p>The token to use to get the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeFastLaunchImagesRequest$NextToken": "<p>The token for the next set of results.</p>",
+        "DescribeFastLaunchImagesResult$NextToken": "<p>The token to use for the next set of results. This value is null when there are no more results to return.</p>",
         "DescribeFastSnapshotRestoresRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeFastSnapshotRestoresResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeFpgaImagesRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
@@ -16351,8 +16483,6 @@
         "CreateNetworkAclEntryRequest$Ipv6CidrBlock": "<p>The IPv6 network range to allow or deny, in CIDR notation (for example <code>2001:db8:1234:1a00::/64</code>).</p>",
         "CreateNetworkAclEntryRequest$Protocol": "<p>The protocol number. A value of \"-1\" means all protocols. If you specify \"-1\" or a protocol number other than \"6\" (TCP), \"17\" (UDP), or \"1\" (ICMP), traffic on all ports is allowed, regardless of any ports or ICMP types or codes that you specify. If you specify protocol \"58\" (ICMPv6) and specify an IPv4 CIDR block, traffic for all ICMP types and codes allowed, regardless of any that you specify. If you specify protocol \"58\" (ICMPv6) and specify an IPv6 CIDR block, you must specify an ICMP type and code.</p>",
         "CreateNetworkInsightsAccessScopeRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to ensure idempotency</a>.</p>",
-        "CreateNetworkInsightsPathRequest$Source": "<p>The Amazon Web Services resource that is the source of the path.</p>",
-        "CreateNetworkInsightsPathRequest$Destination": "<p>The Amazon Web Services resource that is the destination of the path.</p>",
         "CreateNetworkInsightsPathRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to ensure idempotency</a>.</p>",
         "CreateNetworkInterfacePermissionRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "CreateNetworkInterfacePermissionRequest$AwsService": "<p>The Amazon Web Service. Currently not supported.</p>",
@@ -16480,6 +16610,8 @@
         "DescribeEgressOnlyInternetGatewaysResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeElasticGpusRequest$NextToken": "<p>The token to request the next page of results.</p>",
         "DescribeElasticGpusResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeFastLaunchImagesSuccessItem$OwnerId": "<p>The owner ID for the fast-launch enabled Windows AMI.</p>",
+        "DescribeFastLaunchImagesSuccessItem$StateTransitionReason": "<p>The reason that faster launching for the Windows AMI changed to the current state.</p>",
         "DescribeFastSnapshotRestoreSuccessItem$SnapshotId": "<p>The ID of the snapshot.</p>",
         "DescribeFastSnapshotRestoreSuccessItem$AvailabilityZone": "<p>The Availability Zone.</p>",
         "DescribeFastSnapshotRestoreSuccessItem$StateTransitionReason": "<p>The reason for the state transition. The possible values are as follows:</p> <ul> <li> <p> <code>Client.UserInitiated</code> - The state successfully transitioned to <code>enabling</code> or <code>disabling</code>.</p> </li> <li> <p> <code>Client.UserInitiated - Lifecycle state transition</code> - The state successfully transitioned to <code>optimizing</code>, <code>enabled</code>, or <code>disabled</code>.</p> </li> </ul>",
@@ -16648,6 +16780,8 @@
         "DhcpOptions$OwnerId": "<p>The ID of the Amazon Web Services account that owns the DHCP options set.</p>",
         "DirectoryServiceAuthentication$DirectoryId": "<p>The ID of the Active Directory used for authentication.</p>",
         "DirectoryServiceAuthenticationRequest$DirectoryId": "<p>The ID of the Active Directory to be used for authentication.</p>",
+        "DisableFastLaunchResult$OwnerId": "<p>The owner of the Windows AMI for which faster launching was turned off.</p>",
+        "DisableFastLaunchResult$StateTransitionReason": "<p>The reason that the state changed for faster launching for the Windows AMI.</p>",
         "DisableFastSnapshotRestoreErrorItem$SnapshotId": "<p>The ID of the snapshot.</p>",
         "DisableFastSnapshotRestoreStateError$Code": "<p>The error code.</p>",
         "DisableFastSnapshotRestoreStateError$Message": "<p>The error message.</p>",
@@ -16687,6 +16821,9 @@
         "ElasticInferenceAcceleratorAssociation$ElasticInferenceAcceleratorArn": "<p> The Amazon Resource Name (ARN) of the elastic inference accelerator. </p>",
         "ElasticInferenceAcceleratorAssociation$ElasticInferenceAcceleratorAssociationId": "<p> The ID of the association. </p>",
         "ElasticInferenceAcceleratorAssociation$ElasticInferenceAcceleratorAssociationState": "<p> The state of the elastic inference accelerator. </p>",
+        "EnableFastLaunchRequest$ResourceType": "<p>The type of resource to use for pre-provisioning the Windows AMI for faster launching. Supported values include: <code>snapshot</code>, which is the default value.</p>",
+        "EnableFastLaunchResult$OwnerId": "<p>The owner ID for the Windows AMI for which faster launching was enabled.</p>",
+        "EnableFastLaunchResult$StateTransitionReason": "<p>The reason that the state changed for faster launching for the Windows AMI.</p>",
         "EnableFastSnapshotRestoreErrorItem$SnapshotId": "<p>The ID of the snapshot.</p>",
         "EnableFastSnapshotRestoreStateError$Code": "<p>The error code.</p>",
         "EnableFastSnapshotRestoreStateError$Message": "<p>The error message.</p>",
@@ -16738,6 +16875,10 @@
         "ExportTransitGatewayRoutesRequest$S3Bucket": "<p>The name of the S3 bucket.</p>",
         "ExportTransitGatewayRoutesResult$S3Location": "<p>The URL of the exported file in Amazon S3. For example, s3://<i>bucket_name</i>/VPCTransitGateway/TransitGatewayRouteTables/<i>file_name</i>.</p>",
         "FailedQueuedPurchaseDeletion$ReservedInstancesId": "<p>The ID of the Reserved Instance.</p>",
+        "FastLaunchLaunchTemplateSpecificationRequest$LaunchTemplateName": "<p>The name of the launch template to use for faster launching for a Windows AMI.</p>",
+        "FastLaunchLaunchTemplateSpecificationRequest$Version": "<p>The version of the launch template to use for faster launching for a Windows AMI.</p>",
+        "FastLaunchLaunchTemplateSpecificationResponse$LaunchTemplateName": "<p>The name of the launch template for faster launching of the associated Windows AMI.</p>",
+        "FastLaunchLaunchTemplateSpecificationResponse$Version": "<p>The version of the launch template for faster launching of the associated Windows AMI.</p>",
         "FederatedAuthentication$SamlProviderArn": "<p>The Amazon Resource Name (ARN) of the IAM SAML identity provider.</p>",
         "FederatedAuthentication$SelfServiceSamlProviderArn": "<p>The Amazon Resource Name (ARN) of the IAM SAML identity provider for the self-service portal.</p>",
         "FederatedAuthenticationRequest$SAMLProviderArn": "<p>The Amazon Resource Name (ARN) of the IAM SAML identity provider.</p>",

@@ -139,6 +139,12 @@
         "UpdateAnomalyDetectorRequest$AnomalyDetectorDescription": "<p>The updated detector description.</p>"
       }
     },
+    "AnomalyDetectorFailureType": {
+      "base": null,
+      "refs": {
+        "DescribeAnomalyDetectorResponse$FailureType": "<p>The process that caused the detector to fail.</p>"
+      }
+    },
     "AnomalyDetectorName": {
       "base": null,
       "refs": {
@@ -503,7 +509,7 @@
     "ErrorMessage": {
       "base": null,
       "refs": {
-        "DescribeAnomalyDetectorResponse$FailureReason": "<p>The reason that the detector failed, if any.</p>"
+        "DescribeAnomalyDetectorResponse$FailureReason": "<p>The reason that the detector failed.</p>"
       }
     },
     "ExecutionList": {
