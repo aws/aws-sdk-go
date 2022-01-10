@@ -3,6 +3,7 @@ package endpoints
 import (
 	"encoding/json"
 	"fmt"
+	"net"
 	"regexp"
 	"strconv"
 	"strings"
@@ -277,8 +278,6 @@ func getEC2MetadataEndpoint(partitionID, service string, mode EC2IMDSEndpointMod
 			SigningMethod:      "v4",
 		}
 	case EC2IMDSEndpointModeStateIPv4:
-		fallthrough
-	default:
 		return ResolvedEndpoint{
 			URL:                ec2MetadataEndpointIPv4,
 			PartitionID:        partitionID,
@@ -287,6 +286,18 @@ func getEC2MetadataEndpoint(partitionID, service string, mode EC2IMDSEndpointMod
 			SigningNameDerived: true,
 			SigningMethod:      "v4",
 		}
+	default:
+		addrs, err := net.InterfaceAddrs()
+		if err != nil {
+			getEC2MetadataEndpoint(partitionID, service, EC2IMDSEndpointModeStateIPv4)
+		}
+		for _, addr := range addrs {
+			str := addr.String()
+			if !strings.HasPrefix(str, "127.") && !strings.Contains(str, ":") {
+				return getEC2MetadataEndpoint(partitionID, service, EC2IMDSEndpointModeStateIPv4)
+			}
+		}
+		return getEC2MetadataEndpoint(partitionID, service, EC2IMDSEndpointModeStateIPv6)
 	}
 }
 
