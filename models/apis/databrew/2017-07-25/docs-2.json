@@ -152,6 +152,12 @@
         "S3Location$Bucket": "<p>The Amazon S3 bucket name.</p>"
       }
     },
+    "BucketOwner": {
+      "base": null,
+      "refs": {
+        "S3Location$BucketOwner": "<p>The Amazon Web Services account ID of the bucket owner.</p>"
+      }
+    },
     "CatalogId": {
       "base": null,
       "refs": {
@@ -734,7 +740,7 @@
       "base": null,
       "refs": {
         "FilterExpression$Expression": "<p>The expression which includes condition names followed by substitution variables, possibly grouped and combined with other conditions. For example, \"(starts_with :prefix1 or starts_with :prefix2) and (ends_with :suffix1 or ends_with :suffix2)\". Substitution variables should start with ':' symbol.</p>",
-        "Rule$CheckExpression": "<p>The expression which includes column references, condition names followed by variable references, possibly grouped and combined with other conditions. For example, <code>(:col1 starts_with :prefix1 or :col1 starts_with :prefix2) and (:col1 ends_with :suffix1 or :col1 ends_with :suffix2)</code>. Column and value references are substitution variables that should start with the ':' symbol. Depending on the context, substitution variables' values can be either an actual value or a column name. These values are defined in the SubstitutionMap. If a CheckExpression starts with a column reference, then ColumnSelectors in the rule should be null. If ColumnSelectors has been defined, then there should be no columnn reference in the left side of a condition, for example, <code>is_between :val1 and :val2</code>.</p>"
+        "Rule$CheckExpression": "<p>The expression which includes column references, condition names followed by variable references, possibly grouped and combined with other conditions. For example, <code>(:col1 starts_with :prefix1 or :col1 starts_with :prefix2) and (:col1 ends_with :suffix1 or :col1 ends_with :suffix2)</code>. Column and value references are substitution variables that should start with the ':' symbol. Depending on the context, substitution variables' values can be either an actual value or a column name. These values are defined in the SubstitutionMap. If a CheckExpression starts with a column reference, then ColumnSelectors in the rule should be null. If ColumnSelectors has been defined, then there should be no columnn reference in the left side of a condition, for example, <code>is_between :val1 and :val2</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/databrew/latest/dg/profile.data-quality-available-checks.html\">Available checks</a> </p>"
       }
     },
     "FilesLimit": {
@@ -1517,7 +1523,7 @@
       }
     },
     "S3Location": {
-      "base": "<p>Represents an Amazon S3 location (bucket name and object key) where DataBrew can read input data, or write output from a job.</p>",
+      "base": "<p>Represents an Amazon S3 location (bucket name, bucket owner, and object key) where DataBrew can read input data, or write output from a job.</p>",
       "refs": {
         "CreateProfileJobRequest$OutputLocation": null,
         "DataCatalogInputDefinition$TempDirectory": "<p>Represents an Amazon location where DataBrew can store intermediate results.</p>",

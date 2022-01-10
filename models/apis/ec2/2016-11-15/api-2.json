@@ -1874,6 +1874,15 @@
       "input":{"shape":"DescribeExportTasksRequest"},
       "output":{"shape":"DescribeExportTasksResult"}
     },
+    "DescribeFastLaunchImages":{
+      "name":"DescribeFastLaunchImages",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeFastLaunchImagesRequest"},
+      "output":{"shape":"DescribeFastLaunchImagesResult"}
+    },
     "DescribeFastSnapshotRestores":{
       "name":"DescribeFastSnapshotRestores",
       "http":{
@@ -2897,6 +2906,15 @@
       "input":{"shape":"DisableEbsEncryptionByDefaultRequest"},
       "output":{"shape":"DisableEbsEncryptionByDefaultResult"}
     },
+    "DisableFastLaunch":{
+      "name":"DisableFastLaunch",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableFastLaunchRequest"},
+      "output":{"shape":"DisableFastLaunchResult"}
+    },
     "DisableFastSnapshotRestores":{
       "name":"DisableFastSnapshotRestores",
       "http":{
@@ -3073,6 +3091,15 @@
       },
       "input":{"shape":"EnableEbsEncryptionByDefaultRequest"},
       "output":{"shape":"EnableEbsEncryptionByDefaultResult"}
+    },
+    "EnableFastLaunch":{
+      "name":"EnableFastLaunch",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableFastLaunchRequest"},
+      "output":{"shape":"EnableFastLaunchResult"}
     },
     "EnableFastSnapshotRestores":{
       "name":"EnableFastSnapshotRestores",
@@ -9541,8 +9568,8 @@
       "members":{
         "SourceIp":{"shape":"IpAddress"},
         "DestinationIp":{"shape":"IpAddress"},
-        "Source":{"shape":"String"},
-        "Destination":{"shape":"String"},
+        "Source":{"shape":"NetworkInsightsResourceId"},
+        "Destination":{"shape":"NetworkInsightsResourceId"},
         "Protocol":{"shape":"Protocol"},
         "DestinationPort":{"shape":"Port"},
         "TagSpecifications":{
@@ -12969,6 +12996,88 @@
           "shape":"ExportTaskList",
           "locationName":"exportTaskSet"
         }
+      }
+    },
+    "DescribeFastLaunchImagesRequest":{
+      "type":"structure",
+      "members":{
+        "ImageIds":{
+          "shape":"FastLaunchImageIdList",
+          "locationName":"ImageId"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"DescribeFastLaunchImagesRequestMaxResults"},
+        "NextToken":{"shape":"NextToken"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DescribeFastLaunchImagesRequestMaxResults":{
+      "type":"integer",
+      "max":200,
+      "min":0
+    },
+    "DescribeFastLaunchImagesResult":{
+      "type":"structure",
+      "members":{
+        "FastLaunchImages":{
+          "shape":"DescribeFastLaunchImagesSuccessSet",
+          "locationName":"fastLaunchImageSet"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeFastLaunchImagesSuccessItem":{
+      "type":"structure",
+      "members":{
+        "ImageId":{
+          "shape":"ImageId",
+          "locationName":"imageId"
+        },
+        "ResourceType":{
+          "shape":"FastLaunchResourceType",
+          "locationName":"resourceType"
+        },
+        "SnapshotConfiguration":{
+          "shape":"FastLaunchSnapshotConfigurationResponse",
+          "locationName":"snapshotConfiguration"
+        },
+        "LaunchTemplate":{
+          "shape":"FastLaunchLaunchTemplateSpecificationResponse",
+          "locationName":"launchTemplate"
+        },
+        "MaxParallelLaunches":{
+          "shape":"Integer",
+          "locationName":"maxParallelLaunches"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "State":{
+          "shape":"FastLaunchStateCode",
+          "locationName":"state"
+        },
+        "StateTransitionReason":{
+          "shape":"String",
+          "locationName":"stateTransitionReason"
+        },
+        "StateTransitionTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"stateTransitionTime"
+        }
+      }
+    },
+    "DescribeFastLaunchImagesSuccessSet":{
+      "type":"list",
+      "member":{
+        "shape":"DescribeFastLaunchImagesSuccessItem",
+        "locationName":"item"
       }
     },
     "DescribeFastSnapshotRestoreSuccessItem":{
@@ -16668,6 +16777,56 @@
         }
       }
     },
+    "DisableFastLaunchRequest":{
+      "type":"structure",
+      "required":["ImageId"],
+      "members":{
+        "ImageId":{"shape":"ImageId"},
+        "Force":{"shape":"Boolean"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DisableFastLaunchResult":{
+      "type":"structure",
+      "members":{
+        "ImageId":{
+          "shape":"ImageId",
+          "locationName":"imageId"
+        },
+        "ResourceType":{
+          "shape":"FastLaunchResourceType",
+          "locationName":"resourceType"
+        },
+        "SnapshotConfiguration":{
+          "shape":"FastLaunchSnapshotConfigurationResponse",
+          "locationName":"snapshotConfiguration"
+        },
+        "LaunchTemplate":{
+          "shape":"FastLaunchLaunchTemplateSpecificationResponse",
+          "locationName":"launchTemplate"
+        },
+        "MaxParallelLaunches":{
+          "shape":"Integer",
+          "locationName":"maxParallelLaunches"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "State":{
+          "shape":"FastLaunchStateCode",
+          "locationName":"state"
+        },
+        "StateTransitionReason":{
+          "shape":"String",
+          "locationName":"stateTransitionReason"
+        },
+        "StateTransitionTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"stateTransitionTime"
+        }
+      }
+    },
     "DisableFastSnapshotRestoreErrorItem":{
       "type":"structure",
       "members":{
@@ -17701,6 +17860,59 @@
         }
       }
     },
+    "EnableFastLaunchRequest":{
+      "type":"structure",
+      "required":["ImageId"],
+      "members":{
+        "ImageId":{"shape":"ImageId"},
+        "ResourceType":{"shape":"String"},
+        "SnapshotConfiguration":{"shape":"FastLaunchSnapshotConfigurationRequest"},
+        "LaunchTemplate":{"shape":"FastLaunchLaunchTemplateSpecificationRequest"},
+        "MaxParallelLaunches":{"shape":"Integer"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "EnableFastLaunchResult":{
+      "type":"structure",
+      "members":{
+        "ImageId":{
+          "shape":"ImageId",
+          "locationName":"imageId"
+        },
+        "ResourceType":{
+          "shape":"FastLaunchResourceType",
+          "locationName":"resourceType"
+        },
+        "SnapshotConfiguration":{
+          "shape":"FastLaunchSnapshotConfigurationResponse",
+          "locationName":"snapshotConfiguration"
+        },
+        "LaunchTemplate":{
+          "shape":"FastLaunchLaunchTemplateSpecificationResponse",
+          "locationName":"launchTemplate"
+        },
+        "MaxParallelLaunches":{
+          "shape":"Integer",
+          "locationName":"maxParallelLaunches"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "State":{
+          "shape":"FastLaunchStateCode",
+          "locationName":"state"
+        },
+        "StateTransitionReason":{
+          "shape":"String",
+          "locationName":"stateTransitionReason"
+        },
+        "StateTransitionTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"stateTransitionTime"
+        }
+      }
+    },
     "EnableFastSnapshotRestoreErrorItem":{
       "type":"structure",
       "members":{
@@ -18633,6 +18845,69 @@
         "shape":"FailedQueuedPurchaseDeletion",
         "locationName":"item"
       }
+    },
+    "FastLaunchImageIdList":{
+      "type":"list",
+      "member":{
+        "shape":"ImageId",
+        "locationName":"ImageId"
+      }
+    },
+    "FastLaunchLaunchTemplateSpecificationRequest":{
+      "type":"structure",
+      "required":["Version"],
+      "members":{
+        "LaunchTemplateId":{"shape":"LaunchTemplateId"},
+        "LaunchTemplateName":{"shape":"String"},
+        "Version":{"shape":"String"}
+      }
+    },
+    "FastLaunchLaunchTemplateSpecificationResponse":{
+      "type":"structure",
+      "members":{
+        "LaunchTemplateId":{
+          "shape":"LaunchTemplateId",
+          "locationName":"launchTemplateId"
+        },
+        "LaunchTemplateName":{
+          "shape":"String",
+          "locationName":"launchTemplateName"
+        },
+        "Version":{
+          "shape":"String",
+          "locationName":"version"
+        }
+      }
+    },
+    "FastLaunchResourceType":{
+      "type":"string",
+      "enum":["snapshot"]
+    },
+    "FastLaunchSnapshotConfigurationRequest":{
+      "type":"structure",
+      "members":{
+        "TargetResourceCount":{"shape":"Integer"}
+      }
+    },
+    "FastLaunchSnapshotConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "TargetResourceCount":{
+          "shape":"Integer",
+          "locationName":"targetResourceCount"
+        }
+      }
+    },
+    "FastLaunchStateCode":{
+      "type":"string",
+      "enum":[
+        "enabling",
+        "enabling-failed",
+        "enabled",
+        "enabled-failed",
+        "disabling",
+        "disabling-failed"
+      ]
     },
     "FastSnapshotRestoreStateCode":{
       "type":"string",
@@ -28621,6 +28896,7 @@
         "locationName":"item"
       }
     },
+    "NetworkInsightsResourceId":{"type":"string"},
     "NetworkInterface":{
       "type":"structure",
       "members":{

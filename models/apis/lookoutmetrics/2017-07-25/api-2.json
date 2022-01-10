@@ -431,7 +431,8 @@
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     }
   },
@@ -563,6 +564,14 @@
       "min":1,
       "pattern":".*\\S.*"
     },
+    "AnomalyDetectorFailureType":{
+      "type":"string",
+      "enum":[
+        "ACTIVATION_FAILURE",
+        "BACK_TEST_ACTIVATION_FAILURE",
+        "DELETION_FAILURE"
+      ]
+    },
     "AnomalyDetectorName":{
       "type":"string",
       "max":63,
@@ -655,10 +664,6 @@
     },
     "AppFlowConfig":{
       "type":"structure",
-      "required":[
-        "RoleArn",
-        "FlowName"
-      ],
       "members":{
         "RoleArn":{"shape":"Arn"},
         "FlowName":{"shape":"FlowName"}
@@ -696,7 +701,6 @@
     },
     "CloudWatchConfig":{
       "type":"structure",
-      "required":["RoleArn"],
       "members":{
         "RoleArn":{"shape":"Arn"}
       }
@@ -906,7 +910,8 @@
         "LastModificationTime":{"shape":"Timestamp"},
         "Status":{"shape":"AnomalyDetectorStatus"},
         "FailureReason":{"shape":"ErrorMessage"},
-        "KmsKeyArn":{"shape":"KmsKeyArn"}
+        "KmsKeyArn":{"shape":"KmsKeyArn"},
+        "FailureType":{"shape":"AnomalyDetectorFailureType"}
       }
     },
     "DescribeMetricSetRequest":{
@@ -1452,16 +1457,6 @@
     },
     "RDSSourceConfig":{
       "type":"structure",
-      "required":[
-        "DBInstanceIdentifier",
-        "DatabaseHost",
-        "DatabasePort",
-        "SecretManagerArn",
-        "DatabaseName",
-        "TableName",
-        "RoleArn",
-        "VpcConfiguration"
-      ],
       "members":{
         "DBInstanceIdentifier":{"shape":"RDSDatabaseIdentifier"},
         "DatabaseHost":{"shape":"DatabaseHost"},
@@ -1490,16 +1485,6 @@
     },
     "RedshiftSourceConfig":{
       "type":"structure",
-      "required":[
-        "ClusterIdentifier",
-        "DatabaseHost",
-        "DatabasePort",
-        "SecretManagerArn",
-        "DatabaseName",
-        "TableName",
-        "RoleArn",
-        "VpcConfiguration"
-      ],
       "members":{
         "ClusterIdentifier":{"shape":"RedshiftClusterIdentifier"},
         "DatabaseHost":{"shape":"DatabaseHost"},
@@ -1536,7 +1521,6 @@
     "ResourceType":{"type":"string"},
     "S3SourceConfig":{
       "type":"structure",
-      "required":["RoleArn"],
       "members":{
         "RoleArn":{"shape":"Arn"},
         "TemplatedPathList":{"shape":"TemplatedPathList"},

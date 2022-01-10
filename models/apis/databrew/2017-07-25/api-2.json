@@ -679,6 +679,12 @@
       "max":63,
       "min":3
     },
+    "BucketOwner":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":"^[0-9]{12}$"
+    },
     "CatalogId":{
       "type":"string",
       "max":255,
@@ -2314,7 +2320,8 @@
       "required":["Bucket"],
       "members":{
         "Bucket":{"shape":"Bucket"},
-        "Key":{"shape":"Key"}
+        "Key":{"shape":"Key"},
+        "BucketOwner":{"shape":"BucketOwner"}
       }
     },
     "S3TableOutputOptions":{

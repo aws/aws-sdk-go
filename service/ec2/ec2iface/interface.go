@@ -945,6 +945,13 @@ type EC2API interface {
 	DescribeExportTasksWithContext(aws.Context, *ec2.DescribeExportTasksInput, ...request.Option) (*ec2.DescribeExportTasksOutput, error)
 	DescribeExportTasksRequest(*ec2.DescribeExportTasksInput) (*request.Request, *ec2.DescribeExportTasksOutput)
 
+	DescribeFastLaunchImages(*ec2.DescribeFastLaunchImagesInput) (*ec2.DescribeFastLaunchImagesOutput, error)
+	DescribeFastLaunchImagesWithContext(aws.Context, *ec2.DescribeFastLaunchImagesInput, ...request.Option) (*ec2.DescribeFastLaunchImagesOutput, error)
+	DescribeFastLaunchImagesRequest(*ec2.DescribeFastLaunchImagesInput) (*request.Request, *ec2.DescribeFastLaunchImagesOutput)
+
+	DescribeFastLaunchImagesPages(*ec2.DescribeFastLaunchImagesInput, func(*ec2.DescribeFastLaunchImagesOutput, bool) bool) error
+	DescribeFastLaunchImagesPagesWithContext(aws.Context, *ec2.DescribeFastLaunchImagesInput, func(*ec2.DescribeFastLaunchImagesOutput, bool) bool, ...request.Option) error
+
 	DescribeFastSnapshotRestores(*ec2.DescribeFastSnapshotRestoresInput) (*ec2.DescribeFastSnapshotRestoresOutput, error)
 	DescribeFastSnapshotRestoresWithContext(aws.Context, *ec2.DescribeFastSnapshotRestoresInput, ...request.Option) (*ec2.DescribeFastSnapshotRestoresOutput, error)
 	DescribeFastSnapshotRestoresRequest(*ec2.DescribeFastSnapshotRestoresInput) (*request.Request, *ec2.DescribeFastSnapshotRestoresOutput)
@@ -1647,6 +1654,10 @@ type EC2API interface {
 	DisableEbsEncryptionByDefaultWithContext(aws.Context, *ec2.DisableEbsEncryptionByDefaultInput, ...request.Option) (*ec2.DisableEbsEncryptionByDefaultOutput, error)
 	DisableEbsEncryptionByDefaultRequest(*ec2.DisableEbsEncryptionByDefaultInput) (*request.Request, *ec2.DisableEbsEncryptionByDefaultOutput)
 
+	DisableFastLaunch(*ec2.DisableFastLaunchInput) (*ec2.DisableFastLaunchOutput, error)
+	DisableFastLaunchWithContext(aws.Context, *ec2.DisableFastLaunchInput, ...request.Option) (*ec2.DisableFastLaunchOutput, error)
+	DisableFastLaunchRequest(*ec2.DisableFastLaunchInput) (*request.Request, *ec2.DisableFastLaunchOutput)
+
 	DisableFastSnapshotRestores(*ec2.DisableFastSnapshotRestoresInput) (*ec2.DisableFastSnapshotRestoresOutput, error)
 	DisableFastSnapshotRestoresWithContext(aws.Context, *ec2.DisableFastSnapshotRestoresInput, ...request.Option) (*ec2.DisableFastSnapshotRestoresOutput, error)
 	DisableFastSnapshotRestoresRequest(*ec2.DisableFastSnapshotRestoresInput) (*request.Request, *ec2.DisableFastSnapshotRestoresOutput)
@@ -1726,6 +1737,10 @@ type EC2API interface {
 	EnableEbsEncryptionByDefault(*ec2.EnableEbsEncryptionByDefaultInput) (*ec2.EnableEbsEncryptionByDefaultOutput, error)
 	EnableEbsEncryptionByDefaultWithContext(aws.Context, *ec2.EnableEbsEncryptionByDefaultInput, ...request.Option) (*ec2.EnableEbsEncryptionByDefaultOutput, error)
 	EnableEbsEncryptionByDefaultRequest(*ec2.EnableEbsEncryptionByDefaultInput) (*request.Request, *ec2.EnableEbsEncryptionByDefaultOutput)
+
+	EnableFastLaunch(*ec2.EnableFastLaunchInput) (*ec2.EnableFastLaunchOutput, error)
+	EnableFastLaunchWithContext(aws.Context, *ec2.EnableFastLaunchInput, ...request.Option) (*ec2.EnableFastLaunchOutput, error)
+	EnableFastLaunchRequest(*ec2.EnableFastLaunchInput) (*request.Request, *ec2.EnableFastLaunchOutput)
 
 	EnableFastSnapshotRestores(*ec2.EnableFastSnapshotRestoresInput) (*ec2.EnableFastSnapshotRestoresOutput, error)
 	EnableFastSnapshotRestoresWithContext(aws.Context, *ec2.EnableFastSnapshotRestoresInput, ...request.Option) (*ec2.EnableFastSnapshotRestoresOutput, error)

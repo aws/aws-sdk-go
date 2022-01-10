@@ -4374,7 +4374,7 @@ type CallAnalyticsJob struct {
 	// A value between zero and one that Amazon Transcribe assigned to the language
 	// that it identified in the source audio. This value appears only when you
 	// don't provide a single language code. Larger values indicate that Amazon
-	// Transcribe has higher confidence in the language that it identified
+	// Transcribe has higher confidence in the language that it identified.
 	IdentifiedLanguageScore *float64 `type:"float"`
 
 	// If you know the language spoken between the customer and the agent, specify
@@ -4384,7 +4384,7 @@ type CallAnalyticsJob struct {
 	// Transcribe will use machine learning to automatically identify the language.
 	// To improve the accuracy of language identification, you can provide an array
 	// containing the possible language codes for the language spoken in your audio.
-	// Refer to Supported languages and language-specific features (https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html)
+	// Refer to Supported languages (https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html)
 	// for additional information.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
@@ -4538,7 +4538,7 @@ type CallAnalyticsJobSettings struct {
 	// use machine learning to identify the language for you. To improve the ability
 	// of Amazon Transcribe to correctly identify the language, you can provide
 	// an array of the languages that can be present in the audio. Refer to Supported
-	// languages and language-specific features (https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html)
+	// languages (https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html)
 	// for additional information.
 	LanguageOptions []*string `min:"1" type:"list"`
 
@@ -5320,7 +5320,7 @@ type CreateMedicalVocabularyInput struct {
 	// in the Amazon S3 Developer Guide.
 	//
 	// For more information about custom vocabularies, see Medical Custom Vocabularies
-	// (https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary-med).
+	// (https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-med.html).
 	//
 	// VocabularyFileUri is a required field
 	VocabularyFileUri *string `min:"1" type:"string" required:"true"`
@@ -5503,7 +5503,7 @@ type CreateVocabularyFilterInput struct {
 	// The Amazon S3 location of a text file used as input to create the vocabulary
 	// filter. Only use characters from the character set defined for custom vocabularies.
 	// For a list of character sets, see Character Sets for Custom Vocabularies
-	// (https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets).
+	// (https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html).
 	//
 	// The specified file must be less than 50 KB of UTF-8 characters.
 	//
@@ -5520,7 +5520,7 @@ type CreateVocabularyFilterInput struct {
 
 	// The words to use in the vocabulary filter. Only use characters from the character
 	// set defined for custom vocabularies. For a list of character sets, see Character
-	// Sets for Custom Vocabularies (https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets).
+	// Sets for Custom Vocabularies (https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html).
 	//
 	// If you provide a list of words in the Words parameter, you can't use the
 	// VocabularyFilterFileUri parameter.
@@ -5666,7 +5666,7 @@ type CreateVocabularyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code of the vocabulary entries. For a list of languages and
-	// their corresponding language codes, see transcribe-whatis.
+	// their corresponding language codes, see table-language-matrix.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -5682,10 +5682,16 @@ type CreateVocabularyInput struct {
 	// vocabulary. The URI must be in the same region as the API endpoint that you
 	// are calling. The general form is:
 	//
+	// https://s3.<Amazon Web Services-region>.amazonaws.com/<AWSDOC-EXAMPLE-BUCKET>/<keyprefix>/<objectkey>
+	//
+	// For example:
+	//
+	// https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt
+	//
 	// For more information about S3 object names, see Object Keys (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
 	// in the Amazon S3 Developer Guide.
 	//
-	// For more information about custom vocabularies, see Custom vocabularies (https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary).
+	// For more information about custom vocabularies, see Custom vocabularies (https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html).
 	VocabularyFileUri *string `min:"1" type:"string"`
 
 	// The name of the vocabulary. The name must be unique within an Amazon Web
@@ -7489,18 +7495,18 @@ type LanguageIdSettings struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the language model you want to use when transcribing your audio.
-	// The model you specify must have the same language code as the transcription
-	// job; if the languages don't match, the language model won't be applied.
+	// The model you specify must have the same language codes as the transcription
+	// job; if the languages don't match, the language model isn't be applied.
 	LanguageModelName *string `min:"1" type:"string"`
 
 	// The name of the vocabulary filter you want to use when transcribing your
-	// audio. The filter you specify must have the same language code as the transcription
-	// job; if the languages don't match, the vocabulary filter won't be applied.
+	// audio. The filter you specify must have the same language codes as the transcription
+	// job; if the languages don't match, the vocabulary filter isn't be applied.
 	VocabularyFilterName *string `min:"1" type:"string"`
 
 	// The name of the vocabulary you want to use when processing your transcription
-	// job. The vocabulary you specify must have the same language code as the transcription
-	// job; if the languages don't match, the vocabulary won't be applied.
+	// job. The vocabulary you specify must have the same language codes as the
+	// transcription job; if the languages don't match, the vocabulary isn't applied.
 	VocabularyName *string `min:"1" type:"string"`
 }
 
@@ -8850,7 +8856,13 @@ type Media struct {
 	// The S3 object location of the input media file. The URI must be in the same
 	// region as the API endpoint that you are calling. The general form is:
 	//
+	// s3://<AWSDOC-EXAMPLE-BUCKET>/<keyprefix>/<objectkey>
+	//
 	// For example:
+	//
+	// s3://AWSDOC-EXAMPLE-BUCKET/example.mp4
+	//
+	// s3://AWSDOC-EXAMPLE-BUCKET/mediadocs/example.mp4
 	//
 	// For more information about S3 object names, see Object Keys (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
 	// in the Amazon S3 Developer Guide.
@@ -8985,13 +8997,13 @@ type MedicalTranscriptionJob struct {
 	//    * Invalid file size: file size too large- The size of your audio file
 	//    is larger than what Amazon Transcribe Medical can process. For more information,
 	//    see Guidelines and Quotas (https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits)
-	//    in the Amazon Transcribe Medical Guide
+	//    in the Amazon Transcribe Medical Guide.
 	//
 	//    * Invalid number of channels: number of channels too large- Your audio
 	//    contains more channels than Amazon Transcribe Medical is configured to
 	//    process. To request additional channels, see Amazon Transcribe Medical
 	//    Endpoints and Quotas (https://docs.aws.amazon.com/general/latest/gr/transcribe-medical.html)
-	//    in the Amazon Web Services General Reference
+	//    in the Amazon Web Services General Reference.
 	FailureReason *string `type:"string"`
 
 	// The language code for the language spoken in the source audio file. US English
@@ -9009,9 +9021,7 @@ type MedicalTranscriptionJob struct {
 	//
 	// If you don't specify the sample rate, Amazon Transcribe Medical determines
 	// it for you. If you choose to specify the sample rate, it must match the rate
-	// detected by Amazon Transcribe Medical. In most cases, you should leave the
-	// MedicalMediaSampleHertz blank and let Amazon Transcribe Medical determine
-	// the sample rate.
+	// detected by Amazon Transcribe Medical.
 	MediaSampleRateHertz *int64 `min:"8000" type:"integer"`
 
 	// The name for a given medical transcription job.
@@ -9300,7 +9310,7 @@ type MedicalTranscriptionSetting struct {
 	// with confidence scores provided by Amazon Transcribe Medical.
 	//
 	// You can't set both ShowSpeakerLabels and ChannelIdentification in the same
-	// request. If you set both, your request returns a BadRequestException
+	// request. If you set both, your request returns a BadRequestException.
 	ChannelIdentification *bool `type:"boolean"`
 
 	// The maximum number of alternatives that you tell the service to return. If
@@ -10046,7 +10056,7 @@ type StartCallAnalyticsJobInput struct {
 	//    * Amazon Resource Name (ARN) of a KMS key in the current account or another
 	//    account: "arn:aws:kms:region:account ID:key/1234abcd-12ab-34cd-56ef1234567890ab"
 	//
-	//    * ARN of a KMS Key Alias: "arn:aws:kms:region:account ID:alias/ExampleAlias"
+	//    * ARN of a KMS Key Alias: "arn:aws:kms:region:accountID:alias/ExampleAlias"
 	//
 	// If you don't specify an encryption key, the output of the call analytics
 	// job is encrypted with the default Amazon S3 key (SSE-S3).
@@ -10064,12 +10074,12 @@ type StartCallAnalyticsJobInput struct {
 	//    of the bucket.
 	//
 	//    * s3://DOC-EXAMPLE-BUCKET1/folder/ f you specify a path, Amazon Transcribe
-	//    saves the output of the analytics job as s3://DOC-EXAMPLE-BUCKET1/folder/your-transcription-job-name.json
+	//    saves the output of the analytics job as s3://DOC-EXAMPLE-BUCKET1/folder/your-transcription-job-name.json.
 	//    If you specify a folder, you must provide a trailing slash.
 	//
-	//    * s3://DOC-EXAMPLE-BUCKET1/folder/filename.json If you provide a path
+	//    * s3://DOC-EXAMPLE-BUCKET1/folder/filename.json. If you provide a path
 	//    that has the filename specified, Amazon Transcribe saves the output of
-	//    the analytics job as s3://DOC-EXAMPLEBUCKET1/folder/filename.json
+	//    the analytics job as s3://DOC-EXAMPLEBUCKET1/folder/filename.json.
 	//
 	// You can specify an Amazon Web Services Key Management Service (KMS) key to
 	// encrypt the output of our analytics job using the OutputEncryptionKMSKeyId
@@ -10965,7 +10975,7 @@ type SubtitlesOutput_ struct {
 	_ struct{} `type:"structure"`
 
 	// Specify the output format for your subtitle file; if you select both SRT
-	// and VTT formats, two output files are genereated.
+	// and VTT formats, two output files are generated.
 	Formats []*string `type:"list"`
 
 	// Choose the output location for your subtitle file. This location must be
@@ -11402,7 +11412,7 @@ type TranscriptionJob struct {
 
 	// Language-specific settings that can be specified when language identification
 	// is enabled for your transcription job. These settings include VocabularyName,
-	// VocabularyFilterName, and LanguageModelNameLanguageModelName.
+	// VocabularyFilterName, and LanguageModelName.
 	LanguageIdSettings map[string]*LanguageIdSettings `min:"1" type:"map"`
 
 	// An object that shows the optional array of languages inputted for transcription
@@ -11415,7 +11425,7 @@ type TranscriptionJob struct {
 	// The format of the input media file.
 	MediaFormat *string `type:"string" enum:"MediaFormat"`
 
-	// The sample rate, in Hertz, of the audio track in the input media file.
+	// The sample rate, in Hertz (Hz), of the audio track in the input media file.
 	MediaSampleRateHertz *int64 `min:"8000" type:"integer"`
 
 	// An object containing the details of your custom language model.
@@ -11943,7 +11953,8 @@ type UpdateMedicalVocabularyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code of the language used for the entries in the updated vocabulary.
-	// US English (en-US) is the only valid language code in Amazon Transcribe Medical.
+	// U.S. English (en-US) is the only valid language code in Amazon Transcribe
+	// Medical.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -11962,7 +11973,7 @@ type UpdateMedicalVocabularyInput struct {
 	// in the Amazon S3 Developer Guide.
 	//
 	// For more information about custom vocabularies in Amazon Transcribe Medical,
-	// see Medical Custom Vocabularies (https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary).
+	// see Medical Custom Vocabularies (https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-med.html).
 	VocabularyFileUri *string `min:"1" type:"string"`
 
 	// The name of the vocabulary to update. The name is case sensitive. If you
@@ -12099,7 +12110,7 @@ type UpdateVocabularyFilterInput struct {
 	// The Amazon S3 location of a text file used as input to create the vocabulary
 	// filter. Only use characters from the character set defined for custom vocabularies.
 	// For a list of character sets, see Character Sets for Custom Vocabularies
-	// (https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets).
+	// (https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html).
 	//
 	// The specified file must be less than 50 KB of UTF-8 characters.
 	//
@@ -12116,7 +12127,7 @@ type UpdateVocabularyFilterInput struct {
 
 	// The words to use in the vocabulary filter. Only use characters from the character
 	// set defined for custom vocabularies. For a list of character sets, see Character
-	// Sets for Custom Vocabularies (https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets).
+	// Sets for Custom Vocabularies (https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html).
 	//
 	// If you provide a list of words in the Words parameter, you can't use the
 	// VocabularyFilterFileUri parameter.
@@ -12234,7 +12245,7 @@ type UpdateVocabularyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code of the vocabulary entries. For a list of languages and
-	// their corresponding language codes, see transcribe-whatis.
+	// their corresponding language codes, see Supported languages (https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html).
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -12244,14 +12255,18 @@ type UpdateVocabularyInput struct {
 
 	// The S3 location of the text file that contains the definition of the custom
 	// vocabulary. The URI must be in the same region as the API endpoint that you
-	// are calling. The general form is
+	// are calling. The general form is:
+	//
+	// https://s3.<aws-region>.amazonaws.com/<AWSDOC-EXAMPLE-BUCKET>/<keyprefix>/<objectkey>
 	//
 	// For example:
+	//
+	// https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt
 	//
 	// For more information about S3 object names, see Object Keys (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
 	// in the Amazon S3 Developer Guide.
 	//
-	// For more information about custom vocabularies, see Custom Vocabularies (https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary).
+	// For more information about custom vocabularies, see Custom Vocabularies (https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html).
 	VocabularyFileUri *string `min:"1" type:"string"`
 
 	// The name of the vocabulary to update. The name is case sensitive. If you

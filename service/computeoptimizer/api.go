@@ -2161,6 +2161,28 @@ type AutoScalingGroupRecommendation struct {
 	//    Optimizer might recommend a new generation instance type.
 	Finding *string `locationName:"finding" type:"string" enum:"Finding"`
 
+	// The applications that might be running on the instances in the Auto Scaling
+	// group as inferred by Compute Optimizer.
+	//
+	// Compute Optimizer can infer if one of the following applications might be
+	// running on the instances:
+	//
+	//    * AmazonEmr - Infers that Amazon EMR might be running on the instances.
+	//
+	//    * ApacheCassandra - Infers that Apache Cassandra might be running on the
+	//    instances.
+	//
+	//    * ApacheHadoop - Infers that Apache Hadoop might be running on the instances.
+	//
+	//    * Memcached - Infers that Memcached might be running on the instances.
+	//
+	//    * NGINX - Infers that NGINX might be running on the instances.
+	//
+	//    * PostgreSql - Infers that PostgreSQL might be running on the instances.
+	//
+	//    * Redis - Infers that Redis might be running on the instances.
+	InferredWorkloadTypes []*string `locationName:"inferredWorkloadTypes" type:"list"`
+
 	// The timestamp of when the Auto Scaling group recommendation was last generated.
 	LastRefreshTimestamp *time.Time `locationName:"lastRefreshTimestamp" type:"timestamp"`
 
@@ -2237,6 +2259,12 @@ func (s *AutoScalingGroupRecommendation) SetFinding(v string) *AutoScalingGroupR
 	return s
 }
 
+// SetInferredWorkloadTypes sets the InferredWorkloadTypes field's value.
+func (s *AutoScalingGroupRecommendation) SetInferredWorkloadTypes(v []*string) *AutoScalingGroupRecommendation {
+	s.InferredWorkloadTypes = v
+	return s
+}
+
 // SetLastRefreshTimestamp sets the LastRefreshTimestamp field's value.
 func (s *AutoScalingGroupRecommendation) SetLastRefreshTimestamp(v time.Time) *AutoScalingGroupRecommendation {
 	s.LastRefreshTimestamp = &v
@@ -2267,6 +2295,17 @@ type AutoScalingGroupRecommendationOption struct {
 
 	// An array of objects that describe an Auto Scaling group configuration.
 	Configuration *AutoScalingGroupConfiguration `locationName:"configuration" type:"structure"`
+
+	// The level of effort required to migrate from the current instance type to
+	// the recommended instance type.
+	//
+	// For example, the migration effort is Low if Amazon EMR is the inferred workload
+	// type and an Amazon Web Services Graviton instance type is recommended. The
+	// migration effort is Medium if a workload type couldn't be inferred but an
+	// Amazon Web Services Graviton instance type is recommended. The migration
+	// effort is VeryLow if both the current and recommended instance types are
+	// of the same CPU architecture.
+	MigrationEffort *string `locationName:"migrationEffort" type:"string" enum:"MigrationEffort"`
 
 	// The performance risk of the Auto Scaling group configuration recommendation.
 	//
@@ -2326,6 +2365,12 @@ func (s AutoScalingGroupRecommendationOption) GoString() string {
 // SetConfiguration sets the Configuration field's value.
 func (s *AutoScalingGroupRecommendationOption) SetConfiguration(v *AutoScalingGroupConfiguration) *AutoScalingGroupRecommendationOption {
 	s.Configuration = v
+	return s
+}
+
+// SetMigrationEffort sets the MigrationEffort field's value.
+func (s *AutoScalingGroupRecommendationOption) SetMigrationEffort(v string) *AutoScalingGroupRecommendationOption {
+	s.MigrationEffort = &v
 	return s
 }
 
@@ -2792,8 +2837,18 @@ type EffectiveRecommendationPreferences struct {
 	//
 	// A status of Active confirms that the preference is applied in the latest
 	// recommendation refresh, and a status of Inactive confirms that it's not yet
-	// applied.
+	// applied to recommendations.
+	//
+	// For more information, see Enhanced infrastructure metrics (https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html)
+	// in the Compute Optimizer User Guide.
 	EnhancedInfrastructureMetrics *string `locationName:"enhancedInfrastructureMetrics" type:"string" enum:"EnhancedInfrastructureMetrics"`
+
+	// Describes the activation status of the inferred workload types preference.
+	//
+	// A status of Active confirms that the preference is applied in the latest
+	// recommendation refresh. A status of Inactive confirms that it's not yet applied
+	// to recommendations.
+	InferredWorkloadTypes *string `locationName:"inferredWorkloadTypes" type:"string" enum:"InferredWorkloadTypesPreference"`
 }
 
 // String returns the string representation.
@@ -2823,6 +2878,12 @@ func (s *EffectiveRecommendationPreferences) SetCpuVendorArchitectures(v []*stri
 // SetEnhancedInfrastructureMetrics sets the EnhancedInfrastructureMetrics field's value.
 func (s *EffectiveRecommendationPreferences) SetEnhancedInfrastructureMetrics(v string) *EffectiveRecommendationPreferences {
 	s.EnhancedInfrastructureMetrics = &v
+	return s
+}
+
+// SetInferredWorkloadTypes sets the InferredWorkloadTypes field's value.
+func (s *EffectiveRecommendationPreferences) SetInferredWorkloadTypes(v string) *EffectiveRecommendationPreferences {
+	s.InferredWorkloadTypes = &v
 	return s
 }
 
@@ -2873,8 +2934,9 @@ func (s *EnrollmentFilter) SetValues(v []*string) *EnrollmentFilter {
 	return s
 }
 
-// Describes the estimated monthly savings amount possible for a given resource
-// based on On-Demand instance pricing
+// Describes the estimated monthly savings amount possible, based on On-Demand
+// instance pricing, by adopting Compute Optimizer recommendations for a given
+// resource.
 //
 // For more information, see Estimated monthly savings and savings opportunities
 // (https://docs.aws.amazon.com/compute-optimizer/latest/ug/view-ec2-recommendations.html#ec2-savings-calculation)
@@ -4423,12 +4485,15 @@ type GetEffectiveRecommendationPreferencesOutput struct {
 	//
 	// A status of Active confirms that the preference is applied in the latest
 	// recommendation refresh, and a status of Inactive confirms that it's not yet
-	// applied.
+	// applied to recommendations.
 	//
 	// To validate whether the preference is applied to your last generated set
 	// of recommendations, review the effectiveRecommendationPreferences value in
 	// the response of the GetAutoScalingGroupRecommendations and GetEC2InstanceRecommendations
 	// actions.
+	//
+	// For more information, see Enhanced infrastructure metrics (https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html)
+	// in the Compute Optimizer User Guide.
 	EnhancedInfrastructureMetrics *string `locationName:"enhancedInfrastructureMetrics" type:"string" enum:"EnhancedInfrastructureMetrics"`
 }
 
@@ -5074,8 +5139,8 @@ type InstanceRecommendation struct {
 	CurrentInstanceType *string `locationName:"currentInstanceType" type:"string"`
 
 	// The risk of the current instance not meeting the performance needs of its
-	// workloads. The higher the risk, the more likely the current Lambda function
-	// requires more memory.
+	// workloads. The higher the risk, the more likely the current instance cannot
+	// meet the performance requirements of its workload.
 	CurrentPerformanceRisk *string `locationName:"currentPerformanceRisk" type:"string" enum:"CurrentPerformanceRisk"`
 
 	// An object that describes the effective recommendation preferences for the
@@ -5217,6 +5282,28 @@ type InstanceRecommendation struct {
 	// in the Amazon Elastic Compute Cloud User Guide.
 	FindingReasonCodes []*string `locationName:"findingReasonCodes" type:"list"`
 
+	// The applications that might be running on the instance as inferred by Compute
+	// Optimizer.
+	//
+	// Compute Optimizer can infer if one of the following applications might be
+	// running on the instance:
+	//
+	//    * AmazonEmr - Infers that Amazon EMR might be running on the instance.
+	//
+	//    * ApacheCassandra - Infers that Apache Cassandra might be running on the
+	//    instance.
+	//
+	//    * ApacheHadoop - Infers that Apache Hadoop might be running on the instance.
+	//
+	//    * Memcached - Infers that Memcached might be running on the instance.
+	//
+	//    * NGINX - Infers that NGINX might be running on the instance.
+	//
+	//    * PostgreSql - Infers that PostgreSQL might be running on the instance.
+	//
+	//    * Redis - Infers that Redis might be running on the instance.
+	InferredWorkloadTypes []*string `locationName:"inferredWorkloadTypes" type:"list"`
+
 	// The Amazon Resource Name (ARN) of the current instance.
 	InstanceArn *string `locationName:"instanceArn" type:"string"`
 
@@ -5293,6 +5380,12 @@ func (s *InstanceRecommendation) SetFindingReasonCodes(v []*string) *InstanceRec
 	return s
 }
 
+// SetInferredWorkloadTypes sets the InferredWorkloadTypes field's value.
+func (s *InstanceRecommendation) SetInferredWorkloadTypes(v []*string) *InstanceRecommendation {
+	s.InferredWorkloadTypes = v
+	return s
+}
+
 // SetInstanceArn sets the InstanceArn field's value.
 func (s *InstanceRecommendation) SetInstanceArn(v string) *InstanceRecommendation {
 	s.InstanceArn = &v
@@ -5341,6 +5434,17 @@ type InstanceRecommendationOption struct {
 
 	// The instance type of the instance recommendation.
 	InstanceType *string `locationName:"instanceType" type:"string"`
+
+	// The level of effort required to migrate from the current instance type to
+	// the recommended instance type.
+	//
+	// For example, the migration effort is Low if Amazon EMR is the inferred workload
+	// type and an Amazon Web Services Graviton instance type is recommended. The
+	// migration effort is Medium if a workload type couldn't be inferred but an
+	// Amazon Web Services Graviton instance type is recommended. The migration
+	// effort is VeryLow if both the current and recommended instance types are
+	// of the same CPU architecture.
+	MigrationEffort *string `locationName:"migrationEffort" type:"string" enum:"MigrationEffort"`
 
 	// The performance risk of the instance recommendation option.
 	//
@@ -5477,6 +5581,12 @@ func (s InstanceRecommendationOption) GoString() string {
 // SetInstanceType sets the InstanceType field's value.
 func (s *InstanceRecommendationOption) SetInstanceType(v string) *InstanceRecommendationOption {
 	s.InstanceType = &v
+	return s
+}
+
+// SetMigrationEffort sets the MigrationEffort field's value.
+func (s *InstanceRecommendationOption) SetMigrationEffort(v string) *InstanceRecommendationOption {
+	s.MigrationEffort = &v
 	return s
 }
 
@@ -5826,7 +5936,7 @@ type LambdaFunctionRecommendation struct {
 
 	// The risk of the current Lambda function not meeting the performance needs
 	// of its workloads. The higher the risk, the more likely the current Lambda
-	// function configuration is underperforming in its workload.
+	// function requires more memory.
 	CurrentPerformanceRisk *string `locationName:"currentPerformanceRisk" type:"string" enum:"CurrentPerformanceRisk"`
 
 	// The finding classification of the function.
@@ -6407,10 +6517,25 @@ type PutRecommendationPreferencesInput struct {
 	// The status of the enhanced infrastructure metrics recommendation preference
 	// to create or update.
 	//
-	// A status of Active confirms that the preference is applied in the latest
-	// recommendation refresh, and a status of Inactive confirms that it's not yet
-	// applied.
+	// Specify the Active status to activate the preference, or specify Inactive
+	// to deactivate the preference.
+	//
+	// For more information, see Enhanced infrastructure metrics (https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html)
+	// in the Compute Optimizer User Guide.
 	EnhancedInfrastructureMetrics *string `locationName:"enhancedInfrastructureMetrics" type:"string" enum:"EnhancedInfrastructureMetrics"`
+
+	// The status of the inferred workload types recommendation preference to create
+	// or update.
+	//
+	// The inferred workload type feature is active by default. To deactivate it,
+	// create a recommendation preference.
+	//
+	// Specify the Inactive status to deactivate the feature, or specify Active
+	// to activate it.
+	//
+	// For more information, see Inferred workload types (https://docs.aws.amazon.com/compute-optimizer/latest/ug/inferred-workload-types.html)
+	// in the Compute Optimizer User Guide.
+	InferredWorkloadTypes *string `locationName:"inferredWorkloadTypes" type:"string" enum:"InferredWorkloadTypesPreference"`
 
 	// The target resource type of the recommendation preference to create.
 	//
@@ -6434,7 +6559,10 @@ type PutRecommendationPreferencesInput struct {
 	// for Auto Scaling groups only at the resource level by specifying a scope
 	// name of ResourceArn and a scope value of the Auto Scaling group Amazon Resource
 	// Name (ARN). This will configure the preference for all instances that are
-	// part of the specified the Auto Scaling group.
+	// part of the specified Auto Scaling group. You also cannot create recommendation
+	// preferences at the resource level for instances that are part of an Auto
+	// Scaling group. You can create recommendation preferences at the resource
+	// level only for standalone instances.
 	Scope *Scope `locationName:"scope" type:"structure"`
 }
 
@@ -6472,6 +6600,12 @@ func (s *PutRecommendationPreferencesInput) Validate() error {
 // SetEnhancedInfrastructureMetrics sets the EnhancedInfrastructureMetrics field's value.
 func (s *PutRecommendationPreferencesInput) SetEnhancedInfrastructureMetrics(v string) *PutRecommendationPreferencesInput {
 	s.EnhancedInfrastructureMetrics = &v
+	return s
+}
+
+// SetInferredWorkloadTypes sets the InferredWorkloadTypes field's value.
+func (s *PutRecommendationPreferencesInput) SetInferredWorkloadTypes(v string) *PutRecommendationPreferencesInput {
+	s.InferredWorkloadTypes = &v
 	return s
 }
 
@@ -6698,8 +6832,18 @@ type RecommendationPreferencesDetail struct {
 	//
 	// A status of Active confirms that the preference is applied in the latest
 	// recommendation refresh, and a status of Inactive confirms that it's not yet
-	// applied.
+	// applied to recommendations.
+	//
+	// For more information, see Enhanced infrastructure metrics (https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html)
+	// in the Compute Optimizer User Guide.
 	EnhancedInfrastructureMetrics *string `locationName:"enhancedInfrastructureMetrics" type:"string" enum:"EnhancedInfrastructureMetrics"`
+
+	// The status of the inferred workload types recommendation preference.
+	//
+	// A status of Active confirms that the preference is applied in the latest
+	// recommendation refresh. A status of Inactive confirms that it's not yet applied
+	// to recommendations.
+	InferredWorkloadTypes *string `locationName:"inferredWorkloadTypes" type:"string" enum:"InferredWorkloadTypesPreference"`
 
 	// The target resource type of the recommendation preference to create.
 	//
@@ -6739,6 +6883,12 @@ func (s RecommendationPreferencesDetail) GoString() string {
 // SetEnhancedInfrastructureMetrics sets the EnhancedInfrastructureMetrics field's value.
 func (s *RecommendationPreferencesDetail) SetEnhancedInfrastructureMetrics(v string) *RecommendationPreferencesDetail {
 	s.EnhancedInfrastructureMetrics = &v
+	return s
+}
+
+// SetInferredWorkloadTypes sets the InferredWorkloadTypes field's value.
+func (s *RecommendationPreferencesDetail) SetInferredWorkloadTypes(v string) *RecommendationPreferencesDetail {
+	s.InferredWorkloadTypes = &v
 	return s
 }
 
@@ -7120,11 +7270,13 @@ func (s *S3DestinationConfig) SetKeyPrefix(v string) *S3DestinationConfig {
 type SavingsOpportunity struct {
 	_ struct{} `type:"structure"`
 
-	// An object that describes the estimated monthly savings amount possible based
-	// on On-Demand instance pricing.
+	// An object that describes the estimated monthly savings amount possible, based
+	// on On-Demand instance pricing, by adopting Compute Optimizer recommendations
+	// for a given resource.
 	EstimatedMonthlySavings *EstimatedMonthlySavings `locationName:"estimatedMonthlySavings" type:"structure"`
 
-	// The estimated monthly savings possible as a percentage of monthly cost.
+	// The estimated monthly savings possible as a percentage of monthly cost by
+	// adopting Compute Optimizer recommendations for a given resource.
 	SavingsOpportunityPercentage *float64 `locationName:"savingsOpportunityPercentage" type:"double"`
 }
 
@@ -7171,7 +7323,10 @@ func (s *SavingsOpportunity) SetSavingsOpportunityPercentage(v float64) *Savings
 // for Auto Scaling groups only at the resource level by specifying a scope
 // name of ResourceArn and a scope value of the Auto Scaling group Amazon Resource
 // Name (ARN). This will configure the preference for all instances that are
-// part of the specified the Auto Scaling group.
+// part of the specified Auto Scaling group. You also cannot create recommendation
+// preferences at the resource level for instances that are part of an Auto
+// Scaling group. You can create recommendation preferences at the resource
+// level only for standalone instances.
 type Scope struct {
 	_ struct{} `type:"structure"`
 
@@ -8223,6 +8378,15 @@ const (
 
 	// ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesEnhancedInfrastructureMetrics is a ExportableAutoScalingGroupField enum value
 	ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesEnhancedInfrastructureMetrics = "EffectiveRecommendationPreferencesEnhancedInfrastructureMetrics"
+
+	// ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesInferredWorkloadTypes is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesInferredWorkloadTypes = "EffectiveRecommendationPreferencesInferredWorkloadTypes"
+
+	// ExportableAutoScalingGroupFieldInferredWorkloadTypes is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldInferredWorkloadTypes = "InferredWorkloadTypes"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsMigrationEffort is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsMigrationEffort = "RecommendationOptionsMigrationEffort"
 )
 
 // ExportableAutoScalingGroupField_Values returns all elements of the ExportableAutoScalingGroupField enum
@@ -8279,6 +8443,9 @@ func ExportableAutoScalingGroupField_Values() []string {
 		ExportableAutoScalingGroupFieldRecommendationOptionsEstimatedMonthlySavingsValue,
 		ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesCpuVendorArchitectures,
 		ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesEnhancedInfrastructureMetrics,
+		ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesInferredWorkloadTypes,
+		ExportableAutoScalingGroupFieldInferredWorkloadTypes,
+		ExportableAutoScalingGroupFieldRecommendationOptionsMigrationEffort,
 	}
 }
 
@@ -8429,6 +8596,15 @@ const (
 
 	// ExportableInstanceFieldEffectiveRecommendationPreferencesEnhancedInfrastructureMetrics is a ExportableInstanceField enum value
 	ExportableInstanceFieldEffectiveRecommendationPreferencesEnhancedInfrastructureMetrics = "EffectiveRecommendationPreferencesEnhancedInfrastructureMetrics"
+
+	// ExportableInstanceFieldEffectiveRecommendationPreferencesInferredWorkloadTypes is a ExportableInstanceField enum value
+	ExportableInstanceFieldEffectiveRecommendationPreferencesInferredWorkloadTypes = "EffectiveRecommendationPreferencesInferredWorkloadTypes"
+
+	// ExportableInstanceFieldInferredWorkloadTypes is a ExportableInstanceField enum value
+	ExportableInstanceFieldInferredWorkloadTypes = "InferredWorkloadTypes"
+
+	// ExportableInstanceFieldRecommendationOptionsMigrationEffort is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsMigrationEffort = "RecommendationOptionsMigrationEffort"
 )
 
 // ExportableInstanceField_Values returns all elements of the ExportableInstanceField enum
@@ -8483,6 +8659,9 @@ func ExportableInstanceField_Values() []string {
 		ExportableInstanceFieldRecommendationOptionsEstimatedMonthlySavingsValue,
 		ExportableInstanceFieldEffectiveRecommendationPreferencesCpuVendorArchitectures,
 		ExportableInstanceFieldEffectiveRecommendationPreferencesEnhancedInfrastructureMetrics,
+		ExportableInstanceFieldEffectiveRecommendationPreferencesInferredWorkloadTypes,
+		ExportableInstanceFieldInferredWorkloadTypes,
+		ExportableInstanceFieldRecommendationOptionsMigrationEffort,
 	}
 }
 
@@ -8787,6 +8966,58 @@ func FindingReasonCode_Values() []string {
 	return []string{
 		FindingReasonCodeMemoryOverprovisioned,
 		FindingReasonCodeMemoryUnderprovisioned,
+	}
+}
+
+const (
+	// InferredWorkloadTypeAmazonEmr is a InferredWorkloadType enum value
+	InferredWorkloadTypeAmazonEmr = "AmazonEmr"
+
+	// InferredWorkloadTypeApacheCassandra is a InferredWorkloadType enum value
+	InferredWorkloadTypeApacheCassandra = "ApacheCassandra"
+
+	// InferredWorkloadTypeApacheHadoop is a InferredWorkloadType enum value
+	InferredWorkloadTypeApacheHadoop = "ApacheHadoop"
+
+	// InferredWorkloadTypeMemcached is a InferredWorkloadType enum value
+	InferredWorkloadTypeMemcached = "Memcached"
+
+	// InferredWorkloadTypeNginx is a InferredWorkloadType enum value
+	InferredWorkloadTypeNginx = "Nginx"
+
+	// InferredWorkloadTypePostgreSql is a InferredWorkloadType enum value
+	InferredWorkloadTypePostgreSql = "PostgreSql"
+
+	// InferredWorkloadTypeRedis is a InferredWorkloadType enum value
+	InferredWorkloadTypeRedis = "Redis"
+)
+
+// InferredWorkloadType_Values returns all elements of the InferredWorkloadType enum
+func InferredWorkloadType_Values() []string {
+	return []string{
+		InferredWorkloadTypeAmazonEmr,
+		InferredWorkloadTypeApacheCassandra,
+		InferredWorkloadTypeApacheHadoop,
+		InferredWorkloadTypeMemcached,
+		InferredWorkloadTypeNginx,
+		InferredWorkloadTypePostgreSql,
+		InferredWorkloadTypeRedis,
+	}
+}
+
+const (
+	// InferredWorkloadTypesPreferenceActive is a InferredWorkloadTypesPreference enum value
+	InferredWorkloadTypesPreferenceActive = "Active"
+
+	// InferredWorkloadTypesPreferenceInactive is a InferredWorkloadTypesPreference enum value
+	InferredWorkloadTypesPreferenceInactive = "Inactive"
+)
+
+// InferredWorkloadTypesPreference_Values returns all elements of the InferredWorkloadTypesPreference enum
+func InferredWorkloadTypesPreference_Values() []string {
+	return []string{
+		InferredWorkloadTypesPreferenceActive,
+		InferredWorkloadTypesPreferenceInactive,
 	}
 }
 
@@ -9107,6 +9338,30 @@ func MetricStatistic_Values() []string {
 }
 
 const (
+	// MigrationEffortVeryLow is a MigrationEffort enum value
+	MigrationEffortVeryLow = "VeryLow"
+
+	// MigrationEffortLow is a MigrationEffort enum value
+	MigrationEffortLow = "Low"
+
+	// MigrationEffortMedium is a MigrationEffort enum value
+	MigrationEffortMedium = "Medium"
+
+	// MigrationEffortHigh is a MigrationEffort enum value
+	MigrationEffortHigh = "High"
+)
+
+// MigrationEffort_Values returns all elements of the MigrationEffort enum
+func MigrationEffort_Values() []string {
+	return []string{
+		MigrationEffortVeryLow,
+		MigrationEffortLow,
+		MigrationEffortMedium,
+		MigrationEffortHigh,
+	}
+}
+
+const (
 	// PlatformDifferenceHypervisor is a PlatformDifference enum value
 	PlatformDifferenceHypervisor = "Hypervisor"
 
@@ -9141,12 +9396,16 @@ func PlatformDifference_Values() []string {
 const (
 	// RecommendationPreferenceNameEnhancedInfrastructureMetrics is a RecommendationPreferenceName enum value
 	RecommendationPreferenceNameEnhancedInfrastructureMetrics = "EnhancedInfrastructureMetrics"
+
+	// RecommendationPreferenceNameInferredWorkloadTypes is a RecommendationPreferenceName enum value
+	RecommendationPreferenceNameInferredWorkloadTypes = "InferredWorkloadTypes"
 )
 
 // RecommendationPreferenceName_Values returns all elements of the RecommendationPreferenceName enum
 func RecommendationPreferenceName_Values() []string {
 	return []string{
 		RecommendationPreferenceNameEnhancedInfrastructureMetrics,
+		RecommendationPreferenceNameInferredWorkloadTypes,
 	}
 }
 
@@ -9186,6 +9445,9 @@ const (
 
 	// ResourceTypeLambdaFunction is a ResourceType enum value
 	ResourceTypeLambdaFunction = "LambdaFunction"
+
+	// ResourceTypeNotApplicable is a ResourceType enum value
+	ResourceTypeNotApplicable = "NotApplicable"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -9195,6 +9457,7 @@ func ResourceType_Values() []string {
 		ResourceTypeAutoScalingGroup,
 		ResourceTypeEbsVolume,
 		ResourceTypeLambdaFunction,
+		ResourceTypeNotApplicable,
 	}
 }
 
