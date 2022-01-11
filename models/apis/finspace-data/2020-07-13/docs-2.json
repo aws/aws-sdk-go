@@ -92,12 +92,12 @@
     "ClientToken": {
       "base": "Idempotence Token for API operations",
       "refs": {
-        "CreateChangesetRequest$clientToken": "<p>A token used to ensure idempotency.</p>",
-        "CreateDataViewRequest$clientToken": "<p>A token used to ensure idempotency.</p>",
-        "CreateDatasetRequest$clientToken": "<p>A token used to ensure idempotency.</p>",
-        "DeleteDatasetRequest$clientToken": "<p>A token used to ensure idempotency.</p>",
-        "UpdateChangesetRequest$clientToken": "<p>A token used to ensure idempotency.</p>",
-        "UpdateDatasetRequest$clientToken": "<p>A token used to ensure idempotency.</p>"
+        "CreateChangesetRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "CreateDataViewRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "CreateDatasetRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "DeleteDatasetRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "UpdateChangesetRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "UpdateDatasetRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>"
       }
     },
     "ColumnDataType": {
@@ -188,7 +188,7 @@
     "DataViewDestinationType": {
       "base": "DataView Destination Type",
       "refs": {
-        "DataViewDestinationTypeParams$destinationType": "<p>Destination type for a Dataview.</p> <ul> <li> <p> <code>GLUE_TABLE</code> - Glue table destination type.</p> </li> </ul>"
+        "DataViewDestinationTypeParams$destinationType": "<p>Destination type for a Dataview.</p> <ul> <li> <p> <code>GLUE_TABLE</code> - Glue table destination type.</p> </li> <li> <p> <code>S3</code> - S3 destination type.</p> </li> </ul>"
       }
     },
     "DataViewDestinationTypeParams": {
@@ -352,16 +352,16 @@
     "ExportFileFormat": {
       "base": "Data View Export File Format",
       "refs": {
-        "DataViewDestinationTypeParams$s3DestinationExportFileFormat": null
+        "DataViewDestinationTypeParams$s3DestinationExportFileFormat": "<p>Data view export file format.</p> <ul> <li> <p> <code>PARQUET</code> - Parquet export file format.</p> </li> <li> <p> <code>DELIMITED_TEXT</code> - Delimited text export file format.</p> </li> </ul>"
       }
     },
     "FormatParams": {
       "base": "Format Parameters of a Changeset",
       "refs": {
         "ChangesetSummary$formatParams": "<p>Options that define the structure of the source file(s).</p>",
-        "CreateChangesetRequest$formatParams": "<p>Options that define the structure of the source file(s) including the format type (<code>formatType</code>), header row (<code>withHeader</code>), data separation character (<code>separator</code>) and the type of compression (<code>compression</code>). </p> <p> <code>formatType</code> is a required attribute and can have the following values: </p> <ul> <li> <p> <code>PARQUET</code> - Parquet source file format.</p> </li> <li> <p> <code>CSV</code> - CSV source file format.</p> </li> <li> <p> <code>JSON</code> - JSON source file format.</p> </li> <li> <p> <code>XML</code> - XML source file format.</p> </li> </ul> <p> For example, you could specify the following for <code>formatParams</code>: <code> \"formatParams\": { \"formatType\": \"CSV\", \"withHeader\": \"true\", \"separator\": \",\", \"compression\":\"None\" } </code> </p>",
+        "CreateChangesetRequest$formatParams": "<p>Options that define the structure of the source file(s) including the format type (<code>formatType</code>), header row (<code>withHeader</code>), data separation character (<code>separator</code>) and the type of compression (<code>compression</code>). </p> <p> <code>formatType</code> is a required attribute and can have the following values: </p> <ul> <li> <p> <code>PARQUET</code> - Parquet source file format.</p> </li> <li> <p> <code>CSV</code> - CSV source file format.</p> </li> <li> <p> <code>JSON</code> - JSON source file format.</p> </li> <li> <p> <code>XML</code> - XML source file format.</p> </li> </ul> <p>Here is an example of how you could specify the <code>formatParams</code>:</p> <p> <code> \"formatParams\": { \"formatType\": \"CSV\", \"withHeader\": \"true\", \"separator\": \",\", \"compression\":\"None\" } </code> </p> <p>Note that if you only provide <code>formatType</code> as <code>CSV</code>, the rest of the attributes will automatically default to CSV values as following:</p> <p> <code> { \"withHeader\": \"true\", \"separator\": \",\" } </code> </p> <p> For more information about supported file formats, see <a href=\"https://docs.aws.amazon.com/finspace/latest/userguide/supported-data-types.html\">Supported Data Types and File Formats</a> in the FinSpace User Guide.</p>",
         "GetChangesetResponse$formatParams": "<p>Structure of the source file(s).</p>",
-        "UpdateChangesetRequest$formatParams": "<p>Options that define the structure of the source file(s).</p>"
+        "UpdateChangesetRequest$formatParams": "<p>Options that define the structure of the source file(s) including the format type (<code>formatType</code>), header row (<code>withHeader</code>), data separation character (<code>separator</code>) and the type of compression (<code>compression</code>). </p> <p> <code>formatType</code> is a required attribute and can have the following values: </p> <ul> <li> <p> <code>PARQUET</code> - Parquet source file format.</p> </li> <li> <p> <code>CSV</code> - CSV source file format.</p> </li> <li> <p> <code>JSON</code> - JSON source file format.</p> </li> <li> <p> <code>XML</code> - XML source file format.</p> </li> </ul> <p>Here is an example of how you could specify the <code>formatParams</code>:</p> <p> <code> \"formatParams\": { \"formatType\": \"CSV\", \"withHeader\": \"true\", \"separator\": \",\", \"compression\":\"None\" } </code> </p> <p>Note that if you only provide <code>formatType</code> as <code>CSV</code>, the rest of the attributes will automatically default to CSV values as following:</p> <p> <code> { \"withHeader\": \"true\", \"separator\": \",\" } </code> </p> <p> For more information about supported file formats, see <a href=\"https://docs.aws.amazon.com/finspace/latest/userguide/supported-data-types.html\">Supported Data Types and File Formats</a> in the FinSpace User Guide.</p>"
       }
     },
     "GetChangesetRequest": {
@@ -499,7 +499,7 @@
       }
     },
     "PermissionGroupParams": {
-      "base": "<p>Permission group parameters for Dataset permissions.</p>",
+      "base": "<p>Permission group parameters for Dataset permissions.</p> <p>Here is an example of how you could specify the <code>PermissionGroupParams</code>:</p> <p> <code> { \"permissionGroupId\": \"0r6fCRtSTUk4XPfXQe3M0g\", \"datasetPermissions\": [ {\"permission\": \"ViewDatasetDetails\"}, {\"permission\": \"AddDatasetData\"}, {\"permission\": \"EditDatasetMetadata\"}, {\"permission\": \"DeleteDataset\"} ] } </code> </p>",
       "refs": {
         "CreateDatasetRequest$permissionGroupParams": "<p>Permission group parameters for Dataset permissions.</p>"
       }
@@ -516,7 +516,7 @@
       }
     },
     "ResourcePermission": {
-      "base": "<p>Resource permission for a Dataset.</p>",
+      "base": "<p>Resource permission for a dataset. When you create a dataset, all the other members of the same user group inherit access to the dataset. You can only create a dataset if your user group has application permission for Create Datasets.</p> <p>The following is a list of valid dataset permissions that you can apply: </p> <ul> <li> <p> <code>ViewDatasetDetails</code> </p> </li> <li> <p> <code>ReadDatasetDetails</code> </p> </li> <li> <p> <code>AddDatasetData</code> </p> </li> <li> <p> <code>CreateSnapshot</code> </p> </li> <li> <p> <code>EditDatasetMetadata</code> </p> </li> <li> <p> <code>DeleteDataset</code> </p> </li> </ul> <p>For more information on the ataset permissions, see <a href=\"https://docs.aws.amazon.com/finspace/latest/userguide/managing-user-permissions.html#supported-dataset-permissions\">Supported Dataset Permissions</a> in the FinSpace User Guide.</p>",
       "refs": {
         "ResourcePermissionsList$member": null
       }
@@ -538,7 +538,7 @@
     "S3DestinationFormatOptions": {
       "base": null,
       "refs": {
-        "DataViewDestinationTypeParams$s3DestinationExportFileFormatOptions": null
+        "DataViewDestinationTypeParams$s3DestinationExportFileFormatOptions": "<p>Format Options for S3 Destination type.</p> <p>Here is an example of how you could specify the <code>s3DestinationExportFileFormatOptions</code> </p> <p> <code> { \"header\": \"true\", \"delimiter\": \",\", \"compression\": \"gzip\" }</code> </p>"
       }
     },
     "SchemaDefinition": {
@@ -575,9 +575,9 @@
       "base": "Source Parameters of a Changeset",
       "refs": {
         "ChangesetSummary$sourceParams": "<p>Options that define the location of the data being ingested.</p>",
-        "CreateChangesetRequest$sourceParams": "<p>Options that define the location of the data being ingested.</p>",
+        "CreateChangesetRequest$sourceParams": "<p>Options that define the location of the data being ingested (<code>s3SourcePath</code>) and the source of the changeset (<code>sourceType</code>).</p> <p>Both <code>s3SourcePath</code> and <code>sourceType</code> are required attributes.</p> <p>Here is an example of how you could specify the <code>sourceParams</code>:</p> <p> <code> \"sourceParams\": { \"s3SourcePath\": \"s3://finspace-landing-us-east-2-bk7gcfvitndqa6ebnvys4d/scratch/wr5hh8pwkpqqkxa4sxrmcw/ingestion/equity.csv\", \"sourceType\": \"S3\" } </code> </p> <p>The S3 path that you specify must allow the FinSpace role access. To do that, you first need to configure the IAM policy on S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/finspace/latest/data-api/fs-using-the-finspace-api.html#access-s3-buckets\">Loading data from an Amazon S3 Bucket using the FinSpace API</a>section.</p>",
         "GetChangesetResponse$sourceParams": "<p>Options that define the location of the data being ingested.</p>",
-        "UpdateChangesetRequest$sourceParams": "<p>Options that define the location of the data being ingested.</p>"
+        "UpdateChangesetRequest$sourceParams": "<p>Options that define the location of the data being ingested (<code>s3SourcePath</code>) and the source of the changeset (<code>sourceType</code>).</p> <p>Both <code>s3SourcePath</code> and <code>sourceType</code> are required attributes.</p> <p>Here is an example of how you could specify the <code>sourceParams</code>:</p> <p> <code> \"sourceParams\": { \"s3SourcePath\": \"s3://finspace-landing-us-east-2-bk7gcfvitndqa6ebnvys4d/scratch/wr5hh8pwkpqqkxa4sxrmcw/ingestion/equity.csv\", \"sourceType\": \"S3\" } </code> </p> <p>The S3 path that you specify must allow the FinSpace role access. To do that, you first need to configure the IAM policy on S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/finspace/latest/data-api/fs-using-the-finspace-api.html#access-s3-buckets\">Loading data from an Amazon S3 Bucket using the FinSpace API</a>section.</p>"
       }
     },
     "StringMapKey": {
@@ -620,7 +620,7 @@
       "refs": {
         "ChangesetSummary$createTime": "<p>The timestamp at which the Changeset was created in FinSpace. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "ChangesetSummary$activeUntilTimestamp": "<p>Time until which the Changeset is active. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
-        "ChangesetSummary$activeFromTimestamp": null,
+        "ChangesetSummary$activeFromTimestamp": "<p>Beginning time from which the Changeset is active. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "CreateDataViewRequest$asOfTimestamp": "<p>Beginning time to use for the Dataview. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "DataViewSummary$asOfTimestamp": "<p>Time range to use for the Dataview. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "DataViewSummary$createTime": "<p>The timestamp at which the Dataview was created in FinSpace. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
@@ -629,7 +629,7 @@
         "Dataset$lastModifiedTime": "<p>The last time that the Dataset was modified. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "GetChangesetResponse$createTime": "<p>The timestamp at which the Changeset was created in FinSpace. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "GetChangesetResponse$activeUntilTimestamp": "<p>Time until which the Changeset is active. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
-        "GetChangesetResponse$activeFromTimestamp": null,
+        "GetChangesetResponse$activeFromTimestamp": "<p>Beginning time from which the Changeset is active. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "GetDataViewResponse$asOfTimestamp": "<p>Time range to use for the Dataview. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "GetDataViewResponse$lastModifiedTime": "<p>The last time that a Dataview was modified. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "GetDataViewResponse$createTime": "<p>The timestamp at which the Dataview was created in FinSpace. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",

@@ -8036,7 +8036,8 @@
         "db-snapshot",
         "db-cluster",
         "db-cluster-snapshot",
-        "custom-engine-version"
+        "custom-engine-version",
+        "db-proxy"
       ]
     },
     "StartActivityStreamRequest":{

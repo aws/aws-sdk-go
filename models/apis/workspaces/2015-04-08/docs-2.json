@@ -6,12 +6,14 @@
     "AssociateIpGroups": "<p>Associates the specified IP access control group with the specified directory.</p>",
     "AuthorizeIpRules": "<p>Adds one or more rules to the specified IP access control group.</p> <p>This action gives users permission to access their WorkSpaces from the CIDR address ranges specified in the rules.</p>",
     "CopyWorkspaceImage": "<p>Copies the specified image from the specified Region to the current Region. For more information about copying images, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/copy-custom-image.html\"> Copy a Custom WorkSpaces Image</a>.</p> <p>In the China (Ningxia) Region, you can copy images only within the same Region.</p> <p>In Amazon Web Services GovCloud (US), to copy images to and from other Regions, contact Amazon Web Services Support.</p> <important> <p>Before copying a shared image, be sure to verify that it has been shared from the correct Amazon Web Services account. To determine if an image has been shared and to see the ID of the Amazon Web Services account that owns an image, use the <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceImages.html\">DescribeWorkSpaceImages</a> and <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceImagePermissions.html\">DescribeWorkspaceImagePermissions</a> API operations. </p> </important>",
+    "CreateConnectClientAddIn": "<p>Creates a client-add-in for Amazon Connect within a directory. You can create only one Amazon Connect client add-in within a directory.</p> <p>This client add-in allows WorkSpaces users to seamlessly connect to Amazon Connect.</p>",
     "CreateConnectionAlias": "<p>Creates the specified connection alias for use with cross-Region redirection. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p>",
     "CreateIpGroup": "<p>Creates an IP access control group.</p> <p>An IP access control group provides you with the ability to control the IP addresses from which users are allowed to access their WorkSpaces. To specify the CIDR address ranges, add rules to your IP access control group and then associate the group with your directory. You can add rules when you create the group or at any time using <a>AuthorizeIpRules</a>.</p> <p>There is a default IP access control group associated with your directory. If you don't associate an IP access control group with your directory, the default group is used. The default group includes a default rule that allows users to access their WorkSpaces from anywhere. You cannot modify the default IP access control group for your directory.</p>",
     "CreateTags": "<p>Creates the specified tags for the specified WorkSpaces resource.</p>",
     "CreateUpdatedWorkspaceImage": "<p>Creates a new updated WorkSpace image based on the specified source image. The new updated WorkSpace image has the latest drivers and other updates required by the Amazon WorkSpaces components.</p> <p>To determine which WorkSpace images need to be updated with the latest Amazon WorkSpaces requirements, use <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceImages.html\"> DescribeWorkspaceImages</a>.</p> <note> <ul> <li> <p>Only Windows 10, Windows Sever 2016, and Windows Server 2019 WorkSpace images can be programmatically updated at this time.</p> </li> <li> <p>Microsoft Windows updates and other application updates are not included in the update process.</p> </li> <li> <p>The source WorkSpace image is not deleted. You can delete the source image after you've verified your new updated image and created a new bundle. </p> </li> </ul> </note>",
     "CreateWorkspaceBundle": "<p>Creates the specified WorkSpace bundle. For more information about creating WorkSpace bundles, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/create-custom-bundle.html\"> Create a Custom WorkSpaces Image and Bundle</a>.</p>",
     "CreateWorkspaces": "<p>Creates one or more WorkSpaces.</p> <p>This operation is asynchronous and returns before the WorkSpaces are created.</p>",
+    "DeleteConnectClientAddIn": "<p>Deletes a client-add-in for Amazon Connect that is configured within a directory.</p>",
     "DeleteConnectionAlias": "<p>Deletes the specified connection alias. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p> <important> <p> <b>If you will no longer be using a fully qualified domain name (FQDN) as the registration code for your WorkSpaces users, you must take certain precautions to prevent potential security issues.</b> For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html#cross-region-redirection-security-considerations\"> Security Considerations if You Stop Using Cross-Region Redirection</a>.</p> </important> <note> <p>To delete a connection alias that has been shared, the shared account must first disassociate the connection alias from any directories it has been associated with. Then you must unshare the connection alias from the account it has been shared with. You can delete a connection alias only after it is no longer shared with any accounts or associated with any directories.</p> </note>",
     "DeleteIpGroup": "<p>Deletes the specified IP access control group.</p> <p>You cannot delete an IP access control group that is associated with a directory.</p>",
     "DeleteTags": "<p>Deletes the specified tags from the specified WorkSpaces resource.</p>",
@@ -21,6 +23,7 @@
     "DescribeAccount": "<p>Retrieves a list that describes the configuration of Bring Your Own License (BYOL) for the specified account.</p>",
     "DescribeAccountModifications": "<p>Retrieves a list that describes modifications to the configuration of Bring Your Own License (BYOL) for the specified account.</p>",
     "DescribeClientProperties": "<p>Retrieves a list that describes one or more specified Amazon WorkSpaces clients.</p>",
+    "DescribeConnectClientAddIns": "<p>Retrieves a list of Amazon Connect client add-ins that have been created.</p>",
     "DescribeConnectionAliasPermissions": "<p>Describes the permissions that the owner of a connection alias has granted to another Amazon Web Services account for the specified connection alias. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p>",
     "DescribeConnectionAliases": "<p>Retrieves a list that describes the connection aliases used for cross-Region redirection. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p>",
     "DescribeIpGroups": "<p>Describes one or more of your IP access control groups.</p>",
@@ -52,6 +55,7 @@
     "StartWorkspaces": "<p>Starts the specified WorkSpaces.</p> <p>You cannot start a WorkSpace unless it has a running mode of <code>AutoStop</code> and a state of <code>STOPPED</code>.</p>",
     "StopWorkspaces": "<p> Stops the specified WorkSpaces.</p> <p>You cannot stop a WorkSpace unless it has a running mode of <code>AutoStop</code> and a state of <code>AVAILABLE</code>, <code>IMPAIRED</code>, <code>UNHEALTHY</code>, or <code>ERROR</code>.</p>",
     "TerminateWorkspaces": "<p>Terminates the specified WorkSpaces.</p> <important> <p>Terminating a WorkSpace is a permanent action and cannot be undone. The user's data is destroyed. If you need to archive any user data, contact Amazon Web Services Support before terminating the WorkSpace.</p> </important> <p>You can terminate a WorkSpace that is in any state except <code>SUSPENDED</code>.</p> <p>This operation is asynchronous and returns before the WorkSpaces have been completely terminated. After a WorkSpace is terminated, the <code>TERMINATED</code> state is returned only briefly before the WorkSpace directory metadata is cleaned up, so this state is rarely returned. To confirm that a WorkSpace is terminated, check for the WorkSpace ID by using <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaces.html\"> DescribeWorkSpaces</a>. If the WorkSpace ID isn't returned, then the WorkSpace has been successfully terminated.</p> <note> <p>Simple AD and AD Connector are made available to you free of charge to use with WorkSpaces. If there are no WorkSpaces being used with your Simple AD or AD Connector directory for 30 consecutive days, this directory will be automatically deregistered for use with Amazon WorkSpaces, and you will be charged for this directory as per the <a href=\"http://aws.amazon.com/directoryservice/pricing/\">Directory Service pricing terms</a>.</p> <p>To delete empty directories, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/delete-workspaces-directory.html\"> Delete the Directory for Your WorkSpaces</a>. If you delete your Simple AD or AD Connector directory, you can always create a new one when you want to start using WorkSpaces again.</p> </note>",
+    "UpdateConnectClientAddIn": "<p>Updates a Amazon Connect client add-in. Use this action to update the name and endpoint URL of a Amazon Connect client add-in.</p>",
     "UpdateConnectionAliasPermission": "<p>Shares or unshares a connection alias with one account by specifying whether that account has permission to associate the connection alias with a directory. If the association permission is granted, the connection alias is shared with that account. If the association permission is revoked, the connection alias is unshared with the account. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p> <note> <ul> <li> <p>Before performing this operation, call <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html\"> DescribeConnectionAliases</a> to make sure that the current state of the connection alias is <code>CREATED</code>.</p> </li> <li> <p>To delete a connection alias that has been shared, the shared account must first disassociate the connection alias from any directories it has been associated with. Then you must unshare the connection alias from the account it has been shared with. You can delete a connection alias only after it is no longer shared with any accounts or associated with any directories.</p> </li> </ul> </note>",
     "UpdateRulesOfIpGroup": "<p>Replaces the current rules of the specified IP access control group with the specified rules.</p>",
     "UpdateWorkspaceBundle": "<p>Updates a WorkSpace bundle with a new image. For more information about updating WorkSpace bundles, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/update-custom-bundle.html\"> Update a Custom WorkSpaces Bundle</a>.</p> <important> <p>Existing WorkSpaces aren't automatically updated when you update the bundle that they're based on. To update existing WorkSpaces that are based on a bundle that you've updated, you must either rebuild the WorkSpaces or delete and recreate them.</p> </important>",
@@ -94,10 +98,35 @@
         "DescribeAccountModificationsResult$AccountModifications": "<p>The list of modifications to the configuration of BYOL.</p>"
       }
     },
+    "AddInName": {
+      "base": null,
+      "refs": {
+        "ConnectClientAddIn$Name": "<p>The name of the client add in.</p>",
+        "CreateConnectClientAddInRequest$Name": "<p>The name of the client add-in.</p>",
+        "UpdateConnectClientAddInRequest$Name": "<p>The name of the client add-in.</p>"
+      }
+    },
+    "AddInUrl": {
+      "base": null,
+      "refs": {
+        "ConnectClientAddIn$URL": "<p>The endpoint URL of the client add-in.</p>",
+        "CreateConnectClientAddInRequest$URL": "<p>The endpoint URL of the Amazon Connect client add-in.</p>",
+        "UpdateConnectClientAddInRequest$URL": "<p>The endpoint URL of the Amazon Connect client add-in.</p>"
+      }
+    },
     "Alias": {
       "base": null,
       "refs": {
         "WorkspaceDirectory$Alias": "<p>The directory alias.</p>"
+      }
+    },
+    "AmazonUuid": {
+      "base": null,
+      "refs": {
+        "ConnectClientAddIn$AddInId": "<p>The client add-in identifier.</p>",
+        "CreateConnectClientAddInResult$AddInId": "<p>The client add-in identifier.</p>",
+        "DeleteConnectClientAddInRequest$AddInId": "<p>The identifier of the client add-in to delete.</p>",
+        "UpdateConnectClientAddInRequest$AddInId": "<p>The identifier of the client add-in to update.</p>"
       }
     },
     "Application": {
@@ -252,6 +281,18 @@
         "Workspace$ComputerName": "<p>The name of the WorkSpace, as seen by the operating system. The format of this name varies. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/launch-workspaces-tutorials.html\"> Launch a WorkSpace</a>. </p>"
       }
     },
+    "ConnectClientAddIn": {
+      "base": "<p>Describes an Amazon Connect client add-in.</p>",
+      "refs": {
+        "ConnectClientAddInList$member": null
+      }
+    },
+    "ConnectClientAddInList": {
+      "base": null,
+      "refs": {
+        "DescribeConnectClientAddInsResult$AddIns": "<p>Information about client add-ins.</p>"
+      }
+    },
     "ConnectionAlias": {
       "base": "<p>Describes a connection alias. Connection aliases are used for cross-Region redirection. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p>",
       "refs": {
@@ -341,6 +382,16 @@
       }
     },
     "CopyWorkspaceImageResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateConnectClientAddInRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateConnectClientAddInResult": {
       "base": null,
       "refs": {
       }
@@ -452,6 +503,16 @@
         "WorkspaceDirectory$WorkspaceCreationProperties": "<p>The default creation properties for all WorkSpaces in the directory.</p>"
       }
     },
+    "DeleteConnectClientAddInRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteConnectClientAddInResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteConnectionAliasRequest": {
       "base": null,
       "refs": {
@@ -538,6 +599,16 @@
       }
     },
     "DescribeClientPropertiesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeConnectClientAddInsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeConnectClientAddInsResult": {
       "base": null,
       "refs": {
       }
@@ -667,7 +738,11 @@
       "base": null,
       "refs": {
         "AssociateIpGroupsRequest$DirectoryId": "<p>The identifier of the directory.</p>",
+        "ConnectClientAddIn$ResourceId": "<p>The directory identifier for which the client add-in is configured.</p>",
+        "CreateConnectClientAddInRequest$ResourceId": "<p>The directory identifier for which to configure the client add-in.</p>",
+        "DeleteConnectClientAddInRequest$ResourceId": "<p>The directory identifier for which the client add-in is configured.</p>",
         "DeregisterWorkspaceDirectoryRequest$DirectoryId": "<p>The identifier of the directory. If any WorkSpaces are registered to this directory, you must remove them before you deregister the directory, or you will receive an OperationNotSupportedException error.</p>",
+        "DescribeConnectClientAddInsRequest$ResourceId": "<p>The directory identifier for which the client add-in is configured.</p>",
         "DescribeWorkspacesRequest$DirectoryId": "<p>The identifier of the directory. In addition, you can optionally specify a specific directory user (see <code>UserName</code>). You cannot combine this parameter with any other filter.</p>",
         "DirectoryIdList$member": null,
         "DisassociateIpGroupsRequest$DirectoryId": "<p>The identifier of the directory.</p>",
@@ -675,6 +750,7 @@
         "ModifyWorkspaceAccessPropertiesRequest$ResourceId": "<p>The identifier of the directory.</p>",
         "ModifyWorkspaceCreationPropertiesRequest$ResourceId": "<p>The identifier of the directory.</p>",
         "RegisterWorkspaceDirectoryRequest$DirectoryId": "<p>The identifier of the directory. You cannot register a directory if it does not have a status of Active. If the directory does not have a status of Active, you will receive an InvalidResourceStateException error. If you have already registered the maximum number of directories that you can register with Amazon WorkSpaces, you will receive a ResourceLimitExceededException error. Deregister directories that you are not using for WorkSpaces, and try again.</p>",
+        "UpdateConnectClientAddInRequest$ResourceId": "<p>The directory identifier for which the client add-in is configured.</p>",
         "Workspace$DirectoryId": "<p>The identifier of the Directory Service directory for the WorkSpace.</p>",
         "WorkspaceDirectory$DirectoryId": "<p>The directory identifier.</p>",
         "WorkspaceRequest$DirectoryId": "<p>The identifier of the Directory Service directory for the WorkSpace. You can use <a>DescribeWorkspaceDirectories</a> to list the available directories.</p>"
@@ -925,6 +1001,7 @@
     "Limit": {
       "base": null,
       "refs": {
+        "DescribeConnectClientAddInsRequest$MaxResults": "<p>The maximum number of items to return.</p>",
         "DescribeConnectionAliasPermissionsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "DescribeConnectionAliasesRequest$Limit": "<p>The maximum number of connection aliases to return.</p>",
         "DescribeIpGroupsRequest$MaxResults": "<p>The maximum number of items to return.</p>",
@@ -1107,6 +1184,8 @@
       "refs": {
         "DescribeAccountModificationsRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
         "DescribeAccountModificationsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
+        "DescribeConnectClientAddInsRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
+        "DescribeConnectClientAddInsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
         "DescribeConnectionAliasPermissionsRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results. </p>",
         "DescribeConnectionAliasPermissionsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
         "DescribeConnectionAliasesRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results. </p>",
@@ -1466,6 +1545,16 @@
     },
     "UnsupportedWorkspaceConfigurationException": {
       "base": "<p>The configuration of this WorkSpace is not supported for this operation. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/required-service-components.html\">Required Configuration and Service Components for WorkSpaces </a>.</p>",
+      "refs": {
+      }
+    },
+    "UpdateConnectClientAddInRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConnectClientAddInResult": {
+      "base": null,
       "refs": {
       }
     },

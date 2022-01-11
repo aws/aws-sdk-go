@@ -1,11 +1,11 @@
 {
   "version": "2.0",
-  "service": "<p>AWS IoT Events monitors your equipment or device fleets for failures or changes in operation, and triggers actions when such events occur. You can use AWS IoT Events Data API commands to send inputs to detectors, list detectors, and view or update a detector's status.</p> <p> For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/what-is-iotevents.html\">What is AWS IoT Events?</a> in the <i>AWS IoT Events Developer Guide</i>.</p>",
+  "service": "<p>IoT Events monitors your equipment or device fleets for failures or changes in operation, and triggers actions when such events occur. You can use IoT Events Data API commands to send inputs to detectors, list detectors, and view or update a detector's status.</p> <p> For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/what-is-iotevents.html\">What is IoT Events?</a> in the <i>IoT Events Developer Guide</i>.</p>",
   "operations": {
     "BatchAcknowledgeAlarm": "<p>Acknowledges one or more alarms. The alarms change to the <code>ACKNOWLEDGED</code> state after you acknowledge them.</p>",
     "BatchDisableAlarm": "<p>Disables one or more alarms. The alarms change to the <code>DISABLED</code> state after you disable them.</p>",
     "BatchEnableAlarm": "<p>Enables one or more alarms. The alarms change to the <code>NORMAL</code> state after you enable them.</p>",
-    "BatchPutMessage": "<p>Sends a set of messages to the AWS IoT Events system. Each message payload is transformed into the input you specify (<code>\"inputName\"</code>) and ingested into any detectors that monitor that input. If multiple messages are sent, the order in which the messages are processed isn't guaranteed. To guarantee ordering, you must send messages one at a time and wait for a successful response.</p>",
+    "BatchPutMessage": "<p>Sends a set of messages to the IoT Events system. Each message payload is transformed into the input you specify (<code>\"inputName\"</code>) and ingested into any detectors that monitor that input. If multiple messages are sent, the order in which the messages are processed isn't guaranteed. To guarantee ordering, you must send messages one at a time and wait for a successful response.</p>",
     "BatchResetAlarm": "<p>Resets one or more alarms. The alarms return to the <code>NORMAL</code> state after you reset them.</p>",
     "BatchSnoozeAlarm": "<p>Changes one or more alarms to the snooze mode. The alarms change to the <code>SNOOZE_DISABLED</code> state after you set them to the snooze mode.</p>",
     "BatchUpdateDetector": "<p>Updates the state, variable values, and timer settings of one or more detectors (instances) of a specified detector model.</p>",
@@ -629,7 +629,7 @@
         "Detector$lastUpdateTime": "<p>The time the detector (instance) was last updated.</p>",
         "DetectorSummary$creationTime": "<p>The time the detector (instance) was created.</p>",
         "DetectorSummary$lastUpdateTime": "<p>The time the detector (instance) was last updated.</p>",
-        "Timer$timestamp": "<p>The number of seconds which have elapsed on the timer.</p>"
+        "Timer$timestamp": "<p>The expiration time for the timer.</p>"
       }
     },
     "TimestampValue": {

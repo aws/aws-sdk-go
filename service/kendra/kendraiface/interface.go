@@ -184,6 +184,9 @@ type KendraAPI interface {
 	GetSnapshotsWithContext(aws.Context, *kendra.GetSnapshotsInput, ...request.Option) (*kendra.GetSnapshotsOutput, error)
 	GetSnapshotsRequest(*kendra.GetSnapshotsInput) (*request.Request, *kendra.GetSnapshotsOutput)
 
+	GetSnapshotsPages(*kendra.GetSnapshotsInput, func(*kendra.GetSnapshotsOutput, bool) bool) error
+	GetSnapshotsPagesWithContext(aws.Context, *kendra.GetSnapshotsInput, func(*kendra.GetSnapshotsOutput, bool) bool, ...request.Option) error
+
 	ListDataSourceSyncJobs(*kendra.ListDataSourceSyncJobsInput) (*kendra.ListDataSourceSyncJobsOutput, error)
 	ListDataSourceSyncJobsWithContext(aws.Context, *kendra.ListDataSourceSyncJobsInput, ...request.Option) (*kendra.ListDataSourceSyncJobsOutput, error)
 	ListDataSourceSyncJobsRequest(*kendra.ListDataSourceSyncJobsInput) (*request.Request, *kendra.ListDataSourceSyncJobsOutput)

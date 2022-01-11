@@ -323,12 +323,11 @@ func (c *IoTEventsData) BatchPutMessageRequest(input *BatchPutMessageInput) (req
 
 // BatchPutMessage API operation for AWS IoT Events Data.
 //
-// Sends a set of messages to the AWS IoT Events system. Each message payload
-// is transformed into the input you specify ("inputName") and ingested into
-// any detectors that monitor that input. If multiple messages are sent, the
-// order in which the messages are processed isn't guaranteed. To guarantee
-// ordering, you must send messages one at a time and wait for a successful
-// response.
+// Sends a set of messages to the IoT Events system. Each message payload is
+// transformed into the input you specify ("inputName") and ingested into any
+// detectors that monitor that input. If multiple messages are sent, the order
+// in which the messages are processed isn't guaranteed. To guarantee ordering,
+// you must send messages one at a time and wait for a successful response.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4157,7 +4156,7 @@ type Timer struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The number of seconds which have elapsed on the timer.
+	// The expiration time for the timer.
 	//
 	// Timestamp is a required field
 	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" required:"true"`

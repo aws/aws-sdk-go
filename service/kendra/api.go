@@ -827,6 +827,8 @@ func (c *Kendra) CreateFaqRequest(input *CreateFaqInput) (req *request.Request, 
 //
 // Creates an new set of frequently asked question (FAQ) questions and answers.
 //
+// Adding FAQs to an index is an asynchronous operation.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2824,6 +2826,12 @@ func (c *Kendra) GetSnapshotsRequest(input *GetSnapshotsInput) (req *request.Req
 		Name:       opGetSnapshots,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2877,6 +2885,58 @@ func (c *Kendra) GetSnapshotsWithContext(ctx aws.Context, input *GetSnapshotsInp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// GetSnapshotsPages iterates over the pages of a GetSnapshots operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetSnapshots method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetSnapshots operation.
+//    pageNum := 0
+//    err := client.GetSnapshotsPages(params,
+//        func(page *kendra.GetSnapshotsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Kendra) GetSnapshotsPages(input *GetSnapshotsInput, fn func(*GetSnapshotsOutput, bool) bool) error {
+	return c.GetSnapshotsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetSnapshotsPagesWithContext same as GetSnapshotsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) GetSnapshotsPagesWithContext(ctx aws.Context, input *GetSnapshotsInput, fn func(*GetSnapshotsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetSnapshotsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetSnapshotsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetSnapshotsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListDataSourceSyncJobs = "ListDataSourceSyncJobs"
@@ -13006,6 +13066,9 @@ func (s *Document) SetTitle(v string) *Document {
 }
 
 // A custom attribute value assigned to a document.
+//
+// For more information on how to create custom document attributes, see Custom
+// Attributes (https://docs.aws.amazon.com/kendra/latest/dg/custom-attributes.html).
 type DocumentAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -13275,8 +13338,9 @@ type DocumentAttributeValue struct {
 	// A date expressed as an ISO 8601 string.
 	//
 	// It is important for the time zone to be included in the ISO 8601 date-time
-	// format. For example, 20120325T123010+01:00 is the ISO 8601 date-time format
-	// for March 25th 2012 at 12:30PM (plus 10 seconds) in Central European Time.
+	// format. For example, 2012-03-25T12:30:10+01:00 is the ISO 8601 date-time
+	// format for March 25th 2012 at 12:30PM (plus 10 seconds) in Central European
+	// Time.
 	DateValue *time.Time `type:"timestamp"`
 
 	// A long integer value.
@@ -15204,11 +15268,11 @@ func (s *Highlight) SetType(v string) *Highlight {
 // Provides the configuration information for invoking a Lambda function in
 // Lambda to alter document metadata and content when ingesting documents into
 // Amazon Kendra. You can configure your Lambda function using PreExtractionHookConfiguration
-// (https://docs.aws.amazon.com/kendra/latest/dg/API_PreExtractionHookConfiguration.html)
+// (https://docs.aws.amazon.com/kendra/latest/dg/API_CustomDocumentEnrichmentConfiguration.html)
 // if you want to apply advanced alterations on the original or raw documents.
 // If you want to apply advanced alterations on the Amazon Kendra structured
 // documents, you must configure your Lambda function using PostExtractionHookConfiguration
-// (https://docs.aws.amazon.com/kendra/latest/dg/API_PostExtractionHookConfiguration.html).
+// (https://docs.aws.amazon.com/kendra/latest/dg/API_CustomDocumentEnrichmentConfiguration.html).
 // You can only invoke one Lambda function. However, this function can invoke
 // other functions it requires.
 //
@@ -17948,9 +18012,7 @@ type QueryInput struct {
 	QueryResultTypeFilter *string `type:"string" enum:"QueryResultType"`
 
 	// The text to search for.
-	//
-	// QueryText is a required field
-	QueryText *string `min:"1" type:"string" required:"true"`
+	QueryText *string `min:"1" type:"string"`
 
 	// An array of document attributes to include in the response. No other document
 	// attributes are included in the response. By default all document attributes
@@ -18001,9 +18063,6 @@ func (s *QueryInput) Validate() error {
 	}
 	if s.IndexId != nil && len(*s.IndexId) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
-	}
-	if s.QueryText == nil {
-		invalidParams.Add(request.NewErrParamRequired("QueryText"))
 	}
 	if s.QueryText != nil && len(*s.QueryText) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("QueryText", 1))
@@ -18146,6 +18205,13 @@ type QueryOutput struct {
 	// up to 100 items. For example, if the search found 192 items, you can only
 	// retrieve the first 100 of the items.
 	TotalNumberOfResults *int64 `type:"integer"`
+
+	// A list of warning codes and their messages on problems with your query.
+	//
+	// Amazon Kendra currently only supports one type of warning, which is a warning
+	// on invalid syntax used in the query. For examples of invalid query syntax,
+	// see Searching with advanced query syntax (https://docs.aws.amazon.com/kendra/latest/dg/searching-example.html#searching-index-query-syntax).
+	Warnings []*Warning `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -18187,6 +18253,12 @@ func (s *QueryOutput) SetResultItems(v []*QueryResultItem) *QueryOutput {
 // SetTotalNumberOfResults sets the TotalNumberOfResults field's value.
 func (s *QueryOutput) SetTotalNumberOfResults(v int64) *QueryOutput {
 	s.TotalNumberOfResults = &v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *QueryOutput) SetWarnings(v []*Warning) *QueryOutput {
+	s.Warnings = v
 	return s
 }
 
@@ -23062,6 +23134,11 @@ func (s *UserContext) SetUserId(v string) *UserContext {
 // You must also grant the required permissions to use Amazon Web Services SSO
 // with Amazon Kendra. For more information, see IAM roles for Amazon Web Services
 // SSO (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html#iam-roles-aws-sso).
+//
+// Amazon Kendra currently does not support using UserGroupResolutionConfiguration
+// with an Amazon Web Services organization member account for your Amazon Web
+// Services SSO identify source. You must create your index in the parent account
+// for the organization in order to use UserGroupResolutionConfiguration.
 type UserGroupResolutionConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -23284,6 +23361,47 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The warning code and message that explains a problem with a query.
+type Warning struct {
+	_ struct{} `type:"structure"`
+
+	// The code used to show the type of warning for the query.
+	Code *string `type:"string" enum:"WarningCode"`
+
+	// The message that explains the problem with the query.
+	Message *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Warning) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Warning) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *Warning) SetCode(v string) *Warning {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *Warning) SetMessage(v string) *Warning {
+	s.Message = &v
+	return s
 }
 
 // Provides the configuration information required for Amazon Kendra Web Crawler.
@@ -24850,6 +24968,18 @@ func UserGroupResolutionMode_Values() []string {
 	return []string{
 		UserGroupResolutionModeAwsSso,
 		UserGroupResolutionModeNone,
+	}
+}
+
+const (
+	// WarningCodeQueryLanguageInvalidSyntax is a WarningCode enum value
+	WarningCodeQueryLanguageInvalidSyntax = "QUERY_LANGUAGE_INVALID_SYNTAX"
+)
+
+// WarningCode_Values returns all elements of the WarningCode enum
+func WarningCode_Values() []string {
+	return []string{
+		WarningCodeQueryLanguageInvalidSyntax,
 	}
 }
 

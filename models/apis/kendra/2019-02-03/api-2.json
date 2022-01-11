@@ -3545,10 +3545,7 @@
     },
     "QueryRequest":{
       "type":"structure",
-      "required":[
-        "IndexId",
-        "QueryText"
-      ],
+      "required":["IndexId"],
       "members":{
         "IndexId":{"shape":"IndexId"},
         "QueryText":{"shape":"QueryText"},
@@ -3570,7 +3567,8 @@
         "QueryId":{"shape":"QueryId"},
         "ResultItems":{"shape":"QueryResultItemList"},
         "FacetResults":{"shape":"FacetResultList"},
-        "TotalNumberOfResults":{"shape":"Integer"}
+        "TotalNumberOfResults":{"shape":"Integer"},
+        "Warnings":{"shape":"WarningList"}
       }
     },
     "QueryResultItem":{
@@ -3653,8 +3651,7 @@
     "QueryText":{
       "type":"string",
       "max":1000,
-      "min":1,
-      "pattern":"^\\P{C}*$"
+      "min":1
     },
     "ReadAccessType":{
       "type":"string",
@@ -4610,6 +4607,29 @@
       "max":200,
       "min":1,
       "pattern":"[-0-9a-zA-Z]+"
+    },
+    "Warning":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"WarningMessage"},
+        "Code":{"shape":"WarningCode"}
+      }
+    },
+    "WarningCode":{
+      "type":"string",
+      "enum":["QUERY_LANGUAGE_INVALID_SYNTAX"]
+    },
+    "WarningList":{
+      "type":"list",
+      "member":{"shape":"Warning"},
+      "max":1,
+      "min":1
+    },
+    "WarningMessage":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^\\P{C}*$"
     },
     "WebCrawlerConfiguration":{
       "type":"structure",
