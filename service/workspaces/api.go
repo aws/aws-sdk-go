@@ -413,6 +413,101 @@ func (c *WorkSpaces) CopyWorkspaceImageWithContext(ctx aws.Context, input *CopyW
 	return out, req.Send()
 }
 
+const opCreateConnectClientAddIn = "CreateConnectClientAddIn"
+
+// CreateConnectClientAddInRequest generates a "aws/request.Request" representing the
+// client's request for the CreateConnectClientAddIn operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateConnectClientAddIn for more information on using the CreateConnectClientAddIn
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateConnectClientAddInRequest method.
+//    req, resp := client.CreateConnectClientAddInRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/CreateConnectClientAddIn
+func (c *WorkSpaces) CreateConnectClientAddInRequest(input *CreateConnectClientAddInInput) (req *request.Request, output *CreateConnectClientAddInOutput) {
+	op := &request.Operation{
+		Name:       opCreateConnectClientAddIn,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateConnectClientAddInInput{}
+	}
+
+	output = &CreateConnectClientAddInOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateConnectClientAddIn API operation for Amazon WorkSpaces.
+//
+// Creates a client-add-in for Amazon Connect within a directory. You can create
+// only one Amazon Connect client add-in within a directory.
+//
+// This client add-in allows WorkSpaces users to seamlessly connect to Amazon
+// Connect.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation CreateConnectClientAddIn for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValuesException
+//   One or more parameter values are not valid.
+//
+//   * ResourceNotFoundException
+//   The resource could not be found.
+//
+//   * ResourceCreationFailedException
+//   The resource could not be created.
+//
+//   * ResourceAlreadyExistsException
+//   The specified resource already exists.
+//
+//   * AccessDeniedException
+//   The user is not authorized to access a resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/CreateConnectClientAddIn
+func (c *WorkSpaces) CreateConnectClientAddIn(input *CreateConnectClientAddInInput) (*CreateConnectClientAddInOutput, error) {
+	req, out := c.CreateConnectClientAddInRequest(input)
+	return out, req.Send()
+}
+
+// CreateConnectClientAddInWithContext is the same as CreateConnectClientAddIn with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateConnectClientAddIn for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) CreateConnectClientAddInWithContext(ctx aws.Context, input *CreateConnectClientAddInInput, opts ...request.Option) (*CreateConnectClientAddInOutput, error) {
+	req, out := c.CreateConnectClientAddInRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateConnectionAlias = "CreateConnectionAlias"
 
 // CreateConnectionAliasRequest generates a "aws/request.Request" representing the
@@ -983,6 +1078,92 @@ func (c *WorkSpaces) CreateWorkspaces(input *CreateWorkspacesInput) (*CreateWork
 // for more information on using Contexts.
 func (c *WorkSpaces) CreateWorkspacesWithContext(ctx aws.Context, input *CreateWorkspacesInput, opts ...request.Option) (*CreateWorkspacesOutput, error) {
 	req, out := c.CreateWorkspacesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteConnectClientAddIn = "DeleteConnectClientAddIn"
+
+// DeleteConnectClientAddInRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteConnectClientAddIn operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteConnectClientAddIn for more information on using the DeleteConnectClientAddIn
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteConnectClientAddInRequest method.
+//    req, resp := client.DeleteConnectClientAddInRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DeleteConnectClientAddIn
+func (c *WorkSpaces) DeleteConnectClientAddInRequest(input *DeleteConnectClientAddInInput) (req *request.Request, output *DeleteConnectClientAddInOutput) {
+	op := &request.Operation{
+		Name:       opDeleteConnectClientAddIn,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteConnectClientAddInInput{}
+	}
+
+	output = &DeleteConnectClientAddInOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteConnectClientAddIn API operation for Amazon WorkSpaces.
+//
+// Deletes a client-add-in for Amazon Connect that is configured within a directory.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation DeleteConnectClientAddIn for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValuesException
+//   One or more parameter values are not valid.
+//
+//   * ResourceNotFoundException
+//   The resource could not be found.
+//
+//   * AccessDeniedException
+//   The user is not authorized to access a resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DeleteConnectClientAddIn
+func (c *WorkSpaces) DeleteConnectClientAddIn(input *DeleteConnectClientAddInInput) (*DeleteConnectClientAddInOutput, error) {
+	req, out := c.DeleteConnectClientAddInRequest(input)
+	return out, req.Send()
+}
+
+// DeleteConnectClientAddInWithContext is the same as DeleteConnectClientAddIn with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteConnectClientAddIn for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) DeleteConnectClientAddInWithContext(ctx aws.Context, input *DeleteConnectClientAddInInput, opts ...request.Option) (*DeleteConnectClientAddInOutput, error) {
+	req, out := c.DeleteConnectClientAddInRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1792,6 +1973,91 @@ func (c *WorkSpaces) DescribeClientProperties(input *DescribeClientPropertiesInp
 // for more information on using Contexts.
 func (c *WorkSpaces) DescribeClientPropertiesWithContext(ctx aws.Context, input *DescribeClientPropertiesInput, opts ...request.Option) (*DescribeClientPropertiesOutput, error) {
 	req, out := c.DescribeClientPropertiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeConnectClientAddIns = "DescribeConnectClientAddIns"
+
+// DescribeConnectClientAddInsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeConnectClientAddIns operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeConnectClientAddIns for more information on using the DescribeConnectClientAddIns
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeConnectClientAddInsRequest method.
+//    req, resp := client.DescribeConnectClientAddInsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DescribeConnectClientAddIns
+func (c *WorkSpaces) DescribeConnectClientAddInsRequest(input *DescribeConnectClientAddInsInput) (req *request.Request, output *DescribeConnectClientAddInsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeConnectClientAddIns,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeConnectClientAddInsInput{}
+	}
+
+	output = &DescribeConnectClientAddInsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeConnectClientAddIns API operation for Amazon WorkSpaces.
+//
+// Retrieves a list of Amazon Connect client add-ins that have been created.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation DescribeConnectClientAddIns for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValuesException
+//   One or more parameter values are not valid.
+//
+//   * ResourceNotFoundException
+//   The resource could not be found.
+//
+//   * AccessDeniedException
+//   The user is not authorized to access a resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DescribeConnectClientAddIns
+func (c *WorkSpaces) DescribeConnectClientAddIns(input *DescribeConnectClientAddInsInput) (*DescribeConnectClientAddInsOutput, error) {
+	req, out := c.DescribeConnectClientAddInsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeConnectClientAddInsWithContext is the same as DescribeConnectClientAddIns with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeConnectClientAddIns for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) DescribeConnectClientAddInsWithContext(ctx aws.Context, input *DescribeConnectClientAddInsInput, opts ...request.Option) (*DescribeConnectClientAddInsOutput, error) {
+	req, out := c.DescribeConnectClientAddInsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4713,6 +4979,93 @@ func (c *WorkSpaces) TerminateWorkspacesWithContext(ctx aws.Context, input *Term
 	return out, req.Send()
 }
 
+const opUpdateConnectClientAddIn = "UpdateConnectClientAddIn"
+
+// UpdateConnectClientAddInRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateConnectClientAddIn operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateConnectClientAddIn for more information on using the UpdateConnectClientAddIn
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateConnectClientAddInRequest method.
+//    req, resp := client.UpdateConnectClientAddInRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/UpdateConnectClientAddIn
+func (c *WorkSpaces) UpdateConnectClientAddInRequest(input *UpdateConnectClientAddInInput) (req *request.Request, output *UpdateConnectClientAddInOutput) {
+	op := &request.Operation{
+		Name:       opUpdateConnectClientAddIn,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateConnectClientAddInInput{}
+	}
+
+	output = &UpdateConnectClientAddInOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateConnectClientAddIn API operation for Amazon WorkSpaces.
+//
+// Updates a Amazon Connect client add-in. Use this action to update the name
+// and endpoint URL of a Amazon Connect client add-in.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation UpdateConnectClientAddIn for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValuesException
+//   One or more parameter values are not valid.
+//
+//   * ResourceNotFoundException
+//   The resource could not be found.
+//
+//   * AccessDeniedException
+//   The user is not authorized to access a resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/UpdateConnectClientAddIn
+func (c *WorkSpaces) UpdateConnectClientAddIn(input *UpdateConnectClientAddInInput) (*UpdateConnectClientAddInOutput, error) {
+	req, out := c.UpdateConnectClientAddInRequest(input)
+	return out, req.Send()
+}
+
+// UpdateConnectClientAddInWithContext is the same as UpdateConnectClientAddIn with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateConnectClientAddIn for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) UpdateConnectClientAddInWithContext(ctx aws.Context, input *UpdateConnectClientAddInInput, opts ...request.Option) (*UpdateConnectClientAddInOutput, error) {
+	req, out := c.UpdateConnectClientAddInRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateConnectionAliasPermission = "UpdateConnectionAliasPermission"
 
 // UpdateConnectionAliasPermissionRequest generates a "aws/request.Request" representing the
@@ -5645,6 +5998,65 @@ func (s *ComputeType) SetName(v string) *ComputeType {
 	return s
 }
 
+// Describes an Amazon Connect client add-in.
+type ConnectClientAddIn struct {
+	_ struct{} `type:"structure"`
+
+	// The client add-in identifier.
+	AddInId *string `min:"36" type:"string"`
+
+	// The name of the client add in.
+	Name *string `min:"1" type:"string"`
+
+	// The directory identifier for which the client add-in is configured.
+	ResourceId *string `min:"10" type:"string"`
+
+	// The endpoint URL of the client add-in.
+	URL *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectClientAddIn) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectClientAddIn) GoString() string {
+	return s.String()
+}
+
+// SetAddInId sets the AddInId field's value.
+func (s *ConnectClientAddIn) SetAddInId(v string) *ConnectClientAddIn {
+	s.AddInId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ConnectClientAddIn) SetName(v string) *ConnectClientAddIn {
+	s.Name = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *ConnectClientAddIn) SetResourceId(v string) *ConnectClientAddIn {
+	s.ResourceId = &v
+	return s
+}
+
+// SetURL sets the URL field's value.
+func (s *ConnectClientAddIn) SetURL(v string) *ConnectClientAddIn {
+	s.URL = &v
+	return s
+}
+
 // Describes a connection alias. Connection aliases are used for cross-Region
 // redirection. For more information, see Cross-Region Redirection for Amazon
 // WorkSpaces (https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html).
@@ -5986,6 +6398,120 @@ func (s CopyWorkspaceImageOutput) GoString() string {
 // SetImageId sets the ImageId field's value.
 func (s *CopyWorkspaceImageOutput) SetImageId(v string) *CopyWorkspaceImageOutput {
 	s.ImageId = &v
+	return s
+}
+
+type CreateConnectClientAddInInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the client add-in.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The directory identifier for which to configure the client add-in.
+	//
+	// ResourceId is a required field
+	ResourceId *string `min:"10" type:"string" required:"true"`
+
+	// The endpoint URL of the Amazon Connect client add-in.
+	//
+	// URL is a required field
+	URL *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConnectClientAddInInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConnectClientAddInInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateConnectClientAddInInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateConnectClientAddInInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 10))
+	}
+	if s.URL == nil {
+		invalidParams.Add(request.NewErrParamRequired("URL"))
+	}
+	if s.URL != nil && len(*s.URL) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("URL", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *CreateConnectClientAddInInput) SetName(v string) *CreateConnectClientAddInInput {
+	s.Name = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *CreateConnectClientAddInInput) SetResourceId(v string) *CreateConnectClientAddInInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetURL sets the URL field's value.
+func (s *CreateConnectClientAddInInput) SetURL(v string) *CreateConnectClientAddInInput {
+	s.URL = &v
+	return s
+}
+
+type CreateConnectClientAddInOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The client add-in identifier.
+	AddInId *string `min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConnectClientAddInOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConnectClientAddInOutput) GoString() string {
+	return s.String()
+}
+
+// SetAddInId sets the AddInId field's value.
+func (s *CreateConnectClientAddInOutput) SetAddInId(v string) *CreateConnectClientAddInOutput {
+	s.AddInId = &v
 	return s
 }
 
@@ -6811,6 +7337,94 @@ func (s *DefaultWorkspaceCreationProperties) SetUserEnabledAsLocalAdministrator(
 	return s
 }
 
+type DeleteConnectClientAddInInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the client add-in to delete.
+	//
+	// AddInId is a required field
+	AddInId *string `min:"36" type:"string" required:"true"`
+
+	// The directory identifier for which the client add-in is configured.
+	//
+	// ResourceId is a required field
+	ResourceId *string `min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConnectClientAddInInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConnectClientAddInInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteConnectClientAddInInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteConnectClientAddInInput"}
+	if s.AddInId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AddInId"))
+	}
+	if s.AddInId != nil && len(*s.AddInId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AddInId", 36))
+	}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddInId sets the AddInId field's value.
+func (s *DeleteConnectClientAddInInput) SetAddInId(v string) *DeleteConnectClientAddInInput {
+	s.AddInId = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *DeleteConnectClientAddInInput) SetResourceId(v string) *DeleteConnectClientAddInInput {
+	s.ResourceId = &v
+	return s
+}
+
+type DeleteConnectClientAddInOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConnectClientAddInOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConnectClientAddInOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteConnectionAliasInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7462,6 +8076,121 @@ func (s DescribeClientPropertiesOutput) GoString() string {
 // SetClientPropertiesList sets the ClientPropertiesList field's value.
 func (s *DescribeClientPropertiesOutput) SetClientPropertiesList(v []*ClientPropertiesResult) *DescribeClientPropertiesOutput {
 	s.ClientPropertiesList = v
+	return s
+}
+
+type DescribeConnectClientAddInsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of items to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If you received a NextToken from a previous call that was paginated, provide
+	// this token to receive the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The directory identifier for which the client add-in is configured.
+	//
+	// ResourceId is a required field
+	ResourceId *string `min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeConnectClientAddInsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeConnectClientAddInsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeConnectClientAddInsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeConnectClientAddInsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeConnectClientAddInsInput) SetMaxResults(v int64) *DescribeConnectClientAddInsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeConnectClientAddInsInput) SetNextToken(v string) *DescribeConnectClientAddInsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *DescribeConnectClientAddInsInput) SetResourceId(v string) *DescribeConnectClientAddInsInput {
+	s.ResourceId = &v
+	return s
+}
+
+type DescribeConnectClientAddInsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about client add-ins.
+	AddIns []*ConnectClientAddIn `type:"list"`
+
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeConnectClientAddInsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeConnectClientAddInsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAddIns sets the AddIns field's value.
+func (s *DescribeConnectClientAddInsOutput) SetAddIns(v []*ConnectClientAddIn) *DescribeConnectClientAddInsOutput {
+	s.AddIns = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeConnectClientAddInsOutput) SetNextToken(v string) *DescribeConnectClientAddInsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -12053,6 +12782,118 @@ func (s *UnsupportedWorkspaceConfigurationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *UnsupportedWorkspaceConfigurationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type UpdateConnectClientAddInInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the client add-in to update.
+	//
+	// AddInId is a required field
+	AddInId *string `min:"36" type:"string" required:"true"`
+
+	// The name of the client add-in.
+	Name *string `min:"1" type:"string"`
+
+	// The directory identifier for which the client add-in is configured.
+	//
+	// ResourceId is a required field
+	ResourceId *string `min:"10" type:"string" required:"true"`
+
+	// The endpoint URL of the Amazon Connect client add-in.
+	URL *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectClientAddInInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectClientAddInInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateConnectClientAddInInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateConnectClientAddInInput"}
+	if s.AddInId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AddInId"))
+	}
+	if s.AddInId != nil && len(*s.AddInId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AddInId", 36))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 10))
+	}
+	if s.URL != nil && len(*s.URL) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("URL", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddInId sets the AddInId field's value.
+func (s *UpdateConnectClientAddInInput) SetAddInId(v string) *UpdateConnectClientAddInInput {
+	s.AddInId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateConnectClientAddInInput) SetName(v string) *UpdateConnectClientAddInInput {
+	s.Name = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *UpdateConnectClientAddInInput) SetResourceId(v string) *UpdateConnectClientAddInInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetURL sets the URL field's value.
+func (s *UpdateConnectClientAddInInput) SetURL(v string) *UpdateConnectClientAddInInput {
+	s.URL = &v
+	return s
+}
+
+type UpdateConnectClientAddInOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectClientAddInOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectClientAddInOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateConnectionAliasPermissionInput struct {

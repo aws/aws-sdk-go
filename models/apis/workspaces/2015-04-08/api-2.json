@@ -80,6 +80,22 @@
         {"shape":"InvalidParameterValuesException"}
       ]
     },
+    "CreateConnectClientAddIn":{
+      "name":"CreateConnectClientAddIn",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateConnectClientAddInRequest"},
+      "output":{"shape":"CreateConnectClientAddInResult"},
+      "errors":[
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceCreationFailedException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "CreateConnectionAlias":{
       "name":"CreateConnectionAlias",
       "http":{
@@ -173,6 +189,20 @@
       "errors":[
         {"shape":"ResourceLimitExceededException"},
         {"shape":"InvalidParameterValuesException"}
+      ]
+    },
+    "DeleteConnectClientAddIn":{
+      "name":"DeleteConnectClientAddIn",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteConnectClientAddInRequest"},
+      "output":{"shape":"DeleteConnectClientAddInResult"},
+      "errors":[
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "DeleteConnectionAlias":{
@@ -297,6 +327,20 @@
       },
       "input":{"shape":"DescribeClientPropertiesRequest"},
       "output":{"shape":"DescribeClientPropertiesResult"},
+      "errors":[
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DescribeConnectClientAddIns":{
+      "name":"DescribeConnectClientAddIns",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeConnectClientAddInsRequest"},
+      "output":{"shape":"DescribeConnectClientAddInsResult"},
       "errors":[
         {"shape":"InvalidParameterValuesException"},
         {"shape":"ResourceNotFoundException"},
@@ -721,6 +765,20 @@
       "input":{"shape":"TerminateWorkspacesRequest"},
       "output":{"shape":"TerminateWorkspacesResult"}
     },
+    "UpdateConnectClientAddIn":{
+      "name":"UpdateConnectClientAddIn",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateConnectClientAddInRequest"},
+      "output":{"shape":"UpdateConnectClientAddInResult"},
+      "errors":[
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "UpdateConnectionAliasPermission":{
       "name":"UpdateConnectionAliasPermission",
       "http":{
@@ -821,7 +879,25 @@
       "type":"list",
       "member":{"shape":"AccountModification"}
     },
+    "AddInName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^.*$"
+    },
+    "AddInUrl":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^(http|https)\\://\\S+"
+    },
     "Alias":{"type":"string"},
+    "AmazonUuid":{
+      "type":"string",
+      "max":36,
+      "min":36,
+      "pattern":"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+    },
     "Application":{
       "type":"string",
       "enum":[
@@ -950,6 +1026,19 @@
       }
     },
     "ComputerName":{"type":"string"},
+    "ConnectClientAddIn":{
+      "type":"structure",
+      "members":{
+        "AddInId":{"shape":"AmazonUuid"},
+        "ResourceId":{"shape":"DirectoryId"},
+        "Name":{"shape":"AddInName"},
+        "URL":{"shape":"AddInUrl"}
+      }
+    },
+    "ConnectClientAddInList":{
+      "type":"list",
+      "member":{"shape":"ConnectClientAddIn"}
+    },
     "ConnectionAlias":{
       "type":"structure",
       "members":{
@@ -1057,6 +1146,25 @@
       "type":"structure",
       "members":{
         "ImageId":{"shape":"WorkspaceImageId"}
+      }
+    },
+    "CreateConnectClientAddInRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceId",
+        "Name",
+        "URL"
+      ],
+      "members":{
+        "ResourceId":{"shape":"DirectoryId"},
+        "Name":{"shape":"AddInName"},
+        "URL":{"shape":"AddInUrl"}
+      }
+    },
+    "CreateConnectClientAddInResult":{
+      "type":"structure",
+      "members":{
+        "AddInId":{"shape":"AmazonUuid"}
       }
     },
     "CreateConnectionAliasRequest":{
@@ -1203,6 +1311,22 @@
         "EnableMaintenanceMode":{"shape":"BooleanObject"}
       }
     },
+    "DeleteConnectClientAddInRequest":{
+      "type":"structure",
+      "required":[
+        "AddInId",
+        "ResourceId"
+      ],
+      "members":{
+        "AddInId":{"shape":"AmazonUuid"},
+        "ResourceId":{"shape":"DirectoryId"}
+      }
+    },
+    "DeleteConnectClientAddInResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteConnectionAliasRequest":{
       "type":"structure",
       "required":["AliasId"],
@@ -1314,6 +1438,22 @@
       "type":"structure",
       "members":{
         "ClientPropertiesList":{"shape":"ClientPropertiesList"}
+      }
+    },
+    "DescribeConnectClientAddInsRequest":{
+      "type":"structure",
+      "required":["ResourceId"],
+      "members":{
+        "ResourceId":{"shape":"DirectoryId"},
+        "NextToken":{"shape":"PaginationToken"},
+        "MaxResults":{"shape":"Limit"}
+      }
+    },
+    "DescribeConnectClientAddInsResult":{
+      "type":"structure",
+      "members":{
+        "AddIns":{"shape":"ConnectClientAddInList"},
+        "NextToken":{"shape":"PaginationToken"}
       }
     },
     "DescribeConnectionAliasPermissionsRequest":{
@@ -2231,6 +2371,24 @@
         "message":{"shape":"ExceptionMessage"}
       },
       "exception":true
+    },
+    "UpdateConnectClientAddInRequest":{
+      "type":"structure",
+      "required":[
+        "AddInId",
+        "ResourceId"
+      ],
+      "members":{
+        "AddInId":{"shape":"AmazonUuid"},
+        "ResourceId":{"shape":"DirectoryId"},
+        "Name":{"shape":"AddInName"},
+        "URL":{"shape":"AddInUrl"}
+      }
+    },
+    "UpdateConnectClientAddInResult":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateConnectionAliasPermissionRequest":{
       "type":"structure",

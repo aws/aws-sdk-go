@@ -1631,7 +1631,9 @@ func (s *ChangesetErrorInfo) SetErrorMessage(v string) *ChangesetErrorInfo {
 type ChangesetSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Milliseconds since UTC epoch
+	// Beginning time from which the Changeset is active. The value is determined
+	// as Epoch time in milliseconds. For example, the value for Monday, November
+	// 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
 	ActiveFromTimestamp *int64 `locationName:"activeFromTimestamp" type:"long"`
 
 	// Time until which the Changeset is active. The value is determined as Epoch
@@ -1929,7 +1931,7 @@ type CreateChangesetInput struct {
 	// ChangeType is a required field
 	ChangeType *string `locationName:"changeType" type:"string" required:"true" enum:"ChangeType"`
 
-	// A token used to ensure idempotency.
+	// A token that ensures idempotency. This token expires in 10 minutes.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The unique identifier for the FinSpace Dataset where the Changeset will be
@@ -1952,14 +1954,36 @@ type CreateChangesetInput struct {
 	//
 	//    * XML - XML source file format.
 	//
-	// For example, you could specify the following for formatParams: "formatParams":
-	// { "formatType": "CSV", "withHeader": "true", "separator": ",", "compression":"None"
-	// }
+	// Here is an example of how you could specify the formatParams:
+	//
+	// "formatParams": { "formatType": "CSV", "withHeader": "true", "separator":
+	// ",", "compression":"None" }
+	//
+	// Note that if you only provide formatType as CSV, the rest of the attributes
+	// will automatically default to CSV values as following:
+	//
+	// { "withHeader": "true", "separator": "," }
+	//
+	// For more information about supported file formats, see Supported Data Types
+	// and File Formats (https://docs.aws.amazon.com/finspace/latest/userguide/supported-data-types.html)
+	// in the FinSpace User Guide.
 	//
 	// FormatParams is a required field
 	FormatParams map[string]*string `locationName:"formatParams" type:"map" required:"true"`
 
-	// Options that define the location of the data being ingested.
+	// Options that define the location of the data being ingested (s3SourcePath)
+	// and the source of the changeset (sourceType).
+	//
+	// Both s3SourcePath and sourceType are required attributes.
+	//
+	// Here is an example of how you could specify the sourceParams:
+	//
+	// "sourceParams": { "s3SourcePath": "s3://finspace-landing-us-east-2-bk7gcfvitndqa6ebnvys4d/scratch/wr5hh8pwkpqqkxa4sxrmcw/ingestion/equity.csv",
+	// "sourceType": "S3" }
+	//
+	// The S3 path that you specify must allow the FinSpace role access. To do that,
+	// you first need to configure the IAM policy on S3 bucket. For more information,
+	// see Loading data from an Amazon S3 Bucket using the FinSpace API (https://docs.aws.amazon.com/finspace/latest/data-api/fs-using-the-finspace-api.html#access-s3-buckets)section.
 	//
 	// SourceParams is a required field
 	SourceParams map[string]*string `locationName:"sourceParams" type:"map" required:"true"`
@@ -2094,7 +2118,7 @@ type CreateDataViewInput struct {
 	// Flag to indicate Dataview should be updated automatically.
 	AutoUpdate *bool `locationName:"autoUpdate" type:"boolean"`
 
-	// A token used to ensure idempotency.
+	// A token that ensures idempotency. This token expires in 10 minutes.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The unique Dataset identifier that is used to create a Dataview.
@@ -2249,7 +2273,7 @@ type CreateDatasetInput struct {
 	// The unique resource identifier for a Dataset.
 	Alias *string `locationName:"alias" min:"1" type:"string"`
 
-	// A token used to ensure idempotency.
+	// A token that ensures idempotency. This token expires in 10 minutes.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// Description of a Dataset.
@@ -2478,12 +2502,23 @@ type DataViewDestinationTypeParams struct {
 	//
 	//    * GLUE_TABLE - Glue table destination type.
 	//
+	//    * S3 - S3 destination type.
+	//
 	// DestinationType is a required field
 	DestinationType *string `locationName:"destinationType" type:"string" required:"true"`
 
-	// Data View Export File Format
+	// Data view export file format.
+	//
+	//    * PARQUET - Parquet export file format.
+	//
+	//    * DELIMITED_TEXT - Delimited text export file format.
 	S3DestinationExportFileFormat *string `locationName:"s3DestinationExportFileFormat" type:"string" enum:"ExportFileFormat"`
 
+	// Format Options for S3 Destination type.
+	//
+	// Here is an example of how you could specify the s3DestinationExportFileFormatOptions
+	//
+	// { "header": "true", "delimiter": ",", "compression": "gzip" }
 	S3DestinationExportFileFormatOptions map[string]*string `locationName:"s3DestinationExportFileFormatOptions" type:"map"`
 }
 
@@ -2943,7 +2978,7 @@ func (s *DatasetOwnerInfo) SetPhoneNumber(v string) *DatasetOwnerInfo {
 type DeleteDatasetInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// A token used to ensure idempotency.
+	// A token that ensures idempotency. This token expires in 10 minutes.
 	ClientToken *string `location:"querystring" locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The unique identifier of the Dataset to be deleted.
@@ -3104,7 +3139,9 @@ func (s *GetChangesetInput) SetDatasetId(v string) *GetChangesetInput {
 type GetChangesetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Milliseconds since UTC epoch
+	// Beginning time from which the Changeset is active. The value is determined
+	// as Epoch time in milliseconds. For example, the value for Monday, November
+	// 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
 	ActiveFromTimestamp *int64 `locationName:"activeFromTimestamp" type:"long"`
 
 	// Time until which the Changeset is active. The value is determined as Epoch
@@ -4295,6 +4332,12 @@ func (s *ListDatasetsOutput) SetNextToken(v string) *ListDatasetsOutput {
 }
 
 // Permission group parameters for Dataset permissions.
+//
+// Here is an example of how you could specify the PermissionGroupParams:
+//
+// { "permissionGroupId": "0r6fCRtSTUk4XPfXQe3M0g", "datasetPermissions": [
+// {"permission": "ViewDatasetDetails"}, {"permission": "AddDatasetData"}, {"permission":
+// "EditDatasetMetadata"}, {"permission": "DeleteDataset"} ] }
 type PermissionGroupParams struct {
 	_ struct{} `type:"structure"`
 
@@ -4422,7 +4465,28 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Resource permission for a Dataset.
+// Resource permission for a dataset. When you create a dataset, all the other
+// members of the same user group inherit access to the dataset. You can only
+// create a dataset if your user group has application permission for Create
+// Datasets.
+//
+// The following is a list of valid dataset permissions that you can apply:
+//
+//    * ViewDatasetDetails
+//
+//    * ReadDatasetDetails
+//
+//    * AddDatasetData
+//
+//    * CreateSnapshot
+//
+//    * EditDatasetMetadata
+//
+//    * DeleteDataset
+//
+// For more information on the ataset permissions, see Supported Dataset Permissions
+// (https://docs.aws.amazon.com/finspace/latest/userguide/managing-user-permissions.html#supported-dataset-permissions)
+// in the FinSpace User Guide.
 type ResourcePermission struct {
 	_ struct{} `type:"structure"`
 
@@ -4613,7 +4677,7 @@ type UpdateChangesetInput struct {
 	// ChangesetId is a required field
 	ChangesetId *string `location:"uri" locationName:"changesetId" min:"1" type:"string" required:"true"`
 
-	// A token used to ensure idempotency.
+	// A token that ensures idempotency. This token expires in 10 minutes.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The unique identifier for the FinSpace Dataset in which the Changeset is
@@ -4622,12 +4686,50 @@ type UpdateChangesetInput struct {
 	// DatasetId is a required field
 	DatasetId *string `location:"uri" locationName:"datasetId" min:"1" type:"string" required:"true"`
 
-	// Options that define the structure of the source file(s).
+	// Options that define the structure of the source file(s) including the format
+	// type (formatType), header row (withHeader), data separation character (separator)
+	// and the type of compression (compression).
+	//
+	// formatType is a required attribute and can have the following values:
+	//
+	//    * PARQUET - Parquet source file format.
+	//
+	//    * CSV - CSV source file format.
+	//
+	//    * JSON - JSON source file format.
+	//
+	//    * XML - XML source file format.
+	//
+	// Here is an example of how you could specify the formatParams:
+	//
+	// "formatParams": { "formatType": "CSV", "withHeader": "true", "separator":
+	// ",", "compression":"None" }
+	//
+	// Note that if you only provide formatType as CSV, the rest of the attributes
+	// will automatically default to CSV values as following:
+	//
+	// { "withHeader": "true", "separator": "," }
+	//
+	// For more information about supported file formats, see Supported Data Types
+	// and File Formats (https://docs.aws.amazon.com/finspace/latest/userguide/supported-data-types.html)
+	// in the FinSpace User Guide.
 	//
 	// FormatParams is a required field
 	FormatParams map[string]*string `locationName:"formatParams" type:"map" required:"true"`
 
-	// Options that define the location of the data being ingested.
+	// Options that define the location of the data being ingested (s3SourcePath)
+	// and the source of the changeset (sourceType).
+	//
+	// Both s3SourcePath and sourceType are required attributes.
+	//
+	// Here is an example of how you could specify the sourceParams:
+	//
+	// "sourceParams": { "s3SourcePath": "s3://finspace-landing-us-east-2-bk7gcfvitndqa6ebnvys4d/scratch/wr5hh8pwkpqqkxa4sxrmcw/ingestion/equity.csv",
+	// "sourceType": "S3" }
+	//
+	// The S3 path that you specify must allow the FinSpace role access. To do that,
+	// you first need to configure the IAM policy on S3 bucket. For more information,
+	// see Loading data from an Amazon S3 Bucket using the FinSpace API (https://docs.aws.amazon.com/finspace/latest/data-api/fs-using-the-finspace-api.html#access-s3-buckets)section.
 	//
 	// SourceParams is a required field
 	SourceParams map[string]*string `locationName:"sourceParams" type:"map" required:"true"`
@@ -4761,7 +4863,7 @@ type UpdateDatasetInput struct {
 	// The unique resource identifier for a Dataset.
 	Alias *string `locationName:"alias" min:"1" type:"string"`
 
-	// A token used to ensure idempotency.
+	// A token that ensures idempotency. This token expires in 10 minutes.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// A description for the Dataset.

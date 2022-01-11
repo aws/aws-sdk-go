@@ -10,7 +10,7 @@
     "ClearQuerySuggestions": "<p>Clears existing query suggestions from an index.</p> <p>This deletes existing suggestions only, not the queries in the query log. After you clear suggestions, Amazon Kendra learns new suggestions based on new queries added to the query log from the time you cleared suggestions. If you do not see any new suggestions, then please allow Amazon Kendra to collect enough queries to learn new suggestions.</p> <p> <code>ClearQuerySuggestions</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
     "CreateDataSource": "<p>Creates a data source that you want to use with an Amazon Kendra index. </p> <p>You specify a name, data source connector type and description for your data source. You also specify configuration information for the data source connector.</p> <p> <code>CreateDataSource</code> is a synchronous operation. The operation returns 200 if the data source was successfully created. Otherwise, an exception is raised.</p> <p>Amazon S3 and <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-custom.html\">custom</a> data sources are the only supported data sources in the Amazon Web Services GovCloud (US-West) region.</p>",
     "CreateExperience": "<p>Creates an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
-    "CreateFaq": "<p>Creates an new set of frequently asked question (FAQ) questions and answers.</p>",
+    "CreateFaq": "<p>Creates an new set of frequently asked question (FAQ) questions and answers.</p> <p>Adding FAQs to an index is an asynchronous operation.</p>",
     "CreateIndex": "<p>Creates a new Amazon Kendra index. Index creation is an asynchronous operation. To determine if index creation has completed, check the <code>Status</code> field returned from a call to <code>DescribeIndex</code>. The <code>Status</code> field is set to <code>ACTIVE</code> when the index is ready to use.</p> <p>Once the index is active you can index your documents using the <code>BatchPutDocument</code> operation or using one of the supported data sources. </p>",
     "CreateQuerySuggestionsBlockList": "<p>Creates a block list to exlcude certain queries from suggestions.</p> <p>Any query that contains words or phrases specified in the block list is blocked or filtered out from being shown as a suggestion.</p> <p>You need to provide the file location of your block list text file in your S3 bucket. In your text file, enter each block word or phrase on a separate line.</p> <p>For information on the current quota limits for block lists, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas for Amazon Kendra</a>.</p> <p> <code>CreateQuerySuggestionsBlockList</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
     "CreateThesaurus": "<p>Creates a thesaurus for an index. The thesaurus contains a list of synonyms in Solr format.</p>",
@@ -979,7 +979,7 @@
       }
     },
     "DocumentAttribute": {
-      "base": "<p>A custom attribute value assigned to a document. </p>",
+      "base": "<p>A custom attribute value assigned to a document.</p> <p>For more information on how to create custom document attributes, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/custom-attributes.html\">Custom Attributes</a>.</p>",
       "refs": {
         "AttributeFilter$EqualsTo": "<p>Performs an equals operation on two document attributes.</p>",
         "AttributeFilter$ContainsAll": "<p>Returns true when a document contains all of the specified document attributes. This filter is only applicable to <code>StringListValue</code> metadata.</p>",
@@ -1575,7 +1575,7 @@
       }
     },
     "HookConfiguration": {
-      "base": "<p>Provides the configuration information for invoking a Lambda function in Lambda to alter document metadata and content when ingesting documents into Amazon Kendra. You can configure your Lambda function using <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_PreExtractionHookConfiguration.html\">PreExtractionHookConfiguration</a> if you want to apply advanced alterations on the original or raw documents. If you want to apply advanced alterations on the Amazon Kendra structured documents, you must configure your Lambda function using <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_PostExtractionHookConfiguration.html\">PostExtractionHookConfiguration</a>. You can only invoke one Lambda function. However, this function can invoke other functions it requires.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/custom-document-enrichment.html\">Customizing document metadata during the ingestion process</a>.</p>",
+      "base": "<p>Provides the configuration information for invoking a Lambda function in Lambda to alter document metadata and content when ingesting documents into Amazon Kendra. You can configure your Lambda function using <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_CustomDocumentEnrichmentConfiguration.html\">PreExtractionHookConfiguration</a> if you want to apply advanced alterations on the original or raw documents. If you want to apply advanced alterations on the Amazon Kendra structured documents, you must configure your Lambda function using <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_CustomDocumentEnrichmentConfiguration.html\">PostExtractionHookConfiguration</a>. You can only invoke one Lambda function. However, this function can invoke other functions it requires.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/custom-document-enrichment.html\">Customizing document metadata during the ingestion process</a>.</p>",
       "refs": {
         "CustomDocumentEnrichmentConfiguration$PreExtractionHookConfiguration": "<p>Configuration information for invoking a Lambda function in Lambda on the original or raw documents before extracting their metadata and text. You can use a Lambda function to apply advanced logic for creating, modifying, or deleting document metadata and content. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/custom-document-enrichment.html#advanced-data-manipulation\">Advanced data manipulation</a>.</p>",
         "CustomDocumentEnrichmentConfiguration$PostExtractionHookConfiguration": "<p>Configuration information for invoking a Lambda function in Lambda on the structured documents with their metadata and text extracted. You can use a Lambda function to apply advanced logic for creating, modifying, or deleting document metadata and content. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/custom-document-enrichment.html#advanced-data-manipulation\">Advanced data manipulation</a>.</p>"
@@ -3023,7 +3023,7 @@
         "DescribeQuerySuggestionsConfigResponse$LastClearTime": "<p>Shows the date-time query suggestions for an index was last cleared.</p> <p>After you clear suggestions, Amazon Kendra learns new suggestions based on new queries added to the query log from the time you cleared suggestions. Amazon Kendra only considers re-occurences of a query from the time you cleared suggestions. </p>",
         "DescribeThesaurusResponse$CreatedAt": "<p>The Unix datetime that the thesaurus was created.</p>",
         "DescribeThesaurusResponse$UpdatedAt": "<p>The Unix datetime that the thesaurus was last updated.</p>",
-        "DocumentAttributeValue$DateValue": "<p>A date expressed as an ISO 8601 string.</p> <p>It is important for the time zone to be included in the ISO 8601 date-time format. For example, 20120325T123010+01:00 is the ISO 8601 date-time format for March 25th 2012 at 12:30PM (plus 10 seconds) in Central European Time.</p>",
+        "DocumentAttributeValue$DateValue": "<p>A date expressed as an ISO 8601 string.</p> <p>It is important for the time zone to be included in the ISO 8601 date-time format. For example, 2012-03-25T12:30:10+01:00 is the ISO 8601 date-time format for March 25th 2012 at 12:30PM (plus 10 seconds) in Central European Time.</p>",
         "ExperiencesSummary$CreatedAt": "<p>The date-time your Amazon Kendra experience was created.</p>",
         "FaqSummary$CreatedAt": "<p>The UNIX datetime that the FAQ was added to the index.</p>",
         "FaqSummary$UpdatedAt": "<p>The UNIX datetime that the FAQ was last updated.</p>",
@@ -3130,7 +3130,7 @@
       }
     },
     "UserGroupResolutionConfiguration": {
-      "base": "<p>Provides the configuration information to fetch access levels of groups and users from an Amazon Web Services Single Sign On identity source. This is useful for setting up user context filtering, where Amazon Kendra filters search results for different users based on their group's access to documents. You can also map your users to their groups for user context filtering using the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_PutPrincipalMapping.html\">PutPrincipalMapping operation</a>.</p> <p>To set up an Amazon Web Services SSO identity source in the console to use with Amazon Kendra, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/getting-started-aws-sso.html\">Getting started with an Amazon Web Services SSO identity source</a>. You must also grant the required permissions to use Amazon Web Services SSO with Amazon Kendra. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html#iam-roles-aws-sso\">IAM roles for Amazon Web Services SSO</a>.</p>",
+      "base": "<p>Provides the configuration information to fetch access levels of groups and users from an Amazon Web Services Single Sign On identity source. This is useful for setting up user context filtering, where Amazon Kendra filters search results for different users based on their group's access to documents. You can also map your users to their groups for user context filtering using the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_PutPrincipalMapping.html\">PutPrincipalMapping operation</a>.</p> <p>To set up an Amazon Web Services SSO identity source in the console to use with Amazon Kendra, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/getting-started-aws-sso.html\">Getting started with an Amazon Web Services SSO identity source</a>. You must also grant the required permissions to use Amazon Web Services SSO with Amazon Kendra. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html#iam-roles-aws-sso\">IAM roles for Amazon Web Services SSO</a>.</p> <p>Amazon Kendra currently does not support using <code>UserGroupResolutionConfiguration</code> with an Amazon Web Services organization member account for your Amazon Web Services SSO identify source. You must create your index in the parent account for the organization in order to use <code>UserGroupResolutionConfiguration</code>.</p>",
       "refs": {
         "CreateIndexRequest$UserGroupResolutionConfiguration": "<p>Enables fetching access levels of groups and users from an Amazon Web Services Single Sign On identity source. To configure this, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html\">UserGroupResolutionConfiguration</a>.</p>",
         "DescribeIndexResponse$UserGroupResolutionConfiguration": "<p>Shows whether you have enabled the configuration for fetching access levels of groups and users from an Amazon Web Services Single Sign On identity source.</p>",
@@ -3202,6 +3202,30 @@
       "base": null,
       "refs": {
         "SecurityGroupIdList$member": null
+      }
+    },
+    "Warning": {
+      "base": "<p>The warning code and message that explains a problem with a query.</p>",
+      "refs": {
+        "WarningList$member": null
+      }
+    },
+    "WarningCode": {
+      "base": null,
+      "refs": {
+        "Warning$Code": "<p>The code used to show the type of warning for the query.</p>"
+      }
+    },
+    "WarningList": {
+      "base": null,
+      "refs": {
+        "QueryResult$Warnings": "<p>A list of warning codes and their messages on problems with your query.</p> <p>Amazon Kendra currently only supports one type of warning, which is a warning on invalid syntax used in the query. For examples of invalid query syntax, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/searching-example.html#searching-index-query-syntax\">Searching with advanced query syntax</a>.</p>"
+      }
+    },
+    "WarningMessage": {
+      "base": null,
+      "refs": {
+        "Warning$Message": "<p>The message that explains the problem with the query.</p>"
       }
     },
     "WebCrawlerConfiguration": {

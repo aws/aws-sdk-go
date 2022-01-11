@@ -1,3 +1,19 @@
+Release v1.42.32 (2022-01-11)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service documentation
+* `service/ec2`: Updates service API
+  * EC2 Capacity Reservations now supports RHEL instance platforms (RHEL with SQL Server Standard, RHEL with SQL Server Enterprise, RHEL with SQL Server Web, RHEL with HA, RHEL with HA and SQL Server Standard, RHEL with HA and SQL Server Enterprise)
+* `service/finspace-data`: Updates service documentation
+* `service/iotevents-data`: Updates service documentation
+* `service/kendra`: Updates service API, documentation, and paginators
+  * Amazon Kendra now supports advanced query language and query-less search.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds the db-proxy event type to support subscribing to RDS Proxy events.
+* `service/workspaces`: Updates service API and documentation
+  * Introducing new APIs for Workspaces audio optimization with Amazon Connect: CreateConnectClientAddIn, DescribeConnectClientAddIns, UpdateConnectClientAddIn and DeleteConnectClientAddIn.
+
 Release v1.42.31 (2022-01-10)
 ===
 
