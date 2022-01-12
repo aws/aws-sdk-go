@@ -1,3 +1,16 @@
+Release v1.42.33 (2022-01-12)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * Hpc6a instances are powered by a third-generation AMD EPYC processors (Milan) delivering all-core turbo frequency of 3.4 GHz
+* `service/elasticache`: Updates service documentation
+  * Doc only update for ElastiCache
+* `service/fms`: Updates service API and documentation
+* `service/honeycode`: Updates service API and documentation
+* `service/models.lex.v2`: Updates service API and documentation
+* `service/pi`: Updates service API, documentation, and paginators
+
 Release v1.42.32 (2022-01-11)
 ===
 

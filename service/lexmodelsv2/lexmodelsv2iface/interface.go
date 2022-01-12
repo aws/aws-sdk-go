@@ -124,6 +124,10 @@ type LexModelsV2API interface {
 	DeleteBotVersionWithContext(aws.Context, *lexmodelsv2.DeleteBotVersionInput, ...request.Option) (*lexmodelsv2.DeleteBotVersionOutput, error)
 	DeleteBotVersionRequest(*lexmodelsv2.DeleteBotVersionInput) (*request.Request, *lexmodelsv2.DeleteBotVersionOutput)
 
+	DeleteCustomVocabulary(*lexmodelsv2.DeleteCustomVocabularyInput) (*lexmodelsv2.DeleteCustomVocabularyOutput, error)
+	DeleteCustomVocabularyWithContext(aws.Context, *lexmodelsv2.DeleteCustomVocabularyInput, ...request.Option) (*lexmodelsv2.DeleteCustomVocabularyOutput, error)
+	DeleteCustomVocabularyRequest(*lexmodelsv2.DeleteCustomVocabularyInput) (*request.Request, *lexmodelsv2.DeleteCustomVocabularyOutput)
+
 	DeleteExport(*lexmodelsv2.DeleteExportInput) (*lexmodelsv2.DeleteExportOutput, error)
 	DeleteExportWithContext(aws.Context, *lexmodelsv2.DeleteExportInput, ...request.Option) (*lexmodelsv2.DeleteExportOutput, error)
 	DeleteExportRequest(*lexmodelsv2.DeleteExportInput) (*request.Request, *lexmodelsv2.DeleteExportOutput)
@@ -175,6 +179,10 @@ type LexModelsV2API interface {
 	DescribeBotVersion(*lexmodelsv2.DescribeBotVersionInput) (*lexmodelsv2.DescribeBotVersionOutput, error)
 	DescribeBotVersionWithContext(aws.Context, *lexmodelsv2.DescribeBotVersionInput, ...request.Option) (*lexmodelsv2.DescribeBotVersionOutput, error)
 	DescribeBotVersionRequest(*lexmodelsv2.DescribeBotVersionInput) (*request.Request, *lexmodelsv2.DescribeBotVersionOutput)
+
+	DescribeCustomVocabularyMetadata(*lexmodelsv2.DescribeCustomVocabularyMetadataInput) (*lexmodelsv2.DescribeCustomVocabularyMetadataOutput, error)
+	DescribeCustomVocabularyMetadataWithContext(aws.Context, *lexmodelsv2.DescribeCustomVocabularyMetadataInput, ...request.Option) (*lexmodelsv2.DescribeCustomVocabularyMetadataOutput, error)
+	DescribeCustomVocabularyMetadataRequest(*lexmodelsv2.DescribeCustomVocabularyMetadataInput) (*request.Request, *lexmodelsv2.DescribeCustomVocabularyMetadataOutput)
 
 	DescribeExport(*lexmodelsv2.DescribeExportInput) (*lexmodelsv2.DescribeExportOutput, error)
 	DescribeExportWithContext(aws.Context, *lexmodelsv2.DescribeExportInput, ...request.Option) (*lexmodelsv2.DescribeExportOutput, error)

@@ -12,8 +12,11 @@
     "ListTableColumns": "<p> The ListTableColumns API allows you to retrieve a list of all the columns in a table in a workbook. </p>",
     "ListTableRows": "<p> The ListTableRows API allows you to retrieve a list of all the rows in a table in a workbook. </p>",
     "ListTables": "<p> The ListTables API allows you to retrieve a list of all the tables in a workbook. </p>",
+    "ListTagsForResource": "<p> The ListTagsForResource API allows you to return a resource's tags. </p>",
     "QueryTableRows": "<p> The QueryTableRows API allows you to use a filter formula to query for specific rows in a table. </p>",
-    "StartTableDataImportJob": "<p> The StartTableDataImportJob API allows you to start an import job on a table. This API will only return the id of the job that was started. To find out the status of the import request, you need to call the DescribeTableDataImportJob API. </p>"
+    "StartTableDataImportJob": "<p> The StartTableDataImportJob API allows you to start an import job on a table. This API will only return the id of the job that was started. To find out the status of the import request, you need to call the DescribeTableDataImportJob API. </p>",
+    "TagResource": "<p> The TagResource API allows you to add tags to an ARN-able resource. Resource includes workbook, table, screen and screen-automation. </p>",
+    "UntagResource": "<p> The UntagResource API allows you to removes tags from an ARN-able resource. Resource includes workbook, table, screen and screen-automation. </p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -376,6 +379,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "MaxResults": {
       "base": null,
       "refs": {
@@ -430,6 +443,14 @@
       "refs": {
       }
     },
+    "ResourceArn": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$resourceArn": "<p>The resource's Amazon Resource Name (ARN).</p>",
+        "TagResourceRequest$resourceArn": "<p>The resource's Amazon Resource Name (ARN).</p>",
+        "UntagResourceRequest$resourceArn": "<p>The resource's Amazon Resource Name (ARN).</p>"
+      }
+    },
     "ResourceId": {
       "base": null,
       "refs": {
@@ -444,7 +465,7 @@
         "DescribeTableDataImportJobRequest$workbookId": "<p>The ID of the workbook into which data was imported.</p> <p> If a workbook with the specified id could not be found, this API throws ResourceNotFoundException. </p>",
         "DescribeTableDataImportJobRequest$tableId": "<p>The ID of the table into which data was imported.</p> <p> If a table with the specified id could not be found, this API throws ResourceNotFoundException. </p>",
         "GetScreenDataRequest$workbookId": "<p>The ID of the workbook that contains the screen.</p>",
-        "GetScreenDataRequest$appId": "<p>The ID of the app that contains the screem.</p>",
+        "GetScreenDataRequest$appId": "<p>The ID of the app that contains the screen.</p>",
         "GetScreenDataRequest$screenId": "<p>The ID of the screen.</p>",
         "ImportColumnMap$key": null,
         "InvokeScreenAutomationRequest$workbookId": "<p>The ID of the workbook that contains the screen automation.</p>",
@@ -643,6 +664,42 @@
         "ListTablesResult$tables": "<p> The list of tables in the workbook. </p>"
       }
     },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeysList$member": null,
+        "TagsMap$key": null
+      }
+    },
+    "TagKeysList": {
+      "base": "<p>A list of tag keys</p>",
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p>A list of tag keys to remove from the resource.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "TagsMap$value": null
+      }
+    },
+    "TagsMap": {
+      "base": "<p>A string to string map representing tags</p>",
+      "refs": {
+        "ListTagsForResourceResult$tags": "<p>The resource's tags.</p>",
+        "TagResourceRequest$tags": "<p>A list of tags to apply to the resource.</p>"
+      }
+    },
     "ThrottlingException": {
       "base": "<p>Tps(transactions per second) rate reached.</p>",
       "refs": {
@@ -652,6 +709,16 @@
       "base": null,
       "refs": {
         "TableDataImportJobMetadata$submitTime": "<p>The timestamp when the job was submitted for import.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResult": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateRowData": {

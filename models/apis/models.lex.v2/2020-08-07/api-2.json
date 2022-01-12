@@ -301,6 +301,24 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DeleteCustomVocabulary":{
+      "name":"DeleteCustomVocabulary",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary",
+        "responseCode":202
+      },
+      "input":{"shape":"DeleteCustomVocabularyRequest"},
+      "output":{"shape":"DeleteCustomVocabularyResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DeleteExport":{
       "name":"DeleteExport",
       "http":{
@@ -509,6 +527,23 @@
       },
       "input":{"shape":"DescribeBotVersionRequest"},
       "output":{"shape":"DescribeBotVersionResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeCustomVocabularyMetadata":{
+      "name":"DescribeCustomVocabularyMetadata",
+      "http":{
+        "method":"GET",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary/DEFAULT/metadata",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeCustomVocabularyMetadataRequest"},
+      "output":{"shape":"DescribeCustomVocabularyMetadataResponse"},
       "errors":[
         {"shape":"ThrottlingException"},
         {"shape":"ServiceQuotaExceededException"},
@@ -1107,6 +1142,12 @@
     }
   },
   "shapes":{
+    "AdvancedRecognitionSetting":{
+      "type":"structure",
+      "members":{
+        "audioRecognitionStrategy":{"shape":"AudioRecognitionStrategy"}
+      }
+    },
     "AggregatedUtterancesFilter":{
       "type":"structure",
       "required":[
@@ -1242,6 +1283,10 @@
       "member":{"shape":"AudioLogSetting"},
       "max":1,
       "min":1
+    },
+    "AudioRecognitionStrategy":{
+      "type":"string",
+      "enum":["UseSlotValuesAsCustomVocabulary"]
     },
     "Boolean":{"type":"boolean"},
     "BotAliasHistoryEvent":{
@@ -2230,6 +2275,42 @@
       "max":1000,
       "min":1
     },
+    "CustomVocabularyExportSpecification":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId"
+      ],
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"}
+      }
+    },
+    "CustomVocabularyImportSpecification":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId"
+      ],
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "localeId":{"shape":"LocaleId"}
+      }
+    },
+    "CustomVocabularyStatus":{
+      "type":"string",
+      "enum":[
+        "Ready",
+        "Deleting",
+        "Exporting",
+        "Importing",
+        "Creating"
+      ]
+    },
     "DataPrivacy":{
       "type":"structure",
       "required":["childDirected"],
@@ -2367,6 +2448,40 @@
         "botId":{"shape":"Id"},
         "botVersion":{"shape":"NumericalBotVersion"},
         "botStatus":{"shape":"BotStatus"}
+      }
+    },
+    "DeleteCustomVocabularyRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"DraftBotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        }
+      }
+    },
+    "DeleteCustomVocabularyResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "customVocabularyStatus":{"shape":"CustomVocabularyStatus"}
       }
     },
     "DeleteExportRequest":{
@@ -2777,6 +2892,42 @@
         "creationDateTime":{"shape":"Timestamp"}
       }
     },
+    "DescribeCustomVocabularyMetadataRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"BotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        }
+      }
+    },
+    "DescribeCustomVocabularyMetadataResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "customVocabularyStatus":{"shape":"CustomVocabularyStatus"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"}
+      }
+    },
     "DescribeExportRequest":{
       "type":"structure",
       "required":["exportId"],
@@ -3070,7 +3221,8 @@
       "type":"structure",
       "members":{
         "botExportSpecification":{"shape":"BotExportSpecification"},
-        "botLocaleExportSpecification":{"shape":"BotLocaleExportSpecification"}
+        "botLocaleExportSpecification":{"shape":"BotLocaleExportSpecification"},
+        "customVocabularyExportSpecification":{"shape":"CustomVocabularyExportSpecification"}
       }
     },
     "ExportSortAttribute":{
@@ -3236,7 +3388,10 @@
     },
     "ImportExportFileFormat":{
       "type":"string",
-      "enum":["LexJson"]
+      "enum":[
+        "LexJson",
+        "TSV"
+      ]
     },
     "ImportExportFilePassword":{
       "type":"string",
@@ -3278,8 +3433,17 @@
       "type":"structure",
       "members":{
         "botImportSpecification":{"shape":"BotImportSpecification"},
-        "botLocaleImportSpecification":{"shape":"BotLocaleImportSpecification"}
+        "botLocaleImportSpecification":{"shape":"BotLocaleImportSpecification"},
+        "customVocabularyImportSpecification":{"shape":"CustomVocabularyImportSpecification"}
       }
+    },
+    "ImportResourceType":{
+      "type":"string",
+      "enum":[
+        "Bot",
+        "BotLocale",
+        "CustomVocabulary"
+      ]
     },
     "ImportSortAttribute":{
       "type":"string",
@@ -3314,7 +3478,8 @@
         "importStatus":{"shape":"ImportStatus"},
         "mergeStrategy":{"shape":"MergeStrategy"},
         "creationDateTime":{"shape":"Timestamp"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "importedResourceType":{"shape":"ImportResourceType"}
       }
     },
     "ImportSummaryList":{
@@ -3702,7 +3867,8 @@
         "sortBy":{"shape":"ExportSortBy"},
         "filters":{"shape":"ExportFilters"},
         "maxResults":{"shape":"MaxResults"},
-        "nextToken":{"shape":"NextToken"}
+        "nextToken":{"shape":"NextToken"},
+        "localeId":{"shape":"LocaleId"}
       }
     },
     "ListExportsResponse":{
@@ -3711,7 +3877,8 @@
         "botId":{"shape":"Id"},
         "botVersion":{"shape":"BotVersion"},
         "exportSummaries":{"shape":"ExportSummaryList"},
-        "nextToken":{"shape":"NextToken"}
+        "nextToken":{"shape":"NextToken"},
+        "localeId":{"shape":"LocaleId"}
       }
     },
     "ListImportsRequest":{
@@ -3722,7 +3889,8 @@
         "sortBy":{"shape":"ImportSortBy"},
         "filters":{"shape":"ImportFilters"},
         "maxResults":{"shape":"MaxResults"},
-        "nextToken":{"shape":"NextToken"}
+        "nextToken":{"shape":"NextToken"},
+        "localeId":{"shape":"LocaleId"}
       }
     },
     "ListImportsResponse":{
@@ -3731,7 +3899,8 @@
         "botId":{"shape":"Id"},
         "botVersion":{"shape":"DraftBotVersion"},
         "importSummaries":{"shape":"ImportSummaryList"},
-        "nextToken":{"shape":"NextToken"}
+        "nextToken":{"shape":"NextToken"},
+        "localeId":{"shape":"LocaleId"}
       }
     },
     "ListIntentsRequest":{
@@ -4596,7 +4765,8 @@
       "required":["resolutionStrategy"],
       "members":{
         "resolutionStrategy":{"shape":"SlotValueResolutionStrategy"},
-        "regexFilter":{"shape":"SlotValueRegexFilter"}
+        "regexFilter":{"shape":"SlotValueRegexFilter"},
+        "advancedRecognitionSetting":{"shape":"AdvancedRecognitionSetting"}
       }
     },
     "SortOrder":{
