@@ -6935,7 +6935,7 @@ func (c *ElastiCache) RebootCacheClusterRequest(input *RebootCacheClusterInput) 
 // enabled) clusters.
 //
 // If you make changes to parameters that require a Redis (cluster mode enabled)
-// cluster reboot for the changes to be applied, see Rebooting a Cluster (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.Rebooting.html)
+// cluster reboot for the changes to be applied, see Rebooting a Cluster (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes.rebooting.html)
 // for an alternate process.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -8036,7 +8036,7 @@ type CacheCluster struct {
 	//    M5 node types: cache.m5.large, cache.m5.xlarge, cache.m5.2xlarge, cache.m5.4xlarge,
 	//    cache.m5.12xlarge, cache.m5.24xlarge M4 node types: cache.m4.large, cache.m4.xlarge,
 	//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge T4g node types (available
-	//    only for Redis engine version 5.0.6 onward and for Memcached engine version
+	//    only for Redis engine version 6.0 onward and for Memcached engine version
 	//    1.5.16 onward): cache.t4g.micro, cache.t4g.small, cache.t4g.medium T3
 	//    node types: cache.t3.micro, cache.t3.small, cache.t3.medium T2 node types:
 	//    cache.t2.micro, cache.t2.small, cache.t2.medium Previous generation: (not
@@ -8476,7 +8476,7 @@ func (s *CacheEngineVersion) SetEngineVersion(v string) *CacheEngineVersion {
 //    M5 node types: cache.m5.large, cache.m5.xlarge, cache.m5.2xlarge, cache.m5.4xlarge,
 //    cache.m5.12xlarge, cache.m5.24xlarge M4 node types: cache.m4.large, cache.m4.xlarge,
 //    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge T4g node types (available
-//    only for Redis engine version 5.0.6 onward and for Memcached engine version
+//    only for Redis engine version 6.0 onward and for Memcached engine version
 //    1.5.16 onward): cache.t4g.micro, cache.t4g.small, cache.t4g.medium T3
 //    node types: cache.t3.micro, cache.t3.small, cache.t3.medium T2 node types:
 //    cache.t2.micro, cache.t2.small, cache.t2.medium Previous generation: (not
@@ -9625,7 +9625,7 @@ type CreateCacheClusterInput struct {
 	//    M5 node types: cache.m5.large, cache.m5.xlarge, cache.m5.2xlarge, cache.m5.4xlarge,
 	//    cache.m5.12xlarge, cache.m5.24xlarge M4 node types: cache.m4.large, cache.m4.xlarge,
 	//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge T4g node types (available
-	//    only for Redis engine version 5.0.6 onward and Memcached engine version
+	//    only for Redis engine version 6.0 onward and Memcached engine version
 	//    1.5.16 onward): cache.t4g.micro, cache.t4g.small, cache.t4g.medium T3
 	//    node types: cache.t3.micro, cache.t3.small, cache.t3.medium T2 node types:
 	//    cache.t2.micro, cache.t2.small, cache.t2.medium Previous generation: (not
@@ -10590,7 +10590,7 @@ type CreateReplicationGroupInput struct {
 	//    M5 node types: cache.m5.large, cache.m5.xlarge, cache.m5.2xlarge, cache.m5.4xlarge,
 	//    cache.m5.12xlarge, cache.m5.24xlarge M4 node types: cache.m4.large, cache.m4.xlarge,
 	//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge T4g node types (available
-	//    only for Redis engine version 5.0.6 onward and Memcached engine version
+	//    only for Redis engine version 6.0 onward and Memcached engine version
 	//    1.5.16 onward): cache.t4g.micro, cache.t4g.small, cache.t4g.medium T3
 	//    node types: cache.t3.micro, cache.t3.small, cache.t3.medium T2 node types:
 	//    cache.t2.micro, cache.t2.small, cache.t2.medium Previous generation: (not
@@ -14051,7 +14051,7 @@ type DescribeReservedCacheNodesInput struct {
 	//    M5 node types: cache.m5.large, cache.m5.xlarge, cache.m5.2xlarge, cache.m5.4xlarge,
 	//    cache.m5.12xlarge, cache.m5.24xlarge M4 node types: cache.m4.large, cache.m4.xlarge,
 	//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge T4g node types (available
-	//    only for Redis engine version 5.0.6 onward and for Memcached engine version
+	//    only for Redis engine version 6.0 onward and for Memcached engine version
 	//    1.5.16 onward): cache.t4g.micro, cache.t4g.small, cache.t4g.medium T3
 	//    node types: cache.t3.micro, cache.t3.small, cache.t3.medium T2 node types:
 	//    cache.t2.micro, cache.t2.small, cache.t2.medium Previous generation: (not
@@ -14216,7 +14216,7 @@ type DescribeReservedCacheNodesOfferingsInput struct {
 	//    M5 node types: cache.m5.large, cache.m5.xlarge, cache.m5.2xlarge, cache.m5.4xlarge,
 	//    cache.m5.12xlarge, cache.m5.24xlarge M4 node types: cache.m4.large, cache.m4.xlarge,
 	//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge T4g node types (available
-	//    only for Redis engine version 5.0.6 onward and for Memcached engine version
+	//    only for Redis engine version 6.0 onward and for Memcached engine version
 	//    1.5.16 onward): cache.t4g.micro, cache.t4g.small, cache.t4g.medium T3
 	//    node types: cache.t3.micro, cache.t3.small, cache.t3.medium T2 node types:
 	//    cache.t2.micro, cache.t2.small, cache.t2.medium Previous generation: (not
@@ -19994,7 +19994,7 @@ type ReservedCacheNode struct {
 	//    M5 node types: cache.m5.large, cache.m5.xlarge, cache.m5.2xlarge, cache.m5.4xlarge,
 	//    cache.m5.12xlarge, cache.m5.24xlarge M4 node types: cache.m4.large, cache.m4.xlarge,
 	//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge T4g node types (available
-	//    only for Redis engine version 5.0.6 onward and Memcached engine version
+	//    only for Redis engine version 6.0 onward and Memcached engine version
 	//    1.5.16 onward): cache.t4g.micro, cache.t4g.small, cache.t4g.medium T3
 	//    node types: cache.t3.micro, cache.t3.small, cache.t3.medium T2 node types:
 	//    cache.t2.micro, cache.t2.small, cache.t2.medium Previous generation: (not
@@ -20184,7 +20184,7 @@ type ReservedCacheNodesOffering struct {
 	//    M5 node types: cache.m5.large, cache.m5.xlarge, cache.m5.2xlarge, cache.m5.4xlarge,
 	//    cache.m5.12xlarge, cache.m5.24xlarge M4 node types: cache.m4.large, cache.m4.xlarge,
 	//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge T4g node types (available
-	//    only for Redis engine version 5.0.6 onward and Memcached engine version
+	//    only for Redis engine version 6.0 onward and Memcached engine version
 	//    1.5.16 onward): cache.t4g.micro, cache.t4g.small, cache.t4g.medium T3
 	//    node types: cache.t3.micro, cache.t3.small, cache.t3.medium T2 node types:
 	//    cache.t2.micro, cache.t2.small, cache.t2.medium Previous generation: (not
@@ -20832,7 +20832,7 @@ type Snapshot struct {
 	//    M5 node types: cache.m5.large, cache.m5.xlarge, cache.m5.2xlarge, cache.m5.4xlarge,
 	//    cache.m5.12xlarge, cache.m5.24xlarge M4 node types: cache.m4.large, cache.m4.xlarge,
 	//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge T4g node types (available
-	//    only for Redis engine version 5.0.6 onward and Memcached engine version
+	//    only for Redis engine version 6.0 onward and Memcached engine version
 	//    1.5.16 onward): cache.t4g.micro, cache.t4g.small, cache.t4g.medium T3
 	//    node types: cache.t3.micro, cache.t3.small, cache.t3.medium T2 node types:
 	//    cache.t2.micro, cache.t2.small, cache.t2.medium Previous generation: (not

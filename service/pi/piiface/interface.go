@@ -64,13 +64,37 @@ type PIAPI interface {
 	DescribeDimensionKeysWithContext(aws.Context, *pi.DescribeDimensionKeysInput, ...request.Option) (*pi.DescribeDimensionKeysOutput, error)
 	DescribeDimensionKeysRequest(*pi.DescribeDimensionKeysInput) (*request.Request, *pi.DescribeDimensionKeysOutput)
 
+	DescribeDimensionKeysPages(*pi.DescribeDimensionKeysInput, func(*pi.DescribeDimensionKeysOutput, bool) bool) error
+	DescribeDimensionKeysPagesWithContext(aws.Context, *pi.DescribeDimensionKeysInput, func(*pi.DescribeDimensionKeysOutput, bool) bool, ...request.Option) error
+
 	GetDimensionKeyDetails(*pi.GetDimensionKeyDetailsInput) (*pi.GetDimensionKeyDetailsOutput, error)
 	GetDimensionKeyDetailsWithContext(aws.Context, *pi.GetDimensionKeyDetailsInput, ...request.Option) (*pi.GetDimensionKeyDetailsOutput, error)
 	GetDimensionKeyDetailsRequest(*pi.GetDimensionKeyDetailsInput) (*request.Request, *pi.GetDimensionKeyDetailsOutput)
 
+	GetResourceMetadata(*pi.GetResourceMetadataInput) (*pi.GetResourceMetadataOutput, error)
+	GetResourceMetadataWithContext(aws.Context, *pi.GetResourceMetadataInput, ...request.Option) (*pi.GetResourceMetadataOutput, error)
+	GetResourceMetadataRequest(*pi.GetResourceMetadataInput) (*request.Request, *pi.GetResourceMetadataOutput)
+
 	GetResourceMetrics(*pi.GetResourceMetricsInput) (*pi.GetResourceMetricsOutput, error)
 	GetResourceMetricsWithContext(aws.Context, *pi.GetResourceMetricsInput, ...request.Option) (*pi.GetResourceMetricsOutput, error)
 	GetResourceMetricsRequest(*pi.GetResourceMetricsInput) (*request.Request, *pi.GetResourceMetricsOutput)
+
+	GetResourceMetricsPages(*pi.GetResourceMetricsInput, func(*pi.GetResourceMetricsOutput, bool) bool) error
+	GetResourceMetricsPagesWithContext(aws.Context, *pi.GetResourceMetricsInput, func(*pi.GetResourceMetricsOutput, bool) bool, ...request.Option) error
+
+	ListAvailableResourceDimensions(*pi.ListAvailableResourceDimensionsInput) (*pi.ListAvailableResourceDimensionsOutput, error)
+	ListAvailableResourceDimensionsWithContext(aws.Context, *pi.ListAvailableResourceDimensionsInput, ...request.Option) (*pi.ListAvailableResourceDimensionsOutput, error)
+	ListAvailableResourceDimensionsRequest(*pi.ListAvailableResourceDimensionsInput) (*request.Request, *pi.ListAvailableResourceDimensionsOutput)
+
+	ListAvailableResourceDimensionsPages(*pi.ListAvailableResourceDimensionsInput, func(*pi.ListAvailableResourceDimensionsOutput, bool) bool) error
+	ListAvailableResourceDimensionsPagesWithContext(aws.Context, *pi.ListAvailableResourceDimensionsInput, func(*pi.ListAvailableResourceDimensionsOutput, bool) bool, ...request.Option) error
+
+	ListAvailableResourceMetrics(*pi.ListAvailableResourceMetricsInput) (*pi.ListAvailableResourceMetricsOutput, error)
+	ListAvailableResourceMetricsWithContext(aws.Context, *pi.ListAvailableResourceMetricsInput, ...request.Option) (*pi.ListAvailableResourceMetricsOutput, error)
+	ListAvailableResourceMetricsRequest(*pi.ListAvailableResourceMetricsInput) (*request.Request, *pi.ListAvailableResourceMetricsOutput)
+
+	ListAvailableResourceMetricsPages(*pi.ListAvailableResourceMetricsInput, func(*pi.ListAvailableResourceMetricsOutput, bool) bool) error
+	ListAvailableResourceMetricsPagesWithContext(aws.Context, *pi.ListAvailableResourceMetricsInput, func(*pi.ListAvailableResourceMetricsOutput, bool) bool, ...request.Option) error
 }
 
 var _ PIAPI = (*pi.PI)(nil)

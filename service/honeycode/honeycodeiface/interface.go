@@ -109,6 +109,10 @@ type HoneycodeAPI interface {
 	ListTablesPages(*honeycode.ListTablesInput, func(*honeycode.ListTablesOutput, bool) bool) error
 	ListTablesPagesWithContext(aws.Context, *honeycode.ListTablesInput, func(*honeycode.ListTablesOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*honeycode.ListTagsForResourceInput) (*honeycode.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *honeycode.ListTagsForResourceInput, ...request.Option) (*honeycode.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*honeycode.ListTagsForResourceInput) (*request.Request, *honeycode.ListTagsForResourceOutput)
+
 	QueryTableRows(*honeycode.QueryTableRowsInput) (*honeycode.QueryTableRowsOutput, error)
 	QueryTableRowsWithContext(aws.Context, *honeycode.QueryTableRowsInput, ...request.Option) (*honeycode.QueryTableRowsOutput, error)
 	QueryTableRowsRequest(*honeycode.QueryTableRowsInput) (*request.Request, *honeycode.QueryTableRowsOutput)
@@ -119,6 +123,14 @@ type HoneycodeAPI interface {
 	StartTableDataImportJob(*honeycode.StartTableDataImportJobInput) (*honeycode.StartTableDataImportJobOutput, error)
 	StartTableDataImportJobWithContext(aws.Context, *honeycode.StartTableDataImportJobInput, ...request.Option) (*honeycode.StartTableDataImportJobOutput, error)
 	StartTableDataImportJobRequest(*honeycode.StartTableDataImportJobInput) (*request.Request, *honeycode.StartTableDataImportJobOutput)
+
+	TagResource(*honeycode.TagResourceInput) (*honeycode.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *honeycode.TagResourceInput, ...request.Option) (*honeycode.TagResourceOutput, error)
+	TagResourceRequest(*honeycode.TagResourceInput) (*request.Request, *honeycode.TagResourceOutput)
+
+	UntagResource(*honeycode.UntagResourceInput) (*honeycode.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *honeycode.UntagResourceInput, ...request.Option) (*honeycode.UntagResourceOutput, error)
+	UntagResourceRequest(*honeycode.UntagResourceInput) (*request.Request, *honeycode.UntagResourceOutput)
 }
 
 var _ HoneycodeAPI = (*honeycode.Honeycode)(nil)

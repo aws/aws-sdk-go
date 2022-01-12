@@ -196,6 +196,24 @@
         {"shape":"ValidationException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/tags/{resourceArn}"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"RequestTimeoutException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "QueryTableRows":{
       "name":"QueryTableRows",
       "http":{
@@ -225,6 +243,42 @@
       "errors":[
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tags/{resourceArn}"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"RequestTimeoutException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/tags/{resourceArn}"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"RequestTimeoutException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ThrottlingException"},
@@ -837,6 +891,23 @@
         "workbookCursor":{"shape":"WorkbookCursor"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{
+          "shape":"ResourceArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "ListTagsForResourceResult":{
+      "type":"structure",
+      "members":{
+        "tags":{"shape":"TagsMap"}
+      }
+    },
     "MaxResults":{
       "type":"integer",
       "box":true,
@@ -906,6 +977,12 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "ResourceArn":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^arn:aws:honeycode:.+:[0-9]{12}:.+:.+$"
     },
     "ResourceId":{
       "type":"string",
@@ -1114,6 +1191,49 @@
       "type":"list",
       "member":{"shape":"Table"}
     },
+    "TagKey":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^[^\\n\\r\\x00\\x08\\x0B\\x0C\\x0E\\x1F]*$"
+    },
+    "TagKeysList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":100
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tags"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"ResourceArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tags":{"shape":"TagsMap"}
+      }
+    },
+    "TagResourceResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^[^\\n\\r\\x00\\x08\\x0B\\x0C\\x0E\\x1F]*$"
+    },
+    "TagsMap":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"},
+      "max":100
+    },
     "ThrottlingException":{
       "type":"structure",
       "members":{
@@ -1123,6 +1243,30 @@
       "exception":true
     },
     "TimestampInMillis":{"type":"timestamp"},
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"ResourceArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tagKeys":{
+          "shape":"TagKeysList",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
+      }
+    },
+    "UntagResourceResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateRowData":{
       "type":"structure",
       "required":[

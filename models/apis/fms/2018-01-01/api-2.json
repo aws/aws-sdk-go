@@ -1011,7 +1011,7 @@
     },
     "ManagedServiceData":{
       "type":"string",
-      "max":4096,
+      "max":8192,
       "min":1,
       "pattern":".*"
     },

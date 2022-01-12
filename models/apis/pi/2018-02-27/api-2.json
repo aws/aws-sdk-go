@@ -42,6 +42,20 @@
         {"shape":"NotAuthorizedException"}
       ]
     },
+    "GetResourceMetadata":{
+      "name":"GetResourceMetadata",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetResourceMetadataRequest"},
+      "output":{"shape":"GetResourceMetadataResponse"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"NotAuthorizedException"}
+      ]
+    },
     "GetResourceMetrics":{
       "name":"GetResourceMetrics",
       "http":{
@@ -55,9 +69,48 @@
         {"shape":"InternalServiceError"},
         {"shape":"NotAuthorizedException"}
       ]
+    },
+    "ListAvailableResourceDimensions":{
+      "name":"ListAvailableResourceDimensions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListAvailableResourceDimensionsRequest"},
+      "output":{"shape":"ListAvailableResourceDimensionsResponse"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"NotAuthorizedException"}
+      ]
+    },
+    "ListAvailableResourceMetrics":{
+      "name":"ListAvailableResourceMetrics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListAvailableResourceMetricsRequest"},
+      "output":{"shape":"ListAvailableResourceMetricsResponse"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"NotAuthorizedException"}
+      ]
     }
   },
   "shapes":{
+    "AdditionalMetricsList":{
+      "type":"list",
+      "member":{"shape":"RequestString"},
+      "max":30,
+      "min":1
+    },
+    "AdditionalMetricsMap":{
+      "type":"map",
+      "key":{"shape":"RequestString"},
+      "value":{"shape":"Double"}
+    },
     "DataPoint":{
       "type":"structure",
       "required":[
@@ -91,6 +144,7 @@
         "Metric":{"shape":"RequestString"},
         "PeriodInSeconds":{"shape":"Integer"},
         "GroupBy":{"shape":"DimensionGroup"},
+        "AdditionalMetrics":{"shape":"AdditionalMetricsList"},
         "PartitionBy":{"shape":"DimensionGroup"},
         "Filter":{"shape":"MetricQueryFilterMap"},
         "MaxResults":{"shape":"MaxResults"},
@@ -107,6 +161,11 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "Description":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
     "DetailStatus":{
       "type":"string",
       "enum":[
@@ -114,6 +173,16 @@
         "PROCESSING",
         "UNAVAILABLE"
       ]
+    },
+    "DimensionDetail":{
+      "type":"structure",
+      "members":{
+        "Identifier":{"shape":"String"}
+      }
+    },
+    "DimensionDetailList":{
+      "type":"list",
+      "member":{"shape":"DimensionDetail"}
     },
     "DimensionGroup":{
       "type":"structure",
@@ -124,11 +193,23 @@
         "Limit":{"shape":"Limit"}
       }
     },
+    "DimensionGroupDetail":{
+      "type":"structure",
+      "members":{
+        "Group":{"shape":"String"},
+        "Dimensions":{"shape":"DimensionDetailList"}
+      }
+    },
+    "DimensionGroupDetailList":{
+      "type":"list",
+      "member":{"shape":"DimensionGroupDetail"}
+    },
     "DimensionKeyDescription":{
       "type":"structure",
       "members":{
         "Dimensions":{"shape":"DimensionMap"},
         "Total":{"shape":"Double"},
+        "AdditionalMetrics":{"shape":"AdditionalMetricsMap"},
         "Partitions":{"shape":"MetricValuesList"}
       }
     },
@@ -153,8 +234,36 @@
       "key":{"shape":"RequestString"},
       "value":{"shape":"RequestString"}
     },
+    "DimensionsMetricList":{
+      "type":"list",
+      "member":{"shape":"RequestString"},
+      "max":5,
+      "min":1
+    },
     "Double":{"type":"double"},
     "ErrorString":{"type":"string"},
+    "FeatureMetadata":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"FeatureStatus"}
+      }
+    },
+    "FeatureMetadataMap":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"FeatureMetadata"}
+    },
+    "FeatureStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED",
+        "UNSUPPORTED",
+        "ENABLED_PENDING_REBOOT",
+        "DISABLED_PENDING_REBOOT",
+        "UNKNOWN"
+      ]
+    },
     "GetDimensionKeyDetailsRequest":{
       "type":"structure",
       "required":[
@@ -175,6 +284,24 @@
       "type":"structure",
       "members":{
         "Dimensions":{"shape":"DimensionKeyDetailList"}
+      }
+    },
+    "GetResourceMetadataRequest":{
+      "type":"structure",
+      "required":[
+        "ServiceType",
+        "Identifier"
+      ],
+      "members":{
+        "ServiceType":{"shape":"ServiceType"},
+        "Identifier":{"shape":"RequestString"}
+      }
+    },
+    "GetResourceMetadataResponse":{
+      "type":"structure",
+      "members":{
+        "Identifier":{"shape":"String"},
+        "Features":{"shape":"FeatureMetadataMap"}
       }
     },
     "GetResourceMetricsRequest":{
@@ -235,10 +362,65 @@
       "max":10,
       "min":1
     },
+    "ListAvailableResourceDimensionsRequest":{
+      "type":"structure",
+      "required":[
+        "ServiceType",
+        "Identifier",
+        "Metrics"
+      ],
+      "members":{
+        "ServiceType":{"shape":"ServiceType"},
+        "Identifier":{"shape":"RequestString"},
+        "Metrics":{"shape":"DimensionsMetricList"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAvailableResourceDimensionsResponse":{
+      "type":"structure",
+      "members":{
+        "MetricDimensions":{"shape":"MetricDimensionsList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAvailableResourceMetricsRequest":{
+      "type":"structure",
+      "required":[
+        "ServiceType",
+        "Identifier",
+        "MetricTypes"
+      ],
+      "members":{
+        "ServiceType":{"shape":"ServiceType"},
+        "Identifier":{"shape":"RequestString"},
+        "MetricTypes":{"shape":"MetricTypeList"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListAvailableResourceMetricsResponse":{
+      "type":"structure",
+      "members":{
+        "Metrics":{"shape":"ResponseResourceMetricList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "MaxResults":{
       "type":"integer",
       "max":20,
       "min":0
+    },
+    "MetricDimensionGroups":{
+      "type":"structure",
+      "members":{
+        "Metric":{"shape":"String"},
+        "Groups":{"shape":"DimensionGroupDetailList"}
+      }
+    },
+    "MetricDimensionsList":{
+      "type":"list",
+      "member":{"shape":"MetricDimensionGroups"}
     },
     "MetricKeyDataPoints":{
       "type":"structure",
@@ -270,6 +452,10 @@
       "member":{"shape":"MetricQuery"},
       "max":15,
       "min":1
+    },
+    "MetricTypeList":{
+      "type":"list",
+      "member":{"shape":"RequestString"}
     },
     "MetricValuesList":{
       "type":"list",
@@ -317,6 +503,14 @@
       "type":"list",
       "member":{"shape":"ResponsePartitionKey"}
     },
+    "ResponseResourceMetric":{
+      "type":"structure",
+      "members":{
+        "Metric":{"shape":"String"},
+        "Description":{"shape":"Description"},
+        "Unit":{"shape":"String"}
+      }
+    },
     "ResponseResourceMetricKey":{
       "type":"structure",
       "required":["Metric"],
@@ -325,9 +519,16 @@
         "Dimensions":{"shape":"DimensionMap"}
       }
     },
+    "ResponseResourceMetricList":{
+      "type":"list",
+      "member":{"shape":"ResponseResourceMetric"}
+    },
     "ServiceType":{
       "type":"string",
-      "enum":["RDS"]
+      "enum":[
+        "RDS",
+        "DOCDB"
+      ]
     },
     "String":{
       "type":"string",

@@ -7264,11 +7264,17 @@ func (s *PartialMatch) SetTargetViolationReasons(v []*string) *PartialMatch {
 type Policy struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether Firewall Manager should delete Firewall Manager managed
-	// resources, such as web ACLs and security groups, when they are not in use
-	// by the Firewall Manager policy. By default, Firewall Manager doesn't delete
-	// unused Firewall Manager managed resources. This option is not available for
-	// Shield Advanced or WAF Classic policies.
+	// Indicates whether Firewall Manager should automatically remove protections
+	// from resources that leave the policy scope and clean up resources that Firewall
+	// Manager is managing for accounts when those accounts leave policy scope.
+	// For example, Firewall Manager will disassociate a Firewall Manager managed
+	// web ACL from a protected customer resource when the customer resource leaves
+	// policy scope.
+	//
+	// By default, Firewall Manager doesn't remove protections or delete Firewall
+	// Manager managed resources.
+	//
+	// This option is not available for Shield Advanced or WAF Classic policies.
 	DeleteUnusedFMManagedResources *bool `type:"boolean"`
 
 	// Specifies the Amazon Web Services account IDs and Organizations organizational
@@ -7354,13 +7360,13 @@ type Policy struct {
 	// To apply this policy to multiple resource types, specify a resource type
 	// of ResourceTypeList and then specify the resource types in a ResourceTypeList.
 	//
-	// For WAF and Shield Advanced, example resource types include AWS::ElasticLoadBalancingV2::LoadBalancer
-	// and AWS::CloudFront::Distribution. For a security group common policy, valid
-	// values are AWS::EC2::NetworkInterface and AWS::EC2::Instance. For a security
-	// group content audit policy, valid values are AWS::EC2::SecurityGroup, AWS::EC2::NetworkInterface,
-	// and AWS::EC2::Instance. For a security group usage audit policy, the value
-	// is AWS::EC2::SecurityGroup. For an Network Firewall policy or DNS Firewall
-	// policy, the value is AWS::EC2::VPC.
+	// For WAF and Shield Advanced, resource types include AWS::ElasticLoadBalancingV2::LoadBalancer,
+	// AWS::ElasticLoadBalancing::LoadBalancer, AWS::EC2::EIP, and AWS::CloudFront::Distribution.
+	// For a security group common policy, valid values are AWS::EC2::NetworkInterface
+	// and AWS::EC2::Instance. For a security group content audit policy, valid
+	// values are AWS::EC2::SecurityGroup, AWS::EC2::NetworkInterface, and AWS::EC2::Instance.
+	// For a security group usage audit policy, the value is AWS::EC2::SecurityGroup.
+	// For an Network Firewall policy or DNS Firewall policy, the value is AWS::EC2::VPC.
 	//
 	// ResourceType is a required field
 	ResourceType *string `min:"1" type:"string" required:"true"`
@@ -7703,11 +7709,17 @@ func (s *PolicyComplianceStatus) SetPolicyOwner(v string) *PolicyComplianceStatu
 type PolicySummary struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether Firewall Manager should delete Firewall Manager managed
-	// resources, such as web ACLs and security groups, when they are not in use
-	// by the Firewall Manager policy. By default, Firewall Manager doesn't delete
-	// unused Firewall Manager managed resources. This option is not available for
-	// Shield Advanced or WAF Classic policies.
+	// Indicates whether Firewall Manager should automatically remove protections
+	// from resources that leave the policy scope and clean up resources that Firewall
+	// Manager is managing for accounts when those accounts leave policy scope.
+	// For example, Firewall Manager will disassociate a Firewall Manager managed
+	// web ACL from a protected customer resource when the customer resource leaves
+	// policy scope.
+	//
+	// By default, Firewall Manager doesn't remove protections or delete Firewall
+	// Manager managed resources.
+	//
+	// This option is not available for Shield Advanced or WAF Classic policies.
 	DeleteUnusedFMManagedResources *bool `type:"boolean"`
 
 	// The Amazon Resource Name (ARN) of the specified policy.
@@ -9150,7 +9162,7 @@ type SecurityServicePolicyData struct {
 	_ struct{} `type:"structure"`
 
 	// Details about the service that are specific to the service type, in JSON
-	// format. For service type SHIELD_ADVANCED, this is an empty string.
+	// format.
 	//
 	//    * Example: DNS_FIREWALL "{\"type\":\"DNS_FIREWALL\",\"preProcessRuleGroups\":[{\"ruleGroupId\":\"rslvr-frg-1\",\"priority\":10}],\"postProcessRuleGroups\":[{\"ruleGroupId\":\"rslvr-frg-2\",\"priority\":9911}]}"
 	//    Valid values for preProcessRuleGroups are between 1 and 99. Valid values
@@ -9158,6 +9170,17 @@ type SecurityServicePolicyData struct {
 	//
 	//    * Example: NETWORK_FIREWALL "{\"type\":\"NETWORK_FIREWALL\",\"networkFirewallStatelessRuleGroupReferences\":[{\"resourceARN\":\"arn:aws:network-firewall:us-west-1:1234567891011:stateless-rulegroup/rulegroup2\",\"priority\":10}],\"networkFirewallStatelessDefaultActions\":[\"aws:pass\",\"custom1\"],\"networkFirewallStatelessFragmentDefaultActions\":[\"custom2\",\"aws:pass\"],\"networkFirewallStatelessCustomActions\":[{\"actionName\":\"custom1\",\"actionDefinition\":{\"publishMetricAction\":{\"dimensions\":[{\"value\":\"dimension1\"}]}}},{\"actionName\":\"custom2\",\"actionDefinition\":{\"publishMetricAction\":{\"dimensions\":[{\"value\":\"dimension2\"}]}}}],\"networkFirewallStatefulRuleGroupReferences\":[{\"resourceARN\":\"arn:aws:network-firewall:us-west-1:1234567891011:stateful-rulegroup/rulegroup1\"}],\"networkFirewallOrchestrationConfig\":{\"singleFirewallEndpointPerVPC\":true,\"allowedIPV4CidrList\":[\"10.24.34.0/28\"]}
 	//    }"
+	//
+	//    * Specification for SHIELD_ADVANCED for Amazon CloudFront distributions
+	//    "{\"type\":\"SHIELD_ADVANCED\",\"automaticResponseConfiguration\": {\"automaticResponseStatus\":\"ENABLED|IGNORED|DISABLED\",
+	//    \"automaticResponseAction\":\"BLOCK|COUNT\"}, \"overrideCustomerWebaclClassic\":true|false}"
+	//    For example: "{\"type\":\"SHIELD_ADVANCED\",\"automaticResponseConfiguration\":
+	//    {\"automaticResponseStatus\":\"ENABLED\", \"automaticResponseAction\":\"COUNT\"}}"
+	//    The default value for automaticResponseStatus is IGNORED. The value for
+	//    automaticResponseAction is only required when automaticResponseStatus
+	//    is set to ENABLED. The default value for overrideCustomerWebaclClassic
+	//    is false. For other resource types that you can protect with a Shield
+	//    Advanced policy, this ManagedServiceData configuration is an empty string.
 	//
 	//    * Example: WAFV2 "{\"type\":\"WAFV2\",\"preProcessRuleGroups\":[{\"ruleGroupArn\":null,\"overrideAction\":{\"type\":\"NONE\"},\"managedRuleGroupIdentifier\":{\"version\":null,\"vendorName\":\"AWS\",\"managedRuleGroupName\":\"AWSManagedRulesAmazonIpReputationList\"},\"ruleGroupType\":\"ManagedRuleGroup\",\"excludeRules\":[{\"name\":\"NoUserAgent_HEADER\"}]}],\"postProcessRuleGroups\":[],\"defaultAction\":{\"type\":\"ALLOW\"},\"overrideCustomerWebACLAssociation\":false,\"loggingConfiguration\":{\"logDestinationConfigs\":[\"arn:aws:firehose:us-west-2:12345678912:deliverystream/aws-waf-logs-fms-admin-destination\"],\"redactedFields\":[{\"redactedFieldType\":\"SingleHeader\",\"redactedFieldValue\":\"Cookies\"},{\"redactedFieldType\":\"Method\"}]}}"
 	//    In the loggingConfiguration, you can specify one logDestinationConfigs,

@@ -43,6 +43,12 @@ func (c *PI) DescribeDimensionKeysRequest(input *DescribeDimensionKeysInput) (re
 		Name:       opDescribeDimensionKeys,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -100,6 +106,58 @@ func (c *PI) DescribeDimensionKeysWithContext(ctx aws.Context, input *DescribeDi
 	return out, req.Send()
 }
 
+// DescribeDimensionKeysPages iterates over the pages of a DescribeDimensionKeys operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDimensionKeys method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDimensionKeys operation.
+//    pageNum := 0
+//    err := client.DescribeDimensionKeysPages(params,
+//        func(page *pi.DescribeDimensionKeysOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *PI) DescribeDimensionKeysPages(input *DescribeDimensionKeysInput, fn func(*DescribeDimensionKeysOutput, bool) bool) error {
+	return c.DescribeDimensionKeysPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeDimensionKeysPagesWithContext same as DescribeDimensionKeysPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PI) DescribeDimensionKeysPagesWithContext(ctx aws.Context, input *DescribeDimensionKeysInput, fn func(*DescribeDimensionKeysOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeDimensionKeysInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeDimensionKeysRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeDimensionKeysOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetDimensionKeyDetails = "GetDimensionKeyDetails"
 
 // GetDimensionKeyDetailsRequest generates a "aws/request.Request" representing the
@@ -146,7 +204,7 @@ func (c *PI) GetDimensionKeyDetailsRequest(input *GetDimensionKeyDetailsInput) (
 //
 // Get the attributes of the specified dimension group for a DB instance or
 // data source. For example, if you specify a SQL ID, GetDimensionKeyDetails
-// retrieves the full text of the dimension db.sql.statement associated with
+// retrieves the full text of the dimension db.sql.statementcassociated with
 // this ID. This operation is useful because GetResourceMetrics and DescribeDimensionKeys
 // don't support retrieval of large SQL statement text.
 //
@@ -189,6 +247,92 @@ func (c *PI) GetDimensionKeyDetailsWithContext(ctx aws.Context, input *GetDimens
 	return out, req.Send()
 }
 
+const opGetResourceMetadata = "GetResourceMetadata"
+
+// GetResourceMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the GetResourceMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResourceMetadata for more information on using the GetResourceMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetResourceMetadataRequest method.
+//    req, resp := client.GetResourceMetadataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pi-2018-02-27/GetResourceMetadata
+func (c *PI) GetResourceMetadataRequest(input *GetResourceMetadataInput) (req *request.Request, output *GetResourceMetadataOutput) {
+	op := &request.Operation{
+		Name:       opGetResourceMetadata,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetResourceMetadataInput{}
+	}
+
+	output = &GetResourceMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResourceMetadata API operation for AWS Performance Insights.
+//
+// Retrieve the metadata for different features. For example, the metadata might
+// indicate that a feature is turned on or off on a specific DB instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Performance Insights's
+// API operation GetResourceMetadata for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidArgumentException
+//   One of the arguments provided is invalid for this request.
+//
+//   * InternalServiceError
+//   The request failed due to an unknown error.
+//
+//   * NotAuthorizedException
+//   The user is not authorized to perform this request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pi-2018-02-27/GetResourceMetadata
+func (c *PI) GetResourceMetadata(input *GetResourceMetadataInput) (*GetResourceMetadataOutput, error) {
+	req, out := c.GetResourceMetadataRequest(input)
+	return out, req.Send()
+}
+
+// GetResourceMetadataWithContext is the same as GetResourceMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResourceMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PI) GetResourceMetadataWithContext(ctx aws.Context, input *GetResourceMetadataInput, opts ...request.Option) (*GetResourceMetadataOutput, error) {
+	req, out := c.GetResourceMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetResourceMetrics = "GetResourceMetrics"
 
 // GetResourceMetricsRequest generates a "aws/request.Request" representing the
@@ -220,6 +364,12 @@ func (c *PI) GetResourceMetricsRequest(input *GetResourceMetricsInput) (req *req
 		Name:       opGetResourceMetrics,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -279,6 +429,346 @@ func (c *PI) GetResourceMetricsWithContext(ctx aws.Context, input *GetResourceMe
 	return out, req.Send()
 }
 
+// GetResourceMetricsPages iterates over the pages of a GetResourceMetrics operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetResourceMetrics method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetResourceMetrics operation.
+//    pageNum := 0
+//    err := client.GetResourceMetricsPages(params,
+//        func(page *pi.GetResourceMetricsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *PI) GetResourceMetricsPages(input *GetResourceMetricsInput, fn func(*GetResourceMetricsOutput, bool) bool) error {
+	return c.GetResourceMetricsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetResourceMetricsPagesWithContext same as GetResourceMetricsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PI) GetResourceMetricsPagesWithContext(ctx aws.Context, input *GetResourceMetricsInput, fn func(*GetResourceMetricsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetResourceMetricsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetResourceMetricsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetResourceMetricsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListAvailableResourceDimensions = "ListAvailableResourceDimensions"
+
+// ListAvailableResourceDimensionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAvailableResourceDimensions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAvailableResourceDimensions for more information on using the ListAvailableResourceDimensions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAvailableResourceDimensionsRequest method.
+//    req, resp := client.ListAvailableResourceDimensionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pi-2018-02-27/ListAvailableResourceDimensions
+func (c *PI) ListAvailableResourceDimensionsRequest(input *ListAvailableResourceDimensionsInput) (req *request.Request, output *ListAvailableResourceDimensionsOutput) {
+	op := &request.Operation{
+		Name:       opListAvailableResourceDimensions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAvailableResourceDimensionsInput{}
+	}
+
+	output = &ListAvailableResourceDimensionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAvailableResourceDimensions API operation for AWS Performance Insights.
+//
+// Retrieve the dimensions that can be queried for each specified metric type
+// on a specified DB instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Performance Insights's
+// API operation ListAvailableResourceDimensions for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidArgumentException
+//   One of the arguments provided is invalid for this request.
+//
+//   * InternalServiceError
+//   The request failed due to an unknown error.
+//
+//   * NotAuthorizedException
+//   The user is not authorized to perform this request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pi-2018-02-27/ListAvailableResourceDimensions
+func (c *PI) ListAvailableResourceDimensions(input *ListAvailableResourceDimensionsInput) (*ListAvailableResourceDimensionsOutput, error) {
+	req, out := c.ListAvailableResourceDimensionsRequest(input)
+	return out, req.Send()
+}
+
+// ListAvailableResourceDimensionsWithContext is the same as ListAvailableResourceDimensions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAvailableResourceDimensions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PI) ListAvailableResourceDimensionsWithContext(ctx aws.Context, input *ListAvailableResourceDimensionsInput, opts ...request.Option) (*ListAvailableResourceDimensionsOutput, error) {
+	req, out := c.ListAvailableResourceDimensionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAvailableResourceDimensionsPages iterates over the pages of a ListAvailableResourceDimensions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAvailableResourceDimensions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAvailableResourceDimensions operation.
+//    pageNum := 0
+//    err := client.ListAvailableResourceDimensionsPages(params,
+//        func(page *pi.ListAvailableResourceDimensionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *PI) ListAvailableResourceDimensionsPages(input *ListAvailableResourceDimensionsInput, fn func(*ListAvailableResourceDimensionsOutput, bool) bool) error {
+	return c.ListAvailableResourceDimensionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAvailableResourceDimensionsPagesWithContext same as ListAvailableResourceDimensionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PI) ListAvailableResourceDimensionsPagesWithContext(ctx aws.Context, input *ListAvailableResourceDimensionsInput, fn func(*ListAvailableResourceDimensionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAvailableResourceDimensionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAvailableResourceDimensionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAvailableResourceDimensionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListAvailableResourceMetrics = "ListAvailableResourceMetrics"
+
+// ListAvailableResourceMetricsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAvailableResourceMetrics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAvailableResourceMetrics for more information on using the ListAvailableResourceMetrics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAvailableResourceMetricsRequest method.
+//    req, resp := client.ListAvailableResourceMetricsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pi-2018-02-27/ListAvailableResourceMetrics
+func (c *PI) ListAvailableResourceMetricsRequest(input *ListAvailableResourceMetricsInput) (req *request.Request, output *ListAvailableResourceMetricsOutput) {
+	op := &request.Operation{
+		Name:       opListAvailableResourceMetrics,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAvailableResourceMetricsInput{}
+	}
+
+	output = &ListAvailableResourceMetricsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAvailableResourceMetrics API operation for AWS Performance Insights.
+//
+// Retrieve metrics of the specified types that can be queried for a specified
+// DB instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Performance Insights's
+// API operation ListAvailableResourceMetrics for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidArgumentException
+//   One of the arguments provided is invalid for this request.
+//
+//   * InternalServiceError
+//   The request failed due to an unknown error.
+//
+//   * NotAuthorizedException
+//   The user is not authorized to perform this request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pi-2018-02-27/ListAvailableResourceMetrics
+func (c *PI) ListAvailableResourceMetrics(input *ListAvailableResourceMetricsInput) (*ListAvailableResourceMetricsOutput, error) {
+	req, out := c.ListAvailableResourceMetricsRequest(input)
+	return out, req.Send()
+}
+
+// ListAvailableResourceMetricsWithContext is the same as ListAvailableResourceMetrics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAvailableResourceMetrics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PI) ListAvailableResourceMetricsWithContext(ctx aws.Context, input *ListAvailableResourceMetricsInput, opts ...request.Option) (*ListAvailableResourceMetricsOutput, error) {
+	req, out := c.ListAvailableResourceMetricsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAvailableResourceMetricsPages iterates over the pages of a ListAvailableResourceMetrics operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAvailableResourceMetrics method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAvailableResourceMetrics operation.
+//    pageNum := 0
+//    err := client.ListAvailableResourceMetricsPages(params,
+//        func(page *pi.ListAvailableResourceMetricsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *PI) ListAvailableResourceMetricsPages(input *ListAvailableResourceMetricsInput, fn func(*ListAvailableResourceMetricsOutput, bool) bool) error {
+	return c.ListAvailableResourceMetricsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAvailableResourceMetricsPagesWithContext same as ListAvailableResourceMetricsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PI) ListAvailableResourceMetricsPagesWithContext(ctx aws.Context, input *ListAvailableResourceMetricsInput, fn func(*ListAvailableResourceMetricsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAvailableResourceMetricsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAvailableResourceMetricsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAvailableResourceMetricsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 // A timestamp, and a single numerical value, which together represent a measurement
 // at a particular point in time.
 type DataPoint struct {
@@ -328,6 +818,12 @@ func (s *DataPoint) SetValue(v float64) *DataPoint {
 type DescribeDimensionKeysInput struct {
 	_ struct{} `type:"structure"`
 
+	// Additional metrics for the top N dimension keys. If the specified dimension
+	// group in the GroupBy parameter is db.sql_tokenized, you can specify per-SQL
+	// metrics to get the values for the top N SQL digests. The response syntax
+	// is "AdditionalMetrics" : { "string" : "string" }.
+	AdditionalMetrics []*string `min:"1" type:"list"`
+
 	// The date and time specifying the end of the requested time series data. The
 	// value specified is exclusive, which means that data points less than (but
 	// not equal to) EndTime are returned.
@@ -354,11 +850,11 @@ type DescribeDimensionKeysInput struct {
 	// GroupBy is a required field
 	GroupBy *DimensionGroup `type:"structure" required:"true"`
 
-	// An immutable, AWS Region-unique identifier for a data source. Performance
-	// Insights gathers metrics from this data source.
+	// An immutable, Amazon Web Services Region-unique identifier for a data source.
+	// Performance Insights gathers metrics from this data source.
 	//
 	// To use an Amazon RDS instance as a data source, you specify its DbiResourceId
-	// value. For example, specify db-FAIHNTYBKTGAUSUZQYPDS2GW4A
+	// value. For example, specify db-FAIHNTYBKTGAUSUZQYPDS2GW4A.
 	//
 	// Identifier is a required field
 	Identifier *string `type:"string" required:"true"`
@@ -416,8 +912,8 @@ type DescribeDimensionKeysInput struct {
 	// response.
 	PeriodInSeconds *int64 `type:"integer"`
 
-	// The AWS service for which Performance Insights will return metrics. The only
-	// valid value for ServiceType is RDS.
+	// The Amazon Web Services service for which Performance Insights will return
+	// metrics. The only valid value for ServiceType is RDS.
 	//
 	// ServiceType is a required field
 	ServiceType *string `type:"string" required:"true" enum:"ServiceType"`
@@ -454,6 +950,9 @@ func (s DescribeDimensionKeysInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeDimensionKeysInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeDimensionKeysInput"}
+	if s.AdditionalMetrics != nil && len(s.AdditionalMetrics) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AdditionalMetrics", 1))
+	}
 	if s.EndTime == nil {
 		invalidParams.Add(request.NewErrParamRequired("EndTime"))
 	}
@@ -490,6 +989,12 @@ func (s *DescribeDimensionKeysInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAdditionalMetrics sets the AdditionalMetrics field's value.
+func (s *DescribeDimensionKeysInput) SetAdditionalMetrics(v []*string) *DescribeDimensionKeysInput {
+	s.AdditionalMetrics = v
+	return s
 }
 
 // SetEndTime sets the EndTime field's value.
@@ -574,9 +1079,10 @@ type DescribeDimensionKeysOutput struct {
 	// The dimension keys that were requested.
 	Keys []*DimensionKeyDescription `type:"list"`
 
-	// An optional pagination token provided by a previous request. If this parameter
-	// is specified, the response includes only records beyond the token, up to
-	// the value specified by MaxRecords.
+	// A pagination token that indicates the response didn’t return all available
+	// records because MaxRecords was specified in the previous request. To get
+	// the remaining records, specify NextToken in a separate request with this
+	// value.
 	NextToken *string `min:"1" type:"string"`
 
 	// If PartitionBy was present in the request, PartitionKeys contains the breakdown
@@ -632,6 +1138,38 @@ func (s *DescribeDimensionKeysOutput) SetPartitionKeys(v []*ResponsePartitionKey
 	return s
 }
 
+// The information about a dimension.
+type DimensionDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of a dimension.
+	Identifier *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DimensionDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DimensionDetail) GoString() string {
+	return s.String()
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *DimensionDetail) SetIdentifier(v string) *DimensionDetail {
+	s.Identifier = &v
+	return s
+}
+
 // A logical grouping of Performance Insights metrics for a related subject
 // area. For example, the db.sql dimension group consists of the following dimensions:
 // db.sql.id, db.sql.db_id, db.sql.statement, and db.sql.tokenized_id.
@@ -655,8 +1193,8 @@ type DimensionGroup struct {
 	//    * db.host.name - The host name of the connected client (all engines)
 	//
 	//    * db.name - The name of the database to which the client is connected
-	//    (only Aurora PostgreSQL, RDS PostgreSQL, Aurora MySQL, RDS MySQL, and
-	//    MariaDB)
+	//    (only Aurora PostgreSQL, Amazon RDS PostgreSQL, Aurora MySQL, Amazon RDS
+	//    MySQL, and MariaDB)
 	//
 	//    * db.session_type.name - The type of the current session (only Aurora
 	//    PostgreSQL and RDS PostgreSQL)
@@ -694,7 +1232,8 @@ type DimensionGroup struct {
 	// The name of the dimension group. Valid values are:
 	//
 	//    * db - The name of the database to which the client is connected (only
-	//    Aurora PostgreSQL, RDS PostgreSQL, Aurora MySQL, RDS MySQL, and MariaDB)
+	//    Aurora PostgreSQL, Amazon RDS PostgreSQL, Aurora MySQL, Amazon RDS MySQL,
+	//    and MariaDB)
 	//
 	//    * db.application - The name of the application that is connected to the
 	//    database (only Aurora PostgreSQL and RDS PostgreSQL)
@@ -778,10 +1317,54 @@ func (s *DimensionGroup) SetLimit(v int64) *DimensionGroup {
 	return s
 }
 
-// An array of descriptions and aggregated values for each dimension within
-// a dimension group.
+// Information about dimensions within a dimension group.
+type DimensionGroupDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The dimensions within a dimension group.
+	Dimensions []*DimensionDetail `type:"list"`
+
+	// The name of the dimension group.
+	Group *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DimensionGroupDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DimensionGroupDetail) GoString() string {
+	return s.String()
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *DimensionGroupDetail) SetDimensions(v []*DimensionDetail) *DimensionGroupDetail {
+	s.Dimensions = v
+	return s
+}
+
+// SetGroup sets the Group field's value.
+func (s *DimensionGroupDetail) SetGroup(v string) *DimensionGroupDetail {
+	s.Group = &v
+	return s
+}
+
+// An object that includes the requested dimension key values and aggregated
+// metric values within a dimension group.
 type DimensionKeyDescription struct {
 	_ struct{} `type:"structure"`
+
+	// A map that contains the value for each additional metric.
+	AdditionalMetrics map[string]*float64 `type:"map"`
 
 	// A map of name-value pairs for the dimensions in the group.
 	Dimensions map[string]*string `type:"map"`
@@ -790,8 +1373,7 @@ type DimensionKeyDescription struct {
 	// were.
 	Partitions []*float64 `type:"list"`
 
-	// The aggregated metric value for the dimension(s), over the requested time
-	// range.
+	// The aggregated metric value for the dimensions, over the requested time range.
 	Total *float64 `type:"double"`
 }
 
@@ -811,6 +1393,12 @@ func (s DimensionKeyDescription) String() string {
 // value will be replaced with "sensitive".
 func (s DimensionKeyDescription) GoString() string {
 	return s.String()
+}
+
+// SetAdditionalMetrics sets the AdditionalMetrics field's value.
+func (s *DimensionKeyDescription) SetAdditionalMetrics(v map[string]*float64) *DimensionKeyDescription {
+	s.AdditionalMetrics = v
+	return s
 }
 
 // SetDimensions sets the Dimensions field's value.
@@ -893,6 +1481,54 @@ func (s *DimensionKeyDetail) SetValue(v string) *DimensionKeyDetail {
 	return s
 }
 
+// The metadata for a feature. For example, the metadata might indicate that
+// a feature is turned on or off on a specific DB instance.
+type FeatureMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the feature on the DB instance. Possible values include the
+	// following:
+	//
+	//    * ENABLED: the feature is enabled on the instance.
+	//
+	//    * DISABLED: the feature is disabled on the instance.
+	//
+	//    * UNSUPPORTED: the feature isn't supported on the instance.
+	//
+	//    * ENABLED_PENDING_REBOOT: the feature is enabled on the instance but requires
+	//    a reboot to take effect.
+	//
+	//    * DISABLED_PENDING_REBOOT: the feature is disabled on the instance but
+	//    requires a reboot to take effect.
+	//
+	//    * UNKNOWN: the feature status couldn't be determined.
+	Status *string `type:"string" enum:"FeatureStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FeatureMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FeatureMetadata) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *FeatureMetadata) SetStatus(v string) *FeatureMetadata {
+	s.Status = &v
+	return s
+}
+
 type GetDimensionKeyDetailsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -909,8 +1545,9 @@ type GetDimensionKeyDetailsInput struct {
 	GroupIdentifier *string `type:"string" required:"true"`
 
 	// The ID for a data source from which to gather dimension data. This ID must
-	// be immutable and unique within an AWS Region. When a DB instance is the data
-	// source, specify its DbiResourceId value. For example, specify db-ABCDEFGHIJKLMNOPQRSTU1VW2X.
+	// be immutable and unique within an Amazon Web Services Region. When a DB instance
+	// is the data source, specify its DbiResourceId value. For example, specify
+	// db-ABCDEFGHIJKLMNOPQRSTU1VW2X.
 	//
 	// Identifier is a required field
 	Identifier *string `type:"string" required:"true"`
@@ -922,8 +1559,8 @@ type GetDimensionKeyDetailsInput struct {
 	// the specified dimension group.
 	RequestedDimensions []*string `min:"1" type:"list"`
 
-	// The AWS service for which Performance Insights returns data. The only valid
-	// value is RDS.
+	// The Amazon Web Services service for which Performance Insights returns data.
+	// The only valid value is RDS.
 	//
 	// ServiceType is a required field
 	ServiceType *string `type:"string" required:"true" enum:"ServiceType"`
@@ -1033,6 +1670,113 @@ func (s *GetDimensionKeyDetailsOutput) SetDimensions(v []*DimensionKeyDetail) *G
 	return s
 }
 
+type GetResourceMetadataInput struct {
+	_ struct{} `type:"structure"`
+
+	// An immutable identifier for a data source that is unique for an Amazon Web
+	// Services Region. Performance Insights gathers metrics from this data source.
+	// To use a DB instance as a data source, specify its DbiResourceId value. For
+	// example, specify db-ABCDEFGHIJKLMNOPQRSTU1VW2X.
+	//
+	// Identifier is a required field
+	Identifier *string `type:"string" required:"true"`
+
+	// The Amazon Web Services service for which Performance Insights returns metrics.
+	//
+	// ServiceType is a required field
+	ServiceType *string `type:"string" required:"true" enum:"ServiceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourceMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourceMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResourceMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResourceMetadataInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.ServiceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *GetResourceMetadataInput) SetIdentifier(v string) *GetResourceMetadataInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetServiceType sets the ServiceType field's value.
+func (s *GetResourceMetadataInput) SetServiceType(v string) *GetResourceMetadataInput {
+	s.ServiceType = &v
+	return s
+}
+
+type GetResourceMetadataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The metadata for different features. For example, the metadata might indicate
+	// that a feature is turned on or off on a specific DB instance.
+	Features map[string]*FeatureMetadata `type:"map"`
+
+	// An immutable identifier for a data source that is unique for an Amazon Web
+	// Services Region. Performance Insights gathers metrics from this data source.
+	// To use a DB instance as a data source, specify its DbiResourceId value. For
+	// example, specify db-ABCDEFGHIJKLMNOPQRSTU1VW2X.
+	Identifier *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourceMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourceMetadataOutput) GoString() string {
+	return s.String()
+}
+
+// SetFeatures sets the Features field's value.
+func (s *GetResourceMetadataOutput) SetFeatures(v map[string]*FeatureMetadata) *GetResourceMetadataOutput {
+	s.Features = v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *GetResourceMetadataOutput) SetIdentifier(v string) *GetResourceMetadataOutput {
+	s.Identifier = &v
+	return s
+}
+
 type GetResourceMetricsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1045,8 +1789,8 @@ type GetResourceMetricsInput struct {
 	// EndTime is a required field
 	EndTime *time.Time `type:"timestamp" required:"true"`
 
-	// An immutable, AWS Region-unique identifier for a data source. Performance
-	// Insights gathers metrics from this data source.
+	// An immutable, Amazon Web Services Region-unique identifier for a data source.
+	// Performance Insights gathers metrics from this data source.
 	//
 	// To use a DB instance as a data source, specify its DbiResourceId value. For
 	// example, specify db-FAIHNTYBKTGAUSUZQYPDS2GW4A.
@@ -1089,8 +1833,8 @@ type GetResourceMetricsInput struct {
 	// the response.
 	PeriodInSeconds *int64 `type:"integer"`
 
-	// The AWS service for which Performance Insights returns metrics. The only
-	// valid value for ServiceType is RDS.
+	// The Amazon Web Services service for which Performance Insights returns metrics.
+	// The only valid value for ServiceType is RDS.
 	//
 	// ServiceType is a required field
 	ServiceType *string `type:"string" required:"true" enum:"ServiceType"`
@@ -1225,8 +1969,8 @@ type GetResourceMetricsOutput struct {
 	// equal to the value of the user-specified StartTime.
 	AlignedStartTime *time.Time `type:"timestamp"`
 
-	// An immutable, AWS Region-unique identifier for a data source. Performance
-	// Insights gathers metrics from this data source.
+	// An immutable, Amazon Web Services Region-unique identifier for a data source.
+	// Performance Insights gathers metrics from this data source.
 	//
 	// To use a DB instance as a data source, you specify its DbiResourceId value
 	// - for example: db-FAIHNTYBKTGAUSUZQYPDS2GW4A
@@ -1418,6 +2162,349 @@ func (s *InvalidArgumentException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type ListAvailableResourceDimensionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// An immutable identifier for a data source that is unique within an Amazon
+	// Web Services Region. Performance Insights gathers metrics from this data
+	// source. To use an Amazon RDS DB instance as a data source, specify its DbiResourceId
+	// value. For example, specify db-ABCDEFGHIJKLMNOPQRSTU1VWZ.
+	//
+	// Identifier is a required field
+	Identifier *string `type:"string" required:"true"`
+
+	// The maximum number of items to return in the response. If more items exist
+	// than the specified MaxRecords value, a pagination token is included in the
+	// response so that the remaining results can be retrieved.
+	MaxResults *int64 `type:"integer"`
+
+	// The types of metrics for which to retrieve dimensions. Valid values include
+	// db.load.
+	//
+	// Metrics is a required field
+	Metrics []*string `min:"1" type:"list" required:"true"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the token, up to
+	// the value specified by MaxRecords.
+	NextToken *string `min:"1" type:"string"`
+
+	// The Amazon Web Services service for which Performance Insights returns metrics.
+	//
+	// ServiceType is a required field
+	ServiceType *string `type:"string" required:"true" enum:"ServiceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAvailableResourceDimensionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAvailableResourceDimensionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAvailableResourceDimensionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAvailableResourceDimensionsInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Metrics == nil {
+		invalidParams.Add(request.NewErrParamRequired("Metrics"))
+	}
+	if s.Metrics != nil && len(s.Metrics) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Metrics", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ServiceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *ListAvailableResourceDimensionsInput) SetIdentifier(v string) *ListAvailableResourceDimensionsInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAvailableResourceDimensionsInput) SetMaxResults(v int64) *ListAvailableResourceDimensionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *ListAvailableResourceDimensionsInput) SetMetrics(v []*string) *ListAvailableResourceDimensionsInput {
+	s.Metrics = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAvailableResourceDimensionsInput) SetNextToken(v string) *ListAvailableResourceDimensionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServiceType sets the ServiceType field's value.
+func (s *ListAvailableResourceDimensionsInput) SetServiceType(v string) *ListAvailableResourceDimensionsInput {
+	s.ServiceType = &v
+	return s
+}
+
+type ListAvailableResourceDimensionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The dimension information returned for requested metric types.
+	MetricDimensions []*MetricDimensionGroups `type:"list"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the token, up to
+	// the value specified by MaxRecords.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAvailableResourceDimensionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAvailableResourceDimensionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetricDimensions sets the MetricDimensions field's value.
+func (s *ListAvailableResourceDimensionsOutput) SetMetricDimensions(v []*MetricDimensionGroups) *ListAvailableResourceDimensionsOutput {
+	s.MetricDimensions = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAvailableResourceDimensionsOutput) SetNextToken(v string) *ListAvailableResourceDimensionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAvailableResourceMetricsInput struct {
+	_ struct{} `type:"structure"`
+
+	// An immutable identifier for a data source that is unique within an Amazon
+	// Web Services Region. Performance Insights gathers metrics from this data
+	// source. To use an Amazon RDS DB instance as a data source, specify its DbiResourceId
+	// value. For example, specify db-ABCDEFGHIJKLMNOPQRSTU1VWZ.
+	//
+	// Identifier is a required field
+	Identifier *string `type:"string" required:"true"`
+
+	// The maximum number of items to return. If the MaxRecords value is less than
+	// the number of existing items, the response includes a pagination token.
+	MaxResults *int64 `type:"integer"`
+
+	// The types of metrics to return in the response. Valid values in the array
+	// include the following:
+	//
+	//    * os (OS counter metrics)
+	//
+	//    * db (DB load metrics)
+	//
+	//    * db.sql.stats (per-SQL metrics)
+	//
+	//    * db.sql_tokenized.stats (per-SQL digest metrics)
+	//
+	// MetricTypes is a required field
+	MetricTypes []*string `type:"list" required:"true"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the token, up to
+	// the value specified by MaxRecords.
+	NextToken *string `min:"1" type:"string"`
+
+	// The Amazon Web Services service for which Performance Insights returns metrics.
+	//
+	// ServiceType is a required field
+	ServiceType *string `type:"string" required:"true" enum:"ServiceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAvailableResourceMetricsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAvailableResourceMetricsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAvailableResourceMetricsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAvailableResourceMetricsInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.MetricTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricTypes"))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ServiceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *ListAvailableResourceMetricsInput) SetIdentifier(v string) *ListAvailableResourceMetricsInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAvailableResourceMetricsInput) SetMaxResults(v int64) *ListAvailableResourceMetricsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMetricTypes sets the MetricTypes field's value.
+func (s *ListAvailableResourceMetricsInput) SetMetricTypes(v []*string) *ListAvailableResourceMetricsInput {
+	s.MetricTypes = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAvailableResourceMetricsInput) SetNextToken(v string) *ListAvailableResourceMetricsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServiceType sets the ServiceType field's value.
+func (s *ListAvailableResourceMetricsInput) SetServiceType(v string) *ListAvailableResourceMetricsInput {
+	s.ServiceType = &v
+	return s
+}
+
+type ListAvailableResourceMetricsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of metrics available to query. Each array element contains the full
+	// name, description, and unit of the metric.
+	Metrics []*ResponseResourceMetric `type:"list"`
+
+	// A pagination token that indicates the response didn’t return all available
+	// records because MaxRecords was specified in the previous request. To get
+	// the remaining records, specify NextToken in a separate request with this
+	// value.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAvailableResourceMetricsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAvailableResourceMetricsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *ListAvailableResourceMetricsOutput) SetMetrics(v []*ResponseResourceMetric) *ListAvailableResourceMetricsOutput {
+	s.Metrics = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAvailableResourceMetricsOutput) SetNextToken(v string) *ListAvailableResourceMetricsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// The available dimension information for a metric type.
+type MetricDimensionGroups struct {
+	_ struct{} `type:"structure"`
+
+	// The available dimension groups for a metric type.
+	Groups []*DimensionGroupDetail `type:"list"`
+
+	// The metric type to which the dimension information belongs.
+	Metric *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricDimensionGroups) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricDimensionGroups) GoString() string {
+	return s.String()
+}
+
+// SetGroups sets the Groups field's value.
+func (s *MetricDimensionGroups) SetGroups(v []*DimensionGroupDetail) *MetricDimensionGroups {
+	s.Groups = v
+	return s
+}
+
+// SetMetric sets the Metric field's value.
+func (s *MetricDimensionGroups) SetMetric(v string) *MetricDimensionGroups {
+	s.Metric = &v
+	return s
+}
+
 // A time-ordered series of data points, corresponding to a dimension of a Performance
 // Insights metric.
 type MetricKeyDataPoints struct {
@@ -1427,7 +2514,7 @@ type MetricKeyDataPoints struct {
 	// of time.
 	DataPoints []*DataPoint `type:"list"`
 
-	// The dimension(s) to which the data points apply.
+	// The dimensions to which the data points apply.
 	Key *ResponseResourceMetricKey `type:"structure"`
 }
 
@@ -1462,10 +2549,10 @@ func (s *MetricKeyDataPoints) SetKey(v *ResponseResourceMetricKey) *MetricKeyDat
 }
 
 // A single query to be processed. You must provide the metric to query. If
-// no other parameters are specified, Performance Insights returns all of the
-// data points for that metric. You can optionally request that the data points
-// be aggregated by dimension group ( GroupBy), and return only those data points
-// that match your criteria (Filter).
+// no other parameters are specified, Performance Insights returns all data
+// points for the specified metric. Optionally, you can request that the data
+// points be aggregated by dimension group (GroupBy), and return only those
+// data points that match your criteria (Filter).
 type MetricQuery struct {
 	_ struct{} `type:"structure"`
 
@@ -1628,7 +2715,7 @@ func (s *NotAuthorizedException) RequestID() string {
 type ResponsePartitionKey struct {
 	_ struct{} `type:"structure"`
 
-	// A dimension map that contains the dimension(s) for this partition.
+	// A dimension map that contains the dimensions for this partition.
 	//
 	// Dimensions is a required field
 	Dimensions map[string]*string `type:"map" required:"true"`
@@ -1655,6 +2742,56 @@ func (s ResponsePartitionKey) GoString() string {
 // SetDimensions sets the Dimensions field's value.
 func (s *ResponsePartitionKey) SetDimensions(v map[string]*string) *ResponsePartitionKey {
 	s.Dimensions = v
+	return s
+}
+
+// An object that contains the full name, description, and unit of a metric.
+type ResponseResourceMetric struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the metric.
+	Description *string `min:"1" type:"string"`
+
+	// The full name of the metric.
+	Metric *string `type:"string"`
+
+	// The unit of the metric.
+	Unit *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseResourceMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseResourceMetric) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *ResponseResourceMetric) SetDescription(v string) *ResponseResourceMetric {
+	s.Description = &v
+	return s
+}
+
+// SetMetric sets the Metric field's value.
+func (s *ResponseResourceMetric) SetMetric(v string) *ResponseResourceMetric {
+	s.Metric = &v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *ResponseResourceMetric) SetUnit(v string) *ResponseResourceMetric {
+	s.Unit = &v
 	return s
 }
 
@@ -1738,13 +2875,49 @@ func DetailStatus_Values() []string {
 }
 
 const (
+	// FeatureStatusEnabled is a FeatureStatus enum value
+	FeatureStatusEnabled = "ENABLED"
+
+	// FeatureStatusDisabled is a FeatureStatus enum value
+	FeatureStatusDisabled = "DISABLED"
+
+	// FeatureStatusUnsupported is a FeatureStatus enum value
+	FeatureStatusUnsupported = "UNSUPPORTED"
+
+	// FeatureStatusEnabledPendingReboot is a FeatureStatus enum value
+	FeatureStatusEnabledPendingReboot = "ENABLED_PENDING_REBOOT"
+
+	// FeatureStatusDisabledPendingReboot is a FeatureStatus enum value
+	FeatureStatusDisabledPendingReboot = "DISABLED_PENDING_REBOOT"
+
+	// FeatureStatusUnknown is a FeatureStatus enum value
+	FeatureStatusUnknown = "UNKNOWN"
+)
+
+// FeatureStatus_Values returns all elements of the FeatureStatus enum
+func FeatureStatus_Values() []string {
+	return []string{
+		FeatureStatusEnabled,
+		FeatureStatusDisabled,
+		FeatureStatusUnsupported,
+		FeatureStatusEnabledPendingReboot,
+		FeatureStatusDisabledPendingReboot,
+		FeatureStatusUnknown,
+	}
+}
+
+const (
 	// ServiceTypeRds is a ServiceType enum value
 	ServiceTypeRds = "RDS"
+
+	// ServiceTypeDocdb is a ServiceType enum value
+	ServiceTypeDocdb = "DOCDB"
 )
 
 // ServiceType_Values returns all elements of the ServiceType enum
 func ServiceType_Values() []string {
 	return []string{
 		ServiceTypeRds,
+		ServiceTypeDocdb,
 	}
 }
