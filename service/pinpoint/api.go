@@ -11448,6 +11448,103 @@ func (c *Pinpoint) UpdateVoiceTemplateWithContext(ctx aws.Context, input *Update
 	return out, req.Send()
 }
 
+const opVerifyOTPMessage = "VerifyOTPMessage"
+
+// VerifyOTPMessageRequest generates a "aws/request.Request" representing the
+// client's request for the VerifyOTPMessage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See VerifyOTPMessage for more information on using the VerifyOTPMessage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the VerifyOTPMessageRequest method.
+//    req, resp := client.VerifyOTPMessageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/VerifyOTPMessage
+func (c *Pinpoint) VerifyOTPMessageRequest(input *VerifyOTPMessageInput) (req *request.Request, output *VerifyOTPMessageOutput) {
+	op := &request.Operation{
+		Name:       opVerifyOTPMessage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/apps/{application-id}/verify-otp",
+	}
+
+	if input == nil {
+		input = &VerifyOTPMessageInput{}
+	}
+
+	output = &VerifyOTPMessageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// VerifyOTPMessage API operation for Amazon Pinpoint.
+//
+// Verify an OTP
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation VerifyOTPMessage for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Provides information about an API request or response.
+//
+//   * InternalServerErrorException
+//   Provides information about an API request or response.
+//
+//   * PayloadTooLargeException
+//   Provides information about an API request or response.
+//
+//   * ForbiddenException
+//   Provides information about an API request or response.
+//
+//   * NotFoundException
+//   Provides information about an API request or response.
+//
+//   * MethodNotAllowedException
+//   Provides information about an API request or response.
+//
+//   * TooManyRequestsException
+//   Provides information about an API request or response.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/VerifyOTPMessage
+func (c *Pinpoint) VerifyOTPMessage(input *VerifyOTPMessageInput) (*VerifyOTPMessageOutput, error) {
+	req, out := c.VerifyOTPMessageRequest(input)
+	return out, req.Send()
+}
+
+// VerifyOTPMessageWithContext is the same as VerifyOTPMessage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See VerifyOTPMessage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) VerifyOTPMessageWithContext(ctx aws.Context, input *VerifyOTPMessageInput, opts ...request.Option) (*VerifyOTPMessageOutput, error) {
+	req, out := c.VerifyOTPMessageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // Specifies the status and settings of the ADM (Amazon Device Messaging) channel
 // for an application.
 type ADMChannelRequest struct {
@@ -39746,6 +39843,212 @@ func (s UpdateVoiceTemplateOutput) GoString() string {
 // SetMessageBody sets the MessageBody field's value.
 func (s *UpdateVoiceTemplateOutput) SetMessageBody(v *MessageBody) *UpdateVoiceTemplateOutput {
 	s.MessageBody = v
+	return s
+}
+
+// Verify OTP Message Response.
+type VerificationResponse struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether the OTP is valid or not.
+	Valid *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VerificationResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VerificationResponse) GoString() string {
+	return s.String()
+}
+
+// SetValid sets the Valid field's value.
+func (s *VerificationResponse) SetValid(v bool) *VerificationResponse {
+	s.Valid = &v
+	return s
+}
+
+type VerifyOTPMessageInput struct {
+	_ struct{} `type:"structure" payload:"VerifyOTPMessageRequestParameters"`
+
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
+
+	// Verify OTP message request.
+	//
+	// VerifyOTPMessageRequestParameters is a required field
+	VerifyOTPMessageRequestParameters *VerifyOTPMessageRequestParameters `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VerifyOTPMessageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VerifyOTPMessageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VerifyOTPMessageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VerifyOTPMessageInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+	if s.ApplicationId != nil && len(*s.ApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationId", 1))
+	}
+	if s.VerifyOTPMessageRequestParameters == nil {
+		invalidParams.Add(request.NewErrParamRequired("VerifyOTPMessageRequestParameters"))
+	}
+	if s.VerifyOTPMessageRequestParameters != nil {
+		if err := s.VerifyOTPMessageRequestParameters.Validate(); err != nil {
+			invalidParams.AddNested("VerifyOTPMessageRequestParameters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *VerifyOTPMessageInput) SetApplicationId(v string) *VerifyOTPMessageInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetVerifyOTPMessageRequestParameters sets the VerifyOTPMessageRequestParameters field's value.
+func (s *VerifyOTPMessageInput) SetVerifyOTPMessageRequestParameters(v *VerifyOTPMessageRequestParameters) *VerifyOTPMessageInput {
+	s.VerifyOTPMessageRequestParameters = v
+	return s
+}
+
+type VerifyOTPMessageOutput struct {
+	_ struct{} `type:"structure" payload:"VerificationResponse"`
+
+	// Verify OTP Message Response.
+	//
+	// VerificationResponse is a required field
+	VerificationResponse *VerificationResponse `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VerifyOTPMessageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VerifyOTPMessageOutput) GoString() string {
+	return s.String()
+}
+
+// SetVerificationResponse sets the VerificationResponse field's value.
+func (s *VerifyOTPMessageOutput) SetVerificationResponse(v *VerificationResponse) *VerifyOTPMessageOutput {
+	s.VerificationResponse = v
+	return s
+}
+
+// Verify OTP message request.
+type VerifyOTPMessageRequestParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The destination identity to send OTP to.
+	//
+	// DestinationIdentity is a required field
+	DestinationIdentity *string `type:"string" required:"true"`
+
+	// The OTP the end user provided for verification.
+	//
+	// Otp is a required field
+	Otp *string `type:"string" required:"true"`
+
+	// The reference identifier provided when the OTP was previously sent.
+	//
+	// ReferenceId is a required field
+	ReferenceId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VerifyOTPMessageRequestParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VerifyOTPMessageRequestParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VerifyOTPMessageRequestParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VerifyOTPMessageRequestParameters"}
+	if s.DestinationIdentity == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationIdentity"))
+	}
+	if s.Otp == nil {
+		invalidParams.Add(request.NewErrParamRequired("Otp"))
+	}
+	if s.ReferenceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReferenceId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationIdentity sets the DestinationIdentity field's value.
+func (s *VerifyOTPMessageRequestParameters) SetDestinationIdentity(v string) *VerifyOTPMessageRequestParameters {
+	s.DestinationIdentity = &v
+	return s
+}
+
+// SetOtp sets the Otp field's value.
+func (s *VerifyOTPMessageRequestParameters) SetOtp(v string) *VerifyOTPMessageRequestParameters {
+	s.Otp = &v
+	return s
+}
+
+// SetReferenceId sets the ReferenceId field's value.
+func (s *VerifyOTPMessageRequestParameters) SetReferenceId(v string) *VerifyOTPMessageRequestParameters {
+	s.ReferenceId = &v
 	return s
 }
 

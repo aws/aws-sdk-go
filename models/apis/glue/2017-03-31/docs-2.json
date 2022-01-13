@@ -6054,6 +6054,7 @@
         "CreateWorkflowRequest$DefaultRunProperties": "<p>A collection of properties to be used as part of each execution of the workflow.</p>",
         "GetWorkflowRunPropertiesResponse$RunProperties": "<p>The workflow run properties which were set during the specified run.</p>",
         "PutWorkflowRunPropertiesRequest$RunProperties": "<p>The properties to put for the specified run.</p>",
+        "StartWorkflowRunRequest$RunProperties": "<p>The workflow run properties for the new workflow run.</p>",
         "UpdateWorkflowRequest$DefaultRunProperties": "<p>A collection of properties to be used as part of each execution of the workflow.</p>",
         "Workflow$DefaultRunProperties": "<p>A collection of properties to be used as part of each execution of the workflow. The run properties are made available to each job in the workflow. A job can modify the properties for the next jobs in the flow.</p>",
         "WorkflowRun$WorkflowRunProperties": "<p>The workflow run properties which were set during the run.</p>"

@@ -531,6 +531,10 @@ type PinpointAPI interface {
 	UpdateVoiceTemplate(*pinpoint.UpdateVoiceTemplateInput) (*pinpoint.UpdateVoiceTemplateOutput, error)
 	UpdateVoiceTemplateWithContext(aws.Context, *pinpoint.UpdateVoiceTemplateInput, ...request.Option) (*pinpoint.UpdateVoiceTemplateOutput, error)
 	UpdateVoiceTemplateRequest(*pinpoint.UpdateVoiceTemplateInput) (*request.Request, *pinpoint.UpdateVoiceTemplateOutput)
+
+	VerifyOTPMessage(*pinpoint.VerifyOTPMessageInput) (*pinpoint.VerifyOTPMessageOutput, error)
+	VerifyOTPMessageWithContext(aws.Context, *pinpoint.VerifyOTPMessageInput, ...request.Option) (*pinpoint.VerifyOTPMessageOutput, error)
+	VerifyOTPMessageRequest(*pinpoint.VerifyOTPMessageInput) (*request.Request, *pinpoint.VerifyOTPMessageOutput)
 }
 
 var _ PinpointAPI = (*pinpoint.Pinpoint)(nil)

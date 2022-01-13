@@ -4216,6 +4216,125 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Provides an array of phrases that should be given preference when resolving
+// values for a slot.
+type RuntimeHintDetails struct {
+	_ struct{} `type:"structure"`
+
+	// One or more strings that Amazon Lex V2 should look for in the input to the
+	// bot. Each phrase is given preference when deciding on slot values.
+	//
+	// RuntimeHintValues is a required field
+	RuntimeHintValues []*RuntimeHintValue `locationName:"runtimeHintValues" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeHintDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeHintDetails) GoString() string {
+	return s.String()
+}
+
+// SetRuntimeHintValues sets the RuntimeHintValues field's value.
+func (s *RuntimeHintDetails) SetRuntimeHintValues(v []*RuntimeHintValue) *RuntimeHintDetails {
+	s.RuntimeHintValues = v
+	return s
+}
+
+// Provides the phrase that Amazon Lex V2 should look for in the user's input
+// to the bot.
+type RuntimeHintValue struct {
+	_ struct{} `type:"structure"`
+
+	// The phrase that Amazon Lex V2 should look for in the user's input to the
+	// bot.
+	//
+	// Phrase is a required field
+	Phrase *string `locationName:"phrase" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeHintValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeHintValue) GoString() string {
+	return s.String()
+}
+
+// SetPhrase sets the Phrase field's value.
+func (s *RuntimeHintValue) SetPhrase(v string) *RuntimeHintValue {
+	s.Phrase = &v
+	return s
+}
+
+// You can provide Amazon Lex V2 with hints to the phrases that a customer is
+// likely to use for a slot. When a slot with hints is resolved, the phrases
+// in the runtime hints are preferred in the resolution. You can provide hints
+// for a maximum of 100 intents. You can provide a maximum of 100 slots.
+//
+// Before you can use runtime hints with an existing bot, you must first rebuild
+// the bot.
+//
+// For more information, see Using hints to improve accuracy (https://docs.aws.amazon.com/lexv2/latest/dg/using-hints.xml).
+type RuntimeHints struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the slots in the intent that should have runtime hints added, and
+	// the phrases that should be added for each slot.
+	//
+	// The first level of the slotHints map is the name of the intent. The second
+	// level is the name of the slot within the intent. For more information, see
+	// Using hints to improve accuracy (https://docs.aws.amazon.com/lexv2/latest/dg/using-hints.xml).
+	//
+	// The intent name and slot name must exist.
+	SlotHints map[string]map[string]*RuntimeHintDetails `locationName:"slotHints" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeHints) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeHints) GoString() string {
+	return s.String()
+}
+
+// SetSlotHints sets the SlotHints field's value.
+func (s *RuntimeHints) SetSlotHints(v map[string]map[string]*RuntimeHintDetails) *RuntimeHints {
+	s.SlotHints = v
+	return s
+}
+
 // Provides information about the sentiment expressed in a user's response in
 // a conversation. Sentiments are determined using Amazon Comprehend. Sentiments
 // are only returned if they are enabled for the bot.
@@ -4341,7 +4460,12 @@ type SessionState struct {
 	// The active intent that Amazon Lex V2 is processing.
 	Intent *Intent `locationName:"intent" type:"structure"`
 
+	// A unique identifier for a specific request.
 	OriginatingRequestId *string `locationName:"originatingRequestId" min:"1" type:"string"`
+
+	// Hints for phrases that a customer is likely to use for a slot. Amazon Lex
+	// V2 uses the hints to help determine the correct value of a slot.
+	RuntimeHints *RuntimeHints `locationName:"runtimeHints" type:"structure"`
 
 	// Map of key/value pairs representing session-specific context information.
 	// It contains application information passed between Amazon Lex V2 and a client
@@ -4421,6 +4545,12 @@ func (s *SessionState) SetIntent(v *Intent) *SessionState {
 // SetOriginatingRequestId sets the OriginatingRequestId field's value.
 func (s *SessionState) SetOriginatingRequestId(v string) *SessionState {
 	s.OriginatingRequestId = &v
+	return s
+}
+
+// SetRuntimeHints sets the RuntimeHints field's value.
+func (s *SessionState) SetRuntimeHints(v *RuntimeHints) *SessionState {
+	s.RuntimeHints = v
 	return s
 }
 

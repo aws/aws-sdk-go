@@ -4271,44 +4271,44 @@
           "shape": "TooManyRequestsException"
         }
       ]
+    },
+    "VerifyOTPMessage": {
+      "name": "VerifyOTPMessage",
+      "http": {
+        "method": "POST",
+        "requestUri": "/v1/apps/{application-id}/verify-otp",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "VerifyOTPMessageRequest"
+      },
+      "output": {
+        "shape": "VerifyOTPMessageResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
     }
-  },
-  "VerifyOTPMessage": {
-    "name": "VerifyOTPMessage",
-    "http": {
-      "method": "POST",
-      "requestUri": "/v1/apps/{application-id}/verify-otp",
-      "responseCode": 200
-    },
-    "input": {
-      "shape": "VerifyOTPMessageRequest"
-    },
-    "output": {
-      "shape": "VerifyOTPMessageResponse"
-    },
-    "errors": [
-      {
-        "shape": "BadRequestException"
-      },
-      {
-        "shape": "InternalServerErrorException"
-      },
-      {
-        "shape": "PayloadTooLargeException"
-      },
-      {
-        "shape": "ForbiddenException"
-      },
-      {
-        "shape": "NotFoundException"
-      },
-      {
-        "shape": "MethodNotAllowedException"
-      },
-      {
-        "shape": "TooManyRequestsException"
-      }
-    ]
   },
   "shapes": {
     "ADMChannelRequest": {
@@ -12699,14 +12699,14 @@
       "type": "structure",
       "members": {
         "DestinationIdentity": {
-        "shape": "__string"
-      },
-      "Otp": {
-        "shape": "__string"
-      },
-      "ReferenceId": {
-        "shape": "__string"
-      }
+          "shape": "__string"
+        },
+        "Otp": {
+          "shape": "__string"
+        },
+        "ReferenceId": {
+          "shape": "__string"
+        }
       },
       "required": [
         "ReferenceId",

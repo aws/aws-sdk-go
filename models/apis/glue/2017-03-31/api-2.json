@@ -7890,7 +7890,8 @@
       "type":"structure",
       "required":["Name"],
       "members":{
-        "Name":{"shape":"NameString"}
+        "Name":{"shape":"NameString"},
+        "RunProperties":{"shape":"WorkflowRunProperties"}
       }
     },
     "StartWorkflowRunResponse":{

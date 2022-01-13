@@ -374,6 +374,13 @@
         "TextResponseEvent$messages": "<p>A list of messages to send to the user. Messages are ordered based on the order that you returned the messages from your Lambda function or the order that the messages are defined in the bot.</p>"
       }
     },
+    "Name": {
+      "base": null,
+      "refs": {
+        "SlotHintsIntentMap$key": null,
+        "SlotHintsSlotMap$key": null
+      }
+    },
     "NonEmptyString": {
       "base": null,
       "refs": {
@@ -397,7 +404,7 @@
         "RecognizeUtteranceResponse$sessionState": "<p>Represents the current state of the dialog between the user and the bot.</p> <p>Use this to determine the progress of the conversation and what the next action might be.</p> <p>The <code>sessionState</code> field is compressed with gzip and then base64 encoded. Before you can use the contents of the field, you must decode and decompress the contents. See the example for a simple function to decode and decompress the contents.</p>",
         "RecognizeUtteranceResponse$requestAttributes": "<p>The attributes sent in the request.</p> <p>The <code>requestAttributes</code> field is compressed with gzip and then base64 encoded. Before you can use the contents of the field, you must decode and decompress the contents.</p>",
         "RecognizeUtteranceResponse$inputTranscript": "<p>The text used to process the request.</p> <p>If the input was an audio stream, the <code>inputTranscript</code> field contains the text extracted from the audio stream. This is the text that is actually processed to recognize intents and slot values. You can use this information to determine if Amazon Lex V2 is correctly processing the audio that you send.</p> <p>The <code>inputTranscript</code> field is compressed with gzip and then base64 encoded. Before you can use the contents of the field, you must decode and decompress the contents. See the example for a simple function to decode and decompress the contents.</p>",
-        "SessionState$originatingRequestId": "<p/>",
+        "SessionState$originatingRequestId": "<p>A unique identifier for a specific request.</p>",
         "Slots$key": null,
         "StringList$member": null,
         "StringMap$key": null,
@@ -465,6 +472,36 @@
         "StartConversationResponseEventStream$ResourceNotFoundException": "<p>Exception thrown if one of the input parameters points to a resource that does not exist. For example, if the bot ID specified does not exist.</p>"
       }
     },
+    "RuntimeHintDetails": {
+      "base": "<p>Provides an array of phrases that should be given preference when resolving values for a slot.</p>",
+      "refs": {
+        "SlotHintsSlotMap$value": null
+      }
+    },
+    "RuntimeHintPhrase": {
+      "base": null,
+      "refs": {
+        "RuntimeHintValue$phrase": "<p>The phrase that Amazon Lex V2 should look for in the user's input to the bot.</p>"
+      }
+    },
+    "RuntimeHintValue": {
+      "base": "<p>Provides the phrase that Amazon Lex V2 should look for in the user's input to the bot.</p>",
+      "refs": {
+        "RuntimeHintValuesList$member": null
+      }
+    },
+    "RuntimeHintValuesList": {
+      "base": null,
+      "refs": {
+        "RuntimeHintDetails$runtimeHintValues": "<p>One or more strings that Amazon Lex V2 should look for in the input to the bot. Each phrase is given preference when deciding on slot values.</p>"
+      }
+    },
+    "RuntimeHints": {
+      "base": "<p>You can provide Amazon Lex V2 with hints to the phrases that a customer is likely to use for a slot. When a slot with hints is resolved, the phrases in the runtime hints are preferred in the resolution. You can provide hints for a maximum of 100 intents. You can provide a maximum of 100 slots.</p> <p>Before you can use runtime hints with an existing bot, you must first rebuild the bot.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/using-hints.xml\">Using hints to improve accuracy</a>.</p>",
+      "refs": {
+        "SessionState$runtimeHints": "<p>Hints for phrases that a customer is likely to use for a slot. Amazon Lex V2 uses the hints to help determine the correct value of a slot.</p>"
+      }
+    },
     "SensitiveNonEmptyString": {
       "base": null,
       "refs": {
@@ -528,6 +565,18 @@
       "refs": {
         "Slots$value": null,
         "Values$member": null
+      }
+    },
+    "SlotHintsIntentMap": {
+      "base": null,
+      "refs": {
+        "RuntimeHints$slotHints": "<p>A list of the slots in the intent that should have runtime hints added, and the phrases that should be added for each slot.</p> <p>The first level of the <code>slotHints</code> map is the name of the intent. The second level is the name of the slot within the intent. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/using-hints.xml\">Using hints to improve accuracy</a>.</p> <p>The intent name and slot name must exist.</p>"
+      }
+    },
+    "SlotHintsSlotMap": {
+      "base": null,
+      "refs": {
+        "SlotHintsIntentMap$value": null
       }
     },
     "Slots": {

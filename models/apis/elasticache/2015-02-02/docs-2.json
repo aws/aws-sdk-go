@@ -1303,9 +1303,9 @@
     "LogType": {
       "base": null,
       "refs": {
-        "LogDeliveryConfiguration$LogType": "<p>Refers to <a href=\"https://redis.io/commands/slowlog\">slow-log</a>.</p>",
-        "LogDeliveryConfigurationRequest$LogType": "<p>Refers to <a href=\"https://redis.io/commands/slowlog\">slow-log</a>.</p>",
-        "PendingLogDeliveryConfiguration$LogType": "<p>Refers to <a href=\"https://redis.io/commands/slowlog\">slow-log</a>.</p>"
+        "LogDeliveryConfiguration$LogType": "<p>Refers to <a href=\"https://redis.io/commands/slowlog\">slow-log</a> or engine-log.</p>",
+        "LogDeliveryConfigurationRequest$LogType": "<p>Refers to <a href=\"https://redis.io/commands/slowlog\">slow-log</a> or engine-log..</p>",
+        "PendingLogDeliveryConfiguration$LogType": "<p>Refers to <a href=\"https://redis.io/commands/slowlog\">slow-log</a> or engine-log..</p>"
       }
     },
     "ModifyCacheClusterMessage": {
