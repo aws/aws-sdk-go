@@ -1,3 +1,18 @@
+Release v1.42.34 (2022-01-13)
+===
+
+### Service Client Updates
+* `service/elasticache`: Updates service API and documentation
+  * AWS ElastiCache for Redis has added a new Engine Log LogType in LogDelivery feature. You can now publish the Engine Log from your Amazon ElastiCache for Redis clusters to Amazon CloudWatch Logs and Amazon Kinesis Data Firehose.
+* `service/glue`: Updates service API and documentation
+  * This SDK release adds support to pass run properties when starting a workflow run
+* `service/nimble`: Updates service API and documentation
+* `service/pinpoint`: Updates service API
+  * Adds JourneyChannelSettings to WriteJourneyRequest
+* `service/runtime.lex.v2`: Updates service API and documentation
+* `service/ssm`: Updates service API and documentation
+  * AWS Systems Manager adds category support for DescribeDocument API
+
 Release v1.42.33 (2022-01-12)
 ===
 

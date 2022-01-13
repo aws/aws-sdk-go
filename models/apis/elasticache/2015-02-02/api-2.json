@@ -3053,7 +3053,10 @@
     },
     "LogType":{
       "type":"string",
-      "enum":["slow-log"]
+      "enum":[
+        "slow-log",
+        "engine-log"
+      ]
     },
     "ModifyCacheClusterMessage":{
       "type":"structure",

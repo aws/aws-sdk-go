@@ -22,7 +22,7 @@
     "GetLaunchProfileInitialization": "<p>Get a launch profile initialization.</p>",
     "GetLaunchProfileMember": "<p>Get a user persona in launch profile membership.</p>",
     "GetStreamingImage": "<p>Get streaming image.</p>",
-    "GetStreamingSession": "<p>Gets StreamingSession resource.</p> <p>anvoke this operation to poll for a streaming session state while creating or deleting a session.</p>",
+    "GetStreamingSession": "<p>Gets StreamingSession resource.</p> <p>Invoke this operation to poll for a streaming session state while creating or deleting a session.</p>",
     "GetStreamingSessionStream": "<p>Gets a StreamingSessionStream for a streaming session.</p> <p>Invoke this operation to poll the resource after invoking CreateStreamingSessionStream.</p> <p>After the StreamingSessionStream changes to the state READY, the url property will contain a stream to be used with the DCV streaming client.</p>",
     "GetStudio": "<p>Get a Studio resource.</p>",
     "GetStudioComponent": "<p>Gets a studio component resource.</p>",
@@ -612,7 +612,14 @@
     "LaunchProfileState": {
       "base": null,
       "refs": {
-        "LaunchProfile$state": "<p>The current state.</p>"
+        "LaunchProfile$state": "<p>The current state.</p>",
+        "LaunchProfileStateList$member": null
+      }
+    },
+    "LaunchProfileStateList": {
+      "base": null,
+      "refs": {
+        "ListLaunchProfilesRequest$states": "<p>Filter this request to launch profiles in any of the given states.</p>"
       }
     },
     "LaunchProfileStatusCode": {
@@ -627,6 +634,30 @@
         "CreateLaunchProfileRequest$studioComponentIds": "<p>Unique identifiers for a collection of studio components that can be used with this launch profile.</p>",
         "LaunchProfile$studioComponentIds": "<p>Unique identifiers for a collection of studio components that can be used with this launch profile.</p>",
         "UpdateLaunchProfileRequest$studioComponentIds": "<p>Unique identifiers for a collection of studio components that can be used with this launch profile.</p>"
+      }
+    },
+    "LaunchProfileValidationState": {
+      "base": null,
+      "refs": {
+        "ValidationResult$state": "<p>The current state.</p>"
+      }
+    },
+    "LaunchProfileValidationStatusCode": {
+      "base": null,
+      "refs": {
+        "ValidationResult$statusCode": "<p>The status code. This will contain the failure reason if the state is <code>VALIDATION_FAILED</code>.</p>"
+      }
+    },
+    "LaunchProfileValidationStatusMessage": {
+      "base": null,
+      "refs": {
+        "ValidationResult$statusMessage": "<p>The status message for the validation result.</p>"
+      }
+    },
+    "LaunchProfileValidationType": {
+      "base": null,
+      "refs": {
+        "ValidationResult$type": "<p>The type of the validation result.</p>"
       }
     },
     "LaunchPurpose": {
@@ -900,8 +931,8 @@
     "StreamConfigurationMaxStoppedSessionLengthInMinutes": {
       "base": null,
       "refs": {
-        "StreamConfiguration$maxStoppedSessionLengthInMinutes": "<p>Integer that determines if you can start and stop your sessions and how long a session can stay in the STOPPED state. The default value is 0. The maximum value is 5760.</p> <p>If the value is missing or set to 0, your sessions can’t be stopped. If you then call StopStreamingSession, the session fails. If the time that a session stays in the READY state exceeds the maxSessionLengthInMinutes value, the session will automatically be terminated by AWS (instead of stopped).</p> <p>If the value is set to a positive number, the session can be stopped. You can call StopStreamingSession to stop sessions in the READY state. If the time that a session stays in the READY state exceeds the maxSessionLengthInMinutes value, the session will automatically be stopped by AWS (instead of terminated).</p>",
-        "StreamConfigurationCreate$maxStoppedSessionLengthInMinutes": "<p>Integer that determines if you can start and stop your sessions and how long a session can stay in the STOPPED state. The default value is 0. The maximum value is 5760.</p> <p>If the value is missing or set to 0, your sessions can’t be stopped. If you then call StopStreamingSession, the session fails. If the time that a session stays in the READY state exceeds the maxSessionLengthInMinutes value, the session will automatically be terminated by AWS (instead of stopped).</p> <p>If the value is set to a positive number, the session can be stopped. You can call StopStreamingSession to stop sessions in the READY state. If the time that a session stays in the READY state exceeds the maxSessionLengthInMinutes value, the session will automatically be stopped by AWS (instead of terminated).</p>"
+        "StreamConfiguration$maxStoppedSessionLengthInMinutes": "<p>Integer that determines if you can start and stop your sessions and how long a session can stay in the STOPPED state. The default value is 0. The maximum value is 5760.</p> <p>If the value is missing or set to 0, your sessions can’t be stopped. If you then call <code>StopStreamingSession</code>, the session fails. If the time that a session stays in the READY state exceeds the <code>maxSessionLengthInMinutes</code> value, the session will automatically be terminated by AWS (instead of stopped).</p> <p>If the value is set to a positive number, the session can be stopped. You can call <code>StopStreamingSession</code> to stop sessions in the READY state. If the time that a session stays in the READY state exceeds the <code>maxSessionLengthInMinutes</code> value, the session will automatically be stopped by AWS (instead of terminated).</p>",
+        "StreamConfigurationCreate$maxStoppedSessionLengthInMinutes": "<p>Integer that determines if you can start and stop your sessions and how long a session can stay in the STOPPED state. The default value is 0. The maximum value is 5760.</p> <p>If the value is missing or set to 0, your sessions can’t be stopped. If you then call <code>StopStreamingSession</code>, the session fails. If the time that a session stays in the READY state exceeds the <code>maxSessionLengthInMinutes</code> value, the session will automatically be terminated by AWS (instead of stopped).</p> <p>If the value is set to a positive number, the session can be stopped. You can call <code>StopStreamingSession</code> to stop sessions in the READY state. If the time that a session stays in the READY state exceeds the <code>maxSessionLengthInMinutes</code> value, the session will automatically be stopped by AWS (instead of terminated).</p>"
       }
     },
     "StreamConfigurationSessionStorage": {
@@ -1063,13 +1094,13 @@
     "StreamingSessionStorageRootPathLinux": {
       "base": null,
       "refs": {
-        "StreamingSessionStorageRoot$linux": "<p>The folder path in Linux workstations where files are uploaded. The default path is <code>$HOME/Downloads</code>.</p>"
+        "StreamingSessionStorageRoot$linux": "<p>The folder path in Linux workstations where files are uploaded.</p>"
       }
     },
     "StreamingSessionStorageRootPathWindows": {
       "base": null,
       "refs": {
-        "StreamingSessionStorageRoot$windows": "<p>The folder path in Windows workstations where files are uploaded. The default path is <code>%HOMEPATH%\\Downloads</code>.</p>"
+        "StreamingSessionStorageRoot$windows": "<p>The folder path in Windows workstations where files are uploaded.</p>"
       }
     },
     "StreamingSessionStream": {
@@ -1109,7 +1140,7 @@
         "CreateLaunchProfileRequest$studioId": "<p>The studio ID. </p>",
         "CreateStreamingImageRequest$studioId": "<p>The studio ID. </p>",
         "CreateStreamingSessionRequest$launchProfileId": "<p>The launch profile ID.</p>",
-        "CreateStreamingSessionRequest$ownedBy": "<p>The user ID of the user that owns the streaming session.</p>",
+        "CreateStreamingSessionRequest$ownedBy": "<p>The user ID of the user that owns the streaming session. The user that owns the session will be logging into the session and interacting with the virtual workstation.</p>",
         "CreateStreamingSessionRequest$studioId": "<p>The studio ID. </p>",
         "CreateStreamingSessionStreamRequest$sessionId": "<p>The streaming session ID.</p>",
         "CreateStreamingSessionStreamRequest$studioId": "<p>The studio ID. </p>",
@@ -1226,13 +1257,13 @@
         "StreamingSession$createdBy": "<p>The user ID of the user that created the streaming session.</p>",
         "StreamingSession$ec2InstanceType": "<p>The EC2 Instance type used for the streaming session.</p>",
         "StreamingSession$launchProfileId": "<p>The ID of the launch profile used to control access from the streaming session.</p>",
-        "StreamingSession$ownedBy": "<p>The user ID of the user that owns the streaming session.</p>",
+        "StreamingSession$ownedBy": "<p>The user ID of the user that owns the streaming session. The user that owns the session will be logging into the session and interacting with the virtual workstation.</p>",
         "StreamingSession$startedBy": "<p>The user ID of the user that started the streaming session.</p>",
         "StreamingSession$statusMessage": "<p>The status message for the streaming session.</p>",
         "StreamingSession$stoppedBy": "<p>The user ID of the user that stopped the streaming session.</p>",
         "StreamingSession$updatedBy": "<p>The user ID of the user that most recently updated the resource.</p>",
         "StreamingSessionStream$createdBy": "<p>The user ID of the user that created the streaming session stream.</p>",
-        "StreamingSessionStream$ownedBy": "<p>The user ID of the user that owns the streaming session.</p>",
+        "StreamingSessionStream$ownedBy": "<p>The user ID of the user that owns the streaming session. The user that owns the session will be logging into the session and interacting with the virtual workstation.</p>",
         "StreamingSessionStream$streamId": "<p>The stream ID.</p>",
         "StringList$member": null,
         "Studio$adminRoleArn": "<p>The IAM role that studio admins assume when logging in to the Nimble Studio portal.</p>",
@@ -1279,9 +1310,6 @@
         "GetLaunchProfileInitializationRequest$launchProfileProtocolVersions": "<p>The launch profile protocol versions supported by the client.</p>",
         "ListEulaAcceptancesRequest$eulaIds": "<p>The list of EULA IDs that have been previously accepted.</p>",
         "ListEulasRequest$eulaIds": "<p>The list of EULA IDs that should be returned</p>",
-        "ListLaunchProfilesRequest$states": "<p>Filter this request to launch profiles in any of the given states.</p>",
-        "ListStudioComponentsRequest$states": "<p>Filters the request to studio components that are in one of the given states. </p>",
-        "ListStudioComponentsRequest$types": "<p>Filters the request to studio components that are of one of the given types.</p>",
         "UntagResourceRequest$tagKeys": "<p>One or more tag keys. Specify only the tag keys, not the tag values.</p>"
       }
     },
@@ -1395,7 +1423,14 @@
     "StudioComponentState": {
       "base": "<p>The current state of the studio component resource.</p> <p>While a studio component is being created, modified, or deleted, its state will equal \"CREATE_IN_PROGRESS\", \"UPDATE_IN_PROGRESS\", or \"DELETE_IN_PROGRESS\"</p> <p>These are called 'transition states'.</p> <p>No modifications may be made to the studio component while it is in a transition state.</p> <p>If creation of the resource fails, the state will change to `CREATE_FAILED`. The resource StatusCode and StatusMessage will provide more information of why creation failed. The resource in this state will automatically be deleted from your account after a period of time.</p> <p>If updating the resource fails, the state will change to `UPDATE_FAILED`. The resource StatusCode and StatusMessage will provide more information of why the update failed. The resource will be returned to the state it was in when the update request was invoked.</p> <p>If deleting the resource fails, the state will change to `DELETE_FAILED`. The resource StatusCode and StatusMessage will provide more information of why the update failed. The resource will be returned to the state it was in when the update request was invoked. After the resource is deleted successfully, it will change to the \"DELETED\" state. The resource will no longer count against service quotas and cannot be used or acted upon any futher. It will be removed from your account after a period of time.</p>",
       "refs": {
-        "StudioComponent$state": "<p>The current state.</p>"
+        "StudioComponent$state": "<p>The current state.</p>",
+        "StudioComponentStateList$member": null
+      }
+    },
+    "StudioComponentStateList": {
+      "base": null,
+      "refs": {
+        "ListStudioComponentsRequest$states": "<p>Filters the request to studio components that are in one of the given states. </p>"
       }
     },
     "StudioComponentStatusCode": {
@@ -1431,7 +1466,14 @@
         "CreateStudioComponentRequest$type": "<p>The type of the studio component.</p>",
         "StudioComponent$type": "<p>The type of the studio component.</p>",
         "StudioComponentSummary$type": "<p>The type of the studio component.</p>",
+        "StudioComponentTypeList$member": null,
         "UpdateStudioComponentRequest$type": "<p>The type of the studio component.</p>"
+      }
+    },
+    "StudioComponentTypeList": {
+      "base": null,
+      "refs": {
+        "ListStudioComponentsRequest$types": "<p>Filters the request to studio components that are of one of the given types.</p>"
       }
     },
     "StudioEncryptionConfiguration": {
@@ -1696,6 +1738,18 @@
     "ValidationException": {
       "base": "<p>One of the parameters in the request is invalid.</p>",
       "refs": {
+      }
+    },
+    "ValidationResult": {
+      "base": "<p>The launch profile validation result.</p>",
+      "refs": {
+        "ValidationResults$member": null
+      }
+    },
+    "ValidationResults": {
+      "base": null,
+      "refs": {
+        "LaunchProfile$validationResults": "<p>The list of the latest validation results.</p>"
       }
     },
     "WindowsMountDrive": {

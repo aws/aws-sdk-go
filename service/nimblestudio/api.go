@@ -2124,7 +2124,7 @@ func (c *NimbleStudio) GetStreamingSessionRequest(input *GetStreamingSessionInpu
 //
 // Gets StreamingSession resource.
 //
-// anvoke this operation to poll for a streaming session state while creating
+// Invoke this operation to poll for a streaming session state while creating
 // or deleting a session.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6163,7 +6163,9 @@ type CreateStreamingSessionInput struct {
 	// The launch profile ID.
 	LaunchProfileId *string `locationName:"launchProfileId" type:"string"`
 
-	// The user ID of the user that owns the streaming session.
+	// The user ID of the user that owns the streaming session. The user that owns
+	// the session will be logging into the session and interacting with the virtual
+	// workstation.
 	OwnedBy *string `locationName:"ownedBy" type:"string"`
 
 	// The ID of the streaming image.
@@ -8969,6 +8971,9 @@ type LaunchProfile struct {
 
 	// The user ID of the user that most recently updated the resource.
 	UpdatedBy *string `locationName:"updatedBy" type:"string"`
+
+	// The list of the latest validation results.
+	ValidationResults []*ValidationResult `locationName:"validationResults" type:"list"`
 }
 
 // String returns the string representation.
@@ -9082,6 +9087,12 @@ func (s *LaunchProfile) SetUpdatedAt(v time.Time) *LaunchProfile {
 // SetUpdatedBy sets the UpdatedBy field's value.
 func (s *LaunchProfile) SetUpdatedBy(v string) *LaunchProfile {
 	s.UpdatedBy = &v
+	return s
+}
+
+// SetValidationResults sets the ValidationResults field's value.
+func (s *LaunchProfile) SetValidationResults(v []*ValidationResult) *LaunchProfile {
+	s.ValidationResults = v
 	return s
 }
 
@@ -12055,7 +12066,9 @@ type StreamingSession struct {
 	// The ID of the launch profile used to control access from the streaming session.
 	LaunchProfileId *string `locationName:"launchProfileId" type:"string"`
 
-	// The user ID of the user that owns the streaming session.
+	// The user ID of the user that owns the streaming session. The user that owns
+	// the session will be logging into the session and interacting with the virtual
+	// workstation.
 	OwnedBy *string `locationName:"ownedBy" type:"string"`
 
 	// The session ID.
@@ -12247,16 +12260,14 @@ func (s *StreamingSession) SetUpdatedBy(v string) *StreamingSession {
 type StreamingSessionStorageRoot struct {
 	_ struct{} `type:"structure"`
 
-	// The folder path in Linux workstations where files are uploaded. The default
-	// path is $HOME/Downloads.
+	// The folder path in Linux workstations where files are uploaded.
 	//
 	// Linux is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by StreamingSessionStorageRoot's
 	// String and GoString methods.
 	Linux *string `locationName:"linux" min:"1" type:"string" sensitive:"true"`
 
-	// The folder path in Windows workstations where files are uploaded. The default
-	// path is %HOMEPATH%\Downloads.
+	// The folder path in Windows workstations where files are uploaded.
 	//
 	// Windows is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by StreamingSessionStorageRoot's
@@ -12326,7 +12337,9 @@ type StreamingSessionStream struct {
 	// The Unix epoch timestamp in seconds for when the resource expires.
 	ExpiresAt *time.Time `locationName:"expiresAt" type:"timestamp" timestampFormat:"iso8601"`
 
-	// The user ID of the user that owns the streaming session.
+	// The user ID of the user that owns the streaming session. The user that owns
+	// the session will be logging into the session and interacting with the virtual
+	// workstation.
 	OwnedBy *string `locationName:"ownedBy" type:"string"`
 
 	// The current state.
@@ -14336,6 +14349,73 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The launch profile validation result.
+type ValidationResult struct {
+	_ struct{} `type:"structure"`
+
+	// The current state.
+	//
+	// State is a required field
+	State *string `locationName:"state" type:"string" required:"true" enum:"LaunchProfileValidationState"`
+
+	// The status code. This will contain the failure reason if the state is VALIDATION_FAILED.
+	//
+	// StatusCode is a required field
+	StatusCode *string `locationName:"statusCode" type:"string" required:"true" enum:"LaunchProfileValidationStatusCode"`
+
+	// The status message for the validation result.
+	//
+	// StatusMessage is a required field
+	StatusMessage *string `locationName:"statusMessage" type:"string" required:"true"`
+
+	// The type of the validation result.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"LaunchProfileValidationType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidationResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidationResult) GoString() string {
+	return s.String()
+}
+
+// SetState sets the State field's value.
+func (s *ValidationResult) SetState(v string) *ValidationResult {
+	s.State = &v
+	return s
+}
+
+// SetStatusCode sets the StatusCode field's value.
+func (s *ValidationResult) SetStatusCode(v string) *ValidationResult {
+	s.StatusCode = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *ValidationResult) SetStatusMessage(v string) *ValidationResult {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ValidationResult) SetType(v string) *ValidationResult {
+	s.Type = &v
+	return s
+}
+
 const (
 	// LaunchProfilePersonaUser is a LaunchProfilePersona enum value
 	LaunchProfilePersonaUser = "USER"
@@ -14461,6 +14541,102 @@ func LaunchProfileStatusCode_Values() []string {
 		LaunchProfileStatusCodeEncryptionKeyAccessDenied,
 		LaunchProfileStatusCodeEncryptionKeyNotFound,
 		LaunchProfileStatusCodeInvalidSubnetsProvided,
+	}
+}
+
+const (
+	// LaunchProfileValidationStateValidationNotStarted is a LaunchProfileValidationState enum value
+	LaunchProfileValidationStateValidationNotStarted = "VALIDATION_NOT_STARTED"
+
+	// LaunchProfileValidationStateValidationInProgress is a LaunchProfileValidationState enum value
+	LaunchProfileValidationStateValidationInProgress = "VALIDATION_IN_PROGRESS"
+
+	// LaunchProfileValidationStateValidationSuccess is a LaunchProfileValidationState enum value
+	LaunchProfileValidationStateValidationSuccess = "VALIDATION_SUCCESS"
+
+	// LaunchProfileValidationStateValidationFailed is a LaunchProfileValidationState enum value
+	LaunchProfileValidationStateValidationFailed = "VALIDATION_FAILED"
+
+	// LaunchProfileValidationStateValidationFailedInternalServerError is a LaunchProfileValidationState enum value
+	LaunchProfileValidationStateValidationFailedInternalServerError = "VALIDATION_FAILED_INTERNAL_SERVER_ERROR"
+)
+
+// LaunchProfileValidationState_Values returns all elements of the LaunchProfileValidationState enum
+func LaunchProfileValidationState_Values() []string {
+	return []string{
+		LaunchProfileValidationStateValidationNotStarted,
+		LaunchProfileValidationStateValidationInProgress,
+		LaunchProfileValidationStateValidationSuccess,
+		LaunchProfileValidationStateValidationFailed,
+		LaunchProfileValidationStateValidationFailedInternalServerError,
+	}
+}
+
+const (
+	// LaunchProfileValidationStatusCodeValidationNotStarted is a LaunchProfileValidationStatusCode enum value
+	LaunchProfileValidationStatusCodeValidationNotStarted = "VALIDATION_NOT_STARTED"
+
+	// LaunchProfileValidationStatusCodeValidationInProgress is a LaunchProfileValidationStatusCode enum value
+	LaunchProfileValidationStatusCodeValidationInProgress = "VALIDATION_IN_PROGRESS"
+
+	// LaunchProfileValidationStatusCodeValidationSuccess is a LaunchProfileValidationStatusCode enum value
+	LaunchProfileValidationStatusCodeValidationSuccess = "VALIDATION_SUCCESS"
+
+	// LaunchProfileValidationStatusCodeValidationFailedInvalidSubnetRouteTableAssociation is a LaunchProfileValidationStatusCode enum value
+	LaunchProfileValidationStatusCodeValidationFailedInvalidSubnetRouteTableAssociation = "VALIDATION_FAILED_INVALID_SUBNET_ROUTE_TABLE_ASSOCIATION"
+
+	// LaunchProfileValidationStatusCodeValidationFailedSubnetNotFound is a LaunchProfileValidationStatusCode enum value
+	LaunchProfileValidationStatusCodeValidationFailedSubnetNotFound = "VALIDATION_FAILED_SUBNET_NOT_FOUND"
+
+	// LaunchProfileValidationStatusCodeValidationFailedInvalidSecurityGroupAssociation is a LaunchProfileValidationStatusCode enum value
+	LaunchProfileValidationStatusCodeValidationFailedInvalidSecurityGroupAssociation = "VALIDATION_FAILED_INVALID_SECURITY_GROUP_ASSOCIATION"
+
+	// LaunchProfileValidationStatusCodeValidationFailedInvalidActiveDirectory is a LaunchProfileValidationStatusCode enum value
+	LaunchProfileValidationStatusCodeValidationFailedInvalidActiveDirectory = "VALIDATION_FAILED_INVALID_ACTIVE_DIRECTORY"
+
+	// LaunchProfileValidationStatusCodeValidationFailedUnauthorized is a LaunchProfileValidationStatusCode enum value
+	LaunchProfileValidationStatusCodeValidationFailedUnauthorized = "VALIDATION_FAILED_UNAUTHORIZED"
+
+	// LaunchProfileValidationStatusCodeValidationFailedInternalServerError is a LaunchProfileValidationStatusCode enum value
+	LaunchProfileValidationStatusCodeValidationFailedInternalServerError = "VALIDATION_FAILED_INTERNAL_SERVER_ERROR"
+)
+
+// LaunchProfileValidationStatusCode_Values returns all elements of the LaunchProfileValidationStatusCode enum
+func LaunchProfileValidationStatusCode_Values() []string {
+	return []string{
+		LaunchProfileValidationStatusCodeValidationNotStarted,
+		LaunchProfileValidationStatusCodeValidationInProgress,
+		LaunchProfileValidationStatusCodeValidationSuccess,
+		LaunchProfileValidationStatusCodeValidationFailedInvalidSubnetRouteTableAssociation,
+		LaunchProfileValidationStatusCodeValidationFailedSubnetNotFound,
+		LaunchProfileValidationStatusCodeValidationFailedInvalidSecurityGroupAssociation,
+		LaunchProfileValidationStatusCodeValidationFailedInvalidActiveDirectory,
+		LaunchProfileValidationStatusCodeValidationFailedUnauthorized,
+		LaunchProfileValidationStatusCodeValidationFailedInternalServerError,
+	}
+}
+
+const (
+	// LaunchProfileValidationTypeValidateActiveDirectoryStudioComponent is a LaunchProfileValidationType enum value
+	LaunchProfileValidationTypeValidateActiveDirectoryStudioComponent = "VALIDATE_ACTIVE_DIRECTORY_STUDIO_COMPONENT"
+
+	// LaunchProfileValidationTypeValidateSubnetAssociation is a LaunchProfileValidationType enum value
+	LaunchProfileValidationTypeValidateSubnetAssociation = "VALIDATE_SUBNET_ASSOCIATION"
+
+	// LaunchProfileValidationTypeValidateNetworkAclAssociation is a LaunchProfileValidationType enum value
+	LaunchProfileValidationTypeValidateNetworkAclAssociation = "VALIDATE_NETWORK_ACL_ASSOCIATION"
+
+	// LaunchProfileValidationTypeValidateSecurityGroupAssociation is a LaunchProfileValidationType enum value
+	LaunchProfileValidationTypeValidateSecurityGroupAssociation = "VALIDATE_SECURITY_GROUP_ASSOCIATION"
+)
+
+// LaunchProfileValidationType_Values returns all elements of the LaunchProfileValidationType enum
+func LaunchProfileValidationType_Values() []string {
+	return []string{
+		LaunchProfileValidationTypeValidateActiveDirectoryStudioComponent,
+		LaunchProfileValidationTypeValidateSubnetAssociation,
+		LaunchProfileValidationTypeValidateNetworkAclAssociation,
+		LaunchProfileValidationTypeValidateSecurityGroupAssociation,
 	}
 }
 
@@ -14699,6 +14875,9 @@ const (
 
 	// StreamingSessionStatusCodeStreamingSessionStartInProgress is a StreamingSessionStatusCode enum value
 	StreamingSessionStatusCodeStreamingSessionStartInProgress = "STREAMING_SESSION_START_IN_PROGRESS"
+
+	// StreamingSessionStatusCodeAmiValidationError is a StreamingSessionStatusCode enum value
+	StreamingSessionStatusCodeAmiValidationError = "AMI_VALIDATION_ERROR"
 )
 
 // StreamingSessionStatusCode_Values returns all elements of the StreamingSessionStatusCode enum
@@ -14719,6 +14898,7 @@ func StreamingSessionStatusCode_Values() []string {
 		StreamingSessionStatusCodeStreamingSessionStarted,
 		StreamingSessionStatusCodeStreamingSessionStopInProgress,
 		StreamingSessionStatusCodeStreamingSessionStartInProgress,
+		StreamingSessionStatusCodeAmiValidationError,
 	}
 }
 

@@ -12,7 +12,7 @@
 // (Amazon EC2) instance, edge device, or on-premises server or virtual machine
 // (VM) that has been configured for Systems Manager.
 //
-// With support for IoT Greengrass Version 2 devices, the phrase managed instance
+// With support for IoT Greengrass core devices, the phrase managed instance
 // has been changed to managed node in most of the Systems Manager documentation.
 // The Systems Manager console, API calls, error messages, and SSM documents
 // still use the term instance.

@@ -1820,7 +1820,8 @@
         "studioComponentIds":{"shape":"LaunchProfileStudioComponentIdList"},
         "tags":{"shape":"Tags"},
         "updatedAt":{"shape":"Timestamp"},
-        "updatedBy":{"shape":"String"}
+        "updatedBy":{"shape":"String"},
+        "validationResults":{"shape":"ValidationResults"}
       }
     },
     "LaunchProfileDescription":{
@@ -1937,6 +1938,10 @@
         "UPDATE_FAILED"
       ]
     },
+    "LaunchProfileStateList":{
+      "type":"list",
+      "member":{"shape":"LaunchProfileState"}
+    },
     "LaunchProfileStatusCode":{
       "type":"string",
       "enum":[
@@ -1960,6 +1965,40 @@
       "member":{"shape":"String"},
       "max":100,
       "min":1
+    },
+    "LaunchProfileValidationState":{
+      "type":"string",
+      "enum":[
+        "VALIDATION_NOT_STARTED",
+        "VALIDATION_IN_PROGRESS",
+        "VALIDATION_SUCCESS",
+        "VALIDATION_FAILED",
+        "VALIDATION_FAILED_INTERNAL_SERVER_ERROR"
+      ]
+    },
+    "LaunchProfileValidationStatusCode":{
+      "type":"string",
+      "enum":[
+        "VALIDATION_NOT_STARTED",
+        "VALIDATION_IN_PROGRESS",
+        "VALIDATION_SUCCESS",
+        "VALIDATION_FAILED_INVALID_SUBNET_ROUTE_TABLE_ASSOCIATION",
+        "VALIDATION_FAILED_SUBNET_NOT_FOUND",
+        "VALIDATION_FAILED_INVALID_SECURITY_GROUP_ASSOCIATION",
+        "VALIDATION_FAILED_INVALID_ACTIVE_DIRECTORY",
+        "VALIDATION_FAILED_UNAUTHORIZED",
+        "VALIDATION_FAILED_INTERNAL_SERVER_ERROR"
+      ]
+    },
+    "LaunchProfileValidationStatusMessage":{"type":"string"},
+    "LaunchProfileValidationType":{
+      "type":"string",
+      "enum":[
+        "VALIDATE_ACTIVE_DIRECTORY_STUDIO_COMPONENT",
+        "VALIDATE_SUBNET_ASSOCIATION",
+        "VALIDATE_NETWORK_ACL_ASSOCIATION",
+        "VALIDATE_SECURITY_GROUP_ASSOCIATION"
+      ]
     },
     "LaunchPurpose":{
       "type":"string",
@@ -2086,7 +2125,7 @@
           "locationName":"principalId"
         },
         "states":{
-          "shape":"StringList",
+          "shape":"LaunchProfileStateList",
           "location":"querystring",
           "locationName":"states"
         },
@@ -2185,7 +2224,7 @@
           "locationName":"nextToken"
         },
         "states":{
-          "shape":"StringList",
+          "shape":"StudioComponentStateList",
           "location":"querystring",
           "locationName":"states"
         },
@@ -2195,7 +2234,7 @@
           "locationName":"studioId"
         },
         "types":{
-          "shape":"StringList",
+          "shape":"StudioComponentTypeList",
           "location":"querystring",
           "locationName":"types"
         }
@@ -2737,7 +2776,8 @@
         "STREAMING_SESSION_STOPPED",
         "STREAMING_SESSION_STARTED",
         "STREAMING_SESSION_STOP_IN_PROGRESS",
-        "STREAMING_SESSION_START_IN_PROGRESS"
+        "STREAMING_SESSION_START_IN_PROGRESS",
+        "AMI_VALIDATION_ERROR"
       ]
     },
     "StreamingSessionStorageMode":{
@@ -2945,6 +2985,10 @@
         "UPDATE_FAILED"
       ]
     },
+    "StudioComponentStateList":{
+      "type":"list",
+      "member":{"shape":"StudioComponentState"}
+    },
     "StudioComponentStatusCode":{
       "type":"string",
       "enum":[
@@ -2996,6 +3040,10 @@
         "LICENSE_SERVICE",
         "CUSTOM"
       ]
+    },
+    "StudioComponentTypeList":{
+      "type":"list",
+      "member":{"shape":"StudioComponentType"}
     },
     "StudioEncryptionConfiguration":{
       "type":"structure",
@@ -3402,6 +3450,25 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "ValidationResult":{
+      "type":"structure",
+      "required":[
+        "state",
+        "statusCode",
+        "statusMessage",
+        "type"
+      ],
+      "members":{
+        "state":{"shape":"LaunchProfileValidationState"},
+        "statusCode":{"shape":"LaunchProfileValidationStatusCode"},
+        "statusMessage":{"shape":"LaunchProfileValidationStatusMessage"},
+        "type":{"shape":"LaunchProfileValidationType"}
+      }
+    },
+    "ValidationResults":{
+      "type":"list",
+      "member":{"shape":"ValidationResult"}
     },
     "WindowsMountDrive":{
       "type":"string",

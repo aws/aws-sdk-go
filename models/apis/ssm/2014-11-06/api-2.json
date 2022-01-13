@@ -2845,6 +2845,22 @@
         "WindowExecutionId":{"shape":"MaintenanceWindowExecutionId"}
       }
     },
+    "Category":{
+      "type":"string",
+      "max":128
+    },
+    "CategoryEnumList":{
+      "type":"list",
+      "member":{"shape":"Category"},
+      "max":3,
+      "min":0
+    },
+    "CategoryList":{
+      "type":"list",
+      "member":{"shape":"Category"},
+      "max":3,
+      "min":0
+    },
     "ChangeDetailsValue":{
       "type":"string",
       "max":32768,
@@ -4448,7 +4464,9 @@
         "ReviewInformation":{"shape":"ReviewInformationList"},
         "ApprovedVersion":{"shape":"DocumentVersion"},
         "PendingReviewVersion":{"shape":"DocumentVersion"},
-        "ReviewStatus":{"shape":"ReviewStatus"}
+        "ReviewStatus":{"shape":"ReviewStatus"},
+        "Category":{"shape":"CategoryList"},
+        "CategoryEnum":{"shape":"CategoryEnumList"}
       }
     },
     "DocumentDisplayName":{

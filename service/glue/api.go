@@ -46293,6 +46293,9 @@ type StartWorkflowRunInput struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// The workflow run properties for the new workflow run.
+	RunProperties map[string]*string `type:"map"`
 }
 
 // String returns the string representation.
@@ -46332,6 +46335,12 @@ func (s *StartWorkflowRunInput) Validate() error {
 // SetName sets the Name field's value.
 func (s *StartWorkflowRunInput) SetName(v string) *StartWorkflowRunInput {
 	s.Name = &v
+	return s
+}
+
+// SetRunProperties sets the RunProperties field's value.
+func (s *StartWorkflowRunInput) SetRunProperties(v map[string]*string) *StartWorkflowRunInput {
+	s.RunProperties = v
 	return s
 }
 

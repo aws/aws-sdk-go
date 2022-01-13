@@ -16396,7 +16396,7 @@ type LogDeliveryConfiguration struct {
 	// Returns the log format, either JSON or TEXT.
 	LogFormat *string `type:"string" enum:"LogFormat"`
 
-	// Refers to slow-log (https://redis.io/commands/slowlog).
+	// Refers to slow-log (https://redis.io/commands/slowlog) or engine-log.
 	LogType *string `type:"string" enum:"LogType"`
 
 	// Returns an error message for the log delivery configuration.
@@ -16478,7 +16478,7 @@ type LogDeliveryConfigurationRequest struct {
 	// Specifies either JSON or TEXT
 	LogFormat *string `type:"string" enum:"LogFormat"`
 
-	// Refers to slow-log (https://redis.io/commands/slowlog).
+	// Refers to slow-log (https://redis.io/commands/slowlog) or engine-log..
 	LogType *string `type:"string" enum:"LogType"`
 }
 
@@ -18901,7 +18901,7 @@ type PendingLogDeliveryConfiguration struct {
 	// Returns the log format, either JSON or TEXT
 	LogFormat *string `type:"string" enum:"LogFormat"`
 
-	// Refers to slow-log (https://redis.io/commands/slowlog).
+	// Refers to slow-log (https://redis.io/commands/slowlog) or engine-log..
 	LogType *string `type:"string" enum:"LogType"`
 }
 
@@ -22278,12 +22278,16 @@ func LogFormat_Values() []string {
 const (
 	// LogTypeSlowLog is a LogType enum value
 	LogTypeSlowLog = "slow-log"
+
+	// LogTypeEngineLog is a LogType enum value
+	LogTypeEngineLog = "engine-log"
 )
 
 // LogType_Values returns all elements of the LogType enum
 func LogType_Values() []string {
 	return []string{
 		LogTypeSlowLog,
+		LogTypeEngineLog,
 	}
 }
 
