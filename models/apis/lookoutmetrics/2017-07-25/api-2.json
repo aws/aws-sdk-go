@@ -100,6 +100,23 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DeactivateAnomalyDetector":{
+      "name":"DeactivateAnomalyDetector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/DeactivateAnomalyDetector"
+      },
+      "input":{"shape":"DeactivateAnomalyDetectorRequest"},
+      "output":{"shape":"DeactivateAnomalyDetectorResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DeleteAlert":{
       "name":"DeleteAlert",
       "http":{
@@ -569,7 +586,8 @@
       "enum":[
         "ACTIVATION_FAILURE",
         "BACK_TEST_ACTIVATION_FAILURE",
-        "DELETION_FAILURE"
+        "DELETION_FAILURE",
+        "DEACTIVATION_FAILURE"
       ]
     },
     "AnomalyDetectorName":{
@@ -589,7 +607,9 @@
         "LEARNING",
         "BACK_TEST_ACTIVATING",
         "BACK_TEST_ACTIVE",
-        "BACK_TEST_COMPLETE"
+        "BACK_TEST_COMPLETE",
+        "DEACTIVATED",
+        "DEACTIVATING"
       ]
     },
     "AnomalyDetectorSummary":{
@@ -829,6 +849,18 @@
       "type":"string",
       "max":63,
       "pattern":".*\\S.*"
+    },
+    "DeactivateAnomalyDetectorRequest":{
+      "type":"structure",
+      "required":["AnomalyDetectorArn"],
+      "members":{
+        "AnomalyDetectorArn":{"shape":"Arn"}
+      }
+    },
+    "DeactivateAnomalyDetectorResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "DeleteAlertRequest":{
       "type":"structure",

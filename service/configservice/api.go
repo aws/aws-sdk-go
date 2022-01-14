@@ -31081,6 +31081,24 @@ const (
 
 	// ResourceTypeAwsOpenSearchDomain is a ResourceType enum value
 	ResourceTypeAwsOpenSearchDomain = "AWS::OpenSearch::Domain"
+
+	// ResourceTypeAwsEc2TransitGateway is a ResourceType enum value
+	ResourceTypeAwsEc2TransitGateway = "AWS::EC2::TransitGateway"
+
+	// ResourceTypeAwsKinesisStream is a ResourceType enum value
+	ResourceTypeAwsKinesisStream = "AWS::Kinesis::Stream"
+
+	// ResourceTypeAwsKinesisStreamConsumer is a ResourceType enum value
+	ResourceTypeAwsKinesisStreamConsumer = "AWS::Kinesis::StreamConsumer"
+
+	// ResourceTypeAwsCodeDeployApplication is a ResourceType enum value
+	ResourceTypeAwsCodeDeployApplication = "AWS::CodeDeploy::Application"
+
+	// ResourceTypeAwsCodeDeployDeploymentConfig is a ResourceType enum value
+	ResourceTypeAwsCodeDeployDeploymentConfig = "AWS::CodeDeploy::DeploymentConfig"
+
+	// ResourceTypeAwsCodeDeployDeploymentGroup is a ResourceType enum value
+	ResourceTypeAwsCodeDeployDeploymentGroup = "AWS::CodeDeploy::DeploymentGroup"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -31195,6 +31213,12 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsEfsFileSystem,
 		ResourceTypeAwsEksCluster,
 		ResourceTypeAwsOpenSearchDomain,
+		ResourceTypeAwsEc2TransitGateway,
+		ResourceTypeAwsKinesisStream,
+		ResourceTypeAwsKinesisStreamConsumer,
+		ResourceTypeAwsCodeDeployApplication,
+		ResourceTypeAwsCodeDeployDeploymentConfig,
+		ResourceTypeAwsCodeDeployDeploymentGroup,
 	}
 }
 

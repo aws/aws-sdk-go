@@ -131,6 +131,13 @@ type RAMAPI interface {
 	ListPendingInvitationResourcesPages(*ram.ListPendingInvitationResourcesInput, func(*ram.ListPendingInvitationResourcesOutput, bool) bool) error
 	ListPendingInvitationResourcesPagesWithContext(aws.Context, *ram.ListPendingInvitationResourcesInput, func(*ram.ListPendingInvitationResourcesOutput, bool) bool, ...request.Option) error
 
+	ListPermissionVersions(*ram.ListPermissionVersionsInput) (*ram.ListPermissionVersionsOutput, error)
+	ListPermissionVersionsWithContext(aws.Context, *ram.ListPermissionVersionsInput, ...request.Option) (*ram.ListPermissionVersionsOutput, error)
+	ListPermissionVersionsRequest(*ram.ListPermissionVersionsInput) (*request.Request, *ram.ListPermissionVersionsOutput)
+
+	ListPermissionVersionsPages(*ram.ListPermissionVersionsInput, func(*ram.ListPermissionVersionsOutput, bool) bool) error
+	ListPermissionVersionsPagesWithContext(aws.Context, *ram.ListPermissionVersionsInput, func(*ram.ListPermissionVersionsOutput, bool) bool, ...request.Option) error
+
 	ListPermissions(*ram.ListPermissionsInput) (*ram.ListPermissionsOutput, error)
 	ListPermissionsWithContext(aws.Context, *ram.ListPermissionsInput, ...request.Option) (*ram.ListPermissionsOutput, error)
 	ListPermissionsRequest(*ram.ListPermissionsInput) (*request.Request, *ram.ListPermissionsOutput)

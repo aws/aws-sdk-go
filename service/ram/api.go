@@ -1755,6 +1755,161 @@ func (c *RAM) ListPendingInvitationResourcesPagesWithContext(ctx aws.Context, in
 	return p.Err()
 }
 
+const opListPermissionVersions = "ListPermissionVersions"
+
+// ListPermissionVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListPermissionVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPermissionVersions for more information on using the ListPermissionVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListPermissionVersionsRequest method.
+//    req, resp := client.ListPermissionVersionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ram-2018-01-04/ListPermissionVersions
+func (c *RAM) ListPermissionVersionsRequest(input *ListPermissionVersionsInput) (req *request.Request, output *ListPermissionVersionsOutput) {
+	op := &request.Operation{
+		Name:       opListPermissionVersions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/listpermissionversions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListPermissionVersionsInput{}
+	}
+
+	output = &ListPermissionVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPermissionVersions API operation for AWS Resource Access Manager.
+//
+// Lists the available versions of the specified RAM permission.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Resource Access Manager's
+// API operation ListPermissionVersions for usage and error information.
+//
+// Returned Error Types:
+//   * MalformedArnException
+//   The format of an Amazon Resource Name (ARN) is not valid.
+//
+//   * UnknownResourceException
+//   A specified resource was not found.
+//
+//   * InvalidNextTokenException
+//   The specified value for NextToken is not valid.
+//
+//   * ServerInternalException
+//   The service could not respond to the request due to an internal problem.
+//
+//   * ServiceUnavailableException
+//   The service is not available.
+//
+//   * OperationNotPermittedException
+//   The requested operation is not permitted.
+//
+//   * InvalidParameterException
+//   A parameter is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ram-2018-01-04/ListPermissionVersions
+func (c *RAM) ListPermissionVersions(input *ListPermissionVersionsInput) (*ListPermissionVersionsOutput, error) {
+	req, out := c.ListPermissionVersionsRequest(input)
+	return out, req.Send()
+}
+
+// ListPermissionVersionsWithContext is the same as ListPermissionVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPermissionVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RAM) ListPermissionVersionsWithContext(ctx aws.Context, input *ListPermissionVersionsInput, opts ...request.Option) (*ListPermissionVersionsOutput, error) {
+	req, out := c.ListPermissionVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListPermissionVersionsPages iterates over the pages of a ListPermissionVersions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPermissionVersions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListPermissionVersions operation.
+//    pageNum := 0
+//    err := client.ListPermissionVersionsPages(params,
+//        func(page *ram.ListPermissionVersionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RAM) ListPermissionVersionsPages(input *ListPermissionVersionsInput, fn func(*ListPermissionVersionsOutput, bool) bool) error {
+	return c.ListPermissionVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPermissionVersionsPagesWithContext same as ListPermissionVersionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RAM) ListPermissionVersionsPagesWithContext(ctx aws.Context, input *ListPermissionVersionsInput, fn func(*ListPermissionVersionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPermissionVersionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPermissionVersionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPermissionVersionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListPermissions = "ListPermissions"
 
 // ListPermissionsRequest generates a "aws/request.Request" representing the
@@ -3309,7 +3464,8 @@ type AssociateResourceSharePermissionInput struct {
 
 	// Specifies the version of the RAM permission to associate with the resource
 	// share. If you don't specify this parameter, the operation uses the version
-	// designated as the default.
+	// designated as the default. You can use the ListPermissionVersions operation
+	// to discover the available versions of a permission.
 	PermissionVersion *int64 `locationName:"permissionVersion" type:"integer"`
 
 	// Specifies whether the specified permission should replace or add to the existing
@@ -5352,6 +5508,132 @@ func (s *ListPendingInvitationResourcesOutput) SetNextToken(v string) *ListPendi
 // SetResources sets the Resources field's value.
 func (s *ListPendingInvitationResourcesOutput) SetResources(v []*Resource) *ListPendingInvitationResourcesOutput {
 	s.Resources = v
+	return s
+}
+
+type ListPermissionVersionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the total number of results that you want included on each page
+	// of the response. If you do not include this parameter, it defaults to a value
+	// that is specific to the operation. If additional items exist beyond the number
+	// you specify, the NextToken response element is returned with a value (not
+	// null). Include the specified value as the NextToken request parameter in
+	// the next call to the operation to get the next part of the results. Note
+	// that the service might return fewer results than the maximum even when there
+	// are more results available. You should check NextToken after every operation
+	// to ensure that you receive all of the results.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// Specifies that you want to receive the next page of results. Valid only if
+	// you received a NextToken response in the previous request. If you did, it
+	// indicates that more output is available. Set this parameter to the value
+	// provided by the previous call's NextToken response to request the next page
+	// of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Specifies the Amazon Resoure Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the RAM permission whose versions you want to list. You can use the permissionVersion
+	// parameter on the AssociateResourceSharePermission operation to specify a
+	// non-default version to attach.
+	//
+	// PermissionArn is a required field
+	PermissionArn *string `locationName:"permissionArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPermissionVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPermissionVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPermissionVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPermissionVersionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.PermissionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("PermissionArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPermissionVersionsInput) SetMaxResults(v int64) *ListPermissionVersionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPermissionVersionsInput) SetNextToken(v string) *ListPermissionVersionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPermissionArn sets the PermissionArn field's value.
+func (s *ListPermissionVersionsInput) SetPermissionArn(v string) *ListPermissionVersionsInput {
+	s.PermissionArn = &v
+	return s
+}
+
+type ListPermissionVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If present, this value indicates that more output is available than is included
+	// in the current response. Use this value in the NextToken request parameter
+	// in a subsequent call to the operation to get the next part of the output.
+	// You should repeat this until the NextToken response element comes back as
+	// null. This indicates that this is the last page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// An array of objects that contain details for each of the available versions.
+	Permissions []*ResourceSharePermissionSummary `locationName:"permissions" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPermissionVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPermissionVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPermissionVersionsOutput) SetNextToken(v string) *ListPermissionVersionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *ListPermissionVersionsOutput) SetPermissions(v []*ResourceSharePermissionSummary) *ListPermissionVersionsOutput {
+	s.Permissions = v
 	return s
 }
 

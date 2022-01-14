@@ -279,6 +279,24 @@
         {"shape":"ResourceShareInvitationExpiredException"}
       ]
     },
+    "ListPermissionVersions":{
+      "name":"ListPermissionVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/listpermissionversions"
+      },
+      "input":{"shape":"ListPermissionVersionsRequest"},
+      "output":{"shape":"ListPermissionVersionsResponse"},
+      "errors":[
+        {"shape":"MalformedArnException"},
+        {"shape":"UnknownResourceException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"ServerInternalException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
     "ListPermissions":{
       "name":"ListPermissions",
       "http":{
@@ -769,6 +787,22 @@
       "type":"structure",
       "members":{
         "resources":{"shape":"ResourceList"},
+        "nextToken":{"shape":"String"}
+      }
+    },
+    "ListPermissionVersionsRequest":{
+      "type":"structure",
+      "required":["permissionArn"],
+      "members":{
+        "permissionArn":{"shape":"String"},
+        "nextToken":{"shape":"String"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListPermissionVersionsResponse":{
+      "type":"structure",
+      "members":{
+        "permissions":{"shape":"ResourceSharePermissionList"},
         "nextToken":{"shape":"String"}
       }
     },

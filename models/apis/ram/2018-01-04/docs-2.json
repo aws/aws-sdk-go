@@ -16,6 +16,7 @@
     "GetResourceShareInvitations": "<p>Retrieves details about invitations that you have received for resource shares.</p>",
     "GetResourceShares": "<p>Retrieves details about the resource shares that you own or that are shared with you.</p>",
     "ListPendingInvitationResources": "<p>Lists the resources in a resource share that is shared with you but for which the invitation is still <code>PENDING</code>. That means that you haven't accepted or rejected the invitation and the invitation hasn't expired.</p>",
+    "ListPermissionVersions": "<p>Lists the available versions of the specified RAM permission.</p>",
     "ListPermissions": "<p>Retrieves a list of available RAM permissions that you can use for the supported resource types. </p>",
     "ListPrincipals": "<p>Lists the principals that you are sharing resources with or that are sharing resources with you.</p>",
     "ListResourceSharePermissions": "<p>Lists the RAM permissions that are associated with a resource share.</p>",
@@ -204,7 +205,7 @@
     "Integer": {
       "base": null,
       "refs": {
-        "AssociateResourceSharePermissionRequest$permissionVersion": "<p>Specifies the version of the RAM permission to associate with the resource share. If you don't specify this parameter, the operation uses the version designated as the default.</p>",
+        "AssociateResourceSharePermissionRequest$permissionVersion": "<p>Specifies the version of the RAM permission to associate with the resource share. If you don't specify this parameter, the operation uses the version designated as the default. You can use the <a>ListPermissionVersions</a> operation to discover the available versions of a permission.</p>",
         "GetPermissionRequest$permissionVersion": "<p>Specifies identifier for the version of the RAM permission to retrieve. If you don't specify this parameter, the operation retrieves the default version.</p>"
       }
     },
@@ -244,6 +245,16 @@
       }
     },
     "ListPendingInvitationResourcesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPermissionVersionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPermissionVersionsResponse": {
       "base": null,
       "refs": {
       }
@@ -311,6 +322,7 @@
         "GetResourceShareInvitationsRequest$maxResults": "<p>Specifies the total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the number you specify, the <code>NextToken</code> response element is returned with a value (not null). Include the specified value as the <code>NextToken</code> request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check <code>NextToken</code> after every operation to ensure that you receive all of the results.</p>",
         "GetResourceSharesRequest$maxResults": "<p>Specifies the total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the number you specify, the <code>NextToken</code> response element is returned with a value (not null). Include the specified value as the <code>NextToken</code> request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check <code>NextToken</code> after every operation to ensure that you receive all of the results.</p>",
         "ListPendingInvitationResourcesRequest$maxResults": "<p>Specifies the total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the number you specify, the <code>NextToken</code> response element is returned with a value (not null). Include the specified value as the <code>NextToken</code> request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check <code>NextToken</code> after every operation to ensure that you receive all of the results.</p>",
+        "ListPermissionVersionsRequest$maxResults": "<p>Specifies the total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the number you specify, the <code>NextToken</code> response element is returned with a value (not null). Include the specified value as the <code>NextToken</code> request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check <code>NextToken</code> after every operation to ensure that you receive all of the results.</p>",
         "ListPermissionsRequest$maxResults": "<p>Specifies the total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the number you specify, the <code>NextToken</code> response element is returned with a value (not null). Include the specified value as the <code>NextToken</code> request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check <code>NextToken</code> after every operation to ensure that you receive all of the results.</p>",
         "ListPrincipalsRequest$maxResults": "<p>Specifies the total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the number you specify, the <code>NextToken</code> response element is returned with a value (not null). Include the specified value as the <code>NextToken</code> request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check <code>NextToken</code> after every operation to ensure that you receive all of the results.</p>",
         "ListResourceSharePermissionsRequest$maxResults": "<p>Specifies the total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the number you specify, the <code>NextToken</code> response element is returned with a value (not null). Include the specified value as the <code>NextToken</code> request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check <code>NextToken</code> after every operation to ensure that you receive all of the results.</p>",
@@ -557,6 +569,7 @@
     "ResourceSharePermissionList": {
       "base": null,
       "refs": {
+        "ListPermissionVersionsResponse$permissions": "<p>An array of objects that contain details for each of the available versions.</p>",
         "ListPermissionsResponse$permissions": "<p>An array of objects with information about the permissions.</p>",
         "ListResourceSharePermissionsResponse$permissions": "<p>An array of objects that describe the permissions associated with the resource share.</p>"
       }
@@ -652,6 +665,9 @@
         "ListPendingInvitationResourcesRequest$resourceShareInvitationArn": "<p>Specifies the <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resoure Name (ARN)</a> of the invitation. You can use <a>GetResourceShareInvitations</a> to find the ARN of the invitation.</p>",
         "ListPendingInvitationResourcesRequest$nextToken": "<p>Specifies that you want to receive the next page of results. Valid only if you received a <code>NextToken</code> response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's <code>NextToken</code> response to request the next page of results.</p>",
         "ListPendingInvitationResourcesResponse$nextToken": "<p>If present, this value indicates that more output is available than is included in the current response. Use this value in the <code>NextToken</code> request parameter in a subsequent call to the operation to get the next part of the output. You should repeat this until the <code>NextToken</code> response element comes back as <code>null</code>. This indicates that this is the last page of results.</p>",
+        "ListPermissionVersionsRequest$permissionArn": "<p>Specifies the <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resoure Name (ARN)</a> of the RAM permission whose versions you want to list. You can use the <code>permissionVersion</code> parameter on the <a>AssociateResourceSharePermission</a> operation to specify a non-default version to attach.</p>",
+        "ListPermissionVersionsRequest$nextToken": "<p>Specifies that you want to receive the next page of results. Valid only if you received a <code>NextToken</code> response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's <code>NextToken</code> response to request the next page of results.</p>",
+        "ListPermissionVersionsResponse$nextToken": "<p>If present, this value indicates that more output is available than is included in the current response. Use this value in the <code>NextToken</code> request parameter in a subsequent call to the operation to get the next part of the output. You should repeat this until the <code>NextToken</code> response element comes back as <code>null</code>. This indicates that this is the last page of results.</p>",
         "ListPermissionsRequest$resourceType": "<p>Specifies that you want to list permissions for only the specified resource type. For example, to list only permissions that apply to EC2 subnets, specify <code>ec2:Subnet</code>. You can use the <a>ListResourceTypes</a> operation to get the specific string required.</p>",
         "ListPermissionsRequest$nextToken": "<p>Specifies that you want to receive the next page of results. Valid only if you received a <code>NextToken</code> response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's <code>NextToken</code> response to request the next page of results.</p>",
         "ListPermissionsResponse$nextToken": "<p>If present, this value indicates that more output is available than is included in the current response. Use this value in the <code>NextToken</code> request parameter in a subsequent call to the operation to get the next part of the output. You should repeat this until the <code>NextToken</code> response element comes back as <code>null</code>. This indicates that this is the last page of results.</p>",
