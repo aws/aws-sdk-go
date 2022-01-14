@@ -1,3 +1,13 @@
+Release v1.42.35 (2022-01-14)
+===
+
+### Service Client Updates
+* `service/application-insights`: Updates service API
+* `service/config`: Updates service API
+* `service/honeycode`: Updates service API and documentation
+* `service/lookoutmetrics`: Updates service API and documentation
+* `service/ram`: Updates service API, documentation, and paginators
+
 Release v1.42.34 (2022-01-13)
 ===
 

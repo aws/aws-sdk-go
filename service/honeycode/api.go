@@ -529,6 +529,9 @@ func (c *Honeycode) DescribeTableDataImportJobRequest(input *DescribeTableDataIm
 //   Request is invalid. The message in the response contains details on why the
 //   request is invalid.
 //
+//   * RequestTimeoutException
+//   The request timed out.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/DescribeTableDataImportJob
 func (c *Honeycode) DescribeTableDataImportJob(input *DescribeTableDataImportJobInput) (*DescribeTableDataImportJobOutput, error) {
 	req, out := c.DescribeTableDataImportJobRequest(input)
@@ -741,6 +744,9 @@ func (c *Honeycode) InvokeScreenAutomationRequest(input *InvokeScreenAutomationI
 //
 //   * RequestTimeoutException
 //   The request timed out.
+//
+//   * ServiceQuotaExceededException
+//   The request caused service quota to be breached.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/InvokeScreenAutomation
 func (c *Honeycode) InvokeScreenAutomation(input *InvokeScreenAutomationInput) (*InvokeScreenAutomationOutput, error) {
@@ -1582,6 +1588,12 @@ func (c *Honeycode) StartTableDataImportJobRequest(input *StartTableDataImportJo
 //   * ValidationException
 //   Request is invalid. The message in the response contains details on why the
 //   request is invalid.
+//
+//   * RequestTimeoutException
+//   The request timed out.
+//
+//   * ServiceQuotaExceededException
+//   The request caused service quota to be breached.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/honeycode-2020-03-01/StartTableDataImportJob
 func (c *Honeycode) StartTableDataImportJob(input *StartTableDataImportJobInput) (*StartTableDataImportJobOutput, error) {
@@ -2709,6 +2721,12 @@ type Cell struct {
 	// raw and formatted values.
 	FormattedValue *string `locationName:"formattedValue" type:"string"`
 
+	// A list of formatted values of the cell. This field is only returned when
+	// the cell is ROWSET format (aka multi-select or multi-record picklist). Values
+	// in the list are always represented as strings. The formattedValue field will
+	// be empty if this field is returned.
+	FormattedValues []*string `locationName:"formattedValues" type:"list"`
+
 	// The formula contained in the cell. This field is empty if a cell does not
 	// have a formula.
 	//
@@ -2755,6 +2773,20 @@ type Cell struct {
 	// task status might have "Completed" as the formatted value and "row:dfcefaee-5b37-4355-8f28-40c3e4ff5dd4/ca432b2f-b8eb-431d-9fb5-cbe0342f9f03"
 	// as the raw value.
 	//
+	// Cells with format ROWSET (aka multi-select or multi-record picklist) will
+	// by default have the first column of each of the linked rows as the formatted
+	// value in the list, and the rowset id of the linked rows as the raw value.
+	// For example, a cell containing a multi-select picklist to a table that contains
+	// items might have "Item A", "Item B" in the formatted value list and "rows:b742c1f4-6cb0-4650-a845-35eb86fcc2bb/
+	// [fdea123b-8f68-474a-aa8a-5ff87aa333af,6daf41f0-a138-4eee-89da-123086d36ecf]"
+	// as the raw value.
+	//
+	// Cells with format ATTACHMENT will have the name of the attachment as the
+	// formatted value and the attachment id as the raw value. For example, a cell
+	// containing an attachment named "image.jpeg" will have "image.jpeg" as the
+	// formatted value and "attachment:ca432b2f-b8eb-431d-9fb5-cbe0342f9f03" as
+	// the raw value.
+	//
 	// Cells with format AUTO or cells without any format that are auto-detected
 	// as one of the formats above will contain the raw and formatted values as
 	// mentioned above, based on the auto-detected formats. If there is no auto-detected
@@ -2793,6 +2825,12 @@ func (s *Cell) SetFormattedValue(v string) *Cell {
 	return s
 }
 
+// SetFormattedValues sets the FormattedValues field's value.
+func (s *Cell) SetFormattedValues(v []*string) *Cell {
+	s.FormattedValues = v
+	return s
+}
+
 // SetFormula sets the Formula field's value.
 func (s *Cell) SetFormula(v string) *Cell {
 	s.Formula = &v
@@ -2807,6 +2845,9 @@ func (s *Cell) SetRawValue(v string) *Cell {
 
 // CellInput object contains the data needed to create or update cells in a
 // table.
+//
+// CellInput object has only a facts field or a fact field, but not both. A
+// 400 bad request will be thrown if both fact and facts field are present.
 type CellInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2817,6 +2858,11 @@ type CellInput struct {
 	// replaced with "sensitive" in string returned by CellInput's
 	// String and GoString methods.
 	Fact *string `locationName:"fact" type:"string" sensitive:"true"`
+
+	// A list representing the values that are entered into a ROWSET cell. Facts
+	// list can have either only values or rowIDs, and rowIDs should from the same
+	// table.
+	Facts []*string `locationName:"facts" type:"list"`
 }
 
 // String returns the string representation.
@@ -2840,6 +2886,12 @@ func (s CellInput) GoString() string {
 // SetFact sets the Fact field's value.
 func (s *CellInput) SetFact(v string) *CellInput {
 	s.Fact = &v
+	return s
+}
+
+// SetFacts sets the Facts field's value.
+func (s *CellInput) SetFacts(v []*string) *CellInput {
+	s.Facts = v
 	return s
 }
 
@@ -3190,6 +3242,9 @@ func (s *DescribeTableDataImportJobInput) SetWorkbookId(v string) *DescribeTable
 type DescribeTableDataImportJobOutput struct {
 	_ struct{} `type:"structure"`
 
+	// If job status is failed, error code to understand reason for the failure.
+	ErrorCode *string `locationName:"errorCode" type:"string" enum:"ErrorCode"`
+
 	// The metadata about the job that was submitted for import.
 	//
 	// JobMetadata is a required field
@@ -3222,6 +3277,12 @@ func (s DescribeTableDataImportJobOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DescribeTableDataImportJobOutput) GoString() string {
 	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *DescribeTableDataImportJobOutput) SetErrorCode(v string) *DescribeTableDataImportJobOutput {
+	s.ErrorCode = &v
+	return s
 }
 
 // SetJobMetadata sets the JobMetadata field's value.
@@ -3672,7 +3733,11 @@ type ImportDataSourceConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The URL from which source data will be downloaded for the import request.
-	DataSourceUrl *string `locationName:"dataSourceUrl" min:"1" type:"string"`
+	//
+	// DataSourceUrl is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ImportDataSourceConfig's
+	// String and GoString methods.
+	DataSourceUrl *string `locationName:"dataSourceUrl" min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -6183,6 +6248,70 @@ func (s *VariableValue) SetRawValue(v string) *VariableValue {
 }
 
 const (
+	// ErrorCodeAccessDenied is a ErrorCode enum value
+	ErrorCodeAccessDenied = "ACCESS_DENIED"
+
+	// ErrorCodeInvalidUrlError is a ErrorCode enum value
+	ErrorCodeInvalidUrlError = "INVALID_URL_ERROR"
+
+	// ErrorCodeInvalidImportOptionsError is a ErrorCode enum value
+	ErrorCodeInvalidImportOptionsError = "INVALID_IMPORT_OPTIONS_ERROR"
+
+	// ErrorCodeInvalidTableIdError is a ErrorCode enum value
+	ErrorCodeInvalidTableIdError = "INVALID_TABLE_ID_ERROR"
+
+	// ErrorCodeInvalidTableColumnIdError is a ErrorCode enum value
+	ErrorCodeInvalidTableColumnIdError = "INVALID_TABLE_COLUMN_ID_ERROR"
+
+	// ErrorCodeTableNotFoundError is a ErrorCode enum value
+	ErrorCodeTableNotFoundError = "TABLE_NOT_FOUND_ERROR"
+
+	// ErrorCodeFileEmptyError is a ErrorCode enum value
+	ErrorCodeFileEmptyError = "FILE_EMPTY_ERROR"
+
+	// ErrorCodeInvalidFileTypeError is a ErrorCode enum value
+	ErrorCodeInvalidFileTypeError = "INVALID_FILE_TYPE_ERROR"
+
+	// ErrorCodeFileParsingError is a ErrorCode enum value
+	ErrorCodeFileParsingError = "FILE_PARSING_ERROR"
+
+	// ErrorCodeFileSizeLimitError is a ErrorCode enum value
+	ErrorCodeFileSizeLimitError = "FILE_SIZE_LIMIT_ERROR"
+
+	// ErrorCodeFileNotFoundError is a ErrorCode enum value
+	ErrorCodeFileNotFoundError = "FILE_NOT_FOUND_ERROR"
+
+	// ErrorCodeUnknownError is a ErrorCode enum value
+	ErrorCodeUnknownError = "UNKNOWN_ERROR"
+
+	// ErrorCodeResourceNotFoundError is a ErrorCode enum value
+	ErrorCodeResourceNotFoundError = "RESOURCE_NOT_FOUND_ERROR"
+
+	// ErrorCodeSystemLimitError is a ErrorCode enum value
+	ErrorCodeSystemLimitError = "SYSTEM_LIMIT_ERROR"
+)
+
+// ErrorCode_Values returns all elements of the ErrorCode enum
+func ErrorCode_Values() []string {
+	return []string{
+		ErrorCodeAccessDenied,
+		ErrorCodeInvalidUrlError,
+		ErrorCodeInvalidImportOptionsError,
+		ErrorCodeInvalidTableIdError,
+		ErrorCodeInvalidTableColumnIdError,
+		ErrorCodeTableNotFoundError,
+		ErrorCodeFileEmptyError,
+		ErrorCodeInvalidFileTypeError,
+		ErrorCodeFileParsingError,
+		ErrorCodeFileSizeLimitError,
+		ErrorCodeFileNotFoundError,
+		ErrorCodeUnknownError,
+		ErrorCodeResourceNotFoundError,
+		ErrorCodeSystemLimitError,
+	}
+}
+
+const (
 	// FormatAuto is a Format enum value
 	FormatAuto = "AUTO"
 
@@ -6215,6 +6344,9 @@ const (
 
 	// FormatRowlink is a Format enum value
 	FormatRowlink = "ROWLINK"
+
+	// FormatRowset is a Format enum value
+	FormatRowset = "ROWSET"
 )
 
 // Format_Values returns all elements of the Format enum
@@ -6231,6 +6363,7 @@ func Format_Values() []string {
 		FormatAccounting,
 		FormatContact,
 		FormatRowlink,
+		FormatRowset,
 	}
 }
 

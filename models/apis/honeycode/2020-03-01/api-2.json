@@ -101,7 +101,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"RequestTimeoutException"}
       ]
     },
     "GetScreenData":{
@@ -139,7 +140,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"AutomationExecutionException"},
         {"shape":"AutomationExecutionTimeoutException"},
-        {"shape":"RequestTimeoutException"}
+        {"shape":"RequestTimeoutException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "ListTableColumns":{
@@ -246,7 +248,9 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"RequestTimeoutException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "TagResource":{
@@ -463,14 +467,16 @@
         "formula":{"shape":"Formula"},
         "format":{"shape":"Format"},
         "rawValue":{"shape":"RawValue"},
-        "formattedValue":{"shape":"FormattedValue"}
+        "formattedValue":{"shape":"FormattedValue"},
+        "formattedValues":{"shape":"FormattedValuesList"}
       },
       "sensitive":true
     },
     "CellInput":{
       "type":"structure",
       "members":{
-        "fact":{"shape":"Fact"}
+        "fact":{"shape":"Fact"},
+        "facts":{"shape":"FactList"}
       }
     },
     "Cells":{
@@ -580,7 +586,8 @@
       "members":{
         "jobStatus":{"shape":"TableDataImportJobStatus"},
         "message":{"shape":"TableDataImportJobMessage"},
-        "jobMetadata":{"shape":"TableDataImportJobMetadata"}
+        "jobMetadata":{"shape":"TableDataImportJobMetadata"},
+        "errorCode":{"shape":"ErrorCode"}
       }
     },
     "DestinationOptions":{
@@ -596,6 +603,25 @@
       "pattern":"^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$",
       "sensitive":true
     },
+    "ErrorCode":{
+      "type":"string",
+      "enum":[
+        "ACCESS_DENIED",
+        "INVALID_URL_ERROR",
+        "INVALID_IMPORT_OPTIONS_ERROR",
+        "INVALID_TABLE_ID_ERROR",
+        "INVALID_TABLE_COLUMN_ID_ERROR",
+        "TABLE_NOT_FOUND_ERROR",
+        "FILE_EMPTY_ERROR",
+        "INVALID_FILE_TYPE_ERROR",
+        "FILE_PARSING_ERROR",
+        "FILE_SIZE_LIMIT_ERROR",
+        "FILE_NOT_FOUND_ERROR",
+        "UNKNOWN_ERROR",
+        "RESOURCE_NOT_FOUND_ERROR",
+        "SYSTEM_LIMIT_ERROR"
+      ]
+    },
     "ErrorMessage":{"type":"string"},
     "Fact":{
       "type":"string",
@@ -603,6 +629,12 @@
       "min":0,
       "pattern":"[\\s\\S]*",
       "sensitive":true
+    },
+    "FactList":{
+      "type":"list",
+      "member":{"shape":"Fact"},
+      "max":220,
+      "min":0
     },
     "FailedBatchItem":{
       "type":"structure",
@@ -642,7 +674,8 @@
         "TEXT",
         "ACCOUNTING",
         "CONTACT",
-        "ROWLINK"
+        "ROWLINK",
+        "ROWSET"
       ]
     },
     "FormattedValue":{
@@ -650,6 +683,12 @@
       "max":8192,
       "min":0,
       "pattern":"[\\s\\S]*"
+    },
+    "FormattedValuesList":{
+      "type":"list",
+      "member":{"shape":"FormattedValue"},
+      "max":220,
+      "min":0
     },
     "Formula":{
       "type":"string",
@@ -1059,7 +1098,8 @@
       "type":"string",
       "max":8000,
       "min":1,
-      "pattern":"^https:\\/\\/[^\\n\\r\\x00\\x08\\x0B\\x0C\\x0E\\x1F]*$"
+      "pattern":"^https:\\/\\/[^\\n\\r\\x00\\x08\\x0B\\x0C\\x0E\\x1F]*$",
+      "sensitive":true
     },
     "ServiceQuotaExceededException":{
       "type":"structure",
@@ -1335,6 +1375,8 @@
     },
     "VariableName":{
       "type":"string",
+      "max":255,
+      "min":1,
       "pattern":"^(?!\\s*$).+",
       "sensitive":true
     },

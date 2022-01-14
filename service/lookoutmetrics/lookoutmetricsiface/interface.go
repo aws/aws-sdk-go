@@ -80,6 +80,10 @@ type LookoutMetricsAPI interface {
 	CreateMetricSetWithContext(aws.Context, *lookoutmetrics.CreateMetricSetInput, ...request.Option) (*lookoutmetrics.CreateMetricSetOutput, error)
 	CreateMetricSetRequest(*lookoutmetrics.CreateMetricSetInput) (*request.Request, *lookoutmetrics.CreateMetricSetOutput)
 
+	DeactivateAnomalyDetector(*lookoutmetrics.DeactivateAnomalyDetectorInput) (*lookoutmetrics.DeactivateAnomalyDetectorOutput, error)
+	DeactivateAnomalyDetectorWithContext(aws.Context, *lookoutmetrics.DeactivateAnomalyDetectorInput, ...request.Option) (*lookoutmetrics.DeactivateAnomalyDetectorOutput, error)
+	DeactivateAnomalyDetectorRequest(*lookoutmetrics.DeactivateAnomalyDetectorInput) (*request.Request, *lookoutmetrics.DeactivateAnomalyDetectorOutput)
+
 	DeleteAlert(*lookoutmetrics.DeleteAlertInput) (*lookoutmetrics.DeleteAlertOutput, error)
 	DeleteAlertWithContext(aws.Context, *lookoutmetrics.DeleteAlertInput, ...request.Option) (*lookoutmetrics.DeleteAlertOutput, error)
 	DeleteAlertRequest(*lookoutmetrics.DeleteAlertInput) (*request.Request, *lookoutmetrics.DeleteAlertOutput)

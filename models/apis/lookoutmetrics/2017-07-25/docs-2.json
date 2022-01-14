@@ -7,6 +7,7 @@
     "CreateAlert": "<p>Creates an alert for an anomaly detector.</p>",
     "CreateAnomalyDetector": "<p>Creates an anomaly detector.</p>",
     "CreateMetricSet": "<p>Creates a dataset.</p>",
+    "DeactivateAnomalyDetector": "<p>Deactivates an anomaly detector.</p>",
     "DeleteAlert": "<p>Deletes an alert.</p>",
     "DeleteAnomalyDetector": "<p>Deletes a detector. Deleting an anomaly detector will delete all of its corresponding resources including any configured datasets and alerts.</p>",
     "DescribeAlert": "<p>Describes an alert.</p> <p>Amazon Lookout for Metrics API actions are eventually consistent. If you do a read operation on a resource immediately after creating or modifying it, use retries to allow time for the write operation to complete.</p>",
@@ -231,6 +232,7 @@
         "CreateAnomalyDetectorResponse$AnomalyDetectorArn": "<p>The ARN of the detector.</p>",
         "CreateMetricSetRequest$AnomalyDetectorArn": "<p>The ARN of the anomaly detector that will use the dataset.</p>",
         "CreateMetricSetResponse$MetricSetArn": "<p>The ARN of the dataset.</p>",
+        "DeactivateAnomalyDetectorRequest$AnomalyDetectorArn": "<p>The Amazon Resource Name (ARN) of the anomaly detector.</p>",
         "DeleteAlertRequest$AlertArn": "<p>The ARN of the alert to delete.</p>",
         "DeleteAnomalyDetectorRequest$AnomalyDetectorArn": "<p>The ARN of the detector to delete.</p>",
         "DescribeAlertRequest$AlertArn": "<p>The ARN of the alert to describe.</p>",
@@ -387,6 +389,16 @@
       "base": null,
       "refs": {
         "TimestampColumn$ColumnFormat": "<p>The format of the timestamp column.</p>"
+      }
+    },
+    "DeactivateAnomalyDetectorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeactivateAnomalyDetectorResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "DeleteAlertRequest": {

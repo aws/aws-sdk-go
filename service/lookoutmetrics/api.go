@@ -513,6 +513,105 @@ func (c *LookoutMetrics) CreateMetricSetWithContext(ctx aws.Context, input *Crea
 	return out, req.Send()
 }
 
+const opDeactivateAnomalyDetector = "DeactivateAnomalyDetector"
+
+// DeactivateAnomalyDetectorRequest generates a "aws/request.Request" representing the
+// client's request for the DeactivateAnomalyDetector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeactivateAnomalyDetector for more information on using the DeactivateAnomalyDetector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeactivateAnomalyDetectorRequest method.
+//    req, resp := client.DeactivateAnomalyDetectorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutmetrics-2017-07-25/DeactivateAnomalyDetector
+func (c *LookoutMetrics) DeactivateAnomalyDetectorRequest(input *DeactivateAnomalyDetectorInput) (req *request.Request, output *DeactivateAnomalyDetectorOutput) {
+	op := &request.Operation{
+		Name:       opDeactivateAnomalyDetector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DeactivateAnomalyDetector",
+	}
+
+	if input == nil {
+		input = &DeactivateAnomalyDetectorInput{}
+	}
+
+	output = &DeactivateAnomalyDetectorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeactivateAnomalyDetector API operation for Amazon Lookout for Metrics.
+//
+// Deactivates an anomaly detector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Metrics's
+// API operation DeactivateAnomalyDetector for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by the AWS service.
+//   Check your input values and try again.
+//
+//   * ConflictException
+//   There was a conflict processing the request. Try your request again.
+//
+//   * ResourceNotFoundException
+//   The specified resource cannot be found. Check the ARN of the resource and
+//   try again.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * TooManyRequestsException
+//   The request was denied due to too many requests being submitted at the same
+//   time.
+//
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception,
+//   or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutmetrics-2017-07-25/DeactivateAnomalyDetector
+func (c *LookoutMetrics) DeactivateAnomalyDetector(input *DeactivateAnomalyDetectorInput) (*DeactivateAnomalyDetectorOutput, error) {
+	req, out := c.DeactivateAnomalyDetectorRequest(input)
+	return out, req.Send()
+}
+
+// DeactivateAnomalyDetectorWithContext is the same as DeactivateAnomalyDetector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeactivateAnomalyDetector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutMetrics) DeactivateAnomalyDetectorWithContext(ctx aws.Context, input *DeactivateAnomalyDetectorInput, opts ...request.Option) (*DeactivateAnomalyDetectorOutput, error) {
+	req, out := c.DeactivateAnomalyDetectorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteAlert = "DeleteAlert"
 
 // DeleteAlertRequest generates a "aws/request.Request" representing the
@@ -4699,6 +4798,74 @@ func (s *CsvFormatDescriptor) SetHeaderList(v []*string) *CsvFormatDescriptor {
 func (s *CsvFormatDescriptor) SetQuoteSymbol(v string) *CsvFormatDescriptor {
 	s.QuoteSymbol = &v
 	return s
+}
+
+type DeactivateAnomalyDetectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the anomaly detector.
+	//
+	// AnomalyDetectorArn is a required field
+	AnomalyDetectorArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeactivateAnomalyDetectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeactivateAnomalyDetectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeactivateAnomalyDetectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeactivateAnomalyDetectorInput"}
+	if s.AnomalyDetectorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnomalyDetectorArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnomalyDetectorArn sets the AnomalyDetectorArn field's value.
+func (s *DeactivateAnomalyDetectorInput) SetAnomalyDetectorArn(v string) *DeactivateAnomalyDetectorInput {
+	s.AnomalyDetectorArn = &v
+	return s
+}
+
+type DeactivateAnomalyDetectorOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeactivateAnomalyDetectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeactivateAnomalyDetectorOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteAlertInput struct {
@@ -8962,6 +9129,9 @@ const (
 
 	// AnomalyDetectorFailureTypeDeletionFailure is a AnomalyDetectorFailureType enum value
 	AnomalyDetectorFailureTypeDeletionFailure = "DELETION_FAILURE"
+
+	// AnomalyDetectorFailureTypeDeactivationFailure is a AnomalyDetectorFailureType enum value
+	AnomalyDetectorFailureTypeDeactivationFailure = "DEACTIVATION_FAILURE"
 )
 
 // AnomalyDetectorFailureType_Values returns all elements of the AnomalyDetectorFailureType enum
@@ -8970,6 +9140,7 @@ func AnomalyDetectorFailureType_Values() []string {
 		AnomalyDetectorFailureTypeActivationFailure,
 		AnomalyDetectorFailureTypeBackTestActivationFailure,
 		AnomalyDetectorFailureTypeDeletionFailure,
+		AnomalyDetectorFailureTypeDeactivationFailure,
 	}
 }
 
@@ -9000,6 +9171,12 @@ const (
 
 	// AnomalyDetectorStatusBackTestComplete is a AnomalyDetectorStatus enum value
 	AnomalyDetectorStatusBackTestComplete = "BACK_TEST_COMPLETE"
+
+	// AnomalyDetectorStatusDeactivated is a AnomalyDetectorStatus enum value
+	AnomalyDetectorStatusDeactivated = "DEACTIVATED"
+
+	// AnomalyDetectorStatusDeactivating is a AnomalyDetectorStatus enum value
+	AnomalyDetectorStatusDeactivating = "DEACTIVATING"
 )
 
 // AnomalyDetectorStatus_Values returns all elements of the AnomalyDetectorStatus enum
@@ -9014,6 +9191,8 @@ func AnomalyDetectorStatus_Values() []string {
 		AnomalyDetectorStatusBackTestActivating,
 		AnomalyDetectorStatusBackTestActive,
 		AnomalyDetectorStatusBackTestComplete,
+		AnomalyDetectorStatusDeactivated,
+		AnomalyDetectorStatusDeactivating,
 	}
 }
 

@@ -7517,6 +7517,12 @@ const (
 
 	// TierSqlServerFailoverClusterInstance is a Tier enum value
 	TierSqlServerFailoverClusterInstance = "SQL_SERVER_FAILOVER_CLUSTER_INSTANCE"
+
+	// TierSharepoint is a Tier enum value
+	TierSharepoint = "SHAREPOINT"
+
+	// TierActiveDirectory is a Tier enum value
+	TierActiveDirectory = "ACTIVE_DIRECTORY"
 )
 
 // Tier_Values returns all elements of the Tier enum
@@ -7538,5 +7544,7 @@ func Tier_Values() []string {
 		TierSapHanaSingleNode,
 		TierSapHanaHighAvailability,
 		TierSqlServerFailoverClusterInstance,
+		TierSharepoint,
+		TierActiveDirectory,
 	}
 }
