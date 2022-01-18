@@ -786,7 +786,7 @@ func (c *LocationService) CalculateRouteRequest(input *CalculateRouteInput) (req
 // CalculateRoute API operation for Amazon Location Service.
 //
 // Calculates a route (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html)
-// given the following required parameters: DeparturePostiton and DestinationPosition.
+// given the following required parameters: DeparturePosition and DestinationPosition.
 // Requires that you first create a route calculator resource (https://docs.aws.amazon.com/location-routes/latest/APIReference/API_CreateRouteCalculator.html).
 //
 // By default, a request that doesn't specify a departure time uses the best
@@ -795,16 +795,16 @@ func (c *LocationService) CalculateRouteRequest(input *CalculateRouteInput) (req
 //
 // Additional options include:
 //
-//    * Specifying a departure time (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#departure-time)
-//    using either DepartureTime or DepartureNow. This calculates a route based
+//    * Specifying a departure time (https://docs.aws.amazon.com/location/latest/developerguide/departure-time.html)
+//    using either DepartureTime or DepartNow. This calculates a route based
 //    on predictive traffic data at the given time. You can't specify both DepartureTime
-//    and DepartureNow in a single request. Specifying both parameters returns
+//    and DepartNow in a single request. Specifying both parameters returns
 //    a validation error.
 //
-//    * Specifying a travel mode (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#travel-mode)
-//    using TravelMode. This lets you specify an additional route preference
-//    such as CarModeOptions if traveling by Car, or TruckModeOptions if traveling
-//    by Truck.
+//    * Specifying a travel mode (https://docs.aws.amazon.com/location/latest/developerguide/travel-mode.html)
+//    using TravelMode sets the transportation mode used to calculate the routes.
+//    This also lets you specify additional route preferences in CarModeOptions
+//    if traveling by Car, or TruckModeOptions if traveling by Truck.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -848,6 +848,129 @@ func (c *LocationService) CalculateRoute(input *CalculateRouteInput) (*Calculate
 // for more information on using Contexts.
 func (c *LocationService) CalculateRouteWithContext(ctx aws.Context, input *CalculateRouteInput, opts ...request.Option) (*CalculateRouteOutput, error) {
 	req, out := c.CalculateRouteRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCalculateRouteMatrix = "CalculateRouteMatrix"
+
+// CalculateRouteMatrixRequest generates a "aws/request.Request" representing the
+// client's request for the CalculateRouteMatrix operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CalculateRouteMatrix for more information on using the CalculateRouteMatrix
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CalculateRouteMatrixRequest method.
+//    req, resp := client.CalculateRouteMatrixRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/CalculateRouteMatrix
+func (c *LocationService) CalculateRouteMatrixRequest(input *CalculateRouteMatrixInput) (req *request.Request, output *CalculateRouteMatrixOutput) {
+	op := &request.Operation{
+		Name:       opCalculateRouteMatrix,
+		HTTPMethod: "POST",
+		HTTPPath:   "/routes/v0/calculators/{CalculatorName}/calculate/route-matrix",
+	}
+
+	if input == nil {
+		input = &CalculateRouteMatrixInput{}
+	}
+
+	output = &CalculateRouteMatrixOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("routes.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// CalculateRouteMatrix API operation for Amazon Location Service.
+//
+//  Calculates a route matrix (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route-matrix.html)
+//  given the following required parameters: DeparturePositions and DestinationPositions.
+//  CalculateRouteMatrix calculates routes and returns the travel time and travel
+//  distance from each departure position to each destination position in the
+//  request. For example, given departure positions A and B, and destination
+//  positions X and Y, CalculateRouteMatrix will return time and distance for
+//  routes from A to X, A to Y, B to X, and B to Y (in that order). The number
+//  of results returned (and routes calculated) will be the number of DeparturePositions
+//  times the number of DestinationPositions.
+//
+// Your account is charged for each route calculated, not the number of requests.
+//
+// Requires that you first create a route calculator resource (https://docs.aws.amazon.com/location-routes/latest/APIReference/API_CreateRouteCalculator.html).
+//
+// By default, a request that doesn't specify a departure time uses the best
+// time of day to travel with the best traffic conditions when calculating routes.
+//
+// Additional options include:
+//
+//    * Specifying a departure time (https://docs.aws.amazon.com/location/latest/developerguide/departure-time.html)
+//    using either DepartureTime or DepartNow. This calculates routes based
+//    on predictive traffic data at the given time. You can't specify both DepartureTime
+//    and DepartNow in a single request. Specifying both parameters returns
+//    a validation error.
+//
+//    * Specifying a travel mode (https://docs.aws.amazon.com/location/latest/developerguide/travel-mode.html)
+//    using TravelMode sets the transportation mode used to calculate the routes.
+//    This also lets you specify additional route preferences in CarModeOptions
+//    if traveling by Car, or TruckModeOptions if traveling by Truck.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Location Service's
+// API operation CalculateRouteMatrix for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request has failed to process because of an unknown server error, exception,
+//   or failure.
+//
+//   * ResourceNotFoundException
+//   The resource that you've entered was not found in your AWS account.
+//
+//   * AccessDeniedException
+//   The request was denied because of insufficient access or permissions. Check
+//   with an administrator to verify your permissions.
+//
+//   * ValidationException
+//   The input failed to meet the constraints specified by the AWS service.
+//
+//   * ThrottlingException
+//   The request was denied because of request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/CalculateRouteMatrix
+func (c *LocationService) CalculateRouteMatrix(input *CalculateRouteMatrixInput) (*CalculateRouteMatrixOutput, error) {
+	req, out := c.CalculateRouteMatrixRequest(input)
+	return out, req.Send()
+}
+
+// CalculateRouteMatrixWithContext is the same as CalculateRouteMatrix with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CalculateRouteMatrix for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LocationService) CalculateRouteMatrixWithContext(ctx aws.Context, input *CalculateRouteMatrixInput, opts ...request.Option) (*CalculateRouteMatrixOutput, error) {
+	req, out := c.CalculateRouteMatrixRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -997,6 +1120,11 @@ func (c *LocationService) CreateMapRequest(input *CreateMapInput) (req *request.
 // Creates a map resource in your AWS account, which provides map tiles of different
 // styles sourced from global location data providers.
 //
+// If your application is tracking or routing assets you use in your business,
+// such as delivery vehicles or employees, you may only use HERE as your geolocation
+// provider. See section 82 of the AWS service terms (http://aws.amazon.com/service-terms)
+// for more details.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1096,6 +1224,11 @@ func (c *LocationService) CreatePlaceIndexRequest(input *CreatePlaceIndexInput) 
 // operation, and enable autosuggestions by using the SearchPlaceIndexForSuggestions
 // operation.
 //
+// If your application is tracking or routing assets you use in your business,
+// such as delivery vehicles or employees, you may only use HERE as your geolocation
+// provider. See section 82 of the AWS service terms (http://aws.amazon.com/service-terms)
+// for more details.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1194,6 +1327,11 @@ func (c *LocationService) CreateRouteCalculatorRequest(input *CreateRouteCalcula
 // You can send requests to a route calculator resource to estimate travel time,
 // distance, and get directions. A route calculator sources traffic and road
 // network data from your chosen data provider.
+//
+// If your application is tracking or routing assets you use in your business,
+// such as delivery vehicles or employees, you may only use HERE as your geolocation
+// provider. See section 82 of the AWS service terms (http://aws.amazon.com/service-terms)
+// for more details.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6893,7 +7031,7 @@ type CalculateRouteInput struct {
 	//    * For example, [-123.115, 49.285]
 	//
 	// If you specify a departure that's not located on a road, Amazon Location
-	// moves the position to the nearest road (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road).
+	// moves the position to the nearest road (https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html).
 	// If Esri is the provider for your route calculator, specifying a route that
 	// is longer than 400 km returns a 400 RoutesValidationException error.
 	//
@@ -6922,7 +7060,7 @@ type CalculateRouteInput struct {
 	//    * For example, [-122.339, 47.615]
 	//
 	// If you specify a destination that's not located on a road, Amazon Location
-	// moves the position to the nearest road (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road).
+	// moves the position to the nearest road (https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html).
 	//
 	// Valid Values: [-180 to 180,-90 to 90]
 	//
@@ -6949,7 +7087,7 @@ type CalculateRouteInput struct {
 	// Specifies the mode of transport when calculating a route. Used in estimating
 	// the speed of travel and road compatibility.
 	//
-	// The TravelMode you specify determines how you specify route preferences:
+	// The TravelMode you specify also determines how you specify route preferences:
 	//
 	//    * If traveling by Car use the CarModeOptions parameter.
 	//
@@ -6973,7 +7111,7 @@ type CalculateRouteInput struct {
 	//    47.620]]
 	//
 	// If you specify a waypoint position that's not located on a road, Amazon Location
-	// moves the position to the nearest road (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road).
+	// moves the position to the nearest road (https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html).
 	//
 	// Specifying more than 23 waypoints returns a 400 ValidationException error.
 	//
@@ -7096,6 +7234,353 @@ func (s *CalculateRouteInput) SetWaypointPositions(v [][]*float64) *CalculateRou
 	return s
 }
 
+type CalculateRouteMatrixInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the route calculator resource that you want to use to calculate
+	// the route matrix.
+	//
+	// CalculatorName is a required field
+	CalculatorName *string `location:"uri" locationName:"CalculatorName" min:"1" type:"string" required:"true"`
+
+	// Specifies route preferences when traveling by Car, such as avoiding routes
+	// that use ferries or tolls.
+	//
+	// Requirements: TravelMode must be specified as Car.
+	CarModeOptions *CalculateRouteCarModeOptions `type:"structure"`
+
+	// Sets the time of departure as the current time. Uses the current time to
+	// calculate the route matrix. You can't set both DepartureTime and DepartNow.
+	// If neither is set, the best time of day to travel with the best traffic conditions
+	// is used to calculate the route matrix.
+	//
+	// Default Value: false
+	//
+	// Valid Values: false | true
+	DepartNow *bool `type:"boolean"`
+
+	// The list of departure (origin) positions for the route matrix. An array of
+	// points, each of which is itself a 2-value array defined in WGS 84 (https://earth-info.nga.mil/GandG/wgs84/index.html)
+	// format: [longitude, latitude]. For example, [-123.115, 49.285].
+	//
+	// Depending on the data provider selected in the route calculator resource
+	// there may be additional restrictions on the inputs you can choose. See Position
+	// restrictions (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route-matrix.html#matrix-routing-position-limits)
+	// in the Amazon Location Service Developer Guide.
+	//
+	// For route calculators that use Esri as the data provider, if you specify
+	// a departure that's not located on a road, Amazon Location moves the position
+	// to the nearest road (https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html).
+	// The snapped value is available in the result in SnappedDeparturePositions.
+	//
+	// Valid Values: [-180 to 180,-90 to 90]
+	//
+	// DeparturePositions is a required field
+	DeparturePositions [][]*float64 `min:"1" type:"list" required:"true"`
+
+	// Specifies the desired time of departure. Uses the given time to calculate
+	// the route matrix. You can't set both DepartureTime and DepartNow. If neither
+	// is set, the best time of day to travel with the best traffic conditions is
+	// used to calculate the route matrix.
+	//
+	// Setting a departure time in the past returns a 400 ValidationException error.
+	//
+	//    * In ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
+	//    format: YYYY-MM-DDThh:mm:ss.sssZ. For example, 2020–07-2T12:15:20.000Z+01:00
+	DepartureTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The list of destination positions for the route matrix. An array of points,
+	// each of which is itself a 2-value array defined in WGS 84 (https://earth-info.nga.mil/GandG/wgs84/index.html)
+	// format: [longitude, latitude]. For example, [-122.339, 47.615]
+	//
+	// Depending on the data provider selected in the route calculator resource
+	// there may be additional restrictions on the inputs you can choose. See Position
+	// restrictions (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route-matrix.html#matrix-routing-position-limits)
+	// in the Amazon Location Service Developer Guide.
+	//
+	// For route calculators that use Esri as the data provider, if you specify
+	// a destination that's not located on a road, Amazon Location moves the position
+	// to the nearest road (https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html).
+	// The snapped value is available in the result in SnappedDestinationPositions.
+	//
+	// Valid Values: [-180 to 180,-90 to 90]
+	//
+	// DestinationPositions is a required field
+	DestinationPositions [][]*float64 `min:"1" type:"list" required:"true"`
+
+	// Set the unit system to specify the distance.
+	//
+	// Default Value: Kilometers
+	DistanceUnit *string `type:"string" enum:"DistanceUnit"`
+
+	// Specifies the mode of transport when calculating a route. Used in estimating
+	// the speed of travel and road compatibility.
+	//
+	// The TravelMode you specify also determines how you specify route preferences:
+	//
+	//    * If traveling by Car use the CarModeOptions parameter.
+	//
+	//    * If traveling by Truck use the TruckModeOptions parameter.
+	//
+	// Default Value: Car
+	TravelMode *string `type:"string" enum:"TravelMode"`
+
+	// Specifies route preferences when traveling by Truck, such as avoiding routes
+	// that use ferries or tolls, and truck specifications to consider when choosing
+	// an optimal road.
+	//
+	// Requirements: TravelMode must be specified as Truck.
+	TruckModeOptions *CalculateRouteTruckModeOptions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CalculateRouteMatrixInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CalculateRouteMatrixInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CalculateRouteMatrixInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CalculateRouteMatrixInput"}
+	if s.CalculatorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CalculatorName"))
+	}
+	if s.CalculatorName != nil && len(*s.CalculatorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CalculatorName", 1))
+	}
+	if s.DeparturePositions == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeparturePositions"))
+	}
+	if s.DeparturePositions != nil && len(s.DeparturePositions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeparturePositions", 1))
+	}
+	if s.DestinationPositions == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationPositions"))
+	}
+	if s.DestinationPositions != nil && len(s.DestinationPositions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DestinationPositions", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCalculatorName sets the CalculatorName field's value.
+func (s *CalculateRouteMatrixInput) SetCalculatorName(v string) *CalculateRouteMatrixInput {
+	s.CalculatorName = &v
+	return s
+}
+
+// SetCarModeOptions sets the CarModeOptions field's value.
+func (s *CalculateRouteMatrixInput) SetCarModeOptions(v *CalculateRouteCarModeOptions) *CalculateRouteMatrixInput {
+	s.CarModeOptions = v
+	return s
+}
+
+// SetDepartNow sets the DepartNow field's value.
+func (s *CalculateRouteMatrixInput) SetDepartNow(v bool) *CalculateRouteMatrixInput {
+	s.DepartNow = &v
+	return s
+}
+
+// SetDeparturePositions sets the DeparturePositions field's value.
+func (s *CalculateRouteMatrixInput) SetDeparturePositions(v [][]*float64) *CalculateRouteMatrixInput {
+	s.DeparturePositions = v
+	return s
+}
+
+// SetDepartureTime sets the DepartureTime field's value.
+func (s *CalculateRouteMatrixInput) SetDepartureTime(v time.Time) *CalculateRouteMatrixInput {
+	s.DepartureTime = &v
+	return s
+}
+
+// SetDestinationPositions sets the DestinationPositions field's value.
+func (s *CalculateRouteMatrixInput) SetDestinationPositions(v [][]*float64) *CalculateRouteMatrixInput {
+	s.DestinationPositions = v
+	return s
+}
+
+// SetDistanceUnit sets the DistanceUnit field's value.
+func (s *CalculateRouteMatrixInput) SetDistanceUnit(v string) *CalculateRouteMatrixInput {
+	s.DistanceUnit = &v
+	return s
+}
+
+// SetTravelMode sets the TravelMode field's value.
+func (s *CalculateRouteMatrixInput) SetTravelMode(v string) *CalculateRouteMatrixInput {
+	s.TravelMode = &v
+	return s
+}
+
+// SetTruckModeOptions sets the TruckModeOptions field's value.
+func (s *CalculateRouteMatrixInput) SetTruckModeOptions(v *CalculateRouteTruckModeOptions) *CalculateRouteMatrixInput {
+	s.TruckModeOptions = v
+	return s
+}
+
+// Returns the result of the route matrix calculation.
+type CalculateRouteMatrixOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The calculated route matrix containing the results for all pairs of DeparturePositions
+	// to DestinationPositions. Each row corresponds to one entry in DeparturePositions.
+	// Each entry in the row corresponds to the route from that entry in DeparturePositions
+	// to an entry in DestinationPositions.
+	//
+	// RouteMatrix is a required field
+	RouteMatrix [][]*RouteMatrixEntry `type:"list" required:"true"`
+
+	// For routes calculated using an Esri route calculator resource, departure
+	// positions are snapped to the closest road. For Esri route calculator resources,
+	// this returns the list of departure/origin positions used for calculation
+	// of the RouteMatrix.
+	SnappedDeparturePositions [][]*float64 `min:"1" type:"list"`
+
+	// The list of destination positions for the route matrix used for calculation
+	// of the RouteMatrix.
+	SnappedDestinationPositions [][]*float64 `min:"1" type:"list"`
+
+	// Contains information about the route matrix, DataSource, DistanceUnit, RouteCount
+	// and ErrorCount.
+	//
+	// Summary is a required field
+	Summary *CalculateRouteMatrixSummary `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CalculateRouteMatrixOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CalculateRouteMatrixOutput) GoString() string {
+	return s.String()
+}
+
+// SetRouteMatrix sets the RouteMatrix field's value.
+func (s *CalculateRouteMatrixOutput) SetRouteMatrix(v [][]*RouteMatrixEntry) *CalculateRouteMatrixOutput {
+	s.RouteMatrix = v
+	return s
+}
+
+// SetSnappedDeparturePositions sets the SnappedDeparturePositions field's value.
+func (s *CalculateRouteMatrixOutput) SetSnappedDeparturePositions(v [][]*float64) *CalculateRouteMatrixOutput {
+	s.SnappedDeparturePositions = v
+	return s
+}
+
+// SetSnappedDestinationPositions sets the SnappedDestinationPositions field's value.
+func (s *CalculateRouteMatrixOutput) SetSnappedDestinationPositions(v [][]*float64) *CalculateRouteMatrixOutput {
+	s.SnappedDestinationPositions = v
+	return s
+}
+
+// SetSummary sets the Summary field's value.
+func (s *CalculateRouteMatrixOutput) SetSummary(v *CalculateRouteMatrixSummary) *CalculateRouteMatrixOutput {
+	s.Summary = v
+	return s
+}
+
+// A summary of the calculated route matrix.
+type CalculateRouteMatrixSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The data provider of traffic and road network data used to calculate the
+	// routes. Indicates one of the available providers:
+	//
+	//    * Esri
+	//
+	//    * Here
+	//
+	// For more information about data providers, see Amazon Location Service data
+	// providers (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
+	//
+	// DataSource is a required field
+	DataSource *string `type:"string" required:"true"`
+
+	// The unit of measurement for route distances.
+	//
+	// DistanceUnit is a required field
+	DistanceUnit *string `type:"string" required:"true" enum:"DistanceUnit"`
+
+	// The count of error results in the route matrix. If this number is 0, all
+	// routes were calculated successfully.
+	//
+	// ErrorCount is a required field
+	ErrorCount *int64 `min:"1" type:"integer" required:"true"`
+
+	// The count of cells in the route matrix. Equal to the number of DeparturePositions
+	// multiplied by the number of DestinationPositions.
+	//
+	// RouteCount is a required field
+	RouteCount *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CalculateRouteMatrixSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CalculateRouteMatrixSummary) GoString() string {
+	return s.String()
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *CalculateRouteMatrixSummary) SetDataSource(v string) *CalculateRouteMatrixSummary {
+	s.DataSource = &v
+	return s
+}
+
+// SetDistanceUnit sets the DistanceUnit field's value.
+func (s *CalculateRouteMatrixSummary) SetDistanceUnit(v string) *CalculateRouteMatrixSummary {
+	s.DistanceUnit = &v
+	return s
+}
+
+// SetErrorCount sets the ErrorCount field's value.
+func (s *CalculateRouteMatrixSummary) SetErrorCount(v int64) *CalculateRouteMatrixSummary {
+	s.ErrorCount = &v
+	return s
+}
+
+// SetRouteCount sets the RouteCount field's value.
+func (s *CalculateRouteMatrixSummary) SetRouteCount(v int64) *CalculateRouteMatrixSummary {
+	s.RouteCount = &v
+	return s
+}
+
 // Returns the result of the route calculation. Metadata includes legs and route
 // summary.
 type CalculateRouteOutput struct {
@@ -7107,7 +7592,7 @@ type CalculateRouteOutput struct {
 	// total number of positions in the request.
 	//
 	// For example, a route with a departure position and destination position returns
-	// one leg with the positions snapped to a nearby road (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road):
+	// one leg with the positions snapped to a nearby road (https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html):
 	//
 	//    * The StartPosition is the departure position.
 	//
@@ -7434,28 +7919,15 @@ type CreateGeofenceCollectionInput struct {
 	// Enter a key ID, key ARN, alias name, or alias ARN.
 	KmsKeyId *string `min:"1" type:"string"`
 
-	// Optionally specifies the pricing plan for the geofence collection. Defaults
-	// to RequestBasedUsage.
+	// No longer used. If included, the only allowed value is RequestBasedUsage.
 	//
-	// For additional details and restrictions on each pricing plan option, see
-	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
-	PricingPlan *string `type:"string" enum:"PricingPlan"`
+	// Deprecated: Deprecated. If included, the only allowed value is RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 
-	// Specifies the data provider for the geofence collection.
+	// This parameter is no longer used.
 	//
-	//    * Required value for the following pricing plans: MobileAssetTracking
-	//    | MobileAssetManagement
-	//
-	// For more information about Data Providers (https://aws.amazon.com/location/data-providers/),
-	// and Pricing plans (https://aws.amazon.com/location/pricing/), see the Amazon
-	// Location Service product page.
-	//
-	// Amazon Location Service only uses PricingPlanDataSource to calculate billing
-	// for your geofence collection. Your data won't be shared with the data provider,
-	// and will remain in your AWS account or Region unless you move it.
-	//
-	// Valid Values: Esri | Here
-	PricingPlanDataSource *string `type:"string"`
+	// Deprecated: Deprecated. No longer allowed.
+	PricingPlanDataSource *string `deprecated:"true" type:"string"`
 
 	// Applies one or more tags to the geofence collection. A tag is a key-value
 	// pair helps manage, identify, search, and filter your resources by labelling
@@ -7637,11 +8109,10 @@ type CreateMapInput struct {
 	// MapName is a required field
 	MapName *string `min:"1" type:"string" required:"true"`
 
-	// Optionally specifies the pricing plan for the map resource. Defaults to RequestBasedUsage.
+	// No longer used. If included, the only allowed value is RequestBasedUsage.
 	//
-	// For additional details and restrictions on each pricing plan option, see
-	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
-	PricingPlan *string `type:"string" enum:"PricingPlan"`
+	// Deprecated: Deprecated. If included, the only allowed value is RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 
 	// Applies one or more tags to the map resource. A tag is a key-value pair helps
 	// manage, identify, search, and filter your resources by labelling them.
@@ -7844,12 +8315,10 @@ type CreatePlaceIndexInput struct {
 	// IndexName is a required field
 	IndexName *string `min:"1" type:"string" required:"true"`
 
-	// Optionally specifies the pricing plan for the place index resource. Defaults
-	// to RequestBasedUsage.
+	// No longer used. If included, the only allowed value is RequestBasedUsage.
 	//
-	// For additional details and restrictions on each pricing plan option, see
-	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
-	PricingPlan *string `type:"string" enum:"PricingPlan"`
+	// Deprecated: Deprecated. If included, the only allowed value is RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 
 	// Applies one or more tags to the place index resource. A tag is a key-value
 	// pair that helps you manage, identify, search, and filter your resources.
@@ -8047,12 +8516,10 @@ type CreateRouteCalculatorInput struct {
 	// The optional description for the route calculator resource.
 	Description *string `type:"string"`
 
-	// Optionally specifies the pricing plan for the route calculator resource.
-	// Defaults to RequestBasedUsage.
+	// No longer used. If included, the only allowed value is RequestBasedUsage.
 	//
-	// For additional details and restrictions on each pricing plan option, see
-	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
-	PricingPlan *string `type:"string" enum:"PricingPlan"`
+	// Deprecated: Deprecated. If included, the only allowed value is RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 
 	// Applies one or more tags to the route calculator resource. A tag is a key-value
 	// pair helps manage, identify, search, and filter your resources by labelling
@@ -8247,28 +8714,15 @@ type CreateTrackerInput struct {
 	// This field is optional. If not specified, the default value is TimeBased.
 	PositionFiltering *string `type:"string" enum:"PositionFiltering"`
 
-	// Optionally specifies the pricing plan for the tracker resource. Defaults
-	// to RequestBasedUsage.
+	// No longer used. If included, the only allowed value is RequestBasedUsage.
 	//
-	// For additional details and restrictions on each pricing plan option, see
-	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
-	PricingPlan *string `type:"string" enum:"PricingPlan"`
+	// Deprecated: Deprecated. If included, the only allowed value is RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 
-	// Specifies the data provider for the tracker resource.
+	// This parameter is no longer used.
 	//
-	//    * Required value for the following pricing plans: MobileAssetTracking
-	//    | MobileAssetManagement
-	//
-	// For more information about Data Providers (https://aws.amazon.com/location/data-providers/),
-	// and Pricing plans (https://aws.amazon.com/location/pricing/), see the Amazon
-	// Location Service product page.
-	//
-	// Amazon Location Service only uses PricingPlanDataSource to calculate billing
-	// for your tracker resource. Your data will not be shared with the data provider,
-	// and will remain in your AWS account or Region unless you move it.
-	//
-	// Valid values: Esri | Here
-	PricingPlanDataSource *string `type:"string"`
+	// Deprecated: Deprecated. No longer allowed.
+	PricingPlanDataSource *string `deprecated:"true" type:"string"`
 
 	// Applies one or more tags to the tracker resource. A tag is a key-value pair
 	// helps manage, identify, search, and filter your resources by labelling them.
@@ -8931,16 +9385,15 @@ type DescribeGeofenceCollectionOutput struct {
 	// assigned to the Amazon Location resource
 	KmsKeyId *string `min:"1" type:"string"`
 
-	// The pricing plan selected for the specified geofence collection.
+	// No longer used. Always returns RequestBasedUsage.
 	//
-	// For additional details and restrictions on each pricing plan option, see
-	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
-	//
-	// PricingPlan is a required field
-	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+	// Deprecated: Deprecated. Always returns RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 
-	// The specified data provider for the geofence collection.
-	PricingPlanDataSource *string `type:"string"`
+	// No longer used. Always returns an empty string.
+	//
+	// Deprecated: Deprecated. Unused.
+	PricingPlanDataSource *string `deprecated:"true" type:"string"`
 
 	// Displays the key, value pairs of tags associated with this resource.
 	Tags map[string]*string `type:"map"`
@@ -9110,14 +9563,10 @@ type DescribeMapOutput struct {
 	// MapName is a required field
 	MapName *string `min:"1" type:"string" required:"true"`
 
-	// The pricing plan selected for the specified map resource.
+	// No longer used. Always returns RequestBasedUsage.
 	//
-	//    <p>For additional details and restrictions on each pricing plan option,
-	//    see <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-	//    Service pricing</a>.</p>
-	//
-	// PricingPlan is a required field
-	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+	// Deprecated: Deprecated. Always returns RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 
 	// Tags associated with the map resource.
 	Tags map[string]*string `type:"map"`
@@ -9294,13 +9743,10 @@ type DescribePlaceIndexOutput struct {
 	// IndexName is a required field
 	IndexName *string `min:"1" type:"string" required:"true"`
 
-	// The pricing plan selected for the specified place index resource.
+	// No longer used. Always returns RequestBasedUsage.
 	//
-	// For additional details and restrictions on each pricing plan option, see
-	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
-	//
-	// PricingPlan is a required field
-	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+	// Deprecated: Deprecated. Always returns RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 
 	// Tags associated with place index resource.
 	Tags map[string]*string `type:"map"`
@@ -9475,13 +9921,10 @@ type DescribeRouteCalculatorOutput struct {
 	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
-	// The pricing plan selected for the specified route calculator resource.
+	// Always returns RequestBasedUsage.
 	//
-	// For additional details and restrictions on each pricing plan option, see
-	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
-	//
-	// PricingPlan is a required field
-	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+	// Deprecated: Deprecated. Always returns RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 
 	// Tags associated with route calculator resource.
 	Tags map[string]*string `type:"map"`
@@ -9631,16 +10074,15 @@ type DescribeTrackerOutput struct {
 	// The position filtering method of the tracker resource.
 	PositionFiltering *string `type:"string" enum:"PositionFiltering"`
 
-	// The pricing plan selected for the specified tracker resource.
+	// Always returns RequestBasedUsage.
 	//
-	// For additional details and restrictions on each pricing plan option, see
-	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
-	//
-	// PricingPlan is a required field
-	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+	// Deprecated: Deprecated. Always returns RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 
-	// The specified data provider for the tracker resource.
-	PricingPlanDataSource *string `type:"string"`
+	// No longer used. Always returns an empty string.
+	//
+	// Deprecated: Deprecated. Unused.
+	PricingPlanDataSource *string `deprecated:"true" type:"string"`
 
 	// The tags associated with the tracker resource.
 	Tags map[string]*string `type:"map"`
@@ -11137,7 +11579,7 @@ func (s *InternalServerException) RequestID() string {
 // of positions in the request.
 //
 // For example, a route with a departure position and destination position returns
-// one leg with the positions snapped to a nearby road (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road):
+// one leg with the positions snapped to a nearby road (https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html):
 //
 //    * The StartPosition is the departure position.
 //
@@ -11173,7 +11615,7 @@ type Leg struct {
 	// The terminating position of the leg. Follows the format [longitude,latitude].
 	//
 	// If the EndPosition isn't located on a road, it's snapped to a nearby road
-	// (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road).
+	// (https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html).
 	//
 	// EndPosition is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Leg's
@@ -11188,7 +11630,7 @@ type Leg struct {
 	// The starting position of the leg. Follows the format [longitude,latitude].
 	//
 	// If the StartPosition isn't located on a road, it's snapped to a nearby road
-	// (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road).
+	// (https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html).
 	//
 	// StartPosition is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Leg's
@@ -11628,16 +12070,15 @@ type ListGeofenceCollectionsResponseEntry struct {
 	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
-	// The pricing plan for the specified geofence collection.
+	// No longer used. Always returns RequestBasedUsage.
 	//
-	// For additional details and restrictions on each pricing plan option, see
-	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
-	//
-	// PricingPlan is a required field
-	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+	// Deprecated: Deprecated. Always returns RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 
-	// The specified data provider for the geofence collection.
-	PricingPlanDataSource *string `type:"string"`
+	// No longer used. Always returns an empty string.
+	//
+	// Deprecated: Deprecated. Unused.
+	PricingPlanDataSource *string `deprecated:"true" type:"string"`
 
 	// Specifies a timestamp for when the resource was last updated in ISO 8601
 	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ
@@ -12028,13 +12469,10 @@ type ListMapsResponseEntry struct {
 	// MapName is a required field
 	MapName *string `min:"1" type:"string" required:"true"`
 
-	// The pricing plan for the specified map resource.
+	// No longer used. Always returns RequestBasedUsage.
 	//
-	// For additional details and restrictions on each pricing plan option, see
-	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
-	//
-	// PricingPlan is a required field
-	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+	// Deprecated: Deprecated. Always returns RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 
 	// The timestamp for when the map resource was last updated in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
 	// format: YYYY-MM-DDThh:mm:ss.sssZ.
@@ -12234,13 +12672,10 @@ type ListPlaceIndexesResponseEntry struct {
 	// IndexName is a required field
 	IndexName *string `min:"1" type:"string" required:"true"`
 
-	// The pricing plan for the specified place index resource.
+	// No longer used. Always returns RequestBasedUsage.
 	//
-	// For additional details and restrictions on each pricing plan option, see
-	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
-	//
-	// PricingPlan is a required field
-	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+	// Deprecated: Deprecated. Always returns RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 
 	// The timestamp for when the place index resource was last updated in ISO 8601
 	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
@@ -12442,13 +12877,10 @@ type ListRouteCalculatorsResponseEntry struct {
 	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
-	// The pricing plan for the specified route calculator resource.
+	// Always returns RequestBasedUsage.
 	//
-	// For additional details and restrictions on each pricing plan option, see
-	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
-	//
-	// PricingPlan is a required field
-	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+	// Deprecated: Deprecated. Always returns RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 
 	// The timestamp when the route calculator resource was last updated in ISO
 	// 8601 (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
@@ -12839,16 +13271,15 @@ type ListTrackersResponseEntry struct {
 	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
-	// The pricing plan for the specified tracker resource.
+	// Always returns RequestBasedUsage.
 	//
-	// For additional details and restrictions on each pricing plan option, see
-	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
-	//
-	// PricingPlan is a required field
-	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+	// Deprecated: Deprecated. Always returns RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 
-	// The specified data provider for the tracker resource.
-	PricingPlanDataSource *string `type:"string"`
+	// No longer used. Always returns an empty string.
+	//
+	// Deprecated: Deprecated. Unused.
+	PricingPlanDataSource *string `deprecated:"true" type:"string"`
 
 	// The name of the tracker resource.
 	//
@@ -13447,6 +13878,120 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The result for one SnappedDeparturePosition SnappedDestinationPosition pair.
+type RouteMatrixEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The total distance of travel for the route.
+	Distance *float64 `type:"double"`
+
+	// The expected duration of travel for the route.
+	DurationSeconds *float64 `type:"double"`
+
+	// An error corresponding to the calculation of a route between the DeparturePosition
+	// and DestinationPosition.
+	Error *RouteMatrixEntryError `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteMatrixEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteMatrixEntry) GoString() string {
+	return s.String()
+}
+
+// SetDistance sets the Distance field's value.
+func (s *RouteMatrixEntry) SetDistance(v float64) *RouteMatrixEntry {
+	s.Distance = &v
+	return s
+}
+
+// SetDurationSeconds sets the DurationSeconds field's value.
+func (s *RouteMatrixEntry) SetDurationSeconds(v float64) *RouteMatrixEntry {
+	s.DurationSeconds = &v
+	return s
+}
+
+// SetError sets the Error field's value.
+func (s *RouteMatrixEntry) SetError(v *RouteMatrixEntryError) *RouteMatrixEntry {
+	s.Error = v
+	return s
+}
+
+// An error corresponding to the calculation of a route between the DeparturePosition
+// and DestinationPosition.
+//
+// The error code can be one of the following:
+//
+//    * RouteNotFound - Unable to find a valid route with the given parameters.
+//
+//    * RouteTooLong - Route calculation went beyond the maximum size of a route
+//    and was terminated before completion.
+//
+//    * PositionsNotFound - One or more of the input positions were not found
+//    on the route network.
+//
+//    * DestinationPositionNotFound - The destination position was not found
+//    on the route network.
+//
+//    * DeparturePositionNotFound - The departure position was not found on
+//    the route network.
+//
+//    * OtherValidationError - The given inputs were not valid or a route was
+//    not found. More information is given in the error Message
+type RouteMatrixEntryError struct {
+	_ struct{} `type:"structure"`
+
+	// The type of error which occurred for the route calculation.
+	//
+	// Code is a required field
+	Code *string `type:"string" required:"true" enum:"RouteMatrixErrorCode"`
+
+	// A message about the error that occurred for the route calculation.
+	Message *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteMatrixEntryError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteMatrixEntryError) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *RouteMatrixEntryError) SetCode(v string) *RouteMatrixEntryError {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *RouteMatrixEntryError) SetMessage(v string) *RouteMatrixEntryError {
+	s.Message = &v
+	return s
 }
 
 // Contains a search result from a position search query that is run on a place
@@ -15132,26 +15677,15 @@ type UpdateGeofenceCollectionInput struct {
 	// Updates the description for the geofence collection.
 	Description *string `type:"string"`
 
-	// Updates the pricing plan for the geofence collection.
+	// No longer used. If included, the only allowed value is RequestBasedUsage.
 	//
-	// For more information about each pricing plan option restrictions, see Amazon
-	// Location Service pricing (https://aws.amazon.com/location/pricing/).
-	PricingPlan *string `type:"string" enum:"PricingPlan"`
+	// Deprecated: Deprecated. If included, the only allowed value is RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 
-	// Updates the data provider for the geofence collection.
+	// This parameter is no longer used.
 	//
-	// A required value for the following pricing plans: MobileAssetTracking| MobileAssetManagement
-	//
-	// For more information about data providers (https://aws.amazon.com/location/data-providers/)
-	// and pricing plans (https://aws.amazon.com/location/pricing/), see the Amazon
-	// Location Service product page.
-	//
-	// This can only be updated when updating the PricingPlan in the same request.
-	//
-	// Amazon Location Service uses PricingPlanDataSource to calculate billing for
-	// your geofence collection. Your data won't be shared with the data provider,
-	// and will remain in your AWS account and Region unless you move it.
-	PricingPlanDataSource *string `type:"string"`
+	// Deprecated: Deprecated. No longer allowed.
+	PricingPlanDataSource *string `deprecated:"true" type:"string"`
 }
 
 // String returns the string representation.
@@ -15282,11 +15816,10 @@ type UpdateMapInput struct {
 	// MapName is a required field
 	MapName *string `location:"uri" locationName:"MapName" min:"1" type:"string" required:"true"`
 
-	// Updates the pricing plan for the map resource.
+	// No longer used. If included, the only allowed value is RequestBasedUsage.
 	//
-	// For more information about each pricing plan option restrictions, see Amazon
-	// Location Service pricing (https://aws.amazon.com/location/pricing/).
-	PricingPlan *string `type:"string" enum:"PricingPlan"`
+	// Deprecated: Deprecated. If included, the only allowed value is RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 }
 
 // String returns the string representation.
@@ -15414,11 +15947,10 @@ type UpdatePlaceIndexInput struct {
 	// IndexName is a required field
 	IndexName *string `location:"uri" locationName:"IndexName" min:"1" type:"string" required:"true"`
 
-	// Updates the pricing plan for the place index resource.
+	// No longer used. If included, the only allowed value is RequestBasedUsage.
 	//
-	// For more information about each pricing plan option restrictions, see Amazon
-	// Location Service pricing (https://aws.amazon.com/location/pricing/).
-	PricingPlan *string `type:"string" enum:"PricingPlan"`
+	// Deprecated: Deprecated. If included, the only allowed value is RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 }
 
 // String returns the string representation.
@@ -15549,11 +16081,10 @@ type UpdateRouteCalculatorInput struct {
 	// Updates the description for the route calculator resource.
 	Description *string `type:"string"`
 
-	// Updates the pricing plan for the route calculator resource.
+	// No longer used. If included, the only allowed value is RequestBasedUsage.
 	//
-	// For more information about each pricing plan option restrictions, see Amazon
-	// Location Service pricing (https://aws.amazon.com/location/pricing/).
-	PricingPlan *string `type:"string" enum:"PricingPlan"`
+	// Deprecated: Deprecated. If included, the only allowed value is RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 }
 
 // String returns the string representation.
@@ -15700,26 +16231,15 @@ type UpdateTrackerInput struct {
 	//    evaluations.
 	PositionFiltering *string `type:"string" enum:"PositionFiltering"`
 
-	// Updates the pricing plan for the tracker resource.
+	// No longer used. If included, the only allowed value is RequestBasedUsage.
 	//
-	// For more information about each pricing plan option restrictions, see Amazon
-	// Location Service pricing (https://aws.amazon.com/location/pricing/).
-	PricingPlan *string `type:"string" enum:"PricingPlan"`
+	// Deprecated: Deprecated. If included, the only allowed value is RequestBasedUsage.
+	PricingPlan *string `deprecated:"true" type:"string" enum:"PricingPlan"`
 
-	// Updates the data provider for the tracker resource.
+	// This parameter is no longer used.
 	//
-	// A required value for the following pricing plans: MobileAssetTracking| MobileAssetManagement
-	//
-	// For more information about data providers (https://aws.amazon.com/location/data-providers/)
-	// and pricing plans (https://aws.amazon.com/location/pricing/), see the Amazon
-	// Location Service product page
-	//
-	// This can only be updated when updating the PricingPlan in the same request.
-	//
-	// Amazon Location Service uses PricingPlanDataSource to calculate billing for
-	// your tracker resource. Your data won't be shared with the data provider,
-	// and will remain in your AWS account and Region unless you move it.
-	PricingPlanDataSource *string `type:"string"`
+	// Deprecated: Deprecated. No longer allowed.
+	PricingPlanDataSource *string `deprecated:"true" type:"string"`
 
 	// The name of the tracker resource to update.
 	//
@@ -16087,6 +16607,38 @@ func PricingPlan_Values() []string {
 		PricingPlanRequestBasedUsage,
 		PricingPlanMobileAssetTracking,
 		PricingPlanMobileAssetManagement,
+	}
+}
+
+const (
+	// RouteMatrixErrorCodeRouteNotFound is a RouteMatrixErrorCode enum value
+	RouteMatrixErrorCodeRouteNotFound = "RouteNotFound"
+
+	// RouteMatrixErrorCodeRouteTooLong is a RouteMatrixErrorCode enum value
+	RouteMatrixErrorCodeRouteTooLong = "RouteTooLong"
+
+	// RouteMatrixErrorCodePositionsNotFound is a RouteMatrixErrorCode enum value
+	RouteMatrixErrorCodePositionsNotFound = "PositionsNotFound"
+
+	// RouteMatrixErrorCodeDestinationPositionNotFound is a RouteMatrixErrorCode enum value
+	RouteMatrixErrorCodeDestinationPositionNotFound = "DestinationPositionNotFound"
+
+	// RouteMatrixErrorCodeDeparturePositionNotFound is a RouteMatrixErrorCode enum value
+	RouteMatrixErrorCodeDeparturePositionNotFound = "DeparturePositionNotFound"
+
+	// RouteMatrixErrorCodeOtherValidationError is a RouteMatrixErrorCode enum value
+	RouteMatrixErrorCodeOtherValidationError = "OtherValidationError"
+)
+
+// RouteMatrixErrorCode_Values returns all elements of the RouteMatrixErrorCode enum
+func RouteMatrixErrorCode_Values() []string {
+	return []string{
+		RouteMatrixErrorCodeRouteNotFound,
+		RouteMatrixErrorCodeRouteTooLong,
+		RouteMatrixErrorCodePositionsNotFound,
+		RouteMatrixErrorCodeDestinationPositionNotFound,
+		RouteMatrixErrorCodeDeparturePositionNotFound,
+		RouteMatrixErrorCodeOtherValidationError,
 	}
 }
 

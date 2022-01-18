@@ -650,13 +650,15 @@ func (c *CloudTrail) DeleteEventDataStoreRequest(input *DeleteEventDataStoreInpu
 //
 // Disables the event data store specified by EventDataStore, which accepts
 // an event data store ARN. After you run DeleteEventDataStore, the event data
-// store is automatically deleted after a wait period of seven days. TerminationProtectionEnabled
-// must be set to False on the event data store; this operation cannot work
-// if TerminationProtectionEnabled is True.
+// store enters a PENDING_DELETION state, and is automatically deleted after
+// a wait period of seven days. TerminationProtectionEnabled must be set to
+// False on the event data store; this operation cannot work if TerminationProtectionEnabled
+// is True.
 //
 // After you run DeleteEventDataStore on an event data store, you cannot run
 // ListQueries, DescribeQuery, or GetQueryResults on queries that are using
-// an event data store in a PENDING_DELETION state.
+// an event data store in a PENDING_DELETION state. An event data store in the
+// PENDING_DELETION state does not incur costs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4340,7 +4342,9 @@ type AdvancedFieldSelector struct {
 	// eventName, resources.type, and resources.ARN.
 	//
 	//    * readOnly - Optional. Can be set to Equals a value of true or false.
-	//    A value of false logs both read and write events.
+	//    If you do not add this field, CloudTrail logs both both read and write
+	//    events. A value of true logs only read events. A value of false logs only
+	//    write events.
 	//
 	//    * eventSource - For filtering management events only. This can be set
 	//    only to NotEquals kms.amazonaws.com.
@@ -4356,9 +4360,9 @@ type AdvancedFieldSelector struct {
 	//    the Equals operator, and the value can be one of the following: AWS::S3::Object
 	//    AWS::Lambda::Function AWS::DynamoDB::Table AWS::S3Outposts::Object AWS::ManagedBlockchain::Node
 	//    AWS::S3ObjectLambda::AccessPoint AWS::EC2::Snapshot AWS::S3::AccessPoint
-	//    AWS::DynamoDB::Stream You can have only one resources.type ﬁeld per
-	//    selector. To log data events on more than one resource type, add another
-	//    selector.
+	//    AWS::DynamoDB::Stream AWS::Glue::Table You can have only one resources.type
+	//    ﬁeld per selector. To log data events on more than one resource type,
+	//    add another selector.
 	//
 	//    * resources.ARN - You can use any operator with resources.ARN, but if
 	//    you use Equals or NotEquals, the value must exactly match the ARN of a
@@ -4392,6 +4396,8 @@ type AdvancedFieldSelector struct {
 	//    to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:ec2:<region>::snapshot/<snapshot_ID>
 	//    When resources.type equals AWS::DynamoDB::Stream, and the operator is
 	//    set to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:dynamodb:<region>:<account_ID>:table/<table_name>/stream/<date_time>
+	//    When resources.type equals AWS::Glue::Table, and the operator is set to
+	//    Equals or NotEquals, the ARN must be in the following format: arn:<partition>:glue:<region>:<account_ID>:table/<database_name>/<table_name>
 	//
 	// Field is a required field
 	Field *string `min:"1" type:"string" required:"true"`
@@ -5527,6 +5533,8 @@ type DataResource struct {
 	//    * AWS::S3::AccessPoint
 	//
 	//    * AWS::DynamoDB::Stream
+	//
+	//    * AWS::Glue::Table
 	Type *string `type:"string"`
 
 	// An array of Amazon Resource Name (ARN) strings or partial ARN strings for
@@ -6555,7 +6563,8 @@ type EventSelector struct {
 	// (disables the filter), or it can filter out Key Management Service or Amazon
 	// RDS Data API events by containing kms.amazonaws.com or rdsdata.amazonaws.com.
 	// By default, ExcludeManagementEventSources is empty, and KMS and Amazon RDS
-	// Data API events are logged to your trail.
+	// Data API events are logged to your trail. You can exclude management event
+	// sources only in regions that support the event source.
 	ExcludeManagementEventSources []*string `type:"list"`
 
 	// Specify if you want your event selector to include management events for

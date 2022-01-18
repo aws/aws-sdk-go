@@ -7750,6 +7750,26 @@
         "UploadStart":{"shape":"DateTime"}
       }
     },
+    "ClientLoginBannerOptions":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"},
+        "BannerText":{"shape":"String"}
+      }
+    },
+    "ClientLoginBannerResponseOptions":{
+      "type":"structure",
+      "members":{
+        "Enabled":{
+          "shape":"Boolean",
+          "locationName":"enabled"
+        },
+        "BannerText":{
+          "shape":"String",
+          "locationName":"bannerText"
+        }
+      }
+    },
     "ClientVpnAssociationId":{"type":"string"},
     "ClientVpnAuthentication":{
       "type":"structure",
@@ -8000,6 +8020,14 @@
         "ClientConnectOptions":{
           "shape":"ClientConnectResponseOptions",
           "locationName":"clientConnectOptions"
+        },
+        "SessionTimeoutHours":{
+          "shape":"Integer",
+          "locationName":"sessionTimeoutHours"
+        },
+        "ClientLoginBannerOptions":{
+          "shape":"ClientLoginBannerResponseOptions",
+          "locationName":"clientLoginBannerOptions"
         }
       }
     },
@@ -8690,7 +8718,9 @@
         },
         "VpcId":{"shape":"VpcId"},
         "SelfServicePortal":{"shape":"SelfServicePortal"},
-        "ClientConnectOptions":{"shape":"ClientConnectOptions"}
+        "ClientConnectOptions":{"shape":"ClientConnectOptions"},
+        "SessionTimeoutHours":{"shape":"Integer"},
+        "ClientLoginBannerOptions":{"shape":"ClientLoginBannerOptions"}
       }
     },
     "CreateClientVpnEndpointResult":{
@@ -26911,7 +26941,9 @@
         },
         "VpcId":{"shape":"VpcId"},
         "SelfServicePortal":{"shape":"SelfServicePortal"},
-        "ClientConnectOptions":{"shape":"ClientConnectOptions"}
+        "ClientConnectOptions":{"shape":"ClientConnectOptions"},
+        "SessionTimeoutHours":{"shape":"Integer"},
+        "ClientLoginBannerOptions":{"shape":"ClientLoginBannerOptions"}
       }
     },
     "ModifyClientVpnEndpointResult":{
