@@ -27,7 +27,33 @@ type SmokeTestCase struct {
 }
 
 var smokeTestsCustomizations = map[string]func(*SmokeTestSuite) error{
-	"sts": stsSmokeTestCustomization,
+	"sts":         stsSmokeTestCustomization,
+	"waf":         wafSmokeTestCustomization,
+	"wafregional": wafRegionalSmokeTestCustomization,
+}
+
+func wafSmokeTestCustomization(suite *SmokeTestSuite) error {
+	return filterWAFCreateSqlInjectionMatchSet(suite)
+}
+
+func wafRegionalSmokeTestCustomization(suite *SmokeTestSuite) error {
+	return filterWAFCreateSqlInjectionMatchSet(suite)
+}
+
+func filterWAFCreateSqlInjectionMatchSet(suite *SmokeTestSuite) error {
+	const createSqlInjectionMatchSetOp = "CreateSqlInjectionMatchSet"
+
+	var testCases []SmokeTestCase
+	for _, testCase := range suite.TestCases {
+		if testCase.OpName == createSqlInjectionMatchSetOp {
+			continue
+		}
+		testCases = append(testCases, testCase)
+	}
+
+	suite.TestCases = testCases
+
+	return nil
 }
 
 func stsSmokeTestCustomization(suite *SmokeTestSuite) error {
