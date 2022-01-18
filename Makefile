@@ -38,7 +38,7 @@ gen-codegen-test:
 
 gen-services:
 	@echo "Generating SDK clients"
-	go generate ./service
+	env GOEXPERIMENT=noregabi go generate ./service
 
 gen-protocol-test:
 	@echo "Generating SDK protocol tests"
