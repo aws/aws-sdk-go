@@ -92,6 +92,10 @@ type LocationServiceAPI interface {
 	CalculateRouteWithContext(aws.Context, *locationservice.CalculateRouteInput, ...request.Option) (*locationservice.CalculateRouteOutput, error)
 	CalculateRouteRequest(*locationservice.CalculateRouteInput) (*request.Request, *locationservice.CalculateRouteOutput)
 
+	CalculateRouteMatrix(*locationservice.CalculateRouteMatrixInput) (*locationservice.CalculateRouteMatrixOutput, error)
+	CalculateRouteMatrixWithContext(aws.Context, *locationservice.CalculateRouteMatrixInput, ...request.Option) (*locationservice.CalculateRouteMatrixOutput, error)
+	CalculateRouteMatrixRequest(*locationservice.CalculateRouteMatrixInput) (*request.Request, *locationservice.CalculateRouteMatrixOutput)
+
 	CreateGeofenceCollection(*locationservice.CreateGeofenceCollectionInput) (*locationservice.CreateGeofenceCollectionOutput, error)
 	CreateGeofenceCollectionWithContext(aws.Context, *locationservice.CreateGeofenceCollectionInput, ...request.Option) (*locationservice.CreateGeofenceCollectionOutput, error)
 	CreateGeofenceCollectionRequest(*locationservice.CreateGeofenceCollectionInput) (*request.Request, *locationservice.CreateGeofenceCollectionOutput)

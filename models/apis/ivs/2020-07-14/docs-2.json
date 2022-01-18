@@ -583,6 +583,12 @@
         "RecordingConfigurationList$member": null
       }
     },
+    "RecordingMode": {
+      "base": null,
+      "refs": {
+        "ThumbnailConfiguration$recordingMode": "<p>Thumbnail recording mode. Default: <code>INTERVAL</code>.</p>"
+      }
+    },
     "ResourceArn": {
       "base": null,
       "refs": {
@@ -736,7 +742,7 @@
     "StreamSessionList": {
       "base": null,
       "refs": {
-        "ListStreamSessionsResponse$streamSessions": "<p/>"
+        "ListStreamSessionsResponse$streamSessions": "<p>List of stream sessions.</p>"
       }
     },
     "StreamSessionSummary": {
@@ -837,9 +843,22 @@
         "TagResourceRequest$tags": "<p>Array of tags to be added or updated.</p>"
       }
     },
+    "TargetIntervalSeconds": {
+      "base": null,
+      "refs": {
+        "ThumbnailConfiguration$targetIntervalSeconds": "<p>The targeted thumbnail-generation interval in seconds. This is configurable (and required) only if <code>recordingMode</code> is <code>INTERVAL</code>. Default: 60.</p> <p> <b>Important:</b> Setting a value for <code>targetIntervalSeconds</code> does not guarantee that thumbnails are generated at the specified interval. For thumbnails to be generated at the <code>targetIntervalSeconds</code> interval, the <code>IDR/Keyframe</code> value for the input video must be less than the <code>targetIntervalSeconds</code> value. See <a href=\"https://docs.aws.amazon.com/ivs/latest/userguide/streaming-config.html\"> Amazon IVS Streaming Configuration</a> for information on setting <code>IDR/Keyframe</code> to the recommended value in video-encoder settings.</p>"
+      }
+    },
     "ThrottlingException": {
       "base": "<p/>",
       "refs": {
+      }
+    },
+    "ThumbnailConfiguration": {
+      "base": "<p>An object representing a configuration of thumbnails for recorded video.</p>",
+      "refs": {
+        "CreateRecordingConfigurationRequest$thumbnailConfiguration": "<p>A complex type that allows you to enable/disable the recording of thumbnails for a live session and modify the interval at which thumbnails are generated for the live session.</p>",
+        "RecordingConfiguration$thumbnailConfiguration": "<p>A complex type that allows you to enable/disable the recording of thumbnails for a live session and modify the interval at which thumbnails are generated for the live session.</p>"
       }
     },
     "Time": {

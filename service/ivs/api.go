@@ -2157,6 +2157,8 @@ func (c *IVS) ListStreamsRequest(input *ListStreamsInput) (req *request.Request,
 // Returned Error Types:
 //   * AccessDeniedException
 //
+//   * ValidationException
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/ListStreams
 func (c *IVS) ListStreams(input *ListStreamsInput) (*ListStreamsOutput, error) {
 	req, out := c.ListStreamsRequest(input)
@@ -3585,6 +3587,11 @@ type CreateRecordingConfigurationInput struct {
 
 	// Array of 1-50 maps, each of the form string:string (key:value).
 	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// A complex type that allows you to enable/disable the recording of thumbnails
+	// for a live session and modify the interval at which thumbnails are generated
+	// for the live session.
+	ThumbnailConfiguration *ThumbnailConfiguration `locationName:"thumbnailConfiguration" type:"structure"`
 }
 
 // String returns the string representation.
@@ -3616,6 +3623,11 @@ func (s *CreateRecordingConfigurationInput) Validate() error {
 			invalidParams.AddNested("DestinationConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ThumbnailConfiguration != nil {
+		if err := s.ThumbnailConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ThumbnailConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3638,6 +3650,12 @@ func (s *CreateRecordingConfigurationInput) SetName(v string) *CreateRecordingCo
 // SetTags sets the Tags field's value.
 func (s *CreateRecordingConfigurationInput) SetTags(v map[string]*string) *CreateRecordingConfigurationInput {
 	s.Tags = v
+	return s
+}
+
+// SetThumbnailConfiguration sets the ThumbnailConfiguration field's value.
+func (s *CreateRecordingConfigurationInput) SetThumbnailConfiguration(v *ThumbnailConfiguration) *CreateRecordingConfigurationInput {
+	s.ThumbnailConfiguration = v
 	return s
 }
 
@@ -5286,6 +5304,8 @@ type ListStreamSessionsOutput struct {
 	// get the next set.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
+	// List of stream sessions.
+	//
 	// StreamSessions is a required field
 	StreamSessions []*StreamSessionSummary `locationName:"streamSessions" type:"list" required:"true"`
 }
@@ -5800,6 +5820,11 @@ type RecordingConfiguration struct {
 
 	// Array of 1-50 maps, each of the form string:string (key:value).
 	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// A complex type that allows you to enable/disable the recording of thumbnails
+	// for a live session and modify the interval at which thumbnails are generated
+	// for the live session.
+	ThumbnailConfiguration *ThumbnailConfiguration `locationName:"thumbnailConfiguration" type:"structure"`
 }
 
 // String returns the string representation.
@@ -5847,6 +5872,12 @@ func (s *RecordingConfiguration) SetState(v string) *RecordingConfiguration {
 // SetTags sets the Tags field's value.
 func (s *RecordingConfiguration) SetTags(v map[string]*string) *RecordingConfiguration {
 	s.Tags = v
+	return s
+}
+
+// SetThumbnailConfiguration sets the ThumbnailConfiguration field's value.
+func (s *RecordingConfiguration) SetThumbnailConfiguration(v *ThumbnailConfiguration) *RecordingConfiguration {
+	s.ThumbnailConfiguration = v
 	return s
 }
 
@@ -6916,6 +6947,69 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// An object representing a configuration of thumbnails for recorded video.
+type ThumbnailConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Thumbnail recording mode. Default: INTERVAL.
+	RecordingMode *string `locationName:"recordingMode" type:"string" enum:"RecordingMode"`
+
+	// The targeted thumbnail-generation interval in seconds. This is configurable
+	// (and required) only if recordingMode is INTERVAL. Default: 60.
+	//
+	// Important: Setting a value for targetIntervalSeconds does not guarantee that
+	// thumbnails are generated at the specified interval. For thumbnails to be
+	// generated at the targetIntervalSeconds interval, the IDR/Keyframe value for
+	// the input video must be less than the targetIntervalSeconds value. See Amazon
+	// IVS Streaming Configuration (https://docs.aws.amazon.com/ivs/latest/userguide/streaming-config.html)
+	// for information on setting IDR/Keyframe to the recommended value in video-encoder
+	// settings.
+	TargetIntervalSeconds *int64 `locationName:"targetIntervalSeconds" min:"5" type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThumbnailConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThumbnailConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ThumbnailConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ThumbnailConfiguration"}
+	if s.TargetIntervalSeconds != nil && *s.TargetIntervalSeconds < 5 {
+		invalidParams.Add(request.NewErrParamMinValue("TargetIntervalSeconds", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRecordingMode sets the RecordingMode field's value.
+func (s *ThumbnailConfiguration) SetRecordingMode(v string) *ThumbnailConfiguration {
+	s.RecordingMode = &v
+	return s
+}
+
+// SetTargetIntervalSeconds sets the TargetIntervalSeconds field's value.
+func (s *ThumbnailConfiguration) SetTargetIntervalSeconds(v int64) *ThumbnailConfiguration {
+	s.TargetIntervalSeconds = &v
+	return s
+}
+
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -7357,6 +7451,22 @@ func RecordingConfigurationState_Values() []string {
 		RecordingConfigurationStateCreating,
 		RecordingConfigurationStateCreateFailed,
 		RecordingConfigurationStateActive,
+	}
+}
+
+const (
+	// RecordingModeDisabled is a RecordingMode enum value
+	RecordingModeDisabled = "DISABLED"
+
+	// RecordingModeInterval is a RecordingMode enum value
+	RecordingModeInterval = "INTERVAL"
+)
+
+// RecordingMode_Values returns all elements of the RecordingMode enum
+func RecordingMode_Values() []string {
+	return []string{
+		RecordingModeDisabled,
+		RecordingModeInterval,
 	}
 }
 

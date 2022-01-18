@@ -341,7 +341,8 @@
       "input":{"shape":"ListStreamsRequest"},
       "output":{"shape":"ListStreamsResponse"},
       "errors":[
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListTagsForResource":{
@@ -620,7 +621,8 @@
       "members":{
         "destinationConfiguration":{"shape":"DestinationConfiguration"},
         "name":{"shape":"RecordingConfigurationName"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "thumbnailConfiguration":{"shape":"ThumbnailConfiguration"}
       }
     },
     "CreateRecordingConfigurationResponse":{
@@ -1010,7 +1012,8 @@
         "destinationConfiguration":{"shape":"DestinationConfiguration"},
         "name":{"shape":"RecordingConfigurationName"},
         "state":{"shape":"RecordingConfigurationState"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "thumbnailConfiguration":{"shape":"ThumbnailConfiguration"}
       }
     },
     "RecordingConfigurationArn":{
@@ -1051,6 +1054,13 @@
         "state":{"shape":"RecordingConfigurationState"},
         "tags":{"shape":"Tags"}
       }
+    },
+    "RecordingMode":{
+      "type":"string",
+      "enum":[
+        "DISABLED",
+        "INTERVAL"
+      ]
     },
     "ResourceArn":{
       "type":"string",
@@ -1302,6 +1312,11 @@
       "max":50,
       "min":0
     },
+    "TargetIntervalSeconds":{
+      "type":"long",
+      "max":60,
+      "min":5
+    },
     "ThrottlingException":{
       "type":"structure",
       "members":{
@@ -1312,6 +1327,13 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "ThumbnailConfiguration":{
+      "type":"structure",
+      "members":{
+        "recordingMode":{"shape":"RecordingMode"},
+        "targetIntervalSeconds":{"shape":"TargetIntervalSeconds"}
+      }
     },
     "Time":{
       "type":"timestamp",

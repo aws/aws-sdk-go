@@ -1666,6 +1666,8 @@
         "ClassicLinkDnsSupport$ClassicLinkDnsSupported": "<p>Indicates whether ClassicLink DNS support is enabled for the VPC.</p>",
         "ClientConnectOptions$Enabled": "<p>Indicates whether client connect options are enabled. The default is <code>false</code> (not enabled).</p>",
         "ClientConnectResponseOptions$Enabled": "<p>Indicates whether client connect options are enabled.</p>",
+        "ClientLoginBannerOptions$Enabled": null,
+        "ClientLoginBannerResponseOptions$Enabled": null,
         "ClientVpnEndpoint$SplitTunnel": "<p>Indicates whether split-tunnel is enabled in the Client VPN endpoint.</p> <p>For information about split-tunnel VPN endpoints, see <a href=\"https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/split-tunnel-vpn.html\">Split-Tunnel Client VPN endpoint</a> in the <i>Client VPN Administrator Guide</i>.</p>",
         "ConfirmProductInstanceRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ConfirmProductInstanceResult$Return": "<p>The return value of the request. Returns <code>true</code> if the specified product code is owned by the requester and associated with the specified instance.</p>",
@@ -2962,6 +2964,19 @@
       "refs": {
         "ImportImageRequest$ClientData": "<p>The client-specific data.</p>",
         "ImportSnapshotRequest$ClientData": "<p>The client-specific data.</p>"
+      }
+    },
+    "ClientLoginBannerOptions": {
+      "base": null,
+      "refs": {
+        "CreateClientVpnEndpointRequest$ClientLoginBannerOptions": null,
+        "ModifyClientVpnEndpointRequest$ClientLoginBannerOptions": null
+      }
+    },
+    "ClientLoginBannerResponseOptions": {
+      "base": null,
+      "refs": {
+        "ClientVpnEndpoint$ClientLoginBannerOptions": null
       }
     },
     "ClientVpnAssociationId": {
@@ -10179,6 +10194,7 @@
         "CapacityReservation$AvailableInstanceCount": "<p>The remaining capacity. Indicates the number of instances that can be launched in the Capacity Reservation.</p>",
         "CapacityReservationFleet$TotalTargetCapacity": "<p>The total number of capacity units for which the Capacity Reservation Fleet reserves capacity. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#target-capacity\">Total target capacity</a> in the Amazon EC2 User Guide.</p>",
         "ClientVpnEndpoint$VpnPort": "<p>The port number for the Client VPN endpoint.</p>",
+        "ClientVpnEndpoint$SessionTimeoutHours": null,
         "CpuOptions$CoreCount": "<p>The number of CPU cores for the instance.</p>",
         "CpuOptions$ThreadsPerCore": "<p>The number of threads per CPU core.</p>",
         "CpuOptionsRequest$CoreCount": "<p>The number of CPU cores for the instance.</p>",
@@ -10187,6 +10203,7 @@
         "CreateCapacityReservationFleetResult$TotalTargetCapacity": "<p>The total number of capacity units for which the Capacity Reservation Fleet reserves capacity.</p>",
         "CreateCapacityReservationRequest$InstanceCount": "<p>The number of instances for which to reserve capacity.</p> <p>Valid range: 1 - 1000</p>",
         "CreateClientVpnEndpointRequest$VpnPort": "<p>The port number to assign to the Client VPN endpoint for TCP and UDP traffic.</p> <p>Valid Values: <code>443</code> | <code>1194</code> </p> <p>Default Value: <code>443</code> </p>",
+        "CreateClientVpnEndpointRequest$SessionTimeoutHours": null,
         "CreateCustomerGatewayRequest$BgpAsn": "<p>For devices that support BGP, the customer gateway's BGP ASN.</p> <p>Default: 65000</p>",
         "CreateFlowLogsRequest$MaxAggregationInterval": "<p>The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record. You can specify 60 seconds (1 minute) or 600 seconds (10 minutes).</p> <p>When a network interface is attached to a <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances\">Nitro-based instance</a>, the aggregation interval is always 60 seconds or less, regardless of the value that you specify.</p> <p>Default: 600</p>",
         "CreateManagedPrefixListRequest$MaxEntries": "<p>The maximum number of entries for the prefix list.</p>",
@@ -10329,6 +10346,7 @@
         "ModifyCapacityReservationFleetRequest$TotalTargetCapacity": "<p>The total number of capacity units to be reserved by the Capacity Reservation Fleet. This value, together with the instance type weights that you assign to each instance type used by the Fleet determine the number of instances for which the Fleet reserves capacity. Both values are based on units that make sense for your workload. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#target-capacity\">Total target capacity</a> in the Amazon EC2 User Guide.</p>",
         "ModifyCapacityReservationRequest$InstanceCount": "<p>The number of instances for which to reserve capacity. The number of instances can't be increased or decreased by more than <code>1000</code> in a single request.</p>",
         "ModifyClientVpnEndpointRequest$VpnPort": "<p>The port number to assign to the Client VPN endpoint for TCP and UDP traffic.</p> <p>Valid Values: <code>443</code> | <code>1194</code> </p> <p>Default Value: <code>443</code> </p>",
+        "ModifyClientVpnEndpointRequest$SessionTimeoutHours": null,
         "ModifyInstanceMetadataOptionsRequest$HttpPutResponseHopLimit": "<p>The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. If no parameter is specified, the existing state is maintained.</p> <p>Possible values: Integers from 1 to 64</p>",
         "ModifyInstancePlacementRequest$PartitionNumber": "<p>The number of the partition in which to place the instance. Valid only if the placement group strategy is set to <code>partition</code>.</p>",
         "ModifyManagedPrefixListRequest$MaxEntries": "<p>The maximum number of entries for the prefix list. You cannot modify the entries of a prefix list and modify the size of a prefix list at the same time.</p> <p>If any of the resources that reference the prefix list cannot support the new maximum size, the modify operation fails. Check the state message for the IDs of the first ten resources that do not support the new maximum size.</p>",
@@ -16351,6 +16369,8 @@
         "ClientConnectOptions$LambdaFunctionArn": "<p>The Amazon Resource Name (ARN) of the Lambda function used for connection authorization.</p>",
         "ClientConnectResponseOptions$LambdaFunctionArn": "<p>The Amazon Resource Name (ARN) of the Lambda function used for connection authorization.</p>",
         "ClientData$Comment": "<p>A user-defined comment about the disk upload.</p>",
+        "ClientLoginBannerOptions$BannerText": null,
+        "ClientLoginBannerResponseOptions$BannerText": null,
         "ClientVpnAuthorizationRuleStatus$Message": "<p>A message about the status of the authorization rule, if applicable.</p>",
         "ClientVpnConnection$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint to which the client is connected.</p>",
         "ClientVpnConnection$Timestamp": "<p>The current date and time.</p>",

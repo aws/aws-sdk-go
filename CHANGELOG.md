@@ -1,3 +1,16 @@
+Release v1.42.36 (2022-01-18)
+===
+
+### Service Client Updates
+* `service/cloudtrail`: Updates service documentation
+  * This release fixes a documentation bug in the description for the readOnly field selector in advanced event selectors. The description now clarifies that users omit the readOnly field selector to select both Read and Write management events.
+* `service/ec2`: Updates service API and documentation
+  * Add support for AWS Client VPN client login banner and session timeout.
+* `service/ivs`: Updates service API and documentation
+* `service/location`: Updates service API and documentation
+* `service/storagegateway`: Updates service documentation
+  * Documentation update for adding bandwidth throttling support for S3 File Gateways.
+
 Release v1.42.35 (2022-01-14)
 ===
 
