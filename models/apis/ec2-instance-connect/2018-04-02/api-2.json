@@ -26,7 +26,8 @@
         {"shape":"InvalidArgsException"},
         {"shape":"ServiceException"},
         {"shape":"ThrottlingException"},
-        {"shape":"EC2InstanceNotFoundException"}
+        {"shape":"EC2InstanceNotFoundException"},
+        {"shape":"EC2InstanceStateInvalidException"}
       ]
     },
     "SendSerialConsoleSSHPublicKey":{
@@ -46,7 +47,8 @@
         {"shape":"EC2InstanceNotFoundException"},
         {"shape":"EC2InstanceTypeInvalidException"},
         {"shape":"SerialConsoleSessionLimitExceededException"},
-        {"shape":"SerialConsoleSessionUnavailableException"}
+        {"shape":"SerialConsoleSessionUnavailableException"},
+        {"shape":"EC2InstanceStateInvalidException"}
       ]
     }
   },
@@ -65,6 +67,13 @@
       "pattern":"^(\\w+-){2,3}\\d+\\w+$"
     },
     "EC2InstanceNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "EC2InstanceStateInvalidException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"String"}
@@ -101,15 +110,14 @@
     "SSHPublicKey":{
       "type":"string",
       "max":4096,
-      "min":256
+      "min":80
     },
     "SendSSHPublicKeyRequest":{
       "type":"structure",
       "required":[
         "InstanceId",
         "InstanceOSUser",
-        "SSHPublicKey",
-        "AvailabilityZone"
+        "SSHPublicKey"
       ],
       "members":{
         "InstanceId":{"shape":"InstanceId"},

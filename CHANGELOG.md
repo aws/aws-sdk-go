@@ -1,3 +1,10 @@
+Release v1.42.37 (2022-01-19)
+===
+
+### Service Client Updates
+* `service/ec2-instance-connect`: Updates service API and documentation
+* `service/macie2`: Updates service API
+
 Release v1.42.36 (2022-01-18)
 ===
 

@@ -8561,9 +8561,11 @@ type CreateCustomDataIdentifierInput struct {
 
 	MaximumMatchDistance *int64 `locationName:"maximumMatchDistance" type:"integer"`
 
-	Name *string `locationName:"name" type:"string"`
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
 
-	Regex *string `locationName:"regex" type:"string"`
+	// Regex is a required field
+	Regex *string `locationName:"regex" type:"string" required:"true"`
 
 	// The severity to assign to findings that the custom data identifier produces,
 	// based on the number of occurrences of text that matches the custom data identifier's
@@ -8607,6 +8609,12 @@ func (s CreateCustomDataIdentifierInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateCustomDataIdentifierInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateCustomDataIdentifierInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Regex == nil {
+		invalidParams.Add(request.NewErrParamRequired("Regex"))
+	}
 	if s.SeverityLevels != nil {
 		for i, v := range s.SeverityLevels {
 			if v == nil {
