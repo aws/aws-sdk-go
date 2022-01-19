@@ -21,6 +21,14 @@ const (
 	// The specified instance was not found.
 	ErrCodeEC2InstanceNotFoundException = "EC2InstanceNotFoundException"
 
+	// ErrCodeEC2InstanceStateInvalidException for service response error code
+	// "EC2InstanceStateInvalidException".
+	//
+	// Unable to connect because the instance is not in a valid state. Connecting
+	// to a stopped or terminated instance is not supported. If the instance is
+	// stopped, start your instance, and try to connect again.
+	ErrCodeEC2InstanceStateInvalidException = "EC2InstanceStateInvalidException"
+
 	// ErrCodeEC2InstanceTypeInvalidException for service response error code
 	// "EC2InstanceTypeInvalidException".
 	//
@@ -75,6 +83,7 @@ const (
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AuthException":                              newErrorAuthException,
 	"EC2InstanceNotFoundException":               newErrorEC2InstanceNotFoundException,
+	"EC2InstanceStateInvalidException":           newErrorEC2InstanceStateInvalidException,
 	"EC2InstanceTypeInvalidException":            newErrorEC2InstanceTypeInvalidException,
 	"InvalidArgsException":                       newErrorInvalidArgsException,
 	"SerialConsoleAccessDisabledException":       newErrorSerialConsoleAccessDisabledException,

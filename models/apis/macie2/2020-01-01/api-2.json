@@ -2814,7 +2814,11 @@
           "shape": "TagMap",
           "locationName": "tags"
         }
-      }
+      },
+      "required": [
+        "regex",
+        "name"
+      ]
     },
     "CreateCustomDataIdentifierResponse": {
       "type": "structure",

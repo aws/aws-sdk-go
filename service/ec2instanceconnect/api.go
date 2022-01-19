@@ -87,6 +87,11 @@ func (c *EC2InstanceConnect) SendSSHPublicKeyRequest(input *SendSSHPublicKeyInpu
 //   * EC2InstanceNotFoundException
 //   The specified instance was not found.
 //
+//   * EC2InstanceStateInvalidException
+//   Unable to connect because the instance is not in a valid state. Connecting
+//   to a stopped or terminated instance is not supported. If the instance is
+//   stopped, start your instance, and try to connect again.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-instance-connect-2018-04-02/SendSSHPublicKey
 func (c *EC2InstanceConnect) SendSSHPublicKey(input *SendSSHPublicKeyInput) (*SendSSHPublicKeyOutput, error) {
 	req, out := c.SendSSHPublicKeyRequest(input)
@@ -201,6 +206,11 @@ func (c *EC2InstanceConnect) SendSerialConsoleSSHPublicKeyRequest(input *SendSer
 //
 //   * SerialConsoleSessionUnavailableException
 //   Unable to start a serial console session. Please try again.
+//
+//   * EC2InstanceStateInvalidException
+//   Unable to connect because the instance is not in a valid state. Connecting
+//   to a stopped or terminated instance is not supported. If the instance is
+//   stopped, start your instance, and try to connect again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-instance-connect-2018-04-02/SendSerialConsoleSSHPublicKey
 func (c *EC2InstanceConnect) SendSerialConsoleSSHPublicKey(input *SendSerialConsoleSSHPublicKeyInput) (*SendSerialConsoleSSHPublicKeyOutput, error) {
@@ -353,6 +363,72 @@ func (s *EC2InstanceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Unable to connect because the instance is not in a valid state. Connecting
+// to a stopped or terminated instance is not supported. If the instance is
+// stopped, start your instance, and try to connect again.
+type EC2InstanceStateInvalidException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EC2InstanceStateInvalidException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EC2InstanceStateInvalidException) GoString() string {
+	return s.String()
+}
+
+func newErrorEC2InstanceStateInvalidException(v protocol.ResponseMetadata) error {
+	return &EC2InstanceStateInvalidException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *EC2InstanceStateInvalidException) Code() string {
+	return "EC2InstanceStateInvalidException"
+}
+
+// Message returns the exception's message.
+func (s *EC2InstanceStateInvalidException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *EC2InstanceStateInvalidException) OrigErr() error {
+	return nil
+}
+
+func (s *EC2InstanceStateInvalidException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *EC2InstanceStateInvalidException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *EC2InstanceStateInvalidException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The instance type is not supported for connecting via the serial console.
 // Only Nitro instance types are currently supported.
 type EC2InstanceTypeInvalidException struct {
@@ -486,9 +562,7 @@ type SendSSHPublicKeyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Availability Zone in which the EC2 instance was launched.
-	//
-	// AvailabilityZone is a required field
-	AvailabilityZone *string `min:"6" type:"string" required:"true"`
+	AvailabilityZone *string `min:"6" type:"string"`
 
 	// The ID of the EC2 instance.
 	//
@@ -504,7 +578,7 @@ type SendSSHPublicKeyInput struct {
 	// private key.
 	//
 	// SSHPublicKey is a required field
-	SSHPublicKey *string `min:"256" type:"string" required:"true"`
+	SSHPublicKey *string `min:"80" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -528,9 +602,6 @@ func (s SendSSHPublicKeyInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *SendSSHPublicKeyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "SendSSHPublicKeyInput"}
-	if s.AvailabilityZone == nil {
-		invalidParams.Add(request.NewErrParamRequired("AvailabilityZone"))
-	}
 	if s.AvailabilityZone != nil && len(*s.AvailabilityZone) < 6 {
 		invalidParams.Add(request.NewErrParamMinLen("AvailabilityZone", 6))
 	}
@@ -549,8 +620,8 @@ func (s *SendSSHPublicKeyInput) Validate() error {
 	if s.SSHPublicKey == nil {
 		invalidParams.Add(request.NewErrParamRequired("SSHPublicKey"))
 	}
-	if s.SSHPublicKey != nil && len(*s.SSHPublicKey) < 256 {
-		invalidParams.Add(request.NewErrParamMinLen("SSHPublicKey", 256))
+	if s.SSHPublicKey != nil && len(*s.SSHPublicKey) < 80 {
+		invalidParams.Add(request.NewErrParamMinLen("SSHPublicKey", 80))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -638,7 +709,7 @@ type SendSerialConsoleSSHPublicKeyInput struct {
 	// in the Amazon EC2 User Guide.
 	//
 	// SSHPublicKey is a required field
-	SSHPublicKey *string `min:"256" type:"string" required:"true"`
+	SSHPublicKey *string `min:"80" type:"string" required:"true"`
 
 	// The serial port of the EC2 instance. Currently only port 0 is supported.
 	//
@@ -676,8 +747,8 @@ func (s *SendSerialConsoleSSHPublicKeyInput) Validate() error {
 	if s.SSHPublicKey == nil {
 		invalidParams.Add(request.NewErrParamRequired("SSHPublicKey"))
 	}
-	if s.SSHPublicKey != nil && len(*s.SSHPublicKey) < 256 {
-		invalidParams.Add(request.NewErrParamMinLen("SSHPublicKey", 256))
+	if s.SSHPublicKey != nil && len(*s.SSHPublicKey) < 80 {
+		invalidParams.Add(request.NewErrParamMinLen("SSHPublicKey", 80))
 	}
 
 	if invalidParams.Len() > 0 {
