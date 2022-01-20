@@ -16,8 +16,9 @@
 // For more information, see Amazon Connect Service Quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
 // in the Amazon Connect Administrator Guide.
 //
-// You can connect programmatically to an AWS service by using an endpoint.
-// For a list of Amazon Connect endpoints, see Amazon Connect Endpoints (https://docs.aws.amazon.com/general/latest/gr/connect_region.html).
+// You can connect programmatically to an Amazon Web Services service by using
+// an endpoint. For a list of Amazon Connect endpoints, see Amazon Connect Endpoints
+// (https://docs.aws.amazon.com/general/latest/gr/connect_region.html).
 //
 // Working with contact flows? Check out the Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
 //

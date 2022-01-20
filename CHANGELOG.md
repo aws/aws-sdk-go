@@ -1,3 +1,15 @@
+Release v1.42.38 (2022-01-20)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API and documentation
+* `service/ec2`: Updates service API
+  * C6i, M6i and R6i instances are powered by a third-generation Intel Xeon Scalable processor (Ice Lake) delivering all-core turbo frequency of 3.5 GHz
+* `service/fis`: Updates service API and documentation
+* `service/guardduty`: Updates service API and documentation
+  * Amazon GuardDuty findings now include remoteAccountDetails under AwsApiCallAction section if instance credential is exfiltrated.
+* `service/mediatailor`: Updates service API and documentation
+
 Release v1.42.37 (2022-01-19)
 ===
 

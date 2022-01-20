@@ -412,7 +412,9 @@
         "parameters":{"shape":"ExperimentActionParameterMap"},
         "targets":{"shape":"ExperimentActionTargetMap"},
         "startAfter":{"shape":"ExperimentActionStartAfterList"},
-        "state":{"shape":"ExperimentActionState"}
+        "state":{"shape":"ExperimentActionState"},
+        "startTime":{"shape":"ExperimentActionStartTime"},
+        "endTime":{"shape":"ExperimentActionEndTime"}
       }
     },
     "ExperimentActionDescription":{
@@ -420,6 +422,7 @@
       "max":512,
       "pattern":"[\\s\\S]+"
     },
+    "ExperimentActionEndTime":{"type":"timestamp"},
     "ExperimentActionMap":{
       "type":"map",
       "key":{"shape":"ExperimentActionName"},
@@ -454,6 +457,7 @@
       "type":"list",
       "member":{"shape":"ExperimentActionStartAfter"}
     },
+    "ExperimentActionStartTime":{"type":"timestamp"},
     "ExperimentActionState":{
       "type":"structure",
       "members":{

@@ -1,30 +1,30 @@
 {
   "version": "2.0",
-  "service": "<p>Amazon GuardDuty is a continuous security monitoring service that analyzes and processes the following data sources: VPC Flow Logs, AWS CloudTrail event logs, and DNS logs. It uses threat intelligence feeds (such as lists of malicious IPs and domains) and machine learning to identify unexpected, potentially unauthorized, and malicious activity within your AWS environment. This can include issues like escalations of privileges, uses of exposed credentials, or communication with malicious IPs, URLs, or domains. For example, GuardDuty can detect compromised EC2 instances that serve malware or mine bitcoin. </p> <p>GuardDuty also monitors AWS account access behavior for signs of compromise. Some examples of this are unauthorized infrastructure deployments such as EC2 instances deployed in a Region that has never been used, or unusual API calls like a password policy change to reduce password strength. </p> <p>GuardDuty informs you of the status of your AWS environment by producing security findings that you can view in the GuardDuty console or through Amazon CloudWatch events. For more information, see the <i> <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html\">Amazon GuardDuty User Guide</a> </i>. </p>",
+  "service": "<p>Amazon GuardDuty is a continuous security monitoring service that analyzes and processes the following data sources: VPC Flow Logs, Amazon Web Services CloudTrail event logs, and DNS logs. It uses threat intelligence feeds (such as lists of malicious IPs and domains) and machine learning to identify unexpected, potentially unauthorized, and malicious activity within your Amazon Web Services environment. This can include issues like escalations of privileges, uses of exposed credentials, or communication with malicious IPs, URLs, or domains. For example, GuardDuty can detect compromised EC2 instances that serve malware or mine bitcoin. </p> <p>GuardDuty also monitors Amazon Web Services account access behavior for signs of compromise. Some examples of this are unauthorized infrastructure deployments such as EC2 instances deployed in a Region that has never been used, or unusual API calls like a password policy change to reduce password strength. </p> <p>GuardDuty informs you of the status of your Amazon Web Services environment by producing security findings that you can view in the GuardDuty console or through Amazon CloudWatch events. For more information, see the <i> <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html\">Amazon GuardDuty User Guide</a> </i>. </p>",
   "operations": {
     "AcceptInvitation": "<p>Accepts the invitation to be monitored by a GuardDuty administrator account.</p>",
     "ArchiveFindings": "<p>Archives GuardDuty findings that are specified by the list of finding IDs.</p> <note> <p>Only the administrator account can archive findings. Member accounts don't have permission to archive findings from their accounts.</p> </note>",
     "CreateDetector": "<p>Creates a single Amazon GuardDuty detector. A detector is a resource that represents the GuardDuty service. To start using GuardDuty, you must create a detector in each Region where you enable the service. You can have only one detector per account per Region. All data sources are enabled in a new detector by default.</p>",
     "CreateFilter": "<p>Creates a filter using the specified finding criteria.</p>",
-    "CreateIPSet": "<p>Creates a new IPSet, which is called a trusted IP list in the console user interface. An IPSet is a list of IP addresses that are trusted for secure communication with AWS infrastructure and applications. GuardDuty doesn't generate findings for IP addresses that are included in IPSets. Only users from the administrator account can use this operation.</p>",
-    "CreateMembers": "<p>Creates member accounts of the current AWS account by specifying a list of AWS account IDs. This step is a prerequisite for managing the associated member accounts either by invitation or through an organization.</p> <p>When using <code>Create Members</code> as an organizations delegated administrator this action will enable GuardDuty in the added member accounts, with the exception of the organization delegated administrator account, which must enable GuardDuty prior to being added as a member.</p> <p>If you are adding accounts by invitation use this action after GuardDuty has been enabled in potential member accounts and before using <a href=\"https://docs.aws.amazon.com/guardduty/latest/APIReference/API_InviteMembers.html\"> <code>Invite Members</code> </a>.</p>",
+    "CreateIPSet": "<p>Creates a new IPSet, which is called a trusted IP list in the console user interface. An IPSet is a list of IP addresses that are trusted for secure communication with Amazon Web Services infrastructure and applications. GuardDuty doesn't generate findings for IP addresses that are included in IPSets. Only users from the administrator account can use this operation.</p>",
+    "CreateMembers": "<p>Creates member accounts of the current Amazon Web Services account by specifying a list of Amazon Web Services account IDs. This step is a prerequisite for managing the associated member accounts either by invitation or through an organization.</p> <p>When using <code>Create Members</code> as an organizations delegated administrator this action will enable GuardDuty in the added member accounts, with the exception of the organization delegated administrator account, which must enable GuardDuty prior to being added as a member.</p> <p>If you are adding accounts by invitation use this action after GuardDuty has been enabled in potential member accounts and before using <a href=\"https://docs.aws.amazon.com/guardduty/latest/APIReference/API_InviteMembers.html\"> <code>Invite Members</code> </a>.</p>",
     "CreatePublishingDestination": "<p>Creates a publishing destination to export findings to. The resource to export findings to must exist before you use this operation.</p>",
     "CreateSampleFindings": "<p>Generates example findings of types specified by the list of finding types. If 'NULL' is specified for <code>findingTypes</code>, the API generates example findings of all supported finding types.</p>",
     "CreateThreatIntelSet": "<p>Creates a new ThreatIntelSet. ThreatIntelSets consist of known malicious IP addresses. GuardDuty generates findings based on ThreatIntelSets. Only users of the administrator account can use this operation.</p>",
-    "DeclineInvitations": "<p>Declines invitations sent to the current member account by AWS accounts specified by their account IDs.</p>",
+    "DeclineInvitations": "<p>Declines invitations sent to the current member account by Amazon Web Services accounts specified by their account IDs.</p>",
     "DeleteDetector": "<p>Deletes an Amazon GuardDuty detector that is specified by the detector ID.</p>",
     "DeleteFilter": "<p>Deletes the filter specified by the filter name.</p>",
     "DeleteIPSet": "<p>Deletes the IPSet specified by the <code>ipSetId</code>. IPSets are called trusted IP lists in the console user interface.</p>",
-    "DeleteInvitations": "<p>Deletes invitations sent to the current member account by AWS accounts specified by their account IDs.</p>",
+    "DeleteInvitations": "<p>Deletes invitations sent to the current member account by Amazon Web Services accounts specified by their account IDs.</p>",
     "DeleteMembers": "<p>Deletes GuardDuty member accounts (to the current GuardDuty administrator account) specified by the account IDs.</p>",
     "DeletePublishingDestination": "<p>Deletes the publishing definition with the specified <code>destinationId</code>.</p>",
     "DeleteThreatIntelSet": "<p>Deletes the ThreatIntelSet specified by the ThreatIntelSet ID.</p>",
     "DescribeOrganizationConfiguration": "<p>Returns information about the account selected as the delegated administrator for GuardDuty.</p>",
     "DescribePublishingDestination": "<p>Returns information about the publishing destination specified by the provided <code>destinationId</code>.</p>",
-    "DisableOrganizationAdminAccount": "<p>Disables an AWS account within the Organization as the GuardDuty delegated administrator.</p>",
+    "DisableOrganizationAdminAccount": "<p>Disables an Amazon Web Services account within the Organization as the GuardDuty delegated administrator.</p>",
     "DisassociateFromMasterAccount": "<p>Disassociates the current GuardDuty member account from its administrator account.</p>",
     "DisassociateMembers": "<p>Disassociates GuardDuty member accounts (to the current GuardDuty administrator account) specified by the account IDs.</p>",
-    "EnableOrganizationAdminAccount": "<p>Enables an AWS account within the organization as the GuardDuty delegated administrator.</p>",
+    "EnableOrganizationAdminAccount": "<p>Enables an Amazon Web Services account within the organization as the GuardDuty delegated administrator.</p>",
     "GetDetector": "<p>Retrieves an Amazon GuardDuty detector specified by the detectorId.</p>",
     "GetFilter": "<p>Returns the details of the filter specified by the filter name.</p>",
     "GetFindings": "<p>Describes Amazon GuardDuty findings specified by finding IDs.</p>",
@@ -36,15 +36,15 @@
     "GetMembers": "<p>Retrieves GuardDuty member accounts (of the current GuardDuty administrator account) specified by the account IDs.</p>",
     "GetThreatIntelSet": "<p>Retrieves the ThreatIntelSet that is specified by the ThreatIntelSet ID.</p>",
     "GetUsageStatistics": "<p>Lists Amazon GuardDuty usage statistics over the last 30 days for the specified detector ID. For newly enabled detectors or data sources the cost returned will include only the usage so far under 30 days, this may differ from the cost metrics in the console, which projects usage over 30 days to provide a monthly cost estimate. For more information see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/monitoring_costs.html#usage-calculations\">Understanding How Usage Costs are Calculated</a>.</p>",
-    "InviteMembers": "<p>Invites other AWS accounts (created as members of the current AWS account by CreateMembers) to enable GuardDuty, and allow the current AWS account to view and manage these accounts' findings on their behalf as the GuardDuty administrator account.</p>",
+    "InviteMembers": "<p>Invites other Amazon Web Services accounts (created as members of the current Amazon Web Services account by CreateMembers) to enable GuardDuty, and allow the current Amazon Web Services account to view and manage these accounts' findings on their behalf as the GuardDuty administrator account.</p>",
     "ListDetectors": "<p>Lists detectorIds of all the existing Amazon GuardDuty detector resources.</p>",
     "ListFilters": "<p>Returns a paginated list of the current filters.</p>",
     "ListFindings": "<p>Lists Amazon GuardDuty findings for the specified detector ID.</p>",
     "ListIPSets": "<p>Lists the IPSets of the GuardDuty service specified by the detector ID. If you use this operation from a member account, the IPSets returned are the IPSets from the associated administrator account.</p>",
-    "ListInvitations": "<p>Lists all GuardDuty membership invitations that were sent to the current AWS account.</p>",
+    "ListInvitations": "<p>Lists all GuardDuty membership invitations that were sent to the current Amazon Web Services account.</p>",
     "ListMembers": "<p>Lists details about all member accounts for the current GuardDuty administrator account.</p>",
     "ListOrganizationAdminAccounts": "<p>Lists the accounts configured as GuardDuty delegated administrators.</p>",
-    "ListPublishingDestinations": "<p>Returns a list of publishing destinations associated with the specified <code>dectectorId</code>.</p>",
+    "ListPublishingDestinations": "<p>Returns a list of publishing destinations associated with the specified <code>detectorId</code>.</p>",
     "ListTagsForResource": "<p>Lists tags for a resource. Tagging is currently supported for detectors, finding filters, IP sets, and threat intel sets, with a limit of 50 tags per resource. When invoked, this operation returns all assigned tags for a given resource.</p>",
     "ListThreatIntelSets": "<p>Lists the ThreatIntelSets of the GuardDuty service specified by the detector ID. If you use this operation from a member account, the ThreatIntelSets associated with the administrator account are returned.</p>",
     "StartMonitoringMembers": "<p>Turns on GuardDuty monitoring of the specified member accounts. Use this operation to restart monitoring of accounts that you stopped monitoring with the <code>StopMonitoringMembers</code> operation.</p>",
@@ -105,15 +105,15 @@
         "Master$AccountId": "<p>The ID of the account used as the administrator account.</p>",
         "Member$AccountId": "<p>The ID of the member account.</p>",
         "MemberDataSourceConfiguration$AccountId": "<p>The account ID for the member account.</p>",
-        "UnprocessedAccount$AccountId": "<p>The AWS account ID.</p>",
+        "UnprocessedAccount$AccountId": "<p>The Amazon Web Services account ID.</p>",
         "UsageAccountResult$AccountId": "<p>The Account ID that generated usage.</p>"
       }
     },
     "AccountIds": {
       "base": null,
       "refs": {
-        "DeclineInvitationsRequest$AccountIds": "<p>A list of account IDs of the AWS accounts that sent invitations to the current member account that you want to decline invitations from.</p>",
-        "DeleteInvitationsRequest$AccountIds": "<p>A list of account IDs of the AWS accounts that sent invitations to the current member account that you want to delete invitations from.</p>",
+        "DeclineInvitationsRequest$AccountIds": "<p>A list of account IDs of the Amazon Web Services accounts that sent invitations to the current member account that you want to decline invitations from.</p>",
+        "DeleteInvitationsRequest$AccountIds": "<p>A list of account IDs of the Amazon Web Services accounts that sent invitations to the current member account that you want to delete invitations from.</p>",
         "DeleteMembersRequest$AccountIds": "<p>A list of account IDs of the GuardDuty member accounts that you want to delete.</p>",
         "DisassociateMembersRequest$AccountIds": "<p>A list of account IDs of the GuardDuty member accounts that you want to disassociate from the administrator account.</p>",
         "GetMemberDetectorsRequest$AccountIds": "<p>The account ID of the member account.</p>",
@@ -204,6 +204,7 @@
         "OrganizationS3LogsConfiguration$AutoEnable": "<p>A value that contains information on whether S3 data event logs will be enabled automatically as a data source for the organization.</p>",
         "OrganizationS3LogsConfigurationResult$AutoEnable": "<p>A value that describes whether S3 data event logs are automatically enabled for new members of the organization.</p>",
         "PortProbeAction$Blocked": "<p>Indicates whether EC2 blocked the port probe to the instance, such as with an ACL.</p>",
+        "RemoteAccountDetails$Affiliated": "<p>Details on whether the Amazon Web Services account of the remote API caller is related to your GuardDuty environment. If this value is <code>True</code> the API caller is affiliated to your account in some way. If it is <code>False</code> the API caller is from outside your environment.</p>",
         "S3LogsConfiguration$Enable": "<p> The status of S3 data event logs as a data source.</p>",
         "Service$Archived": "<p>Indicates whether this finding is archived.</p>",
         "UpdateDetectorRequest$Enable": "<p>Specifies whether the detector is enabled or not enabled.</p>",
@@ -623,7 +624,7 @@
     "DomainDetails": {
       "base": "<p>Contains information about the domain.</p>",
       "refs": {
-        "AwsApiCallAction$DomainDetails": "<p>The domain information for the AWS API call.</p>"
+        "AwsApiCallAction$DomainDetails": "<p>The domain information for the Amazon Web Services API call.</p>"
       }
     },
     "Double": {
@@ -725,10 +726,10 @@
     "FindingCriteria": {
       "base": "<p>Contains information about the criteria used for querying findings.</p>",
       "refs": {
-        "CreateFilterRequest$FindingCriteria": "<p>Represents the criteria to be used in the filter for querying findings.</p> <p>You can only use the following attributes to query findings:</p> <ul> <li> <p>accountId</p> </li> <li> <p>region</p> </li> <li> <p>confidence</p> </li> <li> <p>id</p> </li> <li> <p>resource.accessKeyDetails.accessKeyId</p> </li> <li> <p>resource.accessKeyDetails.principalId</p> </li> <li> <p>resource.accessKeyDetails.userName</p> </li> <li> <p>resource.accessKeyDetails.userType</p> </li> <li> <p>resource.instanceDetails.iamInstanceProfile.id</p> </li> <li> <p>resource.instanceDetails.imageId</p> </li> <li> <p>resource.instanceDetails.instanceId</p> </li> <li> <p>resource.instanceDetails.outpostArn</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.ipv6Addresses</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.privateIpAddresses.privateIpAddress</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicDnsName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicIp</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.subnetId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.vpcId</p> </li> <li> <p>resource.instanceDetails.tags.key</p> </li> <li> <p>resource.instanceDetails.tags.value</p> </li> <li> <p>resource.resourceType</p> </li> <li> <p>service.action.actionType</p> </li> <li> <p>service.action.awsApiCallAction.api</p> </li> <li> <p>service.action.awsApiCallAction.callerType</p> </li> <li> <p>service.action.awsApiCallAction.errorCode</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.city.cityName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.awsApiCallAction.serviceName</p> </li> <li> <p>service.action.dnsRequestAction.domain</p> </li> <li> <p>service.action.networkConnectionAction.blocked</p> </li> <li> <p>service.action.networkConnectionAction.connectionDirection</p> </li> <li> <p>service.action.networkConnectionAction.localPortDetails.port</p> </li> <li> <p>service.action.networkConnectionAction.protocol</p> </li> <li> <p>service.action.networkConnectionAction.localIpDetails.ipAddressV4</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.city.cityName</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.networkConnectionAction.remotePortDetails.port</p> </li> <li> <p>service.additionalInfo.threatListName</p> </li> <li> <p>service.archived</p> <p>When this attribute is set to TRUE, only archived findings are listed. When it's set to FALSE, only unarchived findings are listed. When this attribute is not set, all existing findings are listed.</p> </li> <li> <p>service.resourceRole</p> </li> <li> <p>severity</p> </li> <li> <p>type</p> </li> <li> <p>updatedAt</p> <p>Type: ISO 8601 string format: YYYY-MM-DDTHH:MM:SS.SSSZ or YYYY-MM-DDTHH:MM:SSZ depending on whether the value contains milliseconds.</p> </li> </ul>",
+        "CreateFilterRequest$FindingCriteria": "<p>Represents the criteria to be used in the filter for querying findings.</p> <p>You can only use the following attributes to query findings:</p> <ul> <li> <p>accountId</p> </li> <li> <p>region</p> </li> <li> <p>confidence</p> </li> <li> <p>id</p> </li> <li> <p>resource.accessKeyDetails.accessKeyId</p> </li> <li> <p>resource.accessKeyDetails.principalId</p> </li> <li> <p>resource.accessKeyDetails.userName</p> </li> <li> <p>resource.accessKeyDetails.userType</p> </li> <li> <p>resource.instanceDetails.iamInstanceProfile.id</p> </li> <li> <p>resource.instanceDetails.imageId</p> </li> <li> <p>resource.instanceDetails.instanceId</p> </li> <li> <p>resource.instanceDetails.outpostArn</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.ipv6Addresses</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.privateIpAddresses.privateIpAddress</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicDnsName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicIp</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.subnetId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.vpcId</p> </li> <li> <p>resource.instanceDetails.tags.key</p> </li> <li> <p>resource.instanceDetails.tags.value</p> </li> <li> <p>resource.resourceType</p> </li> <li> <p>service.action.actionType</p> </li> <li> <p>service.action.awsApiCallAction.api</p> </li> <li> <p>service.action.awsApiCallAction.callerType</p> </li> <li> <p>service.action.awsApiCallAction.errorCode</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.city.cityName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.awsApiCallAction.serviceName</p> </li> <li> <p>service.action.dnsRequestAction.domain</p> </li> <li> <p>service.action.networkConnectionAction.blocked</p> </li> <li> <p>service.action.networkConnectionAction.connectionDirection</p> </li> <li> <p>service.action.networkConnectionAction.localPortDetails.port</p> </li> <li> <p>service.action.networkConnectionAction.protocol</p> </li> <li> <p>service.action.networkConnectionAction.localIpDetails.ipAddressV4</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.city.cityName</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.networkConnectionAction.remotePortDetails.port</p> </li> <li> <p>service.additionalInfo.threatListName</p> </li> <li> <p>resource.s3BucketDetails.publicAccess.effectivePermissions</p> </li> <li> <p>resource.s3BucketDetails.name</p> </li> <li> <p>resource.s3BucketDetails.tags.key</p> </li> <li> <p>resource.s3BucketDetails.tags.value</p> </li> <li> <p>resource.s3BucketDetails.type</p> </li> <li> <p>service.archived</p> <p>When this attribute is set to TRUE, only archived findings are listed. When it's set to FALSE, only unarchived findings are listed. When this attribute is not set, all existing findings are listed.</p> </li> <li> <p>service.resourceRole</p> </li> <li> <p>severity</p> </li> <li> <p>type</p> </li> <li> <p>updatedAt</p> <p>Type: ISO 8601 string format: YYYY-MM-DDTHH:MM:SS.SSSZ or YYYY-MM-DDTHH:MM:SSZ depending on whether the value contains milliseconds.</p> </li> </ul>",
         "GetFilterResponse$FindingCriteria": "<p>Represents the criteria to be used in the filter for querying findings.</p>",
         "GetFindingsStatisticsRequest$FindingCriteria": "<p>Represents the criteria that is used for querying findings.</p>",
-        "ListFindingsRequest$FindingCriteria": "<p>Represents the criteria used for querying findings. Valid values include:</p> <ul> <li> <p>JSON field name</p> </li> <li> <p>accountId</p> </li> <li> <p>region</p> </li> <li> <p>confidence</p> </li> <li> <p>id</p> </li> <li> <p>resource.accessKeyDetails.accessKeyId</p> </li> <li> <p>resource.accessKeyDetails.principalId</p> </li> <li> <p>resource.accessKeyDetails.userName</p> </li> <li> <p>resource.accessKeyDetails.userType</p> </li> <li> <p>resource.instanceDetails.iamInstanceProfile.id</p> </li> <li> <p>resource.instanceDetails.imageId</p> </li> <li> <p>resource.instanceDetails.instanceId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.ipv6Addresses</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.privateIpAddresses.privateIpAddress</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicDnsName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicIp</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.subnetId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.vpcId</p> </li> <li> <p>resource.instanceDetails.tags.key</p> </li> <li> <p>resource.instanceDetails.tags.value</p> </li> <li> <p>resource.resourceType</p> </li> <li> <p>service.action.actionType</p> </li> <li> <p>service.action.awsApiCallAction.api</p> </li> <li> <p>service.action.awsApiCallAction.callerType</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.city.cityName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.awsApiCallAction.serviceName</p> </li> <li> <p>service.action.dnsRequestAction.domain</p> </li> <li> <p>service.action.networkConnectionAction.blocked</p> </li> <li> <p>service.action.networkConnectionAction.connectionDirection</p> </li> <li> <p>service.action.networkConnectionAction.localPortDetails.port</p> </li> <li> <p>service.action.networkConnectionAction.protocol</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.city.cityName</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.networkConnectionAction.remotePortDetails.port</p> </li> <li> <p>service.additionalInfo.threatListName</p> </li> <li> <p>service.archived</p> <p>When this attribute is set to 'true', only archived findings are listed. When it's set to 'false', only unarchived findings are listed. When this attribute is not set, all existing findings are listed.</p> </li> <li> <p>service.resourceRole</p> </li> <li> <p>severity</p> </li> <li> <p>type</p> </li> <li> <p>updatedAt</p> <p>Type: Timestamp in Unix Epoch millisecond format: 1486685375000</p> </li> </ul>",
+        "ListFindingsRequest$FindingCriteria": "<p>Represents the criteria used for querying findings. Valid values include:</p> <ul> <li> <p>JSON field name</p> </li> <li> <p>accountId</p> </li> <li> <p>region</p> </li> <li> <p>confidence</p> </li> <li> <p>id</p> </li> <li> <p>resource.accessKeyDetails.accessKeyId</p> </li> <li> <p>resource.accessKeyDetails.principalId</p> </li> <li> <p>resource.accessKeyDetails.userName</p> </li> <li> <p>resource.accessKeyDetails.userType</p> </li> <li> <p>resource.instanceDetails.iamInstanceProfile.id</p> </li> <li> <p>resource.instanceDetails.imageId</p> </li> <li> <p>resource.instanceDetails.instanceId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.ipv6Addresses</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.privateIpAddresses.privateIpAddress</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicDnsName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicIp</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.subnetId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.vpcId</p> </li> <li> <p>resource.instanceDetails.tags.key</p> </li> <li> <p>resource.instanceDetails.tags.value</p> </li> <li> <p>resource.resourceType</p> </li> <li> <p>service.action.actionType</p> </li> <li> <p>service.action.awsApiCallAction.api</p> </li> <li> <p>service.action.awsApiCallAction.callerType</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.city.cityName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.awsApiCallAction.serviceName</p> </li> <li> <p>service.action.dnsRequestAction.domain</p> </li> <li> <p>service.action.networkConnectionAction.blocked</p> </li> <li> <p>service.action.networkConnectionAction.connectionDirection</p> </li> <li> <p>service.action.networkConnectionAction.localPortDetails.port</p> </li> <li> <p>service.action.networkConnectionAction.protocol</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.networkConnectionAction.remotePortDetails.port</p> </li> <li> <p>service.additionalInfo.threatListName</p> </li> <li> <p>service.archived</p> <p>When this attribute is set to 'true', only archived findings are listed. When it's set to 'false', only unarchived findings are listed. When this attribute is not set, all existing findings are listed.</p> </li> <li> <p>service.resourceRole</p> </li> <li> <p>severity</p> </li> <li> <p>type</p> </li> <li> <p>updatedAt</p> <p>Type: Timestamp in Unix Epoch millisecond format: 1486685375000</p> </li> </ul>",
         "UpdateFilterRequest$FindingCriteria": "<p>Represents the criteria to be used in the filter for querying findings.</p>"
       }
     },
@@ -1118,11 +1119,11 @@
     "Location": {
       "base": null,
       "refs": {
-        "CreateIPSetRequest$Location": "<p>The URI of the file that contains the IPSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.</p>",
-        "CreateThreatIntelSetRequest$Location": "<p>The URI of the file that contains the ThreatIntelSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.</p>",
-        "GetIPSetResponse$Location": "<p>The URI of the file that contains the IPSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.</p>",
-        "GetThreatIntelSetResponse$Location": "<p>The URI of the file that contains the ThreatIntelSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.</p>",
-        "UpdateIPSetRequest$Location": "<p>The updated URI of the file that contains the IPSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.</p>",
+        "CreateIPSetRequest$Location": "<p>The URI of the file that contains the IPSet. </p>",
+        "CreateThreatIntelSetRequest$Location": "<p>The URI of the file that contains the ThreatIntelSet. </p>",
+        "GetIPSetResponse$Location": "<p>The URI of the file that contains the IPSet.</p>",
+        "GetThreatIntelSetResponse$Location": "<p>The URI of the file that contains the ThreatIntelSet. </p>",
+        "UpdateIPSetRequest$Location": "<p>The updated URI of the file that contains the IPSet. </p>",
         "UpdateThreatIntelSetRequest$Location": "<p>The updated URI of the file that contains the ThreateIntelSet.</p>"
       }
     },
@@ -1326,10 +1327,16 @@
         "Destination$Status": "<p>The status of the publishing destination.</p>"
       }
     },
+    "RemoteAccountDetails": {
+      "base": "<p>Contains details about the remote Amazon Web Services account that made the API call.</p>",
+      "refs": {
+        "AwsApiCallAction$RemoteAccountDetails": "<p>The details of the Amazon Web Services account that made the API call. This field appears if the call was made from outside your account.</p>"
+      }
+    },
     "RemoteIpDetails": {
       "base": "<p>Contains information about the remote IP address of the connection.</p>",
       "refs": {
-        "AwsApiCallAction$RemoteIpDetails": "<p>The remote IP information of the connection that initiated the AWS API call.</p>",
+        "AwsApiCallAction$RemoteIpDetails": "<p>The remote IP information of the connection that initiated the Amazon Web Services API call.</p>",
         "NetworkConnectionAction$RemoteIpDetails": "<p>The remote IP information of the connection.</p>",
         "PortProbeDetail$RemoteIpDetails": "<p>The remote IP information of the connection.</p>"
       }
@@ -1341,7 +1348,7 @@
       }
     },
     "Resource": {
-      "base": "<p>Contains information about the AWS resource associated with the activity that prompted GuardDuty to generate a finding.</p>",
+      "base": "<p>Contains information about the Amazon Web Services resource associated with the activity that prompted GuardDuty to generate a finding.</p>",
       "refs": {
         "Finding$Resource": null
       }
@@ -1431,11 +1438,11 @@
         "AccessKeyDetails$UserName": "<p>The name of the user.</p>",
         "AccessKeyDetails$UserType": "<p>The type of the user.</p>",
         "Action$ActionType": "<p>The GuardDuty finding activity type.</p>",
-        "AdminAccount$AdminAccountId": "<p>The AWS account ID for the account.</p>",
-        "AwsApiCallAction$Api": "<p>The AWS API name.</p>",
-        "AwsApiCallAction$CallerType": "<p>The AWS API caller type.</p>",
-        "AwsApiCallAction$ErrorCode": "<p>The error code of the failed AWS API action.</p>",
-        "AwsApiCallAction$ServiceName": "<p>The AWS service name whose API was invoked.</p>",
+        "AdminAccount$AdminAccountId": "<p>The Amazon Web Services account ID for the account.</p>",
+        "AwsApiCallAction$Api": "<p>The Amazon Web Services API name.</p>",
+        "AwsApiCallAction$CallerType": "<p>The Amazon Web Services API caller type.</p>",
+        "AwsApiCallAction$ErrorCode": "<p>The error code of the failed Amazon Web Services API action.</p>",
+        "AwsApiCallAction$ServiceName": "<p>The Amazon Web Services service name whose API was invoked.</p>",
         "BadRequestException$Message": "<p>The error message.</p>",
         "BadRequestException$Type": "<p>The error type.</p>",
         "City$CityName": "<p>The city name of the remote IP address.</p>",
@@ -1455,12 +1462,12 @@
         "DescribePublishingDestinationRequest$DestinationId": "<p>The ID of the publishing destination to retrieve.</p>",
         "DescribePublishingDestinationResponse$DestinationId": "<p>The ID of the publishing destination.</p>",
         "Destination$DestinationId": "<p>The unique ID of the publishing destination.</p>",
-        "DestinationProperties$DestinationArn": "<p>The ARN of the resource to publish to.</p>",
+        "DestinationProperties$DestinationArn": "<p>The ARN of the resource to publish to.</p> <p>To specify an S3 bucket folder use the following format: <code>arn:aws:s3:::DOC-EXAMPLE-BUCKET/myFolder/</code> </p>",
         "DestinationProperties$KmsKeyArn": "<p>The ARN of the KMS key to use for encryption.</p>",
-        "DisableOrganizationAdminAccountRequest$AdminAccountId": "<p>The AWS Account ID for the organizations account to be disabled as a GuardDuty delegated administrator.</p>",
+        "DisableOrganizationAdminAccountRequest$AdminAccountId": "<p>The Amazon Web Services Account ID for the organizations account to be disabled as a GuardDuty delegated administrator.</p>",
         "DnsRequestAction$Domain": "<p>The domain information for the API request.</p>",
-        "DomainDetails$Domain": "<p>The domain information for the AWS API call.</p>",
-        "EnableOrganizationAdminAccountRequest$AdminAccountId": "<p>The AWS Account ID for the organization account to be enabled as a GuardDuty delegated administrator.</p>",
+        "DomainDetails$Domain": "<p>The domain information for the Amazon Web Services API call.</p>",
+        "EnableOrganizationAdminAccountRequest$AdminAccountId": "<p>The Amazon Web Services Account ID for the organization account to be enabled as a GuardDuty delegated administrator.</p>",
         "Eq$member": null,
         "Equals$member": null,
         "Finding$AccountId": "<p>The ID of the account in which the finding was generated.</p>",
@@ -1490,7 +1497,7 @@
         "InstanceDetails$InstanceId": "<p>The ID of the EC2 instance.</p>",
         "InstanceDetails$InstanceState": "<p>The state of the EC2 instance.</p>",
         "InstanceDetails$InstanceType": "<p>The type of the EC2 instance.</p>",
-        "InstanceDetails$OutpostArn": "<p>The Amazon Resource Name (ARN) of the AWS Outpost. Only applicable to AWS Outposts instances.</p>",
+        "InstanceDetails$OutpostArn": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services Outpost. Only applicable to Amazon Web Services Outposts instances.</p>",
         "InstanceDetails$LaunchTime": "<p>The launch time of the EC2 instance.</p>",
         "InstanceDetails$Platform": "<p>The platform of the EC2 instance.</p>",
         "InternalServerErrorException$Message": "<p>The error message.</p>",
@@ -1550,9 +1557,10 @@
         "ProductCode$Code": "<p>The product code information.</p>",
         "ProductCode$ProductType": "<p>The product code type.</p>",
         "PublicAccess$EffectivePermission": "<p>Describes the effective permission on this bucket after factoring all attached policies.</p>",
+        "RemoteAccountDetails$AccountId": "<p>The Amazon Web Services account ID of the remote API caller.</p>",
         "RemoteIpDetails$IpAddressV4": "<p>The IPv4 remote address of the connection.</p>",
         "RemotePortDetails$PortName": "<p>The port name of the remote connection.</p>",
-        "Resource$ResourceType": "<p>The type of AWS resource.</p>",
+        "Resource$ResourceType": "<p>The type of Amazon Web Services resource.</p>",
         "ResourceList$member": null,
         "S3BucketDetail$Arn": "<p>The Amazon Resource Name (ARN) of the S3 bucket.</p>",
         "S3BucketDetail$Name": "<p>The name of the S3 bucket.</p>",
@@ -1562,7 +1570,7 @@
         "Service$EventFirstSeen": "<p>The first-seen timestamp of the activity that prompted GuardDuty to generate this finding.</p>",
         "Service$EventLastSeen": "<p>The last-seen timestamp of the activity that prompted GuardDuty to generate this finding.</p>",
         "Service$ResourceRole": "<p>The resource role information for this finding.</p>",
-        "Service$ServiceName": "<p>The name of the AWS service (GuardDuty) that generated a finding.</p>",
+        "Service$ServiceName": "<p>The name of the Amazon Web Services service (GuardDuty) that generated a finding.</p>",
         "Service$UserFeedback": "<p>Feedback that was submitted about the finding.</p>",
         "SortCriteria$AttributeName": "<p>Represents the finding attribute (for example, accountId) to sort findings by.</p>",
         "Tag$Key": "<p>The EC2 instance tag key.</p>",
@@ -1578,7 +1586,7 @@
         "UpdateIPSetRequest$IpSetId": "<p>The unique ID that specifies the IPSet that you want to update.</p>",
         "UpdatePublishingDestinationRequest$DestinationId": "<p>The ID of the publishing destination to update.</p>",
         "UpdateThreatIntelSetRequest$ThreatIntelSetId": "<p>The unique ID that specifies the ThreatIntelSet that you want to update.</p>",
-        "UsageResourceResult$Resource": "<p>The AWS resource that generated usage.</p>"
+        "UsageResourceResult$Resource": "<p>The Amazon Web Services resource that generated usage.</p>"
       }
     },
     "Tag": {
@@ -1842,7 +1850,7 @@
       }
     },
     "UsageResourceResult": {
-      "base": "<p>Contains information on the sum of usage based on an AWS resource.</p>",
+      "base": "<p>Contains information on the sum of usage based on an Amazon Web Services resource.</p>",
       "refs": {
         "UsageResourceResultList$member": null
       }
