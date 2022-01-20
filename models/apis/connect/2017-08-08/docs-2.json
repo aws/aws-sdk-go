@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>Amazon Connect is a cloud-based contact center solution that you use to set up and manage a customer contact center and provide reliable customer engagement at any scale.</p> <p>Amazon Connect provides metrics and real-time reporting that enable you to optimize contact routing. You can also resolve customer issues more efficiently by getting customers in touch with the appropriate agents.</p> <p>There are limits to the number of Amazon Connect resources that you can create. There are also limits to the number of requests that you can make per second. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html\">Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator Guide</i>.</p> <p>You can connect programmatically to an AWS service by using an endpoint. For a list of Amazon Connect endpoints, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/connect_region.html\">Amazon Connect Endpoints</a>.</p> <note> <p>Working with contact flows? Check out the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p> </note>",
+  "service": "<p>Amazon Connect is a cloud-based contact center solution that you use to set up and manage a customer contact center and provide reliable customer engagement at any scale.</p> <p>Amazon Connect provides metrics and real-time reporting that enable you to optimize contact routing. You can also resolve customer issues more efficiently by getting customers in touch with the appropriate agents.</p> <p>There are limits to the number of Amazon Connect resources that you can create. There are also limits to the number of requests that you can make per second. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html\">Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator Guide</i>.</p> <p>You can connect programmatically to an Amazon Web Services service by using an endpoint. For a list of Amazon Connect endpoints, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/connect_region.html\">Amazon Connect Endpoints</a>.</p> <note> <p>Working with contact flows? Check out the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p> </note>",
   "operations": {
     "AssociateApprovedOrigin": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Associates an approved origin to an Amazon Connect instance.</p>",
     "AssociateBot": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Allows the specified Amazon Connect instance to access the specified Amazon Lex or Amazon Lex V2 bot.</p>",
@@ -15,7 +15,7 @@
     "CreateContactFlowModule": "<p>Creates a contact flow module for the specified Amazon Connect instance. </p>",
     "CreateHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates hours of operation. </p>",
     "CreateInstance": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Initiates an Amazon Connect instance with all the supported channels enabled. It does not attach any storage, such as Amazon Simple Storage Service (Amazon S3) or Amazon Kinesis. It also does not allow for any configurations on features, such as Contact Lens for Amazon Connect. </p> <p>Amazon Connect enforces a limit on the total number of instances that you can create or delete in 30 days. If you exceed this limit, you will get an error message indicating there has been an excessive number of attempts at creating or deleting instances. You must wait 30 days before you can restart creating and deleting instances in your account.</p>",
-    "CreateIntegrationAssociation": "<p>Creates an AWS resource association with an Amazon Connect instance.</p>",
+    "CreateIntegrationAssociation": "<p>Creates an Amazon Web Services resource association with an Amazon Connect instance.</p>",
     "CreateQueue": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates a new queue for the specified Amazon Connect instance.</p>",
     "CreateQuickConnect": "<p>Creates a quick connect for the specified Amazon Connect instance.</p>",
     "CreateRoutingProfile": "<p>Creates a new routing profile.</p>",
@@ -27,7 +27,7 @@
     "DeleteContactFlowModule": "<p>Deletes the specified contact flow module.</p>",
     "DeleteHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Deletes an hours of operation.</p>",
     "DeleteInstance": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Deletes the Amazon Connect instance.</p> <p>Amazon Connect enforces a limit on the total number of instances that you can create or delete in 30 days. If you exceed this limit, you will get an error message indicating there has been an excessive number of attempts at creating or deleting instances. You must wait 30 days before you can restart creating and deleting instances in your account.</p>",
-    "DeleteIntegrationAssociation": "<p>Deletes an AWS resource association from an Amazon Connect instance. The association must not have any use cases associated with it.</p>",
+    "DeleteIntegrationAssociation": "<p>Deletes an Amazon Web Services resource association from an Amazon Connect instance. The association must not have any use cases associated with it.</p>",
     "DeleteQuickConnect": "<p>Deletes a quick connect.</p>",
     "DeleteSecurityProfile": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Deletes a security profile.</p>",
     "DeleteUseCase": "<p>Deletes a use case from an integration association.</p>",
@@ -70,7 +70,7 @@
     "ListInstanceAttributes": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of all attribute types for the given instance.</p>",
     "ListInstanceStorageConfigs": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of storage configs for the identified instance and resource type.</p>",
     "ListInstances": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Return a list of instances which are in active state, creation-in-progress state, and failed state. Instances that aren't successfully created (they are in a failed state) are returned only for 24 hours after the CreateInstance API was invoked.</p>",
-    "ListIntegrationAssociations": "<p>Provides summary information about the AWS resource associations for the specified Amazon Connect instance.</p>",
+    "ListIntegrationAssociations": "<p>Provides summary information about the Amazon Web Services resource associations for the specified Amazon Connect instance.</p>",
     "ListLambdaFunctions": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of all Lambda functions that display in the dropdown options in the relevant contact flow blocks.</p>",
     "ListLexBots": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of all the Amazon Lex bots currently associated with the instance.</p>",
     "ListPhoneNumbers": "<p>Provides information about the phone numbers for the specified Amazon Connect instance. </p> <p>For more information about phone numbers, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html\">Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
@@ -1586,7 +1586,7 @@
       "refs": {
         "Attribute$AttributeType": "<p>The type of attribute.</p>",
         "DescribeInstanceAttributeRequest$AttributeType": "<p>The type of attribute.</p>",
-        "UpdateInstanceAttributeRequest$AttributeType": "<p>The type of attribute.</p> <note> <p>Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access this feature, contact AWS Support for allowlisting.</p> </note>"
+        "UpdateInstanceAttributeRequest$AttributeType": "<p>The type of attribute.</p> <note> <p>Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access this feature, contact Amazon Web Services Support for allowlisting.</p> </note>"
       }
     },
     "InstanceAttributeValue": {
@@ -2665,7 +2665,7 @@
     "Queues": {
       "base": null,
       "refs": {
-        "Filters$Queues": "<p>The queues to use to filter the metrics. You can specify up to 100 queues per request.</p>"
+        "Filters$Queues": "<p>The queues to use to filter the metrics. You should specify at least one queue, and can specify up to 100 queues per request. The <code>GetCurrentMetricsData</code> API in particular requires a queue when you include a <code>Filter</code> in your request. </p>"
       }
     },
     "QuickConnect": {
@@ -3172,7 +3172,9 @@
         "CreateRoutingProfileRequest$Tags": "<p>One or more tags.</p>",
         "CreateSecurityProfileRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "CreateUseCaseRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "CreateUserHierarchyGroupRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "CreateUserRequest$Tags": "<p>One or more tags.</p>",
+        "HierarchyGroup$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "HoursOfOperation$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "ListTagsForResourceResponse$tags": "<p>Information about the tags.</p>",
         "Queue$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",

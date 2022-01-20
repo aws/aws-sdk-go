@@ -1033,6 +1033,10 @@
         "ServiceName":{
           "shape":"String",
           "locationName":"serviceName"
+        },
+        "RemoteAccountDetails":{
+          "shape":"RemoteAccountDetails",
+          "locationName":"remoteAccountDetails"
         }
       }
     },
@@ -3545,6 +3549,19 @@
       ],
       "max":300,
       "min":1
+    },
+    "RemoteAccountDetails":{
+      "type":"structure",
+      "members":{
+        "AccountId":{
+          "shape":"String",
+          "locationName":"accountId"
+        },
+        "Affiliated":{
+          "shape":"Boolean",
+          "locationName":"affiliated"
+        }
+      }
     },
     "RemoteIpDetails":{
       "type":"structure",

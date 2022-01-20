@@ -469,6 +469,12 @@
         "AccessConfiguration$SecretsManagerAccessTokenConfiguration": "<p>AWS Secrets Manager access token configuration parameters.</p>"
       }
     },
+    "SegmentDeliveryConfiguration": {
+      "base": null,
+      "refs": {
+        "__listOfSegmentDeliveryConfiguration$member": null
+      }
+    },
     "SlateSource": {
       "base": "<p>Slate VOD source configuration.</p>",
       "refs": {
@@ -610,6 +616,15 @@
       "base": null,
       "refs": {
         "GetChannelScheduleResponse$Items": "<p>An array of schedule entries for the channel.</p>"
+      }
+    },
+    "__listOfSegmentDeliveryConfiguration": {
+      "base": null,
+      "refs": {
+        "CreateSourceLocationRequest$SegmentDeliveryConfigurations": "<p>An array of segment delivery configurations for this source location.</p>",
+        "DescribeSourceLocationResponse$SegmentDeliveryConfigurations": "<p>An array of segment delivery configurations for this source location.</p>",
+        "SourceLocation$SegmentDeliveryConfigurations": "<p>An array of segment delivery configurations for this source location.</p>",
+        "UpdateSourceLocationRequest$SegmentDeliveryConfigurations": "<p>An array of segment delivery configurations for this source location.</p>"
       }
     },
     "__listOfSourceLocation": {
@@ -755,6 +770,8 @@
         "SecretsManagerAccessTokenConfiguration$HeaderName": "<p>The name of the HTTP header used to supply the access token in requests to the source location.</p>",
         "SecretsManagerAccessTokenConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of the AWS Secrets Manager secret that contains the access token.</p>",
         "SecretsManagerAccessTokenConfiguration$SecretStringKey": "<p>The AWS Secrets Manager <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_CreateSecret.html#SecretsManager-CreateSecret-request-SecretString.html\">SecretString</a> key associated with the access token. MediaTailor uses the key to look up SecretString key and value pair containing the access token.</p>",
+        "SegmentDeliveryConfiguration$BaseUrl": "<p>The base URL of the host or path of the segment delivery server that you're using to serve segments. This is typically a content delivery network (CDN). The URL can be absolute or relative. To use an absolute URL include the protocol, such as https://example.com/some/path. To use a relative URL specify the relative path, such as /some/path.</p>",
+        "SegmentDeliveryConfiguration$Name": "<p>A unique identifier used to distinguish between multiple segment delivery configurations in a source location.</p>",
         "SlateSource$SourceLocationName": "<p>The name of the source location where the slate VOD source is stored.</p>",
         "SlateSource$VodSourceName": "<p>The slate VOD source name. The VOD source must already exist in a source location before it can be used for slate.</p>",
         "SourceLocation$Arn": "<p>The ARN of the SourceLocation.</p>",

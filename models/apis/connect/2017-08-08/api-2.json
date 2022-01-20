@@ -2930,7 +2930,8 @@
           "shape":"InstanceId",
           "location":"uri",
           "locationName":"InstanceId"
-        }
+        },
+        "Tags":{"shape":"TagMap"}
       }
     },
     "CreateUserHierarchyGroupResponse":{
@@ -3974,7 +3975,8 @@
         "Arn":{"shape":"ARN"},
         "Name":{"shape":"HierarchyGroupName"},
         "LevelId":{"shape":"HierarchyLevelId"},
-        "HierarchyPath":{"shape":"HierarchyPath"}
+        "HierarchyPath":{"shape":"HierarchyPath"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "HierarchyGroupId":{"type":"string"},

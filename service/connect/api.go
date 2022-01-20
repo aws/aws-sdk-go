@@ -1360,7 +1360,8 @@ func (c *Connect) CreateIntegrationAssociationRequest(input *CreateIntegrationAs
 
 // CreateIntegrationAssociation API operation for Amazon Connect Service.
 //
-// Creates an AWS resource association with an Amazon Connect instance.
+// Creates an Amazon Web Services resource association with an Amazon Connect
+// instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2511,8 +2512,8 @@ func (c *Connect) DeleteIntegrationAssociationRequest(input *DeleteIntegrationAs
 
 // DeleteIntegrationAssociation API operation for Amazon Connect Service.
 //
-// Deletes an AWS resource association from an Amazon Connect instance. The
-// association must not have any use cases associated with it.
+// Deletes an Amazon Web Services resource association from an Amazon Connect
+// instance. The association must not have any use cases associated with it.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7229,8 +7230,8 @@ func (c *Connect) ListIntegrationAssociationsRequest(input *ListIntegrationAssoc
 
 // ListIntegrationAssociations API operation for Amazon Connect Service.
 //
-// Provides summary information about the AWS resource associations for the
-// specified Amazon Connect instance.
+// Provides summary information about the Amazon Web Services resource associations
+// for the specified Amazon Connect instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -17502,6 +17503,9 @@ type CreateUserHierarchyGroupInput struct {
 	// The identifier for the parent hierarchy group. The user hierarchy is created
 	// at level one if the parent group ID is null.
 	ParentGroupId *string `type:"string"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
 }
 
 // String returns the string representation.
@@ -17534,6 +17538,9 @@ func (s *CreateUserHierarchyGroupInput) Validate() error {
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -17556,6 +17563,12 @@ func (s *CreateUserHierarchyGroupInput) SetName(v string) *CreateUserHierarchyGr
 // SetParentGroupId sets the ParentGroupId field's value.
 func (s *CreateUserHierarchyGroupInput) SetParentGroupId(v string) *CreateUserHierarchyGroupInput {
 	s.ParentGroupId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateUserHierarchyGroupInput) SetTags(v map[string]*string) *CreateUserHierarchyGroupInput {
+	s.Tags = v
 	return s
 }
 
@@ -21382,8 +21395,9 @@ type Filters struct {
 	// The channel to use to filter the metrics.
 	Channels []*string `type:"list"`
 
-	// The queues to use to filter the metrics. You can specify up to 100 queues
-	// per request.
+	// The queues to use to filter the metrics. You should specify at least one
+	// queue, and can specify up to 100 queues per request. The GetCurrentMetricsData
+	// API in particular requires a queue when you include a Filter in your request.
 	Queues []*string `min:"1" type:"list"`
 }
 
@@ -22264,6 +22278,9 @@ type HierarchyGroup struct {
 
 	// The name of the hierarchy group.
 	Name *string `type:"string"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
 }
 
 // String returns the string representation.
@@ -22311,6 +22328,12 @@ func (s *HierarchyGroup) SetLevelId(v string) *HierarchyGroup {
 // SetName sets the Name field's value.
 func (s *HierarchyGroup) SetName(v string) *HierarchyGroup {
 	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *HierarchyGroup) SetTags(v map[string]*string) *HierarchyGroup {
+	s.Tags = v
 	return s
 }
 
@@ -32331,7 +32354,7 @@ type UpdateInstanceAttributeInput struct {
 	// The type of attribute.
 	//
 	// Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access this
-	// feature, contact AWS Support for allowlisting.
+	// feature, contact Amazon Web Services Support for allowlisting.
 	//
 	// AttributeType is a required field
 	AttributeType *string `location:"uri" locationName:"AttributeType" type:"string" required:"true" enum:"InstanceAttributeType"`

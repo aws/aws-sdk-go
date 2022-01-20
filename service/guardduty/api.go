@@ -396,9 +396,9 @@ func (c *GuardDuty) CreateIPSetRequest(input *CreateIPSetInput) (req *request.Re
 //
 // Creates a new IPSet, which is called a trusted IP list in the console user
 // interface. An IPSet is a list of IP addresses that are trusted for secure
-// communication with AWS infrastructure and applications. GuardDuty doesn't
-// generate findings for IP addresses that are included in IPSets. Only users
-// from the administrator account can use this operation.
+// communication with Amazon Web Services infrastructure and applications. GuardDuty
+// doesn't generate findings for IP addresses that are included in IPSets. Only
+// users from the administrator account can use this operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -480,9 +480,10 @@ func (c *GuardDuty) CreateMembersRequest(input *CreateMembersInput) (req *reques
 
 // CreateMembers API operation for Amazon GuardDuty.
 //
-// Creates member accounts of the current AWS account by specifying a list of
-// AWS account IDs. This step is a prerequisite for managing the associated
-// member accounts either by invitation or through an organization.
+// Creates member accounts of the current Amazon Web Services account by specifying
+// a list of Amazon Web Services account IDs. This step is a prerequisite for
+// managing the associated member accounts either by invitation or through an
+// organization.
 //
 // When using Create Members as an organizations delegated administrator this
 // action will enable GuardDuty in the added member accounts, with the exception
@@ -825,8 +826,8 @@ func (c *GuardDuty) DeclineInvitationsRequest(input *DeclineInvitationsInput) (r
 
 // DeclineInvitations API operation for Amazon GuardDuty.
 //
-// Declines invitations sent to the current member account by AWS accounts specified
-// by their account IDs.
+// Declines invitations sent to the current member account by Amazon Web Services
+// accounts specified by their account IDs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1158,8 +1159,8 @@ func (c *GuardDuty) DeleteInvitationsRequest(input *DeleteInvitationsInput) (req
 
 // DeleteInvitations API operation for Amazon GuardDuty.
 //
-// Deletes invitations sent to the current member account by AWS accounts specified
-// by their account IDs.
+// Deletes invitations sent to the current member account by Amazon Web Services
+// accounts specified by their account IDs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1657,8 +1658,8 @@ func (c *GuardDuty) DisableOrganizationAdminAccountRequest(input *DisableOrganiz
 
 // DisableOrganizationAdminAccount API operation for Amazon GuardDuty.
 //
-// Disables an AWS account within the Organization as the GuardDuty delegated
-// administrator.
+// Disables an Amazon Web Services account within the Organization as the GuardDuty
+// delegated administrator.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1908,8 +1909,8 @@ func (c *GuardDuty) EnableOrganizationAdminAccountRequest(input *EnableOrganizat
 
 // EnableOrganizationAdminAccount API operation for Amazon GuardDuty.
 //
-// Enables an AWS account within the organization as the GuardDuty delegated
-// administrator.
+// Enables an Amazon Web Services account within the organization as the GuardDuty
+// delegated administrator.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2959,10 +2960,10 @@ func (c *GuardDuty) InviteMembersRequest(input *InviteMembersInput) (req *reques
 
 // InviteMembers API operation for Amazon GuardDuty.
 //
-// Invites other AWS accounts (created as members of the current AWS account
-// by CreateMembers) to enable GuardDuty, and allow the current AWS account
-// to view and manage these accounts' findings on their behalf as the GuardDuty
-// administrator account.
+// Invites other Amazon Web Services accounts (created as members of the current
+// Amazon Web Services account by CreateMembers) to enable GuardDuty, and allow
+// the current Amazon Web Services account to view and manage these accounts'
+// findings on their behalf as the GuardDuty administrator account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3613,7 +3614,7 @@ func (c *GuardDuty) ListInvitationsRequest(input *ListInvitationsInput) (req *re
 // ListInvitations API operation for Amazon GuardDuty.
 //
 // Lists all GuardDuty membership invitations that were sent to the current
-// AWS account.
+// Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4034,7 +4035,7 @@ func (c *GuardDuty) ListPublishingDestinationsRequest(input *ListPublishingDesti
 
 // ListPublishingDestinations API operation for Amazon GuardDuty.
 //
-// Returns a list of publishing destinations associated with the specified dectectorId.
+// Returns a list of publishing destinations associated with the specified detectorId.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5804,7 +5805,7 @@ func (s *Action) SetPortProbeAction(v *PortProbeAction) *Action {
 type AdminAccount struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID for the account.
+	// The Amazon Web Services account ID for the account.
 	AdminAccountId *string `locationName:"adminAccountId" type:"string"`
 
 	// Indicates whether the account is enabled as the delegated administrator.
@@ -5931,22 +5932,27 @@ func (s ArchiveFindingsOutput) GoString() string {
 type AwsApiCallAction struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS API name.
+	// The Amazon Web Services API name.
 	Api *string `locationName:"api" type:"string"`
 
-	// The AWS API caller type.
+	// The Amazon Web Services API caller type.
 	CallerType *string `locationName:"callerType" type:"string"`
 
-	// The domain information for the AWS API call.
+	// The domain information for the Amazon Web Services API call.
 	DomainDetails *DomainDetails `locationName:"domainDetails" type:"structure"`
 
-	// The error code of the failed AWS API action.
+	// The error code of the failed Amazon Web Services API action.
 	ErrorCode *string `locationName:"errorCode" type:"string"`
 
-	// The remote IP information of the connection that initiated the AWS API call.
+	// The details of the Amazon Web Services account that made the API call. This
+	// field appears if the call was made from outside your account.
+	RemoteAccountDetails *RemoteAccountDetails `locationName:"remoteAccountDetails" type:"structure"`
+
+	// The remote IP information of the connection that initiated the Amazon Web
+	// Services API call.
 	RemoteIpDetails *RemoteIpDetails `locationName:"remoteIpDetails" type:"structure"`
 
-	// The AWS service name whose API was invoked.
+	// The Amazon Web Services service name whose API was invoked.
 	ServiceName *string `locationName:"serviceName" type:"string"`
 }
 
@@ -5989,6 +5995,12 @@ func (s *AwsApiCallAction) SetDomainDetails(v *DomainDetails) *AwsApiCallAction 
 // SetErrorCode sets the ErrorCode field's value.
 func (s *AwsApiCallAction) SetErrorCode(v string) *AwsApiCallAction {
 	s.ErrorCode = &v
+	return s
+}
+
+// SetRemoteAccountDetails sets the RemoteAccountDetails field's value.
+func (s *AwsApiCallAction) SetRemoteAccountDetails(v *RemoteAccountDetails) *AwsApiCallAction {
+	s.RemoteAccountDetails = v
 	return s
 }
 
@@ -6726,6 +6738,16 @@ type CreateFilterInput struct {
 	//
 	//    * service.additionalInfo.threatListName
 	//
+	//    * resource.s3BucketDetails.publicAccess.effectivePermissions
+	//
+	//    * resource.s3BucketDetails.name
+	//
+	//    * resource.s3BucketDetails.tags.key
+	//
+	//    * resource.s3BucketDetails.tags.value
+	//
+	//    * resource.s3BucketDetails.type
+	//
 	//    * service.archived When this attribute is set to TRUE, only archived findings
 	//    are listed. When it's set to FALSE, only unarchived findings are listed.
 	//    When this attribute is not set, all existing findings are listed.
@@ -6913,7 +6935,7 @@ type CreateIPSetInput struct {
 	// Format is a required field
 	Format *string `locationName:"format" min:"1" type:"string" required:"true" enum:"IpSetFormat"`
 
-	// The URI of the file that contains the IPSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.
+	// The URI of the file that contains the IPSet.
 	//
 	// Location is a required field
 	Location *string `locationName:"location" min:"1" type:"string" required:"true"`
@@ -7402,7 +7424,7 @@ type CreateThreatIntelSetInput struct {
 	// Format is a required field
 	Format *string `locationName:"format" min:"1" type:"string" required:"true" enum:"ThreatIntelSetFormat"`
 
-	// The URI of the file that contains the ThreatIntelSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.
+	// The URI of the file that contains the ThreatIntelSet.
 	//
 	// Location is a required field
 	Location *string `locationName:"location" min:"1" type:"string" required:"true"`
@@ -7704,8 +7726,8 @@ func (s *DataSourceConfigurationsResult) SetS3Logs(v *S3LogsConfigurationResult)
 type DeclineInvitationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of account IDs of the AWS accounts that sent invitations to the current
-	// member account that you want to decline invitations from.
+	// A list of account IDs of the Amazon Web Services accounts that sent invitations
+	// to the current member account that you want to decline invitations from.
 	//
 	// AccountIds is a required field
 	AccountIds []*string `locationName:"accountIds" min:"1" type:"list" required:"true"`
@@ -8079,8 +8101,8 @@ func (s DeleteIPSetOutput) GoString() string {
 type DeleteInvitationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of account IDs of the AWS accounts that sent invitations to the current
-	// member account that you want to delete invitations from.
+	// A list of account IDs of the Amazon Web Services accounts that sent invitations
+	// to the current member account that you want to delete invitations from.
 	//
 	// AccountIds is a required field
 	AccountIds []*string `locationName:"accountIds" min:"1" type:"list" required:"true"`
@@ -8753,6 +8775,8 @@ type DestinationProperties struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the resource to publish to.
+	//
+	// To specify an S3 bucket folder use the following format: arn:aws:s3:::DOC-EXAMPLE-BUCKET/myFolder/
 	DestinationArn *string `locationName:"destinationArn" type:"string"`
 
 	// The ARN of the KMS key to use for encryption.
@@ -8792,8 +8816,8 @@ func (s *DestinationProperties) SetKmsKeyArn(v string) *DestinationProperties {
 type DisableOrganizationAdminAccountInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Account ID for the organizations account to be disabled as a GuardDuty
-	// delegated administrator.
+	// The Amazon Web Services Account ID for the organizations account to be disabled
+	// as a GuardDuty delegated administrator.
 	//
 	// AdminAccountId is a required field
 	AdminAccountId *string `locationName:"adminAccountId" type:"string" required:"true"`
@@ -9067,7 +9091,7 @@ func (s *DnsRequestAction) SetDomain(v string) *DnsRequestAction {
 type DomainDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The domain information for the AWS API call.
+	// The domain information for the Amazon Web Services API call.
 	Domain *string `locationName:"domain" type:"string"`
 }
 
@@ -9098,8 +9122,8 @@ func (s *DomainDetails) SetDomain(v string) *DomainDetails {
 type EnableOrganizationAdminAccountInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Account ID for the organization account to be enabled as a GuardDuty
-	// delegated administrator.
+	// The Amazon Web Services Account ID for the organization account to be enabled
+	// as a GuardDuty delegated administrator.
 	//
 	// AdminAccountId is a required field
 	AdminAccountId *string `locationName:"adminAccountId" type:"string" required:"true"`
@@ -9235,8 +9259,8 @@ type Finding struct {
 	// Region is a required field
 	Region *string `locationName:"region" type:"string" required:"true"`
 
-	// Contains information about the AWS resource associated with the activity
-	// that prompted GuardDuty to generate a finding.
+	// Contains information about the Amazon Web Services resource associated with
+	// the activity that prompted GuardDuty to generate a finding.
 	//
 	// Resource is a required field
 	Resource *Resource `locationName:"resource" type:"structure" required:"true"`
@@ -10090,7 +10114,7 @@ type GetIPSetOutput struct {
 	// Format is a required field
 	Format *string `locationName:"format" min:"1" type:"string" required:"true" enum:"IpSetFormat"`
 
-	// The URI of the file that contains the IPSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.
+	// The URI of the file that contains the IPSet.
 	//
 	// Location is a required field
 	Location *string `locationName:"location" min:"1" type:"string" required:"true"`
@@ -10589,7 +10613,7 @@ type GetThreatIntelSetOutput struct {
 	// Format is a required field
 	Format *string `locationName:"format" min:"1" type:"string" required:"true" enum:"ThreatIntelSetFormat"`
 
-	// The URI of the file that contains the ThreatIntelSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.
+	// The URI of the file that contains the ThreatIntelSet.
 	//
 	// Location is a required field
 	Location *string `locationName:"location" min:"1" type:"string" required:"true"`
@@ -10888,8 +10912,8 @@ type InstanceDetails struct {
 	// The elastic network interface information of the EC2 instance.
 	NetworkInterfaces []*NetworkInterface `locationName:"networkInterfaces" type:"list"`
 
-	// The Amazon Resource Name (ARN) of the AWS Outpost. Only applicable to AWS
-	// Outposts instances.
+	// The Amazon Resource Name (ARN) of the Amazon Web Services Outpost. Only applicable
+	// to Amazon Web Services Outposts instances.
 	OutpostArn *string `locationName:"outpostArn" type:"string"`
 
 	// The platform of the EC2 instance.
@@ -11549,8 +11573,6 @@ type ListFindingsInput struct {
 	//    * service.action.networkConnectionAction.localPortDetails.port
 	//
 	//    * service.action.networkConnectionAction.protocol
-	//
-	//    * service.action.networkConnectionAction.remoteIpDetails.city.cityName
 	//
 	//    * service.action.networkConnectionAction.remoteIpDetails.country.countryName
 	//
@@ -13446,6 +13468,51 @@ func (s *PublicAccess) SetPermissionConfiguration(v *PermissionConfiguration) *P
 	return s
 }
 
+// Contains details about the remote Amazon Web Services account that made the
+// API call.
+type RemoteAccountDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID of the remote API caller.
+	AccountId *string `locationName:"accountId" type:"string"`
+
+	// Details on whether the Amazon Web Services account of the remote API caller
+	// is related to your GuardDuty environment. If this value is True the API caller
+	// is affiliated to your account in some way. If it is False the API caller
+	// is from outside your environment.
+	Affiliated *bool `locationName:"affiliated" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoteAccountDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoteAccountDetails) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *RemoteAccountDetails) SetAccountId(v string) *RemoteAccountDetails {
+	s.AccountId = &v
+	return s
+}
+
+// SetAffiliated sets the Affiliated field's value.
+func (s *RemoteAccountDetails) SetAffiliated(v bool) *RemoteAccountDetails {
+	s.Affiliated = &v
+	return s
+}
+
 // Contains information about the remote IP address of the connection.
 type RemoteIpDetails struct {
 	_ struct{} `type:"structure"`
@@ -13555,8 +13622,8 @@ func (s *RemotePortDetails) SetPortName(v string) *RemotePortDetails {
 	return s
 }
 
-// Contains information about the AWS resource associated with the activity
-// that prompted GuardDuty to generate a finding.
+// Contains information about the Amazon Web Services resource associated with
+// the activity that prompted GuardDuty to generate a finding.
 type Resource struct {
 	_ struct{} `type:"structure"`
 
@@ -13568,7 +13635,7 @@ type Resource struct {
 	// prompted GuardDuty to generate a finding.
 	InstanceDetails *InstanceDetails `locationName:"instanceDetails" type:"structure"`
 
-	// The type of AWS resource.
+	// The type of Amazon Web Services resource.
 	ResourceType *string `locationName:"resourceType" type:"string"`
 
 	// Contains information on the S3 bucket.
@@ -13865,7 +13932,8 @@ type Service struct {
 	// The resource role information for this finding.
 	ResourceRole *string `locationName:"resourceRole" type:"string"`
 
-	// The name of the AWS service (GuardDuty) that generated a finding.
+	// The name of the Amazon Web Services service (GuardDuty) that generated a
+	// finding.
 	ServiceName *string `locationName:"serviceName" type:"string"`
 
 	// Feedback that was submitted about the finding.
@@ -14498,7 +14566,7 @@ func (s UnarchiveFindingsOutput) GoString() string {
 type UnprocessedAccount struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID.
+	// The Amazon Web Services account ID.
 	//
 	// AccountId is a required field
 	AccountId *string `locationName:"accountId" min:"12" type:"string" required:"true"`
@@ -15000,7 +15068,7 @@ type UpdateIPSetInput struct {
 	// IpSetId is a required field
 	IpSetId *string `location:"uri" locationName:"ipSetId" type:"string" required:"true"`
 
-	// The updated URI of the file that contains the IPSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.
+	// The updated URI of the file that contains the IPSet.
 	Location *string `locationName:"location" min:"1" type:"string"`
 
 	// The unique ID that specifies the IPSet that you want to update.
@@ -15690,11 +15758,12 @@ func (s *UsageDataSourceResult) SetTotal(v *Total) *UsageDataSourceResult {
 	return s
 }
 
-// Contains information on the sum of usage based on an AWS resource.
+// Contains information on the sum of usage based on an Amazon Web Services
+// resource.
 type UsageResourceResult struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS resource that generated usage.
+	// The Amazon Web Services resource that generated usage.
 	Resource *string `locationName:"resource" type:"string"`
 
 	// Represents the sum total of usage for the specified resource type.

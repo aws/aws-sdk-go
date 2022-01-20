@@ -59,11 +59,11 @@ func (c *FIS) CreateExperimentTemplateRequest(input *CreateExperimentTemplateInp
 //
 // Creates an experiment template.
 //
-// To create a template, specify the following information:
+// An experiment template includes the following components:
 //
-//    * Targets: A target can be a specific resource in your AWS environment,
-//    or one or more resources that match criteria that you specify, for example,
-//    resources that have specific tags.
+//    * Targets: A target can be a specific resource in your Amazon Web Services
+//    environment, or one or more resources that match criteria that you specify,
+//    for example, resources that have specific tags.
 //
 //    * Actions: The actions to carry out on the target. You can specify multiple
 //    actions, the duration of each action, and when to start each action during
@@ -73,7 +73,8 @@ func (c *FIS) CreateExperimentTemplateRequest(input *CreateExperimentTemplateInp
 //    is running, the experiment is automatically stopped. You can define a
 //    stop condition as a CloudWatch alarm.
 //
-// For more information, see the AWS Fault Injection Simulator User Guide (https://docs.aws.amazon.com/fis/latest/userguide/).
+// For more information, see Experiment templates (https://docs.aws.amazon.com/fis/latest/userguide/experiment-templates.html)
+// in the Fault Injection Simulator User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -245,7 +246,7 @@ func (c *FIS) GetActionRequest(input *GetActionInput) (req *request.Request, out
 
 // GetAction API operation for AWS Fault Injection Simulator.
 //
-// Gets information about the specified AWS FIS action.
+// Gets information about the specified FIS action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -500,7 +501,7 @@ func (c *FIS) ListActionsRequest(input *ListActionsInput) (req *request.Request,
 
 // ListActions API operation for AWS Fault Injection Simulator.
 //
-// Lists the available AWS FIS actions.
+// Lists the available FIS actions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1346,8 +1347,8 @@ func (c *FIS) UpdateExperimentTemplateWithContext(ctx aws.Context, input *Update
 	return out, req.Send()
 }
 
-// Describes an action. For more information, see AWS FIS actions (https://docs.aws.amazon.com/fis/latest/userguide/fis-actions-reference.html)
-// in the AWS Fault Injection Simulator User Guide.
+// Describes an action. For more information, see FIS actions (https://docs.aws.amazon.com/fis/latest/userguide/fis-actions-reference.html)
+// in the Fault Injection Simulator User Guide.
 type Action struct {
 	_ struct{} `type:"structure"`
 
@@ -1612,10 +1613,13 @@ func (s *ConflictException) RequestID() string {
 }
 
 // Specifies an action for an experiment template.
+//
+// For more information, see Actions (https://docs.aws.amazon.com/fis/latest/userguide/actions.html)
+// in the Fault Injection Simulator User Guide.
 type CreateExperimentTemplateActionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the action.
+	// The ID of the action. The format of the action ID is: aws:service-name:action-type.
 	//
 	// ActionId is a required field
 	ActionId *string `locationName:"actionId" type:"string" required:"true"`
@@ -1707,13 +1711,12 @@ type CreateExperimentTemplateInput struct {
 	// of the request.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// A description for the experiment template. Can contain up to 64 letters (A-Z
-	// and a-z).
+	// A description for the experiment template.
 	//
 	// Description is a required field
 	Description *string `locationName:"description" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of an IAM role that grants the AWS FIS service
+	// The Amazon Resource Name (ARN) of an IAM role that grants the FIS service
 	// permission to perform service actions on your behalf.
 	//
 	// RoleArn is a required field
@@ -1945,6 +1948,9 @@ func (s *CreateExperimentTemplateStopConditionInput) SetValue(v string) *CreateE
 // Specifies a target for an experiment. You must specify at least one Amazon
 // Resource Name (ARN) or at least one resource tag. You cannot specify both
 // ARNs and tags.
+//
+// For more information, see Targets (https://docs.aws.amazon.com/fis/latest/userguide/targets.html)
+// in the Fault Injection Simulator User Guide.
 type CreateExperimentTemplateTargetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1957,8 +1963,8 @@ type CreateExperimentTemplateTargetInput struct {
 	// The tags for the target resources.
 	ResourceTags map[string]*string `locationName:"resourceTags" type:"map"`
 
-	// The AWS resource type. The resource type must be supported for the specified
-	// action.
+	// The Amazon Web Services resource type. The resource type must be supported
+	// for the specified action.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true"`
@@ -2142,7 +2148,7 @@ type Experiment struct {
 	// The actions for the experiment.
 	Actions map[string]*ExperimentAction `locationName:"actions" type:"map"`
 
-	// The time the experiment was created.
+	// The time that the experiment was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// The time that the experiment ended.
@@ -2154,11 +2160,11 @@ type Experiment struct {
 	// The ID of the experiment.
 	Id *string `locationName:"id" type:"string"`
 
-	// The Amazon Resource Name (ARN) of an IAM role that grants the AWS FIS service
+	// The Amazon Resource Name (ARN) of an IAM role that grants the FIS service
 	// permission to perform service actions on your behalf.
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
 
-	// The time that the experiment was started.
+	// The time that the experiment started.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
 	// The state of the experiment.
@@ -2268,11 +2274,17 @@ type ExperimentAction struct {
 	// The description for the action.
 	Description *string `locationName:"description" type:"string"`
 
+	// The time that the action ended.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
+
 	// The parameters for the action.
 	Parameters map[string]*string `locationName:"parameters" type:"map"`
 
 	// The name of the action that must be completed before this action starts.
 	StartAfter []*string `locationName:"startAfter" type:"list"`
+
+	// The time that the action started.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
 	// The state of the action.
 	State *ExperimentActionState `locationName:"state" type:"structure"`
@@ -2311,6 +2323,12 @@ func (s *ExperimentAction) SetDescription(v string) *ExperimentAction {
 	return s
 }
 
+// SetEndTime sets the EndTime field's value.
+func (s *ExperimentAction) SetEndTime(v time.Time) *ExperimentAction {
+	s.EndTime = &v
+	return s
+}
+
 // SetParameters sets the Parameters field's value.
 func (s *ExperimentAction) SetParameters(v map[string]*string) *ExperimentAction {
 	s.Parameters = v
@@ -2320,6 +2338,12 @@ func (s *ExperimentAction) SetParameters(v map[string]*string) *ExperimentAction
 // SetStartAfter sets the StartAfter field's value.
 func (s *ExperimentAction) SetStartAfter(v []*string) *ExperimentAction {
 	s.StartAfter = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ExperimentAction) SetStartTime(v time.Time) *ExperimentAction {
+	s.StartTime = &v
 	return s
 }
 
@@ -3025,7 +3049,10 @@ func (s *ExperimentTemplateTargetFilter) SetValues(v []*string) *ExperimentTempl
 	return s
 }
 
-// Describes a filter used for the target resource input in an experiment template.
+// Specifies a filter used for the target resource input in an experiment template.
+//
+// For more information, see Resource filters (https://docs.aws.amazon.com/fis/latest/userguide/targets.html#target-filters)
+// in the Fault Injection Simulator User Guide.
 type ExperimentTemplateTargetInputFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -4255,7 +4282,7 @@ type UpdateExperimentTemplateInput struct {
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of an IAM role that grants the AWS FIS service
+	// The Amazon Resource Name (ARN) of an IAM role that grants the FIS service
 	// permission to perform service actions on your behalf.
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
 
@@ -4466,8 +4493,8 @@ type UpdateExperimentTemplateTargetInput struct {
 	// The tags for the target resources.
 	ResourceTags map[string]*string `locationName:"resourceTags" type:"map"`
 
-	// The AWS resource type. The resource type must be supported for the specified
-	// action.
+	// The Amazon Web Services resource type. The resource type must be supported
+	// for the specified action.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true"`
