@@ -4339,6 +4339,10 @@ type Av1Settings struct {
 	// The value that you choose here applies to Spatial adaptive quantization (spatialAdaptiveQuantization).
 	AdaptiveQuantization *string `locationName:"adaptiveQuantization" type:"string" enum:"Av1AdaptiveQuantization"`
 
+	// Specify the Bit depth (Av1BitDepth). You can choose 8-bit (BIT_8) or 10-bit
+	// (BIT_10).
+	BitDepth *string `locationName:"bitDepth" type:"string" enum:"Av1BitDepth"`
+
 	// If you are using the console, use the Framerate setting to specify the frame
 	// rate for this output. If you want to keep the same frame rate as the input
 	// video, choose Follow source. If you want to do frame rate conversion, choose
@@ -4475,6 +4479,12 @@ func (s *Av1Settings) Validate() error {
 // SetAdaptiveQuantization sets the AdaptiveQuantization field's value.
 func (s *Av1Settings) SetAdaptiveQuantization(v string) *Av1Settings {
 	s.AdaptiveQuantization = &v
+	return s
+}
+
+// SetBitDepth sets the BitDepth field's value.
+func (s *Av1Settings) SetBitDepth(v string) *Av1Settings {
+	s.BitDepth = &v
 	return s
 }
 
@@ -6744,6 +6754,10 @@ type CmfcSettings struct {
 	// in your input to also appear in this output. Choose None (NONE) if you don't
 	// want those SCTE-35 markers in this output.
 	Scte35Source *string `locationName:"scte35Source" type:"string" enum:"CmfcScte35Source"`
+
+	// Applies to CMAF outputs. Use this setting to specify whether the service
+	// inserts the ID3 timed metadata from the input in this output.
+	TimedMetadata *string `locationName:"timedMetadata" type:"string" enum:"CmfcTimedMetadata"`
 }
 
 // String returns the string representation.
@@ -6809,6 +6823,12 @@ func (s *CmfcSettings) SetScte35Esam(v string) *CmfcSettings {
 // SetScte35Source sets the Scte35Source field's value.
 func (s *CmfcSettings) SetScte35Source(v string) *CmfcSettings {
 	s.Scte35Source = &v
+	return s
+}
+
+// SetTimedMetadata sets the TimedMetadata field's value.
+func (s *CmfcSettings) SetTimedMetadata(v string) *CmfcSettings {
+	s.TimedMetadata = &v
 	return s
 }
 
@@ -12204,10 +12224,16 @@ func (s *H265QvbrSettings) SetQvbrQualityLevelFineTune(v float64) *H265QvbrSetti
 type H265Settings struct {
 	_ struct{} `type:"structure"`
 
-	// Specify the strength of any adaptive quantization filters that you enable.
-	// The value that you choose here applies to the following settings: Flicker
-	// adaptive quantization (flickerAdaptiveQuantization), Spatial adaptive quantization
-	// (spatialAdaptiveQuantization), and Temporal adaptive quantization (temporalAdaptiveQuantization).
+	// When you set Adaptive Quantization (H265AdaptiveQuantization) to Auto (AUTO),
+	// or leave blank, MediaConvert automatically applies quantization to improve
+	// the video quality of your output. Set Adaptive Quantization to Low (LOW),
+	// Medium (MEDIUM), High (HIGH), Higher (HIGHER), or Max (MAX) to manually control
+	// the strength of the quantization filter. When you do, you can specify a value
+	// for Spatial Adaptive Quantization (H265SpatialAdaptiveQuantization), Temporal
+	// Adaptive Quantization (H265TemporalAdaptiveQuantization), and Flicker Adaptive
+	// Quantization (H265FlickerAdaptiveQuantization), to further control the quantization
+	// filter. Set Adaptive Quantization to Off (OFF) to apply no quantization to
+	// your output.
 	AdaptiveQuantization *string `locationName:"adaptiveQuantization" type:"string" enum:"H265AdaptiveQuantization"`
 
 	// Enables Alternate Transfer Function SEI message for outputs using Hybrid
@@ -14154,6 +14180,13 @@ func (s *ImageInserter) SetInsertableImages(v []*InsertableImage) *ImageInserter
 type ImscDestinationSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Specify whether to flag this caption track as accessibility in your HLS/CMAF
+	// parent manifest. When you choose ENABLED, MediaConvert includes the parameters
+	// CHARACTERISTICS="public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound"
+	// and AUTOSELECT="YES" in the EXT-X-MEDIA entry for this track. When you keep
+	// the default choice, DISABLED, MediaConvert leaves this parameter out.
+	Accessibility *string `locationName:"accessibility" type:"string" enum:"ImscAccessibilitySubs"`
+
 	// Keep this setting enabled to have MediaConvert use the font style and position
 	// information from the captions source in the output. This option is available
 	// only when your input captions are IMSC, SMPTE-TT, or TTML. Disable this setting
@@ -14177,6 +14210,12 @@ func (s ImscDestinationSettings) String() string {
 // value will be replaced with "sensitive".
 func (s ImscDestinationSettings) GoString() string {
 	return s.String()
+}
+
+// SetAccessibility sets the Accessibility field's value.
+func (s *ImscDestinationSettings) SetAccessibility(v string) *ImscDestinationSettings {
+	s.Accessibility = &v
+	return s
 }
 
 // SetStylePassthrough sets the StylePassthrough field's value.
@@ -14229,6 +14268,16 @@ type Input struct {
 	// is disabled. Only applicable to MPEG2, H.264, H.265, and uncompressed video
 	// inputs.
 	DenoiseFilter *string `locationName:"denoiseFilter" type:"string" enum:"InputDenoiseFilter"`
+
+	// Use this setting only when your video source has Dolby Vision studio mastering
+	// metadata that is carried in a separate XML file. Specify the Amazon S3 location
+	// for the metadata XML file. MediaConvert uses this file to provide global
+	// and frame-level metadata for Dolby Vision preprocessing. When you specify
+	// a file here and your input also has interleaved global and frame level metadata,
+	// MediaConvert ignores the interleaved metadata and uses only the the metadata
+	// from this external XML file. Note that your IAM service role must grant MediaConvert
+	// read permissions to this file. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/iam-role.html.
+	DolbyVisionMetadataXml *string `locationName:"dolbyVisionMetadataXml" min:"14" type:"string"`
 
 	// Specify the source file for your transcoding job. You can use multiple inputs
 	// in a single job. The service concatenates these inputs, in the order that
@@ -14347,6 +14396,9 @@ func (s Input) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Input) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Input"}
+	if s.DolbyVisionMetadataXml != nil && len(*s.DolbyVisionMetadataXml) < 14 {
+		invalidParams.Add(request.NewErrParamMinLen("DolbyVisionMetadataXml", 14))
+	}
 	if s.FilterStrength != nil && *s.FilterStrength < -5 {
 		invalidParams.Add(request.NewErrParamMinValue("FilterStrength", -5))
 	}
@@ -14447,6 +14499,12 @@ func (s *Input) SetDecryptionSettings(v *InputDecryptionSettings) *Input {
 // SetDenoiseFilter sets the DenoiseFilter field's value.
 func (s *Input) SetDenoiseFilter(v string) *Input {
 	s.DenoiseFilter = &v
+	return s
+}
+
+// SetDolbyVisionMetadataXml sets the DolbyVisionMetadataXml field's value.
+func (s *Input) SetDolbyVisionMetadataXml(v string) *Input {
+	s.DolbyVisionMetadataXml = &v
 	return s
 }
 
@@ -14714,6 +14772,16 @@ type InputTemplate struct {
 	// inputs.
 	DenoiseFilter *string `locationName:"denoiseFilter" type:"string" enum:"InputDenoiseFilter"`
 
+	// Use this setting only when your video source has Dolby Vision studio mastering
+	// metadata that is carried in a separate XML file. Specify the Amazon S3 location
+	// for the metadata XML file. MediaConvert uses this file to provide global
+	// and frame-level metadata for Dolby Vision preprocessing. When you specify
+	// a file here and your input also has interleaved global and frame level metadata,
+	// MediaConvert ignores the interleaved metadata and uses only the the metadata
+	// from this external XML file. Note that your IAM service role must grant MediaConvert
+	// read permissions to this file. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/iam-role.html.
+	DolbyVisionMetadataXml *string `locationName:"dolbyVisionMetadataXml" min:"14" type:"string"`
+
 	// Specify how the transcoding service applies the denoise and deblock filters.
 	// You must also enable the filters separately, with Denoise (InputDenoiseFilter)
 	// and Deblock (InputDeblockFilter). * Auto - The transcoding service determines
@@ -14814,6 +14882,9 @@ func (s InputTemplate) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *InputTemplate) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "InputTemplate"}
+	if s.DolbyVisionMetadataXml != nil && len(*s.DolbyVisionMetadataXml) < 14 {
+		invalidParams.Add(request.NewErrParamMinLen("DolbyVisionMetadataXml", 14))
+	}
 	if s.FilterStrength != nil && *s.FilterStrength < -5 {
 		invalidParams.Add(request.NewErrParamMinValue("FilterStrength", -5))
 	}
@@ -14903,6 +14974,12 @@ func (s *InputTemplate) SetDeblockFilter(v string) *InputTemplate {
 // SetDenoiseFilter sets the DenoiseFilter field's value.
 func (s *InputTemplate) SetDenoiseFilter(v string) *InputTemplate {
 	s.DenoiseFilter = &v
+	return s
+}
+
+// SetDolbyVisionMetadataXml sets the DolbyVisionMetadataXml field's value.
+func (s *InputTemplate) SetDolbyVisionMetadataXml(v string) *InputTemplate {
+	s.DolbyVisionMetadataXml = &v
 	return s
 }
 
@@ -17574,8 +17651,8 @@ type M3u8Settings struct {
 	// XML (sccXml).
 	Scte35Source *string `locationName:"scte35Source" type:"string" enum:"M3u8Scte35Source"`
 
-	// Applies only to HLS outputs. Use this setting to specify whether the service
-	// inserts the ID3 timed metadata from the input in this output.
+	// Applies to HLS outputs. Use this setting to specify whether the service inserts
+	// the ID3 timed metadata from the input in this output.
 	TimedMetadata *string `locationName:"timedMetadata" type:"string" enum:"TimedMetadata"`
 
 	// Packet Identifier (PID) of the timed metadata stream in the transport stream.
@@ -18374,6 +18451,10 @@ type MpdSettings struct {
 	// in your input to also appear in this output. Choose None (NONE) if you don't
 	// want those SCTE-35 markers in this output.
 	Scte35Source *string `locationName:"scte35Source" type:"string" enum:"MpdScte35Source"`
+
+	// Applies to DASH outputs. Use this setting to specify whether the service
+	// inserts the ID3 timed metadata from the input in this output.
+	TimedMetadata *string `locationName:"timedMetadata" type:"string" enum:"MpdTimedMetadata"`
 }
 
 // String returns the string representation.
@@ -18421,6 +18502,12 @@ func (s *MpdSettings) SetScte35Esam(v string) *MpdSettings {
 // SetScte35Source sets the Scte35Source field's value.
 func (s *MpdSettings) SetScte35Source(v string) *MpdSettings {
 	s.Scte35Source = &v
+	return s
+}
+
+// SetTimedMetadata sets the TimedMetadata field's value.
+func (s *MpdSettings) SetTimedMetadata(v string) *MpdSettings {
+	s.TimedMetadata = &v
 	return s
 }
 
@@ -24934,6 +25021,13 @@ func (s *WavSettings) SetSampleRate(v int64) *WavSettings {
 type WebvttDestinationSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Specify whether to flag this caption track as accessibility in your HLS/CMAF
+	// parent manifest. When you choose ENABLED, MediaConvert includes the parameters
+	// CHARACTERISTICS="public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound"
+	// and AUTOSELECT="YES" in the EXT-X-MEDIA entry for this track. When you keep
+	// the default choice, DISABLED, MediaConvert leaves this parameter out.
+	Accessibility *string `locationName:"accessibility" type:"string" enum:"WebvttAccessibilitySubs"`
+
 	// Set Style passthrough (StylePassthrough) to ENABLED to use the available
 	// style, color, and position information from your input captions. MediaConvert
 	// uses default settings for any missing style and position information in your
@@ -24959,6 +25053,12 @@ func (s WebvttDestinationSettings) String() string {
 // value will be replaced with "sensitive".
 func (s WebvttDestinationSettings) GoString() string {
 	return s.String()
+}
+
+// SetAccessibility sets the Accessibility field's value.
+func (s *WebvttDestinationSettings) SetAccessibility(v string) *WebvttDestinationSettings {
+	s.Accessibility = &v
+	return s
 }
 
 // SetStylePassthrough sets the StylePassthrough field's value.
@@ -26590,6 +26690,24 @@ func Av1AdaptiveQuantization_Values() []string {
 	}
 }
 
+// Specify the Bit depth (Av1BitDepth). You can choose 8-bit (BIT_8) or 10-bit
+// (BIT_10).
+const (
+	// Av1BitDepthBit8 is a Av1BitDepth enum value
+	Av1BitDepthBit8 = "BIT_8"
+
+	// Av1BitDepthBit10 is a Av1BitDepth enum value
+	Av1BitDepthBit10 = "BIT_10"
+)
+
+// Av1BitDepth_Values returns all elements of the Av1BitDepth enum
+func Av1BitDepth_Values() []string {
+	return []string{
+		Av1BitDepthBit8,
+		Av1BitDepthBit10,
+	}
+}
+
 // If you are using the console, use the Framerate setting to specify the frame
 // rate for this output. If you want to keep the same frame rate as the input
 // video, choose Follow source. If you want to do frame rate conversion, choose
@@ -27858,6 +27976,24 @@ func CmfcScte35Source_Values() []string {
 	return []string{
 		CmfcScte35SourcePassthrough,
 		CmfcScte35SourceNone,
+	}
+}
+
+// Applies to CMAF outputs. Use this setting to specify whether the service
+// inserts the ID3 timed metadata from the input in this output.
+const (
+	// CmfcTimedMetadataPassthrough is a CmfcTimedMetadata enum value
+	CmfcTimedMetadataPassthrough = "PASSTHROUGH"
+
+	// CmfcTimedMetadataNone is a CmfcTimedMetadata enum value
+	CmfcTimedMetadataNone = "NONE"
+)
+
+// CmfcTimedMetadata_Values returns all elements of the CmfcTimedMetadata enum
+func CmfcTimedMetadata_Values() []string {
+	return []string{
+		CmfcTimedMetadataPassthrough,
+		CmfcTimedMetadataNone,
 	}
 }
 
@@ -30206,10 +30342,16 @@ func H264UnregisteredSeiTimecode_Values() []string {
 	}
 }
 
-// Specify the strength of any adaptive quantization filters that you enable.
-// The value that you choose here applies to the following settings: Flicker
-// adaptive quantization (flickerAdaptiveQuantization), Spatial adaptive quantization
-// (spatialAdaptiveQuantization), and Temporal adaptive quantization (temporalAdaptiveQuantization).
+// When you set Adaptive Quantization (H265AdaptiveQuantization) to Auto (AUTO),
+// or leave blank, MediaConvert automatically applies quantization to improve
+// the video quality of your output. Set Adaptive Quantization to Low (LOW),
+// Medium (MEDIUM), High (HIGH), Higher (HIGHER), or Max (MAX) to manually control
+// the strength of the quantization filter. When you do, you can specify a value
+// for Spatial Adaptive Quantization (H265SpatialAdaptiveQuantization), Temporal
+// Adaptive Quantization (H265TemporalAdaptiveQuantization), and Flicker Adaptive
+// Quantization (H265FlickerAdaptiveQuantization), to further control the quantization
+// filter. Set Adaptive Quantization to Off (OFF) to apply no quantization to
+// your output.
 const (
 	// H265AdaptiveQuantizationOff is a H265AdaptiveQuantization enum value
 	H265AdaptiveQuantizationOff = "OFF"
@@ -30228,6 +30370,9 @@ const (
 
 	// H265AdaptiveQuantizationMax is a H265AdaptiveQuantization enum value
 	H265AdaptiveQuantizationMax = "MAX"
+
+	// H265AdaptiveQuantizationAuto is a H265AdaptiveQuantization enum value
+	H265AdaptiveQuantizationAuto = "AUTO"
 )
 
 // H265AdaptiveQuantization_Values returns all elements of the H265AdaptiveQuantization enum
@@ -30239,6 +30384,7 @@ func H265AdaptiveQuantization_Values() []string {
 		H265AdaptiveQuantizationHigh,
 		H265AdaptiveQuantizationHigher,
 		H265AdaptiveQuantizationMax,
+		H265AdaptiveQuantizationAuto,
 	}
 }
 
@@ -31421,6 +31567,27 @@ func HlsTimedMetadataId3Frame_Values() []string {
 	}
 }
 
+// Specify whether to flag this caption track as accessibility in your HLS/CMAF
+// parent manifest. When you choose ENABLED, MediaConvert includes the parameters
+// CHARACTERISTICS="public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound"
+// and AUTOSELECT="YES" in the EXT-X-MEDIA entry for this track. When you keep
+// the default choice, DISABLED, MediaConvert leaves this parameter out.
+const (
+	// ImscAccessibilitySubsDisabled is a ImscAccessibilitySubs enum value
+	ImscAccessibilitySubsDisabled = "DISABLED"
+
+	// ImscAccessibilitySubsEnabled is a ImscAccessibilitySubs enum value
+	ImscAccessibilitySubsEnabled = "ENABLED"
+)
+
+// ImscAccessibilitySubs_Values returns all elements of the ImscAccessibilitySubs enum
+func ImscAccessibilitySubs_Values() []string {
+	return []string{
+		ImscAccessibilitySubsDisabled,
+		ImscAccessibilitySubsEnabled,
+	}
+}
+
 // Keep this setting enabled to have MediaConvert use the font style and position
 // information from the captions source in the output. This option is available
 // only when your input captions are IMSC, SMPTE-TT, or TTML. Disable this setting
@@ -32310,6 +32477,9 @@ const (
 
 	// LanguageCodeTng is a LanguageCode enum value
 	LanguageCodeTng = "TNG"
+
+	// LanguageCodeSrp is a LanguageCode enum value
+	LanguageCodeSrp = "SRP"
 )
 
 // LanguageCode_Values returns all elements of the LanguageCode enum
@@ -32506,6 +32676,7 @@ func LanguageCode_Values() []string {
 		LanguageCodeOrj,
 		LanguageCodeQpc,
 		LanguageCodeTng,
+		LanguageCodeSrp,
 	}
 }
 
@@ -33241,6 +33412,24 @@ func MpdScte35Source_Values() []string {
 	return []string{
 		MpdScte35SourcePassthrough,
 		MpdScte35SourceNone,
+	}
+}
+
+// Applies to DASH outputs. Use this setting to specify whether the service
+// inserts the ID3 timed metadata from the input in this output.
+const (
+	// MpdTimedMetadataPassthrough is a MpdTimedMetadata enum value
+	MpdTimedMetadataPassthrough = "PASSTHROUGH"
+
+	// MpdTimedMetadataNone is a MpdTimedMetadata enum value
+	MpdTimedMetadataNone = "NONE"
+)
+
+// MpdTimedMetadata_Values returns all elements of the MpdTimedMetadata enum
+func MpdTimedMetadata_Values() []string {
+	return []string{
+		MpdTimedMetadataPassthrough,
+		MpdTimedMetadataNone,
 	}
 }
 
@@ -34857,8 +35046,8 @@ func TimecodeSource_Values() []string {
 	}
 }
 
-// Applies only to HLS outputs. Use this setting to specify whether the service
-// inserts the ID3 timed metadata from the input in this output.
+// Applies to HLS outputs. Use this setting to specify whether the service inserts
+// the ID3 timed metadata from the input in this output.
 const (
 	// TimedMetadataPassthrough is a TimedMetadata enum value
 	TimedMetadataPassthrough = "PASSTHROUGH"
@@ -35459,6 +35648,27 @@ func WavFormat_Values() []string {
 	return []string{
 		WavFormatRiff,
 		WavFormatRf64,
+	}
+}
+
+// Specify whether to flag this caption track as accessibility in your HLS/CMAF
+// parent manifest. When you choose ENABLED, MediaConvert includes the parameters
+// CHARACTERISTICS="public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound"
+// and AUTOSELECT="YES" in the EXT-X-MEDIA entry for this track. When you keep
+// the default choice, DISABLED, MediaConvert leaves this parameter out.
+const (
+	// WebvttAccessibilitySubsDisabled is a WebvttAccessibilitySubs enum value
+	WebvttAccessibilitySubsDisabled = "DISABLED"
+
+	// WebvttAccessibilitySubsEnabled is a WebvttAccessibilitySubs enum value
+	WebvttAccessibilitySubsEnabled = "ENABLED"
+)
+
+// WebvttAccessibilitySubs_Values returns all elements of the WebvttAccessibilitySubs enum
+func WebvttAccessibilitySubs_Values() []string {
+	return []string{
+		WebvttAccessibilitySubsDisabled,
+		WebvttAccessibilitySubsEnabled,
 	}
 }
 
