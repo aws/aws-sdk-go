@@ -1615,6 +1615,13 @@
         "MAX"
       ]
     },
+    "Av1BitDepth": {
+      "type": "string",
+      "enum": [
+        "BIT_8",
+        "BIT_10"
+      ]
+    },
     "Av1FramerateControl": {
       "type": "string",
       "enum": [
@@ -1655,6 +1662,10 @@
         "AdaptiveQuantization": {
           "shape": "Av1AdaptiveQuantization",
           "locationName": "adaptiveQuantization"
+        },
+        "BitDepth": {
+          "shape": "Av1BitDepth",
+          "locationName": "bitDepth"
         },
         "FramerateControl": {
           "shape": "Av1FramerateControl",
@@ -2626,8 +2637,19 @@
         "Scte35Source": {
           "shape": "CmfcScte35Source",
           "locationName": "scte35Source"
+        },
+        "TimedMetadata": {
+          "shape": "CmfcTimedMetadata",
+          "locationName": "timedMetadata"
         }
       }
+    },
+    "CmfcTimedMetadata": {
+      "type": "string",
+      "enum": [
+        "PASSTHROUGH",
+        "NONE"
+      ]
     },
     "ColorCorrector": {
       "type": "structure",
@@ -4765,7 +4787,8 @@
         "MEDIUM",
         "HIGH",
         "HIGHER",
-        "MAX"
+        "MAX",
+        "AUTO"
       ]
     },
     "H265AlternateTransferFunctionSei": {
@@ -5703,9 +5726,20 @@
         }
       }
     },
+    "ImscAccessibilitySubs": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
     "ImscDestinationSettings": {
       "type": "structure",
       "members": {
+        "Accessibility": {
+          "shape": "ImscAccessibilitySubs",
+          "locationName": "accessibility"
+        },
         "StylePassthrough": {
           "shape": "ImscStylePassthrough",
           "locationName": "stylePassthrough"
@@ -5749,6 +5783,10 @@
         "DenoiseFilter": {
           "shape": "InputDenoiseFilter",
           "locationName": "denoiseFilter"
+        },
+        "DolbyVisionMetadataXml": {
+          "shape": "__stringMin14PatternS3XmlXMLHttpsXmlXML",
+          "locationName": "dolbyVisionMetadataXml"
         },
         "FileInput": {
           "shape": "__stringPatternS3MM2PPMM2VVMMPPEEGGMMPP3AAVVIIMMPP4FFLLVVMMPPTTMMPPGGMM4VVTTRRPPFF4VVMM2TTSSTTSS264HH264MMKKVVMMKKAAMMOOVVMMTTSSMM2TTWWMMVVaAAASSFFVVOOBB3GGPP3GGPPPPMMXXFFDDIIVVXXXXVVIIDDRRAAWWDDVVGGXXFFMM1VV3GG2VVMMFFMM3UU8WWEEBBMMLLCCHHGGXXFFMMPPEEGG2MMXXFFMMPPEEGG2MMXXFFHHDDWWAAVVYY4MMXXMMLLOOGGGGaAAATTMMOOSSHttpsMM2VVMMPPEEGGMMPP3AAVVIIMMPP4FFLLVVMMPPTTMMPPGGMM4VVTTRRPPFF4VVMM2TTSSTTSS264HH264MMKKVVMMKKAAMMOOVVMMTTSSMM2TTWWMMVVaAAASSFFVVOOBB3GGPP3GGPPPPMMXXFFDDIIVVXXXXVVIIDDRRAAWWDDVVGGXXFFMM1VV3GG2VVMMFFMM3UU8WWEEBBMMLLCCHHGGXXFFMMPPEEGG2MMXXFFMMPPEEGG2MMXXFFHHDDWWAAVVYY4MMXXMMLLOOGGGGaAAATTMMOOSS",
@@ -5925,6 +5963,10 @@
         "DenoiseFilter": {
           "shape": "InputDenoiseFilter",
           "locationName": "denoiseFilter"
+        },
+        "DolbyVisionMetadataXml": {
+          "shape": "__stringMin14PatternS3XmlXMLHttpsXmlXML",
+          "locationName": "dolbyVisionMetadataXml"
         },
         "FilterEnable": {
           "shape": "InputFilterEnable",
@@ -6607,7 +6649,8 @@
         "ZUL",
         "ORJ",
         "QPC",
-        "TNG"
+        "TNG",
+        "SRP"
       ]
     },
     "ListJobTemplatesRequest": {
@@ -7468,8 +7511,19 @@
         "Scte35Source": {
           "shape": "MpdScte35Source",
           "locationName": "scte35Source"
+        },
+        "TimedMetadata": {
+          "shape": "MpdTimedMetadata",
+          "locationName": "timedMetadata"
         }
       }
+    },
+    "MpdTimedMetadata": {
+      "type": "string",
+      "enum": [
+        "PASSTHROUGH",
+        "NONE"
+      ]
     },
     "Mpeg2AdaptiveQuantization": {
       "type": "string",
@@ -8773,7 +8827,7 @@
           "locationName": "kmsEncryptionContext"
         },
         "KmsKeyArn": {
-          "shape": "__stringPatternArnAwsUsGovCnKmsAZ26EastWestCentralNorthSouthEastWest1912D12KeyAFAF098AFAF094AFAF094AFAF094AFAF0912",
+          "shape": "__stringPatternArnAwsUsGovCnKmsAZ26EastWestCentralNorthSouthEastWest1912D12KeyAFAF098AFAF094AFAF094AFAF094AFAF0912MrkAFAF0932",
           "locationName": "kmsKeyArn"
         }
       }
@@ -9839,9 +9893,20 @@
         }
       }
     },
+    "WebvttAccessibilitySubs": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
     "WebvttDestinationSettings": {
       "type": "structure",
       "members": {
+        "Accessibility": {
+          "shape": "WebvttAccessibilitySubs",
+          "locationName": "accessibility"
+        },
         "StylePassthrough": {
           "shape": "WebvttStylePassthrough",
           "locationName": "stylePassthrough"
@@ -10988,6 +11053,11 @@
       "min": 14,
       "pattern": "^((s3://(.*?)\\.(scc|SCC|ttml|TTML|dfxp|DFXP|stl|STL|srt|SRT|xml|XML|smi|SMI|vtt|VTT|webvtt|WEBVTT))|(https?://(.*?)\\.(scc|SCC|ttml|TTML|dfxp|DFXP|stl|STL|srt|SRT|xml|XML|smi|SMI|vtt|VTT|webvtt|WEBVTT)(\\?([^&=]+=[^&]+&)*[^&=]+=[^&]+)?))$"
     },
+    "__stringMin14PatternS3XmlXMLHttpsXmlXML": {
+      "type": "string",
+      "min": 14,
+      "pattern": "^((s3://(.*?)\\.(xml|XML))|(https?://(.*?)\\.(xml|XML)(\\?([^&=]+=[^&]+&)*[^&=]+=[^&]+)?))$"
+    },
     "__stringMin16Max24PatternAZaZ0922AZaZ0916": {
       "type": "string",
       "min": 16,
@@ -11108,9 +11178,9 @@
       "type": "string",
       "pattern": "^arn:aws(-us-gov)?:acm:"
     },
-    "__stringPatternArnAwsUsGovCnKmsAZ26EastWestCentralNorthSouthEastWest1912D12KeyAFAF098AFAF094AFAF094AFAF094AFAF0912": {
+    "__stringPatternArnAwsUsGovCnKmsAZ26EastWestCentralNorthSouthEastWest1912D12KeyAFAF098AFAF094AFAF094AFAF094AFAF0912MrkAFAF0932": {
       "type": "string",
-      "pattern": "^arn:aws(-us-gov|-cn)?:kms:[a-z-]{2,6}-(east|west|central|((north|south)(east|west)?))-[1-9]{1,2}:\\d{12}:key/[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      "pattern": "^arn:aws(-us-gov|-cn)?:kms:[a-z-]{2,6}-(east|west|central|((north|south)(east|west)?))-[1-9]{1,2}:\\d{12}:key/([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}|mrk-[a-fA-F0-9]{32})$"
     },
     "__stringPatternDD": {
       "type": "string",

@@ -4917,6 +4917,10 @@ func (s *ConflictException) RequestID() string {
 type ContentRedaction struct {
 	_ struct{} `type:"structure"`
 
+	// The types of personally identifiable information (PII) you want to redact
+	// in your transcript.
+	PiiEntityTypes []*string `type:"list"`
+
 	// The output transcript file stored in either the default S3 bucket or in a
 	// bucket you specify.
 	//
@@ -4967,6 +4971,12 @@ func (s *ContentRedaction) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetPiiEntityTypes sets the PiiEntityTypes field's value.
+func (s *ContentRedaction) SetPiiEntityTypes(v []*string) *ContentRedaction {
+	s.PiiEntityTypes = v
+	return s
 }
 
 // SetRedactionOutput sets the RedactionOutput field's value.
@@ -12844,6 +12854,62 @@ func ParticipantRole_Values() []string {
 	return []string{
 		ParticipantRoleAgent,
 		ParticipantRoleCustomer,
+	}
+}
+
+const (
+	// PiiEntityTypeBankAccountNumber is a PiiEntityType enum value
+	PiiEntityTypeBankAccountNumber = "BANK_ACCOUNT_NUMBER"
+
+	// PiiEntityTypeBankRouting is a PiiEntityType enum value
+	PiiEntityTypeBankRouting = "BANK_ROUTING"
+
+	// PiiEntityTypeCreditDebitNumber is a PiiEntityType enum value
+	PiiEntityTypeCreditDebitNumber = "CREDIT_DEBIT_NUMBER"
+
+	// PiiEntityTypeCreditDebitCvv is a PiiEntityType enum value
+	PiiEntityTypeCreditDebitCvv = "CREDIT_DEBIT_CVV"
+
+	// PiiEntityTypeCreditDebitExpiry is a PiiEntityType enum value
+	PiiEntityTypeCreditDebitExpiry = "CREDIT_DEBIT_EXPIRY"
+
+	// PiiEntityTypePin is a PiiEntityType enum value
+	PiiEntityTypePin = "PIN"
+
+	// PiiEntityTypeEmail is a PiiEntityType enum value
+	PiiEntityTypeEmail = "EMAIL"
+
+	// PiiEntityTypeAddress is a PiiEntityType enum value
+	PiiEntityTypeAddress = "ADDRESS"
+
+	// PiiEntityTypeName is a PiiEntityType enum value
+	PiiEntityTypeName = "NAME"
+
+	// PiiEntityTypePhone is a PiiEntityType enum value
+	PiiEntityTypePhone = "PHONE"
+
+	// PiiEntityTypeSsn is a PiiEntityType enum value
+	PiiEntityTypeSsn = "SSN"
+
+	// PiiEntityTypeAll is a PiiEntityType enum value
+	PiiEntityTypeAll = "ALL"
+)
+
+// PiiEntityType_Values returns all elements of the PiiEntityType enum
+func PiiEntityType_Values() []string {
+	return []string{
+		PiiEntityTypeBankAccountNumber,
+		PiiEntityTypeBankRouting,
+		PiiEntityTypeCreditDebitNumber,
+		PiiEntityTypeCreditDebitCvv,
+		PiiEntityTypeCreditDebitExpiry,
+		PiiEntityTypePin,
+		PiiEntityTypeEmail,
+		PiiEntityTypeAddress,
+		PiiEntityTypeName,
+		PiiEntityTypePhone,
+		PiiEntityTypeSsn,
+		PiiEntityTypeAll,
 	}
 }
 

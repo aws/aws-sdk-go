@@ -871,6 +871,18 @@
         "UpdateVocabularyRequest$Phrases": "<p>An array of strings containing the vocabulary entries.</p>"
       }
     },
+    "PiiEntityType": {
+      "base": null,
+      "refs": {
+        "PiiEntityTypes$member": null
+      }
+    },
+    "PiiEntityTypes": {
+      "base": null,
+      "refs": {
+        "ContentRedaction$PiiEntityTypes": "<p>The types of personally identifiable information (PII) you want to redact in your transcript.</p>"
+      }
+    },
     "RedactionOutput": {
       "base": null,
       "refs": {

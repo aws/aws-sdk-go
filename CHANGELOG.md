@@ -1,3 +1,11 @@
+Release v1.42.39 (2022-01-21)
+===
+
+### Service Client Updates
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for 4K AV1 output resolutions & 10-bit AV1 color, the ability to ingest sidecar Dolby Vision XML metadata files, and the ability to flag WebVTT and IMSC tracks for accessibility in HLS.
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.42.38 (2022-01-20)
 ===
 

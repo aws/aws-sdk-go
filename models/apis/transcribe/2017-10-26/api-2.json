@@ -736,7 +736,8 @@
       ],
       "members":{
         "RedactionType":{"shape":"RedactionType"},
-        "RedactionOutput":{"shape":"RedactionOutput"}
+        "RedactionOutput":{"shape":"RedactionOutput"},
+        "PiiEntityTypes":{"shape":"PiiEntityTypes"}
       }
     },
     "CreateCallAnalyticsCategoryRequest":{
@@ -1515,6 +1516,29 @@
     "Phrases":{
       "type":"list",
       "member":{"shape":"Phrase"}
+    },
+    "PiiEntityType":{
+      "type":"string",
+      "enum":[
+        "BANK_ACCOUNT_NUMBER",
+        "BANK_ROUTING",
+        "CREDIT_DEBIT_NUMBER",
+        "CREDIT_DEBIT_CVV",
+        "CREDIT_DEBIT_EXPIRY",
+        "PIN",
+        "EMAIL",
+        "ADDRESS",
+        "NAME",
+        "PHONE",
+        "SSN",
+        "ALL"
+      ]
+    },
+    "PiiEntityTypes":{
+      "type":"list",
+      "member":{"shape":"PiiEntityType"},
+      "max":11,
+      "min":0
     },
     "RedactionOutput":{
       "type":"string",
