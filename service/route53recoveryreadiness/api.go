@@ -57,7 +57,7 @@ func (c *Route53RecoveryReadiness) CreateCellRequest(input *CreateCellInput) (re
 
 // CreateCell API operation for AWS Route53 Recovery Readiness.
 //
-// Creates a new Cell.
+// Creates a cell in an account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -143,7 +143,9 @@ func (c *Route53RecoveryReadiness) CreateCrossAccountAuthorizationRequest(input 
 
 // CreateCrossAccountAuthorization API operation for AWS Route53 Recovery Readiness.
 //
-// Create a new cross account readiness authorization.
+// Creates a cross-account readiness authorization. This lets you authorize
+// another account to work with Route 53 Application Recovery Controller, for
+// example, to check the readiness status of resources in a separate account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -229,7 +231,10 @@ func (c *Route53RecoveryReadiness) CreateReadinessCheckRequest(input *CreateRead
 
 // CreateReadinessCheck API operation for AWS Route53 Recovery Readiness.
 //
-// Creates a new Readiness Check.
+// Creates a readiness check in an account. A readiness check monitors a resource
+// set in your application, such as a set of Amazon Aurora instances, that Application
+// Recovery Controller is auditing recovery readiness for. The audits run once
+// every minute on every resource that's associated with a readiness check.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -315,7 +320,8 @@ func (c *Route53RecoveryReadiness) CreateRecoveryGroupRequest(input *CreateRecov
 
 // CreateRecoveryGroup API operation for AWS Route53 Recovery Readiness.
 //
-// Creates a new Recovery Group.
+// Creates a recovery group in an account. A recovery group corresponds to an
+// application and includes a list of the cells that make up the application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -401,7 +407,9 @@ func (c *Route53RecoveryReadiness) CreateResourceSetRequest(input *CreateResourc
 
 // CreateResourceSet API operation for AWS Route53 Recovery Readiness.
 //
-// Creates a new Resource Set.
+// Creates a resource set. A resource set is a set of resources of one type
+// that span multiple cells. You can associate a resource set with a readiness
+// check to monitor the resources for failover readiness.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -488,7 +496,8 @@ func (c *Route53RecoveryReadiness) DeleteCellRequest(input *DeleteCellInput) (re
 
 // DeleteCell API operation for AWS Route53 Recovery Readiness.
 //
-// Deletes an existing Cell.
+// Delete a cell. When successful, the response code is 204, with no response
+// body.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -575,7 +584,7 @@ func (c *Route53RecoveryReadiness) DeleteCrossAccountAuthorizationRequest(input 
 
 // DeleteCrossAccountAuthorization API operation for AWS Route53 Recovery Readiness.
 //
-// Delete cross account readiness authorization
+// Deletes cross account readiness authorization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -660,7 +669,7 @@ func (c *Route53RecoveryReadiness) DeleteReadinessCheckRequest(input *DeleteRead
 
 // DeleteReadinessCheck API operation for AWS Route53 Recovery Readiness.
 //
-// Deletes an existing Readiness Check.
+// Deletes a readiness check.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -747,7 +756,7 @@ func (c *Route53RecoveryReadiness) DeleteRecoveryGroupRequest(input *DeleteRecov
 
 // DeleteRecoveryGroup API operation for AWS Route53 Recovery Readiness.
 //
-// Deletes an existing Recovery Group.
+// Deletes a recovery group.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -834,7 +843,7 @@ func (c *Route53RecoveryReadiness) DeleteResourceSetRequest(input *DeleteResourc
 
 // DeleteResourceSet API operation for AWS Route53 Recovery Readiness.
 //
-// Deletes an existing Resource Set.
+// Deletes a resource set.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -920,8 +929,8 @@ func (c *Route53RecoveryReadiness) GetArchitectureRecommendationsRequest(input *
 
 // GetArchitectureRecommendations API operation for AWS Route53 Recovery Readiness.
 //
-// Returns a collection of recommendations to improve resilliance and readiness
-// check quality for a Recovery Group.
+// Gets recommendations about architecture designs for improving resiliency
+// for an application, based on a recovery group.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1007,7 +1016,9 @@ func (c *Route53RecoveryReadiness) GetCellRequest(input *GetCellInput) (req *req
 
 // GetCell API operation for AWS Route53 Recovery Readiness.
 //
-// Returns information about a Cell.
+// Gets information about a cell including cell name, cell Amazon Resource Name
+// (ARN), ARNs of nested cells for this cell, and a list of those cell ARNs
+// with their associated recovery group ARNs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1099,7 +1110,8 @@ func (c *Route53RecoveryReadiness) GetCellReadinessSummaryRequest(input *GetCell
 
 // GetCellReadinessSummary API operation for AWS Route53 Recovery Readiness.
 //
-// Returns information about readiness of a Cell.
+// Gets readiness for a cell. Aggregates the readiness of all the resources
+// that are associated with the cell into a single value.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1237,7 +1249,7 @@ func (c *Route53RecoveryReadiness) GetReadinessCheckRequest(input *GetReadinessC
 
 // GetReadinessCheck API operation for AWS Route53 Recovery Readiness.
 //
-// Returns information about a ReadinessCheck.
+// Gets details about a readiness check.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1329,8 +1341,9 @@ func (c *Route53RecoveryReadiness) GetReadinessCheckResourceStatusRequest(input 
 
 // GetReadinessCheckResourceStatus API operation for AWS Route53 Recovery Readiness.
 //
-// Returns detailed information about the status of an individual resource within
-// a Readiness Check's Resource Set.
+// Gets individual readiness status for a readiness check. To see the overall
+// readiness status for a recovery group, that considers the readiness status
+// for all the readiness checks in the recovery group, use GetRecoveryGroupReadinessSummary.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1474,7 +1487,9 @@ func (c *Route53RecoveryReadiness) GetReadinessCheckStatusRequest(input *GetRead
 
 // GetReadinessCheckStatus API operation for AWS Route53 Recovery Readiness.
 //
-// Returns information about the status of a Readiness Check.
+// Gets the readiness status for an individual readiness check. To see the overall
+// readiness status for a recovery group, that considers the readiness status
+// for all the readiness checks in a recovery group, use GetRecoveryGroupReadinessSummary.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1612,7 +1627,8 @@ func (c *Route53RecoveryReadiness) GetRecoveryGroupRequest(input *GetRecoveryGro
 
 // GetRecoveryGroup API operation for AWS Route53 Recovery Readiness.
 //
-// Returns information about a Recovery Group.
+// Gets details about a recovery group, including a list of the cells that are
+// included in it.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1704,7 +1720,9 @@ func (c *Route53RecoveryReadiness) GetRecoveryGroupReadinessSummaryRequest(input
 
 // GetRecoveryGroupReadinessSummary API operation for AWS Route53 Recovery Readiness.
 //
-// Returns information about a Recovery Group.
+// Displays a summary of information about a recovery group's readiness status.
+// Includes the readiness checks for resources in the recovery group and the
+// readiness status of each one.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1842,7 +1860,8 @@ func (c *Route53RecoveryReadiness) GetResourceSetRequest(input *GetResourceSetIn
 
 // GetResourceSet API operation for AWS Route53 Recovery Readiness.
 //
-// Returns information about a Resource Set.
+// Displays the details about a resource set, including a list of the resources
+// in the set.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1934,7 +1953,7 @@ func (c *Route53RecoveryReadiness) ListCellsRequest(input *ListCellsInput) (req 
 
 // ListCells API operation for AWS Route53 Recovery Readiness.
 //
-// Returns a collection of Cells.
+// Lists the cells for an account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2076,7 +2095,8 @@ func (c *Route53RecoveryReadiness) ListCrossAccountAuthorizationsRequest(input *
 
 // ListCrossAccountAuthorizations API operation for AWS Route53 Recovery Readiness.
 //
-// Returns a collection of cross account readiness authorizations.
+// Lists the cross-account readiness authorizations that are in place for an
+// account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2218,7 +2238,7 @@ func (c *Route53RecoveryReadiness) ListReadinessChecksRequest(input *ListReadine
 
 // ListReadinessChecks API operation for AWS Route53 Recovery Readiness.
 //
-// Returns a collection of Readiness Checks.
+// Lists the readiness checks for an account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2360,7 +2380,7 @@ func (c *Route53RecoveryReadiness) ListRecoveryGroupsRequest(input *ListRecovery
 
 // ListRecoveryGroups API operation for AWS Route53 Recovery Readiness.
 //
-// Returns a collection of Recovery Groups.
+// Lists the recovery groups in an account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2502,7 +2522,7 @@ func (c *Route53RecoveryReadiness) ListResourceSetsRequest(input *ListResourceSe
 
 // ListResourceSets API operation for AWS Route53 Recovery Readiness.
 //
-// Returns a collection of Resource Sets.
+// Lists the resource sets in an account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2644,7 +2664,8 @@ func (c *Route53RecoveryReadiness) ListRulesRequest(input *ListRulesInput) (req 
 
 // ListRules API operation for AWS Route53 Recovery Readiness.
 //
-// Returns a collection of rules that are applied as part of Readiness Checks.
+// Lists all readiness rules, or lists the readiness rules for a specific resource
+// type.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2780,7 +2801,7 @@ func (c *Route53RecoveryReadiness) ListTagsForResourcesRequest(input *ListTagsFo
 
 // ListTagsForResources API operation for AWS Route53 Recovery Readiness.
 //
-// Returns a list of the tags assigned to the specified resource.
+// Lists the tags for a resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2863,8 +2884,7 @@ func (c *Route53RecoveryReadiness) TagResourceRequest(input *TagResourceInput) (
 
 // TagResource API operation for AWS Route53 Recovery Readiness.
 //
-// Adds tags to the specified resource. You can specify one or more tags to
-// add.
+// Adds a tag to a resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2947,8 +2967,7 @@ func (c *Route53RecoveryReadiness) UntagResourceRequest(input *UntagResourceInpu
 
 // UntagResource API operation for AWS Route53 Recovery Readiness.
 //
-// Removes tags from the specified resource. You can specify one or more tags
-// to remove.
+// Removes a tag from a resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3030,7 +3049,8 @@ func (c *Route53RecoveryReadiness) UpdateCellRequest(input *UpdateCellInput) (re
 
 // UpdateCell API operation for AWS Route53 Recovery Readiness.
 //
-// Updates an existing Cell.
+// Updates a cell to replace the list of nested cells with a new list of nested
+// cells.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3116,7 +3136,7 @@ func (c *Route53RecoveryReadiness) UpdateReadinessCheckRequest(input *UpdateRead
 
 // UpdateReadinessCheck API operation for AWS Route53 Recovery Readiness.
 //
-// Updates an exisiting Readiness Check.
+// Updates a readiness check.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3202,7 +3222,7 @@ func (c *Route53RecoveryReadiness) UpdateRecoveryGroupRequest(input *UpdateRecov
 
 // UpdateRecoveryGroup API operation for AWS Route53 Recovery Readiness.
 //
-// Updates an existing Recovery Group.
+// Updates a recovery group.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3288,7 +3308,7 @@ func (c *Route53RecoveryReadiness) UpdateResourceSetRequest(input *UpdateResourc
 
 // UpdateResourceSet API operation for AWS Route53 Recovery Readiness.
 //
-// Updates an existing Resource Set.
+// Updates a resource set.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3393,31 +3413,33 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A Cell and its properties
+// Information about a cell.
 type CellOutput_ struct {
 	_ struct{} `type:"structure"`
 
-	// The arn for the Cell
+	// The Amazon Resource Name (ARN) for the cell.
 	//
 	// CellArn is a required field
 	CellArn *string `locationName:"cellArn" type:"string" required:"true"`
 
-	// The name of the Cell
+	// The name of the cell.
 	//
 	// CellName is a required field
 	CellName *string `locationName:"cellName" type:"string" required:"true"`
 
-	// A list of Cell arns
+	// A list of cell ARNs.
 	//
 	// Cells is a required field
 	Cells []*string `locationName:"cells" type:"list" required:"true"`
 
-	// A list of Cell ARNs and/or RecoveryGroup ARNs
+	// The readiness scope for the cell, which can be a cell Amazon Resource Name
+	// (ARN) or a recovery group ARN. This is a list but currently can have only
+	// one element.
 	//
 	// ParentReadinessScopes is a required field
 	ParentReadinessScopes []*string `locationName:"parentReadinessScopes" type:"list" required:"true"`
 
-	// A collection of tags associated with a resource
+	// Tags on the resources.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -3540,7 +3562,7 @@ type CreateCellInput struct {
 
 	Cells []*string `locationName:"cells" type:"list"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -3604,7 +3626,7 @@ type CreateCellOutput struct {
 
 	ParentReadinessScopes []*string `locationName:"parentReadinessScopes" type:"list"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -3659,7 +3681,7 @@ func (s *CreateCellOutput) SetTags(v map[string]*string) *CreateCellOutput {
 type CreateCrossAccountAuthorizationInput struct {
 	_ struct{} `type:"structure"`
 
-	// A cross-account authorization, e.g. arn:aws:iam::123456789012:root
+	// CrossAccountAuthorization
 	//
 	// CrossAccountAuthorization is a required field
 	CrossAccountAuthorization *string `locationName:"crossAccountAuthorization" type:"string" required:"true"`
@@ -3705,7 +3727,7 @@ func (s *CreateCrossAccountAuthorizationInput) SetCrossAccountAuthorization(v st
 type CreateCrossAccountAuthorizationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A cross-account authorization, e.g. arn:aws:iam::123456789012:root
+	// CrossAccountAuthorization
 	CrossAccountAuthorization *string `locationName:"crossAccountAuthorization" type:"string"`
 }
 
@@ -3742,7 +3764,7 @@ type CreateReadinessCheckInput struct {
 	// ResourceSetName is a required field
 	ResourceSetName *string `locationName:"resourceSetName" type:"string" required:"true"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -3807,7 +3829,7 @@ type CreateReadinessCheckOutput struct {
 
 	ResourceSet *string `locationName:"resourceSet" type:"string"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -3861,7 +3883,7 @@ type CreateRecoveryGroupInput struct {
 	// RecoveryGroupName is a required field
 	RecoveryGroupName *string `locationName:"recoveryGroupName" type:"string" required:"true"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -3923,7 +3945,7 @@ type CreateRecoveryGroupOutput struct {
 
 	RecoveryGroupName *string `locationName:"recoveryGroupName" type:"string"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -3981,7 +4003,7 @@ type CreateResourceSetInput struct {
 	// Resources is a required field
 	Resources []*Resource `locationName:"resources" type:"list" required:"true"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -4057,7 +4079,7 @@ type CreateResourceSetOutput struct {
 
 	Resources []*Resource `locationName:"resources" type:"list"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -4109,24 +4131,26 @@ func (s *CreateResourceSetOutput) SetTags(v map[string]*string) *CreateResourceS
 	return s
 }
 
-// A component for DNS/Routing Control Readiness Checks
+// A component for DNS/routing control readiness checks and architecture checks.
 type DNSTargetResource struct {
 	_ struct{} `type:"structure"`
 
-	// The DNS Name that acts as ingress point to a portion of application
+	// The domain name that acts as an ingress point to a portion of the customer
+	// application.
 	DomainName *string `locationName:"domainName" type:"string"`
 
-	// The Hosted Zone ARN that contains the DNS record with the provided name of
-	// target resource.
+	// The hosted zone Amazon Resource Name (ARN) that contains the DNS record with
+	// the provided name of the target resource.
 	HostedZoneArn *string `locationName:"hostedZoneArn" type:"string"`
 
-	// The R53 Set Id to uniquely identify a record given a Name and a Type
+	// The Route 53 record set ID that uniquely identifies a DNS record, given a
+	// name and a type.
 	RecordSetId *string `locationName:"recordSetId" type:"string"`
 
-	// The Type of DNS Record of target resource
+	// The type of DNS record of the target resource.
 	RecordType *string `locationName:"recordType" type:"string"`
 
-	// The target resource the R53 record points to
+	// The target resource of the DNS target resource.
 	TargetResource *TargetResource `locationName:"targetResource" type:"structure"`
 }
 
@@ -4592,8 +4616,8 @@ func (s *GetArchitectureRecommendationsInput) SetRecoveryGroupName(v string) *Ge
 type GetArchitectureRecommendationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The time a Recovery Group was last assessed for recommendations in UTC ISO-8601
-	// format
+	// The time that a recovery group was last assessed for recommendations, in
+	// UTC ISO-8601 format.
 	LastAuditTimestamp *time.Time `locationName:"lastAuditTimestamp" type:"timestamp" timestampFormat:"iso8601"`
 
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -4695,7 +4719,7 @@ type GetCellOutput struct {
 
 	ParentReadinessScopes []*string `locationName:"parentReadinessScopes" type:"list"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -4818,7 +4842,7 @@ type GetCellReadinessSummaryOutput struct {
 
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The readiness of an entire ReadinessCheck or an individual resource ARN.
+	// The readiness status.
 	Readiness *string `locationName:"readiness" type:"string" enum:"Readiness"`
 
 	ReadinessChecks []*ReadinessCheckSummary `locationName:"readinessChecks" type:"list"`
@@ -4916,7 +4940,7 @@ type GetReadinessCheckOutput struct {
 
 	ResourceSet *string `locationName:"resourceSet" type:"string"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -5048,7 +5072,7 @@ type GetReadinessCheckResourceStatusOutput struct {
 
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The readiness of an entire ReadinessCheck or an individual resource ARN.
+	// The readiness status.
 	Readiness *string `locationName:"readiness" type:"string" enum:"Readiness"`
 
 	Rules []*RuleResult `locationName:"rules" type:"list"`
@@ -5163,7 +5187,7 @@ type GetReadinessCheckStatusOutput struct {
 
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The readiness of an entire ReadinessCheck or an individual resource ARN.
+	// The readiness status.
 	Readiness *string `locationName:"readiness" type:"string" enum:"Readiness"`
 
 	Resources []*ResourceResult `locationName:"resources" type:"list"`
@@ -5267,7 +5291,7 @@ type GetRecoveryGroupOutput struct {
 
 	RecoveryGroupName *string `locationName:"recoveryGroupName" type:"string"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -5384,7 +5408,7 @@ type GetRecoveryGroupReadinessSummaryOutput struct {
 
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The readiness of an entire ReadinessCheck or an individual resource ARN.
+	// The readiness status.
 	Readiness *string `locationName:"readiness" type:"string" enum:"Readiness"`
 
 	ReadinessChecks []*ReadinessCheckSummary `locationName:"readinessChecks" type:"list"`
@@ -5484,7 +5508,7 @@ type GetResourceSetOutput struct {
 
 	Resources []*Resource `locationName:"resources" type:"list"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -6141,21 +6165,22 @@ func (s *ListRulesOutput) SetRules(v []*ListRulesOutput_) *ListRulesOutput {
 	return s
 }
 
-// A collection of rules used in a readiness check
+// Readiness rule information, including the resource type, rule ID, and rule
+// description.
 type ListRulesOutput_ struct {
 	_ struct{} `type:"structure"`
 
-	// The resource type the rule applies to.
+	// The resource type that the readiness rule applies to.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true"`
 
-	// A description of the rule
+	// The description of a readiness rule.
 	//
 	// RuleDescription is a required field
 	RuleDescription *string `locationName:"ruleDescription" type:"string" required:"true"`
 
-	// The Rule's ID.
+	// The ID for the readiness rule.
 	//
 	// RuleId is a required field
 	RuleId *string `locationName:"ruleId" type:"string" required:"true"`
@@ -6247,7 +6272,7 @@ func (s *ListTagsForResourcesInput) SetResourceArn(v string) *ListTagsForResourc
 type ListTagsForResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -6275,11 +6300,11 @@ func (s *ListTagsForResourcesOutput) SetTags(v map[string]*string) *ListTagsForR
 	return s
 }
 
-// Information relating to readiness check status
+// Information relating to readiness check status.
 type Message struct {
 	_ struct{} `type:"structure"`
 
-	// The text of a readiness check message
+	// The text of a readiness check message.
 	MessageText *string `locationName:"messageText" type:"string"`
 }
 
@@ -6307,11 +6332,11 @@ func (s *Message) SetMessageText(v string) *Message {
 	return s
 }
 
-// The NLB resource a DNS Target Resource points to
+// The Network Load Balancer resource that a DNS target resource points to.
 type NLBResource struct {
 	_ struct{} `type:"structure"`
 
-	// An NLB resource arn
+	// The Network Load Balancer resource Amazon Resource Name (ARN).
 	Arn *string `locationName:"arn" type:"string"`
 }
 
@@ -6339,14 +6364,14 @@ func (s *NLBResource) SetArn(v string) *NLBResource {
 	return s
 }
 
-// The Route 53 resource a DNS Target Resource record points to
+// The Route 53 resource that a DNS target resource record points to.
 type R53ResourceRecord struct {
 	_ struct{} `type:"structure"`
 
-	// The DNS target name
+	// The DNS target domain name.
 	DomainName *string `locationName:"domainName" type:"string"`
 
-	// The Resource Record set id
+	// The Route 53 Resource Record Set ID.
 	RecordSetId *string `locationName:"recordSetId" type:"string"`
 }
 
@@ -6380,24 +6405,24 @@ func (s *R53ResourceRecord) SetRecordSetId(v string) *R53ResourceRecord {
 	return s
 }
 
-// A resource used for checking the readiness of a Resource Set
+// A readiness check.
 type ReadinessCheckOutput_ struct {
 	_ struct{} `type:"structure"`
 
-	// Arn associated with ReadinessCheck
+	// The Amazon Resource Name (ARN) associated with a readiness check.
 	//
 	// ReadinessCheckArn is a required field
 	ReadinessCheckArn *string `locationName:"readinessCheckArn" type:"string" required:"true"`
 
-	// Name for a ReadinessCheck
+	// Name of a readiness check.
 	ReadinessCheckName *string `locationName:"readinessCheckName" type:"string"`
 
-	// Name of the ResourceSet to be checked
+	// Name of the resource set to be checked.
 	//
 	// ResourceSet is a required field
 	ResourceSet *string `locationName:"resourceSet" type:"string" required:"true"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -6443,16 +6468,15 @@ func (s *ReadinessCheckOutput_) SetTags(v map[string]*string) *ReadinessCheckOut
 	return s
 }
 
-// Summary of ReadinessCheck status, paginated in GetRecoveryGroupReadinessSummary
-// and GetCellReadinessSummary
+// Summary of all readiness check statuses in a recovery group, paginated in
+// GetRecoveryGroupReadinessSummary and GetCellReadinessSummary.
 type ReadinessCheckSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The readiness of this ReadinessCheck
+	// The readiness status of this readiness check.
 	Readiness *string `locationName:"readiness" type:"string" enum:"Readiness"`
 
-	// The name of a ReadinessCheck which is part of the given RecoveryGroup or
-	// Cell
+	// The name of a readiness check.
 	ReadinessCheckName *string `locationName:"readinessCheckName" type:"string"`
 }
 
@@ -6486,11 +6510,12 @@ func (s *ReadinessCheckSummary) SetReadinessCheckName(v string) *ReadinessCheckS
 	return s
 }
 
-// Guidance for improving Recovery Group resilliancy
+// Recommendations that are provided to make an application more recovery resilient.
 type Recommendation struct {
 	_ struct{} `type:"structure"`
 
-	// Guidance text for recommendation
+	// Text of the recommendations that are provided to make an application more
+	// recovery resilient.
 	//
 	// RecommendationText is a required field
 	RecommendationText *string `locationName:"recommendationText" type:"string" required:"true"`
@@ -6520,26 +6545,26 @@ func (s *Recommendation) SetRecommendationText(v string) *Recommendation {
 	return s
 }
 
-// A Recovery Group generally containing multiple Cells
+// A representation of the application, typically containing multiple cells.
 type RecoveryGroupOutput_ struct {
 	_ struct{} `type:"structure"`
 
-	// A list of Cell arns
+	// A list of a cell's Amazon Resource Names (ARNs).
 	//
 	// Cells is a required field
 	Cells []*string `locationName:"cells" type:"list" required:"true"`
 
-	// The arn for the RecoveryGroup
+	// The Amazon Resource Name (ARN) for the recovery group.
 	//
 	// RecoveryGroupArn is a required field
 	RecoveryGroupArn *string `locationName:"recoveryGroupArn" type:"string" required:"true"`
 
-	// The name of the RecoveryGroup
+	// The name of the recovery group.
 	//
 	// RecoveryGroupName is a required field
 	RecoveryGroupName *string `locationName:"recoveryGroupName" type:"string" required:"true"`
 
-	// A collection of tags associated with a resource
+	// The tags associated with the recovery group.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -6585,22 +6610,22 @@ func (s *RecoveryGroupOutput_) SetTags(v map[string]*string) *RecoveryGroupOutpu
 	return s
 }
 
-// The resource element of a ResourceSet
+// The resource element of a resource set.
 type Resource struct {
 	_ struct{} `type:"structure"`
 
-	// The component id of the resource, generated by the service when dnsTargetResource
-	// is used
+	// The component identifier of the resource, generated when DNS target resource
+	// is used.
 	ComponentId *string `locationName:"componentId" type:"string"`
 
-	// A component for DNS/Routing Control Readiness Checks
+	// The DNS target resource.
 	DnsTargetResource *DNSTargetResource `locationName:"dnsTargetResource" type:"structure"`
 
-	// A list of RecoveryGroup ARNs and/or Cell ARNs that this resource is contained
-	// within.
+	// A list of recovery group Amazon Resource Names (ARNs) and cell ARNs that
+	// this resource is contained within.
 	ReadinessScopes []*string `locationName:"readinessScopes" type:"list"`
 
-	// The ARN of the AWS resource, can be skipped if dnsTargetResource is used
+	// The Amazon Resource Name (ARN) of the Amazon Web Services resource.
 	ResourceArn *string `locationName:"resourceArn" type:"string"`
 }
 
@@ -6709,25 +6734,26 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Result with status for an individual resource.
+// The result of a successful Resource request, with status for an individual
+// resource.
 type ResourceResult struct {
 	_ struct{} `type:"structure"`
 
-	// The component id of the resource
+	// The component id of the resource.
 	ComponentId *string `locationName:"componentId" type:"string"`
 
-	// The time the resource was last checked for readiness, in ISO-8601 format,
-	// UTC.
+	// The time (UTC) that the resource was last checked for readiness, in ISO-8601
+	// format.
 	//
 	// LastCheckedTimestamp is a required field
 	LastCheckedTimestamp *time.Time `locationName:"lastCheckedTimestamp" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The readiness of the resource.
+	// The readiness of a resource.
 	//
 	// Readiness is a required field
 	Readiness *string `locationName:"readiness" type:"string" required:"true" enum:"Readiness"`
 
-	// The ARN of the resource
+	// The Amazon Resource Name (ARN) of the resource.
 	ResourceArn *string `locationName:"resourceArn" type:"string"`
 }
 
@@ -6773,31 +6799,39 @@ func (s *ResourceResult) SetResourceArn(v string) *ResourceResult {
 	return s
 }
 
-// A collection of resources of the same type
+// A collection of resources of the same type.
 type ResourceSetOutput_ struct {
 	_ struct{} `type:"structure"`
 
-	// The arn for the ResourceSet
+	// The Amazon Resource Name (ARN) for the resource set.
 	//
 	// ResourceSetArn is a required field
 	ResourceSetArn *string `locationName:"resourceSetArn" type:"string" required:"true"`
 
-	// The name of the ResourceSet
+	// The name of the resource set.
 	//
 	// ResourceSetName is a required field
 	ResourceSetName *string `locationName:"resourceSetName" type:"string" required:"true"`
 
-	// AWS Resource Type of the resources in the ResourceSet
+	// The resource type of the resources in the resource set. Enter one of the
+	// following values for resource type:
+	//
+	// AWS::ApiGateway::Stage, AWS::ApiGatewayV2::Stage, AWS::AutoScaling::AutoScalingGroup,
+	// AWS::CloudWatch::Alarm, AWS::EC2::CustomerGateway, AWS::DynamoDB::Table,
+	// AWS::EC2::Volume, AWS::ElasticLoadBalancing::LoadBalancer, AWS::ElasticLoadBalancingV2::LoadBalancer,
+	// AWS::Lambda::Function, AWS::MSK::Cluster, AWS::RDS::DBCluster, AWS::Route53::HealthCheck,
+	// AWS::SQS::Queue, AWS::SNS::Topic, AWS::SNS::Subscription, AWS::EC2::VPC,
+	// AWS::EC2::VPNConnection, AWS::EC2::VPNGateway, AWS::Route53RecoveryReadiness::DNSTargetResource
 	//
 	// ResourceSetType is a required field
 	ResourceSetType *string `locationName:"resourceSetType" type:"string" required:"true"`
 
-	// A list of Resource objects
+	// A list of resource objects.
 	//
 	// Resources is a required field
 	Resources []*Resource `locationName:"resources" type:"list" required:"true"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -6849,7 +6883,7 @@ func (s *ResourceSetOutput_) SetTags(v map[string]*string) *ResourceSetOutput_ {
 	return s
 }
 
-// Result with status for an individual rule..
+// The result of a successful Rule request, with status for an individual rule.
 type RuleResult struct {
 	_ struct{} `type:"structure"`
 
@@ -6859,7 +6893,7 @@ type RuleResult struct {
 	// LastCheckedTimestamp is a required field
 	LastCheckedTimestamp *time.Time `locationName:"lastCheckedTimestamp" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// Details about the resource's readiness
+	// Details about the resource's readiness.
 	//
 	// Messages is a required field
 	Messages []*Message `locationName:"messages" type:"list" required:"true"`
@@ -6923,7 +6957,7 @@ type TagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
@@ -7000,14 +7034,14 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// The target resource the R53 record points to
+// The target resource that the Route 53 record points to.
 type TargetResource struct {
 	_ struct{} `type:"structure"`
 
-	// The NLB resource a DNS Target Resource points to
+	// The Network Load Balancer Resource.
 	NLBResource *NLBResource `locationName:"nLBResource" type:"structure"`
 
-	// The Route 53 resource a DNS Target Resource record points to
+	// The Route 53 resource.
 	R53Resource *R53ResourceRecord `locationName:"r53Resource" type:"structure"`
 }
 
@@ -7255,7 +7289,7 @@ type UpdateCellOutput struct {
 
 	ParentReadinessScopes []*string `locationName:"parentReadinessScopes" type:"list"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -7375,7 +7409,7 @@ type UpdateReadinessCheckOutput struct {
 
 	ResourceSet *string `locationName:"resourceSet" type:"string"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -7489,7 +7523,7 @@ type UpdateRecoveryGroupOutput struct {
 
 	RecoveryGroupName *string `locationName:"recoveryGroupName" type:"string"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -7617,7 +7651,7 @@ type UpdateResourceSetOutput struct {
 
 	Resources []*Resource `locationName:"resources" type:"list"`
 
-	// A collection of tags associated with a resource
+	// A collection of tags associated with a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -7732,7 +7766,7 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The readiness of an entire ReadinessCheck or an individual resource ARN.
+// The readiness status.
 const (
 	// ReadinessReady is a Readiness enum value
 	ReadinessReady = "READY"

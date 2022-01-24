@@ -3,7 +3,7 @@
 // Package route53recoveryreadiness provides the client and types for making API
 // requests to AWS Route53 Recovery Readiness.
 //
-// AWS Route53 Recovery Readiness
+// Recovery readiness
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/route53-recovery-readiness-2019-12-02 for more information on this service.
 //

@@ -1,394 +1,394 @@
 {
   "version" : "2.0",
-  "service" : "AWS Route53 Recovery Readiness",
+  "service" : "<p>Recovery readiness</p>",
   "operations" : {
-    "CreateCell" : "Creates a new Cell.",
-    "CreateCrossAccountAuthorization" : "Create a new cross account readiness authorization.",
-    "CreateReadinessCheck" : "Creates a new Readiness Check.",
-    "CreateRecoveryGroup" : "Creates a new Recovery Group.",
-    "CreateResourceSet" : "Creates a new Resource Set.",
-    "DeleteCell" : "Deletes an existing Cell.",
-    "DeleteCrossAccountAuthorization" : "Delete cross account readiness authorization",
-    "DeleteReadinessCheck" : "Deletes an existing Readiness Check.",
-    "DeleteRecoveryGroup" : "Deletes an existing Recovery Group.",
-    "DeleteResourceSet" : "Deletes an existing Resource Set.",
-    "GetArchitectureRecommendations" : "Returns a collection of recommendations to improve resilliance and readiness check quality for a Recovery Group.",
-    "GetCell" : "Returns information about a Cell.",
-    "GetCellReadinessSummary" : "Returns information about readiness of a Cell.",
-    "GetReadinessCheck" : "Returns information about a ReadinessCheck.",
-    "GetReadinessCheckResourceStatus" : "Returns detailed information about the status of an individual resource within a Readiness Check's Resource Set.",
-    "GetReadinessCheckStatus" : "Returns information about the status of a Readiness Check.",
-    "GetRecoveryGroup" : "Returns information about a Recovery Group.",
-    "GetRecoveryGroupReadinessSummary" : "Returns information about a Recovery Group.",
-    "GetResourceSet" : "Returns information about a Resource Set.",
-    "ListCells" : "Returns a collection of Cells.",
-    "ListCrossAccountAuthorizations" : "Returns a collection of cross account readiness authorizations.",
-    "ListReadinessChecks" : "Returns a collection of Readiness Checks.",
-    "ListRecoveryGroups" : "Returns a collection of Recovery Groups.",
-    "ListResourceSets" : "Returns a collection of Resource Sets.",
-    "ListRules" : "Returns a collection of rules that are applied as part of Readiness Checks.",
-    "ListTagsForResources" : "Returns a list of the tags assigned to the specified resource.",
-    "TagResource" : "Adds tags to the specified resource. You can specify one or more tags to add.",
-    "UntagResource" : "Removes tags from the specified resource. You can specify one or more tags to remove.",
-    "UpdateCell" : "Updates an existing Cell.",
-    "UpdateReadinessCheck" : "Updates an exisiting Readiness Check.",
-    "UpdateRecoveryGroup" : "Updates an existing Recovery Group.",
-    "UpdateResourceSet" : "Updates an existing Resource Set."
+    "CreateCell" : "<p>Creates a cell in an account.</p>",
+    "CreateCrossAccountAuthorization" : "<p>Creates a cross-account readiness authorization. This lets you authorize another account to work with Route 53 Application Recovery Controller, for example, to check the readiness status of resources in a separate account.</p>",
+    "CreateReadinessCheck" : "<p>Creates a readiness check in an account. A readiness check monitors a resource set in your application, such as a set of Amazon Aurora instances, that Application Recovery Controller is auditing recovery readiness for. The audits run once every minute on every resource that's associated with a readiness check.</p>",
+    "CreateRecoveryGroup" : "<p>Creates a recovery group in an account. A recovery group corresponds to an application and includes a list of the cells that make up the application.</p>",
+    "CreateResourceSet" : "<p>Creates a resource set. A resource set is a set of resources of one type that span multiple cells. You can associate a resource set with a readiness check to monitor the resources for failover readiness.</p>",
+    "DeleteCell" : "<p>Delete a cell. When successful, the response code is 204, with no response body.</p>",
+    "DeleteCrossAccountAuthorization" : "<p>Deletes cross account readiness authorization.</p>",
+    "DeleteReadinessCheck" : "<p>Deletes a readiness check.</p>",
+    "DeleteRecoveryGroup" : "<p>Deletes a recovery group.</p>",
+    "DeleteResourceSet" : "<p>Deletes a resource set.</p>",
+    "GetArchitectureRecommendations" : "<p>Gets recommendations about architecture designs for improving resiliency for an application, based on a recovery group.</p>",
+    "GetCell" : "<p>Gets information about a cell including cell name, cell Amazon Resource Name (ARN), ARNs of nested cells for this cell, and a list of those cell ARNs with their associated recovery group ARNs.</p>",
+    "GetCellReadinessSummary" : "<p>Gets readiness for a cell. Aggregates the readiness of all the resources that are associated with the cell into a single value.</p>",
+    "GetReadinessCheck" : "<p>Gets details about a readiness check.</p>",
+    "GetReadinessCheckResourceStatus" : "<p>Gets individual readiness status for a readiness check. To see the overall readiness status for a recovery group, that considers the readiness status for all the readiness checks in the recovery group, use GetRecoveryGroupReadinessSummary.</p>",
+    "GetReadinessCheckStatus" : "<p>Gets the readiness status for an individual readiness check. To see the overall readiness status for a recovery group, that considers the readiness status for all the readiness checks in a recovery group, use GetRecoveryGroupReadinessSummary.</p>",
+    "GetRecoveryGroup" : "<p>Gets details about a recovery group, including a list of the cells that are included in it.</p>",
+    "GetRecoveryGroupReadinessSummary" : "<p>Displays a summary of information about a recovery group's readiness status. Includes the readiness checks for resources in the recovery group and the readiness status of each one.</p>",
+    "GetResourceSet" : "<p>Displays the details about a resource set, including a list of the resources in the set.</p>",
+    "ListCells" : "<p>Lists the cells for an account.</p>",
+    "ListCrossAccountAuthorizations" : "<p>Lists the cross-account readiness authorizations that are in place for an account.</p>",
+    "ListReadinessChecks" : "<p>Lists the readiness checks for an account.</p>",
+    "ListRecoveryGroups" : "<p>Lists the recovery groups in an account.</p>",
+    "ListResourceSets" : "<p>Lists the resource sets in an account.</p>",
+    "ListRules" : "<p>Lists all readiness rules, or lists the readiness rules for a specific resource type.</p>",
+    "ListTagsForResources" : "<p>Lists the tags for a resource.</p>",
+    "TagResource" : "<p>Adds a tag to a resource.</p>",
+    "UntagResource" : "<p>Removes a tag from a resource.</p>",
+    "UpdateCell" : "<p>Updates a cell to replace the list of nested cells with a new list of nested cells.</p>",
+    "UpdateReadinessCheck" : "<p>Updates a readiness check.</p>",
+    "UpdateRecoveryGroup" : "<p>Updates a recovery group.</p>",
+    "UpdateResourceSet" : "<p>Updates a resource set.</p>"
   },
   "shapes" : {
     "CellCreateParameters" : {
-      "base" : "Parameters used to create a Cell",
+      "base" : "<p>Parameters used to create a cell.</p>",
       "refs" : { }
     },
     "CellOutput" : {
-      "base" : "A Cell and its properties",
+      "base" : "<p>Information about a cell.</p>",
       "refs" : {
         "__listOfCellOutput$member" : null
       }
     },
     "CellUpdateParameters" : {
-      "base" : "Parameters used to update a Cell",
+      "base" : "<p>Parameters used to update a cell.</p>",
       "refs" : { }
     },
     "CreateCrossAccountAuthorizationParameters" : {
-      "base" : "Parameters used to create a cross account authorization",
+      "base" : "<p>Parameters used to create a cross-account authorization.</p>",
       "refs" : { }
     },
     "CreateCrossAccountAuthorizationResult" : {
-      "base" : "The response for a CreateCrossAccountAuthorization operation.",
+      "base" : "<p>The result of a successful CreateCrossAccountAuthorization request.</p>",
       "refs" : { }
     },
     "CrossAccountAuthorization" : {
-      "base" : "A cross-account authorization, e.g. arn:aws:iam::123456789012:root",
+      "base" : "<p>CrossAccountAuthorization</p>",
       "refs" : {
-        "CreateCrossAccountAuthorizationParameters$CrossAccountAuthorization" : "The cross account authorization",
-        "CreateCrossAccountAuthorizationResult$CrossAccountAuthorization" : "The cross account authorization",
+        "CreateCrossAccountAuthorizationParameters$CrossAccountAuthorization" : "<p>The cross-account authorization.</p>",
+        "CreateCrossAccountAuthorizationResult$CrossAccountAuthorization" : "<p>The cross-account authorization.</p>",
         "__listOfCrossAccountAuthorization$member" : null
       }
     },
     "DNSTargetResource" : {
-      "base" : "A component for DNS/Routing Control Readiness Checks",
+      "base" : "<p>A component for DNS/routing control readiness checks and architecture checks.</p>",
       "refs" : {
-        "Resource$DnsTargetResource" : null
+        "Resource$DnsTargetResource" : "<p>The DNS target resource.</p>"
       }
     },
     "DeleteCrossAccountAuthorizationResult" : {
-      "base" : "The response for a DeleteCrossAccountAuthorization operation.",
+      "base" : "<p>A successful DeleteCrossAccountAuthorization request returns no response.</p>",
       "refs" : { }
     },
     "GetArchitectureRecommendationsOutput" : {
-      "base" : "Result from GetArchitectureRecommendations",
+      "base" : "<p>Result from GetArchitectureRecommendations call.</p>",
       "refs" : { }
     },
     "GetCellReadinessSummaryOutput" : {
-      "base" : "Result of a GetReadinessCellSummary operation",
+      "base" : "<p>Result of a GetReadinessCellSummary operation</p>",
       "refs" : { }
     },
     "GetReadinessCheckResourceStatusOutput" : {
-      "base" : "Result of a GetReadinessCheckResourceStatus operation",
+      "base" : "<p>Result of a GetReadinessCheckResourceStatus operation.</p>",
       "refs" : { }
     },
     "GetReadinessCheckStatusOutput" : {
-      "base" : "Result of a GetReadinessCheckStatus operation",
+      "base" : "<p>Result of a GetReadinessCheckStatus operation.</p>",
       "refs" : { }
     },
     "GetRecoveryGroupReadinessSummaryOutput" : {
-      "base" : "Result of a GetReadinessRecoveryGroupSummary operation",
+      "base" : "<p>Result of a GetReadinessRecoveryGroupSummary operation.</p>",
       "refs" : { }
     },
     "LastAuditTimestamp" : {
-      "base" : "The time a Recovery Group was last assessed for recommendations in UTC ISO-8601 format",
+      "base" : "<p>The time that a recovery group was last assessed for recommendations, in UTC ISO-8601 format.</p>",
       "refs" : {
-        "GetArchitectureRecommendationsOutput$LastAuditTimestamp" : "The time a Recovery Group was last assessed for recommendations in UTC ISO-8601 format."
+        "GetArchitectureRecommendationsOutput$LastAuditTimestamp" : "<p>The time that a recovery group was last assessed for recommendations, in UTC ISO-8601 format.</p>"
       }
     },
     "ListCellsResult" : {
-      "base" : "Response object for listCells",
+      "base" : "<p>The result of a successful ListCells request.</p>",
       "refs" : { }
     },
     "ListCrossAccountAuthorizationsResult" : {
-      "base" : "The response for a ListCrossAccountAuthorizations operation.",
+      "base" : "<p>The result of a successful ListCrossAccountAuthorizations request.</p>",
       "refs" : { }
     },
     "ListReadinessChecksResult" : {
-      "base" : "Response object for ListReadinessChecks",
+      "base" : "<p>The result of a successful ListReadinessChecks request.</p>",
       "refs" : { }
     },
     "ListRecoveryGroupsResult" : {
-      "base" : "Response object for listRecoveryGroups",
+      "base" : "<p>The result of a successful ListRecoveryGroups request.</p>",
       "refs" : { }
     },
     "ListResourceSetsResult" : {
-      "base" : "Response object for listResourceSets",
+      "base" : "<p>The result of a successful ListResourceSets request.</p>",
       "refs" : { }
     },
     "ListRulesOutput" : {
-      "base" : "A collection of rules used in a readiness check",
+      "base" : "<p>Readiness rule information, including the resource type, rule ID, and rule description.</p>",
       "refs" : {
         "__listOfListRulesOutput$member" : null
       }
     },
     "ListRulesResult" : {
-      "base" : "Response object for List RulePacks",
+      "base" : "<p>The result of a successful ListRules request.</p>",
       "refs" : { }
     },
     "Message" : {
-      "base" : "Information relating to readiness check status",
+      "base" : "<p>Information relating to readiness check status.</p>",
       "refs" : {
         "__listOfMessage$member" : null
       }
     },
     "NLBResource" : {
-      "base" : "The NLB resource a DNS Target Resource points to",
+      "base" : "<p>The Network Load Balancer resource that a DNS target resource points to.</p>",
       "refs" : {
-        "TargetResource$NLBResource" : null
+        "TargetResource$NLBResource" : "<p>The Network Load Balancer Resource.</p>"
       }
     },
     "R53ResourceRecord" : {
-      "base" : "The Route 53 resource a DNS Target Resource record points to",
+      "base" : "<p>The Route 53 resource that a DNS target resource record points to.</p>",
       "refs" : {
-        "TargetResource$R53Resource" : null
+        "TargetResource$R53Resource" : "<p>The Route 53 resource.</p>"
       }
     },
     "Readiness" : {
-      "base" : "The readiness of an entire ReadinessCheck or an individual resource ARN.",
+      "base" : "<p>The readiness status.</p>",
       "refs" : {
-        "GetCellReadinessSummaryOutput$Readiness" : "The readiness at Cell level.",
-        "GetReadinessCheckResourceStatusOutput$Readiness" : "The readiness at rule level.",
-        "GetReadinessCheckStatusOutput$Readiness" : "The readiness at rule level.",
-        "GetRecoveryGroupReadinessSummaryOutput$Readiness" : "The readiness at RecoveryGroup level.",
-        "ReadinessCheckSummary$Readiness" : "The readiness of this ReadinessCheck",
-        "ResourceResult$Readiness" : "The readiness of the resource.",
-        "RuleResult$Readiness" : "The readiness at rule level."
+        "GetCellReadinessSummaryOutput$Readiness" : "<p>The readiness at a cell level.</p>",
+        "GetReadinessCheckResourceStatusOutput$Readiness" : "<p>The readiness at a rule level.</p>",
+        "GetReadinessCheckStatusOutput$Readiness" : "<p>The readiness at rule level.</p>",
+        "GetRecoveryGroupReadinessSummaryOutput$Readiness" : "<p>The readiness status at a recovery group level.</p>",
+        "ReadinessCheckSummary$Readiness" : "<p>The readiness status of this readiness check.</p>",
+        "ResourceResult$Readiness" : "<p>The readiness of a resource.</p>",
+        "RuleResult$Readiness" : "<p>The readiness at rule level.</p>"
       }
     },
     "ReadinessCheckCreateParameters" : {
-      "base" : "Parameters used to create or update a ReadinessCheck",
+      "base" : "<p>Parameters used to create or update a readiness check.</p>",
       "refs" : { }
     },
     "ReadinessCheckOutput" : {
-      "base" : "A resource used for checking the readiness of a Resource Set",
+      "base" : "<p>A readiness check.</p>",
       "refs" : {
         "__listOfReadinessCheckOutput$member" : null
       }
     },
     "ReadinessCheckSummary" : {
-      "base" : "Summary of ReadinessCheck status, paginated in GetRecoveryGroupReadinessSummary and GetCellReadinessSummary",
+      "base" : "<p>Summary of all readiness check statuses in a recovery group, paginated in GetRecoveryGroupReadinessSummary and GetCellReadinessSummary.</p>",
       "refs" : {
         "__listOfReadinessCheckSummary$member" : null
       }
     },
     "ReadinessCheckTimestamp" : {
-      "base" : "The time the Cell was last checked for readiness, in ISO-8601 format, UTC.",
+      "base" : "<p>The time (UTC) that the cell was last checked for readiness, in ISO-8601 format.</p>",
       "refs" : {
-        "ResourceResult$LastCheckedTimestamp" : "The time the resource was last checked for readiness, in ISO-8601 format, UTC.",
-        "RuleResult$LastCheckedTimestamp" : "The time the resource was last checked for readiness, in ISO-8601 format, UTC."
+        "ResourceResult$LastCheckedTimestamp" : "<p>The time (UTC) that the resource was last checked for readiness, in ISO-8601 format.</p>",
+        "RuleResult$LastCheckedTimestamp" : "<p>The time the resource was last checked for readiness, in ISO-8601 format, UTC.</p>"
       }
     },
     "ReadinessCheckUpdateParameters" : {
-      "base" : "Parameters used to create or update a ReadinessCheck",
+      "base" : "<p>Parameter used to create or update a readiness check.</p>",
       "refs" : { }
     },
     "Recommendation" : {
-      "base" : "Guidance for improving Recovery Group resilliancy",
+      "base" : "<p>Recommendations that are provided to make an application more recovery resilient.</p>",
       "refs" : {
         "__listOfRecommendation$member" : null
       }
     },
     "RecoveryGroupCreateParameters" : {
-      "base" : "Parameters used to create an RecoveryGroup",
+      "base" : "<p>Parameters used to create a recovery group. A recovery group corresponds to your application and includes the cells that make up the application.</p>",
       "refs" : { }
     },
     "RecoveryGroupOutput" : {
-      "base" : "A Recovery Group generally containing multiple Cells",
+      "base" : "<p>A representation of the application, typically containing multiple cells.</p>",
       "refs" : {
         "__listOfRecoveryGroupOutput$member" : null
       }
     },
     "RecoveryGroupUpdateParameters" : {
-      "base" : "Parameters used to update an RecoveryGroup",
+      "base" : "<p>Parameters used to update a recovery group.</p>",
       "refs" : { }
     },
     "Resource" : {
-      "base" : "The resource element of a ResourceSet",
+      "base" : "<p>The resource element of a resource set.</p>",
       "refs" : {
         "__listOfResource$member" : null
       }
     },
     "ResourceResult" : {
-      "base" : "Result with status for an individual resource.",
+      "base" : "<p>The result of a successful Resource request, with status for an individual resource.</p>",
       "refs" : {
         "__listOfResourceResult$member" : null
       }
     },
     "ResourceSetCreateParameters" : {
-      "base" : "Parameters used to create a ResourceSet",
+      "base" : "<p>The parameters used to create a resource set.</p>",
       "refs" : { }
     },
     "ResourceSetOutput" : {
-      "base" : "A collection of resources of the same type",
+      "base" : "<p>A collection of resources of the same type.</p>",
       "refs" : {
         "__listOfResourceSetOutput$member" : null
       }
     },
     "ResourceSetUpdateParameters" : {
-      "base" : "Parameters used to create a ResourceSet",
+      "base" : "<p>Parameters used to create a resource set.</p>",
       "refs" : { }
     },
     "RuleResult" : {
-      "base" : "Result with status for an individual rule..",
+      "base" : "<p>The result of a successful Rule request, with status for an individual rule.</p>",
       "refs" : {
         "__listOfRuleResult$member" : null
       }
     },
     "Tags" : {
-      "base" : "A collection of tags associated with a resource",
+      "base" : "<p>A collection of tags associated with a resource.</p>",
       "refs" : {
         "CellCreateParameters$Tags" : null,
-        "CellOutput$Tags" : null,
+        "CellOutput$Tags" : "<p>Tags on the resources.</p>",
         "ReadinessCheckCreateParameters$Tags" : null,
         "ReadinessCheckOutput$Tags" : null,
         "RecoveryGroupCreateParameters$Tags" : null,
-        "RecoveryGroupOutput$Tags" : null,
-        "ResourceSetCreateParameters$Tags" : null,
+        "RecoveryGroupOutput$Tags" : "<p>The tags associated with the recovery group.</p>",
+        "ResourceSetCreateParameters$Tags" : "<p>A tag to associate with the parameters for a resource set.</p>",
         "ResourceSetOutput$Tags" : null,
-        "TagsModel$Tags" : null
+        "TagsModel$Tags" : "<p></p>"
       }
     },
     "TagsModel" : {
-      "base" : null,
+      "base" : "<p></p>",
       "refs" : { }
     },
     "TargetResource" : {
-      "base" : "The target resource the R53 record points to",
+      "base" : "<p>The target resource that the Route 53 record points to.</p>",
       "refs" : {
-        "DNSTargetResource$TargetResource" : null
+        "DNSTargetResource$TargetResource" : "<p>The target resource of the DNS target resource.</p>"
       }
     },
     "__listOfCellOutput" : {
       "base" : null,
       "refs" : {
-        "ListCellsResult$Cells" : "A list of Cells"
+        "ListCellsResult$Cells" : "<p>A list of cells.</p>"
       }
     },
     "__listOfCrossAccountAuthorization" : {
       "base" : null,
       "refs" : {
-        "ListCrossAccountAuthorizationsResult$CrossAccountAuthorizations" : "A list of CrossAccountAuthorizations"
+        "ListCrossAccountAuthorizationsResult$CrossAccountAuthorizations" : "<p>A list of cross-account authorizations.</p>"
       }
     },
     "__listOfListRulesOutput" : {
       "base" : null,
       "refs" : {
-        "ListRulesResult$Rules" : "A list of rules"
+        "ListRulesResult$Rules" : "<p>A list of readiness rules for a specific resource type.</p>"
       }
     },
     "__listOfMessage" : {
       "base" : null,
       "refs" : {
-        "GetReadinessCheckStatusOutput$Messages" : "Top level messages for readiness check status",
-        "RuleResult$Messages" : "Details about the resource's readiness"
+        "GetReadinessCheckStatusOutput$Messages" : "<p>Top level messages for readiness check status</p>",
+        "RuleResult$Messages" : "<p>Details about the resource's readiness.</p>"
       }
     },
     "__listOfReadinessCheckOutput" : {
       "base" : null,
       "refs" : {
-        "ListReadinessChecksResult$ReadinessChecks" : "A list of ReadinessCheck associated with the account"
+        "ListReadinessChecksResult$ReadinessChecks" : "<p>A list of readiness checks associated with the account.</p>"
       }
     },
     "__listOfReadinessCheckSummary" : {
       "base" : null,
       "refs" : {
-        "GetCellReadinessSummaryOutput$ReadinessChecks" : "Summaries for the ReadinessChecks making up the Cell",
-        "GetRecoveryGroupReadinessSummaryOutput$ReadinessChecks" : "Summaries for the ReadinessChecks making up the RecoveryGroup"
+        "GetCellReadinessSummaryOutput$ReadinessChecks" : "<p>Summaries for the readiness checks that make up the cell.</p>",
+        "GetRecoveryGroupReadinessSummaryOutput$ReadinessChecks" : "<p>Summaries of the readiness checks for the recovery group.</p>"
       }
     },
     "__listOfRecommendation" : {
       "base" : null,
       "refs" : {
-        "GetArchitectureRecommendationsOutput$Recommendations" : "A list of recommendations for the customer's application"
+        "GetArchitectureRecommendationsOutput$Recommendations" : "<p>A list of the recommendations for the customer's application.</p>"
       }
     },
     "__listOfRecoveryGroupOutput" : {
       "base" : null,
       "refs" : {
-        "ListRecoveryGroupsResult$RecoveryGroups" : "A list of RecoveryGroups"
+        "ListRecoveryGroupsResult$RecoveryGroups" : "<p>A list of recovery groups.</p>"
       }
     },
     "__listOfResource" : {
       "base" : null,
       "refs" : {
-        "ResourceSetCreateParameters$Resources" : "A list of Resource objects",
-        "ResourceSetOutput$Resources" : "A list of Resource objects",
-        "ResourceSetUpdateParameters$Resources" : "A list of Resource objects"
+        "ResourceSetCreateParameters$Resources" : "<p>A list of resource objects in the resource set.</p>",
+        "ResourceSetOutput$Resources" : "<p>A list of resource objects.</p>",
+        "ResourceSetUpdateParameters$Resources" : "<p>A list of resource objects.</p>"
       }
     },
     "__listOfResourceResult" : {
       "base" : null,
       "refs" : {
-        "GetReadinessCheckStatusOutput$Resources" : "Summary of resources's readiness"
+        "GetReadinessCheckStatusOutput$Resources" : "<p>Summary of the readiness of resources.</p>"
       }
     },
     "__listOfResourceSetOutput" : {
       "base" : null,
       "refs" : {
-        "ListResourceSetsResult$ResourceSets" : "A list of ResourceSets associated with the account"
+        "ListResourceSetsResult$ResourceSets" : "<p>A list of resource sets associated with the account.</p>"
       }
     },
     "__listOfRuleResult" : {
       "base" : null,
       "refs" : {
-        "GetReadinessCheckResourceStatusOutput$Rules" : "Details of the rules's results"
+        "GetReadinessCheckResourceStatusOutput$Rules" : "<p>Details of the rule's results.</p>"
       }
     },
     "__listOf__string" : {
       "base" : null,
       "refs" : {
-        "CellCreateParameters$Cells" : "A list of Cell arns contained within this Cell (for use in nested Cells, e.g. regions within which AZs)",
-        "CellOutput$Cells" : "A list of Cell arns",
-        "CellOutput$ParentReadinessScopes" : "A list of Cell ARNs and/or RecoveryGroup ARNs",
-        "CellUpdateParameters$Cells" : "A list of Cell arns, completely replaces previous list",
-        "RecoveryGroupCreateParameters$Cells" : "A list of Cell arns",
-        "RecoveryGroupOutput$Cells" : "A list of Cell arns",
-        "RecoveryGroupUpdateParameters$Cells" : "A list of Cell arns, completely replaces previous list",
-        "Resource$ReadinessScopes" : "A list of RecoveryGroup ARNs and/or Cell ARNs that this resource is contained within."
+        "CellCreateParameters$Cells" : "<p>A list of cell Amazon Resource Names (ARNs) contained within this cell, for use in nested cells. For example, Availability Zones within specific Amazon Web Services Regions.</p>",
+        "CellOutput$Cells" : "<p>A list of cell ARNs.</p>",
+        "CellOutput$ParentReadinessScopes" : "<p>The readiness scope for the cell, which can be a cell Amazon Resource Name (ARN) or a recovery group ARN. This is a list but currently can have only one element.</p>",
+        "CellUpdateParameters$Cells" : "<p>A list of cell Amazon Resource Names (ARNs), which completely replaces the previous list.</p>",
+        "RecoveryGroupCreateParameters$Cells" : "<p>A list of the cell Amazon Resource Names (ARNs) in the recovery group.</p>",
+        "RecoveryGroupOutput$Cells" : "<p>A list of a cell's Amazon Resource Names (ARNs).</p>",
+        "RecoveryGroupUpdateParameters$Cells" : "<p>A list of cell Amazon Resource Names (ARNs). This list completely replaces the previous list.</p>",
+        "Resource$ReadinessScopes" : "<p>A list of recovery group Amazon Resource Names (ARNs) and cell ARNs that this resource is contained within.</p>"
       }
     },
     "__string" : {
       "base" : null,
       "refs" : {
-        "CellCreateParameters$CellName" : "The name of the Cell to create",
-        "DNSTargetResource$DomainName" : "The DNS Name that acts as ingress point to a portion of application",
-        "DNSTargetResource$HostedZoneArn" : "The Hosted Zone ARN that contains the DNS record with the provided name of target resource.",
-        "DNSTargetResource$RecordSetId" : "The R53 Set Id to uniquely identify a record given a Name and a Type",
-        "DNSTargetResource$RecordType" : "The Type of DNS Record of target resource",
-        "GetArchitectureRecommendationsOutput$NextToken" : "A token that can be used to resume pagination from the end of the collection",
-        "GetCellReadinessSummaryOutput$NextToken" : "A token that can be used to resume pagination from the end of the collection.",
-        "GetReadinessCheckResourceStatusOutput$NextToken" : "A token that can be used to resume pagination from the end of the collection.",
-        "GetReadinessCheckStatusOutput$NextToken" : "A token that can be used to resume pagination from the end of the collection.",
-        "GetRecoveryGroupReadinessSummaryOutput$NextToken" : "A token that can be used to resume pagination from the end of the collection.",
-        "ListCellsResult$NextToken" : "A token that can be used to resume pagination from the end of the collection.",
-        "ListCrossAccountAuthorizationsResult$NextToken" : "A token that can be used to resume pagination from the end of the collection.",
-        "ListReadinessChecksResult$NextToken" : "A token that can be used to resume pagination from the end of the collection.",
-        "ListRecoveryGroupsResult$NextToken" : "A token that can be used to resume pagination from the end of the collection.",
-        "ListResourceSetsResult$NextToken" : "A token that can be used to resume pagination from the end of the collection.",
-        "ListRulesResult$NextToken" : "A token that can be used to resume pagination from the end of the collection.",
-        "Message$MessageText" : "The text of a readiness check message",
-        "NLBResource$Arn" : "An NLB resource arn",
-        "R53ResourceRecord$DomainName" : "The DNS target name",
-        "R53ResourceRecord$RecordSetId" : "The Resource Record set id",
-        "ReadinessCheckCreateParameters$ReadinessCheckName" : "The name of the ReadinessCheck to create",
-        "ReadinessCheckCreateParameters$ResourceSetName" : "The name of the ResourceSet to check",
-        "ReadinessCheckSummary$ReadinessCheckName" : "The name of a ReadinessCheck which is part of the given RecoveryGroup or Cell",
-        "ReadinessCheckUpdateParameters$ResourceSetName" : "The name of the ResourceSet to check",
-        "Recommendation$RecommendationText" : "Guidance text for recommendation",
-        "RecoveryGroupCreateParameters$RecoveryGroupName" : "The name of the RecoveryGroup to create",
-        "Resource$ComponentId" : "The component id of the resource, generated by the service when dnsTargetResource is used",
-        "Resource$ResourceArn" : "The ARN of the AWS resource, can be skipped if dnsTargetResource is used",
-        "ResourceResult$ComponentId" : "The component id of the resource",
-        "ResourceResult$ResourceArn" : "The ARN of the resource",
-        "ResourceSetCreateParameters$ResourceSetName" : "The name of the ResourceSet to create",
-        "RuleResult$RuleId" : "The identifier of the rule.",
+        "CellCreateParameters$CellName" : "<p>The name of the cell to create.</p>",
+        "DNSTargetResource$DomainName" : "<p>The domain name that acts as an ingress point to a portion of the customer application.</p>",
+        "DNSTargetResource$HostedZoneArn" : "<p>The hosted zone Amazon Resource Name (ARN) that contains the DNS record with the provided name of the target resource.</p>",
+        "DNSTargetResource$RecordSetId" : "<p>The Route 53 record set ID that uniquely identifies a DNS record, given a name and a type.</p>",
+        "DNSTargetResource$RecordType" : "<p>The type of DNS record of the target resource.</p>",
+        "GetArchitectureRecommendationsOutput$NextToken" : "<p>The token that identifies which batch of results you want to see.</p>",
+        "GetCellReadinessSummaryOutput$NextToken" : "<p>The token that identifies which batch of results you want to see.</p>",
+        "GetReadinessCheckResourceStatusOutput$NextToken" : "<p>The token that identifies which batch of results you want to see.</p>",
+        "GetReadinessCheckStatusOutput$NextToken" : "<p>The token that identifies which batch of results you want to see.</p>",
+        "GetRecoveryGroupReadinessSummaryOutput$NextToken" : "<p>The token that identifies which batch of results you want to see.</p>",
+        "ListCellsResult$NextToken" : "<p>The token that identifies which batch of results you want to see.</p>",
+        "ListCrossAccountAuthorizationsResult$NextToken" : "<p>The token that identifies which batch of results you want to see.</p>",
+        "ListReadinessChecksResult$NextToken" : "<p>The token that identifies which batch of results you want to see.</p>",
+        "ListRecoveryGroupsResult$NextToken" : "<p>The token that identifies which batch of results you want to see.</p>",
+        "ListResourceSetsResult$NextToken" : "<p>The token that identifies which batch of results you want to see.</p>",
+        "ListRulesResult$NextToken" : "<p>The token that identifies which batch of results you want to see.</p>",
+        "Message$MessageText" : "<p>The text of a readiness check message.</p>",
+        "NLBResource$Arn" : "<p>The Network Load Balancer resource Amazon Resource Name (ARN).</p>",
+        "R53ResourceRecord$DomainName" : "<p>The DNS target domain name.</p>",
+        "R53ResourceRecord$RecordSetId" : "<p>The Route 53 Resource Record Set ID.</p>",
+        "ReadinessCheckCreateParameters$ReadinessCheckName" : "<p>The name of the readiness check to create.</p>",
+        "ReadinessCheckCreateParameters$ResourceSetName" : "<p>The name of the resource set to check.</p>",
+        "ReadinessCheckSummary$ReadinessCheckName" : "<p>The name of a readiness check.</p>",
+        "ReadinessCheckUpdateParameters$ResourceSetName" : "<p>The name of the resource set to be checked.</p>",
+        "Recommendation$RecommendationText" : "<p>Text of the recommendations that are provided to make an application more recovery resilient.</p>",
+        "RecoveryGroupCreateParameters$RecoveryGroupName" : "<p>The name of the recovery group to create.</p>",
+        "Resource$ComponentId" : "<p>The component identifier of the resource, generated when DNS target resource is used.</p>",
+        "Resource$ResourceArn" : "<p>The Amazon Resource Name (ARN) of the Amazon Web Services resource.</p>",
+        "ResourceResult$ComponentId" : "<p>The component id of the resource.</p>",
+        "ResourceResult$ResourceArn" : "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "ResourceSetCreateParameters$ResourceSetName" : "<p>The name of the resource set to create.</p>",
+        "RuleResult$RuleId" : "<p>The identifier of the rule.</p>",
         "Tags$member" : null,
         "__listOf__string$member" : null
       }
@@ -396,36 +396,36 @@
     "__stringMax256" : {
       "base" : null,
       "refs" : {
-        "CellOutput$CellArn" : "The arn for the Cell",
-        "ListRulesOutput$RuleDescription" : "A description of the rule",
-        "ReadinessCheckOutput$ReadinessCheckArn" : "Arn associated with ReadinessCheck",
-        "RecoveryGroupOutput$RecoveryGroupArn" : "The arn for the RecoveryGroup",
-        "ResourceSetOutput$ResourceSetArn" : "The arn for the ResourceSet"
+        "CellOutput$CellArn" : "<p>The Amazon Resource Name (ARN) for the cell.</p>",
+        "ListRulesOutput$RuleDescription" : "<p>The description of a readiness rule.</p>",
+        "ReadinessCheckOutput$ReadinessCheckArn" : "<p>The Amazon Resource Name (ARN) associated with a readiness check.</p>",
+        "RecoveryGroupOutput$RecoveryGroupArn" : "<p>The Amazon Resource Name (ARN) for the recovery group.</p>",
+        "ResourceSetOutput$ResourceSetArn" : "<p>The Amazon Resource Name (ARN) for the resource set.</p>"
       }
     },
     "__stringMax64" : {
       "base" : null,
       "refs" : {
-        "ListRulesOutput$ResourceType" : "The resource type the rule applies to.",
-        "ListRulesOutput$RuleId" : "The Rule's ID."
+        "ListRulesOutput$ResourceType" : "<p>The resource type that the readiness rule applies to.</p>",
+        "ListRulesOutput$RuleId" : "<p>The ID for the readiness rule.</p>"
       }
     },
     "__stringMax64PatternAAZAZ09Z" : {
       "base" : null,
       "refs" : {
-        "CellOutput$CellName" : "The name of the Cell",
-        "ReadinessCheckOutput$ReadinessCheckName" : "Name for a ReadinessCheck",
-        "ReadinessCheckOutput$ResourceSet" : "Name of the ResourceSet to be checked",
-        "RecoveryGroupOutput$RecoveryGroupName" : "The name of the RecoveryGroup",
-        "ResourceSetOutput$ResourceSetName" : "The name of the ResourceSet"
+        "CellOutput$CellName" : "<p>The name of the cell.</p>",
+        "ReadinessCheckOutput$ReadinessCheckName" : "<p>Name of a readiness check.</p>",
+        "ReadinessCheckOutput$ResourceSet" : "<p>Name of the resource set to be checked.</p>",
+        "RecoveryGroupOutput$RecoveryGroupName" : "<p>The name of the recovery group.</p>",
+        "ResourceSetOutput$ResourceSetName" : "<p>The name of the resource set.</p>"
       }
     },
     "__stringPatternAWSAZaZ09AZaZ09" : {
       "base" : null,
       "refs" : {
-        "ResourceSetCreateParameters$ResourceSetType" : "AWS Resource type of the resources in the ResourceSet",
-        "ResourceSetOutput$ResourceSetType" : "AWS Resource Type of the resources in the ResourceSet",
-        "ResourceSetUpdateParameters$ResourceSetType" : "AWS Resource Type of the resources in the ResourceSet"
+        "ResourceSetCreateParameters$ResourceSetType" : "<p>The resource type of the resources in the resource set. Enter one of the following values for resource type:</p> <p>AWS::ApiGateway::Stage, AWS::ApiGatewayV2::Stage, AWS::AutoScaling::AutoScalingGroup, AWS::CloudWatch::Alarm, AWS::EC2::CustomerGateway, AWS::DynamoDB::Table, AWS::EC2::Volume, AWS::ElasticLoadBalancing::LoadBalancer, AWS::ElasticLoadBalancingV2::LoadBalancer, AWS::Lambda::Function, AWS::MSK::Cluster, AWS::RDS::DBCluster, AWS::Route53::HealthCheck, AWS::SQS::Queue, AWS::SNS::Topic, AWS::SNS::Subscription, AWS::EC2::VPC, AWS::EC2::VPNConnection, AWS::EC2::VPNGateway, AWS::Route53RecoveryReadiness::DNSTargetResource</p>",
+        "ResourceSetOutput$ResourceSetType" : "<p>The resource type of the resources in the resource set. Enter one of the following values for resource type:</p> <p>AWS::ApiGateway::Stage, AWS::ApiGatewayV2::Stage, AWS::AutoScaling::AutoScalingGroup, AWS::CloudWatch::Alarm, AWS::EC2::CustomerGateway, AWS::DynamoDB::Table, AWS::EC2::Volume, AWS::ElasticLoadBalancing::LoadBalancer, AWS::ElasticLoadBalancingV2::LoadBalancer, AWS::Lambda::Function, AWS::MSK::Cluster, AWS::RDS::DBCluster, AWS::Route53::HealthCheck, AWS::SQS::Queue, AWS::SNS::Topic, AWS::SNS::Subscription, AWS::EC2::VPC, AWS::EC2::VPNConnection, AWS::EC2::VPNGateway, AWS::Route53RecoveryReadiness::DNSTargetResource</p>",
+        "ResourceSetUpdateParameters$ResourceSetType" : "<p>The resource type of the resources in the resource set. Enter one of the following values for resource type:</p> <p>AWS::ApiGateway::Stage, AWS::ApiGatewayV2::Stage, AWS::AutoScaling::AutoScalingGroup, AWS::CloudWatch::Alarm, AWS::EC2::CustomerGateway, AWS::DynamoDB::Table, AWS::EC2::Volume, AWS::ElasticLoadBalancing::LoadBalancer, AWS::ElasticLoadBalancingV2::LoadBalancer, AWS::Lambda::Function, AWS::MSK::Cluster, AWS::RDS::DBCluster, AWS::Route53::HealthCheck, AWS::SQS::Queue, AWS::SNS::Topic, AWS::SNS::Subscription, AWS::EC2::VPC, AWS::EC2::VPNConnection, AWS::EC2::VPNGateway, AWS::Route53RecoveryReadiness::DNSTargetResource</p>"
       }
     }
   }
