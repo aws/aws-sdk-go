@@ -1,3 +1,9 @@
+Release v1.42.40 (2022-01-24)
+===
+
+### Service Client Updates
+* `service/route53-recovery-readiness`: Updates service documentation
+
 Release v1.42.39 (2022-01-21)
 ===
 
