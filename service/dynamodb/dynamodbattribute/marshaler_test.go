@@ -101,6 +101,11 @@ var marshallerMapTestInputs = []marshallerTestInput{
 		expected: map[string]*dynamodb.AttributeValue{},
 	},
 	{
+		input:    "some string",
+		expected: map[string]*dynamodb.AttributeValue{},
+		err:      &unsupportedMarshalTypeError{Type: reflect.TypeOf("")},
+	},
+	{
 		input:    map[string]interface{}{"string": "some string"},
 		expected: map[string]*dynamodb.AttributeValue{"string": {S: aws.String("some string")}},
 	},
