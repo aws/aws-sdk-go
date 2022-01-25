@@ -1257,6 +1257,37 @@ func TestRequestMarshaledEndpointWithNonDefaultPort(t *testing.T) {
 	}
 }
 
+func TestRequestCompleteWithoutHTTPResponse(t *testing.T) {
+	s := awstesting.NewClient(aws.NewConfig().WithRegion("mock-region"))
+	r := s.NewRequest(&request.Operation{
+		Name:       "FooBar",
+		HTTPMethod: "GET",
+		HTTPPath:   "/",
+	}, nil, nil)
+	r.Handlers.Sign.Clear()
+	r.Handlers.Sign.PushFront(func(r *request.Request) {
+		r.Error = fmt.Errorf("failed")
+	})
+	r.Handlers.Complete.PushBack(func(r *request.Request) {
+		if r.HTTPResponse == nil {
+			t.Fatalf("expect HTTPResponse not to be nil")
+		}
+		if r.HTTPResponse.Header == nil {
+			t.Fatalf("expect HTTPResponse.Header not to be nil")
+		}
+		if r.HTTPResponse.Body == nil {
+			t.Fatalf("expect HTTPResponse.Body not to be nil")
+		}
+	})
+	err := r.Send()
+	if err == nil {
+		t.Fatalf("expect error, got none")
+	}
+	if e, a := "failed", err.Error(); !strings.Contains(a, e) {
+		t.Errorf("expect %v error in %v", e, a)
+	}
+}
+
 type stubSeekFail struct {
 	Err error
 }
