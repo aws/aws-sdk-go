@@ -162,7 +162,14 @@ func Marshal(in interface{}) (*dynamodb.AttributeValue, error) {
 // This is useful for DynamoDB APIs such as PutItem.
 func MarshalMap(in interface{}) (map[string]*dynamodb.AttributeValue, error) {
 	av, err := NewEncoder().Encode(in)
-	if err != nil || av == nil || av.M == nil {
+	// If the encoding succeeded, but the object is a non-nil value that isn't
+	// map-like, synthesize a meaningful error
+	if err == nil && av != nil && av.M == nil && (av.NULL == nil || !*av.NULL) {
+		err = &unsupportedMarshalTypeError{Type: reflect.TypeOf(in)}
+	}
+	// If there is an error, return it; if not, but nothing is encoded, return
+	// an empty map and no error.
+	if err != nil || av == nil || (av.NULL != nil && *av.NULL) {
 		return map[string]*dynamodb.AttributeValue{}, err
 	}
 
