@@ -68,6 +68,10 @@ type ConnectAPI interface {
 	AssociateBotWithContext(aws.Context, *connect.AssociateBotInput, ...request.Option) (*connect.AssociateBotOutput, error)
 	AssociateBotRequest(*connect.AssociateBotInput) (*request.Request, *connect.AssociateBotOutput)
 
+	AssociateDefaultVocabulary(*connect.AssociateDefaultVocabularyInput) (*connect.AssociateDefaultVocabularyOutput, error)
+	AssociateDefaultVocabularyWithContext(aws.Context, *connect.AssociateDefaultVocabularyInput, ...request.Option) (*connect.AssociateDefaultVocabularyOutput, error)
+	AssociateDefaultVocabularyRequest(*connect.AssociateDefaultVocabularyInput) (*request.Request, *connect.AssociateDefaultVocabularyOutput)
+
 	AssociateInstanceStorageConfig(*connect.AssociateInstanceStorageConfigInput) (*connect.AssociateInstanceStorageConfigOutput, error)
 	AssociateInstanceStorageConfigWithContext(aws.Context, *connect.AssociateInstanceStorageConfigInput, ...request.Option) (*connect.AssociateInstanceStorageConfigOutput, error)
 	AssociateInstanceStorageConfigRequest(*connect.AssociateInstanceStorageConfigInput) (*request.Request, *connect.AssociateInstanceStorageConfigOutput)
@@ -144,6 +148,10 @@ type ConnectAPI interface {
 	CreateUserHierarchyGroupWithContext(aws.Context, *connect.CreateUserHierarchyGroupInput, ...request.Option) (*connect.CreateUserHierarchyGroupOutput, error)
 	CreateUserHierarchyGroupRequest(*connect.CreateUserHierarchyGroupInput) (*request.Request, *connect.CreateUserHierarchyGroupOutput)
 
+	CreateVocabulary(*connect.CreateVocabularyInput) (*connect.CreateVocabularyOutput, error)
+	CreateVocabularyWithContext(aws.Context, *connect.CreateVocabularyInput, ...request.Option) (*connect.CreateVocabularyOutput, error)
+	CreateVocabularyRequest(*connect.CreateVocabularyInput) (*request.Request, *connect.CreateVocabularyOutput)
+
 	DeleteContactFlow(*connect.DeleteContactFlowInput) (*connect.DeleteContactFlowOutput, error)
 	DeleteContactFlowWithContext(aws.Context, *connect.DeleteContactFlowInput, ...request.Option) (*connect.DeleteContactFlowOutput, error)
 	DeleteContactFlowRequest(*connect.DeleteContactFlowInput) (*request.Request, *connect.DeleteContactFlowOutput)
@@ -183,6 +191,10 @@ type ConnectAPI interface {
 	DeleteUserHierarchyGroup(*connect.DeleteUserHierarchyGroupInput) (*connect.DeleteUserHierarchyGroupOutput, error)
 	DeleteUserHierarchyGroupWithContext(aws.Context, *connect.DeleteUserHierarchyGroupInput, ...request.Option) (*connect.DeleteUserHierarchyGroupOutput, error)
 	DeleteUserHierarchyGroupRequest(*connect.DeleteUserHierarchyGroupInput) (*request.Request, *connect.DeleteUserHierarchyGroupOutput)
+
+	DeleteVocabulary(*connect.DeleteVocabularyInput) (*connect.DeleteVocabularyOutput, error)
+	DeleteVocabularyWithContext(aws.Context, *connect.DeleteVocabularyInput, ...request.Option) (*connect.DeleteVocabularyOutput, error)
+	DeleteVocabularyRequest(*connect.DeleteVocabularyInput) (*request.Request, *connect.DeleteVocabularyOutput)
 
 	DescribeAgentStatus(*connect.DescribeAgentStatusInput) (*connect.DescribeAgentStatusOutput, error)
 	DescribeAgentStatusWithContext(aws.Context, *connect.DescribeAgentStatusInput, ...request.Option) (*connect.DescribeAgentStatusOutput, error)
@@ -243,6 +255,10 @@ type ConnectAPI interface {
 	DescribeUserHierarchyStructure(*connect.DescribeUserHierarchyStructureInput) (*connect.DescribeUserHierarchyStructureOutput, error)
 	DescribeUserHierarchyStructureWithContext(aws.Context, *connect.DescribeUserHierarchyStructureInput, ...request.Option) (*connect.DescribeUserHierarchyStructureOutput, error)
 	DescribeUserHierarchyStructureRequest(*connect.DescribeUserHierarchyStructureInput) (*request.Request, *connect.DescribeUserHierarchyStructureOutput)
+
+	DescribeVocabulary(*connect.DescribeVocabularyInput) (*connect.DescribeVocabularyOutput, error)
+	DescribeVocabularyWithContext(aws.Context, *connect.DescribeVocabularyInput, ...request.Option) (*connect.DescribeVocabularyOutput, error)
+	DescribeVocabularyRequest(*connect.DescribeVocabularyInput) (*request.Request, *connect.DescribeVocabularyOutput)
 
 	DisassociateApprovedOrigin(*connect.DisassociateApprovedOriginInput) (*connect.DisassociateApprovedOriginOutput, error)
 	DisassociateApprovedOriginWithContext(aws.Context, *connect.DisassociateApprovedOriginInput, ...request.Option) (*connect.DisassociateApprovedOriginOutput, error)
@@ -339,6 +355,13 @@ type ConnectAPI interface {
 
 	ListContactReferencesPages(*connect.ListContactReferencesInput, func(*connect.ListContactReferencesOutput, bool) bool) error
 	ListContactReferencesPagesWithContext(aws.Context, *connect.ListContactReferencesInput, func(*connect.ListContactReferencesOutput, bool) bool, ...request.Option) error
+
+	ListDefaultVocabularies(*connect.ListDefaultVocabulariesInput) (*connect.ListDefaultVocabulariesOutput, error)
+	ListDefaultVocabulariesWithContext(aws.Context, *connect.ListDefaultVocabulariesInput, ...request.Option) (*connect.ListDefaultVocabulariesOutput, error)
+	ListDefaultVocabulariesRequest(*connect.ListDefaultVocabulariesInput) (*request.Request, *connect.ListDefaultVocabulariesOutput)
+
+	ListDefaultVocabulariesPages(*connect.ListDefaultVocabulariesInput, func(*connect.ListDefaultVocabulariesOutput, bool) bool) error
+	ListDefaultVocabulariesPagesWithContext(aws.Context, *connect.ListDefaultVocabulariesInput, func(*connect.ListDefaultVocabulariesOutput, bool) bool, ...request.Option) error
 
 	ListHoursOfOperations(*connect.ListHoursOfOperationsInput) (*connect.ListHoursOfOperationsOutput, error)
 	ListHoursOfOperationsWithContext(aws.Context, *connect.ListHoursOfOperationsInput, ...request.Option) (*connect.ListHoursOfOperationsOutput, error)
@@ -487,6 +510,13 @@ type ConnectAPI interface {
 	ResumeContactRecording(*connect.ResumeContactRecordingInput) (*connect.ResumeContactRecordingOutput, error)
 	ResumeContactRecordingWithContext(aws.Context, *connect.ResumeContactRecordingInput, ...request.Option) (*connect.ResumeContactRecordingOutput, error)
 	ResumeContactRecordingRequest(*connect.ResumeContactRecordingInput) (*request.Request, *connect.ResumeContactRecordingOutput)
+
+	SearchVocabularies(*connect.SearchVocabulariesInput) (*connect.SearchVocabulariesOutput, error)
+	SearchVocabulariesWithContext(aws.Context, *connect.SearchVocabulariesInput, ...request.Option) (*connect.SearchVocabulariesOutput, error)
+	SearchVocabulariesRequest(*connect.SearchVocabulariesInput) (*request.Request, *connect.SearchVocabulariesOutput)
+
+	SearchVocabulariesPages(*connect.SearchVocabulariesInput, func(*connect.SearchVocabulariesOutput, bool) bool) error
+	SearchVocabulariesPagesWithContext(aws.Context, *connect.SearchVocabulariesInput, func(*connect.SearchVocabulariesOutput, bool) bool, ...request.Option) error
 
 	StartChatContact(*connect.StartChatContactInput) (*connect.StartChatContactOutput, error)
 	StartChatContactWithContext(aws.Context, *connect.StartChatContactInput, ...request.Option) (*connect.StartChatContactOutput, error)

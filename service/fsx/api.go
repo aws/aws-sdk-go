@@ -774,6 +774,8 @@ func (c *FSx) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 //
 //    * Amazon FSx for NetApp ONTAP
 //
+//    * Amazon FSx for OpenZFS
+//
 //    * Amazon FSx for Windows File Server
 //
 // This operation requires a client request token in the request that Amazon
@@ -4096,7 +4098,7 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //
 //    * WeeklyMaintenanceStartTime
 //
-// For FSx for Lustre file systems, you can update the following properties:
+// For Amazon FSx for Lustre file systems, you can update the following properties:
 //
 //    * AutoImportPolicy
 //
@@ -4110,13 +4112,18 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //
 //    * WeeklyMaintenanceStartTime
 //
-// For FSx for ONTAP file systems, you can update the following properties:
+// For Amazon FSx for NetApp ONTAP file systems, you can update the following
+// properties:
 //
 //    * AutomaticBackupRetentionDays
 //
 //    * DailyAutomaticBackupStartTime
 //
+//    * DiskIopsConfiguration
+//
 //    * FsxAdminPassword
+//
+//    * StorageCapacity
 //
 //    * WeeklyMaintenanceStartTime
 //
@@ -4130,8 +4137,6 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //    * CopyTagsToVolumes
 //
 //    * DailyAutomaticBackupStartTime
-//
-//    * DiskIopsConfiguration
 //
 //    * ThroughputCapacity
 //
@@ -4605,20 +4610,18 @@ type AdministrativeAction struct {
 	//
 	//    * STORAGE_OPTIMIZATION - After the FILE_SYSTEM_UPDATE task to increase
 	//    a file system's storage capacity has been completed successfully, a STORAGE_OPTIMIZATION
-	//    task starts. For Windows, storage optimization is the process of migrating
-	//    the file system data to the new, larger disks. For Lustre, storage optimization
-	//    consists of rebalancing the data across the existing and newly added file
-	//    servers. For OpenZFS, storage optimization consists of migrating data
-	//    from the older smaller disks to the newer larger disks. You can track
-	//    the storage-optimization progress using the ProgressPercent property.
-	//    When STORAGE_OPTIMIZATION has been completed successfully, the parent
-	//    FILE_SYSTEM_UPDATE action status changes to COMPLETED. For more information,
-	//    see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
+	//    task starts. For Windows and ONTAP, storage optimization is the process
+	//    of migrating the file system data to newer larger disks. For Lustre, storage
+	//    optimization consists of rebalancing the data across the existing and
+	//    newly added file servers. You can track the storage-optimization progress
+	//    using the ProgressPercent property. When STORAGE_OPTIMIZATION has been
+	//    completed successfully, the parent FILE_SYSTEM_UPDATE action status changes
+	//    to COMPLETED. For more information, see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
 	//    in the Amazon FSx for Windows File Server User Guide, Managing storage
 	//    and throughput capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
 	//    in the Amazon FSx for Lustre User Guide, and Managing storage capacity
-	//    (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/managing-storage-capacity.html)
-	//    in the Amazon FSx for OpenZFS User Guide.
+	//    and provisioned IOPS (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-storage-capacity.html)
+	//    in the Amazon FSx for NetApp ONTAP User Guide.
 	//
 	//    * FILE_SYSTEM_ALIAS_ASSOCIATION - A file system update to associate a
 	//    new Domain Name System (DNS) alias with the file system. For more information,
@@ -6890,7 +6893,7 @@ type CreateFileSystemInput struct {
 	//    Windows, Lustre, ONTAP, and OpenZFS deployment types.
 	//
 	//    * Set to HDD to use hard disk drive storage. HDD is supported on SINGLE_AZ_2
-	//    and MULTI_AZ_1 Windows file system deployment types, and on PERSISTENT
+	//    and MULTI_AZ_1 Windows file system deployment types, and on PERSISTENT_1
 	//    Lustre file system deployment types.
 	//
 	// Default value is SSD. For more information, see Storage type options (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/optimize-fsx-costs.html#storage-type-options)
@@ -7175,7 +7178,7 @@ type CreateFileSystemLustreConfiguration struct {
 	// than SCRATCH_1.
 	//
 	// Choose PERSISTENT_1 for longer-term storage and for throughput-focused workloads
-	// that aren’t latency-sensitive. a. PERSISTENT_1 supports encryption of data
+	// that aren’t latency-sensitive. PERSISTENT_1 supports encryption of data
 	// in transit, and is available in all Amazon Web Services Regions in which
 	// FSx for Lustre is available.
 	//
@@ -7464,7 +7467,7 @@ type CreateFileSystemOntapConfiguration struct {
 	RouteTableIds []*string `type:"list"`
 
 	// Sets the throughput capacity for the file system that you're creating. Valid
-	// values are 512, 1024, and 2048 MBps.
+	// values are 128, 256, 512, 1024, and 2048 MBps.
 	//
 	// ThroughputCapacity is a required field
 	ThroughputCapacity *int64 `min:"8" type:"integer" required:"true"`
@@ -8072,6 +8075,20 @@ type CreateOntapVolumeConfiguration struct {
 	// FSx for ONTAP's intelligent tiering automatically transitions a volume's
 	// data between the file system's primary storage and capacity pool storage
 	// based on your access patterns.
+	//
+	// Valid tiering policies are the following:
+	//
+	//    * SNAPSHOT_ONLY - (Default value) moves cold snapshots to the capacity
+	//    pool storage tier.
+	//
+	//    * AUTO - moves cold user data and snapshots to the capacity pool storage
+	//    tier based on your access patterns.
+	//
+	//    * ALL - moves all user data blocks in both the active file system and
+	//    Snapshot copies to the storage pool tier.
+	//
+	//    * NONE - keeps a volume's data in the primary storage tier, preventing
+	//    it from being moved to the capacity pool tier.
 	TieringPolicy *TieringPolicy `type:"structure"`
 }
 
@@ -11226,7 +11243,8 @@ func (s *DeleteVolumeOntapResponse) SetFinalBackupTags(v []*Tag) *DeleteVolumeOn
 type DeleteVolumeOpenZFSConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// To delete the volume's children and snapshots, use the string DELETE_CHILD_VOLUMES_AND_SNAPSHOTS.
+	// To delete the volume's child volumes, snapshots, and clones, use the string
+	// DELETE_CHILD_VOLUMES_AND_SNAPSHOTS.
 	Options []*string `type:"list"`
 }
 
@@ -12467,8 +12485,8 @@ type FileSystem struct {
 	// or OPENZFS.
 	FileSystemType *string `type:"string" enum:"FileSystemType"`
 
-	// The Lustre version of the Amazon FSx for Lustrefile system, either 2.10 or
-	// 2.12.
+	// The Lustre version of the Amazon FSx for Lustre file system, either 2.10
+	// or 2.12.
 	FileSystemTypeVersion *string `min:"1" type:"string"`
 
 	// The ID of the Key Management Service (KMS) key used to encrypt the file system's
@@ -16966,6 +16984,20 @@ func (s TagResourceOutput) GoString() string {
 // FSx for ONTAP's intelligent tiering automatically transitions a volume's
 // data between the file system's primary storage and capacity pool storage
 // based on your access patterns.
+//
+// Valid tiering policies are the following:
+//
+//    * SNAPSHOT_ONLY - (Default value) moves cold snapshots to the capacity
+//    pool storage tier.
+//
+//    * AUTO - moves cold user data and snapshots to the capacity pool storage
+//    tier based on your access patterns.
+//
+//    * ALL - moves all user data blocks in both the active file system and
+//    Snapshot copies to the storage pool tier.
+//
+//    * NONE - keeps a volume's data in the primary storage tier, preventing
+//    it from being moved to the capacity pool tier.
 type TieringPolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -17339,9 +17371,9 @@ type UpdateFileSystemInput struct {
 	OpenZFSConfiguration *UpdateFileSystemOpenZFSConfiguration `type:"structure"`
 
 	// Use this parameter to increase the storage capacity of an Amazon FSx for
-	// Windows File Server or Amazon FSx for Lustre file system. Specifies the storage
-	// capacity target value, in GiB, to increase the storage capacity for the file
-	// system that you're updating.
+	// Windows File Server, Amazon FSx for Lustre, or Amazon FSx for NetApp ONTAP
+	// file system. Specifies the storage capacity target value, in GiB, to increase
+	// the storage capacity for the file system that you're updating.
 	//
 	// You can't make a storage capacity increase request if there is an existing
 	// storage capacity increase request in progress.
@@ -17349,12 +17381,14 @@ type UpdateFileSystemInput struct {
 	// For Windows file systems, the storage capacity target value must be at least
 	// 10 percent greater than the current storage capacity value. To increase storage
 	// capacity, the file system must have at least 16 MBps of throughput capacity.
+	// For more information, see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
+	// in the Amazon FSx for Windows File Server User Guide.
 	//
 	// For Lustre file systems, the storage capacity target value can be the following:
 	//
-	//    * For SCRATCH_2 and PERSISTENT_1 SSD deployment types, valid values are
-	//    in multiples of 2400 GiB. The value must be greater than the current storage
-	//    capacity.
+	//    * For SCRATCH_2, PERSISTENT_1, and PERSISTENT_2 SSD deployment types,
+	//    valid values are in multiples of 2400 GiB. The value must be greater than
+	//    the current storage capacity.
 	//
 	//    * For PERSISTENT HDD file systems, valid values are multiples of 6000
 	//    GiB for 12-MBps throughput per TiB file systems and multiples of 1800
@@ -17363,16 +17397,13 @@ type UpdateFileSystemInput struct {
 	//
 	//    * For SCRATCH_1 file systems, you can't increase the storage capacity.
 	//
-	// For OpenZFS file systems, the input/output operations per second (IOPS) automatically
-	// scale with increases to the storage capacity if IOPS is configured for automatic
-	// scaling. If the storage capacity increase would result in less than 3 IOPS
-	// per GiB of storage, this operation returns an error.
+	// For more information, see Managing storage and throughput capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
+	// in the Amazon FSx for Lustre User Guide.
 	//
-	// For more information, see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
-	// in the Amazon FSx for Windows File Server User Guide, Managing storage and
-	// throughput capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
-	// in the Amazon FSx for Lustre User Guide, and Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/managing-storage-capacity.html)
-	// in the Amazon FSx for OpenZFS User Guide.
+	// For ONTAP file systems, the storage capacity target value must be at least
+	// 10 percent greater than the current storage capacity value. For more information,
+	// see Managing storage capacity and provisioned IOPS (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-storage-capacity.html)
+	// in the Amazon FSx for NetApp ONTAP User Guide.
 	StorageCapacity *int64 `type:"integer"`
 
 	// The configuration updates for an Amazon FSx for Windows File Server file
@@ -17637,6 +17668,13 @@ type UpdateFileSystemOntapConfiguration struct {
 	// 05:00 specifies 5 AM daily.
 	DailyAutomaticBackupStartTime *string `min:"5" type:"string"`
 
+	// The SSD IOPS (input/output operations per second) configuration for an Amazon
+	// FSx for NetApp ONTAP file system. The default is 3 IOPS per GB of storage
+	// capacity, but you can provision additional IOPS per GB of storage. The configuration
+	// consists of an IOPS mode (AUTOMATIC or USER_PROVISIONED), and in the case
+	// of USER_PROVISIONED IOPS, the total number of SSD IOPS provisioned.
+	DiskIopsConfiguration *DiskIopsConfiguration `type:"structure"`
+
 	// The ONTAP administrative password for the fsxadmin user.
 	//
 	// FsxAdminPassword is a sensitive parameter and its value will be
@@ -17706,6 +17744,12 @@ func (s *UpdateFileSystemOntapConfiguration) SetDailyAutomaticBackupStartTime(v 
 	return s
 }
 
+// SetDiskIopsConfiguration sets the DiskIopsConfiguration field's value.
+func (s *UpdateFileSystemOntapConfiguration) SetDiskIopsConfiguration(v *DiskIopsConfiguration) *UpdateFileSystemOntapConfiguration {
+	s.DiskIopsConfiguration = v
+	return s
+}
+
 // SetFsxAdminPassword sets the FsxAdminPassword field's value.
 func (s *UpdateFileSystemOntapConfiguration) SetFsxAdminPassword(v string) *UpdateFileSystemOntapConfiguration {
 	s.FsxAdminPassword = &v
@@ -17757,7 +17801,7 @@ type UpdateFileSystemOpenZFSConfiguration struct {
 	DiskIopsConfiguration *DiskIopsConfiguration `type:"structure"`
 
 	// The throughput of an Amazon FSx file system, measured in megabytes per second
-	// (MBps), in 2 to the nth increments, between 2^3 (8) and 2^11 (2048).
+	// (MBps), in 2 to the nth increments, between 2^3 (8) and 2^12 (4096).
 	ThroughputCapacity *int64 `min:"8" type:"integer"`
 
 	// A recurring weekly time, in the format D:HH:MM.
@@ -19348,20 +19392,18 @@ func ActiveDirectoryErrorType_Values() []string {
 //
 //    * STORAGE_OPTIMIZATION - After the FILE_SYSTEM_UPDATE task to increase
 //    a file system's storage capacity has been completed successfully, a STORAGE_OPTIMIZATION
-//    task starts. For Windows, storage optimization is the process of migrating
-//    the file system data to the new, larger disks. For Lustre, storage optimization
-//    consists of rebalancing the data across the existing and newly added file
-//    servers. For OpenZFS, storage optimization consists of migrating data
-//    from the older smaller disks to the newer larger disks. You can track
-//    the storage-optimization progress using the ProgressPercent property.
-//    When STORAGE_OPTIMIZATION has been completed successfully, the parent
-//    FILE_SYSTEM_UPDATE action status changes to COMPLETED. For more information,
-//    see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
+//    task starts. For Windows and ONTAP, storage optimization is the process
+//    of migrating the file system data to newer larger disks. For Lustre, storage
+//    optimization consists of rebalancing the data across the existing and
+//    newly added file servers. You can track the storage-optimization progress
+//    using the ProgressPercent property. When STORAGE_OPTIMIZATION has been
+//    completed successfully, the parent FILE_SYSTEM_UPDATE action status changes
+//    to COMPLETED. For more information, see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
 //    in the Amazon FSx for Windows File Server User Guide, Managing storage
 //    and throughput capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
 //    in the Amazon FSx for Lustre User Guide, and Managing storage capacity
-//    (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/managing-storage-capacity.html)
-//    in the Amazon FSx for OpenZFS User Guide.
+//    and provisioned IOPS (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-storage-capacity.html)
+//    in the Amazon FSx for NetApp ONTAP User Guide.
 //
 //    * FILE_SYSTEM_ALIAS_ASSOCIATION - A file system update to associate a
 //    new Domain Name System (DNS) alias with the file system. For more information,

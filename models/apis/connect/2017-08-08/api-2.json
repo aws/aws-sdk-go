@@ -47,6 +47,22 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "AssociateDefaultVocabulary":{
+      "name":"AssociateDefaultVocabulary",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/default-vocabulary/{InstanceId}/{LanguageCode}"
+      },
+      "input":{"shape":"AssociateDefaultVocabularyRequest"},
+      "output":{"shape":"AssociateDefaultVocabularyResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "AssociateInstanceStorageConfig":{
       "name":"AssociateInstanceStorageConfig",
       "http":{
@@ -379,6 +395,24 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "CreateVocabulary":{
+      "name":"CreateVocabulary",
+      "http":{
+        "method":"POST",
+        "requestUri":"/vocabulary/{InstanceId}"
+      },
+      "input":{"shape":"CreateVocabularyRequest"},
+      "output":{"shape":"CreateVocabularyResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
     "DeleteContactFlow":{
       "name":"DeleteContactFlow",
       "http":{
@@ -529,6 +563,23 @@
         {"shape":"ResourceInUseException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "DeleteVocabulary":{
+      "name":"DeleteVocabulary",
+      "http":{
+        "method":"POST",
+        "requestUri":"/vocabulary-remove/{InstanceId}/{VocabularyId}"
+      },
+      "input":{"shape":"DeleteVocabularyRequest"},
+      "output":{"shape":"DeleteVocabularyResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceInUseException"}
       ]
     },
     "DescribeAgentStatus":{
@@ -769,6 +820,22 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "DescribeVocabulary":{
+      "name":"DescribeVocabulary",
+      "http":{
+        "method":"GET",
+        "requestUri":"/vocabulary/{InstanceId}/{VocabularyId}"
+      },
+      "input":{"shape":"DescribeVocabularyRequest"},
+      "output":{"shape":"DescribeVocabularyResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "DisassociateApprovedOrigin":{
@@ -1047,6 +1114,21 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServiceException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "ListDefaultVocabularies":{
+      "name":"ListDefaultVocabularies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/default-vocabulary-summary/{InstanceId}"
+      },
+      "input":{"shape":"ListDefaultVocabulariesRequest"},
+      "output":{"shape":"ListDefaultVocabulariesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "ListHoursOfOperations":{
@@ -1392,6 +1474,21 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "SearchVocabularies":{
+      "name":"SearchVocabularies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/vocabulary-summary/{InstanceId}"
+      },
+      "input":{"shape":"SearchVocabulariesRequest"},
+      "output":{"shape":"SearchVocabulariesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "StartChatContact":{
@@ -2192,6 +2289,31 @@
         "LexV2Bot":{"shape":"LexV2Bot"}
       }
     },
+    "AssociateDefaultVocabularyRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "LanguageCode"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "LanguageCode":{
+          "shape":"VocabularyLanguageCode",
+          "location":"uri",
+          "locationName":"LanguageCode"
+        },
+        "VocabularyId":{"shape":"VocabularyId"}
+      }
+    },
+    "AssociateDefaultVocabularyResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "AssociateInstanceStorageConfigRequest":{
       "type":"structure",
       "required":[
@@ -2974,6 +3096,43 @@
         "UserArn":{"shape":"ARN"}
       }
     },
+    "CreateVocabularyRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "VocabularyName",
+        "LanguageCode",
+        "Content"
+      ],
+      "members":{
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "VocabularyName":{"shape":"VocabularyName"},
+        "LanguageCode":{"shape":"VocabularyLanguageCode"},
+        "Content":{"shape":"VocabularyContent"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "CreateVocabularyResponse":{
+      "type":"structure",
+      "required":[
+        "VocabularyArn",
+        "VocabularyId",
+        "State"
+      ],
+      "members":{
+        "VocabularyArn":{"shape":"ARN"},
+        "VocabularyId":{"shape":"VocabularyId"},
+        "State":{"shape":"VocabularyState"}
+      }
+    },
     "Credentials":{
       "type":"structure",
       "members":{
@@ -3036,6 +3195,25 @@
     "CurrentMetrics":{
       "type":"list",
       "member":{"shape":"CurrentMetric"}
+    },
+    "DefaultVocabulary":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "LanguageCode",
+        "VocabularyId",
+        "VocabularyName"
+      ],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "LanguageCode":{"shape":"VocabularyLanguageCode"},
+        "VocabularyId":{"shape":"VocabularyId"},
+        "VocabularyName":{"shape":"VocabularyName"}
+      }
+    },
+    "DefaultVocabularyList":{
+      "type":"list",
+      "member":{"shape":"DefaultVocabulary"}
     },
     "Delay":{
       "type":"integer",
@@ -3233,6 +3411,38 @@
           "location":"uri",
           "locationName":"UserId"
         }
+      }
+    },
+    "DeleteVocabularyRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "VocabularyId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "VocabularyId":{
+          "shape":"VocabularyId",
+          "location":"uri",
+          "locationName":"VocabularyId"
+        }
+      }
+    },
+    "DeleteVocabularyResponse":{
+      "type":"structure",
+      "required":[
+        "VocabularyArn",
+        "VocabularyId",
+        "State"
+      ],
+      "members":{
+        "VocabularyArn":{"shape":"ARN"},
+        "VocabularyId":{"shape":"VocabularyId"},
+        "State":{"shape":"VocabularyState"}
       }
     },
     "DescribeAgentStatusRequest":{
@@ -3598,6 +3808,32 @@
       "type":"structure",
       "members":{
         "User":{"shape":"User"}
+      }
+    },
+    "DescribeVocabularyRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "VocabularyId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "VocabularyId":{
+          "shape":"VocabularyId",
+          "location":"uri",
+          "locationName":"VocabularyId"
+        }
+      }
+    },
+    "DescribeVocabularyResponse":{
+      "type":"structure",
+      "required":["Vocabulary"],
+      "members":{
+        "Vocabulary":{"shape":"Vocabulary"}
       }
     },
     "Description":{
@@ -4658,6 +4894,28 @@
       "members":{
         "ReferenceSummaryList":{"shape":"ReferenceSummaryList"},
         "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListDefaultVocabulariesRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "LanguageCode":{"shape":"VocabularyLanguageCode"},
+        "MaxResults":{"shape":"MaxResult100"},
+        "NextToken":{"shape":"VocabularyNextToken"}
+      }
+    },
+    "ListDefaultVocabulariesResponse":{
+      "type":"structure",
+      "required":["DefaultVocabularyList"],
+      "members":{
+        "DefaultVocabularyList":{"shape":"DefaultVocabularyList"},
+        "NextToken":{"shape":"VocabularyNextToken"}
       }
     },
     "ListHoursOfOperationsRequest":{
@@ -6147,6 +6405,29 @@
         "EncryptionConfig":{"shape":"EncryptionConfig"}
       }
     },
+    "SearchVocabulariesRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "MaxResults":{"shape":"MaxResult100"},
+        "NextToken":{"shape":"VocabularyNextToken"},
+        "State":{"shape":"VocabularyState"},
+        "NameStartsWith":{"shape":"VocabularyName"},
+        "LanguageCode":{"shape":"VocabularyLanguageCode"}
+      }
+    },
+    "SearchVocabulariesResponse":{
+      "type":"structure",
+      "members":{
+        "VocabularySummaryList":{"shape":"VocabularySummaryList"},
+        "NextToken":{"shape":"VocabularyNextToken"}
+      }
+    },
     "SecurityKey":{
       "type":"structure",
       "members":{
@@ -7328,6 +7609,111 @@
       "member":{"shape":"UserSummary"}
     },
     "Value":{"type":"double"},
+    "Vocabulary":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Id",
+        "Arn",
+        "LanguageCode",
+        "State",
+        "LastModifiedTime"
+      ],
+      "members":{
+        "Name":{"shape":"VocabularyName"},
+        "Id":{"shape":"VocabularyId"},
+        "Arn":{"shape":"ARN"},
+        "LanguageCode":{"shape":"VocabularyLanguageCode"},
+        "State":{"shape":"VocabularyState"},
+        "LastModifiedTime":{"shape":"VocabularyLastModifiedTime"},
+        "FailureReason":{"shape":"VocabularyFailureReason"},
+        "Content":{"shape":"VocabularyContent"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "VocabularyContent":{
+      "type":"string",
+      "max":60000,
+      "min":1
+    },
+    "VocabularyFailureReason":{"type":"string"},
+    "VocabularyId":{
+      "type":"string",
+      "max":500,
+      "min":1
+    },
+    "VocabularyLanguageCode":{
+      "type":"string",
+      "enum":[
+        "ar-AE",
+        "de-CH",
+        "de-DE",
+        "en-AB",
+        "en-AU",
+        "en-GB",
+        "en-IE",
+        "en-IN",
+        "en-US",
+        "en-WL",
+        "es-ES",
+        "es-US",
+        "fr-CA",
+        "fr-FR",
+        "hi-IN",
+        "it-IT",
+        "ja-JP",
+        "ko-KR",
+        "pt-BR",
+        "pt-PT",
+        "zh-CN"
+      ]
+    },
+    "VocabularyLastModifiedTime":{"type":"timestamp"},
+    "VocabularyName":{
+      "type":"string",
+      "max":140,
+      "min":1,
+      "pattern":"^[0-9a-zA-Z._-]+"
+    },
+    "VocabularyNextToken":{
+      "type":"string",
+      "max":131070,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "VocabularyState":{
+      "type":"string",
+      "enum":[
+        "CREATION_IN_PROGRESS",
+        "ACTIVE",
+        "CREATION_FAILED",
+        "DELETE_IN_PROGRESS"
+      ]
+    },
+    "VocabularySummary":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Id",
+        "Arn",
+        "LanguageCode",
+        "State",
+        "LastModifiedTime"
+      ],
+      "members":{
+        "Name":{"shape":"VocabularyName"},
+        "Id":{"shape":"VocabularyId"},
+        "Arn":{"shape":"ARN"},
+        "LanguageCode":{"shape":"VocabularyLanguageCode"},
+        "State":{"shape":"VocabularyState"},
+        "LastModifiedTime":{"shape":"VocabularyLastModifiedTime"},
+        "FailureReason":{"shape":"VocabularyFailureReason"}
+      }
+    },
+    "VocabularySummaryList":{
+      "type":"list",
+      "member":{"shape":"VocabularySummary"}
+    },
     "VoiceRecordingConfiguration":{
       "type":"structure",
       "members":{

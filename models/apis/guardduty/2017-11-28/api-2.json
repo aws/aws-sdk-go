@@ -953,6 +953,10 @@
         "PortProbeAction":{
           "shape":"PortProbeAction",
           "locationName":"portProbeAction"
+        },
+        "KubernetesApiCallAction":{
+          "shape":"KubernetesApiCallAction",
+          "locationName":"kubernetesApiCallAction"
         }
       }
     },
@@ -1025,6 +1029,10 @@
         "ErrorCode":{
           "shape":"String",
           "locationName":"errorCode"
+        },
+        "UserAgent":{
+          "shape":"String",
+          "locationName":"userAgent"
         },
         "RemoteIpDetails":{
           "shape":"RemoteIpDetails",
@@ -1189,6 +1197,43 @@
           "locationName":"lessThanOrEqual"
         }
       }
+    },
+    "Container":{
+      "type":"structure",
+      "members":{
+        "ContainerRuntime":{
+          "shape":"String",
+          "locationName":"containerRuntime"
+        },
+        "Id":{
+          "shape":"String",
+          "locationName":"id"
+        },
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "Image":{
+          "shape":"String",
+          "locationName":"image"
+        },
+        "ImagePrefix":{
+          "shape":"String",
+          "locationName":"imagePrefix"
+        },
+        "VolumeMounts":{
+          "shape":"VolumeMounts",
+          "locationName":"volumeMounts"
+        },
+        "SecurityContext":{
+          "shape":"SecurityContext",
+          "locationName":"securityContext"
+        }
+      }
+    },
+    "Containers":{
+      "type":"list",
+      "member":{"shape":"Container"}
     },
     "CountBySeverity":{
       "type":"map",
@@ -1509,7 +1554,8 @@
         "FLOW_LOGS",
         "CLOUD_TRAIL",
         "DNS_LOGS",
-        "S3_LOGS"
+        "S3_LOGS",
+        "KUBERNETES_AUDIT_LOGS"
       ]
     },
     "DataSourceConfigurations":{
@@ -1518,6 +1564,10 @@
         "S3Logs":{
           "shape":"S3LogsConfiguration",
           "locationName":"s3Logs"
+        },
+        "Kubernetes":{
+          "shape":"KubernetesConfiguration",
+          "locationName":"kubernetes"
         }
       }
     },
@@ -1545,6 +1595,10 @@
         "S3Logs":{
           "shape":"S3LogsConfigurationResult",
           "locationName":"s3Logs"
+        },
+        "Kubernetes":{
+          "shape":"KubernetesConfigurationResult",
+          "locationName":"kubernetes"
         }
       }
     },
@@ -1980,6 +2034,35 @@
       }
     },
     "Double":{"type":"double"},
+    "EksClusterDetails":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "Arn":{
+          "shape":"String",
+          "locationName":"arn"
+        },
+        "VpcId":{
+          "shape":"String",
+          "locationName":"vpcId"
+        },
+        "Status":{
+          "shape":"String",
+          "locationName":"status"
+        },
+        "Tags":{
+          "shape":"Tags",
+          "locationName":"tags"
+        },
+        "CreatedAt":{
+          "shape":"Timestamp",
+          "locationName":"createdAt"
+        }
+      }
+    },
     "Email":{
       "type":"string",
       "max":64,
@@ -2636,9 +2719,22 @@
         }
       }
     },
+    "Groups":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "GuardDutyArn":{
       "type":"string",
       "pattern":"^arn:[A-Za-z_.-]{1,20}:guardduty:[A-Za-z0-9_/.-]{0,63}:\\d+:detector/[A-Za-z0-9_/.-]{32,264}$"
+    },
+    "HostPath":{
+      "type":"structure",
+      "members":{
+        "Path":{
+          "shape":"String",
+          "locationName":"path"
+        }
+      }
     },
     "IamInstanceProfile":{
       "type":"structure",
@@ -2825,6 +2921,142 @@
     "Ipv6Addresses":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "KubernetesApiCallAction":{
+      "type":"structure",
+      "members":{
+        "RequestUri":{
+          "shape":"String",
+          "locationName":"requestUri"
+        },
+        "Verb":{
+          "shape":"String",
+          "locationName":"verb"
+        },
+        "SourceIps":{
+          "shape":"SourceIps",
+          "locationName":"sourceIps"
+        },
+        "UserAgent":{
+          "shape":"String",
+          "locationName":"userAgent"
+        },
+        "RemoteIpDetails":{
+          "shape":"RemoteIpDetails",
+          "locationName":"remoteIpDetails"
+        },
+        "StatusCode":{
+          "shape":"Integer",
+          "locationName":"statusCode"
+        },
+        "Parameters":{
+          "shape":"String",
+          "locationName":"parameters"
+        }
+      }
+    },
+    "KubernetesAuditLogsConfiguration":{
+      "type":"structure",
+      "required":["Enable"],
+      "members":{
+        "Enable":{
+          "shape":"Boolean",
+          "locationName":"enable"
+        }
+      }
+    },
+    "KubernetesAuditLogsConfigurationResult":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{
+          "shape":"DataSourceStatus",
+          "locationName":"status"
+        }
+      }
+    },
+    "KubernetesConfiguration":{
+      "type":"structure",
+      "required":["AuditLogs"],
+      "members":{
+        "AuditLogs":{
+          "shape":"KubernetesAuditLogsConfiguration",
+          "locationName":"auditLogs"
+        }
+      }
+    },
+    "KubernetesConfigurationResult":{
+      "type":"structure",
+      "required":["AuditLogs"],
+      "members":{
+        "AuditLogs":{
+          "shape":"KubernetesAuditLogsConfigurationResult",
+          "locationName":"auditLogs"
+        }
+      }
+    },
+    "KubernetesDetails":{
+      "type":"structure",
+      "members":{
+        "KubernetesUserDetails":{
+          "shape":"KubernetesUserDetails",
+          "locationName":"kubernetesUserDetails"
+        },
+        "KubernetesWorkloadDetails":{
+          "shape":"KubernetesWorkloadDetails",
+          "locationName":"kubernetesWorkloadDetails"
+        }
+      }
+    },
+    "KubernetesUserDetails":{
+      "type":"structure",
+      "members":{
+        "Username":{
+          "shape":"String",
+          "locationName":"username"
+        },
+        "Uid":{
+          "shape":"String",
+          "locationName":"uid"
+        },
+        "Groups":{
+          "shape":"Groups",
+          "locationName":"groups"
+        }
+      }
+    },
+    "KubernetesWorkloadDetails":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "Type":{
+          "shape":"String",
+          "locationName":"type"
+        },
+        "Uid":{
+          "shape":"String",
+          "locationName":"uid"
+        },
+        "Namespace":{
+          "shape":"String",
+          "locationName":"namespace"
+        },
+        "HostNetwork":{
+          "shape":"Boolean",
+          "locationName":"hostNetwork"
+        },
+        "Containers":{
+          "shape":"Containers",
+          "locationName":"containers"
+        },
+        "Volumes":{
+          "shape":"Volumes",
+          "locationName":"volumes"
+        }
+      }
     },
     "ListDetectorsRequest":{
       "type":"structure",
@@ -3403,6 +3635,10 @@
         "S3Logs":{
           "shape":"OrganizationS3LogsConfiguration",
           "locationName":"s3Logs"
+        },
+        "Kubernetes":{
+          "shape":"OrganizationKubernetesConfiguration",
+          "locationName":"kubernetes"
         }
       }
     },
@@ -3413,6 +3649,50 @@
         "S3Logs":{
           "shape":"OrganizationS3LogsConfigurationResult",
           "locationName":"s3Logs"
+        },
+        "Kubernetes":{
+          "shape":"OrganizationKubernetesConfigurationResult",
+          "locationName":"kubernetes"
+        }
+      }
+    },
+    "OrganizationKubernetesAuditLogsConfiguration":{
+      "type":"structure",
+      "required":["AutoEnable"],
+      "members":{
+        "AutoEnable":{
+          "shape":"Boolean",
+          "locationName":"autoEnable"
+        }
+      }
+    },
+    "OrganizationKubernetesAuditLogsConfigurationResult":{
+      "type":"structure",
+      "required":["AutoEnable"],
+      "members":{
+        "AutoEnable":{
+          "shape":"Boolean",
+          "locationName":"autoEnable"
+        }
+      }
+    },
+    "OrganizationKubernetesConfiguration":{
+      "type":"structure",
+      "required":["AuditLogs"],
+      "members":{
+        "AuditLogs":{
+          "shape":"OrganizationKubernetesAuditLogsConfiguration",
+          "locationName":"auditLogs"
+        }
+      }
+    },
+    "OrganizationKubernetesConfigurationResult":{
+      "type":"structure",
+      "required":["AuditLogs"],
+      "members":{
+        "AuditLogs":{
+          "shape":"OrganizationKubernetesAuditLogsConfigurationResult",
+          "locationName":"auditLogs"
         }
       }
     },
@@ -3616,6 +3896,14 @@
           "shape":"InstanceDetails",
           "locationName":"instanceDetails"
         },
+        "EksClusterDetails":{
+          "shape":"EksClusterDetails",
+          "locationName":"eksClusterDetails"
+        },
+        "KubernetesDetails":{
+          "shape":"KubernetesDetails",
+          "locationName":"kubernetesDetails"
+        },
         "ResourceType":{
           "shape":"String",
           "locationName":"resourceType"
@@ -3684,6 +3972,15 @@
         "Status":{
           "shape":"DataSourceStatus",
           "locationName":"status"
+        }
+      }
+    },
+    "SecurityContext":{
+      "type":"structure",
+      "members":{
+        "Privileged":{
+          "shape":"Boolean",
+          "locationName":"privileged"
         }
       }
     },
@@ -3761,6 +4058,10 @@
           "locationName":"orderBy"
         }
       }
+    },
+    "SourceIps":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "StartMonitoringMembersRequest":{
       "type":"structure",
@@ -4382,6 +4683,40 @@
           "locationName":"topResources"
         }
       }
+    },
+    "Volume":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "HostPath":{
+          "shape":"HostPath",
+          "locationName":"hostPath"
+        }
+      }
+    },
+    "VolumeMount":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "MountPath":{
+          "shape":"String",
+          "locationName":"mountPath"
+        }
+      }
+    },
+    "VolumeMounts":{
+      "type":"list",
+      "member":{"shape":"VolumeMount"}
+    },
+    "Volumes":{
+      "type":"list",
+      "member":{"shape":"Volume"}
     }
   }
 }

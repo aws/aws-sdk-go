@@ -5745,6 +5745,9 @@ type Action struct {
 	// Information about the DNS_REQUEST action described in this finding.
 	DnsRequestAction *DnsRequestAction `locationName:"dnsRequestAction" type:"structure"`
 
+	// Information about the Kubernetes API call action described in this finding.
+	KubernetesApiCallAction *KubernetesApiCallAction `locationName:"kubernetesApiCallAction" type:"structure"`
+
 	// Information about the NETWORK_CONNECTION action described in this finding.
 	NetworkConnectionAction *NetworkConnectionAction `locationName:"networkConnectionAction" type:"structure"`
 
@@ -5785,6 +5788,12 @@ func (s *Action) SetAwsApiCallAction(v *AwsApiCallAction) *Action {
 // SetDnsRequestAction sets the DnsRequestAction field's value.
 func (s *Action) SetDnsRequestAction(v *DnsRequestAction) *Action {
 	s.DnsRequestAction = v
+	return s
+}
+
+// SetKubernetesApiCallAction sets the KubernetesApiCallAction field's value.
+func (s *Action) SetKubernetesApiCallAction(v *KubernetesApiCallAction) *Action {
+	s.KubernetesApiCallAction = v
 	return s
 }
 
@@ -5954,6 +5963,8 @@ type AwsApiCallAction struct {
 
 	// The Amazon Web Services service name whose API was invoked.
 	ServiceName *string `locationName:"serviceName" type:"string"`
+
+	UserAgent *string `locationName:"userAgent" type:"string"`
 }
 
 // String returns the string representation.
@@ -6013,6 +6024,12 @@ func (s *AwsApiCallAction) SetRemoteIpDetails(v *RemoteIpDetails) *AwsApiCallAct
 // SetServiceName sets the ServiceName field's value.
 func (s *AwsApiCallAction) SetServiceName(v string) *AwsApiCallAction {
 	s.ServiceName = &v
+	return s
+}
+
+// SetUserAgent sets the UserAgent field's value.
+func (s *AwsApiCallAction) SetUserAgent(v string) *AwsApiCallAction {
+	s.UserAgent = &v
 	return s
 }
 
@@ -6458,6 +6475,94 @@ func (s *Condition) SetNeq(v []*string) *Condition {
 // SetNotEquals sets the NotEquals field's value.
 func (s *Condition) SetNotEquals(v []*string) *Condition {
 	s.NotEquals = v
+	return s
+}
+
+// Details of a container.
+type Container struct {
+	_ struct{} `type:"structure"`
+
+	// The container runtime (such as, Docker or containerd) used to run the container.
+	ContainerRuntime *string `locationName:"containerRuntime" type:"string"`
+
+	// Container ID.
+	Id *string `locationName:"id" type:"string"`
+
+	// Container image.
+	Image *string `locationName:"image" type:"string"`
+
+	// Part of the image name before the last slash. For example, imagePrefix for
+	// public.ecr.aws/amazonlinux/amazonlinux:latest would be public.ecr.aws/amazonlinux.
+	// If the image name is relative and does not have a slash, this field is empty.
+	ImagePrefix *string `locationName:"imagePrefix" type:"string"`
+
+	// Container name.
+	Name *string `locationName:"name" type:"string"`
+
+	// Container security context.
+	SecurityContext *SecurityContext `locationName:"securityContext" type:"structure"`
+
+	// Container volume mounts.
+	VolumeMounts []*VolumeMount `locationName:"volumeMounts" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Container) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Container) GoString() string {
+	return s.String()
+}
+
+// SetContainerRuntime sets the ContainerRuntime field's value.
+func (s *Container) SetContainerRuntime(v string) *Container {
+	s.ContainerRuntime = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Container) SetId(v string) *Container {
+	s.Id = &v
+	return s
+}
+
+// SetImage sets the Image field's value.
+func (s *Container) SetImage(v string) *Container {
+	s.Image = &v
+	return s
+}
+
+// SetImagePrefix sets the ImagePrefix field's value.
+func (s *Container) SetImagePrefix(v string) *Container {
+	s.ImagePrefix = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Container) SetName(v string) *Container {
+	s.Name = &v
+	return s
+}
+
+// SetSecurityContext sets the SecurityContext field's value.
+func (s *Container) SetSecurityContext(v *SecurityContext) *Container {
+	s.SecurityContext = v
+	return s
+}
+
+// SetVolumeMounts sets the VolumeMounts field's value.
+func (s *Container) SetVolumeMounts(v []*VolumeMount) *Container {
+	s.VolumeMounts = v
 	return s
 }
 
@@ -7610,6 +7715,9 @@ func (s *DNSLogsConfigurationResult) SetStatus(v string) *DNSLogsConfigurationRe
 type DataSourceConfigurations struct {
 	_ struct{} `type:"structure"`
 
+	// Describes whether any Kubernetes logs are enabled as data sources.
+	Kubernetes *KubernetesConfiguration `locationName:"kubernetes" type:"structure"`
+
 	// Describes whether S3 data event logs are enabled as a data source.
 	S3Logs *S3LogsConfiguration `locationName:"s3Logs" type:"structure"`
 }
@@ -7635,6 +7743,11 @@ func (s DataSourceConfigurations) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DataSourceConfigurations) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DataSourceConfigurations"}
+	if s.Kubernetes != nil {
+		if err := s.Kubernetes.Validate(); err != nil {
+			invalidParams.AddNested("Kubernetes", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.S3Logs != nil {
 		if err := s.S3Logs.Validate(); err != nil {
 			invalidParams.AddNested("S3Logs", err.(request.ErrInvalidParams))
@@ -7645,6 +7758,12 @@ func (s *DataSourceConfigurations) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetKubernetes sets the Kubernetes field's value.
+func (s *DataSourceConfigurations) SetKubernetes(v *KubernetesConfiguration) *DataSourceConfigurations {
+	s.Kubernetes = v
+	return s
 }
 
 // SetS3Logs sets the S3Logs field's value.
@@ -7673,6 +7792,10 @@ type DataSourceConfigurationsResult struct {
 	//
 	// FlowLogs is a required field
 	FlowLogs *FlowLogsConfigurationResult `locationName:"flowLogs" type:"structure" required:"true"`
+
+	// An object that contains information on the status of all Kubernetes data
+	// sources.
+	Kubernetes *KubernetesConfigurationResult `locationName:"kubernetes" type:"structure"`
 
 	// An object that contains information on the status of S3 Data event logs as
 	// a data source.
@@ -7714,6 +7837,12 @@ func (s *DataSourceConfigurationsResult) SetDNSLogs(v *DNSLogsConfigurationResul
 // SetFlowLogs sets the FlowLogs field's value.
 func (s *DataSourceConfigurationsResult) SetFlowLogs(v *FlowLogsConfigurationResult) *DataSourceConfigurationsResult {
 	s.FlowLogs = v
+	return s
+}
+
+// SetKubernetes sets the Kubernetes field's value.
+func (s *DataSourceConfigurationsResult) SetKubernetes(v *KubernetesConfigurationResult) *DataSourceConfigurationsResult {
+	s.Kubernetes = v
 	return s
 }
 
@@ -9116,6 +9245,83 @@ func (s DomainDetails) GoString() string {
 // SetDomain sets the Domain field's value.
 func (s *DomainDetails) SetDomain(v string) *DomainDetails {
 	s.Domain = &v
+	return s
+}
+
+// Details about the EKS cluster involved in a Kubernetes finding.
+type EksClusterDetails struct {
+	_ struct{} `type:"structure"`
+
+	// EKS cluster ARN.
+	Arn *string `locationName:"arn" type:"string"`
+
+	// The timestamp when the EKS cluster was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	// EKS cluster name.
+	Name *string `locationName:"name" type:"string"`
+
+	// The EKS cluster status.
+	Status *string `locationName:"status" type:"string"`
+
+	// The EKS cluster tags.
+	Tags []*Tag `locationName:"tags" type:"list"`
+
+	// The VPC ID to which the EKS cluster is attached.
+	VpcId *string `locationName:"vpcId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EksClusterDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EksClusterDetails) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *EksClusterDetails) SetArn(v string) *EksClusterDetails {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *EksClusterDetails) SetCreatedAt(v time.Time) *EksClusterDetails {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *EksClusterDetails) SetName(v string) *EksClusterDetails {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EksClusterDetails) SetStatus(v string) *EksClusterDetails {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *EksClusterDetails) SetTags(v []*Tag) *EksClusterDetails {
+	s.Tags = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *EksClusterDetails) SetVpcId(v string) *EksClusterDetails {
+	s.VpcId = &v
 	return s
 }
 
@@ -10840,6 +11046,39 @@ func (s *GetUsageStatisticsOutput) SetUsageStatistics(v *UsageStatistics) *GetUs
 	return s
 }
 
+// Represents a pre-existing file or directory on the host machine that the
+// volume maps to.
+type HostPath struct {
+	_ struct{} `type:"structure"`
+
+	// Path of the file or directory on the host that the volume maps to.
+	Path *string `locationName:"path" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HostPath) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HostPath) GoString() string {
+	return s.String()
+}
+
+// SetPath sets the Path field's value.
+func (s *HostPath) SetPath(v string) *HostPath {
+	s.Path = &v
+	return s
+}
+
 // Contains information about the EC2 instance profile.
 type IamInstanceProfile struct {
 	_ struct{} `type:"structure"`
@@ -11269,6 +11508,439 @@ func (s InviteMembersOutput) GoString() string {
 // SetUnprocessedAccounts sets the UnprocessedAccounts field's value.
 func (s *InviteMembersOutput) SetUnprocessedAccounts(v []*UnprocessedAccount) *InviteMembersOutput {
 	s.UnprocessedAccounts = v
+	return s
+}
+
+// Information about the Kubernetes API call action described in this finding.
+type KubernetesApiCallAction struct {
+	_ struct{} `type:"structure"`
+
+	// Parameters related to the Kubernetes API call action.
+	Parameters *string `locationName:"parameters" type:"string"`
+
+	// Contains information about the remote IP address of the connection.
+	RemoteIpDetails *RemoteIpDetails `locationName:"remoteIpDetails" type:"structure"`
+
+	// The Kubernetes API request URI.
+	RequestUri *string `locationName:"requestUri" type:"string"`
+
+	// The IP of the Kubernetes API caller and the IPs of any proxies or load balancers
+	// between the caller and the API endpoint.
+	SourceIps []*string `locationName:"sourceIps" type:"list"`
+
+	// The resulting HTTP response code of the Kubernetes API call action.
+	StatusCode *int64 `locationName:"statusCode" type:"integer"`
+
+	// The user agent of the caller of the Kubernetes API.
+	UserAgent *string `locationName:"userAgent" type:"string"`
+
+	// The Kubernetes API request HTTP verb.
+	Verb *string `locationName:"verb" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesApiCallAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesApiCallAction) GoString() string {
+	return s.String()
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *KubernetesApiCallAction) SetParameters(v string) *KubernetesApiCallAction {
+	s.Parameters = &v
+	return s
+}
+
+// SetRemoteIpDetails sets the RemoteIpDetails field's value.
+func (s *KubernetesApiCallAction) SetRemoteIpDetails(v *RemoteIpDetails) *KubernetesApiCallAction {
+	s.RemoteIpDetails = v
+	return s
+}
+
+// SetRequestUri sets the RequestUri field's value.
+func (s *KubernetesApiCallAction) SetRequestUri(v string) *KubernetesApiCallAction {
+	s.RequestUri = &v
+	return s
+}
+
+// SetSourceIps sets the SourceIps field's value.
+func (s *KubernetesApiCallAction) SetSourceIps(v []*string) *KubernetesApiCallAction {
+	s.SourceIps = v
+	return s
+}
+
+// SetStatusCode sets the StatusCode field's value.
+func (s *KubernetesApiCallAction) SetStatusCode(v int64) *KubernetesApiCallAction {
+	s.StatusCode = &v
+	return s
+}
+
+// SetUserAgent sets the UserAgent field's value.
+func (s *KubernetesApiCallAction) SetUserAgent(v string) *KubernetesApiCallAction {
+	s.UserAgent = &v
+	return s
+}
+
+// SetVerb sets the Verb field's value.
+func (s *KubernetesApiCallAction) SetVerb(v string) *KubernetesApiCallAction {
+	s.Verb = &v
+	return s
+}
+
+// Describes whether Kubernetes audit logs are enabled as a data source.
+type KubernetesAuditLogsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The status of Kubernetes audit logs as a data source.
+	//
+	// Enable is a required field
+	Enable *bool `locationName:"enable" type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesAuditLogsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesAuditLogsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KubernetesAuditLogsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KubernetesAuditLogsConfiguration"}
+	if s.Enable == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enable"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnable sets the Enable field's value.
+func (s *KubernetesAuditLogsConfiguration) SetEnable(v bool) *KubernetesAuditLogsConfiguration {
+	s.Enable = &v
+	return s
+}
+
+// Describes whether Kubernetes audit logs are enabled as a data source.
+type KubernetesAuditLogsConfigurationResult struct {
+	_ struct{} `type:"structure"`
+
+	// A value that describes whether Kubernetes audit logs are enabled as a data
+	// source.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" min:"1" type:"string" required:"true" enum:"DataSourceStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesAuditLogsConfigurationResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesAuditLogsConfigurationResult) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *KubernetesAuditLogsConfigurationResult) SetStatus(v string) *KubernetesAuditLogsConfigurationResult {
+	s.Status = &v
+	return s
+}
+
+// Describes whether any Kubernetes data sources are enabled.
+type KubernetesConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The status of Kubernetes audit logs as a data source.
+	//
+	// AuditLogs is a required field
+	AuditLogs *KubernetesAuditLogsConfiguration `locationName:"auditLogs" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KubernetesConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KubernetesConfiguration"}
+	if s.AuditLogs == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuditLogs"))
+	}
+	if s.AuditLogs != nil {
+		if err := s.AuditLogs.Validate(); err != nil {
+			invalidParams.AddNested("AuditLogs", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuditLogs sets the AuditLogs field's value.
+func (s *KubernetesConfiguration) SetAuditLogs(v *KubernetesAuditLogsConfiguration) *KubernetesConfiguration {
+	s.AuditLogs = v
+	return s
+}
+
+// Describes whether any Kubernetes logs will be enabled as a data source.
+type KubernetesConfigurationResult struct {
+	_ struct{} `type:"structure"`
+
+	// Describes whether Kubernetes audit logs are enabled as a data source.
+	//
+	// AuditLogs is a required field
+	AuditLogs *KubernetesAuditLogsConfigurationResult `locationName:"auditLogs" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesConfigurationResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesConfigurationResult) GoString() string {
+	return s.String()
+}
+
+// SetAuditLogs sets the AuditLogs field's value.
+func (s *KubernetesConfigurationResult) SetAuditLogs(v *KubernetesAuditLogsConfigurationResult) *KubernetesConfigurationResult {
+	s.AuditLogs = v
+	return s
+}
+
+// Details about Kubernetes resources such as a Kubernetes user or workload
+// resource involved in a Kubernetes finding.
+type KubernetesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the Kubernetes user involved in a Kubernetes finding.
+	KubernetesUserDetails *KubernetesUserDetails `locationName:"kubernetesUserDetails" type:"structure"`
+
+	// Details about the Kubernetes workload involved in a Kubernetes finding.
+	KubernetesWorkloadDetails *KubernetesWorkloadDetails `locationName:"kubernetesWorkloadDetails" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesDetails) GoString() string {
+	return s.String()
+}
+
+// SetKubernetesUserDetails sets the KubernetesUserDetails field's value.
+func (s *KubernetesDetails) SetKubernetesUserDetails(v *KubernetesUserDetails) *KubernetesDetails {
+	s.KubernetesUserDetails = v
+	return s
+}
+
+// SetKubernetesWorkloadDetails sets the KubernetesWorkloadDetails field's value.
+func (s *KubernetesDetails) SetKubernetesWorkloadDetails(v *KubernetesWorkloadDetails) *KubernetesDetails {
+	s.KubernetesWorkloadDetails = v
+	return s
+}
+
+// Details about the Kubernetes user involved in a Kubernetes finding.
+type KubernetesUserDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The groups that include the user who called the Kubernetes API.
+	Groups []*string `locationName:"groups" type:"list"`
+
+	// The user ID of the user who called the Kubernetes API.
+	Uid *string `locationName:"uid" type:"string"`
+
+	// The username of the user who called the Kubernetes API.
+	Username *string `locationName:"username" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesUserDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesUserDetails) GoString() string {
+	return s.String()
+}
+
+// SetGroups sets the Groups field's value.
+func (s *KubernetesUserDetails) SetGroups(v []*string) *KubernetesUserDetails {
+	s.Groups = v
+	return s
+}
+
+// SetUid sets the Uid field's value.
+func (s *KubernetesUserDetails) SetUid(v string) *KubernetesUserDetails {
+	s.Uid = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *KubernetesUserDetails) SetUsername(v string) *KubernetesUserDetails {
+	s.Username = &v
+	return s
+}
+
+// Details about the Kubernetes workload involved in a Kubernetes finding.
+type KubernetesWorkloadDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Containers running as part of the Kubernetes workload.
+	Containers []*Container `locationName:"containers" type:"list"`
+
+	// Whether the hostNetwork flag is enabled for the pods included in the workload.
+	HostNetwork *bool `locationName:"hostNetwork" type:"boolean"`
+
+	// Kubernetes workload name.
+	Name *string `locationName:"name" type:"string"`
+
+	// Kubernetes namespace that the workload is part of.
+	Namespace *string `locationName:"namespace" type:"string"`
+
+	// Kubernetes workload type (e.g. Pod, Deployment, etc.).
+	Type *string `locationName:"type" type:"string"`
+
+	// Kubernetes workload ID.
+	Uid *string `locationName:"uid" type:"string"`
+
+	// Volumes used by the Kubernetes workload.
+	Volumes []*Volume `locationName:"volumes" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesWorkloadDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KubernetesWorkloadDetails) GoString() string {
+	return s.String()
+}
+
+// SetContainers sets the Containers field's value.
+func (s *KubernetesWorkloadDetails) SetContainers(v []*Container) *KubernetesWorkloadDetails {
+	s.Containers = v
+	return s
+}
+
+// SetHostNetwork sets the HostNetwork field's value.
+func (s *KubernetesWorkloadDetails) SetHostNetwork(v bool) *KubernetesWorkloadDetails {
+	s.HostNetwork = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *KubernetesWorkloadDetails) SetName(v string) *KubernetesWorkloadDetails {
+	s.Name = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *KubernetesWorkloadDetails) SetNamespace(v string) *KubernetesWorkloadDetails {
+	s.Namespace = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *KubernetesWorkloadDetails) SetType(v string) *KubernetesWorkloadDetails {
+	s.Type = &v
+	return s
+}
+
+// SetUid sets the Uid field's value.
+func (s *KubernetesWorkloadDetails) SetUid(v string) *KubernetesWorkloadDetails {
+	s.Uid = &v
+	return s
+}
+
+// SetVolumes sets the Volumes field's value.
+func (s *KubernetesWorkloadDetails) SetVolumes(v []*Volume) *KubernetesWorkloadDetails {
+	s.Volumes = v
 	return s
 }
 
@@ -13015,6 +13687,10 @@ func (s *Organization) SetOrg(v string) *Organization {
 type OrganizationDataSourceConfigurations struct {
 	_ struct{} `type:"structure"`
 
+	// Describes the configuration of Kubernetes data sources for new members of
+	// the organization.
+	Kubernetes *OrganizationKubernetesConfiguration `locationName:"kubernetes" type:"structure"`
+
 	// Describes whether S3 data event logs are enabled for new members of the organization.
 	S3Logs *OrganizationS3LogsConfiguration `locationName:"s3Logs" type:"structure"`
 }
@@ -13040,6 +13716,11 @@ func (s OrganizationDataSourceConfigurations) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *OrganizationDataSourceConfigurations) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "OrganizationDataSourceConfigurations"}
+	if s.Kubernetes != nil {
+		if err := s.Kubernetes.Validate(); err != nil {
+			invalidParams.AddNested("Kubernetes", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.S3Logs != nil {
 		if err := s.S3Logs.Validate(); err != nil {
 			invalidParams.AddNested("S3Logs", err.(request.ErrInvalidParams))
@@ -13052,6 +13733,12 @@ func (s *OrganizationDataSourceConfigurations) Validate() error {
 	return nil
 }
 
+// SetKubernetes sets the Kubernetes field's value.
+func (s *OrganizationDataSourceConfigurations) SetKubernetes(v *OrganizationKubernetesConfiguration) *OrganizationDataSourceConfigurations {
+	s.Kubernetes = v
+	return s
+}
+
 // SetS3Logs sets the S3Logs field's value.
 func (s *OrganizationDataSourceConfigurations) SetS3Logs(v *OrganizationS3LogsConfiguration) *OrganizationDataSourceConfigurations {
 	s.S3Logs = v
@@ -13062,6 +13749,9 @@ func (s *OrganizationDataSourceConfigurations) SetS3Logs(v *OrganizationS3LogsCo
 // enabled for new members within the organization.
 type OrganizationDataSourceConfigurationsResult struct {
 	_ struct{} `type:"structure"`
+
+	// Describes the configuration of Kubernetes data sources.
+	Kubernetes *OrganizationKubernetesConfigurationResult `locationName:"kubernetes" type:"structure"`
 
 	// Describes whether S3 data event logs are enabled as a data source.
 	//
@@ -13087,9 +13777,187 @@ func (s OrganizationDataSourceConfigurationsResult) GoString() string {
 	return s.String()
 }
 
+// SetKubernetes sets the Kubernetes field's value.
+func (s *OrganizationDataSourceConfigurationsResult) SetKubernetes(v *OrganizationKubernetesConfigurationResult) *OrganizationDataSourceConfigurationsResult {
+	s.Kubernetes = v
+	return s
+}
+
 // SetS3Logs sets the S3Logs field's value.
 func (s *OrganizationDataSourceConfigurationsResult) SetS3Logs(v *OrganizationS3LogsConfigurationResult) *OrganizationDataSourceConfigurationsResult {
 	s.S3Logs = v
+	return s
+}
+
+// Organization-wide Kubernetes audit logs configuration.
+type OrganizationKubernetesAuditLogsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A value that contains information on whether Kubernetes audit logs should
+	// be enabled automatically as a data source for the organization.
+	//
+	// AutoEnable is a required field
+	AutoEnable *bool `locationName:"autoEnable" type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrganizationKubernetesAuditLogsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrganizationKubernetesAuditLogsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OrganizationKubernetesAuditLogsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OrganizationKubernetesAuditLogsConfiguration"}
+	if s.AutoEnable == nil {
+		invalidParams.Add(request.NewErrParamRequired("AutoEnable"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutoEnable sets the AutoEnable field's value.
+func (s *OrganizationKubernetesAuditLogsConfiguration) SetAutoEnable(v bool) *OrganizationKubernetesAuditLogsConfiguration {
+	s.AutoEnable = &v
+	return s
+}
+
+// The current configuration of Kubernetes audit logs as a data source for the
+// organization.
+type OrganizationKubernetesAuditLogsConfigurationResult struct {
+	_ struct{} `type:"structure"`
+
+	// Whether Kubernetes audit logs data source should be auto-enabled for new
+	// members joining the organization.
+	//
+	// AutoEnable is a required field
+	AutoEnable *bool `locationName:"autoEnable" type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrganizationKubernetesAuditLogsConfigurationResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrganizationKubernetesAuditLogsConfigurationResult) GoString() string {
+	return s.String()
+}
+
+// SetAutoEnable sets the AutoEnable field's value.
+func (s *OrganizationKubernetesAuditLogsConfigurationResult) SetAutoEnable(v bool) *OrganizationKubernetesAuditLogsConfigurationResult {
+	s.AutoEnable = &v
+	return s
+}
+
+// Organization-wide Kubernetes data sources configurations.
+type OrganizationKubernetesConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Whether Kubernetes audit logs data source should be auto-enabled for new
+	// members joining the organization.
+	//
+	// AuditLogs is a required field
+	AuditLogs *OrganizationKubernetesAuditLogsConfiguration `locationName:"auditLogs" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrganizationKubernetesConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrganizationKubernetesConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OrganizationKubernetesConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OrganizationKubernetesConfiguration"}
+	if s.AuditLogs == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuditLogs"))
+	}
+	if s.AuditLogs != nil {
+		if err := s.AuditLogs.Validate(); err != nil {
+			invalidParams.AddNested("AuditLogs", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuditLogs sets the AuditLogs field's value.
+func (s *OrganizationKubernetesConfiguration) SetAuditLogs(v *OrganizationKubernetesAuditLogsConfiguration) *OrganizationKubernetesConfiguration {
+	s.AuditLogs = v
+	return s
+}
+
+// The current configuration of all Kubernetes data sources for the organization.
+type OrganizationKubernetesConfigurationResult struct {
+	_ struct{} `type:"structure"`
+
+	// The current configuration of Kubernetes audit logs as a data source for the
+	// organization.
+	//
+	// AuditLogs is a required field
+	AuditLogs *OrganizationKubernetesAuditLogsConfigurationResult `locationName:"auditLogs" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrganizationKubernetesConfigurationResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrganizationKubernetesConfigurationResult) GoString() string {
+	return s.String()
+}
+
+// SetAuditLogs sets the AuditLogs field's value.
+func (s *OrganizationKubernetesConfigurationResult) SetAuditLogs(v *OrganizationKubernetesAuditLogsConfigurationResult) *OrganizationKubernetesConfigurationResult {
+	s.AuditLogs = v
 	return s
 }
 
@@ -13631,9 +14499,15 @@ type Resource struct {
 	// in the activity that prompted GuardDuty to generate a finding.
 	AccessKeyDetails *AccessKeyDetails `locationName:"accessKeyDetails" type:"structure"`
 
+	// Details about the EKS cluster involved in a Kubernetes finding.
+	EksClusterDetails *EksClusterDetails `locationName:"eksClusterDetails" type:"structure"`
+
 	// The information about the EC2 instance associated with the activity that
 	// prompted GuardDuty to generate a finding.
 	InstanceDetails *InstanceDetails `locationName:"instanceDetails" type:"structure"`
+
+	// Details about the Kubernetes user and workload involved in a Kubernetes finding.
+	KubernetesDetails *KubernetesDetails `locationName:"kubernetesDetails" type:"structure"`
 
 	// The type of Amazon Web Services resource.
 	ResourceType *string `locationName:"resourceType" type:"string"`
@@ -13666,9 +14540,21 @@ func (s *Resource) SetAccessKeyDetails(v *AccessKeyDetails) *Resource {
 	return s
 }
 
+// SetEksClusterDetails sets the EksClusterDetails field's value.
+func (s *Resource) SetEksClusterDetails(v *EksClusterDetails) *Resource {
+	s.EksClusterDetails = v
+	return s
+}
+
 // SetInstanceDetails sets the InstanceDetails field's value.
 func (s *Resource) SetInstanceDetails(v *InstanceDetails) *Resource {
 	s.InstanceDetails = v
+	return s
+}
+
+// SetKubernetesDetails sets the KubernetesDetails field's value.
+func (s *Resource) SetKubernetesDetails(v *KubernetesDetails) *Resource {
+	s.KubernetesDetails = v
 	return s
 }
 
@@ -13858,6 +14744,38 @@ func (s S3LogsConfigurationResult) GoString() string {
 // SetStatus sets the Status field's value.
 func (s *S3LogsConfigurationResult) SetStatus(v string) *S3LogsConfigurationResult {
 	s.Status = &v
+	return s
+}
+
+// Container security context.
+type SecurityContext struct {
+	_ struct{} `type:"structure"`
+
+	// Whether the container is privileged.
+	Privileged *bool `locationName:"privileged" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityContext) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityContext) GoString() string {
+	return s.String()
+}
+
+// SetPrivileged sets the Privileged field's value.
+func (s *SecurityContext) SetPrivileged(v bool) *SecurityContext {
+	s.Privileged = &v
 	return s
 }
 
@@ -15861,6 +16779,89 @@ func (s *UsageStatistics) SetTopResources(v []*UsageResourceResult) *UsageStatis
 	return s
 }
 
+// Volume used by the Kubernetes workload.
+type Volume struct {
+	_ struct{} `type:"structure"`
+
+	// Represents a pre-existing file or directory on the host machine that the
+	// volume maps to.
+	HostPath *HostPath `locationName:"hostPath" type:"structure"`
+
+	// Volume name.
+	Name *string `locationName:"name" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Volume) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Volume) GoString() string {
+	return s.String()
+}
+
+// SetHostPath sets the HostPath field's value.
+func (s *Volume) SetHostPath(v *HostPath) *Volume {
+	s.HostPath = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Volume) SetName(v string) *Volume {
+	s.Name = &v
+	return s
+}
+
+// Container volume mount.
+type VolumeMount struct {
+	_ struct{} `type:"structure"`
+
+	// Volume mount path.
+	MountPath *string `locationName:"mountPath" type:"string"`
+
+	// Volume mount name.
+	Name *string `locationName:"name" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VolumeMount) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VolumeMount) GoString() string {
+	return s.String()
+}
+
+// SetMountPath sets the MountPath field's value.
+func (s *VolumeMount) SetMountPath(v string) *VolumeMount {
+	s.MountPath = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *VolumeMount) SetName(v string) *VolumeMount {
+	s.Name = &v
+	return s
+}
+
 const (
 	// AdminStatusEnabled is a AdminStatus enum value
 	AdminStatusEnabled = "ENABLED"
@@ -15889,6 +16890,9 @@ const (
 
 	// DataSourceS3Logs is a DataSource enum value
 	DataSourceS3Logs = "S3_LOGS"
+
+	// DataSourceKubernetesAuditLogs is a DataSource enum value
+	DataSourceKubernetesAuditLogs = "KUBERNETES_AUDIT_LOGS"
 )
 
 // DataSource_Values returns all elements of the DataSource enum
@@ -15898,6 +16902,7 @@ func DataSource_Values() []string {
 		DataSourceCloudTrail,
 		DataSourceDnsLogs,
 		DataSourceS3Logs,
+		DataSourceKubernetesAuditLogs,
 	}
 }
 

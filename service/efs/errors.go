@@ -161,6 +161,12 @@ const (
 	// system specified.
 	ErrCodePolicyNotFound = "PolicyNotFound"
 
+	// ErrCodeReplicationNotFound for service response error code
+	// "ReplicationNotFound".
+	//
+	// Returned if the specified file system did not have a replication configuration.
+	ErrCodeReplicationNotFound = "ReplicationNotFound"
+
 	// ErrCodeSecurityGroupLimitExceeded for service response error code
 	// "SecurityGroupLimitExceeded".
 	//
@@ -232,6 +238,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"NetworkInterfaceLimitExceeded":     newErrorNetworkInterfaceLimitExceeded,
 	"NoFreeAddressesInSubnet":           newErrorNoFreeAddressesInSubnet,
 	"PolicyNotFound":                    newErrorPolicyNotFound,
+	"ReplicationNotFound":               newErrorReplicationNotFound,
 	"SecurityGroupLimitExceeded":        newErrorSecurityGroupLimitExceeded,
 	"SecurityGroupNotFound":             newErrorSecurityGroupNotFound,
 	"SubnetNotFound":                    newErrorSubnetNotFound,

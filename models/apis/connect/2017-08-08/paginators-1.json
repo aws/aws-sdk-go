@@ -45,6 +45,12 @@
       "output_token": "NextToken",
       "result_key": "ReferenceSummaryList"
     },
+    "ListDefaultVocabularies": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "DefaultVocabularyList"
+    },
     "ListHoursOfOperations": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -164,6 +170,12 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "UserSummaryList"
+    },
+    "SearchVocabularies": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "VocabularySummaryList"
     }
   }
 }

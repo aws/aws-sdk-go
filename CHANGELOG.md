@@ -1,3 +1,14 @@
+Release v1.42.41 (2022-01-25)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/elasticfilesystem`: Updates service API and documentation
+  * Use Amazon EFS Replication to replicate your Amazon EFS file system in the AWS Region of your preference.
+* `service/fsx`: Updates service API and documentation
+* `service/guardduty`: Updates service API and documentation
+  * Amazon GuardDuty expands threat detection coverage to protect Amazon Elastic Kubernetes Service (EKS) workloads.
+
 Release v1.42.40 (2022-01-24)
 ===
 

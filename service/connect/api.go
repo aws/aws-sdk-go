@@ -214,6 +214,100 @@ func (c *Connect) AssociateBotWithContext(ctx aws.Context, input *AssociateBotIn
 	return out, req.Send()
 }
 
+const opAssociateDefaultVocabulary = "AssociateDefaultVocabulary"
+
+// AssociateDefaultVocabularyRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateDefaultVocabulary operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateDefaultVocabulary for more information on using the AssociateDefaultVocabulary
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateDefaultVocabularyRequest method.
+//    req, resp := client.AssociateDefaultVocabularyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateDefaultVocabulary
+func (c *Connect) AssociateDefaultVocabularyRequest(input *AssociateDefaultVocabularyInput) (req *request.Request, output *AssociateDefaultVocabularyOutput) {
+	op := &request.Operation{
+		Name:       opAssociateDefaultVocabulary,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/default-vocabulary/{InstanceId}/{LanguageCode}",
+	}
+
+	if input == nil {
+		input = &AssociateDefaultVocabularyInput{}
+	}
+
+	output = &AssociateDefaultVocabularyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateDefaultVocabulary API operation for Amazon Connect Service.
+//
+// Associates an existing vocabulary as the default. Contact Lens for Amazon
+// Connect uses the vocabulary in post-call and real-time analysis sessions
+// for the given language.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation AssociateDefaultVocabulary for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateDefaultVocabulary
+func (c *Connect) AssociateDefaultVocabulary(input *AssociateDefaultVocabularyInput) (*AssociateDefaultVocabularyOutput, error) {
+	req, out := c.AssociateDefaultVocabularyRequest(input)
+	return out, req.Send()
+}
+
+// AssociateDefaultVocabularyWithContext is the same as AssociateDefaultVocabulary with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateDefaultVocabulary for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) AssociateDefaultVocabularyWithContext(ctx aws.Context, input *AssociateDefaultVocabularyInput, opts ...request.Option) (*AssociateDefaultVocabularyOutput, error) {
+	req, out := c.AssociateDefaultVocabularyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAssociateInstanceStorageConfig = "AssociateInstanceStorageConfig"
 
 // AssociateInstanceStorageConfigRequest generates a "aws/request.Request" representing the
@@ -2089,6 +2183,106 @@ func (c *Connect) CreateUserHierarchyGroupWithContext(ctx aws.Context, input *Cr
 	return out, req.Send()
 }
 
+const opCreateVocabulary = "CreateVocabulary"
+
+// CreateVocabularyRequest generates a "aws/request.Request" representing the
+// client's request for the CreateVocabulary operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateVocabulary for more information on using the CreateVocabulary
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateVocabularyRequest method.
+//    req, resp := client.CreateVocabularyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateVocabulary
+func (c *Connect) CreateVocabularyRequest(input *CreateVocabularyInput) (req *request.Request, output *CreateVocabularyOutput) {
+	op := &request.Operation{
+		Name:       opCreateVocabulary,
+		HTTPMethod: "POST",
+		HTTPPath:   "/vocabulary/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &CreateVocabularyInput{}
+	}
+
+	output = &CreateVocabularyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateVocabulary API operation for Amazon Connect Service.
+//
+// Creates a custom vocabulary associated with your Amazon Connect instance.
+// You can set a custom vocabulary to be your default vocabulary for a given
+// language. Contact Lens for Amazon Connect uses the default vocabulary in
+// post-call and real-time contact analysis sessions for that language.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateVocabulary for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * ResourceConflictException
+//   A resource already has that name.
+//
+//   * ServiceQuotaExceededException
+//   The service quota has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateVocabulary
+func (c *Connect) CreateVocabulary(input *CreateVocabularyInput) (*CreateVocabularyOutput, error) {
+	req, out := c.CreateVocabularyRequest(input)
+	return out, req.Send()
+}
+
+// CreateVocabularyWithContext is the same as CreateVocabulary with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateVocabulary for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateVocabularyWithContext(ctx aws.Context, input *CreateVocabularyInput, opts ...request.Option) (*CreateVocabularyOutput, error) {
+	req, out := c.CreateVocabularyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteContactFlow = "DeleteContactFlow"
 
 // DeleteContactFlowRequest generates a "aws/request.Request" representing the
@@ -3025,6 +3219,100 @@ func (c *Connect) DeleteUserHierarchyGroup(input *DeleteUserHierarchyGroupInput)
 // for more information on using Contexts.
 func (c *Connect) DeleteUserHierarchyGroupWithContext(ctx aws.Context, input *DeleteUserHierarchyGroupInput, opts ...request.Option) (*DeleteUserHierarchyGroupOutput, error) {
 	req, out := c.DeleteUserHierarchyGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteVocabulary = "DeleteVocabulary"
+
+// DeleteVocabularyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteVocabulary operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteVocabulary for more information on using the DeleteVocabulary
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteVocabularyRequest method.
+//    req, resp := client.DeleteVocabularyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteVocabulary
+func (c *Connect) DeleteVocabularyRequest(input *DeleteVocabularyInput) (req *request.Request, output *DeleteVocabularyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteVocabulary,
+		HTTPMethod: "POST",
+		HTTPPath:   "/vocabulary-remove/{InstanceId}/{VocabularyId}",
+	}
+
+	if input == nil {
+		input = &DeleteVocabularyInput{}
+	}
+
+	output = &DeleteVocabularyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteVocabulary API operation for Amazon Connect Service.
+//
+// Deletes the vocabulary that has the given identifier.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteVocabulary for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * ResourceInUseException
+//   That resource is already in use. Please try another.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteVocabulary
+func (c *Connect) DeleteVocabulary(input *DeleteVocabularyInput) (*DeleteVocabularyOutput, error) {
+	req, out := c.DeleteVocabularyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteVocabularyWithContext is the same as DeleteVocabulary with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteVocabulary for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteVocabularyWithContext(ctx aws.Context, input *DeleteVocabularyInput, opts ...request.Option) (*DeleteVocabularyOutput, error) {
+	req, out := c.DeleteVocabularyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4420,6 +4708,97 @@ func (c *Connect) DescribeUserHierarchyStructure(input *DescribeUserHierarchyStr
 // for more information on using Contexts.
 func (c *Connect) DescribeUserHierarchyStructureWithContext(ctx aws.Context, input *DescribeUserHierarchyStructureInput, opts ...request.Option) (*DescribeUserHierarchyStructureOutput, error) {
 	req, out := c.DescribeUserHierarchyStructureRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeVocabulary = "DescribeVocabulary"
+
+// DescribeVocabularyRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeVocabulary operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeVocabulary for more information on using the DescribeVocabulary
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeVocabularyRequest method.
+//    req, resp := client.DescribeVocabularyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeVocabulary
+func (c *Connect) DescribeVocabularyRequest(input *DescribeVocabularyInput) (req *request.Request, output *DescribeVocabularyOutput) {
+	op := &request.Operation{
+		Name:       opDescribeVocabulary,
+		HTTPMethod: "GET",
+		HTTPPath:   "/vocabulary/{InstanceId}/{VocabularyId}",
+	}
+
+	if input == nil {
+		input = &DescribeVocabularyInput{}
+	}
+
+	output = &DescribeVocabularyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeVocabulary API operation for Amazon Connect Service.
+//
+// Describes the specified vocabulary.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeVocabulary for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeVocabulary
+func (c *Connect) DescribeVocabulary(input *DescribeVocabularyInput) (*DescribeVocabularyOutput, error) {
+	req, out := c.DescribeVocabularyRequest(input)
+	return out, req.Send()
+}
+
+// DescribeVocabularyWithContext is the same as DescribeVocabulary with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeVocabulary for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeVocabularyWithContext(ctx aws.Context, input *DescribeVocabularyInput, opts ...request.Option) (*DescribeVocabularyOutput, error) {
+	req, out := c.DescribeVocabularyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6571,6 +6950,152 @@ func (c *Connect) ListContactReferencesPagesWithContext(ctx aws.Context, input *
 
 	for p.Next() {
 		if !fn(p.Page().(*ListContactReferencesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListDefaultVocabularies = "ListDefaultVocabularies"
+
+// ListDefaultVocabulariesRequest generates a "aws/request.Request" representing the
+// client's request for the ListDefaultVocabularies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDefaultVocabularies for more information on using the ListDefaultVocabularies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDefaultVocabulariesRequest method.
+//    req, resp := client.ListDefaultVocabulariesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListDefaultVocabularies
+func (c *Connect) ListDefaultVocabulariesRequest(input *ListDefaultVocabulariesInput) (req *request.Request, output *ListDefaultVocabulariesOutput) {
+	op := &request.Operation{
+		Name:       opListDefaultVocabularies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/default-vocabulary-summary/{InstanceId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDefaultVocabulariesInput{}
+	}
+
+	output = &ListDefaultVocabulariesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDefaultVocabularies API operation for Amazon Connect Service.
+//
+// Lists the default vocabularies for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListDefaultVocabularies for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListDefaultVocabularies
+func (c *Connect) ListDefaultVocabularies(input *ListDefaultVocabulariesInput) (*ListDefaultVocabulariesOutput, error) {
+	req, out := c.ListDefaultVocabulariesRequest(input)
+	return out, req.Send()
+}
+
+// ListDefaultVocabulariesWithContext is the same as ListDefaultVocabularies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDefaultVocabularies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListDefaultVocabulariesWithContext(ctx aws.Context, input *ListDefaultVocabulariesInput, opts ...request.Option) (*ListDefaultVocabulariesOutput, error) {
+	req, out := c.ListDefaultVocabulariesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDefaultVocabulariesPages iterates over the pages of a ListDefaultVocabularies operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDefaultVocabularies method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDefaultVocabularies operation.
+//    pageNum := 0
+//    err := client.ListDefaultVocabulariesPages(params,
+//        func(page *connect.ListDefaultVocabulariesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListDefaultVocabulariesPages(input *ListDefaultVocabulariesInput, fn func(*ListDefaultVocabulariesOutput, bool) bool) error {
+	return c.ListDefaultVocabulariesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDefaultVocabulariesPagesWithContext same as ListDefaultVocabulariesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListDefaultVocabulariesPagesWithContext(ctx aws.Context, input *ListDefaultVocabulariesInput, fn func(*ListDefaultVocabulariesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDefaultVocabulariesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDefaultVocabulariesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDefaultVocabulariesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -9782,6 +10307,153 @@ func (c *Connect) ResumeContactRecordingWithContext(ctx aws.Context, input *Resu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opSearchVocabularies = "SearchVocabularies"
+
+// SearchVocabulariesRequest generates a "aws/request.Request" representing the
+// client's request for the SearchVocabularies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchVocabularies for more information on using the SearchVocabularies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SearchVocabulariesRequest method.
+//    req, resp := client.SearchVocabulariesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchVocabularies
+func (c *Connect) SearchVocabulariesRequest(input *SearchVocabulariesInput) (req *request.Request, output *SearchVocabulariesOutput) {
+	op := &request.Operation{
+		Name:       opSearchVocabularies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/vocabulary-summary/{InstanceId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchVocabulariesInput{}
+	}
+
+	output = &SearchVocabulariesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchVocabularies API operation for Amazon Connect Service.
+//
+// Searches for vocabularies within a specific Amazon Connect instance using
+// State, NameStartsWith, and LanguageCode.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation SearchVocabularies for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchVocabularies
+func (c *Connect) SearchVocabularies(input *SearchVocabulariesInput) (*SearchVocabulariesOutput, error) {
+	req, out := c.SearchVocabulariesRequest(input)
+	return out, req.Send()
+}
+
+// SearchVocabulariesWithContext is the same as SearchVocabularies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchVocabularies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchVocabulariesWithContext(ctx aws.Context, input *SearchVocabulariesInput, opts ...request.Option) (*SearchVocabulariesOutput, error) {
+	req, out := c.SearchVocabulariesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchVocabulariesPages iterates over the pages of a SearchVocabularies operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchVocabularies method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a SearchVocabularies operation.
+//    pageNum := 0
+//    err := client.SearchVocabulariesPages(params,
+//        func(page *connect.SearchVocabulariesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) SearchVocabulariesPages(input *SearchVocabulariesInput, fn func(*SearchVocabulariesOutput, bool) bool) error {
+	return c.SearchVocabulariesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchVocabulariesPagesWithContext same as SearchVocabulariesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchVocabulariesPagesWithContext(ctx aws.Context, input *SearchVocabulariesInput, fn func(*SearchVocabulariesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchVocabulariesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchVocabulariesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchVocabulariesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opStartChatContact = "StartChatContact"
@@ -14303,6 +14975,109 @@ func (s AssociateBotOutput) GoString() string {
 	return s.String()
 }
 
+type AssociateDefaultVocabularyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The language code of the vocabulary entries. For a list of languages and
+	// their corresponding language codes, see What is Amazon Transcribe? (https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-whatis.html)
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `location:"uri" locationName:"LanguageCode" type:"string" required:"true" enum:"VocabularyLanguageCode"`
+
+	// The identifier of the custom vocabulary. If this is empty, the default is
+	// set to none.
+	VocabularyId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateDefaultVocabularyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateDefaultVocabularyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateDefaultVocabularyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateDefaultVocabularyInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.LanguageCode != nil && len(*s.LanguageCode) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LanguageCode", 1))
+	}
+	if s.VocabularyId != nil && len(*s.VocabularyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *AssociateDefaultVocabularyInput) SetInstanceId(v string) *AssociateDefaultVocabularyInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *AssociateDefaultVocabularyInput) SetLanguageCode(v string) *AssociateDefaultVocabularyInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetVocabularyId sets the VocabularyId field's value.
+func (s *AssociateDefaultVocabularyInput) SetVocabularyId(v string) *AssociateDefaultVocabularyInput {
+	s.VocabularyId = &v
+	return s
+}
+
+type AssociateDefaultVocabularyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateDefaultVocabularyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateDefaultVocabularyOutput) GoString() string {
+	return s.String()
+}
+
 type AssociateInstanceStorageConfigInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17836,6 +18611,188 @@ func (s *CreateUserOutput) SetUserId(v string) *CreateUserOutput {
 	return s
 }
 
+type CreateVocabularyInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If a create request is received more than once with same
+	// client token, subsequent requests return the previous response without creating
+	// a vocabulary again.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// The content of the custom vocabulary in plain-text format with a table of
+	// values. Each row in the table represents a word or a phrase, described with
+	// Phrase, IPA, SoundsLike, and DisplayAs fields. Separate the fields with TAB
+	// characters. The size limit is 50KB. For more information, see Create a custom
+	// vocabulary using a table (https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html#create-vocabulary-table).
+	//
+	// Content is a required field
+	Content *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The language code of the vocabulary entries. For a list of languages and
+	// their corresponding language codes, see What is Amazon Transcribe? (https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-whatis.html)
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"VocabularyLanguageCode"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+
+	// A unique name of the custom vocabulary.
+	//
+	// VocabularyName is a required field
+	VocabularyName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVocabularyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVocabularyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateVocabularyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateVocabularyInput"}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.Content != nil && len(*s.Content) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Content", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.VocabularyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VocabularyName"))
+	}
+	if s.VocabularyName != nil && len(*s.VocabularyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateVocabularyInput) SetClientToken(v string) *CreateVocabularyInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *CreateVocabularyInput) SetContent(v string) *CreateVocabularyInput {
+	s.Content = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateVocabularyInput) SetInstanceId(v string) *CreateVocabularyInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *CreateVocabularyInput) SetLanguageCode(v string) *CreateVocabularyInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateVocabularyInput) SetTags(v map[string]*string) *CreateVocabularyInput {
+	s.Tags = v
+	return s
+}
+
+// SetVocabularyName sets the VocabularyName field's value.
+func (s *CreateVocabularyInput) SetVocabularyName(v string) *CreateVocabularyInput {
+	s.VocabularyName = &v
+	return s
+}
+
+type CreateVocabularyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The current state of the custom vocabulary.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"VocabularyState"`
+
+	// The Amazon Resource Name (ARN) of the custom vocabulary.
+	//
+	// VocabularyArn is a required field
+	VocabularyArn *string `type:"string" required:"true"`
+
+	// The identifier of the custom vocabulary.
+	//
+	// VocabularyId is a required field
+	VocabularyId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVocabularyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVocabularyOutput) GoString() string {
+	return s.String()
+}
+
+// SetState sets the State field's value.
+func (s *CreateVocabularyOutput) SetState(v string) *CreateVocabularyOutput {
+	s.State = &v
+	return s
+}
+
+// SetVocabularyArn sets the VocabularyArn field's value.
+func (s *CreateVocabularyOutput) SetVocabularyArn(v string) *CreateVocabularyOutput {
+	s.VocabularyArn = &v
+	return s
+}
+
+// SetVocabularyId sets the VocabularyId field's value.
+func (s *CreateVocabularyOutput) SetVocabularyId(v string) *CreateVocabularyOutput {
+	s.VocabularyId = &v
+	return s
+}
+
 // Contains credentials to use for federation.
 type Credentials struct {
 	_ struct{} `type:"structure"`
@@ -18026,6 +18983,75 @@ func (s *CurrentMetricResult) SetCollections(v []*CurrentMetricData) *CurrentMet
 // SetDimensions sets the Dimensions field's value.
 func (s *CurrentMetricResult) SetDimensions(v *Dimensions) *CurrentMetricResult {
 	s.Dimensions = v
+	return s
+}
+
+// Contains information about a default vocabulary.
+type DefaultVocabulary struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The language code of the vocabulary entries. For a list of languages and
+	// their corresponding language codes, see What is Amazon Transcribe? (https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-whatis.html)
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"VocabularyLanguageCode"`
+
+	// The identifier of the custom vocabulary.
+	//
+	// VocabularyId is a required field
+	VocabularyId *string `min:"1" type:"string" required:"true"`
+
+	// A unique name of the custom vocabulary.
+	//
+	// VocabularyName is a required field
+	VocabularyName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultVocabulary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultVocabulary) GoString() string {
+	return s.String()
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DefaultVocabulary) SetInstanceId(v string) *DefaultVocabulary {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *DefaultVocabulary) SetLanguageCode(v string) *DefaultVocabulary {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetVocabularyId sets the VocabularyId field's value.
+func (s *DefaultVocabulary) SetVocabularyId(v string) *DefaultVocabulary {
+	s.VocabularyId = &v
+	return s
+}
+
+// SetVocabularyName sets the VocabularyName field's value.
+func (s *DefaultVocabulary) SetVocabularyName(v string) *DefaultVocabulary {
+	s.VocabularyName = &v
 	return s
 }
 
@@ -18917,6 +19943,128 @@ func (s DeleteUserOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DeleteUserOutput) GoString() string {
 	return s.String()
+}
+
+type DeleteVocabularyInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the custom vocabulary.
+	//
+	// VocabularyId is a required field
+	VocabularyId *string `location:"uri" locationName:"VocabularyId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVocabularyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVocabularyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVocabularyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVocabularyInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.VocabularyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VocabularyId"))
+	}
+	if s.VocabularyId != nil && len(*s.VocabularyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteVocabularyInput) SetInstanceId(v string) *DeleteVocabularyInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetVocabularyId sets the VocabularyId field's value.
+func (s *DeleteVocabularyInput) SetVocabularyId(v string) *DeleteVocabularyInput {
+	s.VocabularyId = &v
+	return s
+}
+
+type DeleteVocabularyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The current state of the custom vocabulary.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"VocabularyState"`
+
+	// The Amazon Resource Name (ARN) of the custom vocabulary.
+	//
+	// VocabularyArn is a required field
+	VocabularyArn *string `type:"string" required:"true"`
+
+	// The identifier of the custom vocabulary.
+	//
+	// VocabularyId is a required field
+	VocabularyId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVocabularyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVocabularyOutput) GoString() string {
+	return s.String()
+}
+
+// SetState sets the State field's value.
+func (s *DeleteVocabularyOutput) SetState(v string) *DeleteVocabularyOutput {
+	s.State = &v
+	return s
+}
+
+// SetVocabularyArn sets the VocabularyArn field's value.
+func (s *DeleteVocabularyOutput) SetVocabularyArn(v string) *DeleteVocabularyOutput {
+	s.VocabularyArn = &v
+	return s
+}
+
+// SetVocabularyId sets the VocabularyId field's value.
+func (s *DeleteVocabularyOutput) SetVocabularyId(v string) *DeleteVocabularyOutput {
+	s.VocabularyId = &v
+	return s
 }
 
 type DescribeAgentStatusInput struct {
@@ -20366,6 +21514,108 @@ func (s DescribeUserOutput) GoString() string {
 // SetUser sets the User field's value.
 func (s *DescribeUserOutput) SetUser(v *User) *DescribeUserOutput {
 	s.User = v
+	return s
+}
+
+type DescribeVocabularyInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the custom vocabulary.
+	//
+	// VocabularyId is a required field
+	VocabularyId *string `location:"uri" locationName:"VocabularyId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVocabularyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVocabularyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeVocabularyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeVocabularyInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.VocabularyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VocabularyId"))
+	}
+	if s.VocabularyId != nil && len(*s.VocabularyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeVocabularyInput) SetInstanceId(v string) *DescribeVocabularyInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetVocabularyId sets the VocabularyId field's value.
+func (s *DescribeVocabularyInput) SetVocabularyId(v string) *DescribeVocabularyInput {
+	s.VocabularyId = &v
+	return s
+}
+
+type DescribeVocabularyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of specific words that you want Contact Lens for Amazon Connect to
+	// recognize in your audio input. They are generally domain-specific words and
+	// phrases, words that Contact Lens is not recognizing, or proper nouns.
+	//
+	// Vocabulary is a required field
+	Vocabulary *Vocabulary `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVocabularyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVocabularyOutput) GoString() string {
+	return s.String()
+}
+
+// SetVocabulary sets the Vocabulary field's value.
+func (s *DescribeVocabularyOutput) SetVocabulary(v *Vocabulary) *DescribeVocabularyOutput {
+	s.Vocabulary = v
 	return s
 }
 
@@ -25120,6 +26370,133 @@ func (s *ListContactReferencesOutput) SetReferenceSummaryList(v []*ReferenceSumm
 	return s
 }
 
+type ListDefaultVocabulariesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The language code of the vocabulary entries. For a list of languages and
+	// their corresponding language codes, see What is Amazon Transcribe? (https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-whatis.html)
+	LanguageCode *string `type:"string" enum:"VocabularyLanguageCode"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDefaultVocabulariesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDefaultVocabulariesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDefaultVocabulariesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDefaultVocabulariesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListDefaultVocabulariesInput) SetInstanceId(v string) *ListDefaultVocabulariesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *ListDefaultVocabulariesInput) SetLanguageCode(v string) *ListDefaultVocabulariesInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDefaultVocabulariesInput) SetMaxResults(v int64) *ListDefaultVocabulariesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDefaultVocabulariesInput) SetNextToken(v string) *ListDefaultVocabulariesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDefaultVocabulariesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of default vocabularies.
+	//
+	// DefaultVocabularyList is a required field
+	DefaultVocabularyList []*DefaultVocabulary `type:"list" required:"true"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDefaultVocabulariesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDefaultVocabulariesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDefaultVocabularyList sets the DefaultVocabularyList field's value.
+func (s *ListDefaultVocabulariesOutput) SetDefaultVocabularyList(v []*DefaultVocabulary) *ListDefaultVocabulariesOutput {
+	s.DefaultVocabularyList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDefaultVocabulariesOutput) SetNextToken(v string) *ListDefaultVocabulariesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListHoursOfOperationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -29422,6 +30799,152 @@ func (s *S3Config) SetEncryptionConfig(v *EncryptionConfig) *S3Config {
 	return s
 }
 
+type SearchVocabulariesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The language code of the vocabulary entries. For a list of languages and
+	// their corresponding language codes, see What is Amazon Transcribe? (https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-whatis.html)
+	LanguageCode *string `type:"string" enum:"VocabularyLanguageCode"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The starting pattern of the name of the vocabulary.
+	NameStartsWith *string `min:"1" type:"string"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The current state of the custom vocabulary.
+	State *string `type:"string" enum:"VocabularyState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchVocabulariesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchVocabulariesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchVocabulariesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchVocabulariesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NameStartsWith != nil && len(*s.NameStartsWith) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NameStartsWith", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SearchVocabulariesInput) SetInstanceId(v string) *SearchVocabulariesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *SearchVocabulariesInput) SetLanguageCode(v string) *SearchVocabulariesInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchVocabulariesInput) SetMaxResults(v int64) *SearchVocabulariesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNameStartsWith sets the NameStartsWith field's value.
+func (s *SearchVocabulariesInput) SetNameStartsWith(v string) *SearchVocabulariesInput {
+	s.NameStartsWith = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchVocabulariesInput) SetNextToken(v string) *SearchVocabulariesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *SearchVocabulariesInput) SetState(v string) *SearchVocabulariesInput {
+	s.State = &v
+	return s
+}
+
+type SearchVocabulariesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The list of the available custom vocabularies.
+	VocabularySummaryList []*VocabularySummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchVocabulariesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchVocabulariesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchVocabulariesOutput) SetNextToken(v string) *SearchVocabulariesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVocabularySummaryList sets the VocabularySummaryList field's value.
+func (s *SearchVocabulariesOutput) SetVocabularySummaryList(v []*VocabularySummary) *SearchVocabulariesOutput {
+	s.VocabularySummaryList = v
+	return s
+}
+
 // Configuration information of the security key.
 type SecurityKey struct {
 	_ struct{} `type:"structure"`
@@ -31545,7 +33068,7 @@ type UpdateContactFlowMetadataInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// TThe name of the contact flow.
+	// The name of the contact flow.
 	Name *string `min:"1" type:"string"`
 }
 
@@ -35118,6 +36641,226 @@ func (s *UserSummary) SetUsername(v string) *UserSummary {
 	return s
 }
 
+// Contains information about a custom vocabulary.
+type Vocabulary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the custom vocabulary.
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
+
+	// The content of the custom vocabulary in plain-text format with a table of
+	// values. Each row in the table represents a word or a phrase, described with
+	// Phrase, IPA, SoundsLike, and DisplayAs fields. Separate the fields with TAB
+	// characters. For more information, see Create a custom vocabulary using a
+	// table (https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html#create-vocabulary-table).
+	Content *string `min:"1" type:"string"`
+
+	// The reason why the custom vocabulary was not created.
+	FailureReason *string `type:"string"`
+
+	// The identifier of the custom vocabulary.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The language code of the vocabulary entries. For a list of languages and
+	// their corresponding language codes, see What is Amazon Transcribe? (https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-whatis.html)
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"VocabularyLanguageCode"`
+
+	// The timestamp when the custom vocabulary was last modified.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+
+	// A unique name of the custom vocabulary.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The current state of the custom vocabulary.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"VocabularyState"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Vocabulary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Vocabulary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Vocabulary) SetArn(v string) *Vocabulary {
+	s.Arn = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *Vocabulary) SetContent(v string) *Vocabulary {
+	s.Content = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *Vocabulary) SetFailureReason(v string) *Vocabulary {
+	s.FailureReason = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Vocabulary) SetId(v string) *Vocabulary {
+	s.Id = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *Vocabulary) SetLanguageCode(v string) *Vocabulary {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *Vocabulary) SetLastModifiedTime(v time.Time) *Vocabulary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Vocabulary) SetName(v string) *Vocabulary {
+	s.Name = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Vocabulary) SetState(v string) *Vocabulary {
+	s.State = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Vocabulary) SetTags(v map[string]*string) *Vocabulary {
+	s.Tags = v
+	return s
+}
+
+// Contains summary information about the custom vocabulary.
+type VocabularySummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the custom vocabulary.
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
+
+	// The reason why the custom vocabulary was not created.
+	FailureReason *string `type:"string"`
+
+	// The identifier of the custom vocabulary.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The language code of the vocabulary entries. For a list of languages and
+	// their corresponding language codes, see What is Amazon Transcribe? (https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-whatis.html)
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"VocabularyLanguageCode"`
+
+	// The timestamp when the custom vocabulary was last modified.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+
+	// A unique name of the custom vocabulary.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The current state of the custom vocabulary.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"VocabularyState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VocabularySummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VocabularySummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *VocabularySummary) SetArn(v string) *VocabularySummary {
+	s.Arn = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *VocabularySummary) SetFailureReason(v string) *VocabularySummary {
+	s.FailureReason = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *VocabularySummary) SetId(v string) *VocabularySummary {
+	s.Id = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *VocabularySummary) SetLanguageCode(v string) *VocabularySummary {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *VocabularySummary) SetLastModifiedTime(v time.Time) *VocabularySummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *VocabularySummary) SetName(v string) *VocabularySummary {
+	s.Name = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *VocabularySummary) SetState(v string) *VocabularySummary {
+	s.State = &v
+	return s
+}
+
 // Contains information about the recording configuration settings.
 type VoiceRecordingConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -36945,6 +38688,122 @@ func UseCaseType_Values() []string {
 	return []string{
 		UseCaseTypeRulesEvaluation,
 		UseCaseTypeConnectCampaigns,
+	}
+}
+
+const (
+	// VocabularyLanguageCodeArAe is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeArAe = "ar-AE"
+
+	// VocabularyLanguageCodeDeCh is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeDeCh = "de-CH"
+
+	// VocabularyLanguageCodeDeDe is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeDeDe = "de-DE"
+
+	// VocabularyLanguageCodeEnAb is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEnAb = "en-AB"
+
+	// VocabularyLanguageCodeEnAu is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEnAu = "en-AU"
+
+	// VocabularyLanguageCodeEnGb is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEnGb = "en-GB"
+
+	// VocabularyLanguageCodeEnIe is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEnIe = "en-IE"
+
+	// VocabularyLanguageCodeEnIn is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEnIn = "en-IN"
+
+	// VocabularyLanguageCodeEnUs is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEnUs = "en-US"
+
+	// VocabularyLanguageCodeEnWl is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEnWl = "en-WL"
+
+	// VocabularyLanguageCodeEsEs is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEsEs = "es-ES"
+
+	// VocabularyLanguageCodeEsUs is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEsUs = "es-US"
+
+	// VocabularyLanguageCodeFrCa is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeFrCa = "fr-CA"
+
+	// VocabularyLanguageCodeFrFr is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeFrFr = "fr-FR"
+
+	// VocabularyLanguageCodeHiIn is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeHiIn = "hi-IN"
+
+	// VocabularyLanguageCodeItIt is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeItIt = "it-IT"
+
+	// VocabularyLanguageCodeJaJp is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeJaJp = "ja-JP"
+
+	// VocabularyLanguageCodeKoKr is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeKoKr = "ko-KR"
+
+	// VocabularyLanguageCodePtBr is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodePtBr = "pt-BR"
+
+	// VocabularyLanguageCodePtPt is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodePtPt = "pt-PT"
+
+	// VocabularyLanguageCodeZhCn is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeZhCn = "zh-CN"
+)
+
+// VocabularyLanguageCode_Values returns all elements of the VocabularyLanguageCode enum
+func VocabularyLanguageCode_Values() []string {
+	return []string{
+		VocabularyLanguageCodeArAe,
+		VocabularyLanguageCodeDeCh,
+		VocabularyLanguageCodeDeDe,
+		VocabularyLanguageCodeEnAb,
+		VocabularyLanguageCodeEnAu,
+		VocabularyLanguageCodeEnGb,
+		VocabularyLanguageCodeEnIe,
+		VocabularyLanguageCodeEnIn,
+		VocabularyLanguageCodeEnUs,
+		VocabularyLanguageCodeEnWl,
+		VocabularyLanguageCodeEsEs,
+		VocabularyLanguageCodeEsUs,
+		VocabularyLanguageCodeFrCa,
+		VocabularyLanguageCodeFrFr,
+		VocabularyLanguageCodeHiIn,
+		VocabularyLanguageCodeItIt,
+		VocabularyLanguageCodeJaJp,
+		VocabularyLanguageCodeKoKr,
+		VocabularyLanguageCodePtBr,
+		VocabularyLanguageCodePtPt,
+		VocabularyLanguageCodeZhCn,
+	}
+}
+
+const (
+	// VocabularyStateCreationInProgress is a VocabularyState enum value
+	VocabularyStateCreationInProgress = "CREATION_IN_PROGRESS"
+
+	// VocabularyStateActive is a VocabularyState enum value
+	VocabularyStateActive = "ACTIVE"
+
+	// VocabularyStateCreationFailed is a VocabularyState enum value
+	VocabularyStateCreationFailed = "CREATION_FAILED"
+
+	// VocabularyStateDeleteInProgress is a VocabularyState enum value
+	VocabularyStateDeleteInProgress = "DELETE_IN_PROGRESS"
+)
+
+// VocabularyState_Values returns all elements of the VocabularyState enum
+func VocabularyState_Values() []string {
+	return []string{
+		VocabularyStateCreationInProgress,
+		VocabularyStateActive,
+		VocabularyStateCreationFailed,
+		VocabularyStateDeleteInProgress,
 	}
 }
 
