@@ -3163,7 +3163,8 @@
         "AutomaticBackupRetentionDays":{"shape":"AutomaticBackupRetentionDays"},
         "DailyAutomaticBackupStartTime":{"shape":"DailyTime"},
         "FsxAdminPassword":{"shape":"AdminPassword"},
-        "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"}
+        "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"},
+        "DiskIopsConfiguration":{"shape":"DiskIopsConfiguration"}
       }
     },
     "UpdateFileSystemOpenZFSConfiguration":{

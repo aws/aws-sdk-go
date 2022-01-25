@@ -507,6 +507,170 @@ func (c *EFS) CreateMountTargetWithContext(ctx aws.Context, input *CreateMountTa
 	return out, req.Send()
 }
 
+const opCreateReplicationConfiguration = "CreateReplicationConfiguration"
+
+// CreateReplicationConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateReplicationConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateReplicationConfiguration for more information on using the CreateReplicationConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateReplicationConfigurationRequest method.
+//    req, resp := client.CreateReplicationConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateReplicationConfiguration
+func (c *EFS) CreateReplicationConfigurationRequest(input *CreateReplicationConfigurationInput) (req *request.Request, output *CreateReplicationConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opCreateReplicationConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2015-02-01/file-systems/{SourceFileSystemId}/replication-configuration",
+	}
+
+	if input == nil {
+		input = &CreateReplicationConfigurationInput{}
+	}
+
+	output = &CreateReplicationConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateReplicationConfiguration API operation for Amazon Elastic File System.
+//
+// Creates a replication configuration that replicates an existing EFS file
+// system to a new, read-only file system. For more information, see Amazon
+// EFS replication (https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html).
+// The replication configuration specifies the following:
+//
+//    * Source file system - an existing EFS file system that you want replicated.
+//    The source file system cannot be a destination file system in an existing
+//    replication configuration.
+//
+//    * Destination file system configuration - the configuration of the destination
+//    file system to which the source file system will be replicated. There
+//    can only be one destination file system in a replication configuration.
+//    Amazon Web Services Region - The Amazon Web Services Region in which the
+//    destination file system is created. EFS Replication is available in all
+//    Amazon Web Services Region that Amazon EFS is available in, except the
+//    following regions: Asia Pacific (Hong Kong) Europe (Milan), Middle East
+//    (Bahrain), Africa (Cape Town), and Asia Pacific (Jakarta). Availability
+//    zone - If you want the destination file system to use One Zone availability
+//    and durability, you must specify the Availability Zone to create the file
+//    system in. For more information about EFS storage classes, see Amazon
+//    EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
+//    in the Amazon EFS User Guide. Encryption - All destination file systems
+//    are created with encryption at rest enabled. You can specify the KMS key
+//    that is used to encrypt the destination file system. Your service-managed
+//    KMS key for Amazon EFS is used if you don't specify a KMS key. You cannot
+//    change this after the file system is created.
+//
+// The following properties are set by default:
+//
+//    * Performance mode - The destination file system's performance mode will
+//    match that of the source file system, unless the destination file system
+//    uses One Zone storage. In that case, the General Purpose performance mode
+//    is used. The Performance mode cannot be changed.
+//
+//    * Throughput mode - The destination file system use the Bursting throughput
+//    mode by default. You can modify the throughput mode once the file system
+//    is created.
+//
+// The following properties are turned off by default:
+//
+//    * Lifecycle management - EFS lifecycle management and intelligent tiering
+//    are not enabled on the destination file system. You can enable EFS lifecycle
+//    management and intelligent tiering after the destination file system is
+//    created.
+//
+//    * Automatic backups - Automatic daily backups not enabled on the destination
+//    file system. You can change this setting after the file system is created.
+//
+// For more information, see Amazon EFS replication (https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic File System's
+// API operation CreateReplicationConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequest
+//   Returned if the request is malformed or contains an error such as an invalid
+//   parameter value or a missing required parameter.
+//
+//   * IncorrectFileSystemLifeCycleState
+//   Returned if the file system's lifecycle state is not "available".
+//
+//   * ValidationException
+//   Returned if the Backup service is not available in the Amazon Web Services
+//   Region in which the request was made.
+//
+//   * ReplicationNotFound
+//   Returned if the specified file system did not have a replication configuration.
+//
+//   * FileSystemNotFound
+//   Returned if the specified FileSystemId value doesn't exist in the requester's
+//   Amazon Web Services account.
+//
+//   * UnsupportedAvailabilityZone
+//   Returned if the requested Amazon EFS functionality is not available in the
+//   specified Availability Zone.
+//
+//   * FileSystemLimitExceeded
+//   Returned if the Amazon Web Services account has already created the maximum
+//   number of file systems allowed per account.
+//
+//   * InsufficientThroughputCapacity
+//   Returned if there's not enough capacity to provision additional throughput.
+//   This value might be returned when you try to create a file system in provisioned
+//   throughput mode, when you attempt to increase the provisioned throughput
+//   of an existing file system, or when you attempt to change an existing file
+//   system from bursting to provisioned throughput mode. Try again later.
+//
+//   * ThroughputLimitExceeded
+//   Returned if the throughput mode or amount of provisioned throughput can't
+//   be changed because the throughput limit of 1024 MiB/s has been reached.
+//
+//   * InternalServerError
+//   Returned if an error occurred on the server side.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateReplicationConfiguration
+func (c *EFS) CreateReplicationConfiguration(input *CreateReplicationConfigurationInput) (*CreateReplicationConfigurationOutput, error) {
+	req, out := c.CreateReplicationConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// CreateReplicationConfigurationWithContext is the same as CreateReplicationConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateReplicationConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EFS) CreateReplicationConfigurationWithContext(ctx aws.Context, input *CreateReplicationConfigurationInput, opts ...request.Option) (*CreateReplicationConfigurationOutput, error) {
+	req, out := c.CreateReplicationConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateTags = "CreateTags"
 
 // CreateTagsRequest generates a "aws/request.Request" representing the
@@ -875,6 +1039,10 @@ func (c *EFS) DeleteFileSystemPolicyRequest(input *DeleteFileSystemPolicyInput) 
 // API operation DeleteFileSystemPolicy for usage and error information.
 //
 // Returned Error Types:
+//   * BadRequest
+//   Returned if the request is malformed or contains an error such as an invalid
+//   parameter value or a missing required parameter.
+//
 //   * InternalServerError
 //   Returned if an error occurred on the server side.
 //
@@ -1018,6 +1186,101 @@ func (c *EFS) DeleteMountTarget(input *DeleteMountTargetInput) (*DeleteMountTarg
 // for more information on using Contexts.
 func (c *EFS) DeleteMountTargetWithContext(ctx aws.Context, input *DeleteMountTargetInput, opts ...request.Option) (*DeleteMountTargetOutput, error) {
 	req, out := c.DeleteMountTargetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteReplicationConfiguration = "DeleteReplicationConfiguration"
+
+// DeleteReplicationConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteReplicationConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteReplicationConfiguration for more information on using the DeleteReplicationConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteReplicationConfigurationRequest method.
+//    req, resp := client.DeleteReplicationConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteReplicationConfiguration
+func (c *EFS) DeleteReplicationConfigurationRequest(input *DeleteReplicationConfigurationInput) (req *request.Request, output *DeleteReplicationConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteReplicationConfiguration,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2015-02-01/file-systems/{SourceFileSystemId}/replication-configuration",
+	}
+
+	if input == nil {
+		input = &DeleteReplicationConfigurationInput{}
+	}
+
+	output = &DeleteReplicationConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteReplicationConfiguration API operation for Amazon Elastic File System.
+//
+// Deletes an existing replication configuration. To delete a replication configuration,
+// you must make the request from the Amazon Web Services Region in which the
+// destination file system is located. Deleting a replication configuration
+// ends the replication process. You can write to the destination file system
+// once it's status becomes Writeable.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic File System's
+// API operation DeleteReplicationConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequest
+//   Returned if the request is malformed or contains an error such as an invalid
+//   parameter value or a missing required parameter.
+//
+//   * InternalServerError
+//   Returned if an error occurred on the server side.
+//
+//   * FileSystemNotFound
+//   Returned if the specified FileSystemId value doesn't exist in the requester's
+//   Amazon Web Services account.
+//
+//   * ReplicationNotFound
+//   Returned if the specified file system did not have a replication configuration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteReplicationConfiguration
+func (c *EFS) DeleteReplicationConfiguration(input *DeleteReplicationConfigurationInput) (*DeleteReplicationConfigurationOutput, error) {
+	req, out := c.DeleteReplicationConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteReplicationConfigurationWithContext is the same as DeleteReplicationConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteReplicationConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EFS) DeleteReplicationConfigurationWithContext(ctx aws.Context, input *DeleteReplicationConfigurationInput, opts ...request.Option) (*DeleteReplicationConfigurationOutput, error) {
+	req, out := c.DeleteReplicationConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1519,6 +1782,10 @@ func (c *EFS) DescribeFileSystemPolicyRequest(input *DescribeFileSystemPolicyInp
 // API operation DescribeFileSystemPolicy for usage and error information.
 //
 // Returned Error Types:
+//   * BadRequest
+//   Returned if the request is malformed or contains an error such as an invalid
+//   parameter value or a missing required parameter.
+//
 //   * InternalServerError
 //   Returned if an error occurred on the server side.
 //
@@ -2014,6 +2281,102 @@ func (c *EFS) DescribeMountTargets(input *DescribeMountTargetsInput) (*DescribeM
 // for more information on using Contexts.
 func (c *EFS) DescribeMountTargetsWithContext(ctx aws.Context, input *DescribeMountTargetsInput, opts ...request.Option) (*DescribeMountTargetsOutput, error) {
 	req, out := c.DescribeMountTargetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeReplicationConfigurations = "DescribeReplicationConfigurations"
+
+// DescribeReplicationConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReplicationConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeReplicationConfigurations for more information on using the DescribeReplicationConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeReplicationConfigurationsRequest method.
+//    req, resp := client.DescribeReplicationConfigurationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeReplicationConfigurations
+func (c *EFS) DescribeReplicationConfigurationsRequest(input *DescribeReplicationConfigurationsInput) (req *request.Request, output *DescribeReplicationConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeReplicationConfigurations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2015-02-01/file-systems/replication-configurations",
+	}
+
+	if input == nil {
+		input = &DescribeReplicationConfigurationsInput{}
+	}
+
+	output = &DescribeReplicationConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeReplicationConfigurations API operation for Amazon Elastic File System.
+//
+// Retrieves the replication configurations for either a specific file system,
+// or all configurations for the Amazon Web Services account in an Amazon Web
+// Services Region if a file system is not specified.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic File System's
+// API operation DescribeReplicationConfigurations for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequest
+//   Returned if the request is malformed or contains an error such as an invalid
+//   parameter value or a missing required parameter.
+//
+//   * FileSystemNotFound
+//   Returned if the specified FileSystemId value doesn't exist in the requester's
+//   Amazon Web Services account.
+//
+//   * InternalServerError
+//   Returned if an error occurred on the server side.
+//
+//   * ReplicationNotFound
+//   Returned if the specified file system did not have a replication configuration.
+//
+//   * ValidationException
+//   Returned if the Backup service is not available in the Amazon Web Services
+//   Region in which the request was made.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeReplicationConfigurations
+func (c *EFS) DescribeReplicationConfigurations(input *DescribeReplicationConfigurationsInput) (*DescribeReplicationConfigurationsOutput, error) {
+	req, out := c.DescribeReplicationConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeReplicationConfigurationsWithContext is the same as DescribeReplicationConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeReplicationConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EFS) DescribeReplicationConfigurationsWithContext(ctx aws.Context, input *DescribeReplicationConfigurationsInput, opts ...request.Option) (*DescribeReplicationConfigurationsOutput, error) {
+	req, out := c.DescribeReplicationConfigurationsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2707,6 +3070,10 @@ func (c *EFS) PutFileSystemPolicyRequest(input *PutFileSystemPolicyInput) (req *
 // API operation PutFileSystemPolicy for usage and error information.
 //
 // Returned Error Types:
+//   * BadRequest
+//   Returned if the request is malformed or contains an error such as an invalid
+//   parameter value or a missing required parameter.
+//
 //   * InternalServerError
 //   Returned if an error occurred on the server side.
 //
@@ -3170,9 +3537,19 @@ type AccessPointAlreadyExists struct {
 	// AccessPointId is a required field
 	AccessPointId *string `type:"string" required:"true"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -3354,9 +3731,19 @@ type AccessPointLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -3422,9 +3809,19 @@ type AccessPointNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -3492,8 +3889,17 @@ type AvailabilityZonesMismatch struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
 	ErrorCode *string `min:"1" type:"string"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -3616,9 +4022,19 @@ type BadRequest struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -3937,7 +4353,7 @@ type CreateFileSystemInput struct {
 	// Default is false. However, if you specify an AvailabilityZoneName, the default
 	// is true.
 	//
-	// Backup is not available in all Amazon Web Services Regionswhere Amazon EFS
+	// Backup is not available in all Amazon Web Services Regions where Amazon EFS
 	// is available.
 	Backup *bool `type:"boolean"`
 
@@ -3946,16 +4362,16 @@ type CreateFileSystemInput struct {
 	CreationToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// A Boolean value that, if true, creates an encrypted file system. When creating
-	// an encrypted file system, you have the option of specifying CreateFileSystemRequest$KmsKeyId
-	// for an existing Key Management Service (KMS customer master key (CMK). If
-	// you don't specify a CMK, then the default CMK for Amazon EFS, /aws/elasticfilesystem,
-	// is used to protect the encrypted file system.
+	// an encrypted file system, you have the option of specifying an existing Key
+	// Management Service key (KMS key). If you don't specify a KMS key, then the
+	// default KMS key for Amazon EFS, /aws/elasticfilesystem, is used to protect
+	// the encrypted file system.
 	Encrypted *bool `type:"boolean"`
 
-	// The ID of the KMS CMK that you want to use to protect the encrypted file
+	// The ID of the KMS key that you want to use to protect the encrypted file
 	// system. This parameter is only required if you want to use a non-default
-	// KMS key. If this parameter is not specified, the default CMK for Amazon EFS
-	// is used. This ID can be in one of the following formats:
+	// KMS key. If this parameter is not specified, the default KMS key for Amazon
+	// EFS is used. You can specify a KMS key ID using the following formats:
 	//
 	//    * Key ID - A unique identifier of the key, for example 1234abcd-12ab-34cd-56ef-1234567890ab.
 	//
@@ -3966,11 +4382,11 @@ type CreateFileSystemInput struct {
 	//
 	//    * Key alias ARN - An ARN for a key alias, for example arn:aws:kms:us-west-2:444455556666:alias/projectKey1.
 	//
-	// If KmsKeyId is specified, the CreateFileSystemRequest$Encrypted parameter
-	// must be set to true.
+	// If you use KmsKeyId, you must set the CreateFileSystemRequest$Encrypted parameter
+	// to true.
 	//
 	// EFS accepts only symmetric KMS keys. You cannot use asymmetric KMS keys with
-	// EFS file systems.
+	// Amazon EFS file systems.
 	KmsKeyId *string `type:"string"`
 
 	// The performance mode of the file system. We recommend generalPurpose performance
@@ -4195,6 +4611,172 @@ func (s *CreateMountTargetInput) SetSecurityGroups(v []*string) *CreateMountTarg
 // SetSubnetId sets the SubnetId field's value.
 func (s *CreateMountTargetInput) SetSubnetId(v string) *CreateMountTargetInput {
 	s.SubnetId = &v
+	return s
+}
+
+type CreateReplicationConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of destination configuration objects. Only one destination configuration
+	// object is supported.
+	//
+	// Destinations is a required field
+	Destinations []*DestinationToCreate `type:"list" required:"true"`
+
+	// Specifies the Amazon EFS file system that you want to replicate. This file
+	// system cannot already be a source or destination file system in another replication
+	// configuration.
+	//
+	// SourceFileSystemId is a required field
+	SourceFileSystemId *string `location:"uri" locationName:"SourceFileSystemId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateReplicationConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateReplicationConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateReplicationConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateReplicationConfigurationInput"}
+	if s.Destinations == nil {
+		invalidParams.Add(request.NewErrParamRequired("Destinations"))
+	}
+	if s.SourceFileSystemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceFileSystemId"))
+	}
+	if s.SourceFileSystemId != nil && len(*s.SourceFileSystemId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceFileSystemId", 1))
+	}
+	if s.Destinations != nil {
+		for i, v := range s.Destinations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Destinations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *CreateReplicationConfigurationInput) SetDestinations(v []*DestinationToCreate) *CreateReplicationConfigurationInput {
+	s.Destinations = v
+	return s
+}
+
+// SetSourceFileSystemId sets the SourceFileSystemId field's value.
+func (s *CreateReplicationConfigurationInput) SetSourceFileSystemId(v string) *CreateReplicationConfigurationInput {
+	s.SourceFileSystemId = &v
+	return s
+}
+
+type CreateReplicationConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes when the replication configuration was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `type:"timestamp" required:"true"`
+
+	// Array of destination objects. Only one destination object is supported.
+	//
+	// Destinations is a required field
+	Destinations []*Destination `type:"list" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the original source Amazon EFS file system
+	// in the replication configuration.
+	//
+	// OriginalSourceFileSystemArn is a required field
+	OriginalSourceFileSystemArn *string `type:"string" required:"true"`
+
+	// The ARN of the current source file system in the replication configuration.
+	//
+	// SourceFileSystemArn is a required field
+	SourceFileSystemArn *string `type:"string" required:"true"`
+
+	// The ID of the source Amazon EFS file system that is being replicated.
+	//
+	// SourceFileSystemId is a required field
+	SourceFileSystemId *string `type:"string" required:"true"`
+
+	// The Amazon Web Services Region in which the source Amazon EFS file system
+	// is located.
+	//
+	// SourceFileSystemRegion is a required field
+	SourceFileSystemRegion *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateReplicationConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateReplicationConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *CreateReplicationConfigurationOutput) SetCreationTime(v time.Time) *CreateReplicationConfigurationOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *CreateReplicationConfigurationOutput) SetDestinations(v []*Destination) *CreateReplicationConfigurationOutput {
+	s.Destinations = v
+	return s
+}
+
+// SetOriginalSourceFileSystemArn sets the OriginalSourceFileSystemArn field's value.
+func (s *CreateReplicationConfigurationOutput) SetOriginalSourceFileSystemArn(v string) *CreateReplicationConfigurationOutput {
+	s.OriginalSourceFileSystemArn = &v
+	return s
+}
+
+// SetSourceFileSystemArn sets the SourceFileSystemArn field's value.
+func (s *CreateReplicationConfigurationOutput) SetSourceFileSystemArn(v string) *CreateReplicationConfigurationOutput {
+	s.SourceFileSystemArn = &v
+	return s
+}
+
+// SetSourceFileSystemId sets the SourceFileSystemId field's value.
+func (s *CreateReplicationConfigurationOutput) SetSourceFileSystemId(v string) *CreateReplicationConfigurationOutput {
+	s.SourceFileSystemId = &v
+	return s
+}
+
+// SetSourceFileSystemRegion sets the SourceFileSystemRegion field's value.
+func (s *CreateReplicationConfigurationOutput) SetSourceFileSystemRegion(v string) *CreateReplicationConfigurationOutput {
+	s.SourceFileSystemRegion = &v
 	return s
 }
 
@@ -4671,6 +5253,77 @@ func (s DeleteMountTargetOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteReplicationConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the source file system in the replication configuration.
+	//
+	// SourceFileSystemId is a required field
+	SourceFileSystemId *string `location:"uri" locationName:"SourceFileSystemId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicationConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicationConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteReplicationConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteReplicationConfigurationInput"}
+	if s.SourceFileSystemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceFileSystemId"))
+	}
+	if s.SourceFileSystemId != nil && len(*s.SourceFileSystemId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceFileSystemId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceFileSystemId sets the SourceFileSystemId field's value.
+func (s *DeleteReplicationConfigurationInput) SetSourceFileSystemId(v string) *DeleteReplicationConfigurationInput {
+	s.SourceFileSystemId = &v
+	return s
+}
+
+type DeleteReplicationConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicationConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicationConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4765,9 +5418,19 @@ type DependencyTimeout struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -5668,6 +6331,115 @@ func (s *DescribeMountTargetsOutput) SetNextMarker(v string) *DescribeMountTarge
 	return s
 }
 
+type DescribeReplicationConfigurationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// You can retrieve replication configurations for a specific file system by
+	// providing a file system ID.
+	FileSystemId *string `location:"querystring" locationName:"FileSystemId" type:"string"`
+
+	// (Optional) You can optionally specify the MaxItems parameter to limit the
+	// number of objects returned in a response. The default value is 100.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// NextToken is present if the response is paginated. You can use NextMarker
+	// in a subsequent request to fetch the next page of output.
+	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeReplicationConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeReplicationConfigurationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *DescribeReplicationConfigurationsInput) SetFileSystemId(v string) *DescribeReplicationConfigurationsInput {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeReplicationConfigurationsInput) SetMaxResults(v int64) *DescribeReplicationConfigurationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeReplicationConfigurationsInput) SetNextToken(v string) *DescribeReplicationConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeReplicationConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// You can use the NextToken from the previous response in a subsequent request
+	// to fetch the additional descriptions.
+	NextToken *string `min:"1" type:"string"`
+
+	// The collection of replication configurations returned.
+	Replications []*ReplicationConfigurationDescription `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeReplicationConfigurationsOutput) SetNextToken(v string) *DescribeReplicationConfigurationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetReplications sets the Replications field's value.
+func (s *DescribeReplicationConfigurationsOutput) SetReplications(v []*ReplicationConfigurationDescription) *DescribeReplicationConfigurationsOutput {
+	s.Replications = v
+	return s
+}
+
 type DescribeTagsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -5800,18 +6572,175 @@ func (s *DescribeTagsOutput) SetTags(v []*Tag) *DescribeTagsOutput {
 	return s
 }
 
+// Describes the destination file system in the replication configuration.
+type Destination struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the destination Amazon EFS file system.
+	//
+	// FileSystemId is a required field
+	FileSystemId *string `type:"string" required:"true"`
+
+	// The time when the most recent sync successfully completed on the destination
+	// file system. Any changes to data on the source file system that occurred
+	// prior to this time were successfully replicated to the destination file system.
+	// Any changes that occurred after this time might not be fully replicated.
+	LastReplicatedTimestamp *time.Time `type:"timestamp"`
+
+	// The Amazon Web Services Region in which the destination file system is located.
+	//
+	// Region is a required field
+	Region *string `min:"1" type:"string" required:"true"`
+
+	// Describes the status of the destination Amazon EFS file system.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"ReplicationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Destination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Destination) GoString() string {
+	return s.String()
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *Destination) SetFileSystemId(v string) *Destination {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetLastReplicatedTimestamp sets the LastReplicatedTimestamp field's value.
+func (s *Destination) SetLastReplicatedTimestamp(v time.Time) *Destination {
+	s.LastReplicatedTimestamp = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *Destination) SetRegion(v string) *Destination {
+	s.Region = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Destination) SetStatus(v string) *Destination {
+	s.Status = &v
+	return s
+}
+
+// Describes the destination file system to create in the replication configuration.
+type DestinationToCreate struct {
+	_ struct{} `type:"structure"`
+
+	// To create a file system that uses One Zone storage, specify the name of the
+	// Availability Zone in which to create the destination file system.
+	AvailabilityZoneName *string `min:"1" type:"string"`
+
+	// Specifies the KMS key you want to use to encrypt the destination file system.
+	// If you do not specify a KMS key, EFS uses your default KMS key for Amazon
+	// EFS, /aws/elasticfilesystem. This ID can be in one of the following formats:
+	//
+	//    * Key ID - A unique identifier of the key, for example 1234abcd-12ab-34cd-56ef-1234567890ab.
+	//
+	//    * ARN - An Amazon Resource Name (ARN) for the key, for example arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab.
+	//
+	//    * Key alias - A previously created display name for a key, for example
+	//    alias/projectKey1.
+	//
+	//    * Key alias ARN - An ARN for a key alias, for example arn:aws:kms:us-west-2:444455556666:alias/projectKey1.
+	KmsKeyId *string `type:"string"`
+
+	// To create a file system that uses regional storage, specify the Amazon Web
+	// Services Region in which to create the destination file system.
+	Region *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DestinationToCreate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DestinationToCreate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DestinationToCreate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DestinationToCreate"}
+	if s.AvailabilityZoneName != nil && len(*s.AvailabilityZoneName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AvailabilityZoneName", 1))
+	}
+	if s.Region != nil && len(*s.Region) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Region", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAvailabilityZoneName sets the AvailabilityZoneName field's value.
+func (s *DestinationToCreate) SetAvailabilityZoneName(v string) *DestinationToCreate {
+	s.AvailabilityZoneName = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *DestinationToCreate) SetKmsKeyId(v string) *DestinationToCreate {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *DestinationToCreate) SetRegion(v string) *DestinationToCreate {
+	s.Region = &v
+	return s
+}
+
 // Returned if the file system you are trying to create already exists, with
 // the creation token you provided.
 type FileSystemAlreadyExists struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
 	// FileSystemId is a required field
 	FileSystemId *string `type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -5909,8 +6838,7 @@ type FileSystemDescription struct {
 	// FileSystemId is a required field
 	FileSystemId *string `type:"string" required:"true"`
 
-	// The ID of an Key Management Service customer master key (CMK) that was used
-	// to protect the encrypted file system.
+	// The ID of an KMS key used to protect the encrypted file system.
 	KmsKeyId *string `type:"string"`
 
 	// The lifecycle phase of the file system.
@@ -6094,9 +7022,19 @@ type FileSystemInUse struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -6162,9 +7100,19 @@ type FileSystemLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -6230,9 +7178,19 @@ type FileSystemNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -6368,9 +7326,19 @@ type IncorrectFileSystemLifeCycleState struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -6435,9 +7403,19 @@ type IncorrectMountTargetState struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -6506,9 +7484,19 @@ type InsufficientThroughputCapacity struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -6573,9 +7561,19 @@ type InternalServerError struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -6642,8 +7640,17 @@ type InvalidPolicyException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
 	ErrorCode *string `min:"1" type:"string"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -6709,9 +7716,19 @@ type IpAddressInUse struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -7029,9 +8046,19 @@ type MountTargetConflict struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -7225,9 +8252,19 @@ type MountTargetNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -7297,9 +8334,19 @@ type NetworkInterfaceLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -7365,9 +8412,19 @@ type NoFreeAddressesInSubnet struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -7433,8 +8490,17 @@ type PolicyNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
 	ErrorCode *string `min:"1" type:"string"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -7987,6 +9053,169 @@ func (s *PutLifecycleConfigurationOutput) SetLifecyclePolicies(v []*LifecyclePol
 	return s
 }
 
+type ReplicationConfigurationDescription struct {
+	_ struct{} `type:"structure"`
+
+	// Describes when the replication configuration was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `type:"timestamp" required:"true"`
+
+	// Array of destination objects. Only one destination object is supported.
+	//
+	// Destinations is a required field
+	Destinations []*Destination `type:"list" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the original source Amazon EFS file system
+	// in the replication configuration.
+	//
+	// OriginalSourceFileSystemArn is a required field
+	OriginalSourceFileSystemArn *string `type:"string" required:"true"`
+
+	// The ARN of the current source file system in the replication configuration.
+	//
+	// SourceFileSystemArn is a required field
+	SourceFileSystemArn *string `type:"string" required:"true"`
+
+	// The ID of the source Amazon EFS file system that is being replicated.
+	//
+	// SourceFileSystemId is a required field
+	SourceFileSystemId *string `type:"string" required:"true"`
+
+	// The Amazon Web Services Region in which the source Amazon EFS file system
+	// is located.
+	//
+	// SourceFileSystemRegion is a required field
+	SourceFileSystemRegion *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationConfigurationDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationConfigurationDescription) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *ReplicationConfigurationDescription) SetCreationTime(v time.Time) *ReplicationConfigurationDescription {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *ReplicationConfigurationDescription) SetDestinations(v []*Destination) *ReplicationConfigurationDescription {
+	s.Destinations = v
+	return s
+}
+
+// SetOriginalSourceFileSystemArn sets the OriginalSourceFileSystemArn field's value.
+func (s *ReplicationConfigurationDescription) SetOriginalSourceFileSystemArn(v string) *ReplicationConfigurationDescription {
+	s.OriginalSourceFileSystemArn = &v
+	return s
+}
+
+// SetSourceFileSystemArn sets the SourceFileSystemArn field's value.
+func (s *ReplicationConfigurationDescription) SetSourceFileSystemArn(v string) *ReplicationConfigurationDescription {
+	s.SourceFileSystemArn = &v
+	return s
+}
+
+// SetSourceFileSystemId sets the SourceFileSystemId field's value.
+func (s *ReplicationConfigurationDescription) SetSourceFileSystemId(v string) *ReplicationConfigurationDescription {
+	s.SourceFileSystemId = &v
+	return s
+}
+
+// SetSourceFileSystemRegion sets the SourceFileSystemRegion field's value.
+func (s *ReplicationConfigurationDescription) SetSourceFileSystemRegion(v string) *ReplicationConfigurationDescription {
+	s.SourceFileSystemRegion = &v
+	return s
+}
+
+// Returned if the specified file system did not have a replication configuration.
+type ReplicationNotFound struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// ReplicationNotFound
+	ErrorCode *string `min:"1" type:"string"`
+
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationNotFound) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationNotFound) GoString() string {
+	return s.String()
+}
+
+func newErrorReplicationNotFound(v protocol.ResponseMetadata) error {
+	return &ReplicationNotFound{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ReplicationNotFound) Code() string {
+	return "ReplicationNotFound"
+}
+
+// Message returns the exception's message.
+func (s *ReplicationNotFound) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ReplicationNotFound) OrigErr() error {
+	return nil
+}
+
+func (s *ReplicationNotFound) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ReplicationNotFound) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ReplicationNotFound) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Describes the resource type and its ID preference for the user's Amazon Web
 // Services account, in the current Amazon Web Services Region.
 type ResourceIdPreference struct {
@@ -8111,9 +9340,19 @@ type SecurityGroupLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -8179,9 +9418,19 @@ type SecurityGroupNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -8246,9 +9495,19 @@ type SubnetNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -8475,9 +9734,19 @@ type ThroughputLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -8543,9 +9812,19 @@ type TooManyRequests struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -8611,9 +9890,19 @@ type UnsupportedAvailabilityZone struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -8876,8 +10165,7 @@ type UpdateFileSystemOutput struct {
 	// FileSystemId is a required field
 	FileSystemId *string `type:"string" required:"true"`
 
-	// The ID of an Key Management Service customer master key (CMK) that was used
-	// to protect the encrypted file system.
+	// The ID of an KMS key used to protect the encrypted file system.
 	KmsKeyId *string `type:"string"`
 
 	// The lifecycle phase of the file system.
@@ -9062,9 +10350,19 @@ type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	//
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
 
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -9169,6 +10467,30 @@ func PerformanceMode_Values() []string {
 	return []string{
 		PerformanceModeGeneralPurpose,
 		PerformanceModeMaxIo,
+	}
+}
+
+const (
+	// ReplicationStatusEnabled is a ReplicationStatus enum value
+	ReplicationStatusEnabled = "ENABLED"
+
+	// ReplicationStatusEnabling is a ReplicationStatus enum value
+	ReplicationStatusEnabling = "ENABLING"
+
+	// ReplicationStatusDeleting is a ReplicationStatus enum value
+	ReplicationStatusDeleting = "DELETING"
+
+	// ReplicationStatusError is a ReplicationStatus enum value
+	ReplicationStatusError = "ERROR"
+)
+
+// ReplicationStatus_Values returns all elements of the ReplicationStatus enum
+func ReplicationStatus_Values() []string {
+	return []string{
+		ReplicationStatusEnabled,
+		ReplicationStatusEnabling,
+		ReplicationStatusDeleting,
+		ReplicationStatusError,
 	}
 }
 

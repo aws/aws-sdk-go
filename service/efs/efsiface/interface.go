@@ -72,6 +72,10 @@ type EFSAPI interface {
 	CreateMountTargetWithContext(aws.Context, *efs.CreateMountTargetInput, ...request.Option) (*efs.MountTargetDescription, error)
 	CreateMountTargetRequest(*efs.CreateMountTargetInput) (*request.Request, *efs.MountTargetDescription)
 
+	CreateReplicationConfiguration(*efs.CreateReplicationConfigurationInput) (*efs.CreateReplicationConfigurationOutput, error)
+	CreateReplicationConfigurationWithContext(aws.Context, *efs.CreateReplicationConfigurationInput, ...request.Option) (*efs.CreateReplicationConfigurationOutput, error)
+	CreateReplicationConfigurationRequest(*efs.CreateReplicationConfigurationInput) (*request.Request, *efs.CreateReplicationConfigurationOutput)
+
 	CreateTags(*efs.CreateTagsInput) (*efs.CreateTagsOutput, error)
 	CreateTagsWithContext(aws.Context, *efs.CreateTagsInput, ...request.Option) (*efs.CreateTagsOutput, error)
 	CreateTagsRequest(*efs.CreateTagsInput) (*request.Request, *efs.CreateTagsOutput)
@@ -91,6 +95,10 @@ type EFSAPI interface {
 	DeleteMountTarget(*efs.DeleteMountTargetInput) (*efs.DeleteMountTargetOutput, error)
 	DeleteMountTargetWithContext(aws.Context, *efs.DeleteMountTargetInput, ...request.Option) (*efs.DeleteMountTargetOutput, error)
 	DeleteMountTargetRequest(*efs.DeleteMountTargetInput) (*request.Request, *efs.DeleteMountTargetOutput)
+
+	DeleteReplicationConfiguration(*efs.DeleteReplicationConfigurationInput) (*efs.DeleteReplicationConfigurationOutput, error)
+	DeleteReplicationConfigurationWithContext(aws.Context, *efs.DeleteReplicationConfigurationInput, ...request.Option) (*efs.DeleteReplicationConfigurationOutput, error)
+	DeleteReplicationConfigurationRequest(*efs.DeleteReplicationConfigurationInput) (*request.Request, *efs.DeleteReplicationConfigurationOutput)
 
 	DeleteTags(*efs.DeleteTagsInput) (*efs.DeleteTagsOutput, error)
 	DeleteTagsWithContext(aws.Context, *efs.DeleteTagsInput, ...request.Option) (*efs.DeleteTagsOutput, error)
@@ -133,6 +141,10 @@ type EFSAPI interface {
 	DescribeMountTargets(*efs.DescribeMountTargetsInput) (*efs.DescribeMountTargetsOutput, error)
 	DescribeMountTargetsWithContext(aws.Context, *efs.DescribeMountTargetsInput, ...request.Option) (*efs.DescribeMountTargetsOutput, error)
 	DescribeMountTargetsRequest(*efs.DescribeMountTargetsInput) (*request.Request, *efs.DescribeMountTargetsOutput)
+
+	DescribeReplicationConfigurations(*efs.DescribeReplicationConfigurationsInput) (*efs.DescribeReplicationConfigurationsOutput, error)
+	DescribeReplicationConfigurationsWithContext(aws.Context, *efs.DescribeReplicationConfigurationsInput, ...request.Option) (*efs.DescribeReplicationConfigurationsOutput, error)
+	DescribeReplicationConfigurationsRequest(*efs.DescribeReplicationConfigurationsInput) (*request.Request, *efs.DescribeReplicationConfigurationsOutput)
 
 	DescribeTags(*efs.DescribeTagsInput) (*efs.DescribeTagsOutput, error)
 	DescribeTagsWithContext(aws.Context, *efs.DescribeTagsInput, ...request.Option) (*efs.DescribeTagsOutput, error)
