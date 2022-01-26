@@ -285,10 +285,15 @@ func setupEventStream(s *Shape) *EventStream {
 		}
 		eventRef.Shape.EventFor[eventStream.Name] = eventStream
 
+		eventName := eventRefName
+		if v := eventRef.LocationName; v != "" {
+			eventName = v
+		}
+
 		// Exceptions and events are two different lists to allow the SDK
 		// to easily generate code with the two handled differently.
 		event := &Event{
-			Name:  eventRefName,
+			Name:  eventName,
 			Shape: eventRef.Shape,
 			For:   eventStream,
 		}
