@@ -28195,6 +28195,9 @@ type AwsSecurityFinding struct {
 	// Resources is a required field
 	Resources []*Resource `type:"list" required:"true"`
 
+	// Indicates whether the finding is a sample finding.
+	Sample *bool `type:"boolean"`
+
 	// The schema version that a finding is formatted for.
 	//
 	// SchemaVersion is a required field
@@ -28527,6 +28530,12 @@ func (s *AwsSecurityFinding) SetRemediation(v *Remediation) *AwsSecurityFinding 
 // SetResources sets the Resources field's value.
 func (s *AwsSecurityFinding) SetResources(v []*Resource) *AwsSecurityFinding {
 	s.Resources = v
+	return s
+}
+
+// SetSample sets the Sample field's value.
+func (s *AwsSecurityFinding) SetSample(v bool) *AwsSecurityFinding {
+	s.Sample = &v
 	return s
 }
 
@@ -28890,6 +28899,9 @@ type AwsSecurityFindingFilters struct {
 
 	// Specifies the type of the resource that details are provided for.
 	ResourceType []*StringFilter `type:"list"`
+
+	// Indicates whether or not sample findings are included in the filter results.
+	Sample []*BooleanFilter `type:"list"`
 
 	// The label of a finding's severity.
 	SeverityLabel []*StringFilter `type:"list"`
@@ -29456,6 +29468,12 @@ func (s *AwsSecurityFindingFilters) SetResourceTags(v []*MapFilter) *AwsSecurity
 // SetResourceType sets the ResourceType field's value.
 func (s *AwsSecurityFindingFilters) SetResourceType(v []*StringFilter) *AwsSecurityFindingFilters {
 	s.ResourceType = v
+	return s
+}
+
+// SetSample sets the Sample field's value.
+func (s *AwsSecurityFindingFilters) SetSample(v []*BooleanFilter) *AwsSecurityFindingFilters {
+	s.Sample = v
 	return s
 }
 
@@ -31122,6 +31140,38 @@ func (s *BatchUpdateFindingsUnprocessedFinding) SetErrorMessage(v string) *Batch
 // SetFindingIdentifier sets the FindingIdentifier field's value.
 func (s *BatchUpdateFindingsUnprocessedFinding) SetFindingIdentifier(v *AwsSecurityFindingIdentifier) *BatchUpdateFindingsUnprocessedFinding {
 	s.FindingIdentifier = v
+	return s
+}
+
+// Boolean filter for querying findings.
+type BooleanFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The value of the boolean.
+	Value *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BooleanFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BooleanFilter) GoString() string {
+	return s.String()
+}
+
+// SetValue sets the Value field's value.
+func (s *BooleanFilter) SetValue(v bool) *BooleanFilter {
+	s.Value = &v
 	return s
 }
 

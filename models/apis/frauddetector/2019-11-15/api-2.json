@@ -583,6 +583,22 @@
         {"shape":"ResourceUnavailableException"}
       ]
     },
+    "GetEventPredictionMetadata":{
+      "name":"GetEventPredictionMetadata",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetEventPredictionMetadataRequest"},
+      "output":{"shape":"GetEventPredictionMetadataResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetEventTypes":{
       "name":"GetEventTypes",
       "http":{
@@ -723,6 +739,21 @@
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListEventPredictions":{
+      "name":"ListEventPredictions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListEventPredictionsRequest"},
+      "output":{"shape":"ListEventPredictionsResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "ListTagsForResource":{
@@ -1188,6 +1219,7 @@
       "type":"list",
       "member":{"shape":"BatchPrediction"}
     },
+    "Boolean":{"type":"boolean"},
     "CancelBatchImportJobRequest":{
       "type":"structure",
       "required":["jobId"],
@@ -1724,6 +1756,40 @@
         "arn":{"shape":"fraudDetectorArn"}
       }
     },
+    "EvaluatedExternalModel":{
+      "type":"structure",
+      "members":{
+        "modelEndpoint":{"shape":"string"},
+        "useEventVariables":{"shape":"Boolean"},
+        "inputVariables":{"shape":"MapOfStrings"},
+        "outputVariables":{"shape":"MapOfStrings"}
+      }
+    },
+    "EvaluatedModelVersion":{
+      "type":"structure",
+      "members":{
+        "modelId":{"shape":"string"},
+        "modelVersion":{"shape":"string"},
+        "modelType":{"shape":"string"},
+        "evaluations":{"shape":"ListOfModelVersionEvaluations"}
+      }
+    },
+    "EvaluatedRule":{
+      "type":"structure",
+      "members":{
+        "ruleId":{"shape":"identifier"},
+        "ruleVersion":{"shape":"wholeNumberVersionString"},
+        "expression":{"shape":"sensitiveString"},
+        "expressionWithValues":{"shape":"sensitiveString"},
+        "outcomes":{"shape":"ListOfStrings"},
+        "evaluated":{"shape":"Boolean"},
+        "matched":{"shape":"Boolean"}
+      }
+    },
+    "EvaluatedRuleList":{
+      "type":"list",
+      "member":{"shape":"EvaluatedRule"}
+    },
     "Event":{
       "type":"structure",
       "members":{
@@ -1748,6 +1814,23 @@
         "DISABLED"
       ]
     },
+    "EventPredictionSummary":{
+      "type":"structure",
+      "members":{
+        "eventId":{"shape":"identifier"},
+        "eventTypeName":{"shape":"identifier"},
+        "eventTimestamp":{"shape":"time"},
+        "predictionTimestamp":{"shape":"time"},
+        "detectorId":{"shape":"identifier"},
+        "detectorVersionId":{"shape":"wholeNumberVersionString"}
+      }
+    },
+    "EventPredictionsMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":50
+    },
     "EventType":{
       "type":"structure",
       "members":{
@@ -1769,6 +1852,14 @@
       "key":{"shape":"variableName"},
       "value":{"shape":"variableValue"},
       "min":1
+    },
+    "EventVariableSummary":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"sensitiveString"},
+        "value":{"shape":"sensitiveString"},
+        "source":{"shape":"sensitiveString"}
+      }
     },
     "ExternalEventsDetail":{
       "type":"structure",
@@ -1846,6 +1937,12 @@
         "title":{"shape":"string"},
         "content":{"shape":"string"},
         "type":{"shape":"string"}
+      }
+    },
+    "FilterCondition":{
+      "type":"structure",
+      "members":{
+        "value":{"shape":"filterString"}
       }
     },
     "GetBatchImportJobsRequest":{
@@ -1947,6 +2044,43 @@
       "members":{
         "entityTypes":{"shape":"entityTypeList"},
         "nextToken":{"shape":"string"}
+      }
+    },
+    "GetEventPredictionMetadataRequest":{
+      "type":"structure",
+      "required":[
+        "eventId",
+        "eventTypeName",
+        "detectorId",
+        "detectorVersionId",
+        "predictionTimestamp"
+      ],
+      "members":{
+        "eventId":{"shape":"identifier"},
+        "eventTypeName":{"shape":"identifier"},
+        "detectorId":{"shape":"identifier"},
+        "detectorVersionId":{"shape":"wholeNumberVersionString"},
+        "predictionTimestamp":{"shape":"time"}
+      }
+    },
+    "GetEventPredictionMetadataResult":{
+      "type":"structure",
+      "members":{
+        "eventId":{"shape":"identifier"},
+        "eventTypeName":{"shape":"identifier"},
+        "entityId":{"shape":"string"},
+        "entityType":{"shape":"string"},
+        "eventTimestamp":{"shape":"time"},
+        "detectorId":{"shape":"identifier"},
+        "detectorVersionId":{"shape":"wholeNumberVersionString"},
+        "detectorVersionStatus":{"shape":"string"},
+        "eventVariables":{"shape":"ListOfEventVariableSummaries"},
+        "rules":{"shape":"EvaluatedRuleList"},
+        "ruleExecutionMode":{"shape":"RuleExecutionMode"},
+        "outcomes":{"shape":"ListOfStrings"},
+        "evaluatedModelVersions":{"shape":"ListOfEvaluatedModelVersions"},
+        "evaluatedExternalModels":{"shape":"ListOfEvaluatedExternalModels"},
+        "predictionTimestamp":{"shape":"time"}
       }
     },
     "GetEventPredictionRequest":{
@@ -2214,6 +2348,41 @@
       "type":"string",
       "enum":["DETECTORPL"]
     },
+    "ListEventPredictionsRequest":{
+      "type":"structure",
+      "members":{
+        "eventId":{"shape":"FilterCondition"},
+        "eventType":{"shape":"FilterCondition"},
+        "detectorId":{"shape":"FilterCondition"},
+        "detectorVersionId":{"shape":"FilterCondition"},
+        "predictionTimeRange":{"shape":"PredictionTimeRange"},
+        "nextToken":{"shape":"string"},
+        "maxResults":{"shape":"EventPredictionsMaxResults"}
+      }
+    },
+    "ListEventPredictionsResult":{
+      "type":"structure",
+      "members":{
+        "eventPredictionSummaries":{"shape":"ListOfEventPredictionSummaries"},
+        "nextToken":{"shape":"string"}
+      }
+    },
+    "ListOfEvaluatedExternalModels":{
+      "type":"list",
+      "member":{"shape":"EvaluatedExternalModel"}
+    },
+    "ListOfEvaluatedModelVersions":{
+      "type":"list",
+      "member":{"shape":"EvaluatedModelVersion"}
+    },
+    "ListOfEventPredictionSummaries":{
+      "type":"list",
+      "member":{"shape":"EventPredictionSummary"}
+    },
+    "ListOfEventVariableSummaries":{
+      "type":"list",
+      "member":{"shape":"EventVariableSummary"}
+    },
     "ListOfExternalModelOutputs":{
       "type":"list",
       "member":{"shape":"ExternalModelOutputs"}
@@ -2225,6 +2394,10 @@
     "ListOfModelScores":{
       "type":"list",
       "member":{"shape":"ModelScores"}
+    },
+    "ListOfModelVersionEvaluations":{
+      "type":"list",
+      "member":{"shape":"ModelVersionEvaluation"}
     },
     "ListOfModelVersions":{
       "type":"list",
@@ -2268,6 +2441,12 @@
       }
     },
     "Long":{"type":"long"},
+    "MapOfStrings":{
+      "type":"map",
+      "key":{"shape":"string"},
+      "value":{"shape":"string"},
+      "sensitive":true
+    },
     "MetricDataPoint":{
       "type":"structure",
       "members":{
@@ -2391,6 +2570,14 @@
         "arn":{"shape":"fraudDetectorArn"}
       }
     },
+    "ModelVersionEvaluation":{
+      "type":"structure",
+      "members":{
+        "outputVariableName":{"shape":"string"},
+        "evaluationScore":{"shape":"string"},
+        "predictionExplanations":{"shape":"PredictionExplanations"}
+      }
+    },
     "ModelVersionStatus":{
       "type":"string",
       "enum":[
@@ -2429,6 +2616,23 @@
       "box":true,
       "max":100,
       "min":50
+    },
+    "PredictionExplanations":{
+      "type":"structure",
+      "members":{
+        "variableImpactExplanations":{"shape":"listOfVariableImpactExplanations"}
+      }
+    },
+    "PredictionTimeRange":{
+      "type":"structure",
+      "required":[
+        "startTime",
+        "endTime"
+      ],
+      "members":{
+        "startTime":{"shape":"time"},
+        "endTime":{"shape":"time"}
+      }
     },
     "PutDetectorRequest":{
       "type":"structure",
@@ -2977,6 +3181,14 @@
       "max":25,
       "min":1
     },
+    "VariableImpactExplanation":{
+      "type":"structure",
+      "members":{
+        "eventVariableName":{"shape":"string"},
+        "relativeImpact":{"shape":"string"},
+        "logOddsImpact":{"shape":"float"}
+      }
+    },
     "VariableImportanceMetrics":{
       "type":"structure",
       "members":{
@@ -3061,6 +3273,12 @@
       "type":"list",
       "member":{"shape":"FileValidationMessage"}
     },
+    "filterString":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^[0-9A-Za-z_-]+$"
+    },
     "float":{"type":"float"},
     "floatVersionString":{
       "type":"string",
@@ -3105,6 +3323,10 @@
     "listOfEntities":{
       "type":"list",
       "member":{"shape":"Entity"}
+    },
+    "listOfVariableImpactExplanations":{
+      "type":"list",
+      "member":{"shape":"VariableImpactExplanation"}
     },
     "metricDataPointsList":{
       "type":"list",
@@ -3152,6 +3374,10 @@
       "max":63,
       "min":1,
       "pattern":"^[0-9A-Za-z_-]+$"
+    },
+    "sensitiveString":{
+      "type":"string",
+      "sensitive":true
     },
     "string":{"type":"string"},
     "tagKey":{

@@ -341,6 +341,12 @@
       "refs": {
       }
     },
+    "ListRecommendationsMaxResults": {
+      "base": null,
+      "refs": {
+        "ListRecommendationsRequest$MaxResults": "<p> The maximum number of results that are returned per call. The default is 100. </p>"
+      }
+    },
     "ListRecommendationsRequest": {
       "base": null,
       "refs": {
@@ -381,7 +387,6 @@
       "base": null,
       "refs": {
         "ListRecommendationFeedbackRequest$MaxResults": "<p> The maximum number of results that are returned per call. The default is 100. </p>",
-        "ListRecommendationsRequest$MaxResults": "<p> The maximum number of results that are returned per call. The default is 100. </p>",
         "ListRepositoryAssociationsRequest$MaxResults": "<p>The maximum number of repository association results returned by <code>ListRepositoryAssociations</code> in paginated output. When this parameter is used, <code>ListRepositoryAssociations</code> only returns <code>maxResults</code> results in a single page with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListRepositoryAssociations</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, <code>ListRepositoryAssociations</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>"
       }
     },

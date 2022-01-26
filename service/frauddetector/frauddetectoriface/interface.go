@@ -219,6 +219,10 @@ type FraudDetectorAPI interface {
 	GetEventPredictionWithContext(aws.Context, *frauddetector.GetEventPredictionInput, ...request.Option) (*frauddetector.GetEventPredictionOutput, error)
 	GetEventPredictionRequest(*frauddetector.GetEventPredictionInput) (*request.Request, *frauddetector.GetEventPredictionOutput)
 
+	GetEventPredictionMetadata(*frauddetector.GetEventPredictionMetadataInput) (*frauddetector.GetEventPredictionMetadataOutput, error)
+	GetEventPredictionMetadataWithContext(aws.Context, *frauddetector.GetEventPredictionMetadataInput, ...request.Option) (*frauddetector.GetEventPredictionMetadataOutput, error)
+	GetEventPredictionMetadataRequest(*frauddetector.GetEventPredictionMetadataInput) (*request.Request, *frauddetector.GetEventPredictionMetadataOutput)
+
 	GetEventTypes(*frauddetector.GetEventTypesInput) (*frauddetector.GetEventTypesOutput, error)
 	GetEventTypesWithContext(aws.Context, *frauddetector.GetEventTypesInput, ...request.Option) (*frauddetector.GetEventTypesOutput, error)
 	GetEventTypesRequest(*frauddetector.GetEventTypesInput) (*request.Request, *frauddetector.GetEventTypesOutput)
@@ -275,6 +279,13 @@ type FraudDetectorAPI interface {
 
 	GetVariablesPages(*frauddetector.GetVariablesInput, func(*frauddetector.GetVariablesOutput, bool) bool) error
 	GetVariablesPagesWithContext(aws.Context, *frauddetector.GetVariablesInput, func(*frauddetector.GetVariablesOutput, bool) bool, ...request.Option) error
+
+	ListEventPredictions(*frauddetector.ListEventPredictionsInput) (*frauddetector.ListEventPredictionsOutput, error)
+	ListEventPredictionsWithContext(aws.Context, *frauddetector.ListEventPredictionsInput, ...request.Option) (*frauddetector.ListEventPredictionsOutput, error)
+	ListEventPredictionsRequest(*frauddetector.ListEventPredictionsInput) (*request.Request, *frauddetector.ListEventPredictionsOutput)
+
+	ListEventPredictionsPages(*frauddetector.ListEventPredictionsInput, func(*frauddetector.ListEventPredictionsOutput, bool) bool) error
+	ListEventPredictionsPagesWithContext(aws.Context, *frauddetector.ListEventPredictionsInput, func(*frauddetector.ListEventPredictionsOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*frauddetector.ListTagsForResourceInput) (*frauddetector.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *frauddetector.ListTagsForResourceInput, ...request.Option) (*frauddetector.ListTagsForResourceOutput, error)

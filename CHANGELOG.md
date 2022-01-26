@@ -1,3 +1,14 @@
+Release v1.42.42 (2022-01-26)
+===
+
+### Service Client Updates
+* `service/codeguru-reviewer`: Updates service API, documentation, and waiters
+* `service/ebs`: Updates service documentation
+* `service/frauddetector`: Updates service API, documentation, and paginators
+* `service/sagemaker`: Updates service API and documentation
+  * API changes relating to Fail steps in model building pipeline and add PipelineExecutionFailureReason in PipelineExecutionSummary.
+* `service/securityhub`: Updates service API and documentation
+
 Release v1.42.41 (2022-01-25)
 ===
 

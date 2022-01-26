@@ -8421,6 +8421,12 @@
       "type":"string",
       "min":1
     },
+    "FailStepMetadata":{
+      "type":"structure",
+      "members":{
+        "ErrorMessage":{"shape":"String3072"}
+      }
+    },
     "FailureReason":{
       "type":"string",
       "max":1024
@@ -12988,7 +12994,8 @@
         "Lambda":{"shape":"LambdaStepMetadata"},
         "QualityCheck":{"shape":"QualityCheckStepMetadata"},
         "ClarifyCheck":{"shape":"ClarifyCheckStepMetadata"},
-        "EMR":{"shape":"EMRStepMetadata"}
+        "EMR":{"shape":"EMRStepMetadata"},
+        "Fail":{"shape":"FailStepMetadata"}
       }
     },
     "PipelineExecutionSummary":{
@@ -12998,7 +13005,8 @@
         "StartTime":{"shape":"Timestamp"},
         "PipelineExecutionStatus":{"shape":"PipelineExecutionStatus"},
         "PipelineExecutionDescription":{"shape":"PipelineExecutionDescription"},
-        "PipelineExecutionDisplayName":{"shape":"PipelineExecutionName"}
+        "PipelineExecutionDisplayName":{"shape":"PipelineExecutionName"},
+        "PipelineExecutionFailureReason":{"shape":"String3072"}
       }
     },
     "PipelineExecutionSummaryList":{
@@ -14940,6 +14948,10 @@
     "String256":{
       "type":"string",
       "max":256
+    },
+    "String3072":{
+      "type":"string",
+      "max":3072
     },
     "String40":{
       "type":"string",

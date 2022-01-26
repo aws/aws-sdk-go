@@ -2973,8 +2973,10 @@
         "AwsSecretsManagerSecretDetails$RotationOccurredWithinFrequency": "<p>Whether the rotation occurred within the specified rotation frequency.</p>",
         "AwsSecretsManagerSecretDetails$RotationEnabled": "<p>Whether rotation is enabled.</p>",
         "AwsSecretsManagerSecretDetails$Deleted": "<p>Whether the secret is deleted.</p>",
+        "AwsSecurityFinding$Sample": "<p>Indicates whether the finding is a sample finding.</p>",
         "AwsWafRateBasedRuleMatchPredicate$Negated": "<p>If set to <code>true</code>, then the rule actions are performed on requests that match the predicate settings.</p> <p>If set to <code>false</code>, then the rule actions are performed on all requests except those that match the predicate settings. </p>",
         "AwsWafRegionalRateBasedRuleMatchPredicate$Negated": "<p>If set to <code>true</code>, then the rule actions are performed on requests that match the predicate settings.</p> <p>If set to <code>false</code>, then the rule actions are performed on all requests except those that match the predicate settings.</p>",
+        "BooleanFilter$Value": "<p>The value of the boolean.</p>",
         "ClassificationResult$AdditionalOccurrences": "<p>Indicates whether there are additional occurrences of sensitive data that are not included in the finding. This occurs when the number of occurrences exceeds the maximum that can be included.</p>",
         "DescribeHubResponse$AutoEnableControls": "<p>Whether to automatically enable new controls when they are added to standards that are enabled.</p> <p>If set to <code>true</code>, then new controls for enabled standards are enabled automatically. If set to <code>false</code>, then new controls are not enabled.</p>",
         "DescribeOrganizationConfigurationResponse$AutoEnable": "<p>Whether to automatically enable Security Hub for new accounts in the organization.</p> <p>If set to <code>true</code>, then Security Hub is enabled for new accounts. If set to false, then new accounts are not added automatically.</p>",
@@ -2987,6 +2989,18 @@
         "Standard$EnabledByDefault": "<p>Whether the standard is enabled by default. When Security Hub is enabled from the console, if a standard is enabled by default, the check box for that standard is selected by default.</p> <p>When Security Hub is enabled using the <code>EnableSecurityHub</code> API operation, the standard is enabled by default unless <code>EnableDefaultStandards</code> is set to <code>false</code>.</p>",
         "UpdateOrganizationConfigurationRequest$AutoEnable": "<p>Whether to automatically enable Security Hub for new accounts in the organization.</p> <p>By default, this is <code>false</code>, and new accounts are not added automatically.</p> <p>To automatically enable Security Hub for new accounts, set this to <code>true</code>.</p>",
         "UpdateSecurityHubConfigurationRequest$AutoEnableControls": "<p>Whether to automatically enable new controls when they are added to standards that are enabled.</p> <p>By default, this is set to <code>true</code>, and new controls are enabled automatically. To not automatically enable new controls, set this to <code>false</code>. </p>"
+      }
+    },
+    "BooleanFilter": {
+      "base": "<p>Boolean filter for querying findings.</p>",
+      "refs": {
+        "BooleanFilterList$member": null
+      }
+    },
+    "BooleanFilterList": {
+      "base": null,
+      "refs": {
+        "AwsSecurityFindingFilters$Sample": "<p>Indicates whether or not sample findings are included in the filter results.</p>"
       }
     },
     "CategoryList": {
