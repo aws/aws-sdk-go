@@ -534,7 +534,7 @@ func mockGetEventStreamReadEvents() (
 				eventstreamtest.EventMessageTypeHeader,
 				{
 					Name:  eventstreamapi.EventTypeHeader,
-					Value: eventstream.StringValue("ImplicitPayload"),
+					Value: eventstream.StringValue("implicitPayload"),
 				},
 				{
 					Name:  "ByteVal",
@@ -548,7 +548,7 @@ func mockGetEventStreamReadEvents() (
 				eventstreamtest.EventMessageTypeHeader,
 				{
 					Name:  eventstreamapi.EventTypeHeader,
-					Value: eventstream.StringValue("PayloadOnly"),
+					Value: eventstream.StringValue("payloadOnly"),
 				},
 			},
 			Payload: eventstreamtest.MarshalEventPayload(payloadMarshaler, expectEvents[4]),
@@ -568,7 +568,7 @@ func mockGetEventStreamReadEvents() (
 				eventstreamtest.EventMessageTypeHeader,
 				{
 					Name:  eventstreamapi.EventTypeHeader,
-					Value: eventstream.StringValue("PayloadOnlyString"),
+					Value: eventstream.StringValue("payloadOnlyString"),
 				},
 			},
 			Payload: []byte(*expectEvents[6].(*PayloadOnlyStringEvent).StringPayload),
@@ -600,7 +600,7 @@ func TestGetEventStream_ReadException(t *testing.T) {
 				eventstreamtest.EventExceptionTypeHeader,
 				{
 					Name:  eventstreamapi.ExceptionTypeHeader,
-					Value: eventstream.StringValue("Exception"),
+					Value: eventstream.StringValue("exception"),
 				},
 			},
 			Payload: eventstreamtest.MarshalEventPayload(payloadMarshaler, expectEvents[0]),
