@@ -28,13 +28,18 @@ func (c *CodeGuruReviewer) WaitUntilCodeReviewCompleted(input *DescribeCodeRevie
 func (c *CodeGuruReviewer) WaitUntilCodeReviewCompletedWithContext(ctx aws.Context, input *DescribeCodeReviewInput, opts ...request.WaiterOption) error {
 	w := request.Waiter{
 		Name:        "WaitUntilCodeReviewCompleted",
-		MaxAttempts: 60,
+		MaxAttempts: 180,
 		Delay:       request.ConstantWaiterDelay(10 * time.Second),
 		Acceptors: []request.WaiterAcceptor{
 			{
 				State:   request.SuccessWaiterState,
 				Matcher: request.PathWaiterMatch, Argument: "CodeReview.State",
 				Expected: "Completed",
+			},
+			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "CodeReview.State",
+				Expected: "Failed",
 			},
 			{
 				State:   request.RetryWaiterState,
@@ -79,13 +84,18 @@ func (c *CodeGuruReviewer) WaitUntilRepositoryAssociationSucceeded(input *Descri
 func (c *CodeGuruReviewer) WaitUntilRepositoryAssociationSucceededWithContext(ctx aws.Context, input *DescribeRepositoryAssociationInput, opts ...request.WaiterOption) error {
 	w := request.Waiter{
 		Name:        "WaitUntilRepositoryAssociationSucceeded",
-		MaxAttempts: 20,
+		MaxAttempts: 30,
 		Delay:       request.ConstantWaiterDelay(10 * time.Second),
 		Acceptors: []request.WaiterAcceptor{
 			{
 				State:   request.SuccessWaiterState,
 				Matcher: request.PathWaiterMatch, Argument: "RepositoryAssociation.State",
 				Expected: "Associated",
+			},
+			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "RepositoryAssociation.State",
+				Expected: "Failed",
 			},
 			{
 				State:   request.RetryWaiterState,

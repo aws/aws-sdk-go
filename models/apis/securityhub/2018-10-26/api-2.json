@@ -4442,7 +4442,8 @@
         "Vulnerabilities":{"shape":"VulnerabilityList"},
         "PatchSummary":{"shape":"PatchSummary"},
         "Action":{"shape":"Action"},
-        "FindingProviderFields":{"shape":"FindingProviderFields"}
+        "FindingProviderFields":{"shape":"FindingProviderFields"},
+        "Sample":{"shape":"Boolean"}
       }
     },
     "AwsSecurityFindingFilters":{
@@ -4557,7 +4558,8 @@
         "FindingProviderFieldsRelatedFindingsProductArn":{"shape":"StringFilterList"},
         "FindingProviderFieldsSeverityLabel":{"shape":"StringFilterList"},
         "FindingProviderFieldsSeverityOriginal":{"shape":"StringFilterList"},
-        "FindingProviderFieldsTypes":{"shape":"StringFilterList"}
+        "FindingProviderFieldsTypes":{"shape":"StringFilterList"},
+        "Sample":{"shape":"BooleanFilterList"}
       }
     },
     "AwsSecurityFindingIdentifier":{
@@ -4817,6 +4819,16 @@
       "member":{"shape":"BatchUpdateFindingsUnprocessedFinding"}
     },
     "Boolean":{"type":"boolean"},
+    "BooleanFilter":{
+      "type":"structure",
+      "members":{
+        "Value":{"shape":"Boolean"}
+      }
+    },
+    "BooleanFilterList":{
+      "type":"list",
+      "member":{"shape":"BooleanFilter"}
+    },
     "CategoryList":{
       "type":"list",
       "member":{"shape":"NonEmptyString"}

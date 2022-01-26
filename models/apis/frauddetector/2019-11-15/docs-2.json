@@ -38,6 +38,7 @@
     "GetEntityTypes": "<p>Gets all entity types or a specific entity type if a name is specified. This is a paginated API. If you provide a null <code>maxResults</code>, this action retrieves a maximum of 10 records per page. If you provide a <code>maxResults</code>, the value must be between 5 and 10. To get the next page results, provide the pagination token from the <code>GetEntityTypesResponse</code> as part of your request. A null pagination token fetches the records from the beginning. </p>",
     "GetEvent": "<p>Retrieves details of events stored with Amazon Fraud Detector. This action does not retrieve prediction results.</p>",
     "GetEventPrediction": "<p>Evaluates an event against a detector version. If a version ID is not provided, the detector’s (<code>ACTIVE</code>) version is used.</p>",
+    "GetEventPredictionMetadata": "<p> Gets details of the past fraud predictions for the specified event ID, event type, detector ID, and detector version ID that was generated in the specified time period. </p>",
     "GetEventTypes": "<p>Gets all event types or a specific event type if name is provided. This is a paginated API. If you provide a null <code>maxResults</code>, this action retrieves a maximum of 10 records per page. If you provide a <code>maxResults</code>, the value must be between 5 and 10. To get the next page results, provide the pagination token from the <code>GetEventTypesResponse</code> as part of your request. A null pagination token fetches the records from the beginning. </p>",
     "GetExternalModels": "<p>Gets the details for one or more Amazon SageMaker models that have been imported into the service. This is a paginated API. If you provide a null <code>maxResults</code>, this actions retrieves a maximum of 10 records per page. If you provide a <code>maxResults</code>, the value must be between 5 and 10. To get the next page results, provide the pagination token from the <code>GetExternalModelsResult</code> as part of your request. A null pagination token fetches the records from the beginning. </p>",
     "GetKMSEncryptionKey": "<p>Gets the encryption key if a KMS key has been specified to be used to encrypt content in Amazon Fraud Detector.</p>",
@@ -47,6 +48,7 @@
     "GetOutcomes": "<p>Gets one or more outcomes. This is a paginated API. If you provide a null <code>maxResults</code>, this actions retrieves a maximum of 100 records per page. If you provide a <code>maxResults</code>, the value must be between 50 and 100. To get the next page results, provide the pagination token from the <code>GetOutcomesResult</code> as part of your request. A null pagination token fetches the records from the beginning. </p>",
     "GetRules": "<p>Get all rules for a detector (paginated) if <code>ruleId</code> and <code>ruleVersion</code> are not specified. Gets all rules for the detector and the <code>ruleId</code> if present (paginated). Gets a specific rule if both the <code>ruleId</code> and the <code>ruleVersion</code> are specified.</p> <p>This is a paginated API. Providing null maxResults results in retrieving maximum of 100 records per page. If you provide maxResults the value must be between 50 and 100. To get the next page result, a provide a pagination token from GetRulesResult as part of your request. Null pagination token fetches the records from the beginning.</p>",
     "GetVariables": "<p>Gets all of the variables or the specific variable. This is a paginated API. Providing null <code>maxSizePerPage</code> results in retrieving maximum of 100 records per page. If you provide <code>maxSizePerPage</code> the value must be between 50 and 100. To get the next page result, a provide a pagination token from <code>GetVariablesResult</code> as part of your request. Null pagination token fetches the records from the beginning. </p>",
+    "ListEventPredictions": "<p>Gets a list of past predictions. The list can be filtered by detector ID, detector version ID, event ID, event type, or by specifying a time period. If filter is not specified, the most recent prediction is returned.</p> <p>For example, the following filter lists all past predictions for <code>xyz</code> event type - <code>{ \"eventType\":{ \"value\": \"xyz\" }” } </code> </p> <p>This is a paginated API. If you provide a null <code>maxResults</code>, this action will retrieve a maximum of 10 records per page. If you provide a <code>maxResults</code>, the value must be between 50 and 100. To get the next page results, provide the <code>nextToken</code> from the response as part of your request. A null <code>nextToken</code> fetches the records from the beginning. </p>",
     "ListTagsForResource": "<p>Lists all tags associated with the resource. This is a paginated API. To get the next page results, provide the pagination token from the response as part of your request. A null pagination token fetches the records from the beginning. </p>",
     "PutDetector": "<p>Creates or updates a detector. </p>",
     "PutEntityType": "<p>Creates or updates an entity type. An entity represents who is performing the event. As part of a fraud prediction, you pass the entity ID to indicate the specific entity who performed the event. An entity type classifies the entity. Example classifications include customer, merchant, or account.</p>",
@@ -149,6 +151,14 @@
       "base": null,
       "refs": {
         "GetBatchPredictionJobsResult$batchPredictions": "<p>An array containing the details of each batch prediction job.</p>"
+      }
+    },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "EvaluatedExternalModel$useEventVariables": "<p> Indicates whether event variables were used to generate predictions. </p>",
+        "EvaluatedRule$evaluated": "<p> Indicates whether the rule was evaluated. </p>",
+        "EvaluatedRule$matched": "<p> Indicates whether the rule matched. </p>"
       }
     },
     "CancelBatchImportJobRequest": {
@@ -505,6 +515,30 @@
         "entityTypeList$member": null
       }
     },
+    "EvaluatedExternalModel": {
+      "base": "<p> The details of the external (Amazon Sagemaker) model evaluated for generating predictions. </p>",
+      "refs": {
+        "ListOfEvaluatedExternalModels$member": null
+      }
+    },
+    "EvaluatedModelVersion": {
+      "base": "<p> The model version evaluated for generating prediction. </p>",
+      "refs": {
+        "ListOfEvaluatedModelVersions$member": null
+      }
+    },
+    "EvaluatedRule": {
+      "base": "<p> The details of the rule used for evaluating variable values. </p>",
+      "refs": {
+        "EvaluatedRuleList$member": null
+      }
+    },
+    "EvaluatedRuleList": {
+      "base": null,
+      "refs": {
+        "GetEventPredictionMetadataResult$rules": "<p> List of rules associated with the detector version that were used for evaluating variable values. </p>"
+      }
+    },
     "Event": {
       "base": "<p>The event details.</p>",
       "refs": {
@@ -524,6 +558,18 @@
         "PutEventTypeRequest$eventIngestion": "<p>Specifies if ingenstion is enabled or disabled.</p>"
       }
     },
+    "EventPredictionSummary": {
+      "base": "<p> Information about the summary of an event prediction. </p>",
+      "refs": {
+        "ListOfEventPredictionSummaries$member": null
+      }
+    },
+    "EventPredictionsMaxResults": {
+      "base": null,
+      "refs": {
+        "ListEventPredictionsRequest$maxResults": "<p> The maximum number of predictions to return for the request. </p>"
+      }
+    },
     "EventType": {
       "base": "<p>The event type details.</p>",
       "refs": {
@@ -535,6 +581,12 @@
       "refs": {
         "GetEventPredictionRequest$eventVariables": "<p>Names of the event type's variables you defined in Amazon Fraud Detector to represent data elements and their corresponding values for the event you are sending for evaluation.</p> <important> <p>You must provide at least one eventVariable</p> </important> <p>To ensure most accurate fraud prediction and to simplify your data preparation, Amazon Fraud Detector will replace all missing variables or values as follows:</p> <p> <b>For Amazon Fraud Detector trained models:</b> </p> <p>If a null value is provided explicitly for a variable or if a variable is missing, model will replace the null value or the missing variable (no variable name in the eventVariables map) with calculated default mean/medians for numeric variables and with special values for categorical variables.</p> <p> <b>For imported SageMaker models:</b> </p> <p>If a null value is provided explicitly for a variable, the model and rules will use “null” as the value. If a variable is not provided (no variable name in the eventVariables map), model and rules will use the default value that is provided for the variable. </p>",
         "SendEventRequest$eventVariables": "<p>Names of the event type's variables you defined in Amazon Fraud Detector to represent data elements and their corresponding values for the event you are sending for evaluation.</p>"
+      }
+    },
+    "EventVariableSummary": {
+      "base": "<p> Information about the summary of an event variable that was evaluated for generating prediction. </p>",
+      "refs": {
+        "ListOfEventVariableSummaries$member": null
       }
     },
     "ExternalEventsDetail": {
@@ -600,6 +652,15 @@
         "fileValidationMessageList$member": null
       }
     },
+    "FilterCondition": {
+      "base": "<p> A conditional statement for filtering a list of past predictions. </p>",
+      "refs": {
+        "ListEventPredictionsRequest$eventId": "<p> The event ID. </p>",
+        "ListEventPredictionsRequest$eventType": "<p> The event type associated with the detector. </p>",
+        "ListEventPredictionsRequest$detectorId": "<p> The detector ID. </p>",
+        "ListEventPredictionsRequest$detectorVersionId": "<p> The detector version ID. </p>"
+      }
+    },
     "GetBatchImportJobsRequest": {
       "base": null,
       "refs": {
@@ -656,6 +717,16 @@
       }
     },
     "GetEntityTypesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEventPredictionMetadataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEventPredictionMetadataResult": {
       "base": null,
       "refs": {
       }
@@ -840,6 +911,40 @@
         "UpdateRuleVersionRequest$language": "<p>The language.</p>"
       }
     },
+    "ListEventPredictionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEventPredictionsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListOfEvaluatedExternalModels": {
+      "base": null,
+      "refs": {
+        "GetEventPredictionMetadataResult$evaluatedExternalModels": "<p> External (Amazon SageMaker) models that were evaluated for generating predictions. </p>"
+      }
+    },
+    "ListOfEvaluatedModelVersions": {
+      "base": null,
+      "refs": {
+        "GetEventPredictionMetadataResult$evaluatedModelVersions": "<p> Model versions that were evaluated for generating predictions. </p>"
+      }
+    },
+    "ListOfEventPredictionSummaries": {
+      "base": null,
+      "refs": {
+        "ListEventPredictionsResult$eventPredictionSummaries": "<p> The summary of the past predictions. </p>"
+      }
+    },
+    "ListOfEventVariableSummaries": {
+      "base": null,
+      "refs": {
+        "GetEventPredictionMetadataResult$eventVariables": "<p> A list of event variables that influenced the prediction scores. </p>"
+      }
+    },
     "ListOfExternalModelOutputs": {
       "base": null,
       "refs": {
@@ -856,6 +961,12 @@
       "base": null,
       "refs": {
         "GetEventPredictionResult$modelScores": "<p>The model scores. Amazon Fraud Detector generates model scores between 0 and 1000, where 0 is low fraud risk and 1000 is high fraud risk. Model scores are directly related to the false positive rate (FPR). For example, a score of 600 corresponds to an estimated 10% false positive rate whereas a score of 900 corresponds to an estimated 2% false positive rate.</p>"
+      }
+    },
+    "ListOfModelVersionEvaluations": {
+      "base": null,
+      "refs": {
+        "EvaluatedModelVersion$evaluations": "<p> Evaluations generated for the model version. </p>"
       }
     },
     "ListOfModelVersions": {
@@ -876,9 +987,11 @@
       "base": null,
       "refs": {
         "CreateDetectorVersionRequest$externalModelEndpoints": "<p>The Amazon Sagemaker model endpoints to include in the detector version.</p>",
+        "EvaluatedRule$outcomes": "<p> The rule outcome. </p>",
         "EventType$eventVariables": "<p>The event type event variables.</p>",
         "EventType$labels": "<p>The event type labels.</p>",
         "GetDetectorVersionResult$externalModelEndpoints": "<p>The Amazon SageMaker model endpoints included in the detector version.</p>",
+        "GetEventPredictionMetadataResult$outcomes": "<p> The outcomes of the matched rule, based on the rule execution mode. </p>",
         "PutEventTypeRequest$labels": "<p>The event type labels.</p>",
         "RuleResult$outcomes": "<p>The outcomes of the matched rule, based on the rule execution mode.</p>",
         "TrainingDataSchema$modelVariables": "<p>The training data schema variables.</p>",
@@ -906,6 +1019,13 @@
       "refs": {
         "IngestedEventStatistics$numberOfEvents": "<p>The number of stored events.</p>",
         "IngestedEventStatistics$eventDataSizeInBytes": "<p>The total size of the stored events.</p>"
+      }
+    },
+    "MapOfStrings": {
+      "base": null,
+      "refs": {
+        "EvaluatedExternalModel$inputVariables": "<p> Input variables use for generating predictions. </p>",
+        "EvaluatedExternalModel$outputVariables": "<p> Output variables. </p>"
       }
     },
     "MetricDataPoint": {
@@ -1013,6 +1133,12 @@
         "modelVersionDetailList$member": null
       }
     },
+    "ModelVersionEvaluation": {
+      "base": "<p> The model version evalutions. </p>",
+      "refs": {
+        "ListOfModelVersionEvaluations$member": null
+      }
+    },
     "ModelVersionStatus": {
       "base": null,
       "refs": {
@@ -1053,6 +1179,18 @@
       "base": null,
       "refs": {
         "GetOutcomesRequest$maxResults": "<p>The maximum number of objects to return for the request. </p>"
+      }
+    },
+    "PredictionExplanations": {
+      "base": "<p> The prediction explanations that provide insight into how each event variable impacted the model version's fraud prediction score. </p>",
+      "refs": {
+        "ModelVersionEvaluation$predictionExplanations": "<p> The prediction explanations generated for the model version. </p>"
+      }
+    },
+    "PredictionTimeRange": {
+      "base": "<p> The time period for when the predictions were generated. </p>",
+      "refs": {
+        "ListEventPredictionsRequest$predictionTimeRange": "<p> The time period for when the predictions were generated. </p>"
       }
     },
     "PutDetectorRequest": {
@@ -1163,6 +1301,7 @@
       "refs": {
         "CreateDetectorVersionRequest$ruleExecutionMode": "<p>The rule execution mode for the rules included in the detector version.</p> <p>You can define and edit the rule mode at the detector version level, when it is in draft status.</p> <p>If you specify <code>FIRST_MATCHED</code>, Amazon Fraud Detector evaluates rules sequentially, first to last, stopping at the first matched rule. Amazon Fraud dectector then provides the outcomes for that single rule.</p> <p>If you specifiy <code>ALL_MATCHED</code>, Amazon Fraud Detector evaluates all rules and returns the outcomes for all matched rules. </p> <p>The default behavior is <code>FIRST_MATCHED</code>.</p>",
         "GetDetectorVersionResult$ruleExecutionMode": "<p>The execution mode of the rule in the dectector</p> <p> <code>FIRST_MATCHED</code> indicates that Amazon Fraud Detector evaluates rules sequentially, first to last, stopping at the first matched rule. Amazon Fraud dectector then provides the outcomes for that single rule.</p> <p> <code>ALL_MATCHED</code> indicates that Amazon Fraud Detector evaluates all rules and returns the outcomes for all matched rules. You can define and edit the rule mode at the detector version level, when it is in draft status.</p>",
+        "GetEventPredictionMetadataResult$ruleExecutionMode": "<p> The execution mode of the rule used for evaluating variable values. </p>",
         "UpdateDetectorVersionRequest$ruleExecutionMode": "<p>The rule execution mode to add to the detector.</p> <p>If you specify <code>FIRST_MATCHED</code>, Amazon Fraud Detector evaluates rules sequentially, first to last, stopping at the first matched rule. Amazon Fraud dectector then provides the outcomes for that single rule.</p> <p>If you specifiy <code>ALL_MATCHED</code>, Amazon Fraud Detector evaluates all rules and returns the outcomes for all matched rules. You can define and edit the rule mode at the detector version level, when it is in draft status.</p> <p>The default behavior is <code>FIRST_MATCHED</code>.</p>"
       }
     },
@@ -1396,6 +1535,12 @@
         "BatchCreateVariableRequest$variableEntries": "<p>The list of variables for the batch create variable request.</p>"
       }
     },
+    "VariableImpactExplanation": {
+      "base": "<p> The details of the event variable's impact on the prediction score. </p>",
+      "refs": {
+        "listOfVariableImpactExplanations$member": null
+      }
+    },
     "VariableImportanceMetrics": {
       "base": "<p>The variable importance metrics details.</p>",
       "refs": {
@@ -1520,6 +1665,12 @@
         "DataValidationMetrics$fileLevelMessages": "<p>The file-specific model training validation messages.</p>"
       }
     },
+    "filterString": {
+      "base": null,
+      "refs": {
+        "FilterCondition$value": "<p> A statement containing a resource property and a value to specify filter condition. </p>"
+      }
+    },
     "float": {
       "base": null,
       "refs": {
@@ -1529,7 +1680,8 @@
         "MetricDataPoint$tpr": "<p>The true positive rate. This is the percentage of total fraud the model detects. Also known as capture rate.</p>",
         "MetricDataPoint$threshold": "<p>The model threshold that specifies an acceptable fraud capture rate. For example, a threshold of 500 means any model score 500 or above is labeled as fraud.</p>",
         "ModelPredictionMap$value": null,
-        "TrainingMetrics$auc": "<p>The area under the curve. This summarizes true positive rate (TPR) and false positive rate (FPR) across all possible model score thresholds. A model with no predictive power has an AUC of 0.5, whereas a perfect model has a score of 1.0.</p>"
+        "TrainingMetrics$auc": "<p>The area under the curve. This summarizes true positive rate (TPR) and false positive rate (FPR) across all possible model score thresholds. A model with no predictive power has an AUC of 0.5, whereas a perfect model has a score of 1.0.</p>",
+        "VariableImpactExplanation$logOddsImpact": "<p> The raw, uninterpreted value represented as log-odds of the fraud. These values are usually between -10 to +10, but range from - infinity to + infinity.</p> <ul> <li> <p>A positive value indicates that the variable drove the risk score up.</p> </li> <li> <p>A negative value indicates that the variable drove the risk score down.</p> </li> </ul>"
       }
     },
     "floatVersionString": {
@@ -1616,6 +1768,10 @@
         "DescribeDetectorResult$detectorId": "<p>The detector ID.</p>",
         "Detector$detectorId": "<p>The detector ID.</p>",
         "Detector$eventTypeName": "<p>The name of the event type.</p>",
+        "EvaluatedRule$ruleId": "<p> The rule ID. </p>",
+        "EventPredictionSummary$eventId": "<p> The event ID. </p>",
+        "EventPredictionSummary$eventTypeName": "<p> The event type. </p>",
+        "EventPredictionSummary$detectorId": "<p> The detector ID. </p>",
         "GetBatchImportJobsRequest$jobId": "<p>The ID of the batch import job to get.</p>",
         "GetBatchPredictionJobsRequest$jobId": "<p>The batch prediction job for which to get the details.</p>",
         "GetDeleteEventsByEventTypeStatusRequest$eventTypeName": "<p>Name of event type for which to get the deletion status.</p>",
@@ -1624,6 +1780,12 @@
         "GetDetectorVersionResult$detectorId": "<p>The detector ID.</p>",
         "GetDetectorsRequest$detectorId": "<p>The detector ID.</p>",
         "GetEntityTypesRequest$name": "<p>The name.</p>",
+        "GetEventPredictionMetadataRequest$eventId": "<p> The event ID. </p>",
+        "GetEventPredictionMetadataRequest$eventTypeName": "<p> The event type associated with the detector specified for the prediction. </p>",
+        "GetEventPredictionMetadataRequest$detectorId": "<p> The detector ID. </p>",
+        "GetEventPredictionMetadataResult$eventId": "<p> The event ID. </p>",
+        "GetEventPredictionMetadataResult$eventTypeName": "<p> The event type associated with the detector specified for this prediction. </p>",
+        "GetEventPredictionMetadataResult$detectorId": "<p> The detector ID. </p>",
         "GetEventTypesRequest$name": "<p>The name.</p>",
         "GetLabelsRequest$name": "<p>The name of the label or labels to get.</p>",
         "GetOutcomesRequest$name": "<p>The name of the outcome or outcomes to get.</p>",
@@ -1683,6 +1845,12 @@
         "Event$entities": "<p>The event entities.</p>",
         "GetEventPredictionRequest$entities": "<p>The entity type (associated with the detector's event type) and specific entity ID representing who performed the event. If an entity id is not available, use \"UNKNOWN.\"</p>",
         "SendEventRequest$entities": "<p>An array of entities.</p>"
+      }
+    },
+    "listOfVariableImpactExplanations": {
+      "base": null,
+      "refs": {
+        "PredictionExplanations$variableImpactExplanations": "<p> The details of the event variable's impact on the prediction score. </p>"
       }
     },
     "metricDataPointsList": {
@@ -1768,6 +1936,16 @@
         "PutExternalModelRequest$modelEndpoint": "<p>The model endpoints name.</p>"
       }
     },
+    "sensitiveString": {
+      "base": null,
+      "refs": {
+        "EvaluatedRule$expression": "<p> The rule expression. </p>",
+        "EvaluatedRule$expressionWithValues": "<p> The rule expression value. </p>",
+        "EventVariableSummary$name": "<p> The event variable name. </p>",
+        "EventVariableSummary$value": "<p> The value of the event variable. </p>",
+        "EventVariableSummary$source": "<p> The event variable source. </p>"
+      }
+    },
     "string": {
       "base": null,
       "refs": {
@@ -1795,6 +1973,10 @@
         "DescribeModelVersionsResult$nextToken": "<p>The next token.</p>",
         "Entity$entityType": "<p>The entity type.</p>",
         "EntityType$name": "<p>The entity type name.</p>",
+        "EvaluatedExternalModel$modelEndpoint": "<p> The endpoint of the external (Amazon Sagemaker) model. </p>",
+        "EvaluatedModelVersion$modelId": "<p> The model ID. </p>",
+        "EvaluatedModelVersion$modelVersion": "<p> The model version. </p>",
+        "EvaluatedModelVersion$modelType": "<p>The model type. </p> <p>Valid values: <code>ONLINE_FRAUD_INSIGHTS</code> | <code>TRANSACTION_FRAUD_INSIGHTS</code> </p>",
         "Event$eventId": "<p>The event ID.</p>",
         "Event$eventTypeName": "<p>The event type.</p>",
         "Event$eventTimestamp": "<p>The timestamp that defines when the event under evaluation occurred. The timestamp must be specified using ISO 8601 standard in UTC.</p>",
@@ -1822,6 +2004,9 @@
         "GetDetectorsResult$nextToken": "<p>The next page token.</p>",
         "GetEntityTypesRequest$nextToken": "<p>The next token for the subsequent request.</p>",
         "GetEntityTypesResult$nextToken": "<p>The next page token.</p>",
+        "GetEventPredictionMetadataResult$entityId": "<p> The entity ID. </p>",
+        "GetEventPredictionMetadataResult$entityType": "<p> The entity type. </p>",
+        "GetEventPredictionMetadataResult$detectorVersionStatus": "<p> The status of the detector version. </p>",
         "GetEventPredictionRequest$detectorId": "<p>The detector ID.</p>",
         "GetEventPredictionRequest$eventId": "<p>The unique ID used to identify the event.</p>",
         "GetEventPredictionRequest$eventTypeName": "<p>The event type associated with the detector specified for the prediction.</p>",
@@ -1848,14 +2033,20 @@
         "JsonKeyToVariableMap$key": null,
         "JsonKeyToVariableMap$value": null,
         "Label$name": "<p>The label name.</p>",
+        "ListEventPredictionsRequest$nextToken": "<p> Identifies the next page of results to return. Use the token to make the call again to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. </p>",
+        "ListEventPredictionsResult$nextToken": "<p> Identifies the next page of results to return. Use the token to make the call again to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. </p>",
         "ListOfStrings$member": null,
         "ListTagsForResourceRequest$nextToken": "<p>The next token from the previous results.</p>",
         "ListTagsForResourceResult$nextToken": "<p>The next token for subsequent requests. </p>",
         "LogOddsMetric$variableName": "<p>The name of the variable.</p>",
         "LogOddsMetric$variableType": "<p>The type of variable.</p>",
+        "MapOfStrings$key": null,
+        "MapOfStrings$value": null,
         "Model$eventTypeName": "<p>The name of the event type.</p>",
         "ModelPredictionMap$key": null,
         "ModelVersionDetail$status": "<p>The status of the model version.</p>",
+        "ModelVersionEvaluation$outputVariableName": "<p> The output variable name. </p>",
+        "ModelVersionEvaluation$evaluationScore": "<p> The evaluation score generated for the model version. </p>",
         "NameList$member": null,
         "NonEmptyListOfStrings$member": null,
         "PutExternalModelRequest$invokeModelEndpointRoleArn": "<p>The IAM role used to invoke the model endpoint.</p>",
@@ -1879,6 +2070,8 @@
         "VariableEntry$defaultValue": "<p>The default value of the variable.</p>",
         "VariableEntry$description": "<p>The description of the variable.</p>",
         "VariableEntry$variableType": "<p>The type of the variable. For more information see <a href=\"https://docs.aws.amazon.com/frauddetector/latest/ug/create-a-variable.html#variable-types\">Variable types</a>.</p> <p>Valid Values: <code>AUTH_CODE | AVS | BILLING_ADDRESS_L1 | BILLING_ADDRESS_L2 | BILLING_CITY | BILLING_COUNTRY | BILLING_NAME | BILLING_PHONE | BILLING_STATE | BILLING_ZIP | CARD_BIN | CATEGORICAL | CURRENCY_CODE | EMAIL_ADDRESS | FINGERPRINT | FRAUD_LABEL | FREE_FORM_TEXT | IP_ADDRESS | NUMERIC | ORDER_ID | PAYMENT_TYPE | PHONE_NUMBER | PRICE | PRODUCT_CATEGORY | SHIPPING_ADDRESS_L1 | SHIPPING_ADDRESS_L2 | SHIPPING_CITY | SHIPPING_COUNTRY | SHIPPING_NAME | SHIPPING_PHONE | SHIPPING_STATE | SHIPPING_ZIP | USERAGENT </code> </p>",
+        "VariableImpactExplanation$eventVariableName": "<p> The event variable name. </p>",
+        "VariableImpactExplanation$relativeImpact": "<p> The event variable's relative impact in terms of magnitude on the prediction scores. The relative impact values consist of a numerical rating (0-5, 5 being the highest) and direction (increased/decreased) impact of the fraud risk. </p>",
         "labelMapper$key": null
       }
     },
@@ -1937,12 +2130,17 @@
         "DetectorVersionSummary$lastUpdatedTime": "<p>Timestamp of when the detector version was last updated.</p>",
         "EntityType$lastUpdatedTime": "<p>Timestamp of when the entity type was last updated.</p>",
         "EntityType$createdTime": "<p>Timestamp of when the entity type was created.</p>",
+        "EventPredictionSummary$eventTimestamp": "<p> The timestamp of the event. </p>",
+        "EventPredictionSummary$predictionTimestamp": "<p> The timestamp when the prediction was generated. </p>",
         "EventType$lastUpdatedTime": "<p>Timestamp of when the event type was last updated.</p>",
         "EventType$createdTime": "<p>Timestamp of when the event type was created.</p>",
         "ExternalModel$lastUpdatedTime": "<p>Timestamp of when the model was last updated.</p>",
         "ExternalModel$createdTime": "<p>Timestamp of when the model was last created.</p>",
         "GetDetectorVersionResult$lastUpdatedTime": "<p>The timestamp when the detector version was last updated. </p>",
         "GetDetectorVersionResult$createdTime": "<p>The timestamp when the detector version was created. </p>",
+        "GetEventPredictionMetadataRequest$predictionTimestamp": "<p> The timestamp that defines when the prediction was generated. </p>",
+        "GetEventPredictionMetadataResult$eventTimestamp": "<p> The timestamp for when the prediction was generated for the associated event ID. </p>",
+        "GetEventPredictionMetadataResult$predictionTimestamp": "<p>The timestamp that defines when the prediction was generated. </p>",
         "IngestedEventStatistics$leastRecentEvent": "<p>The oldest stored event.</p>",
         "IngestedEventStatistics$mostRecentEvent": "<p>The newest stored event.</p>",
         "IngestedEventStatistics$lastUpdatedTime": "<p>Timestamp of when the stored event was last updated. </p>",
@@ -1956,6 +2154,8 @@
         "ModelVersionDetail$createdTime": "<p>The timestamp when the model was created.</p>",
         "Outcome$lastUpdatedTime": "<p>The timestamp when the outcome was last updated.</p>",
         "Outcome$createdTime": "<p>The timestamp when the outcome was created.</p>",
+        "PredictionTimeRange$startTime": "<p> The start time of the time period for when the predictions were generated. </p>",
+        "PredictionTimeRange$endTime": "<p> The end time of the time period for when the predictions were generated. </p>",
         "RuleDetail$lastUpdatedTime": "<p>Timestamp of the last time the rule was updated.</p>",
         "RuleDetail$createdTime": "<p>The timestamp of when the rule was created.</p>",
         "Variable$lastUpdatedTime": "<p>The time when variable was last updated.</p>",
@@ -1990,8 +2190,12 @@
         "CreateDetectorVersionResult$detectorVersionId": "<p>The ID for the created detector. </p>",
         "DeleteDetectorVersionRequest$detectorVersionId": "<p>The ID of the detector version to delete.</p>",
         "DetectorVersionSummary$detectorVersionId": "<p>The detector version ID. </p>",
+        "EvaluatedRule$ruleVersion": "<p> The rule version. </p>",
+        "EventPredictionSummary$detectorVersionId": "<p> The detector version ID. </p>",
         "GetDetectorVersionRequest$detectorVersionId": "<p>The detector version ID.</p>",
         "GetDetectorVersionResult$detectorVersionId": "<p>The detector version ID.</p>",
+        "GetEventPredictionMetadataRequest$detectorVersionId": "<p> The detector version ID. </p>",
+        "GetEventPredictionMetadataResult$detectorVersionId": "<p> The detector version ID. </p>",
         "GetEventPredictionRequest$detectorVersionId": "<p>The detector version ID.</p>",
         "GetRulesRequest$ruleVersion": "<p>The rule version.</p>",
         "Rule$ruleVersion": "<p>The rule version.</p>",

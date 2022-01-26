@@ -21631,16 +21631,16 @@ func (c *SageMaker) StopPipelineExecutionRequest(input *StopPipelineExecutionInp
 //
 // A pipeline execution won't stop while a callback step is running. When you
 // call StopPipelineExecution on a pipeline execution with a running callback
-// step, Amazon SageMaker Pipelines sends an additional Amazon SQS message to
-// the specified SQS queue. The body of the SQS message contains a "Status"
-// field which is set to "Stopping".
+// step, SageMaker Pipelines sends an additional Amazon SQS message to the specified
+// SQS queue. The body of the SQS message contains a "Status" field which is
+// set to "Stopping".
 //
 // You should add logic to your Amazon SQS message consumer to take any needed
 // action (for example, resource cleanup) upon receipt of the message followed
 // by a call to SendPipelineExecutionStepSuccess or SendPipelineExecutionStepFailure.
 //
-// Only when Amazon SageMaker Pipelines receives one of these calls will it
-// stop the pipeline execution.
+// Only when SageMaker Pipelines receives one of these calls will it stop the
+// pipeline execution.
 //
 // Lambda Step
 //
@@ -32517,7 +32517,7 @@ type CreateEndpointConfigInput struct {
 
 	// Specifies configuration for how an endpoint performs asynchronous inference.
 	// This is a required field in order for your Endpoint to be invoked using InvokeEndpointAsync
-	// (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html).
+	// (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpointAsync.html).
 	AsyncInferenceConfig *AsyncInferenceConfig `type:"structure"`
 
 	DataCaptureConfig *DataCaptureConfig `type:"structure"`
@@ -55389,6 +55389,39 @@ func (s *Explainability) SetReport(v *MetricsSource) *Explainability {
 	return s
 }
 
+// The container for the metadata for Fail step.
+type FailStepMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// A message that you define and then is processed and rendered by the Fail
+	// step when the error occurs.
+	ErrorMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailStepMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailStepMetadata) GoString() string {
+	return s.String()
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *FailStepMetadata) SetErrorMessage(v string) *FailStepMetadata {
+	s.ErrorMessage = &v
+	return s
+}
+
 // A list of features. You must include FeatureName and FeatureType. Valid feature
 // FeatureTypes are Integral, Fractional and String.
 type FeatureDefinition struct {
@@ -66921,12 +66954,13 @@ type ListModelPackagesInput struct {
 	// group.
 	ModelPackageGroupName *string `min:"1" type:"string"`
 
-	// A filter that returns onlyl the model packages of the specified type. This
+	// A filter that returns only the model packages of the specified type. This
 	// can be one of the following values.
 	//
-	//    * VERSIONED - List only versioned models.
+	//    * UNVERSIONED - List only unversioined models. This is the default value
+	//    if no ModelPackageType is specified.
 	//
-	//    * UNVERSIONED - List only unversioined models.
+	//    * VERSIONED - List only versioned models.
 	//
 	//    * BOTH - List both versioned and unversioned models.
 	ModelPackageType *string `type:"string" enum:"ModelPackageType"`
@@ -77422,7 +77456,7 @@ type PipelineExecutionStep struct {
 	_ struct{} `type:"structure"`
 
 	// The current attempt of the execution step. For more information, see Retry
-	// Policy for Amazon SageMaker Pipelines steps (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/sagemaker/latest/dg/pipelines-retry-policy.html).
+	// Policy for SageMaker Pipelines steps (https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-retry-policy.html).
 	AttemptCount *int64 `type:"integer"`
 
 	// If this pipeline execution step was cached, details on the cache hit.
@@ -77568,6 +77602,9 @@ type PipelineExecutionStepMetadata struct {
 	// The configurations and outcomes of an EMR step execution.
 	EMR *EMRStepMetadata `type:"structure"`
 
+	// The configurations and outcomes of a Fail step execution.
+	Fail *FailStepMetadata `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the Lambda function that was run by this
 	// step execution and a list of output parameters.
 	Lambda *LambdaStepMetadata `type:"structure"`
@@ -77660,6 +77697,12 @@ func (s *PipelineExecutionStepMetadata) SetEMR(v *EMRStepMetadata) *PipelineExec
 	return s
 }
 
+// SetFail sets the Fail field's value.
+func (s *PipelineExecutionStepMetadata) SetFail(v *FailStepMetadata) *PipelineExecutionStepMetadata {
+	s.Fail = v
+	return s
+}
+
 // SetLambda sets the Lambda field's value.
 func (s *PipelineExecutionStepMetadata) SetLambda(v *LambdaStepMetadata) *PipelineExecutionStepMetadata {
 	s.Lambda = v
@@ -77721,6 +77764,10 @@ type PipelineExecutionSummary struct {
 	// The display name of the pipeline execution.
 	PipelineExecutionDisplayName *string `min:"1" type:"string"`
 
+	// A message generated by SageMaker Pipelines describing why the pipeline execution
+	// failed.
+	PipelineExecutionFailureReason *string `type:"string"`
+
 	// The status of the pipeline execution.
 	PipelineExecutionStatus *string `type:"string" enum:"PipelineExecutionStatus"`
 
@@ -77761,6 +77808,12 @@ func (s *PipelineExecutionSummary) SetPipelineExecutionDescription(v string) *Pi
 // SetPipelineExecutionDisplayName sets the PipelineExecutionDisplayName field's value.
 func (s *PipelineExecutionSummary) SetPipelineExecutionDisplayName(v string) *PipelineExecutionSummary {
 	s.PipelineExecutionDisplayName = &v
+	return s
+}
+
+// SetPipelineExecutionFailureReason sets the PipelineExecutionFailureReason field's value.
+func (s *PipelineExecutionSummary) SetPipelineExecutionFailureReason(v string) *PipelineExecutionSummary {
+	s.PipelineExecutionFailureReason = &v
 	return s
 }
 

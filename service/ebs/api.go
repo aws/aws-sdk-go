@@ -1363,10 +1363,19 @@ type ListChangedBlocksInput struct {
 	// otherwise, an error occurs.
 	FirstSnapshotId *string `location:"querystring" locationName:"firstSnapshotId" min:"1" type:"string"`
 
-	// The number of results to return.
+	// The maximum number of blocks to be returned by the request.
+	//
+	// Even if additional blocks can be retrieved from the snapshot, the request
+	// can return less blocks than MaxResults or an empty array of blocks.
+	//
+	// To retrieve the next set of blocks from the snapshot, make another request
+	// with the returned NextToken value. The value of NextToken is null when there
+	// are no more blocks to return.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"100" type:"integer"`
 
 	// The token to request the next page of results.
+	//
+	// If you specify NextToken, then StartingBlockIndex is ignored.
 	NextToken *string `location:"querystring" locationName:"pageToken" type:"string"`
 
 	// The ID of the second snapshot to use for the comparison.
@@ -1381,6 +1390,8 @@ type ListChangedBlocksInput struct {
 	//
 	// The list in the response will start from this block index or the next valid
 	// block index in the snapshots.
+	//
+	// If you specify NextToken, then StartingBlockIndex is ignored.
 	StartingBlockIndex *int64 `location:"querystring" locationName:"startingBlockIndex" type:"integer"`
 }
 
@@ -1525,10 +1536,19 @@ func (s *ListChangedBlocksOutput) SetVolumeSize(v int64) *ListChangedBlocksOutpu
 type ListSnapshotBlocksInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The number of results to return.
+	// The maximum number of blocks to be returned by the request.
+	//
+	// Even if additional blocks can be retrieved from the snapshot, the request
+	// can return less blocks than MaxResults or an empty array of blocks.
+	//
+	// To retrieve the next set of blocks from the snapshot, make another request
+	// with the returned NextToken value. The value of NextToken is null when there
+	// are no more blocks to return.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"100" type:"integer"`
 
 	// The token to request the next page of results.
+	//
+	// If you specify NextToken, then StartingBlockIndex is ignored.
 	NextToken *string `location:"querystring" locationName:"pageToken" type:"string"`
 
 	// The ID of the snapshot from which to get block indexes and block tokens.
@@ -1538,6 +1558,8 @@ type ListSnapshotBlocksInput struct {
 
 	// The block index from which the list should start. The list in the response
 	// will start from this block index or the next valid block index in the snapshot.
+	//
+	// If you specify NextToken, then StartingBlockIndex is ignored.
 	StartingBlockIndex *int64 `location:"querystring" locationName:"startingBlockIndex" type:"integer"`
 }
 

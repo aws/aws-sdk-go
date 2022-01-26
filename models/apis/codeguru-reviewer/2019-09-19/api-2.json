@@ -676,6 +676,11 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListRecommendationsMaxResults":{
+      "type":"integer",
+      "max":300,
+      "min":1
+    },
     "ListRecommendationsRequest":{
       "type":"structure",
       "required":["CodeReviewArn"],
@@ -686,7 +691,7 @@
           "locationName":"NextToken"
         },
         "MaxResults":{
-          "shape":"MaxResults",
+          "shape":"ListRecommendationsMaxResults",
           "location":"querystring",
           "locationName":"MaxResults"
         },
@@ -1199,7 +1204,7 @@
     },
     "Text":{
       "type":"string",
-      "max":2048,
+      "max":5000,
       "min":1
     },
     "ThirdPartySourceRepository":{
