@@ -933,15 +933,15 @@ func (u unmarshalerForEventStreamEvent) UnmarshalerForEventName(eventType string
 		return &ExplicitPayloadEvent{}, nil
 	case "Headers":
 		return &HeaderOnlyEvent{}, nil
-	case "ImplicitPayload":
+	case "implicitPayload":
 		return &ImplicitPayloadEvent{}, nil
-	case "PayloadOnly":
+	case "payloadOnly":
 		return &PayloadOnlyEvent{}, nil
 	case "PayloadOnlyBlob":
 		return &PayloadOnlyBlobEvent{}, nil
-	case "PayloadOnlyString":
+	case "payloadOnlyString":
 		return &PayloadOnlyStringEvent{}, nil
-	case "Exception":
+	case "exception":
 		return newErrorExceptionEvent(u.metadata).(eventstreamapi.Unmarshaler), nil
 	case "Exception2":
 		return newErrorExceptionEvent2(u.metadata).(eventstreamapi.Unmarshaler), nil
