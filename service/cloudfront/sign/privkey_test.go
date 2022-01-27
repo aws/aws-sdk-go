@@ -22,6 +22,9 @@ func generatePEM(randReader io.Reader, password []byte) (buf *bytes.Buffer, err 
 	var block *pem.Block
 	if password != nil {
 		block, err = x509.EncryptPEMBlock(randReader, "RSA PRIVATE KEY", derBytes, password, x509.PEMCipherAES128)
+		if err != nil {
+			return nil, err
+		}
 	} else {
 		block = &pem.Block{
 			Type:  "RSA PRIVATE KEY",
@@ -79,6 +82,9 @@ func TestLoadEncryptedPEMPrivKey(t *testing.T) {
 
 func TestLoadEncryptedPEMPrivKeyWrongPassword(t *testing.T) {
 	reader, err := generatePEM(newRandomReader(rand.New(rand.NewSource(1))), []byte("password"))
+	if err != nil {
+		t.Errorf("Unexpected generatePEM error: %s", err)
+	}
 	privKey, err := LoadEncryptedPEMPrivKey(reader, []byte("wrong password"))
 
 	if err == nil {
