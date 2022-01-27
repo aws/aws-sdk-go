@@ -10510,13 +10510,17 @@ func (c *Connect) StartChatContactRequest(input *StartChatContactInput) (req *re
 // is achieved by invoking CreateParticipantConnection (https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html)
 // with WEBSOCKET and CONNECTION_CREDENTIALS.
 //
-// A 429 error occurs in two situations:
+// A 429 error occurs in the following situations:
 //
 //    * API rate limit is exceeded. API TPS throttling returns a TooManyRequests
 //    exception.
 //
 //    * The quota for concurrent active chats (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
 //    is exceeded. Active chat throttling returns a LimitExceededException.
+//
+// If you use the ChatDurationInMinutes parameter and receive a 400 error, your
+// account may not support the ability to configure custom chat durations. For
+// more information, contact Amazon Web Services Support.
 //
 // For more information about chat, see Chat (https://docs.aws.amazon.com/connect/latest/adminguide/chat.html)
 // in the Amazon Connect Administrator Guide.
@@ -31198,6 +31202,11 @@ type StartChatContactInput struct {
 	// Attribute keys can include only alphanumeric, dash, and underscore characters.
 	Attributes map[string]*string `type:"map"`
 
+	// The total duration of the newly started chat session. If not specified, the
+	// chat session duration defaults to 25 hour. The minumum configurable time
+	// is 60 minutes. The maximum configurable time is 10,080 minutes (7 days).
+	ChatDurationInMinutes *int64 `min:"60" type:"integer"`
+
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
@@ -31249,6 +31258,9 @@ func (s StartChatContactInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartChatContactInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartChatContactInput"}
+	if s.ChatDurationInMinutes != nil && *s.ChatDurationInMinutes < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("ChatDurationInMinutes", 60))
+	}
 	if s.ContactFlowId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ContactFlowId"))
 	}
@@ -31281,6 +31293,12 @@ func (s *StartChatContactInput) Validate() error {
 // SetAttributes sets the Attributes field's value.
 func (s *StartChatContactInput) SetAttributes(v map[string]*string) *StartChatContactInput {
 	s.Attributes = v
+	return s
+}
+
+// SetChatDurationInMinutes sets the ChatDurationInMinutes field's value.
+func (s *StartChatContactInput) SetChatDurationInMinutes(v int64) *StartChatContactInput {
+	s.ChatDurationInMinutes = &v
 	return s
 }
 
@@ -33068,7 +33086,7 @@ type UpdateContactFlowMetadataInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The name of the contact flow.
+	// TThe name of the contact flow.
 	Name *string `min:"1" type:"string"`
 }
 

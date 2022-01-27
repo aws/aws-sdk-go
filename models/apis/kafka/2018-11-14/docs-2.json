@@ -515,6 +515,13 @@
         "OpenMonitoringInfo$Prometheus" : "<p>Prometheus settings.</p>"
       }
     },
+    "ProvisionedThroughput" : {
+      "base" : "Contains information about provisioned throughput for EBS storage volumes attached to kafka broker nodes.",
+      "refs" : {
+        "BrokerEBSVolumeInfo$ProvisionedThroughput" : "EBS volume provisioned throughput information.",
+        "EBSStorageInfo$ProvisionedThroughput" : "EBS volume provisioned throughput information."
+      }
+    },
     "PublicAccess" : {
       "base" : "<p>Broker public access control.</p>",
       "refs" : {
@@ -668,6 +675,7 @@
         "JmxExporterInfo$EnabledInBroker" : "<p>JMX Exporter being enabled in broker.</p>",
         "NodeExporter$EnabledInBroker" : "<p>Indicates whether you want to enable or disable the Node Exporter.</p>",
         "NodeExporterInfo$EnabledInBroker" : "<p>Node Exporter being enabled in broker.</p>",
+        "ProvisionedThroughput$Enabled" : "Provisioned throughput is enabled or not.",
         "S3$Enabled" : "<p>Specifies whether broker logs get sent to the specified Amazon S3 destination.</p>",
         "Scram$Enabled" : "<p>SASL/SCRAM authentication is enabled or not.</p>",
         "Tls$Enabled" : "<p>TLS authentication is enabled or not.</p>",
@@ -687,7 +695,8 @@
         "BrokerEBSVolumeInfo$VolumeSizeGB" : "\n            <p>Size of the EBS volume to update.</p>\n         ",
         "ClusterInfo$NumberOfBrokerNodes" : "\n            <p>The number of broker nodes in the cluster.</p>\n         ",
         "CreateClusterRequest$NumberOfBrokerNodes" : "\n            <p>The number of broker nodes in the cluster.</p>\n         ",
-        "MutableClusterInfo$NumberOfBrokerNodes" : "\n            <p>The number of broker nodes in the cluster.</p>\n         "
+        "MutableClusterInfo$NumberOfBrokerNodes" : "\n            <p>The number of broker nodes in the cluster.</p>\n         ",
+        "ProvisionedThroughput$VolumeThroughput" : "Throughput value of the EBS volumes for the data drive on each kafka broker node in MiB per second."
       }
     },
     "__integerMin1Max15" : {

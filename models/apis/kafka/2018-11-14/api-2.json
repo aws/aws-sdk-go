@@ -1158,13 +1158,16 @@
           "shape": "__string",
           "locationName": "kafkaBrokerNodeId"
         },
+        "ProvisionedThroughput" : {
+          "shape" : "ProvisionedThroughput",
+          "locationName" : "provisionedThroughput"
+        },
         "VolumeSizeGB": {
           "shape": "__integer",
           "locationName": "volumeSizeGB"
         }
       },
       "required": [
-        "VolumeSizeGB",
         "KafkaBrokerNodeId"
       ]
     },
@@ -1935,6 +1938,10 @@
     "EBSStorageInfo": {
       "type": "structure",
       "members": {
+        "ProvisionedThroughput" : {
+          "shape" : "ProvisionedThroughput",
+          "locationName" : "provisionedThroughput"
+        },
         "VolumeSize": {
           "shape": "__integerMin1Max16384",
           "locationName": "volumeSize"
@@ -3476,6 +3483,19 @@
         "NodeExporter" : {
           "shape" : "NodeExporterInfo",
           "locationName" : "nodeExporter"
+        }
+      }
+    },
+    "ProvisionedThroughput" : {
+      "type" : "structure",
+      "members" : {
+        "Enabled" : {
+          "shape" : "__boolean",
+          "locationName" : "enabled"
+        },
+        "VolumeThroughput" : {
+          "shape" : "__integer",
+          "locationName" : "volumeThroughput"
         }
       }
     },

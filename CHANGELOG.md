@@ -1,3 +1,18 @@
+Release v1.42.43 (2022-01-27)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service documentation
+* `service/connect`: Updates service API and documentation
+* `service/ec2`: Updates service API
+  * X2ezn instances are powered by Intel Cascade Lake CPUs that deliver turbo all core frequency of up to 4.5 GHz and up to 100 Gbps of networking bandwidth
+* `service/kafka`: Updates service API and documentation
+* `service/opensearch`: Updates service API and documentation
+
+### SDK Bugs
+* `aws/request`: Update Request Send to always ensure Request.HTTPResponse is populated.
+    * Fixes [#4211](https://github.com/aws/aws-sdk-go/issues/4211)
+
 Release v1.42.42 (2022-01-26)
 ===
 

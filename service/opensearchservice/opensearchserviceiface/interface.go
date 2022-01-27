@@ -115,6 +115,10 @@ type OpenSearchServiceAPI interface {
 	DescribeDomainAutoTunesPages(*opensearchservice.DescribeDomainAutoTunesInput, func(*opensearchservice.DescribeDomainAutoTunesOutput, bool) bool) error
 	DescribeDomainAutoTunesPagesWithContext(aws.Context, *opensearchservice.DescribeDomainAutoTunesInput, func(*opensearchservice.DescribeDomainAutoTunesOutput, bool) bool, ...request.Option) error
 
+	DescribeDomainChangeProgress(*opensearchservice.DescribeDomainChangeProgressInput) (*opensearchservice.DescribeDomainChangeProgressOutput, error)
+	DescribeDomainChangeProgressWithContext(aws.Context, *opensearchservice.DescribeDomainChangeProgressInput, ...request.Option) (*opensearchservice.DescribeDomainChangeProgressOutput, error)
+	DescribeDomainChangeProgressRequest(*opensearchservice.DescribeDomainChangeProgressInput) (*request.Request, *opensearchservice.DescribeDomainChangeProgressOutput)
+
 	DescribeDomainConfig(*opensearchservice.DescribeDomainConfigInput) (*opensearchservice.DescribeDomainConfigOutput, error)
 	DescribeDomainConfigWithContext(aws.Context, *opensearchservice.DescribeDomainConfigInput, ...request.Option) (*opensearchservice.DescribeDomainConfigOutput, error)
 	DescribeDomainConfigRequest(*opensearchservice.DescribeDomainConfigInput) (*request.Request, *opensearchservice.DescribeDomainConfigOutput)

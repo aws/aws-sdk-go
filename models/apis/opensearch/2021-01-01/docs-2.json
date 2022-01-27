@@ -15,6 +15,7 @@
     "DeletePackage": "<p>Deletes the package.</p>",
     "DescribeDomain": "<p>Returns domain configuration information about the specified domain, including the domain ID, domain endpoint, and domain ARN. </p>",
     "DescribeDomainAutoTunes": "<p>Provides scheduled Auto-Tune action details for the domain, such as Auto-Tune action type, description, severity, and scheduled date. </p>",
+    "DescribeDomainChangeProgress": "<p>Returns information about the current blue/green deployment happening on a domain, including a change ID, status, and progress stages.</p>",
     "DescribeDomainConfig": "<p>Provides cluster configuration information about the specified domain, such as the state, creation date, update version, and update date for cluster options. </p>",
     "DescribeDomains": "<p>Returns domain configuration information about the specified domains, including the domain ID, domain endpoint, and domain ARN. </p>",
     "DescribeInboundConnections": "<p>Lists all the inbound cross-cluster connections for a remote domain.</p>",
@@ -294,6 +295,44 @@
       "refs": {
       }
     },
+    "ChangeProgressDetails": {
+      "base": "<p>Specifies change details of the domain configuration change.</p>",
+      "refs": {
+        "DomainConfig$ChangeProgressDetails": "<p>Specifies change details of the domain configuration change.</p>",
+        "DomainStatus$ChangeProgressDetails": "<p>Specifies change details of the domain configuration change.</p>",
+        "UpgradeDomainResponse$ChangeProgressDetails": null
+      }
+    },
+    "ChangeProgressStage": {
+      "base": "<p>A progress stage details of a specific domain configuration change.</p>",
+      "refs": {
+        "ChangeProgressStageList$member": null
+      }
+    },
+    "ChangeProgressStageList": {
+      "base": "<p>The list of progress stages of a specific domain configuration change.</p>",
+      "refs": {
+        "ChangeProgressStatusDetails$ChangeProgressStages": "<p>The specific stages that the domain is going through to perform the configuration change.</p>"
+      }
+    },
+    "ChangeProgressStageName": {
+      "base": null,
+      "refs": {
+        "ChangeProgressStage$Name": "<p>The name of the specific progress stage.</p>"
+      }
+    },
+    "ChangeProgressStageStatus": {
+      "base": null,
+      "refs": {
+        "ChangeProgressStage$Status": "<p>The overall status of a specific progress stage.</p>"
+      }
+    },
+    "ChangeProgressStatusDetails": {
+      "base": "<p>The progress details of a specific domain configuration change.</p>",
+      "refs": {
+        "DescribeDomainChangeProgressResponse$ChangeProgressStatus": "<p>Progress information for the configuration change that is requested in the <code>DescribeDomainChangeProgress</code> request. </p>"
+      }
+    },
     "CloudWatchLogsLogGroupArn": {
       "base": "<p>ARN of the Cloudwatch log group to publish logs to.</p>",
       "refs": {
@@ -492,6 +531,16 @@
       "refs": {
       }
     },
+    "DescribeDomainChangeProgressRequest": {
+      "base": "<p>Container for the parameters to the <code>DescribeDomainChangeProgress</code> operation. Specifies the domain name and optional change specific identity for which you want progress information. </p>",
+      "refs": {
+      }
+    },
+    "DescribeDomainChangeProgressResponse": {
+      "base": "<p>The result of a <code>DescribeDomainChangeProgress</code> request. Contains the progress information of the requested domain change. </p>",
+      "refs": {
+      }
+    },
     "DescribeDomainConfigRequest": {
       "base": "<p>Container for the parameters to the <code>DescribeDomainConfig</code> operation. Specifies the domain name for which you want configuration information. </p>",
       "refs": {
@@ -612,6 +661,12 @@
       "refs": {
       }
     },
+    "Description": {
+      "base": null,
+      "refs": {
+        "ChangeProgressStage$Description": "<p>The description of the progress stage.</p>"
+      }
+    },
     "DisableTimestamp": {
       "base": null,
       "refs": {
@@ -695,6 +750,7 @@
         "CreateDomainRequest$DomainName": "<p>The name of the Amazon OpenSearch Service domain you're creating. Domain names are unique across the domains owned by an account within an AWS region. Domain names must start with a lowercase letter and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen). </p>",
         "DeleteDomainRequest$DomainName": "<p>The name of the domain you want to permanently delete.</p>",
         "DescribeDomainAutoTunesRequest$DomainName": "<p>The domain name for which you want Auto-Tune action details.</p>",
+        "DescribeDomainChangeProgressRequest$DomainName": "<p>The domain you want to get the progress information about.</p>",
         "DescribeDomainConfigRequest$DomainName": "<p>The domain you want to get information about.</p>",
         "DescribeDomainRequest$DomainName": "<p>The name of the domain for which you want information.</p>",
         "DescribeInstanceTypeLimitsRequest$DomainName": "<p> The name of the domain you want to modify. Only include this value if you're querying OpenSearch <code> <a>Limits</a> </code> for an existing domain. </p>",
@@ -876,6 +932,9 @@
     "GUID": {
       "base": null,
       "refs": {
+        "ChangeProgressDetails$ChangeId": "<p>The unique change identifier associated with a specific domain configuration change.</p>",
+        "ChangeProgressStatusDetails$ChangeId": "<p>The unique change identifier associated with a specific domain configuration change.</p>",
+        "DescribeDomainChangeProgressRequest$ChangeId": "<p>The specific change ID for which you want to get progress information. This is an optional parameter. If omitted, the service returns information about the most recent configuration change. </p>",
         "DescribeReservedInstanceOfferingsRequest$ReservedInstanceOfferingId": "<p>The offering identifier filter value. Use this parameter to show only the available offering that matches the specified reservation identifier. </p>",
         "DescribeReservedInstancesRequest$ReservedInstanceId": "<p>The reserved instance identifier filter value. Use this parameter to show only the reservation that matches the specified reserved OpenSearch instance ID. </p>",
         "PurchaseReservedInstanceOfferingRequest$ReservedInstanceOfferingId": "<p>The ID of the reserved OpenSearch instance offering to purchase.</p>",
@@ -1058,6 +1117,7 @@
     "LastUpdated": {
       "base": null,
       "refs": {
+        "ChangeProgressStage$LastUpdated": "<p>The last updated timestamp of the progress stage.</p>",
         "DomainPackageDetails$LastUpdated": "<p>The timestamp of the most recent update to the package association status.</p>",
         "PackageDetails$LastUpdatedAt": null
       }
@@ -1224,6 +1284,7 @@
     "Message": {
       "base": null,
       "refs": {
+        "ChangeProgressDetails$Message": "<p>Contains an optional message associated with the domain configuration change.</p>",
         "DryRunResults$Message": "<p>Contains an optional message associated with the DryRunResults.</p>"
       }
     },
@@ -1343,6 +1404,12 @@
       "base": null,
       "refs": {
         "DescribeOutboundConnectionsResponse$Connections": "<p>A list of <code> <a>OutboundConnection</a> </code> matching the specified filter criteria. </p>"
+      }
+    },
+    "OverallChangeStatus": {
+      "base": "<p>The overall status value of the domain configuration change.</p>",
+      "refs": {
+        "ChangeProgressStatusDetails$Status": "<p>The overall status of the domain configuration change. This field can take the following values: <code>PENDING</code>, <code>PROCESSING</code>, <code>COMPLETED</code> and <code>FAILED</code></p>"
       }
     },
     "OwnerId": {
@@ -1753,6 +1820,8 @@
     "StringList": {
       "base": null,
       "refs": {
+        "ChangeProgressStatusDetails$PendingProperties": "<p>The list of properties involved in the domain configuration change that are still in pending.</p>",
+        "ChangeProgressStatusDetails$CompletedProperties": "<p>The list of properties involved in the domain configuration change that are completed.</p>",
         "RemoveTagsRequest$TagKeys": "<p>The <code>TagKey</code> list you want to remove from the domain. </p>",
         "VPCDerivedInfo$SubnetIds": "<p>The subnets for the VPC endpoint.</p>",
         "VPCDerivedInfo$AvailabilityZones": "<p>The Availability Zones for the domain. Exists only if the domain was created with <code>VPCOptions</code>.</p>",
@@ -1799,6 +1868,12 @@
         "Duration$Unit": "<p>The unit of a maintenance schedule duration. Valid value is HOURS. See <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\"> Auto-Tune for Amazon OpenSearch Service </a> for more information. </p>"
       }
     },
+    "TotalNumberOfStages": {
+      "base": null,
+      "refs": {
+        "ChangeProgressStatusDetails$TotalNumberOfStages": "<p>The total number of stages required for the configuration change.</p>"
+      }
+    },
     "UIntValue": {
       "base": null,
       "refs": {
@@ -1831,6 +1906,7 @@
       "refs": {
         "AutoTuneStatus$CreationDate": "<p>The timestamp of the Auto-Tune options creation date.</p>",
         "AutoTuneStatus$UpdateDate": "<p>The timestamp of when the Auto-Tune options were last updated.</p>",
+        "ChangeProgressStatusDetails$StartTime": "<p>The time at which the configuration change is made on the domain.</p>",
         "OptionStatus$CreationDate": "<p>The timestamp of when the entity was created.</p>",
         "OptionStatus$UpdateDate": "<p>The timestamp of the last time the entity was updated.</p>",
         "ReservedInstance$StartTime": "<p>The time the reservation started.</p>"
