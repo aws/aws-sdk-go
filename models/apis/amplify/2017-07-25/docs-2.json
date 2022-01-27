@@ -236,13 +236,13 @@
     "BasicAuthCredentials": {
       "base": null,
       "refs": {
-        "App$basicAuthCredentials": "<p> The basic authorization credentials for branches for the Amplify app. </p>",
-        "AutoBranchCreationConfig$basicAuthCredentials": "<p> The basic authorization credentials for the autocreated branch. </p>",
-        "Branch$basicAuthCredentials": "<p> The basic authorization credentials for a branch of an Amplify app. </p>",
-        "CreateAppRequest$basicAuthCredentials": "<p> The credentials for basic authorization for an Amplify app. </p>",
-        "CreateBranchRequest$basicAuthCredentials": "<p> The basic authorization credentials for the branch. </p>",
-        "UpdateAppRequest$basicAuthCredentials": "<p> The basic authorization credentials for an Amplify app. </p>",
-        "UpdateBranchRequest$basicAuthCredentials": "<p> The basic authorization credentials for the branch. </p>"
+        "App$basicAuthCredentials": "<p> The basic authorization credentials for branches for the Amplify app. You must base64-encode the authorization credentials and provide them in the format <code>user:password</code>.</p>",
+        "AutoBranchCreationConfig$basicAuthCredentials": "<p> The basic authorization credentials for the autocreated branch. You must base64-encode the authorization credentials and provide them in the format <code>user:password</code>.</p>",
+        "Branch$basicAuthCredentials": "<p> The basic authorization credentials for a branch of an Amplify app. You must base64-encode the authorization credentials and provide them in the format <code>user:password</code>.</p>",
+        "CreateAppRequest$basicAuthCredentials": "<p> The credentials for basic authorization for an Amplify app. You must base64-encode the authorization credentials and provide them in the format <code>user:password</code>.</p>",
+        "CreateBranchRequest$basicAuthCredentials": "<p> The basic authorization credentials for the branch. You must base64-encode the authorization credentials and provide them in the format <code>user:password</code>.</p>",
+        "UpdateAppRequest$basicAuthCredentials": "<p> The basic authorization credentials for an Amplify app. You must base64-encode the authorization credentials and provide them in the format <code>user:password</code>.</p>",
+        "UpdateBranchRequest$basicAuthCredentials": "<p> The basic authorization credentials for the branch. You must base64-encode the authorization credentials and provide them in the format <code>user:password</code>.</p>"
       }
     },
     "Branch": {

@@ -3344,7 +3344,9 @@ type App struct {
 	// Describes the automated branch creation glob patterns for the Amplify app.
 	AutoBranchCreationPatterns []*string `locationName:"autoBranchCreationPatterns" type:"list"`
 
-	// The basic authorization credentials for branches for the Amplify app.
+	// The basic authorization credentials for branches for the Amplify app. You
+	// must base64-encode the authorization credentials and provide them in the
+	// format user:password.
 	//
 	// BasicAuthCredentials is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by App's
@@ -3634,7 +3636,9 @@ func (s *Artifact) SetArtifactId(v string) *Artifact {
 type AutoBranchCreationConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The basic authorization credentials for the autocreated branch.
+	// The basic authorization credentials for the autocreated branch. You must
+	// base64-encode the authorization credentials and provide them in the format
+	// user:password.
 	//
 	// BasicAuthCredentials is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AutoBranchCreationConfig's
@@ -3932,7 +3936,9 @@ type Branch struct {
 	// an Amplify app.
 	BackendEnvironmentArn *string `locationName:"backendEnvironmentArn" min:"1" type:"string"`
 
-	// The basic authorization credentials for a branch of an Amplify app.
+	// The basic authorization credentials for a branch of an Amplify app. You must
+	// base64-encode the authorization credentials and provide them in the format
+	// user:password.
 	//
 	// BasicAuthCredentials is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Branch's
@@ -4245,7 +4251,8 @@ type CreateAppInput struct {
 	// The automated branch creation glob patterns for an Amplify app.
 	AutoBranchCreationPatterns []*string `locationName:"autoBranchCreationPatterns" type:"list"`
 
-	// The credentials for basic authorization for an Amplify app.
+	// The credentials for basic authorization for an Amplify app. You must base64-encode
+	// the authorization credentials and provide them in the format user:password.
 	//
 	// BasicAuthCredentials is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateAppInput's
@@ -4659,7 +4666,8 @@ type CreateBranchInput struct {
 	// an Amplify app.
 	BackendEnvironmentArn *string `locationName:"backendEnvironmentArn" min:"1" type:"string"`
 
-	// The basic authorization credentials for the branch.
+	// The basic authorization credentials for the branch. You must base64-encode
+	// the authorization credentials and provide them in the format user:password.
 	//
 	// BasicAuthCredentials is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateBranchInput's
@@ -9311,7 +9319,8 @@ type UpdateAppInput struct {
 	// Describes the automated branch creation glob patterns for an Amplify app.
 	AutoBranchCreationPatterns []*string `locationName:"autoBranchCreationPatterns" type:"list"`
 
-	// The basic authorization credentials for an Amplify app.
+	// The basic authorization credentials for an Amplify app. You must base64-encode
+	// the authorization credentials and provide them in the format user:password.
 	//
 	// BasicAuthCredentials is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateAppInput's
@@ -9594,7 +9603,8 @@ type UpdateBranchInput struct {
 	// an Amplify app.
 	BackendEnvironmentArn *string `locationName:"backendEnvironmentArn" min:"1" type:"string"`
 
-	// The basic authorization credentials for the branch.
+	// The basic authorization credentials for the branch. You must base64-encode
+	// the authorization credentials and provide them in the format user:password.
 	//
 	// BasicAuthCredentials is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateBranchInput's

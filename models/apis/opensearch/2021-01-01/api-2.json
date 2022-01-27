@@ -209,6 +209,21 @@
         {"shape":"ValidationException"}
       ]
     },
+    "DescribeDomainChangeProgress":{
+      "name":"DescribeDomainChangeProgress",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/progress"
+      },
+      "input":{"shape":"DescribeDomainChangeProgressRequest"},
+      "output":{"shape":"DescribeDomainChangeProgressResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "DescribeDomainConfig":{
       "name":"DescribeDomainConfig",
       "http":{
@@ -880,6 +895,48 @@
         "ServiceSoftwareOptions":{"shape":"ServiceSoftwareOptions"}
       }
     },
+    "ChangeProgressDetails":{
+      "type":"structure",
+      "members":{
+        "ChangeId":{"shape":"GUID"},
+        "Message":{"shape":"Message"}
+      }
+    },
+    "ChangeProgressStage":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"ChangeProgressStageName"},
+        "Status":{"shape":"ChangeProgressStageStatus"},
+        "Description":{"shape":"Description"},
+        "LastUpdated":{"shape":"LastUpdated"}
+      }
+    },
+    "ChangeProgressStageList":{
+      "type":"list",
+      "member":{"shape":"ChangeProgressStage"}
+    },
+    "ChangeProgressStageName":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "ChangeProgressStageStatus":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "ChangeProgressStatusDetails":{
+      "type":"structure",
+      "members":{
+        "ChangeId":{"shape":"GUID"},
+        "StartTime":{"shape":"UpdateTimestamp"},
+        "Status":{"shape":"OverallChangeStatus"},
+        "PendingProperties":{"shape":"StringList"},
+        "CompletedProperties":{"shape":"StringList"},
+        "TotalNumberOfStages":{"shape":"TotalNumberOfStages"},
+        "ChangeProgressStages":{"shape":"ChangeProgressStageList"}
+      }
+    },
     "CloudWatchLogsLogGroupArn":{
       "type":"string",
       "max":2048,
@@ -1151,6 +1208,28 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "DescribeDomainChangeProgressRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "ChangeId":{
+          "shape":"GUID",
+          "location":"querystring",
+          "locationName":"changeid"
+        }
+      }
+    },
+    "DescribeDomainChangeProgressResponse":{
+      "type":"structure",
+      "members":{
+        "ChangeProgressStatus":{"shape":"ChangeProgressStatusDetails"}
+      }
+    },
     "DescribeDomainConfigRequest":{
       "type":"structure",
       "required":["DomainName"],
@@ -1357,6 +1436,7 @@
         "ReservedInstances":{"shape":"ReservedInstanceList"}
       }
     },
+    "Description":{"type":"string"},
     "DisableTimestamp":{"type":"timestamp"},
     "DisabledOperationException":{
       "type":"structure",
@@ -1406,7 +1486,8 @@
         "LogPublishingOptions":{"shape":"LogPublishingOptionsStatus"},
         "DomainEndpointOptions":{"shape":"DomainEndpointOptionsStatus"},
         "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsStatus"},
-        "AutoTuneOptions":{"shape":"AutoTuneOptionsStatus"}
+        "AutoTuneOptions":{"shape":"AutoTuneOptionsStatus"},
+        "ChangeProgressDetails":{"shape":"ChangeProgressDetails"}
       }
     },
     "DomainEndpointOptions":{
@@ -1528,7 +1609,8 @@
         "ServiceSoftwareOptions":{"shape":"ServiceSoftwareOptions"},
         "DomainEndpointOptions":{"shape":"DomainEndpointOptions"},
         "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptions"},
-        "AutoTuneOptions":{"shape":"AutoTuneOptionsOutput"}
+        "AutoTuneOptions":{"shape":"AutoTuneOptionsOutput"},
+        "ChangeProgressDetails":{"shape":"ChangeProgressDetails"}
       }
     },
     "DomainStatusList":{
@@ -2245,6 +2327,15 @@
       "type":"list",
       "member":{"shape":"OutboundConnection"}
     },
+    "OverallChangeStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "PROCESSING",
+        "COMPLETED",
+        "FAILED"
+      ]
+    },
     "OwnerId":{
       "type":"string",
       "max":12,
@@ -2668,6 +2759,7 @@
       "type":"string",
       "enum":["HOURS"]
     },
+    "TotalNumberOfStages":{"type":"integer"},
     "UIntValue":{
       "type":"integer",
       "min":0
@@ -2745,7 +2837,8 @@
         "DomainName":{"shape":"DomainName"},
         "TargetVersion":{"shape":"VersionString"},
         "PerformCheckOnly":{"shape":"Boolean"},
-        "AdvancedOptions":{"shape":"AdvancedOptions"}
+        "AdvancedOptions":{"shape":"AdvancedOptions"},
+        "ChangeProgressDetails":{"shape":"ChangeProgressDetails"}
       }
     },
     "UpgradeHistory":{

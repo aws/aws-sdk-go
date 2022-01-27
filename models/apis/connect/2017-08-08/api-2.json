@@ -2508,6 +2508,11 @@
       "max":100,
       "min":1
     },
+    "ChatDurationInMinutes":{
+      "type":"integer",
+      "max":10080,
+      "min":60
+    },
     "ChatMessage":{
       "type":"structure",
       "required":[
@@ -6521,7 +6526,8 @@
         "ClientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
-        }
+        },
+        "ChatDurationInMinutes":{"shape":"ChatDurationInMinutes"}
       }
     },
     "StartChatContactResponse":{

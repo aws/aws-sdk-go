@@ -4005,10 +4005,11 @@ type BrokerEBSVolumeInfo struct {
 	// KafkaBrokerNodeId is a required field
 	KafkaBrokerNodeId *string `locationName:"kafkaBrokerNodeId" type:"string" required:"true"`
 
+	// EBS volume provisioned throughput information.
+	ProvisionedThroughput *ProvisionedThroughput `locationName:"provisionedThroughput" type:"structure"`
+
 	// Size of the EBS volume to update.
-	//
-	// VolumeSizeGB is a required field
-	VolumeSizeGB *int64 `locationName:"volumeSizeGB" type:"integer" required:"true"`
+	VolumeSizeGB *int64 `locationName:"volumeSizeGB" type:"integer"`
 }
 
 // String returns the string representation.
@@ -4035,9 +4036,6 @@ func (s *BrokerEBSVolumeInfo) Validate() error {
 	if s.KafkaBrokerNodeId == nil {
 		invalidParams.Add(request.NewErrParamRequired("KafkaBrokerNodeId"))
 	}
-	if s.VolumeSizeGB == nil {
-		invalidParams.Add(request.NewErrParamRequired("VolumeSizeGB"))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4048,6 +4046,12 @@ func (s *BrokerEBSVolumeInfo) Validate() error {
 // SetKafkaBrokerNodeId sets the KafkaBrokerNodeId field's value.
 func (s *BrokerEBSVolumeInfo) SetKafkaBrokerNodeId(v string) *BrokerEBSVolumeInfo {
 	s.KafkaBrokerNodeId = &v
+	return s
+}
+
+// SetProvisionedThroughput sets the ProvisionedThroughput field's value.
+func (s *BrokerEBSVolumeInfo) SetProvisionedThroughput(v *ProvisionedThroughput) *BrokerEBSVolumeInfo {
+	s.ProvisionedThroughput = v
 	return s
 }
 
@@ -6565,6 +6569,9 @@ func (s *DescribeConfigurationRevisionOutput) SetServerProperties(v []byte) *Des
 type EBSStorageInfo struct {
 	_ struct{} `type:"structure"`
 
+	// EBS volume provisioned throughput information.
+	ProvisionedThroughput *ProvisionedThroughput `locationName:"provisionedThroughput" type:"structure"`
+
 	// The size in GiB of the EBS volume for the data drive on each broker node.
 	VolumeSize *int64 `locationName:"volumeSize" min:"1" type:"integer"`
 }
@@ -6598,6 +6605,12 @@ func (s *EBSStorageInfo) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetProvisionedThroughput sets the ProvisionedThroughput field's value.
+func (s *EBSStorageInfo) SetProvisionedThroughput(v *ProvisionedThroughput) *EBSStorageInfo {
+	s.ProvisionedThroughput = v
+	return s
 }
 
 // SetVolumeSize sets the VolumeSize field's value.
@@ -9129,6 +9142,49 @@ func (s *ProvisionedRequest) SetNumberOfBrokerNodes(v int64) *ProvisionedRequest
 // SetOpenMonitoring sets the OpenMonitoring field's value.
 func (s *ProvisionedRequest) SetOpenMonitoring(v *OpenMonitoringInfo) *ProvisionedRequest {
 	s.OpenMonitoring = v
+	return s
+}
+
+// Contains information about provisioned throughput for EBS storage volumes
+// attached to kafka broker nodes.
+type ProvisionedThroughput struct {
+	_ struct{} `type:"structure"`
+
+	// Provisioned throughput is enabled or not.
+	Enabled *bool `locationName:"enabled" type:"boolean"`
+
+	// Throughput value of the EBS volumes for the data drive on each kafka broker
+	// node in MiB per second.
+	VolumeThroughput *int64 `locationName:"volumeThroughput" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProvisionedThroughput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProvisionedThroughput) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *ProvisionedThroughput) SetEnabled(v bool) *ProvisionedThroughput {
+	s.Enabled = &v
+	return s
+}
+
+// SetVolumeThroughput sets the VolumeThroughput field's value.
+func (s *ProvisionedThroughput) SetVolumeThroughput(v int64) *ProvisionedThroughput {
+	s.VolumeThroughput = &v
 	return s
 }
 
