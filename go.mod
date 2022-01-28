@@ -7,3 +7,5 @@ require (
 )
 
 go 1.11
+
+replace github.com/aws/aws-sdk-go  => github.com/chrbsg/aws-sdk-go
