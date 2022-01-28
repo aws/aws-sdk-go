@@ -546,7 +546,7 @@
         },
         "alternativeIntents":{
           "shape":"String",
-          "jsonvalue":true,
+          "jsonvalue":false,
           "location":"header",
           "locationName":"x-amz-lex-alternative-intents"
         },

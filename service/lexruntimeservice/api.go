@@ -2396,7 +2396,11 @@ type PostContentOutput struct {
 	// Each alternative includes a score that indicates how confident Amazon Lex
 	// is that the intent matches the user's intent. The intents are sorted by the
 	// confidence score.
-	AlternativeIntents aws.JSONValue `location:"header" locationName:"x-amz-lex-alternative-intents" type:"jsonvalue"`
+	//
+	// The AlternativeIntents field is a base64 encoded JSON list.
+	// Before you can use the contents of the field, you must decode and
+	// unmarshal the contents.
+	AlternativeIntents *string `location:"header" locationName:"x-amz-lex-alternative-intents" type:"string"`
 
 	// The prompt (or statement) to convey to the user. This is based on the bot
 	// configuration and context. For example, if Amazon Lex did not understand
@@ -2616,8 +2620,8 @@ func (s *PostContentOutput) SetActiveContexts(v aws.JSONValue) *PostContentOutpu
 }
 
 // SetAlternativeIntents sets the AlternativeIntents field's value.
-func (s *PostContentOutput) SetAlternativeIntents(v aws.JSONValue) *PostContentOutput {
-	s.AlternativeIntents = v
+func (s *PostContentOutput) SetAlternativeIntents(v string) *PostContentOutput {
+	s.AlternativeIntents = &v
 	return s
 }
 
