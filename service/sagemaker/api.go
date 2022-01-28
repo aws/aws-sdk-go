@@ -97800,6 +97800,9 @@ const (
 
 	// TargetPlatformAcceleratorNvidia is a TargetPlatformAccelerator enum value
 	TargetPlatformAcceleratorNvidia = "NVIDIA"
+
+	// TargetPlatformAcceleratorNna is a TargetPlatformAccelerator enum value
+	TargetPlatformAcceleratorNna = "NNA"
 )
 
 // TargetPlatformAccelerator_Values returns all elements of the TargetPlatformAccelerator enum
@@ -97808,6 +97811,7 @@ func TargetPlatformAccelerator_Values() []string {
 		TargetPlatformAcceleratorIntelGraphics,
 		TargetPlatformAcceleratorMali,
 		TargetPlatformAcceleratorNvidia,
+		TargetPlatformAcceleratorNna,
 	}
 }
 

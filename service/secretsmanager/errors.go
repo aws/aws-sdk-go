@@ -38,7 +38,7 @@ const (
 	// ErrCodeInvalidParameterException for service response error code
 	// "InvalidParameterException".
 	//
-	// The parameter name is invalid value.
+	// The parameter name or value is invalid.
 	ErrCodeInvalidParameterException = "InvalidParameterException"
 
 	// ErrCodeInvalidRequestException for service response error code

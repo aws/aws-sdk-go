@@ -15,8 +15,9 @@
 // AppConfig includes validators. A validator provides a syntactic or semantic
 // check to ensure that the configuration you want to deploy works as intended.
 // To validate your application configuration data, you provide a schema or
-// a Lambda function that runs against the configuration. The configuration
-// deployment or update can only proceed when the configuration data is valid.
+// an Amazon Web Services Lambda function that runs against the configuration.
+// The configuration deployment or update can only proceed when the configuration
+// data is valid.
 //
 // During a configuration deployment, AppConfig monitors the application to
 // ensure that the deployment is successful. If the system encounters an error,
@@ -28,11 +29,11 @@
 //
 // AppConfig supports multiple use cases. Here are some examples:
 //
+//    * Feature flags: Use AppConfig to turn on new features that require a
+//    timely deployment, such as a product launch or announcement.
+//
 //    * Application tuning: Use AppConfig to carefully introduce changes to
 //    your application that can only be tested with production traffic.
-//
-//    * Feature toggle: Use AppConfig to turn on new features that require a
-//    timely deployment, such as a product launch or announcement.
 //
 //    * Allow list: Use AppConfig to allow premium subscribers to access paid
 //    content.

@@ -97,6 +97,8 @@ func ExampleSecretsManager_CreateSecret_shared00() {
 				fmt.Println(secretsmanager.ErrCodeInternalServiceError, aerr.Error())
 			case secretsmanager.ErrCodePreconditionNotMetException:
 				fmt.Println(secretsmanager.ErrCodePreconditionNotMetException, aerr.Error())
+			case secretsmanager.ErrCodeDecryptionFailure:
+				fmt.Println(secretsmanager.ErrCodeDecryptionFailure, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -471,6 +473,8 @@ func ExampleSecretsManager_PutSecretValue_shared00() {
 				fmt.Println(secretsmanager.ErrCodeResourceNotFoundException, aerr.Error())
 			case secretsmanager.ErrCodeInternalServiceError:
 				fmt.Println(secretsmanager.ErrCodeInternalServiceError, aerr.Error())
+			case secretsmanager.ErrCodeDecryptionFailure:
+				fmt.Println(secretsmanager.ErrCodeDecryptionFailure, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -721,6 +725,8 @@ func ExampleSecretsManager_UpdateSecret_shared00() {
 				fmt.Println(secretsmanager.ErrCodeInternalServiceError, aerr.Error())
 			case secretsmanager.ErrCodePreconditionNotMetException:
 				fmt.Println(secretsmanager.ErrCodePreconditionNotMetException, aerr.Error())
+			case secretsmanager.ErrCodeDecryptionFailure:
+				fmt.Println(secretsmanager.ErrCodeDecryptionFailure, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -768,6 +774,8 @@ func ExampleSecretsManager_UpdateSecret_shared01() {
 				fmt.Println(secretsmanager.ErrCodeInternalServiceError, aerr.Error())
 			case secretsmanager.ErrCodePreconditionNotMetException:
 				fmt.Println(secretsmanager.ErrCodePreconditionNotMetException, aerr.Error())
+			case secretsmanager.ErrCodeDecryptionFailure:
+				fmt.Println(secretsmanager.ErrCodeDecryptionFailure, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -815,6 +823,8 @@ func ExampleSecretsManager_UpdateSecret_shared02() {
 				fmt.Println(secretsmanager.ErrCodeInternalServiceError, aerr.Error())
 			case secretsmanager.ErrCodePreconditionNotMetException:
 				fmt.Println(secretsmanager.ErrCodePreconditionNotMetException, aerr.Error())
+			case secretsmanager.ErrCodeDecryptionFailure:
+				fmt.Println(secretsmanager.ErrCodeDecryptionFailure, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

@@ -55,18 +55,22 @@ func (c *AppConfigData) GetLatestConfigurationRequest(input *GetLatestConfigurat
 
 // GetLatestConfiguration API operation for AWS AppConfig Data.
 //
-// Retrieves the latest deployed configuration. This API may return empty Configuration
-// data if the client already has the latest version. See StartConfigurationSession
-// to obtain an InitialConfigurationToken to call this API.
+// Retrieves the latest deployed configuration. This API may return empty configuration
+// data if the client already has the latest version. For more information about
+// this API action and to view example CLI commands that show how to use it
+// with the StartConfigurationSession API action, see Receiving the configuration
+// (http://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-retrieving-the-configuration)
+// in the AppConfig User Guide.
 //
-// Each call to GetLatestConfiguration returns a new ConfigurationToken (NextPollConfigurationToken
-// in the response). This new token MUST be provided to the next call to GetLatestConfiguration
-// when polling for configuration updates.
+// Note the following important information.
 //
-// To avoid excess charges, we recommend that you include the ClientConfigurationVersion
-// value with every call to GetConfiguration. This value must be saved on your
-// client. Subsequent calls to GetConfiguration must pass this value by using
-// the ClientConfigurationVersion parameter.
+//    * Each configuration token is only valid for one call to GetLatestConfiguration.
+//    The GetLatestConfiguration response includes a NextPollConfigurationToken
+//    that should always replace the token used for the just-completed call
+//    in preparation for the next one.
+//
+//    * GetLatestConfiguration is a priced call. For more information, see Pricing
+//    (https://aws.amazon.com/systems-manager/pricing/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -155,7 +159,10 @@ func (c *AppConfigData) StartConfigurationSessionRequest(input *StartConfigurati
 // StartConfigurationSession API operation for AWS AppConfig Data.
 //
 // Starts a configuration session used to retrieve a deployed configuration.
-// See the GetLatestConfiguration API for more details.
+// For more information about this API action and to view example CLI commands
+// that show how to use it with the GetLatestConfiguration API action, see Receiving
+// the configuration (http://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-retrieving-the-configuration)
+// in the AppConfig User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -199,11 +206,12 @@ func (c *AppConfigData) StartConfigurationSessionWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
-// Details describing why the request was invalid
+// Detailed information about the input that failed to satisfy the constraints
+// specified by a call.
 type BadRequestDetails struct {
 	_ struct{} `type:"structure"`
 
-	// Present if the Reason for the bad request was 'InvalidParameters'
+	// One or more specified parameters are not valid for the call.
 	InvalidParameters map[string]*InvalidParameterDetail `type:"map"`
 }
 
@@ -236,7 +244,7 @@ type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Details describing why the request was invalid
+	// Details describing why the request was invalid.
 	Details *BadRequestDetails `type:"structure"`
 
 	Message_ *string `locationName:"Message" type:"string"`
@@ -301,7 +309,6 @@ func (s *BadRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Request parameters for the GetLatestConfiguration API
 type GetLatestConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -352,12 +359,11 @@ func (s *GetLatestConfigurationInput) SetConfigurationToken(v string) *GetLatest
 	return s
 }
 
-// Response parameters for the GetLatestConfiguration API
 type GetLatestConfigurationOutput struct {
 	_ struct{} `type:"structure" payload:"Configuration"`
 
-	// The data of the configuration. Note that this may be empty if the client
-	// already has the latest version of configuration.
+	// The data of the configuration. This may be empty if the client already has
+	// the latest version of configuration.
 	//
 	// Configuration is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetLatestConfigurationOutput's
@@ -372,7 +378,7 @@ type GetLatestConfigurationOutput struct {
 	NextPollConfigurationToken *string `location:"header" locationName:"Next-Poll-Configuration-Token" type:"string"`
 
 	// The amount of time the client should wait before polling for configuration
-	// updates again. See RequiredMinimumPollIntervalInSeconds to set the desired
+	// updates again. Use RequiredMinimumPollIntervalInSeconds to set the desired
 	// poll interval.
 	NextPollIntervalInSeconds *int64 `location:"header" locationName:"Next-Poll-Interval-In-Seconds" type:"integer"`
 }
@@ -483,12 +489,11 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Contains details about an invalid parameter.
+// Information about an invalid parameter.
 type InvalidParameterDetail struct {
 	_ struct{} `type:"structure"`
 
-	// Detail describing why an individual parameter did not satisfy the constraints
-	// specified by the service
+	// The reason the parameter is invalid.
 	Problem *string `type:"string" enum:"InvalidParameterProblem"`
 }
 
@@ -587,7 +592,6 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Request parameters for the StartConfigurationSession API.
 type StartConfigurationSessionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -606,9 +610,9 @@ type StartConfigurationSessionInput struct {
 	// EnvironmentIdentifier is a required field
 	EnvironmentIdentifier *string `min:"1" type:"string" required:"true"`
 
-	// The interval at which your client will poll for configuration. If provided,
-	// the service will throw a BadRequestException if the client polls before the
-	// specified poll interval. By default, client poll intervals are not enforced.
+	// Sets a constraint on a session. If you specify a value of, for example, 60
+	// seconds, then the client that established the session can't call GetLatestConfiguration
+	// more frequently then every 60 seconds.
 	RequiredMinimumPollIntervalInSeconds *int64 `min:"15" type:"integer"`
 }
 
@@ -685,7 +689,6 @@ func (s *StartConfigurationSessionInput) SetRequiredMinimumPollIntervalInSeconds
 	return s
 }
 
-// Response parameters for the StartConfigurationSession API.
 type StartConfigurationSessionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -693,7 +696,7 @@ type StartConfigurationSessionOutput struct {
 	// to the GetLatestConfiguration API to retrieve configuration data.
 	//
 	// This token should only be used once in your first call to GetLatestConfiguration.
-	// You MUST use the new token in the GetConfiguration response (NextPollConfigurationToken)
+	// You MUST use the new token in the GetLatestConfiguration response (NextPollConfigurationToken)
 	// in each subsequent call to GetLatestConfiguration.
 	InitialConfigurationToken *string `type:"string"`
 }
