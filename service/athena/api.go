@@ -3534,6 +3534,49 @@ func (c *Athena) UpdateWorkGroupWithContext(ctx aws.Context, input *UpdateWorkGr
 	return out, req.Send()
 }
 
+// Provides information about an Athena query error. The AthenaError feature
+// provides standardized error information to help you understand failed queries
+// and take steps after a query failure occurs. AthenaError includes an ErrorCategory
+// field that specifies whether the cause of the failed query is due to system
+// error, user error, or unknown error.
+type AthenaError struct {
+	_ struct{} `type:"structure"`
+
+	// An integer value that specifies the category of a query failure error. The
+	// following list shows the category for each integer value.
+	//
+	// 1 - System
+	//
+	// 2 - User
+	//
+	// 3 - Unknown
+	ErrorCategory *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AthenaError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AthenaError) GoString() string {
+	return s.String()
+}
+
+// SetErrorCategory sets the ErrorCategory field's value.
+func (s *AthenaError) SetErrorCategory(v int64) *AthenaError {
+	s.ErrorCategory = &v
+	return s
+}
+
 type BatchGetNamedQueryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3890,8 +3933,9 @@ type CreateDataCatalogInput struct {
 	Description *string `min:"1" type:"string"`
 
 	// The name of the data catalog to create. The catalog name must be unique for
-	// the Amazon Web Services account and can use a maximum of 128 alphanumeric,
-	// underscore, at sign, or hyphen characters.
+	// the Amazon Web Services account and can use a maximum of 127 alphanumeric,
+	// underscore, at sign, or hyphen characters. The remainder of the length constraint
+	// of 256 is reserved for use by Athena.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -4426,8 +4470,9 @@ type DataCatalog struct {
 	Description *string `min:"1" type:"string"`
 
 	// The name of the data catalog. The catalog name must be unique for the Amazon
-	// Web Services account and can use a maximum of 128 alphanumeric, underscore,
-	// at sign, or hyphen characters.
+	// Web Services account and can use a maximum of 127 alphanumeric, underscore,
+	// at sign, or hyphen characters. The remainder of the length constraint of
+	// 256 is reserved for use by Athena.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -4509,7 +4554,10 @@ func (s *DataCatalog) SetType(v string) *DataCatalog {
 type DataCatalogSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the data catalog.
+	// The name of the data catalog. The catalog name is unique for the Amazon Web
+	// Services account and can use a maximum of 127 alphanumeric, underscore, at
+	// sign, or hyphen characters. The remainder of the length constraint of 256
+	// is reserved for use by Athena.
 	CatalogName *string `min:"1" type:"string"`
 
 	// The data catalog type.
@@ -7478,6 +7526,9 @@ func (s *QueryExecutionStatistics) SetTotalExecutionTimeInMillis(v int64) *Query
 type QueryExecutionStatus struct {
 	_ struct{} `type:"structure"`
 
+	// Provides information about an Athena query error.
+	AthenaError *AthenaError `type:"structure"`
+
 	// The date and time that the query completed.
 	CompletionDateTime *time.Time `type:"timestamp"`
 
@@ -7516,6 +7567,12 @@ func (s QueryExecutionStatus) String() string {
 // value will be replaced with "sensitive".
 func (s QueryExecutionStatus) GoString() string {
 	return s.String()
+}
+
+// SetAthenaError sets the AthenaError field's value.
+func (s *QueryExecutionStatus) SetAthenaError(v *AthenaError) *QueryExecutionStatus {
+	s.AthenaError = v
+	return s
 }
 
 // SetCompletionDateTime sets the CompletionDateTime field's value.
@@ -8593,8 +8650,9 @@ type UpdateDataCatalogInput struct {
 	Description *string `min:"1" type:"string"`
 
 	// The name of the data catalog to update. The catalog name must be unique for
-	// the Amazon Web Services account and can use a maximum of 128 alphanumeric,
-	// underscore, at sign, or hyphen characters.
+	// the Amazon Web Services account and can use a maximum of 127 alphanumeric,
+	// underscore, at sign, or hyphen characters. The remainder of the length constraint
+	// of 256 is reserved for use by Athena.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`

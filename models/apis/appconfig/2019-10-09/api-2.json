@@ -189,7 +189,9 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"BadRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API has been deprecated in favor of the GetLatestConfiguration API used in conjunction with StartConfigurationSession."
     },
     "GetConfigurationProfile":{
       "name":"GetConfigurationProfile",

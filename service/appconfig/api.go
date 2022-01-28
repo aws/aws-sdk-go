@@ -158,7 +158,7 @@ func (c *AppConfig) CreateConfigurationProfileRequest(input *CreateConfiguration
 //    the configuration data.
 //
 //    * A validator for the configuration data. Available validators include
-//    either a JSON Schema or an Lambda function.
+//    either a JSON Schema or an Amazon Web Services Lambda function.
 //
 // For more information, see Create a Configuration and a Configuration Profile
 // (http://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-creating-configuration-and-profile.html)
@@ -1040,7 +1040,12 @@ const opGetConfiguration = "GetConfiguration"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetConfiguration
+//
+// Deprecated: This API has been deprecated in favor of the GetLatestConfiguration API used in conjunction with StartConfigurationSession.
 func (c *AppConfig) GetConfigurationRequest(input *GetConfigurationInput) (req *request.Request, output *GetConfigurationOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, GetConfiguration, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opGetConfiguration,
 		HTTPMethod: "GET",
@@ -1058,17 +1063,31 @@ func (c *AppConfig) GetConfigurationRequest(input *GetConfigurationInput) (req *
 
 // GetConfiguration API operation for Amazon AppConfig.
 //
-// Retrieves information about a configuration.
+// Retrieves the latest deployed configuration.
 //
-// AppConfig uses the value of the ClientConfigurationVersion parameter to identify
-// the configuration version on your clients. If you don’t send ClientConfigurationVersion
-// with each call to GetConfiguration, your clients receive the current configuration.
-// You are charged each time your clients receive a configuration.
+// Note the following important information.
 //
-// To avoid excess charges, we recommend that you include the ClientConfigurationVersion
-// value with every call to GetConfiguration. This value must be saved on your
-// client. Subsequent calls to GetConfiguration must pass this value by using
-// the ClientConfigurationVersion parameter.
+//    * This API action has been deprecated. Calls to receive configuration
+//    data should use the StartConfigurationSession (https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_appconfigdata_StartConfigurationSession.html)
+//    and GetLatestConfiguration (https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_appconfigdata_GetLatestConfiguration.html)
+//    APIs instead.
+//
+//    * GetConfiguration is a priced call. For more information, see Pricing
+//    (https://aws.amazon.com/systems-manager/pricing/).
+//
+//    * AppConfig uses the value of the ClientConfigurationVersion parameter
+//    to identify the configuration version on your clients. If you don’t
+//    send ClientConfigurationVersion with each call to GetConfiguration, your
+//    clients receive the current configuration. You are charged each time your
+//    clients receive a configuration. To avoid excess charges, we recommend
+//    you use the StartConfigurationSession (https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/StartConfigurationSession.html)
+//    and GetLatestConfiguration (https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/GetLatestConfiguration.html)
+//    APIs, which track the client configuration version on your behalf. If
+//    you choose to continue using GetConfiguration, we recommend that you include
+//    the ClientConfigurationVersion value with every call to GetConfiguration.
+//    The value to use for ClientConfigurationVersion comes from the ConfigurationVersion
+//    attribute returned by GetConfiguration when there is new or updated data,
+//    and should be saved for subsequent calls to GetConfiguration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1089,6 +1108,8 @@ func (c *AppConfig) GetConfigurationRequest(input *GetConfigurationInput) (req *
 //   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetConfiguration
+//
+// Deprecated: This API has been deprecated in favor of the GetLatestConfiguration API used in conjunction with StartConfigurationSession.
 func (c *AppConfig) GetConfiguration(input *GetConfigurationInput) (*GetConfigurationOutput, error) {
 	req, out := c.GetConfigurationRequest(input)
 	return out, req.Send()
@@ -1103,6 +1124,8 @@ func (c *AppConfig) GetConfiguration(input *GetConfigurationInput) (*GetConfigur
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This API has been deprecated in favor of the GetLatestConfiguration API used in conjunction with StartConfigurationSession.
 func (c *AppConfig) GetConfigurationWithContext(ctx aws.Context, input *GetConfigurationInput, opts ...request.Option) (*GetConfigurationOutput, error) {
 	req, out := c.GetConfigurationRequest(input)
 	req.SetContext(ctx)
@@ -2024,7 +2047,8 @@ func (c *AppConfig) ListDeploymentsRequest(input *ListDeploymentsInput) (req *re
 
 // ListDeployments API operation for Amazon AppConfig.
 //
-// Lists the deployments for an environment.
+// Lists the deployments for an environment in descending deployment number
+// order.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3327,7 +3351,7 @@ func (s *Application) SetName(v string) *Application {
 }
 
 // Detailed information about the input that failed to satisfy the constraints
-// specified by an AWS service.
+// specified by a call.
 type BadRequestDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -3367,7 +3391,7 @@ type BadRequestException struct {
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Detailed information about the input that failed to satisfy the constraints
-	// specified by an AWS service.
+	// specified by a call.
 	Details *BadRequestDetails `type:"structure"`
 
 	Message_ *string `locationName:"Message" type:"string"`
@@ -3447,9 +3471,15 @@ type ConfigurationProfileSummary struct {
 	// The name of the configuration profile.
 	Name *string `min:"1" type:"string"`
 
-	// The type of configurations that the configuration profile contains. A configuration
-	// can be a feature flag used for enabling or disabling new features or a free-form
-	// configuration used to introduce changes to your application.
+	// The type of configurations contained in the profile. AppConfig supports feature
+	// flags and freeform configurations. We recommend you create feature flag configurations
+	// to enable or disable new features and freeform configurations to distribute
+	// configurations to an application. When calling this API, enter one of the
+	// following values for Type:
+	//
+	// AWS.AppConfig.FeatureFlags
+	//
+	// AWS.Freeform
 	Type *string `type:"string"`
 
 	// The types of validators in the configuration profile.
@@ -3734,9 +3764,15 @@ type CreateConfigurationProfileInput struct {
 	// both of which you define.
 	Tags map[string]*string `type:"map"`
 
-	// The type of configurations that the configuration profile contains. A configuration
-	// can be a feature flag used for enabling or disabling new features or a free-form
-	// configuration used for distributing configurations to your application.
+	// The type of configurations contained in the profile. AppConfig supports feature
+	// flags and freeform configurations. We recommend you create feature flag configurations
+	// to enable or disable new features and freeform configurations to distribute
+	// configurations to an application. When calling this API, enter one of the
+	// following values for Type:
+	//
+	// AWS.AppConfig.FeatureFlags
+	//
+	// AWS.Freeform
 	Type *string `type:"string"`
 
 	// A list of methods for validating the configuration.
@@ -3872,9 +3908,15 @@ type CreateConfigurationProfileOutput struct {
 	// specified LocationUri.
 	RetrievalRoleArn *string `min:"20" type:"string"`
 
-	// The type of configurations that the configuration profile contains. A configuration
-	// can be a feature flag used for enabling or disabling new features or a free-form
-	// configuration used for distributing configurations to your application.
+	// The type of configurations contained in the profile. AppConfig supports feature
+	// flags and freeform configurations. We recommend you create feature flag configurations
+	// to enable or disable new features and freeform configurations to distribute
+	// configurations to an application. When calling this API, enter one of the
+	// following values for Type:
+	//
+	// AWS.AppConfig.FeatureFlags
+	//
+	// AWS.Freeform
 	Type *string `type:"string"`
 
 	// A list of methods for validating the configuration.
@@ -5607,12 +5649,10 @@ type GetConfigurationOutput struct {
 
 	// The content of the configuration or the configuration data.
 	//
-	// Compare the configuration version numbers of the configuration cached locally
-	// on your machine and the configuration number in the the header. If the configuration
-	// numbers are the same, the content can be ignored. The Content section only
-	// appears if the system finds new or updated configuration data. If the system
-	// doesn't find new or updated configuration data, then the Content section
-	// is not returned.
+	// The Content attribute only contains data if the system finds new or updated
+	// configuration data. If there is no new or updated data and ClientConfigurationVersion
+	// matches the version of the current configuration, AppConfig returns a 204
+	// No Content HTTP response code and the Content value will be empty.
 	//
 	// Content is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetConfigurationOutput's
@@ -5749,9 +5789,15 @@ type GetConfigurationProfileOutput struct {
 	// specified LocationUri.
 	RetrievalRoleArn *string `min:"20" type:"string"`
 
-	// The type of configurations that the configuration profile contains. A configuration
-	// can be a feature flag used for enabling or disabling new features or a free-form
-	// configuration used for distributing configurations to your application.
+	// The type of configurations contained in the profile. AppConfig supports feature
+	// flags and freeform configurations. We recommend you create feature flag configurations
+	// to enable or disable new features and freeform configurations to distribute
+	// configurations to an application. When calling this API, enter one of the
+	// following values for Type:
+	//
+	// AWS.AppConfig.FeatureFlags
+	//
+	// AWS.Freeform
 	Type *string `type:"string"`
 
 	// A list of methods for validating the configuration.
@@ -6855,7 +6901,7 @@ type ListConfigurationProfilesInput struct {
 	NextToken *string `location:"querystring" locationName:"next_token" min:"1" type:"string"`
 
 	// A filter based on the type of configurations that the configuration profile
-	// contains. A configuration can be a feature flag or a free-form configuration.
+	// contains. A configuration can be a feature flag or a freeform configuration.
 	Type *string `location:"querystring" locationName:"type" type:"string"`
 }
 
@@ -7076,12 +7122,15 @@ type ListDeploymentsInput struct {
 	// EnvironmentId is a required field
 	EnvironmentId *string `location:"uri" locationName:"EnvironmentId" type:"string" required:"true"`
 
-	// The maximum number of items to return for this call. The call also returns
-	// a token that you can specify in a subsequent call to get the next set of
+	// The maximum number of items that may be returned for this call. If there
+	// are items that have not yet been returned, the response will include a non-null
+	// NextToken that you can provide in a subsequent call to get the next set of
 	// results.
 	MaxResults *int64 `location:"querystring" locationName:"max_results" min:"1" type:"integer"`
 
-	// A token to start the list. Use this token to get the next set of results.
+	// The token returned by a prior call to this operation indicating the next
+	// set of results to be returned. If not specified, the operation will return
+	// the first set of results.
 	NextToken *string `location:"querystring" locationName:"next_token" min:"1" type:"string"`
 }
 
@@ -8808,9 +8857,15 @@ type UpdateConfigurationProfileOutput struct {
 	// specified LocationUri.
 	RetrievalRoleArn *string `min:"20" type:"string"`
 
-	// The type of configurations that the configuration profile contains. A configuration
-	// can be a feature flag used for enabling or disabling new features or a free-form
-	// configuration used for distributing configurations to your application.
+	// The type of configurations contained in the profile. AppConfig supports feature
+	// flags and freeform configurations. We recommend you create feature flag configurations
+	// to enable or disable new features and freeform configurations to distribute
+	// configurations to an application. When calling this API, enter one of the
+	// following values for Type:
+	//
+	// AWS.AppConfig.FeatureFlags
+	//
+	// AWS.Freeform
 	Type *string `type:"string"`
 
 	// A list of methods for validating the configuration.
@@ -9392,9 +9447,9 @@ func (s ValidateConfigurationOutput) GoString() string {
 
 // A validator provides a syntactic or semantic check to ensure the configuration
 // that you want to deploy functions as intended. To validate your application
-// configuration data, you provide a schema or a Lambda function that runs against
-// the configuration. The configuration deployment or update can only proceed
-// when the configuration data is valid.
+// configuration data, you provide a schema or an Amazon Web Services Lambda
+// function that runs against the configuration. The configuration deployment
+// or update can only proceed when the configuration data is valid.
 type Validator struct {
 	_ struct{} `type:"structure"`
 

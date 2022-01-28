@@ -69,6 +69,10 @@ func (c *SecretsManager) CancelRotateSecretRequest(input *CancelRotateSecretInpu
 // you also evaluate the partially rotated new version to see if it should be
 // deleted. You can delete a version by removing all staging labels from it.
 //
+// Required permissions: secretsmanager:CancelRotateSecret. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -81,7 +85,7 @@ func (c *SecretsManager) CancelRotateSecretRequest(input *CancelRotateSecretInpu
 //   Secrets Manager can't find the resource that you asked for.
 //
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 //   * InternalServiceError
 //   An error occurred on the server side.
@@ -190,6 +194,10 @@ func (c *SecretsManager) CreateSecretRequest(input *CreateSecretInput) (req *req
 // calling the API, then you can't use aws/secretsmanager to encrypt the secret,
 // and you must create and use a customer managed KMS key.
 //
+// Required permissions: secretsmanager:CreateSecret. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -199,7 +207,7 @@ func (c *SecretsManager) CreateSecretRequest(input *CreateSecretInput) (req *req
 //
 // Returned Error Types:
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 //   * InvalidRequestException
 //   A parameter value is not valid for the current state of the resource.
@@ -234,6 +242,10 @@ func (c *SecretsManager) CreateSecretRequest(input *CreateSecretInput) (req *req
 //
 //   * PreconditionNotMetException
 //   The request failed because you did not complete all the prerequisite steps.
+//
+//   * DecryptionFailure
+//   Secrets Manager can't decrypt the protected secret text using the provided
+//   KMS key.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/secretsmanager-2017-10-17/CreateSecret
 func (c *SecretsManager) CreateSecret(input *CreateSecretInput) (*CreateSecretOutput, error) {
@@ -304,6 +316,10 @@ func (c *SecretsManager) DeleteResourcePolicyRequest(input *DeleteResourcePolicy
 // Deletes the resource-based permission policy attached to the secret. To attach
 // a policy to a secret, use PutResourcePolicy.
 //
+// Required permissions: secretsmanager:DeleteResourcePolicy. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -330,7 +346,7 @@ func (c *SecretsManager) DeleteResourcePolicyRequest(input *DeleteResourcePolicy
 //      parameter in this call.
 //
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/secretsmanager-2017-10-17/DeleteResourcePolicy
 func (c *SecretsManager) DeleteResourcePolicy(input *DeleteResourcePolicyInput) (*DeleteResourcePolicyOutput, error) {
@@ -419,6 +435,10 @@ func (c *SecretsManager) DeleteSecretRequest(input *DeleteSecretInput) (req *req
 // value. To access that information, first cancel the deletion with RestoreSecret
 // and then retrieve the information.
 //
+// Required permissions: secretsmanager:DeleteSecret. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -431,7 +451,7 @@ func (c *SecretsManager) DeleteSecretRequest(input *DeleteSecretInput) (req *req
 //   Secrets Manager can't find the resource that you asked for.
 //
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 //   * InvalidRequestException
 //   A parameter value is not valid for the current state of the resource.
@@ -516,6 +536,10 @@ func (c *SecretsManager) DescribeSecretRequest(input *DescribeSecretInput) (req 
 // Retrieves the details of a secret. It does not include the encrypted secret
 // value. Secrets Manager only returns fields that have a value in the response.
 //
+// Required permissions: secretsmanager:DescribeSecret. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -531,7 +555,7 @@ func (c *SecretsManager) DescribeSecretRequest(input *DescribeSecretInput) (req 
 //   An error occurred on the server side.
 //
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/secretsmanager-2017-10-17/DescribeSecret
 func (c *SecretsManager) DescribeSecret(input *DescribeSecretInput) (*DescribeSecretOutput, error) {
@@ -603,6 +627,10 @@ func (c *SecretsManager) GetRandomPasswordRequest(input *GetRandomPasswordInput)
 // and include every character type that the system you are generating a password
 // for can support.
 //
+// Required permissions: secretsmanager:GetRandomPassword. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -612,7 +640,7 @@ func (c *SecretsManager) GetRandomPasswordRequest(input *GetRandomPasswordInput)
 //
 // Returned Error Types:
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 //   * InvalidRequestException
 //   A parameter value is not valid for the current state of the resource.
@@ -698,6 +726,10 @@ func (c *SecretsManager) GetResourcePolicyRequest(input *GetResourcePolicyInput)
 // the secret. For more information about permissions policies attached to a
 // secret, see Permissions policies attached to a secret (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-policies.html).
 //
+// Required permissions: secretsmanager:GetResourcePolicy. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -724,7 +756,7 @@ func (c *SecretsManager) GetResourcePolicyRequest(input *GetResourcePolicyInput)
 //      parameter in this call.
 //
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/secretsmanager-2017-10-17/GetResourcePolicy
 func (c *SecretsManager) GetResourcePolicy(input *GetResourcePolicyInput) (*GetResourcePolicyOutput, error) {
@@ -795,13 +827,15 @@ func (c *SecretsManager) GetSecretValueRequest(input *GetSecretValueInput) (req 
 // Retrieves the contents of the encrypted fields SecretString or SecretBinary
 // from the specified version of a secret, whichever contains content.
 //
-// For information about retrieving the secret value in the console, see Retrieve
-// secrets (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieving-secrets.html).
+// We recommend that you cache your secret values by using client-side caching.
+// Caching secrets improves speed and reduces your costs. For more information,
+// see Cache secrets for your applications (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieving-secrets.html).
 //
-// To run this command, you must have secretsmanager:GetSecretValue permissions.
-// If the secret is encrypted using a customer-managed key instead of the Amazon
-// Web Services managed key aws/secretsmanager, then you also need kms:Decrypt
-// permissions for that key.
+// Required permissions: secretsmanager:GetSecretValue. If the secret is encrypted
+// using a customer-managed key instead of the Amazon Web Services managed key
+// aws/secretsmanager, then you also need kms:Decrypt permissions for that key.
+// For more information, see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -815,7 +849,7 @@ func (c *SecretsManager) GetSecretValueRequest(input *GetSecretValueInput) (req 
 //   Secrets Manager can't find the resource that you asked for.
 //
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 //   * InvalidRequestException
 //   A parameter value is not valid for the current state of the resource.
@@ -913,9 +947,9 @@ func (c *SecretsManager) ListSecretVersionIdsRequest(input *ListSecretVersionIds
 //
 // To get the secret value from SecretString or SecretBinary, call GetSecretValue.
 //
-// Minimum permissions
-//
-// To run this command, you must have secretsmanager:ListSecretVersionIds permissions.
+// Required permissions: secretsmanager:ListSecretVersionIds. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -935,7 +969,7 @@ func (c *SecretsManager) ListSecretVersionIdsRequest(input *ListSecretVersionIds
 //   An error occurred on the server side.
 //
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/secretsmanager-2017-10-17/ListSecretVersionIds
 func (c *SecretsManager) ListSecretVersionIds(input *ListSecretVersionIdsInput) (*ListSecretVersionIdsOutput, error) {
@@ -1071,9 +1105,9 @@ func (c *SecretsManager) ListSecretsRequest(input *ListSecretsInput) (req *reque
 // For information about finding secrets in the console, see Enhanced search
 // capabilities for secrets in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_search-secret.html).
 //
-// Minimum permissions
-//
-// To run this command, you must have secretsmanager:ListSecrets permissions.
+// Required permissions: secretsmanager:ListSecrets. For more information, see
+// IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1084,7 +1118,7 @@ func (c *SecretsManager) ListSecretsRequest(input *ListSecretsInput) (req *reque
 //
 // Returned Error Types:
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 //   * InvalidNextTokenException
 //   The NextToken value is invalid.
@@ -1217,6 +1251,10 @@ func (c *SecretsManager) PutResourcePolicyRequest(input *PutResourcePolicyInput)
 // For information about attaching a policy in the console, see Attach a permissions
 // policy to a secret (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html).
 //
+// Required permissions: secretsmanager:PutResourcePolicy. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1232,7 +1270,7 @@ func (c *SecretsManager) PutResourcePolicyRequest(input *PutResourcePolicyInput)
 //   Secrets Manager can't find the resource that you asked for.
 //
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 //   * InternalServiceError
 //   An error occurred on the server side.
@@ -1346,6 +1384,10 @@ func (c *SecretsManager) PutSecretValueRequest(input *PutSecretValueInput) (req 
 // the secret data is different, then the operation fails because you can't
 // modify an existing version; you can only create new ones.
 //
+// Required permissions: secretsmanager:PutSecretValue. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1355,7 +1397,7 @@ func (c *SecretsManager) PutSecretValueRequest(input *PutSecretValueInput) (req 
 //
 // Returned Error Types:
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 //   * InvalidRequestException
 //   A parameter value is not valid for the current state of the resource.
@@ -1384,6 +1426,10 @@ func (c *SecretsManager) PutSecretValueRequest(input *PutSecretValueInput) (req 
 //
 //   * InternalServiceError
 //   An error occurred on the server side.
+//
+//   * DecryptionFailure
+//   Secrets Manager can't decrypt the protected secret text using the provided
+//   KMS key.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/secretsmanager-2017-10-17/PutSecretValue
 func (c *SecretsManager) PutSecretValue(input *PutSecretValueInput) (*PutSecretValueOutput, error) {
@@ -1454,6 +1500,10 @@ func (c *SecretsManager) RemoveRegionsFromReplicationRequest(input *RemoveRegion
 // For a secret that is replicated to other Regions, deletes the secret replicas
 // from the Regions you specify.
 //
+// Required permissions: secretsmanager:RemoveRegionsFromReplication. For more
+// information, see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1477,7 +1527,7 @@ func (c *SecretsManager) RemoveRegionsFromReplicationRequest(input *RemoveRegion
 //      parameter in this call.
 //
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 //   * InternalServiceError
 //   An error occurred on the server side.
@@ -1550,6 +1600,10 @@ func (c *SecretsManager) ReplicateSecretToRegionsRequest(input *ReplicateSecretT
 //
 // Replicates the secret to a new Regions. See Multi-Region secrets (https://docs.aws.amazon.com/secretsmanager/latest/userguide/create-manage-multi-region-secrets.html).
 //
+// Required permissions: secretsmanager:ReplicateSecretToRegions. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1573,7 +1627,7 @@ func (c *SecretsManager) ReplicateSecretToRegionsRequest(input *ReplicateSecretT
 //      parameter in this call.
 //
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 //   * InternalServiceError
 //   An error occurred on the server side.
@@ -1647,6 +1701,10 @@ func (c *SecretsManager) RestoreSecretRequest(input *RestoreSecretInput) (req *r
 // Cancels the scheduled deletion of a secret by removing the DeletedDate time
 // stamp. You can access a secret again after it has been restored.
 //
+// Required permissions: secretsmanager:RestoreSecret. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1659,7 +1717,7 @@ func (c *SecretsManager) RestoreSecretRequest(input *RestoreSecretInput) (req *r
 //   Secrets Manager can't find the resource that you asked for.
 //
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 //   * InvalidRequestException
 //   A parameter value is not valid for the current state of the resource.
@@ -1765,9 +1823,11 @@ func (c *SecretsManager) RotateSecretRequest(input *RotateSecretInput) (req *req
 // as AWSCURRENT, then any later invocation of RotateSecret assumes that a previous
 // rotation request is still in progress and returns an error.
 //
-// To run this command, you must have secretsmanager:RotateSecret permissions
-// and lambda:InvokeFunction permissions on the function specified in the secret's
-// metadata.
+// Required permissions: secretsmanager:RotateSecret. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+// You also need lambda:InvokeFunction permissions on the rotation function.
+// For more information, see Permissions for rotation (https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets-required-permissions-function.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1781,7 +1841,7 @@ func (c *SecretsManager) RotateSecretRequest(input *RotateSecretInput) (req *req
 //   Secrets Manager can't find the resource that you asked for.
 //
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 //   * InternalServiceError
 //   An error occurred on the server side.
@@ -1869,6 +1929,10 @@ func (c *SecretsManager) StopReplicationToReplicaRequest(input *StopReplicationT
 // You must call this operation from the Region in which you want to promote
 // the replica to a primary secret.
 //
+// Required permissions: secretsmanager:StopReplicationToReplica. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1892,7 +1956,7 @@ func (c *SecretsManager) StopReplicationToReplicaRequest(input *StopReplicationT
 //      parameter in this call.
 //
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 //   * InternalServiceError
 //   An error occurred on the server side.
@@ -1993,6 +2057,10 @@ func (c *SecretsManager) TagResourceRequest(input *TagResourceInput) (req *reque
 // result in you losing your permissions for this secret, then the operation
 // is blocked and returns an Access Denied error.
 //
+// Required permissions: secretsmanager:TagResource. For more information, see
+// IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2016,7 +2084,7 @@ func (c *SecretsManager) TagResourceRequest(input *TagResourceInput) (req *reque
 //      parameter in this call.
 //
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 //   * InternalServiceError
 //   An error occurred on the server side.
@@ -2098,6 +2166,10 @@ func (c *SecretsManager) UntagResourceRequest(input *UntagResourceInput) (req *r
 // in you losing your permissions for this secret, then the operation is blocked
 // and returns an Access Denied error.
 //
+// Required permissions: secretsmanager:UntagResource. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2121,7 +2193,7 @@ func (c *SecretsManager) UntagResourceRequest(input *UntagResourceInput) (req *r
 //      parameter in this call.
 //
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 //   * InternalServiceError
 //   An error occurred on the server side.
@@ -2225,9 +2297,12 @@ func (c *SecretsManager) UpdateSecretRequest(input *UpdateSecretInput) (req *req
 // calling the API, then you can't use aws/secretsmanager to encrypt the secret,
 // and you must create and use a customer managed key.
 //
-// To run this command, you must have secretsmanager:UpdateSecret permissions.
+// Required permissions: secretsmanager:UpdateSecret. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 // If you use a customer managed key, you must also have kms:GenerateDataKey
-// and kms:Decrypt permissions .
+// and kms:Decrypt permissions on the key. For more information, see Secret
+// encryption and decryption (https://docs.aws.amazon.com/secretsmanager/latest/userguide/security-encryption.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2238,7 +2313,7 @@ func (c *SecretsManager) UpdateSecretRequest(input *UpdateSecretInput) (req *req
 //
 // Returned Error Types:
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 //   * InvalidRequestException
 //   A parameter value is not valid for the current state of the resource.
@@ -2273,6 +2348,10 @@ func (c *SecretsManager) UpdateSecretRequest(input *UpdateSecretInput) (req *req
 //
 //   * PreconditionNotMetException
 //   The request failed because you did not complete all the prerequisite steps.
+//
+//   * DecryptionFailure
+//   Secrets Manager can't decrypt the protected secret text using the provided
+//   KMS key.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/secretsmanager-2017-10-17/UpdateSecret
 func (c *SecretsManager) UpdateSecret(input *UpdateSecretInput) (*UpdateSecretOutput, error) {
@@ -2361,6 +2440,10 @@ func (c *SecretsManager) UpdateSecretVersionStageRequest(input *UpdateSecretVers
 // the version is considered to be 'deprecated' and can be deleted by Secrets
 // Manager.
 //
+// Required permissions: secretsmanager:UpdateSecretVersionStage. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2373,7 +2456,7 @@ func (c *SecretsManager) UpdateSecretVersionStageRequest(input *UpdateSecretVers
 //   Secrets Manager can't find the resource that you asked for.
 //
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 //   * InvalidRequestException
 //   A parameter value is not valid for the current state of the resource.
@@ -2472,6 +2555,10 @@ func (c *SecretsManager) ValidateResourcePolicyRequest(input *ValidateResourcePo
 //
 //    * Verifies the policy does not lock out a caller.
 //
+// Required permissions: secretsmanager:ValidateResourcePolicy. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2487,7 +2574,7 @@ func (c *SecretsManager) ValidateResourcePolicyRequest(input *ValidateResourcePo
 //   Secrets Manager can't find the resource that you asked for.
 //
 //   * InvalidParameterException
-//   The parameter name is invalid value.
+//   The parameter name or value is invalid.
 //
 //   * InternalServiceError
 //   An error occurred on the server side.
@@ -4242,7 +4329,7 @@ func (s *InvalidNextTokenException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The parameter name is invalid value.
+// The parameter name or value is invalid.
 type InvalidParameterException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5858,6 +5945,18 @@ type RotateSecretInput struct {
 	// value to ensure uniqueness within the specified secret.
 	ClientRequestToken *string `min:"32" type:"string" idempotencyToken:"true"`
 
+	// Specifies whether to rotate the secret immediately or wait until the next
+	// scheduled rotation window. The rotation schedule is defined in RotateSecretRequest$RotationRules.
+	//
+	// If you don't immediately rotate the secret, Secrets Manager tests the rotation
+	// configuration by running the testSecret step (https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_how.html)
+	// of the Lambda rotation function. The test creates an AWSPENDING version of
+	// the secret and then removes it.
+	//
+	// If you don't specify this value, then by default, Secrets Manager rotates
+	// the secret immediately.
+	RotateImmediately *bool `type:"boolean"`
+
 	// The ARN of the Lambda rotation function that can rotate the secret.
 	RotationLambdaARN *string `type:"string"`
 
@@ -5918,6 +6017,12 @@ func (s *RotateSecretInput) Validate() error {
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *RotateSecretInput) SetClientRequestToken(v string) *RotateSecretInput {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetRotateImmediately sets the RotateImmediately field's value.
+func (s *RotateSecretInput) SetRotateImmediately(v bool) *RotateSecretInput {
+	s.RotateImmediately = &v
 	return s
 }
 
@@ -5992,16 +6097,42 @@ func (s *RotateSecretOutput) SetVersionId(v string) *RotateSecretOutput {
 type RotationRulesType struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the number of days between automatic scheduled rotations of the
-	// secret.
+	// The number of days between automatic scheduled rotations of the secret. You
+	// can use this value to check that your secret meets your compliance guidelines
+	// for how often secrets must be rotated.
 	//
-	// Secrets Manager schedules the next rotation when the previous one is complete.
-	// Secrets Manager schedules the date by adding the rotation interval (number
-	// of days) to the actual date of the last rotation. The service chooses the
-	// hour within that 24-hour date window randomly. The minute is also chosen
-	// somewhat randomly, but weighted towards the top of the hour and influenced
-	// by a variety of factors that help distribute load.
+	// In DescribeSecret and ListSecrets, this value is calculated from the rotation
+	// schedule after every successful rotation. In RotateSecret, you can set the
+	// rotation schedule in RotationRules with AutomaticallyAfterDays or ScheduleExpression,
+	// but not both.
 	AutomaticallyAfterDays *int64 `min:"1" type:"long"`
+
+	// The length of the rotation window in hours, for example 3h for a three hour
+	// window. Secrets Manager rotates your secret at any time during this window.
+	// The window must not go into the next UTC day. If you don't specify this value,
+	// the window automatically ends at the end of the UTC day. The window begins
+	// according to the ScheduleExpression. For more information, including examples,
+	// see Schedule expressions in Secrets Manager rotation (https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_schedule.html).
+	Duration *string `min:"2" type:"string"`
+
+	// A cron() or rate() expression that defines the schedule for rotating your
+	// secret. Secrets Manager rotation schedules use UTC time zone.
+	//
+	// Secrets Manager rate() expressions represent the interval in days that you
+	// want to rotate your secret, for example rate(10 days). If you use a rate()
+	// expression, the rotation window opens at midnight, and Secrets Manager rotates
+	// your secret any time that day after midnight. You can set a Duration to shorten
+	// the rotation window.
+	//
+	// You can use a cron() expression to create rotation schedules that are more
+	// detailed than a rotation interval. For more information, including examples,
+	// see Schedule expressions in Secrets Manager rotation (https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_schedule.html).
+	// If you use a cron() expression, Secrets Manager rotates your secret any time
+	// during that day after the window opens. For example, cron(0 8 1 * ? *) represents
+	// a rotation window that occurs on the first day of every month beginning at
+	// 8:00 AM UTC. Secrets Manager rotates the secret any time that day after 8:00
+	// AM. You can set a Duration to shorten the rotation window.
+	ScheduleExpression *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -6028,6 +6159,12 @@ func (s *RotationRulesType) Validate() error {
 	if s.AutomaticallyAfterDays != nil && *s.AutomaticallyAfterDays < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("AutomaticallyAfterDays", 1))
 	}
+	if s.Duration != nil && len(*s.Duration) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Duration", 2))
+	}
+	if s.ScheduleExpression != nil && len(*s.ScheduleExpression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ScheduleExpression", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6041,9 +6178,21 @@ func (s *RotationRulesType) SetAutomaticallyAfterDays(v int64) *RotationRulesTyp
 	return s
 }
 
+// SetDuration sets the Duration field's value.
+func (s *RotationRulesType) SetDuration(v string) *RotationRulesType {
+	s.Duration = &v
+	return s
+}
+
+// SetScheduleExpression sets the ScheduleExpression field's value.
+func (s *RotationRulesType) SetScheduleExpression(v string) *RotationRulesType {
+	s.ScheduleExpression = &v
+	return s
+}
+
 // A structure that contains the details about a secret. It does not include
 // the encrypted SecretString and SecretBinary values. To get those values,
-// use the GetSecretValue operation.
+// use GetSecretValue (https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) .
 type SecretListEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -6056,7 +6205,8 @@ type SecretListEntry struct {
 	// The date and time the deletion of the secret occurred. Not present on active
 	// secrets. The secret can be recovered until the number of days in the recovery
 	// window has passed, as specified in the RecoveryWindowInDays parameter of
-	// the DeleteSecret operation.
+	// the DeleteSecret (https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html)
+	// operation.
 	DeletedDate *time.Time `type:"timestamp"`
 
 	// The user-provided description of the secret.
@@ -6095,7 +6245,7 @@ type SecretListEntry struct {
 
 	// The ARN of an Amazon Web Services Lambda function invoked by Secrets Manager
 	// to rotate and expire the secret either automatically per the schedule or
-	// manually by a call to RotateSecret.
+	// manually by a call to RotateSecret (https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_RotateSecret.html).
 	RotationLambdaARN *string `type:"string"`
 
 	// A structure that defines the rotation configuration for the secret.
@@ -6110,7 +6260,8 @@ type SecretListEntry struct {
 	SecretVersionsToStages map[string][]*string `type:"map"`
 
 	// The list of user-defined tags associated with the secret. To add tags to
-	// a secret, use TagResource. To remove tags, use UntagResource.
+	// a secret, use TagResource (https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_TagResource.html).
+	// To remove tags, use UntagResource (https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_UntagResource.html).
 	Tags []*Tag `type:"list"`
 }
 

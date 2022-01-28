@@ -56,9 +56,9 @@
     "BadRequestException":{
       "type":"structure",
       "members":{
-        "Details":{"shape":"BadRequestDetails"},
         "Message":{"shape":"String"},
-        "Reason":{"shape":"BadRequestReason"}
+        "Reason":{"shape":"BadRequestReason"},
+        "Details":{"shape":"BadRequestDetails"}
       },
       "error":{
         "httpStatusCode":400,
@@ -84,12 +84,6 @@
     "GetLatestConfigurationResponse":{
       "type":"structure",
       "members":{
-        "Configuration":{"shape":"SyntheticGetLatestConfigurationResponseBlob"},
-        "ContentType":{
-          "shape":"String",
-          "location":"header",
-          "locationName":"Content-Type"
-        },
         "NextPollConfigurationToken":{
           "shape":"Token",
           "location":"header",
@@ -99,7 +93,13 @@
           "shape":"Integer",
           "location":"header",
           "locationName":"Next-Poll-Interval-In-Seconds"
-        }
+        },
+        "ContentType":{
+          "shape":"String",
+          "location":"header",
+          "locationName":"Content-Type"
+        },
+        "Configuration":{"shape":"SyntheticGetLatestConfigurationResponseBlob"}
       },
       "payload":"Configuration"
     },
@@ -147,8 +147,8 @@
       "type":"structure",
       "members":{
         "Message":{"shape":"String"},
-        "ReferencedBy":{"shape":"StringMap"},
-        "ResourceType":{"shape":"ResourceType"}
+        "ResourceType":{"shape":"ResourceType"},
+        "ReferencedBy":{"shape":"StringMap"}
       },
       "error":{
         "httpStatusCode":404,
@@ -170,13 +170,13 @@
       "type":"structure",
       "required":[
         "ApplicationIdentifier",
-        "ConfigurationProfileIdentifier",
-        "EnvironmentIdentifier"
+        "EnvironmentIdentifier",
+        "ConfigurationProfileIdentifier"
       ],
       "members":{
         "ApplicationIdentifier":{"shape":"Identifier"},
-        "ConfigurationProfileIdentifier":{"shape":"Identifier"},
         "EnvironmentIdentifier":{"shape":"Identifier"},
+        "ConfigurationProfileIdentifier":{"shape":"Identifier"},
         "RequiredMinimumPollIntervalInSeconds":{"shape":"OptionalPollSeconds"}
       }
     },

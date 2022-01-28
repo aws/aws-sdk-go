@@ -4055,6 +4055,12 @@
               "tags" : [ "fips" ]
             } ]
           },
+          "ap-southeast-3" : {
+            "variants" : [ {
+              "hostname" : "elasticfilesystem-fips.ap-southeast-3.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
+          },
           "ca-central-1" : {
             "variants" : [ {
               "hostname" : "elasticfilesystem-fips.ca-central-1.amazonaws.com",
@@ -4152,6 +4158,13 @@
             },
             "deprecated" : true,
             "hostname" : "elasticfilesystem-fips.ap-southeast-2.amazonaws.com"
+          },
+          "fips-ap-southeast-3" : {
+            "credentialScope" : {
+              "region" : "ap-southeast-3"
+            },
+            "deprecated" : true,
+            "hostname" : "elasticfilesystem-fips.ap-southeast-3.amazonaws.com"
           },
           "fips-ca-central-1" : {
             "credentialScope" : {
@@ -10229,7 +10242,19 @@
           "ap-southeast-1" : { },
           "ap-southeast-2" : { },
           "ap-southeast-3" : { },
-          "ca-central-1" : { },
+          "ca-central-1" : {
+            "variants" : [ {
+              "hostname" : "secretsmanager-fips.ca-central-1.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
+          },
+          "ca-central-1-fips" : {
+            "credentialScope" : {
+              "region" : "ca-central-1"
+            },
+            "deprecated" : true,
+            "hostname" : "secretsmanager-fips.ca-central-1.amazonaws.com"
+          },
           "eu-central-1" : { },
           "eu-north-1" : { },
           "eu-south-1" : { },

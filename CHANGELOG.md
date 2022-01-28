@@ -1,3 +1,17 @@
+Release v1.42.44 (2022-01-28)
+===
+
+### Service Client Updates
+* `service/appconfig`: Updates service API and documentation
+* `service/appconfigdata`: Updates service API and documentation
+* `service/athena`: Updates service API and documentation
+  * This release adds a field, AthenaError, to the GetQueryExecution response object when a query fails.
+* `service/cognito-idp`: Updates service documentation
+* `service/sagemaker`: Updates service API
+  * This release added a new NNA accelerator compilation support for Sagemaker Neo.
+* `service/secretsmanager`: Updates service API and documentation
+  * Feature are ready to release on Jan 28th
+
 Release v1.42.43 (2022-01-27)
 ===
 

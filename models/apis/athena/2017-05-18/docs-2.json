@@ -47,6 +47,12 @@
         "UntagResourceInput$ResourceARN": "<p>Specifies the ARN of the resource from which tags are to be removed.</p>"
       }
     },
+    "AthenaError": {
+      "base": "<p>Provides information about an Athena query error. The <code>AthenaError</code> feature provides standardized error information to help you understand failed queries and take steps after a query failure occurs. <code>AthenaError</code> includes an <code>ErrorCategory</code> field that specifies whether the cause of the failed query is due to system error, user error, or unknown error.</p>",
+      "refs": {
+        "QueryExecutionStatus$AthenaError": "<p>Provides information about an Athena query error.</p>"
+      }
+    },
     "BatchGetNamedQueryInput": {
       "base": null,
       "refs": {
@@ -98,9 +104,9 @@
     "CatalogNameString": {
       "base": null,
       "refs": {
-        "CreateDataCatalogInput$Name": "<p>The name of the data catalog to create. The catalog name must be unique for the Amazon Web Services account and can use a maximum of 128 alphanumeric, underscore, at sign, or hyphen characters.</p>",
-        "DataCatalog$Name": "<p>The name of the data catalog. The catalog name must be unique for the Amazon Web Services account and can use a maximum of 128 alphanumeric, underscore, at sign, or hyphen characters.</p>",
-        "DataCatalogSummary$CatalogName": "<p>The name of the data catalog.</p>",
+        "CreateDataCatalogInput$Name": "<p>The name of the data catalog to create. The catalog name must be unique for the Amazon Web Services account and can use a maximum of 127 alphanumeric, underscore, at sign, or hyphen characters. The remainder of the length constraint of 256 is reserved for use by Athena.</p>",
+        "DataCatalog$Name": "<p>The name of the data catalog. The catalog name must be unique for the Amazon Web Services account and can use a maximum of 127 alphanumeric, underscore, at sign, or hyphen characters. The remainder of the length constraint of 256 is reserved for use by Athena.</p>",
+        "DataCatalogSummary$CatalogName": "<p>The name of the data catalog. The catalog name is unique for the Amazon Web Services account and can use a maximum of 127 alphanumeric, underscore, at sign, or hyphen characters. The remainder of the length constraint of 256 is reserved for use by Athena.</p>",
         "DeleteDataCatalogInput$Name": "<p>The name of the data catalog to delete.</p>",
         "GetDataCatalogInput$Name": "<p>The name of the data catalog to return.</p>",
         "GetDatabaseInput$CatalogName": "<p>The name of the data catalog that contains the database to return.</p>",
@@ -108,7 +114,7 @@
         "ListDatabasesInput$CatalogName": "<p>The name of the data catalog that contains the databases to return.</p>",
         "ListTableMetadataInput$CatalogName": "<p>The name of the data catalog for which table metadata should be returned.</p>",
         "QueryExecutionContext$Catalog": "<p>The name of the data catalog used in the query execution.</p>",
-        "UpdateDataCatalogInput$Name": "<p>The name of the data catalog to update. The catalog name must be unique for the Amazon Web Services account and can use a maximum of 128 alphanumeric, underscore, at sign, or hyphen characters.</p>"
+        "UpdateDataCatalogInput$Name": "<p>The name of the data catalog to update. The catalog name must be unique for the Amazon Web Services account and can use a maximum of 127 alphanumeric, underscore, at sign, or hyphen characters. The remainder of the length constraint of 256 is reserved for use by Athena.</p>"
       }
     },
     "Column": {
@@ -334,6 +340,12 @@
       "base": null,
       "refs": {
         "ListEngineVersionsOutput$EngineVersions": "<p>A list of engine versions that are available to choose from.</p>"
+      }
+    },
+    "ErrorCategory": {
+      "base": null,
+      "refs": {
+        "AthenaError$ErrorCategory": "<p>An integer value that specifies the category of a query failure error. The following list shows the category for each integer value.</p> <p> <b>1</b> - System</p> <p> <b>2</b> - User</p> <p> <b>3</b> - Unknown</p>"
       }
     },
     "ErrorCode": {
