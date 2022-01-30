@@ -1732,7 +1732,7 @@ func resolvePackageServiceByContext(packageName string, region string, ctx *plug
 	return resolvePackage(parameters)
 }
 
-func resolvePackageServiceByCredentials(packageName string, region string, awsCredentials map[string]interface{}) (interface{}, error) {
+func resolvePackageServiceByCredentials(packageName string, region string, awsCredentials map[string]string) (interface{}, error) {
 	awsSession, err := createAWSSessionByCredentials(region, awsCredentials, 0)
 	if err != nil {
 		return nil, err
@@ -1921,14 +1921,7 @@ func (p *AWSPlugin) TestCredentials(credentialsMap map[string]*connections.Conne
 	log.Debugf("Requested to test credentials: \n %v", credentialsMap)
 
 	for _, connInstance := range credentialsMap {
-		awsCredentials, err := connInstance.ResolveCredentials()
-		if err != nil {
-			return &plugin.CredentialsValidationResponse{
-				AreCredentialsValid:   false,
-				RawValidationResponse: []byte(err.Error()),
-			}, err
-		}
-
+		awsCredentials := connInstance.Data
 		serviceName := "sts"
 		serviceRegions := awsutil.GetServiceRegions(serviceName)
 
@@ -1951,7 +1944,7 @@ func (p *AWSPlugin) TestCredentials(credentialsMap map[string]*connections.Conne
 			}, fmt.Errorf("failed to append service to parameters, region: %v, error: %v", region, err)
 		}
 
-		_, err = sts.ExecuteGetCallerIdentity(awsActionParameters)
+		_, err := sts.ExecuteGetCallerIdentity(awsActionParameters)
 		if err != nil {
 			if awsErr, ok := err.(awserr.RequestFailure); ok {
 				if awsErr.Code() == "AccessDenied" { // This means that the credentials are actually truthy, but do not have permissions to perform the specific action
@@ -2086,21 +2079,6 @@ func detectConnectionType(awsCredentials map[string]string) (credsType, key, val
 	return "userBased", awsCredentials[awsAccessKeyId], awsCredentials[awsSecretAccessKey]
 }
 
-func convertInterfaceMapToStringMap(m map[string]interface{}) map[string]string {
-	mapString := make(map[string]string)
-	for key, value := range m {
-		var strValue string
-		strKey := fmt.Sprintf("%v", key)
-		if value == nil {
-			strValue = ""
-		} else {
-			strValue = fmt.Sprintf("%v", value)
-		}
-		mapString[strKey] = strValue
-	}
-	return mapString
-}
-
 func readFile(path string) (string, error) {
 	data, err := ioutil.ReadFile(path)
 	if err != nil {
@@ -2156,12 +2134,11 @@ func assumeRole(svc stsiface.STSAPI, role, externalID string) (access, secret, s
 	return assumeRoleWithTrustedIdentity(svc, role, externalID, sessionName)
 }
 
-func createAWSSessionByCredentials(region string, awsCredentials map[string]interface{}, timeout int32) (*session.Session, error) {
+func createAWSSessionByCredentials(region string, awsCredentials map[string]string, timeout int32) (*session.Session, error) {
 	var access, secret, sessionToken string
 
 	// aws credentials are always strings. interface is annoying, let's convert to map[string]string
-	m := convertInterfaceMapToStringMap(awsCredentials)
-	sessionType, k, v := detectConnectionType(m)
+	sessionType, k, v := detectConnectionType(awsCredentials)
 
 	// checking whether the session is going to be with regular aws access keys or a role needed to be assumed
 	switch sessionType {
@@ -2224,7 +2201,7 @@ func appendServiceToParametersByContext(packageName string, context *plugin.Acti
 	return nil
 }
 
-func appendServiceToParametersByCredentials(packageName string, awsCredentials map[string]interface{}, awsActionParameters map[string]interface{}) error {
+func appendServiceToParametersByCredentials(packageName string, awsCredentials map[string]string, awsActionParameters map[string]interface{}) error {
 	region, ok := awsActionParameters[awsRegionKey].(string)
 	if !ok {
 		return fmt.Errorf("failed to get region from action parameters")
