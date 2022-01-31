@@ -2389,7 +2389,7 @@ type PostContentOutput struct {
 	//
 	// You can use a context to control the intents that can follow up an intent,
 	// or to modify the operation of your application.
-	ActiveContexts aws.JSONValue `location:"header" locationName:"x-amz-lex-active-contexts" type:"jsonvalue"`
+//	ActiveContexts aws.JSONValue `location:"header" locationName:"x-amz-lex-active-contexts" type:"jsonvalue"`
 
 	// One to four alternative intents that may be applicable to the user's intent.
 	//
@@ -2614,10 +2614,10 @@ func (s PostContentOutput) GoString() string {
 }
 
 // SetActiveContexts sets the ActiveContexts field's value.
-func (s *PostContentOutput) SetActiveContexts(v aws.JSONValue) *PostContentOutput {
-	s.ActiveContexts = v
-	return s
-}
+//func (s *PostContentOutput) SetActiveContexts(v aws.JSONValue) *PostContentOutput {
+//	s.ActiveContexts = v
+//	return s
+//}
 
 // SetAlternativeIntents sets the AlternativeIntents field's value.
 func (s *PostContentOutput) SetAlternativeIntents(v string) *PostContentOutput {
