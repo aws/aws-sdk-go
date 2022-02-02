@@ -7,9 +7,15 @@
     },
     "DescribeConnectors": {
       "input_token": "nextToken",
-      "output_token": "nextToken"
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
     },
     "DescribeFlowExecutionRecords": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListConnectors": {
       "input_token": "nextToken",
       "output_token": "nextToken",
       "limit_key": "maxResults"

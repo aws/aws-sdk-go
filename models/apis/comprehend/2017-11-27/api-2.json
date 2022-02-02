@@ -229,6 +229,20 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DeleteResourcePolicy":{
+      "name":"DeleteResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteResourcePolicyRequest"},
+      "output":{"shape":"DeleteResourcePolicyResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DescribeDocumentClassificationJob":{
       "name":"DescribeDocumentClassificationJob",
       "http":{
@@ -364,6 +378,20 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DescribeResourcePolicy":{
+      "name":"DescribeResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeResourcePolicyRequest"},
+      "output":{"shape":"DescribeResourcePolicyResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DescribeSentimentDetectionJob":{
       "name":"DescribeSentimentDetectionJob",
       "http":{
@@ -481,6 +509,26 @@
         {"shape":"InvalidRequestException"},
         {"shape":"TextSizeLimitExceededException"},
         {"shape":"UnsupportedLanguageException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ImportModel":{
+      "name":"ImportModel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ImportModelRequest"},
+      "output":{"shape":"ImportModelResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceUnavailableException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"KmsKeyValidationException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -687,6 +735,20 @@
         {"shape":"InvalidRequestException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"InvalidFilterException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "PutResourcePolicy":{
+      "name":"PutResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutResourcePolicyRequest"},
+      "output":{"shape":"PutResourcePolicyResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -1307,7 +1369,8 @@
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
         "VpcConfig":{"shape":"VpcConfig"},
         "Mode":{"shape":"DocumentClassifierMode"},
-        "ModelKmsKeyId":{"shape":"KmsKeyId"}
+        "ModelKmsKeyId":{"shape":"KmsKeyId"},
+        "ModelPolicy":{"shape":"Policy"}
       }
     },
     "CreateDocumentClassifierResponse":{
@@ -1362,7 +1425,8 @@
         "LanguageCode":{"shape":"LanguageCode"},
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
         "VpcConfig":{"shape":"VpcConfig"},
-        "ModelKmsKeyId":{"shape":"KmsKeyId"}
+        "ModelKmsKeyId":{"shape":"KmsKeyId"},
+        "ModelPolicy":{"shape":"Policy"}
       }
     },
     "CreateEntityRecognizerResponse":{
@@ -1413,6 +1477,19 @@
       }
     },
     "DeleteEntityRecognizerResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteResourcePolicyRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"ComprehendModelArn"},
+        "PolicyRevisionId":{"shape":"PolicyRevisionId"}
+      }
+    },
+    "DeleteResourcePolicyResponse":{
       "type":"structure",
       "members":{
       }
@@ -1532,6 +1609,22 @@
       "type":"structure",
       "members":{
         "PiiEntitiesDetectionJobProperties":{"shape":"PiiEntitiesDetectionJobProperties"}
+      }
+    },
+    "DescribeResourcePolicyRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"ComprehendModelArn"}
+      }
+    },
+    "DescribeResourcePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "ResourcePolicy":{"shape":"Policy"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "PolicyRevisionId":{"shape":"PolicyRevisionId"}
       }
     },
     "DescribeSentimentDetectionJobRequest":{
@@ -1773,7 +1866,8 @@
         "VpcConfig":{"shape":"VpcConfig"},
         "Mode":{"shape":"DocumentClassifierMode"},
         "ModelKmsKeyId":{"shape":"KmsKeyId"},
-        "VersionName":{"shape":"VersionName"}
+        "VersionName":{"shape":"VersionName"},
+        "SourceModelArn":{"shape":"DocumentClassifierArn"}
       }
     },
     "DocumentClassifierPropertiesList":{
@@ -2070,7 +2164,8 @@
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
         "VpcConfig":{"shape":"VpcConfig"},
         "ModelKmsKeyId":{"shape":"KmsKeyId"},
-        "VersionName":{"shape":"VersionName"}
+        "VersionName":{"shape":"VersionName"},
+        "SourceModelArn":{"shape":"EntityRecognizerArn"}
       }
     },
     "EntityRecognizerPropertiesList":{
@@ -2108,7 +2203,7 @@
     "EntityTypeName":{
       "type":"string",
       "max":64,
-      "pattern":"^(?:(?!\\\\n+|\\\\t+|\\\\r+|[\\r\\t\\n,]).)+$"
+      "pattern":"^(?![^\\n\\r\\t,]*\\\\n|\\\\r|\\\\t)[^\\n\\r\\t,]+$"
     },
     "EntityTypesEvaluationMetrics":{
       "type":"structure",
@@ -2171,6 +2266,24 @@
       "max":2048,
       "min":20,
       "pattern":"arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+"
+    },
+    "ImportModelRequest":{
+      "type":"structure",
+      "required":["SourceModelArn"],
+      "members":{
+        "SourceModelArn":{"shape":"ComprehendModelArn"},
+        "ModelName":{"shape":"ComprehendArnName"},
+        "VersionName":{"shape":"VersionName"},
+        "ModelKmsKeyId":{"shape":"KmsKeyId"},
+        "DataAccessRoleArn":{"shape":"IamRoleArn"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "ImportModelResponse":{
+      "type":"structure",
+      "members":{
+        "ModelArn":{"shape":"ComprehendModelArn"}
+      }
     },
     "InferenceUnitsInteger":{
       "type":"integer",
@@ -2743,6 +2856,35 @@
       "members":{
         "S3Uri":{"shape":"S3Uri"},
         "KmsKeyId":{"shape":"KmsKeyId"}
+      }
+    },
+    "Policy":{
+      "type":"string",
+      "max":20000,
+      "min":1,
+      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+"
+    },
+    "PolicyRevisionId":{
+      "type":"string",
+      "max":64,
+      "pattern":"[0-9A-Fa-f]+"
+    },
+    "PutResourcePolicyRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "ResourcePolicy"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"ComprehendModelArn"},
+        "ResourcePolicy":{"shape":"Policy"},
+        "PolicyRevisionId":{"shape":"PolicyRevisionId"}
+      }
+    },
+    "PutResourcePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "PolicyRevisionId":{"shape":"PolicyRevisionId"}
       }
     },
     "RedactionConfig":{

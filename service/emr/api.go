@@ -247,6 +247,9 @@ func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *request.
 // You can only add steps to a cluster that is in one of the following states:
 // STARTING, BOOTSTRAPPING, RUNNING, or WAITING.
 //
+// The string values passed into HadoopJarStep object cannot exceed a total
+// of 10240 characters.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3849,6 +3852,10 @@ func (c *EMR) PutAutoTerminationPolicyRequest(input *PutAutoTerminationPolicyInp
 
 // PutAutoTerminationPolicy API operation for Amazon EMR.
 //
+//
+// Auto-termination is supported in Amazon EMR versions 5.30.0 and 6.1.0 and
+// later. For more information, see Using an auto-termination policy (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-auto-termination-policy.html).
+//
 // Creates or updates an auto-termination policy for an Amazon EMR cluster.
 // An auto-termination policy defines the amount of idle time in seconds after
 // which a cluster automatically terminates. For alternative cluster termination
@@ -4609,6 +4616,11 @@ func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req
 }
 
 // SetVisibleToAllUsers API operation for Amazon EMR.
+//
+//
+// The SetVisibleToAllUsers parameter is no longer supported. Your cluster may
+// be visible to all users in your account. To restrict cluster access using
+// an IAM policy, see Identity and Access Management for EMR (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-access-iam.html).
 //
 // Sets the Cluster$VisibleToAllUsers value for an EMR cluster. When true, IAM
 // principals in the Amazon Web Services account can perform EMR cluster actions
@@ -6512,11 +6524,7 @@ type Cluster struct {
 	//
 	// The default value is true if a value is not provided when creating a cluster
 	// using the EMR API RunJobFlow command, the CLI create-cluster (https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html)
-	// command, or the Amazon Web Services Management Console. IAM principals that
-	// are allowed to perform actions on the cluster can use the SetVisibleToAllUsers
-	// action to change the value on a running cluster. For more information, see
-	// Understanding the EMR Cluster VisibleToAllUsers Setting (https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users)
-	// in the Amazon EMRManagement Guide.
+	// command, or the Amazon Web Services Management Console.
 	VisibleToAllUsers *bool `type:"boolean"`
 }
 
@@ -10662,8 +10670,8 @@ type InstanceGroupDetail struct {
 	// The date/time the instance group was started.
 	StartDateTime *time.Time `type:"timestamp"`
 
-	// State of instance group. The following values are deprecated: STARTING, TERMINATED,
-	// and FAILED.
+	// State of instance group. The following values are no longer supported: STARTING,
+	// TERMINATED, and FAILED.
 	//
 	// State is a required field
 	State *string `type:"string" required:"true" enum:"InstanceGroupState"`
@@ -11714,11 +11722,7 @@ type JobFlowDetail struct {
 	//
 	// The default value is true if a value is not provided when creating a cluster
 	// using the EMR API RunJobFlow command, the CLI create-cluster (https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html)
-	// command, or the Amazon Web Services Management Console. IAM principals that
-	// are authorized to perform actions on the cluster can use the SetVisibleToAllUsers
-	// action to change the value on a running cluster. For more information, see
-	// Understanding the EMR Cluster VisibleToAllUsers Setting (https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users)
-	// in the Amazon EMRManagement Guide.
+	// command, or the Amazon Web Services Management Console.
 	VisibleToAllUsers *bool `type:"boolean"`
 }
 
@@ -15300,7 +15304,7 @@ type RunJobFlowInput struct {
 	// Applies to Amazon EMR releases 4.0 and later. A case-insensitive list of
 	// applications for Amazon EMR to install and configure when launching the cluster.
 	// For a list of applications available for each Amazon EMR release version,
-	// see the Amazon EMR Release Guide (https://docs.aws.amazon.com/emr/latest/ReleaseGuide/).
+	// see the Amazon EMRRelease Guide (https://docs.aws.amazon.com/emr/latest/ReleaseGuide/).
 	Applications []*Application `type:"list"`
 
 	// An IAM role for automatic scaling policies. The default role is EMR_AutoScaling_DefaultRole.
@@ -15466,6 +15470,10 @@ type RunJobFlowInput struct {
 	// A list of tags to associate with a cluster and propagate to Amazon EC2 instances.
 	Tags []*Tag `type:"list"`
 
+	//
+	// The VisibleToAllUsers parameter is no longer supported. By default, the value
+	// is set to true. Setting it to false now has no effect.
+	//
 	// Set this value to true so that IAM principals in the Amazon Web Services
 	// account associated with the cluster can perform EMR actions on the cluster
 	// that their IAM policies allow. This value defaults to true for clusters created
@@ -16673,6 +16681,11 @@ func (s *SimplifiedApplication) SetVersion(v string) *SimplifiedApplication {
 // The instance fleet configuration is available only in Amazon EMR versions
 // 4.8.0 and later, excluding 5.0.x versions. Spot Instance allocation strategy
 // is available in Amazon EMR version 5.12.1 and later.
+//
+// Spot Instances with a defined duration (also known as Spot blocks) are no
+// longer available to new customers from July 1, 2021. For customers who have
+// previously used the feature, we will continue to support Spot Instances with
+// a defined duration until December 31, 2022.
 type SpotProvisioningSpecification struct {
 	_ struct{} `type:"structure"`
 
@@ -16690,6 +16703,11 @@ type SpotProvisioningSpecification struct {
 	// EC2 marks the Spot Instance for termination and provides a Spot Instance
 	// termination notice, which gives the instance a two-minute warning before
 	// it terminates.
+	//
+	// Spot Instances with a defined duration (also known as Spot blocks) are no
+	// longer available to new customers from July 1, 2021. For customers who have
+	// previously used the feature, we will continue to support Spot Instances with
+	// a defined duration until December 31, 2022.
 	BlockDurationMinutes *int64 `type:"integer"`
 
 	// The action to take when TargetSpotCapacity has not been fulfilled when the
@@ -18203,7 +18221,7 @@ type VolumeSpecification struct {
 	// SizeInGB is a required field
 	SizeInGB *int64 `type:"integer" required:"true"`
 
-	// The volume type. Volume types supported are gp2, io1, standard.
+	// The volume type. Volume types supported are gp2, io1, and standard.
 	//
 	// VolumeType is a required field
 	VolumeType *string `type:"string" required:"true"`

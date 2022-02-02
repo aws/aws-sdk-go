@@ -8,6 +8,12 @@ import (
 
 const (
 
+	// ErrCodeAccessDeniedException for service response error code
+	// "AccessDeniedException".
+	//
+	// AppFlow/Requester has invalid or missing permissions.
+	ErrCodeAccessDeniedException = "AccessDeniedException"
+
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
@@ -49,6 +55,13 @@ const (
 	// be exceeded.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
+	// ErrCodeThrottlingException for service response error code
+	// "ThrottlingException".
+	//
+	// API calls have exceeded the maximum allowed API request rate per account
+	// and per Region.
+	ErrCodeThrottlingException = "ThrottlingException"
+
 	// ErrCodeUnsupportedOperationException for service response error code
 	// "UnsupportedOperationException".
 	//
@@ -63,12 +76,14 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessDeniedException":            newErrorAccessDeniedException,
 	"ConflictException":                newErrorConflictException,
 	"ConnectorAuthenticationException": newErrorConnectorAuthenticationException,
 	"ConnectorServerException":         newErrorConnectorServerException,
 	"InternalServerException":          newErrorInternalServerException,
 	"ResourceNotFoundException":        newErrorResourceNotFoundException,
 	"ServiceQuotaExceededException":    newErrorServiceQuotaExceededException,
+	"ThrottlingException":              newErrorThrottlingException,
 	"UnsupportedOperationException":    newErrorUnsupportedOperationException,
 	"ValidationException":              newErrorValidationException,
 }

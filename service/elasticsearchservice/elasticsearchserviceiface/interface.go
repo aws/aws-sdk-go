@@ -115,6 +115,10 @@ type ElasticsearchServiceAPI interface {
 	DescribeDomainAutoTunesPages(*elasticsearchservice.DescribeDomainAutoTunesInput, func(*elasticsearchservice.DescribeDomainAutoTunesOutput, bool) bool) error
 	DescribeDomainAutoTunesPagesWithContext(aws.Context, *elasticsearchservice.DescribeDomainAutoTunesInput, func(*elasticsearchservice.DescribeDomainAutoTunesOutput, bool) bool, ...request.Option) error
 
+	DescribeDomainChangeProgress(*elasticsearchservice.DescribeDomainChangeProgressInput) (*elasticsearchservice.DescribeDomainChangeProgressOutput, error)
+	DescribeDomainChangeProgressWithContext(aws.Context, *elasticsearchservice.DescribeDomainChangeProgressInput, ...request.Option) (*elasticsearchservice.DescribeDomainChangeProgressOutput, error)
+	DescribeDomainChangeProgressRequest(*elasticsearchservice.DescribeDomainChangeProgressInput) (*request.Request, *elasticsearchservice.DescribeDomainChangeProgressOutput)
+
 	DescribeElasticsearchDomain(*elasticsearchservice.DescribeElasticsearchDomainInput) (*elasticsearchservice.DescribeElasticsearchDomainOutput, error)
 	DescribeElasticsearchDomainWithContext(aws.Context, *elasticsearchservice.DescribeElasticsearchDomainInput, ...request.Option) (*elasticsearchservice.DescribeElasticsearchDomainOutput, error)
 	DescribeElasticsearchDomainRequest(*elasticsearchservice.DescribeElasticsearchDomainInput) (*request.Request, *elasticsearchservice.DescribeElasticsearchDomainOutput)

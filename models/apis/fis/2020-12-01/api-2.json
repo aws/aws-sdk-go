@@ -85,6 +85,20 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "GetTargetResourceType":{
+      "name":"GetTargetResourceType",
+      "http":{
+        "method":"GET",
+        "requestUri":"/targetResourceTypes/{resourceType}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetTargetResourceTypeRequest"},
+      "output":{"shape":"GetTargetResourceTypeResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ListActions":{
       "name":"ListActions",
       "http":{
@@ -133,6 +147,19 @@
       },
       "input":{"shape":"ListTagsForResourceRequest"},
       "output":{"shape":"ListTagsForResourceResponse"}
+    },
+    "ListTargetResourceTypes":{
+      "name":"ListTargetResourceTypes",
+      "http":{
+        "method":"GET",
+        "requestUri":"/targetResourceTypes",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTargetResourceTypesRequest"},
+      "output":{"shape":"ListTargetResourceTypesResponse"},
+      "errors":[
+        {"shape":"ValidationException"}
+      ]
     },
     "StartExperiment":{
       "name":"StartExperiment",
@@ -263,7 +290,7 @@
     "ActionTarget":{
       "type":"structure",
       "members":{
-        "resourceType":{"shape":"TargetResourceType"}
+        "resourceType":{"shape":"TargetResourceTypeId"}
       }
     },
     "ActionTargetMap":{
@@ -353,11 +380,12 @@
         "selectionMode"
       ],
       "members":{
-        "resourceType":{"shape":"ResourceType"},
+        "resourceType":{"shape":"TargetResourceTypeId"},
         "resourceArns":{"shape":"ResourceArnList"},
         "resourceTags":{"shape":"TagMap"},
         "filters":{"shape":"ExperimentTemplateTargetFilterInputList"},
-        "selectionMode":{"shape":"ExperimentTemplateTargetSelectionMode"}
+        "selectionMode":{"shape":"ExperimentTemplateTargetSelectionMode"},
+        "parameters":{"shape":"ExperimentTemplateTargetParameterMap"}
       }
     },
     "CreateExperimentTemplateTargetInputMap":{
@@ -552,11 +580,12 @@
     "ExperimentTarget":{
       "type":"structure",
       "members":{
-        "resourceType":{"shape":"ResourceType"},
+        "resourceType":{"shape":"TargetResourceTypeId"},
         "resourceArns":{"shape":"ResourceArnList"},
         "resourceTags":{"shape":"TagMap"},
         "filters":{"shape":"ExperimentTargetFilterList"},
-        "selectionMode":{"shape":"ExperimentTargetSelectionMode"}
+        "selectionMode":{"shape":"ExperimentTargetSelectionMode"},
+        "parameters":{"shape":"ExperimentTargetParameterMap"}
       }
     },
     "ExperimentTargetFilter":{
@@ -593,6 +622,21 @@
       "type":"string",
       "max":64,
       "pattern":"[\\S]+"
+    },
+    "ExperimentTargetParameterMap":{
+      "type":"map",
+      "key":{"shape":"ExperimentTargetParameterName"},
+      "value":{"shape":"ExperimentTargetParameterValue"}
+    },
+    "ExperimentTargetParameterName":{
+      "type":"string",
+      "max":64,
+      "pattern":"[\\S]+"
+    },
+    "ExperimentTargetParameterValue":{
+      "type":"string",
+      "max":1024,
+      "min":1
     },
     "ExperimentTargetSelectionMode":{
       "type":"string",
@@ -710,11 +754,12 @@
     "ExperimentTemplateTarget":{
       "type":"structure",
       "members":{
-        "resourceType":{"shape":"ResourceType"},
+        "resourceType":{"shape":"TargetResourceTypeId"},
         "resourceArns":{"shape":"ResourceArnList"},
         "resourceTags":{"shape":"TagMap"},
         "filters":{"shape":"ExperimentTemplateTargetFilterList"},
-        "selectionMode":{"shape":"ExperimentTemplateTargetSelectionMode"}
+        "selectionMode":{"shape":"ExperimentTemplateTargetSelectionMode"},
+        "parameters":{"shape":"ExperimentTemplateTargetParameterMap"}
       }
     },
     "ExperimentTemplateTargetFilter":{
@@ -766,6 +811,22 @@
       "type":"string",
       "max":64,
       "pattern":"[\\S]+"
+    },
+    "ExperimentTemplateTargetParameterMap":{
+      "type":"map",
+      "key":{"shape":"ExperimentTemplateTargetParameterName"},
+      "value":{"shape":"ExperimentTemplateTargetParameterValue"}
+    },
+    "ExperimentTemplateTargetParameterName":{
+      "type":"string",
+      "max":64,
+      "pattern":"[\\S]+"
+    },
+    "ExperimentTemplateTargetParameterValue":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^[\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]+$"
     },
     "ExperimentTemplateTargetSelectionMode":{
       "type":"string",
@@ -821,6 +882,23 @@
       "type":"structure",
       "members":{
         "experimentTemplate":{"shape":"ExperimentTemplate"}
+      }
+    },
+    "GetTargetResourceTypeRequest":{
+      "type":"structure",
+      "required":["resourceType"],
+      "members":{
+        "resourceType":{
+          "shape":"TargetResourceTypeId",
+          "location":"uri",
+          "locationName":"resourceType"
+        }
+      }
+    },
+    "GetTargetResourceTypeResponse":{
+      "type":"structure",
+      "members":{
+        "targetResourceType":{"shape":"TargetResourceType"}
       }
     },
     "LastUpdateTime":{"type":"timestamp"},
@@ -925,6 +1003,34 @@
         "tags":{"shape":"TagMap"}
       }
     },
+    "ListTargetResourceTypesMaxResults":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "ListTargetResourceTypesRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"ListTargetResourceTypesMaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListTargetResourceTypesResponse":{
+      "type":"structure",
+      "members":{
+        "targetResourceTypes":{"shape":"TargetResourceTypeSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "NextToken":{
       "type":"string",
       "max":1024,
@@ -949,11 +1055,6 @@
       },
       "error":{"httpStatusCode":404},
       "exception":true
-    },
-    "ResourceType":{
-      "type":"string",
-      "max":64,
-      "pattern":"[\\S]+"
     },
     "RoleArn":{
       "type":"string",
@@ -1059,9 +1160,59 @@
       "pattern":"[\\s\\S]*"
     },
     "TargetResourceType":{
+      "type":"structure",
+      "members":{
+        "resourceType":{"shape":"TargetResourceTypeId"},
+        "description":{"shape":"TargetResourceTypeDescription"},
+        "parameters":{"shape":"TargetResourceTypeParameterMap"}
+      }
+    },
+    "TargetResourceTypeDescription":{
+      "type":"string",
+      "max":512,
+      "pattern":"[\\s\\S]+"
+    },
+    "TargetResourceTypeId":{
       "type":"string",
       "max":128,
       "pattern":"[\\S]+"
+    },
+    "TargetResourceTypeParameter":{
+      "type":"structure",
+      "members":{
+        "description":{"shape":"TargetResourceTypeParameterDescription"},
+        "required":{
+          "shape":"TargetResourceTypeParameterRequired",
+          "box":true
+        }
+      }
+    },
+    "TargetResourceTypeParameterDescription":{
+      "type":"string",
+      "max":512,
+      "pattern":"[\\s\\S]+"
+    },
+    "TargetResourceTypeParameterMap":{
+      "type":"map",
+      "key":{"shape":"TargetResourceTypeParameterName"},
+      "value":{"shape":"TargetResourceTypeParameter"}
+    },
+    "TargetResourceTypeParameterName":{
+      "type":"string",
+      "max":64,
+      "pattern":"[\\S]+"
+    },
+    "TargetResourceTypeParameterRequired":{"type":"boolean"},
+    "TargetResourceTypeSummary":{
+      "type":"structure",
+      "members":{
+        "resourceType":{"shape":"TargetResourceTypeId"},
+        "description":{"shape":"TargetResourceTypeDescription"}
+      }
+    },
+    "TargetResourceTypeSummaryList":{
+      "type":"list",
+      "member":{"shape":"TargetResourceTypeSummary"}
     },
     "UntagResourceRequest":{
       "type":"structure",
@@ -1140,11 +1291,12 @@
         "selectionMode"
       ],
       "members":{
-        "resourceType":{"shape":"ResourceType"},
+        "resourceType":{"shape":"TargetResourceTypeId"},
         "resourceArns":{"shape":"ResourceArnList"},
         "resourceTags":{"shape":"TagMap"},
         "filters":{"shape":"ExperimentTemplateTargetFilterInputList"},
-        "selectionMode":{"shape":"ExperimentTemplateTargetSelectionMode"}
+        "selectionMode":{"shape":"ExperimentTemplateTargetSelectionMode"},
+        "parameters":{"shape":"ExperimentTemplateTargetParameterMap"}
       }
     },
     "UpdateExperimentTemplateTargetInputMap":{

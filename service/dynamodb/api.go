@@ -401,9 +401,12 @@ func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) (req *reque
 // BatchWriteItem API operation for Amazon DynamoDB.
 //
 // The BatchWriteItem operation puts or deletes multiple items in one or more
-// tables. A single call to BatchWriteItem can write up to 16 MB of data, which
-// can comprise as many as 25 put or delete requests. Individual items to be
-// written can be as large as 400 KB.
+// tables. A single call to BatchWriteItem can transmit up to 16MB of data over
+// the network, consisting of up to 25 item put or delete operations. While
+// individual items can be up to 400 KB once stored, it's important to note
+// that an item's representation might be greater than 400KB while being sent
+// in DynamoDB's JSON format for the API call. For more details on this distinction,
+// see Naming Rules and Data Types (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html).
 //
 // BatchWriteItem cannot update items. To update items, use the UpdateItem action.
 //
@@ -6215,10 +6218,11 @@ func (c *DynamoDB) UpdateContributorInsightsRequest(input *UpdateContributorInsi
 // Updates the status for contributor insights for a specific table or index.
 // CloudWatch Contributor Insights for DynamoDB graphs display the partition
 // key and (if applicable) sort key of frequently accessed items and frequently
-// throttled items in plaintext. If you require the use of AWS Key Management
-// Service (KMS) to encrypt this table’s partition key and sort key data with
-// an AWS managed key or customer managed key, you should not enable CloudWatch
-// Contributor Insights for DynamoDB for this table.
+// throttled items in plaintext. If you require the use of Amazon Web Services
+// Key Management Service (KMS) to encrypt this table’s partition key and
+// sort key data with an Amazon Web Services managed key or customer managed
+// key, you should not enable CloudWatch Contributor Insights for DynamoDB for
+// this table.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -16823,8 +16827,6 @@ type PointInTimeRecoveryDescription struct {
 	LatestRestorableDateTime *time.Time `type:"timestamp"`
 
 	// The current state of point in time recovery:
-	//
-	//    * ENABLING - Point in time recovery is being enabled.
 	//
 	//    * ENABLED - Point in time recovery is enabled.
 	//

@@ -112,6 +112,10 @@ type ComprehendAPI interface {
 	DeleteEntityRecognizerWithContext(aws.Context, *comprehend.DeleteEntityRecognizerInput, ...request.Option) (*comprehend.DeleteEntityRecognizerOutput, error)
 	DeleteEntityRecognizerRequest(*comprehend.DeleteEntityRecognizerInput) (*request.Request, *comprehend.DeleteEntityRecognizerOutput)
 
+	DeleteResourcePolicy(*comprehend.DeleteResourcePolicyInput) (*comprehend.DeleteResourcePolicyOutput, error)
+	DeleteResourcePolicyWithContext(aws.Context, *comprehend.DeleteResourcePolicyInput, ...request.Option) (*comprehend.DeleteResourcePolicyOutput, error)
+	DeleteResourcePolicyRequest(*comprehend.DeleteResourcePolicyInput) (*request.Request, *comprehend.DeleteResourcePolicyOutput)
+
 	DescribeDocumentClassificationJob(*comprehend.DescribeDocumentClassificationJobInput) (*comprehend.DescribeDocumentClassificationJobOutput, error)
 	DescribeDocumentClassificationJobWithContext(aws.Context, *comprehend.DescribeDocumentClassificationJobInput, ...request.Option) (*comprehend.DescribeDocumentClassificationJobOutput, error)
 	DescribeDocumentClassificationJobRequest(*comprehend.DescribeDocumentClassificationJobInput) (*request.Request, *comprehend.DescribeDocumentClassificationJobOutput)
@@ -148,6 +152,10 @@ type ComprehendAPI interface {
 	DescribePiiEntitiesDetectionJobWithContext(aws.Context, *comprehend.DescribePiiEntitiesDetectionJobInput, ...request.Option) (*comprehend.DescribePiiEntitiesDetectionJobOutput, error)
 	DescribePiiEntitiesDetectionJobRequest(*comprehend.DescribePiiEntitiesDetectionJobInput) (*request.Request, *comprehend.DescribePiiEntitiesDetectionJobOutput)
 
+	DescribeResourcePolicy(*comprehend.DescribeResourcePolicyInput) (*comprehend.DescribeResourcePolicyOutput, error)
+	DescribeResourcePolicyWithContext(aws.Context, *comprehend.DescribeResourcePolicyInput, ...request.Option) (*comprehend.DescribeResourcePolicyOutput, error)
+	DescribeResourcePolicyRequest(*comprehend.DescribeResourcePolicyInput) (*request.Request, *comprehend.DescribeResourcePolicyOutput)
+
 	DescribeSentimentDetectionJob(*comprehend.DescribeSentimentDetectionJobInput) (*comprehend.DescribeSentimentDetectionJobOutput, error)
 	DescribeSentimentDetectionJobWithContext(aws.Context, *comprehend.DescribeSentimentDetectionJobInput, ...request.Option) (*comprehend.DescribeSentimentDetectionJobOutput, error)
 	DescribeSentimentDetectionJobRequest(*comprehend.DescribeSentimentDetectionJobInput) (*request.Request, *comprehend.DescribeSentimentDetectionJobOutput)
@@ -179,6 +187,10 @@ type ComprehendAPI interface {
 	DetectSyntax(*comprehend.DetectSyntaxInput) (*comprehend.DetectSyntaxOutput, error)
 	DetectSyntaxWithContext(aws.Context, *comprehend.DetectSyntaxInput, ...request.Option) (*comprehend.DetectSyntaxOutput, error)
 	DetectSyntaxRequest(*comprehend.DetectSyntaxInput) (*request.Request, *comprehend.DetectSyntaxOutput)
+
+	ImportModel(*comprehend.ImportModelInput) (*comprehend.ImportModelOutput, error)
+	ImportModelWithContext(aws.Context, *comprehend.ImportModelInput, ...request.Option) (*comprehend.ImportModelOutput, error)
+	ImportModelRequest(*comprehend.ImportModelInput) (*request.Request, *comprehend.ImportModelOutput)
 
 	ListDocumentClassificationJobs(*comprehend.ListDocumentClassificationJobsInput) (*comprehend.ListDocumentClassificationJobsOutput, error)
 	ListDocumentClassificationJobsWithContext(aws.Context, *comprehend.ListDocumentClassificationJobsInput, ...request.Option) (*comprehend.ListDocumentClassificationJobsOutput, error)
@@ -268,6 +280,10 @@ type ComprehendAPI interface {
 
 	ListTopicsDetectionJobsPages(*comprehend.ListTopicsDetectionJobsInput, func(*comprehend.ListTopicsDetectionJobsOutput, bool) bool) error
 	ListTopicsDetectionJobsPagesWithContext(aws.Context, *comprehend.ListTopicsDetectionJobsInput, func(*comprehend.ListTopicsDetectionJobsOutput, bool) bool, ...request.Option) error
+
+	PutResourcePolicy(*comprehend.PutResourcePolicyInput) (*comprehend.PutResourcePolicyOutput, error)
+	PutResourcePolicyWithContext(aws.Context, *comprehend.PutResourcePolicyInput, ...request.Option) (*comprehend.PutResourcePolicyOutput, error)
+	PutResourcePolicyRequest(*comprehend.PutResourcePolicyInput) (*request.Request, *comprehend.PutResourcePolicyOutput)
 
 	StartDocumentClassificationJob(*comprehend.StartDocumentClassificationJobInput) (*comprehend.StartDocumentClassificationJobOutput, error)
 	StartDocumentClassificationJobWithContext(aws.Context, *comprehend.StartDocumentClassificationJobInput, ...request.Option) (*comprehend.StartDocumentClassificationJobOutput, error)

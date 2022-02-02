@@ -1,3 +1,25 @@
+Release v1.42.45 (2022-02-02)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API, documentation, and paginators
+* `service/ce`: Updates service API and documentation
+* `service/comprehend`: Updates service API and documentation
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Documentation update for DynamoDB Java SDK.
+* `service/elasticache`: Updates service documentation
+  * Documentation update for AWS ElastiCache
+* `service/elasticmapreduce`: Updates service documentation
+  * Documentation updates for Amazon EMR.
+* `service/es`: Updates service API and documentation
+  * Allows customers to get progress updates for blue/green deployments
+* `service/fis`: Updates service API, documentation, and paginators
+* `service/glue`: Updates service API and documentation
+  * Launch Protobuf support for AWS Glue Schema Registry
+* `service/iot`: Updates service API
+  * This release adds support for configuring AWS IoT logging level per client ID, source IP, or principal ID.
+* `service/personalize`: Updates service API and documentation
+
 Release v1.42.44 (2022-01-28)
 ===
 

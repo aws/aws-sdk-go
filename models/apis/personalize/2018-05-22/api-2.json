@@ -2344,7 +2344,8 @@
     "RecommenderConfig":{
       "type":"structure",
       "members":{
-        "itemExplorationConfig":{"shape":"HyperParameters"}
+        "itemExplorationConfig":{"shape":"HyperParameters"},
+        "minRecommendationRequestsPerSecond":{"shape":"TransactionsPerSecond"}
       }
     },
     "RecommenderSummary":{

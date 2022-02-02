@@ -2472,6 +2472,9 @@ func (c *Glue) CreateRegistryRequest(input *CreateRegistryInput) (req *request.R
 //   * ResourceNumberLimitExceededException
 //   A resource numerical limit was exceeded.
 //
+//   * ConcurrentModificationException
+//   Two processes are trying to modify a resource simultaneously.
+//
 //   * InternalServiceException
 //   An internal service error occurred.
 //
@@ -2576,6 +2579,9 @@ func (c *Glue) CreateSchemaRequest(input *CreateSchemaInput) (req *request.Reque
 //
 //   * ResourceNumberLimitExceededException
 //   A resource numerical limit was exceeded.
+//
+//   * ConcurrentModificationException
+//   Two processes are trying to modify a resource simultaneously.
 //
 //   * InternalServiceException
 //   An internal service error occurred.
@@ -20167,7 +20173,8 @@ func (s *CatalogTarget) SetTables(v []*string) *CatalogTarget {
 type CheckSchemaVersionValidityInput struct {
 	_ struct{} `type:"structure"`
 
-	// The data format of the schema definition. Currently AVRO and JSON are supported.
+	// The data format of the schema definition. Currently AVRO, JSON and PROTOBUF
+	// are supported.
 	//
 	// DataFormat is a required field
 	DataFormat *string `type:"string" required:"true" enum:"DataFormat"`
@@ -25065,7 +25072,8 @@ type CreateSchemaInput struct {
 	//    against all previous schema versions.
 	Compatibility *string `type:"string" enum:"Compatibility"`
 
-	// The data format of the schema definition. Currently AVRO and JSON are supported.
+	// The data format of the schema definition. Currently AVRO, JSON and PROTOBUF
+	// are supported.
 	//
 	// DataFormat is a required field
 	DataFormat *string `type:"string" required:"true" enum:"DataFormat"`
@@ -25187,7 +25195,8 @@ type CreateSchemaOutput struct {
 	// The schema compatibility mode.
 	Compatibility *string `type:"string" enum:"Compatibility"`
 
-	// The data format of the schema definition. Currently AVRO and JSON are supported.
+	// The data format of the schema definition. Currently AVRO, JSON and PROTOBUF
+	// are supported.
 	DataFormat *string `type:"string" enum:"DataFormat"`
 
 	// A description of the schema if specified when created.
@@ -34664,8 +34673,8 @@ type GetSchemaByDefinitionOutput struct {
 	// The date and time the schema was created.
 	CreatedTime *string `type:"string"`
 
-	// The data format of the schema definition. Currently only AVRO and JSON are
-	// supported.
+	// The data format of the schema definition. Currently AVRO, JSON and PROTOBUF
+	// are supported.
 	DataFormat *string `type:"string" enum:"DataFormat"`
 
 	// The Amazon Resource Name (ARN) of the schema.
@@ -34793,7 +34802,8 @@ type GetSchemaOutput struct {
 	// The date and time the schema was created.
 	CreatedTime *string `type:"string"`
 
-	// The data format of the schema definition. Currently AVRO and JSON are supported.
+	// The data format of the schema definition. Currently AVRO, JSON and PROTOBUF
+	// are supported.
 	DataFormat *string `type:"string" enum:"DataFormat"`
 
 	// A description of schema if specified when created
@@ -35010,7 +35020,8 @@ type GetSchemaVersionOutput struct {
 	// The date and time the schema version was created.
 	CreatedTime *string `type:"string"`
 
-	// The data format of the schema definition. Currently AVRO and JSON are supported.
+	// The data format of the schema definition. Currently AVRO, JSON and PROTOBUF
+	// are supported.
 	DataFormat *string `type:"string" enum:"DataFormat"`
 
 	// The Amazon Resource Name (ARN) of the schema.
@@ -52667,6 +52678,9 @@ const (
 
 	// DataFormatJson is a DataFormat enum value
 	DataFormatJson = "JSON"
+
+	// DataFormatProtobuf is a DataFormat enum value
+	DataFormatProtobuf = "PROTOBUF"
 )
 
 // DataFormat_Values returns all elements of the DataFormat enum
@@ -52674,6 +52688,7 @@ func DataFormat_Values() []string {
 	return []string{
 		DataFormatAvro,
 		DataFormatJson,
+		DataFormatProtobuf,
 	}
 }
 

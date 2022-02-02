@@ -1500,12 +1500,12 @@
     "DataFormat": {
       "base": null,
       "refs": {
-        "CheckSchemaVersionValidityInput$DataFormat": "<p>The data format of the schema definition. Currently <code>AVRO</code> and <code>JSON</code> are supported.</p>",
-        "CreateSchemaInput$DataFormat": "<p>The data format of the schema definition. Currently <code>AVRO</code> and <code>JSON</code> are supported.</p>",
-        "CreateSchemaResponse$DataFormat": "<p>The data format of the schema definition. Currently <code>AVRO</code> and <code>JSON</code> are supported.</p>",
-        "GetSchemaByDefinitionResponse$DataFormat": "<p>The data format of the schema definition. Currently only <code>AVRO</code> and <code>JSON</code> are supported.</p>",
-        "GetSchemaResponse$DataFormat": "<p>The data format of the schema definition. Currently <code>AVRO</code> and <code>JSON</code> are supported.</p>",
-        "GetSchemaVersionResponse$DataFormat": "<p>The data format of the schema definition. Currently <code>AVRO</code> and <code>JSON</code> are supported.</p>"
+        "CheckSchemaVersionValidityInput$DataFormat": "<p>The data format of the schema definition. Currently <code>AVRO</code>, <code>JSON</code> and <code>PROTOBUF</code> are supported.</p>",
+        "CreateSchemaInput$DataFormat": "<p>The data format of the schema definition. Currently <code>AVRO</code>, <code>JSON</code> and <code>PROTOBUF</code> are supported.</p>",
+        "CreateSchemaResponse$DataFormat": "<p>The data format of the schema definition. Currently <code>AVRO</code>, <code>JSON</code> and <code>PROTOBUF</code> are supported.</p>",
+        "GetSchemaByDefinitionResponse$DataFormat": "<p>The data format of the schema definition. Currently <code>AVRO</code>, <code>JSON</code> and <code>PROTOBUF</code> are supported.</p>",
+        "GetSchemaResponse$DataFormat": "<p>The data format of the schema definition. Currently <code>AVRO</code>, <code>JSON</code> and <code>PROTOBUF</code> are supported.</p>",
+        "GetSchemaVersionResponse$DataFormat": "<p>The data format of the schema definition. Currently <code>AVRO</code>, <code>JSON</code> and <code>PROTOBUF</code> are supported.</p>"
       }
     },
     "DataLakePrincipal": {

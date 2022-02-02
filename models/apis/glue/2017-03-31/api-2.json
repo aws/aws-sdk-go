@@ -433,6 +433,7 @@
         {"shape":"AccessDeniedException"},
         {"shape":"AlreadyExistsException"},
         {"shape":"ResourceNumberLimitExceededException"},
+        {"shape":"ConcurrentModificationException"},
         {"shape":"InternalServiceException"}
       ]
     },
@@ -450,6 +451,7 @@
         {"shape":"EntityNotFoundException"},
         {"shape":"AlreadyExistsException"},
         {"shape":"ResourceNumberLimitExceededException"},
+        {"shape":"ConcurrentModificationException"},
         {"shape":"InternalServiceException"}
       ]
     },
@@ -4302,7 +4304,8 @@
       "type":"string",
       "enum":[
         "AVRO",
-        "JSON"
+        "JSON",
+        "PROTOBUF"
       ]
     },
     "DataLakePrincipal":{

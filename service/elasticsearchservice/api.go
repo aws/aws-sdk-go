@@ -1263,6 +1263,96 @@ func (c *ElasticsearchService) DescribeDomainAutoTunesPagesWithContext(ctx aws.C
 	return p.Err()
 }
 
+const opDescribeDomainChangeProgress = "DescribeDomainChangeProgress"
+
+// DescribeDomainChangeProgressRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDomainChangeProgress operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDomainChangeProgress for more information on using the DescribeDomainChangeProgress
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeDomainChangeProgressRequest method.
+//    req, resp := client.DescribeDomainChangeProgressRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *ElasticsearchService) DescribeDomainChangeProgressRequest(input *DescribeDomainChangeProgressInput) (req *request.Request, output *DescribeDomainChangeProgressOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDomainChangeProgress,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2015-01-01/es/domain/{DomainName}/progress",
+	}
+
+	if input == nil {
+		input = &DescribeDomainChangeProgressInput{}
+	}
+
+	output = &DescribeDomainChangeProgressOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDomainChangeProgress API operation for Amazon Elasticsearch Service.
+//
+// Returns information about the current blue/green deployment happening on
+// a domain, including a change ID, status, and progress stages.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elasticsearch Service's
+// API operation DescribeDomainChangeProgress for usage and error information.
+//
+// Returned Error Types:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   The request processing has failed because of an unknown error, exception
+//   or failure (the failure is internal to the service) . Gives http status code
+//   of 500.
+//
+//   * ResourceNotFoundException
+//   An exception for accessing or deleting a resource that does not exist. Gives
+//   http status code of 400.
+//
+//   * ValidationException
+//   An exception for missing / invalid input fields. Gives http status code of
+//   400.
+//
+func (c *ElasticsearchService) DescribeDomainChangeProgress(input *DescribeDomainChangeProgressInput) (*DescribeDomainChangeProgressOutput, error) {
+	req, out := c.DescribeDomainChangeProgressRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDomainChangeProgressWithContext is the same as DescribeDomainChangeProgress with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDomainChangeProgress for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElasticsearchService) DescribeDomainChangeProgressWithContext(ctx aws.Context, input *DescribeDomainChangeProgressInput, opts ...request.Option) (*DescribeDomainChangeProgressOutput, error) {
+	req, out := c.DescribeDomainChangeProgressRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeElasticsearchDomain = "DescribeElasticsearchDomain"
 
 // DescribeElasticsearchDomainRequest generates a "aws/request.Request" representing the
@@ -5666,6 +5756,198 @@ func (s *CancelElasticsearchServiceSoftwareUpdateOutput) SetServiceSoftwareOptio
 	return s
 }
 
+// Specifies change details of the domain configuration change.
+type ChangeProgressDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The unique change identifier associated with a specific domain configuration
+	// change.
+	ChangeId *string `type:"string"`
+
+	// Contains an optional message associated with the domain configuration change.
+	Message *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChangeProgressDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChangeProgressDetails) GoString() string {
+	return s.String()
+}
+
+// SetChangeId sets the ChangeId field's value.
+func (s *ChangeProgressDetails) SetChangeId(v string) *ChangeProgressDetails {
+	s.ChangeId = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ChangeProgressDetails) SetMessage(v string) *ChangeProgressDetails {
+	s.Message = &v
+	return s
+}
+
+// A progress stage details of a specific domain configuration change.
+type ChangeProgressStage struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the progress stage.
+	Description *string `type:"string"`
+
+	// The last updated timestamp of the progress stage.
+	LastUpdated *time.Time `type:"timestamp"`
+
+	// The name of the specific progress stage.
+	Name *string `min:"1" type:"string"`
+
+	// The overall status of a specific progress stage.
+	Status *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChangeProgressStage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChangeProgressStage) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *ChangeProgressStage) SetDescription(v string) *ChangeProgressStage {
+	s.Description = &v
+	return s
+}
+
+// SetLastUpdated sets the LastUpdated field's value.
+func (s *ChangeProgressStage) SetLastUpdated(v time.Time) *ChangeProgressStage {
+	s.LastUpdated = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ChangeProgressStage) SetName(v string) *ChangeProgressStage {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ChangeProgressStage) SetStatus(v string) *ChangeProgressStage {
+	s.Status = &v
+	return s
+}
+
+// The progress details of a specific domain configuration change.
+type ChangeProgressStatusDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The unique change identifier associated with a specific domain configuration
+	// change.
+	ChangeId *string `type:"string"`
+
+	// The specific stages that the domain is going through to perform the configuration
+	// change.
+	ChangeProgressStages []*ChangeProgressStage `type:"list"`
+
+	// The list of properties involved in the domain configuration change that are
+	// completed.
+	CompletedProperties []*string `type:"list"`
+
+	// The list of properties involved in the domain configuration change that are
+	// still in pending.
+	PendingProperties []*string `type:"list"`
+
+	// The time at which the configuration change is made on the domain.
+	StartTime *time.Time `type:"timestamp"`
+
+	// The overall status of the domain configuration change. This field can take
+	// the following values: PENDING, PROCESSING, COMPLETED and FAILED
+	Status *string `type:"string" enum:"OverallChangeStatus"`
+
+	// The total number of stages required for the configuration change.
+	TotalNumberOfStages *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChangeProgressStatusDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChangeProgressStatusDetails) GoString() string {
+	return s.String()
+}
+
+// SetChangeId sets the ChangeId field's value.
+func (s *ChangeProgressStatusDetails) SetChangeId(v string) *ChangeProgressStatusDetails {
+	s.ChangeId = &v
+	return s
+}
+
+// SetChangeProgressStages sets the ChangeProgressStages field's value.
+func (s *ChangeProgressStatusDetails) SetChangeProgressStages(v []*ChangeProgressStage) *ChangeProgressStatusDetails {
+	s.ChangeProgressStages = v
+	return s
+}
+
+// SetCompletedProperties sets the CompletedProperties field's value.
+func (s *ChangeProgressStatusDetails) SetCompletedProperties(v []*string) *ChangeProgressStatusDetails {
+	s.CompletedProperties = v
+	return s
+}
+
+// SetPendingProperties sets the PendingProperties field's value.
+func (s *ChangeProgressStatusDetails) SetPendingProperties(v []*string) *ChangeProgressStatusDetails {
+	s.PendingProperties = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ChangeProgressStatusDetails) SetStartTime(v time.Time) *ChangeProgressStatusDetails {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ChangeProgressStatusDetails) SetStatus(v string) *ChangeProgressStatusDetails {
+	s.Status = &v
+	return s
+}
+
+// SetTotalNumberOfStages sets the TotalNumberOfStages field's value.
+func (s *ChangeProgressStatusDetails) SetTotalNumberOfStages(v int64) *ChangeProgressStatusDetails {
+	s.TotalNumberOfStages = &v
+	return s
+}
+
 // Options to specify the Cognito user and identity pools for Kibana authentication.
 // For more information, see Amazon Cognito Authentication for Kibana (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html).
 type CognitoOptions struct {
@@ -6991,6 +7273,103 @@ func (s *DescribeDomainAutoTunesOutput) SetAutoTunes(v []*AutoTune) *DescribeDom
 // SetNextToken sets the NextToken field's value.
 func (s *DescribeDomainAutoTunesOutput) SetNextToken(v string) *DescribeDomainAutoTunesOutput {
 	s.NextToken = &v
+	return s
+}
+
+// Container for the parameters to the DescribeDomainChangeProgress operation.
+// Specifies the domain name and optional change specific identity for which
+// you want progress information.
+type DescribeDomainChangeProgressInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The specific change ID for which you want to get progress information. This
+	// is an optional parameter. If omitted, the service returns information about
+	// the most recent configuration change.
+	ChangeId *string `location:"querystring" locationName:"changeid" type:"string"`
+
+	// The domain you want to get the progress information about.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDomainChangeProgressInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDomainChangeProgressInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDomainChangeProgressInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDomainChangeProgressInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChangeId sets the ChangeId field's value.
+func (s *DescribeDomainChangeProgressInput) SetChangeId(v string) *DescribeDomainChangeProgressInput {
+	s.ChangeId = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *DescribeDomainChangeProgressInput) SetDomainName(v string) *DescribeDomainChangeProgressInput {
+	s.DomainName = &v
+	return s
+}
+
+// The result of a DescribeDomainChangeProgress request. Contains the progress
+// information of the requested domain change.
+type DescribeDomainChangeProgressOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Progress information for the configuration change that is requested in the
+	// DescribeDomainChangeProgress request.
+	ChangeProgressStatus *ChangeProgressStatusDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDomainChangeProgressOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDomainChangeProgressOutput) GoString() string {
+	return s.String()
+}
+
+// SetChangeProgressStatus sets the ChangeProgressStatus field's value.
+func (s *DescribeDomainChangeProgressOutput) SetChangeProgressStatus(v *ChangeProgressStatusDetails) *DescribeDomainChangeProgressOutput {
+	s.ChangeProgressStatus = v
 	return s
 }
 
@@ -8877,6 +9256,9 @@ type ElasticsearchDomainConfig struct {
 	// Specifies AutoTuneOptions for the domain.
 	AutoTuneOptions *AutoTuneOptionsStatus `type:"structure"`
 
+	// Specifies change details of the domain configuration change.
+	ChangeProgressDetails *ChangeProgressDetails `type:"structure"`
+
 	// The CognitoOptions for the specified domain. For more information, see Amazon
 	// Cognito Authentication for Kibana (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html).
 	CognitoOptions *CognitoOptionsStatus `type:"structure"`
@@ -8949,6 +9331,12 @@ func (s *ElasticsearchDomainConfig) SetAdvancedSecurityOptions(v *AdvancedSecuri
 // SetAutoTuneOptions sets the AutoTuneOptions field's value.
 func (s *ElasticsearchDomainConfig) SetAutoTuneOptions(v *AutoTuneOptionsStatus) *ElasticsearchDomainConfig {
 	s.AutoTuneOptions = v
+	return s
+}
+
+// SetChangeProgressDetails sets the ChangeProgressDetails field's value.
+func (s *ElasticsearchDomainConfig) SetChangeProgressDetails(v *ChangeProgressDetails) *ElasticsearchDomainConfig {
+	s.ChangeProgressDetails = v
 	return s
 }
 
@@ -9034,6 +9422,9 @@ type ElasticsearchDomainStatus struct {
 
 	// The current status of the Elasticsearch domain's Auto-Tune options.
 	AutoTuneOptions *AutoTuneOptionsOutput `type:"structure"`
+
+	// Specifies change details of the domain configuration change.
+	ChangeProgressDetails *ChangeProgressDetails `type:"structure"`
 
 	// The CognitoOptions for the specified domain. For more information, see Amazon
 	// Cognito Authentication for Kibana (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html).
@@ -9159,6 +9550,12 @@ func (s *ElasticsearchDomainStatus) SetAdvancedSecurityOptions(v *AdvancedSecuri
 // SetAutoTuneOptions sets the AutoTuneOptions field's value.
 func (s *ElasticsearchDomainStatus) SetAutoTuneOptions(v *AutoTuneOptionsOutput) *ElasticsearchDomainStatus {
 	s.AutoTuneOptions = v
+	return s
+}
+
+// SetChangeProgressDetails sets the ChangeProgressDetails field's value.
+func (s *ElasticsearchDomainStatus) SetChangeProgressDetails(v *ChangeProgressDetails) *ElasticsearchDomainStatus {
+	s.ChangeProgressDetails = v
 	return s
 }
 
@@ -13615,6 +14012,9 @@ func (s *UpgradeElasticsearchDomainInput) SetTargetVersion(v string) *UpgradeEla
 type UpgradeElasticsearchDomainOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies change details of the domain configuration change.
+	ChangeProgressDetails *ChangeProgressDetails `type:"structure"`
+
 	// The name of an Elasticsearch domain. Domain names are unique across the domains
 	// owned by an account within an AWS region. Domain names start with a letter
 	// or number and can contain the following characters: a-z (lowercase), 0-9,
@@ -13645,6 +14045,12 @@ func (s UpgradeElasticsearchDomainOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpgradeElasticsearchDomainOutput) GoString() string {
 	return s.String()
+}
+
+// SetChangeProgressDetails sets the ChangeProgressDetails field's value.
+func (s *UpgradeElasticsearchDomainOutput) SetChangeProgressDetails(v *ChangeProgressDetails) *UpgradeElasticsearchDomainOutput {
+	s.ChangeProgressDetails = v
+	return s
 }
 
 // SetDomainName sets the DomainName field's value.
@@ -14616,6 +15022,31 @@ func OutboundCrossClusterSearchConnectionStatusCode_Values() []string {
 		OutboundCrossClusterSearchConnectionStatusCodeRejected,
 		OutboundCrossClusterSearchConnectionStatusCodeDeleting,
 		OutboundCrossClusterSearchConnectionStatusCodeDeleted,
+	}
+}
+
+// The overall status value of the domain configuration change.
+const (
+	// OverallChangeStatusPending is a OverallChangeStatus enum value
+	OverallChangeStatusPending = "PENDING"
+
+	// OverallChangeStatusProcessing is a OverallChangeStatus enum value
+	OverallChangeStatusProcessing = "PROCESSING"
+
+	// OverallChangeStatusCompleted is a OverallChangeStatus enum value
+	OverallChangeStatusCompleted = "COMPLETED"
+
+	// OverallChangeStatusFailed is a OverallChangeStatus enum value
+	OverallChangeStatusFailed = "FAILED"
+)
+
+// OverallChangeStatus_Values returns all elements of the OverallChangeStatus enum
+func OverallChangeStatus_Values() []string {
+	return []string{
+		OverallChangeStatusPending,
+		OverallChangeStatusProcessing,
+		OverallChangeStatusCompleted,
+		OverallChangeStatusFailed,
 	}
 }
 
