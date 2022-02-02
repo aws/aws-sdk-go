@@ -76,6 +76,10 @@ type AppflowAPI interface {
 	DeleteFlowWithContext(aws.Context, *appflow.DeleteFlowInput, ...request.Option) (*appflow.DeleteFlowOutput, error)
 	DeleteFlowRequest(*appflow.DeleteFlowInput) (*request.Request, *appflow.DeleteFlowOutput)
 
+	DescribeConnector(*appflow.DescribeConnectorInput) (*appflow.DescribeConnectorOutput, error)
+	DescribeConnectorWithContext(aws.Context, *appflow.DescribeConnectorInput, ...request.Option) (*appflow.DescribeConnectorOutput, error)
+	DescribeConnectorRequest(*appflow.DescribeConnectorInput) (*request.Request, *appflow.DescribeConnectorOutput)
+
 	DescribeConnectorEntity(*appflow.DescribeConnectorEntityInput) (*appflow.DescribeConnectorEntityOutput, error)
 	DescribeConnectorEntityWithContext(aws.Context, *appflow.DescribeConnectorEntityInput, ...request.Option) (*appflow.DescribeConnectorEntityOutput, error)
 	DescribeConnectorEntityRequest(*appflow.DescribeConnectorEntityInput) (*request.Request, *appflow.DescribeConnectorEntityOutput)
@@ -109,6 +113,13 @@ type AppflowAPI interface {
 	ListConnectorEntitiesWithContext(aws.Context, *appflow.ListConnectorEntitiesInput, ...request.Option) (*appflow.ListConnectorEntitiesOutput, error)
 	ListConnectorEntitiesRequest(*appflow.ListConnectorEntitiesInput) (*request.Request, *appflow.ListConnectorEntitiesOutput)
 
+	ListConnectors(*appflow.ListConnectorsInput) (*appflow.ListConnectorsOutput, error)
+	ListConnectorsWithContext(aws.Context, *appflow.ListConnectorsInput, ...request.Option) (*appflow.ListConnectorsOutput, error)
+	ListConnectorsRequest(*appflow.ListConnectorsInput) (*request.Request, *appflow.ListConnectorsOutput)
+
+	ListConnectorsPages(*appflow.ListConnectorsInput, func(*appflow.ListConnectorsOutput, bool) bool) error
+	ListConnectorsPagesWithContext(aws.Context, *appflow.ListConnectorsInput, func(*appflow.ListConnectorsOutput, bool) bool, ...request.Option) error
+
 	ListFlows(*appflow.ListFlowsInput) (*appflow.ListFlowsOutput, error)
 	ListFlowsWithContext(aws.Context, *appflow.ListFlowsInput, ...request.Option) (*appflow.ListFlowsOutput, error)
 	ListFlowsRequest(*appflow.ListFlowsInput) (*request.Request, *appflow.ListFlowsOutput)
@@ -119,6 +130,10 @@ type AppflowAPI interface {
 	ListTagsForResource(*appflow.ListTagsForResourceInput) (*appflow.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *appflow.ListTagsForResourceInput, ...request.Option) (*appflow.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*appflow.ListTagsForResourceInput) (*request.Request, *appflow.ListTagsForResourceOutput)
+
+	RegisterConnector(*appflow.RegisterConnectorInput) (*appflow.RegisterConnectorOutput, error)
+	RegisterConnectorWithContext(aws.Context, *appflow.RegisterConnectorInput, ...request.Option) (*appflow.RegisterConnectorOutput, error)
+	RegisterConnectorRequest(*appflow.RegisterConnectorInput) (*request.Request, *appflow.RegisterConnectorOutput)
 
 	StartFlow(*appflow.StartFlowInput) (*appflow.StartFlowOutput, error)
 	StartFlowWithContext(aws.Context, *appflow.StartFlowInput, ...request.Option) (*appflow.StartFlowOutput, error)
@@ -131,6 +146,10 @@ type AppflowAPI interface {
 	TagResource(*appflow.TagResourceInput) (*appflow.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *appflow.TagResourceInput, ...request.Option) (*appflow.TagResourceOutput, error)
 	TagResourceRequest(*appflow.TagResourceInput) (*request.Request, *appflow.TagResourceOutput)
+
+	UnregisterConnector(*appflow.UnregisterConnectorInput) (*appflow.UnregisterConnectorOutput, error)
+	UnregisterConnectorWithContext(aws.Context, *appflow.UnregisterConnectorInput, ...request.Option) (*appflow.UnregisterConnectorOutput, error)
+	UnregisterConnectorRequest(*appflow.UnregisterConnectorInput) (*request.Request, *appflow.UnregisterConnectorOutput)
 
 	UntagResource(*appflow.UntagResourceInput) (*appflow.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *appflow.UntagResourceInput, ...request.Option) (*appflow.UntagResourceOutput, error)

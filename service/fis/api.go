@@ -451,6 +451,89 @@ func (c *FIS) GetExperimentTemplateWithContext(ctx aws.Context, input *GetExperi
 	return out, req.Send()
 }
 
+const opGetTargetResourceType = "GetTargetResourceType"
+
+// GetTargetResourceTypeRequest generates a "aws/request.Request" representing the
+// client's request for the GetTargetResourceType operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetTargetResourceType for more information on using the GetTargetResourceType
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetTargetResourceTypeRequest method.
+//    req, resp := client.GetTargetResourceTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetTargetResourceType
+func (c *FIS) GetTargetResourceTypeRequest(input *GetTargetResourceTypeInput) (req *request.Request, output *GetTargetResourceTypeOutput) {
+	op := &request.Operation{
+		Name:       opGetTargetResourceType,
+		HTTPMethod: "GET",
+		HTTPPath:   "/targetResourceTypes/{resourceType}",
+	}
+
+	if input == nil {
+		input = &GetTargetResourceTypeInput{}
+	}
+
+	output = &GetTargetResourceTypeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetTargetResourceType API operation for AWS Fault Injection Simulator.
+//
+// Gets information about the specified resource type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Fault Injection Simulator's
+// API operation GetTargetResourceType for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The specified input is not valid, or fails to satisfy the constraints for
+//   the request.
+//
+//   * ResourceNotFoundException
+//   The specified resource cannot be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetTargetResourceType
+func (c *FIS) GetTargetResourceType(input *GetTargetResourceTypeInput) (*GetTargetResourceTypeOutput, error) {
+	req, out := c.GetTargetResourceTypeRequest(input)
+	return out, req.Send()
+}
+
+// GetTargetResourceTypeWithContext is the same as GetTargetResourceType with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetTargetResourceType for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FIS) GetTargetResourceTypeWithContext(ctx aws.Context, input *GetTargetResourceTypeInput, opts ...request.Option) (*GetTargetResourceTypeOutput, error) {
+	req, out := c.GetTargetResourceTypeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListActions = "ListActions"
 
 // ListActionsRequest generates a "aws/request.Request" representing the
@@ -937,6 +1020,144 @@ func (c *FIS) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsFor
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListTargetResourceTypes = "ListTargetResourceTypes"
+
+// ListTargetResourceTypesRequest generates a "aws/request.Request" representing the
+// client's request for the ListTargetResourceTypes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTargetResourceTypes for more information on using the ListTargetResourceTypes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTargetResourceTypesRequest method.
+//    req, resp := client.ListTargetResourceTypesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListTargetResourceTypes
+func (c *FIS) ListTargetResourceTypesRequest(input *ListTargetResourceTypesInput) (req *request.Request, output *ListTargetResourceTypesOutput) {
+	op := &request.Operation{
+		Name:       opListTargetResourceTypes,
+		HTTPMethod: "GET",
+		HTTPPath:   "/targetResourceTypes",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTargetResourceTypesInput{}
+	}
+
+	output = &ListTargetResourceTypesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTargetResourceTypes API operation for AWS Fault Injection Simulator.
+//
+// Lists the target resource types.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Fault Injection Simulator's
+// API operation ListTargetResourceTypes for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The specified input is not valid, or fails to satisfy the constraints for
+//   the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListTargetResourceTypes
+func (c *FIS) ListTargetResourceTypes(input *ListTargetResourceTypesInput) (*ListTargetResourceTypesOutput, error) {
+	req, out := c.ListTargetResourceTypesRequest(input)
+	return out, req.Send()
+}
+
+// ListTargetResourceTypesWithContext is the same as ListTargetResourceTypes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTargetResourceTypes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FIS) ListTargetResourceTypesWithContext(ctx aws.Context, input *ListTargetResourceTypesInput, opts ...request.Option) (*ListTargetResourceTypesOutput, error) {
+	req, out := c.ListTargetResourceTypesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTargetResourceTypesPages iterates over the pages of a ListTargetResourceTypes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTargetResourceTypes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListTargetResourceTypes operation.
+//    pageNum := 0
+//    err := client.ListTargetResourceTypesPages(params,
+//        func(page *fis.ListTargetResourceTypesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *FIS) ListTargetResourceTypesPages(input *ListTargetResourceTypesInput, fn func(*ListTargetResourceTypesOutput, bool) bool) error {
+	return c.ListTargetResourceTypesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTargetResourceTypesPagesWithContext same as ListTargetResourceTypesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FIS) ListTargetResourceTypesPagesWithContext(ctx aws.Context, input *ListTargetResourceTypesInput, fn func(*ListTargetResourceTypesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTargetResourceTypesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTargetResourceTypesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTargetResourceTypesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opStartExperiment = "StartExperiment"
@@ -1957,14 +2178,17 @@ type CreateExperimentTemplateTargetInput struct {
 	// The filters to apply to identify target resources using specific attributes.
 	Filters []*ExperimentTemplateTargetInputFilter `locationName:"filters" type:"list"`
 
+	// The resource type parameters.
+	Parameters map[string]*string `locationName:"parameters" type:"map"`
+
 	// The Amazon Resource Names (ARNs) of the resources.
 	ResourceArns []*string `locationName:"resourceArns" type:"list"`
 
 	// The tags for the target resources.
 	ResourceTags map[string]*string `locationName:"resourceTags" type:"map"`
 
-	// The Amazon Web Services resource type. The resource type must be supported
-	// for the specified action.
+	// The resource type. The resource type must be supported for the specified
+	// action.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true"`
@@ -2034,6 +2258,12 @@ func (s *CreateExperimentTemplateTargetInput) Validate() error {
 // SetFilters sets the Filters field's value.
 func (s *CreateExperimentTemplateTargetInput) SetFilters(v []*ExperimentTemplateTargetInputFilter) *CreateExperimentTemplateTargetInput {
 	s.Filters = v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *CreateExperimentTemplateTargetInput) SetParameters(v map[string]*string) *CreateExperimentTemplateTargetInput {
+	s.Parameters = v
 	return s
 }
 
@@ -2557,6 +2787,9 @@ type ExperimentTarget struct {
 	// The filters to apply to identify target resources using specific attributes.
 	Filters []*ExperimentTargetFilter `locationName:"filters" type:"list"`
 
+	// The resource type parameters.
+	Parameters map[string]*string `locationName:"parameters" type:"map"`
+
 	// The Amazon Resource Names (ARNs) of the resources.
 	ResourceArns []*string `locationName:"resourceArns" type:"list"`
 
@@ -2591,6 +2824,12 @@ func (s ExperimentTarget) GoString() string {
 // SetFilters sets the Filters field's value.
 func (s *ExperimentTarget) SetFilters(v []*ExperimentTargetFilter) *ExperimentTarget {
 	s.Filters = v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ExperimentTarget) SetParameters(v map[string]*string) *ExperimentTarget {
+	s.Parameters = v
 	return s
 }
 
@@ -2947,6 +3186,9 @@ type ExperimentTemplateTarget struct {
 	// The filters to apply to identify target resources using specific attributes.
 	Filters []*ExperimentTemplateTargetFilter `locationName:"filters" type:"list"`
 
+	// The resource type parameters.
+	Parameters map[string]*string `locationName:"parameters" type:"map"`
+
 	// The Amazon Resource Names (ARNs) of the targets.
 	ResourceArns []*string `locationName:"resourceArns" type:"list"`
 
@@ -2981,6 +3223,12 @@ func (s ExperimentTemplateTarget) GoString() string {
 // SetFilters sets the Filters field's value.
 func (s *ExperimentTemplateTarget) SetFilters(v []*ExperimentTemplateTargetFilter) *ExperimentTemplateTarget {
 	s.Filters = v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ExperimentTemplateTarget) SetParameters(v map[string]*string) *ExperimentTemplateTarget {
+	s.Parameters = v
 	return s
 }
 
@@ -3350,6 +3598,86 @@ func (s GetExperimentTemplateOutput) GoString() string {
 // SetExperimentTemplate sets the ExperimentTemplate field's value.
 func (s *GetExperimentTemplateOutput) SetExperimentTemplate(v *ExperimentTemplate) *GetExperimentTemplateOutput {
 	s.ExperimentTemplate = v
+	return s
+}
+
+type GetTargetResourceTypeInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The resource type.
+	//
+	// ResourceType is a required field
+	ResourceType *string `location:"uri" locationName:"resourceType" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTargetResourceTypeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTargetResourceTypeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetTargetResourceTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetTargetResourceTypeInput"}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+	if s.ResourceType != nil && len(*s.ResourceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *GetTargetResourceTypeInput) SetResourceType(v string) *GetTargetResourceTypeInput {
+	s.ResourceType = &v
+	return s
+}
+
+type GetTargetResourceTypeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the resource type.
+	TargetResourceType *TargetResourceType `locationName:"targetResourceType" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTargetResourceTypeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTargetResourceTypeOutput) GoString() string {
+	return s.String()
+}
+
+// SetTargetResourceType sets the TargetResourceType field's value.
+func (s *GetTargetResourceTypeOutput) SetTargetResourceType(v *TargetResourceType) *GetTargetResourceTypeOutput {
+	s.TargetResourceType = v
 	return s
 }
 
@@ -3724,6 +4052,104 @@ func (s ListTagsForResourceOutput) GoString() string {
 // SetTags sets the Tags field's value.
 func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
 	s.Tags = v
+	return s
+}
+
+type ListTargetResourceTypesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next page of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTargetResourceTypesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTargetResourceTypesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTargetResourceTypesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTargetResourceTypesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTargetResourceTypesInput) SetMaxResults(v int64) *ListTargetResourceTypesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTargetResourceTypesInput) SetNextToken(v string) *ListTargetResourceTypesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListTargetResourceTypesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The target resource types.
+	TargetResourceTypes []*TargetResourceTypeSummary `locationName:"targetResourceTypes" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTargetResourceTypesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTargetResourceTypesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTargetResourceTypesOutput) SetNextToken(v string) *ListTargetResourceTypesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTargetResourceTypes sets the TargetResourceTypes field's value.
+func (s *ListTargetResourceTypesOutput) SetTargetResourceTypes(v []*TargetResourceTypeSummary) *ListTargetResourceTypesOutput {
+	s.TargetResourceTypes = v
 	return s
 }
 
@@ -4119,6 +4545,139 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Describes a resource type.
+type TargetResourceType struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the resource type.
+	Description *string `locationName:"description" type:"string"`
+
+	// The parameters for the resource type.
+	Parameters map[string]*TargetResourceTypeParameter `locationName:"parameters" type:"map"`
+
+	// The resource type.
+	ResourceType *string `locationName:"resourceType" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetResourceType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetResourceType) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *TargetResourceType) SetDescription(v string) *TargetResourceType {
+	s.Description = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *TargetResourceType) SetParameters(v map[string]*TargetResourceTypeParameter) *TargetResourceType {
+	s.Parameters = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *TargetResourceType) SetResourceType(v string) *TargetResourceType {
+	s.ResourceType = &v
+	return s
+}
+
+// Describes the parameters for a resource type. Use parameters to determine
+// which tasks are identified during target resolution.
+type TargetResourceTypeParameter struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the parameter.
+	Description *string `locationName:"description" type:"string"`
+
+	// Indicates whether the parameter is required.
+	Required *bool `locationName:"required" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetResourceTypeParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetResourceTypeParameter) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *TargetResourceTypeParameter) SetDescription(v string) *TargetResourceTypeParameter {
+	s.Description = &v
+	return s
+}
+
+// SetRequired sets the Required field's value.
+func (s *TargetResourceTypeParameter) SetRequired(v bool) *TargetResourceTypeParameter {
+	s.Required = &v
+	return s
+}
+
+// Describes a resource type.
+type TargetResourceTypeSummary struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the resource type.
+	Description *string `locationName:"description" type:"string"`
+
+	// The resource type.
+	ResourceType *string `locationName:"resourceType" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetResourceTypeSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetResourceTypeSummary) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *TargetResourceTypeSummary) SetDescription(v string) *TargetResourceTypeSummary {
+	s.Description = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *TargetResourceTypeSummary) SetResourceType(v string) *TargetResourceTypeSummary {
+	s.ResourceType = &v
+	return s
+}
+
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -4487,14 +5046,17 @@ type UpdateExperimentTemplateTargetInput struct {
 	// The filters to apply to identify target resources using specific attributes.
 	Filters []*ExperimentTemplateTargetInputFilter `locationName:"filters" type:"list"`
 
+	// The resource type parameters.
+	Parameters map[string]*string `locationName:"parameters" type:"map"`
+
 	// The Amazon Resource Names (ARNs) of the targets.
 	ResourceArns []*string `locationName:"resourceArns" type:"list"`
 
 	// The tags for the target resources.
 	ResourceTags map[string]*string `locationName:"resourceTags" type:"map"`
 
-	// The Amazon Web Services resource type. The resource type must be supported
-	// for the specified action.
+	// The resource type. The resource type must be supported for the specified
+	// action.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true"`
@@ -4552,6 +5114,12 @@ func (s *UpdateExperimentTemplateTargetInput) Validate() error {
 // SetFilters sets the Filters field's value.
 func (s *UpdateExperimentTemplateTargetInput) SetFilters(v []*ExperimentTemplateTargetInputFilter) *UpdateExperimentTemplateTargetInput {
 	s.Filters = v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *UpdateExperimentTemplateTargetInput) SetParameters(v map[string]*string) *UpdateExperimentTemplateTargetInput {
+	s.Parameters = v
 	return s
 }
 

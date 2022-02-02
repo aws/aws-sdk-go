@@ -1075,6 +1075,29 @@ func (c *Personalize) CreateRecommenderRequest(input *CreateRecommenderInput) (r
 // (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
 // request.
 //
+// Minimum recommendation requests per second
+//
+// When you create a recommender, you can configure the recommender's minimum
+// recommendation requests per second. The minimum recommendation requests per
+// second (minRecommendationRequestsPerSecond) specifies the baseline recommendation
+// request throughput provisioned by Amazon Personalize. The default minRecommendationRequestsPerSecond
+// is 1. A recommendation request is a single GetRecommendations operation.
+// Request throughput is measured in requests per second and Amazon Personalize
+// uses your requests per second to derive your requests per hour and the price
+// of your recommender usage.
+//
+// If your requests per second increases beyond minRecommendationRequestsPerSecond,
+// Amazon Personalize auto-scales the provisioned capacity up and down, but
+// never below minRecommendationRequestsPerSecond. There's a short time delay
+// while the capacity is increased that might cause loss of requests.
+//
+// Your bill is the greater of either the minimum requests per hour (based on
+// minRecommendationRequestsPerSecond) or the actual number of requests. The
+// actual request throughput used is calculated as the average requests/second
+// within a one-hour window. We recommend starting with the default minRecommendationRequestsPerSecond,
+// track your usage using Amazon CloudWatch metrics, and then increase the minRecommendationRequestsPerSecond
+// as necessary.
+//
 // Status
 //
 // A recommender can be in one of the following states:
@@ -8602,6 +8625,11 @@ func (s *CreateRecommenderInput) Validate() error {
 	if s.RecipeArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("RecipeArn"))
 	}
+	if s.RecommenderConfig != nil {
+		if err := s.RecommenderConfig.Validate(); err != nil {
+			invalidParams.AddNested("RecommenderConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -14973,6 +15001,10 @@ type RecommenderConfig struct {
 	// itemExplorationConfig data only if your recommenders generate personalized
 	// recommendations for a user (not popular items or similar items).
 	ItemExplorationConfig map[string]*string `locationName:"itemExplorationConfig" type:"map"`
+
+	// Specifies the requested minimum provisioned recommendation requests per second
+	// that Amazon Personalize will support.
+	MinRecommendationRequestsPerSecond *int64 `locationName:"minRecommendationRequestsPerSecond" min:"1" type:"integer"`
 }
 
 // String returns the string representation.
@@ -14993,9 +15025,28 @@ func (s RecommenderConfig) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RecommenderConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RecommenderConfig"}
+	if s.MinRecommendationRequestsPerSecond != nil && *s.MinRecommendationRequestsPerSecond < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MinRecommendationRequestsPerSecond", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetItemExplorationConfig sets the ItemExplorationConfig field's value.
 func (s *RecommenderConfig) SetItemExplorationConfig(v map[string]*string) *RecommenderConfig {
 	s.ItemExplorationConfig = v
+	return s
+}
+
+// SetMinRecommendationRequestsPerSecond sets the MinRecommendationRequestsPerSecond field's value.
+func (s *RecommenderConfig) SetMinRecommendationRequestsPerSecond(v int64) *RecommenderConfig {
+	s.MinRecommendationRequestsPerSecond = &v
 	return s
 }
 
@@ -15102,7 +15153,7 @@ func (s *RecommenderSummary) SetStatus(v string) *RecommenderSummary {
 }
 
 // Provides a summary of the properties of a recommender update. For a complete
-// listing, call the DescribeRecommender API.
+// listing, call the DescribeRecommender API operation.
 type RecommenderUpdateSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -15373,8 +15424,7 @@ type S3DataConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the Key Management Service (KMS) key that
-	// Amazon Personalize uses to encrypt or decrypt the input and output files
-	// of a batch inference job.
+	// Amazon Personalize uses to encrypt or decrypt the input and output files.
 	KmsKeyArn *string `locationName:"kmsKeyArn" type:"string"`
 
 	// The file path of the Amazon S3 bucket.
@@ -16271,6 +16321,11 @@ func (s *UpdateRecommenderInput) Validate() error {
 	}
 	if s.RecommenderConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("RecommenderConfig"))
+	}
+	if s.RecommenderConfig != nil {
+		if err := s.RecommenderConfig.Validate(); err != nil {
+			invalidParams.AddNested("RecommenderConfig", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {

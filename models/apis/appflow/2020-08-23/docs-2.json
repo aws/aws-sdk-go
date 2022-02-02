@@ -6,17 +6,21 @@
     "CreateFlow": "<p> Enables your application to create a new flow using Amazon AppFlow. You must create a connector profile before calling this API. Please note that the Request Syntax below shows syntax for multiple destinations, however, you can only transfer data to one item in this list at a time. Amazon AppFlow does not currently support flows to multiple destinations at once. </p>",
     "DeleteConnectorProfile": "<p> Enables you to delete an existing connector profile. </p>",
     "DeleteFlow": "<p> Enables your application to delete an existing flow. Before deleting the flow, Amazon AppFlow validates the request by checking the flow configuration and status. You can delete flows one at a time. </p>",
+    "DescribeConnector": "<p>Describes the given custom connector registered in your Amazon Web Services account. This API can be used for custom connectors that are registered in your account and also for Amazon authored connectors.</p>",
     "DescribeConnectorEntity": "<p> Provides details regarding the entity used with the connector, with a description of the data model for each entity. </p>",
     "DescribeConnectorProfiles": "<p> Returns a list of <code>connector-profile</code> details matching the provided <code>connector-profile</code> names and <code>connector-types</code>. Both input lists are optional, and you can use them to filter the result. </p> <p>If no names or <code>connector-types</code> are provided, returns all connector profiles in a paginated form. If there is no match, this operation returns an empty list.</p>",
     "DescribeConnectors": "<p> Describes the connectors vended by Amazon AppFlow for specified connector types. If you don't specify a connector type, this operation describes all connectors vended by Amazon AppFlow. If there are more connectors than can be returned in one page, the response contains a <code>nextToken</code> object, which can be be passed in to the next call to the <code>DescribeConnectors</code> API operation to retrieve the next page. </p>",
     "DescribeFlow": "<p> Provides a description of the specified flow. </p>",
     "DescribeFlowExecutionRecords": "<p> Fetches the execution history of the flow. </p>",
     "ListConnectorEntities": "<p> Returns the list of available connector entities supported by Amazon AppFlow. For example, you can query Salesforce for <i>Account</i> and <i>Opportunity</i> entities, or query ServiceNow for the <i>Incident</i> entity. </p>",
+    "ListConnectors": "<p>Returns the list of all registered custom connectors in your Amazon Web Services account. This API lists only custom connectors registered in this account, not the Amazon Web Services authored connectors. </p>",
     "ListFlows": "<p> Lists all of the flows associated with your account. </p>",
     "ListTagsForResource": "<p> Retrieves the tags that are associated with a specified flow. </p>",
+    "RegisterConnector": "<p>Registers a new connector with your Amazon Web Services account. Before you can register the connector, you must deploy lambda in your account.</p>",
     "StartFlow": "<p> Activates an existing flow. For on-demand flows, this operation runs the flow immediately. For schedule and event-triggered flows, this operation activates the flow. </p>",
     "StopFlow": "<p> Deactivates the existing flow. For on-demand flows, this operation returns an <code>unsupportedOperationException</code> error message. For schedule and event-triggered flows, this operation deactivates the flow. </p>",
     "TagResource": "<p> Applies a tag to the specified flow. </p>",
+    "UnregisterConnector": "<p>Unregisters the custom connector registered in your account that matches the connectorLabel provided in the request.</p>",
     "UntagResource": "<p> Removes a tag from the specified flow. </p>",
     "UpdateConnectorProfile": "<p> Updates a given connector profile associated with your account. </p>",
     "UpdateFlow": "<p> Updates an existing flow. </p>"
@@ -25,10 +29,18 @@
     "ARN": {
       "base": null,
       "refs": {
+        "ConnectorConfiguration$connectorArn": "<p>The Amazon Resource Name (ARN) for the registered connector.</p>",
         "ConnectorProfile$credentialsArn": "<p> The Amazon Resource Name (ARN) of the connector profile credentials. </p>",
+        "LambdaConnectorProvisioningConfig$lambdaArn": "<p>Lambda ARN of the connector being registered.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the specified flow. </p>",
+        "RegisterConnectorResponse$connectorArn": "<p>The ARN of the connector being registered.</p>",
         "TagResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the flow that you want to tag. </p>",
         "UntagResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the flow that you want to untag. </p>"
+      }
+    },
+    "AccessDeniedException": {
+      "base": "<p>AppFlow/Requester has invalid or missing permissions.</p>",
+      "refs": {
       }
     },
     "AccessKeyId": {
@@ -43,6 +55,7 @@
         "GoogleAnalyticsConnectorProfileCredentials$accessToken": "<p> The credentials used to access protected Google Analytics resources. </p>",
         "HoneycodeConnectorProfileCredentials$accessToken": "<p> The credentials used to access protected Amazon Honeycode resources. </p>",
         "MarketoConnectorProfileCredentials$accessToken": "<p> The credentials used to access protected Marketo resources. </p>",
+        "OAuth2Credentials$accessToken": "<p>The access token used to access the connector on your behalf.</p>",
         "OAuthCredentials$accessToken": "<p> The access token used to access protected SAPOData resources. </p>",
         "SalesforceConnectorProfileCredentials$accessToken": "<p> The credentials used to access protected Salesforce resources. </p>",
         "SlackConnectorProfileCredentials$accessToken": "<p> The credentials used to access protected Slack resources. </p>",
@@ -102,13 +115,21 @@
       "base": null,
       "refs": {
         "AmplitudeConnectorProfileCredentials$apiKey": "<p> A unique alphanumeric identifier used to authenticate a user, developer, or calling program to your API. </p>",
+        "ApiKeyCredentials$apiKey": "<p>The API key required for API key authentication.</p>",
         "DatadogConnectorProfileCredentials$apiKey": "<p> A unique alphanumeric identifier used to authenticate a user, developer, or calling program to your API. </p>",
         "SingularConnectorProfileCredentials$apiKey": "<p> A unique alphanumeric identifier used to authenticate a user, developer, or calling program to your API. </p>"
+      }
+    },
+    "ApiKeyCredentials": {
+      "base": "<p>The API key credentials required for API key authentication.</p>",
+      "refs": {
+        "CustomConnectorProfileCredentials$apiKey": "<p>The API keys required for the authentication of the user.</p>"
       }
     },
     "ApiSecretKey": {
       "base": null,
       "refs": {
+        "ApiKeyCredentials$apiSecretKey": "<p>The API secret key required for API key authentication.</p>",
         "TrendmicroConnectorProfileCredentials$apiSecretKey": "<p> The Secret Access Key portion of the credentials. </p>"
       }
     },
@@ -116,6 +137,15 @@
       "base": null,
       "refs": {
         "DynatraceConnectorProfileCredentials$apiToken": "<p> The API tokens used by Dynatrace API to authenticate various API calls. </p>"
+      }
+    },
+    "ApiVersion": {
+      "base": null,
+      "refs": {
+        "DescribeConnectorEntityRequest$apiVersion": "<p>The version of the API that's used by the connector.</p>",
+        "DestinationFlowConfig$apiVersion": "<p>The API version that the destination connector uses.</p>",
+        "ListConnectorEntitiesRequest$apiVersion": "<p>The version of the API that's used by the connector.</p>",
+        "SourceFlowConfig$apiVersion": "<p>The API version of the connector when it's used as a source in the flow.</p>"
       }
     },
     "ApplicationHostUrl": {
@@ -136,6 +166,12 @@
         "SAPODataConnectorProfileProperties$applicationServicePath": "<p> The application path to catalog service. </p>"
       }
     },
+    "ApplicationType": {
+      "base": null,
+      "refs": {
+        "ConnectorDetail$applicationType": "<p>The application type of the connector.</p>"
+      }
+    },
     "AuthCode": {
       "base": null,
       "refs": {
@@ -145,35 +181,79 @@
     "AuthCodeUrl": {
       "base": null,
       "refs": {
+        "AuthCodeUrlList$member": null,
         "OAuthProperties$authCodeUrl": "<p> The authorization code url required to redirect to SAP Login Page to fetch authorization code for OAuth type authentication. </p>"
+      }
+    },
+    "AuthCodeUrlList": {
+      "base": null,
+      "refs": {
+        "OAuth2Defaults$authCodeUrls": "<p>Auth code URLs that can be used for OAuth 2.0 authentication.</p>"
+      }
+    },
+    "AuthParameter": {
+      "base": "<p>Information about required authentication parameters.</p>",
+      "refs": {
+        "AuthParameterList$member": null
+      }
+    },
+    "AuthParameterList": {
+      "base": null,
+      "refs": {
+        "CustomAuthConfig$authParameters": "<p>Information about authentication parameters required for authentication.</p>"
+      }
+    },
+    "AuthenticationConfig": {
+      "base": "<p>Contains information about the authentication config that the connector supports.</p>",
+      "refs": {
+        "ConnectorConfiguration$authenticationConfig": "<p>The authentication config required for the connector.</p>"
+      }
+    },
+    "AuthenticationType": {
+      "base": null,
+      "refs": {
+        "CustomConnectorProfileCredentials$authenticationType": "<p>The authentication type that the custom connector uses for authenticating while creating a connector profile.</p>"
       }
     },
     "BasicAuthCredentials": {
       "base": "<p> The basic auth credentials required for basic authentication. </p>",
       "refs": {
+        "CustomConnectorProfileCredentials$basic": "<p>The basic credentials that are required for the authentication of the user.</p>",
         "SAPODataConnectorProfileCredentials$basicAuthCredentials": "<p> The SAPOData basic authentication credentials. </p>"
       }
     },
     "Boolean": {
       "base": null,
       "refs": {
+        "AuthParameter$isRequired": "<p>Indicates whether this authentication parameter is required.</p>",
+        "AuthParameter$isSensitiveField": "<p>Indicates whether this authentication parameter is a sensitive field.</p>",
+        "AuthenticationConfig$isBasicAuthSupported": "<p>Indicates whether basic authentication is supported by the connector.</p>",
+        "AuthenticationConfig$isApiKeyAuthSupported": "<p>Indicates whether API key authentication is supported by the connector</p>",
+        "AuthenticationConfig$isOAuth2Supported": "<p>Indicates whether OAuth 2.0 authentication is supported by the connector.</p>",
+        "AuthenticationConfig$isCustomAuthSupported": "<p>Indicates whether custom authentication is supported by the connector</p>",
         "ConnectorConfiguration$canUseAsSource": "<p> Specifies whether the connector can be used as a source. </p>",
         "ConnectorConfiguration$canUseAsDestination": "<p> Specifies whether the connector can be used as a destination. </p>",
         "ConnectorConfiguration$isPrivateLinkEnabled": "<p> Specifies if PrivateLink is enabled for that connector. </p>",
         "ConnectorConfiguration$isPrivateLinkEndpointUrlRequired": "<p> Specifies if a PrivateLink endpoint URL is required. </p>",
         "ConnectorEntity$hasNestedEntities": "<p> Specifies whether the connector entity is a parent or a category and has more entities nested underneath it. If another call is made with <code>entitiesPath = \"the_current_entity_name_with_hasNestedEntities_true\"</code>, then it returns the nested entities underneath it. This provides a way to retrieve all supported entities in a recursive fashion. </p>",
+        "ConnectorEntityField$isPrimaryKey": "<p>Booelan value that indicates whether this field can be used as a primary key.</p>",
+        "ConnectorEntityField$isDeprecated": "<p>Booelan value that indicates whether this field is deprecated or not.</p>",
+        "ConnectorRuntimeSetting$isRequired": "<p>Indicates whether this connector runtime setting is required.</p>",
         "DeleteConnectorProfileRequest$forceDelete": "<p> Indicates whether Amazon AppFlow should delete the profile, even if it is currently in use in one or more flows. </p>",
         "DeleteFlowRequest$forceDelete": "<p> Indicates whether Amazon AppFlow should delete the flow, even if it is currently in use. </p>",
         "DestinationFieldProperties$isCreatable": "<p> Specifies if the destination field can be created by the current user. </p>",
         "DestinationFieldProperties$isNullable": "<p> Specifies if the destination field can have a null value. </p>",
         "DestinationFieldProperties$isUpsertable": "<p> Specifies if the flow run can either insert new rows in the destination field if they do not already exist, or update them if they do. </p>",
         "DestinationFieldProperties$isUpdatable": "<p> Specifies whether the field can be updated during an <code>UPDATE</code> or <code>UPSERT</code> write operation. </p>",
+        "DestinationFieldProperties$isDefaultedOnCreate": "<p>Specifies whether the field can use the default value during a Create operation.</p>",
         "ErrorHandlingConfig$failOnFirstDestinationError": "<p> Specifies if the flow should fail after the first instance of a failure when attempting to place data in the destination. </p>",
         "SalesforceConnectorProfileProperties$isSandboxEnvironment": "<p> Indicates whether the connector profile applies to a sandbox or production environment. </p>",
         "SalesforceSourceProperties$enableDynamicFieldUpdate": "<p> The flag that enables dynamic fetching of new (recently added) fields in the Salesforce objects while running a flow. </p>",
         "SalesforceSourceProperties$includeDeletedRecords": "<p> Indicates whether Amazon AppFlow includes deleted files in the flow run. </p>",
         "SourceFieldProperties$isRetrievable": "<p> Indicates whether the field can be returned in a search result. </p>",
         "SourceFieldProperties$isQueryable": "<p> Indicates if the field can be queried. </p>",
+        "SourceFieldProperties$isTimestampFieldForIncrementalQueries": "<p>Indicates if this timestamp field can be used for incremental queries.</p>",
+        "UnregisterConnectorRequest$forceDelete": "<p>Indicates whether Amazon AppFlow should unregister the connector, even if it is currently in use in one or more connector profiles. The default value is false.</p>",
         "VeevaSourceProperties$includeSourceFiles": "<p>Boolean value to include source files in Veeva document extract flow.</p>",
         "VeevaSourceProperties$includeRenditions": "<p>Boolean value to include file renditions in Veeva document extract flow.</p>",
         "VeevaSourceProperties$includeAllVersions": "<p>Boolean value to include All Versions of files in Veeva document extract flow.</p>"
@@ -215,6 +295,7 @@
       "refs": {
         "GoogleAnalyticsConnectorProfileCredentials$clientId": "<p> The identifier for the desired client. </p>",
         "MarketoConnectorProfileCredentials$clientId": "<p> The identifier for the desired client. </p>",
+        "OAuth2Credentials$clientId": "<p>The identifier for the desired client.</p>",
         "OAuthCredentials$clientId": "<p> The identifier for the desired client. </p>",
         "SlackConnectorProfileCredentials$clientId": "<p> The identifier for the client. </p>",
         "ZendeskConnectorProfileCredentials$clientId": "<p> The identifier for the desired client. </p>"
@@ -231,6 +312,7 @@
       "refs": {
         "GoogleAnalyticsConnectorProfileCredentials$clientSecret": "<p> The client secret used by the OAuth client to authenticate to the authorization server. </p>",
         "MarketoConnectorProfileCredentials$clientSecret": "<p> The client secret used by the OAuth client to authenticate to the authorization server. </p>",
+        "OAuth2Credentials$clientSecret": "<p>The client secret used by the OAuth client to authenticate to the authorization server.</p>",
         "OAuthCredentials$clientSecret": "<p> The client secret used by the OAuth client to authenticate to the authorization server. </p>",
         "SlackConnectorProfileCredentials$clientSecret": "<p> The client secret used by the OAuth client to authenticate to the authorization server. </p>",
         "ZendeskConnectorProfileCredentials$clientSecret": "<p> The client secret used by the OAuth client to authenticate to the authorization server. </p>"
@@ -257,13 +339,27 @@
     "ConnectorConfiguration": {
       "base": "<p> The configuration settings related to a given connector. </p>",
       "refs": {
-        "ConnectorConfigurationsMap$value": null
+        "ConnectorConfigurationsMap$value": null,
+        "DescribeConnectorResponse$connectorConfiguration": "<p>Configuration info of all the connectors that the user requested.</p>"
       }
     },
     "ConnectorConfigurationsMap": {
       "base": null,
       "refs": {
         "DescribeConnectorsResponse$connectorConfigurations": "<p> The configuration that is applied to the connectors used in the flow. </p>"
+      }
+    },
+    "ConnectorDescription": {
+      "base": null,
+      "refs": {
+        "ConnectorConfiguration$connectorDescription": "<p>A description about the connector.</p>",
+        "ConnectorDetail$connectorDescription": "<p>A description about the registered connector.</p>"
+      }
+    },
+    "ConnectorDetail": {
+      "base": "<p>Information about the registered connector.</p>",
+      "refs": {
+        "ConnectorList$member": null
       }
     },
     "ConnectorEntity": {
@@ -296,10 +392,52 @@
         "ListConnectorEntitiesResponse$connectorEntityMap": "<p> The response of <code>ListConnectorEntities</code> lists entities grouped by category. This map's key represents the group name, and its value contains the list of entities belonging to that group. </p>"
       }
     },
+    "ConnectorLabel": {
+      "base": null,
+      "refs": {
+        "ConnectorConfiguration$connectorLabel": "<p>The label used for registering the connector.</p>",
+        "ConnectorDetail$connectorLabel": "<p>A label used for the connector.</p>",
+        "ConnectorProfile$connectorLabel": "<p>The label for the connector profile being created.</p>",
+        "CreateConnectorProfileRequest$connectorLabel": "<p>The label of the connector. The label is unique for each <code>ConnectorRegistration</code> in your Amazon Web Services account. Only needed if calling for CUSTOMCONNECTOR connector type/.</p>",
+        "DescribeConnectorProfilesRequest$connectorLabel": "<p>The name of the connector. The name is unique for each <code>ConnectorRegistration</code> in your Amazon Web Services account. Only needed if calling for CUSTOMCONNECTOR connector type/.</p>",
+        "DescribeConnectorRequest$connectorLabel": "<p>The label of the connector. The label is unique for each <code>ConnectorRegistration</code> in your Amazon Web Services account. Only needed if calling for CUSTOMCONNECTOR connector type/.</p>",
+        "FlowDefinition$sourceConnectorLabel": "<p>The label of the source connector in the flow.</p>",
+        "FlowDefinition$destinationConnectorLabel": "<p>The label of the destination connector in the flow.</p>",
+        "RegisterConnectorRequest$connectorLabel": "<p> The name of the connector. The name is unique for each <code>ConnectorRegistration</code> in your Amazon Web Services account.</p>",
+        "UnregisterConnectorRequest$connectorLabel": "<p>The label of the connector. The label is unique for each <code>ConnectorRegistration</code> in your Amazon Web Services account.</p>"
+      }
+    },
+    "ConnectorList": {
+      "base": null,
+      "refs": {
+        "DescribeConnectorsResponse$connectors": "<p>Information about the connectors supported in Amazon AppFlow.</p>",
+        "ListConnectorsResponse$connectors": "<p>Contains information about the connectors supported by Amazon AppFlow.</p>"
+      }
+    },
     "ConnectorMetadata": {
       "base": "<p> A structure to specify connector-specific metadata such as <code>oAuthScopes</code>, <code>supportedRegions</code>, <code>privateLinkServiceUrl</code>, and so on. </p>",
       "refs": {
         "ConnectorConfiguration$connectorMetadata": "<p> Specifies connector-specific metadata such as <code>oAuthScopes</code>, <code>supportedRegions</code>, <code>privateLinkServiceUrl</code>, and so on. </p>"
+      }
+    },
+    "ConnectorMode": {
+      "base": null,
+      "refs": {
+        "ConnectorModeList$member": null
+      }
+    },
+    "ConnectorModeList": {
+      "base": null,
+      "refs": {
+        "ConnectorConfiguration$connectorModes": "<p>The connection modes that the connector supports.</p>",
+        "ConnectorDetail$connectorModes": "<p>The connection mode that the connector supports.</p>"
+      }
+    },
+    "ConnectorName": {
+      "base": null,
+      "refs": {
+        "ConnectorConfiguration$connectorName": "<p>The connector name.</p>",
+        "ConnectorDetail$connectorName": "<p>The name of the connector.</p>"
       }
     },
     "ConnectorOAuthRequest": {
@@ -308,6 +446,7 @@
         "GoogleAnalyticsConnectorProfileCredentials$oAuthRequest": "<p> The OAuth requirement needed to request security tokens from the connector endpoint. </p>",
         "HoneycodeConnectorProfileCredentials$oAuthRequest": null,
         "MarketoConnectorProfileCredentials$oAuthRequest": "<p> The OAuth requirement needed to request security tokens from the connector endpoint. </p>",
+        "OAuth2Credentials$oAuthRequest": null,
         "OAuthCredentials$oAuthRequest": "<p> The OAuth requirement needed to request security tokens from the connector endpoint. </p>",
         "SalesforceConnectorProfileCredentials$oAuthRequest": "<p> The OAuth requirement needed to request security tokens from the connector endpoint. </p>",
         "SlackConnectorProfileCredentials$oAuthRequest": "<p> The OAuth requirement needed to request security tokens from the connector endpoint. </p>",
@@ -318,6 +457,13 @@
       "base": "<p> The operation to be performed on the provided source fields. </p>",
       "refs": {
         "Task$connectorOperator": "<p> The operation to be performed on the provided source fields. </p>"
+      }
+    },
+    "ConnectorOwner": {
+      "base": null,
+      "refs": {
+        "ConnectorConfiguration$connectorOwner": "<p>The owner who developed the connector.</p>",
+        "ConnectorDetail$connectorOwner": "<p>The owner of the connector.</p>"
       }
     },
     "ConnectorProfile": {
@@ -380,20 +526,81 @@
         "ConnectorProfileConfig$connectorProfileProperties": "<p> The connector-specific properties of the profile configuration. </p>"
       }
     },
+    "ConnectorProvisioningConfig": {
+      "base": "<p>Contains information about the configuration of the connector being registered.</p>",
+      "refs": {
+        "ConnectorConfiguration$connectorProvisioningConfig": "<p>The configuration required for registering the connector.</p>",
+        "RegisterConnectorRequest$connectorProvisioningConfig": "<p>The provisioning type of the connector. Currently the only supported value is LAMBDA.</p>"
+      }
+    },
+    "ConnectorProvisioningType": {
+      "base": "<p>The type of provisioning that the connector supports, such as Lambda.</p>",
+      "refs": {
+        "ConnectorConfiguration$connectorProvisioningType": "<p>The provisioning type used to register the connector.</p>",
+        "ConnectorDetail$connectorProvisioningType": "<p>The provisioning type that the connector uses.</p>",
+        "RegisterConnectorRequest$connectorProvisioningType": "<p>The provisioning type of the connector. Currently the only supported value is LAMBDA. </p>"
+      }
+    },
+    "ConnectorRuntimeSetting": {
+      "base": "<p>Contains information about the connector runtime settings that are required for flow execution.</p>",
+      "refs": {
+        "ConnectorRuntimeSettingList$member": null
+      }
+    },
+    "ConnectorRuntimeSettingDataType": {
+      "base": null,
+      "refs": {
+        "ConnectorRuntimeSetting$dataType": "<p>Data type of the connector runtime setting.</p>"
+      }
+    },
+    "ConnectorRuntimeSettingList": {
+      "base": null,
+      "refs": {
+        "ConnectorConfiguration$connectorRuntimeSettings": "<p>The required connector runtime settings.</p>"
+      }
+    },
+    "ConnectorRuntimeSettingScope": {
+      "base": null,
+      "refs": {
+        "ConnectorRuntimeSetting$scope": "<p>Indicates the scope of the connector runtime setting.</p>"
+      }
+    },
     "ConnectorServerException": {
       "base": "<p> An error occurred when retrieving data from the connector endpoint. </p>",
       "refs": {
       }
     },
+    "ConnectorSuppliedValue": {
+      "base": null,
+      "refs": {
+        "ConnectorSuppliedValueList$member": null,
+        "ConnectorSuppliedValueOptionList$member": null
+      }
+    },
+    "ConnectorSuppliedValueList": {
+      "base": null,
+      "refs": {
+        "AuthParameter$connectorSuppliedValues": "<p>Contains default values for this authentication parameter that are supplied by the connector.</p>"
+      }
+    },
+    "ConnectorSuppliedValueOptionList": {
+      "base": null,
+      "refs": {
+        "ConnectorRuntimeSetting$connectorSuppliedValueOptions": "<p>Contains default values for the connector runtime setting that are supplied by the connector.</p>"
+      }
+    },
     "ConnectorType": {
       "base": null,
       "refs": {
+        "ConnectorConfiguration$connectorType": "<p>The connector type.</p>",
         "ConnectorConfigurationsMap$key": null,
+        "ConnectorDetail$connectorType": "<p>The connector type.</p>",
         "ConnectorProfile$connectorType": "<p> The type of connector, such as Salesforce, Amplitude, and so on. </p>",
         "ConnectorTypeList$member": null,
         "CreateConnectorProfileRequest$connectorType": "<p> The type of connector, such as Salesforce, Amplitude, and so on. </p>",
         "DescribeConnectorEntityRequest$connectorType": "<p> The type of connector application, such as Salesforce, Amplitude, and so on. </p>",
         "DescribeConnectorProfilesRequest$connectorType": "<p> The type of connector, such as Salesforce, Amplitude, and so on. </p>",
+        "DescribeConnectorRequest$connectorType": "<p>The connector type, such as CUSTOMCONNECTOR, Saleforce, Marketo. Please choose CUSTOMCONNECTOR for Lambda based custom connectors.</p>",
         "DestinationFlowConfig$connectorType": "<p> The type of connector, such as Salesforce, Amplitude, and so on. </p>",
         "FlowDefinition$sourceConnectorType": "<p> Specifies the source connector type, such as Salesforce, Amazon S3, Amplitude, and so on. </p>",
         "FlowDefinition$destinationConnectorType": "<p> Specifies the destination connector type, such as Salesforce, Amazon S3, Amplitude, and so on. </p>",
@@ -406,6 +613,13 @@
       "refs": {
         "ConnectorConfiguration$supportedDestinationConnectors": "<p> Lists the connectors that are available for use as destinations. </p>",
         "DescribeConnectorsRequest$connectorTypes": "<p> The type of connector, such as Salesforce, Amplitude, and so on. </p>"
+      }
+    },
+    "ConnectorVersion": {
+      "base": null,
+      "refs": {
+        "ConnectorConfiguration$connectorVersion": "<p>The connector version.</p>",
+        "ConnectorDetail$connectorVersion": "<p>The connector version.</p>"
       }
     },
     "CreateConnectorProfileRequest": {
@@ -433,6 +647,93 @@
       "refs": {
         "DescribeFlowResponse$createdBy": "<p> The ARN of the user who created the flow. </p>",
         "FlowDefinition$createdBy": "<p> The ARN of the user who created the flow. </p>"
+      }
+    },
+    "CredentialsMap": {
+      "base": null,
+      "refs": {
+        "CustomAuthCredentials$credentialsMap": "<p>A map that holds custom authentication credentials.</p>"
+      }
+    },
+    "CredentialsMapKey": {
+      "base": null,
+      "refs": {
+        "CredentialsMap$key": null
+      }
+    },
+    "CredentialsMapValue": {
+      "base": null,
+      "refs": {
+        "CredentialsMap$value": null
+      }
+    },
+    "CustomAuthConfig": {
+      "base": "<p>Configuration information required for custom authentication.</p>",
+      "refs": {
+        "CustomAuthConfigList$member": null
+      }
+    },
+    "CustomAuthConfigList": {
+      "base": null,
+      "refs": {
+        "AuthenticationConfig$customAuthConfigs": "<p>Contains information required for custom authentication.</p>"
+      }
+    },
+    "CustomAuthCredentials": {
+      "base": "<p>The custom credentials required for custom authentication.</p>",
+      "refs": {
+        "CustomConnectorProfileCredentials$custom": "<p>If the connector uses the custom authentication mechanism, this holds the required credentials.</p>"
+      }
+    },
+    "CustomAuthenticationType": {
+      "base": null,
+      "refs": {
+        "CustomAuthConfig$customAuthenticationType": "<p>The authentication type that the custom connector uses.</p>",
+        "CustomAuthCredentials$customAuthenticationType": "<p>The custom authentication type that the connector uses.</p>"
+      }
+    },
+    "CustomConnectorDestinationProperties": {
+      "base": "<p>The properties that are applied when the custom connector is being used as a destination.</p>",
+      "refs": {
+        "DestinationConnectorProperties$CustomConnector": "<p>The properties that are required to query the custom Connector.</p>"
+      }
+    },
+    "CustomConnectorProfileCredentials": {
+      "base": "<p>The connector-specific profile credentials that are required when using the custom connector.</p>",
+      "refs": {
+        "ConnectorProfileCredentials$CustomConnector": null
+      }
+    },
+    "CustomConnectorProfileProperties": {
+      "base": "<p>The profile properties required by the custom connector.</p>",
+      "refs": {
+        "ConnectorProfileProperties$CustomConnector": "<p>The properties required by the custom connector.</p>"
+      }
+    },
+    "CustomConnectorSourceProperties": {
+      "base": "<p>The properties that are applied when the custom connector is being used as a source.</p>",
+      "refs": {
+        "SourceConnectorProperties$CustomConnector": null
+      }
+    },
+    "CustomProperties": {
+      "base": null,
+      "refs": {
+        "ConnectorEntityField$customProperties": "<p>A map that has specific properties related to the ConnectorEntityField.</p>",
+        "CustomConnectorDestinationProperties$customProperties": "<p>The custom properties that are specific to the connector when it's used as a destination in the flow.</p>",
+        "CustomConnectorSourceProperties$customProperties": "<p>Custom properties that are required to use the custom connector as a source.</p>"
+      }
+    },
+    "CustomPropertyKey": {
+      "base": null,
+      "refs": {
+        "CustomProperties$key": null
+      }
+    },
+    "CustomPropertyValue": {
+      "base": null,
+      "refs": {
+        "CustomProperties$value": null
       }
     },
     "CustomerProfilesDestinationProperties": {
@@ -492,6 +793,8 @@
     "Date": {
       "base": null,
       "refs": {
+        "ConnectorConfiguration$registeredAt": "<p>The date on which the connector was registered.</p>",
+        "ConnectorDetail$registeredAt": "<p>The time at which the connector was registered.</p>",
         "ConnectorProfile$createdAt": "<p> Specifies when the connector profile was created. </p>",
         "ConnectorProfile$lastUpdatedAt": "<p> Specifies when the connector profile was last updated. </p>",
         "DescribeFlowResponse$createdAt": "<p> Specifies when the flow was created. </p>",
@@ -554,6 +857,16 @@
       "refs": {
       }
     },
+    "DescribeConnectorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeConnectorResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeConnectorsRequest": {
       "base": null,
       "refs": {
@@ -587,7 +900,10 @@
     "Description": {
       "base": null,
       "refs": {
-        "ConnectorEntityField$description": "<p> A description of the connector entity field. </p>"
+        "AuthParameter$description": "<p>A description about the authentication parameter.</p>",
+        "ConnectorEntityField$description": "<p> A description of the connector entity field. </p>",
+        "ConnectorRuntimeSetting$description": "<p>A description about the connector runtime setting.</p>",
+        "RegisterConnectorRequest$description": "<p>A description about the connector that's being registered.</p>"
       }
     },
     "DestinationConnectorProperties": {
@@ -634,6 +950,13 @@
         "CustomerProfilesDestinationProperties$domainName": "<p> The unique name of the Amazon Connect Customer Profiles domain. </p>"
       }
     },
+    "Double": {
+      "base": null,
+      "refs": {
+        "Range$maximum": "<p>Maximum value supported by the field.</p>",
+        "Range$minimum": "<p>Minimum value supported by the field.</p>"
+      }
+    },
     "DynatraceConnectorOperator": {
       "base": null,
       "refs": {
@@ -670,9 +993,18 @@
         "ListConnectorEntitiesRequest$entitiesPath": "<p> This optional parameter is specific to connector implementation. Some connectors support multiple levels or categories of entities. You can find out the list of roots for such providers by sending a request without the <code>entitiesPath</code> parameter. If the connector supports entities at different roots, this initial request returns the list of roots. Otherwise, this request returns all entities supported by the provider. </p>"
       }
     },
+    "EntityName": {
+      "base": null,
+      "refs": {
+        "CustomConnectorDestinationProperties$entityName": "<p>The entity specified in the custom connector as a destination in the flow.</p>",
+        "CustomConnectorSourceProperties$entityName": "<p>The entity specified in the custom connector as a source in the flow.</p>",
+        "DescribeConnectorEntityRequest$connectorEntityName": "<p> The entity name for that connector. </p>"
+      }
+    },
     "ErrorHandlingConfig": {
       "base": "<p> The settings that determine how Amazon AppFlow handles an error when placing data in the destination. For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the destination connector details. </p>",
       "refs": {
+        "CustomConnectorDestinationProperties$errorHandlingConfig": "<p>The settings that determine how Amazon AppFlow handles an error when placing data in the custom connector as destination.</p>",
         "EventBridgeDestinationProperties$errorHandlingConfig": null,
         "HoneycodeDestinationProperties$errorHandlingConfig": null,
         "RedshiftDestinationProperties$errorHandlingConfig": "<p> The settings that determine how Amazon AppFlow handles an error when placing data in the Amazon Redshift destination. For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the destination connector details. </p>",
@@ -690,12 +1022,14 @@
     "ErrorMessage": {
       "base": null,
       "refs": {
+        "AccessDeniedException$message": null,
         "ConflictException$message": null,
         "ConnectorAuthenticationException$message": null,
         "ConnectorServerException$message": null,
         "InternalServerException$message": null,
         "ResourceNotFoundException$message": null,
         "ServiceQuotaExceededException$message": null,
+        "ThrottlingException$message": null,
         "UnsupportedOperationException$message": null,
         "ValidationException$message": null
       }
@@ -907,6 +1241,7 @@
     "IdFieldNameList": {
       "base": "<p> A list of field names that can be used as an ID field when performing a write operation. </p>",
       "refs": {
+        "CustomConnectorDestinationProperties$idFieldNames": "<p>The name of the field that Amazon AppFlow uses as an ID when performing a write operation such as update, delete, or upsert.</p>",
         "SalesforceDestinationProperties$idFieldNames": "<p> The name of the field that Amazon AppFlow uses as an ID when performing a write operation such as update or delete. </p>",
         "ZendeskDestinationProperties$idFieldNames": null
       }
@@ -914,7 +1249,8 @@
     "Identifier": {
       "base": null,
       "refs": {
-        "ConnectorEntityField$identifier": "<p> The unique identifier of the connector field. </p>"
+        "ConnectorEntityField$identifier": "<p> The unique identifier of the connector field. </p>",
+        "ConnectorEntityField$parentIdentifier": "<p>The parent identifier of the connector field.</p>"
       }
     },
     "IncrementalPullConfig": {
@@ -983,6 +1319,8 @@
     "Key": {
       "base": null,
       "refs": {
+        "AuthParameter$key": "<p>The authentication key required to authenticate with the connector.</p>",
+        "ConnectorRuntimeSetting$key": "<p>Contains value information about the connector runtime setting.</p>",
         "InforNexusConnectorProfileCredentials$secretAccessKey": "<p> The secret key used to sign requests. </p>",
         "InforNexusConnectorProfileCredentials$datakey": "<p> The encryption keys used to encrypt data. </p>"
       }
@@ -990,8 +1328,16 @@
     "Label": {
       "base": null,
       "refs": {
+        "AuthParameter$label": "<p>Label used for authentication parameter.</p>",
         "ConnectorEntity$label": "<p> The label applied to the connector entity. </p>",
-        "ConnectorEntityField$label": "<p> The label applied to a connector entity field. </p>"
+        "ConnectorEntityField$label": "<p> The label applied to a connector entity field. </p>",
+        "ConnectorRuntimeSetting$label": "<p>A label used for connector runtime setting.</p>"
+      }
+    },
+    "LambdaConnectorProvisioningConfig": {
+      "base": "<p>Contains information about the configuration of the lambda which is being registered as the connector.</p>",
+      "refs": {
+        "ConnectorProvisioningConfig$lambda": "<p>Contains information about the configuration of the lambda which is being registered as the connector.</p>"
       }
     },
     "ListConnectorEntitiesRequest": {
@@ -1000,6 +1346,16 @@
       }
     },
     "ListConnectorEntitiesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListConnectorsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListConnectorsResponse": {
       "base": null,
       "refs": {
       }
@@ -1022,6 +1378,12 @@
     "ListTagsForResourceResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "LogoURL": {
+      "base": null,
+      "refs": {
+        "ConnectorConfiguration$logoURL": "<p>Logo URL of the connector.</p>"
       }
     },
     "LogonLanguage": {
@@ -1079,7 +1441,9 @@
       "base": null,
       "refs": {
         "DescribeConnectorProfilesRequest$maxResults": "<p> Specifies the maximum number of items that should be returned in the result set. The default for <code>maxResults</code> is 20 (for all paginated API operations). </p>",
+        "DescribeConnectorsRequest$maxResults": "<p>The maximum number of items that should be returned in the result set. The default is 20.</p>",
         "DescribeFlowExecutionRecordsRequest$maxResults": "<p> Specifies the maximum number of items that should be returned in the result set. The default for <code>maxResults</code> is 20 (for all paginated API operations). </p>",
+        "ListConnectorsRequest$maxResults": "<p>Specifies the maximum number of items that should be returned in the result set. The default for <code>maxResults</code> is 20 (for all paginated API operations).</p>",
         "ListFlowsRequest$maxResults": "<p> Specifies the maximum number of items that should be returned in the result set. </p>"
       }
     },
@@ -1093,7 +1457,6 @@
       "base": null,
       "refs": {
         "ConnectorEntity$name": "<p> The name of the connector entity. </p>",
-        "DescribeConnectorEntityRequest$connectorEntityName": "<p> The entity name for that connector. </p>",
         "IdFieldNameList$member": null
       }
     },
@@ -1106,8 +1469,41 @@
         "DescribeConnectorsResponse$nextToken": "<p> The pagination token for the next page of data. </p>",
         "DescribeFlowExecutionRecordsRequest$nextToken": "<p> The pagination token for the next page of data. </p>",
         "DescribeFlowExecutionRecordsResponse$nextToken": "<p> The pagination token for the next page of data. </p>",
+        "ListConnectorsRequest$nextToken": "<p>The pagination token for the next page of data.</p>",
+        "ListConnectorsResponse$nextToken": "<p>The pagination token for the next page of data. If nextToken=null, this means that all records have been fetched.</p>",
         "ListFlowsRequest$nextToken": "<p> The pagination token for next page of data. </p>",
         "ListFlowsResponse$nextToken": "<p> The pagination token for next page of data. </p>"
+      }
+    },
+    "OAuth2Credentials": {
+      "base": "<p>The OAuth 2.0 credentials required for OAuth 2.0 authentication.</p>",
+      "refs": {
+        "CustomConnectorProfileCredentials$oauth2": "<p>The OAuth 2.0 credentials required for the authentication of the user.</p>"
+      }
+    },
+    "OAuth2Defaults": {
+      "base": "<p>Contains the default values required for OAuth 2.0 authentication.</p>",
+      "refs": {
+        "AuthenticationConfig$oAuth2Defaults": "<p>Contains the default values required for OAuth 2.0 authentication.</p>"
+      }
+    },
+    "OAuth2GrantType": {
+      "base": null,
+      "refs": {
+        "OAuth2GrantTypeSupportedList$member": null,
+        "OAuth2Properties$oAuth2GrantType": "<p>The OAuth 2.0 grant type used by connector for OAuth 2.0 authentication.</p>"
+      }
+    },
+    "OAuth2GrantTypeSupportedList": {
+      "base": null,
+      "refs": {
+        "OAuth2Defaults$oauth2GrantTypesSupported": "<p>OAuth 2.0 grant types supported by the connector.</p>"
+      }
+    },
+    "OAuth2Properties": {
+      "base": "<p>The OAuth 2.0 properties required for OAuth 2.0 authentication.</p>",
+      "refs": {
+        "CustomConnectorProfileProperties$oAuth2Properties": null
       }
     },
     "OAuthCredentials": {
@@ -1133,6 +1529,7 @@
       "refs": {
         "GoogleAnalyticsMetadata$oAuthScopes": "<p> The desired authorization scope for the Google Analytics account. </p>",
         "HoneycodeMetadata$oAuthScopes": "<p> The desired authorization scope for the Amazon Honeycode account. </p>",
+        "OAuth2Defaults$oauthScopes": "<p>OAuth 2.0 scopes that the connector supports.</p>",
         "OAuthProperties$oAuthScopes": "<p> The OAuth scopes required for OAuth type authentication. </p>",
         "SalesforceMetadata$oAuthScopes": "<p> The desired authorization scope for the Salesforce account. </p>",
         "SlackMetadata$oAuthScopes": "<p> The desired authorization scope for the Slack account. </p>",
@@ -1173,6 +1570,7 @@
     "Operator": {
       "base": null,
       "refs": {
+        "ConnectorOperator$CustomConnector": "<p>Operators supported by the custom connector.</p>",
         "FilterOperatorList$member": null
       }
     },
@@ -1180,6 +1578,12 @@
       "base": null,
       "refs": {
         "TaskPropertiesMap$key": null
+      }
+    },
+    "Operators": {
+      "base": null,
+      "refs": {
+        "SupportedOperatorList$member": null
       }
     },
     "Password": {
@@ -1248,10 +1652,35 @@
         "SnowflakeConnectorProfileProperties$privateLinkServiceName": "<p> The Snowflake Private Link service name to be used for private data transfers. </p>"
       }
     },
+    "ProfilePropertiesMap": {
+      "base": null,
+      "refs": {
+        "CustomConnectorProfileProperties$profileProperties": "<p>A map of properties that are required to create a profile for the custom connector.</p>"
+      }
+    },
+    "ProfilePropertyKey": {
+      "base": null,
+      "refs": {
+        "ProfilePropertiesMap$key": null
+      }
+    },
+    "ProfilePropertyValue": {
+      "base": null,
+      "refs": {
+        "ProfilePropertiesMap$value": null
+      }
+    },
     "Property": {
       "base": null,
       "refs": {
         "TaskPropertiesMap$value": null
+      }
+    },
+    "Range": {
+      "base": "<p>The range of values that the property supports.</p>",
+      "refs": {
+        "FieldTypeDetails$fieldValueRange": "<p>The range of values this field can hold.</p>",
+        "FieldTypeDetails$fieldLengthRange": "<p>This is the allowable length range for this field's value.</p>"
       }
     },
     "RedirectUri": {
@@ -1289,6 +1718,7 @@
       "refs": {
         "GoogleAnalyticsConnectorProfileCredentials$refreshToken": "<p> The credentials used to acquire new access tokens. This is required only for OAuth2 access tokens, and is not required for OAuth1 access tokens. </p>",
         "HoneycodeConnectorProfileCredentials$refreshToken": "<p> The credentials used to acquire new access tokens. </p>",
+        "OAuth2Credentials$refreshToken": "<p>The refresh token used to refresh an expired access token.</p>",
         "OAuthCredentials$refreshToken": "<p> The refresh token used to refresh expired access token. </p>",
         "SalesforceConnectorProfileCredentials$refreshToken": "<p> The credentials used to acquire new access tokens. </p>"
       }
@@ -1304,6 +1734,23 @@
       "base": null,
       "refs": {
         "SnowflakeMetadata$supportedRegions": "<p> Specifies the supported Amazon Web Services Regions when using Snowflake. </p>"
+      }
+    },
+    "RegisterConnectorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegisterConnectorResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegisteredBy": {
+      "base": null,
+      "refs": {
+        "ConnectorConfiguration$registeredBy": "<p>Information about who registered the connector.</p>",
+        "ConnectorDetail$registeredBy": "<p>The user who registered the connector.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -1635,13 +2082,34 @@
     "String": {
       "base": null,
       "refs": {
+        "ConnectorEntityField$defaultValue": "<p>Default value that can be assigned to this field.</p>",
+        "FieldTypeDetails$valueRegexPattern": "<p>The regular expression pattern for the field name.</p>",
+        "FieldTypeDetails$supportedDateFormat": "<p>The date format that the field supports.</p>",
         "SourceFields$member": null
+      }
+    },
+    "SupportedApiVersion": {
+      "base": null,
+      "refs": {
+        "SupportedApiVersionList$member": null
+      }
+    },
+    "SupportedApiVersionList": {
+      "base": null,
+      "refs": {
+        "ConnectorConfiguration$supportedApiVersions": "<p>A list of API versions that are supported by the connector.</p>"
       }
     },
     "SupportedFieldTypeDetails": {
       "base": "<p> Contains details regarding all the supported <code>FieldTypes</code> and their corresponding <code>filterOperators</code> and <code>supportedValues</code>. </p>",
       "refs": {
         "ConnectorEntityField$supportedFieldTypeDetails": "<p> Contains details regarding the supported <code>FieldType</code>, including the corresponding <code>filterOperators</code> and <code>supportedValues</code>. </p>"
+      }
+    },
+    "SupportedOperatorList": {
+      "base": null,
+      "refs": {
+        "ConnectorConfiguration$supportedOperators": "<p>A list of operators supported by the connector.</p>"
       }
     },
     "SupportedValueList": {
@@ -1653,6 +2121,7 @@
     "SupportedWriteOperationList": {
       "base": null,
       "refs": {
+        "ConnectorConfiguration$supportedWriteOperations": "<p>A list of write operations supported by the connector.</p>",
         "DestinationFieldProperties$supportedWriteOperations": "<p> A list of supported write operations. For each write operation listed, this field can be used in <code>idFieldNames</code> when that write operation is present as a destination option. </p>"
       }
     },
@@ -1721,6 +2190,11 @@
         "UpdateFlowRequest$tasks": "<p> A list of tasks that Amazon AppFlow performs while transferring the data in the flow run. </p>"
       }
     },
+    "ThrottlingException": {
+      "base": "<p>API calls have exceeded the maximum allowed API request rate per account and per Region. </p>",
+      "refs": {
+      }
+    },
     "Timezone": {
       "base": null,
       "refs": {
@@ -1730,7 +2204,15 @@
     "TokenUrl": {
       "base": null,
       "refs": {
-        "OAuthProperties$tokenUrl": "<p> The token url required to fetch access/refresh tokens using authorization code and also to refresh expired access token using refresh token.</p>"
+        "OAuth2Properties$tokenUrl": "<p>The token URL required for OAuth 2.0 authentication.</p>",
+        "OAuthProperties$tokenUrl": "<p> The token url required to fetch access/refresh tokens using authorization code and also to refresh expired access token using refresh token.</p>",
+        "TokenUrlList$member": null
+      }
+    },
+    "TokenUrlList": {
+      "base": null,
+      "refs": {
+        "OAuth2Defaults$tokenUrls": "<p>Token URLs that can be used for OAuth 2.0 authentication.</p>"
       }
     },
     "TrendmicroConnectorOperator": {
@@ -1789,6 +2271,16 @@
       "base": null,
       "refs": {
         "ConnectorConfiguration$supportedTriggerTypes": "<p> Specifies the supported trigger types for the flow. </p>"
+      }
+    },
+    "UnregisterConnectorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UnregisterConnectorResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UnsupportedOperationException": {
@@ -1918,6 +2410,7 @@
     "WriteOperationType": {
       "base": "<p> The possible write operations in the destination connector. When this value is not provided, this defaults to the <code>INSERT</code> operation. </p>",
       "refs": {
+        "CustomConnectorDestinationProperties$writeOperationType": "<p>Specifies the type of write operation to be performed in the custom connector when it's used as destination.</p>",
         "SalesforceDestinationProperties$writeOperationType": "<p> This specifies the type of write operation to be performed in Salesforce. When the value is <code>UPSERT</code>, then <code>idFieldNames</code> is required. </p>",
         "SupportedWriteOperationList$member": null,
         "ZendeskDestinationProperties$writeOperationType": null

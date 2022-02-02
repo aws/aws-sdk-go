@@ -68674,6 +68674,15 @@ const (
 
 	// LogTargetTypeThingGroup is a LogTargetType enum value
 	LogTargetTypeThingGroup = "THING_GROUP"
+
+	// LogTargetTypeClientId is a LogTargetType enum value
+	LogTargetTypeClientId = "CLIENT_ID"
+
+	// LogTargetTypeSourceIp is a LogTargetType enum value
+	LogTargetTypeSourceIp = "SOURCE_IP"
+
+	// LogTargetTypePrincipalId is a LogTargetType enum value
+	LogTargetTypePrincipalId = "PRINCIPAL_ID"
 )
 
 // LogTargetType_Values returns all elements of the LogTargetType enum
@@ -68681,6 +68690,9 @@ func LogTargetType_Values() []string {
 	return []string{
 		LogTargetTypeDefault,
 		LogTargetTypeThingGroup,
+		LogTargetTypeClientId,
+		LogTargetTypeSourceIp,
+		LogTargetTypePrincipalId,
 	}
 }
 

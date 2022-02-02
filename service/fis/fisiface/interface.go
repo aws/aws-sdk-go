@@ -80,6 +80,10 @@ type FISAPI interface {
 	GetExperimentTemplateWithContext(aws.Context, *fis.GetExperimentTemplateInput, ...request.Option) (*fis.GetExperimentTemplateOutput, error)
 	GetExperimentTemplateRequest(*fis.GetExperimentTemplateInput) (*request.Request, *fis.GetExperimentTemplateOutput)
 
+	GetTargetResourceType(*fis.GetTargetResourceTypeInput) (*fis.GetTargetResourceTypeOutput, error)
+	GetTargetResourceTypeWithContext(aws.Context, *fis.GetTargetResourceTypeInput, ...request.Option) (*fis.GetTargetResourceTypeOutput, error)
+	GetTargetResourceTypeRequest(*fis.GetTargetResourceTypeInput) (*request.Request, *fis.GetTargetResourceTypeOutput)
+
 	ListActions(*fis.ListActionsInput) (*fis.ListActionsOutput, error)
 	ListActionsWithContext(aws.Context, *fis.ListActionsInput, ...request.Option) (*fis.ListActionsOutput, error)
 	ListActionsRequest(*fis.ListActionsInput) (*request.Request, *fis.ListActionsOutput)
@@ -104,6 +108,13 @@ type FISAPI interface {
 	ListTagsForResource(*fis.ListTagsForResourceInput) (*fis.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *fis.ListTagsForResourceInput, ...request.Option) (*fis.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*fis.ListTagsForResourceInput) (*request.Request, *fis.ListTagsForResourceOutput)
+
+	ListTargetResourceTypes(*fis.ListTargetResourceTypesInput) (*fis.ListTargetResourceTypesOutput, error)
+	ListTargetResourceTypesWithContext(aws.Context, *fis.ListTargetResourceTypesInput, ...request.Option) (*fis.ListTargetResourceTypesOutput, error)
+	ListTargetResourceTypesRequest(*fis.ListTargetResourceTypesInput) (*request.Request, *fis.ListTargetResourceTypesOutput)
+
+	ListTargetResourceTypesPages(*fis.ListTargetResourceTypesInput, func(*fis.ListTargetResourceTypesOutput, bool) bool) error
+	ListTargetResourceTypesPagesWithContext(aws.Context, *fis.ListTargetResourceTypesInput, func(*fis.ListTargetResourceTypesOutput, bool) bool, ...request.Option) error
 
 	StartExperiment(*fis.StartExperimentInput) (*fis.StartExperimentOutput, error)
 	StartExperimentWithContext(aws.Context, *fis.StartExperimentInput, ...request.Option) (*fis.StartExperimentOutput, error)

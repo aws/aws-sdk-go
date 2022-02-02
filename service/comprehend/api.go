@@ -1300,6 +1300,93 @@ func (c *Comprehend) DeleteEntityRecognizerWithContext(ctx aws.Context, input *D
 	return out, req.Send()
 }
 
+const opDeleteResourcePolicy = "DeleteResourcePolicy"
+
+// DeleteResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteResourcePolicy for more information on using the DeleteResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteResourcePolicyRequest method.
+//    req, resp := client.DeleteResourcePolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DeleteResourcePolicy
+func (c *Comprehend) DeleteResourcePolicyRequest(input *DeleteResourcePolicyInput) (req *request.Request, output *DeleteResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteResourcePolicyInput{}
+	}
+
+	output = &DeleteResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteResourcePolicy API operation for Amazon Comprehend.
+//
+// Deletes a resource-based policy that is attached to a custom model.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation DeleteResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * ResourceNotFoundException
+//   The specified resource ARN was not found. Check the ARN and try your request
+//   again.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DeleteResourcePolicy
+func (c *Comprehend) DeleteResourcePolicy(input *DeleteResourcePolicyInput) (*DeleteResourcePolicyOutput, error) {
+	req, out := c.DeleteResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteResourcePolicyWithContext is the same as DeleteResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) DeleteResourcePolicyWithContext(ctx aws.Context, input *DeleteResourcePolicyInput, opts ...request.Option) (*DeleteResourcePolicyOutput, error) {
+	req, out := c.DeleteResourcePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeDocumentClassificationJob = "DescribeDocumentClassificationJob"
 
 // DescribeDocumentClassificationJobRequest generates a "aws/request.Request" representing the
@@ -2102,6 +2189,93 @@ func (c *Comprehend) DescribePiiEntitiesDetectionJobWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
+const opDescribeResourcePolicy = "DescribeResourcePolicy"
+
+// DescribeResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeResourcePolicy for more information on using the DescribeResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeResourcePolicyRequest method.
+//    req, resp := client.DescribeResourcePolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DescribeResourcePolicy
+func (c *Comprehend) DescribeResourcePolicyRequest(input *DescribeResourcePolicyInput) (req *request.Request, output *DescribeResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opDescribeResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeResourcePolicyInput{}
+	}
+
+	output = &DescribeResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeResourcePolicy API operation for Amazon Comprehend.
+//
+// Gets the details of a resource-based policy that is attached to a custom
+// model, including the JSON body of the policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation DescribeResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * ResourceNotFoundException
+//   The specified resource ARN was not found. Check the ARN and try your request
+//   again.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DescribeResourcePolicy
+func (c *Comprehend) DescribeResourcePolicy(input *DescribeResourcePolicyInput) (*DescribeResourcePolicyOutput, error) {
+	req, out := c.DescribeResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// DescribeResourcePolicyWithContext is the same as DescribeResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) DescribeResourcePolicyWithContext(ctx aws.Context, input *DescribeResourcePolicyInput, opts ...request.Option) (*DescribeResourcePolicyOutput, error) {
+	req, out := c.DescribeResourcePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeSentimentDetectionJob = "DescribeSentimentDetectionJob"
 
 // DescribeSentimentDetectionJobRequest generates a "aws/request.Request" representing the
@@ -2820,6 +2994,123 @@ func (c *Comprehend) DetectSyntax(input *DetectSyntaxInput) (*DetectSyntaxOutput
 // for more information on using Contexts.
 func (c *Comprehend) DetectSyntaxWithContext(ctx aws.Context, input *DetectSyntaxInput, opts ...request.Option) (*DetectSyntaxOutput, error) {
 	req, out := c.DetectSyntaxRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opImportModel = "ImportModel"
+
+// ImportModelRequest generates a "aws/request.Request" representing the
+// client's request for the ImportModel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ImportModel for more information on using the ImportModel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ImportModelRequest method.
+//    req, resp := client.ImportModelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ImportModel
+func (c *Comprehend) ImportModelRequest(input *ImportModelInput) (req *request.Request, output *ImportModelOutput) {
+	op := &request.Operation{
+		Name:       opImportModel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ImportModelInput{}
+	}
+
+	output = &ImportModelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ImportModel API operation for Amazon Comprehend.
+//
+// Creates a new custom model that replicates a source custom model that you
+// import. The source model can be in your AWS account or another one.
+//
+// If the source model is in another AWS account, then it must have a resource-based
+// policy that authorizes you to import it.
+//
+// The source model must be in the same AWS region that you're using when you
+// import. You can't import a model that's in a different region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation ImportModel for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * ResourceNotFoundException
+//   The specified resource ARN was not found. Check the ARN and try your request
+//   again.
+//
+//   * ResourceInUseException
+//   The specified resource name is already in use. Use a different name and try
+//   your request again.
+//
+//   * ResourceUnavailableException
+//   The specified resource is not available. Check the resource and try your
+//   request again.
+//
+//   * TooManyTagsException
+//   The request contains more tags than can be associated with a resource (50
+//   tags per resource). The maximum number of tags includes both existing tags
+//   and those included in your current request.
+//
+//   * TooManyRequestsException
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * ResourceLimitExceededException
+//   The maximum number of resources per account has been exceeded. Review the
+//   resources, and then try your request again.
+//
+//   * KmsKeyValidationException
+//   The KMS customer managed key (CMK) entered cannot be validated. Verify the
+//   key and re-enter it.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ImportModel
+func (c *Comprehend) ImportModel(input *ImportModelInput) (*ImportModelOutput, error) {
+	req, out := c.ImportModelRequest(input)
+	return out, req.Send()
+}
+
+// ImportModelWithContext is the same as ImportModel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ImportModel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ImportModelWithContext(ctx aws.Context, input *ImportModelInput, opts ...request.Option) (*ImportModelOutput, error) {
+	req, out := c.ImportModelRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4689,6 +4980,94 @@ func (c *Comprehend) ListTopicsDetectionJobsPagesWithContext(ctx aws.Context, in
 	}
 
 	return p.Err()
+}
+
+const opPutResourcePolicy = "PutResourcePolicy"
+
+// PutResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutResourcePolicy for more information on using the PutResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutResourcePolicyRequest method.
+//    req, resp := client.PutResourcePolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/PutResourcePolicy
+func (c *Comprehend) PutResourcePolicyRequest(input *PutResourcePolicyInput) (req *request.Request, output *PutResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutResourcePolicyInput{}
+	}
+
+	output = &PutResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutResourcePolicy API operation for Amazon Comprehend.
+//
+// Attaches a resource-based policy to a custom model. You can use this policy
+// to authorize an entity in another AWS account to import the custom model,
+// which replicates it in Amazon Comprehend in their account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation PutResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * ResourceNotFoundException
+//   The specified resource ARN was not found. Check the ARN and try your request
+//   again.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/PutResourcePolicy
+func (c *Comprehend) PutResourcePolicy(input *PutResourcePolicyInput) (*PutResourcePolicyOutput, error) {
+	req, out := c.PutResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutResourcePolicyWithContext is the same as PutResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) PutResourcePolicyWithContext(ctx aws.Context, input *PutResourcePolicyInput, opts ...request.Option) (*PutResourcePolicyOutput, error) {
+	req, out := c.PutResourcePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opStartDocumentClassificationJob = "StartDocumentClassificationJob"
@@ -8052,6 +8431,23 @@ type CreateDocumentClassifierInput struct {
 	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
 	ModelKmsKeyId *string `type:"string"`
 
+	// The resource-based policy to attach to your custom document classifier model.
+	// You can use this policy to allow another AWS account to import your custom
+	// model.
+	//
+	// Provide your policy as a JSON body that you enter as a UTF-8 encoded string
+	// without line breaks. To provide valid JSON, enclose the attribute names and
+	// values in double quotes. If the JSON body is also enclosed in double quotes,
+	// then you must escape the double quotes that are inside the policy:
+	//
+	// "{\"attribute\": \"value\", \"attribute\": [\"value\"]}"
+	//
+	// To avoid escaping quotes, you can use single quotes to enclose the policy
+	// and double quotes to enclose the JSON names and values:
+	//
+	// '{"attribute": "value", "attribute": ["value"]}'
+	ModelPolicy *string `min:"1" type:"string"`
+
 	// Enables the addition of output results configuration parameters for custom
 	// classifier jobs.
 	OutputDataConfig *DocumentClassifierOutputDataConfig `type:"structure"`
@@ -8123,6 +8519,9 @@ func (s *CreateDocumentClassifierInput) Validate() error {
 	if s.LanguageCode == nil {
 		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
 	}
+	if s.ModelPolicy != nil && len(*s.ModelPolicy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelPolicy", 1))
+	}
 	if s.InputDataConfig != nil {
 		if err := s.InputDataConfig.Validate(); err != nil {
 			invalidParams.AddNested("InputDataConfig", err.(request.ErrInvalidParams))
@@ -8189,6 +8588,12 @@ func (s *CreateDocumentClassifierInput) SetMode(v string) *CreateDocumentClassif
 // SetModelKmsKeyId sets the ModelKmsKeyId field's value.
 func (s *CreateDocumentClassifierInput) SetModelKmsKeyId(v string) *CreateDocumentClassifierInput {
 	s.ModelKmsKeyId = &v
+	return s
+}
+
+// SetModelPolicy sets the ModelPolicy field's value.
+func (s *CreateDocumentClassifierInput) SetModelPolicy(v string) *CreateDocumentClassifierInput {
+	s.ModelPolicy = &v
 	return s
 }
 
@@ -8449,6 +8854,23 @@ type CreateEntityRecognizerInput struct {
 	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
 	ModelKmsKeyId *string `type:"string"`
 
+	// The JSON resource-based policy to attach to your custom entity recognizer
+	// model. You can use this policy to allow another AWS account to import your
+	// custom model.
+	//
+	// Provide your JSON as a UTF-8 encoded string without line breaks. To provide
+	// valid JSON for your policy, enclose the attribute names and values in double
+	// quotes. If the JSON body is also enclosed in double quotes, then you must
+	// escape the double quotes that are inside the policy:
+	//
+	// "{\"attribute\": \"value\", \"attribute\": [\"value\"]}"
+	//
+	// To avoid escaping quotes, you can use single quotes to enclose the policy
+	// and double quotes to enclose the JSON names and values:
+	//
+	// '{"attribute": "value", "attribute": ["value"]}'
+	ModelPolicy *string `min:"1" type:"string"`
+
 	// The name given to the newly created recognizer. Recognizer names can be a
 	// maximum of 256 characters. Alphanumeric characters, hyphens (-) and underscores
 	// (_) are allowed. The name must be unique in the account/region.
@@ -8520,6 +8942,9 @@ func (s *CreateEntityRecognizerInput) Validate() error {
 	if s.LanguageCode == nil {
 		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
 	}
+	if s.ModelPolicy != nil && len(*s.ModelPolicy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelPolicy", 1))
+	}
 	if s.RecognizerName == nil {
 		invalidParams.Add(request.NewErrParamRequired("RecognizerName"))
 	}
@@ -8577,6 +9002,12 @@ func (s *CreateEntityRecognizerInput) SetLanguageCode(v string) *CreateEntityRec
 // SetModelKmsKeyId sets the ModelKmsKeyId field's value.
 func (s *CreateEntityRecognizerInput) SetModelKmsKeyId(v string) *CreateEntityRecognizerInput {
 	s.ModelKmsKeyId = &v
+	return s
+}
+
+// SetModelPolicy sets the ModelPolicy field's value.
+func (s *CreateEntityRecognizerInput) SetModelPolicy(v string) *CreateEntityRecognizerInput {
+	s.ModelPolicy = &v
 	return s
 }
 
@@ -8842,6 +9273,84 @@ func (s DeleteEntityRecognizerOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteEntityRecognizerOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The revision ID of the policy to delete.
+	PolicyRevisionId *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the custom model version that has the policy
+	// to delete.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteResourcePolicyInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPolicyRevisionId sets the PolicyRevisionId field's value.
+func (s *DeleteResourcePolicyInput) SetPolicyRevisionId(v string) *DeleteResourcePolicyInput {
+	s.PolicyRevisionId = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DeleteResourcePolicyInput) SetResourceArn(v string) *DeleteResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type DeleteResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyOutput) GoString() string {
 	return s.String()
 }
 
@@ -9564,6 +10073,111 @@ func (s DescribePiiEntitiesDetectionJobOutput) GoString() string {
 // SetPiiEntitiesDetectionJobProperties sets the PiiEntitiesDetectionJobProperties field's value.
 func (s *DescribePiiEntitiesDetectionJobOutput) SetPiiEntitiesDetectionJobProperties(v *PiiEntitiesDetectionJobProperties) *DescribePiiEntitiesDetectionJobOutput {
 	s.PiiEntitiesDetectionJobProperties = v
+	return s
+}
+
+type DescribeResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the policy to describe.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeResourcePolicyInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DescribeResourcePolicyInput) SetResourceArn(v string) *DescribeResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type DescribeResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which the policy was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The time at which the policy was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The revision ID of the policy. Each time you modify a policy, Amazon Comprehend
+	// assigns a new revision ID, and it deletes the prior version of the policy.
+	PolicyRevisionId *string `type:"string"`
+
+	// The JSON body of the resource-based policy.
+	ResourcePolicy *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeResourcePolicyOutput) SetCreationTime(v time.Time) *DescribeResourcePolicyOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DescribeResourcePolicyOutput) SetLastModifiedTime(v time.Time) *DescribeResourcePolicyOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetPolicyRevisionId sets the PolicyRevisionId field's value.
+func (s *DescribeResourcePolicyOutput) SetPolicyRevisionId(v string) *DescribeResourcePolicyOutput {
+	s.PolicyRevisionId = &v
+	return s
+}
+
+// SetResourcePolicy sets the ResourcePolicy field's value.
+func (s *DescribeResourcePolicyOutput) SetResourcePolicy(v string) *DescribeResourcePolicyOutput {
+	s.ResourcePolicy = &v
 	return s
 }
 
@@ -10937,6 +11551,11 @@ type DocumentClassifierProperties struct {
 	// Provides output results configuration parameters for custom classifier jobs.
 	OutputDataConfig *DocumentClassifierOutputDataConfig `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the source model. This model was imported
+	// from a different AWS account to create the document classifier model in your
+	// AWS account.
+	SourceModelArn *string `type:"string"`
+
 	// The status of the document classifier. If the status is TRAINED the classifier
 	// is ready to use. If the status is FAILED you can see additional information
 	// about why the classifier wasn't trained in the Message field.
@@ -11048,6 +11667,12 @@ func (s *DocumentClassifierProperties) SetModelKmsKeyId(v string) *DocumentClass
 // SetOutputDataConfig sets the OutputDataConfig field's value.
 func (s *DocumentClassifierProperties) SetOutputDataConfig(v *DocumentClassifierOutputDataConfig) *DocumentClassifierProperties {
 	s.OutputDataConfig = v
+	return s
+}
+
+// SetSourceModelArn sets the SourceModelArn field's value.
+func (s *DocumentClassifierProperties) SetSourceModelArn(v string) *DocumentClassifierProperties {
+	s.SourceModelArn = &v
 	return s
 }
 
@@ -12733,6 +13358,11 @@ type EntityRecognizerProperties struct {
 	// String and GoString methods.
 	RecognizerMetadata *EntityRecognizerMetadata `type:"structure" sensitive:"true"`
 
+	// The Amazon Resource Name (ARN) of the source model. This model was imported
+	// from a different AWS account to create the entity recognizer model in your
+	// AWS account.
+	SourceModelArn *string `type:"string"`
+
 	// Provides the status of the entity recognizer.
 	Status *string `type:"string" enum:"ModelStatus"`
 
@@ -12827,6 +13457,12 @@ func (s *EntityRecognizerProperties) SetModelKmsKeyId(v string) *EntityRecognize
 // SetRecognizerMetadata sets the RecognizerMetadata field's value.
 func (s *EntityRecognizerProperties) SetRecognizerMetadata(v *EntityRecognizerMetadata) *EntityRecognizerProperties {
 	s.RecognizerMetadata = v
+	return s
+}
+
+// SetSourceModelArn sets the SourceModelArn field's value.
+func (s *EntityRecognizerProperties) SetSourceModelArn(v string) *EntityRecognizerProperties {
+	s.SourceModelArn = &v
 	return s
 }
 
@@ -13267,6 +13903,156 @@ func (s *EventsDetectionJobProperties) SetSubmitTime(v time.Time) *EventsDetecti
 // SetTargetEventTypes sets the TargetEventTypes field's value.
 func (s *EventsDetectionJobProperties) SetTargetEventTypes(v []*string) *EventsDetectionJobProperties {
 	s.TargetEventTypes = v
+	return s
+}
+
+type ImportModelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role
+	// that allows Amazon Comprehend to use Amazon Key Management Service (KMS)
+	// to encrypt or decrypt the custom model.
+	DataAccessRoleArn *string `min:"20" type:"string"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt trained custom models. The ModelKmsKeyId can be either of the
+	// following formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	ModelKmsKeyId *string `type:"string"`
+
+	// The name to assign to the custom model that is created in Amazon Comprehend
+	// by this import.
+	ModelName *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the custom model to import.
+	//
+	// SourceModelArn is a required field
+	SourceModelArn *string `type:"string" required:"true"`
+
+	// Tags to be associated with the custom model that is created by this import.
+	// A tag is a key-value pair that adds as a metadata to a resource used by Amazon
+	// Comprehend. For example, a tag with "Sales" as the key might be added to
+	// a resource to indicate its use by the sales department.
+	Tags []*Tag `type:"list"`
+
+	// The version name given to the custom model that is created by this import.
+	// Version names can have a maximum of 256 characters. Alphanumeric characters,
+	// hyphens (-) and underscores (_) are allowed. The version name must be unique
+	// among all models with the same classifier name in the account/AWS Region.
+	VersionName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportModelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportModelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportModelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportModelInput"}
+	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 20))
+	}
+	if s.SourceModelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceModelArn"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *ImportModelInput) SetDataAccessRoleArn(v string) *ImportModelInput {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetModelKmsKeyId sets the ModelKmsKeyId field's value.
+func (s *ImportModelInput) SetModelKmsKeyId(v string) *ImportModelInput {
+	s.ModelKmsKeyId = &v
+	return s
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *ImportModelInput) SetModelName(v string) *ImportModelInput {
+	s.ModelName = &v
+	return s
+}
+
+// SetSourceModelArn sets the SourceModelArn field's value.
+func (s *ImportModelInput) SetSourceModelArn(v string) *ImportModelInput {
+	s.SourceModelArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ImportModelInput) SetTags(v []*Tag) *ImportModelInput {
+	s.Tags = v
+	return s
+}
+
+// SetVersionName sets the VersionName field's value.
+func (s *ImportModelInput) SetVersionName(v string) *ImportModelInput {
+	s.VersionName = &v
+	return s
+}
+
+type ImportModelOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the custom model being imported.
+	ModelArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportModelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportModelOutput) GoString() string {
+	return s.String()
+}
+
+// SetModelArn sets the ModelArn field's value.
+func (s *ImportModelOutput) SetModelArn(v string) *ImportModelOutput {
+	s.ModelArn = &v
 	return s
 }
 
@@ -15948,6 +16734,123 @@ func (s *PiiOutputDataConfig) SetKmsKeyId(v string) *PiiOutputDataConfig {
 // SetS3Uri sets the S3Uri field's value.
 func (s *PiiOutputDataConfig) SetS3Uri(v string) *PiiOutputDataConfig {
 	s.S3Uri = &v
+	return s
+}
+
+type PutResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The revision ID that Amazon Comprehend assigned to the policy that you are
+	// updating. If you are creating a new policy that has no prior version, don't
+	// use this parameter. Amazon Comprehend creates the revision ID for you.
+	PolicyRevisionId *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the custom model to attach the policy to.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+
+	// The JSON resource-based policy to attach to your custom model. Provide your
+	// JSON as a UTF-8 encoded string without line breaks. To provide valid JSON
+	// for your policy, enclose the attribute names and values in double quotes.
+	// If the JSON body is also enclosed in double quotes, then you must escape
+	// the double quotes that are inside the policy:
+	//
+	// "{\"attribute\": \"value\", \"attribute\": [\"value\"]}"
+	//
+	// To avoid escaping quotes, you can use single quotes to enclose the policy
+	// and double quotes to enclose the JSON names and values:
+	//
+	// '{"attribute": "value", "attribute": ["value"]}'
+	//
+	// ResourcePolicy is a required field
+	ResourcePolicy *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutResourcePolicyInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourcePolicy == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourcePolicy"))
+	}
+	if s.ResourcePolicy != nil && len(*s.ResourcePolicy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourcePolicy", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPolicyRevisionId sets the PolicyRevisionId field's value.
+func (s *PutResourcePolicyInput) SetPolicyRevisionId(v string) *PutResourcePolicyInput {
+	s.PolicyRevisionId = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *PutResourcePolicyInput) SetResourceArn(v string) *PutResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetResourcePolicy sets the ResourcePolicy field's value.
+func (s *PutResourcePolicyInput) SetResourcePolicy(v string) *PutResourcePolicyInput {
+	s.ResourcePolicy = &v
+	return s
+}
+
+type PutResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The revision ID of the policy. Each time you modify a policy, Amazon Comprehend
+	// assigns a new revision ID, and it deletes the prior version of the policy.
+	PolicyRevisionId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicyRevisionId sets the PolicyRevisionId field's value.
+func (s *PutResourcePolicyOutput) SetPolicyRevisionId(v string) *PutResourcePolicyOutput {
+	s.PolicyRevisionId = &v
 	return s
 }
 

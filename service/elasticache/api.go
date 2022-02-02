@@ -8871,7 +8871,7 @@ type CacheParameterGroup struct {
 	// is compatible with.
 	//
 	// Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 |
-	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.0 |
+	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x |
 	CacheParameterGroupFamily *string `type:"string"`
 
 	// The name of the cache parameter group.
@@ -9757,8 +9757,7 @@ type CreateCacheClusterInput struct {
 
 	// Specifies the weekly time range during which maintenance on the cluster is
 	// performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
-	// (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
-	// values for ddd are:
+	// (24H Clock UTC). The minimum maintenance window is a 60 minute period.
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// The outpost ARN in which the cache cluster is created.
@@ -10058,7 +10057,7 @@ type CreateCacheParameterGroupInput struct {
 	// can be used with.
 	//
 	// Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 |
-	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.0 | redis6.2
+	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x
 	//
 	// CacheParameterGroupFamily is a required field
 	CacheParameterGroupFamily *string `type:"string" required:"true"`

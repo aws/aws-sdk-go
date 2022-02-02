@@ -7,10 +7,12 @@
     "GetAction": "<p>Gets information about the specified FIS action.</p>",
     "GetExperiment": "<p>Gets information about the specified experiment.</p>",
     "GetExperimentTemplate": "<p>Gets information about the specified experiment template.</p>",
+    "GetTargetResourceType": "<p>Gets information about the specified resource type.</p>",
     "ListActions": "<p>Lists the available FIS actions.</p>",
     "ListExperimentTemplates": "<p>Lists your experiment templates.</p>",
     "ListExperiments": "<p>Lists your experiments.</p>",
     "ListTagsForResource": "<p>Lists the tags for the specified resource.</p>",
+    "ListTargetResourceTypes": "<p>Lists the target resource types.</p>",
     "StartExperiment": "<p>Starts running an experiment from the specified experiment template.</p>",
     "StopExperiment": "<p>Stops the specified experiment.</p>",
     "TagResource": "<p>Applies the specified tags to the specified resource.</p>",
@@ -407,6 +409,24 @@
         "ExperimentTargetMap$key": null
       }
     },
+    "ExperimentTargetParameterMap": {
+      "base": null,
+      "refs": {
+        "ExperimentTarget$parameters": "<p>The resource type parameters.</p>"
+      }
+    },
+    "ExperimentTargetParameterName": {
+      "base": null,
+      "refs": {
+        "ExperimentTargetParameterMap$key": null
+      }
+    },
+    "ExperimentTargetParameterValue": {
+      "base": null,
+      "refs": {
+        "ExperimentTargetParameterMap$value": null
+      }
+    },
     "ExperimentTargetSelectionMode": {
       "base": null,
       "refs": {
@@ -610,6 +630,26 @@
         "UpdateExperimentTemplateTargetInputMap$key": null
       }
     },
+    "ExperimentTemplateTargetParameterMap": {
+      "base": null,
+      "refs": {
+        "CreateExperimentTemplateTargetInput$parameters": "<p>The resource type parameters.</p>",
+        "ExperimentTemplateTarget$parameters": "<p>The resource type parameters.</p>",
+        "UpdateExperimentTemplateTargetInput$parameters": "<p>The resource type parameters.</p>"
+      }
+    },
+    "ExperimentTemplateTargetParameterName": {
+      "base": null,
+      "refs": {
+        "ExperimentTemplateTargetParameterMap$key": null
+      }
+    },
+    "ExperimentTemplateTargetParameterValue": {
+      "base": null,
+      "refs": {
+        "ExperimentTemplateTargetParameterMap$value": null
+      }
+    },
     "ExperimentTemplateTargetSelectionMode": {
       "base": null,
       "refs": {
@@ -644,6 +684,16 @@
       }
     },
     "GetExperimentTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTargetResourceTypeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTargetResourceTypeResponse": {
       "base": null,
       "refs": {
       }
@@ -713,6 +763,22 @@
       "refs": {
       }
     },
+    "ListTargetResourceTypesMaxResults": {
+      "base": null,
+      "refs": {
+        "ListTargetResourceTypesRequest$maxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
+      }
+    },
+    "ListTargetResourceTypesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTargetResourceTypesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "NextToken": {
       "base": null,
       "refs": {
@@ -721,7 +787,9 @@
         "ListExperimentTemplatesRequest$nextToken": "<p>The token for the next page of results.</p>",
         "ListExperimentTemplatesResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "ListExperimentsRequest$nextToken": "<p>The token for the next page of results.</p>",
-        "ListExperimentsResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>"
+        "ListExperimentsResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "ListTargetResourceTypesRequest$nextToken": "<p>The token for the next page of results.</p>",
+        "ListTargetResourceTypesResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>"
       }
     },
     "ResourceArn": {
@@ -745,15 +813,6 @@
     "ResourceNotFoundException": {
       "base": "<p>The specified resource cannot be found.</p>",
       "refs": {
-      }
-    },
-    "ResourceType": {
-      "base": null,
-      "refs": {
-        "CreateExperimentTemplateTargetInput$resourceType": "<p>The Amazon Web Services resource type. The resource type must be supported for the specified action.</p>",
-        "ExperimentTarget$resourceType": "<p>The resource type.</p>",
-        "ExperimentTemplateTarget$resourceType": "<p>The resource type.</p>",
-        "UpdateExperimentTemplateTargetInput$resourceType": "<p>The Amazon Web Services resource type. The resource type must be supported for the specified action.</p>"
       }
     },
     "RoleArn": {
@@ -857,9 +916,71 @@
       }
     },
     "TargetResourceType": {
+      "base": "<p>Describes a resource type.</p>",
+      "refs": {
+        "GetTargetResourceTypeResponse$targetResourceType": "<p>Information about the resource type.</p>"
+      }
+    },
+    "TargetResourceTypeDescription": {
       "base": null,
       "refs": {
-        "ActionTarget$resourceType": "<p>The resource type of the target.</p>"
+        "TargetResourceType$description": "<p>A description of the resource type.</p>",
+        "TargetResourceTypeSummary$description": "<p>A description of the resource type.</p>"
+      }
+    },
+    "TargetResourceTypeId": {
+      "base": null,
+      "refs": {
+        "ActionTarget$resourceType": "<p>The resource type of the target.</p>",
+        "CreateExperimentTemplateTargetInput$resourceType": "<p>The resource type. The resource type must be supported for the specified action.</p>",
+        "ExperimentTarget$resourceType": "<p>The resource type.</p>",
+        "ExperimentTemplateTarget$resourceType": "<p>The resource type.</p>",
+        "GetTargetResourceTypeRequest$resourceType": "<p>The resource type.</p>",
+        "TargetResourceType$resourceType": "<p>The resource type.</p>",
+        "TargetResourceTypeSummary$resourceType": "<p>The resource type.</p>",
+        "UpdateExperimentTemplateTargetInput$resourceType": "<p>The resource type. The resource type must be supported for the specified action.</p>"
+      }
+    },
+    "TargetResourceTypeParameter": {
+      "base": "<p>Describes the parameters for a resource type. Use parameters to determine which tasks are identified during target resolution.</p>",
+      "refs": {
+        "TargetResourceTypeParameterMap$value": null
+      }
+    },
+    "TargetResourceTypeParameterDescription": {
+      "base": null,
+      "refs": {
+        "TargetResourceTypeParameter$description": "<p>A description of the parameter.</p>"
+      }
+    },
+    "TargetResourceTypeParameterMap": {
+      "base": null,
+      "refs": {
+        "TargetResourceType$parameters": "<p>The parameters for the resource type.</p>"
+      }
+    },
+    "TargetResourceTypeParameterName": {
+      "base": null,
+      "refs": {
+        "TargetResourceTypeParameterMap$key": null
+      }
+    },
+    "TargetResourceTypeParameterRequired": {
+      "base": null,
+      "refs": {
+        "TargetResourceTypeParameter$required": "<p>Indicates whether the parameter is required.</p>"
+      }
+    },
+    "TargetResourceTypeSummary": {
+      "base": "<p>Describes a resource type.</p>",
+      "refs": {
+        "TargetResourceTypeSummaryList$member": null
+      }
+    },
+    "TargetResourceTypeSummaryList": {
+      "base": null,
+      "refs": {
+        "ListTargetResourceTypesResponse$targetResourceTypes": "<p>The target resource types.</p>"
       }
     },
     "UntagResourceRequest": {

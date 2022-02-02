@@ -74,6 +74,20 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DescribeConnector":{
+      "name":"DescribeConnector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/describe-connector"
+      },
+      "input":{"shape":"DescribeConnectorRequest"},
+      "output":{"shape":"DescribeConnectorResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DescribeConnectorEntity":{
       "name":"DescribeConnectorEntity",
       "http":{
@@ -159,6 +173,19 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListConnectors":{
+      "name":"ListConnectors",
+      "http":{
+        "method":"POST",
+        "requestUri":"/list-connectors"
+      },
+      "input":{"shape":"ListConnectorsRequest"},
+      "output":{"shape":"ListConnectorsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListFlows":{
       "name":"ListFlows",
       "http":{
@@ -184,6 +211,26 @@
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "RegisterConnector":{
+      "name":"RegisterConnector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/register-connector"
+      },
+      "input":{"shape":"RegisterConnectorRequest"},
+      "output":{"shape":"RegisterConnectorResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ConnectorServerException"},
+        {"shape":"ConnectorAuthenticationException"}
       ]
     },
     "StartFlow":{
@@ -228,6 +275,20 @@
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "UnregisterConnector":{
+      "name":"UnregisterConnector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/unregister-connector"
+      },
+      "input":{"shape":"UnregisterConnectorRequest"},
+      "output":{"shape":"UnregisterConnectorResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "UntagResource":{
@@ -285,6 +346,14 @@
       "max":512,
       "pattern":"arn:aws:.*:.*:[0-9]+:.*"
     },
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":403},
+      "exception":true
+    },
     "AccessKeyId":{
       "type":"string",
       "max":256,
@@ -293,7 +362,7 @@
     },
     "AccessToken":{
       "type":"string",
-      "max":512,
+      "max":2048,
       "pattern":"\\S+",
       "sensitive":true
     },
@@ -350,7 +419,16 @@
     "ApiKey":{
       "type":"string",
       "max":256,
-      "pattern":"\\S+"
+      "pattern":"\\S+",
+      "sensitive":true
+    },
+    "ApiKeyCredentials":{
+      "type":"structure",
+      "required":["apiKey"],
+      "members":{
+        "apiKey":{"shape":"ApiKey"},
+        "apiSecretKey":{"shape":"ApiSecretKey"}
+      }
     },
     "ApiSecretKey":{
       "type":"string",
@@ -359,6 +437,11 @@
       "sensitive":true
     },
     "ApiToken":{
+      "type":"string",
+      "max":256,
+      "pattern":"\\S+"
+    },
+    "ApiVersion":{
       "type":"string",
       "max":256,
       "pattern":"\\S+"
@@ -378,6 +461,11 @@
       "max":512,
       "pattern":"\\S+"
     },
+    "ApplicationType":{
+      "type":"string",
+      "max":512,
+      "pattern":"\\S+"
+    },
     "AuthCode":{
       "type":"string",
       "max":512,
@@ -387,6 +475,45 @@
       "type":"string",
       "max":256,
       "pattern":"^(https?)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]"
+    },
+    "AuthCodeUrlList":{
+      "type":"list",
+      "member":{"shape":"AuthCodeUrl"}
+    },
+    "AuthParameter":{
+      "type":"structure",
+      "members":{
+        "key":{"shape":"Key"},
+        "isRequired":{"shape":"Boolean"},
+        "label":{"shape":"Label"},
+        "description":{"shape":"Description"},
+        "isSensitiveField":{"shape":"Boolean"},
+        "connectorSuppliedValues":{"shape":"ConnectorSuppliedValueList"}
+      }
+    },
+    "AuthParameterList":{
+      "type":"list",
+      "member":{"shape":"AuthParameter"}
+    },
+    "AuthenticationConfig":{
+      "type":"structure",
+      "members":{
+        "isBasicAuthSupported":{"shape":"Boolean"},
+        "isApiKeyAuthSupported":{"shape":"Boolean"},
+        "isOAuth2Supported":{"shape":"Boolean"},
+        "isCustomAuthSupported":{"shape":"Boolean"},
+        "oAuth2Defaults":{"shape":"OAuth2Defaults"},
+        "customAuthConfigs":{"shape":"CustomAuthConfigList"}
+      }
+    },
+    "AuthenticationType":{
+      "type":"string",
+      "enum":[
+        "OAUTH2",
+        "APIKEY",
+        "BASIC",
+        "CUSTOM"
+      ]
     },
     "BasicAuthCredentials":{
       "type":"structure",
@@ -468,13 +595,52 @@
         "isPrivateLinkEnabled":{"shape":"Boolean"},
         "isPrivateLinkEndpointUrlRequired":{"shape":"Boolean"},
         "supportedTriggerTypes":{"shape":"TriggerTypeList"},
-        "connectorMetadata":{"shape":"ConnectorMetadata"}
+        "connectorMetadata":{"shape":"ConnectorMetadata"},
+        "connectorType":{"shape":"ConnectorType"},
+        "connectorLabel":{"shape":"ConnectorLabel"},
+        "connectorDescription":{"shape":"ConnectorDescription"},
+        "connectorOwner":{"shape":"ConnectorOwner"},
+        "connectorName":{"shape":"ConnectorName"},
+        "connectorVersion":{"shape":"ConnectorVersion"},
+        "connectorArn":{"shape":"ARN"},
+        "connectorModes":{"shape":"ConnectorModeList"},
+        "authenticationConfig":{"shape":"AuthenticationConfig"},
+        "connectorRuntimeSettings":{"shape":"ConnectorRuntimeSettingList"},
+        "supportedApiVersions":{"shape":"SupportedApiVersionList"},
+        "supportedOperators":{"shape":"SupportedOperatorList"},
+        "supportedWriteOperations":{"shape":"SupportedWriteOperationList"},
+        "connectorProvisioningType":{"shape":"ConnectorProvisioningType"},
+        "connectorProvisioningConfig":{"shape":"ConnectorProvisioningConfig"},
+        "logoURL":{"shape":"LogoURL"},
+        "registeredAt":{"shape":"Date"},
+        "registeredBy":{"shape":"RegisteredBy"}
       }
     },
     "ConnectorConfigurationsMap":{
       "type":"map",
       "key":{"shape":"ConnectorType"},
       "value":{"shape":"ConnectorConfiguration"}
+    },
+    "ConnectorDescription":{
+      "type":"string",
+      "max":2048,
+      "pattern":"[\\w!@#\\-.?,\\s]*"
+    },
+    "ConnectorDetail":{
+      "type":"structure",
+      "members":{
+        "connectorDescription":{"shape":"ConnectorDescription"},
+        "connectorName":{"shape":"ConnectorName"},
+        "connectorOwner":{"shape":"ConnectorOwner"},
+        "connectorVersion":{"shape":"ConnectorVersion"},
+        "applicationType":{"shape":"ApplicationType"},
+        "connectorType":{"shape":"ConnectorType"},
+        "connectorLabel":{"shape":"ConnectorLabel"},
+        "registeredAt":{"shape":"Date"},
+        "registeredBy":{"shape":"RegisteredBy"},
+        "connectorProvisioningType":{"shape":"ConnectorProvisioningType"},
+        "connectorModes":{"shape":"ConnectorModeList"}
+      }
     },
     "ConnectorEntity":{
       "type":"structure",
@@ -490,11 +656,16 @@
       "required":["identifier"],
       "members":{
         "identifier":{"shape":"Identifier"},
+        "parentIdentifier":{"shape":"Identifier"},
         "label":{"shape":"Label"},
+        "isPrimaryKey":{"shape":"Boolean"},
+        "defaultValue":{"shape":"String"},
+        "isDeprecated":{"shape":"Boolean"},
         "supportedFieldTypeDetails":{"shape":"SupportedFieldTypeDetails"},
         "description":{"shape":"Description"},
         "sourceProperties":{"shape":"SourceFieldProperties"},
-        "destinationProperties":{"shape":"DestinationFieldProperties"}
+        "destinationProperties":{"shape":"DestinationFieldProperties"},
+        "customProperties":{"shape":"CustomProperties"}
       }
     },
     "ConnectorEntityFieldList":{
@@ -509,6 +680,15 @@
       "type":"map",
       "key":{"shape":"Group"},
       "value":{"shape":"ConnectorEntityList"}
+    },
+    "ConnectorLabel":{
+      "type":"string",
+      "max":256,
+      "pattern":"[a-zA-Z0-9][\\w!@#.-]+"
+    },
+    "ConnectorList":{
+      "type":"list",
+      "member":{"shape":"ConnectorDetail"}
     },
     "ConnectorMetadata":{
       "type":"structure",
@@ -536,6 +716,20 @@
         "SAPOData":{"shape":"SAPODataMetadata"}
       }
     },
+    "ConnectorMode":{
+      "type":"string",
+      "max":256,
+      "pattern":"\\S+"
+    },
+    "ConnectorModeList":{
+      "type":"list",
+      "member":{"shape":"ConnectorMode"}
+    },
+    "ConnectorName":{
+      "type":"string",
+      "max":256,
+      "pattern":".*"
+    },
     "ConnectorOAuthRequest":{
       "type":"structure",
       "members":{
@@ -560,8 +754,14 @@
         "Trendmicro":{"shape":"TrendmicroConnectorOperator"},
         "Veeva":{"shape":"VeevaConnectorOperator"},
         "Zendesk":{"shape":"ZendeskConnectorOperator"},
-        "SAPOData":{"shape":"SAPODataConnectorOperator"}
+        "SAPOData":{"shape":"SAPODataConnectorOperator"},
+        "CustomConnector":{"shape":"Operator"}
       }
+    },
+    "ConnectorOwner":{
+      "type":"string",
+      "max":256,
+      "pattern":".*"
     },
     "ConnectorProfile":{
       "type":"structure",
@@ -569,6 +769,7 @@
         "connectorProfileArn":{"shape":"ConnectorProfileArn"},
         "connectorProfileName":{"shape":"ConnectorProfileName"},
         "connectorType":{"shape":"ConnectorType"},
+        "connectorLabel":{"shape":"ConnectorLabel"},
         "connectionMode":{"shape":"ConnectionMode"},
         "credentialsArn":{"shape":"ARN"},
         "connectorProfileProperties":{"shape":"ConnectorProfileProperties"},
@@ -580,7 +781,7 @@
     "ConnectorProfileArn":{
       "type":"string",
       "max":512,
-      "pattern":"arn:aws:kms:.*:[0-9]+:.*"
+      "pattern":"arn:aws:appflow:.*:[0-9]+:.*"
     },
     "ConnectorProfileConfig":{
       "type":"structure",
@@ -612,7 +813,8 @@
         "Trendmicro":{"shape":"TrendmicroConnectorProfileCredentials"},
         "Veeva":{"shape":"VeevaConnectorProfileCredentials"},
         "Zendesk":{"shape":"ZendeskConnectorProfileCredentials"},
-        "SAPOData":{"shape":"SAPODataConnectorProfileCredentials"}
+        "SAPOData":{"shape":"SAPODataConnectorProfileCredentials"},
+        "CustomConnector":{"shape":"CustomConnectorProfileCredentials"}
       }
     },
     "ConnectorProfileDetailList":{
@@ -649,8 +851,45 @@
         "Trendmicro":{"shape":"TrendmicroConnectorProfileProperties"},
         "Veeva":{"shape":"VeevaConnectorProfileProperties"},
         "Zendesk":{"shape":"ZendeskConnectorProfileProperties"},
-        "SAPOData":{"shape":"SAPODataConnectorProfileProperties"}
+        "SAPOData":{"shape":"SAPODataConnectorProfileProperties"},
+        "CustomConnector":{"shape":"CustomConnectorProfileProperties"}
       }
+    },
+    "ConnectorProvisioningConfig":{
+      "type":"structure",
+      "members":{
+        "lambda":{"shape":"LambdaConnectorProvisioningConfig"}
+      }
+    },
+    "ConnectorProvisioningType":{
+      "type":"string",
+      "enum":["LAMBDA"]
+    },
+    "ConnectorRuntimeSetting":{
+      "type":"structure",
+      "members":{
+        "key":{"shape":"Key"},
+        "dataType":{"shape":"ConnectorRuntimeSettingDataType"},
+        "isRequired":{"shape":"Boolean"},
+        "label":{"shape":"Label"},
+        "description":{"shape":"Description"},
+        "scope":{"shape":"ConnectorRuntimeSettingScope"},
+        "connectorSuppliedValueOptions":{"shape":"ConnectorSuppliedValueOptionList"}
+      }
+    },
+    "ConnectorRuntimeSettingDataType":{
+      "type":"string",
+      "max":256,
+      "pattern":"\\S+"
+    },
+    "ConnectorRuntimeSettingList":{
+      "type":"list",
+      "member":{"shape":"ConnectorRuntimeSetting"}
+    },
+    "ConnectorRuntimeSettingScope":{
+      "type":"string",
+      "max":256,
+      "pattern":"\\S+"
     },
     "ConnectorServerException":{
       "type":"structure",
@@ -659,6 +898,19 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "ConnectorSuppliedValue":{
+      "type":"string",
+      "max":256,
+      "pattern":"\\S+"
+    },
+    "ConnectorSuppliedValueList":{
+      "type":"list",
+      "member":{"shape":"ConnectorSuppliedValue"}
+    },
+    "ConnectorSuppliedValueOptionList":{
+      "type":"list",
+      "member":{"shape":"ConnectorSuppliedValue"}
     },
     "ConnectorType":{
       "type":"string",
@@ -684,7 +936,8 @@
         "Upsolver",
         "Honeycode",
         "CustomerProfiles",
-        "SAPOData"
+        "SAPOData",
+        "CustomConnector"
       ]
     },
     "ConnectorTypeList":{
@@ -692,6 +945,11 @@
       "member":{"shape":"ConnectorType"},
       "max":100,
       "min":0
+    },
+    "ConnectorVersion":{
+      "type":"string",
+      "max":256,
+      "pattern":"\\S+"
     },
     "CreateConnectorProfileRequest":{
       "type":"structure",
@@ -705,6 +963,7 @@
         "connectorProfileName":{"shape":"ConnectorProfileName"},
         "kmsArn":{"shape":"KMSArn"},
         "connectorType":{"shape":"ConnectorType"},
+        "connectorLabel":{"shape":"ConnectorLabel"},
         "connectionMode":{"shape":"ConnectionMode"},
         "connectorProfileConfig":{"shape":"ConnectorProfileConfig"}
       }
@@ -745,6 +1004,105 @@
     "CreatedBy":{
       "type":"string",
       "max":256,
+      "pattern":"\\S+"
+    },
+    "CredentialsMap":{
+      "type":"map",
+      "key":{"shape":"CredentialsMapKey"},
+      "value":{"shape":"CredentialsMapValue"},
+      "max":50,
+      "min":0
+    },
+    "CredentialsMapKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\w]+",
+      "sensitive":true
+    },
+    "CredentialsMapValue":{
+      "type":"string",
+      "max":2048,
+      "pattern":"\\S+",
+      "sensitive":true
+    },
+    "CustomAuthConfig":{
+      "type":"structure",
+      "members":{
+        "customAuthenticationType":{"shape":"CustomAuthenticationType"},
+        "authParameters":{"shape":"AuthParameterList"}
+      }
+    },
+    "CustomAuthConfigList":{
+      "type":"list",
+      "member":{"shape":"CustomAuthConfig"}
+    },
+    "CustomAuthCredentials":{
+      "type":"structure",
+      "required":["customAuthenticationType"],
+      "members":{
+        "customAuthenticationType":{"shape":"CustomAuthenticationType"},
+        "credentialsMap":{"shape":"CredentialsMap"}
+      }
+    },
+    "CustomAuthenticationType":{
+      "type":"string",
+      "max":256,
+      "pattern":"\\S+"
+    },
+    "CustomConnectorDestinationProperties":{
+      "type":"structure",
+      "required":["entityName"],
+      "members":{
+        "entityName":{"shape":"EntityName"},
+        "errorHandlingConfig":{"shape":"ErrorHandlingConfig"},
+        "writeOperationType":{"shape":"WriteOperationType"},
+        "idFieldNames":{"shape":"IdFieldNameList"},
+        "customProperties":{"shape":"CustomProperties"}
+      }
+    },
+    "CustomConnectorProfileCredentials":{
+      "type":"structure",
+      "required":["authenticationType"],
+      "members":{
+        "authenticationType":{"shape":"AuthenticationType"},
+        "basic":{"shape":"BasicAuthCredentials"},
+        "oauth2":{"shape":"OAuth2Credentials"},
+        "apiKey":{"shape":"ApiKeyCredentials"},
+        "custom":{"shape":"CustomAuthCredentials"}
+      }
+    },
+    "CustomConnectorProfileProperties":{
+      "type":"structure",
+      "members":{
+        "profileProperties":{"shape":"ProfilePropertiesMap"},
+        "oAuth2Properties":{"shape":"OAuth2Properties"}
+      }
+    },
+    "CustomConnectorSourceProperties":{
+      "type":"structure",
+      "required":["entityName"],
+      "members":{
+        "entityName":{"shape":"EntityName"},
+        "customProperties":{"shape":"CustomProperties"}
+      }
+    },
+    "CustomProperties":{
+      "type":"map",
+      "key":{"shape":"CustomPropertyKey"},
+      "value":{"shape":"CustomPropertyValue"},
+      "max":50,
+      "min":0
+    },
+    "CustomPropertyKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\w]+"
+    },
+    "CustomPropertyValue":{
+      "type":"string",
+      "max":2048,
       "pattern":"\\S+"
     },
     "CustomerProfilesDestinationProperties":{
@@ -858,9 +1216,10 @@
       "type":"structure",
       "required":["connectorEntityName"],
       "members":{
-        "connectorEntityName":{"shape":"Name"},
+        "connectorEntityName":{"shape":"EntityName"},
         "connectorType":{"shape":"ConnectorType"},
-        "connectorProfileName":{"shape":"ConnectorProfileName"}
+        "connectorProfileName":{"shape":"ConnectorProfileName"},
+        "apiVersion":{"shape":"ApiVersion"}
       }
     },
     "DescribeConnectorEntityResponse":{
@@ -875,6 +1234,7 @@
       "members":{
         "connectorProfileNames":{"shape":"ConnectorProfileNameList"},
         "connectorType":{"shape":"ConnectorType"},
+        "connectorLabel":{"shape":"ConnectorLabel"},
         "maxResults":{"shape":"MaxResults"},
         "nextToken":{"shape":"NextToken"}
       }
@@ -886,10 +1246,25 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "DescribeConnectorRequest":{
+      "type":"structure",
+      "required":["connectorType"],
+      "members":{
+        "connectorType":{"shape":"ConnectorType"},
+        "connectorLabel":{"shape":"ConnectorLabel"}
+      }
+    },
+    "DescribeConnectorResponse":{
+      "type":"structure",
+      "members":{
+        "connectorConfiguration":{"shape":"ConnectorConfiguration"}
+      }
+    },
     "DescribeConnectorsRequest":{
       "type":"structure",
       "members":{
         "connectorTypes":{"shape":"ConnectorTypeList"},
+        "maxResults":{"shape":"MaxResults"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -897,6 +1272,7 @@
       "type":"structure",
       "members":{
         "connectorConfigurations":{"shape":"ConnectorConfigurationsMap"},
+        "connectors":{"shape":"ConnectorList"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -961,7 +1337,8 @@
         "Upsolver":{"shape":"UpsolverDestinationProperties"},
         "Honeycode":{"shape":"HoneycodeDestinationProperties"},
         "CustomerProfiles":{"shape":"CustomerProfilesDestinationProperties"},
-        "Zendesk":{"shape":"ZendeskDestinationProperties"}
+        "Zendesk":{"shape":"ZendeskDestinationProperties"},
+        "CustomConnector":{"shape":"CustomConnectorDestinationProperties"}
       }
     },
     "DestinationField":{
@@ -976,6 +1353,7 @@
         "isNullable":{"shape":"Boolean"},
         "isUpsertable":{"shape":"Boolean"},
         "isUpdatable":{"shape":"Boolean"},
+        "isDefaultedOnCreate":{"shape":"Boolean"},
         "supportedWriteOperations":{"shape":"SupportedWriteOperationList"}
       }
     },
@@ -987,6 +1365,7 @@
       ],
       "members":{
         "connectorType":{"shape":"ConnectorType"},
+        "apiVersion":{"shape":"ApiVersion"},
         "connectorProfileName":{"shape":"ConnectorProfileName"},
         "destinationConnectorProperties":{"shape":"DestinationConnectorProperties"}
       }
@@ -1005,6 +1384,7 @@
       "max":64,
       "pattern":"\\S+"
     },
+    "Double":{"type":"double"},
     "DynatraceConnectorOperator":{
       "type":"string",
       "enum":[
@@ -1055,6 +1435,11 @@
       "type":"string",
       "max":256,
       "pattern":"[\\s\\w/!@#+=.-]*"
+    },
+    "EntityName":{
+      "type":"string",
+      "max":1024,
+      "pattern":"\\S+"
     },
     "ErrorHandlingConfig":{
       "type":"structure",
@@ -1146,7 +1531,11 @@
       "members":{
         "fieldType":{"shape":"FieldType"},
         "filterOperators":{"shape":"FilterOperatorList"},
-        "supportedValues":{"shape":"SupportedValueList"}
+        "supportedValues":{"shape":"SupportedValueList"},
+        "valueRegexPattern":{"shape":"String"},
+        "supportedDateFormat":{"shape":"String"},
+        "fieldValueRange":{"shape":"Range"},
+        "fieldLengthRange":{"shape":"Range"}
       }
     },
     "FileType":{
@@ -1174,7 +1563,9 @@
         "flowName":{"shape":"FlowName"},
         "flowStatus":{"shape":"FlowStatus"},
         "sourceConnectorType":{"shape":"ConnectorType"},
+        "sourceConnectorLabel":{"shape":"ConnectorLabel"},
         "destinationConnectorType":{"shape":"ConnectorType"},
+        "destinationConnectorLabel":{"shape":"ConnectorLabel"},
         "triggerType":{"shape":"TriggerType"},
         "createdAt":{"shape":"Date"},
         "lastUpdatedAt":{"shape":"Date"},
@@ -1292,7 +1683,6 @@
     "IdFieldNameList":{
       "type":"list",
       "member":{"shape":"Name"},
-      "max":1,
       "min":0
     },
     "Identifier":{
@@ -1389,12 +1779,20 @@
       "max":128,
       "pattern":".*"
     },
+    "LambdaConnectorProvisioningConfig":{
+      "type":"structure",
+      "required":["lambdaArn"],
+      "members":{
+        "lambdaArn":{"shape":"ARN"}
+      }
+    },
     "ListConnectorEntitiesRequest":{
       "type":"structure",
       "members":{
         "connectorProfileName":{"shape":"ConnectorProfileName"},
         "connectorType":{"shape":"ConnectorType"},
-        "entitiesPath":{"shape":"EntitiesPath"}
+        "entitiesPath":{"shape":"EntitiesPath"},
+        "apiVersion":{"shape":"ApiVersion"}
       }
     },
     "ListConnectorEntitiesResponse":{
@@ -1402,6 +1800,20 @@
       "required":["connectorEntityMap"],
       "members":{
         "connectorEntityMap":{"shape":"ConnectorEntityMap"}
+      }
+    },
+    "ListConnectorsRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListConnectorsResponse":{
+      "type":"structure",
+      "members":{
+        "connectors":{"shape":"ConnectorList"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListFlowsRequest":{
@@ -1434,6 +1846,11 @@
       "members":{
         "tags":{"shape":"TagMap"}
       }
+    },
+    "LogoURL":{
+      "type":"string",
+      "max":256,
+      "pattern":"^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]"
     },
     "LogonLanguage":{
       "type":"string",
@@ -1519,6 +1936,47 @@
       "max":2048,
       "pattern":"\\S+"
     },
+    "OAuth2Credentials":{
+      "type":"structure",
+      "members":{
+        "clientId":{"shape":"ClientId"},
+        "clientSecret":{"shape":"ClientSecret"},
+        "accessToken":{"shape":"AccessToken"},
+        "refreshToken":{"shape":"RefreshToken"},
+        "oAuthRequest":{"shape":"ConnectorOAuthRequest"}
+      }
+    },
+    "OAuth2Defaults":{
+      "type":"structure",
+      "members":{
+        "oauthScopes":{"shape":"OAuthScopeList"},
+        "tokenUrls":{"shape":"TokenUrlList"},
+        "authCodeUrls":{"shape":"AuthCodeUrlList"},
+        "oauth2GrantTypesSupported":{"shape":"OAuth2GrantTypeSupportedList"}
+      }
+    },
+    "OAuth2GrantType":{
+      "type":"string",
+      "enum":[
+        "CLIENT_CREDENTIALS",
+        "AUTHORIZATION_CODE"
+      ]
+    },
+    "OAuth2GrantTypeSupportedList":{
+      "type":"list",
+      "member":{"shape":"OAuth2GrantType"}
+    },
+    "OAuth2Properties":{
+      "type":"structure",
+      "required":[
+        "tokenUrl",
+        "oAuth2GrantType"
+      ],
+      "members":{
+        "tokenUrl":{"shape":"TokenUrl"},
+        "oAuth2GrantType":{"shape":"OAuth2GrantType"}
+      }
+    },
     "OAuthCredentials":{
       "type":"structure",
       "required":[
@@ -1549,7 +2007,7 @@
     "OAuthScope":{
       "type":"string",
       "max":128,
-      "pattern":"[/\\w]*"
+      "pattern":"\\S+"
     },
     "OAuthScopeList":{
       "type":"list",
@@ -1609,6 +2067,32 @@
         "CONCAT_FORMAT",
         "SUBFIELD_CATEGORY_MAP",
         "EXCLUDE_SOURCE_FIELDS_LIST"
+      ]
+    },
+    "Operators":{
+      "type":"string",
+      "enum":[
+        "PROJECTION",
+        "LESS_THAN",
+        "GREATER_THAN",
+        "CONTAINS",
+        "BETWEEN",
+        "LESS_THAN_OR_EQUAL_TO",
+        "GREATER_THAN_OR_EQUAL_TO",
+        "EQUAL_TO",
+        "NOT_EQUAL_TO",
+        "ADDITION",
+        "MULTIPLICATION",
+        "DIVISION",
+        "SUBTRACTION",
+        "MASK_ALL",
+        "MASK_FIRST_N",
+        "MASK_LAST_N",
+        "VALIDATE_NON_NULL",
+        "VALIDATE_NON_ZERO",
+        "VALIDATE_NON_NEGATIVE",
+        "VALIDATE_NUMERIC",
+        "NO_OP"
       ]
     },
     "Password":{
@@ -1683,10 +2167,35 @@
       "max":512,
       "pattern":"^$|com.amazonaws.vpce.[\\w/!:@#.\\-]+"
     },
+    "ProfilePropertiesMap":{
+      "type":"map",
+      "key":{"shape":"ProfilePropertyKey"},
+      "value":{"shape":"ProfilePropertyValue"},
+      "max":50,
+      "min":0
+    },
+    "ProfilePropertyKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\w]+"
+    },
+    "ProfilePropertyValue":{
+      "type":"string",
+      "max":2048,
+      "pattern":"\\S+"
+    },
     "Property":{
       "type":"string",
       "max":2048,
       "pattern":".+"
+    },
+    "Range":{
+      "type":"structure",
+      "members":{
+        "maximum":{"shape":"Double"},
+        "minimum":{"shape":"Double"}
+      }
     },
     "RedirectUri":{
       "type":"string",
@@ -1738,7 +2247,7 @@
     },
     "RefreshToken":{
       "type":"string",
-      "max":512,
+      "max":1024,
       "pattern":"\\S+"
     },
     "Region":{
@@ -1749,6 +2258,26 @@
     "RegionList":{
       "type":"list",
       "member":{"shape":"Region"}
+    },
+    "RegisterConnectorRequest":{
+      "type":"structure",
+      "members":{
+        "connectorLabel":{"shape":"ConnectorLabel"},
+        "description":{"shape":"Description"},
+        "connectorProvisioningType":{"shape":"ConnectorProvisioningType"},
+        "connectorProvisioningConfig":{"shape":"ConnectorProvisioningConfig"}
+      }
+    },
+    "RegisterConnectorResponse":{
+      "type":"structure",
+      "members":{
+        "connectorArn":{"shape":"ARN"}
+      }
+    },
+    "RegisteredBy":{
+      "type":"string",
+      "max":512,
+      "pattern":"\\S+"
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -2239,14 +2768,16 @@
         "Trendmicro":{"shape":"TrendmicroSourceProperties"},
         "Veeva":{"shape":"VeevaSourceProperties"},
         "Zendesk":{"shape":"ZendeskSourceProperties"},
-        "SAPOData":{"shape":"SAPODataSourceProperties"}
+        "SAPOData":{"shape":"SAPODataSourceProperties"},
+        "CustomConnector":{"shape":"CustomConnectorSourceProperties"}
       }
     },
     "SourceFieldProperties":{
       "type":"structure",
       "members":{
         "isRetrievable":{"shape":"Boolean"},
-        "isQueryable":{"shape":"Boolean"}
+        "isQueryable":{"shape":"Boolean"},
+        "isTimestampFieldForIncrementalQueries":{"shape":"Boolean"}
       }
     },
     "SourceFields":{
@@ -2261,6 +2792,7 @@
       ],
       "members":{
         "connectorType":{"shape":"ConnectorType"},
+        "apiVersion":{"shape":"ApiVersion"},
         "connectorProfileName":{"shape":"ConnectorProfileName"},
         "sourceConnectorProperties":{"shape":"SourceConnectorProperties"},
         "incrementalPullConfig":{"shape":"IncrementalPullConfig"}
@@ -2305,12 +2837,25 @@
       "max":2048,
       "pattern":".*"
     },
+    "SupportedApiVersion":{
+      "type":"string",
+      "max":256,
+      "pattern":"\\S+"
+    },
+    "SupportedApiVersionList":{
+      "type":"list",
+      "member":{"shape":"SupportedApiVersion"}
+    },
     "SupportedFieldTypeDetails":{
       "type":"structure",
       "required":["v1"],
       "members":{
         "v1":{"shape":"FieldTypeDetails"}
       }
+    },
+    "SupportedOperatorList":{
+      "type":"list",
+      "member":{"shape":"Operators"}
     },
     "SupportedValueList":{
       "type":"list",
@@ -2400,6 +2945,14 @@
       "type":"list",
       "member":{"shape":"Task"}
     },
+    "ThrottlingException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":429},
+      "exception":true
+    },
     "Timezone":{
       "type":"string",
       "max":256,
@@ -2409,6 +2962,10 @@
       "type":"string",
       "max":256,
       "pattern":"^(https?)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]"
+    },
+    "TokenUrlList":{
+      "type":"list",
+      "member":{"shape":"TokenUrl"}
     },
     "TrendmicroConnectorOperator":{
       "type":"string",
@@ -2478,6 +3035,19 @@
     "TriggerTypeList":{
       "type":"list",
       "member":{"shape":"TriggerType"}
+    },
+    "UnregisterConnectorRequest":{
+      "type":"structure",
+      "required":["connectorLabel"],
+      "members":{
+        "connectorLabel":{"shape":"ConnectorLabel"},
+        "forceDelete":{"shape":"Boolean"}
+      }
+    },
+    "UnregisterConnectorResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UnsupportedOperationException":{
       "type":"structure",
@@ -2679,7 +3249,8 @@
       "enum":[
         "INSERT",
         "UPSERT",
-        "UPDATE"
+        "UPDATE",
+        "DELETE"
       ]
     },
     "ZendeskConnectorOperator":{

@@ -966,6 +966,7 @@
         "PLATFORM",
         "SUBSCRIPTION_ID",
         "LEGAL_ENTITY_NAME",
+        "INVOICING_ENTITY",
         "DEPLOYMENT_OPTION",
         "DATABASE_ENGINE",
         "CACHE_ENGINE",

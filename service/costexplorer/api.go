@@ -1791,10 +1791,6 @@ func (c *CostExplorer) GetSavingsPlansCoverageRequest(input *GetSavingsPlansCove
 //
 //    * INSTANCE_FAMILY
 //
-// GetSavingsPlansCoverage doesn't support filtering by tags. GetSavingsPlansCoverage
-// also doesn't support the OR operator between filter dimensions. For the full
-// request syntax with supported parameters, see Examples (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetSavingsPlansCoverage.html#API_GetSavingsPlansCoverage_Examples).
-//
 // To determine valid values for a dimension, use the GetDimensionValues operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2022,10 +2018,6 @@ func (c *CostExplorer) GetSavingsPlansUtilizationRequest(input *GetSavingsPlansU
 //
 // You cannot group by any dimension values for GetSavingsPlansUtilization.
 //
-// GetSavingsPlansUtilization doesn't support filtering by tags. GetSavingsPlansUtilization
-// also doesn't support the OR operator between filter dimensions. For the full
-// request syntax with supported parameters, see Examples (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetSavingsPlansUtilization.html#API_GetSavingsPlansUtilization_Examples).
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2121,10 +2113,6 @@ func (c *CostExplorer) GetSavingsPlansUtilizationDetailsRequest(input *GetSaving
 // values.
 //
 // GetSavingsPlanUtilizationDetails internally groups data by SavingsPlansArn.
-//
-// GetSavingsPlansUtilizationDetails doesn't support filtering by tags. GetSavingsPlansUtilizationDetails
-// also doesn't support the OR operator between filter dimensions. For the full
-// request syntax with supported parameters, see Examples (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetSavingsPlansUtilizationDetails.html#API_GetSavingsPlansUtilizationDetails_Examples).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6524,11 +6512,11 @@ type GetCostAndUsageInput struct {
 	// to define any combination of dimension filters. For more information, see
 	// Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html).
 	//
-	// The default values are EQUALS and CASE_SENSITIVE. Valid values for MatchOptions
-	// for Dimensions are EQUALS and CASE_SENSITIVE.
-	//
 	// Valid values for MatchOptions for CostCategories and Tags are EQUALS, ABSENT,
 	// and CASE_SENSITIVE.
+	//
+	// The default values are EQUALS and CASE_SENSITIVE. Valid values for MatchOptions
+	// for Dimensions are EQUALS and CASE_SENSITIVE.
 	Filter *Expression `type:"structure"`
 
 	// Sets the Amazon Web Services cost granularity to MONTHLY or DAILY, or HOURLY.
@@ -6542,8 +6530,8 @@ type GetCostAndUsageInput struct {
 	// either dimensions, tag keys, cost categories, or any two group by types.
 	//
 	// Valid values for the DIMENSION type are AZ, INSTANCE_TYPE, LEGAL_ENTITY_NAME,
-	// LINKED_ACCOUNT, OPERATION, PLATFORM, PURCHASE_TYPE, SERVICE, TENANCY, RECORD_TYPE,
-	// and USAGE_TYPE.
+	// INVOICING_ENTITY, LINKED_ACCOUNT, OPERATION, PLATFORM, PURCHASE_TYPE, SERVICE,
+	// TENANCY, RECORD_TYPE, and USAGE_TYPE.
 	//
 	// When you group by the TAG type and include a valid tag key, you get all tag
 	// values, including empty strings.
@@ -6741,11 +6729,11 @@ type GetCostAndUsageWithResourcesInput struct {
 	// by or filter by a ResourceId. It requires the Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// "SERVICE = Amazon Elastic Compute Cloud - Compute" in the filter.
 	//
-	// The default values are EQUALS and CASE_SENSITIVE. Valid values for MatchOptions
-	// for Dimensions are EQUALS and CASE_SENSITIVE.
-	//
 	// Valid values for MatchOptions for CostCategories and Tags are EQUALS, ABSENT,
 	// and CASE_SENSITIVE.
+	//
+	// The default values are EQUALS and CASE_SENSITIVE. Valid values for MatchOptions
+	// for Dimensions are EQUALS and CASE_SENSITIVE.
 	//
 	// Filter is a required field
 	Filter *Expression `type:"structure" required:"true"`
@@ -7437,10 +7425,31 @@ type GetDimensionValuesInput struct {
 	//
 	//    * AZ - The Availability Zone. An example is us-east-1a.
 	//
+	//    * BILLING_ENTITY - The Amazon Web Services seller that your account is
+	//    with. Possible values are the following: - Amazon Web Services(Amazon
+	//    Web Services): The entity that sells Amazon Web Services services. - AISPL
+	//    (Amazon Internet Services Pvt. Ltd.): The local Indian entity that is
+	//    an acting reseller for Amazon Web Services services in India. - Amazon
+	//    Web Services Marketplace: The entity that supports the sale of solutions
+	//    built on Amazon Web Services by third-party software providers.
+	//
+	//    * CACHE_ENGINE - The Amazon ElastiCache operating system. Examples are
+	//    Windows or Linux.
+	//
+	//    * DEPLOYMENT_OPTION - The scope of Amazon Relational Database Service
+	//    deployments. Valid values are SingleAZ and MultiAZ.
+	//
 	//    * DATABASE_ENGINE - The Amazon Relational Database Service database. Examples
 	//    are Aurora or MySQL.
 	//
 	//    * INSTANCE_TYPE - The type of Amazon EC2 instance. An example is m4.xlarge.
+	//
+	//    * INSTANCE_TYPE_FAMILY - A family of instance types optimized to fit different
+	//    use cases. Examples are Compute Optimized (C4, C5, C6g, C7g etc.), Memory
+	//    Optimization (R4, R5n, R5b, R6g etc).
+	//
+	//    * INVOICING_ENTITY - The name of the entity issuing the Amazon Web Services
+	//    invoice.
 	//
 	//    * LEGAL_ENTITY_NAME - The name of the organization that sells you Amazon
 	//    Web Services services, such as Amazon Web Services.
@@ -7460,7 +7469,16 @@ type GetDimensionValuesInput struct {
 	//    is related. Examples include On-Demand Instances and Standard Reserved
 	//    Instances.
 	//
+	//    * RESERVATION_ID - The unique identifier for an Amazon Web Services Reservation
+	//    Instance.
+	//
+	//    * SAVINGS_PLAN_ARN - The unique identifier for your Savings Plans.
+	//
+	//    * SAVINGS_PLANS_TYPE - Type of Savings Plans (EC2 Instance or Compute).
+	//
 	//    * SERVICE - The Amazon Web Services service such as Amazon DynamoDB.
+	//
+	//    * TENANCY - The tenancy of a resource. Examples are shared or dedicated.
 	//
 	//    * USAGE_TYPE - The type of usage. An example is DataTransfer-In-Bytes.
 	//    The response for the GetDimensionValues operation includes a unit attribute.
@@ -7524,11 +7542,11 @@ type GetDimensionValuesInput struct {
 	//    the full name of the member account. The value field contains the Amazon
 	//    Web Services ID of the member account.
 	//
-	//    * SAVINGS_PLAN_ARN - The unique identifier for your Savings Plan
+	//    * SAVINGS_PLAN_ARN - The unique identifier for your Savings Plans.
 	Context *string `type:"string" enum:"Context"`
 
 	// The name of the dimension. Each Dimension is available for a different Context.
-	// For more information, see Context (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html#awscostmanagement-GetDimensionValues-request-Context).
+	// For more information, see Context.
 	//
 	// Dimension is a required field
 	Dimension *string `type:"string" required:"true" enum:"Dimension"`
@@ -7914,7 +7932,8 @@ type GetReservationCoverageInput struct {
 	//
 	// GetReservationCoverage uses the same Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object as the other operations, but only AND is supported among each dimension.
-	// You can nest only one level deep.
+	// You can nest only one level deep. If there are multiple values for a dimension,
+	// they are OR'd together.
 	//
 	// If you don't provide a SERVICE filter, Cost Explorer defaults to EC2.
 	//
@@ -7941,6 +7960,8 @@ type GetReservationCoverageInput struct {
 	//    * DEPLOYMENT_OPTION
 	//
 	//    * INSTANCE_TYPE
+	//
+	//    * INVOICING_ENTITY
 	//
 	//    * LINKED_ACCOUNT
 	//
@@ -8406,7 +8427,8 @@ type GetReservationUtilizationInput struct {
 	//
 	// GetReservationUtilization uses the same Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object as the other operations, but only AND is supported among each dimension,
-	// and nesting is supported up to only one level deep.
+	// and nesting is supported up to only one level deep. If there are multiple
+	// values for a dimension, they are OR'd together.
 	Filter *Expression `type:"structure"`
 
 	// If GroupBy is set, Granularity can't be set. If Granularity isn't set, the
@@ -8842,8 +8864,9 @@ type GetSavingsPlansCoverageInput struct {
 	//
 	// GetSavingsPlansCoverage uses the same Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object as the other operations, but only AND is supported among each dimension.
+	// If there are multiple values for a dimension, they are OR'd together.
 	//
-	// Cost category is supported. Tags are not supported.
+	// Cost category is also supported.
 	Filter *Expression `type:"structure"`
 
 	// The granularity of the Amazon Web Services cost data for your Savings Plans.
@@ -9255,8 +9278,6 @@ type GetSavingsPlansUtilizationDetailsInput struct {
 	//
 	// GetSavingsPlansUtilizationDetails uses the same Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object as the other operations, but only AND is supported among each dimension.
-	//
-	// Filtering by tags isn't supported.
 	Filter *Expression `type:"structure"`
 
 	// The number of items to be returned in a response. The default is 20, with
@@ -9467,8 +9488,6 @@ type GetSavingsPlansUtilizationInput struct {
 	//
 	// GetSavingsPlansUtilization uses the same Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object as the other operations, but only AND is supported among each dimension.
-	//
-	// Filtering by tags isn't supported.
 	Filter *Expression `type:"structure"`
 
 	// The granularity of the Amazon Web Services utillization data for your Savings
@@ -14510,6 +14529,9 @@ const (
 	// DimensionLegalEntityName is a Dimension enum value
 	DimensionLegalEntityName = "LEGAL_ENTITY_NAME"
 
+	// DimensionInvoicingEntity is a Dimension enum value
+	DimensionInvoicingEntity = "INVOICING_ENTITY"
+
 	// DimensionDeploymentOption is a Dimension enum value
 	DimensionDeploymentOption = "DEPLOYMENT_OPTION"
 
@@ -14571,6 +14593,7 @@ func Dimension_Values() []string {
 		DimensionPlatform,
 		DimensionSubscriptionId,
 		DimensionLegalEntityName,
+		DimensionInvoicingEntity,
 		DimensionDeploymentOption,
 		DimensionDatabaseEngine,
 		DimensionCacheEngine,
