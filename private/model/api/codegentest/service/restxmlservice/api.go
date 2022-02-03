@@ -131,7 +131,7 @@ type EmptyStreamEventStream struct {
 //
 // The Reader member must be set before reading events from the stream.
 //
-//   es := NewEmptyStreamEventStream(func(o *EmptyStreamEventStream{
+//   es := NewEmptyStreamEventStream(func(o *EmptyStreamEventStream){
 //       es.Reader = myMockStreamReader
 //   })
 func NewEmptyStreamEventStream(opts ...func(*EmptyStreamEventStream)) *EmptyStreamEventStream {
@@ -358,7 +358,7 @@ type GetEventStreamEventStream struct {
 //
 // The Reader member must be set before reading events from the stream.
 //
-//   es := NewGetEventStreamEventStream(func(o *GetEventStreamEventStream{
+//   es := NewGetEventStreamEventStream(func(o *GetEventStreamEventStream){
 //       es.Reader = myMockStreamReader
 //   })
 func NewGetEventStreamEventStream(opts ...func(*GetEventStreamEventStream)) *GetEventStreamEventStream {
