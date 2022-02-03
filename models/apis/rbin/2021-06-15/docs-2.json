@@ -1,15 +1,15 @@
 {
   "version": "2.0",
-  "service": "<p>This is the <i>Recycle Bin API Reference</i>. This documentation provides descriptions and syntax for each of the actions and data types in Recycle Bin.</p> <p>Recycle Bin is a snapshot recovery feature that enables you to restore accidentally deleted snapshots. When using Recycle Bin, if your snapshots are deleted, they are retained in the Recycle Bin for a time period that you specify.</p> <p>You can restore a snapshot from the Recycle Bin at any time before its retention period expires. After you restore a snapshot from the Recycle Bin, the snapshot is removed from the Recycle Bin, and you can then use it in the same way you use any other snapshot in your account. If the retention period expires and the snapshot is not restored, the snapshot is permanently deleted from the Recycle Bin and is no longer available for recovery. For more information about Recycle Bin, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-recycle-bin.html\"> Recycle Bin</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+  "service": "<p>This is the <i>Recycle Bin API Reference</i>. This documentation provides descriptions and syntax for each of the actions and data types in Recycle Bin.</p> <p>Recycle Bin is a resource recovery feature that enables you to restore accidentally deleted snapshots and EBS-backed AMIs. When using Recycle Bin, if your resources are deleted, they are retained in the Recycle Bin for a time period that you specify.</p> <p>You can restore a resource from the Recycle Bin at any time before its retention period expires. After you restore a resource from the Recycle Bin, the resource is removed from the Recycle Bin, and you can then use it in the same way you use any other resource of that type in your account. If the retention period expires and the resource is not restored, the resource is permanently deleted from the Recycle Bin and is no longer available for recovery. For more information about Recycle Bin, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-recycle-bin.html\"> Recycle Bin</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
   "operations": {
-    "CreateRule": "<p>Creates a Recycle Bin retention rule. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin-working-with-rules.html#recycle-bin-create-rule\"> Create Recycle Bin retention rules</a> in the <i>Amazon EC2 User Guide</i>.</p>",
-    "DeleteRule": "<p>Deletes a Recycle Bin retention rule. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin-working-with-rules.html#recycle-bin-delete-rule\"> Delete Recycle Bin retention rules</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+    "CreateRule": "<p>Creates a Recycle Bin retention rule. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin-working-with-rules.html#recycle-bin-create-rule\"> Create Recycle Bin retention rules</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "DeleteRule": "<p>Deletes a Recycle Bin retention rule. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin-working-with-rules.html#recycle-bin-delete-rule\"> Delete Recycle Bin retention rules</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "GetRule": "<p>Gets information about a Recycle Bin retention rule.</p>",
     "ListRules": "<p>Lists the Recycle Bin retention rules in the Region.</p>",
-    "ListTagsForResource": "<p>Lists the tags assigned a specific resource.</p>",
-    "TagResource": "<p>Assigns tags to the specified resource.</p>",
-    "UntagResource": "<p>Unassigns a tag from a resource.</p>",
-    "UpdateRule": "<p>Updates an existing Recycle Bin retention rule. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin-working-with-rules.html#recycle-bin-update-rule\"> Update Recycle Bin retention rules</a> in the <i>Amazon EC2 User Guide</i>.</p>"
+    "ListTagsForResource": "<p>Lists the tags assigned to a retention rule.</p>",
+    "TagResource": "<p>Assigns tags to the specified retention rule.</p>",
+    "UntagResource": "<p>Unassigns a tag from a retention rule.</p>",
+    "UpdateRule": "<p>Updates an existing Recycle Bin retention rule. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin-working-with-rules.html#recycle-bin-update-rule\"> Update Recycle Bin retention rules</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
   },
   "shapes": {
     "CreateRuleRequest": {
@@ -35,10 +35,10 @@
     "Description": {
       "base": null,
       "refs": {
-        "CreateRuleRequest$Description": "<p>A brief description for the retention rule.</p>",
+        "CreateRuleRequest$Description": "<p>The retention rule description.</p>",
         "CreateRuleResponse$Description": "<p>The retention rule description.</p>",
-        "GetRuleResponse$Description": "<p>The description assigned to the retention rule.</p>",
-        "RuleSummary$Description": "<p>The description for the retention rule.</p>",
+        "GetRuleResponse$Description": "<p>The retention rule description.</p>",
+        "RuleSummary$Description": "<p>The retention rule description.</p>",
         "UpdateRuleRequest$Description": "<p>The retention rule description.</p>",
         "UpdateRuleResponse$Description": "<p>The retention rule description.</p>"
       }
@@ -90,13 +90,13 @@
     "MaxResults": {
       "base": null,
       "refs": {
-        "ListRulesRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the returned <code>nextToken</code> value. This value can be between 5 and 500. If <code>maxResults</code> is given a larger value than 500, you receive an error.</p>"
+        "ListRulesRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>"
       }
     },
     "NextToken": {
       "base": null,
       "refs": {
-        "ListRulesRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "ListRulesRequest$NextToken": "<p>The token for the next page of results.</p>",
         "ListRulesResponse$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>"
       }
     },
@@ -112,7 +112,7 @@
       }
     },
     "ResourceTag": {
-      "base": "<p>Information about a resource tag used to identify resources that are to be retained by a Recycle Bin retention rule.</p>",
+      "base": "<p>Information about the resource tags used to identify resources that are retained by the retention rule.</p>",
       "refs": {
         "ResourceTags$member": null
       }
@@ -132,32 +132,32 @@
     "ResourceTags": {
       "base": null,
       "refs": {
-        "CreateRuleRequest$ResourceTags": "<p>Information about the resource tags to use to identify resources that are to be retained by the retention rule. The retention rule retains only deleted snapshots that have one or more of the specified tag key and value pairs. If a snapshot is deleted, but it does not have any of the specified tag key and value pairs, it is immediately deleted without being retained by the retention rule.</p> <p>You can add the same tag key and value pair to a maximum or five retention rules.</p>",
+        "CreateRuleRequest$ResourceTags": "<p>Specifies the resource tags to use to identify resources that are to be retained by a tag-level retention rule. For tag-level retention rules, only deleted resources, of the specified resource type, that have one or more of the specified tag key and value pairs are retained. If a resource is deleted, but it does not have any of the specified tag key and value pairs, it is immediately deleted without being retained by the retention rule.</p> <p>You can add the same tag key and value pair to a maximum or five retention rules.</p> <p>To create a Region-level retention rule, omit this parameter. A Region-level retention rule does not have any resource tags specified. It retains all deleted resources of the specified resource type in the Region in which the rule is created, even if the resources are not tagged.</p>",
         "CreateRuleResponse$ResourceTags": "<p>Information about the resource tags used to identify resources that are retained by the retention rule.</p>",
-        "GetRuleResponse$ResourceTags": "<p>The resource tags used to identify resources that are to be retained by the retention rule.</p>",
-        "ListRulesRequest$ResourceTags": "<p>The tags used to identify resources that are to be retained by the retention rule.</p>",
-        "UpdateRuleRequest$ResourceTags": "<p>Information about the resource tags to use to identify resources that are to be retained by the retention rule. The retention rule retains only deleted snapshots that have one or more of the specified tag key and value pairs. If a snapshot is deleted, but it does not have any of the specified tag key and value pairs, it is immediately deleted without being retained by the retention rule. </p> <p>You can add the same tag key and value pair to a maximum or five retention rules.</p>",
+        "GetRuleResponse$ResourceTags": "<p>Information about the resource tags used to identify resources that are retained by the retention rule.</p>",
+        "ListRulesRequest$ResourceTags": "<p>Information about the resource tags used to identify resources that are retained by the retention rule.</p>",
+        "UpdateRuleRequest$ResourceTags": "<p>Specifies the resource tags to use to identify resources that are to be retained by a tag-level retention rule. For tag-level retention rules, only deleted resources, of the specified resource type, that have one or more of the specified tag key and value pairs are retained. If a resource is deleted, but it does not have any of the specified tag key and value pairs, it is immediately deleted without being retained by the retention rule.</p> <p>You can add the same tag key and value pair to a maximum or five retention rules.</p> <p>To create a Region-level retention rule, omit this parameter. A Region-level retention rule does not have any resource tags specified. It retains all deleted resources of the specified resource type in the Region in which the rule is created, even if the resources are not tagged.</p>",
         "UpdateRuleResponse$ResourceTags": "<p>Information about the resource tags used to identify resources that are retained by the retention rule.</p>"
       }
     },
     "ResourceType": {
       "base": null,
       "refs": {
-        "CreateRuleRequest$ResourceType": "<p>The resource type to be retained by the retention rule. Currently, only Amazon EBS snapshots are supported.</p>",
+        "CreateRuleRequest$ResourceType": "<p>The resource type to be retained by the retention rule. Currently, only Amazon EBS snapshots and EBS-backed AMIs are supported. To retain snapshots, specify <code>EBS_SNAPSHOT</code>. To retain EBS-backed AMIs, specify <code>EC2_IMAGE</code>.</p>",
         "CreateRuleResponse$ResourceType": "<p>The resource type retained by the retention rule.</p>",
-        "GetRuleResponse$ResourceType": "<p>The resource type retained by the retention rule. Currently, only Amazon EBS snapshots are supported.</p>",
-        "ListRulesRequest$ResourceType": "<p>The resource type retained by the retention rule. Only retention rules that retain the specified resource type are listed.</p>",
-        "UpdateRuleRequest$ResourceType": "<p>The resource type to be retained by the retention rule. Currently, only Amazon EBS snapshots are supported.</p>",
+        "GetRuleResponse$ResourceType": "<p>The resource type retained by the retention rule.</p>",
+        "ListRulesRequest$ResourceType": "<p>The resource type retained by the retention rule. Only retention rules that retain the specified resource type are listed. Currently, only Amazon EBS snapshots and EBS-backed AMIs are supported. To list retention rules that retain snapshots, specify <code>EBS_SNAPSHOT</code>. To list retention rules that retain EBS-backed AMIs, specify <code>EC2_IMAGE</code>.</p>",
+        "UpdateRuleRequest$ResourceType": "<p>The resource type to be retained by the retention rule. Currently, only Amazon EBS snapshots and EBS-backed AMIs are supported. To retain snapshots, specify <code>EBS_SNAPSHOT</code>. To retain EBS-backed AMIs, specify <code>EC2_IMAGE</code>.</p>",
         "UpdateRuleResponse$ResourceType": "<p>The resource type retained by the retention rule.</p>"
       }
     },
     "RetentionPeriod": {
-      "base": "<p>Information about the retention period for which a retention rule is to retain resources.</p>",
+      "base": "<p>Information about the retention period for which the retention rule is to retain resources.</p>",
       "refs": {
         "CreateRuleRequest$RetentionPeriod": "<p>Information about the retention period for which the retention rule is to retain resources.</p>",
         "CreateRuleResponse$RetentionPeriod": null,
-        "GetRuleResponse$RetentionPeriod": "<p>Information about the period for which the retention rule retains resources.</p>",
-        "RuleSummary$RetentionPeriod": "<p>Information about the retention period for which the retention rule retains resources</p>",
+        "GetRuleResponse$RetentionPeriod": "<p>Information about the retention period for which the retention rule is to retain resources.</p>",
+        "RuleSummary$RetentionPeriod": "<p>Information about the retention period for which the retention rule is to retain resources.</p>",
         "UpdateRuleRequest$RetentionPeriod": "<p>Information about the retention period for which the retention rule is to retain resources.</p>",
         "UpdateRuleResponse$RetentionPeriod": null
       }
@@ -177,29 +177,29 @@
     "RuleArn": {
       "base": null,
       "refs": {
-        "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource for which to list the tags.</p>",
-        "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource to which to assign the tags.</p>",
-        "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource from which to unassign the tags.</p>"
+        "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the retention rule.</p>",
+        "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the retention rule.</p>",
+        "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the retention rule.</p>"
       }
     },
     "RuleIdentifier": {
       "base": null,
       "refs": {
-        "CreateRuleResponse$Identifier": "<p>The unique identifier of the retention rule.</p>",
-        "DeleteRuleRequest$Identifier": "<p>The unique ID of the retention rule to delete.</p>",
+        "CreateRuleResponse$Identifier": "<p>The unique ID of the retention rule.</p>",
+        "DeleteRuleRequest$Identifier": "<p>The unique ID of the retention rule.</p>",
         "GetRuleRequest$Identifier": "<p>The unique ID of the retention rule.</p>",
         "GetRuleResponse$Identifier": "<p>The unique ID of the retention rule.</p>",
         "RuleSummary$Identifier": "<p>The unique ID of the retention rule.</p>",
-        "UpdateRuleRequest$Identifier": "<p>The unique ID of the retention rule to update.</p>",
+        "UpdateRuleRequest$Identifier": "<p>The unique ID of the retention rule.</p>",
         "UpdateRuleResponse$Identifier": "<p>The unique ID of the retention rule.</p>"
       }
     },
     "RuleStatus": {
       "base": null,
       "refs": {
-        "CreateRuleResponse$Status": "<p>The state of the retention rule. Only retention rules that are in the <code>available</code> state retain snapshots.</p>",
-        "GetRuleResponse$Status": "<p>The state of the retention rule. Only retention rules that are in the <code>available</code> state retain snapshots.</p>",
-        "UpdateRuleResponse$Status": "<p>The state of the retention rule. Only retention rules that are in the <code>available</code> state retain snapshots.</p>"
+        "CreateRuleResponse$Status": "<p>The state of the retention rule. Only retention rules that are in the <code>available</code> state retain resources.</p>",
+        "GetRuleResponse$Status": "<p>The state of the retention rule. Only retention rules that are in the <code>available</code> state retain resources.</p>",
+        "UpdateRuleResponse$Status": "<p>The state of the retention rule. Only retention rules that are in the <code>available</code> state retain resources.</p>"
       }
     },
     "RuleSummary": {
@@ -226,7 +226,7 @@
       }
     },
     "Tag": {
-      "base": "<p>Information about the tags assigned to a Recycle Bin retention rule.</p>",
+      "base": "<p>Information about the tags to assign to the retention rule.</p>",
       "refs": {
         "TagList$member": null
       }
@@ -241,16 +241,16 @@
     "TagKeyList": {
       "base": null,
       "refs": {
-        "UntagResourceRequest$TagKeys": "<p>Information about the tags to unassign from the resource.</p>"
+        "UntagResourceRequest$TagKeys": "<p>The tag keys of the tags to unassign. All tags that have the specified tag key are unassigned.</p>"
       }
     },
     "TagList": {
       "base": null,
       "refs": {
         "CreateRuleRequest$Tags": "<p>Information about the tags to assign to the retention rule.</p>",
-        "CreateRuleResponse$Tags": "<p>The tags assigned to the retention rule.</p>",
-        "ListTagsForResourceResponse$Tags": "<p>Information about the tags assigned to the resource.</p>",
-        "TagResourceRequest$Tags": "<p>Information about the tags to assign to the resource.</p>"
+        "CreateRuleResponse$Tags": "<p>Information about the tags assigned to the retention rule.</p>",
+        "ListTagsForResourceResponse$Tags": "<p>Information about the tags assigned to the retention rule.</p>",
+        "TagResourceRequest$Tags": "<p>Information about the tags to assign to the retention rule.</p>"
       }
     },
     "TagResourceRequest": {

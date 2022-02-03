@@ -62,7 +62,7 @@
     "CreateFleet": "<p>Launches an EC2 Fleet.</p> <p>You can create a single EC2 Fleet that includes multiple launch specifications that vary by instance type, AMI, Availability Zone, or subnet.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet.html\">Launching an EC2 Fleet</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "CreateFlowLogs": "<p>Creates one or more flow logs to capture information about IP traffic for a specific network interface, subnet, or VPC. </p> <p>Flow log data for a monitored network interface is recorded as flow log records, which are log events consisting of fields that describe the traffic flow. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records\">Flow log records</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>When publishing to CloudWatch Logs, flow log records are published to a log group, and each network interface has a unique log stream in the log group. When publishing to Amazon S3, flow log records for all of the monitored network interfaces are published to a single log file object that is stored in the specified bucket.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html\">VPC Flow Logs</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateFpgaImage": "<p>Creates an Amazon FPGA Image (AFI) from the specified design checkpoint (DCP).</p> <p>The create operation is asynchronous. To verify that the AFI is ready for use, check the output logs.</p> <p>An AFI contains the FPGA bitstream that is ready to download to an FPGA. You can securely deploy an AFI on multiple FPGA-accelerated instances. For more information, see the <a href=\"https://github.com/aws/aws-fpga/\">Amazon Web Services FPGA Hardware Development Kit</a>.</p>",
-    "CreateImage": "<p>Creates an Amazon EBS-backed AMI from an Amazon EBS-backed instance that is either running or stopped.</p> <p>If you customized your instance with instance store volumes or Amazon EBS volumes in addition to the root device volume, the new AMI contains block device mapping information for those volumes. When you launch an instance from this new AMI, the instance automatically launches with those additional volumes.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html\">Creating Amazon EBS-Backed Linux AMIs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "CreateImage": "<p>Creates an Amazon EBS-backed AMI from an Amazon EBS-backed instance that is either running or stopped.</p> <important> <p>By default, Amazon EC2 shuts down and reboots the instance before creating the AMI to ensure that everything on the instance is stopped and in a consistent state during the creation process. If you're confident that your instance is in a consistent state appropriate for AMI creation, use the <b>NoReboot</b> parameter to prevent Amazon EC2 from shutting down and rebooting the instance. </p> </important> <p>If you customized your instance with instance store volumes or Amazon EBS volumes in addition to the root device volume, the new AMI contains block device mapping information for those volumes. When you launch an instance from this new AMI, the instance automatically launches with those additional volumes.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html\">Creating Amazon EBS-Backed Linux AMIs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CreateInstanceEventWindow": "<p>Creates an event window in which scheduled events for the associated Amazon EC2 instances can run.</p> <p>You can define either a set of time ranges or a cron expression when creating the event window, but not both. All event window times are in UTC.</p> <p>You can create up to 200 event windows per Amazon Web Services Region.</p> <p>When you create the event window, targets (instance IDs, Dedicated Host IDs, or tags) are not yet associated with it. To ensure that the event window can be used, you must associate one or more targets with it by using the <a>AssociateInstanceEventWindow</a> API.</p> <important> <p>Event windows are applicable only for scheduled events that stop, reboot, or terminate instances.</p> <p>Event windows are <i>not</i> applicable for:</p> <ul> <li> <p>Expedited scheduled events and network maintenance events. </p> </li> <li> <p>Unscheduled maintenance such as AutoRecovery and unplanned reboots.</p> </li> </ul> </important> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/event-windows.html\">Define event windows for scheduled events</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "CreateInstanceExportTask": "<p>Exports a running or stopped instance to an Amazon S3 bucket.</p> <p>For information about the supported operating systems, image formats, and known limitations for the types of instances you can export, see <a href=\"https://docs.aws.amazon.com/vm-import/latest/userguide/vmexport.html\">Exporting an instance as a VM Using VM Import/Export</a> in the <i>VM Import/Export User Guide</i>.</p>",
     "CreateInternetGateway": "<p>Creates an internet gateway for use with a VPC. After creating the internet gateway, you attach it to a VPC using <a>AttachInternetGateway</a>.</p> <p>For more information about your VPC and internet gateway, see the <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/\">Amazon Virtual Private Cloud User Guide</a>.</p>",
@@ -184,7 +184,7 @@
     "DeprovisionByoipCidr": "<p>Releases the specified address range that you provisioned for use with your Amazon Web Services resources through bring your own IP addresses (BYOIP) and deletes the corresponding address pool.</p> <p>Before you can release an address range, you must stop advertising it using <a>WithdrawByoipCidr</a> and you must not have any IP addresses allocated from its address range.</p>",
     "DeprovisionIpamPoolCidr": "<p>Deprovision a CIDR provisioned from an IPAM pool. If you deprovision a CIDR from a pool that has a source pool, the CIDR is recycled back into the source pool. For more information, see <a href=\"/vpc/latest/ipam/depro-pool-cidr-ipam.html\">Deprovision pool CIDRs</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>",
     "DeprovisionPublicIpv4PoolCidr": "<p>Deprovision a CIDR from a public IPv4 pool.</p>",
-    "DeregisterImage": "<p>Deregisters the specified AMI. After you deregister an AMI, it can't be used to launch new instances; however, it doesn't affect any instances that you've already launched from the AMI. You'll continue to incur usage costs for those instances until you terminate them.</p> <p>When you deregister an Amazon EBS-backed AMI, it doesn't affect the snapshot that was created for the root volume of the instance during the AMI creation process. When you deregister an instance store-backed AMI, it doesn't affect the files that you uploaded to Amazon S3 when you created the AMI.</p>",
+    "DeregisterImage": "<p>Deregisters the specified AMI. After you deregister an AMI, it can't be used to launch new instances.</p> <p>If you deregister an AMI that matches a Recycle Bin retention rule, the AMI is retained in the Recycle Bin for the specified retention period. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin.html\">Recycle Bin</a> in the Amazon Elastic Compute Cloud User Guide.</p> <p>When you deregister an AMI, it doesn't affect any instances that you've already launched from the AMI. You'll continue to incur usage costs for those instances until you terminate them.</p> <p>When you deregister an Amazon EBS-backed AMI, it doesn't affect the snapshot that was created for the root volume of the instance during the AMI creation process. When you deregister an instance store-backed AMI, it doesn't affect the files that you uploaded to Amazon S3 when you created the AMI.</p>",
     "DeregisterInstanceEventNotificationAttributes": "<p>c</p> <p>Deregisters tag keys to prevent tags that have the specified tag keys from being included in scheduled event notifications for resources in the Region.</p>",
     "DeregisterTransitGatewayMulticastGroupMembers": "<p>Deregisters the specified members (network interfaces) from the transit gateway multicast group.</p>",
     "DeregisterTransitGatewayMulticastGroupSources": "<p>Deregisters the specified sources (network interfaces) from the transit gateway multicast group.</p>",
@@ -327,7 +327,7 @@
     "DetachVolume": "<p>Detaches an EBS volume from an instance. Make sure to unmount any file systems on the device within your operating system before detaching the volume. Failure to do so can result in the volume becoming stuck in the <code>busy</code> state while detaching. If this happens, detachment can be delayed indefinitely until you unmount the volume, force detachment, reboot the instance, or all three. If an EBS volume is the root device of an instance, it can't be detached while the instance is running. To detach the root volume, stop the instance first.</p> <p>When a volume with an Amazon Web Services Marketplace product code is detached from an instance, the product code is no longer associated with the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html\">Detach an Amazon EBS volume</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DetachVpnGateway": "<p>Detaches a virtual private gateway from a VPC. You do this if you're planning to turn off the VPC and not use it anymore. You can confirm a virtual private gateway has been completely detached from a VPC by describing the virtual private gateway (any attachments to the virtual private gateway are also described).</p> <p>You must wait for the attachment's state to switch to <code>detached</code> before you can delete the VPC or attach a different VPC to the virtual private gateway.</p>",
     "DisableEbsEncryptionByDefault": "<p>Disables EBS encryption by default for your account in the current Region.</p> <p>After you disable encryption by default, you can still create encrypted volumes by enabling encryption when you create each volume.</p> <p>Disabling encryption by default does not change the encryption status of your existing volumes.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
-    "DisableFastLaunch": "<p>Discontinue faster launching for a Windows AMI, and clean up existing pre-provisioned snapshots. When you disable faster launching, the AMI uses the standard launch process for each instance. All pre-provisioned snapshots must be removed before you can enable faster launching again.</p>",
+    "DisableFastLaunch": "<p>Discontinue faster launching for a Windows AMI, and clean up existing pre-provisioned snapshots. When you disable faster launching, the AMI uses the standard launch process for each instance. All pre-provisioned snapshots must be removed before you can enable faster launching again.</p> <note> <p>To change these settings, you must own the AMI.</p> </note>",
     "DisableFastSnapshotRestores": "<p>Disables fast snapshot restores for the specified snapshots in the specified Availability Zones.</p>",
     "DisableImageDeprecation": "<p>Cancels the deprecation of the specified AMI.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-deprecate.html\">Deprecate an AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DisableIpamOrganizationAdminAccount": "<p>Disable the IPAM account. For more information, see <a href=\"/vpc/latest/ipam/enable-integ-ipam.html\">Enable integration with Organizations</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>",
@@ -348,7 +348,7 @@
     "DisassociateTrunkInterface": "<note> <p>This API action is currently in <b>limited preview only</b>. If you are interested in using this feature, contact your account manager.</p> </note> <p>Removes an association between a branch network interface with a trunk network interface.</p>",
     "DisassociateVpcCidrBlock": "<p>Disassociates a CIDR block from a VPC. To disassociate the CIDR block, you must specify its association ID. You can get the association ID by using <a>DescribeVpcs</a>. You must detach or delete all gateways and resources that are associated with the CIDR block before you can disassociate it. </p> <p>You cannot disassociate the CIDR block with which you originally created the VPC (the primary CIDR block).</p>",
     "EnableEbsEncryptionByDefault": "<p>Enables EBS encryption by default for your account in the current Region.</p> <p>After you enable encryption by default, the EBS volumes that you create are always encrypted, either using the default KMS key or the KMS key that you specified when you created each volume. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You can specify the default KMS key for encryption by default using <a>ModifyEbsDefaultKmsKeyId</a> or <a>ResetEbsDefaultKmsKeyId</a>.</p> <p>Enabling encryption by default has no effect on the encryption status of your existing volumes.</p> <p>After you enable encryption by default, you can no longer launch instances using instance types that do not support encryption. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances\">Supported instance types</a>.</p>",
-    "EnableFastLaunch": "<p>When you enable faster launching for a Windows AMI, images are pre-provisioned, using snapshots to launch instances up to 65% faster. To create the optimized Windows image, Amazon EC2 launches an instance and runs through Sysprep steps, rebooting as required. Then it creates a set of reserved snapshots that are used for subsequent launches. The reserved snapshots are automatically replenished as they are used, depending on your settings for launch frequency.</p>",
+    "EnableFastLaunch": "<p>When you enable faster launching for a Windows AMI, images are pre-provisioned, using snapshots to launch instances up to 65% faster. To create the optimized Windows image, Amazon EC2 launches an instance and runs through Sysprep steps, rebooting as required. Then it creates a set of reserved snapshots that are used for subsequent launches. The reserved snapshots are automatically replenished as they are used, depending on your settings for launch frequency.</p> <note> <p>To change these settings, you must own the AMI.</p> </note>",
     "EnableFastSnapshotRestores": "<p>Enables fast snapshot restores for the specified snapshots in the specified Availability Zones.</p> <p>You get the full benefit of fast snapshot restores after they enter the <code>enabled</code> state. To get the current state of fast snapshot restores, use <a>DescribeFastSnapshotRestores</a>. To disable fast snapshot restores, use <a>DisableFastSnapshotRestores</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-fast-snapshot-restore.html\">Amazon EBS fast snapshot restore</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "EnableImageDeprecation": "<p>Enables deprecation of the specified AMI at the specified date and time.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-deprecate.html\">Deprecate an AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "EnableIpamOrganizationAdminAccount": "<p>Enable an Organizations member account as the IPAM admin account. You cannot select the Organizations management account as the IPAM admin account. For more information, see <a href=\"/vpc/latest/ipam/enable-integ-ipam.html\">Enable integration with Organizations</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>",
@@ -402,6 +402,7 @@
     "ImportKeyPair": "<p>Imports the public key from an RSA or ED25519 key pair that you created with a third-party tool. Compare this with <a>CreateKeyPair</a>, in which Amazon Web Services creates the key pair and gives the keys to you (Amazon Web Services keeps a copy of the public key). With ImportKeyPair, you create the key pair and give Amazon Web Services just the public key. The private key is never transferred between you and Amazon Web Services.</p> <p>For more information about key pairs, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html\">Amazon EC2 key pairs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "ImportSnapshot": "<p>Imports a disk into an EBS snapshot.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-import-snapshot.html\">Importing a disk as a snapshot using VM Import/Export</a> in the <i>VM Import/Export User Guide</i>.</p>",
     "ImportVolume": "<p>Creates an import volume task using metadata from the specified disk image.</p> <p>This API action supports only single-volume VMs. To import multi-volume VMs, use <a>ImportImage</a> instead. To import a disk to a snapshot, use <a>ImportSnapshot</a> instead.</p> <p>This API action is not supported by the Command Line Interface (CLI). For information about using the Amazon EC2 CLI, which is deprecated, see <a href=\"https://awsdocs.s3.amazonaws.com/EC2/ec2-clt.pdf#importing-your-volumes-into-amazon-ebs\">Importing Disks to Amazon EBS</a> in the <i>Amazon EC2 CLI Reference</i> PDF file.</p> <p>For information about the import manifest referenced by this API action, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html\">VM Import Manifest</a>.</p>",
+    "ListImagesInRecycleBin": "<p>Lists one or more AMIs that are currently in the Recycle Bin. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin.html\">Recycle Bin</a> in the Amazon Elastic Compute Cloud User Guide.</p>",
     "ListSnapshotsInRecycleBin": "<p>Lists one or more snapshots that are currently in the Recycle Bin.</p>",
     "ModifyAddressAttribute": "<p>Modifies an attribute of the specified Elastic IP address. For requirements, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#Using_Elastic_Addressing_Reverse_DNS\">Using reverse DNS for email applications</a>.</p>",
     "ModifyAvailabilityZoneGroup": "<p>Changes the opt-in status of the Local Zone and Wavelength Zone group for your account.</p> <p>Use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html\"> DescribeAvailabilityZones</a> to view the value for <code>GroupName</code>.</p>",
@@ -496,6 +497,7 @@
     "ResetNetworkInterfaceAttribute": "<p>Resets a network interface attribute. You can specify only one attribute at a time.</p>",
     "ResetSnapshotAttribute": "<p>Resets permission settings for the specified snapshot.</p> <p>For more information about modifying snapshot permissions, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html\">Share a snapshot</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "RestoreAddressToClassic": "<p>Restores an Elastic IP address that was previously moved to the EC2-VPC platform back to the EC2-Classic platform. You cannot move an Elastic IP address that was originally allocated for use in EC2-VPC. The Elastic IP address must not be associated with an instance or network interface.</p>",
+    "RestoreImageFromRecycleBin": "<p>Restores an AMI from the Recycle Bin. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin.html\">Recycle Bin</a> in the Amazon Elastic Compute Cloud User Guide.</p>",
     "RestoreManagedPrefixListVersion": "<p>Restores the entries from a previous version of a managed prefix list to a new version of the prefix list.</p>",
     "RestoreSnapshotFromRecycleBin": "<p>Restores a snapshot from the Recycle Bin. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin-working-with-snaps.html#recycle-bin-restore-snaps\">Restore snapshots from the Recycle Bin</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "RestoreSnapshotTier": "<p>Restores an archived Amazon EBS snapshot for use temporarily or permanently, or modifies the restore period or restore type for a snapshot that was previously temporarily restored.</p> <p>For more information see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/working-with-snapshot-archiving.html#restore-archived-snapshot\"> Restore an archived snapshot</a> and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/working-with-snapshot-archiving.html#modify-temp-restore-period\"> modify the restore period or restore type for a temporarily restored snapshot</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
@@ -1666,8 +1668,8 @@
         "ClassicLinkDnsSupport$ClassicLinkDnsSupported": "<p>Indicates whether ClassicLink DNS support is enabled for the VPC.</p>",
         "ClientConnectOptions$Enabled": "<p>Indicates whether client connect options are enabled. The default is <code>false</code> (not enabled).</p>",
         "ClientConnectResponseOptions$Enabled": "<p>Indicates whether client connect options are enabled.</p>",
-        "ClientLoginBannerOptions$Enabled": null,
-        "ClientLoginBannerResponseOptions$Enabled": null,
+        "ClientLoginBannerOptions$Enabled": "<p>Enable or disable a customizable text banner that will be displayed on Amazon Web Services provided clients when a VPN session is established.</p> <p>Valid values: <code>true | false</code> </p> <p>Default value: <code>false</code> </p>",
+        "ClientLoginBannerResponseOptions$Enabled": "<p>Current state of text banner feature.</p> <p>Valid values: <code>true | false</code> </p>",
         "ClientVpnEndpoint$SplitTunnel": "<p>Indicates whether split-tunnel is enabled in the Client VPN endpoint.</p> <p>For information about split-tunnel VPN endpoints, see <a href=\"https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/split-tunnel-vpn.html\">Split-Tunnel Client VPN endpoint</a> in the <i>Client VPN Administrator Guide</i>.</p>",
         "ConfirmProductInstanceRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ConfirmProductInstanceResult$Return": "<p>The return value of the request. Returns <code>true</code> if the specified product code is owned by the requester and associated with the specified instance.</p>",
@@ -2134,6 +2136,7 @@
         "LaunchTemplateVersion$DefaultVersion": "<p>Indicates whether the version is the default version.</p>",
         "LaunchTemplatesMonitoring$Enabled": "<p>Indicates whether detailed monitoring is enabled. Otherwise, basic monitoring is enabled.</p>",
         "LaunchTemplatesMonitoringRequest$Enabled": "<p>Specify <code>true</code> to enable detailed monitoring. Otherwise, basic monitoring is enabled.</p>",
+        "ListImagesInRecycleBinRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ListSnapshotsInRecycleBinRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyAddressAttributeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyAvailabilityZoneGroupRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2294,6 +2297,8 @@
         "ResponseLaunchTemplateData$EbsOptimized": "<p>Indicates whether the instance is optimized for Amazon EBS I/O. </p>",
         "ResponseLaunchTemplateData$DisableApiTermination": "<p>If set to <code>true</code>, indicates that the instance cannot be terminated using the Amazon EC2 console, command line tool, or API.</p>",
         "RestoreAddressToClassicRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "RestoreImageFromRecycleBinRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "RestoreImageFromRecycleBinResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "RestoreManagedPrefixListVersionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "RestoreSnapshotFromRecycleBinRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "RestoreSnapshotFromRecycleBinResult$Encrypted": "<p>Indicates whether the snapshot is encrypted.</p>",
@@ -2967,16 +2972,16 @@
       }
     },
     "ClientLoginBannerOptions": {
-      "base": null,
+      "base": "<p>Options for enabling a customizable text banner that will be displayed on Amazon Web Services provided clients when a VPN session is established.</p>",
       "refs": {
-        "CreateClientVpnEndpointRequest$ClientLoginBannerOptions": null,
-        "ModifyClientVpnEndpointRequest$ClientLoginBannerOptions": null
+        "CreateClientVpnEndpointRequest$ClientLoginBannerOptions": "<p>Options for enabling a customizable text banner that will be displayed on Amazon Web Services provided clients when a VPN session is established.</p>",
+        "ModifyClientVpnEndpointRequest$ClientLoginBannerOptions": "<p>Options for enabling a customizable text banner that will be displayed on Amazon Web Services provided clients when a VPN session is established.</p>"
       }
     },
     "ClientLoginBannerResponseOptions": {
-      "base": null,
+      "base": "<p>Current state of options for customizable text banner that will be displayed on Amazon Web Services provided clients when a VPN session is established.</p>",
       "refs": {
-        "ClientVpnEndpoint$ClientLoginBannerOptions": null
+        "ClientVpnEndpoint$ClientLoginBannerOptions": "<p>Options for enabling a customizable text banner that will be displayed on Amazon Web Services provided clients when a VPN session is established.</p>"
       }
     },
     "ClientVpnAssociationId": {
@@ -9175,6 +9180,7 @@
         "RequestLaunchTemplateData$ImageId": "<p>The ID of the AMI.</p>",
         "RequestSpotLaunchSpecification$ImageId": "<p>The ID of the AMI.</p>",
         "ResetImageAttributeRequest$ImageId": "<p>The ID of the AMI.</p>",
+        "RestoreImageFromRecycleBinRequest$ImageId": "<p>The ID of the AMI to restore.</p>",
         "RunInstancesRequest$ImageId": "<p>The ID of the AMI. An AMI ID is required to launch an instance and must be specified here or in a launch template.</p>",
         "ScheduledInstancesLaunchSpecification$ImageId": "<p>The ID of the Amazon Machine Image (AMI).</p>",
         "SpotFleetLaunchSpecification$ImageId": "<p>The ID of the AMI.</p>"
@@ -9189,13 +9195,26 @@
     "ImageIdStringList": {
       "base": null,
       "refs": {
-        "DescribeImagesRequest$ImageIds": "<p>The image IDs.</p> <p>Default: Describes all images available to you.</p>"
+        "DescribeImagesRequest$ImageIds": "<p>The image IDs.</p> <p>Default: Describes all images available to you.</p>",
+        "ListImagesInRecycleBinRequest$ImageIds": "<p>The IDs of the AMIs to list. Omit this parameter to list all of the AMIs that are in the Recycle Bin. You can specify up to 20 IDs in a single request.</p>"
       }
     },
     "ImageList": {
       "base": null,
       "refs": {
         "DescribeImagesResult$Images": "<p>Information about the images.</p>"
+      }
+    },
+    "ImageRecycleBinInfo": {
+      "base": "<p>Information about an AMI that is currently in the Recycle Bin.</p>",
+      "refs": {
+        "ImageRecycleBinInfoList$member": null
+      }
+    },
+    "ImageRecycleBinInfoList": {
+      "base": null,
+      "refs": {
+        "ListImagesInRecycleBinResult$Images": "<p>Information about the AMIs.</p>"
       }
     },
     "ImageState": {
@@ -10194,7 +10213,7 @@
         "CapacityReservation$AvailableInstanceCount": "<p>The remaining capacity. Indicates the number of instances that can be launched in the Capacity Reservation.</p>",
         "CapacityReservationFleet$TotalTargetCapacity": "<p>The total number of capacity units for which the Capacity Reservation Fleet reserves capacity. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#target-capacity\">Total target capacity</a> in the Amazon EC2 User Guide.</p>",
         "ClientVpnEndpoint$VpnPort": "<p>The port number for the Client VPN endpoint.</p>",
-        "ClientVpnEndpoint$SessionTimeoutHours": null,
+        "ClientVpnEndpoint$SessionTimeoutHours": "<p>The maximum VPN session duration time in hours.</p> <p>Valid values: <code>8 | 10 | 12 | 24</code> </p> <p>Default value: <code>24</code> </p>",
         "CpuOptions$CoreCount": "<p>The number of CPU cores for the instance.</p>",
         "CpuOptions$ThreadsPerCore": "<p>The number of threads per CPU core.</p>",
         "CpuOptionsRequest$CoreCount": "<p>The number of CPU cores for the instance.</p>",
@@ -10203,7 +10222,7 @@
         "CreateCapacityReservationFleetResult$TotalTargetCapacity": "<p>The total number of capacity units for which the Capacity Reservation Fleet reserves capacity.</p>",
         "CreateCapacityReservationRequest$InstanceCount": "<p>The number of instances for which to reserve capacity.</p> <p>Valid range: 1 - 1000</p>",
         "CreateClientVpnEndpointRequest$VpnPort": "<p>The port number to assign to the Client VPN endpoint for TCP and UDP traffic.</p> <p>Valid Values: <code>443</code> | <code>1194</code> </p> <p>Default Value: <code>443</code> </p>",
-        "CreateClientVpnEndpointRequest$SessionTimeoutHours": null,
+        "CreateClientVpnEndpointRequest$SessionTimeoutHours": "<p>The maximum VPN session duration time in hours.</p> <p>Valid values: <code>8 | 10 | 12 | 24</code> </p> <p>Default value: <code>24</code> </p>",
         "CreateCustomerGatewayRequest$BgpAsn": "<p>For devices that support BGP, the customer gateway's BGP ASN.</p> <p>Default: 65000</p>",
         "CreateFlowLogsRequest$MaxAggregationInterval": "<p>The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record. You can specify 60 seconds (1 minute) or 600 seconds (10 minutes).</p> <p>When a network interface is attached to a <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances\">Nitro-based instance</a>, the aggregation interval is always 60 seconds or less, regardless of the value that you specify.</p> <p>Default: 600</p>",
         "CreateManagedPrefixListRequest$MaxEntries": "<p>The maximum number of entries for the prefix list.</p>",
@@ -10262,7 +10281,7 @@
         "EbsBlockDevice$Iops": "<p>The number of I/O operations per second (IOPS). For <code>gp3</code>, <code>io1</code>, and <code>io2</code> volumes, this represents the number of IOPS that are provisioned for the volume. For <code>gp2</code> volumes, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting.</p> <p>The following are the supported values for each volume type:</p> <ul> <li> <p> <code>gp3</code>: 3,000-16,000 IOPS</p> </li> <li> <p> <code>io1</code>: 100-64,000 IOPS</p> </li> <li> <p> <code>io2</code>: 100-64,000 IOPS</p> </li> </ul> <p>For <code>io1</code> and <code>io2</code> volumes, we guarantee 64,000 IOPS only for <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances\">Instances built on the Nitro System</a>. Other instance families guarantee performance up to 32,000 IOPS.</p> <p>This parameter is required for <code>io1</code> and <code>io2</code> volumes. The default for <code>gp3</code> volumes is 3,000 IOPS. This parameter is not supported for <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or <code>standard</code> volumes.</p>",
         "EbsBlockDevice$VolumeSize": "<p>The size of the volume, in GiBs. You must specify either a snapshot ID or a volume size. If you specify a snapshot, the default is the snapshot size. You can specify a volume size that is equal to or larger than the snapshot size.</p> <p>The following are the supported volumes sizes for each volume type:</p> <ul> <li> <p> <code>gp2</code> and <code>gp3</code>:1-16,384</p> </li> <li> <p> <code>io1</code> and <code>io2</code>: 4-16,384</p> </li> <li> <p> <code>st1</code> and <code>sc1</code>: 125-16,384</p> </li> <li> <p> <code>standard</code>: 1-1,024</p> </li> </ul>",
         "EbsBlockDevice$Throughput": "<p>The throughput that the volume supports, in MiB/s.</p> <p>This parameter is valid only for <code>gp3</code> volumes.</p> <p>Valid Range: Minimum value of 125. Maximum value of 1000.</p>",
-        "EnableFastLaunchRequest$MaxParallelLaunches": "<p>The maximum number of parallel instances to launch for creating resources.</p>",
+        "EnableFastLaunchRequest$MaxParallelLaunches": "<p>The maximum number of parallel instances to launch for creating resources. Value must be <code>6</code> or greater. </p>",
         "EnableFastLaunchResult$MaxParallelLaunches": "<p>The maximum number of parallel instances to launch for creating resources.</p>",
         "FastLaunchSnapshotConfigurationRequest$TargetResourceCount": "<p>The number of pre-provisioned snapshots to keep on hand for a fast-launch enabled Windows AMI.</p>",
         "FastLaunchSnapshotConfigurationResponse$TargetResourceCount": "<p>The number of pre-provisioned snapshots requested to keep on hand for a fast-launch enabled Windows AMI.</p>",
@@ -10346,7 +10365,7 @@
         "ModifyCapacityReservationFleetRequest$TotalTargetCapacity": "<p>The total number of capacity units to be reserved by the Capacity Reservation Fleet. This value, together with the instance type weights that you assign to each instance type used by the Fleet determine the number of instances for which the Fleet reserves capacity. Both values are based on units that make sense for your workload. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#target-capacity\">Total target capacity</a> in the Amazon EC2 User Guide.</p>",
         "ModifyCapacityReservationRequest$InstanceCount": "<p>The number of instances for which to reserve capacity. The number of instances can't be increased or decreased by more than <code>1000</code> in a single request.</p>",
         "ModifyClientVpnEndpointRequest$VpnPort": "<p>The port number to assign to the Client VPN endpoint for TCP and UDP traffic.</p> <p>Valid Values: <code>443</code> | <code>1194</code> </p> <p>Default Value: <code>443</code> </p>",
-        "ModifyClientVpnEndpointRequest$SessionTimeoutHours": null,
+        "ModifyClientVpnEndpointRequest$SessionTimeoutHours": "<p>The maximum VPN session duration time in hours.</p> <p>Valid values: <code>8 | 10 | 12 | 24</code> </p> <p>Default value: <code>24</code> </p>",
         "ModifyInstanceMetadataOptionsRequest$HttpPutResponseHopLimit": "<p>The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. If no parameter is specified, the existing state is maintained.</p> <p>Possible values: Integers from 1 to 64</p>",
         "ModifyInstancePlacementRequest$PartitionNumber": "<p>The number of the partition in which to place the instance. Valid only if the placement group strategy is set to <code>partition</code>.</p>",
         "ModifyManagedPrefixListRequest$MaxEntries": "<p>The maximum number of entries for the prefix list. You cannot modify the entries of a prefix list and modify the size of a prefix list at the same time.</p> <p>If any of the resources that reference the prefix list cannot support the new maximum size, the modify operation fails. Check the state message for the IDs of the first ten resources that do not support the new maximum size.</p>",
@@ -11697,6 +11716,22 @@
         "RunInstancesRequest$LicenseSpecifications": "<p>The license configurations.</p>"
       }
     },
+    "ListImagesInRecycleBinMaxResults": {
+      "base": null,
+      "refs": {
+        "ListImagesInRecycleBinRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p> <p>If you do not specify a value for <i>MaxResults</i>, the request returns 1,000 items per page by default. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\"> Pagination</a>.</p>"
+      }
+    },
+    "ListImagesInRecycleBinRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListImagesInRecycleBinResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListSnapshotsInRecycleBinMaxResults": {
       "base": null,
       "refs": {
@@ -12200,6 +12235,8 @@
         "FlowLog$CreationTime": "<p>The date and time the flow log was created.</p>",
         "GetIpamAddressHistoryRequest$StartTime": "<p>The start of the time period for which you are looking for history. If you omit this option, it will default to the value of EndTime.</p>",
         "GetIpamAddressHistoryRequest$EndTime": "<p>The end of the time period for which you are looking for history. If you omit this option, it will default to the current time.</p>",
+        "ImageRecycleBinInfo$RecycleBinEnterTime": "<p>The date and time when the AMI entered the Recycle Bin.</p>",
+        "ImageRecycleBinInfo$RecycleBinExitTime": "<p>The date and time when the AMI is to be permanently deleted from the Recycle Bin.</p>",
         "Instance$UsageOperationUpdateTime": "<p>The time that the usage operation was last updated.</p>",
         "IpamAddressHistoryRecord$SampledStartTime": "<p>Sampled start time of the resource-to-CIDR association within the IPAM scope. Changes are picked up in periodic snapshots, so the start time may have occurred before this specific time.</p>",
         "IpamAddressHistoryRecord$SampledEndTime": "<p>Sampled end time of the resource-to-CIDR association within the IPAM scope. Changes are picked up in periodic snapshots, so the end time may have occurred before this specific time.</p>",
@@ -15099,6 +15136,16 @@
       "refs": {
       }
     },
+    "RestoreImageFromRecycleBinRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RestoreImageFromRecycleBinResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "RestoreManagedPrefixListVersionRequest": {
       "base": null,
       "refs": {
@@ -16369,8 +16416,8 @@
         "ClientConnectOptions$LambdaFunctionArn": "<p>The Amazon Resource Name (ARN) of the Lambda function used for connection authorization.</p>",
         "ClientConnectResponseOptions$LambdaFunctionArn": "<p>The Amazon Resource Name (ARN) of the Lambda function used for connection authorization.</p>",
         "ClientData$Comment": "<p>A user-defined comment about the disk upload.</p>",
-        "ClientLoginBannerOptions$BannerText": null,
-        "ClientLoginBannerResponseOptions$BannerText": null,
+        "ClientLoginBannerOptions$BannerText": "<p>Customizable text that will be displayed in a banner on Amazon Web Services provided clients when a VPN session is established. UTF-8 encoded characters only. Maximum of 1400 characters.</p>",
+        "ClientLoginBannerResponseOptions$BannerText": "<p>Customizable text that will be displayed in a banner on Amazon Web Services provided clients when a VPN session is established. UTF-8 encoded characters only. Maximum of 1400 characters.</p>",
         "ClientVpnAuthorizationRuleStatus$Message": "<p>A message about the status of the authorization rule, if applicable.</p>",
         "ClientVpnConnection$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint to which the client is connected.</p>",
         "ClientVpnConnection$Timestamp": "<p>The current date and time.</p>",
@@ -17030,6 +17077,9 @@
         "ImageDiskContainer$DeviceName": "<p>The block device mapping for the disk.</p>",
         "ImageDiskContainer$Format": "<p>The format of the disk image being imported.</p> <p>Valid values: <code>OVA</code> | <code>VHD</code> | <code>VHDX</code> | <code>VMDK</code> | <code>RAW</code> </p>",
         "ImageDiskContainer$Url": "<p>The URL to the Amazon S3-based disk image being imported. The URL can either be a https URL (https://..) or an Amazon S3 URL (s3://..)</p>",
+        "ImageRecycleBinInfo$ImageId": "<p>The ID of the AMI.</p>",
+        "ImageRecycleBinInfo$Name": "<p>The name of the AMI.</p>",
+        "ImageRecycleBinInfo$Description": "<p>The description of the AMI.</p>",
         "ImportClientVpnClientCertificateRevocationListRequest$CertificateRevocationList": "<p>The client certificate revocation list file. For more information, see <a href=\"https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/cvpn-working-certificates.html#cvpn-working-certificates-generate\">Generate a Client Certificate Revocation List</a> in the <i>Client VPN Administrator Guide</i>.</p>",
         "ImportImageLicenseConfigurationRequest$LicenseConfigurationArn": "<p>The ARN of a license configuration.</p>",
         "ImportImageLicenseConfigurationResponse$LicenseConfigurationArn": "<p>The ARN of a license configuration.</p>",
@@ -17274,6 +17324,8 @@
         "LaunchTemplateVersion$CreatedBy": "<p>The principal that created the version.</p>",
         "LicenseConfiguration$LicenseConfigurationArn": "<p>The Amazon Resource Name (ARN) of the license configuration.</p>",
         "LicenseConfigurationRequest$LicenseConfigurationArn": "<p>The Amazon Resource Name (ARN) of the license configuration.</p>",
+        "ListImagesInRecycleBinRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "ListImagesInRecycleBinResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "ListSnapshotsInRecycleBinRequest$NextToken": "<p>The token for the next page of results.</p>",
         "ListSnapshotsInRecycleBinResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "LoadPermission$UserId": "<p>The Amazon Web Services account ID.</p>",

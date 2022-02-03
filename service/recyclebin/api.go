@@ -58,7 +58,7 @@ func (c *RecycleBin) CreateRuleRequest(input *CreateRuleInput) (req *request.Req
 //
 // Creates a Recycle Bin retention rule. For more information, see Create Recycle
 // Bin retention rules (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin-working-with-rules.html#recycle-bin-create-rule)
-// in the Amazon EC2 User Guide.
+// in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -147,7 +147,7 @@ func (c *RecycleBin) DeleteRuleRequest(input *DeleteRuleInput) (req *request.Req
 //
 // Deletes a Recycle Bin retention rule. For more information, see Delete Recycle
 // Bin retention rules (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin-working-with-rules.html#recycle-bin-delete-rule)
-// in the Amazon EC2 User Guide.
+// in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -457,7 +457,7 @@ func (c *RecycleBin) ListTagsForResourceRequest(input *ListTagsForResourceInput)
 
 // ListTagsForResource API operation for Amazon Recycle Bin.
 //
-// Lists the tags assigned a specific resource.
+// Lists the tags assigned to a retention rule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -543,7 +543,7 @@ func (c *RecycleBin) TagResourceRequest(input *TagResourceInput) (req *request.R
 
 // TagResource API operation for Amazon Recycle Bin.
 //
-// Assigns tags to the specified resource.
+// Assigns tags to the specified retention rule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -633,7 +633,7 @@ func (c *RecycleBin) UntagResourceRequest(input *UntagResourceInput) (req *reque
 
 // UntagResource API operation for Amazon Recycle Bin.
 //
-// Unassigns a tag from a resource.
+// Unassigns a tag from a retention rule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -720,7 +720,7 @@ func (c *RecycleBin) UpdateRuleRequest(input *UpdateRuleInput) (req *request.Req
 //
 // Updates an existing Recycle Bin retention rule. For more information, see
 // Update Recycle Bin retention rules (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin-working-with-rules.html#recycle-bin-update-rule)
-// in the Amazon EC2 User Guide.
+// in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -764,22 +764,28 @@ func (c *RecycleBin) UpdateRuleWithContext(ctx aws.Context, input *UpdateRuleInp
 type CreateRuleInput struct {
 	_ struct{} `type:"structure"`
 
-	// A brief description for the retention rule.
+	// The retention rule description.
 	Description *string `type:"string"`
 
-	// Information about the resource tags to use to identify resources that are
-	// to be retained by the retention rule. The retention rule retains only deleted
-	// snapshots that have one or more of the specified tag key and value pairs.
-	// If a snapshot is deleted, but it does not have any of the specified tag key
-	// and value pairs, it is immediately deleted without being retained by the
-	// retention rule.
+	// Specifies the resource tags to use to identify resources that are to be retained
+	// by a tag-level retention rule. For tag-level retention rules, only deleted
+	// resources, of the specified resource type, that have one or more of the specified
+	// tag key and value pairs are retained. If a resource is deleted, but it does
+	// not have any of the specified tag key and value pairs, it is immediately
+	// deleted without being retained by the retention rule.
 	//
 	// You can add the same tag key and value pair to a maximum or five retention
 	// rules.
+	//
+	// To create a Region-level retention rule, omit this parameter. A Region-level
+	// retention rule does not have any resource tags specified. It retains all
+	// deleted resources of the specified resource type in the Region in which the
+	// rule is created, even if the resources are not tagged.
 	ResourceTags []*ResourceTag `type:"list"`
 
 	// The resource type to be retained by the retention rule. Currently, only Amazon
-	// EBS snapshots are supported.
+	// EBS snapshots and EBS-backed AMIs are supported. To retain snapshots, specify
+	// EBS_SNAPSHOT. To retain EBS-backed AMIs, specify EC2_IMAGE.
 	//
 	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true" enum:"ResourceType"`
@@ -889,7 +895,7 @@ type CreateRuleOutput struct {
 	// The retention rule description.
 	Description *string `type:"string"`
 
-	// The unique identifier of the retention rule.
+	// The unique ID of the retention rule.
 	Identifier *string `type:"string"`
 
 	// Information about the resource tags used to identify resources that are retained
@@ -899,15 +905,15 @@ type CreateRuleOutput struct {
 	// The resource type retained by the retention rule.
 	ResourceType *string `type:"string" enum:"ResourceType"`
 
-	// Information about the retention period for which a retention rule is to retain
-	// resources.
+	// Information about the retention period for which the retention rule is to
+	// retain resources.
 	RetentionPeriod *RetentionPeriod `type:"structure"`
 
 	// The state of the retention rule. Only retention rules that are in the available
-	// state retain snapshots.
+	// state retain resources.
 	Status *string `type:"string" enum:"RuleStatus"`
 
-	// The tags assigned to the retention rule.
+	// Information about the tags assigned to the retention rule.
 	Tags []*Tag `type:"list"`
 }
 
@@ -974,7 +980,7 @@ func (s *CreateRuleOutput) SetTags(v []*Tag) *CreateRuleOutput {
 type DeleteRuleInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The unique ID of the retention rule to delete.
+	// The unique ID of the retention rule.
 	//
 	// Identifier is a required field
 	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
@@ -1094,25 +1100,25 @@ func (s *GetRuleInput) SetIdentifier(v string) *GetRuleInput {
 type GetRuleOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The description assigned to the retention rule.
+	// The retention rule description.
 	Description *string `type:"string"`
 
 	// The unique ID of the retention rule.
 	Identifier *string `type:"string"`
 
-	// The resource tags used to identify resources that are to be retained by the
-	// retention rule.
+	// Information about the resource tags used to identify resources that are retained
+	// by the retention rule.
 	ResourceTags []*ResourceTag `type:"list"`
 
-	// The resource type retained by the retention rule. Currently, only Amazon
-	// EBS snapshots are supported.
+	// The resource type retained by the retention rule.
 	ResourceType *string `type:"string" enum:"ResourceType"`
 
-	// Information about the period for which the retention rule retains resources.
+	// Information about the retention period for which the retention rule is to
+	// retain resources.
 	RetentionPeriod *RetentionPeriod `type:"structure"`
 
 	// The state of the retention rule. Only retention rules that are in the available
-	// state retain snapshots.
+	// state retain resources.
 	Status *string `type:"string" enum:"RuleStatus"`
 }
 
@@ -1237,21 +1243,22 @@ func (s *InternalServerException) RequestID() string {
 type ListRulesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to return for the request in a single page.
-	// The remaining results can be seen by sending another request with the returned
-	// nextToken value. This value can be between 5 and 500. If maxResults is given
-	// a larger value than 500, you receive an error.
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned NextToken value.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// The token to use to retrieve the next page of results.
+	// The token for the next page of results.
 	NextToken *string `type:"string"`
 
-	// The tags used to identify resources that are to be retained by the retention
-	// rule.
+	// Information about the resource tags used to identify resources that are retained
+	// by the retention rule.
 	ResourceTags []*ResourceTag `type:"list"`
 
 	// The resource type retained by the retention rule. Only retention rules that
-	// retain the specified resource type are listed.
+	// retain the specified resource type are listed. Currently, only Amazon EBS
+	// snapshots and EBS-backed AMIs are supported. To list retention rules that
+	// retain snapshots, specify EBS_SNAPSHOT. To list retention rules that retain
+	// EBS-backed AMIs, specify EC2_IMAGE.
 	//
 	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true" enum:"ResourceType"`
@@ -1369,7 +1376,7 @@ func (s *ListRulesOutput) SetRules(v []*RuleSummary) *ListRulesOutput {
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Resource Name (ARN) of the resource for which to list the tags.
+	// The Amazon Resource Name (ARN) of the retention rule.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
@@ -1418,7 +1425,7 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the tags assigned to the resource.
+	// Information about the tags assigned to the retention rule.
 	Tags []*Tag `type:"list"`
 }
 
@@ -1513,8 +1520,8 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Information about a resource tag used to identify resources that are to be
-// retained by a Recycle Bin retention rule.
+// Information about the resource tags used to identify resources that are retained
+// by the retention rule.
 type ResourceTag struct {
 	_ struct{} `type:"structure"`
 
@@ -1570,8 +1577,8 @@ func (s *ResourceTag) SetResourceTagValue(v string) *ResourceTag {
 	return s
 }
 
-// Information about the retention period for which a retention rule is to retain
-// resources.
+// Information about the retention period for which the retention rule is to
+// retain resources.
 type RetentionPeriod struct {
 	_ struct{} `type:"structure"`
 
@@ -1641,14 +1648,14 @@ func (s *RetentionPeriod) SetRetentionPeriodValue(v int64) *RetentionPeriod {
 type RuleSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The description for the retention rule.
+	// The retention rule description.
 	Description *string `type:"string"`
 
 	// The unique ID of the retention rule.
 	Identifier *string `type:"string"`
 
-	// Information about the retention period for which the retention rule retains
-	// resources
+	// Information about the retention period for which the retention rule is to
+	// retain resources.
 	RetentionPeriod *RetentionPeriod `type:"structure"`
 }
 
@@ -1756,7 +1763,7 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Information about the tags assigned to a Recycle Bin retention rule.
+// Information about the tags to assign to the retention rule.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -1823,12 +1830,12 @@ func (s *Tag) SetValue(v string) *Tag {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource to which to assign the tags.
+	// The Amazon Resource Name (ARN) of the retention rule.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
-	// Information about the tags to assign to the resource.
+	// Information about the tags to assign to the retention rule.
 	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
@@ -1918,13 +1925,13 @@ func (s TagResourceOutput) GoString() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Resource Name (ARN) of the resource from which to unassign the
-	// tags.
+	// The Amazon Resource Name (ARN) of the retention rule.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
-	// Information about the tags to unassign from the resource.
+	// The tag keys of the tags to unassign. All tags that have the specified tag
+	// key are unassigned.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
@@ -2007,24 +2014,30 @@ type UpdateRuleInput struct {
 	// The retention rule description.
 	Description *string `type:"string"`
 
-	// The unique ID of the retention rule to update.
+	// The unique ID of the retention rule.
 	//
 	// Identifier is a required field
 	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
 
-	// Information about the resource tags to use to identify resources that are
-	// to be retained by the retention rule. The retention rule retains only deleted
-	// snapshots that have one or more of the specified tag key and value pairs.
-	// If a snapshot is deleted, but it does not have any of the specified tag key
-	// and value pairs, it is immediately deleted without being retained by the
-	// retention rule.
+	// Specifies the resource tags to use to identify resources that are to be retained
+	// by a tag-level retention rule. For tag-level retention rules, only deleted
+	// resources, of the specified resource type, that have one or more of the specified
+	// tag key and value pairs are retained. If a resource is deleted, but it does
+	// not have any of the specified tag key and value pairs, it is immediately
+	// deleted without being retained by the retention rule.
 	//
 	// You can add the same tag key and value pair to a maximum or five retention
 	// rules.
+	//
+	// To create a Region-level retention rule, omit this parameter. A Region-level
+	// retention rule does not have any resource tags specified. It retains all
+	// deleted resources of the specified resource type in the Region in which the
+	// rule is created, even if the resources are not tagged.
 	ResourceTags []*ResourceTag `type:"list"`
 
 	// The resource type to be retained by the retention rule. Currently, only Amazon
-	// EBS snapshots are supported.
+	// EBS snapshots and EBS-backed AMIs are supported. To retain snapshots, specify
+	// EBS_SNAPSHOT. To retain EBS-backed AMIs, specify EC2_IMAGE.
 	ResourceType *string `type:"string" enum:"ResourceType"`
 
 	// Information about the retention period for which the retention rule is to
@@ -2127,12 +2140,12 @@ type UpdateRuleOutput struct {
 	// The resource type retained by the retention rule.
 	ResourceType *string `type:"string" enum:"ResourceType"`
 
-	// Information about the retention period for which a retention rule is to retain
-	// resources.
+	// Information about the retention period for which the retention rule is to
+	// retain resources.
 	RetentionPeriod *RetentionPeriod `type:"structure"`
 
 	// The state of the retention rule. Only retention rules that are in the available
-	// state retain snapshots.
+	// state retain resources.
 	Status *string `type:"string" enum:"RuleStatus"`
 }
 
@@ -2272,12 +2285,16 @@ func ResourceNotFoundExceptionReason_Values() []string {
 const (
 	// ResourceTypeEbsSnapshot is a ResourceType enum value
 	ResourceTypeEbsSnapshot = "EBS_SNAPSHOT"
+
+	// ResourceTypeEc2Image is a ResourceType enum value
+	ResourceTypeEc2Image = "EC2_IMAGE"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
 func ResourceType_Values() []string {
 	return []string{
 		ResourceTypeEbsSnapshot,
+		ResourceTypeEc2Image,
 	}
 }
 

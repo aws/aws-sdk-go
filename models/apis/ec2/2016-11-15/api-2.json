@@ -3576,6 +3576,15 @@
       "input":{"shape":"ImportVolumeRequest"},
       "output":{"shape":"ImportVolumeResult"}
     },
+    "ListImagesInRecycleBin":{
+      "name":"ListImagesInRecycleBin",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListImagesInRecycleBinRequest"},
+      "output":{"shape":"ListImagesInRecycleBinResult"}
+    },
     "ListSnapshotsInRecycleBin":{
       "name":"ListSnapshotsInRecycleBin",
       "http":{
@@ -4403,6 +4412,15 @@
       },
       "input":{"shape":"RestoreAddressToClassicRequest"},
       "output":{"shape":"RestoreAddressToClassicResult"}
+    },
+    "RestoreImageFromRecycleBin":{
+      "name":"RestoreImageFromRecycleBin",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RestoreImageFromRecycleBinRequest"},
+      "output":{"shape":"RestoreImageFromRecycleBinResult"}
     },
     "RestoreManagedPrefixListVersion":{
       "name":"RestoreManagedPrefixListVersion",
@@ -21417,6 +21435,38 @@
         "locationName":"item"
       }
     },
+    "ImageRecycleBinInfo":{
+      "type":"structure",
+      "members":{
+        "ImageId":{
+          "shape":"String",
+          "locationName":"imageId"
+        },
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "Description":{
+          "shape":"String",
+          "locationName":"description"
+        },
+        "RecycleBinEnterTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"recycleBinEnterTime"
+        },
+        "RecycleBinExitTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"recycleBinExitTime"
+        }
+      }
+    },
+    "ImageRecycleBinInfoList":{
+      "type":"list",
+      "member":{
+        "shape":"ImageRecycleBinInfo",
+        "locationName":"item"
+      }
+    },
     "ImageState":{
       "type":"string",
       "enum":[
@@ -26236,6 +26286,36 @@
       "member":{
         "shape":"LicenseConfigurationRequest",
         "locationName":"item"
+      }
+    },
+    "ListImagesInRecycleBinMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "ListImagesInRecycleBinRequest":{
+      "type":"structure",
+      "members":{
+        "ImageIds":{
+          "shape":"ImageIdStringList",
+          "locationName":"ImageId"
+        },
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"ListImagesInRecycleBinMaxResults"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ListImagesInRecycleBinResult":{
+      "type":"structure",
+      "members":{
+        "Images":{
+          "shape":"ImageRecycleBinInfoList",
+          "locationName":"imageSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
       }
     },
     "ListSnapshotsInRecycleBinMaxResults":{
@@ -32756,6 +32836,23 @@
         "Status":{
           "shape":"Status",
           "locationName":"status"
+        }
+      }
+    },
+    "RestoreImageFromRecycleBinRequest":{
+      "type":"structure",
+      "required":["ImageId"],
+      "members":{
+        "ImageId":{"shape":"ImageId"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "RestoreImageFromRecycleBinResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
         }
       }
     },

@@ -216,7 +216,12 @@ const opCancelDeploymentJob = "CancelDeploymentJob"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CancelDeploymentJob
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CancelDeploymentJobRequest(input *CancelDeploymentJobInput) (req *request.Request, output *CancelDeploymentJobOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, CancelDeploymentJob, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opCancelDeploymentJob,
 		HTTPMethod: "POST",
@@ -236,6 +241,9 @@ func (c *RoboMaker) CancelDeploymentJobRequest(input *CancelDeploymentJobInput) 
 // CancelDeploymentJob API operation for AWS RoboMaker.
 //
 // Cancels the specified deployment job.
+//
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -260,6 +268,8 @@ func (c *RoboMaker) CancelDeploymentJobRequest(input *CancelDeploymentJobInput) 
 //   again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CancelDeploymentJob
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CancelDeploymentJob(input *CancelDeploymentJobInput) (*CancelDeploymentJobOutput, error) {
 	req, out := c.CancelDeploymentJobRequest(input)
 	return out, req.Send()
@@ -274,6 +284,8 @@ func (c *RoboMaker) CancelDeploymentJob(input *CancelDeploymentJobInput) (*Cance
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CancelDeploymentJobWithContext(ctx aws.Context, input *CancelDeploymentJobInput, opts ...request.Option) (*CancelDeploymentJobOutput, error) {
 	req, out := c.CancelDeploymentJobRequest(input)
 	req.SetContext(ctx)
@@ -673,7 +685,12 @@ const opCreateDeploymentJob = "CreateDeploymentJob"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateDeploymentJob
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CreateDeploymentJobRequest(input *CreateDeploymentJobInput) (req *request.Request, output *CreateDeploymentJobOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, CreateDeploymentJob, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opCreateDeploymentJob,
 		HTTPMethod: "POST",
@@ -692,6 +709,8 @@ func (c *RoboMaker) CreateDeploymentJobRequest(input *CreateDeploymentJobInput) 
 // CreateDeploymentJob API operation for AWS RoboMaker.
 //
 // Deploys a specific version of a robot application to robots in a fleet.
+//
+// This API is no longer supported and will throw an error if used.
 //
 // The robot application must have a numbered applicationVersion for consistency
 // reasons. To create a new version, use CreateRobotApplicationVersion or see
@@ -735,6 +754,8 @@ func (c *RoboMaker) CreateDeploymentJobRequest(input *CreateDeploymentJobInput) 
 //   are identical.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateDeploymentJob
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CreateDeploymentJob(input *CreateDeploymentJobInput) (*CreateDeploymentJobOutput, error) {
 	req, out := c.CreateDeploymentJobRequest(input)
 	return out, req.Send()
@@ -749,6 +770,8 @@ func (c *RoboMaker) CreateDeploymentJob(input *CreateDeploymentJobInput) (*Creat
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CreateDeploymentJobWithContext(ctx aws.Context, input *CreateDeploymentJobInput, opts ...request.Option) (*CreateDeploymentJobOutput, error) {
 	req, out := c.CreateDeploymentJobRequest(input)
 	req.SetContext(ctx)
@@ -782,7 +805,12 @@ const opCreateFleet = "CreateFleet"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateFleet
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CreateFleetRequest(input *CreateFleetInput) (req *request.Request, output *CreateFleetOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, CreateFleet, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opCreateFleet,
 		HTTPMethod: "POST",
@@ -801,6 +829,8 @@ func (c *RoboMaker) CreateFleetRequest(input *CreateFleetInput) (req *request.Re
 // CreateFleet API operation for AWS RoboMaker.
 //
 // Creates a fleet, a logical group of robots running the same robot application.
+//
+// This API is no longer supported and will throw an error if used.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -826,6 +856,8 @@ func (c *RoboMaker) CreateFleetRequest(input *CreateFleetInput) (req *request.Re
 //   of concurrent stream requests exceeds the maximum number allowed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateFleet
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CreateFleet(input *CreateFleetInput) (*CreateFleetOutput, error) {
 	req, out := c.CreateFleetRequest(input)
 	return out, req.Send()
@@ -840,6 +872,8 @@ func (c *RoboMaker) CreateFleet(input *CreateFleetInput) (*CreateFleetOutput, er
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CreateFleetWithContext(ctx aws.Context, input *CreateFleetInput, opts ...request.Option) (*CreateFleetOutput, error) {
 	req, out := c.CreateFleetRequest(input)
 	req.SetContext(ctx)
@@ -873,7 +907,12 @@ const opCreateRobot = "CreateRobot"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateRobot
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CreateRobotRequest(input *CreateRobotInput) (req *request.Request, output *CreateRobotOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, CreateRobot, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opCreateRobot,
 		HTTPMethod: "POST",
@@ -892,6 +931,8 @@ func (c *RoboMaker) CreateRobotRequest(input *CreateRobotInput) (req *request.Re
 // CreateRobot API operation for AWS RoboMaker.
 //
 // Creates a robot.
+//
+// This API is no longer supported and will throw an error if used.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -920,6 +961,8 @@ func (c *RoboMaker) CreateRobotRequest(input *CreateRobotInput) (req *request.Re
 //   The specified resource already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CreateRobot
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CreateRobot(input *CreateRobotInput) (*CreateRobotOutput, error) {
 	req, out := c.CreateRobotRequest(input)
 	return out, req.Send()
@@ -934,6 +977,8 @@ func (c *RoboMaker) CreateRobot(input *CreateRobotInput) (*CreateRobotOutput, er
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) CreateRobotWithContext(ctx aws.Context, input *CreateRobotInput, opts ...request.Option) (*CreateRobotOutput, error) {
 	req, out := c.CreateRobotRequest(input)
 	req.SetContext(ctx)
@@ -1759,7 +1804,12 @@ const opDeleteFleet = "DeleteFleet"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DeleteFleet
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DeleteFleetRequest(input *DeleteFleetInput) (req *request.Request, output *DeleteFleetOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DeleteFleet, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDeleteFleet,
 		HTTPMethod: "POST",
@@ -1779,6 +1829,9 @@ func (c *RoboMaker) DeleteFleetRequest(input *DeleteFleetInput) (req *request.Re
 // DeleteFleet API operation for AWS RoboMaker.
 //
 // Deletes a fleet.
+//
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1800,6 +1853,8 @@ func (c *RoboMaker) DeleteFleetRequest(input *DeleteFleetInput) (req *request.Re
 //   again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DeleteFleet
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DeleteFleet(input *DeleteFleetInput) (*DeleteFleetOutput, error) {
 	req, out := c.DeleteFleetRequest(input)
 	return out, req.Send()
@@ -1814,6 +1869,8 @@ func (c *RoboMaker) DeleteFleet(input *DeleteFleetInput) (*DeleteFleetOutput, er
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DeleteFleetWithContext(ctx aws.Context, input *DeleteFleetInput, opts ...request.Option) (*DeleteFleetOutput, error) {
 	req, out := c.DeleteFleetRequest(input)
 	req.SetContext(ctx)
@@ -1847,7 +1904,12 @@ const opDeleteRobot = "DeleteRobot"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DeleteRobot
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DeleteRobotRequest(input *DeleteRobotInput) (req *request.Request, output *DeleteRobotOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DeleteRobot, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDeleteRobot,
 		HTTPMethod: "POST",
@@ -1867,6 +1929,9 @@ func (c *RoboMaker) DeleteRobotRequest(input *DeleteRobotInput) (req *request.Re
 // DeleteRobot API operation for AWS RoboMaker.
 //
 // Deletes a robot.
+//
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1888,6 +1953,8 @@ func (c *RoboMaker) DeleteRobotRequest(input *DeleteRobotInput) (req *request.Re
 //   again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DeleteRobot
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DeleteRobot(input *DeleteRobotInput) (*DeleteRobotOutput, error) {
 	req, out := c.DeleteRobotRequest(input)
 	return out, req.Send()
@@ -1902,6 +1969,8 @@ func (c *RoboMaker) DeleteRobot(input *DeleteRobotInput) (*DeleteRobotOutput, er
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DeleteRobotWithContext(ctx aws.Context, input *DeleteRobotInput, opts ...request.Option) (*DeleteRobotOutput, error) {
 	req, out := c.DeleteRobotRequest(input)
 	req.SetContext(ctx)
@@ -2202,7 +2271,12 @@ const opDeregisterRobot = "DeregisterRobot"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DeregisterRobot
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DeregisterRobotRequest(input *DeregisterRobotInput) (req *request.Request, output *DeregisterRobotOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DeregisterRobot, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDeregisterRobot,
 		HTTPMethod: "POST",
@@ -2221,6 +2295,9 @@ func (c *RoboMaker) DeregisterRobotRequest(input *DeregisterRobotInput) (req *re
 // DeregisterRobot API operation for AWS RoboMaker.
 //
 // Deregisters a robot.
+//
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2245,6 +2322,8 @@ func (c *RoboMaker) DeregisterRobotRequest(input *DeregisterRobotInput) (req *re
 //   The specified resource does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DeregisterRobot
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DeregisterRobot(input *DeregisterRobotInput) (*DeregisterRobotOutput, error) {
 	req, out := c.DeregisterRobotRequest(input)
 	return out, req.Send()
@@ -2259,6 +2338,8 @@ func (c *RoboMaker) DeregisterRobot(input *DeregisterRobotInput) (*DeregisterRob
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DeregisterRobotWithContext(ctx aws.Context, input *DeregisterRobotInput, opts ...request.Option) (*DeregisterRobotOutput, error) {
 	req, out := c.DeregisterRobotRequest(input)
 	req.SetContext(ctx)
@@ -2292,7 +2373,12 @@ const opDescribeDeploymentJob = "DescribeDeploymentJob"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeDeploymentJob
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DescribeDeploymentJobRequest(input *DescribeDeploymentJobInput) (req *request.Request, output *DescribeDeploymentJobOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DescribeDeploymentJob, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDescribeDeploymentJob,
 		HTTPMethod: "POST",
@@ -2311,6 +2397,9 @@ func (c *RoboMaker) DescribeDeploymentJobRequest(input *DescribeDeploymentJobInp
 // DescribeDeploymentJob API operation for AWS RoboMaker.
 //
 // Describes a deployment job.
+//
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2335,6 +2424,8 @@ func (c *RoboMaker) DescribeDeploymentJobRequest(input *DescribeDeploymentJobInp
 //   again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeDeploymentJob
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DescribeDeploymentJob(input *DescribeDeploymentJobInput) (*DescribeDeploymentJobOutput, error) {
 	req, out := c.DescribeDeploymentJobRequest(input)
 	return out, req.Send()
@@ -2349,6 +2440,8 @@ func (c *RoboMaker) DescribeDeploymentJob(input *DescribeDeploymentJobInput) (*D
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DescribeDeploymentJobWithContext(ctx aws.Context, input *DescribeDeploymentJobInput, opts ...request.Option) (*DescribeDeploymentJobOutput, error) {
 	req, out := c.DescribeDeploymentJobRequest(input)
 	req.SetContext(ctx)
@@ -2382,7 +2475,12 @@ const opDescribeFleet = "DescribeFleet"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeFleet
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DescribeFleetRequest(input *DescribeFleetInput) (req *request.Request, output *DescribeFleetOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DescribeFleet, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDescribeFleet,
 		HTTPMethod: "POST",
@@ -2401,6 +2499,9 @@ func (c *RoboMaker) DescribeFleetRequest(input *DescribeFleetInput) (req *reques
 // DescribeFleet API operation for AWS RoboMaker.
 //
 // Describes a fleet.
+//
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2425,6 +2526,8 @@ func (c *RoboMaker) DescribeFleetRequest(input *DescribeFleetInput) (req *reques
 //   again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeFleet
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DescribeFleet(input *DescribeFleetInput) (*DescribeFleetOutput, error) {
 	req, out := c.DescribeFleetRequest(input)
 	return out, req.Send()
@@ -2439,6 +2542,8 @@ func (c *RoboMaker) DescribeFleet(input *DescribeFleetInput) (*DescribeFleetOutp
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DescribeFleetWithContext(ctx aws.Context, input *DescribeFleetInput, opts ...request.Option) (*DescribeFleetOutput, error) {
 	req, out := c.DescribeFleetRequest(input)
 	req.SetContext(ctx)
@@ -2472,7 +2577,12 @@ const opDescribeRobot = "DescribeRobot"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeRobot
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DescribeRobotRequest(input *DescribeRobotInput) (req *request.Request, output *DescribeRobotOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DescribeRobot, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDescribeRobot,
 		HTTPMethod: "POST",
@@ -2491,6 +2601,9 @@ func (c *RoboMaker) DescribeRobotRequest(input *DescribeRobotInput) (req *reques
 // DescribeRobot API operation for AWS RoboMaker.
 //
 // Describes a robot.
+//
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2515,6 +2628,8 @@ func (c *RoboMaker) DescribeRobotRequest(input *DescribeRobotInput) (req *reques
 //   again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeRobot
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DescribeRobot(input *DescribeRobotInput) (*DescribeRobotOutput, error) {
 	req, out := c.DescribeRobotRequest(input)
 	return out, req.Send()
@@ -2529,6 +2644,8 @@ func (c *RoboMaker) DescribeRobot(input *DescribeRobotInput) (*DescribeRobotOutp
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) DescribeRobotWithContext(ctx aws.Context, input *DescribeRobotInput, opts ...request.Option) (*DescribeRobotOutput, error) {
 	req, out := c.DescribeRobotRequest(input)
 	req.SetContext(ctx)
@@ -3368,7 +3485,12 @@ const opListDeploymentJobs = "ListDeploymentJobs"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListDeploymentJobs
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListDeploymentJobsRequest(input *ListDeploymentJobsInput) (req *request.Request, output *ListDeploymentJobsOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, ListDeploymentJobs, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opListDeploymentJobs,
 		HTTPMethod: "POST",
@@ -3395,6 +3517,9 @@ func (c *RoboMaker) ListDeploymentJobsRequest(input *ListDeploymentJobsInput) (r
 // Returns a list of deployment jobs for a fleet. You can optionally provide
 // filters to retrieve specific deployment jobs.
 //
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3418,6 +3543,8 @@ func (c *RoboMaker) ListDeploymentJobsRequest(input *ListDeploymentJobsInput) (r
 //   again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListDeploymentJobs
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListDeploymentJobs(input *ListDeploymentJobsInput) (*ListDeploymentJobsOutput, error) {
 	req, out := c.ListDeploymentJobsRequest(input)
 	return out, req.Send()
@@ -3432,6 +3559,8 @@ func (c *RoboMaker) ListDeploymentJobs(input *ListDeploymentJobsInput) (*ListDep
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListDeploymentJobsWithContext(ctx aws.Context, input *ListDeploymentJobsInput, opts ...request.Option) (*ListDeploymentJobsOutput, error) {
 	req, out := c.ListDeploymentJobsRequest(input)
 	req.SetContext(ctx)
@@ -3456,6 +3585,8 @@ func (c *RoboMaker) ListDeploymentJobsWithContext(ctx aws.Context, input *ListDe
 //            return pageNum <= 3
 //        })
 //
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListDeploymentJobsPages(input *ListDeploymentJobsInput, fn func(*ListDeploymentJobsOutput, bool) bool) error {
 	return c.ListDeploymentJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3467,6 +3598,8 @@ func (c *RoboMaker) ListDeploymentJobsPages(input *ListDeploymentJobsInput, fn f
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListDeploymentJobsPagesWithContext(ctx aws.Context, input *ListDeploymentJobsInput, fn func(*ListDeploymentJobsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
@@ -3517,7 +3650,12 @@ const opListFleets = "ListFleets"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListFleets
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListFleetsRequest(input *ListFleetsInput) (req *request.Request, output *ListFleetsOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, ListFleets, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opListFleets,
 		HTTPMethod: "POST",
@@ -3544,6 +3682,9 @@ func (c *RoboMaker) ListFleetsRequest(input *ListFleetsInput) (req *request.Requ
 // Returns a list of fleets. You can optionally provide filters to retrieve
 // specific fleets.
 //
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3567,6 +3708,8 @@ func (c *RoboMaker) ListFleetsRequest(input *ListFleetsInput) (req *request.Requ
 //   again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListFleets
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListFleets(input *ListFleetsInput) (*ListFleetsOutput, error) {
 	req, out := c.ListFleetsRequest(input)
 	return out, req.Send()
@@ -3581,6 +3724,8 @@ func (c *RoboMaker) ListFleets(input *ListFleetsInput) (*ListFleetsOutput, error
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListFleetsWithContext(ctx aws.Context, input *ListFleetsInput, opts ...request.Option) (*ListFleetsOutput, error) {
 	req, out := c.ListFleetsRequest(input)
 	req.SetContext(ctx)
@@ -3605,6 +3750,8 @@ func (c *RoboMaker) ListFleetsWithContext(ctx aws.Context, input *ListFleetsInpu
 //            return pageNum <= 3
 //        })
 //
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListFleetsPages(input *ListFleetsInput, fn func(*ListFleetsOutput, bool) bool) error {
 	return c.ListFleetsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3616,6 +3763,8 @@ func (c *RoboMaker) ListFleetsPages(input *ListFleetsInput, fn func(*ListFleetsO
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListFleetsPagesWithContext(ctx aws.Context, input *ListFleetsInput, fn func(*ListFleetsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
@@ -3812,7 +3961,12 @@ const opListRobots = "ListRobots"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListRobots
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListRobotsRequest(input *ListRobotsInput) (req *request.Request, output *ListRobotsOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, ListRobots, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opListRobots,
 		HTTPMethod: "POST",
@@ -3839,6 +3993,9 @@ func (c *RoboMaker) ListRobotsRequest(input *ListRobotsInput) (req *request.Requ
 // Returns a list of robots. You can optionally provide filters to retrieve
 // specific robots.
 //
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3862,6 +4019,8 @@ func (c *RoboMaker) ListRobotsRequest(input *ListRobotsInput) (req *request.Requ
 //   again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListRobots
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListRobots(input *ListRobotsInput) (*ListRobotsOutput, error) {
 	req, out := c.ListRobotsRequest(input)
 	return out, req.Send()
@@ -3876,6 +4035,8 @@ func (c *RoboMaker) ListRobots(input *ListRobotsInput) (*ListRobotsOutput, error
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListRobotsWithContext(ctx aws.Context, input *ListRobotsInput, opts ...request.Option) (*ListRobotsOutput, error) {
 	req, out := c.ListRobotsRequest(input)
 	req.SetContext(ctx)
@@ -3900,6 +4061,8 @@ func (c *RoboMaker) ListRobotsWithContext(ctx aws.Context, input *ListRobotsInpu
 //            return pageNum <= 3
 //        })
 //
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListRobotsPages(input *ListRobotsInput, fn func(*ListRobotsOutput, bool) bool) error {
 	return c.ListRobotsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3911,6 +4074,8 @@ func (c *RoboMaker) ListRobotsPages(input *ListRobotsInput, fn func(*ListRobotsO
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) ListRobotsPagesWithContext(ctx aws.Context, input *ListRobotsInput, fn func(*ListRobotsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
@@ -5065,7 +5230,12 @@ const opRegisterRobot = "RegisterRobot"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/RegisterRobot
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) RegisterRobotRequest(input *RegisterRobotInput) (req *request.Request, output *RegisterRobotOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, RegisterRobot, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opRegisterRobot,
 		HTTPMethod: "POST",
@@ -5084,6 +5254,8 @@ func (c *RoboMaker) RegisterRobotRequest(input *RegisterRobotInput) (req *reques
 // RegisterRobot API operation for AWS RoboMaker.
 //
 // Registers a robot with a fleet.
+//
+// This API is no longer supported and will throw an error if used.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5112,6 +5284,8 @@ func (c *RoboMaker) RegisterRobotRequest(input *RegisterRobotInput) (req *reques
 //   The specified resource does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/RegisterRobot
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) RegisterRobot(input *RegisterRobotInput) (*RegisterRobotOutput, error) {
 	req, out := c.RegisterRobotRequest(input)
 	return out, req.Send()
@@ -5126,6 +5300,8 @@ func (c *RoboMaker) RegisterRobot(input *RegisterRobotInput) (*RegisterRobotOutp
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) RegisterRobotWithContext(ctx aws.Context, input *RegisterRobotInput, opts ...request.Option) (*RegisterRobotOutput, error) {
 	req, out := c.RegisterRobotRequest(input)
 	req.SetContext(ctx)
@@ -5351,7 +5527,12 @@ const opSyncDeploymentJob = "SyncDeploymentJob"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/SyncDeploymentJob
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) SyncDeploymentJobRequest(input *SyncDeploymentJobInput) (req *request.Request, output *SyncDeploymentJobOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, SyncDeploymentJob, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opSyncDeploymentJob,
 		HTTPMethod: "POST",
@@ -5371,6 +5552,9 @@ func (c *RoboMaker) SyncDeploymentJobRequest(input *SyncDeploymentJobInput) (req
 //
 // Syncrhonizes robots in a fleet to the latest deployment. This is helpful
 // if robots were added after a deployment.
+//
+// This API will no longer be supported as of May 2, 2022. Use it to remove
+// resources that were created for Deployment Service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5407,6 +5591,8 @@ func (c *RoboMaker) SyncDeploymentJobRequest(input *SyncDeploymentJobInput) (req
 //   are identical.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/SyncDeploymentJob
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) SyncDeploymentJob(input *SyncDeploymentJobInput) (*SyncDeploymentJobOutput, error) {
 	req, out := c.SyncDeploymentJobRequest(input)
 	return out, req.Send()
@@ -5421,6 +5607,8 @@ func (c *RoboMaker) SyncDeploymentJob(input *SyncDeploymentJobInput) (*SyncDeplo
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 func (c *RoboMaker) SyncDeploymentJobWithContext(ctx aws.Context, input *SyncDeploymentJobInput, opts ...request.Option) (*SyncDeploymentJobOutput, error) {
 	req, out := c.SyncDeploymentJobRequest(input)
 	req.SetContext(ctx)
@@ -6119,8 +6307,9 @@ func (s *BatchPolicy) SetTimeoutInSeconds(v int64) *BatchPolicy {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type CancelDeploymentJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The deployment job ARN to cancel.
 	//
@@ -6168,8 +6357,9 @@ func (s *CancelDeploymentJobInput) SetJob(v string) *CancelDeploymentJobInput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type CancelDeploymentJobOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 }
 
 // String returns the string representation.
@@ -6659,8 +6849,9 @@ func (s *ConcurrentDeploymentException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type CreateDeploymentJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// Unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request.
@@ -6772,8 +6963,9 @@ func (s *CreateDeploymentJobInput) SetTags(v map[string]*string) *CreateDeployme
 	return s
 }
 
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type CreateDeploymentJobOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the deployment job.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
@@ -6932,8 +7124,9 @@ func (s *CreateDeploymentJobOutput) SetTags(v map[string]*string) *CreateDeploym
 	return s
 }
 
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type CreateFleetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The name of the fleet.
 	//
@@ -6990,8 +7183,9 @@ func (s *CreateFleetInput) SetTags(v map[string]*string) *CreateFleetInput {
 	return s
 }
 
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type CreateFleetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the fleet.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
@@ -7436,8 +7630,9 @@ func (s *CreateRobotApplicationVersionOutput) SetVersion(v string) *CreateRobotA
 	return s
 }
 
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type CreateRobotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The target architecture of the robot.
 	//
@@ -7525,8 +7720,9 @@ func (s *CreateRobotInput) SetTags(v map[string]*string) *CreateRobotInput {
 	return s
 }
 
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type CreateRobotOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The target architecture of the robot.
 	Architecture *string `locationName:"architecture" type:"string" enum:"Architecture"`
@@ -9414,8 +9610,9 @@ func (s *DataSourceConfig) SetType(v string) *DataSourceConfig {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DeleteFleetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the fleet.
 	//
@@ -9463,8 +9660,9 @@ func (s *DeleteFleetInput) SetFleet(v string) *DeleteFleetInput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DeleteFleetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 }
 
 // String returns the string representation.
@@ -9568,8 +9766,9 @@ func (s DeleteRobotApplicationOutput) GoString() string {
 	return s.String()
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DeleteRobotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the robot.
 	//
@@ -9617,8 +9816,9 @@ func (s *DeleteRobotInput) SetRobot(v string) *DeleteRobotInput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DeleteRobotOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 }
 
 // String returns the string representation.
@@ -10159,8 +10359,9 @@ func (s *DeploymentLaunchConfig) SetPreLaunchFile(v string) *DeploymentLaunchCon
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DeregisterRobotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the fleet.
 	//
@@ -10225,8 +10426,9 @@ func (s *DeregisterRobotInput) SetRobot(v string) *DeregisterRobotInput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DeregisterRobotOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the fleet.
 	Fleet *string `locationName:"fleet" min:"1" type:"string"`
@@ -10265,8 +10467,9 @@ func (s *DeregisterRobotOutput) SetRobot(v string) *DeregisterRobotOutput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DescribeDeploymentJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the deployment job.
 	//
@@ -10314,8 +10517,9 @@ func (s *DescribeDeploymentJobInput) SetJob(v string) *DescribeDeploymentJobInpu
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DescribeDeploymentJobOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the deployment job.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
@@ -10426,8 +10630,9 @@ func (s *DescribeDeploymentJobOutput) SetTags(v map[string]*string) *DescribeDep
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DescribeFleetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the fleet.
 	//
@@ -10475,8 +10680,9 @@ func (s *DescribeFleetInput) SetFleet(v string) *DescribeFleetInput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DescribeFleetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the fleet.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
@@ -10743,8 +10949,9 @@ func (s *DescribeRobotApplicationOutput) SetVersion(v string) *DescribeRobotAppl
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DescribeRobotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the robot to be described.
 	//
@@ -10792,8 +10999,9 @@ func (s *DescribeRobotInput) SetRobot(v string) *DescribeRobotInput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type DescribeRobotOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The target architecture of the robot application.
 	Architecture *string `locationName:"architecture" type:"string" enum:"Architecture"`
@@ -13133,8 +13341,9 @@ func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type ListDeploymentJobsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// Optional filters to limit results.
 	//
@@ -13222,8 +13431,9 @@ func (s *ListDeploymentJobsInput) SetNextToken(v string) *ListDeploymentJobsInpu
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type ListDeploymentJobsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// A list of deployment jobs that meet the criteria of the request.
 	DeploymentJobs []*DeploymentJob `locationName:"deploymentJobs" type:"list"`
@@ -13266,8 +13476,9 @@ func (s *ListDeploymentJobsOutput) SetNextToken(v string) *ListDeploymentJobsOut
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type ListFleetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// Optional filters to limit results.
 	//
@@ -13356,8 +13567,9 @@ func (s *ListFleetsInput) SetNextToken(v string) *ListFleetsInput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type ListFleetsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// A list of fleet details meeting the request criteria.
 	FleetDetails []*Fleet `locationName:"fleetDetails" type:"list"`
@@ -13543,8 +13755,9 @@ func (s *ListRobotApplicationsOutput) SetRobotApplicationSummaries(v []*RobotApp
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type ListRobotsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// Optional filters to limit results.
 	//
@@ -13632,8 +13845,9 @@ func (s *ListRobotsInput) SetNextToken(v string) *ListRobotsInput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type ListRobotsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// If the previous paginated request did not return all of the remaining results,
 	// the response object's nextToken parameter value is set to a token. To retrieve
@@ -15025,8 +15239,9 @@ func (s *ProgressDetail) SetTargetResource(v string) *ProgressDetail {
 	return s
 }
 
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type RegisterRobotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the fleet.
 	//
@@ -15091,8 +15306,9 @@ func (s *RegisterRobotInput) SetRobot(v string) *RegisterRobotInput {
 	return s
 }
 
+// Deprecated: AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type RegisterRobotOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the fleet that the robot will join.
 	Fleet *string `locationName:"fleet" min:"1" type:"string"`
@@ -17362,8 +17578,9 @@ func (s *StartSimulationJobBatchOutput) SetTags(v map[string]*string) *StartSimu
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type SyncDeploymentJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// Unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request.
@@ -17424,8 +17641,9 @@ func (s *SyncDeploymentJobInput) SetFleet(v string) *SyncDeploymentJobInput {
 	return s
 }
 
+// Deprecated: Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html.
 type SyncDeploymentJobOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the synchronization request.
 	Arn *string `locationName:"arn" min:"1" type:"string"`

@@ -55,7 +55,9 @@
         {"shape":"InvalidParameterException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "CancelSimulationJob":{
       "name":"CancelSimulationJob",
@@ -133,7 +135,9 @@
         {"shape":"LimitExceededException"},
         {"shape":"ConcurrentDeploymentException"},
         {"shape":"IdempotentParameterMismatchException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "CreateFleet":{
       "name":"CreateFleet",
@@ -148,7 +152,9 @@
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
         {"shape":"LimitExceededException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "CreateRobot":{
       "name":"CreateRobot",
@@ -164,7 +170,9 @@
         {"shape":"ThrottlingException"},
         {"shape":"LimitExceededException"},
         {"shape":"ResourceAlreadyExistsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "CreateRobotApplication":{
       "name":"CreateRobotApplication",
@@ -314,7 +322,9 @@
         {"shape":"InvalidParameterException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "DeleteRobot":{
       "name":"DeleteRobot",
@@ -328,7 +338,9 @@
         {"shape":"InvalidParameterException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "DeleteRobotApplication":{
       "name":"DeleteRobotApplication",
@@ -386,7 +398,9 @@
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "DescribeDeploymentJob":{
       "name":"DescribeDeploymentJob",
@@ -401,7 +415,9 @@
         {"shape":"InvalidParameterException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "DescribeFleet":{
       "name":"DescribeFleet",
@@ -416,7 +432,9 @@
         {"shape":"InvalidParameterException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "DescribeRobot":{
       "name":"DescribeRobot",
@@ -431,7 +449,9 @@
         {"shape":"InvalidParameterException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "DescribeRobotApplication":{
       "name":"DescribeRobotApplication",
@@ -580,7 +600,9 @@
         {"shape":"InvalidParameterException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "ListFleets":{
       "name":"ListFleets",
@@ -595,7 +617,9 @@
         {"shape":"InvalidParameterException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "ListRobotApplications":{
       "name":"ListRobotApplications",
@@ -624,7 +648,9 @@
         {"shape":"InvalidParameterException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "ListSimulationApplications":{
       "name":"ListSimulationApplications",
@@ -752,7 +778,9 @@
         {"shape":"ThrottlingException"},
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "RestartSimulationJob":{
       "name":"RestartSimulationJob",
@@ -802,7 +830,9 @@
         {"shape":"LimitExceededException"},
         {"shape":"ConcurrentDeploymentException"},
         {"shape":"IdempotentParameterMismatchException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "TagResource":{
       "name":"TagResource",
@@ -945,12 +975,16 @@
       "required":["job"],
       "members":{
         "job":{"shape":"Arn"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "CancelDeploymentJobResponse":{
       "type":"structure",
       "members":{
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "CancelSimulationJobBatchRequest":{
       "type":"structure",
@@ -1063,7 +1097,9 @@
         "fleet":{"shape":"Arn"},
         "deploymentApplicationConfigs":{"shape":"DeploymentApplicationConfigs"},
         "tags":{"shape":"TagMap"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "CreateDeploymentJobResponse":{
       "type":"structure",
@@ -1077,7 +1113,9 @@
         "createdAt":{"shape":"CreatedAt"},
         "deploymentConfig":{"shape":"DeploymentConfig"},
         "tags":{"shape":"TagMap"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "CreateFleetRequest":{
       "type":"structure",
@@ -1085,7 +1123,9 @@
       "members":{
         "name":{"shape":"Name"},
         "tags":{"shape":"TagMap"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "CreateFleetResponse":{
       "type":"structure",
@@ -1094,7 +1134,9 @@
         "name":{"shape":"Name"},
         "createdAt":{"shape":"CreatedAt"},
         "tags":{"shape":"TagMap"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "CreateRobotApplicationRequest":{
       "type":"structure",
@@ -1159,7 +1201,9 @@
         "architecture":{"shape":"Architecture"},
         "greengrassGroupId":{"shape":"Id"},
         "tags":{"shape":"TagMap"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "CreateRobotResponse":{
       "type":"structure",
@@ -1170,7 +1214,9 @@
         "greengrassGroupId":{"shape":"Id"},
         "architecture":{"shape":"Architecture"},
         "tags":{"shape":"TagMap"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "CreateSimulationApplicationRequest":{
       "type":"structure",
@@ -1418,12 +1464,16 @@
       "required":["fleet"],
       "members":{
         "fleet":{"shape":"Arn"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "DeleteFleetResponse":{
       "type":"structure",
       "members":{
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "DeleteRobotApplicationRequest":{
       "type":"structure",
@@ -1443,12 +1493,16 @@
       "required":["robot"],
       "members":{
         "robot":{"shape":"Arn"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "DeleteRobotResponse":{
       "type":"structure",
       "members":{
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "DeleteSimulationApplicationRequest":{
       "type":"structure",
@@ -1592,21 +1646,27 @@
       "members":{
         "fleet":{"shape":"Arn"},
         "robot":{"shape":"Arn"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "DeregisterRobotResponse":{
       "type":"structure",
       "members":{
         "fleet":{"shape":"Arn"},
         "robot":{"shape":"Arn"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "DescribeDeploymentJobRequest":{
       "type":"structure",
       "required":["job"],
       "members":{
         "job":{"shape":"Arn"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "DescribeDeploymentJobResponse":{
       "type":"structure",
@@ -1621,14 +1681,18 @@
         "createdAt":{"shape":"CreatedAt"},
         "robotDeploymentSummary":{"shape":"RobotDeploymentSummary"},
         "tags":{"shape":"TagMap"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "DescribeFleetRequest":{
       "type":"structure",
       "required":["fleet"],
       "members":{
         "fleet":{"shape":"Arn"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "DescribeFleetResponse":{
       "type":"structure",
@@ -1641,7 +1705,9 @@
         "lastDeploymentJob":{"shape":"Arn"},
         "lastDeploymentTime":{"shape":"CreatedAt"},
         "tags":{"shape":"TagMap"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "DescribeRobotApplicationRequest":{
       "type":"structure",
@@ -1671,7 +1737,9 @@
       "required":["robot"],
       "members":{
         "robot":{"shape":"Arn"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "DescribeRobotResponse":{
       "type":"structure",
@@ -1686,7 +1754,9 @@
         "lastDeploymentJob":{"shape":"Arn"},
         "lastDeploymentTime":{"shape":"CreatedAt"},
         "tags":{"shape":"TagMap"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "DescribeSimulationApplicationRequest":{
       "type":"structure",
@@ -2060,14 +2130,18 @@
         "filters":{"shape":"Filters"},
         "nextToken":{"shape":"PaginationToken"},
         "maxResults":{"shape":"MaxResults"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "ListDeploymentJobsResponse":{
       "type":"structure",
       "members":{
         "deploymentJobs":{"shape":"DeploymentJobs"},
         "nextToken":{"shape":"PaginationToken"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "ListFleetsRequest":{
       "type":"structure",
@@ -2075,14 +2149,18 @@
         "nextToken":{"shape":"PaginationToken"},
         "maxResults":{"shape":"MaxResults"},
         "filters":{"shape":"Filters"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "ListFleetsResponse":{
       "type":"structure",
       "members":{
         "fleetDetails":{"shape":"Fleets"},
         "nextToken":{"shape":"PaginationToken"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "ListRobotApplicationsRequest":{
       "type":"structure",
@@ -2106,14 +2184,18 @@
         "nextToken":{"shape":"PaginationToken"},
         "maxResults":{"shape":"MaxResults"},
         "filters":{"shape":"Filters"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "ListRobotsResponse":{
       "type":"structure",
       "members":{
         "robots":{"shape":"Robots"},
         "nextToken":{"shape":"PaginationToken"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "ListSimulationApplicationsRequest":{
       "type":"structure",
@@ -2350,14 +2432,18 @@
       "members":{
         "fleet":{"shape":"Arn"},
         "robot":{"shape":"Arn"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "RegisterRobotResponse":{
       "type":"structure",
       "members":{
         "fleet":{"shape":"Arn"},
         "robot":{"shape":"Arn"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"AWS RoboMaker is unable to process this request as the support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "RenderingEngine":{
       "type":"structure",
@@ -2903,7 +2989,9 @@
           "idempotencyToken":true
         },
         "fleet":{"shape":"Arn"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "SyncDeploymentJobResponse":{
       "type":"structure",
@@ -2916,7 +3004,9 @@
         "failureReason":{"shape":"GenericString"},
         "failureCode":{"shape":"DeploymentJobErrorCode"},
         "createdAt":{"shape":"CreatedAt"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Support for the AWS RoboMaker application deployment feature has ended. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/fleets.html."
     },
     "TagKey":{
       "type":"string",

@@ -292,7 +292,10 @@
     },
     "ResourceType":{
       "type":"string",
-      "enum":["EBS_SNAPSHOT"]
+      "enum":[
+        "EBS_SNAPSHOT",
+        "EC2_IMAGE"
+      ]
     },
     "RetentionPeriod":{
       "type":"structure",
