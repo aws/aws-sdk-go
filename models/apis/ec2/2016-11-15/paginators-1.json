@@ -728,6 +728,12 @@
       "output_token": "NextToken",
       "result_key": "VpnConnectionDeviceTypes"
     },
+    "ListImagesInRecycleBin": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Images"
+    },
     "ListSnapshotsInRecycleBin": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

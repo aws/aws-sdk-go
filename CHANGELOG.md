@@ -1,3 +1,14 @@
+Release v1.42.46 (2022-02-03)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API, documentation, and paginators
+  * adds support for AMIs in Recycle Bin
+* `service/meteringmarketplace`: Updates service API and documentation
+  * Add CustomerAWSAccountId to ResolveCustomer API response and increase UsageAllocation limit to 2500.
+* `service/rbin`: Updates service API and documentation
+* `service/robomaker`: Updates service API and documentation
+
 Release v1.42.45 (2022-02-02)
 ===
 
