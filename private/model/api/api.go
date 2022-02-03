@@ -51,6 +51,9 @@ type API struct {
 	// Set to true to not generate struct field accessors
 	NoGenStructFieldAccessors bool
 
+	// Set to not remove unsupported (non-legacy) JSON from API, (for generated tests).
+	NoRemoveUnsupportedJSONValue bool
+
 	BaseImportPath string
 
 	initialized bool
