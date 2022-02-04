@@ -1318,7 +1318,8 @@
       "type":"structure",
       "members":{
         "OutputLocation":{"shape":"String"},
-        "EncryptionConfiguration":{"shape":"EncryptionConfiguration"}
+        "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
+        "ExpectedBucketOwner":{"shape":"String"}
       }
     },
     "ResultConfigurationUpdates":{
@@ -1327,7 +1328,9 @@
         "OutputLocation":{"shape":"String"},
         "RemoveOutputLocation":{"shape":"BoxedBoolean"},
         "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
-        "RemoveEncryptionConfiguration":{"shape":"BoxedBoolean"}
+        "RemoveEncryptionConfiguration":{"shape":"BoxedBoolean"},
+        "ExpectedBucketOwner":{"shape":"String"},
+        "RemoveExpectedBucketOwner":{"shape":"BoxedBoolean"}
       }
     },
     "ResultSet":{

@@ -715,7 +715,7 @@ const (
 	// ErrCodeSNSInvalidTopicFault for service response error code
 	// "SNSInvalidTopic".
 	//
-	// SNS has responded that there is a problem with the SND topic specified.
+	// SNS has responded that there is a problem with the SNS topic specified.
 	ErrCodeSNSInvalidTopicFault = "SNSInvalidTopic"
 
 	// ErrCodeSNSNoAuthorizationFault for service response error code

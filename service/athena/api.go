@@ -1380,6 +1380,13 @@ func (c *Athena) GetQueryResultsRequest(input *GetQueryResultsInput) (req *reque
 // in the Amazon Athena User Guide. This request does not execute the query
 // but returns results. Use StartQueryExecution to run a query.
 //
+// If the original query execution ran using an ResultConfiguration$ExpectedBucketOwner
+// setting, the setting also applies to Amazon S3 read operations when GetQueryResults
+// is called. If an expected bucket owner has been specified and the query results
+// are in an Amazon S3 bucket whose owner account ID is different from the expected
+// bucket owner, the GetQueryResults call fails with an Amazon S3 permissions
+// error.
+//
 // To stream query results successfully, the IAM principal with permission to
 // call GetQueryResults also must have permissions to the Amazon S3 GetObject
 // action for the Athena query results location.
@@ -7681,6 +7688,20 @@ type ResultConfiguration struct {
 	// Override Client-Side Settings (https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html).
 	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
 
+	// The Amazon Web Services account ID that you expect to be the owner of the
+	// Amazon S3 bucket specified by ResultConfiguration$OutputLocation. If set,
+	// Athena uses the value for ExpectedBucketOwner when it makes Amazon S3 calls
+	// to your specified output location. If the ExpectedBucketOwner Amazon Web
+	// Services account ID does not match the actual owner of the Amazon S3 bucket,
+	// the call fails with a permissions error.
+	//
+	// This is a client-side setting. If workgroup settings override client-side
+	// settings, then the query uses the ExpectedBucketOwner setting that is specified
+	// for the workgroup, and also uses the location for storing query results specified
+	// in the workgroup. See WorkGroupConfiguration$EnforceWorkGroupConfiguration
+	// and Workgroup Settings Override Client-Side Settings (https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html).
+	ExpectedBucketOwner *string `type:"string"`
+
 	// The location in Amazon S3 where your query results are stored, such as s3://path/to/query/bucket/.
 	// To run the query, you must specify the query results location using one of
 	// the ways: either for individual queries using either this setting (client-side),
@@ -7731,6 +7752,12 @@ func (s *ResultConfiguration) SetEncryptionConfiguration(v *EncryptionConfigurat
 	return s
 }
 
+// SetExpectedBucketOwner sets the ExpectedBucketOwner field's value.
+func (s *ResultConfiguration) SetExpectedBucketOwner(v string) *ResultConfiguration {
+	s.ExpectedBucketOwner = &v
+	return s
+}
+
 // SetOutputLocation sets the OutputLocation field's value.
 func (s *ResultConfiguration) SetOutputLocation(v string) *ResultConfiguration {
 	s.OutputLocation = &v
@@ -7744,6 +7771,20 @@ type ResultConfigurationUpdates struct {
 
 	// The encryption configuration for the query results.
 	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
+
+	// The Amazon Web Services account ID that you expect to be the owner of the
+	// Amazon S3 bucket specified by ResultConfiguration$OutputLocation. If set,
+	// Athena uses the value for ExpectedBucketOwner when it makes Amazon S3 calls
+	// to your specified output location. If the ExpectedBucketOwner Amazon Web
+	// Services account ID does not match the actual owner of the Amazon S3 bucket,
+	// the call fails with a permissions error.
+	//
+	// If workgroup settings override client-side settings, then the query uses
+	// the ExpectedBucketOwner setting that is specified for the workgroup, and
+	// also uses the location for storing query results specified in the workgroup.
+	// See WorkGroupConfiguration$EnforceWorkGroupConfiguration and Workgroup Settings
+	// Override Client-Side Settings (https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html).
+	ExpectedBucketOwner *string `type:"string"`
 
 	// The location in Amazon S3 where your query results are stored, such as s3://path/to/query/bucket/.
 	// For more information, see Query Results (https://docs.aws.amazon.com/athena/latest/ug/querying.html)
@@ -7759,17 +7800,25 @@ type ResultConfigurationUpdates struct {
 	// be ignored and set to null. If set to "false" or not set, and a value is
 	// present in the EncryptionConfiguration in ResultConfigurationUpdates (the
 	// client-side setting), the EncryptionConfiguration in the workgroup's ResultConfiguration
-	// will be updated with the new value. For more information, see Workgroup Settings
+	// is updated with the new value. For more information, see Workgroup Settings
 	// Override Client-Side Settings (https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html).
 	RemoveEncryptionConfiguration *bool `type:"boolean"`
+
+	// If set to "true", removes the Amazon Web Services account ID previously specified
+	// for ResultConfiguration$ExpectedBucketOwner. If set to "false" or not set,
+	// and a value is present in the ExpectedBucketOwner in ResultConfigurationUpdates
+	// (the client-side setting), the ExpectedBucketOwner in the workgroup's ResultConfiguration
+	// is updated with the new value. For more information, see Workgroup Settings
+	// Override Client-Side Settings (https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html).
+	RemoveExpectedBucketOwner *bool `type:"boolean"`
 
 	// If set to "true", indicates that the previously-specified query results location
 	// (also known as a client-side setting) for queries in this workgroup should
 	// be ignored and set to null. If set to "false" or not set, and a value is
 	// present in the OutputLocation in ResultConfigurationUpdates (the client-side
-	// setting), the OutputLocation in the workgroup's ResultConfiguration will
-	// be updated with the new value. For more information, see Workgroup Settings
-	// Override Client-Side Settings (https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html).
+	// setting), the OutputLocation in the workgroup's ResultConfiguration is updated
+	// with the new value. For more information, see Workgroup Settings Override
+	// Client-Side Settings (https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html).
 	RemoveOutputLocation *bool `type:"boolean"`
 }
 
@@ -7812,6 +7861,12 @@ func (s *ResultConfigurationUpdates) SetEncryptionConfiguration(v *EncryptionCon
 	return s
 }
 
+// SetExpectedBucketOwner sets the ExpectedBucketOwner field's value.
+func (s *ResultConfigurationUpdates) SetExpectedBucketOwner(v string) *ResultConfigurationUpdates {
+	s.ExpectedBucketOwner = &v
+	return s
+}
+
 // SetOutputLocation sets the OutputLocation field's value.
 func (s *ResultConfigurationUpdates) SetOutputLocation(v string) *ResultConfigurationUpdates {
 	s.OutputLocation = &v
@@ -7821,6 +7876,12 @@ func (s *ResultConfigurationUpdates) SetOutputLocation(v string) *ResultConfigur
 // SetRemoveEncryptionConfiguration sets the RemoveEncryptionConfiguration field's value.
 func (s *ResultConfigurationUpdates) SetRemoveEncryptionConfiguration(v bool) *ResultConfigurationUpdates {
 	s.RemoveEncryptionConfiguration = &v
+	return s
+}
+
+// SetRemoveExpectedBucketOwner sets the RemoveExpectedBucketOwner field's value.
+func (s *ResultConfigurationUpdates) SetRemoveExpectedBucketOwner(v bool) *ResultConfigurationUpdates {
+	s.RemoveExpectedBucketOwner = &v
 	return s
 }
 

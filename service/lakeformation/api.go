@@ -13259,9 +13259,7 @@ type UpdateTableObjectsInput struct {
 	TableName *string `min:"1" type:"string" required:"true"`
 
 	// The transaction at which to do the write.
-	//
-	// TransactionId is a required field
-	TransactionId *string `min:"1" type:"string" required:"true"`
+	TransactionId *string `min:"1" type:"string"`
 
 	// A list of WriteOperation objects that define an object to add to or delete
 	// from the manifest for a governed table.
@@ -13305,9 +13303,6 @@ func (s *UpdateTableObjectsInput) Validate() error {
 	}
 	if s.TableName != nil && len(*s.TableName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
-	}
-	if s.TransactionId == nil {
-		invalidParams.Add(request.NewErrParamRequired("TransactionId"))
 	}
 	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))

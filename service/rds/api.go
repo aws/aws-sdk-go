@@ -1403,8 +1403,13 @@ func (c *RDS) CreateCustomDBEngineVersionRequest(input *CreateCustomDBEngineVers
 // CreateCustomDBEngineVersion API operation for Amazon Relational Database Service.
 //
 // Creates a custom DB engine version (CEV). A CEV is a binary volume snapshot
-// of a database engine and specific AMI. The only supported engine is Oracle
-// Database 19c Enterprise Edition with the January 2021 or later RU/RUR.
+// of a database engine and specific AMI. The supported engines are the following:
+//
+//    * Oracle Database 12.1 Enterprise Edition with the January 2021 or later
+//    RU/RUR
+//
+//    * Oracle Database 19c Enterprise Edition with the January 2021 or later
+//    RU/RUR
 //
 // Amazon RDS, which is a fully managed service, supplies the Amazon Machine
 // Image (AMI) and database software. The Amazon RDS database software is preinstalled,
@@ -2892,7 +2897,7 @@ func (c *RDS) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput
 //   The supplied subscription name already exists.
 //
 //   * ErrCodeSNSInvalidTopicFault "SNSInvalidTopic"
-//   SNS has responded that there is a problem with the SND topic specified.
+//   SNS has responded that there is a problem with the SNS topic specified.
 //
 //   * ErrCodeSNSNoAuthorizationFault "SNSNoAuthorization"
 //   You do not have permission to publish to the SNS topic ARN.
@@ -12238,7 +12243,7 @@ func (c *RDS) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput
 //   The subscription name does not exist.
 //
 //   * ErrCodeSNSInvalidTopicFault "SNSInvalidTopic"
-//   SNS has responded that there is a problem with the SND topic specified.
+//   SNS has responded that there is a problem with the SNS topic specified.
 //
 //   * ErrCodeSNSNoAuthorizationFault "SNSNoAuthorization"
 //   You do not have permission to publish to the SNS topic ARN.
@@ -19177,7 +19182,7 @@ type CreateDBClusterInput struct {
 	// Constraints: Must match the name of an existing DBSubnetGroup. Must not be
 	// default.
 	//
-	// Example: mySubnetgroup
+	// Example: mydbsubnetgroup
 	//
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DBSubnetGroupName *string `type:"string"`
@@ -20668,7 +20673,10 @@ type CreateDBInstanceInput struct {
 
 	// A DB subnet group to associate with this DB instance.
 	//
-	// If there is no DB subnet group, then it is a non-VPC DB instance.
+	// Constraints: Must match the name of an existing DBSubnetGroup. Must not be
+	// default.
+	//
+	// Example: mydbsubnetgroup
 	DBSubnetGroupName *string `type:"string"`
 
 	// A value that indicates whether the DB instance has deletion protection enabled.
@@ -21689,7 +21697,7 @@ type CreateDBInstanceReadReplicaInput struct {
 	//    Not specify a DB subnet group. All these read replicas are created outside
 	//    of any VPC.
 	//
-	// Example: mySubnetgroup
+	// Example: mydbsubnetgroup
 	DBSubnetGroupName *string `type:"string"`
 
 	// A value that indicates whether the DB instance has deletion protection enabled.
@@ -23056,10 +23064,16 @@ type CreateDBSubnetGroupInput struct {
 
 	// The name for the DB subnet group. This value is stored as a lowercase string.
 	//
-	// Constraints: Must contain no more than 255 letters, numbers, periods, underscores,
-	// spaces, or hyphens. Must not be default.
+	// Constraints:
 	//
-	// Example: mySubnetgroup
+	//    * Must contain no more than 255 letters, numbers, periods, underscores,
+	//    spaces, or hyphens.
+	//
+	//    * Must not be default.
+	//
+	//    * First character must be a letter.
+	//
+	// Example: mydbsubnetgroup
 	//
 	// DBSubnetGroupName is a required field
 	DBSubnetGroupName *string `type:"string" required:"true"`
@@ -29653,12 +29667,10 @@ type DeleteDBSubnetGroupInput struct {
 	//
 	// You can't delete the default subnet group.
 	//
-	// Constraints:
-	//
 	// Constraints: Must match the name of an existing DBSubnetGroup. Must not be
 	// default.
 	//
-	// Example: mySubnetgroup
+	// Example: mydbsubnetgroup
 	//
 	// DBSubnetGroupName is a required field
 	DBSubnetGroupName *string `type:"string" required:"true"`
@@ -40174,7 +40186,7 @@ type ModifyDBInstanceInput struct {
 	//
 	// Constraints: If supplied, must match the name of an existing DBSubnetGroup.
 	//
-	// Example: mySubnetGroup
+	// Example: mydbsubnetgroup
 	DBSubnetGroupName *string `type:"string"`
 
 	// A value that indicates whether the DB instance has deletion protection enabled.
@@ -41673,7 +41685,7 @@ type ModifyDBSubnetGroupInput struct {
 	// Constraints: Must match the name of an existing DBSubnetGroup. Must not be
 	// default.
 	//
-	// Example: mySubnetgroup
+	// Example: mydbsubnetgroup
 	//
 	// DBSubnetGroupName is a required field
 	DBSubnetGroupName *string `type:"string" required:"true"`
@@ -45550,7 +45562,7 @@ type RestoreDBClusterFromS3Input struct {
 	//
 	// Constraints: If supplied, must match the name of an existing DBSubnetGroup.
 	//
-	// Example: mySubnetgroup
+	// Example: mydbsubnetgroup
 	DBSubnetGroupName *string `type:"string"`
 
 	// The database name for the restored DB cluster.
@@ -46121,7 +46133,7 @@ type RestoreDBClusterFromSnapshotInput struct {
 	//
 	// Constraints: If supplied, must match the name of an existing DB subnet group.
 	//
-	// Example: mySubnetgroup
+	// Example: mydbsubnetgroup
 	//
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DBSubnetGroupName *string `type:"string"`
@@ -46684,7 +46696,7 @@ type RestoreDBClusterToPointInTimeInput struct {
 	//
 	// Constraints: If supplied, must match the name of an existing DBSubnetGroup.
 	//
-	// Example: mySubnetgroup
+	// Example: mydbsubnetgroup
 	//
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DBSubnetGroupName *string `type:"string"`
@@ -47183,7 +47195,16 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	BackupTarget *string `type:"string"`
 
 	// A value that indicates whether to copy all tags from the restored DB instance
-	// to snapshots of the DB instance. By default, tags are not copied.
+	// to snapshots of the DB instance.
+	//
+	// In most cases, tags aren't copied by default. However, when you restore a
+	// DB instance from a DB snapshot, RDS checks whether you specify new tags.
+	// If yes, the new tags are added to the restored DB instance. If there are
+	// no new tags, RDS looks for the tags from the source DB instance for the DB
+	// snapshot, and then adds those tags to the restored DB instance.
+	//
+	// For more information, see Copying tags to DB instance snapshots (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html#USER_Tagging.CopyTags)
+	// in the Amazon RDS User Guide.
 	CopyTagsToSnapshot *bool `type:"boolean"`
 
 	// The instance profile associated with the underlying Amazon EC2 instance of
@@ -47199,7 +47220,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	// For the list of permissions required for the IAM role, see Configure IAM
 	// and your VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html#custom-setup-orcl.iam-vpc)
-	// in the Amazon Relational Database Service User Guide.
+	// in the Amazon RDS User Guide.
 	//
 	// This setting is required for RDS Custom.
 	CustomIamInstanceProfile *string `type:"string"`
@@ -47269,7 +47290,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	// Constraints: If supplied, must match the name of an existing DBSubnetGroup.
 	//
-	// Example: mySubnetgroup
+	// Example: mydbsubnetgroup
 	DBSubnetGroupName *string `type:"string"`
 
 	// A value that indicates whether the DB instance has deletion protection enabled.
@@ -47809,6 +47830,10 @@ type RestoreDBInstanceFromS3Input struct {
 	DBSecurityGroups []*string `locationNameList:"DBSecurityGroupName" type:"list"`
 
 	// A DB subnet group to associate with this DB instance.
+	//
+	// Constraints: If supplied, must match the name of an existing DBSubnetGroup.
+	//
+	// Example: mydbsubnetgroup
 	DBSubnetGroupName *string `type:"string"`
 
 	// A value that indicates whether the DB instance has deletion protection enabled.
@@ -48501,7 +48526,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//
 	// Constraints: If supplied, must match the name of an existing DBSubnetGroup.
 	//
-	// Example: mySubnetgroup
+	// Example: mydbsubnetgroup
 	DBSubnetGroupName *string `type:"string"`
 
 	// A value that indicates whether the DB instance has deletion protection enabled.
