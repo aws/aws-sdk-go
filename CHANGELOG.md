@@ -1,3 +1,13 @@
+Release v1.42.47 (2022-02-04)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * You can now optionally specify the account ID that you expect to be the owner of your query results output location bucket in Athena. If the account ID of the query results bucket owner does not match the specified account ID, attempts to output to the bucket will fail with an S3 permissions error.
+* `service/lakeformation`: Updates service API
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * updates for RDS Custom for Oracle 12.1 support
+
 Release v1.42.46 (2022-02-03)
 ===
 
