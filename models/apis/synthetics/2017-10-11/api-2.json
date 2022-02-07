@@ -23,7 +23,8 @@
       "output":{"shape":"CreateCanaryResponse"},
       "errors":[
         {"shape":"InternalServerException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"RequestEntityTooLargeException"}
       ]
     },
     "DeleteCanary":{
@@ -191,7 +192,8 @@
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"RequestEntityTooLargeException"}
       ]
     }
   },
@@ -468,11 +470,18 @@
       "members":{
       }
     },
+    "DescribeCanariesLastRunNameFilter":{
+      "type":"list",
+      "member":{"shape":"CanaryName"},
+      "max":5,
+      "min":1
+    },
     "DescribeCanariesLastRunRequest":{
       "type":"structure",
       "members":{
         "NextToken":{"shape":"Token"},
-        "MaxResults":{"shape":"MaxSize100"}
+        "MaxResults":{"shape":"MaxSize100"},
+        "Names":{"shape":"DescribeCanariesLastRunNameFilter"}
       }
     },
     "DescribeCanariesLastRunResponse":{
@@ -482,11 +491,18 @@
         "NextToken":{"shape":"Token"}
       }
     },
+    "DescribeCanariesNameFilter":{
+      "type":"list",
+      "member":{"shape":"CanaryName"},
+      "max":5,
+      "min":1
+    },
     "DescribeCanariesRequest":{
       "type":"structure",
       "members":{
         "NextToken":{"shape":"Token"},
-        "MaxResults":{"shape":"MaxCanaryResults"}
+        "MaxResults":{"shape":"MaxCanaryResults"},
+        "Names":{"shape":"DescribeCanariesNameFilter"}
       }
     },
     "DescribeCanariesResponse":{
@@ -633,6 +649,14 @@
       "min":960
     },
     "NullableBoolean":{"type":"boolean"},
+    "RequestEntityTooLargeException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":413},
+      "exception":true
+    },
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{

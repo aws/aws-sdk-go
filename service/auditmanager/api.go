@@ -9529,7 +9529,9 @@ type CreateAssessmentFrameworkControl struct {
 	_ struct{} `type:"structure"`
 
 	// The unique identifier of the control.
-	Id *string `locationName:"id" min:"36" type:"string"`
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -9553,6 +9555,9 @@ func (s CreateAssessmentFrameworkControl) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateAssessmentFrameworkControl) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateAssessmentFrameworkControl"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
 	if s.Id != nil && len(*s.Id) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("Id", 36))
 	}
@@ -16210,7 +16215,9 @@ type UpdateAssessmentFrameworkControlSet struct {
 	_ struct{} `type:"structure"`
 
 	// The list of controls that are contained within the control set.
-	Controls []*CreateAssessmentFrameworkControl `locationName:"controls" min:"1" type:"list"`
+	//
+	// Controls is a required field
+	Controls []*CreateAssessmentFrameworkControl `locationName:"controls" min:"1" type:"list" required:"true"`
 
 	// The unique identifier for the control set.
 	Id *string `locationName:"id" min:"1" type:"string"`
@@ -16242,6 +16249,9 @@ func (s UpdateAssessmentFrameworkControlSet) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateAssessmentFrameworkControlSet) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateAssessmentFrameworkControlSet"}
+	if s.Controls == nil {
+		invalidParams.Add(request.NewErrParamRequired("Controls"))
+	}
 	if s.Controls != nil && len(s.Controls) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Controls", 1))
 	}
@@ -16299,7 +16309,7 @@ type UpdateAssessmentFrameworkInput struct {
 	// The control sets that are associated with the framework.
 	//
 	// ControlSets is a required field
-	ControlSets []*UpdateAssessmentFrameworkControlSet `locationName:"controlSets" type:"list" required:"true"`
+	ControlSets []*UpdateAssessmentFrameworkControlSet `locationName:"controlSets" min:"1" type:"list" required:"true"`
 
 	// The description of the updated framework.
 	Description *string `locationName:"description" min:"1" type:"string"`
@@ -16338,6 +16348,9 @@ func (s *UpdateAssessmentFrameworkInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateAssessmentFrameworkInput"}
 	if s.ControlSets == nil {
 		invalidParams.Add(request.NewErrParamRequired("ControlSets"))
+	}
+	if s.ControlSets != nil && len(s.ControlSets) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ControlSets", 1))
 	}
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))

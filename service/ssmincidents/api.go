@@ -8640,6 +8640,9 @@ const (
 
 	// ItemTypeOther is a ItemType enum value
 	ItemTypeOther = "OTHER"
+
+	// ItemTypeAutomation is a ItemType enum value
+	ItemTypeAutomation = "AUTOMATION"
 )
 
 // ItemType_Values returns all elements of the ItemType enum
@@ -8651,6 +8654,7 @@ func ItemType_Values() []string {
 		ItemTypeParent,
 		ItemTypeAttachment,
 		ItemTypeOther,
+		ItemTypeAutomation,
 	}
 }
 

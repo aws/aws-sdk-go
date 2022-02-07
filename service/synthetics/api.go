@@ -90,6 +90,9 @@ func (c *Synthetics) CreateCanaryRequest(input *CreateCanaryInput) (req *request
 //   * ValidationException
 //   A parameter could not be validated.
 //
+//   * RequestEntityTooLargeException
+//   One of the input resources is larger than is allowed.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/CreateCanary
 func (c *Synthetics) CreateCanary(input *CreateCanaryInput) (*CreateCanaryOutput, error) {
 	req, out := c.CreateCanaryRequest(input)
@@ -276,10 +279,16 @@ func (c *Synthetics) DescribeCanariesRequest(input *DescribeCanariesInput) (req 
 // This operation returns a list of the canaries in your account, along with
 // full details about each canary.
 //
-// This operation does not have resource-level authorization, so if a user is
-// able to use DescribeCanaries, the user can see all of the canaries in the
-// account. A deny policy can only be used to restrict access to all canaries.
-// It cannot be used on specific resources.
+// This operation supports resource-level authorization using an IAM policy
+// and the Names parameter. If you specify the Names parameter, the operation
+// is successful only if you have authorization to view all the canaries that
+// you specify in your request. If you do not have permission to view any of
+// the canaries, the request fails with a 403 response.
+//
+// You are required to use the Names parameter if you are logged on to a user
+// or role that has an IAM policy that restricts which canaries that you are
+// allowed to view. For more information, see Limiting a user to viewing specific
+// canaries (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Restricted.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -421,6 +430,17 @@ func (c *Synthetics) DescribeCanariesLastRunRequest(input *DescribeCanariesLastR
 //
 // Use this operation to see information from the most recent run of each canary
 // that you have created.
+//
+// This operation supports resource-level authorization using an IAM policy
+// and the Names parameter. If you specify the Names parameter, the operation
+// is successful only if you have authorization to view all the canaries that
+// you specify in your request. If you do not have permission to view any of
+// the canaries, the request fails with a 403 response.
+//
+// You are required to use the Names parameter if you are logged on to a user
+// or role that has an IAM policy that restricts which canaries that you are
+// allowed to view. For more information, see Limiting a user to viewing specific
+// canaries (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Restricted.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1407,6 +1427,9 @@ func (c *Synthetics) UpdateCanaryRequest(input *UpdateCanaryInput) (req *request
 //   * ConflictException
 //   A conflicting operation is already in progress.
 //
+//   * RequestEntityTooLargeException
+//   One of the input resources is larger than is allowed.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/synthetics-2017-10-11/UpdateCanary
 func (c *Synthetics) UpdateCanary(input *UpdateCanaryInput) (*UpdateCanaryOutput, error) {
 	req, out := c.UpdateCanaryRequest(input)
@@ -1799,7 +1822,10 @@ type CanaryCodeInput struct {
 
 	// If you input your canary script directly into the canary instead of referring
 	// to an S3 location, the value of this parameter is the base64-encoded contents
-	// of the .zip file that contains the script. It must be smaller than 256 Kb.
+	// of the .zip file that contains the script. It must be smaller than 225 Kb.
+	//
+	// For large canary scripts, we recommend that you use an S3 location instead
+	// of inputting it directly with this parameter.
 	// ZipFile is automatically base64 encoded/decoded by the SDK.
 	ZipFile []byte `min:"1" type:"blob"`
 }
@@ -2948,6 +2974,20 @@ type DescribeCanariesInput struct {
 	// of 100 is used.
 	MaxResults *int64 `min:"1" type:"integer"`
 
+	// Use this parameter to return only canaries that match the names that you
+	// specify here. You can specify as many as five canary names.
+	//
+	// If you specify this parameter, the operation is successful only if you have
+	// authorization to view all the canaries that you specify in your request.
+	// If you do not have permission to view any of the canaries, the request fails
+	// with a 403 response.
+	//
+	// You are required to use this parameter if you are logged on to a user or
+	// role that has an IAM policy that restricts which canaries that you are allowed
+	// to view. For more information, see Limiting a user to viewing specific canaries
+	// (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Restricted.html).
+	Names []*string `min:"1" type:"list"`
+
 	// A token that indicates that there is more data available. You can use this
 	// token in a subsequent operation to retrieve the next set of results.
 	NextToken *string `min:"4" type:"string"`
@@ -2977,6 +3017,9 @@ func (s *DescribeCanariesInput) Validate() error {
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
+	if s.Names != nil && len(s.Names) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Names", 1))
+	}
 	if s.NextToken != nil && len(*s.NextToken) < 4 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 4))
 	}
@@ -2993,6 +3036,12 @@ func (s *DescribeCanariesInput) SetMaxResults(v int64) *DescribeCanariesInput {
 	return s
 }
 
+// SetNames sets the Names field's value.
+func (s *DescribeCanariesInput) SetNames(v []*string) *DescribeCanariesInput {
+	s.Names = v
+	return s
+}
+
 // SetNextToken sets the NextToken field's value.
 func (s *DescribeCanariesInput) SetNextToken(v string) *DescribeCanariesInput {
 	s.NextToken = &v
@@ -3006,6 +3055,20 @@ type DescribeCanariesLastRunInput struct {
 	// use the DescribeLastRun operation. If you omit this parameter, the default
 	// of 100 is used.
 	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Use this parameter to return only canaries that match the names that you
+	// specify here. You can specify as many as five canary names.
+	//
+	// If you specify this parameter, the operation is successful only if you have
+	// authorization to view all the canaries that you specify in your request.
+	// If you do not have permission to view any of the canaries, the request fails
+	// with a 403 response.
+	//
+	// You are required to use the Names parameter if you are logged on to a user
+	// or role that has an IAM policy that restricts which canaries that you are
+	// allowed to view. For more information, see Limiting a user to viewing specific
+	// canaries (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Restricted.html).
+	Names []*string `min:"1" type:"list"`
 
 	// A token that indicates that there is more data available. You can use this
 	// token in a subsequent DescribeCanaries operation to retrieve the next set
@@ -3037,6 +3100,9 @@ func (s *DescribeCanariesLastRunInput) Validate() error {
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
+	if s.Names != nil && len(s.Names) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Names", 1))
+	}
 	if s.NextToken != nil && len(*s.NextToken) < 4 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 4))
 	}
@@ -3050,6 +3116,12 @@ func (s *DescribeCanariesLastRunInput) Validate() error {
 // SetMaxResults sets the MaxResults field's value.
 func (s *DescribeCanariesLastRunInput) SetMaxResults(v int64) *DescribeCanariesLastRunInput {
 	s.MaxResults = &v
+	return s
+}
+
+// SetNames sets the Names field's value.
+func (s *DescribeCanariesLastRunInput) SetNames(v []*string) *DescribeCanariesLastRunInput {
+	s.Names = v
 	return s
 }
 
@@ -3591,6 +3663,70 @@ func (s ListTagsForResourceOutput) GoString() string {
 func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
 	s.Tags = v
 	return s
+}
+
+// One of the input resources is larger than is allowed.
+type RequestEntityTooLargeException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RequestEntityTooLargeException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RequestEntityTooLargeException) GoString() string {
+	return s.String()
+}
+
+func newErrorRequestEntityTooLargeException(v protocol.ResponseMetadata) error {
+	return &RequestEntityTooLargeException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *RequestEntityTooLargeException) Code() string {
+	return "RequestEntityTooLargeException"
+}
+
+// Message returns the exception's message.
+func (s *RequestEntityTooLargeException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *RequestEntityTooLargeException) OrigErr() error {
+	return nil
+}
+
+func (s *RequestEntityTooLargeException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *RequestEntityTooLargeException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *RequestEntityTooLargeException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // One of the specified resources was not found.

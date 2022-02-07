@@ -1,3 +1,12 @@
+Release v1.42.48 (2022-02-07)
+===
+
+### Service Client Updates
+* `service/auditmanager`: Updates service API
+* `service/eventbridge`: Updates service documentation
+* `service/ssm-incidents`: Updates service API
+* `service/synthetics`: Updates service API and documentation
+
 Release v1.42.47 (2022-02-04)
 ===
 

@@ -1643,6 +1643,7 @@
     "ControlsCount":{"type":"integer"},
     "CreateAssessmentFrameworkControl":{
       "type":"structure",
+      "required":["id"],
       "members":{
         "id":{"shape":"UUID"}
       }
@@ -3371,7 +3372,10 @@
     },
     "UpdateAssessmentFrameworkControlSet":{
       "type":"structure",
-      "required":["name"],
+      "required":[
+        "name",
+        "controls"
+      ],
       "members":{
         "id":{"shape":"ControlSetName"},
         "name":{"shape":"ControlSetName"},
@@ -3380,7 +3384,8 @@
     },
     "UpdateAssessmentFrameworkControlSets":{
       "type":"list",
-      "member":{"shape":"UpdateAssessmentFrameworkControlSet"}
+      "member":{"shape":"UpdateAssessmentFrameworkControlSet"},
+      "min":1
     },
     "UpdateAssessmentFrameworkRequest":{
       "type":"structure",
