@@ -20,6 +20,12 @@ const (
 	// An unknown internal error occurred.
 	ErrCodeInternalServerException = "InternalServerException"
 
+	// ErrCodeRequestEntityTooLargeException for service response error code
+	// "RequestEntityTooLargeException".
+	//
+	// One of the input resources is larger than is allowed.
+	ErrCodeRequestEntityTooLargeException = "RequestEntityTooLargeException"
+
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
@@ -34,8 +40,9 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"ConflictException":         newErrorConflictException,
-	"InternalServerException":   newErrorInternalServerException,
-	"ResourceNotFoundException": newErrorResourceNotFoundException,
-	"ValidationException":       newErrorValidationException,
+	"ConflictException":              newErrorConflictException,
+	"InternalServerException":        newErrorInternalServerException,
+	"RequestEntityTooLargeException": newErrorRequestEntityTooLargeException,
+	"ResourceNotFoundException":      newErrorResourceNotFoundException,
+	"ValidationException":            newErrorValidationException,
 }
