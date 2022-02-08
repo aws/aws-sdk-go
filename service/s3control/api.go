@@ -377,7 +377,7 @@ func (c *S3Control) CreateJobRequest(input *CreateJobInput) (req *request.Reques
 //
 // You can use S3 Batch Operations to perform large-scale batch actions on Amazon
 // S3 objects. Batch Operations can run a single action on lists of Amazon S3
-// objects that you specify. For more information, see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
+// objects that you specify. For more information, see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html)
 // in the Amazon S3 User Guide.
 //
 // This action creates a S3 Batch Operations job.
@@ -1832,7 +1832,7 @@ func (c *S3Control) DescribeJobRequest(input *DescribeJobInput) (req *request.Re
 // DescribeJob API operation for AWS S3 Control.
 //
 // Retrieves the configuration parameters and status for a Batch Operations
-// job. For more information, see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
+// job. For more information, see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html)
 // in the Amazon S3 User Guide.
 //
 // Related actions include:
@@ -3850,11 +3850,10 @@ func (c *S3Control) ListAccessPointsForObjectLambdaRequest(input *ListAccessPoin
 
 // ListAccessPointsForObjectLambda API operation for AWS S3 Control.
 //
-// Returns a list of the access points associated with the Object Lambda Access
-// Point. You can retrieve up to 1000 access points per call. If there are more
-// than 1,000 access points (or the number specified in maxResults, whichever
-// is less), the response will include a continuation token that you can use
-// to list the additional access points.
+// Returns some or all (up to 1,000) access points associated with the Object
+// Lambda Access Point per call. If there are more access points than what can
+// be returned in one call, the response will include a continuation token that
+// you can use to list the additional access points.
 //
 // The following actions are related to ListAccessPointsForObjectLambda:
 //
@@ -3998,7 +3997,7 @@ func (c *S3Control) ListJobsRequest(input *ListJobsInput) (req *request.Request,
 //
 // Lists current S3 Batch Operations jobs and jobs that have ended within the
 // last 30 days for the Amazon Web Services account making the request. For
-// more information, see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
+// more information, see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html)
 // in the Amazon S3 User Guide.
 //
 // Related actions include:
@@ -5441,8 +5440,9 @@ func (c *S3Control) PutPublicAccessBlockRequest(input *PutPublicAccessBlockInput
 // PutPublicAccessBlock API operation for AWS S3 Control.
 //
 // Creates or modifies the PublicAccessBlock configuration for an Amazon Web
-// Services account. For more information, see Using Amazon S3 block public
-// access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
+// Services account. For this operation, users must have the s3:PutBucketPublicAccessBlock
+// permission. For more information, see Using Amazon S3 block public access
+// (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
 //
 // Related actions include:
 //
@@ -5694,7 +5694,7 @@ func (c *S3Control) UpdateJobPriorityRequest(input *UpdateJobPriorityInput) (req
 // UpdateJobPriority API operation for AWS S3 Control.
 //
 // Updates an existing S3 Batch Operations job's priority. For more information,
-// see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
+// see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html)
 // in the Amazon S3 User Guide.
 //
 // Related actions include:
@@ -5793,7 +5793,7 @@ func (c *S3Control) UpdateJobStatusRequest(input *UpdateJobStatusInput) (req *re
 //
 // Updates the status for the specified job. Use this action to confirm that
 // you want to run a job or to cancel an existing job. For more information,
-// see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
+// see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html)
 // in the Amazon S3 User Guide.
 //
 // Related actions include:
@@ -7073,9 +7073,11 @@ type CreateJobInput struct {
 	Description *string `min:"1" type:"string"`
 
 	// Configuration parameters for the manifest.
-	//
-	// Manifest is a required field
-	Manifest *JobManifest `type:"structure" required:"true"`
+	Manifest *JobManifest `type:"structure"`
+
+	// The attribute container for the ManifestGenerator details. Jobs must be created
+	// with either a manifest file or a ManifestGenerator, but not both.
+	ManifestGenerator *JobManifestGenerator `type:"structure"`
 
 	// The action that you want this job to perform on every object listed in the
 	// manifest. For more information about the available actions, see Operations
@@ -7140,9 +7142,6 @@ func (s *CreateJobInput) Validate() error {
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
-	if s.Manifest == nil {
-		invalidParams.Add(request.NewErrParamRequired("Manifest"))
-	}
 	if s.Operation == nil {
 		invalidParams.Add(request.NewErrParamRequired("Operation"))
 	}
@@ -7161,6 +7160,11 @@ func (s *CreateJobInput) Validate() error {
 	if s.Manifest != nil {
 		if err := s.Manifest.Validate(); err != nil {
 			invalidParams.AddNested("Manifest", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ManifestGenerator != nil {
+		if err := s.ManifestGenerator.Validate(); err != nil {
+			invalidParams.AddNested("ManifestGenerator", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Operation != nil {
@@ -7217,6 +7221,12 @@ func (s *CreateJobInput) SetDescription(v string) *CreateJobInput {
 // SetManifest sets the Manifest field's value.
 func (s *CreateJobInput) SetManifest(v *JobManifest) *CreateJobInput {
 	s.Manifest = v
+	return s
+}
+
+// SetManifestGenerator sets the ManifestGenerator field's value.
+func (s *CreateJobInput) SetManifestGenerator(v *JobManifestGenerator) *CreateJobInput {
+	s.ManifestGenerator = v
 	return s
 }
 
@@ -9374,6 +9384,63 @@ func (s *Exclude) SetBuckets(v []*string) *Exclude {
 // SetRegions sets the Regions field's value.
 func (s *Exclude) SetRegions(v []*string) *Exclude {
 	s.Regions = v
+	return s
+}
+
+// The encryption configuration to use when storing the generated manifest.
+type GeneratedManifestEncryption struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration details on how SSE-KMS is used to encrypt generated manifest
+	// objects.
+	SSEKMS *SSEKMSEncryption `locationName:"SSE-KMS" type:"structure"`
+
+	// Specifies the use of SSE-S3 to encrypt generated manifest objects.
+	SSES3 *SSES3Encryption `locationName:"SSE-S3" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GeneratedManifestEncryption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GeneratedManifestEncryption) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GeneratedManifestEncryption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GeneratedManifestEncryption"}
+	if s.SSEKMS != nil {
+		if err := s.SSEKMS.Validate(); err != nil {
+			invalidParams.AddNested("SSEKMS", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSSEKMS sets the SSEKMS field's value.
+func (s *GeneratedManifestEncryption) SetSSEKMS(v *SSEKMSEncryption) *GeneratedManifestEncryption {
+	s.SSEKMS = v
+	return s
+}
+
+// SetSSES3 sets the SSES3 field's value.
+func (s *GeneratedManifestEncryption) SetSSES3(v *SSES3Encryption) *GeneratedManifestEncryption {
+	s.SSES3 = v
 	return s
 }
 
@@ -11742,6 +11809,10 @@ type JobDescriptor struct {
 	// failure.
 	FailureReasons []*JobFailure `type:"list"`
 
+	// The attribute of the JobDescriptor containing details about the job's generated
+	// manifest.
+	GeneratedManifestDescriptor *S3GeneratedManifestDescriptor `type:"structure"`
+
 	// The Amazon Resource Name (ARN) for this job.
 	JobArn *string `min:"1" type:"string"`
 
@@ -11750,6 +11821,10 @@ type JobDescriptor struct {
 
 	// The configuration information for the specified job's manifest object.
 	Manifest *JobManifest `type:"structure"`
+
+	// The manifest generator that was used to generate a job manifest for this
+	// job.
+	ManifestGenerator *JobManifestGenerator `type:"structure"`
 
 	// The operation that the specified job is configured to run on the objects
 	// listed in the manifest.
@@ -11832,6 +11907,12 @@ func (s *JobDescriptor) SetFailureReasons(v []*JobFailure) *JobDescriptor {
 	return s
 }
 
+// SetGeneratedManifestDescriptor sets the GeneratedManifestDescriptor field's value.
+func (s *JobDescriptor) SetGeneratedManifestDescriptor(v *S3GeneratedManifestDescriptor) *JobDescriptor {
+	s.GeneratedManifestDescriptor = v
+	return s
+}
+
 // SetJobArn sets the JobArn field's value.
 func (s *JobDescriptor) SetJobArn(v string) *JobDescriptor {
 	s.JobArn = &v
@@ -11847,6 +11928,12 @@ func (s *JobDescriptor) SetJobId(v string) *JobDescriptor {
 // SetManifest sets the Manifest field's value.
 func (s *JobDescriptor) SetManifest(v *JobManifest) *JobDescriptor {
 	s.Manifest = v
+	return s
+}
+
+// SetManifestGenerator sets the ManifestGenerator field's value.
+func (s *JobDescriptor) SetManifestGenerator(v *JobManifestGenerator) *JobDescriptor {
+	s.ManifestGenerator = v
 	return s
 }
 
@@ -12123,6 +12210,116 @@ func (s *JobManifest) SetSpec(v *JobManifestSpec) *JobManifest {
 	return s
 }
 
+// Configures the type of the job's ManifestGenerator.
+type JobManifestGenerator struct {
+	_ struct{} `type:"structure"`
+
+	// The S3 job ManifestGenerator's configuration details.
+	S3JobManifestGenerator *S3JobManifestGenerator `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobManifestGenerator) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobManifestGenerator) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JobManifestGenerator) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JobManifestGenerator"}
+	if s.S3JobManifestGenerator != nil {
+		if err := s.S3JobManifestGenerator.Validate(); err != nil {
+			invalidParams.AddNested("S3JobManifestGenerator", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3JobManifestGenerator sets the S3JobManifestGenerator field's value.
+func (s *JobManifestGenerator) SetS3JobManifestGenerator(v *S3JobManifestGenerator) *JobManifestGenerator {
+	s.S3JobManifestGenerator = v
+	return s
+}
+
+// The filter used to describe a set of objects for the job's manifest.
+type JobManifestGeneratorFilter struct {
+	_ struct{} `type:"structure"`
+
+	// If provided, the generated manifest should include only source bucket objects
+	// that were created after this time.
+	CreatedAfter *time.Time `type:"timestamp"`
+
+	// If provided, the generated manifest should include only source bucket objects
+	// that were created before this time.
+	CreatedBefore *time.Time `type:"timestamp"`
+
+	// Include objects in the generated manifest only if they are eligible for replication
+	// according to the Replication configuration on the source bucket.
+	EligibleForReplication *bool `type:"boolean"`
+
+	// If provided, the generated manifest should include only source bucket objects
+	// that have one of the specified Replication statuses.
+	ObjectReplicationStatuses []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobManifestGeneratorFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobManifestGeneratorFilter) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAfter sets the CreatedAfter field's value.
+func (s *JobManifestGeneratorFilter) SetCreatedAfter(v time.Time) *JobManifestGeneratorFilter {
+	s.CreatedAfter = &v
+	return s
+}
+
+// SetCreatedBefore sets the CreatedBefore field's value.
+func (s *JobManifestGeneratorFilter) SetCreatedBefore(v time.Time) *JobManifestGeneratorFilter {
+	s.CreatedBefore = &v
+	return s
+}
+
+// SetEligibleForReplication sets the EligibleForReplication field's value.
+func (s *JobManifestGeneratorFilter) SetEligibleForReplication(v bool) *JobManifestGeneratorFilter {
+	s.EligibleForReplication = &v
+	return s
+}
+
+// SetObjectReplicationStatuses sets the ObjectReplicationStatuses field's value.
+func (s *JobManifestGeneratorFilter) SetObjectReplicationStatuses(v []*string) *JobManifestGeneratorFilter {
+	s.ObjectReplicationStatuses = v
+	return s
+}
+
 // Contains the information required to locate a manifest object.
 type JobManifestLocation struct {
 	_ struct{} `type:"structure"`
@@ -12308,6 +12505,10 @@ type JobOperation struct {
 	// Directs the specified job to run a PUT Object tagging call on every object
 	// in the manifest.
 	S3PutObjectTagging *S3SetObjectTaggingOperation `type:"structure"`
+
+	// Directs the specified job to invoke ReplicateObject on every object in the
+	// job's manifest.
+	S3ReplicateObject *S3ReplicateObjectOperation `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12416,6 +12617,12 @@ func (s *JobOperation) SetS3PutObjectTagging(v *S3SetObjectTaggingOperation) *Jo
 	return s
 }
 
+// SetS3ReplicateObject sets the S3ReplicateObject field's value.
+func (s *JobOperation) SetS3ReplicateObject(v *S3ReplicateObjectOperation) *JobOperation {
+	s.S3ReplicateObject = v
+	return s
+}
+
 // Describes the total number of tasks that the specified job has started, the
 // number of tasks that succeeded, and the number of tasks that failed.
 type JobProgressSummary struct {
@@ -12424,6 +12631,9 @@ type JobProgressSummary struct {
 	NumberOfTasksFailed *int64 `type:"long"`
 
 	NumberOfTasksSucceeded *int64 `type:"long"`
+
+	// The JobTimers attribute of a job's progress summary.
+	Timers *JobTimers `type:"structure"`
 
 	TotalNumberOfTasks *int64 `type:"long"`
 }
@@ -12455,6 +12665,12 @@ func (s *JobProgressSummary) SetNumberOfTasksFailed(v int64) *JobProgressSummary
 // SetNumberOfTasksSucceeded sets the NumberOfTasksSucceeded field's value.
 func (s *JobProgressSummary) SetNumberOfTasksSucceeded(v int64) *JobProgressSummary {
 	s.NumberOfTasksSucceeded = &v
+	return s
+}
+
+// SetTimers sets the Timers field's value.
+func (s *JobProgressSummary) SetTimers(v *JobTimers) *JobProgressSummary {
+	s.Timers = v
 	return s
 }
 
@@ -12553,6 +12769,39 @@ func (s *JobReport) SetPrefix(v string) *JobReport {
 // SetReportScope sets the ReportScope field's value.
 func (s *JobReport) SetReportScope(v string) *JobReport {
 	s.ReportScope = &v
+	return s
+}
+
+// Provides timing details for the job.
+type JobTimers struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the elapsed time in seconds the job has been in the Active job
+	// state.
+	ElapsedTimeInActiveSeconds *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobTimers) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobTimers) GoString() string {
+	return s.String()
+}
+
+// SetElapsedTimeInActiveSeconds sets the ElapsedTimeInActiveSeconds field's value.
+func (s *JobTimers) SetElapsedTimeInActiveSeconds(v int64) *JobTimers {
+	s.ElapsedTimeInActiveSeconds = &v
 	return s
 }
 
@@ -12985,6 +13234,7 @@ type ListAccessPointsForObjectLambdaInput struct {
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
 	// The maximum number of access points that you want to include in the list.
+	// The response may contain fewer access points but will never contain more.
 	// If there are more than this number of access points, then the response will
 	// include a continuation token in the NextToken field that you can use to retrieve
 	// the next page of access points.
@@ -16624,6 +16874,9 @@ type S3CopyObjectOperation struct {
 
 	ModifiedSinceConstraint *time.Time `type:"timestamp"`
 
+	// If you don't provide this parameter, Amazon S3 copies all the metadata from
+	// the original objects. If you specify an empty set, the new objects will have
+	// no tags. Otherwise, Amazon S3 assigns the supplied tags to the new objects.
 	NewObjectMetadata *S3ObjectMetadata `type:"structure"`
 
 	NewObjectTagging []*S3Tag `type:"list"`
@@ -16854,6 +17107,49 @@ func (s S3DeleteObjectTaggingOperation) GoString() string {
 	return s.String()
 }
 
+// Describes the specified job's generated manifest. Batch Operations jobs created
+// with a ManifestGenerator populate details of this descriptor after execution
+// of the ManifestGenerator.
+type S3GeneratedManifestDescriptor struct {
+	_ struct{} `type:"structure"`
+
+	// The format of the generated manifest.
+	Format *string `type:"string" enum:"GeneratedManifestFormat"`
+
+	// Contains the information required to locate a manifest object.
+	Location *JobManifestLocation `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3GeneratedManifestDescriptor) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3GeneratedManifestDescriptor) GoString() string {
+	return s.String()
+}
+
+// SetFormat sets the Format field's value.
+func (s *S3GeneratedManifestDescriptor) SetFormat(v string) *S3GeneratedManifestDescriptor {
+	s.Format = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *S3GeneratedManifestDescriptor) SetLocation(v *JobManifestLocation) *S3GeneratedManifestDescriptor {
+	s.Location = v
+	return s
+}
+
 type S3Grant struct {
 	_ struct{} `type:"structure"`
 
@@ -16976,10 +17272,10 @@ func (s *S3Grantee) SetTypeIdentifier(v string) *S3Grantee {
 type S3InitiateRestoreObjectOperation struct {
 	_ struct{} `type:"structure"`
 
-	// This argument specifies how long the S3 Glacier Flexible Retrieval or S3
-	// Glacier Deep Archive object remains available in Amazon S3. S3 Initiate Restore
-	// Object jobs that target S3 Glacier Flexible Retrieval and S3 Glacier Deep
-	// Archive objects require ExpirationInDays set to 1 or greater.
+	// This argument specifies how long the S3 Glacier or S3 Glacier Deep Archive
+	// object remains available in Amazon S3. S3 Initiate Restore Object jobs that
+	// target S3 Glacier and S3 Glacier Deep Archive objects require ExpirationInDays
+	// set to 1 or greater.
 	//
 	// Conversely, do not set ExpirationInDays when creating S3 Initiate Restore
 	// Object jobs that target S3 Intelligent-Tiering Archive Access and Deep Archive
@@ -16987,11 +17283,11 @@ type S3InitiateRestoreObjectOperation struct {
 	// are not subject to restore expiry, so specifying ExpirationInDays results
 	// in restore request failure.
 	//
-	// S3 Batch Operations jobs can operate either on S3 Glacier Flexible Retrieval
-	// and S3 Glacier Deep Archive storage class objects or on S3 Intelligent-Tiering
-	// Archive Access and Deep Archive Access storage tier objects, but not both
-	// types in the same job. If you need to restore objects of both types you must
-	// create separate Batch Operations jobs.
+	// S3 Batch Operations jobs can operate either on S3 Glacier and S3 Glacier
+	// Deep Archive storage class objects or on S3 Intelligent-Tiering Archive Access
+	// and Deep Archive Access storage tier objects, but not both types in the same
+	// job. If you need to restore objects of both types you must create separate
+	// Batch Operations jobs.
 	ExpirationInDays *int64 `type:"integer"`
 
 	// S3 Batch Operations supports STANDARD and BULK retrieval tiers, but not the
@@ -17026,6 +17322,206 @@ func (s *S3InitiateRestoreObjectOperation) SetExpirationInDays(v int64) *S3Initi
 // SetGlacierJobTier sets the GlacierJobTier field's value.
 func (s *S3InitiateRestoreObjectOperation) SetGlacierJobTier(v string) *S3InitiateRestoreObjectOperation {
 	s.GlacierJobTier = &v
+	return s
+}
+
+// The container for the service that will create the S3 manifest.
+type S3JobManifestGenerator struct {
+	_ struct{} `type:"structure"`
+
+	// Determines whether or not to write the job's generated manifest to a bucket.
+	//
+	// EnableManifestOutput is a required field
+	EnableManifestOutput *bool `type:"boolean" required:"true"`
+
+	// The Amazon Web Services account ID that owns the bucket the generated manifest
+	// is written to. If provided the generated manifest bucket's owner Amazon Web
+	// Services account ID must match this value, else the job fails.
+	ExpectedBucketOwner *string `type:"string"`
+
+	// Specifies rules the S3JobManifestGenerator should use to use to decide whether
+	// an object in the source bucket should or should not be included in the generated
+	// job manifest.
+	Filter *JobManifestGeneratorFilter `type:"structure"`
+
+	// Specifies the location the generated manifest will be written to.
+	ManifestOutputLocation *S3ManifestOutputLocation `type:"structure"`
+
+	// The source bucket used by the ManifestGenerator.
+	//
+	// SourceBucket is a required field
+	SourceBucket *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3JobManifestGenerator) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3JobManifestGenerator) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3JobManifestGenerator) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3JobManifestGenerator"}
+	if s.EnableManifestOutput == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnableManifestOutput"))
+	}
+	if s.SourceBucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceBucket"))
+	}
+	if s.SourceBucket != nil && len(*s.SourceBucket) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceBucket", 1))
+	}
+	if s.ManifestOutputLocation != nil {
+		if err := s.ManifestOutputLocation.Validate(); err != nil {
+			invalidParams.AddNested("ManifestOutputLocation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnableManifestOutput sets the EnableManifestOutput field's value.
+func (s *S3JobManifestGenerator) SetEnableManifestOutput(v bool) *S3JobManifestGenerator {
+	s.EnableManifestOutput = &v
+	return s
+}
+
+// SetExpectedBucketOwner sets the ExpectedBucketOwner field's value.
+func (s *S3JobManifestGenerator) SetExpectedBucketOwner(v string) *S3JobManifestGenerator {
+	s.ExpectedBucketOwner = &v
+	return s
+}
+
+// SetFilter sets the Filter field's value.
+func (s *S3JobManifestGenerator) SetFilter(v *JobManifestGeneratorFilter) *S3JobManifestGenerator {
+	s.Filter = v
+	return s
+}
+
+// SetManifestOutputLocation sets the ManifestOutputLocation field's value.
+func (s *S3JobManifestGenerator) SetManifestOutputLocation(v *S3ManifestOutputLocation) *S3JobManifestGenerator {
+	s.ManifestOutputLocation = v
+	return s
+}
+
+// SetSourceBucket sets the SourceBucket field's value.
+func (s *S3JobManifestGenerator) SetSourceBucket(v string) *S3JobManifestGenerator {
+	s.SourceBucket = &v
+	return s
+}
+
+// Location details for where the generated manifest should be written.
+type S3ManifestOutputLocation struct {
+	_ struct{} `type:"structure"`
+
+	// The bucket ARN the generated manifest should be written to.
+	//
+	// Bucket is a required field
+	Bucket *string `min:"1" type:"string" required:"true"`
+
+	// The Account ID that owns the bucket the generated manifest is written to.
+	ExpectedManifestBucketOwner *string `type:"string"`
+
+	// Specifies what encryption should be used when the generated manifest objects
+	// are written.
+	ManifestEncryption *GeneratedManifestEncryption `type:"structure"`
+
+	// The format of the generated manifest.
+	//
+	// ManifestFormat is a required field
+	ManifestFormat *string `type:"string" required:"true" enum:"GeneratedManifestFormat"`
+
+	// Prefix identifying one or more objects to which the manifest applies.
+	ManifestPrefix *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ManifestOutputLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ManifestOutputLocation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3ManifestOutputLocation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3ManifestOutputLocation"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 1))
+	}
+	if s.ManifestFormat == nil {
+		invalidParams.Add(request.NewErrParamRequired("ManifestFormat"))
+	}
+	if s.ManifestPrefix != nil && len(*s.ManifestPrefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ManifestPrefix", 1))
+	}
+	if s.ManifestEncryption != nil {
+		if err := s.ManifestEncryption.Validate(); err != nil {
+			invalidParams.AddNested("ManifestEncryption", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *S3ManifestOutputLocation) SetBucket(v string) *S3ManifestOutputLocation {
+	s.Bucket = &v
+	return s
+}
+
+// SetExpectedManifestBucketOwner sets the ExpectedManifestBucketOwner field's value.
+func (s *S3ManifestOutputLocation) SetExpectedManifestBucketOwner(v string) *S3ManifestOutputLocation {
+	s.ExpectedManifestBucketOwner = &v
+	return s
+}
+
+// SetManifestEncryption sets the ManifestEncryption field's value.
+func (s *S3ManifestOutputLocation) SetManifestEncryption(v *GeneratedManifestEncryption) *S3ManifestOutputLocation {
+	s.ManifestEncryption = v
+	return s
+}
+
+// SetManifestFormat sets the ManifestFormat field's value.
+func (s *S3ManifestOutputLocation) SetManifestFormat(v string) *S3ManifestOutputLocation {
+	s.ManifestFormat = &v
+	return s
+}
+
+// SetManifestPrefix sets the ManifestPrefix field's value.
+func (s *S3ManifestOutputLocation) SetManifestPrefix(v string) *S3ManifestOutputLocation {
+	s.ManifestPrefix = &v
 	return s
 }
 
@@ -17268,6 +17764,30 @@ func (s *S3ObjectOwner) SetDisplayName(v string) *S3ObjectOwner {
 func (s *S3ObjectOwner) SetID(v string) *S3ObjectOwner {
 	s.ID = &v
 	return s
+}
+
+// Directs the specified job to invoke ReplicateObject on every object in the
+// job's manifest.
+type S3ReplicateObjectOperation struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ReplicateObjectOperation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ReplicateObjectOperation) GoString() string {
+	return s.String()
 }
 
 // Contains the S3 Object Lock retention mode to be applied to all objects in
@@ -17648,6 +18168,58 @@ func (s *SSEKMS) SetKeyId(v string) *SSEKMS {
 	return s
 }
 
+// Configuration for the use of SSE-KMS to encrypt generated manifest objects.
+type SSEKMSEncryption struct {
+	_ struct{} `locationName:"SSE-KMS" type:"structure"`
+
+	// Specifies the ID of the Amazon Web Services Key Management Service (Amazon
+	// Web Services KMS) symmetric customer managed key to use for encrypting generated
+	// manifest objects.
+	//
+	// KeyId is a required field
+	KeyId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SSEKMSEncryption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SSEKMSEncryption) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SSEKMSEncryption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SSEKMSEncryption"}
+	if s.KeyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeyId"))
+	}
+	if s.KeyId != nil && len(*s.KeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KeyId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKeyId sets the KeyId field's value.
+func (s *SSEKMSEncryption) SetKeyId(v string) *SSEKMSEncryption {
+	s.KeyId = &v
+	return s
+}
+
 type SSES3 struct {
 	_ struct{} `locationName:"SSE-S3" type:"structure"`
 }
@@ -17667,6 +18239,29 @@ func (s SSES3) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s SSES3) GoString() string {
+	return s.String()
+}
+
+// Configuration for the use of SSE-S3 to encrypt generated manifest objects.
+type SSES3Encryption struct {
+	_ struct{} `locationName:"SSE-S3" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SSES3Encryption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SSES3Encryption) GoString() string {
 	return s.String()
 }
 
@@ -18686,6 +19281,18 @@ func Format_Values() []string {
 }
 
 const (
+	// GeneratedManifestFormatS3inventoryReportCsv20211130 is a GeneratedManifestFormat enum value
+	GeneratedManifestFormatS3inventoryReportCsv20211130 = "S3InventoryReport_CSV_20211130"
+)
+
+// GeneratedManifestFormat_Values returns all elements of the GeneratedManifestFormat enum
+func GeneratedManifestFormat_Values() []string {
+	return []string{
+		GeneratedManifestFormatS3inventoryReportCsv20211130,
+	}
+}
+
+const (
 	// JobManifestFieldNameIgnore is a JobManifestFieldName enum value
 	JobManifestFieldNameIgnore = "Ignore"
 
@@ -18913,6 +19520,9 @@ const (
 
 	// OperationNameS3putObjectRetention is a OperationName enum value
 	OperationNameS3putObjectRetention = "S3PutObjectRetention"
+
+	// OperationNameS3replicateObject is a OperationName enum value
+	OperationNameS3replicateObject = "S3ReplicateObject"
 )
 
 // OperationName_Values returns all elements of the OperationName enum
@@ -18926,6 +19536,7 @@ func OperationName_Values() []string {
 		OperationNameS3initiateRestoreObject,
 		OperationNameS3putObjectLegalHold,
 		OperationNameS3putObjectRetention,
+		OperationNameS3replicateObject,
 	}
 }
 
@@ -18938,6 +19549,30 @@ const (
 func OutputSchemaVersion_Values() []string {
 	return []string{
 		OutputSchemaVersionV1,
+	}
+}
+
+const (
+	// ReplicationStatusCompleted is a ReplicationStatus enum value
+	ReplicationStatusCompleted = "COMPLETED"
+
+	// ReplicationStatusFailed is a ReplicationStatus enum value
+	ReplicationStatusFailed = "FAILED"
+
+	// ReplicationStatusReplica is a ReplicationStatus enum value
+	ReplicationStatusReplica = "REPLICA"
+
+	// ReplicationStatusNone is a ReplicationStatus enum value
+	ReplicationStatusNone = "NONE"
+)
+
+// ReplicationStatus_Values returns all elements of the ReplicationStatus enum
+func ReplicationStatus_Values() []string {
+	return []string{
+		ReplicationStatusCompleted,
+		ReplicationStatusFailed,
+		ReplicationStatusReplica,
+		ReplicationStatusNone,
 	}
 }
 
@@ -19155,6 +19790,9 @@ const (
 
 	// S3StorageClassDeepArchive is a S3StorageClass enum value
 	S3StorageClassDeepArchive = "DEEP_ARCHIVE"
+
+	// S3StorageClassGlacierIr is a S3StorageClass enum value
+	S3StorageClassGlacierIr = "GLACIER_IR"
 )
 
 // S3StorageClass_Values returns all elements of the S3StorageClass enum
@@ -19166,6 +19804,7 @@ func S3StorageClass_Values() []string {
 		S3StorageClassGlacier,
 		S3StorageClassIntelligentTiering,
 		S3StorageClassDeepArchive,
+		S3StorageClassGlacierIr,
 	}
 }
 

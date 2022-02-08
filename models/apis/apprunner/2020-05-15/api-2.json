@@ -69,6 +69,20 @@
         {"shape":"ServiceQuotaExceededException"}
       ]
     },
+    "CreateVpcConnector":{
+      "name":"CreateVpcConnector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateVpcConnectorRequest"},
+      "output":{"shape":"CreateVpcConnectorResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
     "DeleteAutoScalingConfiguration":{
       "name":"DeleteAutoScalingConfiguration",
       "http":{
@@ -112,6 +126,20 @@
         {"shape":"InternalServiceErrorException"}
       ]
     },
+    "DeleteVpcConnector":{
+      "name":"DeleteVpcConnector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteVpcConnectorRequest"},
+      "output":{"shape":"DeleteVpcConnectorResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DescribeAutoScalingConfiguration":{
       "name":"DescribeAutoScalingConfiguration",
       "http":{
@@ -152,6 +180,20 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServiceErrorException"}
+      ]
+    },
+    "DescribeVpcConnector":{
+      "name":"DescribeVpcConnector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeVpcConnectorRequest"},
+      "output":{"shape":"DescribeVpcConnectorResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DisassociateCustomDomain":{
@@ -235,6 +277,19 @@
         {"shape":"InternalServiceErrorException"},
         {"shape":"InvalidRequestException"},
         {"shape":"InvalidStateException"}
+      ]
+    },
+    "ListVpcConnectors":{
+      "name":"ListVpcConnectors",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListVpcConnectorsRequest"},
+      "output":{"shape":"ListVpcConnectorsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceErrorException"}
       ]
     },
     "PauseService":{
@@ -424,6 +479,7 @@
     "Boolean":{"type":"boolean"},
     "BuildCommand":{
       "type":"string",
+      "pattern":"[^\\x0a\\x0d]+",
       "sensitive":true
     },
     "CertificateValidationRecord":{
@@ -580,7 +636,8 @@
         "Tags":{"shape":"TagList"},
         "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
         "HealthCheckConfiguration":{"shape":"HealthCheckConfiguration"},
-        "AutoScalingConfigurationArn":{"shape":"AppRunnerResourceArn"}
+        "AutoScalingConfigurationArn":{"shape":"AppRunnerResourceArn"},
+        "NetworkConfiguration":{"shape":"NetworkConfiguration"}
       }
     },
     "CreateServiceResponse":{
@@ -592,6 +649,26 @@
       "members":{
         "Service":{"shape":"Service"},
         "OperationId":{"shape":"UUID"}
+      }
+    },
+    "CreateVpcConnectorRequest":{
+      "type":"structure",
+      "required":[
+        "VpcConnectorName",
+        "Subnets"
+      ],
+      "members":{
+        "VpcConnectorName":{"shape":"VpcConnectorName"},
+        "Subnets":{"shape":"StringList"},
+        "SecurityGroups":{"shape":"StringList"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateVpcConnectorResponse":{
+      "type":"structure",
+      "required":["VpcConnector"],
+      "members":{
+        "VpcConnector":{"shape":"VpcConnector"}
       }
     },
     "CustomDomain":{
@@ -669,6 +746,20 @@
         "OperationId":{"shape":"UUID"}
       }
     },
+    "DeleteVpcConnectorRequest":{
+      "type":"structure",
+      "required":["VpcConnectorArn"],
+      "members":{
+        "VpcConnectorArn":{"shape":"AppRunnerResourceArn"}
+      }
+    },
+    "DeleteVpcConnectorResponse":{
+      "type":"structure",
+      "required":["VpcConnector"],
+      "members":{
+        "VpcConnector":{"shape":"VpcConnector"}
+      }
+    },
     "DescribeAutoScalingConfigurationRequest":{
       "type":"structure",
       "required":["AutoScalingConfigurationArn"],
@@ -725,6 +816,20 @@
         "Service":{"shape":"Service"}
       }
     },
+    "DescribeVpcConnectorRequest":{
+      "type":"structure",
+      "required":["VpcConnectorArn"],
+      "members":{
+        "VpcConnectorArn":{"shape":"AppRunnerResourceArn"}
+      }
+    },
+    "DescribeVpcConnectorResponse":{
+      "type":"structure",
+      "required":["VpcConnector"],
+      "members":{
+        "VpcConnector":{"shape":"VpcConnector"}
+      }
+    },
     "DisassociateCustomDomainRequest":{
       "type":"structure",
       "required":[
@@ -752,7 +857,22 @@
     "DomainName":{
       "type":"string",
       "max":255,
-      "min":1
+      "min":1,
+      "pattern":"[A-Za-z0-9*.-]{1,255}"
+    },
+    "EgressConfiguration":{
+      "type":"structure",
+      "members":{
+        "EgressType":{"shape":"EgressType"},
+        "VpcConnectorArn":{"shape":"AppRunnerResourceArn"}
+      }
+    },
+    "EgressType":{
+      "type":"string",
+      "enum":[
+        "DEFAULT",
+        "VPC"
+      ]
     },
     "EncryptionConfiguration":{
       "type":"structure",
@@ -811,7 +931,7 @@
       "type":"structure",
       "members":{
         "RuntimeEnvironmentVariables":{"shape":"RuntimeEnvironmentVariables"},
-        "StartCommand":{"shape":"String"},
+        "StartCommand":{"shape":"StartCommand"},
         "Port":{"shape":"String"}
       }
     },
@@ -959,6 +1079,21 @@
         "Tags":{"shape":"TagList"}
       }
     },
+    "ListVpcConnectorsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListVpcConnectorsResponse":{
+      "type":"structure",
+      "required":["VpcConnectors"],
+      "members":{
+        "VpcConnectors":{"shape":"VpcConnectors"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "MaxResults":{
       "type":"integer",
       "max":100,
@@ -969,6 +1104,12 @@
       "max":4,
       "min":4,
       "pattern":"2048|3072|4096|(2|3|4) GB"
+    },
+    "NetworkConfiguration":{
+      "type":"structure",
+      "members":{
+        "EgressConfiguration":{"shape":"EgressConfiguration"}
+      }
     },
     "NextToken":{
       "type":"string",
@@ -1076,10 +1217,16 @@
     },
     "RuntimeEnvironmentVariablesKey":{
       "type":"string",
+      "max":51200,
+      "min":1,
+      "pattern":".*",
       "sensitive":true
     },
     "RuntimeEnvironmentVariablesValue":{
       "type":"string",
+      "max":51200,
+      "min":0,
+      "pattern":".*",
       "sensitive":true
     },
     "Service":{
@@ -1094,7 +1241,8 @@
         "Status",
         "SourceConfiguration",
         "InstanceConfiguration",
-        "AutoScalingConfigurationSummary"
+        "AutoScalingConfigurationSummary",
+        "NetworkConfiguration"
       ],
       "members":{
         "ServiceName":{"shape":"ServiceName"},
@@ -1109,7 +1257,8 @@
         "InstanceConfiguration":{"shape":"InstanceConfiguration"},
         "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
         "HealthCheckConfiguration":{"shape":"HealthCheckConfiguration"},
-        "AutoScalingConfigurationSummary":{"shape":"AutoScalingConfigurationSummary"}
+        "AutoScalingConfigurationSummary":{"shape":"AutoScalingConfigurationSummary"},
+        "NetworkConfiguration":{"shape":"NetworkConfiguration"}
       }
     },
     "ServiceId":{
@@ -1189,6 +1338,7 @@
     },
     "StartCommand":{
       "type":"string",
+      "pattern":"[^\\x0a\\x0d]+",
       "sensitive":true
     },
     "StartDeploymentRequest":{
@@ -1210,6 +1360,10 @@
       "max":51200,
       "min":0,
       "pattern":".*"
+    },
+    "StringList":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "Tag":{
       "type":"structure",
@@ -1285,7 +1439,8 @@
         "SourceConfiguration":{"shape":"SourceConfiguration"},
         "InstanceConfiguration":{"shape":"InstanceConfiguration"},
         "AutoScalingConfigurationArn":{"shape":"AppRunnerResourceArn"},
-        "HealthCheckConfiguration":{"shape":"HealthCheckConfiguration"}
+        "HealthCheckConfiguration":{"shape":"HealthCheckConfiguration"},
+        "NetworkConfiguration":{"shape":"NetworkConfiguration"}
       }
     },
     "UpdateServiceResponse":{
@@ -1298,6 +1453,36 @@
         "Service":{"shape":"Service"},
         "OperationId":{"shape":"UUID"}
       }
+    },
+    "VpcConnector":{
+      "type":"structure",
+      "members":{
+        "VpcConnectorName":{"shape":"VpcConnectorName"},
+        "VpcConnectorArn":{"shape":"AppRunnerResourceArn"},
+        "VpcConnectorRevision":{"shape":"Integer"},
+        "Subnets":{"shape":"StringList"},
+        "SecurityGroups":{"shape":"StringList"},
+        "Status":{"shape":"VpcConnectorStatus"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "DeletedAt":{"shape":"Timestamp"}
+      }
+    },
+    "VpcConnectorName":{
+      "type":"string",
+      "max":40,
+      "min":4,
+      "pattern":"[A-Za-z0-9][A-Za-z0-9\\-_]{3,39}"
+    },
+    "VpcConnectorStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "INACTIVE"
+      ]
+    },
+    "VpcConnectors":{
+      "type":"list",
+      "member":{"shape":"VpcConnector"}
     }
   }
 }
