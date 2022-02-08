@@ -6740,6 +6740,12 @@
         "ModelPackageContainerDefinition$ModelInput": "<p>A structure with Model Input details.</p>"
       }
     },
+    "ModelInsightsLocation": {
+      "base": null,
+      "refs": {
+        "CandidateArtifactLocations$ModelInsights": "<p>The Amazon S3 prefix to the model insight artifacts generated for the AutoML candidate.</p>"
+      }
+    },
     "ModelLatencyThreshold": {
       "base": "<p>The model latency threshold.</p>",
       "refs": {

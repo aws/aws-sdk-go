@@ -241,7 +241,7 @@ func (c *Kendra) BatchDeleteDocumentRequest(input *BatchDeleteDocumentInput) (re
 // BatchDeleteDocument API operation for AWSKendraFrontendService.
 //
 // Removes one or more documents from an index. The documents must have been
-// added with the BatchPutDocument operation.
+// added with the BatchPutDocument API.
 //
 // The documents are deleted asynchronously. You can see the progress of the
 // deletion by using Amazon Web Services CloudWatch. Any error messages related
@@ -335,17 +335,17 @@ func (c *Kendra) BatchGetDocumentStatusRequest(input *BatchGetDocumentStatusInpu
 //
 // Returns the indexing status for one or more documents submitted with the
 // BatchPutDocument (https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html)
-// operation.
+// API.
 //
-// When you use the BatchPutDocument operation, documents are indexed asynchronously.
-// You can use the BatchGetDocumentStatus operation to get the current status
-// of a list of documents so that you can determine if they have been successfully
+// When you use the BatchPutDocument API, documents are indexed asynchronously.
+// You can use the BatchGetDocumentStatus API to get the current status of a
+// list of documents so that you can determine if they have been successfully
 // indexed.
 //
-// You can also use the BatchGetDocumentStatus operation to check the status
-// of the BatchDeleteDocument (https://docs.aws.amazon.com/kendra/latest/dg/API_BatchDeleteDocument.html)
-// operation. When a document is deleted from the index, Amazon Kendra returns
-// NOT_FOUND as the status.
+// You can also use the BatchGetDocumentStatus API to check the status of the
+// BatchDeleteDocument (https://docs.aws.amazon.com/kendra/latest/dg/API_BatchDeleteDocument.html)
+// API. When a document is deleted from the index, Amazon Kendra returns NOT_FOUND
+// as the status.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -435,11 +435,10 @@ func (c *Kendra) BatchPutDocumentRequest(input *BatchPutDocumentInput) (req *req
 //
 // Adds one or more documents to an index.
 //
-// The BatchPutDocument operation enables you to ingest inline documents or
-// a set of documents stored in an Amazon S3 bucket. Use this operation to ingest
-// your text and unstructured text into an index, add custom attributes to the
-// documents, and to attach an access control list to the documents added to
-// the index.
+// The BatchPutDocument API enables you to ingest inline documents or a set
+// of documents stored in an Amazon S3 bucket. Use this API to ingest your text
+// and unstructured text into an index, add custom attributes to the documents,
+// and to attach an access control list to the documents added to the index.
 //
 // The documents are indexed asynchronously. You can see the progress of the
 // batch using Amazon Web Services CloudWatch. Any error messages related to
@@ -917,13 +916,13 @@ func (c *Kendra) CreateIndexRequest(input *CreateIndexInput) (req *request.Reque
 
 // CreateIndex API operation for AWSKendraFrontendService.
 //
-// Creates a new Amazon Kendra index. Index creation is an asynchronous operation.
+// Creates a new Amazon Kendra index. Index creation is an asynchronous API.
 // To determine if index creation has completed, check the Status field returned
 // from a call to DescribeIndex. The Status field is set to ACTIVE when the
 // index is ready to use.
 //
 // Once the index is active you can index your documents using the BatchPutDocument
-// operation or using one of the supported data sources.
+// API or using one of the supported data sources.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1210,8 +1209,8 @@ func (c *Kendra) DeleteDataSourceRequest(input *DeleteDataSourceInput) (req *req
 //
 // Deletes an Amazon Kendra data source. An exception is not thrown if the data
 // source is already being deleted. While the data source is being deleted,
-// the Status field returned by a call to the DescribeDataSource operation is
-// set to DELETING. For more information, see Deleting Data Sources (https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html).
+// the Status field returned by a call to the DescribeDataSource API is set
+// to DELETING. For more information, see Deleting Data Sources (https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1482,7 +1481,7 @@ func (c *Kendra) DeleteIndexRequest(input *DeleteIndexInput) (req *request.Reque
 //
 // Deletes an existing Amazon Kendra index. An exception is not thrown if the
 // index is already being deleted. While the index is being deleted, the Status
-// field returned by a call to the DescribeIndex operation is set to DELETING.
+// field returned by a call to the DescribeIndex API is set to DELETING.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1858,7 +1857,7 @@ func (c *Kendra) DescribeDataSourceRequest(input *DescribeDataSourceInput) (req 
 
 // DescribeDataSource API operation for AWSKendraFrontendService.
 //
-// Gets information about a Amazon Kendra data source.
+// Gets information about an Amazon Kendra data source.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4409,8 +4408,8 @@ func (c *Kendra) QueryRequest(input *QueryInput) (req *request.Request, output *
 // Query API operation for AWSKendraFrontendService.
 //
 // Searches an active index. Use this API to search your documents using query.
-// The Query operation enables to do faceted search and to filter results based
-// on document attributes.
+// The Query API enables to do faceted search and to filter results based on
+// document attributes.
 //
 // It also enables you to provide user context that Amazon Kendra uses to enforce
 // document access control in the search results.
@@ -4609,8 +4608,8 @@ func (c *Kendra) StopDataSourceSyncJobRequest(input *StopDataSourceSyncJobInput)
 
 // StopDataSourceSyncJob API operation for AWSKendraFrontendService.
 //
-// Stops a running synchronization job. You can't stop a scheduled synchronization
-// job.
+// Stops a synchronization job that is currently running. You can't stop a scheduled
+// synchronization job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5602,7 +5601,7 @@ type AclConfiguration struct {
 
 	// A list of groups, separated by semi-colons, that filters a query response
 	// based on user context. The document is only returned to users that are in
-	// one of the groups specified in the UserContext field of the Query operation.
+	// one of the groups specified in the UserContext field of the Query API.
 	//
 	// AllowedGroupsColumnName is a required field
 	AllowedGroupsColumnName *string `min:"1" type:"string" required:"true"`
@@ -6450,7 +6449,7 @@ func (s *BatchDeleteDocumentOutput) SetFailedDocuments(v []*BatchDeleteDocumentR
 }
 
 // Provides information about documents that could not be removed from an index
-// by the BatchDeleteDocument operation.
+// by the BatchDeleteDocument API.
 type BatchDeleteDocumentResponseFailedDocument struct {
 	_ struct{} `type:"structure"`
 
@@ -6512,7 +6511,7 @@ type BatchGetDocumentStatusInput struct {
 
 	// The identifier of the index to add documents to. The index ID is returned
 	// by the CreateIndex (https://docs.aws.amazon.com/kendra/latest/dg/API_CreateIndex.html)
-	// operation.
+	// API.
 	//
 	// IndexId is a required field
 	IndexId *string `min:"36" type:"string" required:"true"`
@@ -6680,7 +6679,7 @@ type BatchPutDocumentInput struct {
 	_ struct{} `type:"structure"`
 
 	// Configuration information for altering your document metadata and content
-	// during the document ingestion process when you use the BatchPutDocument operation.
+	// during the document ingestion process when you use the BatchPutDocument API.
 	//
 	// For more information on how to create, modify and delete document metadata,
 	// or make other content alterations when you ingest documents into Amazon Kendra,
@@ -6688,12 +6687,6 @@ type BatchPutDocumentInput struct {
 	CustomDocumentEnrichmentConfiguration *CustomDocumentEnrichmentConfiguration `type:"structure"`
 
 	// One or more documents to add to the index.
-	//
-	// Documents can include custom attributes. For example, 'DataSourceId' and
-	// 'DataSourceSyncJobId' are custom attributes that provide information on the
-	// synchronization of documents running on a data source. Note, 'DataSourceSyncJobId'
-	// could be an optional custom attribute as Amazon Kendra will use the ID of
-	// a running sync job.
 	//
 	// Documents have the following file size limits.
 	//
@@ -6710,13 +6703,13 @@ type BatchPutDocumentInput struct {
 	Documents []*Document `min:"1" type:"list" required:"true"`
 
 	// The identifier of the index to add the documents to. You need to create the
-	// index first using the CreateIndex operation.
+	// index first using the CreateIndex API.
 	//
 	// IndexId is a required field
 	IndexId *string `min:"36" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of a role that is allowed to run the BatchPutDocument
-	// operation. For more information, see IAM Roles for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
+	// API. For more information, see IAM Roles for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
 	RoleArn *string `type:"string"`
 }
 
@@ -7034,7 +7027,7 @@ func (s ClearQuerySuggestionsOutput) GoString() string {
 }
 
 // Gathers information about when a particular result was clicked by a user.
-// Your application uses the SubmitFeedback operation to provide click information.
+// Your application uses the SubmitFeedback API to provide click information.
 type ClickFeedback struct {
 	_ struct{} `type:"structure"`
 
@@ -7123,7 +7116,7 @@ type ColumnConfiguration struct {
 
 	// An array of objects that map database column names to the corresponding fields
 	// in an index. You must first create the fields in the index using the UpdateIndex
-	// operation.
+	// API.
 	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 }
 
@@ -7290,7 +7283,7 @@ type ConfluenceAttachmentConfiguration struct {
 
 	// Defines how attachment metadata fields should be mapped to index fields.
 	// Before you can map a field, you must first create an index field with a matching
-	// type using the console or the UpdateIndex operation.
+	// type using the console or the UpdateIndex API.
 	//
 	// If you specify the AttachentFieldMappings parameter, you must specify at
 	// least one field mapping.
@@ -7357,13 +7350,13 @@ func (s *ConfluenceAttachmentConfiguration) SetCrawlAttachments(v bool) *Conflue
 // Defines the mapping between a field in the Confluence data source to a Amazon
 // Kendra index field.
 //
-// You must first create the index field using the UpdateIndex operation.
+// You must first create the index field using the UpdateIndex API.
 type ConfluenceAttachmentToIndexFieldMapping struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the field in the data source.
 	//
-	// You must first create the index field using the UpdateIndex operation.
+	// You must first create the index field using the UpdateIndex API.
 	DataSourceFieldName *string `type:"string" enum:"ConfluenceAttachmentFieldName"`
 
 	// The format for date fields in the data source. If the field specified in
@@ -7430,13 +7423,13 @@ func (s *ConfluenceAttachmentToIndexFieldMapping) SetIndexFieldName(v string) *C
 
 // Specifies the blog settings for the Confluence data source. Blogs are always
 // indexed unless filtered from the index by the ExclusionPatterns or InclusionPatterns
-// fields in the ConfluenceConfiguration type.
+// fields in the ConfluenceConfiguration object.
 type ConfluenceBlogConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// Defines how blog metadata fields should be mapped to index fields. Before
 	// you can map a field, you must first create an index field with a matching
-	// type using the console or the UpdateIndex operation.
+	// type using the console or the UpdateIndex API.
 	//
 	// If you specify the BlogFieldMappings parameter, you must specify at least
 	// one field mapping.
@@ -7493,7 +7486,7 @@ func (s *ConfluenceBlogConfiguration) SetBlogFieldMappings(v []*ConfluenceBlogTo
 // Defines the mapping between a blog field in the Confluence data source to
 // a Amazon Kendra index field.
 //
-// You must first create the index field using the UpdateIndex operation.
+// You must first create the index field using the UpdateIndex API.
 type ConfluenceBlogToIndexFieldMapping struct {
 	_ struct{} `type:"structure"`
 
@@ -7759,7 +7752,7 @@ type ConfluencePageConfiguration struct {
 
 	// Defines how page metadata fields should be mapped to index fields. Before
 	// you can map a field, you must first create an index field with a matching
-	// type using the console or the UpdateIndex operation.
+	// type using the console or the UpdateIndex API.
 	//
 	// If you specify the PageFieldMappings parameter, you must specify at least
 	// one field mapping.
@@ -7816,7 +7809,7 @@ func (s *ConfluencePageConfiguration) SetPageFieldMappings(v []*ConfluencePageTo
 // Defines the mapping between a field in the Confluence data source to a Amazon
 // Kendra index field.
 //
-// You must first create the index field using the UpdateIndex operation.
+// You must first create the index field using the UpdateIndex API.
 type ConfluencePageToIndexFieldMapping struct {
 	_ struct{} `type:"structure"`
 
@@ -7913,7 +7906,7 @@ type ConfluenceSpaceConfiguration struct {
 
 	// Defines how space metadata fields should be mapped to index fields. Before
 	// you can map a field, you must first create an index field with a matching
-	// type using the console or the UpdateIndex operation.
+	// type using the console or the UpdateIndex API.
 	//
 	// If you specify the SpaceFieldMappings parameter, you must specify at least
 	// one field mapping.
@@ -7997,10 +7990,10 @@ func (s *ConfluenceSpaceConfiguration) SetSpaceFieldMappings(v []*ConfluenceSpac
 	return s
 }
 
-// Defines the mapping between a field in the Confluence data source to a Amazon
+// Defines the mapping between a field in the Confluence data source to an Amazon
 // Kendra index field.
 //
-// You must first create the index field using the UpdateIndex operation.
+// You must first create the index field using the UpdateIndex API.
 type ConfluenceSpaceToIndexFieldMapping struct {
 	_ struct{} `type:"structure"`
 
@@ -8201,7 +8194,7 @@ type ContentSourceConfiguration struct {
 	// experience.
 	DataSourceIds []*string `min:"1" type:"list"`
 
-	// TRUE to use documents you indexed directly using the BatchPutDocument operation.
+	// TRUE to use documents you indexed directly using the BatchPutDocument API.
 	DirectPutContent *bool `type:"boolean"`
 
 	// The identifier of the FAQs that you want to use for your Amazon Kendra experience.
@@ -8264,8 +8257,8 @@ type CreateDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// A token that you provide to identify the request to create a data source.
-	// Multiple calls to the CreateDataSource operation with the same client token
-	// will create only one data source.
+	// Multiple calls to the CreateDataSource API with the same client token will
+	// create only one data source.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The connector configuration information that is required to access the repository.
@@ -8313,9 +8306,9 @@ type CreateDataSourceInput struct {
 	// The RoleArn parameter is required for all other data sources.
 	RoleArn *string `type:"string"`
 
-	// Sets the frequency that Amazon Kendra will check the documents in your repository
+	// Sets the frequency for Amazon Kendra to check the documents in your repository
 	// and update the index. If you don't set a schedule Amazon Kendra will not
-	// periodically update the index. You can call the StartDataSourceSyncJob operation
+	// periodically update the index. You can call the StartDataSourceSyncJob API
 	// to update the index.
 	//
 	// You can't specify the Schedule parameter when the Type parameter is set to
@@ -8504,8 +8497,8 @@ type CreateExperienceInput struct {
 	_ struct{} `type:"structure"`
 
 	// A token that you provide to identify the request to create your Amazon Kendra
-	// experience. Multiple calls to the CreateExperience operation with the same
-	// client token creates only one Amazon Kendra experience.
+	// experience. Multiple calls to the CreateExperience API with the same client
+	// token creates only one Amazon Kendra experience.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// Provides the configuration information for your Amazon Kendra experience.
@@ -8528,9 +8521,9 @@ type CreateExperienceInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of a role with permission to access Query
-	// operations, QuerySuggestions operations, SubmitFeedback operations, and Amazon
-	// Web Services SSO that stores your user and group information. For more information,
-	// see IAM roles for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
+	// API, QuerySuggestions API, SubmitFeedback API, and Amazon Web Services SSO
+	// that stores your user and group information. For more information, see IAM
+	// roles for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
 	RoleArn *string `type:"string"`
 }
 
@@ -8655,7 +8648,7 @@ type CreateFaqInput struct {
 	_ struct{} `type:"structure"`
 
 	// A token that you provide to identify the request to create a FAQ. Multiple
-	// calls to the CreateFaqRequest operation with the same client token will create
+	// calls to the CreateFaqRequest API with the same client token will create
 	// only one FAQ.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -8861,8 +8854,8 @@ type CreateIndexInput struct {
 	_ struct{} `type:"structure"`
 
 	// A token that you provide to identify the request to create an index. Multiple
-	// calls to the CreateIndex operation with the same client token will create
-	// only one index.
+	// calls to the CreateIndex API with the same client token will create only
+	// one index.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// A description for the index.
@@ -8887,8 +8880,8 @@ type CreateIndexInput struct {
 
 	// An Identity and Access Management(IAM) role that gives Amazon Kendra permissions
 	// to access your Amazon CloudWatch logs and metrics. This is also the role
-	// used when you use the BatchPutDocument operation to index documents from
-	// an Amazon S3 bucket.
+	// used when you use the BatchPutDocument API to index documents from an Amazon
+	// S3 bucket.
 	//
 	// RoleArn is a required field
 	RoleArn *string `type:"string" required:"true"`
@@ -9118,9 +9111,9 @@ type CreateQuerySuggestionsBlockListInput struct {
 	// The IAM (Identity and Access Management) role used by Amazon Kendra to access
 	// the block list text file in your S3 bucket.
 	//
-	// You need permissions to the role ARN (Amazon Resource Name). The role needs
-	// S3 read permissions to your file in S3 and needs to give STS (Security Token
-	// Service) assume role permissions to Amazon Kendra.
+	// You need permissions to the role ARN (Amazon Web Services Resource Name).
+	// The role needs S3 read permissions to your file in S3 and needs to give STS
+	// (Security Token Service) assume role permissions to Amazon Kendra.
 	//
 	// RoleArn is a required field
 	RoleArn *string `type:"string" required:"true"`
@@ -9280,8 +9273,8 @@ type CreateThesaurusInput struct {
 	_ struct{} `type:"structure"`
 
 	// A token that you provide to identify the request to create a thesaurus. Multiple
-	// calls to the CreateThesaurus operation with the same client token will create
-	// only one thesaurus.
+	// calls to the CreateThesaurus API with the same client token will create only
+	// one thesaurus.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The description for the new thesaurus.
@@ -9565,6 +9558,10 @@ type DataSourceConfiguration struct {
 	// Provides information necessary to create a data source connector for a database.
 	DatabaseConfiguration *DatabaseConfiguration `type:"structure"`
 
+	// Provides the configuration information to connect to Amazon FSx as your data
+	// source.
+	FsxConfiguration *FsxConfiguration `type:"structure"`
+
 	// Provides configuration for data sources that connect to Google Drive.
 	GoogleDriveConfiguration *GoogleDriveConfiguration `type:"structure"`
 
@@ -9589,8 +9586,8 @@ type DataSourceConfiguration struct {
 	// Provides the configuration information required for Amazon Kendra Web Crawler.
 	WebCrawlerConfiguration *WebCrawlerConfiguration `type:"structure"`
 
-	// Provides the configuration information to connect to WorkDocs as your data
-	// source.
+	// Provides the configuration information to connect to Amazon WorkDocs as your
+	// data source.
 	WorkDocsConfiguration *WorkDocsConfiguration `type:"structure"`
 }
 
@@ -9623,6 +9620,11 @@ func (s *DataSourceConfiguration) Validate() error {
 	if s.DatabaseConfiguration != nil {
 		if err := s.DatabaseConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("DatabaseConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FsxConfiguration != nil {
+		if err := s.FsxConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("FsxConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.GoogleDriveConfiguration != nil {
@@ -9681,6 +9683,12 @@ func (s *DataSourceConfiguration) SetConfluenceConfiguration(v *ConfluenceConfig
 // SetDatabaseConfiguration sets the DatabaseConfiguration field's value.
 func (s *DataSourceConfiguration) SetDatabaseConfiguration(v *DatabaseConfiguration) *DataSourceConfiguration {
 	s.DatabaseConfiguration = v
+	return s
+}
+
+// SetFsxConfiguration sets the FsxConfiguration field's value.
+func (s *DataSourceConfiguration) SetFsxConfiguration(v *FsxConfiguration) *DataSourceConfiguration {
+	s.FsxConfiguration = v
 	return s
 }
 
@@ -9802,8 +9810,8 @@ func (s *DataSourceGroup) SetGroupId(v string) *DataSourceGroup {
 	return s
 }
 
-// Summary information for a Amazon Kendra data source. Returned in a call to
-// the DescribeDataSource operation.
+// Summary information for an Amazon Kendra data source. Returned in a call
+// to the DescribeDataSource API.
 type DataSourceSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -9893,7 +9901,7 @@ func (s *DataSourceSummary) SetUpdatedAt(v time.Time) *DataSourceSummary {
 	return s
 }
 
-// Provides information about a synchronization job.
+// Provides information about a data source synchronization job.
 type DataSourceSyncJob struct {
 	_ struct{} `type:"structure"`
 
@@ -9901,11 +9909,11 @@ type DataSourceSyncJob struct {
 	// underlying data source, this field contains a code that identifies the error.
 	DataSourceErrorCode *string `min:"1" type:"string"`
 
-	// The UNIX datetime that the synchronization job was completed.
+	// The UNIX datetime that the synchronization job completed.
 	EndTime *time.Time `type:"timestamp"`
 
-	// If the Status field is set to FAILED, the ErrorCode field contains a the
-	// reason that the synchronization failed.
+	// If the Status field is set to FAILED, the ErrorCode field indicates the reason
+	// the synchronization failed.
 	ErrorCode *string `type:"string" enum:"ErrorCode"`
 
 	// If the Status field is set to ERROR, the ErrorMessage field contains a description
@@ -9920,7 +9928,7 @@ type DataSourceSyncJob struct {
 	// a data source connector.
 	Metrics *DataSourceSyncJobMetrics `type:"structure"`
 
-	// The UNIX datetime that the synchronization job was started.
+	// The UNIX datetime that the synchronization job started.
 	StartTime *time.Time `type:"timestamp"`
 
 	// The execution status of the synchronization job. When the Status field is
@@ -10142,7 +10150,7 @@ func (s *DataSourceSyncJobMetrics) SetDocumentsScanned(v string) *DataSourceSync
 }
 
 // Maps a column or attribute in the data source to an index field. You must
-// first create the fields in the index using the UpdateIndex operation.
+// first create the fields in the index using the UpdateIndex API.
 type DataSourceToIndexFieldMapping struct {
 	_ struct{} `type:"structure"`
 
@@ -11170,7 +11178,7 @@ type DescribeDataSourceOutput struct {
 	// access its resources.
 	RoleArn *string `type:"string"`
 
-	// The schedule that Amazon Kendra will update the data source.
+	// The schedule for Amazon Kendra to update the index.
 	Schedule *string `type:"string"`
 
 	// The current status of the data source. When the status is ACTIVE the data
@@ -11387,8 +11395,8 @@ type DescribeExperienceOutput struct {
 	Name *string `min:"1" type:"string"`
 
 	// Shows the Amazon Resource Name (ARN) of a role with permission to access
-	// Query operations, QuerySuggestions operations, SubmitFeedback operations,
-	// and Amazon Web Services SSO that stores your user and group information.
+	// Query API, QuerySuggestions API, SubmitFeedback API, and Amazon Web Services
+	// SSO that stores your user and group information.
 	RoleArn *string `type:"string"`
 
 	// The current processing status of your Amazon Kendra experience. When the
@@ -12355,7 +12363,7 @@ type DescribeQuerySuggestionsConfigOutput struct {
 	// By default, Amazon Kendra enables query suggestions.LEARN_ONLY turns off
 	// query suggestions for your users. You can change the mode using the UpdateQuerySuggestionsConfig
 	// (https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateQuerySuggestionsConfig.html)
-	// operation.
+	// API.
 	Mode *string `type:"string" enum:"Mode"`
 
 	// Shows how recent your queries are in your query log time window (in days).
@@ -12913,14 +12921,19 @@ type Document struct {
 	// Custom attributes to apply to the document. Use the custom attributes to
 	// provide additional information for searching, to provide facets for refining
 	// searches, and to provide additional information in the query response.
+	//
+	// For example, 'DataSourceId' and 'DataSourceSyncJobId' are custom attributes
+	// that provide information on the synchronization of documents running on a
+	// data source. Note, 'DataSourceSyncJobId' could be an optional custom attribute
+	// as Amazon Kendra will use the ID of a running sync job.
 	Attributes []*DocumentAttribute `type:"list"`
 
 	// The contents of the document.
 	//
 	// Documents passed to the Blob parameter must be base64 encoded. Your code
 	// might not need to encode the document file bytes if you're using an Amazon
-	// Web Services SDK to call Amazon Kendra operations. If you are calling the
-	// Amazon Kendra endpoint directly using REST, you must base64 encode the contents
+	// Web Services SDK to call Amazon Kendra APIs. If you are calling the Amazon
+	// Kendra endpoint directly using REST, you must base64 encode the contents
 	// before sending.
 	// Blob is automatically base64 encoded/decoded by the SDK.
 	Blob []byte `type:"blob"`
@@ -13978,8 +13991,8 @@ type ExperienceConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The identifiers of your data sources and FAQs. Or, you can specify that you
-	// want to use documents indexed via the BatchPutDocument operation. This is
-	// the content you want to use for your Amazon Kendra experience.
+	// want to use documents indexed via the BatchPutDocument API. This is the content
+	// you want to use for your Amazon Kendra experience.
 	ContentSourceConfiguration *ContentSourceConfiguration `type:"structure"`
 
 	// The Amazon Web Services SSO field name that contains the identifiers of your
@@ -14476,6 +14489,174 @@ func (s *FaqSummary) SetUpdatedAt(v time.Time) *FaqSummary {
 	return s
 }
 
+// Provides the configuration information to connect to Amazon FSx as your data
+// source.
+type FsxConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A list of regular expression patterns to exclude certain files in your Amazon
+	// FSx file system. Files that match the patterns are excluded from the index.
+	// Files that don’t match the patterns are included in the index. If a file
+	// matches both an inclusion pattern and an exclusion pattern, the exclusion
+	// pattern takes precedence and the file isn't included in the index.
+	ExclusionPatterns []*string `type:"list"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map Amazon FSx data
+	// source attributes or field names to Amazon Kendra index field names in Amazon
+	// Kendra. To create custom fields, use the UpdateIndex API before you map to
+	// Amazon FSx fields. For more information, see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Amazon FSx data source field names must exist in your Amazon FSx custom
+	// metadata.
+	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// The identifier of the Amazon FSx file system.
+	//
+	// You can find your file system ID on the file system dashboard in the Amazon
+	// FSx console. For information on how to create a file system in Amazon FSx
+	// console, using Windows File Server as an example, see Amazon FSx Getting
+	// started guide (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/getting-started-step1.html).
+	//
+	// FileSystemId is a required field
+	FileSystemId *string `min:"11" type:"string" required:"true"`
+
+	// The Amazon FSx file system type. Windows is currently the only supported
+	// type.
+	//
+	// FileSystemType is a required field
+	FileSystemType *string `type:"string" required:"true" enum:"FsxFileSystemType"`
+
+	// A list of regular expression patterns to include certain files in your Amazon
+	// FSx file system. Files that match the patterns are included in the index.
+	// Files that don't match the patterns are excluded from the index. If a file
+	// matches both an inclusion pattern and an exclusion pattern, the exclusion
+	// pattern takes precedence and the file isn't included in the index.
+	InclusionPatterns []*string `type:"list"`
+
+	// The Amazon Resource Name (ARN) of an Secrets Manager secret that contains
+	// the key-value pairs required to connect to your Amazon FSx file system. Windows
+	// is currently the only supported type. The secret must contain a JSON structure
+	// with the following keys:
+	//
+	//    * username—The Active Directory user name, along with the Domain Name
+	//    System (DNS) domain name. For example, user@corp.example.com. The Active
+	//    Directory user account must have read and mounting access to the Amazon
+	//    FSx file system for Windows.
+	//
+	//    * password—The password of the active directory user with read and mounting
+	//    access Amazon FSx Windows file system.
+	SecretArn *string `min:"1" type:"string"`
+
+	// Provides the configuration information for connecting to an Amazon Virtual
+	// Private Cloud for your Amazon FSx. Your Amazon FSx instance must reside inside
+	// your VPC.
+	//
+	// VpcConfiguration is a required field
+	VpcConfiguration *DataSourceVpcConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FsxConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FsxConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FsxConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FsxConfiguration"}
+	if s.FieldMappings != nil && len(s.FieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FieldMappings", 1))
+	}
+	if s.FileSystemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileSystemId"))
+	}
+	if s.FileSystemId != nil && len(*s.FileSystemId) < 11 {
+		invalidParams.Add(request.NewErrParamMinLen("FileSystemId", 11))
+	}
+	if s.FileSystemType == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileSystemType"))
+	}
+	if s.SecretArn != nil && len(*s.SecretArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretArn", 1))
+	}
+	if s.VpcConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcConfiguration"))
+	}
+	if s.FieldMappings != nil {
+		for i, v := range s.FieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.VpcConfiguration != nil {
+		if err := s.VpcConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExclusionPatterns sets the ExclusionPatterns field's value.
+func (s *FsxConfiguration) SetExclusionPatterns(v []*string) *FsxConfiguration {
+	s.ExclusionPatterns = v
+	return s
+}
+
+// SetFieldMappings sets the FieldMappings field's value.
+func (s *FsxConfiguration) SetFieldMappings(v []*DataSourceToIndexFieldMapping) *FsxConfiguration {
+	s.FieldMappings = v
+	return s
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *FsxConfiguration) SetFileSystemId(v string) *FsxConfiguration {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetFileSystemType sets the FileSystemType field's value.
+func (s *FsxConfiguration) SetFileSystemType(v string) *FsxConfiguration {
+	s.FileSystemType = &v
+	return s
+}
+
+// SetInclusionPatterns sets the InclusionPatterns field's value.
+func (s *FsxConfiguration) SetInclusionPatterns(v []*string) *FsxConfiguration {
+	s.InclusionPatterns = v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *FsxConfiguration) SetSecretArn(v string) *FsxConfiguration {
+	s.SecretArn = &v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *FsxConfiguration) SetVpcConfiguration(v *DataSourceVpcConfiguration) *FsxConfiguration {
+	s.VpcConfiguration = v
+	return s
+}
+
 type GetQuerySuggestionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14812,7 +14993,7 @@ type GoogleDriveConfiguration struct {
 	//
 	// If you are using the console, you can define index fields when creating the
 	// mapping. If you are using the API, you must first create the field using
-	// the UpdateIndex operation.
+	// the UpdateIndex API.
 	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 
 	// A list of regular expression patterns that apply to path on Google Drive.
@@ -15380,7 +15561,7 @@ type IndexConfigurationSummary struct {
 	Edition *string `type:"string" enum:"IndexEdition"`
 
 	// A unique identifier for the index. Use this to identify the index when you
-	// are using operations such as Query, DescribeIndex, UpdateIndex, and DeleteIndex.
+	// are using APIs such as Query, DescribeIndex, UpdateIndex, and DeleteIndex.
 	Id *string `min:"36" type:"string"`
 
 	// The name of the index.
@@ -15392,7 +15573,7 @@ type IndexConfigurationSummary struct {
 	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"IndexStatus"`
 
-	// The Unix timestamp when the index was last updated by the UpdateIndex operation.
+	// The Unix timestamp when the index was last updated by the UpdateIndex API.
 	//
 	// UpdatedAt is a required field
 	UpdatedAt *time.Time `type:"timestamp" required:"true"`
@@ -17993,7 +18174,7 @@ type QueryInput struct {
 	Facets []*Facet `type:"list"`
 
 	// The unique identifier of the index to search. The identifier is returned
-	// in the response from the CreateIndex operation.
+	// in the response from the CreateIndex API.
 	//
 	// IndexId is a required field
 	IndexId *string `min:"36" type:"string" required:"true"`
@@ -18596,7 +18777,7 @@ func (s *Relevance) SetValueImportanceMap(v map[string]*int64) *Relevance {
 }
 
 // Provides feedback on how relevant a document is to a search. Your application
-// uses the SubmitFeedback operation to provide relevance information.
+// uses the SubmitFeedback API to provide relevance information.
 type RelevanceFeedback struct {
 	_ struct{} `type:"structure"`
 
@@ -20573,8 +20754,8 @@ type SharePointConfiguration struct {
 
 	// A list of DataSourceToIndexFieldMapping objects that map Microsoft SharePoint
 	// attributes to custom fields in the Amazon Kendra index. You must first create
-	// the index fields using the UpdateIndex operation before you map SharePoint
-	// attributes. For more information, see Mapping Data Source Fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// the index fields using the UpdateIndex API before you map SharePoint attributes.
+	// For more information, see Mapping Data Source Fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
 	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 
 	// A list of regular expression patterns. Documents that match the patterns
@@ -21214,7 +21395,7 @@ type SubmitFeedbackInput struct {
 	IndexId *string `min:"36" type:"string" required:"true"`
 
 	// The identifier of the specific query for which you are submitting feedback.
-	// The query ID is returned in the response to the Query operation.
+	// The query ID is returned in the response to the Query API.
 	//
 	// QueryId is a required field
 	QueryId *string `min:"1" type:"string" required:"true"`
@@ -22203,9 +22384,9 @@ type UpdateExperienceInput struct {
 	Name *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of a role with permission to access Query
-	// operations, QuerySuggestions operations, SubmitFeedback operations, and Amazon
-	// Web Services SSO that stores your user and group information. For more information,
-	// see IAM roles for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
+	// API, QuerySuggestions API, SubmitFeedback API, and Amazon Web Services SSO
+	// that stores your user and group information. For more information, see IAM
+	// roles for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
 	RoleArn *string `type:"string"`
 }
 
@@ -23126,7 +23307,7 @@ func (s *UserContext) SetUserId(v string) *UserContext {
 // useful for setting up user context filtering, where Amazon Kendra filters
 // search results for different users based on their group's access to documents.
 // You can also map your users to their groups for user context filtering using
-// the PutPrincipalMapping operation (https://docs.aws.amazon.com/kendra/latest/dg/API_PutPrincipalMapping.html).
+// the PutPrincipalMapping API (https://docs.aws.amazon.com/kendra/latest/dg/API_PutPrincipalMapping.html).
 //
 // To set up an Amazon Web Services SSO identity source in the console to use
 // with Amazon Kendra, see Getting started with an Amazon Web Services SSO identity
@@ -23137,8 +23318,8 @@ func (s *UserContext) SetUserId(v string) *UserContext {
 //
 // Amazon Kendra currently does not support using UserGroupResolutionConfiguration
 // with an Amazon Web Services organization member account for your Amazon Web
-// Services SSO identify source. You must create your index in the parent account
-// for the organization in order to use UserGroupResolutionConfiguration.
+// Services SSO identify source. You must create your index in the management
+// account for the organization in order to use UserGroupResolutionConfiguration.
 type UserGroupResolutionConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -23630,11 +23811,11 @@ type WorkDocsConfiguration struct {
 
 	// A list of DataSourceToIndexFieldMapping objects that map Amazon WorkDocs
 	// field names to custom index field names in Amazon Kendra. You must first
-	// create the custom index fields using the UpdateIndex operation before you
-	// map to Amazon WorkDocs fields. For more information, see Mapping Data Source
-	// Fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
-	// The Amazon WorkDocs data source field names need to exist in your Amazon
-	// WorkDocs custom metadata.
+	// create the custom index fields using the UpdateIndex API before you map to
+	// Amazon WorkDocs fields. For more information, see Mapping Data Source Fields
+	// (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html). The Amazon
+	// WorkDocs data source field names need to exist in your Amazon WorkDocs custom
+	// metadata.
 	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 
 	// A list of regular expression patterns to include certain files in your Amazon
@@ -24131,6 +24312,9 @@ const (
 
 	// DataSourceTypeWorkdocs is a DataSourceType enum value
 	DataSourceTypeWorkdocs = "WORKDOCS"
+
+	// DataSourceTypeFsx is a DataSourceType enum value
+	DataSourceTypeFsx = "FSX"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -24147,6 +24331,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeGoogledrive,
 		DataSourceTypeWebcrawler,
 		DataSourceTypeWorkdocs,
+		DataSourceTypeFsx,
 	}
 }
 
@@ -24343,6 +24528,18 @@ func FaqStatus_Values() []string {
 		FaqStatusActive,
 		FaqStatusDeleting,
 		FaqStatusFailed,
+	}
+}
+
+const (
+	// FsxFileSystemTypeWindows is a FsxFileSystemType enum value
+	FsxFileSystemTypeWindows = "WINDOWS"
+)
+
+// FsxFileSystemType_Values returns all elements of the FsxFileSystemType enum
+func FsxFileSystemType_Values() []string {
+	return []string{
+		FsxFileSystemTypeWindows,
 	}
 }
 

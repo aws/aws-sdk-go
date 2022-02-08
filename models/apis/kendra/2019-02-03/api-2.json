@@ -1663,7 +1663,8 @@
         "ConfluenceConfiguration":{"shape":"ConfluenceConfiguration"},
         "GoogleDriveConfiguration":{"shape":"GoogleDriveConfiguration"},
         "WebCrawlerConfiguration":{"shape":"WebCrawlerConfiguration"},
-        "WorkDocsConfiguration":{"shape":"WorkDocsConfiguration"}
+        "WorkDocsConfiguration":{"shape":"WorkDocsConfiguration"},
+        "FsxConfiguration":{"shape":"FsxConfiguration"}
       }
     },
     "DataSourceDateFieldFormat":{
@@ -1834,7 +1835,8 @@
         "CONFLUENCE",
         "GOOGLEDRIVE",
         "WEBCRAWLER",
-        "WORKDOCS"
+        "WORKDOCS",
+        "FSX"
       ]
     },
     "DataSourceVpcConfiguration":{
@@ -2700,6 +2702,33 @@
       "max":2048,
       "min":1,
       "pattern":"^\\P{C}*.\\P{C}*$"
+    },
+    "FileSystemId":{
+      "type":"string",
+      "max":21,
+      "min":11,
+      "pattern":"^(fs-[0-9a-f]{8,})$"
+    },
+    "FsxConfiguration":{
+      "type":"structure",
+      "required":[
+        "FileSystemId",
+        "FileSystemType",
+        "VpcConfiguration"
+      ],
+      "members":{
+        "FileSystemId":{"shape":"FileSystemId"},
+        "FileSystemType":{"shape":"FsxFileSystemType"},
+        "VpcConfiguration":{"shape":"DataSourceVpcConfiguration"},
+        "SecretArn":{"shape":"SecretArn"},
+        "InclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "ExclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"}
+      }
+    },
+    "FsxFileSystemType":{
+      "type":"string",
+      "enum":["WINDOWS"]
     },
     "GetQuerySuggestionsRequest":{
       "type":"structure",

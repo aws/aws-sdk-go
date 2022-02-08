@@ -28332,6 +28332,10 @@ type CandidateArtifactLocations struct {
 	//
 	// Explainability is a required field
 	Explainability *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon S3 prefix to the model insight artifacts generated for the AutoML
+	// candidate.
+	ModelInsights *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -28355,6 +28359,12 @@ func (s CandidateArtifactLocations) GoString() string {
 // SetExplainability sets the Explainability field's value.
 func (s *CandidateArtifactLocations) SetExplainability(v string) *CandidateArtifactLocations {
 	s.Explainability = &v
+	return s
+}
+
+// SetModelInsights sets the ModelInsights field's value.
+func (s *CandidateArtifactLocations) SetModelInsights(v string) *CandidateArtifactLocations {
+	s.ModelInsights = &v
 	return s
 }
 
@@ -93892,6 +93902,12 @@ const (
 
 	// AutoMLJobSecondaryStatusModelDeploymentError is a AutoMLJobSecondaryStatus enum value
 	AutoMLJobSecondaryStatusModelDeploymentError = "ModelDeploymentError"
+
+	// AutoMLJobSecondaryStatusGeneratingModelInsightsReport is a AutoMLJobSecondaryStatus enum value
+	AutoMLJobSecondaryStatusGeneratingModelInsightsReport = "GeneratingModelInsightsReport"
+
+	// AutoMLJobSecondaryStatusModelInsightsError is a AutoMLJobSecondaryStatus enum value
+	AutoMLJobSecondaryStatusModelInsightsError = "ModelInsightsError"
 )
 
 // AutoMLJobSecondaryStatus_Values returns all elements of the AutoMLJobSecondaryStatus enum
@@ -93912,6 +93928,8 @@ func AutoMLJobSecondaryStatus_Values() []string {
 		AutoMLJobSecondaryStatusExplainabilityError,
 		AutoMLJobSecondaryStatusDeployingModel,
 		AutoMLJobSecondaryStatusModelDeploymentError,
+		AutoMLJobSecondaryStatusGeneratingModelInsightsReport,
+		AutoMLJobSecondaryStatusModelInsightsError,
 	}
 }
 

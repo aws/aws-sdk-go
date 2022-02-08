@@ -5,7 +5,7 @@
     "CreateAccessPoint": "<p>Creates an access point and associates it with the specified bucket. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html\">Managing Data Access with Amazon S3 Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p/> <note> <p>S3 on Outposts only supports VPC-style access points. </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\"> Accessing Amazon S3 on Outposts using virtual private cloud (VPC) only access points</a> in the <i>Amazon S3 User Guide</i>.</p> </note> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request and an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html#API_control_CreateAccessPoint_Examples\">Examples</a> section.</p> <p/> <p>The following actions are related to <code>CreateAccessPoint</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html\">GetAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html\">DeleteAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPoints.html\">ListAccessPoints</a> </p> </li> </ul>",
     "CreateAccessPointForObjectLambda": "<p>Creates an Object Lambda Access Point. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/transforming-objects.html\">Transforming objects with Object Lambda Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p>The following actions are related to <code>CreateAccessPointForObjectLambda</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointForObjectLambda.html\">DeleteAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointForObjectLambda.html\">GetAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPointsForObjectLambda.html\">ListAccessPointsForObjectLambda</a> </p> </li> </ul>",
     "CreateBucket": "<note> <p>This action creates an Amazon S3 on Outposts bucket. To create an S3 bucket, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html\">Create Bucket</a> in the <i>Amazon S3 API Reference</i>. </p> </note> <p>Creates a new Outposts bucket. By creating the bucket, you become the bucket owner. To create an Outposts bucket, you must have S3 on Outposts. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">Using Amazon S3 on Outposts</a> in <i>Amazon S3 User Guide</i>.</p> <p>Not every string is an acceptable bucket name. For information on bucket naming restrictions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/BucketRestrictions.html#bucketnamingrules\">Working with Amazon S3 Buckets</a>.</p> <p>S3 on Outposts buckets support:</p> <ul> <li> <p>Tags</p> </li> <li> <p>LifecycleConfigurations for deleting expired objects</p> </li> </ul> <p>For a complete list of restrictions and Amazon S3 feature limitations on S3 on Outposts, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OnOutpostsRestrictionsLimitations.html\"> Amazon S3 on Outposts Restrictions and Limitations</a>.</p> <p>For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and <code>x-amz-outpost-id</code> in your API request, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateBucket.html#API_control_CreateBucket_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>CreateBucket</code> for Amazon S3 on Outposts:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html\">PutObject</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucket.html\">GetBucket</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucket.html\">DeleteBucket</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html\">CreateAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html\">PutAccessPointPolicy</a> </p> </li> </ul>",
-    "CreateJob": "<p>You can use S3 Batch Operations to perform large-scale batch actions on Amazon S3 objects. Batch Operations can run a single action on lists of Amazon S3 objects that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p>This action creates a S3 Batch Operations job.</p> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html\">DescribeJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html\">ListJobs</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobPriority.html\">UpdateJobPriority</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_JobOperation.html\">JobOperation</a> </p> </li> </ul>",
+    "CreateJob": "<p>You can use S3 Batch Operations to perform large-scale batch actions on Amazon S3 objects. Batch Operations can run a single action on lists of Amazon S3 objects that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p>This action creates a S3 Batch Operations job.</p> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html\">DescribeJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html\">ListJobs</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobPriority.html\">UpdateJobPriority</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_JobOperation.html\">JobOperation</a> </p> </li> </ul>",
     "CreateMultiRegionAccessPoint": "<p>Creates a Multi-Region Access Point and associates it with the specified buckets. For more information about creating Multi-Region Access Points, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html\">Creating Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p>This action will always be routed to the US West (Oregon) Region. For more information about the restrictions around managing Multi-Region Access Points, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html\">Managing Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p>This request is asynchronous, meaning that you might receive a response before the command has completed. When this request provides a response, it provides a token that you can use to monitor the status of the request with <code>DescribeMultiRegionAccessPointOperation</code>.</p> <p>The following actions are related to <code>CreateMultiRegionAccessPoint</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html\">DeleteMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html\">DescribeMultiRegionAccessPointOperation</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPoint.html\">GetMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListMultiRegionAccessPoints.html\">ListMultiRegionAccessPoints</a> </p> </li> </ul>",
     "DeleteAccessPoint": "<p>Deletes the specified access point.</p> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request and an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html#API_control_DeleteAccessPoint_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>DeleteAccessPoint</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html\">CreateAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html\">GetAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPoints.html\">ListAccessPoints</a> </p> </li> </ul>",
     "DeleteAccessPointForObjectLambda": "<p>Deletes the specified Object Lambda Access Point.</p> <p>The following actions are related to <code>DeleteAccessPointForObjectLambda</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPointForObjectLambda.html\">CreateAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointForObjectLambda.html\">GetAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPointsForObjectLambda.html\">ListAccessPointsForObjectLambda</a> </p> </li> </ul>",
@@ -20,7 +20,7 @@
     "DeletePublicAccessBlock": "<p>Removes the <code>PublicAccessBlock</code> configuration for an Amazon Web Services account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html\"> Using Amazon S3 block public access</a>.</p> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetPublicAccessBlock.html\">GetPublicAccessBlock</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutPublicAccessBlock.html\">PutPublicAccessBlock</a> </p> </li> </ul>",
     "DeleteStorageLensConfiguration": "<p>Deletes the Amazon S3 Storage Lens configuration. For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html\">Assessing your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>To use this action, you must have permission to perform the <code>s3:DeleteStorageLensConfiguration</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html\">Setting permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> </note>",
     "DeleteStorageLensConfigurationTagging": "<p>Deletes the Amazon S3 Storage Lens configuration tags. For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html\">Assessing your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>To use this action, you must have permission to perform the <code>s3:DeleteStorageLensConfigurationTagging</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html\">Setting permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> </note>",
-    "DescribeJob": "<p>Retrieves the configuration parameters and status for a Batch Operations job. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html\">CreateJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html\">ListJobs</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobPriority.html\">UpdateJobPriority</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> </ul>",
+    "DescribeJob": "<p>Retrieves the configuration parameters and status for a Batch Operations job. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html\">CreateJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html\">ListJobs</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobPriority.html\">UpdateJobPriority</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> </ul>",
     "DescribeMultiRegionAccessPointOperation": "<p>Retrieves the status of an asynchronous request to manage a Multi-Region Access Point. For more information about managing Multi-Region Access Points and how asynchronous requests work, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html\">Managing Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p>The following actions are related to <code>GetMultiRegionAccessPoint</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateMultiRegionAccessPoint.html\">CreateMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html\">DeleteMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPoint.html\">GetMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListMultiRegionAccessPoints.html\">ListMultiRegionAccessPoints</a> </p> </li> </ul>",
     "GetAccessPoint": "<p>Returns configuration information about the specified access point.</p> <p/> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request and an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>GetAccessPoint</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html\">CreateAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html\">DeleteAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPoints.html\">ListAccessPoints</a> </p> </li> </ul>",
     "GetAccessPointConfigurationForObjectLambda": "<p>Returns configuration for an Object Lambda Access Point.</p> <p>The following actions are related to <code>GetAccessPointConfigurationForObjectLambda</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointConfigurationForObjectLambda.html\">PutAccessPointConfigurationForObjectLambda</a> </p> </li> </ul>",
@@ -41,8 +41,8 @@
     "GetStorageLensConfiguration": "<p>Gets the Amazon S3 Storage Lens configuration. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html\">Assessing your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>To use this action, you must have permission to perform the <code>s3:GetStorageLensConfiguration</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html\">Setting permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> </note>",
     "GetStorageLensConfigurationTagging": "<p>Gets the tags of Amazon S3 Storage Lens configuration. For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html\">Assessing your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>To use this action, you must have permission to perform the <code>s3:GetStorageLensConfigurationTagging</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html\">Setting permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> </note>",
     "ListAccessPoints": "<p>Returns a list of the access points currently associated with the specified bucket. You can retrieve up to 1000 access points per call. If the specified bucket has more than 1,000 access points (or the number specified in <code>maxResults</code>, whichever is less), the response will include a continuation token that you can use to list the additional access points.</p> <p/> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request and an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>ListAccessPoints</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html\">CreateAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html\">DeleteAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html\">GetAccessPoint</a> </p> </li> </ul>",
-    "ListAccessPointsForObjectLambda": "<p>Returns a list of the access points associated with the Object Lambda Access Point. You can retrieve up to 1000 access points per call. If there are more than 1,000 access points (or the number specified in <code>maxResults</code>, whichever is less), the response will include a continuation token that you can use to list the additional access points.</p> <p>The following actions are related to <code>ListAccessPointsForObjectLambda</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPointForObjectLambda.html\">CreateAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointForObjectLambda.html\">DeleteAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointForObjectLambda.html\">GetAccessPointForObjectLambda</a> </p> </li> </ul>",
-    "ListJobs": "<p>Lists current S3 Batch Operations jobs and jobs that have ended within the last 30 days for the Amazon Web Services account making the request. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p>Related actions include:</p> <p/> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html\">CreateJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html\">DescribeJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobPriority.html\">UpdateJobPriority</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> </ul>",
+    "ListAccessPointsForObjectLambda": "<p>Returns some or all (up to 1,000) access points associated with the Object Lambda Access Point per call. If there are more access points than what can be returned in one call, the response will include a continuation token that you can use to list the additional access points.</p> <p>The following actions are related to <code>ListAccessPointsForObjectLambda</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPointForObjectLambda.html\">CreateAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointForObjectLambda.html\">DeleteAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointForObjectLambda.html\">GetAccessPointForObjectLambda</a> </p> </li> </ul>",
+    "ListJobs": "<p>Lists current S3 Batch Operations jobs and jobs that have ended within the last 30 days for the Amazon Web Services account making the request. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p>Related actions include:</p> <p/> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html\">CreateJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html\">DescribeJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobPriority.html\">UpdateJobPriority</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> </ul>",
     "ListMultiRegionAccessPoints": "<p>Returns a list of the Multi-Region Access Points currently associated with the specified Amazon Web Services account. Each call can return up to 100 Multi-Region Access Points, the maximum number of Multi-Region Access Points that can be associated with a single account.</p> <p>This action will always be routed to the US West (Oregon) Region. For more information about the restrictions around managing Multi-Region Access Points, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html\">Managing Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p>The following actions are related to <code>ListMultiRegionAccessPoint</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateMultiRegionAccessPoint.html\">CreateMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html\">DeleteMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html\">DescribeMultiRegionAccessPointOperation</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPoint.html\">GetMultiRegionAccessPoint</a> </p> </li> </ul>",
     "ListRegionalBuckets": "<p>Returns a list of all Outposts buckets in an Outpost that are owned by the authenticated sender of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">Using Amazon S3 on Outposts</a> in the <i>Amazon S3 User Guide</i>.</p> <p>For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and <code>x-amz-outpost-id</code> in your request, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListRegionalBuckets.html#API_control_ListRegionalBuckets_Examples\">Examples</a> section.</p>",
     "ListStorageLensConfigurations": "<p>Gets a list of Amazon S3 Storage Lens configurations. For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html\">Assessing your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>To use this action, you must have permission to perform the <code>s3:ListStorageLensConfigurations</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html\">Setting permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> </note>",
@@ -54,11 +54,11 @@
     "PutBucketTagging": "<note> <p>This action puts tags on an Amazon S3 on Outposts bucket. To put tags on an S3 bucket, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketTagging.html\">PutBucketTagging</a> in the <i>Amazon S3 API Reference</i>. </p> </note> <p>Sets the tags for an S3 on Outposts bucket. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">Using Amazon S3 on Outposts</a> in the <i>Amazon S3 User Guide</i>.</p> <p>Use tags to organize your Amazon Web Services bill to reflect your own cost structure. To do this, sign up to get your Amazon Web Services account bill with tag key values included. Then, to see the cost of combined resources, organize your billing information according to resources with the same tag key values. For example, you can tag several resources with a specific application name, and then organize your billing information to see the total cost of that application across several services. For more information, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html\">Cost allocation and tagging</a>.</p> <note> <p>Within a bucket, if you add a tag that has the same key as an existing tag, the new value overwrites the old value. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/CostAllocTagging.html\"> Using cost allocation in Amazon S3 bucket tags</a>.</p> </note> <p>To use this action, you must have permissions to perform the <code>s3-outposts:PutBucketTagging</code> action. The Outposts bucket owner has this permission by default and can grant this permission to others. For more information about permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources\"> Permissions Related to Bucket Subresource Operations</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html\">Managing access permissions to your Amazon S3 resources</a>.</p> <p> <code>PutBucketTagging</code> has the following special errors:</p> <ul> <li> <p>Error code: <code>InvalidTagError</code> </p> <ul> <li> <p>Description: The tag provided was not a valid tag. This error can occur if the tag did not pass input validation. For information about tag restrictions, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html\"> User-Defined Tag Restrictions</a> and <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/aws-tag-restrictions.html\"> Amazon Web Services-Generated Cost Allocation Tag Restrictions</a>.</p> </li> </ul> </li> <li> <p>Error code: <code>MalformedXMLError</code> </p> <ul> <li> <p>Description: The XML provided does not match the schema.</p> </li> </ul> </li> <li> <p>Error code: <code>OperationAbortedError </code> </p> <ul> <li> <p>Description: A conflicting conditional action is currently in progress against this resource. Try again.</p> </li> </ul> </li> <li> <p>Error code: <code>InternalError</code> </p> <ul> <li> <p>Description: The service was unable to apply the provided tag to the bucket.</p> </li> </ul> </li> </ul> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request and an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketTagging.html#API_control_PutBucketTagging_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>PutBucketTagging</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketTagging.html\">GetBucketTagging</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketTagging.html\">DeleteBucketTagging</a> </p> </li> </ul>",
     "PutJobTagging": "<p>Sets the supplied tag-set on an S3 Batch Operations job.</p> <p>A tag is a key-value pair. You can associate S3 Batch Operations tags with any job by sending a PUT request against the tagging subresource that is associated with the job. To modify the existing tag set, you can either replace the existing tag set entirely, or make changes within the existing tag set by retrieving the existing tag set using <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetJobTagging.html\">GetJobTagging</a>, modify that tag set, and use this action to replace the tag set with the one you modified. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags\">Controlling access and labeling jobs using tags</a> in the <i>Amazon S3 User Guide</i>. </p> <p/> <note> <ul> <li> <p>If you send this request with an empty tag set, Amazon S3 deletes the existing tag set on the Batch Operations job. If you use this method, you are charged for a Tier 1 Request (PUT). For more information, see <a href=\"http://aws.amazon.com/s3/pricing/\">Amazon S3 pricing</a>.</p> </li> <li> <p>For deleting existing tags for your Batch Operations job, a <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteJobTagging.html\">DeleteJobTagging</a> request is preferred because it achieves the same result without incurring charges.</p> </li> <li> <p>A few things to consider about using tags:</p> <ul> <li> <p>Amazon S3 limits the maximum number of tags to 50 tags per job.</p> </li> <li> <p>You can associate up to 50 tags with a job as long as they have unique tag keys.</p> </li> <li> <p>A tag key can be up to 128 Unicode characters in length, and tag values can be up to 256 Unicode characters in length.</p> </li> <li> <p>The key and values are case sensitive.</p> </li> <li> <p>For tagging-related restrictions related to characters and encodings, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html\">User-Defined Tag Restrictions</a> in the <i>Billing and Cost Management User Guide</i>.</p> </li> </ul> </li> </ul> </note> <p/> <p>To use this action, you must have permission to perform the <code>s3:PutJobTagging</code> action.</p> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html\">CreatJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetJobTagging.html\">GetJobTagging</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteJobTagging.html\">DeleteJobTagging</a> </p> </li> </ul>",
     "PutMultiRegionAccessPointPolicy": "<p>Associates an access control policy with the specified Multi-Region Access Point. Each Multi-Region Access Point can have only one policy, so a request made to this action replaces any existing policy that is associated with the specified Multi-Region Access Point.</p> <p>This action will always be routed to the US West (Oregon) Region. For more information about the restrictions around managing Multi-Region Access Points, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html\">Managing Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p>The following actions are related to <code>PutMultiRegionAccessPointPolicy</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPointPolicy.html\">GetMultiRegionAccessPointPolicy</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPointPolicyStatus.html\">GetMultiRegionAccessPointPolicyStatus</a> </p> </li> </ul>",
-    "PutPublicAccessBlock": "<p>Creates or modifies the <code>PublicAccessBlock</code> configuration for an Amazon Web Services account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html\"> Using Amazon S3 block public access</a>.</p> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetPublicAccessBlock.html\">GetPublicAccessBlock</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeletePublicAccessBlock.html\">DeletePublicAccessBlock</a> </p> </li> </ul>",
+    "PutPublicAccessBlock": "<p>Creates or modifies the <code>PublicAccessBlock</code> configuration for an Amazon Web Services account. For this operation, users must have the <code>s3:PutBucketPublicAccessBlock</code> permission. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html\"> Using Amazon S3 block public access</a>.</p> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetPublicAccessBlock.html\">GetPublicAccessBlock</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeletePublicAccessBlock.html\">DeletePublicAccessBlock</a> </p> </li> </ul>",
     "PutStorageLensConfiguration": "<p>Puts an Amazon S3 Storage Lens configuration. For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html\">Working with Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>To use this action, you must have permission to perform the <code>s3:PutStorageLensConfiguration</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html\">Setting permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> </note>",
     "PutStorageLensConfigurationTagging": "<p>Put or replace tags on an existing Amazon S3 Storage Lens configuration. For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html\">Assessing your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>To use this action, you must have permission to perform the <code>s3:PutStorageLensConfigurationTagging</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html\">Setting permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> </note>",
-    "UpdateJobPriority": "<p>Updates an existing S3 Batch Operations job's priority. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html\">CreateJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html\">ListJobs</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html\">DescribeJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> </ul>",
-    "UpdateJobStatus": "<p>Updates the status for the specified job. Use this action to confirm that you want to run a job or to cancel an existing job. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html\">CreateJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html\">ListJobs</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html\">DescribeJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> </ul>"
+    "UpdateJobPriority": "<p>Updates an existing S3 Batch Operations job's priority. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html\">CreateJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html\">ListJobs</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html\">DescribeJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> </ul>",
+    "UpdateJobStatus": "<p>Updates the status for the specified job. Use this action to confirm that you want to run a job or to cancel an existing job. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html\">CreateJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html\">ListJobs</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html\">DescribeJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> </ul>"
   },
   "shapes": {
     "AbortIncompleteMultipartUpload": {
@@ -151,6 +151,8 @@
         "PutStorageLensConfigurationRequest$AccountId": "<p>The account ID of the requester.</p>",
         "PutStorageLensConfigurationTaggingRequest$AccountId": "<p>The account ID of the requester.</p>",
         "S3BucketDestination$AccountId": "<p>The account ID of the owner of the S3 Storage Lens metrics export bucket.</p>",
+        "S3JobManifestGenerator$ExpectedBucketOwner": "<p>The Amazon Web Services account ID that owns the bucket the generated manifest is written to. If provided the generated manifest bucket's owner Amazon Web Services account ID must match this value, else the job fails.</p>",
+        "S3ManifestOutputLocation$ExpectedManifestBucketOwner": "<p>The Account ID that owns the bucket the generated manifest is written to.</p>",
         "UpdateJobPriorityRequest$AccountId": "<p>The Amazon Web Services account ID associated with the S3 Batch Operations job.</p>",
         "UpdateJobStatusRequest$AccountId": "<p>The Amazon Web Services account ID associated with the S3 Batch Operations job.</p>"
       }
@@ -255,10 +257,12 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "JobManifestGeneratorFilter$EligibleForReplication": "<p>Include objects in the generated manifest only if they are eligible for replication according to the Replication configuration on the source bucket.</p>",
         "JobReport$Enabled": "<p>Indicates whether the specified job will generate a job-completion report.</p>",
         "ObjectLambdaConfiguration$CloudWatchMetricsEnabled": "<p>A container for whether the CloudWatch metrics configuration is enabled.</p>",
         "S3CopyObjectOperation$RequesterPays": "<p/>",
         "S3CopyObjectOperation$BucketKeyEnabled": "<p>Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using Amazon Web Services KMS (SSE-KMS). Setting this header to <code>true</code> causes Amazon S3 to use an S3 Bucket Key for object encryption with SSE-KMS.</p> <p>Specifying this header with an <i>object</i> action doesn’t affect <i>bucket-level</i> settings for S3 Bucket Key.</p>",
+        "S3JobManifestGenerator$EnableManifestOutput": "<p>Determines whether or not to write the job's generated manifest to a bucket.</p>",
         "S3ObjectMetadata$RequesterCharged": "<p/>",
         "S3SetObjectRetentionOperation$BypassGovernanceRetention": "<p>Indicates if the action should be applied to objects in the Batch Operations job even if they have Object Lock <code> GOVERNANCE</code> type in place.</p>"
       }
@@ -626,6 +630,19 @@
         "LambdaInvokeOperation$FunctionArn": "<p>The Amazon Resource Name (ARN) for the Lambda function that the specified job will invoke on every object in the manifest.</p>"
       }
     },
+    "GeneratedManifestEncryption": {
+      "base": "<p>The encryption configuration to use when storing the generated manifest.</p>",
+      "refs": {
+        "S3ManifestOutputLocation$ManifestEncryption": "<p>Specifies what encryption should be used when the generated manifest objects are written.</p>"
+      }
+    },
+    "GeneratedManifestFormat": {
+      "base": null,
+      "refs": {
+        "S3GeneratedManifestDescriptor$Format": "<p>The format of the generated manifest.</p>",
+        "S3ManifestOutputLocation$ManifestFormat": "<p>The format of the generated manifest.</p>"
+      }
+    },
     "GetAccessPointConfigurationForObjectLambdaRequest": {
       "base": null,
       "refs": {
@@ -987,10 +1004,24 @@
         "JobManifestSpec$Format": "<p>Indicates which of the available formats the specified manifest uses.</p>"
       }
     },
+    "JobManifestGenerator": {
+      "base": "<p>Configures the type of the job's ManifestGenerator.</p>",
+      "refs": {
+        "CreateJobRequest$ManifestGenerator": "<p>The attribute container for the ManifestGenerator details. Jobs must be created with either a manifest file or a ManifestGenerator, but not both.</p>",
+        "JobDescriptor$ManifestGenerator": "<p>The manifest generator that was used to generate a job manifest for this job.</p>"
+      }
+    },
+    "JobManifestGeneratorFilter": {
+      "base": "<p>The filter used to describe a set of objects for the job's manifest.</p>",
+      "refs": {
+        "S3JobManifestGenerator$Filter": "<p>Specifies rules the S3JobManifestGenerator should use to use to decide whether an object in the source bucket should or should not be included in the generated job manifest.</p>"
+      }
+    },
     "JobManifestLocation": {
       "base": "<p>Contains the information required to locate a manifest object.</p>",
       "refs": {
-        "JobManifest$Location": "<p>Contains the information required to locate the specified job's manifest.</p>"
+        "JobManifest$Location": "<p>Contains the information required to locate the specified job's manifest.</p>",
+        "S3GeneratedManifestDescriptor$Location": null
       }
     },
     "JobManifestSpec": {
@@ -1089,6 +1120,18 @@
         "JobListDescriptor$TerminationDate": "<p>A timestamp indicating when the specified job terminated. A job's termination date is the date and time when it succeeded, failed, or was canceled.</p>"
       }
     },
+    "JobTimeInStateSeconds": {
+      "base": null,
+      "refs": {
+        "JobTimers$ElapsedTimeInActiveSeconds": "<p>Indicates the elapsed time in seconds the job has been in the Active job state.</p>"
+      }
+    },
+    "JobTimers": {
+      "base": "<p>Provides timing details for the job.</p>",
+      "refs": {
+        "JobProgressSummary$Timers": "<p>The JobTimers attribute of a job's progress summary.</p>"
+      }
+    },
     "JobTotalNumberOfTasks": {
       "base": null,
       "refs": {
@@ -1098,7 +1141,8 @@
     "KmsKeyArnString": {
       "base": null,
       "refs": {
-        "S3CopyObjectOperation$SSEAwsKmsKeyId": "<p/>"
+        "S3CopyObjectOperation$SSEAwsKmsKeyId": "<p/>",
+        "SSEKMSEncryption$KeyId": "<p>Specifies the ID of the Amazon Web Services Key Management Service (Amazon Web Services KMS) symmetric customer managed key to use for encrypting generated manifest objects.</p>"
       }
     },
     "LambdaInvokeOperation": {
@@ -1216,6 +1260,12 @@
         "CreateBucketResult$Location": "<p>The location of the bucket.</p>"
       }
     },
+    "ManifestPrefixString": {
+      "base": null,
+      "refs": {
+        "S3ManifestOutputLocation$ManifestPrefix": "<p>Prefix identifying one or more objects to which the manifest applies.</p>"
+      }
+    },
     "MaxLength1024String": {
       "base": null,
       "refs": {
@@ -1229,7 +1279,7 @@
     "MaxResults": {
       "base": null,
       "refs": {
-        "ListAccessPointsForObjectLambdaRequest$MaxResults": "<p>The maximum number of access points that you want to include in the list. If there are more than this number of access points, then the response will include a continuation token in the <code>NextToken</code> field that you can use to retrieve the next page of access points.</p>",
+        "ListAccessPointsForObjectLambdaRequest$MaxResults": "<p>The maximum number of access points that you want to include in the list. The response may contain fewer access points but will never contain more. If there are more than this number of access points, then the response will include a continuation token in the <code>NextToken</code> field that you can use to retrieve the next page of access points.</p>",
         "ListAccessPointsRequest$MaxResults": "<p>The maximum number of access points that you want to include in the list. If the specified bucket has more than this number of access points, then the response will include a continuation token in the <code>NextToken</code> field that you can use to retrieve the next page of access points.</p>",
         "ListJobsRequest$MaxResults": "<p>The maximum number of jobs that Amazon S3 will include in the <code>List Jobs</code> response. If there are more jobs than this number, the response will include a pagination token in the <code>NextToken</code> field to enable you to retrieve the next page of results.</p>",
         "ListMultiRegionAccessPointsRequest$MaxResults": "<p>Not currently used. Do not use this parameter.</p>",
@@ -1401,6 +1451,13 @@
     "NotFoundException": {
       "base": "<p/>",
       "refs": {
+      }
+    },
+    "ObjectCreationTime": {
+      "base": null,
+      "refs": {
+        "JobManifestGeneratorFilter$CreatedAfter": "<p>If provided, the generated manifest should include only source bucket objects that were created after this time.</p>",
+        "JobManifestGeneratorFilter$CreatedBefore": "<p>If provided, the generated manifest should include only source bucket objects that were created before this time.</p>"
       }
     },
     "ObjectLambdaAccessPoint": {
@@ -1711,6 +1768,18 @@
         "Include$Regions": "<p>A container for the S3 Storage Lens Region includes.</p>"
       }
     },
+    "ReplicationStatus": {
+      "base": null,
+      "refs": {
+        "ReplicationStatusFilterList$member": null
+      }
+    },
+    "ReplicationStatusFilterList": {
+      "base": null,
+      "refs": {
+        "JobManifestGeneratorFilter$ObjectReplicationStatuses": "<p>If provided, the generated manifest should include only source bucket objects that have one of the specified Replication statuses.</p>"
+      }
+    },
     "ReportPrefixString": {
       "base": null,
       "refs": {
@@ -1756,7 +1825,9 @@
         "Buckets$member": null,
         "JobReport$Bucket": "<p>The Amazon Resource Name (ARN) for the bucket where specified job-completion report will be stored.</p>",
         "S3BucketDestination$Arn": "<p>The Amazon Resource Name (ARN) of the bucket. This property is read-only and follows the following format: <code> arn:aws:s3:<i>us-east-1</i>:<i>example-account-id</i>:bucket/<i>your-destination-bucket-name</i> </code> </p>",
-        "S3CopyObjectOperation$TargetResource": "<p>Specifies the destination bucket ARN for the batch copy operation. For example, to copy objects to a bucket named \"destinationBucket\", set the TargetResource to \"arn:aws:s3:::destinationBucket\".</p>"
+        "S3CopyObjectOperation$TargetResource": "<p>Specifies the destination bucket ARN for the batch copy operation. For example, to copy objects to a bucket named \"destinationBucket\", set the TargetResource to \"arn:aws:s3:::destinationBucket\".</p>",
+        "S3JobManifestGenerator$SourceBucket": "<p>The source bucket used by the ManifestGenerator.</p>",
+        "S3ManifestOutputLocation$Bucket": "<p>The bucket ARN the generated manifest should be written to.</p>"
       }
     },
     "S3BucketDestination": {
@@ -1793,7 +1864,13 @@
     "S3ExpirationInDays": {
       "base": null,
       "refs": {
-        "S3InitiateRestoreObjectOperation$ExpirationInDays": "<p>This argument specifies how long the S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive object remains available in Amazon S3. S3 Initiate Restore Object jobs that target S3 Glacier Flexible Retrieval and S3 Glacier Deep Archive objects require <code>ExpirationInDays</code> set to 1 or greater.</p> <p>Conversely, do <i>not</i> set <code>ExpirationInDays</code> when creating S3 Initiate Restore Object jobs that target S3 Intelligent-Tiering Archive Access and Deep Archive Access tier objects. Objects in S3 Intelligent-Tiering archive access tiers are not subject to restore expiry, so specifying <code>ExpirationInDays</code> results in restore request failure.</p> <p>S3 Batch Operations jobs can operate either on S3 Glacier Flexible Retrieval and S3 Glacier Deep Archive storage class objects or on S3 Intelligent-Tiering Archive Access and Deep Archive Access storage tier objects, but not both types in the same job. If you need to restore objects of both types you <i>must</i> create separate Batch Operations jobs. </p>"
+        "S3InitiateRestoreObjectOperation$ExpirationInDays": "<p>This argument specifies how long the S3 Glacier or S3 Glacier Deep Archive object remains available in Amazon S3. S3 Initiate Restore Object jobs that target S3 Glacier and S3 Glacier Deep Archive objects require <code>ExpirationInDays</code> set to 1 or greater.</p> <p>Conversely, do <i>not</i> set <code>ExpirationInDays</code> when creating S3 Initiate Restore Object jobs that target S3 Intelligent-Tiering Archive Access and Deep Archive Access tier objects. Objects in S3 Intelligent-Tiering archive access tiers are not subject to restore expiry, so specifying <code>ExpirationInDays</code> results in restore request failure.</p> <p>S3 Batch Operations jobs can operate either on S3 Glacier and S3 Glacier Deep Archive storage class objects or on S3 Intelligent-Tiering Archive Access and Deep Archive Access storage tier objects, but not both types in the same job. If you need to restore objects of both types you <i>must</i> create separate Batch Operations jobs. </p>"
+      }
+    },
+    "S3GeneratedManifestDescriptor": {
+      "base": "<p>Describes the specified job's generated manifest. Batch Operations jobs created with a ManifestGenerator populate details of this descriptor after execution of the ManifestGenerator.</p>",
+      "refs": {
+        "JobDescriptor$GeneratedManifestDescriptor": "<p>The attribute of the JobDescriptor containing details about the job's generated manifest.</p>"
       }
     },
     "S3GlacierJobTier": {
@@ -1833,10 +1910,22 @@
         "JobOperation$S3InitiateRestoreObject": "<p>Directs the specified job to initiate restore requests for every archived object in the manifest.</p>"
       }
     },
+    "S3JobManifestGenerator": {
+      "base": "<p>The container for the service that will create the S3 manifest.</p>",
+      "refs": {
+        "JobManifestGenerator$S3JobManifestGenerator": "<p>The S3 job ManifestGenerator's configuration details.</p>"
+      }
+    },
     "S3KeyArnString": {
       "base": null,
       "refs": {
         "JobManifestLocation$ObjectArn": "<p>The Amazon Resource Name (ARN) for a manifest object.</p> <important> <p>Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints\"> XML related object key constraints</a>.</p> </important>"
+      }
+    },
+    "S3ManifestOutputLocation": {
+      "base": "<p>Location details for where the generated manifest should be written.</p>",
+      "refs": {
+        "S3JobManifestGenerator$ManifestOutputLocation": "<p>Specifies the location the generated manifest will be written to.</p>"
       }
     },
     "S3MetadataDirective": {
@@ -1873,7 +1962,7 @@
     "S3ObjectMetadata": {
       "base": "<p/>",
       "refs": {
-        "S3CopyObjectOperation$NewObjectMetadata": "<p/>"
+        "S3CopyObjectOperation$NewObjectMetadata": "<p>If you don't provide this parameter, Amazon S3 copies all the metadata from the original objects. If you specify an empty set, the new objects will have no tags. Otherwise, Amazon S3 assigns the supplied tags to the new objects.</p>"
       }
     },
     "S3ObjectOwner": {
@@ -1899,6 +1988,12 @@
       "refs": {
         "CreateBucketResult$BucketArn": "<p>The Amazon Resource Name (ARN) of the bucket.</p> <p>For using this parameter with Amazon S3 on Outposts with the REST API, you must specify the name and the x-amz-outpost-id as well.</p> <p>For using this parameter with S3 on Outposts with the Amazon Web Services SDK and CLI, you must specify the ARN of the bucket accessed in the format <code>arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/bucket/&lt;my-bucket-name&gt;</code>. For example, to access the bucket <code>reports</code> through outpost <code>my-outpost</code> owned by account <code>123456789012</code> in Region <code>us-west-2</code>, use the URL encoding of <code>arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports</code>. The value must be URL encoded. </p>",
         "RegionalBucket$BucketArn": "<p>The Amazon Resource Name (ARN) for the regional bucket.</p>"
+      }
+    },
+    "S3ReplicateObjectOperation": {
+      "base": "<p>Directs the specified job to invoke <code>ReplicateObject</code> on every object in the job's manifest.</p>",
+      "refs": {
+        "JobOperation$S3ReplicateObject": "<p>Directs the specified job to invoke <code>ReplicateObject</code> on every object in the job's manifest.</p>"
       }
     },
     "S3Retention": {
@@ -1975,6 +2070,12 @@
         "StorageLensDataExportEncryption$SSEKMS": "<p/>"
       }
     },
+    "SSEKMSEncryption": {
+      "base": "<p>Configuration for the use of SSE-KMS to encrypt generated manifest objects.</p>",
+      "refs": {
+        "GeneratedManifestEncryption$SSEKMS": "<p>Configuration details on how SSE-KMS is used to encrypt generated manifest objects.</p>"
+      }
+    },
     "SSEKMSKeyId": {
       "base": null,
       "refs": {
@@ -1985,6 +2086,12 @@
       "base": "<p/>",
       "refs": {
         "StorageLensDataExportEncryption$SSES3": "<p/>"
+      }
+    },
+    "SSES3Encryption": {
+      "base": "<p>Configuration for the use of SSE-S3 to encrypt generated manifest objects.</p>",
+      "refs": {
+        "GeneratedManifestEncryption$SSES3": "<p>Specifies the use of SSE-S3 to encrypt generated manifest objects.</p>"
       }
     },
     "SelectionCriteria": {

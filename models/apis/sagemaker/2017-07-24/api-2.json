@@ -3589,7 +3589,9 @@
         "Completed",
         "ExplainabilityError",
         "DeployingModel",
-        "ModelDeploymentError"
+        "ModelDeploymentError",
+        "GeneratingModelInsightsReport",
+        "ModelInsightsError"
       ]
     },
     "AutoMLJobStatus":{
@@ -3848,7 +3850,8 @@
       "type":"structure",
       "required":["Explainability"],
       "members":{
-        "Explainability":{"shape":"ExplainabilityLocation"}
+        "Explainability":{"shape":"ExplainabilityLocation"},
+        "ModelInsights":{"shape":"ModelInsightsLocation"}
       }
     },
     "CandidateDefinitionNotebookLocation":{
@@ -11589,6 +11592,10 @@
       "members":{
         "DataInputConfig":{"shape":"DataInputConfig"}
       }
+    },
+    "ModelInsightsLocation":{
+      "type":"string",
+      "min":1
     },
     "ModelLatencyThreshold":{
       "type":"structure",
