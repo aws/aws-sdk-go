@@ -127,6 +127,10 @@ type CloudFormationAPI interface {
 	DescribeChangeSetWithContext(aws.Context, *cloudformation.DescribeChangeSetInput, ...request.Option) (*cloudformation.DescribeChangeSetOutput, error)
 	DescribeChangeSetRequest(*cloudformation.DescribeChangeSetInput) (*request.Request, *cloudformation.DescribeChangeSetOutput)
 
+	DescribeChangeSetHooks(*cloudformation.DescribeChangeSetHooksInput) (*cloudformation.DescribeChangeSetHooksOutput, error)
+	DescribeChangeSetHooksWithContext(aws.Context, *cloudformation.DescribeChangeSetHooksInput, ...request.Option) (*cloudformation.DescribeChangeSetHooksOutput, error)
+	DescribeChangeSetHooksRequest(*cloudformation.DescribeChangeSetHooksInput) (*request.Request, *cloudformation.DescribeChangeSetHooksOutput)
+
 	DescribePublisher(*cloudformation.DescribePublisherInput) (*cloudformation.DescribePublisherOutput, error)
 	DescribePublisherWithContext(aws.Context, *cloudformation.DescribePublisherInput, ...request.Option) (*cloudformation.DescribePublisherOutput, error)
 	DescribePublisherRequest(*cloudformation.DescribePublisherInput) (*request.Request, *cloudformation.DescribePublisherOutput)
