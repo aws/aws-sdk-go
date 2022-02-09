@@ -21,3 +21,4 @@ connection_types:
         required: true
         placeholder: "AWS secret access key"
         input_type: "password"
+is_connection_optional: true
