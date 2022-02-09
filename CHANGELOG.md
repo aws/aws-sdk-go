@@ -1,3 +1,10 @@
+Release v1.42.50 (2022-02-09)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * This SDK release is for the feature launch of AWS CloudFormation Hooks.
+
 Release v1.42.49 (2022-02-08)
 ===
 
