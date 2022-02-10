@@ -2082,7 +2082,7 @@ func (c *LookoutForVision) StartModelPackagingJobRequest(input *StartModelPackag
 //
 // This operation requires the following permissions:
 //
-//    * lookoutvision:StartModelPackagingJobs
+//    * lookoutvision:StartModelPackagingJob
 //
 //    * s3:PutObject
 //
@@ -4345,13 +4345,13 @@ type GreengrassConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// Additional compiler options for the Greengrass component. Currently, only
-	// NVIDIA Graphics Processing Units (GPU) are supported.
+	// NVIDIA Graphics Processing Units (GPU) are supported. If you specify TargetPlatform,
+	// you must specify CompilerOptions. If you specify TargetDevice, don't specify
+	// CompilerOptions.
 	//
 	// For more information, see Compiler options in the Amazon Lookout for Vision
 	// Developer Guide.
-	//
-	// CompilerOptions is a required field
-	CompilerOptions *string `min:"3" type:"string" required:"true"`
+	CompilerOptions *string `min:"3" type:"string"`
 
 	// A description for the AWS IoT Greengrass component.
 	ComponentDescription *string `min:"1" type:"string"`
@@ -4404,9 +4404,6 @@ func (s GreengrassConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GreengrassConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GreengrassConfiguration"}
-	if s.CompilerOptions == nil {
-		invalidParams.Add(request.NewErrParamRequired("CompilerOptions"))
-	}
 	if s.CompilerOptions != nil && len(*s.CompilerOptions) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("CompilerOptions", 3))
 	}

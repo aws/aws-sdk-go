@@ -2115,7 +2115,10 @@
         "ServiceInternalError",
         "NetworkFailure",
         "InternalFailure",
-        "InvalidTypeConfiguration"
+        "InvalidTypeConfiguration",
+        "HandlerInternalFailure",
+        "NonCompliant",
+        "Unknown"
       ]
     },
     "HookFailureMode":{

@@ -1,3 +1,16 @@
+Release v1.42.51 (2022-02-10)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API
+  * This SDK release adds AWS CloudFormation Hooks HandlerErrorCodes
+* `service/lookoutvision`: Updates service API and documentation
+* `service/pinpoint`: Updates service API and documentation
+  * This SDK release adds a new paramater creation date for GetApp and GetApps Api call
+* `service/sns`: Updates service documentation
+  * Customer requested typo fix in API documentation.
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.42.50 (2022-02-09)
 ===
 

@@ -285,6 +285,21 @@
         {"shape":"WAFInvalidOperationException"}
       ]
     },
+    "GenerateMobileSdkReleaseUrl":{
+      "name":"GenerateMobileSdkReleaseUrl",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GenerateMobileSdkReleaseUrlRequest"},
+      "output":{"shape":"GenerateMobileSdkReleaseUrlResponse"},
+      "errors":[
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"}
+      ]
+    },
     "GetIPSet":{
       "name":"GetIPSet",
       "http":{
@@ -327,6 +342,21 @@
         {"shape":"WAFInternalErrorException"},
         {"shape":"WAFInvalidParameterException"},
         {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFInvalidOperationException"}
+      ]
+    },
+    "GetMobileSdkRelease":{
+      "name":"GetMobileSdkRelease",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetMobileSdkReleaseRequest"},
+      "output":{"shape":"GetMobileSdkReleaseResponse"},
+      "errors":[
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFInvalidParameterException"},
         {"shape":"WAFInvalidOperationException"}
       ]
     },
@@ -498,6 +528,20 @@
       },
       "input":{"shape":"ListManagedRuleSetsRequest"},
       "output":{"shape":"ListManagedRuleSetsResponse"},
+      "errors":[
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"}
+      ]
+    },
+    "ListMobileSdkReleases":{
+      "name":"ListMobileSdkReleases",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListMobileSdkReleasesRequest"},
+      "output":{"shape":"ListMobileSdkReleasesResponse"},
       "errors":[
         {"shape":"WAFInternalErrorException"},
         {"shape":"WAFInvalidParameterException"},
@@ -1507,6 +1551,7 @@
       "members":{
       }
     },
+    "DownloadUrl":{"type":"string"},
     "EntityDescription":{
       "type":"string",
       "max":256,
@@ -1551,6 +1596,12 @@
         "MATCH",
         "NO_MATCH"
       ]
+    },
+    "FieldIdentifier":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":".*\\S.*"
     },
     "FieldToMatch":{
       "type":"structure",
@@ -1656,6 +1707,23 @@
         "ANY"
       ]
     },
+    "GenerateMobileSdkReleaseUrlRequest":{
+      "type":"structure",
+      "required":[
+        "Platform",
+        "ReleaseVersion"
+      ],
+      "members":{
+        "Platform":{"shape":"Platform"},
+        "ReleaseVersion":{"shape":"VersionKeyString"}
+      }
+    },
+    "GenerateMobileSdkReleaseUrlResponse":{
+      "type":"structure",
+      "members":{
+        "Url":{"shape":"DownloadUrl"}
+      }
+    },
     "GeoMatchStatement":{
       "type":"structure",
       "members":{
@@ -1714,6 +1782,23 @@
       "members":{
         "ManagedRuleSet":{"shape":"ManagedRuleSet"},
         "LockToken":{"shape":"LockToken"}
+      }
+    },
+    "GetMobileSdkReleaseRequest":{
+      "type":"structure",
+      "required":[
+        "Platform",
+        "ReleaseVersion"
+      ],
+      "members":{
+        "Platform":{"shape":"Platform"},
+        "ReleaseVersion":{"shape":"VersionKeyString"}
+      }
+    },
+    "GetMobileSdkReleaseResponse":{
+      "type":"structure",
+      "members":{
+        "MobileSdkRelease":{"shape":"MobileSdkRelease"}
       }
     },
     "GetPermissionPolicyRequest":{
@@ -1843,7 +1928,8 @@
       "type":"structure",
       "members":{
         "WebACL":{"shape":"WebACL"},
-        "LockToken":{"shape":"LockToken"}
+        "LockToken":{"shape":"LockToken"},
+        "ApplicationIntegrationURL":{"shape":"OutputUrl"}
       }
     },
     "HTTPHeader":{
@@ -2137,6 +2223,22 @@
       "max":500,
       "min":1
     },
+    "ListMobileSdkReleasesRequest":{
+      "type":"structure",
+      "required":["Platform"],
+      "members":{
+        "Platform":{"shape":"Platform"},
+        "NextMarker":{"shape":"NextMarker"},
+        "Limit":{"shape":"PaginationLimit"}
+      }
+    },
+    "ListMobileSdkReleasesResponse":{
+      "type":"structure",
+      "members":{
+        "ReleaseSummaries":{"shape":"ReleaseSummaries"},
+        "NextMarker":{"shape":"NextMarker"}
+      }
+    },
     "ListRegexPatternSetsRequest":{
       "type":"structure",
       "required":["Scope"],
@@ -2256,6 +2358,26 @@
         "DefaultBehavior":{"shape":"FilterBehavior"}
       }
     },
+    "LoginPathString":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "ManagedRuleGroupConfig":{
+      "type":"structure",
+      "members":{
+        "LoginPath":{"shape":"LoginPathString"},
+        "PayloadType":{"shape":"PayloadType"},
+        "UsernameField":{"shape":"UsernameField"},
+        "PasswordField":{"shape":"PasswordField"}
+      }
+    },
+    "ManagedRuleGroupConfigs":{
+      "type":"list",
+      "member":{"shape":"ManagedRuleGroupConfig"},
+      "min":1
+    },
     "ManagedRuleGroupStatement":{
       "type":"structure",
       "required":[
@@ -2267,7 +2389,8 @@
         "Name":{"shape":"EntityName"},
         "Version":{"shape":"VersionKeyString"},
         "ExcludedRules":{"shape":"ExcludedRules"},
-        "ScopeDownStatement":{"shape":"Statement"}
+        "ScopeDownStatement":{"shape":"Statement"},
+        "ManagedRuleGroupConfigs":{"shape":"ManagedRuleGroupConfigs"}
       }
     },
     "ManagedRuleGroupSummaries":{
@@ -2347,6 +2470,15 @@
       "min":1,
       "pattern":"^[\\w#:\\.\\-/]+$"
     },
+    "MobileSdkRelease":{
+      "type":"structure",
+      "members":{
+        "ReleaseVersion":{"shape":"VersionKeyString"},
+        "Timestamp":{"shape":"Timestamp"},
+        "ReleaseNotes":{"shape":"ReleaseNotes"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "NextMarker":{
       "type":"string",
       "max":256,
@@ -2372,6 +2504,7 @@
         "Statements":{"shape":"Statements"}
       }
     },
+    "OutputUrl":{"type":"string"},
     "OverrideAction":{
       "type":"structure",
       "members":{
@@ -2443,12 +2576,35 @@
         "EXPIRE_TIMESTAMP",
         "CHANGE_PROPAGATION_STATUS",
         "ASSOCIABLE_RESOURCE",
-        "LOG_DESTINATION"
+        "LOG_DESTINATION",
+        "MANAGED_RULE_GROUP_CONFIG",
+        "PAYLOAD_TYPE"
       ]
     },
     "ParameterExceptionParameter":{
       "type":"string",
       "min":1
+    },
+    "PasswordField":{
+      "type":"structure",
+      "required":["Identifier"],
+      "members":{
+        "Identifier":{"shape":"FieldIdentifier"}
+      }
+    },
+    "PayloadType":{
+      "type":"string",
+      "enum":[
+        "JSON",
+        "FORM_ENCODED"
+      ]
+    },
+    "Platform":{
+      "type":"string",
+      "enum":[
+        "IOS",
+        "ANDROID"
+      ]
     },
     "PolicyString":{
       "type":"string",
@@ -2631,6 +2787,18 @@
     "RegularExpressionList":{
       "type":"list",
       "member":{"shape":"Regex"}
+    },
+    "ReleaseNotes":{"type":"string"},
+    "ReleaseSummaries":{
+      "type":"list",
+      "member":{"shape":"ReleaseSummary"}
+    },
+    "ReleaseSummary":{
+      "type":"structure",
+      "members":{
+        "ReleaseVersion":{"shape":"VersionKeyString"},
+        "Timestamp":{"shape":"Timestamp"}
+      }
     },
     "ResourceArn":{
       "type":"string",
@@ -3139,6 +3307,13 @@
     "UriPath":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UsernameField":{
+      "type":"structure",
+      "required":["Identifier"],
+      "members":{
+        "Identifier":{"shape":"FieldIdentifier"}
       }
     },
     "VendorName":{

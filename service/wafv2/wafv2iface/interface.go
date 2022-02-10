@@ -120,6 +120,10 @@ type WAFV2API interface {
 	DisassociateWebACLWithContext(aws.Context, *wafv2.DisassociateWebACLInput, ...request.Option) (*wafv2.DisassociateWebACLOutput, error)
 	DisassociateWebACLRequest(*wafv2.DisassociateWebACLInput) (*request.Request, *wafv2.DisassociateWebACLOutput)
 
+	GenerateMobileSdkReleaseUrl(*wafv2.GenerateMobileSdkReleaseUrlInput) (*wafv2.GenerateMobileSdkReleaseUrlOutput, error)
+	GenerateMobileSdkReleaseUrlWithContext(aws.Context, *wafv2.GenerateMobileSdkReleaseUrlInput, ...request.Option) (*wafv2.GenerateMobileSdkReleaseUrlOutput, error)
+	GenerateMobileSdkReleaseUrlRequest(*wafv2.GenerateMobileSdkReleaseUrlInput) (*request.Request, *wafv2.GenerateMobileSdkReleaseUrlOutput)
+
 	GetIPSet(*wafv2.GetIPSetInput) (*wafv2.GetIPSetOutput, error)
 	GetIPSetWithContext(aws.Context, *wafv2.GetIPSetInput, ...request.Option) (*wafv2.GetIPSetOutput, error)
 	GetIPSetRequest(*wafv2.GetIPSetInput) (*request.Request, *wafv2.GetIPSetOutput)
@@ -131,6 +135,10 @@ type WAFV2API interface {
 	GetManagedRuleSet(*wafv2.GetManagedRuleSetInput) (*wafv2.GetManagedRuleSetOutput, error)
 	GetManagedRuleSetWithContext(aws.Context, *wafv2.GetManagedRuleSetInput, ...request.Option) (*wafv2.GetManagedRuleSetOutput, error)
 	GetManagedRuleSetRequest(*wafv2.GetManagedRuleSetInput) (*request.Request, *wafv2.GetManagedRuleSetOutput)
+
+	GetMobileSdkRelease(*wafv2.GetMobileSdkReleaseInput) (*wafv2.GetMobileSdkReleaseOutput, error)
+	GetMobileSdkReleaseWithContext(aws.Context, *wafv2.GetMobileSdkReleaseInput, ...request.Option) (*wafv2.GetMobileSdkReleaseOutput, error)
+	GetMobileSdkReleaseRequest(*wafv2.GetMobileSdkReleaseInput) (*request.Request, *wafv2.GetMobileSdkReleaseOutput)
 
 	GetPermissionPolicy(*wafv2.GetPermissionPolicyInput) (*wafv2.GetPermissionPolicyOutput, error)
 	GetPermissionPolicyWithContext(aws.Context, *wafv2.GetPermissionPolicyInput, ...request.Option) (*wafv2.GetPermissionPolicyOutput, error)
@@ -179,6 +187,10 @@ type WAFV2API interface {
 	ListManagedRuleSets(*wafv2.ListManagedRuleSetsInput) (*wafv2.ListManagedRuleSetsOutput, error)
 	ListManagedRuleSetsWithContext(aws.Context, *wafv2.ListManagedRuleSetsInput, ...request.Option) (*wafv2.ListManagedRuleSetsOutput, error)
 	ListManagedRuleSetsRequest(*wafv2.ListManagedRuleSetsInput) (*request.Request, *wafv2.ListManagedRuleSetsOutput)
+
+	ListMobileSdkReleases(*wafv2.ListMobileSdkReleasesInput) (*wafv2.ListMobileSdkReleasesOutput, error)
+	ListMobileSdkReleasesWithContext(aws.Context, *wafv2.ListMobileSdkReleasesInput, ...request.Option) (*wafv2.ListMobileSdkReleasesOutput, error)
+	ListMobileSdkReleasesRequest(*wafv2.ListMobileSdkReleasesInput) (*request.Request, *wafv2.ListMobileSdkReleasesOutput)
 
 	ListRegexPatternSets(*wafv2.ListRegexPatternSetsInput) (*wafv2.ListRegexPatternSetsOutput, error)
 	ListRegexPatternSetsWithContext(aws.Context, *wafv2.ListRegexPatternSetsInput, ...request.Option) (*wafv2.ListRegexPatternSetsOutput, error)

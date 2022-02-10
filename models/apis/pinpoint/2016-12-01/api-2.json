@@ -5014,6 +5014,9 @@
         "tags": {
           "shape": "MapOf__string",
           "locationName": "tags"
+        },
+        "CreationDate": {
+          "shape": "__string"
         }
       },
       "required": [

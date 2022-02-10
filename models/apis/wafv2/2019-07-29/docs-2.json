@@ -17,9 +17,11 @@
     "DeleteWebACL": "<p>Deletes the specified <a>WebACL</a>.</p> <p>You can only use this if <code>ManagedByFirewallManager</code> is false in the specified <a>WebACL</a>. </p>",
     "DescribeManagedRuleGroup": "<p>Provides high-level information for a managed rule group, including descriptions of the rules. </p>",
     "DisassociateWebACL": "<p>Disassociates a web ACL from a regional application resource. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, or an AppSync GraphQL API. </p> <p>For Amazon CloudFront, don't use this call. Instead, use your CloudFront distribution configuration. To disassociate a web ACL, provide an empty web ACL ID in the CloudFront call <code>UpdateDistribution</code>. For information, see <a href=\"https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html\">UpdateDistribution</a>.</p>",
+    "GenerateMobileSdkReleaseUrl": "<p>Generates a presigned download URL for the specified release of the mobile SDK.</p> <p>The mobile SDK is not generally available. Customers who have access to the mobile SDK can use it to establish and manage Security Token Service (STS) security tokens for use in HTTP(S) requests from a mobile device to WAF. </p>",
     "GetIPSet": "<p>Retrieves the specified <a>IPSet</a>.</p>",
     "GetLoggingConfiguration": "<p>Returns the <a>LoggingConfiguration</a> for the specified web ACL.</p>",
     "GetManagedRuleSet": "<p>Retrieves the specified managed rule set. </p> <note> <p>This is intended for use only by vendors of managed rule sets. Vendors are Amazon Web Services and Amazon Web Services Marketplace sellers. </p> <p>Vendors, you can use the managed rule set APIs to provide controlled rollout of your versioned managed rule group offerings for your customers. The APIs are <code>ListManagedRuleSets</code>, <code>GetManagedRuleSet</code>, <code>PutManagedRuleSetVersions</code>, and <code>UpdateManagedRuleSetVersionExpiryDate</code>.</p> </note>",
+    "GetMobileSdkRelease": "<p>Retrieves information for the specified mobile SDK release, including release notes and tags.</p> <p>The mobile SDK is not generally available. Customers who have access to the mobile SDK can use it to establish and manage Security Token Service (STS) security tokens for use in HTTP(S) requests from a mobile device to WAF. </p>",
     "GetPermissionPolicy": "<p>Returns the IAM policy that is attached to the specified rule group.</p> <p>You must be the owner of the rule group to perform this operation.</p>",
     "GetRateBasedStatementManagedKeys": "<p>Retrieves the keys that are currently blocked by a rate-based rule instance. The maximum number of managed keys that can be blocked for a single rate-based rule instance is 10,000. If more than 10,000 addresses exceed the rate limit, those with the highest rates are blocked.</p> <p>For a rate-based rule that you've defined inside a rule group, provide the name of the rule group reference statement in your request, in addition to the rate-based rule name and the web ACL name. </p> <p>WAF monitors web requests and manages keys independently for each unique combination of web ACL, optional rule group, and rate-based rule. For example, if you define a rate-based rule inside a rule group, and then use the rule group in a web ACL, WAF monitors web requests and manages keys for that web ACL, rule group reference statement, and rate-based rule instance. If you use the same rule group in a second web ACL, WAF monitors web requests and manages keys for this second usage completely independent of your first. </p>",
     "GetRegexPatternSet": "<p>Retrieves the specified <a>RegexPatternSet</a>.</p>",
@@ -32,6 +34,7 @@
     "ListIPSets": "<p>Retrieves an array of <a>IPSetSummary</a> objects for the IP sets that you manage.</p>",
     "ListLoggingConfigurations": "<p>Retrieves an array of your <a>LoggingConfiguration</a> objects.</p>",
     "ListManagedRuleSets": "<p>Retrieves the managed rule sets that you own. </p> <note> <p>This is intended for use only by vendors of managed rule sets. Vendors are Amazon Web Services and Amazon Web Services Marketplace sellers. </p> <p>Vendors, you can use the managed rule set APIs to provide controlled rollout of your versioned managed rule group offerings for your customers. The APIs are <code>ListManagedRuleSets</code>, <code>GetManagedRuleSet</code>, <code>PutManagedRuleSetVersions</code>, and <code>UpdateManagedRuleSetVersionExpiryDate</code>.</p> </note>",
+    "ListMobileSdkReleases": "<p>Retrieves a list of the available releases for the mobile SDK and the specified device platform. </p> <p>The mobile SDK is not generally available. Customers who have access to the mobile SDK can use it to establish and manage Security Token Service (STS) security tokens for use in HTTP(S) requests from a mobile device to WAF. </p>",
     "ListRegexPatternSets": "<p>Retrieves an array of <a>RegexPatternSetSummary</a> objects for the regex pattern sets that you manage.</p>",
     "ListResourcesForWebACL": "<p>Retrieves an array of the Amazon Resource Names (ARNs) for the regional resources that are associated with the specified web ACL. If you want the list of Amazon CloudFront resources, use the CloudFront call <code>ListDistributionsByWebACLId</code>. </p>",
     "ListRuleGroups": "<p>Retrieves an array of <a>RuleGroupSummary</a> objects for the rule groups that you manage. </p>",
@@ -420,6 +423,12 @@
       "refs": {
       }
     },
+    "DownloadUrl": {
+      "base": null,
+      "refs": {
+        "GenerateMobileSdkReleaseUrlResponse$Url": "<p>The presigned download URL for the specified SDK release.</p>"
+      }
+    },
     "EntityDescription": {
       "base": null,
       "refs": {
@@ -577,6 +586,13 @@
         "IPSetForwardedIPConfig$FallbackBehavior": "<p>The match status to assign to the web request if the request doesn't have a valid IP address in the specified position.</p> <note> <p>If the specified header isn't present in the request, WAF doesn't apply the rule to the web request at all.</p> </note> <p>You can specify the following fallback behaviors:</p> <ul> <li> <p> <code>MATCH</code> - Treat the web request as matching the rule statement. WAF applies the rule action to the request.</p> </li> <li> <p> <code>NO_MATCH</code> - Treat the web request as not matching the rule statement.</p> </li> </ul>"
       }
     },
+    "FieldIdentifier": {
+      "base": null,
+      "refs": {
+        "PasswordField$Identifier": "<p>The name of the password field. For example <code>/form/password</code>.</p>",
+        "UsernameField$Identifier": "<p>The name of the username field. For example <code>/form/username</code>.</p>"
+      }
+    },
     "FieldToMatch": {
       "base": "<p>The part of a web request that you want WAF to inspect. Include the single <code>FieldToMatch</code> type that you want to inspect, with additional specifications as needed, according to the type. You specify a single request component in <code>FieldToMatch</code> for each rule statement that requires it. To inspect more than one component of a web request, create a separate rule statement for each component.</p> <p>JSON specification for a <code>QueryString</code> field to match: </p> <p> <code> \"FieldToMatch\": { \"QueryString\": {} }</code> </p> <p>Example JSON for a <code>Method</code> field to match specification:</p> <p> <code> \"FieldToMatch\": { \"Method\": { \"Name\": \"DELETE\" } }</code> </p>",
       "refs": {
@@ -660,6 +676,16 @@
         "IPSetForwardedIPConfig$Position": "<p>The position in the header to search for the IP address. The header can contain IP addresses of the original client and also of proxies. For example, the header value could be <code>10.1.1.1, 127.0.0.0, 10.10.10.10</code> where the first IP address identifies the original client and the rest identify proxies that the request went through. </p> <p>The options for this setting are the following: </p> <ul> <li> <p>FIRST - Inspect the first IP address in the list of IP addresses in the header. This is usually the client's original IP.</p> </li> <li> <p>LAST - Inspect the last IP address in the list of IP addresses in the header.</p> </li> <li> <p>ANY - Inspect all IP addresses in the header for a match. If the header contains more than 10 IP addresses, WAF inspects the last 10.</p> </li> </ul>"
       }
     },
+    "GenerateMobileSdkReleaseUrlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GenerateMobileSdkReleaseUrlResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GeoMatchStatement": {
       "base": "<p>A rule statement used to identify web requests based on country of origin. </p>",
       "refs": {
@@ -692,6 +718,16 @@
       }
     },
     "GetManagedRuleSetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMobileSdkReleaseRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMobileSdkReleaseResponse": {
       "base": null,
       "refs": {
       }
@@ -1026,6 +1062,16 @@
         "GetSampledRequestsRequest$MaxItems": "<p>The number of requests that you want WAF to return from among the first 5,000 requests that your Amazon Web Services resource received during the time range. If your resource received fewer requests than the value of <code>MaxItems</code>, <code>GetSampledRequests</code> returns information about all of them. </p>"
       }
     },
+    "ListMobileSdkReleasesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMobileSdkReleasesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListRegexPatternSetsRequest": {
       "base": null,
       "refs": {
@@ -1136,6 +1182,24 @@
         "LoggingConfiguration$LoggingFilter": "<p>Filtering that specifies which web requests are kept in the logs and which are dropped. You can filter on the rule action and on the web request labels that were applied by matching rules during web ACL evaluation. </p>"
       }
     },
+    "LoginPathString": {
+      "base": null,
+      "refs": {
+        "ManagedRuleGroupConfig$LoginPath": "<p>The login endpoint for your application. For example <code>https://example.com/web/login</code>.</p>"
+      }
+    },
+    "ManagedRuleGroupConfig": {
+      "base": "<p>Additional information that's used by a managed rule group. Most managed rule groups don't require this.</p> <p>Use this for the account takeover prevention managed rule group <code>AWSManagedRulesATPRuleSet</code>, to provide information about the sign-in page of your application. </p>",
+      "refs": {
+        "ManagedRuleGroupConfigs$member": null
+      }
+    },
+    "ManagedRuleGroupConfigs": {
+      "base": null,
+      "refs": {
+        "ManagedRuleGroupStatement$ManagedRuleGroupConfigs": "<p>Additional information that's used by a managed rule group. Most managed rule groups don't require this.</p> <p>Use this for the account takeover prevention managed rule group <code>AWSManagedRulesATPRuleSet</code>, to provide information about the sign-in page of your application. </p>"
+      }
+    },
     "ManagedRuleGroupStatement": {
       "base": "<p>A rule statement used to run the rules that are defined in a managed rule group. To use this, provide the vendor name and the name of the rule group in this statement. You can retrieve the required names by calling <a>ListAvailableManagedRuleGroups</a>.</p> <p>You cannot nest a <code>ManagedRuleGroupStatement</code>, for example for use inside a <code>NotStatement</code> or <code>OrStatement</code>. It can only be referenced as a top-level statement within a rule.</p>",
       "refs": {
@@ -1204,6 +1268,12 @@
         "VisibilityConfig$MetricName": "<p>A name of the Amazon CloudWatch metric. The name can contain only the characters: A-Z, a-z, 0-9, - (hyphen), and _ (underscore). The name can be from one to 128 characters long. It can't contain whitespace or metric names reserved for WAF, for example \"All\" and \"Default_Action.\" </p>"
       }
     },
+    "MobileSdkRelease": {
+      "base": "<p>Information for a release of the mobile SDK, including release notes and tags.</p> <p>The mobile SDK is not generally available. Customers who have access to the mobile SDK can use it to establish and manage Security Token Service (STS) security tokens for use in HTTP(S) requests from a mobile device to WAF. </p>",
+      "refs": {
+        "GetMobileSdkReleaseResponse$MobileSdkRelease": "<p>Information for a specified SDK release, including release notes and tags.</p>"
+      }
+    },
     "NextMarker": {
       "base": null,
       "refs": {
@@ -1217,6 +1287,8 @@
         "ListLoggingConfigurationsResponse$NextMarker": "<p>When you request a list of objects with a <code>Limit</code> setting, if the number of objects that are still available for retrieval exceeds the limit, WAF returns a <code>NextMarker</code> value in the response. To retrieve the next batch of objects, provide the marker from the prior call in your next request.</p>",
         "ListManagedRuleSetsRequest$NextMarker": "<p>When you request a list of objects with a <code>Limit</code> setting, if the number of objects that are still available for retrieval exceeds the limit, WAF returns a <code>NextMarker</code> value in the response. To retrieve the next batch of objects, provide the marker from the prior call in your next request.</p>",
         "ListManagedRuleSetsResponse$NextMarker": "<p>When you request a list of objects with a <code>Limit</code> setting, if the number of objects that are still available for retrieval exceeds the limit, WAF returns a <code>NextMarker</code> value in the response. To retrieve the next batch of objects, provide the marker from the prior call in your next request.</p>",
+        "ListMobileSdkReleasesRequest$NextMarker": "<p>When you request a list of objects with a <code>Limit</code> setting, if the number of objects that are still available for retrieval exceeds the limit, WAF returns a <code>NextMarker</code> value in the response. To retrieve the next batch of objects, provide the marker from the prior call in your next request.</p>",
+        "ListMobileSdkReleasesResponse$NextMarker": "<p>When you request a list of objects with a <code>Limit</code> setting, if the number of objects that are still available for retrieval exceeds the limit, WAF returns a <code>NextMarker</code> value in the response. To retrieve the next batch of objects, provide the marker from the prior call in your next request.</p>",
         "ListRegexPatternSetsRequest$NextMarker": "<p>When you request a list of objects with a <code>Limit</code> setting, if the number of objects that are still available for retrieval exceeds the limit, WAF returns a <code>NextMarker</code> value in the response. To retrieve the next batch of objects, provide the marker from the prior call in your next request.</p>",
         "ListRegexPatternSetsResponse$NextMarker": "<p>When you request a list of objects with a <code>Limit</code> setting, if the number of objects that are still available for retrieval exceeds the limit, WAF returns a <code>NextMarker</code> value in the response. To retrieve the next batch of objects, provide the marker from the prior call in your next request.</p>",
         "ListRuleGroupsRequest$NextMarker": "<p>When you request a list of objects with a <code>Limit</code> setting, if the number of objects that are still available for retrieval exceeds the limit, WAF returns a <code>NextMarker</code> value in the response. To retrieve the next batch of objects, provide the marker from the prior call in your next request.</p>",
@@ -1245,6 +1317,12 @@
         "Statement$OrStatement": "<p>A logical rule statement used to combine other rule statements with OR logic. You provide more than one <a>Statement</a> within the <code>OrStatement</code>. </p>"
       }
     },
+    "OutputUrl": {
+      "base": null,
+      "refs": {
+        "GetWebACLResponse$ApplicationIntegrationURL": "<p>The URL to use in SDK integrations with Amazon Web Services managed rule groups. For example, you can use the integration SDKs with the account takeover prevention managed rule group <code>AWSManagedRulesATPRuleSet</code>. This is only populated if you are using a rule group in your web ACL that integrates with your applications in this way. For more information, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html\">WAF application integration</a> in the <i>WAF Developer Guide</i>.</p>"
+      }
+    },
     "OverrideAction": {
       "base": "<p>The action to use in the place of the action that results from the rule group evaluation. Set the override action to none to leave the result of the rule group alone. Set it to count to override the result to count only. </p> <p>You can only use this for rule statements that reference a rule group, like <code>RuleGroupReferenceStatement</code> and <code>ManagedRuleGroupStatement</code>. </p> <note> <p>This option is usually set to none. It does not affect how the rules in the rule group are evaluated. If you want the rules in the rule group to only count matches, do not use this and instead exclude those rules in your rule group reference statement settings. </p> </note>",
       "refs": {
@@ -1260,6 +1338,7 @@
         "ListIPSetsRequest$Limit": "<p>The maximum number of objects that you want WAF to return for this request. If more objects are available, in the response, WAF provides a <code>NextMarker</code> value that you can use in a subsequent call to get the next batch of objects.</p>",
         "ListLoggingConfigurationsRequest$Limit": "<p>The maximum number of objects that you want WAF to return for this request. If more objects are available, in the response, WAF provides a <code>NextMarker</code> value that you can use in a subsequent call to get the next batch of objects.</p>",
         "ListManagedRuleSetsRequest$Limit": "<p>The maximum number of objects that you want WAF to return for this request. If more objects are available, in the response, WAF provides a <code>NextMarker</code> value that you can use in a subsequent call to get the next batch of objects.</p>",
+        "ListMobileSdkReleasesRequest$Limit": "<p>The maximum number of objects that you want WAF to return for this request. If more objects are available, in the response, WAF provides a <code>NextMarker</code> value that you can use in a subsequent call to get the next batch of objects.</p>",
         "ListRegexPatternSetsRequest$Limit": "<p>The maximum number of objects that you want WAF to return for this request. If more objects are available, in the response, WAF provides a <code>NextMarker</code> value that you can use in a subsequent call to get the next batch of objects.</p>",
         "ListRuleGroupsRequest$Limit": "<p>The maximum number of objects that you want WAF to return for this request. If more objects are available, in the response, WAF provides a <code>NextMarker</code> value that you can use in a subsequent call to get the next batch of objects.</p>",
         "ListTagsForResourceRequest$Limit": "<p>The maximum number of objects that you want WAF to return for this request. If more objects are available, in the response, WAF provides a <code>NextMarker</code> value that you can use in a subsequent call to get the next batch of objects.</p>",
@@ -1276,6 +1355,26 @@
       "base": null,
       "refs": {
         "WAFInvalidParameterException$Parameter": "<p>The invalid parameter that resulted in the exception. </p>"
+      }
+    },
+    "PasswordField": {
+      "base": "<p>Details about your login page password field, used in a <code>ManagedRuleGroupConfig</code>. </p>",
+      "refs": {
+        "ManagedRuleGroupConfig$PasswordField": "<p>Details about your login page password field. </p>"
+      }
+    },
+    "PayloadType": {
+      "base": null,
+      "refs": {
+        "ManagedRuleGroupConfig$PayloadType": "<p>The payload type for your login endpoint, either JSON or form encoded.</p>"
+      }
+    },
+    "Platform": {
+      "base": null,
+      "refs": {
+        "GenerateMobileSdkReleaseUrlRequest$Platform": "<p>The device platform.</p>",
+        "GetMobileSdkReleaseRequest$Platform": "<p>The device platform.</p>",
+        "ListMobileSdkReleasesRequest$Platform": "<p>The device platform to retrieve the list for.</p>"
       }
     },
     "PolicyString": {
@@ -1420,6 +1519,24 @@
         "CreateRegexPatternSetRequest$RegularExpressionList": "<p>Array of regular expression strings. </p>",
         "RegexPatternSet$RegularExpressionList": "<p>The regular expression patterns in the set.</p>",
         "UpdateRegexPatternSetRequest$RegularExpressionList": "<p/>"
+      }
+    },
+    "ReleaseNotes": {
+      "base": null,
+      "refs": {
+        "MobileSdkRelease$ReleaseNotes": "<p>Notes describing the release.</p>"
+      }
+    },
+    "ReleaseSummaries": {
+      "base": null,
+      "refs": {
+        "ListMobileSdkReleasesResponse$ReleaseSummaries": "<p>High level information for the available SDK releases. </p>"
+      }
+    },
+    "ReleaseSummary": {
+      "base": "<p>High level information for an SDK release. </p>",
+      "refs": {
+        "ReleaseSummaries$member": null
       }
     },
     "ResourceArn": {
@@ -1715,6 +1832,7 @@
         "CreateRegexPatternSetRequest$Tags": "<p>An array of key:value pairs to associate with the resource.</p>",
         "CreateRuleGroupRequest$Tags": "<p>An array of key:value pairs to associate with the resource.</p>",
         "CreateWebACLRequest$Tags": "<p>An array of key:value pairs to associate with the resource.</p>",
+        "MobileSdkRelease$Tags": "<p>Tags that are associated with the release. </p>",
         "TagInfoForResource$TagList": "<p>The array of <a>Tag</a> objects defined for the resource. </p>",
         "TagResourceRequest$Tags": "<p>An array of key:value pairs to associate with the resource.</p>"
       }
@@ -1791,6 +1909,8 @@
         "ManagedRuleSetVersion$PublishTimestamp": "<p>The time that you first published this version. </p> <p>Times are in Coordinated Universal Time (UTC) format. UTC format includes the special designator, Z. For example, \"2016-09-27T14:50Z\". </p>",
         "ManagedRuleSetVersion$LastUpdateTimestamp": "<p>The last time that you updated this version. </p> <p>Times are in Coordinated Universal Time (UTC) format. UTC format includes the special designator, Z. For example, \"2016-09-27T14:50Z\". </p>",
         "ManagedRuleSetVersion$ExpiryTimestamp": "<p>The time that this version is set to expire.</p> <p>Times are in Coordinated Universal Time (UTC) format. UTC format includes the special designator, Z. For example, \"2016-09-27T14:50Z\". </p>",
+        "MobileSdkRelease$Timestamp": "<p>The timestamp of the release. </p>",
+        "ReleaseSummary$Timestamp": "<p>The timestamp of the release. </p>",
         "SampledHTTPRequest$Timestamp": "<p>The time at which WAF received the request from your Amazon Web Services resource, in Unix time format (in seconds).</p>",
         "TimeWindow$StartTime": "<p>The beginning of the time range from which you want <code>GetSampledRequests</code> to return a sample of the requests that your Amazon Web Services resource received. You must specify the times in Coordinated Universal Time (UTC) format. UTC format includes the special designator, <code>Z</code>. For example, <code>\"2016-09-27T14:50Z\"</code>. You can specify any time range in the previous three hours.</p>",
         "TimeWindow$EndTime": "<p>The end of the time range from which you want <code>GetSampledRequests</code> to return a sample of the requests that your Amazon Web Services resource received. You must specify the times in Coordinated Universal Time (UTC) format. UTC format includes the special designator, <code>Z</code>. For example, <code>\"2016-09-27T14:50Z\"</code>. You can specify any time range in the previous three hours.</p>",
@@ -1870,6 +1990,12 @@
         "FieldToMatch$UriPath": "<p>Inspect the request URI path. This is the part of a web request that identifies a resource, for example, <code>/images/daily-ad.jpg</code>.</p>"
       }
     },
+    "UsernameField": {
+      "base": "<p>Details about your login page username field, used in a <code>ManagedRuleGroupConfig</code>. </p>",
+      "refs": {
+        "ManagedRuleGroupConfig$UsernameField": "<p>Details about your login page username field. </p>"
+      }
+    },
     "VendorName": {
       "base": null,
       "refs": {
@@ -1884,11 +2010,15 @@
       "refs": {
         "DescribeManagedRuleGroupRequest$VersionName": "<p>The version of the rule group. You can only use a version that is not scheduled for expiration. If you don't provide this, WAF uses the vendor's default version. </p>",
         "DescribeManagedRuleGroupResponse$VersionName": "<p>The managed rule group's version. </p>",
+        "GenerateMobileSdkReleaseUrlRequest$ReleaseVersion": "<p>The release version. For the latest available version, specify <code>LATEST</code>.</p>",
+        "GetMobileSdkReleaseRequest$ReleaseVersion": "<p>The release version. For the latest available version, specify <code>LATEST</code>.</p>",
         "ManagedRuleGroupStatement$Version": "<p>The version of the managed rule group to use. If you specify this, the version setting is fixed until you change it. If you don't specify this, WAF uses the vendor's default version, and then keeps the version at the vendor's default when the vendor updates the managed rule group settings. </p>",
         "ManagedRuleGroupVersion$Name": "<p>The version name. </p>",
         "ManagedRuleSet$RecommendedVersion": "<p>The version that you would like your customers to use.</p>",
+        "MobileSdkRelease$ReleaseVersion": "<p>The release version. </p>",
         "PublishedVersions$key": null,
         "PutManagedRuleSetVersionsRequest$RecommendedVersion": "<p>The version of the named managed rule group that you'd like your customers to choose, from among your version offerings. </p>",
+        "ReleaseSummary$ReleaseVersion": "<p>The release version. </p>",
         "UpdateManagedRuleSetVersionExpiryDateRequest$VersionToExpire": "<p>The version that you want to remove from your list of offerings for the named managed rule group. </p>",
         "UpdateManagedRuleSetVersionExpiryDateResponse$ExpiringVersion": "<p>The version that is set to expire. </p>",
         "VersionsToPublish$key": null

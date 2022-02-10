@@ -23041,6 +23041,15 @@ const (
 
 	// HandlerErrorCodeInvalidTypeConfiguration is a HandlerErrorCode enum value
 	HandlerErrorCodeInvalidTypeConfiguration = "InvalidTypeConfiguration"
+
+	// HandlerErrorCodeHandlerInternalFailure is a HandlerErrorCode enum value
+	HandlerErrorCodeHandlerInternalFailure = "HandlerInternalFailure"
+
+	// HandlerErrorCodeNonCompliant is a HandlerErrorCode enum value
+	HandlerErrorCodeNonCompliant = "NonCompliant"
+
+	// HandlerErrorCodeUnknown is a HandlerErrorCode enum value
+	HandlerErrorCodeUnknown = "Unknown"
 )
 
 // HandlerErrorCode_Values returns all elements of the HandlerErrorCode enum
@@ -23061,6 +23070,9 @@ func HandlerErrorCode_Values() []string {
 		HandlerErrorCodeNetworkFailure,
 		HandlerErrorCodeInternalFailure,
 		HandlerErrorCodeInvalidTypeConfiguration,
+		HandlerErrorCodeHandlerInternalFailure,
+		HandlerErrorCodeNonCompliant,
+		HandlerErrorCodeUnknown,
 	}
 }
 
