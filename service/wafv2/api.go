@@ -1792,6 +1792,112 @@ func (c *WAFV2) DisassociateWebACLWithContext(ctx aws.Context, input *Disassocia
 	return out, req.Send()
 }
 
+const opGenerateMobileSdkReleaseUrl = "GenerateMobileSdkReleaseUrl"
+
+// GenerateMobileSdkReleaseUrlRequest generates a "aws/request.Request" representing the
+// client's request for the GenerateMobileSdkReleaseUrl operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GenerateMobileSdkReleaseUrl for more information on using the GenerateMobileSdkReleaseUrl
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GenerateMobileSdkReleaseUrlRequest method.
+//    req, resp := client.GenerateMobileSdkReleaseUrlRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GenerateMobileSdkReleaseUrl
+func (c *WAFV2) GenerateMobileSdkReleaseUrlRequest(input *GenerateMobileSdkReleaseUrlInput) (req *request.Request, output *GenerateMobileSdkReleaseUrlOutput) {
+	op := &request.Operation{
+		Name:       opGenerateMobileSdkReleaseUrl,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GenerateMobileSdkReleaseUrlInput{}
+	}
+
+	output = &GenerateMobileSdkReleaseUrlOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GenerateMobileSdkReleaseUrl API operation for AWS WAFV2.
+//
+// Generates a presigned download URL for the specified release of the mobile
+// SDK.
+//
+// The mobile SDK is not generally available. Customers who have access to the
+// mobile SDK can use it to establish and manage Security Token Service (STS)
+// security tokens for use in HTTP(S) requests from a mobile device to WAF.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation GenerateMobileSdkReleaseUrl for usage and error information.
+//
+// Returned Error Types:
+//   * WAFInternalErrorException
+//   Your request is valid, but WAF couldn’t perform the operation because of
+//   a system problem. Retry your request.
+//
+//   * WAFNonexistentItemException
+//   WAF couldn’t perform the operation because your resource doesn’t exist.
+//
+//   * WAFInvalidParameterException
+//   The operation failed because WAF didn't recognize a parameter in the request.
+//   For example:
+//
+//      * You specified a parameter name or value that isn't valid.
+//
+//      * Your nested statement isn't valid. You might have tried to nest a statement
+//      that can’t be nested.
+//
+//      * You tried to update a WebACL with a DefaultAction that isn't among the
+//      types available at DefaultAction.
+//
+//      * Your request references an ARN that is malformed, or corresponds to
+//      a resource with which a web ACL can't be associated.
+//
+//   * WAFInvalidOperationException
+//   The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GenerateMobileSdkReleaseUrl
+func (c *WAFV2) GenerateMobileSdkReleaseUrl(input *GenerateMobileSdkReleaseUrlInput) (*GenerateMobileSdkReleaseUrlOutput, error) {
+	req, out := c.GenerateMobileSdkReleaseUrlRequest(input)
+	return out, req.Send()
+}
+
+// GenerateMobileSdkReleaseUrlWithContext is the same as GenerateMobileSdkReleaseUrl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GenerateMobileSdkReleaseUrl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) GenerateMobileSdkReleaseUrlWithContext(ctx aws.Context, input *GenerateMobileSdkReleaseUrlInput, opts ...request.Option) (*GenerateMobileSdkReleaseUrlOutput, error) {
+	req, out := c.GenerateMobileSdkReleaseUrlRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetIPSet = "GetIPSet"
 
 // GetIPSetRequest generates a "aws/request.Request" representing the
@@ -2098,6 +2204,112 @@ func (c *WAFV2) GetManagedRuleSet(input *GetManagedRuleSetInput) (*GetManagedRul
 // for more information on using Contexts.
 func (c *WAFV2) GetManagedRuleSetWithContext(ctx aws.Context, input *GetManagedRuleSetInput, opts ...request.Option) (*GetManagedRuleSetOutput, error) {
 	req, out := c.GetManagedRuleSetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMobileSdkRelease = "GetMobileSdkRelease"
+
+// GetMobileSdkReleaseRequest generates a "aws/request.Request" representing the
+// client's request for the GetMobileSdkRelease operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMobileSdkRelease for more information on using the GetMobileSdkRelease
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMobileSdkReleaseRequest method.
+//    req, resp := client.GetMobileSdkReleaseRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetMobileSdkRelease
+func (c *WAFV2) GetMobileSdkReleaseRequest(input *GetMobileSdkReleaseInput) (req *request.Request, output *GetMobileSdkReleaseOutput) {
+	op := &request.Operation{
+		Name:       opGetMobileSdkRelease,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetMobileSdkReleaseInput{}
+	}
+
+	output = &GetMobileSdkReleaseOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMobileSdkRelease API operation for AWS WAFV2.
+//
+// Retrieves information for the specified mobile SDK release, including release
+// notes and tags.
+//
+// The mobile SDK is not generally available. Customers who have access to the
+// mobile SDK can use it to establish and manage Security Token Service (STS)
+// security tokens for use in HTTP(S) requests from a mobile device to WAF.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation GetMobileSdkRelease for usage and error information.
+//
+// Returned Error Types:
+//   * WAFInternalErrorException
+//   Your request is valid, but WAF couldn’t perform the operation because of
+//   a system problem. Retry your request.
+//
+//   * WAFNonexistentItemException
+//   WAF couldn’t perform the operation because your resource doesn’t exist.
+//
+//   * WAFInvalidParameterException
+//   The operation failed because WAF didn't recognize a parameter in the request.
+//   For example:
+//
+//      * You specified a parameter name or value that isn't valid.
+//
+//      * Your nested statement isn't valid. You might have tried to nest a statement
+//      that can’t be nested.
+//
+//      * You tried to update a WebACL with a DefaultAction that isn't among the
+//      types available at DefaultAction.
+//
+//      * Your request references an ARN that is malformed, or corresponds to
+//      a resource with which a web ACL can't be associated.
+//
+//   * WAFInvalidOperationException
+//   The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetMobileSdkRelease
+func (c *WAFV2) GetMobileSdkRelease(input *GetMobileSdkReleaseInput) (*GetMobileSdkReleaseOutput, error) {
+	req, out := c.GetMobileSdkReleaseRequest(input)
+	return out, req.Send()
+}
+
+// GetMobileSdkReleaseWithContext is the same as GetMobileSdkRelease with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMobileSdkRelease for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) GetMobileSdkReleaseWithContext(ctx aws.Context, input *GetMobileSdkReleaseInput, opts ...request.Option) (*GetMobileSdkReleaseOutput, error) {
+	req, out := c.GetMobileSdkReleaseRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3330,6 +3542,109 @@ func (c *WAFV2) ListManagedRuleSets(input *ListManagedRuleSetsInput) (*ListManag
 // for more information on using Contexts.
 func (c *WAFV2) ListManagedRuleSetsWithContext(ctx aws.Context, input *ListManagedRuleSetsInput, opts ...request.Option) (*ListManagedRuleSetsOutput, error) {
 	req, out := c.ListManagedRuleSetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListMobileSdkReleases = "ListMobileSdkReleases"
+
+// ListMobileSdkReleasesRequest generates a "aws/request.Request" representing the
+// client's request for the ListMobileSdkReleases operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMobileSdkReleases for more information on using the ListMobileSdkReleases
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListMobileSdkReleasesRequest method.
+//    req, resp := client.ListMobileSdkReleasesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListMobileSdkReleases
+func (c *WAFV2) ListMobileSdkReleasesRequest(input *ListMobileSdkReleasesInput) (req *request.Request, output *ListMobileSdkReleasesOutput) {
+	op := &request.Operation{
+		Name:       opListMobileSdkReleases,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListMobileSdkReleasesInput{}
+	}
+
+	output = &ListMobileSdkReleasesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMobileSdkReleases API operation for AWS WAFV2.
+//
+// Retrieves a list of the available releases for the mobile SDK and the specified
+// device platform.
+//
+// The mobile SDK is not generally available. Customers who have access to the
+// mobile SDK can use it to establish and manage Security Token Service (STS)
+// security tokens for use in HTTP(S) requests from a mobile device to WAF.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation ListMobileSdkReleases for usage and error information.
+//
+// Returned Error Types:
+//   * WAFInternalErrorException
+//   Your request is valid, but WAF couldn’t perform the operation because of
+//   a system problem. Retry your request.
+//
+//   * WAFInvalidParameterException
+//   The operation failed because WAF didn't recognize a parameter in the request.
+//   For example:
+//
+//      * You specified a parameter name or value that isn't valid.
+//
+//      * Your nested statement isn't valid. You might have tried to nest a statement
+//      that can’t be nested.
+//
+//      * You tried to update a WebACL with a DefaultAction that isn't among the
+//      types available at DefaultAction.
+//
+//      * Your request references an ARN that is malformed, or corresponds to
+//      a resource with which a web ACL can't be associated.
+//
+//   * WAFInvalidOperationException
+//   The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListMobileSdkReleases
+func (c *WAFV2) ListMobileSdkReleases(input *ListMobileSdkReleasesInput) (*ListMobileSdkReleasesOutput, error) {
+	req, out := c.ListMobileSdkReleasesRequest(input)
+	return out, req.Send()
+}
+
+// ListMobileSdkReleasesWithContext is the same as ListMobileSdkReleases with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMobileSdkReleases for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) ListMobileSdkReleasesWithContext(ctx aws.Context, input *ListMobileSdkReleasesInput, opts ...request.Option) (*ListMobileSdkReleasesOutput, error) {
+	req, out := c.ListMobileSdkReleasesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8993,6 +9308,100 @@ func (s *ForwardedIPConfig) SetHeaderName(v string) *ForwardedIPConfig {
 	return s
 }
 
+type GenerateMobileSdkReleaseUrlInput struct {
+	_ struct{} `type:"structure"`
+
+	// The device platform.
+	//
+	// Platform is a required field
+	Platform *string `type:"string" required:"true" enum:"Platform"`
+
+	// The release version. For the latest available version, specify LATEST.
+	//
+	// ReleaseVersion is a required field
+	ReleaseVersion *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateMobileSdkReleaseUrlInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateMobileSdkReleaseUrlInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GenerateMobileSdkReleaseUrlInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GenerateMobileSdkReleaseUrlInput"}
+	if s.Platform == nil {
+		invalidParams.Add(request.NewErrParamRequired("Platform"))
+	}
+	if s.ReleaseVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReleaseVersion"))
+	}
+	if s.ReleaseVersion != nil && len(*s.ReleaseVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReleaseVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *GenerateMobileSdkReleaseUrlInput) SetPlatform(v string) *GenerateMobileSdkReleaseUrlInput {
+	s.Platform = &v
+	return s
+}
+
+// SetReleaseVersion sets the ReleaseVersion field's value.
+func (s *GenerateMobileSdkReleaseUrlInput) SetReleaseVersion(v string) *GenerateMobileSdkReleaseUrlInput {
+	s.ReleaseVersion = &v
+	return s
+}
+
+type GenerateMobileSdkReleaseUrlOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The presigned download URL for the specified SDK release.
+	Url *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateMobileSdkReleaseUrlOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateMobileSdkReleaseUrlOutput) GoString() string {
+	return s.String()
+}
+
+// SetUrl sets the Url field's value.
+func (s *GenerateMobileSdkReleaseUrlOutput) SetUrl(v string) *GenerateMobileSdkReleaseUrlOutput {
+	s.Url = &v
+	return s
+}
+
 // A rule statement used to identify web requests based on country of origin.
 type GeoMatchStatement struct {
 	_ struct{} `type:"structure"`
@@ -9424,6 +9833,100 @@ func (s *GetManagedRuleSetOutput) SetLockToken(v string) *GetManagedRuleSetOutpu
 // SetManagedRuleSet sets the ManagedRuleSet field's value.
 func (s *GetManagedRuleSetOutput) SetManagedRuleSet(v *ManagedRuleSet) *GetManagedRuleSetOutput {
 	s.ManagedRuleSet = v
+	return s
+}
+
+type GetMobileSdkReleaseInput struct {
+	_ struct{} `type:"structure"`
+
+	// The device platform.
+	//
+	// Platform is a required field
+	Platform *string `type:"string" required:"true" enum:"Platform"`
+
+	// The release version. For the latest available version, specify LATEST.
+	//
+	// ReleaseVersion is a required field
+	ReleaseVersion *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMobileSdkReleaseInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMobileSdkReleaseInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMobileSdkReleaseInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMobileSdkReleaseInput"}
+	if s.Platform == nil {
+		invalidParams.Add(request.NewErrParamRequired("Platform"))
+	}
+	if s.ReleaseVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReleaseVersion"))
+	}
+	if s.ReleaseVersion != nil && len(*s.ReleaseVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReleaseVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *GetMobileSdkReleaseInput) SetPlatform(v string) *GetMobileSdkReleaseInput {
+	s.Platform = &v
+	return s
+}
+
+// SetReleaseVersion sets the ReleaseVersion field's value.
+func (s *GetMobileSdkReleaseInput) SetReleaseVersion(v string) *GetMobileSdkReleaseInput {
+	s.ReleaseVersion = &v
+	return s
+}
+
+type GetMobileSdkReleaseOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information for a specified SDK release, including release notes and tags.
+	MobileSdkRelease *MobileSdkRelease `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMobileSdkReleaseOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMobileSdkReleaseOutput) GoString() string {
+	return s.String()
+}
+
+// SetMobileSdkRelease sets the MobileSdkRelease field's value.
+func (s *GetMobileSdkReleaseOutput) SetMobileSdkRelease(v *MobileSdkRelease) *GetMobileSdkReleaseOutput {
+	s.MobileSdkRelease = v
 	return s
 }
 
@@ -10325,6 +10828,14 @@ func (s *GetWebACLInput) SetScope(v string) *GetWebACLInput {
 type GetWebACLOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The URL to use in SDK integrations with Amazon Web Services managed rule
+	// groups. For example, you can use the integration SDKs with the account takeover
+	// prevention managed rule group AWSManagedRulesATPRuleSet. This is only populated
+	// if you are using a rule group in your web ACL that integrates with your applications
+	// in this way. For more information, see WAF application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+	// in the WAF Developer Guide.
+	ApplicationIntegrationURL *string `type:"string"`
+
 	// A token used for optimistic locking. WAF returns a token to your get and
 	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
@@ -10356,6 +10867,12 @@ func (s GetWebACLOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetWebACLOutput) GoString() string {
 	return s.String()
+}
+
+// SetApplicationIntegrationURL sets the ApplicationIntegrationURL field's value.
+func (s *GetWebACLOutput) SetApplicationIntegrationURL(v string) *GetWebACLOutput {
+	s.ApplicationIntegrationURL = &v
+	return s
 }
 
 // SetLockToken sets the LockToken field's value.
@@ -12032,6 +12549,124 @@ func (s *ListManagedRuleSetsOutput) SetNextMarker(v string) *ListManagedRuleSets
 	return s
 }
 
+type ListMobileSdkReleasesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects that you want WAF to return for this request.
+	// If more objects are available, in the response, WAF provides a NextMarker
+	// value that you can use in a subsequent call to get the next batch of objects.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// When you request a list of objects with a Limit setting, if the number of
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
+	NextMarker *string `min:"1" type:"string"`
+
+	// The device platform to retrieve the list for.
+	//
+	// Platform is a required field
+	Platform *string `type:"string" required:"true" enum:"Platform"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMobileSdkReleasesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMobileSdkReleasesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMobileSdkReleasesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMobileSdkReleasesInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextMarker != nil && len(*s.NextMarker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextMarker", 1))
+	}
+	if s.Platform == nil {
+		invalidParams.Add(request.NewErrParamRequired("Platform"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListMobileSdkReleasesInput) SetLimit(v int64) *ListMobileSdkReleasesInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListMobileSdkReleasesInput) SetNextMarker(v string) *ListMobileSdkReleasesInput {
+	s.NextMarker = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *ListMobileSdkReleasesInput) SetPlatform(v string) *ListMobileSdkReleasesInput {
+	s.Platform = &v
+	return s
+}
+
+type ListMobileSdkReleasesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// When you request a list of objects with a Limit setting, if the number of
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
+	NextMarker *string `min:"1" type:"string"`
+
+	// High level information for the available SDK releases.
+	ReleaseSummaries []*ReleaseSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMobileSdkReleasesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMobileSdkReleasesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListMobileSdkReleasesOutput) SetNextMarker(v string) *ListMobileSdkReleasesOutput {
+	s.NextMarker = &v
+	return s
+}
+
+// SetReleaseSummaries sets the ReleaseSummaries field's value.
+func (s *ListMobileSdkReleasesOutput) SetReleaseSummaries(v []*ReleaseSummary) *ListMobileSdkReleasesOutput {
+	s.ReleaseSummaries = v
+	return s
+}
+
 type ListRegexPatternSetsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12831,6 +13466,92 @@ func (s *LoggingFilter) SetFilters(v []*Filter) *LoggingFilter {
 	return s
 }
 
+// Additional information that's used by a managed rule group. Most managed
+// rule groups don't require this.
+//
+// Use this for the account takeover prevention managed rule group AWSManagedRulesATPRuleSet,
+// to provide information about the sign-in page of your application.
+type ManagedRuleGroupConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The login endpoint for your application. For example https://example.com/web/login.
+	LoginPath *string `min:"1" type:"string"`
+
+	// Details about your login page password field.
+	PasswordField *PasswordField `type:"structure"`
+
+	// The payload type for your login endpoint, either JSON or form encoded.
+	PayloadType *string `type:"string" enum:"PayloadType"`
+
+	// Details about your login page username field.
+	UsernameField *UsernameField `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRuleGroupConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRuleGroupConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ManagedRuleGroupConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ManagedRuleGroupConfig"}
+	if s.LoginPath != nil && len(*s.LoginPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LoginPath", 1))
+	}
+	if s.PasswordField != nil {
+		if err := s.PasswordField.Validate(); err != nil {
+			invalidParams.AddNested("PasswordField", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.UsernameField != nil {
+		if err := s.UsernameField.Validate(); err != nil {
+			invalidParams.AddNested("UsernameField", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLoginPath sets the LoginPath field's value.
+func (s *ManagedRuleGroupConfig) SetLoginPath(v string) *ManagedRuleGroupConfig {
+	s.LoginPath = &v
+	return s
+}
+
+// SetPasswordField sets the PasswordField field's value.
+func (s *ManagedRuleGroupConfig) SetPasswordField(v *PasswordField) *ManagedRuleGroupConfig {
+	s.PasswordField = v
+	return s
+}
+
+// SetPayloadType sets the PayloadType field's value.
+func (s *ManagedRuleGroupConfig) SetPayloadType(v string) *ManagedRuleGroupConfig {
+	s.PayloadType = &v
+	return s
+}
+
+// SetUsernameField sets the UsernameField field's value.
+func (s *ManagedRuleGroupConfig) SetUsernameField(v *UsernameField) *ManagedRuleGroupConfig {
+	s.UsernameField = v
+	return s
+}
+
 // A rule statement used to run the rules that are defined in a managed rule
 // group. To use this, provide the vendor name and the name of the rule group
 // in this statement. You can retrieve the required names by calling ListAvailableManagedRuleGroups.
@@ -12846,6 +13567,13 @@ type ManagedRuleGroupStatement struct {
 	// setting were Count. This is a useful option for testing the rules in a rule
 	// group without modifying how they handle your web traffic.
 	ExcludedRules []*ExcludedRule `type:"list"`
+
+	// Additional information that's used by a managed rule group. Most managed
+	// rule groups don't require this.
+	//
+	// Use this for the account takeover prevention managed rule group AWSManagedRulesATPRuleSet,
+	// to provide information about the sign-in page of your application.
+	ManagedRuleGroupConfigs []*ManagedRuleGroupConfig `min:"1" type:"list"`
 
 	// The name of the managed rule group. You use this, along with the vendor name,
 	// to identify the rule group.
@@ -12894,6 +13622,9 @@ func (s ManagedRuleGroupStatement) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ManagedRuleGroupStatement) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ManagedRuleGroupStatement"}
+	if s.ManagedRuleGroupConfigs != nil && len(s.ManagedRuleGroupConfigs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ManagedRuleGroupConfigs", 1))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -12919,6 +13650,16 @@ func (s *ManagedRuleGroupStatement) Validate() error {
 			}
 		}
 	}
+	if s.ManagedRuleGroupConfigs != nil {
+		for i, v := range s.ManagedRuleGroupConfigs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ManagedRuleGroupConfigs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.ScopeDownStatement != nil {
 		if err := s.ScopeDownStatement.Validate(); err != nil {
 			invalidParams.AddNested("ScopeDownStatement", err.(request.ErrInvalidParams))
@@ -12934,6 +13675,12 @@ func (s *ManagedRuleGroupStatement) Validate() error {
 // SetExcludedRules sets the ExcludedRules field's value.
 func (s *ManagedRuleGroupStatement) SetExcludedRules(v []*ExcludedRule) *ManagedRuleGroupStatement {
 	s.ExcludedRules = v
+	return s
+}
+
+// SetManagedRuleGroupConfigs sets the ManagedRuleGroupConfigs field's value.
+func (s *ManagedRuleGroupStatement) SetManagedRuleGroupConfigs(v []*ManagedRuleGroupConfig) *ManagedRuleGroupStatement {
+	s.ManagedRuleGroupConfigs = v
 	return s
 }
 
@@ -13420,6 +14167,70 @@ func (s Method) GoString() string {
 	return s.String()
 }
 
+// Information for a release of the mobile SDK, including release notes and
+// tags.
+//
+// The mobile SDK is not generally available. Customers who have access to the
+// mobile SDK can use it to establish and manage Security Token Service (STS)
+// security tokens for use in HTTP(S) requests from a mobile device to WAF.
+type MobileSdkRelease struct {
+	_ struct{} `type:"structure"`
+
+	// Notes describing the release.
+	ReleaseNotes *string `type:"string"`
+
+	// The release version.
+	ReleaseVersion *string `min:"1" type:"string"`
+
+	// Tags that are associated with the release.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// The timestamp of the release.
+	Timestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MobileSdkRelease) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MobileSdkRelease) GoString() string {
+	return s.String()
+}
+
+// SetReleaseNotes sets the ReleaseNotes field's value.
+func (s *MobileSdkRelease) SetReleaseNotes(v string) *MobileSdkRelease {
+	s.ReleaseNotes = &v
+	return s
+}
+
+// SetReleaseVersion sets the ReleaseVersion field's value.
+func (s *MobileSdkRelease) SetReleaseVersion(v string) *MobileSdkRelease {
+	s.ReleaseVersion = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *MobileSdkRelease) SetTags(v []*Tag) *MobileSdkRelease {
+	s.Tags = v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *MobileSdkRelease) SetTimestamp(v time.Time) *MobileSdkRelease {
+	s.Timestamp = &v
+	return s
+}
+
 // Specifies that WAF should do nothing. This is used for the OverrideAction
 // setting on a Rule when the rule uses a rule group reference statement.
 //
@@ -13630,6 +14441,56 @@ func (s *OverrideAction) SetCount(v *CountAction) *OverrideAction {
 // SetNone sets the None field's value.
 func (s *OverrideAction) SetNone(v *NoneAction) *OverrideAction {
 	s.None = v
+	return s
+}
+
+// Details about your login page password field, used in a ManagedRuleGroupConfig.
+type PasswordField struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the password field. For example /form/password.
+	//
+	// Identifier is a required field
+	Identifier *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PasswordField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PasswordField) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PasswordField) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PasswordField"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *PasswordField) SetIdentifier(v string) *PasswordField {
+	s.Identifier = &v
 	return s
 }
 
@@ -14652,6 +15513,47 @@ func (s *RegexPatternSetSummary) SetLockToken(v string) *RegexPatternSetSummary 
 // SetName sets the Name field's value.
 func (s *RegexPatternSetSummary) SetName(v string) *RegexPatternSetSummary {
 	s.Name = &v
+	return s
+}
+
+// High level information for an SDK release.
+type ReleaseSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The release version.
+	ReleaseVersion *string `min:"1" type:"string"`
+
+	// The timestamp of the release.
+	Timestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReleaseSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReleaseSummary) GoString() string {
+	return s.String()
+}
+
+// SetReleaseVersion sets the ReleaseVersion field's value.
+func (s *ReleaseSummary) SetReleaseVersion(v string) *ReleaseSummary {
+	s.ReleaseVersion = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *ReleaseSummary) SetTimestamp(v time.Time) *ReleaseSummary {
+	s.Timestamp = &v
 	return s
 }
 
@@ -17839,6 +18741,56 @@ func (s UriPath) GoString() string {
 	return s.String()
 }
 
+// Details about your login page username field, used in a ManagedRuleGroupConfig.
+type UsernameField struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the username field. For example /form/username.
+	//
+	// Identifier is a required field
+	Identifier *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UsernameField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UsernameField) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UsernameField) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UsernameField"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *UsernameField) SetIdentifier(v string) *UsernameField {
+	s.Identifier = &v
+	return s
+}
+
 // A version of the named managed rule group, that the rule group's vendor publishes
 // for use by customers.
 //
@@ -20922,6 +21874,12 @@ const (
 
 	// ParameterExceptionFieldLogDestination is a ParameterExceptionField enum value
 	ParameterExceptionFieldLogDestination = "LOG_DESTINATION"
+
+	// ParameterExceptionFieldManagedRuleGroupConfig is a ParameterExceptionField enum value
+	ParameterExceptionFieldManagedRuleGroupConfig = "MANAGED_RULE_GROUP_CONFIG"
+
+	// ParameterExceptionFieldPayloadType is a ParameterExceptionField enum value
+	ParameterExceptionFieldPayloadType = "PAYLOAD_TYPE"
 )
 
 // ParameterExceptionField_Values returns all elements of the ParameterExceptionField enum
@@ -20984,6 +21942,40 @@ func ParameterExceptionField_Values() []string {
 		ParameterExceptionFieldChangePropagationStatus,
 		ParameterExceptionFieldAssociableResource,
 		ParameterExceptionFieldLogDestination,
+		ParameterExceptionFieldManagedRuleGroupConfig,
+		ParameterExceptionFieldPayloadType,
+	}
+}
+
+const (
+	// PayloadTypeJson is a PayloadType enum value
+	PayloadTypeJson = "JSON"
+
+	// PayloadTypeFormEncoded is a PayloadType enum value
+	PayloadTypeFormEncoded = "FORM_ENCODED"
+)
+
+// PayloadType_Values returns all elements of the PayloadType enum
+func PayloadType_Values() []string {
+	return []string{
+		PayloadTypeJson,
+		PayloadTypeFormEncoded,
+	}
+}
+
+const (
+	// PlatformIos is a Platform enum value
+	PlatformIos = "IOS"
+
+	// PlatformAndroid is a Platform enum value
+	PlatformAndroid = "ANDROID"
+)
+
+// Platform_Values returns all elements of the Platform enum
+func Platform_Values() []string {
+	return []string{
+		PlatformIos,
+		PlatformAndroid,
 	}
 }
 

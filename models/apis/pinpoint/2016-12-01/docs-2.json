@@ -2063,6 +2063,7 @@
         "ApplicationResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the application.</p>",
         "ApplicationResponse$Id" : "<p>The unique identifier for the application. This identifier is displayed as the <b>Project ID</b> on the Amazon Pinpoint console.</p>",
         "ApplicationResponse$Name" : "<p>The display name of the application. This name is displayed as the <b>Project name</b> on the Amazon Pinpoint console.</p>",
+        "ApplicationResponse$CreationDate" : "<p>The date and time when the Application was created.</p>",
         "ApplicationSettingsResource$ApplicationId" : "<p>The unique identifier for the application. This identifier is displayed as the <b>Project ID</b> on the Amazon Pinpoint console.</p>",
         "ApplicationSettingsResource$LastModifiedDate" : "<p>The date and time, in ISO 8601 format, when the application's settings were last modified.</p>",
         "ApplicationsResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",

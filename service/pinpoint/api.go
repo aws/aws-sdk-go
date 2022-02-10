@@ -13986,6 +13986,9 @@ type ApplicationResponse struct {
 	// Arn is a required field
 	Arn *string `type:"string" required:"true"`
 
+	// The date and time when the Application was created.
+	CreationDate *string `type:"string"`
+
 	// The unique identifier for the application. This identifier is displayed as
 	// the Project ID on the Amazon Pinpoint console.
 	//
@@ -14025,6 +14028,12 @@ func (s ApplicationResponse) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *ApplicationResponse) SetArn(v string) *ApplicationResponse {
 	s.Arn = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *ApplicationResponse) SetCreationDate(v string) *ApplicationResponse {
+	s.CreationDate = &v
 	return s
 }
 

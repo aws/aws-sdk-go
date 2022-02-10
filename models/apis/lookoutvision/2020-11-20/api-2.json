@@ -854,7 +854,6 @@
     "GreengrassConfiguration":{
       "type":"structure",
       "required":[
-        "CompilerOptions",
         "S3OutputLocation",
         "ComponentName"
       ],

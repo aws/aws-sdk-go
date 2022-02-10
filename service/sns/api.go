@@ -3140,7 +3140,7 @@ func (c *SNS) PublishRequest(input *PublishInput) (req *request.Request, output 
 // on the notification protocol for each subscribed endpoint.
 //
 // When a messageId is returned, the message is saved and Amazon SNS immediately
-// deliverers it to subscribers.
+// delivers it to subscribers.
 //
 // To use the Publish action for publishing a message to a mobile endpoint,
 // such as an app on a Kindle device or mobile phone, you must specify the EndpointArn
