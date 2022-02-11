@@ -118,7 +118,7 @@ type {{ $esapi.Name }} struct {
 // is called.
 {{- end }}
 //
-//   es := New{{ $esapi.Name }}(func(o *{{ $esapi.Name}}{
+//   es := New{{ $esapi.Name }}(func(o *{{ $esapi.Name}}){
 {{- if $inputStream }}
 //       es.Writer = myMockStreamWriter
 {{- end }}

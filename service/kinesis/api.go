@@ -3320,7 +3320,7 @@ type SubscribeToShardEventStream struct {
 // (e.g. http.Response.Body), that will be closed when the stream Close method
 // is called.
 //
-//   es := NewSubscribeToShardEventStream(func(o *SubscribeToShardEventStream{
+//   es := NewSubscribeToShardEventStream(func(o *SubscribeToShardEventStream){
 //       es.Reader = myMockStreamReader
 //       es.StreamCloser = myMockStreamCloser
 //   })

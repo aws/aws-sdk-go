@@ -763,7 +763,7 @@ type StartConversationEventStream struct {
 //
 // The Reader member must be set before reading events from the stream.
 //
-//   es := NewStartConversationEventStream(func(o *StartConversationEventStream{
+//   es := NewStartConversationEventStream(func(o *StartConversationEventStream){
 //       es.Writer = myMockStreamWriter
 //       es.Reader = myMockStreamReader
 //   })

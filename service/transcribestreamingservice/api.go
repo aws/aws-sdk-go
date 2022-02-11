@@ -193,7 +193,7 @@ type StartMedicalStreamTranscriptionEventStream struct {
 //
 // The Reader member must be set before reading events from the stream.
 //
-//   es := NewStartMedicalStreamTranscriptionEventStream(func(o *StartMedicalStreamTranscriptionEventStream{
+//   es := NewStartMedicalStreamTranscriptionEventStream(func(o *StartMedicalStreamTranscriptionEventStream){
 //       es.Writer = myMockStreamWriter
 //       es.Reader = myMockStreamReader
 //   })
@@ -585,7 +585,7 @@ type StartStreamTranscriptionEventStream struct {
 //
 // The Reader member must be set before reading events from the stream.
 //
-//   es := NewStartStreamTranscriptionEventStream(func(o *StartStreamTranscriptionEventStream{
+//   es := NewStartStreamTranscriptionEventStream(func(o *StartStreamTranscriptionEventStream){
 //       es.Writer = myMockStreamWriter
 //       es.Reader = myMockStreamReader
 //   })
