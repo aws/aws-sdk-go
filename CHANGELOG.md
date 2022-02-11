@@ -1,3 +1,10 @@
+Release v1.42.52 (2022-02-11)
+===
+
+### Service Client Updates
+* `service/ssm`: Updates service API
+  * Documentation updates for AWS Systems Manager.
+
 Release v1.42.51 (2022-02-10)
 ===
 
