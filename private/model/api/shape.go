@@ -70,6 +70,9 @@ type ShapeRef struct {
 
 	// Flag whether the member reference is a Account ID when endpoint shape ARN is present
 	AccountIDMemberWithARN bool
+
+	// Flags that the member was modeled as JSONValue but suppressed by the SDK.
+	SuppressedJSONValue bool `json:"-"`
 }
 
 // A Shape defines the definition of a shape type
@@ -468,12 +471,16 @@ func (s ShapeTags) String() string {
 func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 	tags := append(ShapeTags{}, ref.CustomTags...)
 
+	var location string
 	if ref.Location != "" {
 		tags = append(tags, ShapeTag{"location", ref.Location})
+		location = ref.Location
 	} else if ref.Shape.Location != "" {
 		tags = append(tags, ShapeTag{"location", ref.Shape.Location})
+		location = ref.Shape.Location
 	} else if ref.IsEventHeader {
 		tags = append(tags, ShapeTag{"location", "header"})
+		location = "header"
 	}
 
 	if ref.LocationName != "" {
@@ -516,6 +523,10 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 				Val: format,
 			})
 		}
+	}
+	// Value that is encoded as a header that needs to be base64 encoded
+	if ref.SuppressedJSONValue && location == "header" {
+		tags = append(tags, ShapeTag{"suppressedJSONValue", "true"})
 	}
 
 	if ref.Shape.Flattened || ref.Flattened {

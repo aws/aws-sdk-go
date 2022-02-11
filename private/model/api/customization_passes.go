@@ -442,7 +442,7 @@ func removeUnsupportedShapeRefJSONValue(a *API, parentName, refName string, ref 
 		if !found && err == nil {
 			log.Println("removing JSONValue", a.PackageName(), parentName, refName)
 			ref.JSONValue = false
-			//ref.ShapeName = ref.Shape.ShapeName
+			ref.SuppressedJSONValue = true
 		}
 	}()
 
