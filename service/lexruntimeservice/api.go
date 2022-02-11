@@ -2184,7 +2184,7 @@ type PostContentInput struct {
 	// ActiveContexts is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PostContentInput's
 	// String and GoString methods.
-	ActiveContexts *string `location:"header" locationName:"x-amz-lex-active-contexts" type:"string" sensitive:"true"`
+	ActiveContexts *string `location:"header" locationName:"x-amz-lex-active-contexts" type:"string" suppressedJSONValue:"true" sensitive:"true"`
 
 	// Alias of the Amazon Lex bot.
 	//
@@ -2397,14 +2397,14 @@ type PostContentOutput struct {
 	// ActiveContexts is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PostContentOutput's
 	// String and GoString methods.
-	ActiveContexts *string `location:"header" locationName:"x-amz-lex-active-contexts" type:"string" sensitive:"true"`
+	ActiveContexts *string `location:"header" locationName:"x-amz-lex-active-contexts" type:"string" suppressedJSONValue:"true" sensitive:"true"`
 
 	// One to four alternative intents that may be applicable to the user's intent.
 	//
 	// Each alternative includes a score that indicates how confident Amazon Lex
 	// is that the intent matches the user's intent. The intents are sorted by the
 	// confidence score.
-	AlternativeIntents *string `location:"header" locationName:"x-amz-lex-alternative-intents" type:"string"`
+	AlternativeIntents *string `location:"header" locationName:"x-amz-lex-alternative-intents" type:"string" suppressedJSONValue:"true"`
 
 	// The prompt (or statement) to convey to the user. This is based on the bot
 	// configuration and context. For example, if Amazon Lex did not understand
@@ -3434,7 +3434,7 @@ type PutSessionOutput struct {
 	// ActiveContexts is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PutSessionOutput's
 	// String and GoString methods.
-	ActiveContexts *string `location:"header" locationName:"x-amz-lex-active-contexts" type:"string" sensitive:"true"`
+	ActiveContexts *string `location:"header" locationName:"x-amz-lex-active-contexts" type:"string" suppressedJSONValue:"true" sensitive:"true"`
 
 	// The audio version of the message to convey to the user.
 	AudioStream io.ReadCloser `locationName:"audioStream" type:"blob"`
