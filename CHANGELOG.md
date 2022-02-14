@@ -1,3 +1,13 @@
+Release v1.42.53 (2022-02-14)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/athena`: Updates service API and documentation
+  * This release adds a subfield, ErrorType, to the AthenaError response object in the GetQueryExecution API when a query fails.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Adds support for determining which Aurora PostgreSQL versions support Babelfish.
+
 Release v1.42.52 (2022-02-11)
 ===
 

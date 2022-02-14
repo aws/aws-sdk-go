@@ -268,7 +268,8 @@
         "S3DestinationProperties$bucketName": "<p> The Amazon S3 bucket name in which Amazon AppFlow places the transferred data. </p>",
         "S3SourceProperties$bucketName": "<p> The Amazon S3 bucket name where the source files are stored. </p>",
         "SnowflakeConnectorProfileProperties$bucketName": "<p> The name of the Amazon S3 bucket associated with Snowflake. </p>",
-        "SnowflakeDestinationProperties$intermediateBucketName": "<p> The intermediate bucket that Amazon AppFlow uses when moving data into Snowflake. </p>"
+        "SnowflakeDestinationProperties$intermediateBucketName": "<p> The intermediate bucket that Amazon AppFlow uses when moving data into Snowflake. </p>",
+        "SuccessResponseHandlingConfig$bucketName": "<p>The name of the Amazon S3 bucket.</p>"
       }
     },
     "BucketPrefix": {
@@ -281,6 +282,7 @@
         "S3SourceProperties$bucketPrefix": "<p> The object key for the Amazon S3 bucket in which the source files are stored. </p>",
         "SnowflakeConnectorProfileProperties$bucketPrefix": "<p> The bucket path that refers to the Amazon S3 bucket associated with Snowflake. </p>",
         "SnowflakeDestinationProperties$bucketPrefix": "<p> The object key for the destination bucket in which Amazon AppFlow places the files. </p>",
+        "SuccessResponseHandlingConfig$bucketPrefix": "<p>The Amazon S3 bucket prefix.</p>",
         "UpsolverDestinationProperties$bucketPrefix": "<p> The object key for the destination Upsolver Amazon S3 bucket in which Amazon AppFlow places the files. </p>"
       }
     },
@@ -1008,6 +1010,7 @@
         "EventBridgeDestinationProperties$errorHandlingConfig": null,
         "HoneycodeDestinationProperties$errorHandlingConfig": null,
         "RedshiftDestinationProperties$errorHandlingConfig": "<p> The settings that determine how Amazon AppFlow handles an error when placing data in the Amazon Redshift destination. For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the destination connector details. </p>",
+        "SAPODataDestinationProperties$errorHandlingConfig": null,
         "SalesforceDestinationProperties$errorHandlingConfig": "<p> The settings that determine how Amazon AppFlow handles an error when placing data in the Salesforce destination. For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the destination connector details. </p>",
         "SnowflakeDestinationProperties$errorHandlingConfig": "<p> The settings that determine how Amazon AppFlow handles an error when placing data in the Snowflake destination. For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the destination connector details. </p>",
         "ZendeskDestinationProperties$errorHandlingConfig": null
@@ -1242,6 +1245,7 @@
       "base": "<p> A list of field names that can be used as an ID field when performing a write operation. </p>",
       "refs": {
         "CustomConnectorDestinationProperties$idFieldNames": "<p>The name of the field that Amazon AppFlow uses as an ID when performing a write operation such as update, delete, or upsert.</p>",
+        "SAPODataDestinationProperties$idFieldNames": null,
         "SalesforceDestinationProperties$idFieldNames": "<p> The name of the field that Amazon AppFlow uses as an ID when performing a write operation such as update or delete. </p>",
         "ZendeskDestinationProperties$idFieldNames": null
       }
@@ -1548,6 +1552,7 @@
         "InforNexusSourceProperties$object": "<p> The object specified in the Infor Nexus flow source. </p>",
         "MarketoSourceProperties$object": "<p> The object specified in the Marketo flow source. </p>",
         "RedshiftDestinationProperties$object": "<p> The object specified in the Amazon Redshift flow destination. </p>",
+        "SAPODataDestinationProperties$objectPath": "<p>The object path specified in the SAPOData flow destination.</p>",
         "SAPODataSourceProperties$objectPath": "<p> The object path specified in the SAPOData flow source. </p>",
         "SalesforceDestinationProperties$object": "<p> The object specified in the Salesforce flow destination. </p>",
         "SalesforceSourceProperties$object": "<p> The object specified in the Salesforce flow source. </p>",
@@ -1824,6 +1829,12 @@
         "ConnectorProfileProperties$SAPOData": null
       }
     },
+    "SAPODataDestinationProperties": {
+      "base": "<p>The properties that are applied when using SAPOData as a flow destination</p>",
+      "refs": {
+        "DestinationConnectorProperties$SAPOData": "<p>The properties required to query SAPOData.</p>"
+      }
+    },
     "SAPODataMetadata": {
       "base": "<p> The connector metadata specific to SAPOData. </p>",
       "refs": {
@@ -2086,6 +2097,12 @@
         "FieldTypeDetails$valueRegexPattern": "<p>The regular expression pattern for the field name.</p>",
         "FieldTypeDetails$supportedDateFormat": "<p>The date format that the field supports.</p>",
         "SourceFields$member": null
+      }
+    },
+    "SuccessResponseHandlingConfig": {
+      "base": "<p>Determines how Amazon AppFlow handles the success response that it gets from the connector after placing data.</p> <p>For example, this setting would determine where to write the response from the destination connector upon a successful insert operation.</p>",
+      "refs": {
+        "SAPODataDestinationProperties$successResponseHandlingConfig": "<p>Determines how Amazon AppFlow handles the success response that it gets from the connector after placing data.</p> <p>For example, this setting would determine where to write the response from a destination connector upon a successful insert operation.</p>"
       }
     },
     "SupportedApiVersion": {
@@ -2411,6 +2428,7 @@
       "base": "<p> The possible write operations in the destination connector. When this value is not provided, this defaults to the <code>INSERT</code> operation. </p>",
       "refs": {
         "CustomConnectorDestinationProperties$writeOperationType": "<p>Specifies the type of write operation to be performed in the custom connector when it's used as destination.</p>",
+        "SAPODataDestinationProperties$writeOperationType": null,
         "SalesforceDestinationProperties$writeOperationType": "<p> This specifies the type of write operation to be performed in Salesforce. When the value is <code>UPSERT</code>, then <code>idFieldNames</code> is required. </p>",
         "SupportedWriteOperationList$member": null,
         "ZendeskDestinationProperties$writeOperationType": null
