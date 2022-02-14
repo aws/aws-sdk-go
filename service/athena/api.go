@@ -1380,13 +1380,6 @@ func (c *Athena) GetQueryResultsRequest(input *GetQueryResultsInput) (req *reque
 // in the Amazon Athena User Guide. This request does not execute the query
 // but returns results. Use StartQueryExecution to run a query.
 //
-// If the original query execution ran using an ResultConfiguration$ExpectedBucketOwner
-// setting, the setting also applies to Amazon S3 read operations when GetQueryResults
-// is called. If an expected bucket owner has been specified and the query results
-// are in an Amazon S3 bucket whose owner account ID is different from the expected
-// bucket owner, the GetQueryResults call fails with an Amazon S3 permissions
-// error.
-//
 // To stream query results successfully, the IAM principal with permission to
 // call GetQueryResults also must have permissions to the Amazon S3 GetObject
 // action for the Athena query results location.
@@ -3558,6 +3551,11 @@ type AthenaError struct {
 	//
 	// 3 - Unknown
 	ErrorCategory *int64 `min:"1" type:"integer"`
+
+	// An integer value that provides specific information about an Athena query
+	// error. For the meaning of specific values, see the Error Type Reference (https://docs.aws.amazon.com/athena/latest/ug/error-reference.html#error-reference-error-type-reference)
+	// in the Amazon Athena User Guide.
+	ErrorType *int64 `type:"integer"`
 }
 
 // String returns the string representation.
@@ -3581,6 +3579,12 @@ func (s AthenaError) GoString() string {
 // SetErrorCategory sets the ErrorCategory field's value.
 func (s *AthenaError) SetErrorCategory(v int64) *AthenaError {
 	s.ErrorCategory = &v
+	return s
+}
+
+// SetErrorType sets the ErrorType field's value.
+func (s *AthenaError) SetErrorType(v int64) *AthenaError {
+	s.ErrorType = &v
 	return s
 }
 
@@ -7800,7 +7804,7 @@ type ResultConfigurationUpdates struct {
 	// be ignored and set to null. If set to "false" or not set, and a value is
 	// present in the EncryptionConfiguration in ResultConfigurationUpdates (the
 	// client-side setting), the EncryptionConfiguration in the workgroup's ResultConfiguration
-	// is updated with the new value. For more information, see Workgroup Settings
+	// will be updated with the new value. For more information, see Workgroup Settings
 	// Override Client-Side Settings (https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html).
 	RemoveEncryptionConfiguration *bool `type:"boolean"`
 
@@ -7816,9 +7820,9 @@ type ResultConfigurationUpdates struct {
 	// (also known as a client-side setting) for queries in this workgroup should
 	// be ignored and set to null. If set to "false" or not set, and a value is
 	// present in the OutputLocation in ResultConfigurationUpdates (the client-side
-	// setting), the OutputLocation in the workgroup's ResultConfiguration is updated
-	// with the new value. For more information, see Workgroup Settings Override
-	// Client-Side Settings (https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html).
+	// setting), the OutputLocation in the workgroup's ResultConfiguration will
+	// be updated with the new value. For more information, see Workgroup Settings
+	// Override Client-Side Settings (https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html).
 	RemoveOutputLocation *bool `type:"boolean"`
 }
 

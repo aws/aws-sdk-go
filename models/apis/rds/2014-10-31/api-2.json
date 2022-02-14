@@ -3969,7 +3969,8 @@
         "DBEngineVersionArn":{"shape":"String"},
         "KMSKeyId":{"shape":"String"},
         "CreateTime":{"shape":"TStamp"},
-        "TagList":{"shape":"TagList"}
+        "TagList":{"shape":"TagList"},
+        "SupportsBabelfish":{"shape":"Boolean"}
       }
     },
     "DBEngineVersionList":{
@@ -8388,7 +8389,8 @@
         "IsMajorVersionUpgrade":{"shape":"Boolean"},
         "SupportedEngineModes":{"shape":"EngineModeList"},
         "SupportsParallelQuery":{"shape":"BooleanOptional"},
-        "SupportsGlobalDatabases":{"shape":"BooleanOptional"}
+        "SupportsGlobalDatabases":{"shape":"BooleanOptional"},
+        "SupportsBabelfish":{"shape":"BooleanOptional"}
       }
     },
     "UserAuthConfig":{

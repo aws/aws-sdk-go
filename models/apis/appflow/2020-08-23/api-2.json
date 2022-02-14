@@ -1338,7 +1338,8 @@
         "Honeycode":{"shape":"HoneycodeDestinationProperties"},
         "CustomerProfiles":{"shape":"CustomerProfilesDestinationProperties"},
         "Zendesk":{"shape":"ZendeskDestinationProperties"},
-        "CustomConnector":{"shape":"CustomConnectorDestinationProperties"}
+        "CustomConnector":{"shape":"CustomConnectorDestinationProperties"},
+        "SAPOData":{"shape":"SAPODataDestinationProperties"}
       }
     },
     "DestinationField":{
@@ -2415,6 +2416,17 @@
         "oAuthProperties":{"shape":"OAuthProperties"}
       }
     },
+    "SAPODataDestinationProperties":{
+      "type":"structure",
+      "required":["objectPath"],
+      "members":{
+        "objectPath":{"shape":"Object"},
+        "successResponseHandlingConfig":{"shape":"SuccessResponseHandlingConfig"},
+        "idFieldNames":{"shape":"IdFieldNameList"},
+        "errorHandlingConfig":{"shape":"ErrorHandlingConfig"},
+        "writeOperationType":{"shape":"WriteOperationType"}
+      }
+    },
     "SAPODataMetadata":{
       "type":"structure",
       "members":{
@@ -2837,6 +2849,13 @@
       "max":2048,
       "pattern":".*"
     },
+    "SuccessResponseHandlingConfig":{
+      "type":"structure",
+      "members":{
+        "bucketPrefix":{"shape":"BucketPrefix"},
+        "bucketName":{"shape":"BucketName"}
+      }
+    },
     "SupportedApiVersion":{
       "type":"string",
       "max":256,
@@ -2937,6 +2956,7 @@
         "Map_all",
         "Mask",
         "Merge",
+        "Passthrough",
         "Truncate",
         "Validate"
       ]

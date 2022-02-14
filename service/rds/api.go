@@ -18638,6 +18638,10 @@ type CreateCustomDBEngineVersionOutput struct {
 	// of the CreateDBInstance action.
 	SupportedTimezones []*Timezone `locationNameList:"Timezone" type:"list"`
 
+	// A value that indicates whether the engine version supports Babelfish for
+	// Aurora PostgreSQL.
+	SupportsBabelfish *bool `type:"boolean"`
+
 	// A value that indicates whether you can use Aurora global databases with a
 	// specific DB engine version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
@@ -18791,6 +18795,12 @@ func (s *CreateCustomDBEngineVersionOutput) SetSupportedNcharCharacterSets(v []*
 // SetSupportedTimezones sets the SupportedTimezones field's value.
 func (s *CreateCustomDBEngineVersionOutput) SetSupportedTimezones(v []*Timezone) *CreateCustomDBEngineVersionOutput {
 	s.SupportedTimezones = v
+	return s
+}
+
+// SetSupportsBabelfish sets the SupportsBabelfish field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetSupportsBabelfish(v bool) *CreateCustomDBEngineVersionOutput {
+	s.SupportsBabelfish = &v
 	return s
 }
 
@@ -25316,6 +25326,10 @@ type DBEngineVersion struct {
 	// of the CreateDBInstance action.
 	SupportedTimezones []*Timezone `locationNameList:"Timezone" type:"list"`
 
+	// A value that indicates whether the engine version supports Babelfish for
+	// Aurora PostgreSQL.
+	SupportsBabelfish *bool `type:"boolean"`
+
 	// A value that indicates whether you can use Aurora global databases with a
 	// specific DB engine version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
@@ -25469,6 +25483,12 @@ func (s *DBEngineVersion) SetSupportedNcharCharacterSets(v []*CharacterSet) *DBE
 // SetSupportedTimezones sets the SupportedTimezones field's value.
 func (s *DBEngineVersion) SetSupportedTimezones(v []*Timezone) *DBEngineVersion {
 	s.SupportedTimezones = v
+	return s
+}
+
+// SetSupportsBabelfish sets the SupportsBabelfish field's value.
+func (s *DBEngineVersion) SetSupportsBabelfish(v bool) *DBEngineVersion {
+	s.SupportsBabelfish = &v
 	return s
 }
 
@@ -28368,6 +28388,10 @@ type DeleteCustomDBEngineVersionOutput struct {
 	// of the CreateDBInstance action.
 	SupportedTimezones []*Timezone `locationNameList:"Timezone" type:"list"`
 
+	// A value that indicates whether the engine version supports Babelfish for
+	// Aurora PostgreSQL.
+	SupportsBabelfish *bool `type:"boolean"`
+
 	// A value that indicates whether you can use Aurora global databases with a
 	// specific DB engine version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
@@ -28521,6 +28545,12 @@ func (s *DeleteCustomDBEngineVersionOutput) SetSupportedNcharCharacterSets(v []*
 // SetSupportedTimezones sets the SupportedTimezones field's value.
 func (s *DeleteCustomDBEngineVersionOutput) SetSupportedTimezones(v []*Timezone) *DeleteCustomDBEngineVersionOutput {
 	s.SupportedTimezones = v
+	return s
+}
+
+// SetSupportsBabelfish sets the SupportsBabelfish field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetSupportsBabelfish(v bool) *DeleteCustomDBEngineVersionOutput {
+	s.SupportsBabelfish = &v
 	return s
 }
 
@@ -31442,18 +31472,18 @@ type DescribeDBClustersInput struct {
 	//
 	// Supported filters:
 	//
-	//    * clone-group-id - Accepts clone group identifiers. The results list will
-	//    only include information about the DB clusters associated with these clone
+	//    * clone-group-id - Accepts clone group identifiers. The results list only
+	//    includes information about the DB clusters associated with these clone
 	//    groups.
 	//
 	//    * db-cluster-id - Accepts DB cluster identifiers and DB cluster Amazon
-	//    Resource Names (ARNs). The results list will only include information
-	//    about the DB clusters identified by these ARNs.
+	//    Resource Names (ARNs). The results list only includes information about
+	//    the DB clusters identified by these ARNs.
 	//
-	//    * domain - Accepts Active Directory directory IDs. The results list will
-	//    only include information about the DB clusters associated with these domains.
+	//    * domain - Accepts Active Directory directory IDs. The results list only
+	//    includes information about the DB clusters associated with these domains.
 	//
-	//    * engine - Accepts engine names. The results list will only include information
+	//    * engine - Accepts engine names. The results list only includes information
 	//    about the DB clusters for these engines.
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
 
@@ -31638,7 +31668,28 @@ type DescribeDBEngineVersionsInput struct {
 	// Example: 5.1.49
 	EngineVersion *string `type:"string"`
 
-	// This parameter isn't currently supported.
+	// A filter that specifies one or more DB engine versions to describe.
+	//
+	// Supported filters:
+	//
+	//    * db-parameter-group-family - Accepts parameter groups family names. The
+	//    results list only includes information about the DB engine versions for
+	//    these parameter group families.
+	//
+	//    * engine - Accepts engine names. The results list only includes information
+	//    about the DB engine versions for these engines.
+	//
+	//    * engine-mode - Accepts DB engine modes. The results list only includes
+	//    information about the DB engine versions for these engine modes. Valid
+	//    DB engine modes are the following: global multimaster parallelquery provisioned
+	//    serverless
+	//
+	//    * engine-version - Accepts engine versions. The results list only includes
+	//    information about the DB engine versions for these engine versions.
+	//
+	//    * status - Accepts engine version statuses. The results list only includes
+	//    information about the DB engine versions for these statuses. Valid statuses
+	//    are the following: available deprecated
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
 
 	// A value that indicates whether to include engine versions that aren't available
@@ -32009,23 +32060,21 @@ type DescribeDBInstancesInput struct {
 	// Supported filters:
 	//
 	//    * db-cluster-id - Accepts DB cluster identifiers and DB cluster Amazon
-	//    Resource Names (ARNs). The results list will only include information
-	//    about the DB instances associated with the DB clusters identified by these
-	//    ARNs.
+	//    Resource Names (ARNs). The results list only includes information about
+	//    the DB instances associated with the DB clusters identified by these ARNs.
 	//
 	//    * db-instance-id - Accepts DB instance identifiers and DB instance Amazon
-	//    Resource Names (ARNs). The results list will only include information
-	//    about the DB instances identified by these ARNs.
+	//    Resource Names (ARNs). The results list only includes information about
+	//    the DB instances identified by these ARNs.
 	//
 	//    * dbi-resource-id - Accepts DB instance resource identifiers. The results
 	//    list will only include information about the DB instances identified by
 	//    these DB instance resource identifiers.
 	//
-	//    * domain - Accepts Active Directory directory IDs. The results list will
-	//    only include information about the DB instances associated with these
-	//    domains.
+	//    * domain - Accepts Active Directory directory IDs. The results list only
+	//    includes information about the DB instances associated with these domains.
 	//
-	//    * engine - Accepts engine names. The results list will only include information
+	//    * engine - Accepts engine names. The results list only includes information
 	//    about the DB instances for these engines.
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
 
@@ -35496,12 +35545,12 @@ type DescribePendingMaintenanceActionsInput struct {
 	// Supported filters:
 	//
 	//    * db-cluster-id - Accepts DB cluster identifiers and DB cluster Amazon
-	//    Resource Names (ARNs). The results list will only include pending maintenance
+	//    Resource Names (ARNs). The results list only includes pending maintenance
 	//    actions for the DB clusters identified by these ARNs.
 	//
 	//    * db-instance-id - Accepts DB instance identifiers and DB instance ARNs.
-	//    The results list will only include pending maintenance actions for the
-	//    DB instances identified by these ARNs.
+	//    The results list only includes pending maintenance actions for the DB
+	//    instances identified by these ARNs.
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
 
 	// An optional pagination token provided by a previous DescribePendingMaintenanceActions
@@ -38641,6 +38690,10 @@ type ModifyCustomDBEngineVersionOutput struct {
 	// of the CreateDBInstance action.
 	SupportedTimezones []*Timezone `locationNameList:"Timezone" type:"list"`
 
+	// A value that indicates whether the engine version supports Babelfish for
+	// Aurora PostgreSQL.
+	SupportsBabelfish *bool `type:"boolean"`
+
 	// A value that indicates whether you can use Aurora global databases with a
 	// specific DB engine version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
@@ -38794,6 +38847,12 @@ func (s *ModifyCustomDBEngineVersionOutput) SetSupportedNcharCharacterSets(v []*
 // SetSupportedTimezones sets the SupportedTimezones field's value.
 func (s *ModifyCustomDBEngineVersionOutput) SetSupportedTimezones(v []*Timezone) *ModifyCustomDBEngineVersionOutput {
 	s.SupportedTimezones = v
+	return s
+}
+
+// SetSupportsBabelfish sets the SupportsBabelfish field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetSupportsBabelfish(v bool) *ModifyCustomDBEngineVersionOutput {
+	s.SupportsBabelfish = &v
 	return s
 }
 
@@ -39155,8 +39214,8 @@ type ModifyDBClusterInput struct {
 	// The name of the DB parameter group to apply to all instances of the DB cluster.
 	//
 	// When you apply a parameter group using the DBInstanceParameterGroupName parameter,
-	// the DB cluster isn't rebooted automatically. Also, parameter changes aren't
-	// applied during the next maintenance window but instead are applied immediately.
+	// the DB cluster isn't rebooted automatically. Also, parameter changes are
+	// applied immediately rather than during the next maintenance window.
 	//
 	// Default: The existing name setting
 	//
@@ -39165,8 +39224,8 @@ type ModifyDBClusterInput struct {
 	//    * The DB parameter group must be in the same DB parameter group family
 	//    as this DB cluster.
 	//
-	//    * The DBInstanceParameterGroupName parameter is only valid in combination
-	//    with the AllowMajorVersionUpgrade parameter.
+	//    * The DBInstanceParameterGroupName parameter is valid in combination with
+	//    the AllowMajorVersionUpgrade parameter for a major version upgrade only.
 	//
 	// Valid for: Aurora DB clusters only
 	DBInstanceParameterGroupName *string `type:"string"`
@@ -46108,7 +46167,7 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// see DB Instance Class (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
 	// in the Amazon RDS User Guide.
 	//
-	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
+	// Valid for: Multi-AZ DB clusters only
 	DBClusterInstanceClass *string `type:"string"`
 
 	// The name of the DB cluster parameter group to associate with this DB cluster.
@@ -50943,6 +51002,10 @@ type UpgradeTarget struct {
 	// A list of the supported DB engine modes for the target engine version.
 	SupportedEngineModes []*string `type:"list"`
 
+	// A value that indicates whether you can use Babelfish for Aurora PostgreSQL
+	// with the target engine version.
+	SupportsBabelfish *bool `type:"boolean"`
+
 	// A value that indicates whether you can use Aurora global databases with the
 	// target engine version.
 	SupportsGlobalDatabases *bool `type:"boolean"`
@@ -51003,6 +51066,12 @@ func (s *UpgradeTarget) SetIsMajorVersionUpgrade(v bool) *UpgradeTarget {
 // SetSupportedEngineModes sets the SupportedEngineModes field's value.
 func (s *UpgradeTarget) SetSupportedEngineModes(v []*string) *UpgradeTarget {
 	s.SupportedEngineModes = v
+	return s
+}
+
+// SetSupportsBabelfish sets the SupportsBabelfish field's value.
+func (s *UpgradeTarget) SetSupportsBabelfish(v bool) *UpgradeTarget {
+	s.SupportsBabelfish = &v
 	return s
 }
 

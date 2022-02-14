@@ -6906,6 +6906,9 @@ type DestinationConnectorProperties struct {
 	// The properties required to query Amazon S3.
 	S3 *S3DestinationProperties `type:"structure"`
 
+	// The properties required to query SAPOData.
+	SAPOData *SAPODataDestinationProperties `type:"structure"`
+
 	// The properties required to query Salesforce.
 	Salesforce *SalesforceDestinationProperties `type:"structure"`
 
@@ -6968,6 +6971,11 @@ func (s *DestinationConnectorProperties) Validate() error {
 	if s.S3 != nil {
 		if err := s.S3.Validate(); err != nil {
 			invalidParams.AddNested("S3", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SAPOData != nil {
+		if err := s.SAPOData.Validate(); err != nil {
+			invalidParams.AddNested("SAPOData", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Salesforce != nil {
@@ -7036,6 +7044,12 @@ func (s *DestinationConnectorProperties) SetRedshift(v *RedshiftDestinationPrope
 // SetS3 sets the S3 field's value.
 func (s *DestinationConnectorProperties) SetS3(v *S3DestinationProperties) *DestinationConnectorProperties {
 	s.S3 = v
+	return s
+}
+
+// SetSAPOData sets the SAPOData field's value.
+func (s *DestinationConnectorProperties) SetSAPOData(v *SAPODataDestinationProperties) *DestinationConnectorProperties {
+	s.SAPOData = v
 	return s
 }
 
@@ -10767,6 +10781,109 @@ func (s *SAPODataConnectorProfileProperties) SetPrivateLinkServiceName(v string)
 	return s
 }
 
+// The properties that are applied when using SAPOData as a flow destination
+type SAPODataDestinationProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The settings that determine how Amazon AppFlow handles an error when placing
+	// data in the destination. For example, this setting would determine if the
+	// flow should fail after one insertion error, or continue and attempt to insert
+	// every record regardless of the initial failure. ErrorHandlingConfig is a
+	// part of the destination connector details.
+	ErrorHandlingConfig *ErrorHandlingConfig `locationName:"errorHandlingConfig" type:"structure"`
+
+	// A list of field names that can be used as an ID field when performing a write
+	// operation.
+	IdFieldNames []*string `locationName:"idFieldNames" type:"list"`
+
+	// The object path specified in the SAPOData flow destination.
+	//
+	// ObjectPath is a required field
+	ObjectPath *string `locationName:"objectPath" type:"string" required:"true"`
+
+	// Determines how Amazon AppFlow handles the success response that it gets from
+	// the connector after placing data.
+	//
+	// For example, this setting would determine where to write the response from
+	// a destination connector upon a successful insert operation.
+	SuccessResponseHandlingConfig *SuccessResponseHandlingConfig `locationName:"successResponseHandlingConfig" type:"structure"`
+
+	// The possible write operations in the destination connector. When this value
+	// is not provided, this defaults to the INSERT operation.
+	WriteOperationType *string `locationName:"writeOperationType" type:"string" enum:"WriteOperationType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SAPODataDestinationProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SAPODataDestinationProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SAPODataDestinationProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SAPODataDestinationProperties"}
+	if s.ObjectPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("ObjectPath"))
+	}
+	if s.ErrorHandlingConfig != nil {
+		if err := s.ErrorHandlingConfig.Validate(); err != nil {
+			invalidParams.AddNested("ErrorHandlingConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SuccessResponseHandlingConfig != nil {
+		if err := s.SuccessResponseHandlingConfig.Validate(); err != nil {
+			invalidParams.AddNested("SuccessResponseHandlingConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetErrorHandlingConfig sets the ErrorHandlingConfig field's value.
+func (s *SAPODataDestinationProperties) SetErrorHandlingConfig(v *ErrorHandlingConfig) *SAPODataDestinationProperties {
+	s.ErrorHandlingConfig = v
+	return s
+}
+
+// SetIdFieldNames sets the IdFieldNames field's value.
+func (s *SAPODataDestinationProperties) SetIdFieldNames(v []*string) *SAPODataDestinationProperties {
+	s.IdFieldNames = v
+	return s
+}
+
+// SetObjectPath sets the ObjectPath field's value.
+func (s *SAPODataDestinationProperties) SetObjectPath(v string) *SAPODataDestinationProperties {
+	s.ObjectPath = &v
+	return s
+}
+
+// SetSuccessResponseHandlingConfig sets the SuccessResponseHandlingConfig field's value.
+func (s *SAPODataDestinationProperties) SetSuccessResponseHandlingConfig(v *SuccessResponseHandlingConfig) *SAPODataDestinationProperties {
+	s.SuccessResponseHandlingConfig = v
+	return s
+}
+
+// SetWriteOperationType sets the WriteOperationType field's value.
+func (s *SAPODataDestinationProperties) SetWriteOperationType(v string) *SAPODataDestinationProperties {
+	s.WriteOperationType = &v
+	return s
+}
+
 // The connector metadata specific to SAPOData.
 type SAPODataMetadata struct {
 	_ struct{} `type:"structure"`
@@ -12731,6 +12848,64 @@ func (s *StopFlowOutput) SetFlowArn(v string) *StopFlowOutput {
 // SetFlowStatus sets the FlowStatus field's value.
 func (s *StopFlowOutput) SetFlowStatus(v string) *StopFlowOutput {
 	s.FlowStatus = &v
+	return s
+}
+
+// Determines how Amazon AppFlow handles the success response that it gets from
+// the connector after placing data.
+//
+// For example, this setting would determine where to write the response from
+// the destination connector upon a successful insert operation.
+type SuccessResponseHandlingConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon S3 bucket.
+	BucketName *string `locationName:"bucketName" min:"3" type:"string"`
+
+	// The Amazon S3 bucket prefix.
+	BucketPrefix *string `locationName:"bucketPrefix" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SuccessResponseHandlingConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SuccessResponseHandlingConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SuccessResponseHandlingConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SuccessResponseHandlingConfig"}
+	if s.BucketName != nil && len(*s.BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *SuccessResponseHandlingConfig) SetBucketName(v string) *SuccessResponseHandlingConfig {
+	s.BucketName = &v
+	return s
+}
+
+// SetBucketPrefix sets the BucketPrefix field's value.
+func (s *SuccessResponseHandlingConfig) SetBucketPrefix(v string) *SuccessResponseHandlingConfig {
+	s.BucketPrefix = &v
 	return s
 }
 
@@ -16045,6 +16220,9 @@ const (
 	// TaskTypeMerge is a TaskType enum value
 	TaskTypeMerge = "Merge"
 
+	// TaskTypePassthrough is a TaskType enum value
+	TaskTypePassthrough = "Passthrough"
+
 	// TaskTypeTruncate is a TaskType enum value
 	TaskTypeTruncate = "Truncate"
 
@@ -16061,6 +16239,7 @@ func TaskType_Values() []string {
 		TaskTypeMapAll,
 		TaskTypeMask,
 		TaskTypeMerge,
+		TaskTypePassthrough,
 		TaskTypeTruncate,
 		TaskTypeValidate,
 	}

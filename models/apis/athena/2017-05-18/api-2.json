@@ -480,7 +480,8 @@
     "AthenaError":{
       "type":"structure",
       "members":{
-        "ErrorCategory":{"shape":"ErrorCategory"}
+        "ErrorCategory":{"shape":"ErrorCategory"},
+        "ErrorType":{"shape":"ErrorType"}
       }
     },
     "BatchGetNamedQueryInput":{
@@ -810,6 +811,12 @@
       "min":1
     },
     "ErrorMessage":{"type":"string"},
+    "ErrorType":{
+      "type":"integer",
+      "box":true,
+      "max":9999,
+      "min":0
+    },
     "ExpressionString":{
       "type":"string",
       "max":256,
