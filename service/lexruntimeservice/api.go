@@ -2180,7 +2180,11 @@ type PostContentInput struct {
 	// If you don't specify a list of contexts, Amazon Lex will use the current
 	// list of contexts for the session. If you specify an empty list, all contexts
 	// for the session are cleared.
-	ActiveContexts aws.JSONValue `location:"header" locationName:"x-amz-lex-active-contexts" type:"jsonvalue"`
+	//
+	// ActiveContexts is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PostContentInput's
+	// String and GoString methods.
+	ActiveContexts *string `location:"header" locationName:"x-amz-lex-active-contexts" type:"string" suppressedJSONValue:"true" sensitive:"true"`
 
 	// Alias of the Amazon Lex bot.
 	//
@@ -2334,8 +2338,8 @@ func (s *PostContentInput) SetAccept(v string) *PostContentInput {
 }
 
 // SetActiveContexts sets the ActiveContexts field's value.
-func (s *PostContentInput) SetActiveContexts(v aws.JSONValue) *PostContentInput {
-	s.ActiveContexts = v
+func (s *PostContentInput) SetActiveContexts(v string) *PostContentInput {
+	s.ActiveContexts = &v
 	return s
 }
 
@@ -2389,14 +2393,18 @@ type PostContentOutput struct {
 	//
 	// You can use a context to control the intents that can follow up an intent,
 	// or to modify the operation of your application.
-	ActiveContexts aws.JSONValue `location:"header" locationName:"x-amz-lex-active-contexts" type:"jsonvalue"`
+	//
+	// ActiveContexts is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PostContentOutput's
+	// String and GoString methods.
+	ActiveContexts *string `location:"header" locationName:"x-amz-lex-active-contexts" type:"string" suppressedJSONValue:"true" sensitive:"true"`
 
 	// One to four alternative intents that may be applicable to the user's intent.
 	//
 	// Each alternative includes a score that indicates how confident Amazon Lex
 	// is that the intent matches the user's intent. The intents are sorted by the
 	// confidence score.
-	AlternativeIntents aws.JSONValue `location:"header" locationName:"x-amz-lex-alternative-intents" type:"jsonvalue"`
+	AlternativeIntents *string `location:"header" locationName:"x-amz-lex-alternative-intents" type:"string" suppressedJSONValue:"true"`
 
 	// The prompt (or statement) to convey to the user. This is based on the bot
 	// configuration and context. For example, if Amazon Lex did not understand
@@ -2610,14 +2618,14 @@ func (s PostContentOutput) GoString() string {
 }
 
 // SetActiveContexts sets the ActiveContexts field's value.
-func (s *PostContentOutput) SetActiveContexts(v aws.JSONValue) *PostContentOutput {
-	s.ActiveContexts = v
+func (s *PostContentOutput) SetActiveContexts(v string) *PostContentOutput {
+	s.ActiveContexts = &v
 	return s
 }
 
 // SetAlternativeIntents sets the AlternativeIntents field's value.
-func (s *PostContentOutput) SetAlternativeIntents(v aws.JSONValue) *PostContentOutput {
-	s.AlternativeIntents = v
+func (s *PostContentOutput) SetAlternativeIntents(v string) *PostContentOutput {
+	s.AlternativeIntents = &v
 	return s
 }
 
@@ -3422,7 +3430,11 @@ type PutSessionOutput struct {
 	_ struct{} `type:"structure" payload:"AudioStream"`
 
 	// A list of active contexts for the session.
-	ActiveContexts aws.JSONValue `location:"header" locationName:"x-amz-lex-active-contexts" type:"jsonvalue"`
+	//
+	// ActiveContexts is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PutSessionOutput's
+	// String and GoString methods.
+	ActiveContexts *string `location:"header" locationName:"x-amz-lex-active-contexts" type:"string" suppressedJSONValue:"true" sensitive:"true"`
 
 	// The audio version of the message to convey to the user.
 	AudioStream io.ReadCloser `locationName:"audioStream" type:"blob"`
@@ -3531,8 +3543,8 @@ func (s PutSessionOutput) GoString() string {
 }
 
 // SetActiveContexts sets the ActiveContexts field's value.
-func (s *PutSessionOutput) SetActiveContexts(v aws.JSONValue) *PutSessionOutput {
-	s.ActiveContexts = v
+func (s *PutSessionOutput) SetActiveContexts(v string) *PutSessionOutput {
+	s.ActiveContexts = &v
 	return s
 }
 

@@ -203,6 +203,11 @@ func (a *API) Setup() error {
 	if err := a.validateNoDocumentShapes(); err != nil {
 		return err
 	}
+	if !a.NoRemoveUnsupportedJSONValue {
+		if err := removeUnsupportedJSONValue(a); err != nil {
+			return fmt.Errorf("failed to remove unsupported JSONValue from API, %v", err)
+		}
+	}
 	a.setServiceAliaseName()
 	a.setMetadataEndpointsKey()
 	a.writeShapeNames()

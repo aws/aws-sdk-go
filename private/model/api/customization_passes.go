@@ -6,6 +6,7 @@ package api
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -396,4 +397,74 @@ func backfillAuthType(typ AuthType, opNames ...string) func(*API) error {
 
 		return nil
 	}
+}
+
+// Must be invoked with the original shape name
+func removeUnsupportedJSONValue(a *API) error {
+	for shapeName, shape := range a.Shapes {
+		switch shape.Type {
+		case "structure":
+			for refName, ref := range shape.MemberRefs {
+				if !ref.JSONValue {
+					continue
+				}
+				if err := removeUnsupportedShapeRefJSONValue(a, shapeName, refName, ref); err != nil {
+					return fmt.Errorf("failed remove unsupported JSONValue from %v.%v, %v",
+						shapeName, refName, err)
+				}
+			}
+		case "list":
+			if !shape.MemberRef.JSONValue {
+				continue
+			}
+			if err := removeUnsupportedShapeRefJSONValue(a, shapeName, "", &shape.MemberRef); err != nil {
+				return fmt.Errorf("failed remove unsupported JSONValue from %v, %v",
+					shapeName, err)
+			}
+		case "map":
+			if !shape.ValueRef.JSONValue {
+				continue
+			}
+			if err := removeUnsupportedShapeRefJSONValue(a, shapeName, "", &shape.ValueRef); err != nil {
+				return fmt.Errorf("failed remove unsupported JSONValue from %v, %v",
+					shapeName, err)
+			}
+		}
+	}
+
+	return nil
+}
+
+func removeUnsupportedShapeRefJSONValue(a *API, parentName, refName string, ref *ShapeRef) (err error) {
+	var found bool
+
+	defer func() {
+		if !found && err == nil {
+			log.Println("removing JSONValue", a.PackageName(), parentName, refName)
+			ref.JSONValue = false
+			ref.SuppressedJSONValue = true
+		}
+	}()
+
+	legacyShapes, ok := legacyJSONValueShapes[a.PackageName()]
+	if !ok {
+		return nil
+	}
+
+	legacyShape, ok := legacyShapes[parentName]
+	if !ok {
+		return nil
+	}
+
+	switch legacyShape.Type {
+	case "structure":
+		_, ok = legacyShape.StructMembers[refName]
+		found = ok
+	case "list":
+		found = legacyShape.ListMemberRef
+	case "map":
+		found = legacyShape.MapValueRef
+	}
+
+	return nil
 }
