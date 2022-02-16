@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>The AWS Budgets API enables you to use AWS Budgets to plan your service usage, service costs, and instance reservations. The API reference provides descriptions, syntax, and usage examples for each of the actions and data types for AWS Budgets. </p> <p>Budgets provide you with a way to see the following information:</p> <ul> <li> <p>How close your plan is to your budgeted amount or to the free tier limits</p> </li> <li> <p>Your usage-to-date, including how much you've used of your Reserved Instances (RIs)</p> </li> <li> <p>Your current estimated charges from AWS, and how much your predicted usage will accrue in charges by the end of the month</p> </li> <li> <p>How much of your budget has been used</p> </li> </ul> <p>AWS updates your budget status several times a day. Budgets track your unblended costs, subscriptions, refunds, and RIs. You can create the following types of budgets:</p> <ul> <li> <p> <b>Cost budgets</b> - Plan how much you want to spend on a service.</p> </li> <li> <p> <b>Usage budgets</b> - Plan how much you want to use one or more services.</p> </li> <li> <p> <b>RI utilization budgets</b> - Define a utilization threshold, and receive alerts when your RI usage falls below that threshold. This lets you see if your RIs are unused or under-utilized.</p> </li> <li> <p> <b>RI coverage budgets</b> - Define a coverage threshold, and receive alerts when the number of your instance hours that are covered by RIs fall below that threshold. This lets you see how much of your instance usage is covered by a reservation.</p> </li> </ul> <p>Service Endpoint</p> <p>The AWS Budgets API provides the following endpoint:</p> <ul> <li> <p>https://budgets.amazonaws.com</p> </li> </ul> <p>For information about costs that are associated with the AWS Budgets API, see <a href=\"https://aws.amazon.com/aws-cost-management/pricing/\">AWS Cost Management Pricing</a>.</p>",
+  "service": "<p>The Amazon Web Services Budgets API enables you to use Amazon Web Services Budgets to plan your service usage, service costs, and instance reservations. The API reference provides descriptions, syntax, and usage examples for each of the actions and data types for Amazon Web Services Budgets. </p> <p>Budgets provide you with a way to see the following information:</p> <ul> <li> <p>How close your plan is to your budgeted amount or to the free tier limits</p> </li> <li> <p>Your usage-to-date, including how much you've used of your Reserved Instances (RIs)</p> </li> <li> <p>Your current estimated charges from Amazon Web Services, and how much your predicted usage will accrue in charges by the end of the month</p> </li> <li> <p>How much of your budget has been used</p> </li> </ul> <p>Amazon Web Services updates your budget status several times a day. Budgets track your unblended costs, subscriptions, refunds, and RIs. You can create the following types of budgets:</p> <ul> <li> <p> <b>Cost budgets</b> - Plan how much you want to spend on a service.</p> </li> <li> <p> <b>Usage budgets</b> - Plan how much you want to use one or more services.</p> </li> <li> <p> <b>RI utilization budgets</b> - Define a utilization threshold, and receive alerts when your RI usage falls below that threshold. This lets you see if your RIs are unused or under-utilized.</p> </li> <li> <p> <b>RI coverage budgets</b> - Define a coverage threshold, and receive alerts when the number of your instance hours that are covered by RIs fall below that threshold. This lets you see how much of your instance usage is covered by a reservation.</p> </li> </ul> <p>Service Endpoint</p> <p>The Amazon Web Services Budgets API provides the following endpoint:</p> <ul> <li> <p>https://budgets.amazonaws.com</p> </li> </ul> <p>For information about costs that are associated with the Amazon Web Services Budgets API, see <a href=\"https://aws.amazon.com/aws-cost-management/pricing/\">Amazon Web Services Cost Management Pricing</a>.</p>",
   "operations": {
     "CreateBudget": "<p>Creates a budget and, if included, notifications and subscribers. </p> <important> <p>Only one of <code>BudgetLimit</code> or <code>PlannedBudgetLimits</code> can be present in the syntax at one time. Use the syntax that matches your case. The Request Syntax section shows the <code>BudgetLimit</code> syntax. For <code>PlannedBudgetLimits</code>, see the <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_CreateBudget.html#API_CreateBudget_Examples\">Examples</a> section. </p> </important>",
     "CreateBudgetAction": "<p> Creates a budget action. </p>",
@@ -20,7 +20,7 @@
     "DescribeNotificationsForBudget": "<p>Lists the notifications that are associated with a budget.</p>",
     "DescribeSubscribersForNotification": "<p>Lists the subscribers that are associated with a notification.</p>",
     "ExecuteBudgetAction": "<p> Executes a budget action. </p>",
-    "UpdateBudget": "<p>Updates a budget. You can change every part of a budget except for the <code>budgetName</code> and the <code>calculatedSpend</code>. When you modify a budget, the <code>calculatedSpend</code> drops to zero until AWS has new usage data to use for forecasting.</p> <important> <p>Only one of <code>BudgetLimit</code> or <code>PlannedBudgetLimits</code> can be present in the syntax at one time. Use the syntax that matches your case. The Request Syntax section shows the <code>BudgetLimit</code> syntax. For <code>PlannedBudgetLimits</code>, see the <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_UpdateBudget.html#API_UpdateBudget_Examples\">Examples</a> section. </p> </important>",
+    "UpdateBudget": "<p>Updates a budget. You can change every part of a budget except for the <code>budgetName</code> and the <code>calculatedSpend</code>. When you modify a budget, the <code>calculatedSpend</code> drops to zero until Amazon Web Services has new usage data to use for forecasting.</p> <important> <p>Only one of <code>BudgetLimit</code> or <code>PlannedBudgetLimits</code> can be present in the syntax at one time. Use the syntax that matches your case. The Request Syntax section shows the <code>BudgetLimit</code> syntax. For <code>PlannedBudgetLimits</code>, see the <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_UpdateBudget.html#API_UpdateBudget_Examples\">Examples</a> section. </p> </important>",
     "UpdateBudgetAction": "<p> Updates a budget action. </p>",
     "UpdateNotification": "<p>Updates a notification.</p>",
     "UpdateSubscriber": "<p>Updates a subscriber.</p>"
@@ -32,7 +32,7 @@
       }
     },
     "AccountId": {
-      "base": "<p>The account ID of the user. It should be a 12-digit number.</p>",
+      "base": "<p>The account ID of the user. It's a 12-digit number.</p>",
       "refs": {
         "CreateBudgetActionRequest$AccountId": null,
         "CreateBudgetActionResponse$AccountId": null,
@@ -64,9 +64,9 @@
       }
     },
     "Action": {
-      "base": "<p> A budget action resource. </p>",
+      "base": "<p>A budget action resource. </p>",
       "refs": {
-        "ActionHistoryDetails$Action": "<p> The budget action resource. </p>",
+        "ActionHistoryDetails$Action": "<p>The budget action resource. </p>",
         "Actions$member": null,
         "DeleteBudgetActionResponse$Action": null,
         "DescribeBudgetActionResponse$Action": "<p> A budget action resource. </p>",
@@ -81,21 +81,21 @@
       }
     },
     "ActionHistory": {
-      "base": "<p> The historical records for a budget action. </p>",
+      "base": "<p>The historical records for a budget action. </p>",
       "refs": {
         "ActionHistories$member": null
       }
     },
     "ActionHistoryDetails": {
-      "base": "<p> The description of details of the event. </p>",
+      "base": "<p>The description of the details for the event. </p>",
       "refs": {
-        "ActionHistory$ActionHistoryDetails": "<p> The description of details of the event. </p>"
+        "ActionHistory$ActionHistoryDetails": "<p>The description of the details for the event. </p>"
       }
     },
     "ActionId": {
       "base": null,
       "refs": {
-        "Action$ActionId": "<p> A system-generated universally unique identifier (UUID) for the action. </p>",
+        "Action$ActionId": "<p>A system-generated universally unique identifier (UUID) for the action. </p>",
         "CreateBudgetActionResponse$ActionId": "<p> A system-generated universally unique identifier (UUID) for the action. </p>",
         "DeleteBudgetActionRequest$ActionId": "<p> A system-generated universally unique identifier (UUID) for the action. </p>",
         "DescribeBudgetActionHistoriesRequest$ActionId": "<p> A system-generated universally unique identifier (UUID) for the action. </p>",
@@ -108,20 +108,20 @@
     "ActionStatus": {
       "base": null,
       "refs": {
-        "Action$Status": "<p> The status of action. </p>",
-        "ActionHistory$Status": "<p> The status of action at the time of the event. </p>"
+        "Action$Status": "<p>The status of the action. </p>",
+        "ActionHistory$Status": "<p>The status of action at the time of the event. </p>"
       }
     },
     "ActionSubType": {
       "base": null,
       "refs": {
-        "SsmActionDefinition$ActionSubType": "<p> The action subType. </p>"
+        "SsmActionDefinition$ActionSubType": "<p>The action subType. </p>"
       }
     },
     "ActionThreshold": {
-      "base": "<p> The trigger threshold of the action. </p>",
+      "base": "<p>The trigger threshold of the action. </p>",
       "refs": {
-        "Action$ActionThreshold": "<p> The trigger threshold of the action. </p>",
+        "Action$ActionThreshold": "<p>The trigger threshold of the action. </p>",
         "CreateBudgetActionRequest$ActionThreshold": null,
         "UpdateBudgetActionRequest$ActionThreshold": null
       }
@@ -129,7 +129,7 @@
     "ActionType": {
       "base": null,
       "refs": {
-        "Action$ActionType": "<p> The type of action. This defines the type of tasks that can be carried out by this action. This field also determines the format for definition. </p>",
+        "Action$ActionType": "<p>The type of action. This defines the type of tasks that can be carried out by this action. This field also determines the format for definition. </p>",
         "CreateBudgetActionRequest$ActionType": "<p> The type of action. This defines the type of tasks that can be carried out by this action. This field also determines the format for definition. </p>"
       }
     },
@@ -140,16 +140,35 @@
         "DescribeBudgetActionsForBudgetResponse$Actions": "<p> A list of the budget action resources information. </p>"
       }
     },
+    "AdjustmentPeriod": {
+      "base": null,
+      "refs": {
+        "HistoricalOptions$BudgetAdjustmentPeriod": "<p>The number of budget periods included in the moving-average calculation that determines your auto-adjusted budget amount. The maximum value depends on the <code>TimeUnit</code> granularity of the budget:</p> <ul> <li> <p>For the <code>DAILY</code> granularity, the maximum value is <code>60</code>.</p> </li> <li> <p>For the <code>MONTHLY</code> granularity, the maximum value is <code>12</code>.</p> </li> <li> <p>For the <code>QUARTERLY</code> granularity, the maximum value is <code>4</code>.</p> </li> <li> <p>For the <code>ANNUALLY</code> granularity, the maximum value is <code>1</code>.</p> </li> </ul>",
+        "HistoricalOptions$LookBackAvailablePeriods": "<p>The integer that describes how many budget periods in your <code>BudgetAdjustmentPeriod</code> are included in the calculation of your current <code>BudgetLimit</code>. If the first budget period in your <code>BudgetAdjustmentPeriod</code> has no cost data, then that budget period isn’t included in the average that determines your budget limit. </p> <p>For example, if you set <code>BudgetAdjustmentPeriod</code> as <code>4</code> quarters, but your account had no cost data in the first quarter, then only the last three quarters are included in the calculation. In this scenario, <code>LookBackAvailablePeriods</code> returns <code>3</code>. </p> <p>You can’t set your own <code>LookBackAvailablePeriods</code>. The value is automatically calculated from the <code>BudgetAdjustmentPeriod</code> and your historical cost data.</p>"
+      }
+    },
     "ApprovalModel": {
       "base": null,
       "refs": {
-        "Action$ApprovalModel": "<p> This specifies if the action needs manual or automatic approval. </p>",
+        "Action$ApprovalModel": "<p>This specifies if the action needs manual or automatic approval. </p>",
         "CreateBudgetActionRequest$ApprovalModel": "<p> This specifies if the action needs manual or automatic approval. </p>",
         "UpdateBudgetActionRequest$ApprovalModel": "<p> This specifies if the action needs manual or automatic approval. </p>"
       }
     },
+    "AutoAdjustData": {
+      "base": "<p>The parameters that determine the budget amount for an auto-adjusting budget.</p>",
+      "refs": {
+        "Budget$AutoAdjustData": "<p>The parameters that determine the budget amount for an auto-adjusting budget.</p>"
+      }
+    },
+    "AutoAdjustType": {
+      "base": null,
+      "refs": {
+        "AutoAdjustData$AutoAdjustType": "<p>The string that defines whether your budget auto-adjusts based on historical or forecasted data.</p>"
+      }
+    },
     "Budget": {
-      "base": "<p>Represents the output of the <code>CreateBudget</code> operation. The content consists of the detailed metadata and data file information, and the current status of the <code>budget</code> object.</p> <p>This is the ARN pattern for a budget: </p> <p> <code>arn:aws:budgets::AccountId:budget/budgetName</code> </p>",
+      "base": "<p>Represents the output of the <code>CreateBudget</code> operation. The content consists of the detailed metadata and data file information, and the current status of the <code>budget</code> object.</p> <p>This is the Amazon Resource Name (ARN) pattern for a budget: </p> <p> <code>arn:aws:budgets::AccountId:budget/budgetName</code> </p>",
       "refs": {
         "Budgets$member": null,
         "CreateBudgetRequest$Budget": "<p>The budget object that you want to create.</p>",
@@ -165,7 +184,7 @@
         "BudgetPerformanceHistory$BudgetName": null,
         "CreateBudgetActionRequest$BudgetName": null,
         "CreateBudgetActionResponse$BudgetName": null,
-        "CreateNotificationRequest$BudgetName": "<p>The name of the budget that you want AWS to notify you about. Budget names must be unique within an account.</p>",
+        "CreateNotificationRequest$BudgetName": "<p>The name of the budget that you want Amazon Web Services to notify you about. Budget names must be unique within an account.</p>",
         "CreateSubscriberRequest$BudgetName": "<p>The name of the budget that you want to subscribe to. Budget names must be unique within an account.</p>",
         "DeleteBudgetActionRequest$BudgetName": null,
         "DeleteBudgetActionResponse$BudgetName": null,
@@ -197,7 +216,7 @@
     "BudgetType": {
       "base": "<p> The type of a budget. It must be one of the following types: </p> <p> <code>COST</code>, <code>USAGE</code>, <code>RI_UTILIZATION</code>, <code>RI_COVERAGE</code>, <code>SAVINGS_PLANS_UTILIZATION</code>, or <code>SAVINGS_PLANS_COVERAGE</code>.</p>",
       "refs": {
-        "Budget$BudgetType": "<p>Whether this budget tracks costs, usage, RI utilization, RI coverage, Savings Plans utilization, or Savings Plans coverage.</p>",
+        "Budget$BudgetType": "<p>Specifies whether this budget tracks costs, usage, RI utilization, RI coverage, Savings Plans utilization, or Savings Plans coverage.</p>",
         "BudgetPerformanceHistory$BudgetType": null
       }
     },
@@ -210,7 +229,7 @@
     "BudgetedAndActualAmountsList": {
       "base": null,
       "refs": {
-        "BudgetPerformanceHistory$BudgetedAndActualAmountsList": "<p>A list of amounts of cost or usage that you created budgets for, compared to your actual costs or usage.</p>"
+        "BudgetPerformanceHistory$BudgetedAndActualAmountsList": "<p>A list of amounts of cost or usage that you created budgets for, which are compared to your actual costs or usage.</p>"
       }
     },
     "Budgets": {
@@ -220,26 +239,26 @@
       }
     },
     "CalculatedSpend": {
-      "base": "<p>The spend objects that are associated with this budget. The <code>actualSpend</code> tracks how much you've used, cost, usage, RI units, or Savings Plans units and the <code>forecastedSpend</code> tracks how much you are predicted to spend based on your historical usage profile.</p> <p>For example, if it is the 20th of the month and you have spent <code>50</code> dollars on Amazon EC2, your <code>actualSpend</code> is <code>50 USD</code>, and your <code>forecastedSpend</code> is <code>75 USD</code>.</p>",
+      "base": "<p>The spend objects that are associated with this budget. The <code>actualSpend</code> tracks how much you've used, cost, usage, RI units, or Savings Plans units and the <code>forecastedSpend</code> tracks how much that you're predicted to spend based on your historical usage profile.</p> <p>For example, if it's the 20th of the month and you have spent <code>50</code> dollars on Amazon EC2, your <code>actualSpend</code> is <code>50 USD</code>, and your <code>forecastedSpend</code> is <code>75 USD</code>.</p>",
       "refs": {
         "Budget$CalculatedSpend": "<p>The actual and forecasted cost or usage that the budget tracks.</p>"
       }
     },
     "ComparisonOperator": {
-      "base": "<p> The comparison operator of a notification. Currently the service supports the following operators:</p> <p> <code>GREATER_THAN</code>, <code>LESS_THAN</code>, <code>EQUAL_TO</code> </p>",
+      "base": "<p> The comparison operator of a notification. Currently, the service supports the following operators:</p> <p> <code>GREATER_THAN</code>, <code>LESS_THAN</code>, <code>EQUAL_TO</code> </p>",
       "refs": {
-        "Notification$ComparisonOperator": "<p>The comparison that is used for this notification.</p>"
+        "Notification$ComparisonOperator": "<p>The comparison that's used for this notification.</p>"
       }
     },
     "CostFilters": {
       "base": "<p> A map that represents the cost filters that are applied to the budget.</p>",
       "refs": {
-        "Budget$CostFilters": "<p>The cost filters, such as service or tag, that are applied to a budget.</p> <p>AWS Budgets supports the following services as a filter for RI budgets:</p> <ul> <li> <p>Amazon Elastic Compute Cloud - Compute</p> </li> <li> <p>Amazon Redshift</p> </li> <li> <p>Amazon Relational Database Service</p> </li> <li> <p>Amazon ElastiCache</p> </li> <li> <p>Amazon Elasticsearch Service</p> </li> </ul>",
+        "Budget$CostFilters": "<p>The cost filters, such as <code>Region</code>, <code>Service</code>, <code>member account</code>, <code>Tag</code>, or <code>Cost Category</code>, that are applied to a budget.</p> <p>Amazon Web Services Budgets supports the following services as a <code>Service</code> filter for RI budgets:</p> <ul> <li> <p>Amazon EC2</p> </li> <li> <p>Amazon Redshift</p> </li> <li> <p>Amazon Relational Database Service</p> </li> <li> <p>Amazon ElastiCache</p> </li> <li> <p>Amazon OpenSearch Service</p> </li> </ul>",
         "BudgetPerformanceHistory$CostFilters": "<p>The history of the cost filters for a budget during the specified time period.</p>"
       }
     },
     "CostTypes": {
-      "base": "<p>The types of cost that are included in a <code>COST</code> budget, such as tax and subscriptions.</p> <p> <code>USAGE</code>, <code>RI_UTILIZATION</code>, <code>RI_COVERAGE</code>, <code>SAVINGS_PLANS_UTILIZATION</code>, and <code>SAVINGS_PLANS_COVERAGE</code> budgets do not have <code>CostTypes</code>.</p>",
+      "base": "<p>The types of cost that are included in a <code>COST</code> budget, such as tax and subscriptions.</p> <p> <code>USAGE</code>, <code>RI_UTILIZATION</code>, <code>RI_COVERAGE</code>, <code>SAVINGS_PLANS_UTILIZATION</code>, and <code>SAVINGS_PLANS_COVERAGE</code> budgets don't have <code>CostTypes</code>.</p>",
       "refs": {
         "Budget$CostTypes": "<p>The types of costs that are included in this <code>COST</code> budget.</p> <p> <code>USAGE</code>, <code>RI_UTILIZATION</code>, <code>RI_COVERAGE</code>, <code>SAVINGS_PLANS_UTILIZATION</code>, and <code>SAVINGS_PLANS_COVERAGE</code> budgets do not have <code>CostTypes</code>.</p>",
         "BudgetPerformanceHistory$CostTypes": "<p>The history of the cost types for a budget during the specified time period.</p>"
@@ -291,9 +310,9 @@
       }
     },
     "Definition": {
-      "base": "<p> Specifies all of the type-specific parameters. </p>",
+      "base": "<p>Specifies all of the type-specific parameters. </p>",
       "refs": {
-        "Action$Definition": "<p> Where you specify all of the type-specific parameters. </p>",
+        "Action$Definition": "<p>Where you specify all of the type-specific parameters. </p>",
         "CreateBudgetActionRequest$Definition": null,
         "UpdateBudgetActionRequest$Definition": null
       }
@@ -442,7 +461,7 @@
     "EventType": {
       "base": null,
       "refs": {
-        "ActionHistory$EventType": "<p> This distinguishes between whether the events are triggered by the user or generated by the system. </p>"
+        "ActionHistory$EventType": "<p>This distinguishes between whether the events are triggered by the user or are generated by the system. </p>"
       }
     },
     "ExecuteBudgetActionRequest": {
@@ -491,12 +510,13 @@
       }
     },
     "GenericTimestamp": {
-      "base": "<p> A generic time stamp. In Java, it is transformed to a <code>Date</code> object.</p>",
+      "base": "<p> A generic time stamp. In Java, it's transformed to a <code>Date</code> object.</p>",
       "refs": {
         "ActionHistory$Timestamp": null,
+        "AutoAdjustData$LastAutoAdjustTime": "<p>The last time that your budget was auto-adjusted.</p>",
         "Budget$LastUpdatedTime": "<p>The last time that you updated this budget.</p>",
-        "TimePeriod$Start": "<p>The start date for a budget. If you created your budget and didn't specify a start date, AWS defaults to the start of your chosen time period (DAILY, MONTHLY, QUARTERLY, or ANNUALLY). For example, if you created your budget on January 24, 2018, chose <code>DAILY</code>, and didn't set a start date, AWS set your start date to <code>01/24/18 00:00 UTC</code>. If you chose <code>MONTHLY</code>, AWS set your start date to <code>01/01/18 00:00 UTC</code>. The defaults are the same for the AWS Billing and Cost Management console and the API.</p> <p>You can change your start date with the <code>UpdateBudget</code> operation.</p>",
-        "TimePeriod$End": "<p>The end date for a budget. If you didn't specify an end date, AWS set your end date to <code>06/15/87 00:00 UTC</code>. The defaults are the same for the AWS Billing and Cost Management console and the API.</p> <p>After the end date, AWS deletes the budget and all associated notifications and subscribers. You can change your end date with the <code>UpdateBudget</code> operation.</p>"
+        "TimePeriod$Start": "<p>The start date for a budget. If you created your budget and didn't specify a start date, Amazon Web Services defaults to the start of your chosen time period (DAILY, MONTHLY, QUARTERLY, or ANNUALLY). For example, if you created your budget on January 24, 2018, chose <code>DAILY</code>, and didn't set a start date, Amazon Web Services set your start date to <code>01/24/18 00:00 UTC</code>. If you chose <code>MONTHLY</code>, Amazon Web Services set your start date to <code>01/01/18 00:00 UTC</code>. The defaults are the same for the Billing and Cost Management console and the API.</p> <p>You can change your start date with the <code>UpdateBudget</code> operation.</p>",
+        "TimePeriod$End": "<p>The end date for a budget. If you didn't specify an end date, Amazon Web Services set your end date to <code>06/15/87 00:00 UTC</code>. The defaults are the same for the Billing and Cost Management console and the API.</p> <p>After the end date, Amazon Web Services deletes the budget and all the associated notifications and subscribers. You can change your end date with the <code>UpdateBudget</code> operation.</p>"
       }
     },
     "Group": {
@@ -508,13 +528,19 @@
     "Groups": {
       "base": null,
       "refs": {
-        "IamActionDefinition$Groups": "<p> A list of groups to be attached. There must be at least one group. </p>"
+        "IamActionDefinition$Groups": "<p>A list of groups to be attached. There must be at least one group. </p>"
+      }
+    },
+    "HistoricalOptions": {
+      "base": "<p>The parameters that define or describe the historical data that your auto-adjusting budget is based on.</p>",
+      "refs": {
+        "AutoAdjustData$HistoricalOptions": "<p>The parameters that define or describe the historical data that your auto-adjusting budget is based on.</p>"
       }
     },
     "IamActionDefinition": {
-      "base": "<p> The AWS Identity and Access Management (IAM) action definition details. </p>",
+      "base": "<p>The Identity and Access Management (IAM) action definition details. </p>",
       "refs": {
-        "Definition$IamActionDefinition": "<p> The AWS Identity and Access Management (IAM) action definition details. </p>"
+        "Definition$IamActionDefinition": "<p>The Identity and Access Management (IAM) action definition details. </p>"
       }
     },
     "InstanceId": {
@@ -526,7 +552,7 @@
     "InstanceIds": {
       "base": null,
       "refs": {
-        "SsmActionDefinition$InstanceIds": "<p> The EC2 and RDS instance IDs. </p>"
+        "SsmActionDefinition$InstanceIds": "<p>The EC2 and RDS instance IDs. </p>"
       }
     },
     "InternalErrorException": {
@@ -562,14 +588,14 @@
       }
     },
     "Notification": {
-      "base": "<p>A notification that is associated with a budget. A budget can have up to ten notifications. </p> <p>Each notification must have at least one subscriber. A notification can have one SNS subscriber and up to 10 email subscribers, for a total of 11 subscribers.</p> <p>For example, if you have a budget for 200 dollars and you want to be notified when you go over 160 dollars, create a notification with the following parameters:</p> <ul> <li> <p>A notificationType of <code>ACTUAL</code> </p> </li> <li> <p>A <code>thresholdType</code> of <code>PERCENTAGE</code> </p> </li> <li> <p>A <code>comparisonOperator</code> of <code>GREATER_THAN</code> </p> </li> <li> <p>A notification <code>threshold</code> of <code>80</code> </p> </li> </ul>",
+      "base": "<p>A notification that's associated with a budget. A budget can have up to ten notifications. </p> <p>Each notification must have at least one subscriber. A notification can have one SNS subscriber and up to 10 email subscribers, for a total of 11 subscribers.</p> <p>For example, if you have a budget for 200 dollars and you want to be notified when you go over 160 dollars, create a notification with the following parameters:</p> <ul> <li> <p>A notificationType of <code>ACTUAL</code> </p> </li> <li> <p>A <code>thresholdType</code> of <code>PERCENTAGE</code> </p> </li> <li> <p>A <code>comparisonOperator</code> of <code>GREATER_THAN</code> </p> </li> <li> <p>A notification <code>threshold</code> of <code>80</code> </p> </li> </ul>",
       "refs": {
         "CreateNotificationRequest$Notification": "<p>The notification that you want to create.</p>",
         "CreateSubscriberRequest$Notification": "<p>The notification that you want to create a subscriber for.</p>",
         "DeleteNotificationRequest$Notification": "<p>The notification that you want to delete.</p>",
         "DeleteSubscriberRequest$Notification": "<p>The notification whose subscriber you want to delete.</p>",
         "DescribeSubscribersForNotificationRequest$Notification": "<p>The notification whose subscribers you want to list.</p>",
-        "NotificationWithSubscribers$Notification": "<p>The notification that is associated with a budget.</p>",
+        "NotificationWithSubscribers$Notification": "<p>The notification that's associated with a budget.</p>",
         "Notifications$member": null,
         "UpdateNotificationRequest$OldNotification": "<p>The previous notification that is associated with a budget.</p>",
         "UpdateNotificationRequest$NewNotification": "<p>The updated notification to be associated with a budget.</p>",
@@ -579,14 +605,14 @@
     "NotificationState": {
       "base": null,
       "refs": {
-        "Notification$NotificationState": "<p>Whether this notification is in alarm. If a budget notification is in the <code>ALARM</code> state, you have passed the set threshold for the budget.</p>"
+        "Notification$NotificationState": "<p>Specifies whether this notification is in alarm. If a budget notification is in the <code>ALARM</code> state, you passed the set threshold for the budget.</p>"
       }
     },
     "NotificationThreshold": {
       "base": "<p> The threshold of a notification.</p>",
       "refs": {
         "ActionThreshold$ActionThresholdValue": null,
-        "Notification$Threshold": "<p>The threshold that is associated with a notification. Thresholds are always a percentage, and many customers find value being alerted between 50% - 200% of the budgeted amount. The maximum limit for your threshold is 1,000,000% above the budgeted amount.</p>"
+        "Notification$Threshold": "<p>The threshold that's associated with a notification. Thresholds are always a percentage, and many customers find value being alerted between 50% - 200% of the budgeted amount. The maximum limit for your threshold is 1,000,000% above the budgeted amount.</p>"
       }
     },
     "NotificationType": {
@@ -594,7 +620,7 @@
       "refs": {
         "Action$NotificationType": null,
         "CreateBudgetActionRequest$NotificationType": null,
-        "Notification$NotificationType": "<p>Whether the notification is for how much you have spent (<code>ACTUAL</code>) or for how much you're forecasted to spend (<code>FORECASTED</code>).</p>",
+        "Notification$NotificationType": "<p>Specifies whether the notification is for how much you have spent (<code>ACTUAL</code>) or for how much that you're forecasted to spend (<code>FORECASTED</code>).</p>",
         "UpdateBudgetActionRequest$NotificationType": null
       }
     },
@@ -607,7 +633,7 @@
     "NotificationWithSubscribersList": {
       "base": "<p> A list of notifications, each with a list of subscribers.</p>",
       "refs": {
-        "CreateBudgetRequest$NotificationsWithSubscribers": "<p>A notification that you want to associate with a budget. A budget can have up to five notifications, and each notification can have one SNS subscriber and up to 10 email subscribers. If you include notifications and subscribers in your <code>CreateBudget</code> call, AWS creates the notifications and subscribers for you.</p>"
+        "CreateBudgetRequest$NotificationsWithSubscribers": "<p>A notification that you want to associate with a budget. A budget can have up to five notifications, and each notification can have one SNS subscriber and up to 10 email subscribers. If you include notifications and subscribers in your <code>CreateBudget</code> call, Amazon Web Services creates the notifications and subscribers for you.</p>"
       }
     },
     "Notifications": {
@@ -635,31 +661,31 @@
     "NumericValue": {
       "base": "<p> A string that represents a numeric value.</p>",
       "refs": {
-        "Spend$Amount": "<p>The cost or usage amount that is associated with a budget forecast, actual spend, or budget threshold.</p>"
+        "Spend$Amount": "<p>The cost or usage amount that's associated with a budget forecast, actual spend, or budget threshold.</p>"
       }
     },
     "PlannedBudgetLimits": {
       "base": null,
       "refs": {
-        "Budget$PlannedBudgetLimits": "<p>A map containing multiple <code>BudgetLimit</code>, including current or future limits.</p> <p> <code>PlannedBudgetLimits</code> is available for cost or usage budget and supports monthly and quarterly <code>TimeUnit</code>. </p> <p>For monthly budgets, provide 12 months of <code>PlannedBudgetLimits</code> values. This must start from the current month and include the next 11 months. The <code>key</code> is the start of the month, <code>UTC</code> in epoch seconds. </p> <p>For quarterly budgets, provide 4 quarters of <code>PlannedBudgetLimits</code> value entries in standard calendar quarter increments. This must start from the current quarter and include the next 3 quarters. The <code>key</code> is the start of the quarter, <code>UTC</code> in epoch seconds. </p> <p>If the planned budget expires before 12 months for monthly or 4 quarters for quarterly, provide the <code>PlannedBudgetLimits</code> values only for the remaining periods.</p> <p>If the budget begins at a date in the future, provide <code>PlannedBudgetLimits</code> values from the start date of the budget. </p> <p>After all of the <code>BudgetLimit</code> values in <code>PlannedBudgetLimits</code> are used, the budget continues to use the last limit as the <code>BudgetLimit</code>. At that point, the planned budget provides the same experience as a fixed budget. </p> <p> <code>DescribeBudget</code> and <code>DescribeBudgets</code> response along with <code>PlannedBudgetLimits</code> will also contain <code>BudgetLimit</code> representing the current month or quarter limit present in <code>PlannedBudgetLimits</code>. This only applies to budgets created with <code>PlannedBudgetLimits</code>. Budgets created without <code>PlannedBudgetLimits</code> will only contain <code>BudgetLimit</code>, and no <code>PlannedBudgetLimits</code>.</p>"
+        "Budget$PlannedBudgetLimits": "<p>A map containing multiple <code>BudgetLimit</code>, including current or future limits.</p> <p> <code>PlannedBudgetLimits</code> is available for cost or usage budget and supports both monthly and quarterly <code>TimeUnit</code>. </p> <p>For monthly budgets, provide 12 months of <code>PlannedBudgetLimits</code> values. This must start from the current month and include the next 11 months. The <code>key</code> is the start of the month, <code>UTC</code> in epoch seconds. </p> <p>For quarterly budgets, provide four quarters of <code>PlannedBudgetLimits</code> value entries in standard calendar quarter increments. This must start from the current quarter and include the next three quarters. The <code>key</code> is the start of the quarter, <code>UTC</code> in epoch seconds. </p> <p>If the planned budget expires before 12 months for monthly or four quarters for quarterly, provide the <code>PlannedBudgetLimits</code> values only for the remaining periods.</p> <p>If the budget begins at a date in the future, provide <code>PlannedBudgetLimits</code> values from the start date of the budget. </p> <p>After all of the <code>BudgetLimit</code> values in <code>PlannedBudgetLimits</code> are used, the budget continues to use the last limit as the <code>BudgetLimit</code>. At that point, the planned budget provides the same experience as a fixed budget. </p> <p> <code>DescribeBudget</code> and <code>DescribeBudgets</code> response along with <code>PlannedBudgetLimits</code> also contain <code>BudgetLimit</code> representing the current month or quarter limit present in <code>PlannedBudgetLimits</code>. This only applies to budgets that are created with <code>PlannedBudgetLimits</code>. Budgets that are created without <code>PlannedBudgetLimits</code> only contain <code>BudgetLimit</code>. They don't contain <code>PlannedBudgetLimits</code>.</p>"
       }
     },
     "PolicyArn": {
       "base": null,
       "refs": {
-        "IamActionDefinition$PolicyArn": "<p> The Amazon Resource Name (ARN) of the policy to be attached. </p>"
+        "IamActionDefinition$PolicyArn": "<p>The Amazon Resource Name (ARN) of the policy to be attached. </p>"
       }
     },
     "PolicyId": {
       "base": null,
       "refs": {
-        "ScpActionDefinition$PolicyId": "<p> The policy ID attached. </p>"
+        "ScpActionDefinition$PolicyId": "<p>The policy ID attached. </p>"
       }
     },
     "Region": {
       "base": null,
       "refs": {
-        "SsmActionDefinition$Region": "<p> The Region to run the SSM document. </p>"
+        "SsmActionDefinition$Region": "<p>The Region to run the SSM document. </p>"
       }
     },
     "ResourceLockedException": {
@@ -676,7 +702,7 @@
     "RoleArn": {
       "base": null,
       "refs": {
-        "Action$ExecutionRoleArn": "<p> The role passed for action execution and reversion. Roles and actions must be in the same account. </p>",
+        "Action$ExecutionRoleArn": "<p>The role passed for action execution and reversion. Roles and actions must be in the same account. </p>",
         "CreateBudgetActionRequest$ExecutionRoleArn": "<p> The role passed for action execution and reversion. Roles and actions must be in the same account. </p>",
         "UpdateBudgetActionRequest$ExecutionRoleArn": "<p> The role passed for action execution and reversion. Roles and actions must be in the same account. </p>"
       }
@@ -684,34 +710,34 @@
     "Roles": {
       "base": null,
       "refs": {
-        "IamActionDefinition$Roles": "<p> A list of roles to be attached. There must be at least one role. </p>"
+        "IamActionDefinition$Roles": "<p>A list of roles to be attached. There must be at least one role. </p>"
       }
     },
     "ScpActionDefinition": {
-      "base": "<p> The service control policies (SCP) action definition details. </p>",
+      "base": "<p>The service control policies (SCP) action definition details. </p>",
       "refs": {
-        "Definition$ScpActionDefinition": "<p> The service control policies (SCPs) action definition details. </p>"
+        "Definition$ScpActionDefinition": "<p>The service control policies (SCPs) action definition details. </p>"
       }
     },
     "Spend": {
-      "base": "<p>The amount of cost or usage that is measured for a budget.</p> <p>For example, a <code>Spend</code> for <code>3 GB</code> of S3 usage would have the following parameters:</p> <ul> <li> <p>An <code>Amount</code> of <code>3</code> </p> </li> <li> <p>A <code>unit</code> of <code>GB</code> </p> </li> </ul>",
+      "base": "<p>The amount of cost or usage that's measured for a budget.</p> <p>For example, a <code>Spend</code> for <code>3 GB</code> of S3 usage has the following parameters:</p> <ul> <li> <p>An <code>Amount</code> of <code>3</code> </p> </li> <li> <p>A <code>unit</code> of <code>GB</code> </p> </li> </ul>",
       "refs": {
-        "Budget$BudgetLimit": "<p>The total amount of cost, usage, RI utilization, RI coverage, Savings Plans utilization, or Savings Plans coverage that you want to track with your budget.</p> <p> <code>BudgetLimit</code> is required for cost or usage budgets, but optional for RI or Savings Plans utilization or coverage budgets. RI and Savings Plans utilization or coverage budgets default to <code>100</code>, which is the only valid value for RI or Savings Plans utilization or coverage budgets. You can't use <code>BudgetLimit</code> with <code>PlannedBudgetLimits</code> for <code>CreateBudget</code> and <code>UpdateBudget</code> actions. </p>",
+        "Budget$BudgetLimit": "<p>The total amount of cost, usage, RI utilization, RI coverage, Savings Plans utilization, or Savings Plans coverage that you want to track with your budget.</p> <p> <code>BudgetLimit</code> is required for cost or usage budgets, but optional for RI or Savings Plans utilization or coverage budgets. RI and Savings Plans utilization or coverage budgets default to <code>100</code>. This is the only valid value for RI or Savings Plans utilization or coverage budgets. You can't use <code>BudgetLimit</code> with <code>PlannedBudgetLimits</code> for <code>CreateBudget</code> and <code>UpdateBudget</code> actions. </p>",
         "BudgetedAndActualAmounts$BudgetedAmount": "<p>The amount of cost or usage that you created the budget for.</p>",
         "BudgetedAndActualAmounts$ActualAmount": "<p>Your actual costs or usage for a budget period.</p>",
-        "CalculatedSpend$ActualSpend": "<p>The amount of cost, usage, RI units, or Savings Plans units that you have used.</p>",
-        "CalculatedSpend$ForecastedSpend": "<p>The amount of cost, usage, RI units, or Savings Plans units that you are forecasted to use.</p>",
+        "CalculatedSpend$ActualSpend": "<p>The amount of cost, usage, RI units, or Savings Plans units that you used.</p>",
+        "CalculatedSpend$ForecastedSpend": "<p>The amount of cost, usage, RI units, or Savings Plans units that you're forecasted to use.</p>",
         "PlannedBudgetLimits$value": null
       }
     },
     "SsmActionDefinition": {
-      "base": "<p> The AWS Systems Manager (SSM) action definition details. </p>",
+      "base": "<p>The Amazon Web Services Systems Manager (SSM) action definition details. </p>",
       "refs": {
-        "Definition$SsmActionDefinition": "<p> The AWS Systems Manager (SSM) action definition details. </p>"
+        "Definition$SsmActionDefinition": "<p>The Amazon Web Services Systems Manager (SSM) action definition details. </p>"
       }
     },
     "Subscriber": {
-      "base": "<p>The subscriber to a budget notification. The subscriber consists of a subscription type and either an Amazon SNS topic or an email address.</p> <p>For example, an email subscriber would have the following parameters:</p> <ul> <li> <p>A <code>subscriptionType</code> of <code>EMAIL</code> </p> </li> <li> <p>An <code>address</code> of <code>example@example.com</code> </p> </li> </ul>",
+      "base": "<p>The subscriber to a budget notification. The subscriber consists of a subscription type and either an Amazon SNS topic or an email address.</p> <p>For example, an email subscriber has the following parameters:</p> <ul> <li> <p>A <code>subscriptionType</code> of <code>EMAIL</code> </p> </li> <li> <p>An <code>address</code> of <code>example@example.com</code> </p> </li> </ul>",
       "refs": {
         "CreateSubscriberRequest$Subscriber": "<p>The subscriber that you want to associate with a budget notification.</p>",
         "DeleteSubscriberRequest$Subscriber": "<p>The subscriber that you want to delete.</p>",
@@ -723,7 +749,7 @@
     "SubscriberAddress": {
       "base": "<p> A string that contains an email address or SNS topic for the subscriber's address.</p>",
       "refs": {
-        "Subscriber$Address": "<p>The address that AWS sends budget notifications to, either an SNS topic or an email.</p> <p>When you create a subscriber, the value of <code>Address</code> can't contain line breaks.</p>"
+        "Subscriber$Address": "<p>The address that Amazon Web Services sends budget notifications to, either an SNS topic or an email.</p> <p>When you create a subscriber, the value of <code>Address</code> can't contain line breaks.</p>"
       }
     },
     "Subscribers": {
@@ -740,7 +766,7 @@
     "SubscriptionType": {
       "base": "<p> The subscription type of the subscriber. It can be SMS or EMAIL.</p>",
       "refs": {
-        "Subscriber$SubscriptionType": "<p>The type of notification that AWS sends to a subscriber.</p>"
+        "Subscriber$SubscriptionType": "<p>The type of notification that Amazon Web Services sends to a subscriber.</p>"
       }
     },
     "TargetId": {
@@ -752,21 +778,21 @@
     "TargetIds": {
       "base": null,
       "refs": {
-        "ScpActionDefinition$TargetIds": "<p> A list of target IDs. </p>"
+        "ScpActionDefinition$TargetIds": "<p>A list of target IDs. </p>"
       }
     },
     "ThresholdType": {
       "base": "<p> The type of threshold for a notification.</p>",
       "refs": {
         "ActionThreshold$ActionThresholdType": null,
-        "Notification$ThresholdType": "<p>The type of threshold for a notification. For <code>ABSOLUTE_VALUE</code> thresholds, AWS notifies you when you go over or are forecasted to go over your total cost threshold. For <code>PERCENTAGE</code> thresholds, AWS notifies you when you go over or are forecasted to go over a certain percentage of your forecasted spend. For example, if you have a budget for 200 dollars and you have a <code>PERCENTAGE</code> threshold of 80%, AWS notifies you when you go over 160 dollars.</p>"
+        "Notification$ThresholdType": "<p>The type of threshold for a notification. For <code>ABSOLUTE_VALUE</code> thresholds, Amazon Web Services notifies you when you go over or are forecasted to go over your total cost threshold. For <code>PERCENTAGE</code> thresholds, Amazon Web Services notifies you when you go over or are forecasted to go over a certain percentage of your forecasted spend. For example, if you have a budget for 200 dollars and you have a <code>PERCENTAGE</code> threshold of 80%, Amazon Web Services notifies you when you go over 160 dollars.</p>"
       }
     },
     "TimePeriod": {
-      "base": "<p>The period of time that is covered by a budget. The period has a start date and an end date. The start date must come before the end date. There are no restrictions on the end date. </p>",
+      "base": "<p>The period of time that's covered by a budget. The period has a start date and an end date. The start date must come before the end date. There are no restrictions on the end date. </p>",
       "refs": {
-        "Budget$TimePeriod": "<p>The period of time that is covered by a budget. The period has a start date and an end date. The start date must come before the end date. The end date must come before <code>06/15/87 00:00 UTC</code>. </p> <p>If you create your budget and don't specify a start date, AWS defaults to the start of your chosen time period (DAILY, MONTHLY, QUARTERLY, or ANNUALLY). For example, if you created your budget on January 24, 2018, chose <code>DAILY</code>, and didn't set a start date, AWS set your start date to <code>01/24/18 00:00 UTC</code>. If you chose <code>MONTHLY</code>, AWS set your start date to <code>01/01/18 00:00 UTC</code>. If you didn't specify an end date, AWS set your end date to <code>06/15/87 00:00 UTC</code>. The defaults are the same for the AWS Billing and Cost Management console and the API. </p> <p>You can change either date with the <code>UpdateBudget</code> operation.</p> <p>After the end date, AWS deletes the budget and all associated notifications and subscribers.</p>",
-        "BudgetedAndActualAmounts$TimePeriod": "<p>The time period covered by this budget comparison.</p>",
+        "Budget$TimePeriod": "<p>The period of time that's covered by a budget. You setthe start date and end date. The start date must come before the end date. The end date must come before <code>06/15/87 00:00 UTC</code>. </p> <p>If you create your budget and don't specify a start date, Amazon Web Services defaults to the start of your chosen time period (DAILY, MONTHLY, QUARTERLY, or ANNUALLY). For example, if you created your budget on January 24, 2018, chose <code>DAILY</code>, and didn't set a start date, Amazon Web Services set your start date to <code>01/24/18 00:00 UTC</code>. If you chose <code>MONTHLY</code>, Amazon Web Services set your start date to <code>01/01/18 00:00 UTC</code>. If you didn't specify an end date, Amazon Web Services set your end date to <code>06/15/87 00:00 UTC</code>. The defaults are the same for the Billing and Cost Management console and the API. </p> <p>You can change either date with the <code>UpdateBudget</code> operation.</p> <p>After the end date, Amazon Web Services deletes the budget and all the associated notifications and subscribers.</p>",
+        "BudgetedAndActualAmounts$TimePeriod": "<p>The time period that's covered by this budget comparison.</p>",
         "DescribeBudgetActionHistoriesRequest$TimePeriod": null,
         "DescribeBudgetPerformanceHistoryRequest$TimePeriod": "<p>Retrieves how often the budget went into an <code>ALARM</code> state for the specified time period.</p>"
       }
@@ -781,7 +807,7 @@
     "UnitValue": {
       "base": "<p> A string that represents the spend unit of a budget. It can't be null or empty.</p>",
       "refs": {
-        "Spend$Unit": "<p>The unit of measurement that is used for the budget forecast, actual spend, or budget threshold, such as dollars or GB.</p>"
+        "Spend$Unit": "<p>The unit of measurement that's used for the budget forecast, actual spend, or budget threshold, such as USD or GBP.</p>"
       }
     },
     "UpdateBudgetActionRequest": {
@@ -833,7 +859,7 @@
     "Users": {
       "base": null,
       "refs": {
-        "IamActionDefinition$Users": "<p> A list of users to be attached. There must be at least one user. </p>"
+        "IamActionDefinition$Users": "<p>A list of users to be attached. There must be at least one user. </p>"
       }
     },
     "errorMessage": {

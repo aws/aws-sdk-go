@@ -492,11 +492,33 @@
       "max":100,
       "min":0
     },
+    "AdjustmentPeriod":{
+      "type":"integer",
+      "box":true,
+      "max":60,
+      "min":1
+    },
     "ApprovalModel":{
       "type":"string",
       "enum":[
         "AUTOMATIC",
         "MANUAL"
+      ]
+    },
+    "AutoAdjustData":{
+      "type":"structure",
+      "required":["AutoAdjustType"],
+      "members":{
+        "AutoAdjustType":{"shape":"AutoAdjustType"},
+        "HistoricalOptions":{"shape":"HistoricalOptions"},
+        "LastAutoAdjustTime":{"shape":"GenericTimestamp"}
+      }
+    },
+    "AutoAdjustType":{
+      "type":"string",
+      "enum":[
+        "HISTORICAL",
+        "FORECAST"
       ]
     },
     "Budget":{
@@ -516,7 +538,8 @@
         "TimePeriod":{"shape":"TimePeriod"},
         "CalculatedSpend":{"shape":"CalculatedSpend"},
         "BudgetType":{"shape":"BudgetType"},
-        "LastUpdatedTime":{"shape":"GenericTimestamp"}
+        "LastUpdatedTime":{"shape":"GenericTimestamp"},
+        "AutoAdjustData":{"shape":"AutoAdjustData"}
       }
     },
     "BudgetName":{
@@ -1059,6 +1082,14 @@
       "member":{"shape":"Group"},
       "max":100,
       "min":1
+    },
+    "HistoricalOptions":{
+      "type":"structure",
+      "required":["BudgetAdjustmentPeriod"],
+      "members":{
+        "BudgetAdjustmentPeriod":{"shape":"AdjustmentPeriod"},
+        "LookBackAvailablePeriods":{"shape":"AdjustmentPeriod"}
+      }
     },
     "IamActionDefinition":{
       "type":"structure",

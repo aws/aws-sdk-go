@@ -14529,9 +14529,6 @@ const (
 	// DimensionLegalEntityName is a Dimension enum value
 	DimensionLegalEntityName = "LEGAL_ENTITY_NAME"
 
-	// DimensionInvoicingEntity is a Dimension enum value
-	DimensionInvoicingEntity = "INVOICING_ENTITY"
-
 	// DimensionDeploymentOption is a Dimension enum value
 	DimensionDeploymentOption = "DEPLOYMENT_OPTION"
 
@@ -14570,6 +14567,9 @@ const (
 
 	// DimensionAgreementEndDateTimeBefore is a Dimension enum value
 	DimensionAgreementEndDateTimeBefore = "AGREEMENT_END_DATE_TIME_BEFORE"
+
+	// DimensionInvoicingEntity is a Dimension enum value
+	DimensionInvoicingEntity = "INVOICING_ENTITY"
 )
 
 // Dimension_Values returns all elements of the Dimension enum
@@ -14593,7 +14593,6 @@ func Dimension_Values() []string {
 		DimensionPlatform,
 		DimensionSubscriptionId,
 		DimensionLegalEntityName,
-		DimensionInvoicingEntity,
 		DimensionDeploymentOption,
 		DimensionDatabaseEngine,
 		DimensionCacheEngine,
@@ -14607,6 +14606,7 @@ func Dimension_Values() []string {
 		DimensionPaymentOption,
 		DimensionAgreementEndDateTimeAfter,
 		DimensionAgreementEndDateTimeBefore,
+		DimensionInvoicingEntity,
 	}
 }
 

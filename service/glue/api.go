@@ -47183,6 +47183,8 @@ type TableData struct {
 	// The last time that the table was updated.
 	UpdateTime *time.Time `type:"timestamp"`
 
+	VersionId *string `min:"1" type:"string"`
+
 	// If the table is a view, the expanded text of the view; otherwise null.
 	ViewExpandedText *string `type:"string"`
 
@@ -47307,6 +47309,12 @@ func (s *TableData) SetTargetTable(v *TableIdentifier) *TableData {
 // SetUpdateTime sets the UpdateTime field's value.
 func (s *TableData) SetUpdateTime(v time.Time) *TableData {
 	s.UpdateTime = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *TableData) SetVersionId(v string) *TableData {
+	s.VersionId = &v
 	return s
 }
 
@@ -50943,6 +50951,8 @@ type UpdateTableInput struct {
 
 	// The transaction ID at which to update the table contents.
 	TransactionId *string `min:"1" type:"string"`
+
+	VersionId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -50980,6 +50990,9 @@ func (s *UpdateTableInput) Validate() error {
 	}
 	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
+	}
+	if s.VersionId != nil && len(*s.VersionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionId", 1))
 	}
 	if s.TableInput != nil {
 		if err := s.TableInput.Validate(); err != nil {
@@ -51020,6 +51033,12 @@ func (s *UpdateTableInput) SetTableInput(v *TableInput) *UpdateTableInput {
 // SetTransactionId sets the TransactionId field's value.
 func (s *UpdateTableInput) SetTransactionId(v string) *UpdateTableInput {
 	s.TransactionId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *UpdateTableInput) SetVersionId(v string) *UpdateTableInput {
+	s.VersionId = &v
 	return s
 }
 

@@ -8023,7 +8023,8 @@
         "CreatedBy":{"shape":"NameString"},
         "IsRegisteredWithLakeFormation":{"shape":"Boolean"},
         "TargetTable":{"shape":"TableIdentifier"},
-        "CatalogId":{"shape":"CatalogIdString"}
+        "CatalogId":{"shape":"CatalogIdString"},
+        "VersionId":{"shape":"VersionString"}
       }
     },
     "TableError":{
@@ -8728,7 +8729,8 @@
         "DatabaseName":{"shape":"NameString"},
         "TableInput":{"shape":"TableInput"},
         "SkipArchive":{"shape":"BooleanNullable"},
-        "TransactionId":{"shape":"TransactionIdString"}
+        "TransactionId":{"shape":"TransactionIdString"},
+        "VersionId":{"shape":"VersionString"}
       }
     },
     "UpdateTableResponse":{
