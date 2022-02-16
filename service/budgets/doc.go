@@ -3,10 +3,10 @@
 // Package budgets provides the client and types for making API
 // requests to AWS Budgets.
 //
-// The AWS Budgets API enables you to use AWS Budgets to plan your service usage,
-// service costs, and instance reservations. The API reference provides descriptions,
-// syntax, and usage examples for each of the actions and data types for AWS
-// Budgets.
+// The Amazon Web Services Budgets API enables you to use Amazon Web Services
+// Budgets to plan your service usage, service costs, and instance reservations.
+// The API reference provides descriptions, syntax, and usage examples for each
+// of the actions and data types for Amazon Web Services Budgets.
 //
 // Budgets provide you with a way to see the following information:
 //
@@ -15,14 +15,14 @@
 //    * Your usage-to-date, including how much you've used of your Reserved
 //    Instances (RIs)
 //
-//    * Your current estimated charges from AWS, and how much your predicted
-//    usage will accrue in charges by the end of the month
+//    * Your current estimated charges from Amazon Web Services, and how much
+//    your predicted usage will accrue in charges by the end of the month
 //
 //    * How much of your budget has been used
 //
-// AWS updates your budget status several times a day. Budgets track your unblended
-// costs, subscriptions, refunds, and RIs. You can create the following types
-// of budgets:
+// Amazon Web Services updates your budget status several times a day. Budgets
+// track your unblended costs, subscriptions, refunds, and RIs. You can create
+// the following types of budgets:
 //
 //    * Cost budgets - Plan how much you want to spend on a service.
 //
@@ -39,12 +39,12 @@
 //
 // Service Endpoint
 //
-// The AWS Budgets API provides the following endpoint:
+// The Amazon Web Services Budgets API provides the following endpoint:
 //
 //    * https://budgets.amazonaws.com
 //
-// For information about costs that are associated with the AWS Budgets API,
-// see AWS Cost Management Pricing (https://aws.amazon.com/aws-cost-management/pricing/).
+// For information about costs that are associated with the Amazon Web Services
+// Budgets API, see Amazon Web Services Cost Management Pricing (https://aws.amazon.com/aws-cost-management/pricing/).
 //
 // See budgets package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/budgets/

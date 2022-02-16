@@ -14026,7 +14026,7 @@ func (c *SSM) TerminateSessionRequest(input *TerminateSessionInput) (req *reques
 // TerminateSession API operation for Amazon Simple Systems Manager (SSM).
 //
 // Permanently ends a session and closes the data connection between the Session
-// Manager client and SSM Agent on the managed node. A terminated session isn't
+// Manager client and SSM Agent on the managed node. A terminated session can't
 // be resumed.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -14198,7 +14198,7 @@ func (c *SSM) UpdateAssociationRequest(input *UpdateAssociationInput) (req *requ
 //
 // Updates an association. You can update the association name and version,
 // the document version, schedule, parameters, and Amazon Simple Storage Service
-// (Amazon S3) output. When you call UpdateAssociation, the system drops all
+// (Amazon S3) output. When you call UpdateAssociation, the system removes all
 // optional parameters from the request and overwrites the association with
 // null values for those parameters. This is by design. You must specify all
 // optional parameters in the call, even if you are not changing the parameters.
@@ -21555,6 +21555,9 @@ type CreateDocumentInput struct {
 	DocumentFormat *string `type:"string" enum:"DocumentFormat"`
 
 	// The type of document to create.
+	//
+	// The DeploymentStrategy document type is an internal-use-only document type
+	// reserved for AppConfig.
 	DocumentType *string `type:"string" enum:"DocumentType"`
 
 	// A name for the SSM document.
@@ -29215,8 +29218,6 @@ func (s *DocumentIdentifier) SetVersionName(v string) *DocumentIdentifier {
 //
 //    * Command
 //
-//    * DeploymentStrategy
-//
 //    * Package
 //
 //    * Policy
@@ -33491,8 +33492,8 @@ type GetParametersByPathInput struct {
 	ParameterFilters []*ParameterStringFilter `type:"list"`
 
 	// The hierarchy for the parameter. Hierarchies start with a forward slash (/).
-	// The hierachy is the parameter name except the last part of the parameter.
-	// For the API call to succeeed, the last part of the parameter name can't be
+	// The hierarchy is the parameter name except the last part of the parameter.
+	// For the API call to succeed, the last part of the parameter name can't be
 	// in the path. A parameter name hierarchy can have a maximum of 15 levels.
 	// Here is an example of a hierarchy: /Finance/Prod/IAD/WinServ2016/license33
 	//
@@ -43025,9 +43026,25 @@ type MaintenanceWindowTask struct {
 	LoggingInfo *LoggingInfo `type:"structure"`
 
 	// The maximum number of targets this task can be run for, in parallel.
+	//
+	// Although this element is listed as "Required: No", a value can be omitted
+	// only when you are registering or updating a targetless task (https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows-targetless-tasks.html)
+	// You must provide a value in all other cases.
+	//
+	// For maintenance window tasks without a target specified, you can't supply
+	// a value for this option. Instead, the system inserts a placeholder value
+	// of 1. This value doesn't affect the running of your task.
 	MaxConcurrency *string `min:"1" type:"string"`
 
 	// The maximum number of errors allowed before this task stops being scheduled.
+	//
+	// Although this element is listed as "Required: No", a value can be omitted
+	// only when you are registering or updating a targetless task (https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows-targetless-tasks.html)
+	// You must provide a value in all other cases.
+	//
+	// For maintenance window tasks without a target specified, you can't supply
+	// a value for this option. Instead, the system inserts a placeholder value
+	// of 1. This value doesn't affect the running of your task.
 	MaxErrors *string `min:"1" type:"string"`
 
 	// The task name.
@@ -45936,9 +45953,15 @@ type Parameter struct {
 
 	// The type of parameter. Valid values include the following: String, StringList,
 	// and SecureString.
+	//
+	// If type is StringList, the system returns a comma-separated string with no
+	// spaces between commas in the Value field.
 	Type *string `type:"string" enum:"ParameterType"`
 
 	// The parameter value.
+	//
+	// If type is StringList, the system returns a comma-separated string with no
+	// spaces between commas in the Value field.
 	//
 	// Value is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Parameter's
@@ -46249,7 +46272,7 @@ type ParameterInlinePolicy struct {
 	// The JSON text of the policy.
 	PolicyText *string `type:"string"`
 
-	// The type of policy. Parameter Store, a capablility of Amazon Web Services
+	// The type of policy. Parameter Store, a capability of Amazon Web Services
 	// Systems Manager, supports the following policy types: Expiration, ExpirationNotification,
 	// and NoChangeNotification.
 	PolicyType *string `type:"string"`
@@ -47327,7 +47350,7 @@ type PatchComplianceData struct {
 	// KBId is a required field
 	KBId *string `type:"string" required:"true"`
 
-	// The severity of the patchsuch as Critical, Important, and Moderate.
+	// The severity of the patch such as Critical, Important, and Moderate.
 	//
 	// Severity is a required field
 	Severity *string `type:"string" required:"true"`
@@ -48407,6 +48430,8 @@ type PutParameterInput struct {
 	//
 	//    * aws:ec2:image
 	//
+	//    * aws:ssm:integration
+	//
 	// When you create a String parameter and specify aws:ec2:image, Amazon Web
 	// Services Systems Manager validates the parameter value is in the required
 	// format, such as ami-12345abcdeEXAMPLE, and that the specified AMI is available
@@ -49211,7 +49236,11 @@ type RegisterTaskWithMaintenanceWindowInput struct {
 	// for the supported maintenance window task types, see MaintenanceWindowTaskInvocationParameters.
 	LoggingInfo *LoggingInfo `type:"structure"`
 
-	// The maximum number of targets this task can be run for in parallel.
+	// The maximum number of targets this task can be run for, in parallel.
+	//
+	// Although this element is listed as "Required: No", a value can be omitted
+	// only when you are registering or updating a targetless task (https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows-targetless-tasks.html)
+	// You must provide a value in all other cases.
 	//
 	// For maintenance window tasks without a target specified, you can't supply
 	// a value for this option. Instead, the system inserts a placeholder value
@@ -49219,6 +49248,10 @@ type RegisterTaskWithMaintenanceWindowInput struct {
 	MaxConcurrency *string `min:"1" type:"string"`
 
 	// The maximum number of errors allowed before this task stops being scheduled.
+	//
+	// Although this element is listed as "Required: No", a value can be omitted
+	// only when you are registering or updating a targetless task (https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows-targetless-tasks.html)
+	// You must provide a value in all other cases.
 	//
 	// For maintenance window tasks without a target specified, you can't supply
 	// a value for this option. Instead, the system inserts a placeholder value
@@ -55866,10 +55899,9 @@ type UpdateMaintenanceWindowInput struct {
 	// (https://www.iana.org/time-zones) on the IANA website.
 	ScheduleTimezone *string `type:"string"`
 
-	// The time zone that the scheduled maintenance window executions are based
-	// on, in Internet Assigned Numbers Authority (IANA) format. For example: "America/Los_Angeles",
-	// "UTC", or "Asia/Seoul". For more information, see the Time Zone Database
-	// (https://www.iana.org/time-zones) on the IANA website.
+	// The date and time, in ISO-8601 Extended format, for when you want the maintenance
+	// window to become active. StartDate allows you to delay activation of the
+	// maintenance window until the specified future date.
 	StartDate *string `type:"string"`
 
 	// The ID of the maintenance window to update.
@@ -56409,21 +56441,27 @@ type UpdateMaintenanceWindowTaskInput struct {
 	LoggingInfo *LoggingInfo `type:"structure"`
 
 	// The new MaxConcurrency value you want to specify. MaxConcurrency is the number
-	// of targets that are allowed to run this task in parallel.
+	// of targets that are allowed to run this task, in parallel.
+	//
+	// Although this element is listed as "Required: No", a value can be omitted
+	// only when you are registering or updating a targetless task (https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows-targetless-tasks.html)
+	// You must provide a value in all other cases.
 	//
 	// For maintenance window tasks without a target specified, you can't supply
 	// a value for this option. Instead, the system inserts a placeholder value
-	// of 1, which may be reported in the response to this command. This value doesn't
-	// affect the running of your task and can be ignored.
+	// of 1. This value doesn't affect the running of your task.
 	MaxConcurrency *string `min:"1" type:"string"`
 
 	// The new MaxErrors value to specify. MaxErrors is the maximum number of errors
 	// that are allowed before the task stops being scheduled.
 	//
+	// Although this element is listed as "Required: No", a value can be omitted
+	// only when you are registering or updating a targetless task (https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows-targetless-tasks.html)
+	// You must provide a value in all other cases.
+	//
 	// For maintenance window tasks without a target specified, you can't supply
 	// a value for this option. Instead, the system inserts a placeholder value
-	// of 1, which may be reported in the response to this command. This value doesn't
-	// affect the running of your task and can be ignored.
+	// of 1. This value doesn't affect the running of your task.
 	MaxErrors *string `min:"1" type:"string"`
 
 	// The new task name to specify.
@@ -57191,7 +57229,7 @@ type UpdateOpsMetadataInput struct {
 	// Metadata to add to an OpsMetadata object.
 	MetadataToUpdate map[string]*MetadataValue `min:"1" type:"map"`
 
-	// The Amazon Resoure Name (ARN) of the OpsMetadata Object to update.
+	// The Amazon Resource Name (ARN) of the OpsMetadata Object to update.
 	//
 	// OpsMetadataArn is a required field
 	OpsMetadataArn *string `min:"1" type:"string" required:"true"`
