@@ -573,6 +573,9 @@ func (c *CloudWatchEvidently) DeleteExperimentRequest(input *DeleteExperimentInp
 // API operation DeleteExperiment for usage and error information.
 //
 // Returned Error Types:
+//   * ValidationException
+//   The value of a parameter in the request caused an error.
+//
 //   * InternalServerException
 //   Unexpected error while processing the request. Retry the request.
 //
@@ -1061,6 +1064,9 @@ func (c *CloudWatchEvidently) GetExperimentRequest(input *GetExperimentInput) (r
 //   * ThrottlingException
 //   The request was denied because of request throttling. Retry the request.
 //
+//   * ValidationException
+//   The value of a parameter in the request caused an error.
+//
 //   * ResourceNotFoundException
 //   The request references a resource that does not exist.
 //
@@ -1327,6 +1333,9 @@ func (c *CloudWatchEvidently) GetLaunchRequest(input *GetLaunchInput) (req *requ
 //   * ThrottlingException
 //   The request was denied because of request throttling. Retry the request.
 //
+//   * ValidationException
+//   The value of a parameter in the request caused an error.
+//
 //   * ResourceNotFoundException
 //   The request references a resource that does not exist.
 //
@@ -1510,6 +1519,9 @@ func (c *CloudWatchEvidently) ListExperimentsRequest(input *ListExperimentsInput
 //
 //   * ResourceNotFoundException
 //   The request references a resource that does not exist.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/evidently-2021-02-01/ListExperiments
 func (c *CloudWatchEvidently) ListExperiments(input *ListExperimentsInput) (*ListExperimentsOutput, error) {
@@ -2348,6 +2360,9 @@ func (c *CloudWatchEvidently) StartLaunchRequest(input *StartLaunchInput) (req *
 //
 //   * ValidationException
 //   The value of a parameter in the request caused an error.
+//
+//   * ConflictException
+//   A resource was in an inconsistent state during an update or a deletion.
 //
 //   * ServiceQuotaExceededException
 //   The request would cause a service quota to be exceeded.
@@ -6858,6 +6873,10 @@ type ListExperimentsInput struct {
 	//
 	// Project is a required field
 	Project *string `location:"uri" locationName:"project" type:"string" required:"true"`
+
+	// Use this optional parameter to limit the returned results to only the experiments
+	// with the status that you specify here.
+	Status *string `location:"querystring" locationName:"status" type:"string" enum:"ExperimentStatus"`
 }
 
 // String returns the string representation.
@@ -6915,6 +6934,12 @@ func (s *ListExperimentsInput) SetNextToken(v string) *ListExperimentsInput {
 // SetProject sets the Project field's value.
 func (s *ListExperimentsInput) SetProject(v string) *ListExperimentsInput {
 	s.Project = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListExperimentsInput) SetStatus(v string) *ListExperimentsInput {
+	s.Status = &v
 	return s
 }
 
@@ -7090,6 +7115,10 @@ type ListLaunchesInput struct {
 	//
 	// Project is a required field
 	Project *string `location:"uri" locationName:"project" type:"string" required:"true"`
+
+	// Use this optional parameter to limit the returned results to only the launches
+	// with the status that you specify here.
+	Status *string `location:"querystring" locationName:"status" type:"string" enum:"LaunchStatus"`
 }
 
 // String returns the string representation.
@@ -7147,6 +7176,12 @@ func (s *ListLaunchesInput) SetNextToken(v string) *ListLaunchesInput {
 // SetProject sets the Project field's value.
 func (s *ListLaunchesInput) SetProject(v string) *ListLaunchesInput {
 	s.Project = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListLaunchesInput) SetStatus(v string) *ListLaunchesInput {
+	s.Status = &v
 	return s
 }
 
@@ -7451,7 +7486,9 @@ type MetricDefinitionConfig struct {
 
 	// The entity, such as a user or session, that does an action that causes a
 	// metric value to be recorded. An example is userDetails.userID.
-	EntityIdKey *string `locationName:"entityIdKey" min:"1" type:"string"`
+	//
+	// EntityIdKey is a required field
+	EntityIdKey *string `locationName:"entityIdKey" min:"1" type:"string" required:"true"`
 
 	// The EventBridge event pattern that defines how the metric is recorded.
 	//
@@ -7460,13 +7497,17 @@ type MetricDefinitionConfig struct {
 	EventPattern aws.JSONValue `locationName:"eventPattern" type:"jsonvalue"`
 
 	// A name for the metric.
-	Name *string `locationName:"name" min:"1" type:"string"`
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// A label for the units that the metric is measuring.
 	UnitLabel *string `locationName:"unitLabel" min:"1" type:"string"`
 
 	// The value that is tracked to produce the metric.
-	ValueKey *string `locationName:"valueKey" min:"1" type:"string"`
+	//
+	// ValueKey is a required field
+	ValueKey *string `locationName:"valueKey" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -7490,14 +7531,23 @@ func (s MetricDefinitionConfig) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *MetricDefinitionConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "MetricDefinitionConfig"}
+	if s.EntityIdKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityIdKey"))
+	}
 	if s.EntityIdKey != nil && len(*s.EntityIdKey) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("EntityIdKey", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
 	if s.UnitLabel != nil && len(*s.UnitLabel) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UnitLabel", 1))
+	}
+	if s.ValueKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("ValueKey"))
 	}
 	if s.ValueKey != nil && len(*s.ValueKey) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ValueKey", 1))

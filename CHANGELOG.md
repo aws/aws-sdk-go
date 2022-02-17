@@ -1,3 +1,14 @@
+Release v1.43.1 (2022-02-17)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service API and documentation
+* `service/evidently`: Updates service API and documentation
+* `service/iam`: Updates service documentation
+  * Documentation updates for AWS Identity and Access Management (IAM).
+* `service/redshift`: Updates service API and documentation
+  * SDK release for Cross region datasharing and cost-control for cross region datasharing
+
 Release v1.43.0 (2022-02-16)
 ===
 

@@ -156,7 +156,7 @@ func (c *Backup) CreateBackupSelectionRequest(input *CreateBackupSelectionInput)
 // CreateBackupSelection API operation for AWS Backup.
 //
 // Creates a JSON document that specifies a set of resources to assign to a
-// backup plan. For examples, see Assigning resources programmatically (https://docs.aws.amazon.com/assigning-resources.html#assigning-resources-json).
+// backup plan. For examples, see Assigning resources programmatically (https://docs.aws.amazon.com/aws-backup/latest/devguide/assigning-resources.html#assigning-resources-json).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5324,7 +5324,10 @@ func (c *Backup) ListTagsRequest(input *ListTagsInput) (req *request.Request, ou
 // Returns a list of key-value pairs assigned to a target recovery point, backup
 // plan, or backup vault.
 //
-// ListTags are currently only supported with Amazon EFS backups.
+// ListTags only works for resource types that support full Backup management
+// of their backups. Those resource types are listed in the "Full Backup management"
+// section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+// table.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6694,14 +6697,17 @@ func (c *Backup) UpdateRecoveryPointLifecycleRequest(input *UpdateRecoveryPointL
 // according to the lifecycle that you define.
 //
 // Backups transitioned to cold storage must be stored in cold storage for a
-// minimum of 90 days. Therefore, the “expire after days” setting must be
-// 90 days greater than the “transition to cold after days” setting. The
-// “transition to cold after days” setting cannot be changed after a backup
-// has been transitioned to cold.
+// minimum of 90 days. Therefore, the “retention” setting must be 90 days
+// greater than the “transition to cold after days” setting. The “transition
+// to cold after days” setting cannot be changed after a backup has been transitioned
+// to cold.
 //
-// Only Amazon EFS file system backups can be transitioned to cold storage.
+// Only resource types that support full Backup management can transition their
+// backups to cold storage. Those resource types are listed in the "Full Backup
+// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+// table. Backup ignores this expression for other resource types.
 //
-// Does not support continuous backups.
+// This operation does not support continuous backups.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7080,12 +7086,15 @@ func (s *AlreadyExistsException) RequestID() string {
 // according to the lifecycle that you define.
 //
 // Backups transitioned to cold storage must be stored in cold storage for a
-// minimum of 90 days. Therefore, the “expire after days” setting must be
-// 90 days greater than the “transition to cold after days” setting. The
-// “transition to cold after days” setting cannot be changed after a backup
-// has been transitioned to cold.
+// minimum of 90 days. Therefore, the “retention” setting must be 90 days
+// greater than the “transition to cold after days” setting. The “transition
+// to cold after days” setting cannot be changed after a backup has been transitioned
+// to cold.
 //
-// Only Amazon EFS file system backups can be transitioned to cold storage.
+// Only resource types that support full Backup management can transition their
+// backups to cold storage. Those resource types are listed in the "Full Backup
+// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+// table. Backup ignores this expression for other resource types.
 type CalculatedLifecycle struct {
 	_ struct{} `type:"structure"`
 
@@ -7140,7 +7149,7 @@ type Condition struct {
 
 	// An operation applied to a key-value pair used to assign resources to your
 	// backup plan. Condition only supports StringEquals. For more flexible assignment
-	// options, incluidng StringLike and the ability to exclude resources from your
+	// options, including StringLike and the ability to exclude resources from your
 	// backup plan, use Conditions (with an "s" on the end) for your BackupSelection
 	// (https://docs.aws.amazon.com/aws-backup/latest/devguide/API_BackupSelection.html).
 	//
@@ -7522,12 +7531,15 @@ type CopyAction struct {
 	// a recovery point transitions to cold storage or is deleted.
 	//
 	// Backups transitioned to cold storage must be stored in cold storage for a
-	// minimum of 90 days. Therefore, on the console, the “expire after days”
-	// setting must be 90 days greater than the “transition to cold after days”
-	// setting. The “transition to cold after days” setting cannot be changed
-	// after a backup has been transitioned to cold.
+	// minimum of 90 days. Therefore, on the console, the “retention” setting
+	// must be 90 days greater than the “transition to cold after days” setting.
+	// The “transition to cold after days” setting cannot be changed after a
+	// backup has been transitioned to cold.
 	//
-	// Only Amazon EFS file system backups can be transitioned to cold storage.
+	// Only resource types that support full Backup management can transition their
+	// backups to cold storage. Those resource types are listed in the "Full Backup
+	// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+	// table. Backup ignores this expression for other resource types.
 	Lifecycle *Lifecycle `type:"structure"`
 }
 
@@ -10344,12 +10356,15 @@ type DescribeRecoveryPointOutput struct {
 	// according to the lifecycle that you define.
 	//
 	// Backups that are transitioned to cold storage must be stored in cold storage
-	// for a minimum of 90 days. Therefore, the “expire after days” setting
-	// must be 90 days greater than the “transition to cold after days” setting.
-	// The “transition to cold after days” setting cannot be changed after a
-	// backup has been transitioned to cold.
+	// for a minimum of 90 days. Therefore, the “retention” setting must be
+	// 90 days greater than the “transition to cold after days” setting. The
+	// “transition to cold after days” setting cannot be changed after a backup
+	// has been transitioned to cold.
 	//
-	// Only Amazon EFS file system backups can be transitioned to cold storage.
+	// Only resource types that support full Backup management can transition their
+	// backups to cold storage. Those resource types are listed in the "Full Backup
+	// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+	// table. Backup ignores this expression for other resource types.
 	Lifecycle *Lifecycle `type:"structure"`
 
 	// An ARN that uniquely identifies a recovery point; for example, arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45.
@@ -10550,8 +10565,16 @@ func (s DescribeRegionSettingsInput) GoString() string {
 type DescribeRegionSettingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns whether a DynamoDB recovery point was taken using Backup's advanced
-	// DynamoDB backup features (https://docs.aws.amazon.com/aws-backup/latest/devguide/advanced-ddb-backup.html).
+	// Returns whether Backup fully manages the backups for a resource type.
+	//
+	// For the benefits of full Backup management, see Full Backup management (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#full-management).
+	//
+	// For a list of resource types and whether each supports full Backup management,
+	// see the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+	// table.
+	//
+	// If "DynamoDB":false, you can enable full Backup management for DynamoDB backup
+	// by enabling Backup's advanced DynamoDB backup features (https://docs.aws.amazon.com/aws-backup/latest/devguide/advanced-ddb-backup.html#advanced-ddb-backup-enable-cli).
 	ResourceTypeManagementPreference map[string]*bool `type:"map"`
 
 	// Returns a list of all services along with the opt-in preferences in the Region.
@@ -12152,6 +12175,10 @@ type GetSupportedResourceTypesOutput struct {
 	//    * RDS for Amazon Relational Database Service
 	//
 	//    * Storage Gateway for Storage Gateway
+	//
+	//    * DocDB for Amazon DocumentDB (with MongoDB compatibility)
+	//
+	//    * Neptune for Amazon Neptune
 	ResourceTypes []*string `type:"list"`
 }
 
@@ -12635,12 +12662,15 @@ func (s *Job) SetStatusMessage(v string) *Job {
 // a recovery point transitions to cold storage or is deleted.
 //
 // Backups transitioned to cold storage must be stored in cold storage for a
-// minimum of 90 days. Therefore, on the console, the “expire after days”
-// setting must be 90 days greater than the “transition to cold after days”
-// setting. The “transition to cold after days” setting cannot be changed
-// after a backup has been transitioned to cold.
+// minimum of 90 days. Therefore, on the console, the “retention” setting
+// must be 90 days greater than the “transition to cold after days” setting.
+// The “transition to cold after days” setting cannot be changed after a
+// backup has been transitioned to cold.
 //
-// Only Amazon EFS file system backups can be transitioned to cold storage.
+// Only resource types that support full Backup management can transition their
+// backups to cold storage. Those resource types are listed in the "Full Backup
+// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+// table. Backup ignores this expression for other resource types.
 type Lifecycle struct {
 	_ struct{} `type:"structure"`
 
@@ -12782,6 +12812,10 @@ type ListBackupJobsInput struct {
 
 	// Returns only backup jobs for the specified resources:
 	//
+	//    * Aurora for Amazon Aurora
+	//
+	//    * DocumentDB for Amazon DocumentDB (with MongoDB compatibility)
+	//
 	//    * DynamoDB for Amazon DynamoDB
 	//
 	//    * EBS for Amazon Elastic Block Store
@@ -12790,11 +12824,17 @@ type ListBackupJobsInput struct {
 	//
 	//    * EFS for Amazon Elastic File System
 	//
+	//    * FSx for Amazon FSx
+	//
+	//    * Neptune for Amazon Neptune
+	//
 	//    * RDS for Amazon Relational Database Service
 	//
-	//    * Aurora for Amazon Aurora
-	//
 	//    * Storage Gateway for Storage Gateway
+	//
+	//    * S3 for Amazon S3
+	//
+	//    * VirtualMachine for virtual machines
 	ByResourceType *string `location:"querystring" locationName:"resourceType" type:"string"`
 
 	// Returns only backup jobs that are in the specified state.
@@ -13506,6 +13546,10 @@ type ListCopyJobsInput struct {
 
 	// Returns only backup jobs for the specified resources:
 	//
+	//    * Aurora for Amazon Aurora
+	//
+	//    * DocumentDB for Amazon DocumentDB (with MongoDB compatibility)
+	//
 	//    * DynamoDB for Amazon DynamoDB
 	//
 	//    * EBS for Amazon Elastic Block Store
@@ -13514,11 +13558,17 @@ type ListCopyJobsInput struct {
 	//
 	//    * EFS for Amazon Elastic File System
 	//
+	//    * FSx for Amazon FSx
+	//
+	//    * Neptune for Amazon Neptune
+	//
 	//    * RDS for Amazon Relational Database Service
 	//
-	//    * Aurora for Amazon Aurora
-	//
 	//    * Storage Gateway for Storage Gateway
+	//
+	//    * S3 for Amazon S3
+	//
+	//    * VirtualMachine for virtual machines
 	ByResourceType *string `location:"querystring" locationName:"resourceType" type:"string"`
 
 	// Returns only copy jobs that are in the specified state.
@@ -15209,7 +15259,9 @@ type PutBackupVaultLockConfigurationInput struct {
 	// the maximum retention period. If the job's retention period is longer than
 	// that maximum retention period, then the vault fails the backup or copy job,
 	// and you should either modify your lifecycle settings or use a different vault.
-	// Recovery points already saved in the vault prior to Vault Lock are not affected.
+	// The longest maximum retention period you can specify is 36500 days (approximately
+	// 100 years). Recovery points already saved in the vault prior to Vault Lock
+	// are not affected.
 	MaxRetentionDays *int64 `type:"long"`
 
 	// The Backup Vault Lock configuration that specifies the minimum retention
@@ -15225,7 +15277,8 @@ type PutBackupVaultLockConfigurationInput struct {
 	// minimum retention period. If the job's retention period is shorter than that
 	// minimum retention period, then the vault fails that backup or copy job, and
 	// you should either modify your lifecycle settings or use a different vault.
-	// Recovery points already saved in the vault prior to Vault Lock are not affected.
+	// The shortest minimum retention period you can specify is 1 day. Recovery
+	// points already saved in the vault prior to Vault Lock are not affected.
 	MinRetentionDays *int64 `type:"long"`
 }
 
@@ -15325,6 +15378,8 @@ type PutBackupVaultNotificationsInput struct {
 	//    * COPY_JOB_STARTED | COPY_JOB_SUCCESSFUL | COPY_JOB_FAILED
 	//
 	//    * RESTORE_JOB_STARTED | RESTORE_JOB_COMPLETED | RECOVERY_POINT_MODIFIED
+	//
+	//    * S3_BACKUP_OBJECT_FAILED | S3_RESTORE_OBJECT_FAILED
 	//
 	// Ignore the list below because it includes deprecated events. Refer to the
 	// list above.
@@ -15488,12 +15543,15 @@ type RecoveryPointByBackupVault struct {
 	// according to the lifecycle that you define.
 	//
 	// Backups transitioned to cold storage must be stored in cold storage for a
-	// minimum of 90 days. Therefore, the “expire after days” setting must be
-	// 90 days greater than the “transition to cold after days” setting. The
-	// “transition to cold after days” setting cannot be changed after a backup
-	// has been transitioned to cold.
+	// minimum of 90 days. Therefore, the “retention” setting must be 90 days
+	// greater than the “transition to cold after days” setting. The “transition
+	// to cold after days” setting cannot be changed after a backup has been transitioned
+	// to cold.
 	//
-	// Only Amazon EFS file system backups can be transitioned to cold storage.
+	// Only resource types that support full Backup management can transition their
+	// backups to cold storage. Those resource types are listed in the "Full Backup
+	// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+	// table. Backup ignores this expression for other resource types.
 	Lifecycle *Lifecycle `type:"structure"`
 
 	// An Amazon Resource Name (ARN) that uniquely identifies a recovery point;
@@ -16474,12 +16532,15 @@ type Rule struct {
 	// according to the lifecycle that you define.
 	//
 	// Backups transitioned to cold storage must be stored in cold storage for a
-	// minimum of 90 days. Therefore, the “expire after days” setting must be
-	// 90 days greater than the “transition to cold after days” setting. The
-	// “transition to cold after days” setting cannot be changed after a backup
-	// has been transitioned to cold.
+	// minimum of 90 days. Therefore, the “retention” setting must be 90 days
+	// greater than the “transition to cold after days” setting. The “transition
+	// to cold after days” setting cannot be changed after a backup has been transitioned
+	// to cold.
 	//
-	// Only Amazon EFS file system backups can be transitioned to cold storage.
+	// Only resource types that support full Backup management can transition their
+	// backups to cold storage. Those resource types are listed in the "Full Backup
+	// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+	// table. Backup ignores this expression for other resource types.
 	Lifecycle *Lifecycle `type:"structure"`
 
 	// An array of key-value pair strings that are assigned to resources that are
@@ -16621,12 +16682,15 @@ type RuleInput struct {
 	// according to the lifecycle that you define.
 	//
 	// Backups transitioned to cold storage must be stored in cold storage for a
-	// minimum of 90 days. Therefore, the “expire after days” setting must be
-	// 90 days greater than the “transition to cold after days” setting. The
-	// “transition to cold after days” setting cannot be changed after a backup
-	// has been transitioned to cold.
+	// minimum of 90 days. Therefore, the “retention” setting must be 90 days
+	// greater than the “transition to cold after days” setting. The “transition
+	// to cold after days” setting cannot be changed after a backup has been transitioned
+	// to cold.
 	//
-	// Only Amazon EFS file system backups can be transitioned to cold storage.
+	// Only resource types that support full Backup management can transition their
+	// backups to cold storage. Those resource types are listed in the "Full Backup
+	// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+	// table. Backup ignores this expression for other resource types.
 	Lifecycle *Lifecycle `type:"structure"`
 
 	// To help organize your resources, you can assign your own metadata to the
@@ -17071,10 +17135,9 @@ type StartBackupJobInput struct {
 	BackupVaultName *string `type:"string" required:"true"`
 
 	// A value in minutes during which a successfully started backup must complete,
-	// or else AWS Backup will cancel the job. This value is optional. This value
-	// begins counting down from when the backup was scheduled. It does not add
-	// additional time for StartWindowMinutes, or if the backup started later than
-	// scheduled.
+	// or else Backup will cancel the job. This value is optional. This value begins
+	// counting down from when the backup was scheduled. It does not add additional
+	// time for StartWindowMinutes, or if the backup started later than scheduled.
 	CompleteWindowMinutes *int64 `type:"long"`
 
 	// Specifies the IAM role ARN used to create the target recovery point; for
@@ -17093,12 +17156,15 @@ type StartBackupJobInput struct {
 	// according to the lifecycle that you define.
 	//
 	// Backups transitioned to cold storage must be stored in cold storage for a
-	// minimum of 90 days. Therefore, the “expire after days” setting must be
-	// 90 days greater than the “transition to cold after days” setting. The
-	// “transition to cold after days” setting cannot be changed after a backup
-	// has been transitioned to cold.
+	// minimum of 90 days. Therefore, the “retention” setting must be 90 days
+	// greater than the “transition to cold after days” setting. The “transition
+	// to cold after days” setting cannot be changed after a backup has been transitioned
+	// to cold.
 	//
-	// Only Amazon EFS file system backups can be transitioned to cold storage.
+	// Only resource types that support full Backup management can transition their
+	// backups to cold storage. Those resource types are listed in the "Full Backup
+	// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+	// table. Backup ignores this expression for other resource types.
 	Lifecycle *Lifecycle `type:"structure"`
 
 	// To help organize your resources, you can assign your own metadata to the
@@ -17288,12 +17354,15 @@ type StartCopyJobInput struct {
 	// a recovery point transitions to cold storage or is deleted.
 	//
 	// Backups transitioned to cold storage must be stored in cold storage for a
-	// minimum of 90 days. Therefore, on the console, the “expire after days”
-	// setting must be 90 days greater than the “transition to cold after days”
-	// setting. The “transition to cold after days” setting cannot be changed
-	// after a backup has been transitioned to cold.
+	// minimum of 90 days. Therefore, on the console, the “retention” setting
+	// must be 90 days greater than the “transition to cold after days” setting.
+	// The “transition to cold after days” setting cannot be changed after a
+	// backup has been transitioned to cold.
 	//
-	// Only Amazon EFS file system backups can be transitioned to cold storage.
+	// Only resource types that support full Backup management can transition their
+	// backups to cold storage. Those resource types are listed in the "Full Backup
+	// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+	// table. Backup ignores this expression for other resource types.
 	Lifecycle *Lifecycle `type:"structure"`
 
 	// An ARN that uniquely identifies a recovery point to use for the copy job;
@@ -17587,6 +17656,10 @@ type StartRestoreJobInput struct {
 
 	// Starts a job to restore a recovery point for one of the following resources:
 	//
+	//    * Aurora for Amazon Aurora
+	//
+	//    * DocumentDB for Amazon DocumentDB (with MongoDB compatibility)
+	//
 	//    * DynamoDB for Amazon DynamoDB
 	//
 	//    * EBS for Amazon Elastic Block Store
@@ -17595,11 +17668,17 @@ type StartRestoreJobInput struct {
 	//
 	//    * EFS for Amazon Elastic File System
 	//
+	//    * FSx for Amazon FSx
+	//
+	//    * Neptune for Amazon Neptune
+	//
 	//    * RDS for Amazon Relational Database Service
 	//
-	//    * Aurora for Amazon Aurora
-	//
 	//    * Storage Gateway for Storage Gateway
+	//
+	//    * S3 for Amazon S3
+	//
+	//    * VirtualMachine for virtual machines
 	ResourceType *string `type:"string"`
 }
 
@@ -18311,10 +18390,10 @@ type UpdateRecoveryPointLifecycleInput struct {
 	// according to the lifecycle that you define.
 	//
 	// Backups transitioned to cold storage must be stored in cold storage for a
-	// minimum of 90 days. Therefore, the “expire after days” setting must be
-	// 90 days greater than the “transition to cold after days” setting. The
-	// “transition to cold after days” setting cannot be changed after a backup
-	// has been transitioned to cold.
+	// minimum of 90 days. Therefore, the “retention” setting must be 90 days
+	// greater than the “transition to cold after days” setting. The “transition
+	// to cold after days” setting cannot be changed after a backup has been transitioned
+	// to cold.
 	Lifecycle *Lifecycle `type:"structure"`
 
 	// An Amazon Resource Name (ARN) that uniquely identifies a recovery point;
@@ -18397,12 +18476,15 @@ type UpdateRecoveryPointLifecycleOutput struct {
 	// according to the lifecycle that you define.
 	//
 	// Backups transitioned to cold storage must be stored in cold storage for a
-	// minimum of 90 days. Therefore, the “expire after days” setting must be
-	// 90 days greater than the “transition to cold after days” setting. The
-	// “transition to cold after days” setting cannot be changed after a backup
-	// has been transitioned to cold.
+	// minimum of 90 days. Therefore, the “retention” setting must be 90 days
+	// greater than the “transition to cold after days” setting. The “transition
+	// to cold after days” setting cannot be changed after a backup has been transitioned
+	// to cold.
 	//
-	// Only Amazon EFS file system backups can be transitioned to cold storage.
+	// Only resource types that support full Backup management can transition their
+	// backups to cold storage. Those resource types are listed in the "Full Backup
+	// management" section of the Feature availability by resource (https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource)
+	// table. Backup ignores this expression for other resource types.
 	Lifecycle *Lifecycle `type:"structure"`
 
 	// An Amazon Resource Name (ARN) that uniquely identifies a recovery point;
@@ -18455,8 +18537,11 @@ func (s *UpdateRecoveryPointLifecycleOutput) SetRecoveryPointArn(v string) *Upda
 type UpdateRegionSettingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Enables or disables Backup's advanced DynamoDB backup features (https://docs.aws.amazon.com/aws-backup/latest/devguide/advanced-ddb-backup.html)
-	// for the Region.
+	// Enables or disables full Backup management of backups for a resource type.
+	// To enable full Backup management for DynamoDB along with Backup's advanced
+	// DynamoDB backup features (https://docs.aws.amazon.com/aws-backup/latest/devguide/advanced-ddb-backup.html),
+	// follow the procedure to enable advanced DynamoDB backup programmatically
+	// (https://docs.aws.amazon.com/aws-backup/latest/devguide/advanced-ddb-backup.html#advanced-ddb-backup-enable-cli).
 	ResourceTypeManagementPreference map[string]*bool `type:"map"`
 
 	// Updates the list of services along with the opt-in preferences for the Region.
@@ -18704,8 +18789,14 @@ type VaultListMember struct {
 	// If used, this parameter must contain 1 to 50 alphanumeric or '-_.' characters.
 	CreatorRequestId *string `type:"string"`
 
-	// The server-side encryption key that is used to protect your backups; for
-	// example, arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab.
+	// A server-side encryption key you can specify to encrypt your backups from
+	// services that support full Backup management; for example, arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab.
+	// If you specify a key, you must specify its ARN, not its alias. If you do
+	// not specify a key, Backup creates a KMS key for you by default.
+	//
+	// To learn which Backup services support full Backup management and how Backup
+	// handles encryption for backups from services that do not yet support full
+	// Backup, see Encryption for backups in Backup (https://docs.aws.amazon.com/aws-backup/latest/devguide/encryption.html)
 	EncryptionKeyArn *string `type:"string"`
 
 	// The date and time when Backup Vault Lock configuration becomes immutable,
@@ -19025,6 +19116,12 @@ const (
 
 	// VaultEventBackupPlanModified is a VaultEvent enum value
 	VaultEventBackupPlanModified = "BACKUP_PLAN_MODIFIED"
+
+	// VaultEventS3BackupObjectFailed is a VaultEvent enum value
+	VaultEventS3BackupObjectFailed = "S3_BACKUP_OBJECT_FAILED"
+
+	// VaultEventS3RestoreObjectFailed is a VaultEvent enum value
+	VaultEventS3RestoreObjectFailed = "S3_RESTORE_OBJECT_FAILED"
 )
 
 // VaultEvent_Values returns all elements of the VaultEvent enum
@@ -19045,5 +19142,7 @@ func VaultEvent_Values() []string {
 		VaultEventRecoveryPointModified,
 		VaultEventBackupPlanCreated,
 		VaultEventBackupPlanModified,
+		VaultEventS3BackupObjectFailed,
+		VaultEventS3RestoreObjectFailed,
 	}
 }
