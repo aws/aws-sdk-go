@@ -2151,7 +2151,8 @@
       "members":{
         "DataShareArn":{"shape":"String"},
         "AssociateEntireAccount":{"shape":"BooleanOptional"},
-        "ConsumerArn":{"shape":"String"}
+        "ConsumerArn":{"shape":"String"},
+        "ConsumerRegion":{"shape":"String"}
       }
     },
     "AssociatedClusterList":{
@@ -3264,6 +3265,7 @@
       "members":{
         "ConsumerIdentifier":{"shape":"String"},
         "Status":{"shape":"DataShareStatus"},
+        "ConsumerRegion":{"shape":"String"},
         "CreatedDate":{"shape":"TStamp"},
         "StatusChangeDate":{"shape":"TStamp"}
       }
@@ -3947,7 +3949,8 @@
       "members":{
         "DataShareArn":{"shape":"String"},
         "DisassociateEntireAccount":{"shape":"BooleanOptional"},
-        "ConsumerArn":{"shape":"String"}
+        "ConsumerArn":{"shape":"String"},
+        "ConsumerRegion":{"shape":"String"}
       }
     },
     "Double":{"type":"double"},
@@ -6761,7 +6764,8 @@
       "type":"string",
       "enum":[
         "spectrum",
-        "concurrency-scaling"
+        "concurrency-scaling",
+        "cross-region-datasharing"
       ]
     },
     "UsageLimitLimitType":{

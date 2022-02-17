@@ -432,7 +432,8 @@
     "ExperimentStatus": {
       "base": null,
       "refs": {
-        "Experiment$status": "<p>The current state of the experiment.</p>"
+        "Experiment$status": "<p>The current state of the experiment.</p>",
+        "ListExperimentsRequest$status": "<p>Use this optional parameter to limit the returned results to only the experiments with the status that you specify here.</p>"
       }
     },
     "ExperimentStopDesiredState": {
@@ -672,7 +673,8 @@
     "LaunchStatus": {
       "base": null,
       "refs": {
-        "Launch$status": "<p>The current state of the launch.</p>"
+        "Launch$status": "<p>The current state of the launch.</p>",
+        "ListLaunchesRequest$status": "<p>Use this optional parameter to limit the returned results to only the launches with the status that you specify here.</p>"
       }
     },
     "LaunchStopDesiredState": {

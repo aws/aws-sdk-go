@@ -107,6 +107,7 @@
       "input":{"shape":"DeleteExperimentRequest"},
       "output":{"shape":"DeleteExperimentResponse"},
       "errors":[
+        {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
         {"shape":"ConflictException"},
         {"shape":"ServiceUnavailableException"},
@@ -197,6 +198,7 @@
       "output":{"shape":"GetExperimentResponse"},
       "errors":[
         {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"}
       ]
@@ -245,6 +247,7 @@
       "output":{"shape":"GetLaunchResponse"},
       "errors":[
         {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"}
       ]
@@ -276,7 +279,8 @@
       "output":{"shape":"ListExperimentsResponse"},
       "errors":[
         {"shape":"ValidationException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "ListFeatures":{
@@ -387,6 +391,7 @@
       "errors":[
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"}
@@ -1041,7 +1046,7 @@
       "type":"string",
       "max":127,
       "min":1,
-      "pattern":"[-a-zA-Z0-9._]*"
+      "pattern":"^[-a-zA-Z0-9._]*$"
     },
     "ExperimentReport":{
       "type":"structure",
@@ -1184,7 +1189,7 @@
       "type":"string",
       "max":127,
       "min":1,
-      "pattern":"[-a-zA-Z0-9._]*"
+      "pattern":"^[-a-zA-Z0-9._]*$"
     },
     "FeatureStatus":{
       "type":"string",
@@ -1360,7 +1365,7 @@
       "type":"string",
       "max":127,
       "min":1,
-      "pattern":"[-a-zA-Z0-9._]*"
+      "pattern":"^[-a-zA-Z0-9._]*$"
     },
     "GroupToWeightMap":{
       "type":"map",
@@ -1470,7 +1475,7 @@
       "type":"string",
       "max":127,
       "min":1,
-      "pattern":"[-a-zA-Z0-9._]*"
+      "pattern":"^[-a-zA-Z0-9._]*$"
     },
     "LaunchStatus":{
       "type":"string",
@@ -1515,6 +1520,11 @@
           "shape":"ProjectRef",
           "location":"uri",
           "locationName":"project"
+        },
+        "status":{
+          "shape":"ExperimentStatus",
+          "location":"querystring",
+          "locationName":"status"
         }
       }
     },
@@ -1571,6 +1581,11 @@
           "shape":"ProjectRef",
           "location":"uri",
           "locationName":"project"
+        },
+        "status":{
+          "shape":"LaunchStatus",
+          "location":"querystring",
+          "locationName":"status"
         }
       }
     },
@@ -1663,6 +1678,11 @@
     },
     "MetricDefinitionConfig":{
       "type":"structure",
+      "required":[
+        "entityIdKey",
+        "name",
+        "valueKey"
+      ],
       "members":{
         "entityIdKey":{"shape":"JsonPath"},
         "eventPattern":{
@@ -1814,7 +1834,7 @@
       "type":"string",
       "max":127,
       "min":1,
-      "pattern":"[-a-zA-Z0-9._]*"
+      "pattern":"^[-a-zA-Z0-9._]*$"
     },
     "ProjectRef":{
       "type":"string",
@@ -2233,7 +2253,7 @@
       "type":"string",
       "max":127,
       "min":1,
-      "pattern":"[-a-zA-Z0-9._]*"
+      "pattern":"^[-a-zA-Z0-9._]*$"
     },
     "TreatmentNameList":{
       "type":"list",
@@ -2499,7 +2519,7 @@
       "type":"string",
       "max":127,
       "min":1,
-      "pattern":"[-a-zA-Z0-9._]*"
+      "pattern":"^[-a-zA-Z0-9._]*$"
     },
     "VariationNameList":{
       "type":"list",
