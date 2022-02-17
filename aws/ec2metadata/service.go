@@ -81,13 +81,18 @@ func New(p client.ConfigProvider, cfgs ...*aws.Config) *EC2Metadata {
 // To disable this set Config.EC2MetadataDisableTimeoutOverride to false. Enabled by default.
 func NewClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string, opts ...func(*client.Client)) *EC2Metadata {
 	if !aws.BoolValue(cfg.EC2MetadataDisableTimeoutOverride) && httpClientZero(cfg.HTTPClient) {
+		timeout := 1 * time.Second
+		if cfg.EC2MetadataTimeout != nil {
+			timeout = *cfg.EC2MetadataTimeout
+		}
+
 		// If the http client is unmodified and this feature is not disabled
 		// set custom timeouts for EC2Metadata requests.
 		cfg.HTTPClient = &http.Client{
 			// use a shorter timeout than default because the metadata
 			// service is local if it is running, and to fail faster
 			// if not running on an ec2 instance.
-			Timeout: 1 * time.Second,
+			Timeout: timeout,
 		}
 		// max number of retries on the client operation
 		cfg.MaxRetries = aws.Int(2)

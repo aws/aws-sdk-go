@@ -189,6 +189,11 @@ type Config struct {
 	//
 	EC2MetadataDisableTimeoutOverride *bool
 
+	// Set this to override duration of the EC2Metadata client
+	// This is helpful if you want to have different timout value between
+	// custom HTTP client and ec2metadata client
+	EC2MetadataTimeout *time.Duration
+
 	// Instructs the endpoint to be generated for a service client to
 	// be the dual stack endpoint. The dual stack endpoint will support
 	// both IPv4 and IPv6 addressing.
@@ -429,6 +434,13 @@ func (c *Config) WithEC2MetadataDisableTimeoutOverride(enable bool) *Config {
 	return c
 }
 
+// WithEC2MetadataTimeout sets a config EC2MetadataTimeout value
+// returning a Config pointer for chaining.
+func (c *Config) WithEC2MetadataTimeout(timeout time.Duration) *Config {
+	c.EC2MetadataTimeout = &timeout
+	return c
+}
+
 // WithSleepDelay overrides the function used to sleep while waiting for the
 // next retry. Defaults to time.Sleep.
 func (c *Config) WithSleepDelay(fn func(time.Duration)) *Config {
@@ -571,6 +583,10 @@ func mergeInConfig(dst *Config, other *Config) {
 
 	if other.EC2MetadataDisableTimeoutOverride != nil {
 		dst.EC2MetadataDisableTimeoutOverride = other.EC2MetadataDisableTimeoutOverride
+	}
+
+	if other.EC2MetadataTimeout != nil {
+		dst.EC2MetadataTimeout = other.EC2MetadataTimeout
 	}
 
 	if other.SleepDelay != nil {

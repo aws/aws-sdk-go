@@ -53,6 +53,15 @@ func TestClientNotOverrideDefaultHTTPClientTimeout(t *testing.T) {
 	}
 }
 
+func TestClientHTTPClientTimeout(t *testing.T) {
+	cfg := aws.NewConfig().WithEC2MetadataTimeout(time.Second * 5)
+	svc := ec2metadata.New(unit.Session, cfg)
+
+	if e, a := *cfg.EC2MetadataTimeout, *svc.Config.EC2MetadataTimeout; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+}
+
 func TestClientDisableOverrideDefaultHTTPClientTimeout(t *testing.T) {
 	svc := ec2metadata.New(unit.Session, aws.NewConfig().WithEC2MetadataDisableTimeoutOverride(true))
 
