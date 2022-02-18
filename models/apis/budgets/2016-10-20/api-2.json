@@ -218,6 +218,23 @@
         {"shape":"InvalidNextTokenException"}
       ]
     },
+    "DescribeBudgetNotificationsForAccount":{
+      "name":"DescribeBudgetNotificationsForAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeBudgetNotificationsForAccountRequest"},
+      "output":{"shape":"DescribeBudgetNotificationsForAccountResponse"},
+      "errors":[
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"ExpiredNextTokenException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "DescribeBudgetPerformanceHistory":{
       "name":"DescribeBudgetPerformanceHistory",
       "http":{
@@ -547,6 +564,18 @@
       "max":100,
       "min":1,
       "pattern":"[^:\\\\]+"
+    },
+    "BudgetNotificationsForAccount":{
+      "type":"structure",
+      "members":{
+        "Notifications":{"shape":"Notifications"},
+        "BudgetName":{"shape":"BudgetName"}
+      }
+    },
+    "BudgetNotificationsForAccountList":{
+      "type":"list",
+      "member":{"shape":"BudgetNotificationsForAccount"},
+      "max":50
     },
     "BudgetPerformanceHistory":{
       "type":"structure",
@@ -901,6 +930,22 @@
         "NextToken":{"shape":"GenericString"}
       }
     },
+    "DescribeBudgetNotificationsForAccountRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "MaxResults":{"shape":"MaxResultsBudgetNotifications"},
+        "NextToken":{"shape":"GenericString"}
+      }
+    },
+    "DescribeBudgetNotificationsForAccountResponse":{
+      "type":"structure",
+      "members":{
+        "BudgetNotificationsForAccount":{"shape":"BudgetNotificationsForAccountList"},
+        "NextToken":{"shape":"GenericString"}
+      }
+    },
     "DescribeBudgetPerformanceHistoryRequest":{
       "type":"structure",
       "required":[
@@ -1140,6 +1185,12 @@
       "max":100,
       "min":1
     },
+    "MaxResultsBudgetNotifications":{
+      "type":"integer",
+      "box":true,
+      "max":50,
+      "min":1
+    },
     "NotFoundException":{
       "type":"structure",
       "members":{
@@ -1171,7 +1222,7 @@
     },
     "NotificationThreshold":{
       "type":"double",
-      "max":40000000000,
+      "max":15000000000000,
       "min":0
     },
     "NotificationType":{

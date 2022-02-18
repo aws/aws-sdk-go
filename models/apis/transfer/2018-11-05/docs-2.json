@@ -780,6 +780,22 @@
         "UpdateUserRequest$PosixProfile": "<p>Specifies the full POSIX identity, including user ID (<code>Uid</code>), group ID (<code>Gid</code>), and any secondary groups IDs (<code>SecondaryGids</code>), that controls your users' access to your Amazon Elastic File Systems (Amazon EFS). The POSIX permissions that are set on files and directories in your file system determines the level of access your users get when transferring files into and out of your Amazon EFS file systems.</p>"
       }
     },
+    "PostAuthenticationLoginBanner": {
+      "base": null,
+      "refs": {
+        "CreateServerRequest$PostAuthenticationLoginBanner": null,
+        "DescribedServer$PostAuthenticationLoginBanner": null,
+        "UpdateServerRequest$PostAuthenticationLoginBanner": null
+      }
+    },
+    "PreAuthenticationLoginBanner": {
+      "base": null,
+      "refs": {
+        "CreateServerRequest$PreAuthenticationLoginBanner": null,
+        "DescribedServer$PreAuthenticationLoginBanner": null,
+        "UpdateServerRequest$PreAuthenticationLoginBanner": null
+      }
+    },
     "Protocol": {
       "base": null,
       "refs": {

@@ -15,6 +15,7 @@
     "DescribeBudgetActionHistories": "<p> Describes a budget action history detail. </p>",
     "DescribeBudgetActionsForAccount": "<p> Describes all of the budget actions for an account. </p>",
     "DescribeBudgetActionsForBudget": "<p> Describes all of the budget actions for a budget. </p>",
+    "DescribeBudgetNotificationsForAccount": "<p> Lists the budget names and notifications that are associated with an account. </p>",
     "DescribeBudgetPerformanceHistory": "<p>Describes the history for <code>DAILY</code>, <code>MONTHLY</code>, and <code>QUARTERLY</code> budgets. Budget history isn't available for <code>ANNUAL</code> budgets.</p>",
     "DescribeBudgets": "<p>Lists the budgets that are associated with an account.</p> <important> <p>The Request Syntax section shows the <code>BudgetLimit</code> syntax. For <code>PlannedBudgetLimits</code>, see the <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_DescribeBudgets.html#API_DescribeBudgets_Examples\">Examples</a> section. </p> </important>",
     "DescribeNotificationsForBudget": "<p>Lists the notifications that are associated with a budget.</p>",
@@ -49,6 +50,7 @@
         "DescribeBudgetActionResponse$AccountId": null,
         "DescribeBudgetActionsForAccountRequest$AccountId": null,
         "DescribeBudgetActionsForBudgetRequest$AccountId": null,
+        "DescribeBudgetNotificationsForAccountRequest$AccountId": null,
         "DescribeBudgetPerformanceHistoryRequest$AccountId": null,
         "DescribeBudgetRequest$AccountId": "<p>The <code>accountId</code> that is associated with the budget that you want a description of.</p>",
         "DescribeBudgetsRequest$AccountId": "<p>The <code>accountId</code> that is associated with the budgets that you want descriptions of.</p>",
@@ -181,6 +183,7 @@
       "refs": {
         "Action$BudgetName": null,
         "Budget$BudgetName": "<p>The name of a budget. The name must be unique within an account. The <code>:</code> and <code>\\</code> characters aren't allowed in <code>BudgetName</code>.</p>",
+        "BudgetNotificationsForAccount$BudgetName": null,
         "BudgetPerformanceHistory$BudgetName": null,
         "CreateBudgetActionRequest$BudgetName": null,
         "CreateBudgetActionResponse$BudgetName": null,
@@ -205,6 +208,18 @@
         "UpdateBudgetActionResponse$BudgetName": null,
         "UpdateNotificationRequest$BudgetName": "<p>The name of the budget whose notification you want to update.</p>",
         "UpdateSubscriberRequest$BudgetName": "<p>The name of the budget whose subscriber you want to update.</p>"
+      }
+    },
+    "BudgetNotificationsForAccount": {
+      "base": "<p> The budget name and associated notifications for an account. </p>",
+      "refs": {
+        "BudgetNotificationsForAccountList$member": null
+      }
+    },
+    "BudgetNotificationsForAccountList": {
+      "base": null,
+      "refs": {
+        "DescribeBudgetNotificationsForAccountResponse$BudgetNotificationsForAccount": "<p> A list of budget names and associated notifications for an account. </p>"
       }
     },
     "BudgetPerformanceHistory": {
@@ -397,6 +412,16 @@
       "refs": {
       }
     },
+    "DescribeBudgetNotificationsForAccountRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeBudgetNotificationsForAccountResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeBudgetPerformanceHistoryRequest": {
       "base": null,
       "refs": {
@@ -497,6 +522,8 @@
         "DescribeBudgetActionsForAccountResponse$NextToken": null,
         "DescribeBudgetActionsForBudgetRequest$NextToken": null,
         "DescribeBudgetActionsForBudgetResponse$NextToken": null,
+        "DescribeBudgetNotificationsForAccountRequest$NextToken": null,
+        "DescribeBudgetNotificationsForAccountResponse$NextToken": null,
         "DescribeBudgetPerformanceHistoryRequest$NextToken": null,
         "DescribeBudgetPerformanceHistoryResponse$NextToken": null,
         "DescribeBudgetsRequest$NextToken": "<p>The pagination token that you include in your request to indicate the next set of results that you want to retrieve.</p>",
@@ -582,6 +609,12 @@
         "DescribeSubscribersForNotificationRequest$MaxResults": "<p>An optional integer that represents how many entries a paginated response contains. The maximum is 100.</p>"
       }
     },
+    "MaxResultsBudgetNotifications": {
+      "base": null,
+      "refs": {
+        "DescribeBudgetNotificationsForAccountRequest$MaxResults": "<p> An integer that shows how many budget name entries a paginated response contains. </p>"
+      }
+    },
     "NotFoundException": {
       "base": "<p>We can’t locate the resource that you specified.</p>",
       "refs": {
@@ -639,6 +672,7 @@
     "Notifications": {
       "base": "<p> A list of notifications.</p>",
       "refs": {
+        "BudgetNotificationsForAccount$Notifications": null,
         "DescribeNotificationsForBudgetResponse$Notifications": "<p>A list of notifications that are associated with a budget.</p>"
       }
     },

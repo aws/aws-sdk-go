@@ -1,3 +1,14 @@
+Release v1.43.2 (2022-02-18)
+===
+
+### Service Client Updates
+* `service/budgets`: Updates service API, documentation, and paginators
+  * This change introduces DescribeBudgetNotificationsForAccount API which returns budget notifications for the specified account
+* `service/gamelift`: Updates service documentation
+  * Increase string list limit from 10 to 100.
+* `service/transfer`: Updates service API and documentation
+  * Properties for Transfer Family used with SFTP, FTP, and FTPS protocols. Display Banners are bodies of text that can be displayed before and/or after a user authenticates onto a server using one of the previously mentioned protocols.
+
 Release v1.43.1 (2022-02-17)
 ===
 
