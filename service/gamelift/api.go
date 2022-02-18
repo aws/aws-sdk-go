@@ -331,9 +331,9 @@ func (c *GameLift) CreateAliasRequest(input *CreateAliasInput) (req *request.Req
 // that is useful when redirecting player traffic from one fleet to another,
 // such as when updating your game build.
 //
-// Amazon GameLift supports two types of routing strategies for aliases: simple
-// and terminal. A simple alias points to an active fleet. A terminal alias
-// is used to display messaging or link to a URL instead of routing players
+// Amazon Web Services supports two types of routing strategies for aliases:
+// simple and terminal. A simple alias points to an active fleet. A terminal
+// alias is used to display messaging or link to a URL instead of routing players
 // to an active fleet. For example, you might use a terminal alias when a game
 // version is no longer supported and you want to direct players to an upgrade
 // site.
@@ -449,12 +449,12 @@ func (c *GameLift) CreateBuildRequest(input *CreateBuildInput) (req *request.Req
 
 // CreateBuild API operation for Amazon GameLift.
 //
-// Creates a new Amazon GameLift build resource for your game server binary
+// Creates a new Amazon Web Services build resource for your game server binary
 // files. Game server binaries must be combined into a zip file for use with
-// Amazon GameLift.
+// Amazon Web Services.
 //
-// When setting up a new game build for GameLift, we recommend using the AWS
-// CLI command upload-build (https://docs.aws.amazon.com/cli/latest/reference/gamelift/upload-build.html)
+// When setting up a new game build for GameLift, we recommend using the Amazon
+// Web Services CLI command upload-build (https://docs.aws.amazon.com/cli/latest/reference/gamelift/upload-build.html)
 // . This helper command combines two tasks: (1) it uploads your build files
 // from a file directory to a GameLift Amazon S3 location, and (2) it creates
 // a new build resource.
@@ -462,10 +462,11 @@ func (c *GameLift) CreateBuildRequest(input *CreateBuildInput) (req *request.Req
 // The CreateBuild operation can used in the following scenarios:
 //
 //    * To create a new game build with build files that are in an Amazon S3
-//    location under an AWS account that you control. To use this option, you
-//    must first give Amazon GameLift access to the Amazon S3 bucket. With permissions
-//    in place, call CreateBuild and specify a build name, operating system,
-//    and the Amazon S3 storage location of your game build.
+//    location under an Amazon Web Services account that you control. To use
+//    this option, you must first give Amazon Web Services access to the Amazon
+//    S3 bucket. With permissions in place, call CreateBuild and specify a build
+//    name, operating system, and the Amazon S3 storage location of your game
+//    build.
 //
 //    * To directly upload your build files to a GameLift Amazon S3 location.
 //    To use this option, first call CreateBuild and specify a build name and
@@ -587,18 +588,18 @@ func (c *GameLift) CreateFleetRequest(input *CreateFleetInput) (req *request.Req
 
 // CreateFleet API operation for Amazon GameLift.
 //
-// Creates a fleet of Amazon Elastic Compute Cloud (Amazon EC2) instances to
-// host your custom game server or Realtime Servers. Use this operation to configure
-// the computing resources for your fleet and provide instructions for running
-// game servers on each instance.
+// Creates a fleet of Amazon Elastic Compute Cloud (Amazon Elastic Compute Cloud)
+// instances to host your custom game server or Realtime Servers. Use this operation
+// to configure the computing resources for your fleet and provide instructions
+// for running game servers on each instance.
 //
 // Most GameLift fleets can deploy instances to multiple locations, including
 // the home Region (where the fleet is created) and an optional set of remote
-// locations. Fleets that are created in the following AWS Regions support multiple
-// locations: us-east-1 (N. Virginia), us-west-2 (Oregon), eu-central-1 (Frankfurt),
-// eu-west-1 (Ireland), ap-southeast-2 (Sydney), ap-northeast-1 (Tokyo), and
-// ap-northeast-2 (Seoul). Fleets that are created in other GameLift Regions
-// can deploy instances in the fleet's home Region only. All fleet instances
+// locations. Fleets that are created in the following Amazon Web Services Regions
+// support multiple locations: us-east-1 (N. Virginia), us-west-2 (Oregon),
+// eu-central-1 (Frankfurt), eu-west-1 (Ireland), ap-southeast-2 (Sydney), ap-northeast-1
+// (Tokyo), and ap-northeast-2 (Seoul). Fleets that are created in other GameLift
+// Regions can deploy instances in the fleet's home Region only. All fleet instances
 // use the same configuration regardless of location; however, you can adjust
 // capacity settings and turn auto-scaling on/off for each location.
 //
@@ -608,6 +609,11 @@ func (c *GameLift) CreateFleetRequest(input *CreateFleetInput) (req *request.Req
 // the fleet. Set permissions for inbound traffic to your game servers, and
 // enable optional features as needed. When creating a multi-location fleet,
 // provide a list of additional remote locations.
+//
+// If you need to debug your fleet, fetch logs, view performance metrics or
+// other actions on the fleet, create the development fleet with port 22/3389
+// open. As a best practice, we recommend opening ports for remote access only
+// when you need them and closing them when you're finished.
 //
 // If successful, this operation creates a new Fleet resource and places it
 // in NEW status, which prompts GameLift to initiate the fleet creation workflow
@@ -746,9 +752,9 @@ func (c *GameLift) CreateFleetLocationsRequest(input *CreateFleetLocationsInput)
 // auto-scaling, and other configuration settings.
 //
 // This operation cannot be used with fleets that don't support remote locations.
-// Fleets can have multiple locations only if they reside in AWS Regions that
-// support this feature (see CreateFleet for the complete list) and were created
-// after the feature was released in March 2021.
+// Fleets can have multiple locations only if they reside in Amazon Web Services
+// Regions that support this feature (see CreateFleet for the complete list)
+// and were created after the feature was released in March 2021.
 //
 // To add fleet locations, specify the fleet to be updated and provide a list
 // of one or more locations.
@@ -876,29 +882,31 @@ func (c *GameLift) CreateGameServerGroupRequest(input *CreateGameServerGroupInpu
 // groups.
 //
 // Creates a GameLift FleetIQ game server group for managing game hosting on
-// a collection of Amazon EC2 instances for game hosting. This operation creates
-// the game server group, creates an Auto Scaling group in your AWS account,
-// and establishes a link between the two groups. You can view the status of
-// your game server groups in the GameLift console. Game server group metrics
-// and events are emitted to Amazon CloudWatch.
+// a collection of Amazon Elastic Compute Cloud instances for game hosting.
+// This operation creates the game server group, creates an Auto Scaling group
+// in your Amazon Web Services account, and establishes a link between the two
+// groups. You can view the status of your game server groups in the GameLift
+// console. Game server group metrics and events are emitted to Amazon CloudWatch.
 //
 // Before creating a new game server group, you must have the following:
 //
-//    * An Amazon EC2 launch template that specifies how to launch Amazon EC2
-//    instances with your game server build. For more information, see Launching
-//    an Instance from a Launch Template (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html)
-//    in the Amazon EC2 User Guide.
+//    * An Amazon Elastic Compute Cloud launch template that specifies how to
+//    launch Amazon Elastic Compute Cloud instances with your game server build.
+//    For more information, see Launching an Instance from a Launch Template
+//    (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html)
+//    in the Amazon Elastic Compute Cloud User Guide.
 //
-//    * An IAM role that extends limited access to your AWS account to allow
-//    GameLift FleetIQ to create and interact with the Auto Scaling group. For
-//    more information, see Create IAM roles for cross-service interaction (https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/gsg-iam-permissions-roles.html)
+//    * An IAM role that extends limited access to your Amazon Web Services
+//    account to allow GameLift FleetIQ to create and interact with the Auto
+//    Scaling group. For more information, see Create IAM roles for cross-service
+//    interaction (https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/gsg-iam-permissions-roles.html)
 //    in the GameLift FleetIQ Developer Guide.
 //
 // To create a new game server group, specify a unique group name, IAM role
-// and Amazon EC2 launch template, and provide a list of instance types that
-// can be used in the group. You must also set initial maximum and minimum limits
-// on the group's instance count. You can optionally set an Auto Scaling policy
-// with target tracking based on a GameLift FleetIQ metric.
+// and Amazon Elastic Compute Cloud launch template, and provide a list of instance
+// types that can be used in the group. You must also set initial maximum and
+// minimum limits on the group's instance count. You can optionally set an Auto
+// Scaling policy with target tracking based on a GameLift FleetIQ metric.
 //
 // Once the game server group and corresponding Auto Scaling group are created,
 // you have full access to change the Auto Scaling group's configuration as
@@ -1045,7 +1053,7 @@ func (c *GameLift) CreateGameSessionRequest(input *CreateGameSessionInput) (req 
 // Game session logs are retained for all active game sessions for 14 days.
 // To access the logs, call GetGameSessionLogUrl to download the log files.
 //
-// Available in GameLift Local.
+// Available in Amazon Web Services Local.
 //
 // Learn more
 //
@@ -1188,9 +1196,10 @@ func (c *GameLift) CreateGameSessionQueueRequest(input *CreateGameSessionQueueIn
 // A game session queue is configured with a set of destinations (GameLift fleets
 // or aliases), which determine the locations where the queue can place new
 // game sessions. These destinations can span multiple fleet types (Spot and
-// On-Demand), instance types, and AWS Regions. If the queue includes multi-location
-// fleets, the queue is able to place game sessions in all of a fleet's remote
-// locations. You can opt to filter out individual locations if needed.
+// On-Demand), instance types, and Amazon Web Services Regions. If the queue
+// includes multi-location fleets, the queue is able to place game sessions
+// in all of a fleet's remote locations. You can opt to filter out individual
+// locations if needed.
 //
 // The queue configuration also determines how FleetIQ selects the best available
 // placement for a new game session. Before searching for an available game
@@ -1206,9 +1215,10 @@ func (c *GameLift) CreateGameSessionQueueRequest(input *CreateGameSessionQueueIn
 // way to track placement activity.
 //
 // If successful, a new GameSessionQueue object is returned with an assigned
-// queue ARN. New game session requests, which are submitted to the queue with
-// StartGameSessionPlacement or StartMatchmaking, reference a queue's name or
-// ARN.
+// queue ARN. New game session requests, which are submitted to queue with StartGameSessionPlacement
+// (https://docs.aws.amazon.com/gamelift/latest/apireference/API_StartGameSessionPlacement.html)
+// or StartMatchmaking (https://docs.aws.amazon.com/gamelift/latest/apireference/API_StartMatchmaking.html),
+// reference a queue's name or ARN.
 //
 // Learn more
 //
@@ -1218,8 +1228,11 @@ func (c *GameLift) CreateGameSessionQueueRequest(input *CreateGameSessionQueueIn
 //
 // Related actions
 //
-// CreateGameSessionQueue | DescribeGameSessionQueues | UpdateGameSessionQueue
-// | DeleteGameSessionQueue | All APIs by task (https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets)
+// CreateGameSessionQueue (https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateGameSessionQueue.html)
+// | DescribeGameSessionQueues (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeGameSessionQueues.html)
+// | UpdateGameSessionQueue (https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateGameSessionQueue.html)
+// | DeleteGameSessionQueue (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DeleteGameSessionQueue.html)
+// | All APIs by task (https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1336,11 +1349,11 @@ func (c *GameLift) CreateMatchmakingConfigurationRequest(input *CreateMatchmakin
 // When using FlexMatch with GameLift hosting, you also need to identify the
 // game session queue to use when starting a game session for the match.
 //
-// In addition, you must set up an Amazon Simple Notification Service (SNS)
-// topic to receive matchmaking notifications. Provide the topic ARN in the
-// matchmaking configuration. An alternative method, continuously polling ticket
-// status with DescribeMatchmaking, is only suitable for games in development
-// with low matchmaking usage.
+// In addition, you must set up an Amazon Simple Notification Service topic
+// to receive matchmaking notifications. Provide the topic ARN in the matchmaking
+// configuration. An alternative method, continuously polling ticket status
+// with DescribeMatchmaking, is only suitable for games in development with
+// low matchmaking usage.
 //
 // Learn more
 //
@@ -1587,7 +1600,9 @@ func (c *GameLift) CreatePlayerSessionRequest(input *CreatePlayerSessionInput) (
 // game session, and the game server can use it to validate the player reservation
 // with the GameLift service. Player sessions cannot be updated.
 //
-// Available in Amazon GameLift Local.
+// The maximum number of players per game session is 200. It is not adjustable.
+//
+// Available in Amazon Web Services Local.
 //
 // Related actions
 //
@@ -1714,7 +1729,9 @@ func (c *GameLift) CreatePlayerSessionsRequest(input *CreatePlayerSessionsInput)
 // game session, and the game server can use it to validate the player reservation
 // with the GameLift service. Player sessions cannot be updated.
 //
-// Available in Amazon GameLift Local.
+// The maximum number of players per game session is 200. It is not adjustable.
+//
+// Available in Amazon Web Services Local.
 //
 // Related actions
 //
@@ -1839,22 +1856,23 @@ func (c *GameLift) CreateScriptRequest(input *CreateScriptInput) (req *request.R
 //
 //    * A locally available directory. Use the ZipFile parameter for this option.
 //
-//    * An Amazon Simple Storage Service (Amazon S3) bucket under your AWS account.
-//    Use the StorageLocation parameter for this option. You'll need to have
-//    an Identity Access Management (IAM) role that allows the Amazon GameLift
-//    service to access your S3 bucket.
+//    * An Amazon Simple Storage Service (Amazon S3) bucket under your Amazon
+//    Web Services account. Use the StorageLocation parameter for this option.
+//    You'll need to have an Identity Access Management (IAM) role that allows
+//    the Amazon Web Services service to access your S3 bucket.
 //
 // If the call is successful, a new script record is created with a unique script
 // ID. If the script file is provided as a local file, the file is uploaded
-// to an Amazon GameLift-owned S3 bucket and the script record's storage location
-// reflects this location. If the script file is provided as an S3 bucket, Amazon
-// GameLift accesses the file at this storage location as needed for deployment.
+// to an Amazon Web Services-owned S3 bucket and the script record's storage
+// location reflects this location. If the script file is provided as an S3
+// bucket, Amazon Web Services accesses the file at this storage location as
+// needed for deployment.
 //
 // Learn more
 //
-// Amazon GameLift Realtime Servers (https://docs.aws.amazon.com/gamelift/latest/developerguide/realtime-intro.html)
+// Amazon Web Services Realtime Servers (https://docs.aws.amazon.com/gamelift/latest/developerguide/realtime-intro.html)
 //
-// Set Up a Role for Amazon GameLift Access (https://docs.aws.amazon.com/gamelift/latest/developerguide/setting-up-role.html)
+// Set Up a Role for Amazon Web Services Access (https://docs.aws.amazon.com/gamelift/latest/developerguide/setting-up-role.html)
 //
 // Related actions
 //
@@ -1958,29 +1976,31 @@ func (c *GameLift) CreateVpcPeeringAuthorizationRequest(input *CreateVpcPeeringA
 // CreateVpcPeeringAuthorization API operation for Amazon GameLift.
 //
 // Requests authorization to create or delete a peer connection between the
-// VPC for your Amazon GameLift fleet and a virtual private cloud (VPC) in your
-// AWS account. VPC peering enables the game servers on your fleet to communicate
-// directly with other AWS resources. Once you've received authorization, call
-// CreateVpcPeeringConnection to establish the peering connection. For more
-// information, see VPC Peering with Amazon GameLift Fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html).
+// VPC for your Amazon Web Services fleet and a virtual private cloud (VPC)
+// in your Amazon Web Services account. VPC peering enables the game servers
+// on your fleet to communicate directly with other Amazon Web Services resources.
+// Once you've received authorization, call CreateVpcPeeringConnection to establish
+// the peering connection. For more information, see VPC Peering with Amazon
+// Web Services Fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html).
 //
-// You can peer with VPCs that are owned by any AWS account you have access
-// to, including the account that you use to manage your Amazon GameLift fleets.
-// You cannot peer with VPCs that are in different Regions.
+// You can peer with VPCs that are owned by any Amazon Web Services account
+// you have access to, including the account that you use to manage your Amazon
+// Web Services fleets. You cannot peer with VPCs that are in different Regions.
 //
 // To request authorization to create a connection, call this operation from
-// the AWS account with the VPC that you want to peer to your Amazon GameLift
-// fleet. For example, to enable your game servers to retrieve data from a DynamoDB
-// table, use the account that manages that DynamoDB resource. Identify the
-// following values: (1) The ID of the VPC that you want to peer with, and (2)
-// the ID of the AWS account that you use to manage Amazon GameLift. If successful,
-// VPC peering is authorized for the specified VPC.
+// the Amazon Web Services account with the VPC that you want to peer to your
+// Amazon Web Services fleet. For example, to enable your game servers to retrieve
+// data from a DynamoDB table, use the account that manages that DynamoDB resource.
+// Identify the following values: (1) The ID of the VPC that you want to peer
+// with, and (2) the ID of the Amazon Web Services account that you use to manage
+// Amazon Web Services. If successful, VPC peering is authorized for the specified
+// VPC.
 //
 // To request authorization to delete a connection, call this operation from
-// the AWS account with the VPC that is peered with your Amazon GameLift fleet.
-// Identify the following values: (1) VPC ID that you want to delete the peering
-// connection for, and (2) ID of the AWS account that you use to manage Amazon
-// GameLift.
+// the Amazon Web Services account with the VPC that is peered with your Amazon
+// Web Services fleet. Identify the following values: (1) VPC ID that you want
+// to delete the peering connection for, and (2) ID of the Amazon Web Services
+// account that you use to manage Amazon Web Services.
 //
 // The authorization remains valid for 24 hours unless it is canceled by a call
 // to DeleteVpcPeeringAuthorization. You must create or delete the peering connection
@@ -2084,12 +2104,13 @@ func (c *GameLift) CreateVpcPeeringConnectionRequest(input *CreateVpcPeeringConn
 // CreateVpcPeeringConnection API operation for Amazon GameLift.
 //
 // Establishes a VPC peering connection between a virtual private cloud (VPC)
-// in an AWS account with the VPC for your Amazon GameLift fleet. VPC peering
-// enables the game servers on your fleet to communicate directly with other
-// AWS resources. You can peer with VPCs in any AWS account that you have access
-// to, including the account that you use to manage your Amazon GameLift fleets.
-// You cannot peer with VPCs that are in different Regions. For more information,
-// see VPC Peering with Amazon GameLift Fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html).
+// in an Amazon Web Services account with the VPC for your Amazon Web Services
+// fleet. VPC peering enables the game servers on your fleet to communicate
+// directly with other Amazon Web Services resources. You can peer with VPCs
+// in any Amazon Web Services account that you have access to, including the
+// account that you use to manage your Amazon Web Services fleets. You cannot
+// peer with VPCs that are in different Regions. For more information, see VPC
+// Peering with Amazon Web Services Fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html).
 //
 // Before calling this operation to establish the peering connection, you first
 // need to call CreateVpcPeeringAuthorization and identify the VPC you want
@@ -2098,14 +2119,15 @@ func (c *GameLift) CreateVpcPeeringConnectionRequest(input *CreateVpcPeeringConn
 // tasks necessary to peer the two VPCs, including acceptance, updating routing
 // tables, etc.
 //
-// To establish the connection, call this operation from the AWS account that
-// is used to manage the Amazon GameLift fleets. Identify the following values:
-// (1) The ID of the fleet you want to be enable a VPC peering connection for;
-// (2) The AWS account with the VPC that you want to peer with; and (3) The
-// ID of the VPC you want to peer with. This operation is asynchronous. If successful,
-// a VpcPeeringConnection request is created. You can use continuous polling
-// to track the request's status using DescribeVpcPeeringConnections, or by
-// monitoring fleet events for success or failure using DescribeFleetEvents.
+// To establish the connection, call this operation from the Amazon Web Services
+// account that is used to manage the Amazon Web Services fleets. Identify the
+// following values: (1) The ID of the fleet you want to be enable a VPC peering
+// connection for; (2) The Amazon Web Services account with the VPC that you
+// want to peer with; and (3) The ID of the VPC you want to peer with. This
+// operation is asynchronous. If successful, a VpcPeeringConnection request
+// is created. You can use continuous polling to track the request's status
+// using DescribeVpcPeeringConnections, or by monitoring fleet events for success
+// or failure using DescribeFleetEvents.
 //
 // Related actions
 //
@@ -2789,8 +2811,9 @@ func (c *GameLift) DeleteGameSessionQueueRequest(input *DeleteGameSessionQueueIn
 // DeleteGameSessionQueue API operation for Amazon GameLift.
 //
 // Deletes a game session queue. Once a queue is successfully deleted, unfulfilled
-// StartGameSessionPlacement requests that reference the queue will fail. To
-// delete a queue, specify the queue name.
+// StartGameSessionPlacement (https://docs.aws.amazon.com/gamelift/latest/apireference/API_StartGameSessionPlacement.html)
+// requests that reference the queue will fail. To delete a queue, specify the
+// queue name.
 //
 // Learn more
 //
@@ -2798,8 +2821,11 @@ func (c *GameLift) DeleteGameSessionQueueRequest(input *DeleteGameSessionQueueIn
 //
 // Related actions
 //
-// CreateGameSessionQueue | DescribeGameSessionQueues | UpdateGameSessionQueue
-// | DeleteGameSessionQueue | All APIs by task (https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets)
+// CreateGameSessionQueue (https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateGameSessionQueue.html)
+// | DescribeGameSessionQueues (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeGameSessionQueues.html)
+// | UpdateGameSessionQueue (https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateGameSessionQueue.html)
+// | DeleteGameSessionQueue (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DeleteGameSessionQueue.html)
+// | All APIs by task (https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3231,7 +3257,7 @@ func (c *GameLift) DeleteScriptRequest(input *DeleteScriptInput) (req *request.R
 //
 // Learn more
 //
-// Amazon GameLift Realtime Servers (https://docs.aws.amazon.com/gamelift/latest/developerguide/realtime-intro.html)
+// Amazon Web Services Realtime Servers (https://docs.aws.amazon.com/gamelift/latest/developerguide/realtime-intro.html)
 //
 // Related actions
 //
@@ -3439,10 +3465,10 @@ func (c *GameLift) DeleteVpcPeeringConnectionRequest(input *DeleteVpcPeeringConn
 // You can check for an authorization by calling DescribeVpcPeeringAuthorizations
 // or request a new one using CreateVpcPeeringAuthorization.
 //
-// Once a valid authorization exists, call this operation from the AWS account
-// that is used to manage the Amazon GameLift fleets. Identify the connection
-// to delete by the connection ID and fleet ID. If successful, the connection
-// is removed.
+// Once a valid authorization exists, call this operation from the Amazon Web
+// Services account that is used to manage the Amazon Web Services fleets. Identify
+// the connection to delete by the connection ID and fleet ID. If successful,
+// the connection is removed.
 //
 // Related actions
 //
@@ -3855,21 +3881,23 @@ func (c *GameLift) DescribeEC2InstanceLimitsRequest(input *DescribeEC2InstanceLi
 
 // DescribeEC2InstanceLimits API operation for Amazon GameLift.
 //
-// The GameLift service limits and current utilization for an AWS Region or
-// location. Instance limits control the number of instances, per instance type,
-// per location, that your AWS account can use. Learn more at Amazon EC2 Instance
-// Types (http://aws.amazon.com/ec2/instance-types/). The information returned
-// includes the maximum number of instances allowed and your account's current
-// usage across all fleets. This information can affect your ability to scale
-// your GameLift fleets. You can request a limit increase for your account by
-// using the Service limits page in the GameLift console.
+// The GameLift service limits and current utilization for an Amazon Web Services
+// Region or location. Instance limits control the number of instances, per
+// instance type, per location, that your Amazon Web Services account can use.
+// Learn more at Amazon EC2 Instance Types (http://aws.amazon.com/ec2/instance-types/).
+// The information returned includes the maximum number of instances allowed
+// and your account's current usage across all fleets. This information can
+// affect your ability to scale your GameLift fleets. You can request a limit
+// increase for your account by using the Service limits page in the GameLift
+// console.
 //
 // Instance limits differ based on whether the instances are deployed in a fleet's
 // home Region or in a remote location. For remote locations, limits also differ
 // based on the combination of home Region and remote location. All requests
-// must specify an AWS Region (either explicitly or as your default settings).
-// To get the limit for a remote location, you must also specify the location.
-// For example, the following requests all return different results:
+// must specify an Amazon Web Services Region (either explicitly or as your
+// default settings). To get the limit for a remote location, you must also
+// specify the location. For example, the following requests all return different
+// results:
 //
 //    * Request specifies the Region ap-northeast-1 with no location. The result
 //    is limits and usage data on all instance types that are deployed in us-east-2,
@@ -3888,14 +3916,14 @@ func (c *GameLift) DescribeEC2InstanceLimitsRequest(input *DescribeEC2InstanceLi
 // This operation can be used in the following ways:
 //
 //    * To get limit and usage data for all instance types that are deployed
-//    in an AWS Region by fleets that reside in the same Region: Specify the
-//    Region only. Optionally, specify a single instance type to retrieve information
-//    for.
+//    in an Amazon Web Services Region by fleets that reside in the same Region:
+//    Specify the Region only. Optionally, specify a single instance type to
+//    retrieve information for.
 //
 //    * To get limit and usage data for all instance types that are deployed
-//    to a remote location by fleets that reside in different AWS Region: Provide
-//    both the AWS Region and the remote location. Optionally, specify a single
-//    instance type to retrieve information for.
+//    to a remote location by fleets that reside in different Amazon Web Services
+//    Region: Provide both the Amazon Web Services Region and the remote location.
+//    Optionally, specify a single instance type to retrieve information for.
 //
 // If successful, an EC2InstanceLimits object is returned with limits and usage
 // data for each requested instance type.
@@ -5678,7 +5706,7 @@ func (c *GameLift) DescribeGameSessionDetailsRequest(input *DescribeGameSessionD
 //
 //    * To retrieve details for a specific game session, provide the game session
 //    ID. This approach looks for the game session ID in all fleets that reside
-//    in the AWS Region defined in the request.
+//    in the Amazon Web Services Region defined in the request.
 //
 // Use the pagination parameters to retrieve results as a set of sequential
 // pages.
@@ -5854,6 +5882,13 @@ func (c *GameLift) DescribeGameSessionPlacementRequest(input *DescribeGameSessio
 //
 // To get game session placement details, specify the placement ID.
 //
+// This operation is not designed to be continually called to track game session
+// status. This practice can cause you to exceed your API limit, which results
+// in errors. Instead, you must configure configure an Amazon Simple Notification
+// Service (SNS) topic to receive notifications from FlexMatch or queues. Continuously
+// polling with DescribeGameSessionPlacement should only be used for games in
+// development with low game session usage.
+//
 // If successful, a GameSessionPlacement object is returned.
 //
 // Related actions
@@ -5971,8 +6006,11 @@ func (c *GameLift) DescribeGameSessionQueuesRequest(input *DescribeGameSessionQu
 //
 // Related actions
 //
-// CreateGameSessionQueue | DescribeGameSessionQueues | UpdateGameSessionQueue
-// | DeleteGameSessionQueue | All APIs by task (https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets)
+// CreateGameSessionQueue (https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateGameSessionQueue.html)
+// | DescribeGameSessionQueues (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeGameSessionQueues.html)
+// | UpdateGameSessionQueue (https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateGameSessionQueue.html)
+// | DeleteGameSessionQueue (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DeleteGameSessionQueue.html)
+// | All APIs by task (https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6128,6 +6166,13 @@ func (c *GameLift) DescribeGameSessionsRequest(input *DescribeGameSessionsInput)
 // filtered by certain criteria. To retrieve the protection policy for game
 // sessions, use DescribeGameSessionDetails.
 //
+// This operation is not designed to be continually called to track game session
+// status. This practice can cause you to exceed your API limit, which results
+// in errors. Instead, you must configure configure an Amazon Simple Notification
+// Service (SNS) topic to receive notifications from FlexMatch or queues. Continuously
+// polling with DescribeGameSessions should only be used for games in development
+// with low game session usage.
+//
 // This operation can be used in the following ways:
 //
 //    * To retrieve all game sessions that are currently running on all locations
@@ -6142,7 +6187,7 @@ func (c *GameLift) DescribeGameSessionsRequest(input *DescribeGameSessionsInput)
 //
 //    * To retrieve a specific game session, provide the game session ID. This
 //    approach looks for the game session ID in all fleets that reside in the
-//    AWS Region defined in the request.
+//    Amazon Web Services Region defined in the request.
 //
 // Use the pagination parameters to retrieve results as a set of sequential
 // pages.
@@ -6150,7 +6195,14 @@ func (c *GameLift) DescribeGameSessionsRequest(input *DescribeGameSessionsInput)
 // If successful, a GameSession object is returned for each game session that
 // matches the request.
 //
-// Available in GameLift Local.
+// This operation is not designed to be continually called to track matchmaking
+// ticket status. This practice can cause you to exceed your API limit, which
+// results in errors. Instead, as a best practice, set up an Amazon Simple Notification
+// Service to receive notifications, and provide the topic ARN in the matchmaking
+// configuration. Continuously poling ticket status with DescribeGameSessions
+// should only be used for games in development with low matchmaking usage.
+//
+// Available in Amazon Web Services Local.
 //
 // Learn more
 //
@@ -6508,8 +6560,8 @@ func (c *GameLift) DescribeMatchmakingRequest(input *DescribeMatchmakingInput) (
 // This operation is not designed to be continually called to track matchmaking
 // ticket status. This practice can cause you to exceed your API limit, which
 // results in errors. Instead, as a best practice, set up an Amazon Simple Notification
-// Service (SNS) to receive notifications, and provide the topic ARN in the
-// matchmaking configuration. Continuously poling ticket status with DescribeMatchmaking
+// Service to receive notifications, and provide the topic ARN in the matchmaking
+// configuration. Continuously poling ticket status with DescribeMatchmaking
 // should only be used for games in development with low matchmaking usage.
 //
 // Learn more
@@ -6967,7 +7019,7 @@ func (c *GameLift) DescribePlayerSessionsRequest(input *DescribePlayerSessionsIn
 // If successful, a PlayerSession object is returned for each session that matches
 // the request.
 //
-// Available in Amazon GameLift Local.
+// Available in Amazon Web Services Local.
 //
 // Related actions
 //
@@ -7405,7 +7457,7 @@ func (c *GameLift) DescribeScriptRequest(input *DescribeScriptInput) (req *reque
 //
 // Learn more
 //
-// Amazon GameLift Realtime Servers (https://docs.aws.amazon.com/gamelift/latest/developerguide/realtime-intro.html)
+// Amazon Web Services Realtime Servers (https://docs.aws.amazon.com/gamelift/latest/developerguide/realtime-intro.html)
 //
 // Related actions
 //
@@ -7502,9 +7554,10 @@ func (c *GameLift) DescribeVpcPeeringAuthorizationsRequest(input *DescribeVpcPee
 
 // DescribeVpcPeeringAuthorizations API operation for Amazon GameLift.
 //
-// Retrieves valid VPC peering authorizations that are pending for the AWS account.
-// This operation returns all VPC peering authorizations and requests for peering.
-// This includes those initiated and received by this account.
+// Retrieves valid VPC peering authorizations that are pending for the Amazon
+// Web Services account. This operation returns all VPC peering authorizations
+// and requests for peering. This includes those initiated and received by this
+// account.
 //
 // Related actions
 //
@@ -7601,11 +7654,12 @@ func (c *GameLift) DescribeVpcPeeringConnectionsRequest(input *DescribeVpcPeerin
 // Retrieves information on VPC peering connections. Use this operation to get
 // peering information for all fleets or for one specific fleet ID.
 //
-// To retrieve connection information, call this operation from the AWS account
-// that is used to manage the Amazon GameLift fleets. Specify a fleet ID or
-// leave the parameter empty to retrieve all connection records. If successful,
-// the retrieved information includes both active and pending connections. Active
-// connections identify the IpV4 CIDR block that the VPC uses to connect.
+// To retrieve connection information, call this operation from the Amazon Web
+// Services account that is used to manage the Amazon Web Services fleets. Specify
+// a fleet ID or leave the parameter empty to retrieve all connection records.
+// If successful, the retrieved information includes both active and pending
+// connections. Active connections identify the IpV4 CIDR block that the VPC
+// uses to connect.
 //
 // Related actions
 //
@@ -7707,7 +7761,7 @@ func (c *GameLift) GetGameSessionLogUrlRequest(input *GetGameSessionLogUrlInput)
 // When a game session is terminated, GameLift automatically stores the logs
 // in Amazon S3 and retains them for 14 days. Use this URL to download the logs.
 //
-// See the AWS Service Limits (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_gamelift)
+// See the Amazon Web Services Service Limits (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_gamelift)
 // page for maximum log file sizes. Log files that exceed this limit are not
 // saved.
 //
@@ -7817,7 +7871,7 @@ func (c *GameLift) GetInstanceAccessRequest(input *GetInstanceAccessInput) (req 
 // a Linux instance, GameLift returns a user name and RSA private key, also
 // as strings, for use with an SSH client. The private key must be saved in
 // the proper format to a .pem file before using. If you're making this request
-// using the AWS CLI, saving the secret can be handled as part of the GetInstanceAccess
+// using the CLI, saving the secret can be handled as part of the GetInstanceAccess
 // request, as shown in one of the examples for this operation.
 //
 // To request access to a specific instance, specify the IDs of both the instance
@@ -7932,9 +7986,9 @@ func (c *GameLift) ListAliasesRequest(input *ListAliasesInput) (req *request.Req
 
 // ListAliases API operation for Amazon GameLift.
 //
-// Retrieves all aliases for this AWS account. You can filter the result set
-// by alias name and/or routing strategy type. Use the pagination parameters
-// to retrieve results in sequential pages.
+// Retrieves all aliases for this Amazon Web Services account. You can filter
+// the result set by alias name and/or routing strategy type. Use the pagination
+// parameters to retrieve results in sequential pages.
 //
 // Returned aliases are not listed in any particular order.
 //
@@ -8087,10 +8141,10 @@ func (c *GameLift) ListBuildsRequest(input *ListBuildsInput) (req *request.Reque
 
 // ListBuilds API operation for Amazon GameLift.
 //
-// Retrieves build resources for all builds associated with the AWS account
-// in use. You can limit results to builds that are in a specific status by
-// using the Status parameter. Use the pagination parameters to retrieve results
-// in a set of sequential pages.
+// Retrieves build resources for all builds associated with the Amazon Web Services
+// account in use. You can limit results to builds that are in a specific status
+// by using the Status parameter. Use the pagination parameters to retrieve
+// results in a set of sequential pages.
 //
 // Build resources are not listed in any particular order.
 //
@@ -8247,9 +8301,9 @@ func (c *GameLift) ListFleetsRequest(input *ListFleetsInput) (req *request.Reque
 
 // ListFleets API operation for Amazon GameLift.
 //
-// Retrieves a collection of fleet resources in an AWS Region. You can call
-// this operation to get fleets in a previously selected default Region (see
-// https://docs.aws.amazon.com/credref/latest/refdocs/setting-global-region.html
+// Retrieves a collection of fleet resources in an Amazon Web Services Region.
+// You can call this operation to get fleets in a previously selected default
+// Region (see https://docs.aws.amazon.com/credref/latest/refdocs/setting-global-region.html
 // (https://docs.aws.amazon.com/credref/latest/refdocs/setting-global-region.html)or
 // specify a Region in your request. You can filter the result set to find only
 // those fleets that are deployed with a specific build or script. For fleets
@@ -8437,8 +8491,8 @@ func (c *GameLift) ListGameServerGroupsRequest(input *ListGameServerGroupsInput)
 // groups.
 //
 // Retrieves information on all game servers groups that exist in the current
-// AWS account for the selected Region. Use the pagination parameters to retrieve
-// results in a set of sequential segments.
+// Amazon Web Services account for the selected Region. Use the pagination parameters
+// to retrieve results in a set of sequential segments.
 //
 // Learn more
 //
@@ -8756,11 +8810,11 @@ func (c *GameLift) ListScriptsRequest(input *ListScriptsInput) (req *request.Req
 // ListScripts API operation for Amazon GameLift.
 //
 // Retrieves script records for all Realtime scripts that are associated with
-// the AWS account in use.
+// the Amazon Web Services account in use.
 //
 // Learn more
 //
-// Amazon GameLift Realtime Servers (https://docs.aws.amazon.com/gamelift/latest/developerguide/realtime-intro.html)
+// Amazon Web Services Realtime Servers (https://docs.aws.amazon.com/gamelift/latest/developerguide/realtime-intro.html)
 //
 // Related actions
 //
@@ -8906,9 +8960,9 @@ func (c *GameLift) ListTagsForResourceRequest(input *ListTagsForResourceInput) (
 // ListTagsForResource API operation for Amazon GameLift.
 //
 // Retrieves all tags that are assigned to a GameLift resource. Resource tags
-// are used to organize AWS resources for a range of purposes. This operation
-// handles the permissions necessary to manage tags for the following GameLift
-// resource types:
+// are used to organize Amazon Web Services resources for a range of purposes.
+// This operation handles the permissions necessary to manage tags for the following
+// GameLift resource types:
 //
 //    * Build
 //
@@ -8928,10 +8982,10 @@ func (c *GameLift) ListTagsForResourceRequest(input *ListTagsForResourceInput) (
 //
 // Learn more
 //
-// Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-// in the AWS General Reference
+// Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+// in the Amazon Web Services General Reference
 //
-//  AWS Tagging Strategies (http://aws.amazon.com/answers/account-management/aws-tagging-strategies/)
+//  Amazon Web Services Tagging Strategies (http://aws.amazon.com/answers/account-management/aws-tagging-strategies/)
 //
 // Related actions
 //
@@ -9031,7 +9085,7 @@ func (c *GameLift) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req *r
 //
 // Creates or updates a scaling policy for a fleet. Scaling policies are used
 // to automatically scale a fleet's hosting capacity to meet player demand.
-// An active scaling policy instructs Amazon GameLift to track a fleet metric
+// An active scaling policy instructs Amazon Web Services to track a fleet metric
 // and automatically change the fleet's capacity when a certain threshold is
 // reached. There are two types of scaling policies: target-based and rule-based.
 // Use a target-based policy to quickly and efficiently manage fleet scaling;
@@ -9058,14 +9112,14 @@ func (c *GameLift) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req *r
 // game sessions but is not currently in use. This is the fleet's buffer; it
 // measures the additional player demand that the fleet could handle at current
 // capacity. With a target-based policy, you set your ideal buffer size and
-// leave it to Amazon GameLift to take whatever action is needed to maintain
+// leave it to Amazon Web Services to take whatever action is needed to maintain
 // that target.
 //
 // For example, you might choose to maintain a 10% buffer for a fleet that has
 // the capacity to host 100 simultaneous game sessions. This policy tells Amazon
-// GameLift to take action whenever the fleet's available capacity falls below
-// or rises above 10 game sessions. Amazon GameLift will start new instances
-// or stop unused instances in order to return to the 10% buffer.
+// Web Services to take action whenever the fleet's available capacity falls
+// below or rises above 10 game sessions. Amazon Web Services will start new
+// instances or stop unused instances in order to return to the 10% buffer.
 //
 // To create or update a target-based policy, specify a fleet ID and name, and
 // set the policy type to "TargetBased". Specify the metric to track (PercentAvailableGameSessions)
@@ -9326,8 +9380,8 @@ func (c *GameLift) RequestUploadCredentialsRequest(input *RequestUploadCredentia
 // RequestUploadCredentials API operation for Amazon GameLift.
 //
 // Retrieves a fresh set of credentials for use when uploading a new set of
-// game build files to Amazon GameLift's Amazon S3. This is done as part of
-// the build creation process; see CreateBuild.
+// game build files to Amazon Web Services's Amazon S3. This is done as part
+// of the build creation process; see CreateBuild.
 //
 // To request new credentials, specify the build ID as returned with an initial
 // CreateBuild request. If successful, a new set of credentials are returned,
@@ -9658,6 +9712,13 @@ func (c *GameLift) SearchGameSessionsRequest(input *SearchGameSessionsInput) (re
 //
 // Retrieves all active game sessions that match a set of search criteria and
 // sorts them into a specified order.
+//
+// This operation is not designed to be continually called to track game session
+// status. This practice can cause you to exceed your API limit, which results
+// in errors. Instead, you must configure configure an Amazon Simple Notification
+// Service (SNS) topic to receive notifications from FlexMatch or queues. Continuously
+// polling game session status with DescribeGameSessions should only be used
+// for games in development with low game session usage.
 //
 // When searching for game sessions, you specify exactly where you want to search
 // and provide a search filter expression, a sort expression, or both. A search
@@ -10000,25 +10061,26 @@ func (c *GameLift) StartGameSessionPlacementRequest(input *StartGameSessionPlace
 // StartGameSessionPlacement API operation for Amazon GameLift.
 //
 // Places a request for a new game session in a queue (see CreateGameSessionQueue).
-// When processing a placement request, Amazon GameLift searches for available
+// When processing a placement request, Amazon Web Services searches for available
 // resources on the queue's destinations, scanning each until it finds resources
 // or the placement request times out.
 //
 // A game session placement request can also request player sessions. When a
-// new game session is successfully created, Amazon GameLift creates a player
+// new game session is successfully created, Amazon Web Services creates a player
 // session for each player included in the request.
 //
-// When placing a game session, by default Amazon GameLift tries each fleet
+// When placing a game session, by default Amazon Web Services tries each fleet
 // in the order they are listed in the queue configuration. Ideally, a queue's
 // destinations are listed in preference order.
 //
 // Alternatively, when requesting a game session with players, you can also
 // provide latency data for each player in relevant Regions. Latency data indicates
 // the performance lag a player experiences when connected to a fleet in the
-// Region. Amazon GameLift uses latency data to reorder the list of destinations
+// Region. Amazon Web Services uses latency data to reorder the list of destinations
 // to place the game session in a Region with minimal lag. If latency data is
-// provided for multiple players, Amazon GameLift calculates each Region's average
-// lag for all players and reorders to get the best game play across all players.
+// provided for multiple players, Amazon Web Services calculates each Region's
+// average lag for all players and reorders to get the best game play across
+// all players.
 //
 // To place a new game session request, specify the following:
 //
@@ -10168,6 +10230,8 @@ func (c *GameLift) StartMatchBackfillRequest(input *StartMatchBackfillInput) (re
 // Track the status of backfill tickets using the same method for tracking tickets
 // for new matches.
 //
+// Only game sessions created by FlexMatch are supported for match backfill.
+//
 // Learn more
 //
 //  Backfill existing games with FlexMatch (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-backfill.html)
@@ -10288,8 +10352,8 @@ func (c *GameLift) StartMatchmakingRequest(input *StartMatchmakingInput) (req *r
 //
 // Track matchmaking events to respond as needed and acquire game session connection
 // information for successfully completed matches. Ticket status updates are
-// tracked using event notification through Amazon Simple Notification Service
-// (SNS), which is defined in the matchmaking configuration.
+// tracked using event notification through Amazon Simple Notification Service,
+// which is defined in the matchmaking configuration.
 //
 // Learn more
 //
@@ -10853,11 +10917,12 @@ func (c *GameLift) TagResourceRequest(input *TagResourceInput) (req *request.Req
 
 // TagResource API operation for Amazon GameLift.
 //
-// Assigns a tag to a GameLift resource. AWS resource tags provide an additional
-// management tool set. You can use tags to organize resources, create IAM permissions
-// policies to manage access to groups of resources, customize AWS cost breakdowns,
-// etc. This operation handles the permissions necessary to manage tags for
-// the following GameLift resource types:
+// Assigns a tag to a GameLift resource. Amazon Web Services resource tags provide
+// an additional management tool set. You can use tags to organize resources,
+// create IAM permissions policies to manage access to groups of resources,
+// customize Amazon Web Services cost breakdowns, etc. This operation handles
+// the permissions necessary to manage tags for the following GameLift resource
+// types:
 //
 //    * Build
 //
@@ -10880,10 +10945,10 @@ func (c *GameLift) TagResourceRequest(input *TagResourceInput) (req *request.Req
 //
 // Learn more
 //
-// Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-// in the AWS General Reference
+// Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+// in the Amazon Web Services General Reference
 //
-//  AWS Tagging Strategies (http://aws.amazon.com/answers/account-management/aws-tagging-strategies/)
+//  Amazon Web Services Tagging Strategies (http://aws.amazon.com/answers/account-management/aws-tagging-strategies/)
 //
 // Related actions
 //
@@ -10983,9 +11048,9 @@ func (c *GameLift) UntagResourceRequest(input *UntagResourceInput) (req *request
 // UntagResource API operation for Amazon GameLift.
 //
 // Removes a tag that is assigned to a GameLift resource. Resource tags are
-// used to organize AWS resources for a range of purposes. This operation handles
-// the permissions necessary to manage tags for the following GameLift resource
-// types:
+// used to organize Amazon Web Services resources for a range of purposes. This
+// operation handles the permissions necessary to manage tags for the following
+// GameLift resource types:
 //
 //    * Build
 //
@@ -11008,10 +11073,10 @@ func (c *GameLift) UntagResourceRequest(input *UntagResourceInput) (req *request
 //
 // Learn more
 //
-// Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-// in the AWS General Reference
+// Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+// in the Amazon Web Services General Reference
 //
-//  AWS Tagging Strategies (http://aws.amazon.com/answers/account-management/aws-tagging-strategies/)
+//  Amazon Web Services Tagging Strategies (http://aws.amazon.com/answers/account-management/aws-tagging-strategies/)
 //
 // Related actions
 //
@@ -11446,11 +11511,11 @@ func (c *GameLift) UpdateFleetCapacityRequest(input *UpdateFleetCapacityInput) (
 //    set the fleet's capacity to a value outside of this range, whether the
 //    capacity is changed manually or through automatic scaling.
 //
-//    * Desired capacity: Manually set the number of EC2 instances to be maintained
-//    in a fleet location. Before changing a fleet's desired capacity, you may
-//    want to call DescribeEC2InstanceLimits to get the maximum capacity of
-//    the fleet's EC2 instance type. Alternatively, consider using automatic
-//    scaling to adjust capacity based on player demand.
+//    * Desired capacity: Manually set the number of Amazon EC2 instances to
+//    be maintained in a fleet location. Before changing a fleet's desired capacity,
+//    you may want to call DescribeEC2InstanceLimits to get the maximum capacity
+//    of the fleet's Amazon EC2 instance type. Alternatively, consider using
+//    automatic scaling to adjust capacity based on player demand.
 //
 // This operation can be used in the following ways:
 //
@@ -12080,8 +12145,11 @@ func (c *GameLift) UpdateGameSessionQueueRequest(input *UpdateGameSessionQueueIn
 //
 // Related actions
 //
-// CreateGameSessionQueue | DescribeGameSessionQueues | UpdateGameSessionQueue
-// | DeleteGameSessionQueue | All APIs by task (https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets)
+// CreateGameSessionQueue (https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateGameSessionQueue.html)
+// | DescribeGameSessionQueues (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeGameSessionQueues.html)
+// | UpdateGameSessionQueue (https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateGameSessionQueue.html)
+// | DeleteGameSessionQueue (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DeleteGameSessionQueue.html)
+// | All APIs by task (https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12411,13 +12479,13 @@ func (c *GameLift) UpdateScriptRequest(input *UpdateScriptInput) (req *request.R
 // updates to the script.
 //
 // If the call is successful, the updated metadata is stored in the script record
-// and a revised script is uploaded to the Amazon GameLift service. Once the
-// script is updated and acquired by a fleet instance, the new version is used
-// for all new game sessions.
+// and a revised script is uploaded to the Amazon Web Services service. Once
+// the script is updated and acquired by a fleet instance, the new version is
+// used for all new game sessions.
 //
 // Learn more
 //
-// Amazon GameLift Realtime Servers (https://docs.aws.amazon.com/gamelift/latest/developerguide/realtime-intro.html)
+// Amazon Web Services Realtime Servers (https://docs.aws.amazon.com/gamelift/latest/developerguide/realtime-intro.html)
 //
 // Related actions
 //
@@ -12786,7 +12854,7 @@ type AttributeValue struct {
 	// value is 100 characters.
 	SDM map[string]*float64 `type:"map"`
 
-	// For a list of up to 10 strings. Maximum length for each string is 100 characters.
+	// For a list of up to 100 strings. Maximum length for each string is 100 characters.
 	// Duplicate values are not recognized; all occurrences of the repeated value
 	// after the first of a repeated value are ignored.
 	SL []*string `type:"list"`
@@ -12848,15 +12916,15 @@ func (s *AttributeValue) SetSL(v []*string) *AttributeValue {
 }
 
 // Temporary access credentials used for uploading game build files to Amazon
-// GameLift. They are valid for a limited time. If they expire before you upload
-// your game build, get a new set by calling RequestUploadCredentials.
+// Web Services. They are valid for a limited time. If they expire before you
+// upload your game build, get a new set by calling RequestUploadCredentials.
 type AwsCredentials struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Temporary key allowing access to the Amazon GameLift S3 account.
+	// Temporary key allowing access to the Amazon Web Services S3 account.
 	AccessKeyId *string `min:"1" type:"string"`
 
-	// Temporary secret key allowing access to the Amazon GameLift S3 account.
+	// Temporary secret key allowing access to the Amazon Web Services S3 account.
 	SecretAccessKey *string `min:"1" type:"string"`
 
 	// Token used to associate a specific build ID with the files uploaded using
@@ -12931,7 +12999,8 @@ type Build struct {
 	OperatingSystem *string `type:"string" enum:"OperatingSystem"`
 
 	// File size of the uploaded game build, expressed in bytes. When the build
-	// status is INITIALIZED, this value is 0.
+	// status is INITIALIZED or when using a custom Amazon S3 storage location,
+	// this value is 0.
 	SizeOnDisk *int64 `min:"1" type:"long"`
 
 	// Current status of the build.
@@ -13278,13 +13347,13 @@ type CreateAliasInput struct {
 	RoutingStrategy *RoutingStrategy `type:"structure" required:"true"`
 
 	// A list of labels to assign to the new alias resource. Tags are developer-defined
-	// key-value pairs. Tagging AWS resources are useful for resource management,
-	// access management and cost allocation. For more information, see Tagging
-	// AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-	// in the AWS General Reference. Once the resource is created, you can use TagResource,
-	// UntagResource, and ListTagsForResource to add, remove, and view tags. The
-	// maximum tag limit may be lower than stated. See the AWS General Reference
-	// for actual tagging limits.
+	// key-value pairs. Tagging Amazon Web Services resources are useful for resource
+	// management, access management and cost allocation. For more information,
+	// see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference. Once the resource is created,
+	// you can use TagResource, UntagResource, and ListTagsForResource to add, remove,
+	// and view tags. The maximum tag limit may be lower than stated. See the Amazon
+	// Web Services General Reference for actual tagging limits.
 	Tags []*Tag `type:"list"`
 }
 
@@ -13414,18 +13483,21 @@ type CreateBuildInput struct {
 	// only when creating a build with files stored in an Amazon S3 bucket that
 	// you own. The storage location must specify an Amazon S3 bucket name and key.
 	// The location must also specify a role ARN that you set up to allow Amazon
-	// GameLift to access your Amazon S3 bucket. The S3 bucket and your new build
-	// must be in the same Region.
+	// Web Services to access your Amazon S3 bucket. The S3 bucket and your new
+	// build must be in the same Region.
+	//
+	// If a StorageLocation is specified, the size of your file can be found in
+	// your Amazon S3 bucket. Amazon Web Services will report a SizeOnDisk of 0.
 	StorageLocation *S3Location `type:"structure"`
 
 	// A list of labels to assign to the new build resource. Tags are developer-defined
-	// key-value pairs. Tagging AWS resources are useful for resource management,
-	// access management and cost allocation. For more information, see Tagging
-	// AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-	// in the AWS General Reference. Once the resource is created, you can use TagResource,
-	// UntagResource, and ListTagsForResource to add, remove, and view tags. The
-	// maximum tag limit may be lower than stated. See the AWS General Reference
-	// for actual tagging limits.
+	// key-value pairs. Tagging Amazon Web Services resources are useful for resource
+	// management, access management and cost allocation. For more information,
+	// see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference. Once the resource is created,
+	// you can use TagResource, UntagResource, and ListTagsForResource to add, remove,
+	// and view tags. The maximum tag limit may be lower than stated. See the Amazon
+	// Web Services General Reference for actual tagging limits.
 	Tags []*Tag `type:"list"`
 
 	// Version information that is associated with a build or script. Version strings
@@ -13524,8 +13596,8 @@ type CreateBuildOutput struct {
 
 	// This element is returned only when the operation is called without a storage
 	// location. It contains credentials to use when you are uploading a build file
-	// to an Amazon S3 bucket that is owned by Amazon GameLift. Credentials have
-	// a limited life span. To refresh these credentials, call RequestUploadCredentials.
+	// to an Amazon S3 bucket that is owned by Amazon Web Services. Credentials
+	// have a limited life span. To refresh these credentials, call RequestUploadCredentials.
 	//
 	// UploadCredentials is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateBuildOutput's
@@ -13581,13 +13653,12 @@ type CreateFleetInput struct {
 	// Prompts GameLift to generate a TLS/SSL certificate for the fleet. TLS certificates
 	// are used for encrypting traffic between game clients and the game servers
 	// that are running on GameLift. By default, the CertificateConfiguration is
-	// set to DISABLED. Learn more at Securing Client/Server Communication (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-howitworks.html#gamelift-howitworks-security).
-	// This property cannot be changed after the fleet is created.
+	// set to DISABLED. This property cannot be changed after the fleet is created.
 	//
-	// Note: This feature requires the AWS Certificate Manager (ACM) service, which
-	// is not available in all AWS regions. When working in a region that does not
-	// support this feature, a fleet creation request with certificate generation
-	// fails with a 4xx error.
+	// Note: This feature requires the Amazon Web Services Certificate Manager (ACM)
+	// service, which is not available in all Amazon Web Services regions. When
+	// working in a region that does not support this feature, a fleet creation
+	// request with certificate generation fails with a 4xx error.
 	CertificateConfiguration *CertificateConfiguration `type:"structure"`
 
 	// A human-readable description of the fleet.
@@ -13599,11 +13670,11 @@ type CreateFleetInput struct {
 	// For Realtime Servers fleets, GameLift automatically sets TCP and UDP ranges.
 	EC2InboundPermissions []*IpPermission `type:"list"`
 
-	// The GameLift-supported EC2 instance type to use for all fleet instances.
+	// The GameLift-supported Amazon EC2 instance type to use for all fleet instances.
 	// Instance type determines the computing resources that will be used to host
 	// your game servers, including CPU, memory, storage, and networking capacity.
-	// See Amazon EC2 Instance Types (http://aws.amazon.com/ec2/instance-types/)
-	// for detailed descriptions of EC2 instance types.
+	// See Amazon Elastic Compute Cloud Instance Types (http://aws.amazon.com/ec2/instance-types/)
+	// for detailed descriptions of Amazon EC2 instance types.
 	//
 	// EC2InstanceType is a required field
 	EC2InstanceType *string `type:"string" required:"true" enum:"EC2InstanceType"`
@@ -13614,22 +13685,23 @@ type CreateFleetInput struct {
 	// This property cannot be changed after the fleet is created.
 	FleetType *string `type:"string" enum:"FleetType"`
 
-	// A unique identifier for an AWS IAM role that manages access to your AWS services.
-	// With an instance role ARN set, any application that runs on an instance in
-	// this fleet can assume the role, including install scripts, server processes,
-	// and daemons (background processes). Create a role or look up a role's ARN
-	// by using the IAM dashboard (https://console.aws.amazon.com/iam/) in the AWS
-	// Management Console. Learn more about using on-box credentials for your game
-	// servers at Access external resources from a game server (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html).
+	// A unique identifier for an IAM role that manages access to your Amazon Web
+	// Services services. With an instance role ARN set, any application that runs
+	// on an instance in this fleet can assume the role, including install scripts,
+	// server processes, and daemons (background processes). Create a role or look
+	// up a role's ARN by using the IAM dashboard (https://console.aws.amazon.com/iam/)
+	// in the Amazon Web Services Management Console. Learn more about using on-box
+	// credentials for your game servers at Access external resources from a game
+	// server (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html).
 	// This property cannot be changed after the fleet is created.
 	InstanceRoleArn *string `min:"1" type:"string"`
 
 	// A set of remote locations to deploy additional instances to and manage as
 	// part of the fleet. This parameter can only be used when creating fleets in
-	// AWS Regions that support multiple locations. You can add any GameLift-supported
-	// AWS Region as a remote location, in the form of an AWS Region code such as
-	// us-west-2. To create a fleet with instances in the home Region only, omit
-	// this parameter.
+	// Amazon Web Services Regions that support multiple locations. You can add
+	// any GameLift-supported Amazon Web Services Region as a remote location, in
+	// the form of an Amazon Web Services Region code such as us-west-2. To create
+	// a fleet with instances in the home Region only, omit this parameter.
 	Locations []*LocationConfiguration `min:"1" type:"list"`
 
 	// This parameter is no longer used. To specify where GameLift should store
@@ -13638,10 +13710,11 @@ type CreateFleetInput struct {
 	// in the Server API Reference (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api-ref.html#gamelift-sdk-server-api-ref-dataypes-process).
 	LogPaths []*string `type:"list"`
 
-	// The name of an AWS CloudWatch metric group to add this fleet to. A metric
-	// group is used to aggregate the metrics for multiple fleets. You can specify
-	// an existing metric group name or set a new name to create a new metric group.
-	// A fleet can be included in only one metric group at a time.
+	// The name of an Amazon Web Services CloudWatch metric group to add this fleet
+	// to. A metric group is used to aggregate the metrics for multiple fleets.
+	// You can specify an existing metric group name or set a new name to create
+	// a new metric group. A fleet can be included in only one metric group at a
+	// time.
 	MetricGroups []*string `type:"list"`
 
 	// A descriptive label that is associated with a fleet. Fleet names do not need
@@ -13662,15 +13735,15 @@ type CreateFleetInput struct {
 	NewGameSessionProtectionPolicy *string `type:"string" enum:"ProtectionPolicy"`
 
 	// Used when peering your GameLift fleet with a VPC, the unique identifier for
-	// the AWS account that owns the VPC. You can find your account ID in the AWS
-	// Management Console under account settings.
+	// the Amazon Web Services account that owns the VPC. You can find your account
+	// ID in the Amazon Web Services Management Console under account settings.
 	PeerVpcAwsAccountId *string `min:"1" type:"string"`
 
 	// A unique identifier for a VPC with resources to be accessed by your GameLift
 	// fleet. The VPC must be in the same Region as your fleet. To look up a VPC
-	// ID, use the VPC Dashboard (https://console.aws.amazon.com/vpc/) in the AWS
-	// Management Console. Learn more about VPC peering in VPC Peering with GameLift
-	// Fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html).
+	// ID, use the VPC Dashboard (https://console.aws.amazon.com/vpc/) in the Amazon
+	// Web Services Management Console. Learn more about VPC peering in VPC Peering
+	// with GameLift Fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html).
 	PeerVpcId *string `min:"1" type:"string"`
 
 	// A policy that limits the number of game sessions that an individual player
@@ -13704,13 +13777,13 @@ type CreateFleetInput struct {
 	ServerLaunchPath *string `min:"1" type:"string"`
 
 	// A list of labels to assign to the new fleet resource. Tags are developer-defined
-	// key-value pairs. Tagging AWS resources are useful for resource management,
-	// access management and cost allocation. For more information, see Tagging
-	// AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-	// in the AWS General Reference. Once the fleet is created, you can use TagResource,
-	// UntagResource, and ListTagsForResource to add, remove, and view tags. The
-	// maximum tag limit may be lower than stated. See the AWS General Reference
-	// for actual tagging limits.
+	// key-value pairs. Tagging Amazon Web Services resources are useful for resource
+	// management, access management and cost allocation. For more information,
+	// see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference. Once the fleet is created,
+	// you can use TagResource, UntagResource, and ListTagsForResource to add, remove,
+	// and view tags. The maximum tag limit may be lower than stated. See the Amazon
+	// Web Services General Reference for actual tagging limits.
 	Tags []*Tag `type:"list"`
 }
 
@@ -13943,8 +14016,9 @@ type CreateFleetLocationsInput struct {
 	FleetId *string `type:"string" required:"true"`
 
 	// A list of locations to deploy additional instances to and manage as part
-	// of the fleet. You can add any GameLift-supported AWS Region as a remote location,
-	// in the form of an AWS Region code such as us-west-2.
+	// of the fleet. You can add any GameLift-supported Amazon Web Services Region
+	// as a remote location, in the form of an Amazon Web Services Region code such
+	// as us-west-2.
 	//
 	// Locations is a required field
 	Locations []*LocationConfiguration `min:"1" type:"list" required:"true"`
@@ -14120,7 +14194,8 @@ type CreateGameServerGroupInput struct {
 	// that is optimized for game hosting. The scaling policy uses the metric "PercentUtilizedGameServers"
 	// to maintain a buffer of idle game servers that can immediately accommodate
 	// new games and players. After the Auto Scaling group is created, update this
-	// value directly in the Auto Scaling group using the AWS console or APIs.
+	// value directly in the Auto Scaling group using the Amazon Web Services console
+	// or APIs.
 	AutoScalingPolicy *GameServerGroupAutoScalingPolicy `type:"structure"`
 
 	// Indicates how GameLift FleetIQ balances the use of Spot Instances and On-Demand
@@ -14145,8 +14220,9 @@ type CreateGameServerGroupInput struct {
 	BalancingStrategy *string `type:"string" enum:"BalancingStrategy"`
 
 	// An identifier for the new game server group. This value is used to generate
-	// unique ARN identifiers for the EC2 Auto Scaling group and the GameLift FleetIQ
-	// game server group. The name must be unique per Region per AWS account.
+	// unique ARN identifiers for the Amazon EC2 Auto Scaling group and the GameLift
+	// FleetIQ game server group. The name must be unique per Region per Amazon
+	// Web Services account.
 	//
 	// GameServerGroupName is a required field
 	GameServerGroupName *string `min:"1" type:"string" required:"true"`
@@ -14157,31 +14233,32 @@ type CreateGameServerGroupInput struct {
 	// be dropped from the game. Protected instances cannot be terminated while
 	// there are active game servers running except in the event of a forced game
 	// server group deletion (see ). An exception to this is with Spot Instances,
-	// which can be terminated by AWS regardless of protection status. This property
-	// is set to NO_PROTECTION by default.
+	// which can be terminated by Amazon Web Services regardless of protection status.
+	// This property is set to NO_PROTECTION by default.
 	GameServerProtectionPolicy *string `type:"string" enum:"GameServerProtectionPolicy"`
 
-	// The EC2 instance types and sizes to use in the Auto Scaling group. The instance
-	// definitions must specify at least two different instance types that are supported
-	// by GameLift FleetIQ. For more information on instance types, see EC2 Instance
-	// Types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
-	// in the Amazon EC2 User Guide. You can optionally specify capacity weighting
-	// for each instance type. If no weight value is specified for an instance type,
-	// it is set to the default value "1". For more information about capacity weighting,
-	// see Instance Weighting for Amazon EC2 Auto Scaling (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-weighting.html)
+	// The Amazon EC2 instance types and sizes to use in the Auto Scaling group.
+	// The instance definitions must specify at least two different instance types
+	// that are supported by GameLift FleetIQ. For more information on instance
+	// types, see EC2 Instance Types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
+	// in the Amazon Elastic Compute Cloud User Guide. You can optionally specify
+	// capacity weighting for each instance type. If no weight value is specified
+	// for an instance type, it is set to the default value "1". For more information
+	// about capacity weighting, see Instance Weighting for Amazon EC2 Auto Scaling
+	// (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-weighting.html)
 	// in the Amazon EC2 Auto Scaling User Guide.
 	//
 	// InstanceDefinitions is a required field
 	InstanceDefinitions []*InstanceDefinition `min:"2" type:"list" required:"true"`
 
-	// The EC2 launch template that contains configuration settings and game server
-	// code to be deployed to all instances in the game server group. You can specify
-	// the template using either the template name or ID. For help with creating
-	// a launch template, see Creating a Launch Template for an Auto Scaling Group
-	// (https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html)
-	// in the Amazon EC2 Auto Scaling User Guide. After the Auto Scaling group is
-	// created, update this value directly in the Auto Scaling group using the AWS
-	// console or APIs.
+	// The Amazon EC2 launch template that contains configuration settings and game
+	// server code to be deployed to all instances in the game server group. You
+	// can specify the template using either the template name or ID. For help with
+	// creating a launch template, see Creating a Launch Template for an Auto Scaling
+	// Group (https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html)
+	// in the Amazon Elastic Compute Cloud Auto Scaling User Guide. After the Auto
+	// Scaling group is created, update this value directly in the Auto Scaling
+	// group using the Amazon Web Services console or APIs.
 	//
 	// If you specify network interfaces in your launch template, you must explicitly
 	// set the property AssociatePublicIpAddress to "true". If no network interface
@@ -14191,38 +14268,40 @@ type CreateGameServerGroupInput struct {
 	// LaunchTemplate is a required field
 	LaunchTemplate *LaunchTemplateSpecification `type:"structure" required:"true"`
 
-	// The maximum number of instances allowed in the EC2 Auto Scaling group. During
-	// automatic scaling events, GameLift FleetIQ and EC2 do not scale up the group
-	// above this maximum. After the Auto Scaling group is created, update this
-	// value directly in the Auto Scaling group using the AWS console or APIs.
+	// The maximum number of instances allowed in the Amazon EC2 Auto Scaling group.
+	// During automatic scaling events, GameLift FleetIQ and EC2 do not scale up
+	// the group above this maximum. After the Auto Scaling group is created, update
+	// this value directly in the Auto Scaling group using the Amazon Web Services
+	// console or APIs.
 	//
 	// MaxSize is a required field
 	MaxSize *int64 `min:"1" type:"integer" required:"true"`
 
-	// The minimum number of instances allowed in the EC2 Auto Scaling group. During
-	// automatic scaling events, GameLift FleetIQ and EC2 do not scale down the
-	// group below this minimum. In production, this value should be set to at least
-	// 1. After the Auto Scaling group is created, update this value directly in
-	// the Auto Scaling group using the AWS console or APIs.
+	// The minimum number of instances allowed in the Amazon EC2 Auto Scaling group.
+	// During automatic scaling events, GameLift FleetIQ and Amazon EC2 do not scale
+	// down the group below this minimum. In production, this value should be set
+	// to at least 1. After the Auto Scaling group is created, update this value
+	// directly in the Auto Scaling group using the Amazon Web Services console
+	// or APIs.
 	//
 	// MinSize is a required field
 	MinSize *int64 `type:"integer" required:"true"`
 
 	// The Amazon Resource Name (ARN (https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html))
-	// for an IAM role that allows Amazon GameLift to access your EC2 Auto Scaling
-	// groups.
+	// for an IAM role that allows Amazon Web Services to access your Amazon EC2
+	// Auto Scaling groups.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"1" type:"string" required:"true"`
 
 	// A list of labels to assign to the new game server group resource. Tags are
-	// developer-defined key-value pairs. Tagging AWS resources is useful for resource
-	// management, access management, and cost allocation. For more information,
-	// see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-	// in the AWS General Reference. Once the resource is created, you can use TagResource,
-	// UntagResource, and ListTagsForResource to add, remove, and view tags, respectively.
-	// The maximum tag limit may be lower than stated. See the AWS General Reference
-	// for actual tagging limits.
+	// developer-defined key-value pairs. Tagging Amazon Web Services resources
+	// is useful for resource management, access management, and cost allocation.
+	// For more information, see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference. Once the resource is created,
+	// you can use TagResource, UntagResource, and ListTagsForResource to add, remove,
+	// and view tags, respectively. The maximum tag limit may be lower than stated.
+	// See the Amazon Web Services General Reference for actual tagging limits.
 	Tags []*Tag `type:"list"`
 
 	// A list of virtual private cloud (VPC) subnets to use with instances in the
@@ -14396,9 +14475,10 @@ type CreateGameServerGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The newly created game server group object, including the new ARN value for
-	// the GameLift FleetIQ game server group and the object's status. The EC2 Auto
-	// Scaling group ARN is initially null, since the group has not yet been created.
-	// This value is added once the game server group status reaches ACTIVE.
+	// the GameLift FleetIQ game server group and the object's status. The Amazon
+	// EC2 Auto Scaling group ARN is initially null, since the group has not yet
+	// been created. This value is added once the game server group status reaches
+	// ACTIVE.
 	GameServerGroup *GameServerGroup `type:"structure"`
 }
 
@@ -14450,12 +14530,12 @@ type CreateGameSessionInput struct {
 
 	// A set of custom properties for a game session, formatted as key:value pairs.
 	// These properties are passed to a game server process in the GameSession object
-	// with a request to start a new game session.
+	// with a request to start a new game session (see Start a Game Session (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession)).
 	GameProperties []*GameProperty `type:"list"`
 
 	// A set of custom game session properties, formatted as a single string value.
 	// This data is passed to a game server process in the GameSession object with
-	// a request to start a new game session.
+	// a request to start a new game session (see Start a Game Session (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession)).
 	GameSessionData *string `min:"1" type:"string"`
 
 	// This parameter is no longer preferred. Please use IdempotencyToken instead.
@@ -14477,7 +14557,7 @@ type CreateGameSessionInput struct {
 
 	// A fleet's remote location to place the new game session in. If this parameter
 	// is not set, the new game session is placed in the fleet's home Region. Specify
-	// a remote location with an AWS Region code such as us-west-2.
+	// a remote location with an Amazon Web Services Region code such as us-west-2.
 	Location *string `min:"1" type:"string"`
 
 	// The maximum number of players that can be connected simultaneously to the
@@ -14656,8 +14736,9 @@ type CreateGameSessionQueueInput struct {
 	Destinations []*GameSessionQueueDestination `type:"list"`
 
 	// A list of locations where a queue is allowed to place new game sessions.
-	// Locations are specified in the form of AWS Region codes, such as us-west-2.
-	// If this parameter is not set, game sessions can be placed in any queue location.
+	// Locations are specified in the form of Amazon Web Services Region codes,
+	// such as us-west-2. If this parameter is not set, game sessions can be placed
+	// in any queue location.
 	FilterConfiguration *FilterConfiguration `type:"structure"`
 
 	// A descriptive label that is associated with game session queue. Queue names
@@ -14685,13 +14766,13 @@ type CreateGameSessionQueueInput struct {
 	PriorityConfiguration *PriorityConfiguration `type:"structure"`
 
 	// A list of labels to assign to the new game session queue resource. Tags are
-	// developer-defined key-value pairs. Tagging AWS resources are useful for resource
-	// management, access management and cost allocation. For more information,
-	// see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-	// in the AWS General Reference. Once the resource is created, you can use TagResource,
-	// UntagResource, and ListTagsForResource to add, remove, and view tags. The
-	// maximum tag limit may be lower than stated. See the AWS General Reference
-	// for actual tagging limits.
+	// developer-defined key-value pairs. Tagging Amazon Web Services resources
+	// are useful for resource management, access management and cost allocation.
+	// For more information, see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference. Once the resource is created,
+	// you can use TagResource, UntagResource, and ListTagsForResource to add, remove,
+	// and view tags. The maximum tag limit may be lower than stated. See the Amazon
+	// Web Services General Reference for actual tagging limits.
 	Tags []*Tag `type:"list"`
 
 	// The maximum time, in seconds, that a new game session placement request remains
@@ -14948,13 +15029,13 @@ type CreateMatchmakingConfigurationInput struct {
 	RuleSetName *string `min:"1" type:"string" required:"true"`
 
 	// A list of labels to assign to the new matchmaking configuration resource.
-	// Tags are developer-defined key-value pairs. Tagging AWS resources are useful
-	// for resource management, access management and cost allocation. For more
-	// information, see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-	// in the AWS General Reference. Once the resource is created, you can use TagResource,
-	// UntagResource, and ListTagsForResource to add, remove, and view tags. The
-	// maximum tag limit may be lower than stated. See the AWS General Reference
-	// for actual tagging limits.
+	// Tags are developer-defined key-value pairs. Tagging Amazon Web Services resources
+	// are useful for resource management, access management and cost allocation.
+	// For more information, see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference. Once the resource is created,
+	// you can use TagResource, UntagResource, and ListTagsForResource to add, remove,
+	// and view tags. The maximum tag limit may be lower than stated. See the Amazon
+	// Web Services General Reference for actual tagging limits.
 	Tags []*Tag `type:"list"`
 }
 
@@ -15173,13 +15254,13 @@ type CreateMatchmakingRuleSetInput struct {
 	RuleSetBody *string `min:"1" type:"string" required:"true"`
 
 	// A list of labels to assign to the new matchmaking rule set resource. Tags
-	// are developer-defined key-value pairs. Tagging AWS resources are useful for
-	// resource management, access management and cost allocation. For more information,
-	// see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-	// in the AWS General Reference. Once the resource is created, you can use TagResource,
-	// UntagResource, and ListTagsForResource to add, remove, and view tags. The
-	// maximum tag limit may be lower than stated. See the AWS General Reference
-	// for actual tagging limits.
+	// are developer-defined key-value pairs. Tagging Amazon Web Services resources
+	// are useful for resource management, access management and cost allocation.
+	// For more information, see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference. Once the resource is created,
+	// you can use TagResource, UntagResource, and ListTagsForResource to add, remove,
+	// and view tags. The maximum tag limit may be lower than stated. See the Amazon
+	// Web Services General Reference for actual tagging limits.
 	Tags []*Tag `type:"list"`
 }
 
@@ -15404,9 +15485,10 @@ type CreatePlayerSessionsInput struct {
 	GameSessionId *string `min:"1" type:"string" required:"true"`
 
 	// Map of string pairs, each specifying a player ID and a set of developer-defined
-	// information related to the player. Amazon GameLift does not use this data,
-	// so it can be formatted as needed for use in the game. Any player data strings
-	// for player IDs that are not included in the PlayerIds parameter are ignored.
+	// information related to the player. Amazon Web Services does not use this
+	// data, so it can be formatted as needed for use in the game. Any player data
+	// strings for player IDs that are not included in the PlayerIds parameter are
+	// ignored.
 	PlayerDataMap map[string]*string `type:"map"`
 
 	// List of unique identifiers for the players to be added.
@@ -15515,21 +15597,21 @@ type CreateScriptInput struct {
 	// The location of the Amazon S3 bucket where a zipped file containing your
 	// Realtime scripts is stored. The storage location must specify the Amazon
 	// S3 bucket name, the zip file name (the "key"), and a role ARN that allows
-	// Amazon GameLift to access the Amazon S3 storage location. The S3 bucket must
-	// be in the same Region where you want to create a new script. By default,
-	// Amazon GameLift uploads the latest version of the zip file; if you have S3
-	// object versioning turned on, you can use the ObjectVersion parameter to specify
-	// an earlier version.
+	// Amazon Web Services to access the Amazon S3 storage location. The S3 bucket
+	// must be in the same Region where you want to create a new script. By default,
+	// Amazon Web Services uploads the latest version of the zip file; if you have
+	// S3 object versioning turned on, you can use the ObjectVersion parameter to
+	// specify an earlier version.
 	StorageLocation *S3Location `type:"structure"`
 
 	// A list of labels to assign to the new script resource. Tags are developer-defined
-	// key-value pairs. Tagging AWS resources are useful for resource management,
-	// access management and cost allocation. For more information, see Tagging
-	// AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-	// in the AWS General Reference. Once the resource is created, you can use TagResource,
-	// UntagResource, and ListTagsForResource to add, remove, and view tags. The
-	// maximum tag limit may be lower than stated. See the AWS General Reference
-	// for actual tagging limits.
+	// key-value pairs. Tagging Amazon Web Services resources are useful for resource
+	// management, access management and cost allocation. For more information,
+	// see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference. Once the resource is created,
+	// you can use TagResource, UntagResource, and ListTagsForResource to add, remove,
+	// and view tags. The maximum tag limit may be lower than stated. See the Amazon
+	// Web Services General Reference for actual tagging limits.
 	Tags []*Tag `type:"list"`
 
 	// Version information that is associated with a build or script. Version strings
@@ -15540,9 +15622,10 @@ type CreateScriptInput struct {
 	// file. The zip file can have one or multiple files. Maximum size of a zip
 	// file is 5 MB.
 	//
-	// When using the AWS CLI tool to create a script, this parameter is set to
-	// the zip file name. It must be prepended with the string "fileb://" to indicate
-	// that the file data is a binary object. For example: --zip-file fileb://myRealtimeScript.zip.
+	// When using the Amazon Web Services CLI tool to create a script, this parameter
+	// is set to the zip file name. It must be prepended with the string "fileb://"
+	// to indicate that the file data is a binary object. For example: --zip-file
+	// fileb://myRealtimeScript.zip.
 	// ZipFile is automatically base64 encoded/decoded by the SDK.
 	ZipFile []byte `type:"blob"`
 }
@@ -15634,7 +15717,7 @@ type CreateScriptOutput struct {
 	// was uploaded from an S3 bucket under your account, the storage location reflects
 	// the information that was provided in the CreateScript request; (2) If the
 	// script file was uploaded from a local zip file, the storage location reflects
-	// an S3 location controls by the Amazon GameLift service.
+	// an S3 location controls by the Amazon Web Services service.
 	Script *Script `type:"structure"`
 }
 
@@ -15666,18 +15749,18 @@ func (s *CreateScriptOutput) SetScript(v *Script) *CreateScriptOutput {
 type CreateVpcPeeringAuthorizationInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier for the AWS account that you use to manage your GameLift
-	// fleet. You can find your Account ID in the AWS Management Console under account
-	// settings.
+	// A unique identifier for the Amazon Web Services account that you use to manage
+	// your GameLift fleet. You can find your Account ID in the Amazon Web Services
+	// Management Console under account settings.
 	//
 	// GameLiftAwsAccountId is a required field
 	GameLiftAwsAccountId *string `min:"1" type:"string" required:"true"`
 
 	// A unique identifier for a VPC with resources to be accessed by your GameLift
 	// fleet. The VPC must be in the same Region as your fleet. To look up a VPC
-	// ID, use the VPC Dashboard (https://console.aws.amazon.com/vpc/) in the AWS
-	// Management Console. Learn more about VPC peering in VPC Peering with GameLift
-	// Fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html).
+	// ID, use the VPC Dashboard (https://console.aws.amazon.com/vpc/) in the Amazon
+	// Web Services Management Console. Learn more about VPC peering in VPC Peering
+	// with GameLift Fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html).
 	//
 	// PeerVpcId is a required field
 	PeerVpcId *string `min:"1" type:"string" required:"true"`
@@ -15772,23 +15855,23 @@ type CreateVpcPeeringConnectionInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique identifier for the fleet. You can use either the fleet ID or ARN
-	// value. This tells Amazon GameLift which GameLift VPC to peer with.
+	// value. This tells Amazon Web Services which GameLift VPC to peer with.
 	//
 	// FleetId is a required field
 	FleetId *string `type:"string" required:"true"`
 
-	// A unique identifier for the AWS account with the VPC that you want to peer
-	// your Amazon GameLift fleet with. You can find your Account ID in the AWS
-	// Management Console under account settings.
+	// A unique identifier for the Amazon Web Services account with the VPC that
+	// you want to peer your Amazon Web Services fleet with. You can find your Account
+	// ID in the Amazon Web Services Management Console under account settings.
 	//
 	// PeerVpcAwsAccountId is a required field
 	PeerVpcAwsAccountId *string `min:"1" type:"string" required:"true"`
 
 	// A unique identifier for a VPC with resources to be accessed by your GameLift
 	// fleet. The VPC must be in the same Region as your fleet. To look up a VPC
-	// ID, use the VPC Dashboard (https://console.aws.amazon.com/vpc/) in the AWS
-	// Management Console. Learn more about VPC peering in VPC Peering with GameLift
-	// Fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html).
+	// ID, use the VPC Dashboard (https://console.aws.amazon.com/vpc/) in the Amazon
+	// Web Services Management Console. Learn more about VPC peering in VPC Peering
+	// with GameLift Fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html).
 	//
 	// PeerVpcId is a required field
 	PeerVpcId *string `min:"1" type:"string" required:"true"`
@@ -16076,7 +16159,7 @@ type DeleteFleetLocationsInput struct {
 	FleetId *string `type:"string" required:"true"`
 
 	// The list of fleet locations to delete. Specify locations in the form of an
-	// AWS Region code, such as us-west-2.
+	// Amazon Web Services Region code, such as us-west-2.
 	//
 	// Locations is a required field
 	Locations []*string `min:"1" type:"list" required:"true"`
@@ -16212,15 +16295,16 @@ type DeleteGameServerGroupInput struct {
 
 	// The type of delete to perform. Options include the following:
 	//
-	//    * SAFE_DELETE – (default) Terminates the game server group and EC2 Auto
-	//    Scaling group only when it has no game servers that are in UTILIZED status.
+	//    * SAFE_DELETE – (default) Terminates the game server group and Amazon
+	//    EC2 Auto Scaling group only when it has no game servers that are in UTILIZED
+	//    status.
 	//
 	//    * FORCE_DELETE – Terminates the game server group, including all active
-	//    game servers regardless of their utilization status, and the EC2 Auto
-	//    Scaling group.
+	//    game servers regardless of their utilization status, and the Amazon EC2
+	//    Auto Scaling group.
 	//
 	//    * RETAIN – Does a safe delete of the game server group but retains the
-	//    EC2 Auto Scaling group as is.
+	//    Amazon EC2 Auto Scaling group as is.
 	DeleteOption *string `type:"string" enum:"GameServerGroupDeleteOption"`
 
 	// A unique identifier for the game server group. Use either the GameServerGroup
@@ -16691,18 +16775,18 @@ func (s DeleteScriptOutput) GoString() string {
 type DeleteVpcPeeringAuthorizationInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier for the AWS account that you use to manage your GameLift
-	// fleet. You can find your Account ID in the AWS Management Console under account
-	// settings.
+	// A unique identifier for the Amazon Web Services account that you use to manage
+	// your GameLift fleet. You can find your Account ID in the Amazon Web Services
+	// Management Console under account settings.
 	//
 	// GameLiftAwsAccountId is a required field
 	GameLiftAwsAccountId *string `min:"1" type:"string" required:"true"`
 
 	// A unique identifier for a VPC with resources to be accessed by your GameLift
 	// fleet. The VPC must be in the same Region as your fleet. To look up a VPC
-	// ID, use the VPC Dashboard (https://console.aws.amazon.com/vpc/) in the AWS
-	// Management Console. Learn more about VPC peering in VPC Peering with GameLift
-	// Fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html).
+	// ID, use the VPC Dashboard (https://console.aws.amazon.com/vpc/) in the Amazon
+	// Web Services Management Console. Learn more about VPC peering in VPC Peering
+	// with GameLift Fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html).
 	//
 	// PeerVpcId is a required field
 	PeerVpcId *string `min:"1" type:"string" required:"true"`
@@ -17124,14 +17208,14 @@ func (s *DescribeBuildOutput) SetBuild(v *Build) *DescribeBuildOutput {
 type DescribeEC2InstanceLimitsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Name of an EC2 instance type that is supported in GameLift. A fleet instance
-	// type determines the computing resources of each instance in the fleet, including
-	// CPU, memory, storage, and networking capacity. Do not specify a value for
-	// this parameter to retrieve limits for all instance types.
+	// Name of an Amazon EC2 instance type that is supported in GameLift. A fleet
+	// instance type determines the computing resources of each instance in the
+	// fleet, including CPU, memory, storage, and networking capacity. Do not specify
+	// a value for this parameter to retrieve limits for all instance types.
 	EC2InstanceType *string `type:"string" enum:"EC2InstanceType"`
 
 	// The name of a remote location to request instance limits for, in the form
-	// of an AWS Region code such as us-west-2.
+	// of an Amazon Web Services Region code such as us-west-2.
 	Location *string `min:"1" type:"string"`
 }
 
@@ -17607,7 +17691,7 @@ type DescribeFleetLocationAttributesInput struct {
 	Limit *int64 `min:"1" type:"integer"`
 
 	// A list of fleet locations to retrieve information for. Specify locations
-	// in the form of an AWS Region code, such as us-west-2.
+	// in the form of an Amazon Web Services Region code, such as us-west-2.
 	Locations []*string `min:"1" type:"list"`
 
 	// A token that indicates the start of the next sequential page of results.
@@ -17755,7 +17839,7 @@ type DescribeFleetLocationCapacityInput struct {
 	FleetId *string `type:"string" required:"true"`
 
 	// The fleet location to retrieve capacity information for. Specify a location
-	// in the form of an AWS Region code, such as us-west-2.
+	// in the form of an Amazon Web Services Region code, such as us-west-2.
 	//
 	// Location is a required field
 	Location *string `min:"1" type:"string" required:"true"`
@@ -17854,7 +17938,7 @@ type DescribeFleetLocationUtilizationInput struct {
 	FleetId *string `type:"string" required:"true"`
 
 	// The fleet location to retrieve utilization information for. Specify a location
-	// in the form of an AWS Region code, such as us-west-2.
+	// in the form of an Amazon Web Services Region code, such as us-west-2.
 	//
 	// Location is a required field
 	Location *string `min:"1" type:"string" required:"true"`
@@ -17952,8 +18036,8 @@ type DescribeFleetPortSettingsInput struct {
 	// FleetId is a required field
 	FleetId *string `type:"string" required:"true"`
 
-	// A remote location to check for status of port setting updates. Use the AWS
-	// Region code format, such as us-west-2.
+	// A remote location to check for status of port setting updates. Use the Amazon
+	// Web Services Region code format, such as us-west-2.
 	Location *string `min:"1" type:"string"`
 }
 
@@ -18018,7 +18102,8 @@ type DescribeFleetPortSettingsOutput struct {
 	// The port settings for the requested fleet ID.
 	InboundPermissions []*IpPermission `type:"list"`
 
-	// The requested fleet location, expressed as an AWS Region code, such as us-west-2.
+	// The requested fleet location, expressed as an Amazon Web Services Region
+	// code, such as us-west-2.
 	Location *string `min:"1" type:"string"`
 
 	// The current status of updates to the fleet's port settings in the requested
@@ -18355,9 +18440,10 @@ type DescribeGameServerInstancesInput struct {
 	// GameServerGroupName is a required field
 	GameServerGroupName *string `min:"1" type:"string" required:"true"`
 
-	// The EC2 instance IDs that you want to retrieve status on. EC2 instance IDs
-	// use a 17-character format, for example: i-1234567890abcdef0. To retrieve
-	// all instances in the game server group, leave this parameter empty.
+	// The Amazon EC2 instance IDs that you want to retrieve status on. Amazon EC2
+	// instance IDs use a 17-character format, for example: i-1234567890abcdef0.
+	// To retrieve all instances in the game server group, leave this parameter
+	// empty.
 	InstanceIds []*string `min:"1" type:"list"`
 
 	// The maximum number of results to return. Use this parameter with NextToken
@@ -18530,7 +18616,8 @@ type DescribeGameSessionDetailsInput struct {
 	Limit *int64 `min:"1" type:"integer"`
 
 	// A fleet location to get game sessions for. You can specify a fleet's home
-	// Region or a remote location. Use the AWS Region code format, such as us-west-2.
+	// Region or a remote location. Use the Amazon Web Services Region code format,
+	// such as us-west-2.
 	Location *string `min:"1" type:"string"`
 
 	// A token that indicates the start of the next sequential page of results.
@@ -18888,8 +18975,8 @@ type DescribeGameSessionsInput struct {
 	Limit *int64 `min:"1" type:"integer"`
 
 	// A fleet location to get game session details for. You can specify a fleet's
-	// home Region or a remote location. Use the AWS Region code format, such as
-	// us-west-2.
+	// home Region or a remote location. Use the Amazon Web Services Region code
+	// format, such as us-west-2.
 	Location *string `min:"1" type:"string"`
 
 	// A token that indicates the start of the next sequential page of results.
@@ -19050,7 +19137,7 @@ type DescribeInstancesInput struct {
 	Limit *int64 `min:"1" type:"integer"`
 
 	// The name of a location to retrieve instance information for, in the form
-	// of an AWS Region code such as us-west-2.
+	// of an Amazon Web Services Region code such as us-west-2.
 	Location *string `min:"1" type:"string"`
 
 	// A token that indicates the start of the next sequential page of results.
@@ -19749,8 +19836,8 @@ func (s *DescribeRuntimeConfigurationOutput) SetRuntimeConfiguration(v *RuntimeC
 type DescribeScalingPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier for the fleet to retrieve scaling policies for. You can
-	// use either the fleet ID or ARN value.
+	// A unique identifier for the fleet for which to retrieve scaling policies.
+	// You can use either the fleet ID or ARN value.
 	//
 	// FleetId is a required field
 	FleetId *string `type:"string" required:"true"`
@@ -19759,7 +19846,8 @@ type DescribeScalingPoliciesInput struct {
 	// to get results as a set of sequential pages.
 	Limit *int64 `min:"1" type:"integer"`
 
-	// CONTENT TODO
+	// The fleet location. If you don't specify this value, the response contains
+	// the scaling policies of every location in the fleet.
 	Location *string `min:"1" type:"string"`
 
 	// A token that indicates the start of the next sequential page of results.
@@ -20004,7 +20092,7 @@ type DescribeVpcPeeringAuthorizationsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A collection of objects that describe all valid VPC peering operations for
-	// the current AWS account.
+	// the current Amazon Web Services account.
 	VpcPeeringAuthorizations []*VpcPeeringAuthorization `type:"list"`
 }
 
@@ -20156,7 +20244,7 @@ func (s *DesiredPlayerSession) SetPlayerId(v string) *DesiredPlayerSession {
 	return s
 }
 
-// Resource capacity settings. Fleet capacity is measured in EC2 instances.
+// Resource capacity settings. Fleet capacity is measured in Amazon EC2 instances.
 // Pending and terminating counts are non-zero when the fleet capacity is adjusting
 // to a scaling event or if access to resources is temporarily affected.
 //
@@ -20248,11 +20336,11 @@ func (s *EC2InstanceCounts) SetTERMINATING(v int64) *EC2InstanceCounts {
 	return s
 }
 
-// The GameLift service limits for an EC2 instance type and current utilization.
-// GameLift allows AWS accounts a maximum number of instances, per instance
-// type, per AWS Region or location, for use with GameLift. You can request
-// an limit increase for your account by using the Service limits page in the
-// GameLift console.
+// The GameLift service limits for an Amazon EC2 instance type and current utilization.
+// GameLift allows Amazon Web Services accounts a maximum number of instances,
+// per instance type, per Amazon Web Services Region or location, for use with
+// GameLift. You can request an limit increase for your account by using the
+// Service limits page in the GameLift console.
 //
 // Related actions
 //
@@ -20261,18 +20349,18 @@ type EC2InstanceLimit struct {
 	_ struct{} `type:"structure"`
 
 	// The number of instances for the specified type and location that are currently
-	// being used by the AWS account.
+	// being used by the Amazon Web Services account.
 	CurrentInstances *int64 `type:"integer"`
 
-	// The name of an EC2 instance type. See Amazon EC2 Instance Types (http://aws.amazon.com/ec2/instance-types/)
-	// for detailed descriptions.
+	// The name of an Amazon EC2 instance type. See Amazon Elastic Compute Cloud
+	// Instance Types (http://aws.amazon.com/ec2/instance-types/) for detailed descriptions.
 	EC2InstanceType *string `type:"string" enum:"EC2InstanceType"`
 
 	// The number of instances that is allowed for the specified instance type and
 	// location.
 	InstanceLimit *int64 `type:"integer"`
 
-	// An AWS Region code, such as us-west-2.
+	// An Amazon Web Services Region code, such as us-west-2.
 	Location *string `min:"1" type:"string"`
 }
 
@@ -20330,7 +20418,7 @@ type Event struct {
 
 	// The type of event being logged.
 	//
-	// Fleet creation events (ordered by fleet creation activity):
+	// Fleet state transition events:
 	//
 	//    * FLEET_CREATED -- A fleet resource was successfully created with a status
 	//    of NEW. Event messaging includes the fleet ID.
@@ -20338,17 +20426,37 @@ type Event struct {
 	//    * FLEET_STATE_DOWNLOADING -- Fleet status changed from NEW to DOWNLOADING.
 	//    The compressed build has started downloading to a fleet instance for installation.
 	//
+	//    * FLEET_STATE_VALIDATING -- Fleet status changed from DOWNLOADING to VALIDATING.
+	//    GameLift has successfully downloaded the build and is now validating the
+	//    build files.
+	//
+	//    * FLEET_STATE_BUILDING -- Fleet status changed from VALIDATING to BUILDING.
+	//    GameLift has successfully verified the build files and is now running
+	//    the installation scripts.
+	//
+	//    * FLEET_STATE_ACTIVATING -- Fleet status changed from BUILDING to ACTIVATING.
+	//    GameLift is trying to launch an instance and test the connectivity between
+	//    the build and the GameLift Service via the Server SDK.
+	//
+	//    * FLEET_STATE_ACTIVE -- The fleet's status changed from ACTIVATING to
+	//    ACTIVE. The fleet is now ready to host game sessions.
+	//
+	//    * FLEET_STATE_ERROR -- The Fleet's status changed to ERROR. Describe the
+	//    fleet event message for more details.
+	//
+	// Fleet creation events (ordered by fleet creation activity):
+	//
 	//    * FLEET_BINARY_DOWNLOAD_FAILED -- The build failed to download to the
 	//    fleet instance.
 	//
-	//    * FLEET_CREATION_EXTRACTING_BUILD – The game server build was successfully
+	//    * FLEET_CREATION_EXTRACTING_BUILD -- The game server build was successfully
 	//    downloaded to an instance, and the build files are now being extracted
 	//    from the uploaded build and saved to an instance. Failure at this stage
 	//    prevents a fleet from moving to ACTIVE status. Logs for this stage display
 	//    a list of the files that are extracted and saved on the instance. Access
 	//    the logs by using the URL in PreSignedLogUrl.
 	//
-	//    * FLEET_CREATION_RUNNING_INSTALLER – The game server build files were
+	//    * FLEET_CREATION_RUNNING_INSTALLER -- The game server build files were
 	//    successfully extracted, and the GameLift is now running the build's install
 	//    script (if one is included). Failure in this stage prevents a fleet from
 	//    moving to ACTIVE status. Logs for this stage list the installation steps
@@ -20364,40 +20472,43 @@ type Event struct {
 	//    paths in the runtime configuration and indicate whether each is found.
 	//    Access the logs by using the URL in PreSignedLogUrl.
 	//
-	//    * FLEET_STATE_VALIDATING -- Fleet status changed from DOWNLOADING to VALIDATING.
-	//
 	//    * FLEET_VALIDATION_LAUNCH_PATH_NOT_FOUND -- Validation of the runtime
 	//    configuration failed because the executable specified in a launch path
 	//    does not exist on the instance.
-	//
-	//    * FLEET_STATE_BUILDING -- Fleet status changed from VALIDATING to BUILDING.
 	//
 	//    * FLEET_VALIDATION_EXECUTABLE_RUNTIME_FAILURE -- Validation of the runtime
 	//    configuration failed because the executable specified in a launch path
 	//    failed to run on the fleet instance.
 	//
-	//    * FLEET_STATE_ACTIVATING -- Fleet status changed from BUILDING to ACTIVATING.
+	//    * FLEET_VALIDATION_TIMED_OUT -- Validation of the fleet at the end of
+	//    creation timed out. Try fleet creation again.
 	//
-	//    * FLEET_ACTIVATION_FAILED - The fleet failed to successfully complete
+	//    * FLEET_ACTIVATION_FAILED -- The fleet failed to successfully complete
 	//    one of the steps in the fleet activation process. This event code indicates
 	//    that the game build was successfully downloaded to a fleet instance, built,
-	//    and validated, but was not able to start a server process. Learn more
-	//    at Debug Fleet Creation Issues (https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-creating-debug.html#fleets-creating-debug-creation)
+	//    and validated, but was not able to start a server process. For more information,
+	//    see Debug Fleet Creation Issues (https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-creating-debug.html#fleets-creating-debug-creation).
 	//
-	//    * FLEET_STATE_ACTIVE -- The fleet's status changed from ACTIVATING to
-	//    ACTIVE. The fleet is now ready to host game sessions.
+	//    * FLEET_ACTIVATION_FAILED_NO_INSTANCES -- Fleet creation was not able
+	//    to obtain any instances based on the input fleet attributes. Try again
+	//    at a different time or choose a different combination of fleet attributes
+	//    such as fleet type, instance type, etc.
+	//
+	//    * FLEET_INITIALIZATION_FAILED -- A generic exception occurred during fleet
+	//    creation. Describe the fleet event message for more details.
 	//
 	// VPC peering events:
 	//
 	//    * FLEET_VPC_PEERING_SUCCEEDED -- A VPC peering connection has been established
-	//    between the VPC for an GameLift fleet and a VPC in your AWS account.
+	//    between the VPC for an GameLift fleet and a VPC in your Amazon Web Services
+	//    account.
 	//
 	//    * FLEET_VPC_PEERING_FAILED -- A requested VPC peering connection has failed.
 	//    Event details and status information (see DescribeVpcPeeringConnections)
 	//    provide additional detail. A common reason for peering failure is that
 	//    the two VPCs have overlapping CIDR blocks of IPv4 addresses. To resolve
-	//    this, change the CIDR block for the VPC in your AWS account. For more
-	//    information on VPC peering failures, see https://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide/invalid-peering-configurations.html
+	//    this, change the CIDR block for the VPC in your Amazon Web Services account.
+	//    For more information on VPC peering failures, see https://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide/invalid-peering-configurations.html
 	//    (https://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide/invalid-peering-configurations.html)
 	//
 	//    * FLEET_VPC_PEERING_DELETED -- A VPC peering connection has been successfully
@@ -20407,6 +20518,43 @@ type Event struct {
 	//
 	//    * INSTANCE_INTERRUPTED -- A spot instance was interrupted by EC2 with
 	//    a two-minute notification.
+	//
+	// Spot process events:
+	//
+	//    * SERVER_PROCESS_INVALID_PATH -- The game server executable or script
+	//    could not be found based on the Fleet runtime configuration. Check that
+	//    the launch path is correct based on the operating system of the Fleet.
+	//
+	//    * SERVER_PROCESS_SDK_INITIALIZATION_TIMEOUT -- The server process did
+	//    not call InitSDK() within the time expected. Check your game session log
+	//    to see why InitSDK() was not called in time.
+	//
+	//    * SERVER_PROCESS_PROCESS_READY_TIMEOUT -- The server process did not call
+	//    ProcessReady() within the time expected after calling InitSDK(). Check
+	//    your game session log to see why ProcessReady() was not called in time.
+	//
+	//    * SERVER_PROCESS_CRASHED -- The server process exited without calling
+	//    ProcessEnding(). Check your game session log to see why ProcessEnding()
+	//    was not called.
+	//
+	//    * SERVER_PROCESS_TERMINATED_UNHEALTHY -- The server process did not report
+	//    a valid health check for too long and was therefore terminated by GameLift.
+	//    Check your game session log to see if the thread became stuck processing
+	//    a synchronous task for too long.
+	//
+	//    * SERVER_PROCESS_FORCE_TERMINATED -- The server process did not exit cleanly
+	//    after OnProcessTerminate() was sent within the time expected. Check your
+	//    game session log to see why termination took longer than expected.
+	//
+	//    * SERVER_PROCESS_PROCESS_EXIT_TIMEOUT -- The server process did not exit
+	//    cleanly within the time expected after calling ProcessEnding(). Check
+	//    your game session log to see why termination took longer than expected.
+	//
+	// Game session events:
+	//
+	//    * GAME_SESSION_ACTIVATION_TIMEOUT -- GameSession failed to activate within
+	//    the expected time. Check your game session log to see why ActivateGameSession()
+	//    took longer to complete than expected.
 	//
 	// Other fleet events:
 	//
@@ -20505,8 +20653,8 @@ func (s *Event) SetResourceId(v string) *Event {
 type FilterConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// A list of locations to allow game session placement in, in the form of AWS
-	// Region codes such as us-west-2.
+	// A list of locations to allow game session placement in, in the form of Amazon
+	// Web Services Region codes such as us-west-2.
 	AllowedLocations []*string `min:"1" type:"list"`
 }
 
@@ -20587,18 +20735,19 @@ type FleetAttributes struct {
 	// The kind of instances, On-Demand or Spot, that this fleet uses.
 	FleetType *string `type:"string" enum:"FleetType"`
 
-	// A unique identifier for an AWS IAM role that manages access to your AWS services.
-	// With an instance role ARN set, any application that runs on an instance in
-	// this fleet can assume the role, including install scripts, server processes,
-	// and daemons (background processes). Create a role or look up a role's ARN
-	// by using the IAM dashboard (https://console.aws.amazon.com/iam/) in the AWS
-	// Management Console. Learn more about using on-box credentials for your game
-	// servers at Access external resources from a game server (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html).
+	// A unique identifier for an IAM role that manages access to your Amazon Web
+	// Services services. With an instance role ARN set, any application that runs
+	// on an instance in this fleet can assume the role, including install scripts,
+	// server processes, and daemons (background processes). Create a role or look
+	// up a role's ARN by using the IAM dashboard (https://console.aws.amazon.com/iam/)
+	// in the Amazon Web Services Management Console. Learn more about using on-box
+	// credentials for your game servers at Access external resources from a game
+	// server (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html).
 	InstanceRoleArn *string `min:"1" type:"string"`
 
-	// The EC2 instance type that determines the computing resources of each instance
-	// in the fleet. Instance type defines the CPU, memory, storage, and networking
-	// capacity. See Amazon EC2 Instance Types (http://aws.amazon.com/ec2/instance-types/)
+	// The Amazon EC2 instance type that determines the computing resources of each
+	// instance in the fleet. Instance type defines the CPU, memory, storage, and
+	// networking capacity. See Amazon Elastic Compute Cloud Instance Types (http://aws.amazon.com/ec2/instance-types/)
 	// for detailed descriptions.
 	InstanceType *string `type:"string" enum:"EC2InstanceType"`
 
@@ -20844,7 +20993,9 @@ func (s *FleetAttributes) SetTerminationTime(v time.Time) *FleetAttributes {
 //
 // Related actions
 //
-// DescribeFleetCapacity | DescribeFleetLocationCapacity | UpdateFleetCapacity
+// DescribeFleetCapacity (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetCapacity.html)
+// | DescribeFleetLocationCapacity (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetLocationCapacity.html)
+// | UpdateFleetCapacity (https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateFleetCapacity.html)
 type FleetCapacity struct {
 	_ struct{} `type:"structure"`
 
@@ -20859,14 +21010,14 @@ type FleetCapacity struct {
 	// The current instance count and capacity settings for the fleet location.
 	InstanceCounts *EC2InstanceCounts `type:"structure"`
 
-	// The EC2 instance type that is used for all instances in a fleet. The instance
-	// type determines the computing resources in use, including CPU, memory, storage,
-	// and networking capacity. See Amazon EC2 Instance Types (http://aws.amazon.com/ec2/instance-types/)
-	// for detailed descriptions.
+	// The Amazon EC2 instance type that is used for all instances in a fleet. The
+	// instance type determines the computing resources in use, including CPU, memory,
+	// storage, and networking capacity. See Amazon Elastic Compute Cloud Instance
+	// Types (http://aws.amazon.com/ec2/instance-types/) for detailed descriptions.
 	InstanceType *string `type:"string" enum:"EC2InstanceType"`
 
-	// The fleet location for the instance count information, expressed as an AWS
-	// Region code, such as us-west-2.
+	// The fleet location for the instance count information, expressed as an Amazon
+	// Web Services Region code, such as us-west-2.
 	Location *string `min:"1" type:"string"`
 }
 
@@ -21013,7 +21164,7 @@ type FleetUtilization struct {
 	FleetId *string `type:"string"`
 
 	// The fleet location for the fleet utilization information, expressed as an
-	// AWS Region code, such as us-west-2.
+	// Amazon Web Services Region code, such as us-west-2.
 	Location *string `min:"1" type:"string"`
 
 	// The maximum number of players allowed across all game sessions that are currently
@@ -21188,7 +21339,7 @@ type GameServer struct {
 
 	// A custom string that uniquely identifies the game server. Game server IDs
 	// are developer-defined and are unique across all game server groups in an
-	// AWS account.
+	// Amazon Web Services account.
 	GameServerId *string `min:"3" type:"string"`
 
 	// The unique identifier for the instance where the game server is running.
@@ -21313,7 +21464,8 @@ func (s *GameServer) SetUtilizationStatus(v string) *GameServer {
 // This data type is used with the GameLift FleetIQ and game server groups.
 //
 // Properties that describe a game server group resource. A game server group
-// manages certain properties related to a corresponding EC2 Auto Scaling group.
+// manages certain properties related to a corresponding Amazon EC2 Auto Scaling
+// group.
 //
 // A game server group is created by a successful call to CreateGameServerGroup
 // and deleted by calling DeleteGameServerGroup. Game server group activity
@@ -21328,8 +21480,8 @@ func (s *GameServer) SetUtilizationStatus(v string) *GameServer {
 type GameServerGroup struct {
 	_ struct{} `type:"structure"`
 
-	// A generated unique ID for the EC2 Auto Scaling group that is associated with
-	// this game server group.
+	// A generated unique ID for the Amazon EC2 Auto Scaling group that is associated
+	// with this game server group.
 	AutoScalingGroupArn *string `type:"string"`
 
 	// Indicates how GameLift FleetIQ balances the use of Spot Instances and On-Demand
@@ -21361,7 +21513,7 @@ type GameServerGroup struct {
 	GameServerGroupArn *string `min:"1" type:"string"`
 
 	// A developer-defined identifier for the game server group. The name is unique
-	// for each Region in each AWS account.
+	// for each Region in each Amazon Web Services account.
 	GameServerGroupName *string `min:"1" type:"string"`
 
 	// A flag that indicates whether instances in the game server group are protected
@@ -21370,10 +21522,10 @@ type GameServerGroup struct {
 	// be dropped from the game. Protected instances cannot be terminated while
 	// there are active game servers running except in the event of a forced game
 	// server group deletion (see ). An exception to this is with Spot Instances,
-	// which can be terminated by AWS regardless of protection status.
+	// which can be terminated by Amazon Web Services regardless of protection status.
 	GameServerProtectionPolicy *string `type:"string" enum:"GameServerProtectionPolicy"`
 
-	// The set of EC2 instance types that GameLift FleetIQ can use when balancing
+	// The set of Amazon EC2 instance types that GameLift FleetIQ can use when balancing
 	// and automatically scaling instances in the corresponding Auto Scaling group.
 	InstanceDefinitions []*InstanceDefinition `min:"2" type:"list"`
 
@@ -21381,8 +21533,8 @@ type GameServerGroup struct {
 	LastUpdatedTime *time.Time `type:"timestamp"`
 
 	// The Amazon Resource Name (ARN (https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html))
-	// for an IAM role that allows Amazon GameLift to access your EC2 Auto Scaling
-	// groups.
+	// for an IAM role that allows Amazon Web Services to access your Amazon EC2
+	// Auto Scaling groups.
 	RoleArn *string `min:"1" type:"string"`
 
 	// The current status of the game server group. Possible statuses include:
@@ -21390,7 +21542,7 @@ type GameServerGroup struct {
 	//    * NEW - GameLift FleetIQ has validated the CreateGameServerGroup() request.
 	//
 	//    * ACTIVATING - GameLift FleetIQ is setting up a game server group, which
-	//    includes creating an Auto Scaling group in your AWS account.
+	//    includes creating an Auto Scaling group in your Amazon Web Services account.
 	//
 	//    * ACTIVE - The game server group has been successfully created.
 	//
@@ -21607,7 +21759,8 @@ type GameServerInstance struct {
 	GameServerGroupArn *string `min:"1" type:"string"`
 
 	// A developer-defined identifier for the game server group that includes the
-	// game server instance. The name is unique for each Region in each AWS account.
+	// game server instance. The name is unique for each Region in each Amazon Web
+	// Services account.
 	GameServerGroupName *string `min:"1" type:"string"`
 
 	// The unique identifier for the instance where the game server is running.
@@ -21725,13 +21878,13 @@ type GameSession struct {
 
 	// A set of custom properties for a game session, formatted as key:value pairs.
 	// These properties are passed to a game server process in the GameSession object
-	// with a request to start a new game session. You can search for active game
-	// sessions based on this custom data with SearchGameSessions.
+	// with a request to start a new game session (see Start a Game Session (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession)).
+	// You can search for active game sessions based on this custom data with SearchGameSessions.
 	GameProperties []*GameProperty `type:"list"`
 
 	// A set of custom game session properties, formatted as a single string value.
 	// This data is passed to a game server process in the GameSession object with
-	// a request to start a new game session.
+	// a request to start a new game session (see Start a Game Session (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession)).
 	GameSessionData *string `min:"1" type:"string"`
 
 	// A unique identifier for the game session. A game session ARN has the following
@@ -21745,7 +21898,7 @@ type GameSession struct {
 
 	// The fleet location where the game session is running. This value might specify
 	// the fleet's home Region or a remote location. Location is expressed as an
-	// AWS Region code such as us-west-2.
+	// Amazon Web Services Region code such as us-west-2.
 	Location *string `min:"1" type:"string"`
 
 	// Information about the matchmaking process that was used to create the game
@@ -21754,7 +21907,8 @@ type GameSession struct {
 	// including player attributes and team assignments. For more details on matchmaker
 	// data, see Match Data (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-server.html#match-server-data).
 	// Matchmaker data is useful when requesting match backfills, and is updated
-	// whenever new players are added during a successful backfill (see StartMatchBackfill).
+	// whenever new players are added during a successful backfill (see StartMatchBackfill
+	// (https://docs.aws.amazon.com/gamelift/latest/apireference/API_StartMatchBackfill.html)).
 	MatchmakerData *string `min:"1" type:"string"`
 
 	// The maximum number of players that can be connected simultaneously to the
@@ -22206,7 +22360,7 @@ type GameSessionPlacement struct {
 	PlacementId *string `min:"1" type:"string"`
 
 	// A set of values, expressed in milliseconds, that indicates the amount of
-	// latency that a player experiences when connected to AWS Regions.
+	// latency that a player experiences when connected to @aws; Regions.
 	PlayerLatencies []*PlayerLatency `type:"list"`
 
 	// The port number for the game session. To connect to a GameLift game server,
@@ -22370,7 +22524,9 @@ func (s *GameSessionPlacement) SetStatus(v string) *GameSessionPlacement {
 //
 // Related actions
 //
-// CreateGameSessionQueue | DescribeGameSessionQueues | UpdateGameSessionQueue
+// CreateGameSessionQueue (https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateGameSessionQueue.html)
+// | DescribeGameSessionQueues (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeGameSessionQueues.html)
+// | UpdateGameSessionQueue (https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateGameSessionQueue.html)
 type GameSessionQueue struct {
 	_ struct{} `type:"structure"`
 
@@ -22384,8 +22540,9 @@ type GameSessionQueue struct {
 	Destinations []*GameSessionQueueDestination `type:"list"`
 
 	// A list of locations where a queue is allowed to place new game sessions.
-	// Locations are specified in the form of AWS Region codes, such as us-west-2.
-	// If this parameter is not set, game sessions can be placed in any queue location.
+	// Locations are specified in the form of Amazon Web Services Region codes,
+	// such as us-west-2. If this parameter is not set, game sessions can be placed
+	// in any queue location.
 	FilterConfiguration *FilterConfiguration `type:"structure"`
 
 	// The Amazon Resource Name (ARN (https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html))
@@ -22833,8 +22990,8 @@ type Instance struct {
 	// IP address that is assigned to the instance.
 	IpAddress *string `min:"1" type:"string"`
 
-	// The fleet location of the instance, expressed as an AWS Region code, such
-	// as us-west-2.
+	// The fleet location of the instance, expressed as an Amazon Web Services Region
+	// code, such as us-west-2.
 	Location *string `min:"1" type:"string"`
 
 	// Operating system that is running on this instance.
@@ -22855,7 +23012,7 @@ type Instance struct {
 	//    resources in the event of a problem.
 	Status *string `type:"string" enum:"InstanceStatus"`
 
-	// EC2 instance type that defines the computing resources of this instance.
+	// Amazon EC2 instance type that defines the computing resources of this instance.
 	Type *string `type:"string" enum:"EC2InstanceType"`
 }
 
@@ -23064,7 +23221,7 @@ func (s *InstanceCredentials) SetUserName(v string) *InstanceCredentials {
 type InstanceDefinition struct {
 	_ struct{} `type:"structure"`
 
-	// An EC2 instance type designation.
+	// An Amazon EC2 instance type designation.
 	//
 	// InstanceType is a required field
 	InstanceType *string `type:"string" required:"true" enum:"GameServerGroupInstanceType"`
@@ -23074,7 +23231,8 @@ type InstanceDefinition struct {
 	// GameLift FleetIQ to calculate the instance type's cost per unit hour and
 	// better identify the most cost-effective options. For detailed information
 	// on weighting instance capacity, see Instance Weighting (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-weighting.html)
-	// in the Amazon EC2 Auto Scaling User Guide. Default value is "1".
+	// in the Amazon Elastic Compute Cloud Auto Scaling User Guide. Default value
+	// is "1".
 	WeightedCapacity *string `min:"1" type:"string"`
 }
 
@@ -23402,6 +23560,9 @@ type IpPermission struct {
 
 	// A starting value for a range of allowed port numbers.
 	//
+	// For fleets using Linux builds, only port 22, 443, 1026-60000 are valid. For
+	// fleets using Windows builds, only port 443, 1026-60000 are valid.
+	//
 	// FromPort is a required field
 	FromPort *int64 `min:"1" type:"integer" required:"true"`
 
@@ -23419,6 +23580,9 @@ type IpPermission struct {
 
 	// An ending value for a range of allowed port numbers. Port numbers are end-inclusive.
 	// This value must be higher than FromPort.
+	//
+	// For fleets using Linux builds, only port 22, 443, 1026-60000 are valid. For
+	// fleets using Windows builds, only port 443, 1026-60000 are valid.
 	//
 	// ToPort is a required field
 	ToPort *int64 `min:"1" type:"integer" required:"true"`
@@ -23496,22 +23660,22 @@ func (s *IpPermission) SetToPort(v int64) *IpPermission {
 
 // This data type is used with the GameLift FleetIQ and game server groups.
 //
-// An EC2 launch template that contains configuration settings and game server
-// code to be deployed to all instances in a game server group. The launch template
-// is specified when creating a new game server group with CreateGameServerGroup.
+// An Amazon EC2 launch template that contains configuration settings and game
+// server code to be deployed to all instances in a game server group. The launch
+// template is specified when creating a new game server group with CreateGameServerGroup.
 type LaunchTemplateSpecification struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier for an existing EC2 launch template.
+	// A unique identifier for an existing Amazon EC2 launch template.
 	LaunchTemplateId *string `min:"1" type:"string"`
 
-	// A readable identifier for an existing EC2 launch template.
+	// A readable identifier for an existing Amazon EC2 launch template.
 	LaunchTemplateName *string `min:"3" type:"string"`
 
-	// The version of the EC2 launch template to use. If no version is specified,
-	// the default version will be used. With Amazon EC2, you can specify a default
-	// version for a launch template. If none is set, the default is the first version
-	// created.
+	// The version of the Amazon EC2 launch template to use. If no version is specified,
+	// the default version will be used. With Amazon Elastic Compute Cloud, you
+	// can specify a default version for a launch template. If none is set, the
+	// default is the first version created.
 	Version *string `min:"1" type:"string"`
 }
 
@@ -24502,11 +24666,11 @@ func (s *LocationAttributes) SetUpdateStatus(v string) *LocationAttributes {
 //
 // Related actions
 //
-// CreateFleet
+// CreateFleet (https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateFleet.html)
 type LocationConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// An AWS Region code, such as us-west-2.
+	// An Amazon Web Services Region code, such as us-west-2.
 	Location *string `min:"1" type:"string"`
 }
 
@@ -24559,7 +24723,8 @@ func (s *LocationConfiguration) SetLocation(v string) *LocationConfiguration {
 type LocationState struct {
 	_ struct{} `type:"structure"`
 
-	// The fleet location, expressed as an AWS Region code such as us-west-2.
+	// The fleet location, expressed as an Amazon Web Services Region code such
+	// as us-west-2.
 	Location *string `min:"1" type:"string"`
 
 	// The life-cycle status of a fleet location.
@@ -25325,7 +25490,7 @@ type Player struct {
 	_ struct{} `type:"structure"`
 
 	// A set of values, expressed in milliseconds, that indicates the amount of
-	// latency that a player experiences when connected to AWS Regions. If this
+	// latency that a player experiences when connected to @aws; Regions. If this
 	// property is present, FlexMatch considers placing the match only in Regions
 	// for which latency is reported.
 	//
@@ -25599,7 +25764,7 @@ type PlayerSession struct {
 	// A unique identifier for a player session.
 	PlayerSessionId *string `type:"string"`
 
-	// Port number for the game session. To connect to a Amazon GameLift server
+	// Port number for the game session. To connect to a Amazon Web Services server
 	// process, an app needs both the IP address and port number.
 	Port *int64 `min:"1" type:"integer"`
 
@@ -25740,8 +25905,8 @@ type PriorityConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The prioritization order to use for fleet locations, when the PriorityOrder
-	// property includes LOCATION. Locations are identified by AWS Region codes
-	// such as us-west-2. Each location can only be listed once.
+	// property includes LOCATION. Locations are identified by Amazon Web Services
+	// Region codes such as us-west-2. Each location can only be listed once.
 	LocationOrder []*string `min:"1" type:"list"`
 
 	// The recommended sequence to use when prioritizing where to place new game
@@ -25827,9 +25992,9 @@ type PutScalingPolicyInput struct {
 	// FleetId is a required field
 	FleetId *string `type:"string" required:"true"`
 
-	// Name of the Amazon GameLift-defined metric that is used to trigger a scaling
-	// adjustment. For detailed descriptions of fleet metrics, see Monitor Amazon
-	// GameLift with Amazon CloudWatch (https://docs.aws.amazon.com/gamelift/latest/developerguide/monitoring-cloudwatch.html).
+	// Name of the Amazon Web Services-defined metric that is used to trigger a
+	// scaling adjustment. For detailed descriptions of fleet metrics, see Monitor
+	// Amazon Web Services with Amazon CloudWatch (https://docs.aws.amazon.com/gamelift/latest/developerguide/monitoring-cloudwatch.html).
 	//
 	//    * ActivatingGameSessions -- Game sessions in the process of being created.
 	//
@@ -26065,7 +26230,7 @@ type RegisterGameServerInput struct {
 
 	// A custom string that uniquely identifies the game server to register. Game
 	// server IDs are developer-defined and must be unique across all game server
-	// groups in your AWS account.
+	// groups in your Amazon Web Services account.
 	//
 	// GameServerId is a required field
 	GameServerId *string `min:"3" type:"string" required:"true"`
@@ -26246,9 +26411,9 @@ type RequestUploadCredentialsOutput struct {
 	// Amazon S3 path and key, identifying where the game build files are stored.
 	StorageLocation *S3Location `type:"structure"`
 
-	// AWS credentials required when uploading a game build to the storage location.
-	// These credentials have a limited lifespan and are valid only for the build
-	// they were issued for.
+	// Amazon Web Services credentials required when uploading a game build to the
+	// storage location. These credentials have a limited lifespan and are valid
+	// only for the build they were issued for.
 	//
 	// UploadCredentials is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RequestUploadCredentialsOutput's
@@ -26690,7 +26855,7 @@ func (s *RuntimeConfiguration) SetServerProcesses(v []*ServerProcess) *RuntimeCo
 }
 
 // The location in Amazon S3 where build or script files are stored for access
-// by Amazon GameLift. This location is specified in CreateBuild, CreateScript,
+// by Amazon Web Services. This location is specified in CreateBuild, CreateScript,
 // and UpdateScript requests.
 type S3Location struct {
 	_ struct{} `type:"structure"`
@@ -26705,13 +26870,13 @@ type S3Location struct {
 	Key *string `min:"1" type:"string"`
 
 	// The version of the file, if object versioning is turned on for the bucket.
-	// Amazon GameLift uses this information when retrieving files from an S3 bucket
-	// that you own. Use this parameter to specify a specific version of the file.
-	// If not set, the latest version of the file is retrieved.
+	// Amazon Web Services uses this information when retrieving files from an S3
+	// bucket that you own. Use this parameter to specify a specific version of
+	// the file. If not set, the latest version of the file is retrieved.
 	ObjectVersion *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN (https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html))
-	// for an IAM role that allows Amazon GameLift to access the S3 bucket.
+	// for an IAM role that allows Amazon Web Services to access the S3 bucket.
 	RoleArn *string `min:"1" type:"string"`
 }
 
@@ -26806,11 +26971,12 @@ type ScalingPolicy struct {
 	// A unique identifier for the fleet that is associated with this scaling policy.
 	FleetId *string `type:"string"`
 
+	// The fleet location.
 	Location *string `min:"1" type:"string"`
 
-	// Name of the Amazon GameLift-defined metric that is used to trigger a scaling
-	// adjustment. For detailed descriptions of fleet metrics, see Monitor Amazon
-	// GameLift with Amazon CloudWatch (https://docs.aws.amazon.com/gamelift/latest/developerguide/monitoring-cloudwatch.html).
+	// Name of the Amazon Web Services-defined metric that is used to trigger a
+	// scaling adjustment. For detailed descriptions of fleet metrics, see Monitor
+	// Amazon Web Services with Amazon CloudWatch (https://docs.aws.amazon.com/gamelift/latest/developerguide/monitoring-cloudwatch.html).
 	//
 	//    * ActivatingGameSessions -- Game sessions in the process of being created.
 	//
@@ -27040,7 +27206,7 @@ type Script struct {
 	SizeOnDisk *int64 `min:"1" type:"long"`
 
 	// The location in Amazon S3 where build or script files are stored for access
-	// by Amazon GameLift. This location is specified in CreateBuild, CreateScript,
+	// by Amazon Web Services. This location is specified in CreateBuild, CreateScript,
 	// and UpdateScript requests.
 	StorageLocation *S3Location `type:"structure"`
 
@@ -27170,7 +27336,8 @@ type SearchGameSessionsInput struct {
 	Limit *int64 `min:"1" type:"integer"`
 
 	// A fleet location to search for game sessions. You can specify a fleet's home
-	// Region or a remote location. Use the AWS Region code format, such as us-west-2.
+	// Region or a remote location. Use the Amazon Web Services Region code format,
+	// such as us-west-2.
 	Location *string `min:"1" type:"string"`
 
 	// A token that indicates the start of the next sequential page of results.
@@ -27429,7 +27596,7 @@ type StartFleetActionsInput struct {
 	FleetId *string `type:"string" required:"true"`
 
 	// The fleet location to restart fleet actions for. Specify a location in the
-	// form of an AWS Region code, such as us-west-2.
+	// form of an Amazon Web Services Region code, such as us-west-2.
 	Location *string `min:"1" type:"string"`
 }
 
@@ -27575,7 +27742,7 @@ type StartGameSessionPlacementInput struct {
 	PlacementId *string `min:"1" type:"string" required:"true"`
 
 	// A set of values, expressed in milliseconds, that indicates the amount of
-	// latency that a player experiences when connected to AWS Regions. This information
+	// latency that a player experiences when connected to @aws; Regions. This information
 	// is used to try to place the new game session where it can offer the best
 	// possible gameplay experience for the players.
 	PlayerLatencies []*PlayerLatency `type:"list"`
@@ -27765,6 +27932,8 @@ type StartMatchBackfillInput struct {
 	//    the GameSession object, MatchmakerData property, for all players who are
 	//    currently assigned to the game session. The matchmaker data is in JSON
 	//    syntax, formatted as a string. For more details, see Match Data (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-server.html#match-server-data).
+	//    The backfill request must specify the team membership for every player.
+	//    Do not specify team if you are not using backfill.
 	//
 	//    * LatencyInMs -- If the matchmaker uses player latency, include a latency
 	//    value, in milliseconds, for the Region that the game session is currently
@@ -27774,8 +27943,8 @@ type StartMatchBackfillInput struct {
 	Players []*Player `type:"list" required:"true"`
 
 	// A unique identifier for a matchmaking ticket. If no ticket ID is specified
-	// here, Amazon GameLift will generate one in the form of a UUID. Use this identifier
-	// to track the match backfill ticket status and retrieve match results.
+	// here, Amazon Web Services will generate one in the form of a UUID. Use this
+	// identifier to track the match backfill ticket status and retrieve match results.
 	TicketId *string `type:"string"`
 }
 
@@ -27907,8 +28076,8 @@ type StartMatchmakingInput struct {
 	Players []*Player `type:"list" required:"true"`
 
 	// A unique identifier for a matchmaking ticket. If no ticket ID is specified
-	// here, Amazon GameLift will generate one in the form of a UUID. Use this identifier
-	// to track the matchmaking ticket status and retrieve match results.
+	// here, Amazon Web Services will generate one in the form of a UUID. Use this
+	// identifier to track the matchmaking ticket status and retrieve match results.
 	TicketId *string `type:"string"`
 }
 
@@ -28027,7 +28196,7 @@ type StopFleetActionsInput struct {
 	FleetId *string `type:"string" required:"true"`
 
 	// The fleet location to stop fleet actions for. Specify a location in the form
-	// of an AWS Region code, such as us-west-2.
+	// of an Amazon Web Services Region code, such as us-west-2.
 	Location *string `min:"1" type:"string"`
 }
 
@@ -28387,10 +28556,10 @@ func (s *SuspendGameServerGroupOutput) SetGameServerGroup(v *GameServerGroup) *S
 //
 // Learn more
 //
-// Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-// in the AWS General Reference
+// Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+// in the Amazon Web Services General Reference
 //
-//  AWS Tagging Strategies (http://aws.amazon.com/answers/account-management/aws-tagging-strategies/)
+//  Amazon Web Services Tagging Strategies (http://aws.amazon.com/answers/account-management/aws-tagging-strategies/)
 //
 // Related actions
 //
@@ -28398,12 +28567,14 @@ func (s *SuspendGameServerGroupOutput) SetGameServerGroup(v *GameServerGroup) *S
 type Tag struct {
 	_ struct{} `type:"structure"`
 
-	// The key for a developer-defined key:value pair for tagging an AWS resource.
+	// The key for a developer-defined key:value pair for tagging an Amazon Web
+	// Services resource.
 	//
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
-	// The value for a developer-defined key:value pair for tagging an AWS resource.
+	// The value for a developer-defined key:value pair for tagging an Amazon Web
+	// Services resource.
 	//
 	// Value is a required field
 	Value *string `type:"string" required:"true"`
@@ -28472,8 +28643,9 @@ type TagResourceInput struct {
 
 	// A list of one or more tags to assign to the specified GameLift resource.
 	// Tags are developer-defined and structured as key-value pairs. The maximum
-	// tag limit may be lower than stated. See Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-	// for actual tagging limits.
+	// tag limit may be lower than stated. See Tagging Amazon Web Services Resources
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html) for actual
+	// tagging limits.
 	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
@@ -28628,10 +28800,10 @@ func (s *TaggingFailedException) RequestID() string {
 
 // Settings for a target-based scaling policy (see ScalingPolicy. A target-based
 // policy tracks a particular fleet metric specifies a target value for the
-// metric. As player usage changes, the policy triggers Amazon GameLift to adjust
-// capacity so that the metric returns to the target value. The target configuration
-// specifies settings as needed for the target based policy, including the target
-// value.
+// metric. As player usage changes, the policy triggers Amazon Web Services
+// to adjust capacity so that the metric returns to the target value. The target
+// configuration specifies settings as needed for the target based policy, including
+// the target value.
 //
 // Related actions
 //
@@ -28950,8 +29122,8 @@ type UntagResourceInput struct {
 	ResourceARN *string `min:"1" type:"string" required:"true"`
 
 	// A list of one or more tag keys to remove from the specified GameLift resource.
-	// An AWS resource can have only one tag with a specific tag key, so specifying
-	// the tag key identifies which tag to remove.
+	// An Amazon Web Services resource can have only one tag with a specific tag
+	// key, so specifying the tag key identifies which tag to remove.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true"`
@@ -29397,8 +29569,9 @@ func (s *UpdateFleetAttributesOutput) SetFleetId(v string) *UpdateFleetAttribute
 type UpdateFleetCapacityInput struct {
 	_ struct{} `type:"structure"`
 
-	// The number of EC2 instances you want to maintain in the specified fleet location.
-	// This value must fall between the minimum and maximum size limits.
+	// The number of Amazon EC2 instances you want to maintain in the specified
+	// fleet location. This value must fall between the minimum and maximum size
+	// limits.
 	DesiredInstances *int64 `type:"integer"`
 
 	// A unique identifier for the fleet to update capacity settings for. You can
@@ -29408,7 +29581,7 @@ type UpdateFleetCapacityInput struct {
 	FleetId *string `type:"string" required:"true"`
 
 	// The name of a remote location to update fleet capacity settings for, in the
-	// form of an AWS Region code such as us-west-2.
+	// form of an Amazon Web Services Region code such as us-west-2.
 	Location *string `min:"1" type:"string"`
 
 	// The maximum number of instances that are allowed in the specified fleet location.
@@ -29496,8 +29669,8 @@ type UpdateFleetCapacityOutput struct {
 	// A unique identifier for the fleet that was updated.
 	FleetId *string `type:"string"`
 
-	// The remote location being updated, expressed as an AWS Region code, such
-	// as us-west-2.
+	// The remote location being updated, expressed as an Amazon Web Services Region
+	// code, such as us-west-2.
 	Location *string `min:"1" type:"string"`
 }
 
@@ -29691,13 +29864,13 @@ type UpdateGameServerGroupInput struct {
 	// be dropped from the game. Protected instances cannot be terminated while
 	// there are active game servers running except in the event of a forced game
 	// server group deletion (see ). An exception to this is with Spot Instances,
-	// which can be terminated by AWS regardless of protection status. This property
-	// is set to NO_PROTECTION by default.
+	// which can be terminated by Amazon Web Services regardless of protection status.
+	// This property is set to NO_PROTECTION by default.
 	GameServerProtectionPolicy *string `type:"string" enum:"GameServerProtectionPolicy"`
 
-	// An updated list of EC2 instance types to use in the Auto Scaling group. The
-	// instance definitions must specify at least two different instance types that
-	// are supported by GameLift FleetIQ. This updated list replaces the entire
+	// An updated list of Amazon EC2 instance types to use in the Auto Scaling group.
+	// The instance definitions must specify at least two different instance types
+	// that are supported by GameLift FleetIQ. This updated list replaces the entire
 	// current list of instance definitions for the game server group. For more
 	// information on instance types, see EC2 Instance Types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
 	// in the Amazon EC2 User Guide. You can optionally specify capacity weighting
@@ -29708,8 +29881,8 @@ type UpdateGameServerGroupInput struct {
 	InstanceDefinitions []*InstanceDefinition `min:"2" type:"list"`
 
 	// The Amazon Resource Name (ARN (https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html))
-	// for an IAM role that allows Amazon GameLift to access your EC2 Auto Scaling
-	// groups.
+	// for an IAM role that allows Amazon Web Services to access your Amazon EC2
+	// Auto Scaling groups.
 	RoleArn *string `min:"1" type:"string"`
 }
 
@@ -30099,9 +30272,10 @@ type UpdateGameSessionQueueInput struct {
 	Destinations []*GameSessionQueueDestination `type:"list"`
 
 	// A list of locations where a queue is allowed to place new game sessions.
-	// Locations are specified in the form of AWS Region codes, such as us-west-2.
-	// If this parameter is not set, game sessions can be placed in any queue location.
-	// To remove an existing filter configuration, pass in an empty set.
+	// Locations are specified in the form of Amazon Web Services Region codes,
+	// such as us-west-2. If this parameter is not set, game sessions can be placed
+	// in any queue location. To remove an existing filter configuration, pass in
+	// an empty set.
 	FilterConfiguration *FilterConfiguration `type:"structure"`
 
 	// A descriptive label that is associated with game session queue. Queue names
@@ -30658,11 +30832,11 @@ type UpdateScriptInput struct {
 	// The location of the Amazon S3 bucket where a zipped file containing your
 	// Realtime scripts is stored. The storage location must specify the Amazon
 	// S3 bucket name, the zip file name (the "key"), and a role ARN that allows
-	// Amazon GameLift to access the Amazon S3 storage location. The S3 bucket must
-	// be in the same Region where you want to create a new script. By default,
-	// Amazon GameLift uploads the latest version of the zip file; if you have S3
-	// object versioning turned on, you can use the ObjectVersion parameter to specify
-	// an earlier version.
+	// Amazon Web Services to access the Amazon S3 storage location. The S3 bucket
+	// must be in the same Region where you want to create a new script. By default,
+	// Amazon Web Services uploads the latest version of the zip file; if you have
+	// S3 object versioning turned on, you can use the ObjectVersion parameter to
+	// specify an earlier version.
 	StorageLocation *S3Location `type:"structure"`
 
 	// Version information that is associated with a build or script. Version strings
@@ -30673,9 +30847,10 @@ type UpdateScriptInput struct {
 	// file. The zip file can have one or multiple files. Maximum size of a zip
 	// file is 5 MB.
 	//
-	// When using the AWS CLI tool to create a script, this parameter is set to
-	// the zip file name. It must be prepended with the string "fileb://" to indicate
-	// that the file data is a binary object. For example: --zip-file fileb://myRealtimeScript.zip.
+	// When using the Amazon Web Services CLI tool to create a script, this parameter
+	// is set to the zip file name. It must be prepended with the string "fileb://"
+	// to indicate that the file data is a binary object. For example: --zip-file
+	// fileb://myRealtimeScript.zip.
 	// ZipFile is automatically base64 encoded/decoded by the SDK.
 	ZipFile []byte `type:"blob"`
 }
@@ -30760,7 +30935,7 @@ type UpdateScriptOutput struct {
 	// from an S3 bucket under your account, the storage location reflects the information
 	// that was provided in the CreateScript request; (2) If the script file was
 	// uploaded from a local zip file, the storage location reflects an S3 location
-	// controls by the Amazon GameLift service.
+	// controls by the Amazon Web Services service.
 	Script *Script `type:"structure"`
 }
 
@@ -30871,7 +31046,7 @@ func (s *ValidateMatchmakingRuleSetOutput) SetValid(v bool) *ValidateMatchmaking
 }
 
 // Represents an authorization for a VPC peering connection between the VPC
-// for an Amazon GameLift fleet and another VPC on an account you have access
+// for an Amazon Web Services fleet and another VPC on an account you have access
 // to. This authorization must exist and be valid for the peering connection
 // to be established. Authorizations are valid for 24 hours after they are issued.
 //
@@ -30891,18 +31066,18 @@ type VpcPeeringAuthorization struct {
 	// Format is a number expressed in Unix time as milliseconds (for example "1469498468.057").
 	ExpirationTime *time.Time `type:"timestamp"`
 
-	// A unique identifier for the AWS account that you use to manage your GameLift
-	// fleet. You can find your Account ID in the AWS Management Console under account
-	// settings.
+	// A unique identifier for the Amazon Web Services account that you use to manage
+	// your GameLift fleet. You can find your Account ID in the Amazon Web Services
+	// Management Console under account settings.
 	GameLiftAwsAccountId *string `min:"1" type:"string"`
 
 	PeerVpcAwsAccountId *string `min:"1" type:"string"`
 
 	// A unique identifier for a VPC with resources to be accessed by your GameLift
 	// fleet. The VPC must be in the same Region as your fleet. To look up a VPC
-	// ID, use the VPC Dashboard (https://console.aws.amazon.com/vpc/) in the AWS
-	// Management Console. Learn more about VPC peering in VPC Peering with GameLift
-	// Fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html).
+	// ID, use the VPC Dashboard (https://console.aws.amazon.com/vpc/) in the Amazon
+	// Web Services Management Console. Learn more about VPC peering in VPC Peering
+	// with GameLift Fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html).
 	PeerVpcId *string `min:"1" type:"string"`
 }
 
@@ -30954,9 +31129,10 @@ func (s *VpcPeeringAuthorization) SetPeerVpcId(v string) *VpcPeeringAuthorizatio
 	return s
 }
 
-// Represents a peering connection between a VPC on one of your AWS accounts
-// and the VPC for your Amazon GameLift fleets. This record may be for an active
-// peering connection or a pending connection that has not yet been established.
+// Represents a peering connection between a VPC on one of your Amazon Web Services
+// accounts and the VPC for your Amazon Web Services fleets. This record may
+// be for an active peering connection or a pending connection that has not
+// yet been established.
 //
 // Related actions
 //
@@ -30971,12 +31147,12 @@ type VpcPeeringConnection struct {
 	FleetArn *string `type:"string"`
 
 	// A unique identifier for the fleet. This ID determines the ID of the Amazon
-	// GameLift VPC for your fleet.
+	// Web Services VPC for your fleet.
 	FleetId *string `type:"string"`
 
-	// A unique identifier for the VPC that contains the Amazon GameLift fleet for
-	// this connection. This VPC is managed by Amazon GameLift and does not appear
-	// in your AWS account.
+	// A unique identifier for the VPC that contains the Amazon Web Services fleet
+	// for this connection. This VPC is managed by Amazon Web Services and does
+	// not appear in your Amazon Web Services account.
 	GameLiftVpcId *string `min:"1" type:"string"`
 
 	// CIDR block of IPv4 addresses assigned to the VPC peering connection for the
@@ -30986,9 +31162,9 @@ type VpcPeeringConnection struct {
 
 	// A unique identifier for a VPC with resources to be accessed by your GameLift
 	// fleet. The VPC must be in the same Region as your fleet. To look up a VPC
-	// ID, use the VPC Dashboard (https://console.aws.amazon.com/vpc/) in the AWS
-	// Management Console. Learn more about VPC peering in VPC Peering with GameLift
-	// Fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html).
+	// ID, use the VPC Dashboard (https://console.aws.amazon.com/vpc/) in the Amazon
+	// Web Services Management Console. Learn more about VPC peering in VPC Peering
+	// with GameLift Fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html).
 	PeerVpcId *string `min:"1" type:"string"`
 
 	// The status information about the connection. Status indicates if a connection

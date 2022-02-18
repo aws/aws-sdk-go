@@ -4124,6 +4124,10 @@ type CreateServerInput struct {
 	// viewed in your CloudWatch logs.
 	LoggingRole *string `min:"20" type:"string"`
 
+	PostAuthenticationLoginBanner *string `type:"string"`
+
+	PreAuthenticationLoginBanner *string `type:"string"`
+
 	// The protocol settings that are configured for your server.
 	//
 	// Use the PassiveIp parameter to indicate passive mode (for FTP and FTPS protocols).
@@ -4277,6 +4281,18 @@ func (s *CreateServerInput) SetIdentityProviderType(v string) *CreateServerInput
 // SetLoggingRole sets the LoggingRole field's value.
 func (s *CreateServerInput) SetLoggingRole(v string) *CreateServerInput {
 	s.LoggingRole = &v
+	return s
+}
+
+// SetPostAuthenticationLoginBanner sets the PostAuthenticationLoginBanner field's value.
+func (s *CreateServerInput) SetPostAuthenticationLoginBanner(v string) *CreateServerInput {
+	s.PostAuthenticationLoginBanner = &v
+	return s
+}
+
+// SetPreAuthenticationLoginBanner sets the PreAuthenticationLoginBanner field's value.
+func (s *CreateServerInput) SetPreAuthenticationLoginBanner(v string) *CreateServerInput {
+	s.PreAuthenticationLoginBanner = &v
 	return s
 }
 
@@ -6304,6 +6320,10 @@ type DescribedServer struct {
 	// viewed in your CloudWatch logs.
 	LoggingRole *string `min:"20" type:"string"`
 
+	PostAuthenticationLoginBanner *string `type:"string"`
+
+	PreAuthenticationLoginBanner *string `type:"string"`
+
 	// The protocol settings that are configured for your server.
 	//
 	// Use the PassiveIp parameter to indicate passive mode. Enter a single dotted-quad
@@ -6421,6 +6441,18 @@ func (s *DescribedServer) SetIdentityProviderType(v string) *DescribedServer {
 // SetLoggingRole sets the LoggingRole field's value.
 func (s *DescribedServer) SetLoggingRole(v string) *DescribedServer {
 	s.LoggingRole = &v
+	return s
+}
+
+// SetPostAuthenticationLoginBanner sets the PostAuthenticationLoginBanner field's value.
+func (s *DescribedServer) SetPostAuthenticationLoginBanner(v string) *DescribedServer {
+	s.PostAuthenticationLoginBanner = &v
+	return s
+}
+
+// SetPreAuthenticationLoginBanner sets the PreAuthenticationLoginBanner field's value.
+func (s *DescribedServer) SetPreAuthenticationLoginBanner(v string) *DescribedServer {
+	s.PreAuthenticationLoginBanner = &v
 	return s
 }
 
@@ -10769,6 +10801,10 @@ type UpdateServerInput struct {
 	// viewed in your CloudWatch logs.
 	LoggingRole *string `type:"string"`
 
+	PostAuthenticationLoginBanner *string `type:"string"`
+
+	PreAuthenticationLoginBanner *string `type:"string"`
+
 	// The protocol settings that are configured for your server.
 	//
 	// Use the PassiveIp parameter to indicate passive mode (for FTP and FTPS protocols).
@@ -10903,6 +10939,18 @@ func (s *UpdateServerInput) SetIdentityProviderDetails(v *IdentityProviderDetail
 // SetLoggingRole sets the LoggingRole field's value.
 func (s *UpdateServerInput) SetLoggingRole(v string) *UpdateServerInput {
 	s.LoggingRole = &v
+	return s
+}
+
+// SetPostAuthenticationLoginBanner sets the PostAuthenticationLoginBanner field's value.
+func (s *UpdateServerInput) SetPostAuthenticationLoginBanner(v string) *UpdateServerInput {
+	s.PostAuthenticationLoginBanner = &v
+	return s
+}
+
+// SetPreAuthenticationLoginBanner sets the PreAuthenticationLoginBanner field's value.
+func (s *UpdateServerInput) SetPreAuthenticationLoginBanner(v string) *UpdateServerInput {
+	s.PreAuthenticationLoginBanner = &v
 	return s
 }
 

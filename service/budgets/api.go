@@ -1374,6 +1374,157 @@ func (c *Budgets) DescribeBudgetActionsForBudgetPagesWithContext(ctx aws.Context
 	return p.Err()
 }
 
+const opDescribeBudgetNotificationsForAccount = "DescribeBudgetNotificationsForAccount"
+
+// DescribeBudgetNotificationsForAccountRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeBudgetNotificationsForAccount operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeBudgetNotificationsForAccount for more information on using the DescribeBudgetNotificationsForAccount
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeBudgetNotificationsForAccountRequest method.
+//    req, resp := client.DescribeBudgetNotificationsForAccountRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Budgets) DescribeBudgetNotificationsForAccountRequest(input *DescribeBudgetNotificationsForAccountInput) (req *request.Request, output *DescribeBudgetNotificationsForAccountOutput) {
+	op := &request.Operation{
+		Name:       opDescribeBudgetNotificationsForAccount,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeBudgetNotificationsForAccountInput{}
+	}
+
+	output = &DescribeBudgetNotificationsForAccountOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeBudgetNotificationsForAccount API operation for AWS Budgets.
+//
+// Lists the budget names and notifications that are associated with an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Budgets's
+// API operation DescribeBudgetNotificationsForAccount for usage and error information.
+//
+// Returned Error Types:
+//   * InternalErrorException
+//   An error on the server occurred during the processing of your request. Try
+//   again later.
+//
+//   * InvalidParameterException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * NotFoundException
+//   We can’t locate the resource that you specified.
+//
+//   * InvalidNextTokenException
+//   The pagination token is invalid.
+//
+//   * ExpiredNextTokenException
+//   The pagination token expired.
+//
+//   * AccessDeniedException
+//   You are not authorized to use this operation with the given parameters.
+//
+func (c *Budgets) DescribeBudgetNotificationsForAccount(input *DescribeBudgetNotificationsForAccountInput) (*DescribeBudgetNotificationsForAccountOutput, error) {
+	req, out := c.DescribeBudgetNotificationsForAccountRequest(input)
+	return out, req.Send()
+}
+
+// DescribeBudgetNotificationsForAccountWithContext is the same as DescribeBudgetNotificationsForAccount with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeBudgetNotificationsForAccount for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Budgets) DescribeBudgetNotificationsForAccountWithContext(ctx aws.Context, input *DescribeBudgetNotificationsForAccountInput, opts ...request.Option) (*DescribeBudgetNotificationsForAccountOutput, error) {
+	req, out := c.DescribeBudgetNotificationsForAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeBudgetNotificationsForAccountPages iterates over the pages of a DescribeBudgetNotificationsForAccount operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeBudgetNotificationsForAccount method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeBudgetNotificationsForAccount operation.
+//    pageNum := 0
+//    err := client.DescribeBudgetNotificationsForAccountPages(params,
+//        func(page *budgets.DescribeBudgetNotificationsForAccountOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Budgets) DescribeBudgetNotificationsForAccountPages(input *DescribeBudgetNotificationsForAccountInput, fn func(*DescribeBudgetNotificationsForAccountOutput, bool) bool) error {
+	return c.DescribeBudgetNotificationsForAccountPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeBudgetNotificationsForAccountPagesWithContext same as DescribeBudgetNotificationsForAccountPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Budgets) DescribeBudgetNotificationsForAccountPagesWithContext(ctx aws.Context, input *DescribeBudgetNotificationsForAccountInput, fn func(*DescribeBudgetNotificationsForAccountOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeBudgetNotificationsForAccountInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeBudgetNotificationsForAccountRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeBudgetNotificationsForAccountOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeBudgetPerformanceHistory = "DescribeBudgetPerformanceHistory"
 
 // DescribeBudgetPerformanceHistoryRequest generates a "aws/request.Request" representing the
@@ -3138,6 +3289,48 @@ func (s *Budget) SetTimePeriod(v *TimePeriod) *Budget {
 // SetTimeUnit sets the TimeUnit field's value.
 func (s *Budget) SetTimeUnit(v string) *Budget {
 	s.TimeUnit = &v
+	return s
+}
+
+// The budget name and associated notifications for an account.
+type BudgetNotificationsForAccount struct {
+	_ struct{} `type:"structure"`
+
+	// A string that represents the budget name. The ":" and "\" characters aren't
+	// allowed.
+	BudgetName *string `min:"1" type:"string"`
+
+	// A list of notifications.
+	Notifications []*Notification `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BudgetNotificationsForAccount) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BudgetNotificationsForAccount) GoString() string {
+	return s.String()
+}
+
+// SetBudgetName sets the BudgetName field's value.
+func (s *BudgetNotificationsForAccount) SetBudgetName(v string) *BudgetNotificationsForAccount {
+	s.BudgetName = &v
+	return s
+}
+
+// SetNotifications sets the Notifications field's value.
+func (s *BudgetNotificationsForAccount) SetNotifications(v []*Notification) *BudgetNotificationsForAccount {
+	s.Notifications = v
 	return s
 }
 
@@ -5345,6 +5538,116 @@ func (s *DescribeBudgetInput) SetAccountId(v string) *DescribeBudgetInput {
 // SetBudgetName sets the BudgetName field's value.
 func (s *DescribeBudgetInput) SetBudgetName(v string) *DescribeBudgetInput {
 	s.BudgetName = &v
+	return s
+}
+
+type DescribeBudgetNotificationsForAccountInput struct {
+	_ struct{} `type:"structure"`
+
+	// The account ID of the user. It's a 12-digit number.
+	//
+	// AccountId is a required field
+	AccountId *string `min:"12" type:"string" required:"true"`
+
+	// An integer that shows how many budget name entries a paginated response contains.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A generic string.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBudgetNotificationsForAccountInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBudgetNotificationsForAccountInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeBudgetNotificationsForAccountInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeBudgetNotificationsForAccountInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DescribeBudgetNotificationsForAccountInput) SetAccountId(v string) *DescribeBudgetNotificationsForAccountInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeBudgetNotificationsForAccountInput) SetMaxResults(v int64) *DescribeBudgetNotificationsForAccountInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeBudgetNotificationsForAccountInput) SetNextToken(v string) *DescribeBudgetNotificationsForAccountInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeBudgetNotificationsForAccountOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of budget names and associated notifications for an account.
+	BudgetNotificationsForAccount []*BudgetNotificationsForAccount `type:"list"`
+
+	// A generic string.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBudgetNotificationsForAccountOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBudgetNotificationsForAccountOutput) GoString() string {
+	return s.String()
+}
+
+// SetBudgetNotificationsForAccount sets the BudgetNotificationsForAccount field's value.
+func (s *DescribeBudgetNotificationsForAccountOutput) SetBudgetNotificationsForAccount(v []*BudgetNotificationsForAccount) *DescribeBudgetNotificationsForAccountOutput {
+	s.BudgetNotificationsForAccount = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeBudgetNotificationsForAccountOutput) SetNextToken(v string) *DescribeBudgetNotificationsForAccountOutput {
+	s.NextToken = &v
 	return s
 }
 

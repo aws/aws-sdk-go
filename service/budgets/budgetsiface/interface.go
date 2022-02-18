@@ -121,6 +121,13 @@ type BudgetsAPI interface {
 	DescribeBudgetActionsForBudgetPages(*budgets.DescribeBudgetActionsForBudgetInput, func(*budgets.DescribeBudgetActionsForBudgetOutput, bool) bool) error
 	DescribeBudgetActionsForBudgetPagesWithContext(aws.Context, *budgets.DescribeBudgetActionsForBudgetInput, func(*budgets.DescribeBudgetActionsForBudgetOutput, bool) bool, ...request.Option) error
 
+	DescribeBudgetNotificationsForAccount(*budgets.DescribeBudgetNotificationsForAccountInput) (*budgets.DescribeBudgetNotificationsForAccountOutput, error)
+	DescribeBudgetNotificationsForAccountWithContext(aws.Context, *budgets.DescribeBudgetNotificationsForAccountInput, ...request.Option) (*budgets.DescribeBudgetNotificationsForAccountOutput, error)
+	DescribeBudgetNotificationsForAccountRequest(*budgets.DescribeBudgetNotificationsForAccountInput) (*request.Request, *budgets.DescribeBudgetNotificationsForAccountOutput)
+
+	DescribeBudgetNotificationsForAccountPages(*budgets.DescribeBudgetNotificationsForAccountInput, func(*budgets.DescribeBudgetNotificationsForAccountOutput, bool) bool) error
+	DescribeBudgetNotificationsForAccountPagesWithContext(aws.Context, *budgets.DescribeBudgetNotificationsForAccountInput, func(*budgets.DescribeBudgetNotificationsForAccountOutput, bool) bool, ...request.Option) error
+
 	DescribeBudgetPerformanceHistory(*budgets.DescribeBudgetPerformanceHistoryInput) (*budgets.DescribeBudgetPerformanceHistoryOutput, error)
 	DescribeBudgetPerformanceHistoryWithContext(aws.Context, *budgets.DescribeBudgetPerformanceHistoryInput, ...request.Option) (*budgets.DescribeBudgetPerformanceHistoryOutput, error)
 	DescribeBudgetPerformanceHistoryRequest(*budgets.DescribeBudgetPerformanceHistoryInput) (*request.Request, *budgets.DescribeBudgetPerformanceHistoryOutput)
