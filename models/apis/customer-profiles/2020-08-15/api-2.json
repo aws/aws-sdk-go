@@ -45,6 +45,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "CreateIntegrationWorkflow":{
+      "name":"CreateIntegrationWorkflow",
+      "http":{
+        "method":"POST",
+        "requestUri":"/domains/{DomainName}/workflows/integrations"
+      },
+      "input":{"shape":"CreateIntegrationWorkflowRequest"},
+      "output":{"shape":"CreateIntegrationWorkflowResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CreateProfile":{
       "name":"CreateProfile",
       "http":{
@@ -157,6 +173,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DeleteWorkflow":{
+      "name":"DeleteWorkflow",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/domains/{DomainName}/workflows/{WorkflowId}"
+      },
+      "input":{"shape":"DeleteWorkflowRequest"},
+      "output":{"shape":"DeleteWorkflowResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetAutoMergingPreview":{
       "name":"GetAutoMergingPreview",
       "http":{
@@ -261,6 +293,38 @@
       },
       "input":{"shape":"GetProfileObjectTypeTemplateRequest"},
       "output":{"shape":"GetProfileObjectTypeTemplateResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetWorkflow":{
+      "name":"GetWorkflow",
+      "http":{
+        "method":"GET",
+        "requestUri":"/domains/{DomainName}/workflows/{WorkflowId}"
+      },
+      "input":{"shape":"GetWorkflowRequest"},
+      "output":{"shape":"GetWorkflowResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetWorkflowSteps":{
+      "name":"GetWorkflowSteps",
+      "http":{
+        "method":"GET",
+        "requestUri":"/domains/{DomainName}/workflows/{WorkflowId}/steps"
+      },
+      "input":{"shape":"GetWorkflowStepsRequest"},
+      "output":{"shape":"GetWorkflowStepsResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
@@ -393,6 +457,22 @@
         {"shape":"InternalServerException"},
         {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListWorkflows":{
+      "name":"ListWorkflows",
+      "http":{
+        "method":"POST",
+        "requestUri":"/domains/{DomainName}/workflows"
+      },
+      "input":{"shape":"ListWorkflowsRequest"},
+      "output":{"shape":"ListWorkflowsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "MergeProfiles":{
@@ -591,6 +671,62 @@
         "PostalCode":{"shape":"string1To255"}
       }
     },
+    "AppflowIntegration":{
+      "type":"structure",
+      "required":["FlowDefinition"],
+      "members":{
+        "FlowDefinition":{"shape":"FlowDefinition"},
+        "Batches":{"shape":"Batches"}
+      }
+    },
+    "AppflowIntegrationWorkflowAttributes":{
+      "type":"structure",
+      "required":[
+        "SourceConnectorType",
+        "ConnectorProfileName"
+      ],
+      "members":{
+        "SourceConnectorType":{"shape":"SourceConnectorType"},
+        "ConnectorProfileName":{"shape":"ConnectorProfileName"},
+        "RoleArn":{"shape":"string1To255"}
+      }
+    },
+    "AppflowIntegrationWorkflowMetrics":{
+      "type":"structure",
+      "required":[
+        "RecordsProcessed",
+        "StepsCompleted",
+        "TotalSteps"
+      ],
+      "members":{
+        "RecordsProcessed":{"shape":"long"},
+        "StepsCompleted":{"shape":"long"},
+        "TotalSteps":{"shape":"long"}
+      }
+    },
+    "AppflowIntegrationWorkflowStep":{
+      "type":"structure",
+      "required":[
+        "FlowName",
+        "Status",
+        "ExecutionMessage",
+        "RecordsProcessed",
+        "BatchRecordsStartTime",
+        "BatchRecordsEndTime",
+        "CreatedAt",
+        "LastUpdatedAt"
+      ],
+      "members":{
+        "FlowName":{"shape":"FlowName"},
+        "Status":{"shape":"Status"},
+        "ExecutionMessage":{"shape":"string1To255"},
+        "RecordsProcessed":{"shape":"long"},
+        "BatchRecordsStartTime":{"shape":"string1To255"},
+        "BatchRecordsEndTime":{"shape":"string1To255"},
+        "CreatedAt":{"shape":"timestamp"},
+        "LastUpdatedAt":{"shape":"timestamp"}
+      }
+    },
     "AttributeSourceIdMap":{
       "type":"map",
       "key":{"shape":"string1To255"},
@@ -617,6 +753,21 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "Batch":{
+      "type":"structure",
+      "required":[
+        "StartTime",
+        "EndTime"
+      ],
+      "members":{
+        "StartTime":{"shape":"timestamp"},
+        "EndTime":{"shape":"timestamp"}
+      }
+    },
+    "Batches":{
+      "type":"list",
+      "member":{"shape":"Batch"}
     },
     "BucketName":{
       "type":"string",
@@ -702,6 +853,39 @@
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
         "Tags":{"shape":"TagMap"}
+      }
+    },
+    "CreateIntegrationWorkflowRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "WorkflowType",
+        "IntegrationConfig",
+        "ObjectTypeName",
+        "RoleArn"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "WorkflowType":{"shape":"WorkflowType"},
+        "IntegrationConfig":{"shape":"IntegrationConfig"},
+        "ObjectTypeName":{"shape":"typeName"},
+        "RoleArn":{"shape":"RoleArn"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "CreateIntegrationWorkflowResponse":{
+      "type":"structure",
+      "required":[
+        "WorkflowId",
+        "Message"
+      ],
+      "members":{
+        "WorkflowId":{"shape":"uuid"},
+        "Message":{"shape":"string1To255"}
       }
     },
     "CreateProfileRequest":{
@@ -891,6 +1075,30 @@
       "type":"structure",
       "members":{
         "Message":{"shape":"message"}
+      }
+    },
+    "DeleteWorkflowRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "WorkflowId"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "WorkflowId":{
+          "shape":"string1To255",
+          "location":"uri",
+          "locationName":"WorkflowId"
+        }
+      }
+    },
+    "DeleteWorkflowResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DestinationField":{
@@ -1127,7 +1335,8 @@
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
         "Tags":{"shape":"TagMap"},
-        "ObjectTypeNames":{"shape":"ObjectTypeNames"}
+        "ObjectTypeNames":{"shape":"ObjectTypeNames"},
+        "WorkflowId":{"shape":"string1To255"}
       }
     },
     "GetMatchesRequest":{
@@ -1223,6 +1432,76 @@
         "Keys":{"shape":"KeyMap"}
       }
     },
+    "GetWorkflowRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "WorkflowId"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "WorkflowId":{
+          "shape":"uuid",
+          "location":"uri",
+          "locationName":"WorkflowId"
+        }
+      }
+    },
+    "GetWorkflowResponse":{
+      "type":"structure",
+      "members":{
+        "WorkflowId":{"shape":"uuid"},
+        "WorkflowType":{"shape":"WorkflowType"},
+        "Status":{"shape":"Status"},
+        "ErrorDescription":{"shape":"string1To255"},
+        "StartDate":{"shape":"timestamp"},
+        "LastUpdatedAt":{"shape":"timestamp"},
+        "Attributes":{"shape":"WorkflowAttributes"},
+        "Metrics":{"shape":"WorkflowMetrics"}
+      }
+    },
+    "GetWorkflowStepsRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "WorkflowId"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "WorkflowId":{
+          "shape":"uuid",
+          "location":"uri",
+          "locationName":"WorkflowId"
+        },
+        "NextToken":{
+          "shape":"token",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"maxSize100",
+          "location":"querystring",
+          "locationName":"max-results"
+        }
+      }
+    },
+    "GetWorkflowStepsResponse":{
+      "type":"structure",
+      "members":{
+        "WorkflowId":{"shape":"uuid"},
+        "WorkflowType":{"shape":"WorkflowType"},
+        "Items":{"shape":"WorkflowStepsList"},
+        "NextToken":{"shape":"token"}
+      }
+    },
     "IdentityResolutionJob":{
       "type":"structure",
       "members":{
@@ -1256,6 +1535,12 @@
       "type":"structure",
       "members":{
         "DatetimeTypeFieldName":{"shape":"DatetimeTypeFieldName"}
+      }
+    },
+    "IntegrationConfig":{
+      "type":"structure",
+      "members":{
+        "AppflowIntegration":{"shape":"AppflowIntegration"}
       }
     },
     "IntegrationList":{
@@ -1333,6 +1618,11 @@
           "shape":"maxSize100",
           "location":"querystring",
           "locationName":"max-results"
+        },
+        "IncludeHidden":{
+          "shape":"optionalBoolean",
+          "location":"querystring",
+          "locationName":"include-hidden"
         }
       }
     },
@@ -1422,7 +1712,8 @@
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
         "Tags":{"shape":"TagMap"},
-        "ObjectTypeNames":{"shape":"ObjectTypeNames"}
+        "ObjectTypeNames":{"shape":"ObjectTypeNames"},
+        "WorkflowId":{"shape":"string1To255"}
       }
     },
     "ListIntegrationsRequest":{
@@ -1443,6 +1734,11 @@
           "shape":"maxSize100",
           "location":"querystring",
           "locationName":"max-results"
+        },
+        "IncludeHidden":{
+          "shape":"optionalBoolean",
+          "location":"querystring",
+          "locationName":"include-hidden"
         }
       }
     },
@@ -1583,6 +1879,57 @@
       "type":"structure",
       "members":{
         "tags":{"shape":"TagMap"}
+      }
+    },
+    "ListWorkflowsItem":{
+      "type":"structure",
+      "required":[
+        "WorkflowType",
+        "WorkflowId",
+        "Status",
+        "StatusDescription",
+        "CreatedAt",
+        "LastUpdatedAt"
+      ],
+      "members":{
+        "WorkflowType":{"shape":"WorkflowType"},
+        "WorkflowId":{"shape":"string1To255"},
+        "Status":{"shape":"Status"},
+        "StatusDescription":{"shape":"string1To255"},
+        "CreatedAt":{"shape":"timestamp"},
+        "LastUpdatedAt":{"shape":"timestamp"}
+      }
+    },
+    "ListWorkflowsRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "WorkflowType":{"shape":"WorkflowType"},
+        "Status":{"shape":"Status"},
+        "QueryStartDate":{"shape":"timestamp"},
+        "QueryEndDate":{"shape":"timestamp"},
+        "NextToken":{
+          "shape":"token",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"maxSize100",
+          "location":"querystring",
+          "locationName":"max-results"
+        }
+      }
+    },
+    "ListWorkflowsResponse":{
+      "type":"structure",
+      "members":{
+        "Items":{"shape":"WorkflowList"},
+        "NextToken":{"shape":"token"}
       }
     },
     "MarketoConnectorOperator":{
@@ -1836,7 +2183,8 @@
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
         "Tags":{"shape":"TagMap"},
-        "ObjectTypeNames":{"shape":"ObjectTypeNames"}
+        "ObjectTypeNames":{"shape":"ObjectTypeNames"},
+        "WorkflowId":{"shape":"string1To255"}
       }
     },
     "PutProfileObjectRequest":{
@@ -1919,6 +2267,11 @@
       },
       "error":{"httpStatusCode":404},
       "exception":true
+    },
+    "RoleArn":{
+      "type":"string",
+      "max":512,
+      "pattern":"arn:aws:iam:.*:[0-9]+:.*"
     },
     "S3ConnectorOperator":{
       "type":"string",
@@ -2149,6 +2502,18 @@
     "StandardIdentifierList":{
       "type":"list",
       "member":{"shape":"StandardIdentifier"}
+    },
+    "Status":{
+      "type":"string",
+      "enum":[
+        "NOT_STARTED",
+        "IN_PROGRESS",
+        "COMPLETE",
+        "FAILED",
+        "SPLIT",
+        "RETRY",
+        "CANCELLED"
+      ]
     },
     "TagArn":{
       "type":"string",
@@ -2388,6 +2753,36 @@
       "members":{
         "ProfileId":{"shape":"uuid"}
       }
+    },
+    "WorkflowAttributes":{
+      "type":"structure",
+      "members":{
+        "AppflowIntegration":{"shape":"AppflowIntegrationWorkflowAttributes"}
+      }
+    },
+    "WorkflowList":{
+      "type":"list",
+      "member":{"shape":"ListWorkflowsItem"}
+    },
+    "WorkflowMetrics":{
+      "type":"structure",
+      "members":{
+        "AppflowIntegration":{"shape":"AppflowIntegrationWorkflowMetrics"}
+      }
+    },
+    "WorkflowStepItem":{
+      "type":"structure",
+      "members":{
+        "AppflowIntegration":{"shape":"AppflowIntegrationWorkflowStep"}
+      }
+    },
+    "WorkflowStepsList":{
+      "type":"list",
+      "member":{"shape":"WorkflowStepItem"}
+    },
+    "WorkflowType":{
+      "type":"string",
+      "enum":["APPFLOW_INTEGRATION"]
     },
     "ZendeskConnectorOperator":{
       "type":"string",

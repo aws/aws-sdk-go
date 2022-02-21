@@ -1,3 +1,12 @@
+Release v1.43.3 (2022-02-21)
+===
+
+### Service Client Updates
+* `service/customer-profiles`: Updates service API and documentation
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * DynamoDB ExecuteStatement API now supports Limit as a request parameter to specify the maximum number of items to evaluate. If specified, the service will process up to the Limit and the results will include a LastEvaluatedKey value to continue the read in a subsequent operation.
+* `service/imagebuilder`: Updates service API and documentation
+
 Release v1.43.2 (2022-02-18)
 ===
 

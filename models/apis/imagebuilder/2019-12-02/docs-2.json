@@ -3,7 +3,7 @@
   "service": "<p>EC2 Image Builder is a fully managed Amazon Web Services service that makes it easier to automate the creation, management, and deployment of customized, secure, and up-to-date \"golden\" server images that are pre-installed and pre-configured with software and settings to meet specific IT standards.</p>",
   "operations": {
     "CancelImageCreation": "<p>CancelImageCreation cancels the creation of Image. This operation can only be used on images in a non-terminal state.</p>",
-    "CreateComponent": "<p>Creates a new component that can be used to build, validate, test, and assess your image.</p>",
+    "CreateComponent": "<p>Creates a new component that can be used to build, validate, test, and assess your image. The component is based on a YAML document that you specify using exactly one of the following methods:</p> <ul> <li> <p>Inline, using the <code>data</code> property in the request body.</p> </li> <li> <p>A URL that points to a YAML document file stored in Amazon S3, using the <code>uri</code> property in the request body.</p> </li> </ul>",
     "CreateContainerRecipe": "<p>Creates a new container recipe. Container recipes define how images are configured, tested, and assessed.</p>",
     "CreateDistributionConfiguration": "<p>Creates a new distribution configuration. Distribution configurations define and configure the outputs of your pipeline.</p>",
     "CreateImage": "<p> Creates a new image. This request will create a new image along with all of the configured output resources defined in the distribution configuration. You must specify exactly one recipe for your image, using either a ContainerRecipeArn or an ImageRecipeArn.</p>",
@@ -58,6 +58,7 @@
       "base": null,
       "refs": {
         "AccountList$member": null,
+        "FastLaunchConfiguration$accountId": "<p>The owner account ID for the fast-launch enabled Windows AMI.</p>",
         "LaunchTemplateConfiguration$accountId": "<p>The account ID that this configuration applies to.</p>"
       }
     },
@@ -113,6 +114,7 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "FastLaunchConfiguration$enabled": "<p>A Boolean that represents the current state of faster launching for the Windows AMI. Set to <code>true</code> to start using Windows faster launching, or <code>false</code> to stop using it.</p>",
         "LaunchTemplateConfiguration$setDefaultVersion": "<p>Set the specified Amazon EC2 launch template as the default launch template for the specified account.</p>",
         "ListComponentsRequest$byName": "<p>Returns the list of component build versions for the specified name.</p>",
         "ListImagesRequest$byName": "<p>Requests a list of images with a specific recipe name.</p>"
@@ -215,7 +217,7 @@
     "ComponentData": {
       "base": null,
       "refs": {
-        "Component$data": "<p>The data of the component.</p>"
+        "Component$data": "<p>Component data contains the YAML document content for the component.</p>"
       }
     },
     "ComponentFormat": {
@@ -695,6 +697,30 @@
         "ServiceUnavailableException$message": null
       }
     },
+    "FastLaunchConfiguration": {
+      "base": "<p>Define and configure faster launching for output Windows AMIs.</p>",
+      "refs": {
+        "FastLaunchConfigurationList$member": null
+      }
+    },
+    "FastLaunchConfigurationList": {
+      "base": null,
+      "refs": {
+        "Distribution$fastLaunchConfigurations": "<p>The Windows faster-launching configurations to use for AMI distribution.</p>"
+      }
+    },
+    "FastLaunchLaunchTemplateSpecification": {
+      "base": "<p>Identifies the launch template that the associated Windows AMI uses for launching an instance when faster launching is enabled.</p> <note> <p>You can specify either the <code>launchTemplateName</code> or the <code>launchTemplateId</code>, but not both.</p> </note>",
+      "refs": {
+        "FastLaunchConfiguration$launchTemplate": "<p>The launch template that the fast-launch enabled Windows AMI uses when it launches Windows instances to create pre-provisioned snapshots.</p>"
+      }
+    },
+    "FastLaunchSnapshotConfiguration": {
+      "base": "<p>Configuration settings for creating and managing pre-provisioned snapshots for a fast-launch enabled Windows AMI.</p>",
+      "refs": {
+        "FastLaunchConfiguration$snapshotConfiguration": "<p>Configuration settings for managing the number of snapshots that are created from pre-provisioned instances for the Windows AMI when faster launching is enabled.</p>"
+      }
+    },
     "Filter": {
       "base": "<p>A filter name and value pair that is used to return a more specific list of results from a list operation. Filters can be used to match a set of resources by specific criteria, such as tags, attributes, or IDs.</p>",
       "refs": {
@@ -1113,7 +1139,7 @@
     "InlineComponentData": {
       "base": null,
       "refs": {
-        "CreateComponentRequest$data": "<p>The data of the component. Used to specify the data inline. Either <code>data</code> or <code>uri</code> can be used to specify the data within the component.</p>"
+        "CreateComponentRequest$data": "<p>Component <code>data</code> contains inline YAML document content for the component. Alternatively, you can specify the <code>uri</code> of a YAML document file stored in Amazon S3. However, you cannot specify both properties.</p>"
       }
     },
     "InlineDockerFileTemplate": {
@@ -1226,6 +1252,7 @@
     "LaunchTemplateId": {
       "base": null,
       "refs": {
+        "FastLaunchLaunchTemplateSpecification$launchTemplateId": "<p>The ID of the launch template to use for faster launching for a Windows AMI.</p>",
         "LaunchTemplateConfiguration$launchTemplateId": "<p>Identifies the Amazon EC2 launch template to use.</p>"
       }
     },
@@ -1369,6 +1396,12 @@
         "UpdateInfrastructureConfigurationRequest$logging": "<p>The logging configuration of the infrastructure configuration.</p>"
       }
     },
+    "MaxParallelLaunches": {
+      "base": null,
+      "refs": {
+        "FastLaunchConfiguration$maxParallelLaunches": "<p>The maximum number of parallel instances that are launched for creating resources.</p>"
+      }
+    },
     "NonEmptyString": {
       "base": null,
       "refs": {
@@ -1434,6 +1467,8 @@
         "DistributionConfigurationSummary$description": "<p>The description of the distribution configuration.</p>",
         "EbsInstanceBlockDeviceSpecification$kmsKeyId": "<p>Use to configure the KMS key to use when encrypting the device.</p>",
         "EbsInstanceBlockDeviceSpecification$snapshotId": "<p>The snapshot that defines the device contents.</p>",
+        "FastLaunchLaunchTemplateSpecification$launchTemplateName": "<p>The name of the launch template to use for faster launching for a Windows AMI.</p>",
+        "FastLaunchLaunchTemplateSpecification$launchTemplateVersion": "<p>The version of the launch template to use for faster launching for a Windows AMI.</p>",
         "GetComponentPolicyResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "GetComponentResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "GetContainerRecipePolicyResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
@@ -1925,6 +1960,12 @@
         "CreateContainerRecipeRequest$targetRepository": "<p>The destination repository for the container image.</p>"
       }
     },
+    "TargetResourceCount": {
+      "base": null,
+      "refs": {
+        "FastLaunchSnapshotConfiguration$targetResourceCount": "<p>The number of pre-provisioned snapshots to keep on hand for a fast-launch enabled Windows AMI.</p>"
+      }
+    },
     "Timezone": {
       "base": null,
       "refs": {
@@ -1974,7 +2015,7 @@
     "Uri": {
       "base": null,
       "refs": {
-        "CreateComponentRequest$uri": "<p>The uri of the component. Must be an Amazon S3 URL and the requester must have permission to access the Amazon S3 bucket. If you use Amazon S3, you can specify component content up to your service quota. Either <code>data</code> or <code>uri</code> can be used to specify the data within the component.</p>",
+        "CreateComponentRequest$uri": "<p>The <code>uri</code> of a YAML component document file. This must be an S3 URL (<code>s3://bucket/key</code>), and the requester must have permission to access the S3 bucket it points to. If you use Amazon S3, you can specify component content up to your service quota.</p> <p>Alternatively, you can specify the YAML document inline, using the component <code>data</code> property. You cannot specify both properties.</p>",
         "CreateContainerRecipeRequest$dockerfileTemplateUri": "<p>The Amazon S3 URI for the Dockerfile that will be used to build your container image.</p>",
         "ImportComponentRequest$uri": "<p>The uri of the component. Must be an Amazon S3 URL and the requester must have permission to access the Amazon S3 bucket. If you use Amazon S3, you can specify component content up to your service quota. Either <code>data</code> or <code>uri</code> can be used to specify the data within the component.</p>"
       }
@@ -1982,7 +2023,7 @@
     "UserDataOverride": {
       "base": null,
       "refs": {
-        "AdditionalInstanceConfiguration$userDataOverride": "<p>Use this property to provide commands or a command script to run when you launch your build instance.</p> <note> <p>The userDataOverride property replaces any commands that Image Builder might have added to ensure that Systems Manager is installed on your Linux build instance. If you override the user data, make sure that you add commands to install Systems Manager, if it is not pre-installed on your base image.</p> </note>"
+        "AdditionalInstanceConfiguration$userDataOverride": "<p>Use this property to provide commands or a command script to run when you launch your build instance.</p> <p>The userDataOverride property replaces any commands that Image Builder might have added to ensure that Systems Manager is installed on your Linux build instance. If you override the user data, make sure that you add commands to install Systems Manager, if it is not pre-installed on your base image.</p> <note> <p>The user data is always base 64 encoded. For example, the following commands are encoded as <code>IyEvYmluL2Jhc2gKbWtkaXIgLXAgL3Zhci9iYi8KdG91Y2ggL3Zhci$</code>:</p> <p> <i>#!/bin/bash</i> </p> <p>mkdir -p /var/bb/</p> <p>touch /var</p> </note>"
       }
     },
     "VersionNumber": {

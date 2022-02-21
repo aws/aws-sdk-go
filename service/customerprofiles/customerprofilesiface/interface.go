@@ -68,6 +68,10 @@ type CustomerProfilesAPI interface {
 	CreateDomainWithContext(aws.Context, *customerprofiles.CreateDomainInput, ...request.Option) (*customerprofiles.CreateDomainOutput, error)
 	CreateDomainRequest(*customerprofiles.CreateDomainInput) (*request.Request, *customerprofiles.CreateDomainOutput)
 
+	CreateIntegrationWorkflow(*customerprofiles.CreateIntegrationWorkflowInput) (*customerprofiles.CreateIntegrationWorkflowOutput, error)
+	CreateIntegrationWorkflowWithContext(aws.Context, *customerprofiles.CreateIntegrationWorkflowInput, ...request.Option) (*customerprofiles.CreateIntegrationWorkflowOutput, error)
+	CreateIntegrationWorkflowRequest(*customerprofiles.CreateIntegrationWorkflowInput) (*request.Request, *customerprofiles.CreateIntegrationWorkflowOutput)
+
 	CreateProfile(*customerprofiles.CreateProfileInput) (*customerprofiles.CreateProfileOutput, error)
 	CreateProfileWithContext(aws.Context, *customerprofiles.CreateProfileInput, ...request.Option) (*customerprofiles.CreateProfileOutput, error)
 	CreateProfileRequest(*customerprofiles.CreateProfileInput) (*request.Request, *customerprofiles.CreateProfileOutput)
@@ -96,6 +100,10 @@ type CustomerProfilesAPI interface {
 	DeleteProfileObjectTypeWithContext(aws.Context, *customerprofiles.DeleteProfileObjectTypeInput, ...request.Option) (*customerprofiles.DeleteProfileObjectTypeOutput, error)
 	DeleteProfileObjectTypeRequest(*customerprofiles.DeleteProfileObjectTypeInput) (*request.Request, *customerprofiles.DeleteProfileObjectTypeOutput)
 
+	DeleteWorkflow(*customerprofiles.DeleteWorkflowInput) (*customerprofiles.DeleteWorkflowOutput, error)
+	DeleteWorkflowWithContext(aws.Context, *customerprofiles.DeleteWorkflowInput, ...request.Option) (*customerprofiles.DeleteWorkflowOutput, error)
+	DeleteWorkflowRequest(*customerprofiles.DeleteWorkflowInput) (*request.Request, *customerprofiles.DeleteWorkflowOutput)
+
 	GetAutoMergingPreview(*customerprofiles.GetAutoMergingPreviewInput) (*customerprofiles.GetAutoMergingPreviewOutput, error)
 	GetAutoMergingPreviewWithContext(aws.Context, *customerprofiles.GetAutoMergingPreviewInput, ...request.Option) (*customerprofiles.GetAutoMergingPreviewOutput, error)
 	GetAutoMergingPreviewRequest(*customerprofiles.GetAutoMergingPreviewInput) (*request.Request, *customerprofiles.GetAutoMergingPreviewOutput)
@@ -123,6 +131,14 @@ type CustomerProfilesAPI interface {
 	GetProfileObjectTypeTemplate(*customerprofiles.GetProfileObjectTypeTemplateInput) (*customerprofiles.GetProfileObjectTypeTemplateOutput, error)
 	GetProfileObjectTypeTemplateWithContext(aws.Context, *customerprofiles.GetProfileObjectTypeTemplateInput, ...request.Option) (*customerprofiles.GetProfileObjectTypeTemplateOutput, error)
 	GetProfileObjectTypeTemplateRequest(*customerprofiles.GetProfileObjectTypeTemplateInput) (*request.Request, *customerprofiles.GetProfileObjectTypeTemplateOutput)
+
+	GetWorkflow(*customerprofiles.GetWorkflowInput) (*customerprofiles.GetWorkflowOutput, error)
+	GetWorkflowWithContext(aws.Context, *customerprofiles.GetWorkflowInput, ...request.Option) (*customerprofiles.GetWorkflowOutput, error)
+	GetWorkflowRequest(*customerprofiles.GetWorkflowInput) (*request.Request, *customerprofiles.GetWorkflowOutput)
+
+	GetWorkflowSteps(*customerprofiles.GetWorkflowStepsInput) (*customerprofiles.GetWorkflowStepsOutput, error)
+	GetWorkflowStepsWithContext(aws.Context, *customerprofiles.GetWorkflowStepsInput, ...request.Option) (*customerprofiles.GetWorkflowStepsOutput, error)
+	GetWorkflowStepsRequest(*customerprofiles.GetWorkflowStepsInput) (*request.Request, *customerprofiles.GetWorkflowStepsOutput)
 
 	ListAccountIntegrations(*customerprofiles.ListAccountIntegrationsInput) (*customerprofiles.ListAccountIntegrationsOutput, error)
 	ListAccountIntegrationsWithContext(aws.Context, *customerprofiles.ListAccountIntegrationsInput, ...request.Option) (*customerprofiles.ListAccountIntegrationsOutput, error)
@@ -155,6 +171,10 @@ type CustomerProfilesAPI interface {
 	ListTagsForResource(*customerprofiles.ListTagsForResourceInput) (*customerprofiles.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *customerprofiles.ListTagsForResourceInput, ...request.Option) (*customerprofiles.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*customerprofiles.ListTagsForResourceInput) (*request.Request, *customerprofiles.ListTagsForResourceOutput)
+
+	ListWorkflows(*customerprofiles.ListWorkflowsInput) (*customerprofiles.ListWorkflowsOutput, error)
+	ListWorkflowsWithContext(aws.Context, *customerprofiles.ListWorkflowsInput, ...request.Option) (*customerprofiles.ListWorkflowsOutput, error)
+	ListWorkflowsRequest(*customerprofiles.ListWorkflowsInput) (*request.Request, *customerprofiles.ListWorkflowsOutput)
 
 	MergeProfiles(*customerprofiles.MergeProfilesInput) (*customerprofiles.MergeProfilesOutput, error)
 	MergeProfilesWithContext(aws.Context, *customerprofiles.MergeProfilesInput, ...request.Option) (*customerprofiles.MergeProfilesOutput, error)

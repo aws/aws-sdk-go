@@ -1772,7 +1772,8 @@
         "Parameters":{"shape":"PreparedStatementParameters"},
         "ConsistentRead":{"shape":"ConsistentRead"},
         "NextToken":{"shape":"PartiQLNextToken"},
-        "ReturnConsumedCapacity":{"shape":"ReturnConsumedCapacity"}
+        "ReturnConsumedCapacity":{"shape":"ReturnConsumedCapacity"},
+        "Limit":{"shape":"PositiveIntegerObject"}
       }
     },
     "ExecuteStatementOutput":{
@@ -1780,7 +1781,8 @@
       "members":{
         "Items":{"shape":"ItemList"},
         "NextToken":{"shape":"PartiQLNextToken"},
-        "ConsumedCapacity":{"shape":"ConsumedCapacity"}
+        "ConsumedCapacity":{"shape":"ConsumedCapacity"},
+        "LastEvaluatedKey":{"shape":"Key"}
       }
     },
     "ExecuteTransactionInput":{
