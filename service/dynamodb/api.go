@@ -3072,6 +3072,17 @@ func (c *DynamoDB) ExecuteStatementRequest(input *ExecuteStatementInput) (req *r
 // This operation allows you to perform reads and singleton writes on data stored
 // in DynamoDB, using PartiQL.
 //
+// For PartiQL reads (SELECT statement), if the total number of processed items
+// exceeds the maximum dataset size limit of 1 MB, the read stops and results
+// are returned to the user as a LastEvaluatedKey value to continue the read
+// in a subsequent operation. If the filter criteria in WHERE clause does not
+// match any data, the read will return an empty result set.
+//
+// A single SELECT statement response can return up to the maximum number of
+// items (if using the Limit parameter) or a maximum of 1 MB of data (and then
+// apply any filtering to the results using WHERE clause). If LastEvaluatedKey
+// is present in the response, you need to paginate the result set.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -12704,6 +12715,16 @@ type ExecuteStatementInput struct {
 	// read is used; otherwise, an eventually consistent read is used.
 	ConsistentRead *bool `type:"boolean"`
 
+	// The maximum number of items to evaluate (not necessarily the number of matching
+	// items). If DynamoDB processes the number of items up to the limit while processing
+	// the results, it stops the operation and returns the matching values up to
+	// that point, along with a key in LastEvaluatedKey to apply in a subsequent
+	// operation so you can pick up where you left off. Also, if the processed dataset
+	// size exceeds 1 MB before DynamoDB reaches this limit, it stops the operation
+	// and returns the matching values up to the limit, and a key in LastEvaluatedKey
+	// to apply in a subsequent operation to continue the operation.
+	Limit *int64 `min:"1" type:"integer"`
+
 	// Set this value to get remaining results, if NextToken was returned in the
 	// statement response.
 	NextToken *string `min:"1" type:"string"`
@@ -12753,6 +12774,9 @@ func (s ExecuteStatementInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ExecuteStatementInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ExecuteStatementInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
 	if s.NextToken != nil && len(*s.NextToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
 	}
@@ -12775,6 +12799,12 @@ func (s *ExecuteStatementInput) Validate() error {
 // SetConsistentRead sets the ConsistentRead field's value.
 func (s *ExecuteStatementInput) SetConsistentRead(v bool) *ExecuteStatementInput {
 	s.ConsistentRead = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ExecuteStatementInput) SetLimit(v int64) *ExecuteStatementInput {
+	s.Limit = &v
 	return s
 }
 
@@ -12818,6 +12848,15 @@ type ExecuteStatementOutput struct {
 	// operations this value will be empty.
 	Items []map[string]*AttributeValue `type:"list"`
 
+	// The primary key of the item where the operation stopped, inclusive of the
+	// previous result set. Use this value to start a new operation, excluding this
+	// value in the new request. If LastEvaluatedKey is empty, then the "last page"
+	// of results has been processed and there is no more data to be retrieved.
+	// If LastEvaluatedKey is not empty, it does not necessarily mean that there
+	// is more data in the result set. The only way to know when you have reached
+	// the end of the result set is when LastEvaluatedKey is empty.
+	LastEvaluatedKey map[string]*AttributeValue `type:"map"`
+
 	// If the response of a read request exceeds the response payload limit DynamoDB
 	// will set this value in the response. If set, you can use that this value
 	// in the subsequent request to get the remaining results.
@@ -12851,6 +12890,12 @@ func (s *ExecuteStatementOutput) SetConsumedCapacity(v *ConsumedCapacity) *Execu
 // SetItems sets the Items field's value.
 func (s *ExecuteStatementOutput) SetItems(v []map[string]*AttributeValue) *ExecuteStatementOutput {
 	s.Items = v
+	return s
+}
+
+// SetLastEvaluatedKey sets the LastEvaluatedKey field's value.
+func (s *ExecuteStatementOutput) SetLastEvaluatedKey(v map[string]*AttributeValue) *ExecuteStatementOutput {
+	s.LastEvaluatedKey = v
 	return s
 }
 

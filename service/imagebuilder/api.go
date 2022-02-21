@@ -162,7 +162,13 @@ func (c *Imagebuilder) CreateComponentRequest(input *CreateComponentInput) (req 
 // CreateComponent API operation for EC2 Image Builder.
 //
 // Creates a new component that can be used to build, validate, test, and assess
-// your image.
+// your image. The component is based on a YAML document that you specify using
+// exactly one of the following methods:
+//
+//    * Inline, using the data property in the request body.
+//
+//    * A URL that points to a YAML document file stored in Amazon S3, using
+//    the uri property in the request body.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5766,6 +5772,15 @@ type AdditionalInstanceConfiguration struct {
 	// have added to ensure that Systems Manager is installed on your Linux build
 	// instance. If you override the user data, make sure that you add commands
 	// to install Systems Manager, if it is not pre-installed on your base image.
+	//
+	// The user data is always base 64 encoded. For example, the following commands
+	// are encoded as IyEvYmluL2Jhc2gKbWtkaXIgLXAgL3Zhci9iYi8KdG91Y2ggL3Zhci$:
+	//
+	// #!/bin/bash
+	//
+	// mkdir -p /var/bb/
+	//
+	// touch /var
 	UserDataOverride *string `locationName:"userDataOverride" min:"1" type:"string"`
 }
 
@@ -6248,7 +6263,7 @@ type Component struct {
 	// The change description of the component.
 	ChangeDescription *string `locationName:"changeDescription" min:"1" type:"string"`
 
-	// The data of the component.
+	// Component data contains the YAML document content for the component.
 	Data *string `locationName:"data" type:"string"`
 
 	// The date that the component was created.
@@ -7355,8 +7370,9 @@ type CreateComponentInput struct {
 	// The idempotency token of the component.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// The data of the component. Used to specify the data inline. Either data or
-	// uri can be used to specify the data within the component.
+	// Component data contains inline YAML document content for the component. Alternatively,
+	// you can specify the uri of a YAML document file stored in Amazon S3. However,
+	// you cannot specify both properties.
 	Data *string `locationName:"data" min:"1" type:"string"`
 
 	// The description of the component. Describes the contents of the component.
@@ -7401,10 +7417,13 @@ type CreateComponentInput struct {
 	// The tags of the component.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
-	// The uri of the component. Must be an Amazon S3 URL and the requester must
-	// have permission to access the Amazon S3 bucket. If you use Amazon S3, you
-	// can specify component content up to your service quota. Either data or uri
-	// can be used to specify the data within the component.
+	// The uri of a YAML component document file. This must be an S3 URL (s3://bucket/key),
+	// and the requester must have permission to access the S3 bucket it points
+	// to. If you use Amazon S3, you can specify component content up to your service
+	// quota.
+	//
+	// Alternatively, you can specify the YAML document inline, using the component
+	// data property. You cannot specify both properties.
 	Uri *string `locationName:"uri" type:"string"`
 }
 
@@ -9592,6 +9611,9 @@ type Distribution struct {
 	// a specific Region.
 	ContainerDistributionConfiguration *ContainerDistributionConfiguration `locationName:"containerDistributionConfiguration" type:"structure"`
 
+	// The Windows faster-launching configurations to use for AMI distribution.
+	FastLaunchConfigurations []*FastLaunchConfiguration `locationName:"fastLaunchConfigurations" min:"1" type:"list"`
+
 	// A group of launchTemplateConfiguration settings that apply to image distribution
 	// for specified accounts.
 	LaunchTemplateConfigurations []*LaunchTemplateConfiguration `locationName:"launchTemplateConfigurations" min:"1" type:"list"`
@@ -9631,6 +9653,9 @@ func (s Distribution) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Distribution) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Distribution"}
+	if s.FastLaunchConfigurations != nil && len(s.FastLaunchConfigurations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FastLaunchConfigurations", 1))
+	}
 	if s.LaunchTemplateConfigurations != nil && len(s.LaunchTemplateConfigurations) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LaunchTemplateConfigurations", 1))
 	}
@@ -9651,6 +9676,16 @@ func (s *Distribution) Validate() error {
 	if s.ContainerDistributionConfiguration != nil {
 		if err := s.ContainerDistributionConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("ContainerDistributionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FastLaunchConfigurations != nil {
+		for i, v := range s.FastLaunchConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FastLaunchConfigurations", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 	if s.LaunchTemplateConfigurations != nil {
@@ -9684,6 +9719,12 @@ func (s *Distribution) SetAmiDistributionConfiguration(v *AmiDistributionConfigu
 // SetContainerDistributionConfiguration sets the ContainerDistributionConfiguration field's value.
 func (s *Distribution) SetContainerDistributionConfiguration(v *ContainerDistributionConfiguration) *Distribution {
 	s.ContainerDistributionConfiguration = v
+	return s
+}
+
+// SetFastLaunchConfigurations sets the FastLaunchConfigurations field's value.
+func (s *Distribution) SetFastLaunchConfigurations(v []*FastLaunchConfiguration) *Distribution {
+	s.FastLaunchConfigurations = v
 	return s
 }
 
@@ -10012,6 +10053,226 @@ func (s *EbsInstanceBlockDeviceSpecification) SetVolumeSize(v int64) *EbsInstanc
 // SetVolumeType sets the VolumeType field's value.
 func (s *EbsInstanceBlockDeviceSpecification) SetVolumeType(v string) *EbsInstanceBlockDeviceSpecification {
 	s.VolumeType = &v
+	return s
+}
+
+// Define and configure faster launching for output Windows AMIs.
+type FastLaunchConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The owner account ID for the fast-launch enabled Windows AMI.
+	AccountId *string `locationName:"accountId" type:"string"`
+
+	// A Boolean that represents the current state of faster launching for the Windows
+	// AMI. Set to true to start using Windows faster launching, or false to stop
+	// using it.
+	//
+	// Enabled is a required field
+	Enabled *bool `locationName:"enabled" type:"boolean" required:"true"`
+
+	// The launch template that the fast-launch enabled Windows AMI uses when it
+	// launches Windows instances to create pre-provisioned snapshots.
+	LaunchTemplate *FastLaunchLaunchTemplateSpecification `locationName:"launchTemplate" type:"structure"`
+
+	// The maximum number of parallel instances that are launched for creating resources.
+	MaxParallelLaunches *int64 `locationName:"maxParallelLaunches" min:"1" type:"integer"`
+
+	// Configuration settings for managing the number of snapshots that are created
+	// from pre-provisioned instances for the Windows AMI when faster launching
+	// is enabled.
+	SnapshotConfiguration *FastLaunchSnapshotConfiguration `locationName:"snapshotConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FastLaunchConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FastLaunchConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FastLaunchConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FastLaunchConfiguration"}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+	if s.MaxParallelLaunches != nil && *s.MaxParallelLaunches < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxParallelLaunches", 1))
+	}
+	if s.LaunchTemplate != nil {
+		if err := s.LaunchTemplate.Validate(); err != nil {
+			invalidParams.AddNested("LaunchTemplate", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SnapshotConfiguration != nil {
+		if err := s.SnapshotConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SnapshotConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *FastLaunchConfiguration) SetAccountId(v string) *FastLaunchConfiguration {
+	s.AccountId = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *FastLaunchConfiguration) SetEnabled(v bool) *FastLaunchConfiguration {
+	s.Enabled = &v
+	return s
+}
+
+// SetLaunchTemplate sets the LaunchTemplate field's value.
+func (s *FastLaunchConfiguration) SetLaunchTemplate(v *FastLaunchLaunchTemplateSpecification) *FastLaunchConfiguration {
+	s.LaunchTemplate = v
+	return s
+}
+
+// SetMaxParallelLaunches sets the MaxParallelLaunches field's value.
+func (s *FastLaunchConfiguration) SetMaxParallelLaunches(v int64) *FastLaunchConfiguration {
+	s.MaxParallelLaunches = &v
+	return s
+}
+
+// SetSnapshotConfiguration sets the SnapshotConfiguration field's value.
+func (s *FastLaunchConfiguration) SetSnapshotConfiguration(v *FastLaunchSnapshotConfiguration) *FastLaunchConfiguration {
+	s.SnapshotConfiguration = v
+	return s
+}
+
+// Identifies the launch template that the associated Windows AMI uses for launching
+// an instance when faster launching is enabled.
+//
+// You can specify either the launchTemplateName or the launchTemplateId, but
+// not both.
+type FastLaunchLaunchTemplateSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the launch template to use for faster launching for a Windows AMI.
+	LaunchTemplateId *string `locationName:"launchTemplateId" type:"string"`
+
+	// The name of the launch template to use for faster launching for a Windows
+	// AMI.
+	LaunchTemplateName *string `locationName:"launchTemplateName" min:"1" type:"string"`
+
+	// The version of the launch template to use for faster launching for a Windows
+	// AMI.
+	LaunchTemplateVersion *string `locationName:"launchTemplateVersion" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FastLaunchLaunchTemplateSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FastLaunchLaunchTemplateSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FastLaunchLaunchTemplateSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FastLaunchLaunchTemplateSpecification"}
+	if s.LaunchTemplateName != nil && len(*s.LaunchTemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LaunchTemplateName", 1))
+	}
+	if s.LaunchTemplateVersion != nil && len(*s.LaunchTemplateVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LaunchTemplateVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLaunchTemplateId sets the LaunchTemplateId field's value.
+func (s *FastLaunchLaunchTemplateSpecification) SetLaunchTemplateId(v string) *FastLaunchLaunchTemplateSpecification {
+	s.LaunchTemplateId = &v
+	return s
+}
+
+// SetLaunchTemplateName sets the LaunchTemplateName field's value.
+func (s *FastLaunchLaunchTemplateSpecification) SetLaunchTemplateName(v string) *FastLaunchLaunchTemplateSpecification {
+	s.LaunchTemplateName = &v
+	return s
+}
+
+// SetLaunchTemplateVersion sets the LaunchTemplateVersion field's value.
+func (s *FastLaunchLaunchTemplateSpecification) SetLaunchTemplateVersion(v string) *FastLaunchLaunchTemplateSpecification {
+	s.LaunchTemplateVersion = &v
+	return s
+}
+
+// Configuration settings for creating and managing pre-provisioned snapshots
+// for a fast-launch enabled Windows AMI.
+type FastLaunchSnapshotConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The number of pre-provisioned snapshots to keep on hand for a fast-launch
+	// enabled Windows AMI.
+	TargetResourceCount *int64 `locationName:"targetResourceCount" min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FastLaunchSnapshotConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FastLaunchSnapshotConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FastLaunchSnapshotConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FastLaunchSnapshotConfiguration"}
+	if s.TargetResourceCount != nil && *s.TargetResourceCount < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TargetResourceCount", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTargetResourceCount sets the TargetResourceCount field's value.
+func (s *FastLaunchSnapshotConfiguration) SetTargetResourceCount(v int64) *FastLaunchSnapshotConfiguration {
+	s.TargetResourceCount = &v
 	return s
 }
 

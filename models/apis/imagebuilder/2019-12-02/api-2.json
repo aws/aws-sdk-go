@@ -1642,7 +1642,8 @@
         "containerDistributionConfiguration":{"shape":"ContainerDistributionConfiguration"},
         "licenseConfigurationArns":{"shape":"LicenseConfigurationArnList"},
         "launchTemplateConfigurations":{"shape":"LaunchTemplateConfigurationList"},
-        "s3ExportConfiguration":{"shape":"S3ExportConfiguration"}
+        "s3ExportConfiguration":{"shape":"S3ExportConfiguration"},
+        "fastLaunchConfigurations":{"shape":"FastLaunchConfigurationList"}
       }
     },
     "DistributionConfiguration":{
@@ -1735,6 +1736,37 @@
       "min":0
     },
     "ErrorMessage":{"type":"string"},
+    "FastLaunchConfiguration":{
+      "type":"structure",
+      "required":["enabled"],
+      "members":{
+        "enabled":{"shape":"Boolean"},
+        "snapshotConfiguration":{"shape":"FastLaunchSnapshotConfiguration"},
+        "maxParallelLaunches":{"shape":"MaxParallelLaunches"},
+        "launchTemplate":{"shape":"FastLaunchLaunchTemplateSpecification"},
+        "accountId":{"shape":"AccountId"}
+      }
+    },
+    "FastLaunchConfigurationList":{
+      "type":"list",
+      "member":{"shape":"FastLaunchConfiguration"},
+      "max":1000,
+      "min":1
+    },
+    "FastLaunchLaunchTemplateSpecification":{
+      "type":"structure",
+      "members":{
+        "launchTemplateId":{"shape":"LaunchTemplateId"},
+        "launchTemplateName":{"shape":"NonEmptyString"},
+        "launchTemplateVersion":{"shape":"NonEmptyString"}
+      }
+    },
+    "FastLaunchSnapshotConfiguration":{
+      "type":"structure",
+      "members":{
+        "targetResourceCount":{"shape":"TargetResourceCount"}
+      }
+    },
     "Filter":{
       "type":"structure",
       "members":{
@@ -2677,6 +2709,11 @@
         "s3Logs":{"shape":"S3Logs"}
       }
     },
+    "MaxParallelLaunches":{
+      "type":"integer",
+      "max":10000,
+      "min":1
+    },
     "NonEmptyString":{
       "type":"string",
       "max":1024,
@@ -3029,6 +3066,11 @@
         "service":{"shape":"ContainerRepositoryService"},
         "repositoryName":{"shape":"NonEmptyString"}
       }
+    },
+    "TargetResourceCount":{
+      "type":"integer",
+      "max":10000,
+      "min":1
     },
     "Timezone":{
       "type":"string",
