@@ -374,6 +374,13 @@
       "type":"string",
       "enum":["KMS"]
     },
+    "Formality":{
+      "type":"string",
+      "enum":[
+        "FORMAL",
+        "INFORMAL"
+      ]
+    },
     "GetParallelDataRequest":{
       "type":"structure",
       "required":["Name"],
@@ -908,6 +915,7 @@
     "TranslationSettings":{
       "type":"structure",
       "members":{
+        "Formality":{"shape":"Formality"},
         "Profanity":{"shape":"Profanity"}
       }
     },

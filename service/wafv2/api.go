@@ -1842,6 +1842,8 @@ func (c *WAFV2) GenerateMobileSdkReleaseUrlRequest(input *GenerateMobileSdkRelea
 // The mobile SDK is not generally available. Customers who have access to the
 // mobile SDK can use it to establish and manage Security Token Service (STS)
 // security tokens for use in HTTP(S) requests from a mobile device to WAF.
+// For more information, see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// in the WAF Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2259,6 +2261,8 @@ func (c *WAFV2) GetMobileSdkReleaseRequest(input *GetMobileSdkReleaseInput) (req
 // The mobile SDK is not generally available. Customers who have access to the
 // mobile SDK can use it to establish and manage Security Token Service (STS)
 // security tokens for use in HTTP(S) requests from a mobile device to WAF.
+// For more information, see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// in the WAF Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3597,6 +3601,8 @@ func (c *WAFV2) ListMobileSdkReleasesRequest(input *ListMobileSdkReleasesInput) 
 // The mobile SDK is not generally available. Customers who have access to the
 // mobile SDK can use it to establish and manage Security Token Service (STS)
 // security tokens for use in HTTP(S) requests from a mobile device to WAF.
+// For more information, see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// in the WAF Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4212,7 +4218,9 @@ func (c *WAFV2) PutLoggingConfigurationRequest(input *PutLoggingConfigurationInp
 // Enables the specified LoggingConfiguration, to start logging from a web ACL,
 // according to the configuration provided.
 //
-// You can access information about all traffic that WAF inspects using the
+// You can define one logging destination per web ACL.
+//
+// You can access information about the traffic that WAF inspects using the
 // following steps:
 //
 // Create your logging destination. You can use an Amazon CloudWatch Logs log
@@ -4231,6 +4239,10 @@ func (c *WAFV2) PutLoggingConfigurationRequest(input *PutLoggingConfigurationInp
 // a resource policy on the log group. For an Amazon S3 bucket, WAF creates
 // a bucket policy. For an Amazon Kinesis Data Firehose, WAF creates a service-linked
 // role.
+//
+// For additional information about web ACL logging, see Logging web ACL traffic
+// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+// in the WAF Developer Guide.
 //
 // This operation completely replaces the mutable specifications that you already
 // have for the logging configuration with the ones that you provide to this
@@ -6427,11 +6439,11 @@ func (s *CountAction) SetCustomRequestHandling(v *CustomRequestHandling) *CountA
 type CreateIPSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains an array of strings that specify one or more IP addresses or blocks
-	// of IP addresses in Classless Inter-Domain Routing (CIDR) notation. WAF supports
-	// all IPv4 and IPv6 CIDR ranges except for /0.
+	// Contains an array of strings that specifies zero or more IP addresses or
+	// blocks of IP addresses in Classless Inter-Domain Routing (CIDR) notation.
+	// WAF supports all IPv4 and IPv6 CIDR ranges except for /0.
 	//
-	// Examples:
+	// Example address strings:
 	//
 	//    * To configure WAF to allow, block, or count requests that originated
 	//    from the IP address 192.0.2.44, specify 192.0.2.44/32.
@@ -6448,6 +6460,17 @@ type CreateIPSetInput struct {
 	//
 	// For more information about CIDR notation, see the Wikipedia entry Classless
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
+	//
+	// Example JSON Addresses specifications:
+	//
+	//    * Empty array: "Addresses": []
+	//
+	//    * Array with one address: "Addresses": ["192.0.2.44/32"]
+	//
+	//    * Array with three addresses: "Addresses": ["192.0.2.44/32", "192.0.2.0/24",
+	//    "192.0.0.0/16"]
+	//
+	//    * INVALID specification: "Addresses": [""] INVALID
 	//
 	// Addresses is a required field
 	Addresses []*string `type:"list" required:"true"`
@@ -9563,7 +9586,7 @@ func (s *GetIPSetInput) SetScope(v string) *GetIPSetInput {
 type GetIPSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains one or more IP addresses or blocks of IP addresses specified in
+	// Contains zero or more IP addresses or blocks of IP addresses specified in
 	// Classless Inter-Domain Routing (CIDR) notation. WAF supports all IPv4 and
 	// IPv6 CIDR ranges except for /0. For information about CIDR notation, see
 	// the Wikipedia entry Classless Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
@@ -10832,7 +10855,8 @@ type GetWebACLOutput struct {
 	// groups. For example, you can use the integration SDKs with the account takeover
 	// prevention managed rule group AWSManagedRulesATPRuleSet. This is only populated
 	// if you are using a rule group in your web ACL that integrates with your applications
-	// in this way. For more information, see WAF application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+	// in this way. For more information, see WAF client application integration
+	// (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
 	// in the WAF Developer Guide.
 	ApplicationIntegrationURL *string `type:"string"`
 
@@ -11021,7 +11045,7 @@ func (s *HTTPRequest) SetURI(v string) *HTTPRequest {
 	return s
 }
 
-// Contains one or more IP addresses or blocks of IP addresses specified in
+// Contains zero or more IP addresses or blocks of IP addresses specified in
 // Classless Inter-Domain Routing (CIDR) notation. WAF supports all IPv4 and
 // IPv6 CIDR ranges except for /0. For information about CIDR notation, see
 // the Wikipedia entry Classless Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
@@ -11036,11 +11060,11 @@ type IPSet struct {
 	// ARN is a required field
 	ARN *string `min:"20" type:"string" required:"true"`
 
-	// Contains an array of strings that specify one or more IP addresses or blocks
-	// of IP addresses in Classless Inter-Domain Routing (CIDR) notation. WAF supports
-	// all IPv4 and IPv6 CIDR ranges except for /0.
+	// Contains an array of strings that specifies zero or more IP addresses or
+	// blocks of IP addresses in Classless Inter-Domain Routing (CIDR) notation.
+	// WAF supports all IPv4 and IPv6 CIDR ranges except for /0.
 	//
-	// Examples:
+	// Example address strings:
 	//
 	//    * To configure WAF to allow, block, or count requests that originated
 	//    from the IP address 192.0.2.44, specify 192.0.2.44/32.
@@ -11057,6 +11081,17 @@ type IPSet struct {
 	//
 	// For more information about CIDR notation, see the Wikipedia entry Classless
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
+	//
+	// Example JSON Addresses specifications:
+	//
+	//    * Empty array: "Addresses": []
+	//
+	//    * Array with one address: "Addresses": ["192.0.2.44/32"]
+	//
+	//    * Array with three addresses: "Addresses": ["192.0.2.44/32", "192.0.2.0/24",
+	//    "192.0.0.0/16"]
+	//
+	//    * INVALID specification: "Addresses": [""] INVALID
 	//
 	// Addresses is a required field
 	Addresses []*string `type:"list" required:"true"`
@@ -13265,14 +13300,38 @@ func (s *ListWebACLsOutput) SetWebACLs(v []*WebACLSummary) *ListWebACLsOutput {
 // the standard logging fields to keep out of the logs and you can specify filters
 // so that you log only a subset of the logging records.
 //
-// For information about configuring web ACL logging destinations, see Logging
-// web ACL traffic information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+// You can define one logging destination per web ACL.
+//
+// You can access information about the traffic that WAF inspects using the
+// following steps:
+//
+// Create your logging destination. You can use an Amazon CloudWatch Logs log
+// group, an Amazon Simple Storage Service (Amazon S3) bucket, or an Amazon
+// Kinesis Data Firehose. For information about configuring logging destinations
+// and the permissions that are required for each, see Logging web ACL traffic
+// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+// in the WAF Developer Guide.
+//
+// Associate your logging destination to your web ACL using a PutLoggingConfiguration
+// request.
+//
+// When you successfully enable logging using a PutLoggingConfiguration request,
+// WAF creates an additional role or policy that is required to write logs to
+// the logging destination. For an Amazon CloudWatch Logs log group, WAF creates
+// a resource policy on the log group. For an Amazon S3 bucket, WAF creates
+// a bucket policy. For an Amazon Kinesis Data Firehose, WAF creates a service-linked
+// role.
+//
+// For additional information about web ACL logging, see Logging web ACL traffic
+// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
 // in the WAF Developer Guide.
 type LoggingConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Names (ARNs) of the logging destinations that you want
-	// to associate with the web ACL.
+	// The logging destination configuration that you want to associate with the
+	// web ACL.
+	//
+	// You can associate one logging destination to a web ACL.
 	//
 	// LogDestinationConfigs is a required field
 	LogDestinationConfigs []*string `min:"1" type:"list" required:"true"`
@@ -13474,7 +13533,8 @@ func (s *LoggingFilter) SetFilters(v []*Filter) *LoggingFilter {
 type ManagedRuleGroupConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The login endpoint for your application. For example https://example.com/web/login.
+	// The path of the login endpoint for your application. For example, for the
+	// URL https://example.com/web/login, you would provide the path /web/login.
 	LoginPath *string `min:"1" type:"string"`
 
 	// Details about your login page password field.
@@ -14173,6 +14233,8 @@ func (s Method) GoString() string {
 // The mobile SDK is not generally available. Customers who have access to the
 // mobile SDK can use it to establish and manage Security Token Service (STS)
 // security tokens for use in HTTP(S) requests from a mobile device to WAF.
+// For more information, see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// in the WAF Developer Guide.
 type MobileSdkRelease struct {
 	_ struct{} `type:"structure"`
 
@@ -14502,8 +14564,30 @@ type PutLoggingConfigurationInput struct {
 	// the standard logging fields to keep out of the logs and you can specify filters
 	// so that you log only a subset of the logging records.
 	//
-	// For information about configuring web ACL logging destinations, see Logging
-	// web ACL traffic information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+	// You can define one logging destination per web ACL.
+	//
+	// You can access information about the traffic that WAF inspects using the
+	// following steps:
+	//
+	// Create your logging destination. You can use an Amazon CloudWatch Logs log
+	// group, an Amazon Simple Storage Service (Amazon S3) bucket, or an Amazon
+	// Kinesis Data Firehose. For information about configuring logging destinations
+	// and the permissions that are required for each, see Logging web ACL traffic
+	// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+	// in the WAF Developer Guide.
+	//
+	// Associate your logging destination to your web ACL using a PutLoggingConfiguration
+	// request.
+	//
+	// When you successfully enable logging using a PutLoggingConfiguration request,
+	// WAF creates an additional role or policy that is required to write logs to
+	// the logging destination. For an Amazon CloudWatch Logs log group, WAF creates
+	// a resource policy on the log group. For an Amazon S3 bucket, WAF creates
+	// a bucket policy. For an Amazon Kinesis Data Firehose, WAF creates a service-linked
+	// role.
+	//
+	// For additional information about web ACL logging, see Logging web ACL traffic
+	// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
 	// in the WAF Developer Guide.
 	//
 	// LoggingConfiguration is a required field
@@ -14560,8 +14644,30 @@ type PutLoggingConfigurationOutput struct {
 	// the standard logging fields to keep out of the logs and you can specify filters
 	// so that you log only a subset of the logging records.
 	//
-	// For information about configuring web ACL logging destinations, see Logging
-	// web ACL traffic information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+	// You can define one logging destination per web ACL.
+	//
+	// You can access information about the traffic that WAF inspects using the
+	// following steps:
+	//
+	// Create your logging destination. You can use an Amazon CloudWatch Logs log
+	// group, an Amazon Simple Storage Service (Amazon S3) bucket, or an Amazon
+	// Kinesis Data Firehose. For information about configuring logging destinations
+	// and the permissions that are required for each, see Logging web ACL traffic
+	// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+	// in the WAF Developer Guide.
+	//
+	// Associate your logging destination to your web ACL using a PutLoggingConfiguration
+	// request.
+	//
+	// When you successfully enable logging using a PutLoggingConfiguration request,
+	// WAF creates an additional role or policy that is required to write logs to
+	// the logging destination. For an Amazon CloudWatch Logs log group, WAF creates
+	// a resource policy on the log group. For an Amazon S3 bucket, WAF creates
+	// a bucket policy. For an Amazon Kinesis Data Firehose, WAF creates a service-linked
+	// role.
+	//
+	// For additional information about web ACL logging, see Logging web ACL traffic
+	// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
 	// in the WAF Developer Guide.
 	LoggingConfiguration *LoggingConfiguration `type:"structure"`
 }
@@ -17622,11 +17728,11 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateIPSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains an array of strings that specify one or more IP addresses or blocks
-	// of IP addresses in Classless Inter-Domain Routing (CIDR) notation. WAF supports
-	// all IPv4 and IPv6 CIDR ranges except for /0.
+	// Contains an array of strings that specifies zero or more IP addresses or
+	// blocks of IP addresses in Classless Inter-Domain Routing (CIDR) notation.
+	// WAF supports all IPv4 and IPv6 CIDR ranges except for /0.
 	//
-	// Examples:
+	// Example address strings:
 	//
 	//    * To configure WAF to allow, block, or count requests that originated
 	//    from the IP address 192.0.2.44, specify 192.0.2.44/32.
@@ -17643,6 +17749,17 @@ type UpdateIPSetInput struct {
 	//
 	// For more information about CIDR notation, see the Wikipedia entry Classless
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
+	//
+	// Example JSON Addresses specifications:
+	//
+	//    * Empty array: "Addresses": []
+	//
+	//    * Array with one address: "Addresses": ["192.0.2.44/32"]
+	//
+	//    * Array with three addresses: "Addresses": ["192.0.2.44/32", "192.0.2.0/24",
+	//    "192.0.0.0/16"]
+	//
+	//    * INVALID specification: "Addresses": [""] INVALID
 	//
 	// Addresses is a required field
 	Addresses []*string `type:"list" required:"true"`

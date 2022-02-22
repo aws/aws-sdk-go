@@ -8272,6 +8272,15 @@ const (
 
 	// RuntimeNodejs12 is a Runtime enum value
 	RuntimeNodejs12 = "NODEJS_12"
+
+	// RuntimeNodejs14 is a Runtime enum value
+	RuntimeNodejs14 = "NODEJS_14"
+
+	// RuntimeCorretto8 is a Runtime enum value
+	RuntimeCorretto8 = "CORRETTO_8"
+
+	// RuntimeCorretto11 is a Runtime enum value
+	RuntimeCorretto11 = "CORRETTO_11"
 )
 
 // Runtime_Values returns all elements of the Runtime enum
@@ -8279,6 +8288,9 @@ func Runtime_Values() []string {
 	return []string{
 		RuntimePython3,
 		RuntimeNodejs12,
+		RuntimeNodejs14,
+		RuntimeCorretto8,
+		RuntimeCorretto11,
 	}
 }
 

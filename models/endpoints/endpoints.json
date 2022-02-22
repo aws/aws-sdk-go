@@ -14783,6 +14783,12 @@
         }
       },
       "ec2" : {
+        "defaults" : {
+          "variants" : [ {
+            "hostname" : "ec2.{region}.{dnsSuffix}",
+            "tags" : [ "fips" ]
+          } ]
+        },
         "endpoints" : {
           "us-gov-east-1" : {
             "credentialScope" : {

@@ -1,3 +1,16 @@
+Release v1.43.4 (2022-02-22)
+===
+
+### Service Client Updates
+* `service/apprunner`: Updates service API
+* `service/translate`: Updates service API and documentation
+* `service/wafv2`: Updates service documentation
+
+### SDK Bugs
+* `service/lexruntimev2`: Add fix to prevent HTTP/2 event stream request hang on error with Go 1.15 through 1.17.
+* `service/transcribestreamingservice`: Add fix to prevent HTTP/2 event stream request hang on error with Go 1.15 through 1.17.
+  * Adds fix addressing an issue where SDK's bi-directional eventstream API operation request could hang when the HTTP/2 stream was closed by the service with a non-200 status code.
+
 Release v1.43.3 (2022-02-21)
 ===
 
