@@ -629,6 +629,7 @@ func (c *LexRuntimeV2) StartConversationRequest(input *StartConversationInput) (
 		"X-Amz-Content-Sha256": "STREAMING-AWS4-HMAC-SHA256-EVENTS",
 	}))
 	req.Handlers.Build.Swap(restjson.BuildHandler.Name, rest.BuildHandler)
+	eventstreamapi.ApplyHTTPTransportFixes(req)
 	req.Handlers.Send.Swap(client.LogHTTPRequestHandler.Name, client.LogHTTPRequestHeaderHandler)
 	req.Handlers.Unmarshal.PushBack(es.runInputStream)
 
