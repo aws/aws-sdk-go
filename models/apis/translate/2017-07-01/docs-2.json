@@ -139,6 +139,12 @@
         "EncryptionKey$Type": "<p>The type of encryption key used by Amazon Translate to encrypt this object.</p>"
       }
     },
+    "Formality": {
+      "base": null,
+      "refs": {
+        "TranslationSettings$Formality": null
+      }
+    },
     "GetParallelDataRequest": {
       "base": null,
       "refs": {

@@ -5182,6 +5182,8 @@ func (s *TooManyRequestsException) RequestID() string {
 type TranslationSettings struct {
 	_ struct{} `type:"structure"`
 
+	Formality *string `type:"string" enum:"Formality"`
+
 	// Enable the profanity setting if you want Amazon Translate to mask profane
 	// words and phrases in your translation output.
 	//
@@ -5211,6 +5213,12 @@ func (s TranslationSettings) String() string {
 // value will be replaced with "sensitive".
 func (s TranslationSettings) GoString() string {
 	return s.String()
+}
+
+// SetFormality sets the Formality field's value.
+func (s *TranslationSettings) SetFormality(v string) *TranslationSettings {
+	s.Formality = &v
+	return s
 }
 
 // SetProfanity sets the Profanity field's value.
@@ -5465,6 +5473,22 @@ const (
 func EncryptionKeyType_Values() []string {
 	return []string{
 		EncryptionKeyTypeKms,
+	}
+}
+
+const (
+	// FormalityFormal is a Formality enum value
+	FormalityFormal = "FORMAL"
+
+	// FormalityInformal is a Formality enum value
+	FormalityInformal = "INFORMAL"
+)
+
+// Formality_Values returns all elements of the Formality enum
+func Formality_Values() []string {
+	return []string{
+		FormalityFormal,
+		FormalityInformal,
 	}
 }
 
