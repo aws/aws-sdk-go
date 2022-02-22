@@ -544,3 +544,11 @@ func getHTMLTokenAttr(attr []xhtml.Attribute, name string) (string, bool) {
 	}
 	return "", false
 }
+
+func AppendDocstring(base, toAdd string) string {
+	if base != "" {
+		base += "\n//\n"
+	}
+
+	return base + docstring(toAdd)
+}
