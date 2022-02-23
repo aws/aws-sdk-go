@@ -325,11 +325,17 @@ type LambdaAPI interface {
 	WaitUntilFunctionActive(*lambda.GetFunctionConfigurationInput) error
 	WaitUntilFunctionActiveWithContext(aws.Context, *lambda.GetFunctionConfigurationInput, ...request.WaiterOption) error
 
+	WaitUntilFunctionActiveV2(*lambda.GetFunctionInput) error
+	WaitUntilFunctionActiveV2WithContext(aws.Context, *lambda.GetFunctionInput, ...request.WaiterOption) error
+
 	WaitUntilFunctionExists(*lambda.GetFunctionInput) error
 	WaitUntilFunctionExistsWithContext(aws.Context, *lambda.GetFunctionInput, ...request.WaiterOption) error
 
 	WaitUntilFunctionUpdated(*lambda.GetFunctionConfigurationInput) error
 	WaitUntilFunctionUpdatedWithContext(aws.Context, *lambda.GetFunctionConfigurationInput, ...request.WaiterOption) error
+
+	WaitUntilFunctionUpdatedV2(*lambda.GetFunctionInput) error
+	WaitUntilFunctionUpdatedV2WithContext(aws.Context, *lambda.GetFunctionInput, ...request.WaiterOption) error
 }
 
 var _ LambdaAPI = (*lambda.Lambda)(nil)

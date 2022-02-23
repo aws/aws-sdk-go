@@ -65,6 +65,62 @@ func (c *Lambda) WaitUntilFunctionActiveWithContext(ctx aws.Context, input *GetF
 	return w.WaitWithContext(ctx)
 }
 
+// WaitUntilFunctionActiveV2 uses the AWS Lambda API operation
+// GetFunction to wait for a condition to be met before returning.
+// If the condition is not met within the max attempt window, an error will
+// be returned.
+func (c *Lambda) WaitUntilFunctionActiveV2(input *GetFunctionInput) error {
+	return c.WaitUntilFunctionActiveV2WithContext(aws.BackgroundContext(), input)
+}
+
+// WaitUntilFunctionActiveV2WithContext is an extended version of WaitUntilFunctionActiveV2.
+// With the support for passing in a context and options to configure the
+// Waiter and the underlying request options.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) WaitUntilFunctionActiveV2WithContext(ctx aws.Context, input *GetFunctionInput, opts ...request.WaiterOption) error {
+	w := request.Waiter{
+		Name:        "WaitUntilFunctionActiveV2",
+		MaxAttempts: 300,
+		Delay:       request.ConstantWaiterDelay(1 * time.Second),
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:   request.SuccessWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "Configuration.State",
+				Expected: "Active",
+			},
+			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "Configuration.State",
+				Expected: "Failed",
+			},
+			{
+				State:   request.RetryWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "Configuration.State",
+				Expected: "Pending",
+			},
+		},
+		Logger: c.Config.Logger,
+		NewRequest: func(opts []request.Option) (*request.Request, error) {
+			var inCpy *GetFunctionInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetFunctionRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+	w.ApplyOptions(opts...)
+
+	return w.WaitWithContext(ctx)
+}
+
 // WaitUntilFunctionExists uses the AWS Lambda API operation
 // GetFunction to wait for a condition to be met before returning.
 // If the condition is not met within the max attempt window, an error will
@@ -162,6 +218,62 @@ func (c *Lambda) WaitUntilFunctionUpdatedWithContext(ctx aws.Context, input *Get
 				inCpy = &tmp
 			}
 			req, _ := c.GetFunctionConfigurationRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+	w.ApplyOptions(opts...)
+
+	return w.WaitWithContext(ctx)
+}
+
+// WaitUntilFunctionUpdatedV2 uses the AWS Lambda API operation
+// GetFunction to wait for a condition to be met before returning.
+// If the condition is not met within the max attempt window, an error will
+// be returned.
+func (c *Lambda) WaitUntilFunctionUpdatedV2(input *GetFunctionInput) error {
+	return c.WaitUntilFunctionUpdatedV2WithContext(aws.BackgroundContext(), input)
+}
+
+// WaitUntilFunctionUpdatedV2WithContext is an extended version of WaitUntilFunctionUpdatedV2.
+// With the support for passing in a context and options to configure the
+// Waiter and the underlying request options.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) WaitUntilFunctionUpdatedV2WithContext(ctx aws.Context, input *GetFunctionInput, opts ...request.WaiterOption) error {
+	w := request.Waiter{
+		Name:        "WaitUntilFunctionUpdatedV2",
+		MaxAttempts: 300,
+		Delay:       request.ConstantWaiterDelay(1 * time.Second),
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:   request.SuccessWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "Configuration.LastUpdateStatus",
+				Expected: "Successful",
+			},
+			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "Configuration.LastUpdateStatus",
+				Expected: "Failed",
+			},
+			{
+				State:   request.RetryWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "Configuration.LastUpdateStatus",
+				Expected: "InProgress",
+			},
+		},
+		Logger: c.Config.Logger,
+		NewRequest: func(opts []request.Option) (*request.Request, error) {
+			var inCpy *GetFunctionInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetFunctionRequest(inCpy)
 			req.SetContext(ctx)
 			req.ApplyOptions(opts...)
 			return req, nil

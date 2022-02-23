@@ -3677,8 +3677,9 @@ func (s *ConflictException) RequestID() string {
 type CopyStepDetails struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the location for the file being copied. Only applicable for the
-	// Copy type of workflow steps.
+	// Specifies the location for the file being copied. Only applicable for Copy
+	// type workflow steps. Use ${Transfer:username} in this field to parametrize
+	// the destination prefix by username.
 	DestinationFileLocation *InputFileLocation `type:"structure"`
 
 	// The name of the step, used as an identifier.
@@ -3687,6 +3688,17 @@ type CopyStepDetails struct {
 	// A flag that indicates whether or not to overwrite an existing file of the
 	// same name. The default is FALSE.
 	OverwriteExisting *string `type:"string" enum:"OverwriteExisting"`
+
+	// Specifies which file to use as input to the workflow step: either the output
+	// from the previous step, or the originally uploaded file for the workflow.
+	//
+	//    * Enter ${previous.file} to use the previous file as the input. In this
+	//    case, this workflow step uses the output file from the previous workflow
+	//    step as input. This is the default value.
+	//
+	//    * Enter ${original.file} to use the originally-uploaded file location
+	//    as input for this step.
+	SourceFileLocation *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -3740,6 +3752,12 @@ func (s *CopyStepDetails) SetOverwriteExisting(v string) *CopyStepDetails {
 	return s
 }
 
+// SetSourceFileLocation sets the SourceFileLocation field's value.
+func (s *CopyStepDetails) SetSourceFileLocation(v string) *CopyStepDetails {
+	s.SourceFileLocation = &v
+	return s
+}
+
 type CreateAccessInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3788,14 +3806,6 @@ type CreateAccessInput struct {
 	// The following is an Entry and Target pair example for chroot.
 	//
 	// [ { "Entry:": "/", "Target": "/bucket_name/home/mydirectory" } ]
-	//
-	// If the target of a logical directory entry does not exist in Amazon S3 or
-	// EFS, the entry is ignored. As a workaround, you can use the Amazon S3 API
-	// or EFS API to create 0 byte objects as place holders for your directory.
-	// If using the CLI, use the s3api or efsapi call instead of s3 or efs so you
-	// can use the put-object operation. For example, you use the following: aws
-	// s3api put-object --bucket bucketname --key path/to/folder/. Make sure that
-	// the end of the key name ends in a / for it to be considered a folder.
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
 	// The type of landing directory (folder) you want your users' home directory
@@ -4388,14 +4398,6 @@ type CreateUserInput struct {
 	// The following is an Entry and Target pair example for chroot.
 	//
 	// [ { "Entry:": "/", "Target": "/bucket_name/home/mydirectory" } ]
-	//
-	// If the target of a logical directory entry does not exist in Amazon S3 or
-	// EFS, the entry is ignored. As a workaround, you can use the Amazon S3 API
-	// or EFS API to create 0 byte objects as place holders for your directory.
-	// If using the CLI, use the s3api or efsapi call instead of s3 or efs so you
-	// can use the put-object operation. For example, you use the following: aws
-	// s3api put-object --bucket bucketname --key path/to/folder/. Make sure that
-	// the end of the key name ends in a / for it to be considered a folder.
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
 	// The type of landing directory (folder) you want your users' home directory
@@ -4817,6 +4819,17 @@ type CustomStepDetails struct {
 	// The name of the step, used as an identifier.
 	Name *string `type:"string"`
 
+	// Specifies which file to use as input to the workflow step: either the output
+	// from the previous step, or the originally uploaded file for the workflow.
+	//
+	//    * Enter ${previous.file} to use the previous file as the input. In this
+	//    case, this workflow step uses the output file from the previous workflow
+	//    step as input. This is the default value.
+	//
+	//    * Enter ${original.file} to use the originally-uploaded file location
+	//    as input for this step.
+	SourceFileLocation *string `type:"string"`
+
 	// The ARN for the lambda function that is being called.
 	Target *string `type:"string"`
 
@@ -4858,6 +4871,12 @@ func (s *CustomStepDetails) Validate() error {
 // SetName sets the Name field's value.
 func (s *CustomStepDetails) SetName(v string) *CustomStepDetails {
 	s.Name = &v
+	return s
+}
+
+// SetSourceFileLocation sets the SourceFileLocation field's value.
+func (s *CustomStepDetails) SetSourceFileLocation(v string) *CustomStepDetails {
+	s.SourceFileLocation = &v
 	return s
 }
 
@@ -5158,6 +5177,17 @@ type DeleteStepDetails struct {
 
 	// The name of the step, used as an identifier.
 	Name *string `type:"string"`
+
+	// Specifies which file to use as input to the workflow step: either the output
+	// from the previous step, or the originally uploaded file for the workflow.
+	//
+	//    * Enter ${previous.file} to use the previous file as the input. In this
+	//    case, this workflow step uses the output file from the previous workflow
+	//    step as input. This is the default value.
+	//
+	//    * Enter ${original.file} to use the originally-uploaded file location
+	//    as input for this step.
+	SourceFileLocation *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -5181,6 +5211,12 @@ func (s DeleteStepDetails) GoString() string {
 // SetName sets the Name field's value.
 func (s *DeleteStepDetails) SetName(v string) *DeleteStepDetails {
 	s.Name = &v
+	return s
+}
+
+// SetSourceFileLocation sets the SourceFileLocation field's value.
+func (s *DeleteStepDetails) SetSourceFileLocation(v string) *DeleteStepDetails {
+	s.SourceFileLocation = &v
 	return s
 }
 
@@ -7105,14 +7141,6 @@ func (s *FileLocation) SetS3FileLocation(v *S3FileLocation) *FileLocation {
 // The following is an Entry and Target pair example for chroot.
 //
 // [ { "Entry:": "/", "Target": "/bucket_name/home/mydirectory" } ]
-//
-// If the target of a logical directory entry does not exist in Amazon S3 or
-// EFS, the entry is ignored. As a workaround, you can use the Amazon S3 API
-// or EFS API to create 0 byte objects as place holders for your directory.
-// If using the CLI, use the s3api or efsapi call instead of s3 or efs so you
-// can use the put-object operation. For example, you use the following: aws
-// s3api put-object --bucket bucketname --key path/to/folder/. Make sure that
-// the end of the key name ends in a / for it to be considered a folder.
 type HomeDirectoryMapEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -10068,6 +10096,17 @@ type TagStepDetails struct {
 	// The name of the step, used as an identifier.
 	Name *string `type:"string"`
 
+	// Specifies which file to use as input to the workflow step: either the output
+	// from the previous step, or the originally uploaded file for the workflow.
+	//
+	//    * Enter ${previous.file} to use the previous file as the input. In this
+	//    case, this workflow step uses the output file from the previous workflow
+	//    step as input. This is the default value.
+	//
+	//    * Enter ${original.file} to use the originally-uploaded file location
+	//    as input for this step.
+	SourceFileLocation *string `type:"string"`
+
 	// Array that contains from 1 to 10 key/value pairs.
 	Tags []*S3Tag `min:"1" type:"list"`
 }
@@ -10116,6 +10155,12 @@ func (s *TagStepDetails) Validate() error {
 // SetName sets the Name field's value.
 func (s *TagStepDetails) SetName(v string) *TagStepDetails {
 	s.Name = &v
+	return s
+}
+
+// SetSourceFileLocation sets the SourceFileLocation field's value.
+func (s *TagStepDetails) SetSourceFileLocation(v string) *TagStepDetails {
+	s.SourceFileLocation = &v
 	return s
 }
 
@@ -10235,6 +10280,9 @@ type TestIdentityProviderOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A message that indicates whether the test was successful or not.
+	//
+	// If an empty string is returned, the most likely cause is that the authentication
+	// failed due to an incorrect username or password.
 	Message *string `type:"string"`
 
 	// The response that is returned from your API Gateway.
@@ -10501,14 +10549,6 @@ type UpdateAccessInput struct {
 	// The following is an Entry and Target pair example for chroot.
 	//
 	// [ { "Entry:": "/", "Target": "/bucket_name/home/mydirectory" } ]
-	//
-	// If the target of a logical directory entry does not exist in Amazon S3 or
-	// EFS, the entry is ignored. As a workaround, you can use the Amazon S3 API
-	// or EFS API to create 0 byte objects as place holders for your directory.
-	// If using the CLI, use the s3api or efsapi call instead of s3 or efs so you
-	// can use the put-object operation. For example, you use the following: aws
-	// s3api put-object --bucket bucketname --key path/to/folder/. Make sure that
-	// the end of the key name ends in a / for it to be considered a folder.
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
 	// The type of landing directory (folder) you want your users' home directory
@@ -11047,14 +11087,6 @@ type UpdateUserInput struct {
 	// The following is an Entry and Target pair example for chroot.
 	//
 	// [ { "Entry:": "/", "Target": "/bucket_name/home/mydirectory" } ]
-	//
-	// If the target of a logical directory entry does not exist in Amazon S3 or
-	// EFS, the entry is ignored. As a workaround, you can use the Amazon S3 API
-	// or EFS API to create 0 byte objects as place holders for your directory.
-	// If using the CLI, use the s3api or efsapi call instead of s3 or efs so you
-	// can use the put-object operation. For example, you use the following: aws
-	// s3api put-object --bucket bucketname --key path/to/folder/. Make sure that
-	// the end of the key name ends in a / for it to be considered a folder.
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
 	// The type of landing directory (folder) you want your users' home directory

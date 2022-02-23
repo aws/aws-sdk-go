@@ -324,7 +324,9 @@
         "WORD",
         "TABLE",
         "CELL",
-        "SELECTION_ELEMENT"
+        "SELECTION_ELEMENT",
+        "MERGED_CELL",
+        "TITLE"
       ]
     },
     "BoundingBox":{
@@ -404,7 +406,8 @@
       "type":"string",
       "enum":[
         "KEY",
-        "VALUE"
+        "VALUE",
+        "COLUMN_HEADER"
       ]
     },
     "EntityTypes":{
@@ -800,7 +803,9 @@
       "enum":[
         "VALUE",
         "CHILD",
-        "COMPLEX_FEATURES"
+        "COMPLEX_FEATURES",
+        "MERGED_CELL",
+        "TITLE"
       ]
     },
     "RoleArn":{

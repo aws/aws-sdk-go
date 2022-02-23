@@ -554,7 +554,8 @@
       "members":{
         "Name":{"shape":"WorkflowStepName"},
         "DestinationFileLocation":{"shape":"InputFileLocation"},
-        "OverwriteExisting":{"shape":"OverwriteExisting"}
+        "OverwriteExisting":{"shape":"OverwriteExisting"},
+        "SourceFileLocation":{"shape":"SourceFileLocation"}
       }
     },
     "CreateAccessRequest":{
@@ -666,7 +667,8 @@
       "members":{
         "Name":{"shape":"WorkflowStepName"},
         "Target":{"shape":"CustomStepTarget"},
-        "TimeoutSeconds":{"shape":"CustomStepTimeoutSeconds"}
+        "TimeoutSeconds":{"shape":"CustomStepTimeoutSeconds"},
+        "SourceFileLocation":{"shape":"SourceFileLocation"}
       }
     },
     "CustomStepStatus":{
@@ -721,7 +723,8 @@
     "DeleteStepDetails":{
       "type":"structure",
       "members":{
-        "Name":{"shape":"WorkflowStepName"}
+        "Name":{"shape":"WorkflowStepName"},
+        "SourceFileLocation":{"shape":"SourceFileLocation"}
       }
     },
     "DeleteUserRequest":{
@@ -967,9 +970,9 @@
     },
     "EfsPath":{
       "type":"string",
-      "max":100,
+      "max":65536,
       "min":1,
-      "pattern":"^(\\/|(\\/(?!\\.)+[^$#<>;`|&?{}^*/\\n]+){1,4})$"
+      "pattern":"^[^\\x00]+$"
     },
     "EndpointDetails":{
       "type":"structure",
@@ -1663,6 +1666,11 @@
       "min":3,
       "pattern":"^[\\w-]*$"
     },
+    "SourceFileLocation":{
+      "type":"string",
+      "max":256,
+      "pattern":"^\\$\\{(\\w+.)+\\w+\\}$"
+    },
     "SourceIp":{
       "type":"string",
       "max":32,
@@ -1769,7 +1777,8 @@
       "type":"structure",
       "members":{
         "Name":{"shape":"WorkflowStepName"},
-        "Tags":{"shape":"S3Tags"}
+        "Tags":{"shape":"S3Tags"},
+        "SourceFileLocation":{"shape":"SourceFileLocation"}
       }
     },
     "TagValue":{

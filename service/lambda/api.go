@@ -6024,6 +6024,18 @@ func (c *Lambda) UpdateFunctionCodeRequest(input *UpdateFunctionCodeInput) (req 
 // the code package must be signed by a trusted publisher. For more information,
 // see Configuring code signing (https://docs.aws.amazon.com/lambda/latest/dg/configuration-trustedcode.html).
 //
+// If the function's package type is Image, you must specify the code package
+// in ImageUri as the URI of a container image (https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html)
+// in the Amazon ECR registry.
+//
+// If the function's package type is Zip, you must specify the deployment package
+// as a .zip file archive (https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip).
+// Enter the Amazon S3 bucket and key of the code .zip file location. You can
+// also provide the function code inline using the ZipFile field.
+//
+// The code in the deployment package must be compatible with the target instruction
+// set architecture of the function (x86-64 or arm64).
+//
 // The function's code is locked when you publish a version. You can't modify
 // the code of a published version, only the unpublished version.
 //
@@ -17875,7 +17887,8 @@ type UpdateFunctionCodeInput struct {
 	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
-	// URI of a container image in the Amazon ECR registry.
+	// URI of a container image in the Amazon ECR registry. Do not use for a function
+	// defined with a .zip file archive.
 	ImageUri *string `type:"string"`
 
 	// Set to true to publish a new version of the function after updating the code.
@@ -17888,17 +17901,20 @@ type UpdateFunctionCodeInput struct {
 	RevisionId *string `type:"string"`
 
 	// An Amazon S3 bucket in the same Amazon Web Services Region as your function.
-	// The bucket can be in a different Amazon Web Services account.
+	// The bucket can be in a different Amazon Web Services account. Use only with
+	// a function defined with a .zip file archive deployment package.
 	S3Bucket *string `min:"3" type:"string"`
 
-	// The Amazon S3 key of the deployment package.
+	// The Amazon S3 key of the deployment package. Use only with a function defined
+	// with a .zip file archive deployment package.
 	S3Key *string `min:"1" type:"string"`
 
 	// For versioned objects, the version of the deployment package object to use.
 	S3ObjectVersion *string `min:"1" type:"string"`
 
 	// The base64-encoded contents of the deployment package. Amazon Web Services
-	// SDK and Amazon Web Services CLI clients handle the encoding for you.
+	// SDK and Amazon Web Services CLI clients handle the encoding for you. Use
+	// only with a function defined with a .zip file archive deployment package.
 	//
 	// ZipFile is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateFunctionCodeInput's
@@ -18815,6 +18831,9 @@ const (
 	// RuntimeDotnetcore31 is a Runtime enum value
 	RuntimeDotnetcore31 = "dotnetcore3.1"
 
+	// RuntimeDotnet6 is a Runtime enum value
+	RuntimeDotnet6 = "dotnet6"
+
 	// RuntimeNodejs43Edge is a Runtime enum value
 	RuntimeNodejs43Edge = "nodejs4.3-edge"
 
@@ -18856,6 +18875,7 @@ func Runtime_Values() []string {
 		RuntimeDotnetcore20,
 		RuntimeDotnetcore21,
 		RuntimeDotnetcore31,
+		RuntimeDotnet6,
 		RuntimeNodejs43Edge,
 		RuntimeGo1X,
 		RuntimeRuby25,
