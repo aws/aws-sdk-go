@@ -5332,6 +5332,12 @@ const (
 
 	// BlockTypeSelectionElement is a BlockType enum value
 	BlockTypeSelectionElement = "SELECTION_ELEMENT"
+
+	// BlockTypeMergedCell is a BlockType enum value
+	BlockTypeMergedCell = "MERGED_CELL"
+
+	// BlockTypeTitle is a BlockType enum value
+	BlockTypeTitle = "TITLE"
 )
 
 // BlockType_Values returns all elements of the BlockType enum
@@ -5344,6 +5350,8 @@ func BlockType_Values() []string {
 		BlockTypeTable,
 		BlockTypeCell,
 		BlockTypeSelectionElement,
+		BlockTypeMergedCell,
+		BlockTypeTitle,
 	}
 }
 
@@ -5369,6 +5377,9 @@ const (
 
 	// EntityTypeValue is a EntityType enum value
 	EntityTypeValue = "VALUE"
+
+	// EntityTypeColumnHeader is a EntityType enum value
+	EntityTypeColumnHeader = "COLUMN_HEADER"
 )
 
 // EntityType_Values returns all elements of the EntityType enum
@@ -5376,6 +5387,7 @@ func EntityType_Values() []string {
 	return []string{
 		EntityTypeKey,
 		EntityTypeValue,
+		EntityTypeColumnHeader,
 	}
 }
 
@@ -5428,6 +5440,12 @@ const (
 
 	// RelationshipTypeComplexFeatures is a RelationshipType enum value
 	RelationshipTypeComplexFeatures = "COMPLEX_FEATURES"
+
+	// RelationshipTypeMergedCell is a RelationshipType enum value
+	RelationshipTypeMergedCell = "MERGED_CELL"
+
+	// RelationshipTypeTitle is a RelationshipType enum value
+	RelationshipTypeTitle = "TITLE"
 )
 
 // RelationshipType_Values returns all elements of the RelationshipType enum
@@ -5436,6 +5454,8 @@ func RelationshipType_Values() []string {
 		RelationshipTypeValue,
 		RelationshipTypeChild,
 		RelationshipTypeComplexFeatures,
+		RelationshipTypeMergedCell,
+		RelationshipTypeTitle,
 	}
 }
 
