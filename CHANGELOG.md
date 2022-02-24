@@ -1,3 +1,22 @@
+Release v1.43.6 (2022-02-24)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API, documentation, and examples
+  * You can now hibernate instances in a warm pool to stop instances without deleting their RAM contents. You can now also return instances to the warm pool on scale in, instead of always terminating capacity that you will need later.
+* `service/databrew`: Updates service API and documentation
+* `service/fms`: Updates service API and documentation
+* `service/lightsail`: Updates service API and documentation
+  * This release adds support to delete and create Lightsail default key pairs that you can use with Lightsail instances.
+* `service/route53`: Updates service documentation
+  * SDK doc update for Route 53 to update some parameters with new information.
+* `service/s3`: Updates service examples
+  * This release adds support for new integrity checking capabilities in Amazon S3. You can choose from four supported checksum algorithms for data integrity checking on your upload and download requests. In addition, AWS SDK can automatically calculate a checksum as it streams data into S3
+* `service/s3control`: Updates service API and documentation
+  * Amazon S3 Batch Operations adds support for new integrity checking capabilities in Amazon S3.
+* `service/transfer`: Updates service paginators
+  * Support automatic pagination when listing AWS Transfer Family resources.
+
 Release v1.43.5 (2022-02-23)
 ===
 

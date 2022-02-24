@@ -335,6 +335,7 @@ func (a *API) renameExportable() {
 					member.LocationName = mName
 				}
 			}
+			member.OriginalMemberName = mName
 
 			if newName == "_" {
 				panic("Shape " + s.ShapeName + " uses reserved member name '_'")

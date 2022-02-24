@@ -38,6 +38,33 @@ var s3managerUploadInputTmpl = template.Must(
 	template.New("s3managerUploadInputTmpl").
 		Funcs(template.FuncMap{
 			"GetDeprecatedMsg": getDeprecatedMessage,
+			"GetDocstring": func(parent *Shape, memberName string, ref *ShapeRef) string {
+				doc := ref.Docstring()
+				if ref.Deprecated {
+					doc = AppendDocstring(doc, fmt.Sprintf(`
+					Deprecated: %s
+					`, getDeprecatedMessage(ref.DeprecatedMsg, memberName)))
+				}
+				if parent.WillRefBeBase64Encoded(memberName) {
+					doc = AppendDocstring(doc, fmt.Sprintf(`
+					%s is automatically base64 encoded/decoded by the SDK.
+					`, memberName))
+				}
+				if parent.IsRequired(memberName) {
+					doc = AppendDocstring(doc, fmt.Sprintf(`
+					%s is a required field
+					`, memberName))
+				}
+				if memberName == "ContentMD5" {
+					doc = AppendDocstring(doc, fmt.Sprintf(`
+					If the ContentMD5 is provided for a multipart upload, it
+					will be ignored. Objects that will be uploaded in a single
+					part, the ContentMD5 will be used.
+					`))
+				}
+
+				return doc
+			},
 		}).
 		Parse(s3managerUploadInputTmplDef),
 )
@@ -47,6 +74,14 @@ const s3managerUploadInputTmplDef = `
 // to an object in an Amazon S3 bucket. This type is similar to the s3
 // package's PutObjectInput with the exception that the Body member is an
 // io.Reader instead of an io.ReadSeeker.
+//
+// The ContentMD5 member for pre-computed MD5 checksums will be ignored for
+// multipart uploads. Objects that will be uploaded in a single part, the
+// ContentMD5 will be used.
+//
+// The Checksum members for pre-computed checksums will be ignored for
+// multipart uploads. Objects that will be uploaded in a single part, will
+// include the checksum member in the request.
 type UploadInput struct {
 	_ struct{} {{ .GoTags true false }}
 
@@ -57,29 +92,12 @@ type UploadInput struct {
 		{{ else if eq $name "ContentLength" }}
 			{{/* S3 Upload Manager does not use modeled content length */}}
 		{{ else }}
-			{{ $isBlob := $.WillRefBeBase64Encoded $name -}}
 			{{ $isRequired := $.IsRequired $name -}}
-			{{ $doc := $ref.Docstring -}}
+			{{ $doc := GetDocstring $ $name $ref -}}
 
 			{{ if $doc -}}
 				{{ $doc }}
-				{{ if $ref.Deprecated -}}
-				//
-				// Deprecated: {{ GetDeprecatedMsg $ref.DeprecatedMsg $name }}
-				{{ end -}}
-			{{ end -}}
-			{{ if $isBlob -}}
-				{{ if $doc -}}
-					//
-				{{ end -}}
-				// {{ $name }} is automatically base64 encoded/decoded by the SDK.
-			{{ end -}}
-			{{ if $isRequired -}}
-				{{ if or $doc $isBlob -}}
-					//
-				{{ end -}}
-				// {{ $name }} is a required field
-			{{ end -}}
+			{{- end }}
 			{{ $name }} {{ $.GoStructType $name $ref }} {{ $ref.GoTags false $isRequired }}
 		{{ end }}
 	{{ end }}

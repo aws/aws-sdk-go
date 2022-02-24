@@ -3338,6 +3338,9 @@ func (s *AwsVPCSecurityGroupViolation) SetViolationTargetDescription(v string) *
 type ComplianceViolator struct {
 	_ struct{} `type:"structure"`
 
+	// Metadata about the resource that doesn't comply with the policy scope.
+	Metadata map[string]*string `type:"map"`
+
 	// The resource ID.
 	ResourceId *string `min:"1" type:"string"`
 
@@ -3367,6 +3370,12 @@ func (s ComplianceViolator) String() string {
 // value will be replaced with "sensitive".
 func (s ComplianceViolator) GoString() string {
 	return s.String()
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *ComplianceViolator) SetMetadata(v map[string]*string) *ComplianceViolator {
+	s.Metadata = v
+	return s
 }
 
 // SetResourceId sets the ResourceId field's value.
@@ -4488,6 +4497,121 @@ func (s *ExpectedRoute) SetPrefixListId(v string) *ExpectedRoute {
 // SetRouteTableId sets the RouteTableId field's value.
 func (s *ExpectedRoute) SetRouteTableId(v string) *ExpectedRoute {
 	s.RouteTableId = &v
+	return s
+}
+
+// Contains information about the actions that you can take to remediate scope
+// violations caused by your policy's FirewallCreationConfig. FirewallCreationConfig
+// is an optional configuration that you can use to choose which Availability
+// Zones Firewall Manager creates Network Firewall endpoints in.
+type FMSPolicyUpdateFirewallCreationConfigAction struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the remedial action.
+	Description *string `type:"string"`
+
+	// A FirewallCreationConfig that you can copy into your current policy's SecurityServiceData
+	// (https://docs.aws.amazon.com/fms/2018-01-01/APIReference/API_SecurityServicePolicyData.html)
+	// in order to remedy scope violations.
+	FirewallCreationConfig *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FMSPolicyUpdateFirewallCreationConfigAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FMSPolicyUpdateFirewallCreationConfigAction) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *FMSPolicyUpdateFirewallCreationConfigAction) SetDescription(v string) *FMSPolicyUpdateFirewallCreationConfigAction {
+	s.Description = &v
+	return s
+}
+
+// SetFirewallCreationConfig sets the FirewallCreationConfig field's value.
+func (s *FMSPolicyUpdateFirewallCreationConfigAction) SetFirewallCreationConfig(v string) *FMSPolicyUpdateFirewallCreationConfigAction {
+	s.FirewallCreationConfig = &v
+	return s
+}
+
+// Contains details about the firewall subnet that violates the policy scope.
+type FirewallSubnetIsOutOfScopeViolation struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the firewall subnet that violates the policy scope.
+	FirewallSubnetId *string `min:"1" type:"string"`
+
+	// The Availability Zone of the firewall subnet that violates the policy scope.
+	SubnetAvailabilityZone *string `type:"string"`
+
+	// The Availability Zone ID of the firewall subnet that violates the policy
+	// scope.
+	SubnetAvailabilityZoneId *string `type:"string"`
+
+	// The VPC endpoint ID of the firewall subnet that violates the policy scope.
+	VpcEndpointId *string `min:"1" type:"string"`
+
+	// The VPC ID of the firewall subnet that violates the policy scope.
+	VpcId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FirewallSubnetIsOutOfScopeViolation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FirewallSubnetIsOutOfScopeViolation) GoString() string {
+	return s.String()
+}
+
+// SetFirewallSubnetId sets the FirewallSubnetId field's value.
+func (s *FirewallSubnetIsOutOfScopeViolation) SetFirewallSubnetId(v string) *FirewallSubnetIsOutOfScopeViolation {
+	s.FirewallSubnetId = &v
+	return s
+}
+
+// SetSubnetAvailabilityZone sets the SubnetAvailabilityZone field's value.
+func (s *FirewallSubnetIsOutOfScopeViolation) SetSubnetAvailabilityZone(v string) *FirewallSubnetIsOutOfScopeViolation {
+	s.SubnetAvailabilityZone = &v
+	return s
+}
+
+// SetSubnetAvailabilityZoneId sets the SubnetAvailabilityZoneId field's value.
+func (s *FirewallSubnetIsOutOfScopeViolation) SetSubnetAvailabilityZoneId(v string) *FirewallSubnetIsOutOfScopeViolation {
+	s.SubnetAvailabilityZoneId = &v
+	return s
+}
+
+// SetVpcEndpointId sets the VpcEndpointId field's value.
+func (s *FirewallSubnetIsOutOfScopeViolation) SetVpcEndpointId(v string) *FirewallSubnetIsOutOfScopeViolation {
+	s.VpcEndpointId = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *FirewallSubnetIsOutOfScopeViolation) SetVpcId(v string) *FirewallSubnetIsOutOfScopeViolation {
+	s.VpcId = &v
 	return s
 }
 
@@ -6964,6 +7088,43 @@ func (s *NetworkFirewallMissingSubnetViolation) SetViolationTarget(v string) *Ne
 	return s
 }
 
+// Configures the firewall policy deployment model of Network Firewall. For
+// information about Network Firewall deployment models, see Network Firewall
+// example architectures with routing (https://docs.aws.amazon.com/network-firewall/latest/developerguide/architectures.html)
+// in the Network Firewall Developer Guide.
+type NetworkFirewallPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the deployment model to use for the firewall policy. To use a distributed
+	// model, set PolicyOption (https://docs.aws.amazon.com/fms/2018-01-01/APIReference/API_PolicyOption.html)
+	// to NULL.
+	FirewallDeploymentModel *string `type:"string" enum:"FirewallDeploymentModel"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkFirewallPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkFirewallPolicy) GoString() string {
+	return s.String()
+}
+
+// SetFirewallDeploymentModel sets the FirewallDeploymentModel field's value.
+func (s *NetworkFirewallPolicy) SetFirewallDeploymentModel(v string) *NetworkFirewallPolicy {
+	s.FirewallDeploymentModel = &v
+	return s
+}
+
 // The definition of the Network Firewall firewall policy.
 type NetworkFirewallPolicyDescription struct {
 	_ struct{} `type:"structure"`
@@ -7299,12 +7460,18 @@ type Policy struct {
 	//    * Specify accounts and OUs together in a single map, separated with a
 	//    comma. For example, the following is a valid map: {“ACCOUNT” : [“accountID1”,
 	//    “accountID2”], “ORG_UNIT” : [“ouid111”, “ouid112”]}.
+	//
+	// This option isn't available for the centralized deployment model when creating
+	// policies to configure Network Firewall.
 	ExcludeMap map[string][]*string `type:"map"`
 
 	// If set to True, resources with the tags that are specified in the ResourceTag
 	// array are not in scope of the policy. If set to False, and the ResourceTag
 	// array is not null, only resources with the specified tags are in scope of
 	// the policy.
+	//
+	// This option isn't available for the centralized deployment model when creating
+	// policies to configure Network Firewall.
 	//
 	// ExcludeResourceTags is a required field
 	ExcludeResourceTags *bool `type:"boolean" required:"true"`
@@ -7331,6 +7498,9 @@ type Policy struct {
 	//    * Specify accounts and OUs together in a single map, separated with a
 	//    comma. For example, the following is a valid map: {“ACCOUNT” : [“accountID1”,
 	//    “accountID2”], “ORG_UNIT” : [“ouid111”, “ouid112”]}.
+	//
+	// This option isn't available for the centralized deployment model when creating
+	// policies to configure Network Firewall.
 	IncludeMap map[string][]*string `type:"map"`
 
 	// The ID of the Firewall Manager policy.
@@ -7702,6 +7872,39 @@ func (s *PolicyComplianceStatus) SetPolicyName(v string) *PolicyComplianceStatus
 // SetPolicyOwner sets the PolicyOwner field's value.
 func (s *PolicyComplianceStatus) SetPolicyOwner(v string) *PolicyComplianceStatus {
 	s.PolicyOwner = &v
+	return s
+}
+
+// Contains the Network Firewall firewall policy options to configure a centralized
+// deployment model.
+type PolicyOption struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the deployment model to use for the firewall policy.
+	NetworkFirewallPolicy *NetworkFirewallPolicy `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PolicyOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PolicyOption) GoString() string {
+	return s.String()
+}
+
+// SetNetworkFirewallPolicy sets the NetworkFirewallPolicy field's value.
+func (s *PolicyOption) SetNetworkFirewallPolicy(v *NetworkFirewallPolicy) *PolicyOption {
+	s.NetworkFirewallPolicy = v
 	return s
 }
 
@@ -8529,6 +8732,9 @@ type RemediationAction struct {
 	// Information about the ReplaceRouteTableAssociation action in the Amazon EC2
 	// API.
 	EC2ReplaceRouteTableAssociationAction *EC2ReplaceRouteTableAssociationAction `type:"structure"`
+
+	// The remedial action to take when updating a firewall configuration.
+	FMSPolicyUpdateFirewallCreationConfigAction *FMSPolicyUpdateFirewallCreationConfigAction `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8594,6 +8800,12 @@ func (s *RemediationAction) SetEC2ReplaceRouteAction(v *EC2ReplaceRouteAction) *
 // SetEC2ReplaceRouteTableAssociationAction sets the EC2ReplaceRouteTableAssociationAction field's value.
 func (s *RemediationAction) SetEC2ReplaceRouteTableAssociationAction(v *EC2ReplaceRouteTableAssociationAction) *RemediationAction {
 	s.EC2ReplaceRouteTableAssociationAction = v
+	return s
+}
+
+// SetFMSPolicyUpdateFirewallCreationConfigAction sets the FMSPolicyUpdateFirewallCreationConfigAction field's value.
+func (s *RemediationAction) SetFMSPolicyUpdateFirewallCreationConfigAction(v *FMSPolicyUpdateFirewallCreationConfigAction) *RemediationAction {
+	s.FMSPolicyUpdateFirewallCreationConfigAction = v
 	return s
 }
 
@@ -8796,6 +9008,9 @@ type ResourceViolation struct {
 	// as a rule group that's already associated.
 	DnsRuleGroupPriorityConflictViolation *DnsRuleGroupPriorityConflictViolation `type:"structure"`
 
+	// Contains details about the firewall subnet that violates the policy scope.
+	FirewallSubnetIsOutOfScopeViolation *FirewallSubnetIsOutOfScopeViolation `type:"structure"`
+
 	// Violation detail for an internet gateway route with an inactive state in
 	// the customer subnet route table or Network Firewall subnet route table.
 	NetworkFirewallBlackHoleRouteDetectedViolation *NetworkFirewallBlackHoleRouteDetectedViolation `type:"structure"`
@@ -8837,6 +9052,9 @@ type ResourceViolation struct {
 	// A list of possible remediation action lists. Each individual possible remediation
 	// action is a list of individual remediation actions.
 	PossibleRemediationActions *PossibleRemediationActions `type:"structure"`
+
+	// Contains details about the route endpoint that violates the policy scope.
+	RouteHasOutOfScopeEndpointViolation *RouteHasOutOfScopeEndpointViolation `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8890,6 +9108,12 @@ func (s *ResourceViolation) SetDnsRuleGroupLimitExceededViolation(v *DnsRuleGrou
 // SetDnsRuleGroupPriorityConflictViolation sets the DnsRuleGroupPriorityConflictViolation field's value.
 func (s *ResourceViolation) SetDnsRuleGroupPriorityConflictViolation(v *DnsRuleGroupPriorityConflictViolation) *ResourceViolation {
 	s.DnsRuleGroupPriorityConflictViolation = v
+	return s
+}
+
+// SetFirewallSubnetIsOutOfScopeViolation sets the FirewallSubnetIsOutOfScopeViolation field's value.
+func (s *ResourceViolation) SetFirewallSubnetIsOutOfScopeViolation(v *FirewallSubnetIsOutOfScopeViolation) *ResourceViolation {
+	s.FirewallSubnetIsOutOfScopeViolation = v
 	return s
 }
 
@@ -8959,6 +9183,12 @@ func (s *ResourceViolation) SetPossibleRemediationActions(v *PossibleRemediation
 	return s
 }
 
+// SetRouteHasOutOfScopeEndpointViolation sets the RouteHasOutOfScopeEndpointViolation field's value.
+func (s *ResourceViolation) SetRouteHasOutOfScopeEndpointViolation(v *RouteHasOutOfScopeEndpointViolation) *ResourceViolation {
+	s.RouteHasOutOfScopeEndpointViolation = v
+	return s
+}
+
 // Describes a route in a route table.
 type Route struct {
 	_ struct{} `type:"structure"`
@@ -9015,6 +9245,137 @@ func (s *Route) SetTarget(v string) *Route {
 // SetTargetType sets the TargetType field's value.
 func (s *Route) SetTargetType(v string) *Route {
 	s.TargetType = &v
+	return s
+}
+
+// Contains details about the route endpoint that violates the policy scope.
+type RouteHasOutOfScopeEndpointViolation struct {
+	_ struct{} `type:"structure"`
+
+	// The route table associated with the current firewall subnet.
+	CurrentFirewallSubnetRouteTable *string `min:"1" type:"string"`
+
+	// The current route table associated with the Internet Gateway.
+	CurrentInternetGatewayRouteTable *string `min:"1" type:"string"`
+
+	// The ID of the firewall subnet.
+	FirewallSubnetId *string `min:"1" type:"string"`
+
+	// The list of firewall subnet routes.
+	FirewallSubnetRoutes []*Route `type:"list"`
+
+	// The ID of the Internet Gateway.
+	InternetGatewayId *string `min:"1" type:"string"`
+
+	// The routes in the route table associated with the Internet Gateway.
+	InternetGatewayRoutes []*Route `type:"list"`
+
+	// The ID of the route table.
+	RouteTableId *string `min:"1" type:"string"`
+
+	// The subnet's Availability Zone.
+	SubnetAvailabilityZone *string `type:"string"`
+
+	// The ID of the subnet's Availability Zone.
+	SubnetAvailabilityZoneId *string `type:"string"`
+
+	// The ID of the subnet associated with the route that violates the policy scope.
+	SubnetId *string `min:"1" type:"string"`
+
+	// The list of routes that violate the route table.
+	ViolatingRoutes []*Route `type:"list"`
+
+	// The VPC ID of the route that violates the policy scope.
+	VpcId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteHasOutOfScopeEndpointViolation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteHasOutOfScopeEndpointViolation) GoString() string {
+	return s.String()
+}
+
+// SetCurrentFirewallSubnetRouteTable sets the CurrentFirewallSubnetRouteTable field's value.
+func (s *RouteHasOutOfScopeEndpointViolation) SetCurrentFirewallSubnetRouteTable(v string) *RouteHasOutOfScopeEndpointViolation {
+	s.CurrentFirewallSubnetRouteTable = &v
+	return s
+}
+
+// SetCurrentInternetGatewayRouteTable sets the CurrentInternetGatewayRouteTable field's value.
+func (s *RouteHasOutOfScopeEndpointViolation) SetCurrentInternetGatewayRouteTable(v string) *RouteHasOutOfScopeEndpointViolation {
+	s.CurrentInternetGatewayRouteTable = &v
+	return s
+}
+
+// SetFirewallSubnetId sets the FirewallSubnetId field's value.
+func (s *RouteHasOutOfScopeEndpointViolation) SetFirewallSubnetId(v string) *RouteHasOutOfScopeEndpointViolation {
+	s.FirewallSubnetId = &v
+	return s
+}
+
+// SetFirewallSubnetRoutes sets the FirewallSubnetRoutes field's value.
+func (s *RouteHasOutOfScopeEndpointViolation) SetFirewallSubnetRoutes(v []*Route) *RouteHasOutOfScopeEndpointViolation {
+	s.FirewallSubnetRoutes = v
+	return s
+}
+
+// SetInternetGatewayId sets the InternetGatewayId field's value.
+func (s *RouteHasOutOfScopeEndpointViolation) SetInternetGatewayId(v string) *RouteHasOutOfScopeEndpointViolation {
+	s.InternetGatewayId = &v
+	return s
+}
+
+// SetInternetGatewayRoutes sets the InternetGatewayRoutes field's value.
+func (s *RouteHasOutOfScopeEndpointViolation) SetInternetGatewayRoutes(v []*Route) *RouteHasOutOfScopeEndpointViolation {
+	s.InternetGatewayRoutes = v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *RouteHasOutOfScopeEndpointViolation) SetRouteTableId(v string) *RouteHasOutOfScopeEndpointViolation {
+	s.RouteTableId = &v
+	return s
+}
+
+// SetSubnetAvailabilityZone sets the SubnetAvailabilityZone field's value.
+func (s *RouteHasOutOfScopeEndpointViolation) SetSubnetAvailabilityZone(v string) *RouteHasOutOfScopeEndpointViolation {
+	s.SubnetAvailabilityZone = &v
+	return s
+}
+
+// SetSubnetAvailabilityZoneId sets the SubnetAvailabilityZoneId field's value.
+func (s *RouteHasOutOfScopeEndpointViolation) SetSubnetAvailabilityZoneId(v string) *RouteHasOutOfScopeEndpointViolation {
+	s.SubnetAvailabilityZoneId = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *RouteHasOutOfScopeEndpointViolation) SetSubnetId(v string) *RouteHasOutOfScopeEndpointViolation {
+	s.SubnetId = &v
+	return s
+}
+
+// SetViolatingRoutes sets the ViolatingRoutes field's value.
+func (s *RouteHasOutOfScopeEndpointViolation) SetViolatingRoutes(v []*Route) *RouteHasOutOfScopeEndpointViolation {
+	s.ViolatingRoutes = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *RouteHasOutOfScopeEndpointViolation) SetVpcId(v string) *RouteHasOutOfScopeEndpointViolation {
+	s.VpcId = &v
 	return s
 }
 
@@ -9168,8 +9529,95 @@ type SecurityServicePolicyData struct {
 	//    Valid values for preProcessRuleGroups are between 1 and 99. Valid values
 	//    for postProcessRuleGroups are between 9901 and 10000.
 	//
-	//    * Example: NETWORK_FIREWALL "{\"type\":\"NETWORK_FIREWALL\",\"networkFirewallStatelessRuleGroupReferences\":[{\"resourceARN\":\"arn:aws:network-firewall:us-west-1:1234567891011:stateless-rulegroup/rulegroup2\",\"priority\":10}],\"networkFirewallStatelessDefaultActions\":[\"aws:pass\",\"custom1\"],\"networkFirewallStatelessFragmentDefaultActions\":[\"custom2\",\"aws:pass\"],\"networkFirewallStatelessCustomActions\":[{\"actionName\":\"custom1\",\"actionDefinition\":{\"publishMetricAction\":{\"dimensions\":[{\"value\":\"dimension1\"}]}}},{\"actionName\":\"custom2\",\"actionDefinition\":{\"publishMetricAction\":{\"dimensions\":[{\"value\":\"dimension2\"}]}}}],\"networkFirewallStatefulRuleGroupReferences\":[{\"resourceARN\":\"arn:aws:network-firewall:us-west-1:1234567891011:stateful-rulegroup/rulegroup1\"}],\"networkFirewallOrchestrationConfig\":{\"singleFirewallEndpointPerVPC\":true,\"allowedIPV4CidrList\":[\"10.24.34.0/28\"]}
-	//    }"
+	//    * Example: NETWORK_FIREWALL - Centralized deployment model. "{\"type\":\"NETWORK_FIREWALL\",\"awsNetworkFirewallConfig\":{\"networkFirewallStatelessRuleGroupReferences\":[{\"resourceARN\":\"arn:aws:network-firewall:us-east-1:123456789011:stateless-rulegroup/test\",\"priority\":1}],\"networkFirewallStatelessDefaultActions\":[\"aws:forward_to_sfe\",\"customActionName\"],\"networkFirewallStatelessFragmentDefaultActions\":[\"aws:forward_to_sfe\",\"customActionName\"],\"networkFirewallStatelessCustomActions\":[{\"actionName\":\"customActionName\",\"actionDefinition\":{\"publishMetricAction\":{\"dimensions\":[{\"value\":\"metricdimensionvalue\"}]}}}],\"networkFirewallStatefulRuleGroupReferences\":[{\"resourceARN\":\"arn:aws:network-firewall:us-east-1:123456789011:stateful-rulegroup/test\"}],\"networkFirewallLoggingConfiguration\":{\"logDestinationConfigs\":[{\"logDestinationType\":\"S3\",\"logType\":\"ALERT\",\"logDestination\":{\"bucketName\":\"s3-bucket-name\"}},{\"logDestinationType\":\"S3\",\"logType\":\"FLOW\",\"logDestination\":{\"bucketName\":\"s3-bucket-name\"}}],\"overrideExistingConfig\":true}},\"firewallDeploymentModel\":{\"centralizedFirewallDeploymentModel\":{\"centralizedFirewallOrchestrationConfig\":{\"inspectionVpcIds\":[{\"resourceId\":\"vpc-1234\",\"accountId\":\"123456789011\"}],\"firewallCreationConfig\":{\"endpointLocation\":{\"availabilityZoneConfigList\":[{\"availabilityZoneId\":null,\"availabilityZoneName\":\"us-east-1a\",\"allowedIPV4CidrList\":[\"10.0.0.0/28\"]}]}},\"allowedIPV4CidrList\":[]}}}}"
+	//    To use the centralized deployment model, you must set PolicyOption (https://docs.aws.amazon.com/fms/2018-01-01/APIReference/API_PolicyOption.html)
+	//    to CENTRALIZED.
+	//
+	//    * Example: NETWORK_FIREWALL - Distributed deployment model with automatic
+	//    Availability Zone configuration. With automatic Availbility Zone configuration,
+	//    Firewall Manager chooses which Availability Zones to create the endpoints
+	//    in. "{ \"type\": \"NETWORK_FIREWALL\", \"networkFirewallStatelessRuleGroupReferences\":
+	//    [ { \"resourceARN\": \"arn:aws:network-firewall:us-east-1:123456789011:stateless-rulegroup/test\",
+	//    \"priority\": 1 } ], \"networkFirewallStatelessDefaultActions\": [ \"aws:forward_to_sfe\",
+	//    \"customActionName\" ], \"networkFirewallStatelessFragmentDefaultActions\":
+	//    [ \"aws:forward_to_sfe\", \"customActionName\" ], \"networkFirewallStatelessCustomActions\":
+	//    [ { \"actionName\": \"customActionName\", \"actionDefinition\": { \"publishMetricAction\":
+	//    { \"dimensions\": [ { \"value\": \"metricdimensionvalue\" } ] } } } ],
+	//    \"networkFirewallStatefulRuleGroupReferences\": [ { \"resourceARN\": \"arn:aws:network-firewall:us-east-1:123456789011:stateful-rulegroup/test\"
+	//    } ], \"networkFirewallOrchestrationConfig\": { \"singleFirewallEndpointPerVPC\":
+	//    false, \"allowedIPV4CidrList\": [ \"10.0.0.0/28\", \"192.168.0.0/28\"
+	//    ], \"routeManagementAction\": \"OFF\" }, \"networkFirewallLoggingConfiguration\":
+	//    { \"logDestinationConfigs\": [ { \"logDestinationType\": \"S3\", \"logType\":
+	//    \"ALERT\", \"logDestination\": { \"bucketName\": \"s3-bucket-name\" }
+	//    }, { \"logDestinationType\": \"S3\", \"logType\": \"FLOW\", \"logDestination\":
+	//    { \"bucketName\": \"s3-bucket-name\" } } ], \"overrideExistingConfig\":
+	//    true } }" To use the distributed deployment model, you must set PolicyOption
+	//    (https://docs.aws.amazon.com/fms/2018-01-01/APIReference/API_PolicyOption.html)
+	//    to NULL.
+	//
+	//    * Example: NETWORK_FIREWALL - Distributed deployment model with automatic
+	//    Availability Zone configuration, and route management. "{ \"type\": \"NETWORK_FIREWALL\",
+	//    \"networkFirewallStatelessRuleGroupReferences\": [ { \"resourceARN\":
+	//    \"arn:aws:network-firewall:us-east-1:123456789011:stateless-rulegroup/test\",
+	//    \"priority\": 1 } ], \"networkFirewallStatelessDefaultActions\": [ \"aws:forward_to_sfe\",
+	//    \"customActionName\" ], \"networkFirewallStatelessFragmentDefaultActions\":
+	//    [ \"aws:forward_to_sfe\", \"customActionName\" ], \"networkFirewallStatelessCustomActions\":
+	//    [ { \"actionName\": \"customActionName\", \"actionDefinition\": { \"publishMetricAction\":
+	//    { \"dimensions\": [ { \"value\": \"metricdimensionvalue\" } ] } } } ],
+	//    \"networkFirewallStatefulRuleGroupReferences\": [ { \"resourceARN\": \"arn:aws:network-firewall:us-east-1:123456789011:stateful-rulegroup/test\"
+	//    } ], \"networkFirewallOrchestrationConfig\": { \"singleFirewallEndpointPerVPC\":
+	//    false, \"allowedIPV4CidrList\": [ \"10.0.0.0/28\", \"192.168.0.0/28\"
+	//    ], \"routeManagementAction\": \"MONITOR\", \"routeManagementTargetTypes\":
+	//    [ \"InternetGateway\" ] }, \"networkFirewallLoggingConfiguration\": {
+	//    \"logDestinationConfigs\": [ { \"logDestinationType\": \"S3\", \"logType\":
+	//    \"ALERT\", \"logDestination\": { \"bucketName\": \"s3-bucket-name\" }
+	//    }, { \"logDestinationType\": \"S3\", \"logType\": \"FLOW\", \"logDestination\":
+	//    { \"bucketName\": \"s3-bucket-name\" } } ], \"overrideExistingConfig\":
+	//    true } }"
+	//
+	//    * Example: NETWORK_FIREWALL - Distributed deployment model with custom
+	//    Availability Zone configuration. With custom Availability Zone configuration,
+	//    you define which specific Availability Zones to create endpoints in by
+	//    configuring firewallCreationConfig. "{ \"type\":\"NETWORK_FIREWALL\",\"networkFirewallStatelessRuleGroupReferences\":[{\"resourceARN\":\"arn:aws:network-firewall:us-east-1:123456789011:stateless-rulegroup/test\",\"priority\":1}],
+	//    \"networkFirewallStatelessDefaultActions\":[ \"aws:forward_to_sfe\", \"customActionName\"
+	//    ], \"networkFirewallStatelessFragmentDefaultActions\":[ \"aws:forward_to_sfe\",
+	//    \"fragmentcustomactionname\" ], \"networkFirewallStatelessCustomActions\":[
+	//    { \"actionName\":\"customActionName\", \"actionDefinition\":{ \"publishMetricAction\":{
+	//    \"dimensions\":[ { \"value\":\"metricdimensionvalue\" } ] } } }, { \"actionName\":\"fragmentcustomactionname\",
+	//    \"actionDefinition\":{ \"publishMetricAction\":{ \"dimensions\":[ { \"value\":\"fragmentmetricdimensionvalue\"
+	//    } ] } } } ], \"networkFirewallStatefulRuleGroupReferences\":[ { \"resourceARN\":\"arn:aws:network-firewall:us-east-1:123456789011:stateful-rulegroup/test\"
+	//    } ], \"networkFirewallOrchestrationConfig\":{ \"firewallCreationConfig\":{
+	//    \"endpointLocation\":{ \"availabilityZoneConfigList\":[ { \"availabilityZoneId\":null,
+	//    \"availabilityZoneName\":\"us-east-1a\", \"allowedIPV4CidrList\":[ \"10.0.0.0/28\"
+	//    ] }, { ¯\"availabilityZoneId\":null, \"availabilityZoneName\":\"us-east-1b\",
+	//    \"allowedIPV4CidrList\":[ \"10.0.0.0/28\" ] } ] } }, \"singleFirewallEndpointPerVPC\":false,
+	//    \"allowedIPV4CidrList\":null, \"routeManagementAction\":\"OFF\", \"networkFirewallLoggingConfiguration\":{
+	//    \"logDestinationConfigs\":[ { \"logDestinationType\":\"S3\", \"logType\":\"ALERT\",
+	//    \"logDestination\":{ \"bucketName\":\"s3-bucket-name\" } }, { \"logDestinationType\":\"S3\",
+	//    \"logType\":\"FLOW\", \"logDestination\":{ \"bucketName\":\"s3-bucket-name\"
+	//    } } ], \"overrideExistingConfig\":boolean } }"
+	//
+	//    * Example: NETWORK_FIREWALL - Distributed deployment model with custom
+	//    Availability Zone configuration, and route management. "{ \"type\":\"NETWORK_FIREWALL\",\"networkFirewallStatelessRuleGroupReferences\":[{\"resourceARN\":\"arn:aws:network-firewall:us-east-1:123456789011:stateless-rulegroup/test\",\"priority\":1}],
+	//    \"networkFirewallStatelessDefaultActions\":[ \"aws:forward_to_sfe\", \"customActionName\"
+	//    ], \"networkFirewallStatelessFragmentDefaultActions\":[ \"aws:forward_to_sfe\",
+	//    \"fragmentcustomactionname\" ], \"networkFirewallStatelessCustomActions\":[
+	//    { \"actionName\":\"customActionName\", \"actionDefinition\":{ \"publishMetricAction\":{
+	//    \"dimensions\":[ { \"value\":\"metricdimensionvalue\" } ] } } }, { \"actionName\":\"fragmentcustomactionname\",
+	//    \"actionDefinition\":{ \"publishMetricAction\":{ \"dimensions\":[ { \"value\":\"fragmentmetricdimensionvalue\"
+	//    } ] } } } ], \"networkFirewallStatefulRuleGroupReferences\":[ { \"resourceARN\":\"arn:aws:network-firewall:us-east-1:123456789011:stateful-rulegroup/test\"
+	//    } ], \"networkFirewallOrchestrationConfig\":{ \"firewallCreationConfig\":{
+	//    \"endpointLocation\":{ \"availabilityZoneConfigList\":[ { \"availabilityZoneId\":null,
+	//    \"availabilityZoneName\":\"us-east-1a\", \"allowedIPV4CidrList\":[ \"10.0.0.0/28\"
+	//    ] }, { ¯\"availabilityZoneId\":null, \"availabilityZoneName\":\"us-east-1b\",
+	//    \"allowedIPV4CidrList\":[ \"10.0.0.0/28\" ] } ] } }, \"singleFirewallEndpointPerVPC\":false,
+	//    \"allowedIPV4CidrList\":null, \"routeManagementAction\":\"MONITOR\", \"routeManagementTargetTypes\":[
+	//    \"InternetGateway\" ], \"routeManagementConfig\":{ \"allowCrossAZTrafficIfNoEndpoint\":true
+	//    } }, \"networkFirewallLoggingConfiguration\":{ \"logDestinationConfigs\":[
+	//    { \"logDestinationType\":\"S3\", \"logType\":\"ALERT\", \"logDestination\":{
+	//    \"bucketName\":\"s3-bucket-name\" } }, { \"logDestinationType\":\"S3\",
+	//    \"logType\":\"FLOW\", \"logDestination\":{ \"bucketName\":\"s3-bucket-name\"
+	//    } } ], \"overrideExistingConfig\":boolean } }"
 	//
 	//    * Specification for SHIELD_ADVANCED for Amazon CloudFront distributions
 	//    "{\"type\":\"SHIELD_ADVANCED\",\"automaticResponseConfiguration\": {\"automaticResponseStatus\":\"ENABLED|IGNORED|DISABLED\",
@@ -9208,6 +9656,10 @@ type SecurityServicePolicyData struct {
 	//
 	//    * Example: SECURITY_GROUPS_USAGE_AUDIT "{\"type\":\"SECURITY_GROUPS_USAGE_AUDIT\",\"deleteUnusedSecurityGroups\":true,\"coalesceRedundantSecurityGroups\":true}"
 	ManagedServiceData *string `min:"1" type:"string"`
+
+	// Contains the Network Firewall firewall policy options to configure a centralized
+	// deployment model.
+	PolicyOption *PolicyOption `type:"structure"`
 
 	// The service that the policy is using to protect the resources. This specifies
 	// the type of policy that is created, either an WAF policy, a Shield Advanced
@@ -9257,6 +9709,12 @@ func (s *SecurityServicePolicyData) Validate() error {
 // SetManagedServiceData sets the ManagedServiceData field's value.
 func (s *SecurityServicePolicyData) SetManagedServiceData(v string) *SecurityServicePolicyData {
 	s.ManagedServiceData = &v
+	return s
+}
+
+// SetPolicyOption sets the PolicyOption field's value.
+func (s *SecurityServicePolicyData) SetPolicyOption(v *PolicyOption) *SecurityServicePolicyData {
+	s.PolicyOption = v
 	return s
 }
 
@@ -9639,6 +10097,9 @@ type ViolationDetail struct {
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
 	// The ResourceTag objects associated with the resource.
+	//
+	// This option isn't available for the centralized deployment model when creating
+	// policies to configure Network Firewall.
 	ResourceTags []*Tag `type:"list"`
 
 	// The resource type that the violation details were requested for.
@@ -9797,6 +10258,18 @@ func DestinationType_Values() []string {
 		DestinationTypeIpv4,
 		DestinationTypeIpv6,
 		DestinationTypePrefixList,
+	}
+}
+
+const (
+	// FirewallDeploymentModelCentralized is a FirewallDeploymentModel enum value
+	FirewallDeploymentModelCentralized = "CENTRALIZED"
+)
+
+// FirewallDeploymentModel_Values returns all elements of the FirewallDeploymentModel enum
+func FirewallDeploymentModel_Values() []string {
+	return []string{
+		FirewallDeploymentModelCentralized,
 	}
 }
 
@@ -9995,6 +10468,12 @@ const (
 
 	// ViolationReasonResourceMissingDnsFirewall is a ViolationReason enum value
 	ViolationReasonResourceMissingDnsFirewall = "RESOURCE_MISSING_DNS_FIREWALL"
+
+	// ViolationReasonFirewallSubnetIsOutOfScope is a ViolationReason enum value
+	ViolationReasonFirewallSubnetIsOutOfScope = "FIREWALL_SUBNET_IS_OUT_OF_SCOPE"
+
+	// ViolationReasonRouteHasOutOfScopeEndpoint is a ViolationReason enum value
+	ViolationReasonRouteHasOutOfScopeEndpoint = "ROUTE_HAS_OUT_OF_SCOPE_ENDPOINT"
 )
 
 // ViolationReason_Values returns all elements of the ViolationReason enum
@@ -10025,5 +10504,7 @@ func ViolationReason_Values() []string {
 		ViolationReasonBlackHoleRouteDetected,
 		ViolationReasonBlackHoleRouteDetectedInFirewallSubnet,
 		ViolationReasonResourceMissingDnsFirewall,
+		ViolationReasonFirewallSubnetIsOutOfScope,
+		ViolationReasonRouteHasOutOfScopeEndpoint,
 	}
 }

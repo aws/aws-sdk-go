@@ -40,6 +40,11 @@ type ShapeRef struct {
 	Flattened     bool
 	Streaming     bool
 	XMLAttribute  bool
+
+	// References of struct members will include their originally modeled
+	// member name for cross references.
+	OriginalMemberName string `json:"-"`
+
 	// Ignore, if set, will not be sent over the wire
 	Ignore              bool
 	XMLNamespace        XMLInfo
@@ -77,9 +82,15 @@ type ShapeRef struct {
 
 // A Shape defines the definition of a shape type
 type Shape struct {
-	API              *API `json:"-"`
-	ShapeName        string
-	Documentation    string               `json:"-"`
+	API           *API `json:"-"`
+	ShapeName     string
+	Documentation string `json:"-"`
+
+	// References of struct members will include their originally modeled
+	// member name for cross references.
+	OriginalShapeName string `json:"-"`
+
+	// Map of exported member names to the ShapeReference.
 	MemberRefs       map[string]*ShapeRef `json:"members"`
 	MemberRef        ShapeRef             `json:"member"` // List ref
 	KeyRef           ShapeRef             `json:"key"`    // map key ref
@@ -227,6 +238,10 @@ func (s *Shape) Rename(newName string) {
 		r.ShapeName = newName
 	}
 
+	if s.OriginalShapeName == "" {
+		s.OriginalShapeName = s.ShapeName
+	}
+
 	delete(s.API.Shapes, s.ShapeName)
 	s.API.Shapes[newName] = s
 	s.ShapeName = newName
@@ -243,11 +258,23 @@ func (s *Shape) MemberNames() []string {
 	return names
 }
 
-// HasMember will return whether or not the shape has a given
-// member by name.
+// HasMember will return whether or not the shape has a given member by name.
+// Name passed in must match the SDK's exported name for the member, not the
+// modeled member name
 func (s *Shape) HasMember(name string) bool {
 	_, ok := s.MemberRefs[name]
 	return ok
+}
+
+// GetModeledMember returns the member's ShapeReference if it exists within the
+// shape. Returns nil if the member could not be found.
+func (s *Shape) GetModeledMember(name string) *ShapeRef {
+	for _, ref := range s.MemberRefs {
+		if ref.OriginalMemberName == name {
+			return ref
+		}
+	}
+	return nil
 }
 
 // GoTypeWithPkgName returns a shape's type as a string with the package name in

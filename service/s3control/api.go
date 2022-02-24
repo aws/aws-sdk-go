@@ -16870,6 +16870,11 @@ type S3CopyObjectOperation struct {
 
 	CannedAccessControlList *string `type:"string" enum:"S3CannedAccessControlList"`
 
+	// Indicates the algorithm you want Amazon S3 to use to create the checksum.
+	// For more information see Checking object integrity (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CheckingObjectIntegrity.xml)
+	// in the Amazon S3 User Guide.
+	ChecksumAlgorithm *string `type:"string" enum:"S3ChecksumAlgorithm"`
+
 	MetadataDirective *string `type:"string" enum:"S3MetadataDirective"`
 
 	ModifiedSinceConstraint *time.Time `type:"timestamp"`
@@ -16995,6 +17000,12 @@ func (s *S3CopyObjectOperation) SetBucketKeyEnabled(v bool) *S3CopyObjectOperati
 // SetCannedAccessControlList sets the CannedAccessControlList field's value.
 func (s *S3CopyObjectOperation) SetCannedAccessControlList(v string) *S3CopyObjectOperation {
 	s.CannedAccessControlList = &v
+	return s
+}
+
+// SetChecksumAlgorithm sets the ChecksumAlgorithm field's value.
+func (s *S3CopyObjectOperation) SetChecksumAlgorithm(v string) *S3CopyObjectOperation {
+	s.ChecksumAlgorithm = &v
 	return s
 }
 
@@ -19625,6 +19636,30 @@ func S3CannedAccessControlList_Values() []string {
 		S3CannedAccessControlListAuthenticatedRead,
 		S3CannedAccessControlListBucketOwnerRead,
 		S3CannedAccessControlListBucketOwnerFullControl,
+	}
+}
+
+const (
+	// S3ChecksumAlgorithmCrc32 is a S3ChecksumAlgorithm enum value
+	S3ChecksumAlgorithmCrc32 = "CRC32"
+
+	// S3ChecksumAlgorithmCrc32c is a S3ChecksumAlgorithm enum value
+	S3ChecksumAlgorithmCrc32c = "CRC32C"
+
+	// S3ChecksumAlgorithmSha1 is a S3ChecksumAlgorithm enum value
+	S3ChecksumAlgorithmSha1 = "SHA1"
+
+	// S3ChecksumAlgorithmSha256 is a S3ChecksumAlgorithm enum value
+	S3ChecksumAlgorithmSha256 = "SHA256"
+)
+
+// S3ChecksumAlgorithm_Values returns all elements of the S3ChecksumAlgorithm enum
+func S3ChecksumAlgorithm_Values() []string {
+	return []string{
+		S3ChecksumAlgorithmCrc32,
+		S3ChecksumAlgorithmCrc32c,
+		S3ChecksumAlgorithmSha1,
+		S3ChecksumAlgorithmSha256,
 	}
 }
 

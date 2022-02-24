@@ -4239,7 +4239,8 @@
       "type":"structure",
       "required":["keyPairName"],
       "members":{
-        "keyPairName":{"shape":"ResourceName"}
+        "keyPairName":{"shape":"ResourceName"},
+        "expectedFingerprint":{"shape":"string"}
       }
     },
     "DeleteKeyPairResult":{
@@ -4601,7 +4602,8 @@
       "type":"structure",
       "members":{
         "publicKeyBase64":{"shape":"Base64"},
-        "privateKeyBase64":{"shape":"Base64"}
+        "privateKeyBase64":{"shape":"Base64"},
+        "createdAt":{"shape":"IsoDate"}
       }
     },
     "EligibleToRenew":{"type":"string"},
@@ -5270,7 +5272,8 @@
     "GetKeyPairsRequest":{
       "type":"structure",
       "members":{
-        "pageToken":{"shape":"string"}
+        "pageToken":{"shape":"string"},
+        "includeDefaultKeyPair":{"shape":"boolean"}
       }
     },
     "GetKeyPairsResult":{

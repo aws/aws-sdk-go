@@ -2099,6 +2099,12 @@
         "AcceleratorTotalMemoryMiB":{"shape":"AcceleratorTotalMemoryMiBRequest"}
       }
     },
+    "InstanceReusePolicy":{
+      "type":"structure",
+      "members":{
+        "ReuseOnScaleIn":{"shape":"ReuseOnScaleIn"}
+      }
+    },
     "Instances":{
       "type":"list",
       "member":{"shape":"Instance"}
@@ -2300,7 +2306,8 @@
         "Warmed:Terminating:Proceed",
         "Warmed:Terminated",
         "Warmed:Stopped",
-        "Warmed:Running"
+        "Warmed:Running",
+        "Warmed:Hibernated"
       ]
     },
     "LifecycleTransition":{"type":"string"},
@@ -2845,7 +2852,8 @@
         "AutoScalingGroupName":{"shape":"XmlStringMaxLen255"},
         "MaxGroupPreparedCapacity":{"shape":"MaxGroupPreparedCapacity"},
         "MinSize":{"shape":"WarmPoolMinSize"},
-        "PoolState":{"shape":"WarmPoolState"}
+        "PoolState":{"shape":"WarmPoolState"},
+        "InstanceReusePolicy":{"shape":"InstanceReusePolicy"}
       }
     },
     "RecordLifecycleActionHeartbeatAnswer":{
@@ -2915,6 +2923,7 @@
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "ReturnData":{"type":"boolean"},
+    "ReuseOnScaleIn":{"type":"boolean"},
     "ScalingActivityInProgressFault":{
       "type":"structure",
       "members":{
@@ -3263,7 +3272,8 @@
         "MaxGroupPreparedCapacity":{"shape":"MaxGroupPreparedCapacity"},
         "MinSize":{"shape":"WarmPoolMinSize"},
         "PoolState":{"shape":"WarmPoolState"},
-        "Status":{"shape":"WarmPoolStatus"}
+        "Status":{"shape":"WarmPoolStatus"},
+        "InstanceReusePolicy":{"shape":"InstanceReusePolicy"}
       }
     },
     "WarmPoolMinSize":{
@@ -3275,7 +3285,8 @@
       "type":"string",
       "enum":[
         "Stopped",
-        "Running"
+        "Running",
+        "Hibernated"
       ]
     },
     "WarmPoolStatus":{

@@ -1843,6 +1843,12 @@
         "S3CopyObjectOperation$CannedAccessControlList": "<p/>"
       }
     },
+    "S3ChecksumAlgorithm": {
+      "base": null,
+      "refs": {
+        "S3CopyObjectOperation$ChecksumAlgorithm": "<p>Indicates the algorithm you want Amazon S3 to use to create the checksum. For more information see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/CheckingObjectIntegrity.xml\"> Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"
+      }
+    },
     "S3ContentLength": {
       "base": null,
       "refs": {

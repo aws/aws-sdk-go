@@ -3501,6 +3501,15 @@
         "bucket-owner-full-control"
       ]
     },
+    "S3ChecksumAlgorithm":{
+      "type":"string",
+      "enum":[
+        "CRC32",
+        "CRC32C",
+        "SHA1",
+        "SHA256"
+      ]
+    },
     "S3ContentLength":{
       "type":"long",
       "min":0
@@ -3530,7 +3539,8 @@
         "ObjectLockLegalHoldStatus":{"shape":"S3ObjectLockLegalHoldStatus"},
         "ObjectLockMode":{"shape":"S3ObjectLockMode"},
         "ObjectLockRetainUntilDate":{"shape":"TimeStamp"},
-        "BucketKeyEnabled":{"shape":"Boolean"}
+        "BucketKeyEnabled":{"shape":"Boolean"},
+        "ChecksumAlgorithm":{"shape":"S3ChecksumAlgorithm"}
       }
     },
     "S3DeleteObjectTaggingOperation":{

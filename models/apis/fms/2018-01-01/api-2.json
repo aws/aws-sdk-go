@@ -509,8 +509,14 @@
       "members":{
         "ResourceId":{"shape":"ResourceId"},
         "ViolationReason":{"shape":"ViolationReason"},
-        "ResourceType":{"shape":"ResourceType"}
+        "ResourceType":{"shape":"ResourceType"},
+        "Metadata":{"shape":"ComplianceViolatorMetadata"}
       }
+    },
+    "ComplianceViolatorMetadata":{
+      "type":"map",
+      "key":{"shape":"LengthBoundedString"},
+      "value":{"shape":"LengthBoundedString"}
     },
     "ComplianceViolators":{
       "type":"list",
@@ -732,6 +738,27 @@
     "ExpectedRoutes":{
       "type":"list",
       "member":{"shape":"ExpectedRoute"}
+    },
+    "FMSPolicyUpdateFirewallCreationConfigAction":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"LengthBoundedString"},
+        "FirewallCreationConfig":{"shape":"ManagedServiceData"}
+      }
+    },
+    "FirewallDeploymentModel":{
+      "type":"string",
+      "enum":["CENTRALIZED"]
+    },
+    "FirewallSubnetIsOutOfScopeViolation":{
+      "type":"structure",
+      "members":{
+        "FirewallSubnetId":{"shape":"ResourceId"},
+        "VpcId":{"shape":"ResourceId"},
+        "SubnetAvailabilityZone":{"shape":"LengthBoundedString"},
+        "SubnetAvailabilityZoneId":{"shape":"LengthBoundedString"},
+        "VpcEndpointId":{"shape":"ResourceId"}
+      }
     },
     "GetAdminAccountRequest":{
       "type":"structure",
@@ -1013,7 +1040,7 @@
       "type":"string",
       "max":8192,
       "min":1,
-      "pattern":".*"
+      "pattern":"^((?!\\\\[nr]).)+"
     },
     "MemberAccounts":{
       "type":"list",
@@ -1113,6 +1140,12 @@
         "VPC":{"shape":"ResourceId"},
         "AvailabilityZone":{"shape":"LengthBoundedString"},
         "TargetViolationReason":{"shape":"TargetViolationReason"}
+      }
+    },
+    "NetworkFirewallPolicy":{
+      "type":"structure",
+      "members":{
+        "FirewallDeploymentModel":{"shape":"FirewallDeploymentModel"}
       }
     },
     "NetworkFirewallPolicyDescription":{
@@ -1248,6 +1281,12 @@
       "max":36,
       "min":36,
       "pattern":"^[a-z0-9A-Z-]{36}$"
+    },
+    "PolicyOption":{
+      "type":"structure",
+      "members":{
+        "NetworkFirewallPolicy":{"shape":"NetworkFirewallPolicy"}
+      }
     },
     "PolicySummary":{
       "type":"structure",
@@ -1414,7 +1453,8 @@
         "EC2CopyRouteTableAction":{"shape":"EC2CopyRouteTableAction"},
         "EC2ReplaceRouteTableAssociationAction":{"shape":"EC2ReplaceRouteTableAssociationAction"},
         "EC2AssociateRouteTableAction":{"shape":"EC2AssociateRouteTableAction"},
-        "EC2CreateRouteTableAction":{"shape":"EC2CreateRouteTableAction"}
+        "EC2CreateRouteTableAction":{"shape":"EC2CreateRouteTableAction"},
+        "FMSPolicyUpdateFirewallCreationConfigAction":{"shape":"FMSPolicyUpdateFirewallCreationConfigAction"}
       }
     },
     "RemediationActionDescription":{
@@ -1524,7 +1564,9 @@
         "DnsRuleGroupPriorityConflictViolation":{"shape":"DnsRuleGroupPriorityConflictViolation"},
         "DnsDuplicateRuleGroupViolation":{"shape":"DnsDuplicateRuleGroupViolation"},
         "DnsRuleGroupLimitExceededViolation":{"shape":"DnsRuleGroupLimitExceededViolation"},
-        "PossibleRemediationActions":{"shape":"PossibleRemediationActions"}
+        "PossibleRemediationActions":{"shape":"PossibleRemediationActions"},
+        "FirewallSubnetIsOutOfScopeViolation":{"shape":"FirewallSubnetIsOutOfScopeViolation"},
+        "RouteHasOutOfScopeEndpointViolation":{"shape":"RouteHasOutOfScopeEndpointViolation"}
       }
     },
     "ResourceViolations":{
@@ -1538,6 +1580,23 @@
         "TargetType":{"shape":"TargetType"},
         "Destination":{"shape":"LengthBoundedString"},
         "Target":{"shape":"LengthBoundedString"}
+      }
+    },
+    "RouteHasOutOfScopeEndpointViolation":{
+      "type":"structure",
+      "members":{
+        "SubnetId":{"shape":"ResourceId"},
+        "VpcId":{"shape":"ResourceId"},
+        "RouteTableId":{"shape":"ResourceId"},
+        "ViolatingRoutes":{"shape":"Routes"},
+        "SubnetAvailabilityZone":{"shape":"LengthBoundedString"},
+        "SubnetAvailabilityZoneId":{"shape":"LengthBoundedString"},
+        "CurrentFirewallSubnetRouteTable":{"shape":"ResourceId"},
+        "FirewallSubnetId":{"shape":"ResourceId"},
+        "FirewallSubnetRoutes":{"shape":"Routes"},
+        "InternetGatewayId":{"shape":"ResourceId"},
+        "CurrentInternetGatewayRouteTable":{"shape":"ResourceId"},
+        "InternetGatewayRoutes":{"shape":"Routes"}
       }
     },
     "Routes":{
@@ -1573,7 +1632,8 @@
       "required":["Type"],
       "members":{
         "Type":{"shape":"SecurityServiceType"},
-        "ManagedServiceData":{"shape":"ManagedServiceData"}
+        "ManagedServiceData":{"shape":"ManagedServiceData"},
+        "PolicyOption":{"shape":"PolicyOption"}
       }
     },
     "SecurityServiceType":{
@@ -1762,7 +1822,9 @@
         "INTERNET_TRAFFIC_NOT_INSPECTED",
         "BLACK_HOLE_ROUTE_DETECTED",
         "BLACK_HOLE_ROUTE_DETECTED_IN_FIREWALL_SUBNET",
-        "RESOURCE_MISSING_DNS_FIREWALL"
+        "RESOURCE_MISSING_DNS_FIREWALL",
+        "FIREWALL_SUBNET_IS_OUT_OF_SCOPE",
+        "ROUTE_HAS_OUT_OF_SCOPE_ENDPOINT"
       ]
     },
     "ViolationTarget":{

@@ -1971,6 +1971,11 @@
       "type":"integer",
       "min":1
     },
+    "MaxOutputFiles":{
+      "type":"integer",
+      "max":999,
+      "min":1
+    },
     "MaxResults100":{
       "type":"integer",
       "max":100,
@@ -2020,7 +2025,8 @@
         "PartitionColumns":{"shape":"ColumnNameList"},
         "Location":{"shape":"S3Location"},
         "Overwrite":{"shape":"OverwriteOutput"},
-        "FormatOptions":{"shape":"OutputFormatOptions"}
+        "FormatOptions":{"shape":"OutputFormatOptions"},
+        "MaxOutputFiles":{"shape":"MaxOutputFiles"}
       }
     },
     "OutputFormat":{
