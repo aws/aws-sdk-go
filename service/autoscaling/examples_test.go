@@ -201,8 +201,8 @@ func ExampleAutoScaling_CreateAutoScalingGroup_shared00() {
 	input := &autoscaling.CreateAutoScalingGroupInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		LaunchTemplate: &autoscaling.LaunchTemplateSpecification{
-			LaunchTemplateId: aws.String("lt-0a20c965061f64abc"),
-			Version:          aws.String("$Latest"),
+			LaunchTemplateName: aws.String("my-template-for-auto-scaling"),
+			Version:            aws.String("$Latest"),
 		},
 		MaxInstanceLifetime: aws.Int64(2592000),
 		MaxSize:             aws.Int64(3),
@@ -246,8 +246,8 @@ func ExampleAutoScaling_CreateAutoScalingGroup_shared01() {
 		HealthCheckGracePeriod: aws.Int64(300),
 		HealthCheckType:        aws.String("ELB"),
 		LaunchTemplate: &autoscaling.LaunchTemplateSpecification{
-			LaunchTemplateId: aws.String("lt-0a20c965061f64abc"),
-			Version:          aws.String("$Default"),
+			LaunchTemplateName: aws.String("my-template-for-auto-scaling"),
+			Version:            aws.String("$Latest"),
 		},
 		MaxSize: aws.Int64(3),
 		MinSize: aws.Int64(1),
@@ -1539,17 +1539,17 @@ func ExampleAutoScaling_ExitStandby_shared00() {
 	fmt.Println(result)
 }
 
-// To create a lifecycle hook
+// To create a launch lifecycle hook
 //
-// This example creates a lifecycle hook.
+// This example creates a lifecycle hook for instance launch.
 func ExampleAutoScaling_PutLifecycleHook_shared00() {
 	svc := autoscaling.New(session.New())
 	input := &autoscaling.PutLifecycleHookInput{
-		AutoScalingGroupName:  aws.String("my-auto-scaling-group"),
-		LifecycleHookName:     aws.String("my-lifecycle-hook"),
-		LifecycleTransition:   aws.String("autoscaling:EC2_INSTANCE_LAUNCHING"),
-		NotificationTargetARN: aws.String("arn:aws:sns:us-west-2:123456789012:my-sns-topic --role-arn"),
-		RoleARN:               aws.String("arn:aws:iam::123456789012:role/my-auto-scaling-role"),
+		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
+		DefaultResult:        aws.String("CONTINUE"),
+		HeartbeatTimeout:     aws.Int64(300),
+		LifecycleHookName:    aws.String("my-launch-lifecycle-hook"),
+		LifecycleTransition:  aws.String("autoscaling:EC2_INSTANCE_LAUNCHING"),
 	}
 
 	result, err := svc.PutLifecycleHook(input)
@@ -1692,15 +1692,18 @@ func ExampleAutoScaling_PutScheduledUpdateGroupAction_shared00() {
 	fmt.Println(result)
 }
 
-// To add a warm pool to an Auto Scaling group
+// To create a warm pool for an Auto Scaling group
 //
-// This example adds a warm pool to the specified Auto Scaling group.
+// This example creates a warm pool for the specified Auto Scaling group.
 func ExampleAutoScaling_PutWarmPool_shared00() {
 	svc := autoscaling.New(session.New())
 	input := &autoscaling.PutWarmPoolInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
-		MinSize:              aws.Int64(30),
-		PoolState:            aws.String("Stopped"),
+		InstanceReusePolicy: &autoscaling.InstanceReusePolicy{
+			ReuseOnScaleIn: aws.Bool(true),
+		},
+		MinSize:   aws.Int64(30),
+		PoolState: aws.String("Hibernated"),
 	}
 
 	result, err := svc.PutWarmPool(input)
@@ -1932,9 +1935,16 @@ func ExampleAutoScaling_StartInstanceRefresh_shared00() {
 	svc := autoscaling.New(session.New())
 	input := &autoscaling.StartInstanceRefreshInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
+		DesiredConfiguration: &autoscaling.DesiredConfiguration{
+			LaunchTemplate: &autoscaling.LaunchTemplateSpecification{
+				LaunchTemplateName: aws.String("my-template-for-auto-scaling"),
+				Version:            aws.String("$Latest"),
+			},
+		},
 		Preferences: &autoscaling.RefreshPreferences{
 			InstanceWarmup:       aws.Int64(400),
-			MinHealthyPercentage: aws.Int64(50),
+			MinHealthyPercentage: aws.Int64(90),
+			SkipMatching:         aws.Bool(true),
 		},
 	}
 
@@ -2031,83 +2041,19 @@ func ExampleAutoScaling_TerminateInstanceInAutoScalingGroup_shared00() {
 	fmt.Println(result)
 }
 
-// To update the launch configuration
+// To update an Auto Scaling group
 //
-// This example updates the launch configuration of the specified Auto Scaling group.
+// This example updates multiple properties at the same time.
 func ExampleAutoScaling_UpdateAutoScalingGroup_shared00() {
 	svc := autoscaling.New(session.New())
 	input := &autoscaling.UpdateAutoScalingGroupInput{
-		AutoScalingGroupName:    aws.String("my-auto-scaling-group"),
-		LaunchConfigurationName: aws.String("new-launch-config"),
-	}
-
-	result, err := svc.UpdateAutoScalingGroup(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			case autoscaling.ErrCodeScalingActivityInProgressFault:
-				fmt.Println(autoscaling.ErrCodeScalingActivityInProgressFault, aerr.Error())
-			case autoscaling.ErrCodeResourceContentionFault:
-				fmt.Println(autoscaling.ErrCodeResourceContentionFault, aerr.Error())
-			case autoscaling.ErrCodeServiceLinkedRoleFailure:
-				fmt.Println(autoscaling.ErrCodeServiceLinkedRoleFailure, aerr.Error())
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To update the minimum and maximum size
-//
-// This example updates the minimum size and maximum size of the specified Auto Scaling
-// group.
-func ExampleAutoScaling_UpdateAutoScalingGroup_shared01() {
-	svc := autoscaling.New(session.New())
-	input := &autoscaling.UpdateAutoScalingGroupInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
-		MaxSize:              aws.Int64(3),
-		MinSize:              aws.Int64(1),
-	}
-
-	result, err := svc.UpdateAutoScalingGroup(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			case autoscaling.ErrCodeScalingActivityInProgressFault:
-				fmt.Println(autoscaling.ErrCodeScalingActivityInProgressFault, aerr.Error())
-			case autoscaling.ErrCodeResourceContentionFault:
-				fmt.Println(autoscaling.ErrCodeResourceContentionFault, aerr.Error())
-			case autoscaling.ErrCodeServiceLinkedRoleFailure:
-				fmt.Println(autoscaling.ErrCodeServiceLinkedRoleFailure, aerr.Error())
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To enable instance protection
-//
-// This example enables instance protection for the specified Auto Scaling group.
-func ExampleAutoScaling_UpdateAutoScalingGroup_shared02() {
-	svc := autoscaling.New(session.New())
-	input := &autoscaling.UpdateAutoScalingGroupInput{
-		AutoScalingGroupName:             aws.String("my-auto-scaling-group"),
+		LaunchTemplate: &autoscaling.LaunchTemplateSpecification{
+			LaunchTemplateName: aws.String("my-template-for-auto-scaling"),
+			Version:            aws.String("2"),
+		},
+		MaxSize:                          aws.Int64(5),
+		MinSize:                          aws.Int64(1),
 		NewInstancesProtectedFromScaleIn: aws.Bool(true),
 	}
 

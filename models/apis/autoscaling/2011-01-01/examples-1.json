@@ -101,7 +101,7 @@
         "input": {
           "AutoScalingGroupName": "my-auto-scaling-group",
           "LaunchTemplate": {
-            "LaunchTemplateId": "lt-0a20c965061f64abc",
+            "LaunchTemplateName": "my-template-for-auto-scaling",
             "Version": "$Latest"
           },
           "MaxInstanceLifetime": 2592000,
@@ -125,8 +125,8 @@
           "HealthCheckGracePeriod": 300,
           "HealthCheckType": "ELB",
           "LaunchTemplate": {
-            "LaunchTemplateId": "lt-0a20c965061f64abc",
-            "Version": "$Default"
+            "LaunchTemplateName": "my-template-for-auto-scaling",
+            "Version": "$Latest"
           },
           "MaxSize": 3,
           "MinSize": 1,
@@ -1203,10 +1203,10 @@
       {
         "input": {
           "AutoScalingGroupName": "my-auto-scaling-group",
-          "LifecycleHookName": "my-lifecycle-hook",
-          "LifecycleTransition": "autoscaling:EC2_INSTANCE_LAUNCHING",
-          "NotificationTargetARN": "arn:aws:sns:us-west-2:123456789012:my-sns-topic --role-arn",
-          "RoleARN": "arn:aws:iam::123456789012:role/my-auto-scaling-role"
+          "DefaultResult": "CONTINUE",
+          "HeartbeatTimeout": 300,
+          "LifecycleHookName": "my-launch-lifecycle-hook",
+          "LifecycleTransition": "autoscaling:EC2_INSTANCE_LAUNCHING"
         },
         "comments": {
           "input": {
@@ -1214,9 +1214,9 @@
           "output": {
           }
         },
-        "description": "This example creates a lifecycle hook.",
+        "description": "This example creates a lifecycle hook for instance launch.",
         "id": "autoscaling-put-lifecycle-hook-1",
-        "title": "To create a lifecycle hook"
+        "title": "To create a launch lifecycle hook"
       }
     ],
     "PutNotificationConfiguration": [
@@ -1303,8 +1303,11 @@
       {
         "input": {
           "AutoScalingGroupName": "my-auto-scaling-group",
+          "InstanceReusePolicy": {
+            "ReuseOnScaleIn": true
+          },
           "MinSize": 30,
-          "PoolState": "Stopped"
+          "PoolState": "Hibernated"
         },
         "comments": {
           "input": {
@@ -1312,9 +1315,9 @@
           "output": {
           }
         },
-        "description": "This example adds a warm pool to the specified Auto Scaling group.",
+        "description": "This example creates a warm pool for the specified Auto Scaling group.",
         "id": "to-add-a-warm-pool-to-an-auto-scaling-group-1617818810383",
-        "title": "To add a warm pool to an Auto Scaling group"
+        "title": "To create a warm pool for an Auto Scaling group"
       }
     ],
     "RecordLifecycleActionHeartbeat": [
@@ -1431,9 +1434,16 @@
       {
         "input": {
           "AutoScalingGroupName": "my-auto-scaling-group",
+          "DesiredConfiguration": {
+            "LaunchTemplate": {
+              "LaunchTemplateName": "my-template-for-auto-scaling",
+              "Version": "$Latest"
+            }
+          },
           "Preferences": {
             "InstanceWarmup": 400,
-            "MinHealthyPercentage": 50
+            "MinHealthyPercentage": 90,
+            "SkipMatching": true
           }
         },
         "output": {
@@ -1490,37 +1500,12 @@
       {
         "input": {
           "AutoScalingGroupName": "my-auto-scaling-group",
-          "LaunchConfigurationName": "new-launch-config"
-        },
-        "comments": {
-          "input": {
+          "LaunchTemplate": {
+            "LaunchTemplateName": "my-template-for-auto-scaling",
+            "Version": "2"
           },
-          "output": {
-          }
-        },
-        "description": "This example updates the launch configuration of the specified Auto Scaling group.",
-        "id": "autoscaling-update-auto-scaling-group-1",
-        "title": "To update the launch configuration"
-      },
-      {
-        "input": {
-          "AutoScalingGroupName": "my-auto-scaling-group",
-          "MaxSize": 3,
-          "MinSize": 1
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "This example updates the minimum size and maximum size of the specified Auto Scaling group.",
-        "id": "autoscaling-update-auto-scaling-group-2",
-        "title": "To update the minimum and maximum size"
-      },
-      {
-        "input": {
-          "AutoScalingGroupName": "my-auto-scaling-group",
+          "MaxSize": 5,
+          "MinSize": 1,
           "NewInstancesProtectedFromScaleIn": true
         },
         "comments": {
@@ -1529,9 +1514,9 @@
           "output": {
           }
         },
-        "description": "This example enables instance protection for the specified Auto Scaling group.",
-        "id": "autoscaling-update-auto-scaling-group-3",
-        "title": "To enable instance protection"
+        "description": "This example updates multiple properties at the same time.",
+        "id": "autoscaling-update-auto-scaling-group-1",
+        "title": "To update an Auto Scaling group"
       }
     ]
   }
