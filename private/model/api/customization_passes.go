@@ -88,6 +88,62 @@ func (a *API) customizationPasses() error {
 		}
 	}
 
+	if err := addHTTPChecksumCustomDocumentation(a); err != nil {
+		if err != nil {
+			return fmt.Errorf("service httpChecksum trait customization failed, %s: %v",
+				a.PackageName(), err)
+		}
+	}
+
+	return nil
+}
+
+func addHTTPChecksumCustomDocumentation(a *API) error {
+	for opName, o := range a.Operations {
+		if o.HTTPChecksum.RequestAlgorithmMember != "" {
+			ref := o.InputRef.Shape.GetModeledMember(o.HTTPChecksum.RequestAlgorithmMember)
+			if ref == nil {
+				return fmt.Errorf(
+					"expect httpChecksum.RequestAlgorithmMember %v to be modeled input member for %v",
+					o.HTTPChecksum.RequestAlgorithmMember,
+					opName,
+				)
+			}
+
+			ref.Documentation = AppendDocstring(ref.Documentation, `
+				The AWS SDK for Go v1 does not support automatic computing
+				request payload checksum. This feature is available in the AWS
+				SDK for Go v2. If a value is specified for this parameter, the
+				matching algorithm's checksum member must be populated with the
+				algorithm's checksum of the request payload. 
+			`)
+			if o.RequestChecksumRequired() {
+				ref.Documentation = AppendDocstring(ref.Documentation, `
+					The SDK will automatically compute the Content-MD5 checksum
+					for this operation. The AWS SDK for Go v2 allows you to
+					configure alternative checksum algorithm to be used.
+				`)
+			}
+		}
+
+		if o.HTTPChecksum.RequestValidationModeMember != "" {
+			ref := o.InputRef.Shape.GetModeledMember(o.HTTPChecksum.RequestValidationModeMember)
+			if ref == nil {
+				return fmt.Errorf(
+					"expect httpChecksum.RequestValidationModeMember %v to be modeled input member for %v",
+					o.HTTPChecksum.RequestValidationModeMember,
+					opName,
+				)
+			}
+
+			ref.Documentation = AppendDocstring(ref.Documentation, `
+				The AWS SDK for Go v1 does not support automatic response
+				payload checksum validation. This feature is available in the
+				AWS SDK for Go v2.
+			`)
+		}
+	}
+
 	return nil
 }
 
@@ -196,10 +252,10 @@ func s3CustRemoveHeadObjectModeledErrors(a *API) {
 	if !ok {
 		return
 	}
-	op.Documentation += `
-//
-// See http://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#RESTErrorResponses
-// for more information on returned errors.`
+	op.Documentation = AppendDocstring(op.Documentation, `
+		See http://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#RESTErrorResponses
+		for more information on returned errors.
+	`)
 	op.ErrorRefs = []ShapeRef{}
 }
 
@@ -361,15 +417,22 @@ func generatePresignedURL(a *API, inputShapes []string) {
 	for _, input := range inputShapes {
 		if ref, ok := a.Shapes[input]; ok {
 			ref.MemberRefs["SourceRegion"] = &ShapeRef{
-				Documentation: docstring(`SourceRegion is the source region where the resource exists. This is not sent over the wire and is only used for presigning. This value should always have the same region as the source ARN.`),
-				ShapeName:     "String",
-				Shape:         a.Shapes["String"],
-				Ignore:        true,
+				Documentation: docstring(`
+				SourceRegion is the source region where the resource exists.
+				This is not sent over the wire and is only used for presigning.
+				This value should always have the same region as the source
+				ARN.
+				`),
+				ShapeName: "String",
+				Shape:     a.Shapes["String"],
+				Ignore:    true,
 			}
 			ref.MemberRefs["DestinationRegion"] = &ShapeRef{
-				Documentation: docstring(`DestinationRegion is used for presigning the request to a given region.`),
-				ShapeName:     "String",
-				Shape:         a.Shapes["String"],
+				Documentation: docstring(`
+				DestinationRegion is used for presigning the request to a given region.
+				`),
+				ShapeName: "String",
+				Shape:     a.Shapes["String"],
 			}
 		}
 	}
