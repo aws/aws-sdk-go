@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<fullname>AWS Panorama</fullname> <p> <b>Overview</b> </p> <p>This is the <i>AWS Panorama API Reference</i>. For an introduction to the service, see <a href=\"https://docs.aws.amazon.com/panorama/latest/dev/panorama-welcome.html\">What is AWS Panorama?</a> in the <i>AWS Panorama Developer Guide</i>.</p>",
+  "service": "<p><fullname>AWS Panorama</fullname> <p> <b>Overview</b> </p> <p>This is the <i>AWS Panorama API Reference</i>. For an introduction to the service, see <a href=\"https://docs.aws.amazon.com/panorama/latest/dev/panorama-welcome.html\">What is AWS Panorama?</a> in the <i>AWS Panorama Developer Guide</i>.</p></p>",
   "operations": {
     "CreateApplicationInstance": "<p>Creates an application instance and deploys it to a device.</p>",
     "CreateJobForDevices": "<p>Creates a job to run on one or more devices.</p>",
@@ -8,7 +8,7 @@
     "CreatePackage": "<p>Creates a package and storage location in an Amazon S3 access point.</p>",
     "CreatePackageImportJob": "<p>Imports a node package.</p>",
     "DeleteDevice": "<p>Deletes a device.</p>",
-    "DeletePackage": "<p>Deletes a package.</p>",
+    "DeletePackage": "<p>Deletes a package.</p> <note> <p>To delete a package, you need permission to call <code>s3:DeleteObject</code> in addition to permissions for the AWS Panorama API.</p> </note>",
     "DeregisterPackageVersion": "<p>Deregisters a package version.</p>",
     "DescribeApplicationInstance": "<p>Returns information about an application instance on a device.</p>",
     "DescribeApplicationInstanceDetails": "<p>Returns information about an application instance's configuration manifest.</p>",
@@ -42,6 +42,18 @@
       "refs": {
       }
     },
+    "AlternateSoftwareMetadata": {
+      "base": "<p>Details about a beta appliance software update.</p>",
+      "refs": {
+        "AlternateSoftwares$member": null
+      }
+    },
+    "AlternateSoftwares": {
+      "base": null,
+      "refs": {
+        "DescribeDeviceResponse$AlternateSoftwares": "<p>Beta software releases available for the device.</p>"
+      }
+    },
     "ApplicationInstance": {
       "base": "<p>An application instance on a device.</p>",
       "refs": {
@@ -69,11 +81,11 @@
         "CreateApplicationInstanceRequest$ApplicationInstanceIdToReplace": "<p>The ID of an application instance to replace with the new instance.</p>",
         "CreateApplicationInstanceResponse$ApplicationInstanceId": "<p>The application instance's ID.</p>",
         "DescribeApplicationInstanceDetailsRequest$ApplicationInstanceId": "<p>The application instance's ID.</p>",
-        "DescribeApplicationInstanceDetailsResponse$ApplicationInstanceIdToReplace": "<p>The ID of the application instance that this instance replaced.</p>",
         "DescribeApplicationInstanceDetailsResponse$ApplicationInstanceId": "<p>The application instance's ID.</p>",
+        "DescribeApplicationInstanceDetailsResponse$ApplicationInstanceIdToReplace": "<p>The ID of the application instance that this instance replaced.</p>",
         "DescribeApplicationInstanceRequest$ApplicationInstanceId": "<p>The application instance's ID.</p>",
-        "DescribeApplicationInstanceResponse$ApplicationInstanceIdToReplace": "<p>The ID of the application instance that this instance replaced.</p>",
         "DescribeApplicationInstanceResponse$ApplicationInstanceId": "<p>The application instance's ID.</p>",
+        "DescribeApplicationInstanceResponse$ApplicationInstanceIdToReplace": "<p>The ID of the application instance that this instance replaced.</p>",
         "ListApplicationInstanceDependenciesRequest$ApplicationInstanceId": "<p>The application instance's ID.</p>",
         "ListApplicationInstanceNodeInstancesRequest$ApplicationInstanceId": "<p>The node instances' application instance ID.</p>",
         "RemoveApplicationInstanceRequest$ApplicationInstanceId": "<p>An application instance ID.</p>"
@@ -547,7 +559,14 @@
       "base": null,
       "refs": {
         "EthernetStatus$IpAddress": "<p>The device's IP address.</p>",
+        "NtpStatus$IpAddress": "<p>The IP address of the server.</p>",
         "StaticIpConnectionInfo$IpAddress": "<p>The connection's IP address.</p>"
+      }
+    },
+    "IpAddressOrServerName": {
+      "base": null,
+      "refs": {
+        "NtpServerList$member": null
       }
     },
     "Job": {
@@ -612,7 +631,14 @@
         "DescribeNodeFromTemplateJobResponse$LastUpdatedTime": "<p>When the job was updated.</p>",
         "DescribePackageImportJobResponse$LastUpdatedTime": "<p>When the job was updated.</p>",
         "Device$LastUpdatedTime": "<p>When the device was updated.</p>",
+        "NetworkStatus$LastUpdatedTime": "<p>When the network status changed.</p>",
         "PackageImportJob$LastUpdatedTime": "<p>When the job was updated.</p>"
+      }
+    },
+    "LatestAlternateSoftware": {
+      "base": null,
+      "refs": {
+        "DescribeDeviceResponse$LatestAlternateSoftware": "<p>The most recent beta software release.</p>"
       }
     },
     "LatestSoftware": {
@@ -790,7 +816,8 @@
     "NetworkConnectionStatus": {
       "base": null,
       "refs": {
-        "EthernetStatus$ConnectionStatus": "<p>The device's connection status.</p>"
+        "EthernetStatus$ConnectionStatus": "<p>The device's connection status.</p>",
+        "NtpStatus$ConnectionStatus": "<p>The connection's status.</p>"
       }
     },
     "NetworkPayload": {
@@ -1019,6 +1046,30 @@
         "ListNodesResponse$Nodes": "<p>A list of nodes.</p>"
       }
     },
+    "NtpPayload": {
+      "base": "<p>Network time protocol (NTP) server settings. Use this option to connect to local NTP servers instead of <code>pool.ntp.org</code>.</p>",
+      "refs": {
+        "NetworkPayload$Ntp": "<p>Network time protocol (NTP) server settings.</p>"
+      }
+    },
+    "NtpServerList": {
+      "base": null,
+      "refs": {
+        "NtpPayload$NtpServers": "<p>NTP servers to use, in order of preference.</p>"
+      }
+    },
+    "NtpServerName": {
+      "base": null,
+      "refs": {
+        "NtpStatus$NtpServerName": "<p>The domain name of the server.</p>"
+      }
+    },
+    "NtpStatus": {
+      "base": "<p>Details about an NTP server connection.</p>",
+      "refs": {
+        "NetworkStatus$NtpStatus": "<p>Details about a network time protocol (NTP) server connection.</p>"
+      }
+    },
     "OTAJobConfig": {
       "base": "<p>An over-the-air update (OTA) job configuration.</p>",
       "refs": {
@@ -1028,10 +1079,10 @@
     "Object": {
       "base": null,
       "refs": {
-        "StorageLocation$RepoPrefixLocation": "<p>The location's repo prefix.</p>",
-        "StorageLocation$GeneratedPrefixLocation": "<p>The location's generated prefix.</p>",
         "StorageLocation$BinaryPrefixLocation": "<p>The location's binary prefix.</p>",
-        "StorageLocation$ManifestPrefixLocation": "<p>The location's manifest prefix.</p>"
+        "StorageLocation$GeneratedPrefixLocation": "<p>The location's generated prefix.</p>",
+        "StorageLocation$ManifestPrefixLocation": "<p>The location's manifest prefix.</p>",
+        "StorageLocation$RepoPrefixLocation": "<p>The location's repo prefix.</p>"
       }
     },
     "ObjectKey": {
@@ -1297,10 +1348,10 @@
       "base": null,
       "refs": {
         "AccessDeniedException$Message": null,
+        "ConflictException$ErrorId": "<p>A unique ID for the error.</p>",
         "ConflictException$Message": null,
         "ConflictException$ResourceId": "<p>The resource's ID.</p>",
         "ConflictException$ResourceType": "<p>The resource's type.</p>",
-        "ConflictException$ErrorId": "<p>A unique ID for the error.</p>",
         "ConflictExceptionErrorArgument$Name": "<p>The error argument's name.</p>",
         "ConflictExceptionErrorArgument$Value": "<p>The error argument's value.</p>",
         "InternalServerException$Message": null,
@@ -1308,16 +1359,16 @@
         "ResourceNotFoundException$ResourceId": "<p>The resource's ID.</p>",
         "ResourceNotFoundException$ResourceType": "<p>The resource's type.</p>",
         "ServiceQuotaExceededException$Message": null,
+        "ServiceQuotaExceededException$QuotaCode": "<p>The name of the limit.</p>",
         "ServiceQuotaExceededException$ResourceId": "<p>The target resource's ID.</p>",
         "ServiceQuotaExceededException$ResourceType": "<p>The target resource's type.</p>",
-        "ServiceQuotaExceededException$QuotaCode": "<p>The name of the limit.</p>",
         "ServiceQuotaExceededException$ServiceCode": "<p>The name of the service.</p>",
-        "ValidationException$Message": null,
         "ValidationException$ErrorId": "<p>A unique ID for the error.</p>",
+        "ValidationException$Message": null,
         "ValidationExceptionErrorArgument$Name": "<p>The argument's name.</p>",
         "ValidationExceptionErrorArgument$Value": "<p>The argument's value.</p>",
-        "ValidationExceptionField$Name": "<p>The field's name.</p>",
-        "ValidationExceptionField$Message": "<p>The field's message.</p>"
+        "ValidationExceptionField$Message": "<p>The field's message.</p>",
+        "ValidationExceptionField$Name": "<p>The field's name.</p>"
       }
     },
     "TagKey": {
@@ -1480,6 +1531,12 @@
       "base": null,
       "refs": {
         "ValidationException$Reason": "<p>The reason that validation failed.</p>"
+      }
+    },
+    "Version": {
+      "base": null,
+      "refs": {
+        "AlternateSoftwareMetadata$Version": "<p>The appliance software version.</p>"
       }
     }
   }

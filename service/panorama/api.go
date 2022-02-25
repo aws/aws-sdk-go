@@ -70,14 +70,14 @@ func (c *Panorama) CreateApplicationInstanceRequest(input *CreateApplicationInst
 //   * ValidationException
 //   The request contains an invalid parameter value.
 //
-//   * InternalServerException
-//   An internal error occurred.
-//
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
 //   * ServiceQuotaExceededException
 //   The request would cause a limit to be exceeded.
+//
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/CreateApplicationInstance
 func (c *Panorama) CreateApplicationInstance(input *CreateApplicationInstanceInput) (*CreateApplicationInstanceOutput, error) {
@@ -161,14 +161,14 @@ func (c *Panorama) CreateJobForDevicesRequest(input *CreateJobForDevicesInput) (
 //   * ValidationException
 //   The request contains an invalid parameter value.
 //
-//   * InternalServerException
-//   An internal error occurred.
-//
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
 //   * ResourceNotFoundException
 //   The target resource was not found.
+//
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/CreateJobForDevices
 func (c *Panorama) CreateJobForDevices(input *CreateJobForDevicesInput) (*CreateJobForDevicesOutput, error) {
@@ -246,17 +246,17 @@ func (c *Panorama) CreateNodeFromTemplateJobRequest(input *CreateNodeFromTemplat
 // API operation CreateNodeFromTemplateJob for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   The target resource is in use.
+//
 //   * ValidationException
 //   The request contains an invalid parameter value.
-//
-//   * InternalServerException
-//   An internal error occurred.
 //
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
-//   * ConflictException
-//   The target resource is in use.
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/CreateNodeFromTemplateJob
 func (c *Panorama) CreateNodeFromTemplateJob(input *CreateNodeFromTemplateJobInput) (*CreateNodeFromTemplateJobOutput, error) {
@@ -334,17 +334,17 @@ func (c *Panorama) CreatePackageRequest(input *CreatePackageInput) (req *request
 // API operation CreatePackage for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   The target resource is in use.
+//
 //   * ValidationException
 //   The request contains an invalid parameter value.
-//
-//   * InternalServerException
-//   An internal error occurred.
 //
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
-//   * ConflictException
-//   The target resource is in use.
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/CreatePackage
 func (c *Panorama) CreatePackage(input *CreatePackageInput) (*CreatePackageOutput, error) {
@@ -422,17 +422,17 @@ func (c *Panorama) CreatePackageImportJobRequest(input *CreatePackageImportJobIn
 // API operation CreatePackageImportJob for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   The target resource is in use.
+//
 //   * ValidationException
 //   The request contains an invalid parameter value.
-//
-//   * InternalServerException
-//   An internal error occurred.
 //
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
-//   * ConflictException
-//   The target resource is in use.
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/CreatePackageImportJob
 func (c *Panorama) CreatePackageImportJob(input *CreatePackageImportJobInput) (*CreatePackageImportJobOutput, error) {
@@ -516,14 +516,14 @@ func (c *Panorama) DeleteDeviceRequest(input *DeleteDeviceInput) (req *request.R
 //   * ValidationException
 //   The request contains an invalid parameter value.
 //
-//   * InternalServerException
-//   An internal error occurred.
-//
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
 //   * ResourceNotFoundException
 //   The target resource was not found.
+//
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/DeleteDevice
 func (c *Panorama) DeleteDevice(input *DeleteDeviceInput) (*DeleteDeviceOutput, error) {
@@ -594,6 +594,9 @@ func (c *Panorama) DeletePackageRequest(input *DeletePackageInput) (req *request
 //
 // Deletes a package.
 //
+// To delete a package, you need permission to call s3:DeleteObject in addition
+// to permissions for the AWS Panorama API.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -602,20 +605,20 @@ func (c *Panorama) DeletePackageRequest(input *DeletePackageInput) (req *request
 // API operation DeletePackage for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   The target resource is in use.
+//
 //   * ValidationException
 //   The request contains an invalid parameter value.
-//
-//   * InternalServerException
-//   An internal error occurred.
 //
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
-//   * ConflictException
-//   The target resource is in use.
-//
 //   * ResourceNotFoundException
 //   The target resource was not found.
+//
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/DeletePackage
 func (c *Panorama) DeletePackage(input *DeletePackageInput) (*DeletePackageOutput, error) {
@@ -694,20 +697,20 @@ func (c *Panorama) DeregisterPackageVersionRequest(input *DeregisterPackageVersi
 // API operation DeregisterPackageVersion for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   The target resource is in use.
+//
 //   * ValidationException
 //   The request contains an invalid parameter value.
-//
-//   * InternalServerException
-//   An internal error occurred.
 //
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
-//   * ConflictException
-//   The target resource is in use.
-//
 //   * ResourceNotFoundException
 //   The target resource was not found.
+//
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/DeregisterPackageVersion
 func (c *Panorama) DeregisterPackageVersion(input *DeregisterPackageVersionInput) (*DeregisterPackageVersionOutput, error) {
@@ -761,7 +764,7 @@ func (c *Panorama) DescribeApplicationInstanceRequest(input *DescribeApplication
 	op := &request.Operation{
 		Name:       opDescribeApplicationInstance,
 		HTTPMethod: "GET",
-		HTTPPath:   "/application-instances/{applicationInstanceId}",
+		HTTPPath:   "/application-instances/{ApplicationInstanceId}",
 	}
 
 	if input == nil {
@@ -791,14 +794,14 @@ func (c *Panorama) DescribeApplicationInstanceRequest(input *DescribeApplication
 //   * ValidationException
 //   The request contains an invalid parameter value.
 //
-//   * InternalServerException
-//   An internal error occurred.
-//
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
 //   * ResourceNotFoundException
 //   The target resource was not found.
+//
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/DescribeApplicationInstance
 func (c *Panorama) DescribeApplicationInstance(input *DescribeApplicationInstanceInput) (*DescribeApplicationInstanceOutput, error) {
@@ -852,7 +855,7 @@ func (c *Panorama) DescribeApplicationInstanceDetailsRequest(input *DescribeAppl
 	op := &request.Operation{
 		Name:       opDescribeApplicationInstanceDetails,
 		HTTPMethod: "GET",
-		HTTPPath:   "/application-instances/{applicationInstanceId}/details",
+		HTTPPath:   "/application-instances/{ApplicationInstanceId}/details",
 	}
 
 	if input == nil {
@@ -882,14 +885,14 @@ func (c *Panorama) DescribeApplicationInstanceDetailsRequest(input *DescribeAppl
 //   * ValidationException
 //   The request contains an invalid parameter value.
 //
-//   * InternalServerException
-//   An internal error occurred.
-//
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
 //   * ResourceNotFoundException
 //   The target resource was not found.
+//
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/DescribeApplicationInstanceDetails
 func (c *Panorama) DescribeApplicationInstanceDetails(input *DescribeApplicationInstanceDetailsInput) (*DescribeApplicationInstanceDetailsOutput, error) {
@@ -970,14 +973,14 @@ func (c *Panorama) DescribeDeviceRequest(input *DescribeDeviceInput) (req *reque
 //   * ValidationException
 //   The request contains an invalid parameter value.
 //
-//   * InternalServerException
-//   An internal error occurred.
-//
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
 //   * ResourceNotFoundException
 //   The target resource was not found.
+//
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/DescribeDevice
 func (c *Panorama) DescribeDevice(input *DescribeDeviceInput) (*DescribeDeviceOutput, error) {
@@ -1061,14 +1064,14 @@ func (c *Panorama) DescribeDeviceJobRequest(input *DescribeDeviceJobInput) (req 
 //   * ValidationException
 //   The request contains an invalid parameter value.
 //
-//   * InternalServerException
-//   An internal error occurred.
-//
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
 //   * ResourceNotFoundException
 //   The target resource was not found.
+//
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/DescribeDeviceJob
 func (c *Panorama) DescribeDeviceJob(input *DescribeDeviceJobInput) (*DescribeDeviceJobOutput, error) {
@@ -1152,14 +1155,14 @@ func (c *Panorama) DescribeNodeRequest(input *DescribeNodeInput) (req *request.R
 //   * ValidationException
 //   The request contains an invalid parameter value.
 //
-//   * InternalServerException
-//   An internal error occurred.
-//
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
 //   * ResourceNotFoundException
 //   The target resource was not found.
+//
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/DescribeNode
 func (c *Panorama) DescribeNode(input *DescribeNodeInput) (*DescribeNodeOutput, error) {
@@ -1237,17 +1240,17 @@ func (c *Panorama) DescribeNodeFromTemplateJobRequest(input *DescribeNodeFromTem
 // API operation DescribeNodeFromTemplateJob for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   The target resource is in use.
+//
 //   * ValidationException
 //   The request contains an invalid parameter value.
-//
-//   * InternalServerException
-//   An internal error occurred.
 //
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
-//   * ConflictException
-//   The target resource is in use.
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/DescribeNodeFromTemplateJob
 func (c *Panorama) DescribeNodeFromTemplateJob(input *DescribeNodeFromTemplateJobInput) (*DescribeNodeFromTemplateJobOutput, error) {
@@ -1325,20 +1328,20 @@ func (c *Panorama) DescribePackageRequest(input *DescribePackageInput) (req *req
 // API operation DescribePackage for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   The target resource is in use.
+//
 //   * ValidationException
 //   The request contains an invalid parameter value.
-//
-//   * InternalServerException
-//   An internal error occurred.
 //
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
-//   * ConflictException
-//   The target resource is in use.
-//
 //   * ResourceNotFoundException
 //   The target resource was not found.
+//
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/DescribePackage
 func (c *Panorama) DescribePackage(input *DescribePackageInput) (*DescribePackageOutput, error) {
@@ -1416,17 +1419,17 @@ func (c *Panorama) DescribePackageImportJobRequest(input *DescribePackageImportJ
 // API operation DescribePackageImportJob for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   The target resource is in use.
+//
 //   * ValidationException
 //   The request contains an invalid parameter value.
-//
-//   * InternalServerException
-//   An internal error occurred.
 //
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
-//   * ConflictException
-//   The target resource is in use.
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/DescribePackageImportJob
 func (c *Panorama) DescribePackageImportJob(input *DescribePackageImportJobInput) (*DescribePackageImportJobOutput, error) {
@@ -1504,20 +1507,20 @@ func (c *Panorama) DescribePackageVersionRequest(input *DescribePackageVersionIn
 // API operation DescribePackageVersion for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   The target resource is in use.
+//
 //   * ValidationException
 //   The request contains an invalid parameter value.
-//
-//   * InternalServerException
-//   An internal error occurred.
 //
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
-//   * ConflictException
-//   The target resource is in use.
-//
 //   * ResourceNotFoundException
 //   The target resource was not found.
+//
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/DescribePackageVersion
 func (c *Panorama) DescribePackageVersion(input *DescribePackageVersionInput) (*DescribePackageVersionOutput, error) {
@@ -1571,7 +1574,7 @@ func (c *Panorama) ListApplicationInstanceDependenciesRequest(input *ListApplica
 	op := &request.Operation{
 		Name:       opListApplicationInstanceDependencies,
 		HTTPMethod: "GET",
-		HTTPPath:   "/application-instances/{applicationInstanceId}/package-dependencies",
+		HTTPPath:   "/application-instances/{ApplicationInstanceId}/package-dependencies",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
@@ -1711,7 +1714,7 @@ func (c *Panorama) ListApplicationInstanceNodeInstancesRequest(input *ListApplic
 	op := &request.Operation{
 		Name:       opListApplicationInstanceNodeInstances,
 		HTTPMethod: "GET",
-		HTTPPath:   "/application-instances/{applicationInstanceId}/node-instances",
+		HTTPPath:   "/application-instances/{ApplicationInstanceId}/node-instances",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
@@ -2027,11 +2030,11 @@ func (c *Panorama) ListDevicesRequest(input *ListDevicesInput) (req *request.Req
 //   * ValidationException
 //   The request contains an invalid parameter value.
 //
-//   * InternalServerException
-//   An internal error occurred.
-//
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
+//
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/ListDevices
 func (c *Panorama) ListDevices(input *ListDevicesInput) (*ListDevicesOutput, error) {
@@ -2173,14 +2176,14 @@ func (c *Panorama) ListDevicesJobsRequest(input *ListDevicesJobsInput) (req *req
 //   * ValidationException
 //   The request contains an invalid parameter value.
 //
-//   * InternalServerException
-//   An internal error occurred.
-//
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
 //   * ResourceNotFoundException
 //   The target resource was not found.
+//
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/ListDevicesJobs
 func (c *Panorama) ListDevicesJobs(input *ListDevicesJobsInput) (*ListDevicesJobsOutput, error) {
@@ -2316,17 +2319,17 @@ func (c *Panorama) ListNodeFromTemplateJobsRequest(input *ListNodeFromTemplateJo
 // API operation ListNodeFromTemplateJobs for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   The target resource is in use.
+//
 //   * ValidationException
 //   The request contains an invalid parameter value.
-//
-//   * InternalServerException
-//   An internal error occurred.
 //
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
-//   * ConflictException
-//   The target resource is in use.
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/ListNodeFromTemplateJobs
 func (c *Panorama) ListNodeFromTemplateJobs(input *ListNodeFromTemplateJobsInput) (*ListNodeFromTemplateJobsOutput, error) {
@@ -2605,17 +2608,17 @@ func (c *Panorama) ListPackageImportJobsRequest(input *ListPackageImportJobsInpu
 // API operation ListPackageImportJobs for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   The target resource is in use.
+//
 //   * ValidationException
 //   The request contains an invalid parameter value.
-//
-//   * InternalServerException
-//   An internal error occurred.
 //
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
-//   * ConflictException
-//   The target resource is in use.
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/ListPackageImportJobs
 func (c *Panorama) ListPackageImportJobs(input *ListPackageImportJobsInput) (*ListPackageImportJobsOutput, error) {
@@ -2751,20 +2754,20 @@ func (c *Panorama) ListPackagesRequest(input *ListPackagesInput) (req *request.R
 // API operation ListPackages for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   The target resource is in use.
+//
 //   * ValidationException
 //   The request contains an invalid parameter value.
-//
-//   * InternalServerException
-//   An internal error occurred.
 //
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
-//   * ConflictException
-//   The target resource is in use.
-//
 //   * ResourceNotFoundException
 //   The target resource was not found.
+//
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/ListPackages
 func (c *Panorama) ListPackages(input *ListPackagesInput) (*ListPackagesOutput, error) {
@@ -2894,11 +2897,11 @@ func (c *Panorama) ListTagsForResourceRequest(input *ListTagsForResourceInput) (
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The target resource was not found.
-//
 //   * ValidationException
 //   The request contains an invalid parameter value.
+//
+//   * ResourceNotFoundException
+//   The target resource was not found.
 //
 //   * InternalServerException
 //   An internal error occurred.
@@ -2988,14 +2991,14 @@ func (c *Panorama) ProvisionDeviceRequest(input *ProvisionDeviceInput) (req *req
 //   * ValidationException
 //   The request contains an invalid parameter value.
 //
-//   * InternalServerException
-//   An internal error occurred.
-//
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
 //   * ServiceQuotaExceededException
 //   The request would cause a limit to be exceeded.
+//
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/ProvisionDevice
 func (c *Panorama) ProvisionDevice(input *ProvisionDeviceInput) (*ProvisionDeviceOutput, error) {
@@ -3074,17 +3077,17 @@ func (c *Panorama) RegisterPackageVersionRequest(input *RegisterPackageVersionIn
 // API operation RegisterPackageVersion for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   The target resource is in use.
+//
 //   * ValidationException
 //   The request contains an invalid parameter value.
-//
-//   * InternalServerException
-//   An internal error occurred.
 //
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
-//   * ConflictException
-//   The target resource is in use.
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/RegisterPackageVersion
 func (c *Panorama) RegisterPackageVersion(input *RegisterPackageVersionInput) (*RegisterPackageVersionOutput, error) {
@@ -3138,7 +3141,7 @@ func (c *Panorama) RemoveApplicationInstanceRequest(input *RemoveApplicationInst
 	op := &request.Operation{
 		Name:       opRemoveApplicationInstance,
 		HTTPMethod: "DELETE",
-		HTTPPath:   "/application-instances/{applicationInstanceId}",
+		HTTPPath:   "/application-instances/{ApplicationInstanceId}",
 	}
 
 	if input == nil {
@@ -3169,14 +3172,14 @@ func (c *Panorama) RemoveApplicationInstanceRequest(input *RemoveApplicationInst
 //   * ValidationException
 //   The request contains an invalid parameter value.
 //
-//   * InternalServerException
-//   An internal error occurred.
-//
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
 //   * ResourceNotFoundException
 //   The target resource was not found.
+//
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/RemoveApplicationInstance
 func (c *Panorama) RemoveApplicationInstance(input *RemoveApplicationInstanceInput) (*RemoveApplicationInstanceOutput, error) {
@@ -3255,11 +3258,11 @@ func (c *Panorama) TagResourceRequest(input *TagResourceInput) (req *request.Req
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The target resource was not found.
-//
 //   * ValidationException
 //   The request contains an invalid parameter value.
+//
+//   * ResourceNotFoundException
+//   The target resource was not found.
 //
 //   * InternalServerException
 //   An internal error occurred.
@@ -3341,11 +3344,11 @@ func (c *Panorama) UntagResourceRequest(input *UntagResourceInput) (req *request
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The target resource was not found.
-//
 //   * ValidationException
 //   The request contains an invalid parameter value.
+//
+//   * ResourceNotFoundException
+//   The target resource was not found.
 //
 //   * InternalServerException
 //   An internal error occurred.
@@ -3432,14 +3435,14 @@ func (c *Panorama) UpdateDeviceMetadataRequest(input *UpdateDeviceMetadataInput)
 //   * ValidationException
 //   The request contains an invalid parameter value.
 //
-//   * InternalServerException
-//   An internal error occurred.
-//
 //   * AccessDeniedException
 //   The requestor does not have permission to access the target action or resource.
 //
 //   * ResourceNotFoundException
 //   The target resource was not found.
+//
+//   * InternalServerException
+//   An internal error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/panorama-2019-07-24/UpdateDeviceMetadata
 func (c *Panorama) UpdateDeviceMetadata(input *UpdateDeviceMetadataInput) (*UpdateDeviceMetadataOutput, error) {
@@ -3525,6 +3528,38 @@ func (s *AccessDeniedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Details about a beta appliance software update.
+type AlternateSoftwareMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The appliance software version.
+	Version *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AlternateSoftwareMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AlternateSoftwareMetadata) GoString() string {
+	return s.String()
+}
+
+// SetVersion sets the Version field's value.
+func (s *AlternateSoftwareMetadata) SetVersion(v string) *AlternateSoftwareMetadata {
+	s.Version = &v
+	return s
 }
 
 // An application instance on a device.
@@ -4783,7 +4818,7 @@ type DescribeApplicationInstanceDetailsInput struct {
 	// The application instance's ID.
 	//
 	// ApplicationInstanceId is a required field
-	ApplicationInstanceId *string `location:"uri" locationName:"applicationInstanceId" min:"1" type:"string" required:"true"`
+	ApplicationInstanceId *string `location:"uri" locationName:"ApplicationInstanceId" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -4926,7 +4961,7 @@ type DescribeApplicationInstanceInput struct {
 	// The application instance's ID.
 	//
 	// ApplicationInstanceId is a required field
-	ApplicationInstanceId *string `location:"uri" locationName:"applicationInstanceId" min:"1" type:"string" required:"true"`
+	ApplicationInstanceId *string `location:"uri" locationName:"ApplicationInstanceId" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -5312,6 +5347,9 @@ func (s *DescribeDeviceJobOutput) SetStatus(v string) *DescribeDeviceJobOutput {
 type DescribeDeviceOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Beta software releases available for the device.
+	AlternateSoftwares []*AlternateSoftwareMetadata `type:"list"`
+
 	// The device's ARN.
 	Arn *string `min:"1" type:"string"`
 
@@ -5332,6 +5370,9 @@ type DescribeDeviceOutput struct {
 
 	// The device's ID.
 	DeviceId *string `min:"1" type:"string"`
+
+	// The most recent beta software release.
+	LatestAlternateSoftware *string `min:"1" type:"string"`
 
 	// The latest software version available for the device.
 	LatestSoftware *string `min:"1" type:"string"`
@@ -5376,6 +5417,12 @@ func (s DescribeDeviceOutput) GoString() string {
 	return s.String()
 }
 
+// SetAlternateSoftwares sets the AlternateSoftwares field's value.
+func (s *DescribeDeviceOutput) SetAlternateSoftwares(v []*AlternateSoftwareMetadata) *DescribeDeviceOutput {
+	s.AlternateSoftwares = v
+	return s
+}
+
 // SetArn sets the Arn field's value.
 func (s *DescribeDeviceOutput) SetArn(v string) *DescribeDeviceOutput {
 	s.Arn = &v
@@ -5415,6 +5462,12 @@ func (s *DescribeDeviceOutput) SetDeviceConnectionStatus(v string) *DescribeDevi
 // SetDeviceId sets the DeviceId field's value.
 func (s *DescribeDeviceOutput) SetDeviceId(v string) *DescribeDeviceOutput {
 	s.DeviceId = &v
+	return s
+}
+
+// SetLatestAlternateSoftware sets the LatestAlternateSoftware field's value.
+func (s *DescribeDeviceOutput) SetLatestAlternateSoftware(v string) *DescribeDeviceOutput {
+	s.LatestAlternateSoftware = &v
 	return s
 }
 
@@ -6924,7 +6977,7 @@ type ListApplicationInstanceDependenciesInput struct {
 	// The application instance's ID.
 	//
 	// ApplicationInstanceId is a required field
-	ApplicationInstanceId *string `location:"uri" locationName:"applicationInstanceId" min:"1" type:"string" required:"true"`
+	ApplicationInstanceId *string `location:"uri" locationName:"ApplicationInstanceId" min:"1" type:"string" required:"true"`
 
 	// The maximum number of application instance dependencies to return in one
 	// page of results.
@@ -7036,7 +7089,7 @@ type ListApplicationInstanceNodeInstancesInput struct {
 	// The node instances' application instance ID.
 	//
 	// ApplicationInstanceId is a required field
-	ApplicationInstanceId *string `location:"uri" locationName:"applicationInstanceId" min:"1" type:"string" required:"true"`
+	ApplicationInstanceId *string `location:"uri" locationName:"ApplicationInstanceId" min:"1" type:"string" required:"true"`
 
 	// The maximum number of node instances to return in one page of results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -8066,6 +8119,9 @@ type NetworkPayload struct {
 
 	// Settings for Ethernet port 1.
 	Ethernet1 *EthernetPayload `type:"structure"`
+
+	// Network time protocol (NTP) server settings.
+	Ntp *NtpPayload `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8099,6 +8155,11 @@ func (s *NetworkPayload) Validate() error {
 			invalidParams.AddNested("Ethernet1", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Ntp != nil {
+		if err := s.Ntp.Validate(); err != nil {
+			invalidParams.AddNested("Ntp", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8118,6 +8179,12 @@ func (s *NetworkPayload) SetEthernet1(v *EthernetPayload) *NetworkPayload {
 	return s
 }
 
+// SetNtp sets the Ntp field's value.
+func (s *NetworkPayload) SetNtp(v *NtpPayload) *NetworkPayload {
+	s.Ntp = v
+	return s
+}
+
 // The network status of a device.
 type NetworkStatus struct {
 	_ struct{} `type:"structure"`
@@ -8127,6 +8194,12 @@ type NetworkStatus struct {
 
 	// The status of Ethernet port 1.
 	Ethernet1Status *EthernetStatus `type:"structure"`
+
+	// When the network status changed.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// Details about a network time protocol (NTP) server connection.
+	NtpStatus *NtpStatus `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8156,6 +8229,18 @@ func (s *NetworkStatus) SetEthernet0Status(v *EthernetStatus) *NetworkStatus {
 // SetEthernet1Status sets the Ethernet1Status field's value.
 func (s *NetworkStatus) SetEthernet1Status(v *EthernetStatus) *NetworkStatus {
 	s.Ethernet1Status = v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *NetworkStatus) SetLastUpdatedTime(v time.Time) *NetworkStatus {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetNtpStatus sets the NtpStatus field's value.
+func (s *NetworkStatus) SetNtpStatus(v *NtpStatus) *NetworkStatus {
+	s.NtpStatus = v
 	return s
 }
 
@@ -8624,6 +8709,104 @@ func (s *NodeOutputPort) SetName(v string) *NodeOutputPort {
 // SetType sets the Type field's value.
 func (s *NodeOutputPort) SetType(v string) *NodeOutputPort {
 	s.Type = &v
+	return s
+}
+
+// Network time protocol (NTP) server settings. Use this option to connect to
+// local NTP servers instead of pool.ntp.org.
+type NtpPayload struct {
+	_ struct{} `type:"structure"`
+
+	// NTP servers to use, in order of preference.
+	//
+	// NtpServers is a required field
+	NtpServers []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NtpPayload) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NtpPayload) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NtpPayload) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NtpPayload"}
+	if s.NtpServers == nil {
+		invalidParams.Add(request.NewErrParamRequired("NtpServers"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNtpServers sets the NtpServers field's value.
+func (s *NtpPayload) SetNtpServers(v []*string) *NtpPayload {
+	s.NtpServers = v
+	return s
+}
+
+// Details about an NTP server connection.
+type NtpStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The connection's status.
+	ConnectionStatus *string `type:"string" enum:"NetworkConnectionStatus"`
+
+	// The IP address of the server.
+	IpAddress *string `min:"1" type:"string"`
+
+	// The domain name of the server.
+	NtpServerName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NtpStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NtpStatus) GoString() string {
+	return s.String()
+}
+
+// SetConnectionStatus sets the ConnectionStatus field's value.
+func (s *NtpStatus) SetConnectionStatus(v string) *NtpStatus {
+	s.ConnectionStatus = &v
+	return s
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *NtpStatus) SetIpAddress(v string) *NtpStatus {
+	s.IpAddress = &v
+	return s
+}
+
+// SetNtpServerName sets the NtpServerName field's value.
+func (s *NtpStatus) SetNtpServerName(v string) *NtpStatus {
+	s.NtpServerName = &v
 	return s
 }
 
@@ -9497,7 +9680,7 @@ type RemoveApplicationInstanceInput struct {
 	// An application instance ID.
 	//
 	// ApplicationInstanceId is a required field
-	ApplicationInstanceId *string `location:"uri" locationName:"applicationInstanceId" min:"1" type:"string" required:"true"`
+	ApplicationInstanceId *string `location:"uri" locationName:"ApplicationInstanceId" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -10589,6 +10772,9 @@ const (
 
 	// NetworkConnectionStatusNotConnected is a NetworkConnectionStatus enum value
 	NetworkConnectionStatusNotConnected = "NOT_CONNECTED"
+
+	// NetworkConnectionStatusConnecting is a NetworkConnectionStatus enum value
+	NetworkConnectionStatusConnecting = "CONNECTING"
 )
 
 // NetworkConnectionStatus_Values returns all elements of the NetworkConnectionStatus enum
@@ -10596,6 +10782,7 @@ func NetworkConnectionStatus_Values() []string {
 	return []string{
 		NetworkConnectionStatusConnected,
 		NetworkConnectionStatusNotConnected,
+		NetworkConnectionStatusConnecting,
 	}
 }
 
@@ -10686,12 +10873,16 @@ func PackageImportJobStatus_Values() []string {
 const (
 	// PackageImportJobTypeNodePackageVersion is a PackageImportJobType enum value
 	PackageImportJobTypeNodePackageVersion = "NODE_PACKAGE_VERSION"
+
+	// PackageImportJobTypeMarketplaceNodePackageVersion is a PackageImportJobType enum value
+	PackageImportJobTypeMarketplaceNodePackageVersion = "MARKETPLACE_NODE_PACKAGE_VERSION"
 )
 
 // PackageImportJobType_Values returns all elements of the PackageImportJobType enum
 func PackageImportJobType_Values() []string {
 	return []string{
 		PackageImportJobTypeNodePackageVersion,
+		PackageImportJobTypeMarketplaceNodePackageVersion,
 	}
 }
 

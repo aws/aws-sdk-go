@@ -1,3 +1,11 @@
+Release v1.43.7 (2022-02-25)
+===
+
+### Service Client Updates
+* `service/elasticache`: Updates service documentation
+  * Doc only update for ElastiCache
+* `service/panorama`: Updates service API and documentation
+
 Release v1.43.6 (2022-02-24)
 ===
 
