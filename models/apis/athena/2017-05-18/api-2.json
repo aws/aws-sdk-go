@@ -443,6 +443,20 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "UpdateNamedQuery":{
+      "name":"UpdateNamedQuery",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateNamedQueryInput"},
+      "output":{"shape":"UpdateNamedQueryOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
+      ],
+      "idempotent":true
+    },
     "UpdatePreparedStatement":{
       "name":"UpdatePreparedStatement",
       "http":{
@@ -1201,6 +1215,11 @@
         "WorkGroup":{"shape":"WorkGroupName"}
       }
     },
+    "NamedQueryDescriptionString":{
+      "type":"string",
+      "max":1024,
+      "min":0
+    },
     "NamedQueryId":{"type":"string"},
     "NamedQueryIdList":{
       "type":"list",
@@ -1553,6 +1572,25 @@
       }
     },
     "UpdateDataCatalogOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateNamedQueryInput":{
+      "type":"structure",
+      "required":[
+        "NamedQueryId",
+        "Name",
+        "QueryString"
+      ],
+      "members":{
+        "NamedQueryId":{"shape":"NamedQueryId"},
+        "Name":{"shape":"NameString"},
+        "Description":{"shape":"NamedQueryDescriptionString"},
+        "QueryString":{"shape":"QueryString"}
+      }
+    },
+    "UpdateNamedQueryOutput":{
       "type":"structure",
       "members":{
       }

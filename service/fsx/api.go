@@ -465,8 +465,7 @@ func (c *FSx) CreateBackupRequest(input *CreateBackupInput) (req *request.Reques
 //   No Amazon FSx file systems were found based upon supplied parameters.
 //
 //   * VolumeNotFound
-//   No Amazon FSx for NetApp ONTAP volumes were found based upon the supplied
-//   parameters.
+//   No Amazon FSx volumes were found based upon the supplied parameters.
 //
 //   * BackupInProgress
 //   Another backup is already under way. Wait for completion before initiating
@@ -929,8 +928,8 @@ func (c *FSx) CreateFileSystemFromBackupRequest(input *CreateFileSystemFromBacku
 // or Amazon FSx for OpenZFS file system from an existing Amazon FSx backup.
 //
 // If a file system with the specified client request token exists and the parameters
-// match, this operation returns the description of the file system. If a client
-// request token with the specified by the file system exists and the parameters
+// match, this operation returns the description of the file system. If a file
+// system with the specified client request token exists but the parameters
 // don't match, this call returns IncompatibleParameterError. If a file system
 // with the specified client request token doesn't exist, this operation does
 // the following:
@@ -1062,9 +1061,9 @@ func (c *FSx) CreateSnapshotRequest(input *CreateSnapshotInput) (req *request.Re
 
 // CreateSnapshot API operation for Amazon FSx.
 //
-// Creates a snapshot of an existing Amazon FSx for OpenZFS file system. With
-// snapshots, you can easily undo file changes and compare file versions by
-// restoring the volume to a previous version.
+// Creates a snapshot of an existing Amazon FSx for OpenZFS volume. With snapshots,
+// you can easily undo file changes and compare file versions by restoring the
+// volume to a previous version.
 //
 // If a snapshot with the specified client request token exists, and the parameters
 // match, this operation returns the description of the existing snapshot. If
@@ -1102,8 +1101,7 @@ func (c *FSx) CreateSnapshotRequest(input *CreateSnapshotInput) (req *request.Re
 //   A generic error indicating a failure with a client request.
 //
 //   * VolumeNotFound
-//   No Amazon FSx for NetApp ONTAP volumes were found based upon the supplied
-//   parameters.
+//   No Amazon FSx volumes were found based upon the supplied parameters.
 //
 //   * ServiceLimitExceeded
 //   An error indicating that a particular service limit was exceeded. You can
@@ -1811,9 +1809,9 @@ func (c *FSx) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *request.Re
 
 // DeleteSnapshot API operation for Amazon FSx.
 //
-// Deletes the Amazon FSx snapshot. After deletion, the snapshot no longer exists,
-// and its data is gone. Deleting a snapshot doesn't affect snapshots stored
-// in a file system backup.
+// Deletes an Amazon FSx for OpenZFS snapshot. After deletion, the snapshot
+// no longer exists, and its data is gone. Deleting a snapshot doesn't affect
+// snapshots stored in a file system backup.
 //
 // The DeleteSnapshot operation returns instantly. The snapshot appears with
 // the lifecycle status of DELETING until the deletion is complete.
@@ -2015,8 +2013,7 @@ func (c *FSx) DeleteVolumeRequest(input *DeleteVolumeInput) (req *request.Reques
 //   A generic error indicating a server-side failure.
 //
 //   * VolumeNotFound
-//   No Amazon FSx for NetApp ONTAP volumes were found based upon the supplied
-//   parameters.
+//   No Amazon FSx volumes were found based upon the supplied parameters.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteVolume
 func (c *FSx) DeleteVolume(input *DeleteVolumeInput) (*DeleteVolumeOutput, error) {
@@ -2130,8 +2127,7 @@ func (c *FSx) DescribeBackupsRequest(input *DescribeBackupsInput) (req *request.
 //   No Amazon FSx file systems were found based upon supplied parameters.
 //
 //   * VolumeNotFound
-//   No Amazon FSx for NetApp ONTAP volumes were found based upon the supplied
-//   parameters.
+//   No Amazon FSx volumes were found based upon the supplied parameters.
 //
 //   * BackupNotFound
 //   No Amazon FSx backups were found based upon the supplied parameters.
@@ -2901,10 +2897,10 @@ func (c *FSx) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *requ
 
 // DescribeSnapshots API operation for Amazon FSx.
 //
-// Returns the description of specific Amazon FSx snapshots, if a SnapshotIds
-// value is provided. Otherwise, this operation returns all snapshots owned
-// by your Amazon Web Services account in the Amazon Web Services Region of
-// the endpoint that you're calling.
+// Returns the description of specific Amazon FSx for OpenZFS snapshots, if
+// a SnapshotIds value is provided. Otherwise, this operation returns all snapshots
+// owned by your Amazon Web Services account in the Amazon Web Services Region
+// of the endpoint that you're calling.
 //
 // When retrieving all snapshots, you can optionally specify the MaxResults
 // parameter to limit the number of snapshots in a response. If more backups
@@ -3229,8 +3225,7 @@ func (c *FSx) DescribeVolumesRequest(input *DescribeVolumesInput) (req *request.
 //   A generic error indicating a server-side failure.
 //
 //   * VolumeNotFound
-//   No Amazon FSx for NetApp ONTAP volumes were found based upon the supplied
-//   parameters.
+//   No Amazon FSx volumes were found based upon the supplied parameters.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeVolumes
 func (c *FSx) DescribeVolumes(input *DescribeVolumesInput) (*DescribeVolumesOutput, error) {
@@ -3727,8 +3722,7 @@ func (c *FSx) RestoreVolumeFromSnapshotRequest(input *RestoreVolumeFromSnapshotI
 //   A generic error indicating a server-side failure.
 //
 //   * VolumeNotFound
-//   No Amazon FSx for NetApp ONTAP volumes were found based upon the supplied
-//   parameters.
+//   No Amazon FSx volumes were found based upon the supplied parameters.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/RestoreVolumeFromSnapshot
 func (c *FSx) RestoreVolumeFromSnapshot(input *RestoreVolumeFromSnapshotInput) (*RestoreVolumeFromSnapshotOutput, error) {
@@ -4240,7 +4234,7 @@ func (c *FSx) UpdateSnapshotRequest(input *UpdateSnapshotInput) (req *request.Re
 
 // UpdateSnapshot API operation for Amazon FSx.
 //
-// Updates the name of a snapshot.
+// Updates the name of an Amazon FSx for OpenZFS snapshot.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4444,8 +4438,7 @@ func (c *FSx) UpdateVolumeRequest(input *UpdateVolumeInput) (req *request.Reques
 //   A volume configuration is required for this operation.
 //
 //   * VolumeNotFound
-//   No Amazon FSx for NetApp ONTAP volumes were found based upon the supplied
-//   parameters.
+//   No Amazon FSx volumes were found based upon the supplied parameters.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateVolume
 func (c *FSx) UpdateVolume(input *UpdateVolumeInput) (*UpdateVolumeOutput, error) {
@@ -7597,7 +7590,8 @@ func (s *CreateFileSystemOntapConfiguration) SetWeeklyMaintenanceStartTime(v str
 	return s
 }
 
-// The OpenZFS configuration properties for the file system that you are creating.
+// The Amazon FSx for OpenZFS configuration properties for the file system that
+// you are creating.
 type CreateFileSystemOpenZFSConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -8255,7 +8249,8 @@ func (s *CreateOpenZFSOriginSnapshotConfiguration) SetSnapshotARN(v string) *Cre
 	return s
 }
 
-// Specifies the configuration of the OpenZFS volume that you are creating.
+// Specifies the configuration of the Amazon FSx for OpenZFS volume that you
+// are creating.
 type CreateOpenZFSVolumeConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -8267,15 +8262,18 @@ type CreateOpenZFSVolumeConfiguration struct {
 	// the snapshot, no tags are copied from the volume, regardless of this value.
 	CopyTagsToSnapshots *bool `type:"boolean"`
 
-	// Specifies the method used to compress the data on the volume. Unless the
-	// compression type is specified, volumes inherit the DataCompressionType value
-	// of their parent volume.
+	// Specifies the method used to compress the data on the volume. The compression
+	// type is NONE by default.
 	//
-	//    * NONE - Doesn't compress the data on the volume.
+	//    * NONE - Doesn't compress the data on the volume. NONE is the default.
 	//
 	//    * ZSTD - Compresses the data in the volume using the Zstandard (ZSTD)
-	//    compression algorithm. This algorithm reduces the amount of space used
-	//    on your volume and has very little impact on compute resources.
+	//    compression algorithm. Compared to LZ4, Z-Standard provides a better compression
+	//    ratio to minimize on-disk storage utilization.
+	//
+	//    * LZ4 - Compresses the data in the volume using the LZ4 compression algorithm.
+	//    Compared to Z-Standard, LZ4 is less compute-intensive and delivers higher
+	//    write throughput speeds.
 	DataCompressionType *string `type:"string" enum:"OpenZFSDataCompressionType"`
 
 	// The configuration object for mounting a Network File System (NFS) file system.
@@ -8293,13 +8291,23 @@ type CreateOpenZFSVolumeConfiguration struct {
 	// A Boolean value indicating whether the volume is read-only.
 	ReadOnly *bool `type:"boolean"`
 
+	// Specifies the record size of an OpenZFS volume, in kibibytes (KiB). Valid
+	// values are 4, 8, 16, 32, 64, 128, 256, 512, or 1024 KiB. The default is 128
+	// KiB. Most workloads should use the default record size. Database workflows
+	// can benefit from a smaller record size, while streaming workflows can benefit
+	// from a larger record size. For additional guidance on when to set a custom
+	// record size, see Tips for maximizing performance (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/performance.html#performance-tips-zfs)
+	// in the Amazon FSx for OpenZFS User Guide.
+	RecordSizeKiB *int64 `min:"4" type:"integer"`
+
 	// The maximum amount of storage in gibibytes (GiB) that the volume can use
-	// from its parent. You can specify a quota larger than the storage on the parent
-	// volume.
+	// from its parent. You can't specify a quota larger than the storage on the
+	// parent volume. To not specify a storage capacity quota, set this to -1.
 	StorageCapacityQuotaGiB *int64 `type:"integer"`
 
 	// The amount of storage in gibibytes (GiB) to reserve from the parent volume.
-	// You can't reserve more storage than the parent volume has reserved.
+	// You can't reserve more storage than the parent volume has reserved. To not
+	// specify a storage capacity reservation, set this to -1.
 	StorageCapacityReservationGiB *int64 `type:"integer"`
 
 	// An object specifying how much storage users or groups can use on the volume.
@@ -8332,6 +8340,15 @@ func (s *CreateOpenZFSVolumeConfiguration) Validate() error {
 	}
 	if s.ParentVolumeId != nil && len(*s.ParentVolumeId) < 23 {
 		invalidParams.Add(request.NewErrParamMinLen("ParentVolumeId", 23))
+	}
+	if s.RecordSizeKiB != nil && *s.RecordSizeKiB < 4 {
+		invalidParams.Add(request.NewErrParamMinValue("RecordSizeKiB", 4))
+	}
+	if s.StorageCapacityQuotaGiB != nil && *s.StorageCapacityQuotaGiB < -1 {
+		invalidParams.Add(request.NewErrParamMinValue("StorageCapacityQuotaGiB", -1))
+	}
+	if s.StorageCapacityReservationGiB != nil && *s.StorageCapacityReservationGiB < -1 {
+		invalidParams.Add(request.NewErrParamMinValue("StorageCapacityReservationGiB", -1))
 	}
 	if s.NfsExports != nil {
 		for i, v := range s.NfsExports {
@@ -8398,6 +8415,12 @@ func (s *CreateOpenZFSVolumeConfiguration) SetParentVolumeId(v string) *CreateOp
 // SetReadOnly sets the ReadOnly field's value.
 func (s *CreateOpenZFSVolumeConfiguration) SetReadOnly(v bool) *CreateOpenZFSVolumeConfiguration {
 	s.ReadOnly = &v
+	return s
+}
+
+// SetRecordSizeKiB sets the RecordSizeKiB field's value.
+func (s *CreateOpenZFSVolumeConfiguration) SetRecordSizeKiB(v int64) *CreateOpenZFSVolumeConfiguration {
+	s.RecordSizeKiB = &v
 	return s
 }
 
@@ -10544,18 +10567,24 @@ func (s *DeleteFileSystemLustreResponse) SetFinalBackupTags(v []*Tag) *DeleteFil
 	return s
 }
 
-// The configuration object for the OpenZFS file system used in the DeleteFileSystem
-// operation.
+// The configuration object for the Amazon FSx for OpenZFS file system used
+// in the DeleteFileSystem operation.
 type DeleteFileSystemOpenZFSConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// A list of Tag values, with a maximum of 50 elements.
+	// A list of tags to apply to the file system's final backup.
 	FinalBackupTags []*Tag `min:"1" type:"list"`
+
+	// To delete a file system if there are child volumes present below the root
+	// volume, use the string DELETE_CHILD_VOLUMES_AND_SNAPSHOTS. If your file system
+	// has child volumes and you don't use this option, the delete request will
+	// fail.
+	Options []*string `type:"list"`
 
 	// By default, Amazon FSx for OpenZFS takes a final backup on your behalf when
 	// the DeleteFileSystem operation is invoked. Doing this helps protect you from
 	// data loss, and we highly recommend taking the final backup. If you want to
-	// skip this backup, use this value to do so.
+	// skip taking a final backup, set this value to true.
 	SkipFinalBackup *bool `type:"boolean"`
 }
 
@@ -10603,6 +10632,12 @@ func (s *DeleteFileSystemOpenZFSConfiguration) Validate() error {
 // SetFinalBackupTags sets the FinalBackupTags field's value.
 func (s *DeleteFileSystemOpenZFSConfiguration) SetFinalBackupTags(v []*Tag) *DeleteFileSystemOpenZFSConfiguration {
 	s.FinalBackupTags = v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *DeleteFileSystemOpenZFSConfiguration) SetOptions(v []*string) *DeleteFileSystemOpenZFSConfiguration {
+	s.Options = v
 	return s
 }
 
@@ -14660,7 +14695,7 @@ type OpenZFSClientConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// A value that specifies who can mount the file system. You can provide a wildcard
-	// character (*), an IP address (0.0.0.0), or a CIDR address (192.0.2.0/24.
+	// character (*), an IP address (0.0.0.0), or a CIDR address (192.0.2.0/24).
 	// By default, Amazon FSx uses the wildcard character when specifying the client.
 	//
 	// Clients is a required field
@@ -14671,9 +14706,9 @@ type OpenZFSClientConfiguration struct {
 	// page (https://linux.die.net/man/5/exports). When choosing your options, consider
 	// the following:
 	//
-	//    * crossmount is used by default. If you don't specify crossmount when
-	//    changing the client configuration, you won't be able to see or access
-	//    snapshots in your file system's snapshot directory.
+	//    * crossmnt is used by default. If you don't specify crossmnt when changing
+	//    the client configuration, you won't be able to see or access snapshots
+	//    in your file system's snapshot directory.
 	//
 	//    * sync is used by default. If you instead specify async, the system acknowledges
 	//    writes before writing to disk. If the system crashes before the writes
@@ -14740,22 +14775,25 @@ type OpenZFSCreateRootVolumeConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// A Boolean value indicating whether tags for the volume should be copied to
-	// snapshots. This value defaults to false. If it's set to true, all tags for
-	// the volume are copied to snapshots where the user doesn't specify tags. If
-	// this value is true and you specify one or more tags, only the specified tags
-	// are copied to snapshots. If you specify one or more tags when creating the
-	// snapshot, no tags are copied from the volume, regardless of this value.
+	// snapshots of the volume. This value defaults to false. If it's set to true,
+	// all tags for the volume are copied to snapshots where the user doesn't specify
+	// tags. If this value is true and you specify one or more tags, only the specified
+	// tags are copied to snapshots. If you specify one or more tags when creating
+	// the snapshot, no tags are copied from the volume, regardless of this value.
 	CopyTagsToSnapshots *bool `type:"boolean"`
 
-	// Specifies the method used to compress the data on the volume. Unless the
-	// compression type is specified, volumes inherit the DataCompressionType value
-	// of their parent volume.
+	// Specifies the method used to compress the data on the volume. The compression
+	// type is NONE by default.
 	//
-	//    * NONE - Doesn't compress the data on the volume.
+	//    * NONE - Doesn't compress the data on the volume. NONE is the default.
 	//
-	//    * ZSTD - Compresses the data in the volume using the ZStandard (ZSTD)
-	//    compression algorithm. This algorithm reduces the amount of space used
-	//    on your volume and has very little impact on compute resources.
+	//    * ZSTD - Compresses the data in the volume using the Zstandard (ZSTD)
+	//    compression algorithm. Compared to LZ4, Z-Standard provides a better compression
+	//    ratio to minimize on-disk storage utilization.
+	//
+	//    * LZ4 - Compresses the data in the volume using the LZ4 compression algorithm.
+	//    Compared to Z-Standard, LZ4 is less compute-intensive and delivers higher
+	//    write throughput speeds.
 	DataCompressionType *string `type:"string" enum:"OpenZFSDataCompressionType"`
 
 	// The configuration object for mounting a file system.
@@ -14765,6 +14803,15 @@ type OpenZFSCreateRootVolumeConfiguration struct {
 	// value to true can be useful after you have completed changes to a volume
 	// and no longer want changes to occur.
 	ReadOnly *bool `type:"boolean"`
+
+	// Specifies the record size of an OpenZFS root volume, in kibibytes (KiB).
+	// Valid values are 4, 8, 16, 32, 64, 128, 256, 512, or 1024 KiB. The default
+	// is 128 KiB. Most workloads should use the default record size. Database workflows
+	// can benefit from a smaller record size, while streaming workflows can benefit
+	// from a larger record size. For additional guidance on setting a custom record
+	// size, see Tips for maximizing performance (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/performance.html#performance-tips-zfs)
+	// in the Amazon FSx for OpenZFS User Guide.
+	RecordSizeKiB *int64 `min:"4" type:"integer"`
 
 	// An object specifying how much storage users or groups can use on the volume.
 	UserAndGroupQuotas []*OpenZFSUserOrGroupQuota `type:"list"`
@@ -14791,6 +14838,9 @@ func (s OpenZFSCreateRootVolumeConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *OpenZFSCreateRootVolumeConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "OpenZFSCreateRootVolumeConfiguration"}
+	if s.RecordSizeKiB != nil && *s.RecordSizeKiB < 4 {
+		invalidParams.Add(request.NewErrParamMinValue("RecordSizeKiB", 4))
+	}
 	if s.NfsExports != nil {
 		for i, v := range s.NfsExports {
 			if v == nil {
@@ -14839,6 +14889,12 @@ func (s *OpenZFSCreateRootVolumeConfiguration) SetNfsExports(v []*OpenZFSNfsExpo
 // SetReadOnly sets the ReadOnly field's value.
 func (s *OpenZFSCreateRootVolumeConfiguration) SetReadOnly(v bool) *OpenZFSCreateRootVolumeConfiguration {
 	s.ReadOnly = &v
+	return s
+}
+
+// SetRecordSizeKiB sets the RecordSizeKiB field's value.
+func (s *OpenZFSCreateRootVolumeConfiguration) SetRecordSizeKiB(v int64) *OpenZFSCreateRootVolumeConfiguration {
+	s.RecordSizeKiB = &v
 	return s
 }
 
@@ -14895,7 +14951,7 @@ type OpenZFSFileSystemConfiguration struct {
 	RootVolumeId *string `min:"23" type:"string"`
 
 	// The throughput of an Amazon FSx file system, measured in megabytes per second
-	// (MBps), in 2 to the nth increments, between 2^3 (8) and 2^11 (2048).
+	// (MBps). Valid values are 64, 128, 256, 512, 1024, 2048, 3072, or 4096 MB/s.
 	ThroughputCapacity *int64 `min:"8" type:"integer"`
 
 	// A recurring weekly time, in the format D:HH:MM.
@@ -15182,15 +15238,18 @@ type OpenZFSVolumeConfiguration struct {
 	// snapshot, no tags are copied from the volume, regardless of this value.
 	CopyTagsToSnapshots *bool `type:"boolean"`
 
-	// The method used to compress the data on the volume. Unless a compression
-	// type is specified, volumes inherit the DataCompressionType value of their
-	// parent volume.
+	// Specifies the method used to compress the data on the volume. The compression
+	// type is NONE by default.
 	//
-	//    * NONE - Doesn't compress the data on the volume.
+	//    * NONE - Doesn't compress the data on the volume. NONE is the default.
 	//
 	//    * ZSTD - Compresses the data in the volume using the Zstandard (ZSTD)
-	//    compression algorithm. This algorithm reduces the amount of space used
-	//    on your volume and has very little impact on compute resources.
+	//    compression algorithm. Compared to LZ4, Z-Standard provides a better compression
+	//    ratio to minimize on-disk storage utilization.
+	//
+	//    * LZ4 - Compresses the data in the volume using the LZ4 compression algorithm.
+	//    Compared to Z-Standard, LZ4 is less compute-intensive and delivers higher
+	//    write throughput speeds.
 	DataCompressionType *string `type:"string" enum:"OpenZFSDataCompressionType"`
 
 	// The configuration object for mounting a Network File System (NFS) file system.
@@ -15205,6 +15264,12 @@ type OpenZFSVolumeConfiguration struct {
 
 	// A Boolean value indicating whether the volume is read-only.
 	ReadOnly *bool `type:"boolean"`
+
+	// The record size of an OpenZFS volume, in kibibytes (KiB). Valid values are
+	// 4, 8, 16, 32, 64, 128, 256, 512, or 1024 KiB. The default is 128 KiB. Most
+	// workloads should use the default record size. For guidance on when to set
+	// a custom record size, see the Amazon FSx for OpenZFS User Guide.
+	RecordSizeKiB *int64 `min:"4" type:"integer"`
 
 	// The maximum amount of storage in gibibtyes (GiB) that the volume can use
 	// from its parent. You can specify a quota larger than the storage on the parent
@@ -15273,6 +15338,12 @@ func (s *OpenZFSVolumeConfiguration) SetParentVolumeId(v string) *OpenZFSVolumeC
 // SetReadOnly sets the ReadOnly field's value.
 func (s *OpenZFSVolumeConfiguration) SetReadOnly(v bool) *OpenZFSVolumeConfiguration {
 	s.ReadOnly = &v
+	return s
+}
+
+// SetRecordSizeKiB sets the RecordSizeKiB field's value.
+func (s *OpenZFSVolumeConfiguration) SetRecordSizeKiB(v int64) *OpenZFSVolumeConfiguration {
+	s.RecordSizeKiB = &v
 	return s
 }
 
@@ -16124,6 +16195,9 @@ type Snapshot struct {
 	//    * AVAILABLE - The snapshot is fully available.
 	Lifecycle *string `type:"string" enum:"SnapshotLifecycle"`
 
+	// Describes why a resource lifecycle state changed.
+	LifecycleTransitionReason *LifecycleTransitionReason `type:"structure"`
+
 	// The name of the snapshot.
 	Name *string `min:"1" type:"string"`
 
@@ -16177,6 +16251,12 @@ func (s *Snapshot) SetCreationTime(v time.Time) *Snapshot {
 // SetLifecycle sets the Lifecycle field's value.
 func (s *Snapshot) SetLifecycle(v string) *Snapshot {
 	s.Lifecycle = &v
+	return s
+}
+
+// SetLifecycleTransitionReason sets the LifecycleTransitionReason field's value.
+func (s *Snapshot) SetLifecycleTransitionReason(v *LifecycleTransitionReason) *Snapshot {
+	s.LifecycleTransitionReason = v
 	return s
 }
 
@@ -17801,7 +17881,7 @@ type UpdateFileSystemOpenZFSConfiguration struct {
 	DiskIopsConfiguration *DiskIopsConfiguration `type:"structure"`
 
 	// The throughput of an Amazon FSx file system, measured in megabytes per second
-	// (MBps), in 2 to the nth increments, between 2^3 (8) and 2^12 (4096).
+	// (MBps). Valid values are 64, 128, 256, 512, 1024, 2048, 3072, or 4096 MB/s.
 	ThroughputCapacity *int64 `min:"8" type:"integer"`
 
 	// A recurring weekly time, in the format D:HH:MM.
@@ -18145,15 +18225,18 @@ func (s *UpdateOntapVolumeConfiguration) SetTieringPolicy(v *TieringPolicy) *Upd
 type UpdateOpenZFSVolumeConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the method used to compress the data on the volume. Unless the
-	// compression type is specified, volumes inherit the DataCompressionType value
-	// of their parent volume.
+	// Specifies the method used to compress the data on the volume. The compression
+	// type is NONE by default.
 	//
-	//    * NONE - Doesn't compress the data on the volume.
+	//    * NONE - Doesn't compress the data on the volume. NONE is the default.
 	//
 	//    * ZSTD - Compresses the data in the volume using the Zstandard (ZSTD)
-	//    compression algorithm. This algorithm reduces the amount of space used
-	//    on your volume and has very little impact on compute resources.
+	//    compression algorithm. Compared to LZ4, Z-Standard provides a better compression
+	//    ratio to minimize on-disk storage utilization.
+	//
+	//    * LZ4 - Compresses the data in the volume using the LZ4 compression algorithm.
+	//    Compared to Z-Standard, LZ4 is less compute-intensive and delivers higher
+	//    write throughput speeds.
 	DataCompressionType *string `type:"string" enum:"OpenZFSDataCompressionType"`
 
 	// The configuration object for mounting a Network File System (NFS) file system.
@@ -18162,13 +18245,24 @@ type UpdateOpenZFSVolumeConfiguration struct {
 	// A Boolean value indicating whether the volume is read-only.
 	ReadOnly *bool `type:"boolean"`
 
+	// Specifies the record size of an OpenZFS volume, in kibibytes (KiB). Valid
+	// values are 4, 8, 16, 32, 64, 128, 256, 512, or 1024 KiB. The default is 128
+	// KiB. Most workloads should use the default record size. Database workflows
+	// can benefit from a smaller record size, while streaming workflows can benefit
+	// from a larger record size. For additional guidance on when to set a custom
+	// record size, see Tips for maximizing performance (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/performance.html#performance-tips-zfs)
+	// in the Amazon FSx for OpenZFS User Guide.
+	RecordSizeKiB *int64 `min:"4" type:"integer"`
+
 	// The maximum amount of storage in gibibytes (GiB) that the volume can use
 	// from its parent. You can specify a quota larger than the storage on the parent
-	// volume.
+	// volume. You can specify a value of -1 to unset a volume's storage capacity
+	// quota.
 	StorageCapacityQuotaGiB *int64 `type:"integer"`
 
 	// The amount of storage in gibibytes (GiB) to reserve from the parent volume.
-	// You can't reserve more storage than the parent volume has reserved.
+	// You can't reserve more storage than the parent volume has reserved. You can
+	// specify a value of -1 to unset a volume's storage capacity reservation.
 	StorageCapacityReservationGiB *int64 `type:"integer"`
 
 	// An object specifying how much storage users or groups can use on the volume.
@@ -18196,6 +18290,15 @@ func (s UpdateOpenZFSVolumeConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateOpenZFSVolumeConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateOpenZFSVolumeConfiguration"}
+	if s.RecordSizeKiB != nil && *s.RecordSizeKiB < 4 {
+		invalidParams.Add(request.NewErrParamMinValue("RecordSizeKiB", 4))
+	}
+	if s.StorageCapacityQuotaGiB != nil && *s.StorageCapacityQuotaGiB < -1 {
+		invalidParams.Add(request.NewErrParamMinValue("StorageCapacityQuotaGiB", -1))
+	}
+	if s.StorageCapacityReservationGiB != nil && *s.StorageCapacityReservationGiB < -1 {
+		invalidParams.Add(request.NewErrParamMinValue("StorageCapacityReservationGiB", -1))
+	}
 	if s.NfsExports != nil {
 		for i, v := range s.NfsExports {
 			if v == nil {
@@ -18238,6 +18341,12 @@ func (s *UpdateOpenZFSVolumeConfiguration) SetNfsExports(v []*OpenZFSNfsExport) 
 // SetReadOnly sets the ReadOnly field's value.
 func (s *UpdateOpenZFSVolumeConfiguration) SetReadOnly(v bool) *UpdateOpenZFSVolumeConfiguration {
 	s.ReadOnly = &v
+	return s
+}
+
+// SetRecordSizeKiB sets the RecordSizeKiB field's value.
+func (s *UpdateOpenZFSVolumeConfiguration) SetRecordSizeKiB(v int64) *UpdateOpenZFSVolumeConfiguration {
+	s.RecordSizeKiB = &v
 	return s
 }
 
@@ -18879,8 +18988,7 @@ func (s *VolumeFilter) SetValues(v []*string) *VolumeFilter {
 	return s
 }
 
-// No Amazon FSx for NetApp ONTAP volumes were found based upon the supplied
-// parameters.
+// No Amazon FSx volumes were found based upon the supplied parameters.
 type VolumeNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -19701,6 +19809,18 @@ func DataRepositoryTaskType_Values() []string {
 }
 
 const (
+	// DeleteFileSystemOpenZFSOptionDeleteChildVolumesAndSnapshots is a DeleteFileSystemOpenZFSOption enum value
+	DeleteFileSystemOpenZFSOptionDeleteChildVolumesAndSnapshots = "DELETE_CHILD_VOLUMES_AND_SNAPSHOTS"
+)
+
+// DeleteFileSystemOpenZFSOption_Values returns all elements of the DeleteFileSystemOpenZFSOption enum
+func DeleteFileSystemOpenZFSOption_Values() []string {
+	return []string{
+		DeleteFileSystemOpenZFSOptionDeleteChildVolumesAndSnapshots,
+	}
+}
+
+const (
 	// DeleteOpenZFSVolumeOptionDeleteChildVolumesAndSnapshots is a DeleteOpenZFSVolumeOption enum value
 	DeleteOpenZFSVolumeOptionDeleteChildVolumesAndSnapshots = "DELETE_CHILD_VOLUMES_AND_SNAPSHOTS"
 )
@@ -19990,6 +20110,9 @@ const (
 
 	// OpenZFSDataCompressionTypeZstd is a OpenZFSDataCompressionType enum value
 	OpenZFSDataCompressionTypeZstd = "ZSTD"
+
+	// OpenZFSDataCompressionTypeLz4 is a OpenZFSDataCompressionType enum value
+	OpenZFSDataCompressionTypeLz4 = "LZ4"
 )
 
 // OpenZFSDataCompressionType_Values returns all elements of the OpenZFSDataCompressionType enum
@@ -19997,6 +20120,7 @@ func OpenZFSDataCompressionType_Values() []string {
 	return []string{
 		OpenZFSDataCompressionTypeNone,
 		OpenZFSDataCompressionTypeZstd,
+		OpenZFSDataCompressionTypeLz4,
 	}
 }
 

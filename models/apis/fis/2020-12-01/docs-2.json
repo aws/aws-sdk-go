@@ -113,6 +113,14 @@
         "StartExperimentRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>"
       }
     },
+    "CloudWatchLogGroupArn": {
+      "base": null,
+      "refs": {
+        "ExperimentCloudWatchLogsLogConfiguration$logGroupArn": "<p>The Amazon Resource Name (ARN) of the destination Amazon CloudWatch Logs log group.</p>",
+        "ExperimentTemplateCloudWatchLogsLogConfiguration$logGroupArn": "<p>The Amazon Resource Name (ARN) of the destination Amazon CloudWatch Logs log group.</p>",
+        "ExperimentTemplateCloudWatchLogsLogConfigurationInput$logGroupArn": "<p>The Amazon Resource Name (ARN) of the destination Amazon CloudWatch Logs log group.</p>"
+      }
+    },
     "ConflictException": {
       "base": "<p>The request could not be processed because of a conflict.</p>",
       "refs": {
@@ -128,6 +136,12 @@
       "base": null,
       "refs": {
         "CreateExperimentTemplateRequest$actions": "<p>The actions for the experiment.</p>"
+      }
+    },
+    "CreateExperimentTemplateLogConfigurationInput": {
+      "base": "<p>Specifies the configuration for experiment logging.</p>",
+      "refs": {
+        "CreateExperimentTemplateRequest$logConfiguration": "<p>The configuration for experiment logging.</p>"
       }
     },
     "CreateExperimentTemplateRequest": {
@@ -296,6 +310,12 @@
         "ExperimentActionTargetMap$key": null
       }
     },
+    "ExperimentCloudWatchLogsLogConfiguration": {
+      "base": "<p>Describes the configuration for experiment logging to Amazon CloudWatch Logs.</p>",
+      "refs": {
+        "ExperimentLogConfiguration$cloudWatchLogsConfiguration": "<p>The configuration for experiment logging to Amazon CloudWatch Logs.</p>"
+      }
+    },
     "ExperimentEndTime": {
       "base": null,
       "refs": {
@@ -309,6 +329,18 @@
         "ExperimentSummary$id": "<p>The ID of the experiment.</p>",
         "GetExperimentRequest$id": "<p>The ID of the experiment.</p>",
         "StopExperimentRequest$id": "<p>The ID of the experiment.</p>"
+      }
+    },
+    "ExperimentLogConfiguration": {
+      "base": "<p>Describes the configuration for experiment logging.</p>",
+      "refs": {
+        "Experiment$logConfiguration": "<p>The configuration for experiment logging.</p>"
+      }
+    },
+    "ExperimentS3LogConfiguration": {
+      "base": "<p>Describes the configuration for experiment logging to Amazon S3.</p>",
+      "refs": {
+        "ExperimentLogConfiguration$s3Configuration": "<p>The configuration for experiment logging to Amazon S3.</p>"
       }
     },
     "ExperimentStartTime": {
@@ -518,6 +550,19 @@
         "ExperimentTemplateActionTargetMap$key": null
       }
     },
+    "ExperimentTemplateCloudWatchLogsLogConfiguration": {
+      "base": "<p>Describes the configuration for experiment logging to Amazon CloudWatch Logs.</p>",
+      "refs": {
+        "ExperimentTemplateLogConfiguration$cloudWatchLogsConfiguration": "<p>The configuration for experiment logging to Amazon CloudWatch Logs.</p>"
+      }
+    },
+    "ExperimentTemplateCloudWatchLogsLogConfigurationInput": {
+      "base": "<p>Specifies the configuration for experiment logging to Amazon CloudWatch Logs.</p>",
+      "refs": {
+        "CreateExperimentTemplateLogConfigurationInput$cloudWatchLogsConfiguration": "<p>The configuration for experiment logging to Amazon CloudWatch Logs.</p>",
+        "UpdateExperimentTemplateLogConfigurationInput$cloudWatchLogsConfiguration": "<p>The configuration for experiment logging to Amazon CloudWatch Logs.</p>"
+      }
+    },
     "ExperimentTemplateDescription": {
       "base": null,
       "refs": {
@@ -538,6 +583,25 @@
         "GetExperimentTemplateRequest$id": "<p>The ID of the experiment template.</p>",
         "StartExperimentRequest$experimentTemplateId": "<p>The ID of the experiment template.</p>",
         "UpdateExperimentTemplateRequest$id": "<p>The ID of the experiment template.</p>"
+      }
+    },
+    "ExperimentTemplateLogConfiguration": {
+      "base": "<p>Describes the configuration for experiment logging.</p>",
+      "refs": {
+        "ExperimentTemplate$logConfiguration": "<p>The configuration for experiment logging.</p>"
+      }
+    },
+    "ExperimentTemplateS3LogConfiguration": {
+      "base": "<p>Describes the configuration for experiment logging to Amazon S3.</p>",
+      "refs": {
+        "ExperimentTemplateLogConfiguration$s3Configuration": "<p>The configuration for experiment logging to Amazon S3.</p>"
+      }
+    },
+    "ExperimentTemplateS3LogConfigurationInput": {
+      "base": "<p>Specifies the configuration for experiment logging to Amazon S3.</p>",
+      "refs": {
+        "CreateExperimentTemplateLogConfigurationInput$s3Configuration": "<p>The configuration for experiment logging to Amazon S3.</p>",
+        "UpdateExperimentTemplateLogConfigurationInput$s3Configuration": "<p>The configuration for experiment logging to Amazon S3.</p>"
       }
     },
     "ExperimentTemplateStopCondition": {
@@ -779,6 +843,15 @@
       "refs": {
       }
     },
+    "LogSchemaVersion": {
+      "base": null,
+      "refs": {
+        "CreateExperimentTemplateLogConfigurationInput$logSchemaVersion": "<p>The schema version.</p>",
+        "ExperimentLogConfiguration$logSchemaVersion": "<p>The schema version.</p>",
+        "ExperimentTemplateLogConfiguration$logSchemaVersion": "<p>The schema version.</p>",
+        "UpdateExperimentTemplateLogConfigurationInput$logSchemaVersion": "<p>The schema version.</p>"
+      }
+    },
     "NextToken": {
       "base": null,
       "refs": {
@@ -822,6 +895,22 @@
         "Experiment$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that grants the FIS service permission to perform service actions on your behalf.</p>",
         "ExperimentTemplate$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role.</p>",
         "UpdateExperimentTemplateRequest$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that grants the FIS service permission to perform service actions on your behalf.</p>"
+      }
+    },
+    "S3BucketName": {
+      "base": null,
+      "refs": {
+        "ExperimentS3LogConfiguration$bucketName": "<p>The name of the destination bucket.</p>",
+        "ExperimentTemplateS3LogConfiguration$bucketName": "<p>The name of the destination bucket.</p>",
+        "ExperimentTemplateS3LogConfigurationInput$bucketName": "<p>The name of the destination bucket.</p>"
+      }
+    },
+    "S3ObjectKey": {
+      "base": null,
+      "refs": {
+        "ExperimentS3LogConfiguration$prefix": "<p>The bucket prefix.</p>",
+        "ExperimentTemplateS3LogConfiguration$prefix": "<p>The bucket prefix.</p>",
+        "ExperimentTemplateS3LogConfigurationInput$prefix": "<p>The bucket prefix.</p>"
       }
     },
     "ServiceQuotaExceededException": {
@@ -1003,6 +1092,12 @@
       "base": null,
       "refs": {
         "UpdateExperimentTemplateRequest$actions": "<p>The actions for the experiment.</p>"
+      }
+    },
+    "UpdateExperimentTemplateLogConfigurationInput": {
+      "base": "<p>Specifies the configuration for experiment logging.</p>",
+      "refs": {
+        "UpdateExperimentTemplateRequest$logConfiguration": "<p>The configuration for experiment logging.</p>"
       }
     },
     "UpdateExperimentTemplateRequest": {

@@ -4988,7 +4988,9 @@ type UpdateApplicationInput struct {
 
 	// The new name of the application. The name must be unique in the region in
 	// which you are updating the application.
-	Name *string `locationName:"name" min:"1" type:"string"`
+	//
+	// Deprecated: Name update for application is deprecated.
+	Name *string `locationName:"name" min:"1" deprecated:"true" type:"string"`
 }
 
 // String returns the string representation.
@@ -5095,7 +5097,9 @@ type UpdateAttributeGroupInput struct {
 
 	// The new name of the attribute group. The name must be unique in the region
 	// in which you are updating the attribute group.
-	Name *string `locationName:"name" min:"1" type:"string"`
+	//
+	// Deprecated: Name update for attribute group is deprecated.
+	Name *string `locationName:"name" min:"1" deprecated:"true" type:"string"`
 }
 
 // String returns the string representation.

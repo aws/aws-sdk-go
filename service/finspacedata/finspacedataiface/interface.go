@@ -72,9 +72,29 @@ type FinSpaceDataAPI interface {
 	CreateDatasetWithContext(aws.Context, *finspacedata.CreateDatasetInput, ...request.Option) (*finspacedata.CreateDatasetOutput, error)
 	CreateDatasetRequest(*finspacedata.CreateDatasetInput) (*request.Request, *finspacedata.CreateDatasetOutput)
 
+	CreatePermissionGroup(*finspacedata.CreatePermissionGroupInput) (*finspacedata.CreatePermissionGroupOutput, error)
+	CreatePermissionGroupWithContext(aws.Context, *finspacedata.CreatePermissionGroupInput, ...request.Option) (*finspacedata.CreatePermissionGroupOutput, error)
+	CreatePermissionGroupRequest(*finspacedata.CreatePermissionGroupInput) (*request.Request, *finspacedata.CreatePermissionGroupOutput)
+
+	CreateUser(*finspacedata.CreateUserInput) (*finspacedata.CreateUserOutput, error)
+	CreateUserWithContext(aws.Context, *finspacedata.CreateUserInput, ...request.Option) (*finspacedata.CreateUserOutput, error)
+	CreateUserRequest(*finspacedata.CreateUserInput) (*request.Request, *finspacedata.CreateUserOutput)
+
 	DeleteDataset(*finspacedata.DeleteDatasetInput) (*finspacedata.DeleteDatasetOutput, error)
 	DeleteDatasetWithContext(aws.Context, *finspacedata.DeleteDatasetInput, ...request.Option) (*finspacedata.DeleteDatasetOutput, error)
 	DeleteDatasetRequest(*finspacedata.DeleteDatasetInput) (*request.Request, *finspacedata.DeleteDatasetOutput)
+
+	DeletePermissionGroup(*finspacedata.DeletePermissionGroupInput) (*finspacedata.DeletePermissionGroupOutput, error)
+	DeletePermissionGroupWithContext(aws.Context, *finspacedata.DeletePermissionGroupInput, ...request.Option) (*finspacedata.DeletePermissionGroupOutput, error)
+	DeletePermissionGroupRequest(*finspacedata.DeletePermissionGroupInput) (*request.Request, *finspacedata.DeletePermissionGroupOutput)
+
+	DisableUser(*finspacedata.DisableUserInput) (*finspacedata.DisableUserOutput, error)
+	DisableUserWithContext(aws.Context, *finspacedata.DisableUserInput, ...request.Option) (*finspacedata.DisableUserOutput, error)
+	DisableUserRequest(*finspacedata.DisableUserInput) (*request.Request, *finspacedata.DisableUserOutput)
+
+	EnableUser(*finspacedata.EnableUserInput) (*finspacedata.EnableUserOutput, error)
+	EnableUserWithContext(aws.Context, *finspacedata.EnableUserInput, ...request.Option) (*finspacedata.EnableUserOutput, error)
+	EnableUserRequest(*finspacedata.EnableUserInput) (*request.Request, *finspacedata.EnableUserOutput)
 
 	GetChangeset(*finspacedata.GetChangesetInput) (*finspacedata.GetChangesetOutput, error)
 	GetChangesetWithContext(aws.Context, *finspacedata.GetChangesetInput, ...request.Option) (*finspacedata.GetChangesetOutput, error)
@@ -91,6 +111,10 @@ type FinSpaceDataAPI interface {
 	GetProgrammaticAccessCredentials(*finspacedata.GetProgrammaticAccessCredentialsInput) (*finspacedata.GetProgrammaticAccessCredentialsOutput, error)
 	GetProgrammaticAccessCredentialsWithContext(aws.Context, *finspacedata.GetProgrammaticAccessCredentialsInput, ...request.Option) (*finspacedata.GetProgrammaticAccessCredentialsOutput, error)
 	GetProgrammaticAccessCredentialsRequest(*finspacedata.GetProgrammaticAccessCredentialsInput) (*request.Request, *finspacedata.GetProgrammaticAccessCredentialsOutput)
+
+	GetUser(*finspacedata.GetUserInput) (*finspacedata.GetUserOutput, error)
+	GetUserWithContext(aws.Context, *finspacedata.GetUserInput, ...request.Option) (*finspacedata.GetUserOutput, error)
+	GetUserRequest(*finspacedata.GetUserInput) (*request.Request, *finspacedata.GetUserOutput)
 
 	GetWorkingLocation(*finspacedata.GetWorkingLocationInput) (*finspacedata.GetWorkingLocationOutput, error)
 	GetWorkingLocationWithContext(aws.Context, *finspacedata.GetWorkingLocationInput, ...request.Option) (*finspacedata.GetWorkingLocationOutput, error)
@@ -117,6 +141,24 @@ type FinSpaceDataAPI interface {
 	ListDatasetsPages(*finspacedata.ListDatasetsInput, func(*finspacedata.ListDatasetsOutput, bool) bool) error
 	ListDatasetsPagesWithContext(aws.Context, *finspacedata.ListDatasetsInput, func(*finspacedata.ListDatasetsOutput, bool) bool, ...request.Option) error
 
+	ListPermissionGroups(*finspacedata.ListPermissionGroupsInput) (*finspacedata.ListPermissionGroupsOutput, error)
+	ListPermissionGroupsWithContext(aws.Context, *finspacedata.ListPermissionGroupsInput, ...request.Option) (*finspacedata.ListPermissionGroupsOutput, error)
+	ListPermissionGroupsRequest(*finspacedata.ListPermissionGroupsInput) (*request.Request, *finspacedata.ListPermissionGroupsOutput)
+
+	ListPermissionGroupsPages(*finspacedata.ListPermissionGroupsInput, func(*finspacedata.ListPermissionGroupsOutput, bool) bool) error
+	ListPermissionGroupsPagesWithContext(aws.Context, *finspacedata.ListPermissionGroupsInput, func(*finspacedata.ListPermissionGroupsOutput, bool) bool, ...request.Option) error
+
+	ListUsers(*finspacedata.ListUsersInput) (*finspacedata.ListUsersOutput, error)
+	ListUsersWithContext(aws.Context, *finspacedata.ListUsersInput, ...request.Option) (*finspacedata.ListUsersOutput, error)
+	ListUsersRequest(*finspacedata.ListUsersInput) (*request.Request, *finspacedata.ListUsersOutput)
+
+	ListUsersPages(*finspacedata.ListUsersInput, func(*finspacedata.ListUsersOutput, bool) bool) error
+	ListUsersPagesWithContext(aws.Context, *finspacedata.ListUsersInput, func(*finspacedata.ListUsersOutput, bool) bool, ...request.Option) error
+
+	ResetUserPassword(*finspacedata.ResetUserPasswordInput) (*finspacedata.ResetUserPasswordOutput, error)
+	ResetUserPasswordWithContext(aws.Context, *finspacedata.ResetUserPasswordInput, ...request.Option) (*finspacedata.ResetUserPasswordOutput, error)
+	ResetUserPasswordRequest(*finspacedata.ResetUserPasswordInput) (*request.Request, *finspacedata.ResetUserPasswordOutput)
+
 	UpdateChangeset(*finspacedata.UpdateChangesetInput) (*finspacedata.UpdateChangesetOutput, error)
 	UpdateChangesetWithContext(aws.Context, *finspacedata.UpdateChangesetInput, ...request.Option) (*finspacedata.UpdateChangesetOutput, error)
 	UpdateChangesetRequest(*finspacedata.UpdateChangesetInput) (*request.Request, *finspacedata.UpdateChangesetOutput)
@@ -124,6 +166,14 @@ type FinSpaceDataAPI interface {
 	UpdateDataset(*finspacedata.UpdateDatasetInput) (*finspacedata.UpdateDatasetOutput, error)
 	UpdateDatasetWithContext(aws.Context, *finspacedata.UpdateDatasetInput, ...request.Option) (*finspacedata.UpdateDatasetOutput, error)
 	UpdateDatasetRequest(*finspacedata.UpdateDatasetInput) (*request.Request, *finspacedata.UpdateDatasetOutput)
+
+	UpdatePermissionGroup(*finspacedata.UpdatePermissionGroupInput) (*finspacedata.UpdatePermissionGroupOutput, error)
+	UpdatePermissionGroupWithContext(aws.Context, *finspacedata.UpdatePermissionGroupInput, ...request.Option) (*finspacedata.UpdatePermissionGroupOutput, error)
+	UpdatePermissionGroupRequest(*finspacedata.UpdatePermissionGroupInput) (*request.Request, *finspacedata.UpdatePermissionGroupOutput)
+
+	UpdateUser(*finspacedata.UpdateUserInput) (*finspacedata.UpdateUserOutput, error)
+	UpdateUserWithContext(aws.Context, *finspacedata.UpdateUserInput, ...request.Option) (*finspacedata.UpdateUserOutput, error)
+	UpdateUserRequest(*finspacedata.UpdateUserInput) (*request.Request, *finspacedata.UpdateUserOutput)
 }
 
 var _ FinSpaceDataAPI = (*finspacedata.FinSpaceData)(nil)

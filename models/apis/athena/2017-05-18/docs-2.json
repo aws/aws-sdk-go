@@ -34,6 +34,7 @@
     "TagResource": "<p>Adds one or more tags to an Athena resource. A tag is a label that you assign to a resource. In Athena, a resource can be a workgroup or data catalog. Each tag consists of a key and an optional value, both of which you define. For example, you can use tags to categorize Athena workgroups or data catalogs by purpose, owner, or environment. Use a consistent set of tag keys to make it easier to search and filter workgroups or data catalogs in your account. For best practices, see <a href=\"https://aws.amazon.com/answers/account-management/aws-tagging-strategies/\">Tagging Best Practices</a>. Tag keys can be from 1 to 128 UTF-8 Unicode characters, and tag values can be from 0 to 256 UTF-8 Unicode characters. Tags can use letters and numbers representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys and values are case-sensitive. Tag keys must be unique per resource. If you specify more than one tag, separate them by commas.</p>",
     "UntagResource": "<p>Removes one or more tags from a data catalog or workgroup resource.</p>",
     "UpdateDataCatalog": "<p>Updates the data catalog that has the specified name.</p>",
+    "UpdateNamedQuery": "<p>Updates a <a>NamedQuery</a> object. The database or workgroup cannot be updated.</p>",
     "UpdatePreparedStatement": "<p>Updates a prepared statement.</p>",
     "UpdateWorkGroup": "<p>Updates the workgroup with the specified name. The workgroup's name cannot be changed.</p>"
   },
@@ -48,7 +49,7 @@
       }
     },
     "AthenaError": {
-      "base": "<p>Provides information about an Athena query error. The <code>AthenaError</code> feature provides standardized error information to help you understand failed queries and take steps after a query failure occurs. <code>AthenaError</code> includes an <code>ErrorCategory</code> field that specifies whether the cause of the failed query is due to system error, user error, or unknown error.</p>",
+      "base": "<p>Provides information about an Athena query error. The <code>AthenaError</code> feature provides standardized error information to help you understand failed queries and take steps after a query failure occurs. <code>AthenaError</code> includes an <code>ErrorCategory</code> field that specifies whether the cause of the failed query is due to system error, user error, or other error.</p>",
       "refs": {
         "QueryExecutionStatus$AthenaError": "<p>Provides information about an Athena query error.</p>"
       }
@@ -346,7 +347,7 @@
     "ErrorCategory": {
       "base": null,
       "refs": {
-        "AthenaError$ErrorCategory": "<p>An integer value that specifies the category of a query failure error. The following list shows the category for each integer value.</p> <p> <b>1</b> - System</p> <p> <b>2</b> - User</p> <p> <b>3</b> - Unknown</p>"
+        "AthenaError$ErrorCategory": "<p>An integer value that specifies the category of a query failure error. The following list shows the category for each integer value.</p> <p> <b>1</b> - System</p> <p> <b>2</b> - User</p> <p> <b>3</b> - Other</p>"
       }
     },
     "ErrorCode": {
@@ -671,14 +672,21 @@
         "GetTableMetadataInput$TableName": "<p>The name of the table for which metadata is returned.</p>",
         "ListTableMetadataInput$DatabaseName": "<p>The name of the database for which table metadata should be returned.</p>",
         "NamedQuery$Name": "<p>The query name.</p>",
-        "TableMetadata$Name": "<p>The name of the table.</p>"
+        "TableMetadata$Name": "<p>The name of the table.</p>",
+        "UpdateNamedQueryInput$Name": "<p>The name of the query.</p>"
       }
     },
     "NamedQuery": {
-      "base": "<p>A query, where <code>QueryString</code> is the list of SQL query statements that comprise the query.</p>",
+      "base": "<p>A query, where <code>QueryString</code> contains the SQL statements that make up the query.</p>",
       "refs": {
         "GetNamedQueryOutput$NamedQuery": "<p>Information about the query.</p>",
         "NamedQueryList$member": null
+      }
+    },
+    "NamedQueryDescriptionString": {
+      "base": null,
+      "refs": {
+        "UpdateNamedQueryInput$Description": "<p>The query description.</p>"
       }
     },
     "NamedQueryId": {
@@ -689,7 +697,8 @@
         "GetNamedQueryInput$NamedQueryId": "<p>The unique ID of the query. Use <a>ListNamedQueries</a> to get query IDs.</p>",
         "NamedQuery$NamedQueryId": "<p>The unique identifier of the query.</p>",
         "NamedQueryIdList$member": null,
-        "UnprocessedNamedQueryId$NamedQueryId": "<p>The unique identifier of the named query.</p>"
+        "UnprocessedNamedQueryId$NamedQueryId": "<p>The unique identifier of the named query.</p>",
+        "UpdateNamedQueryInput$NamedQueryId": "<p>The unique identifier (UUID) of the query.</p>"
       }
     },
     "NamedQueryIdList": {
@@ -801,10 +810,11 @@
       "refs": {
         "CreateNamedQueryInput$QueryString": "<p>The contents of the query with all query statements.</p>",
         "CreatePreparedStatementInput$QueryStatement": "<p>The query string for the prepared statement.</p>",
-        "NamedQuery$QueryString": "<p>The SQL query statements that comprise the query.</p>",
+        "NamedQuery$QueryString": "<p>The SQL statements that make up the query.</p>",
         "PreparedStatement$QueryStatement": "<p>The query string for the prepared statement.</p>",
         "QueryExecution$Query": "<p>The SQL query statements which the query execution ran.</p>",
         "StartQueryExecutionInput$QueryString": "<p>The SQL query statements to be executed.</p>",
+        "UpdateNamedQueryInput$QueryString": "<p>The contents of the query with all query statements.</p>",
         "UpdatePreparedStatementInput$QueryStatement": "<p>The query string for the prepared statement.</p>"
       }
     },
@@ -828,7 +838,7 @@
       }
     },
     "ResultSet": {
-      "base": "<p>The metadata and rows that comprise a query result set. The metadata describes the column structure and data types. To return a <code>ResultSet</code> object, use <a>GetQueryResults</a>.</p>",
+      "base": "<p>The metadata and rows that make up a query result set. The metadata describes the column structure and data types. To return a <code>ResultSet</code> object, use <a>GetQueryResults</a>.</p>",
       "refs": {
         "GetQueryResultsOutput$ResultSet": "<p>The results of the query execution.</p>"
       }
@@ -840,7 +850,7 @@
       }
     },
     "Row": {
-      "base": "<p>The rows that comprise a query result table.</p>",
+      "base": "<p>The rows that make up a query result table.</p>",
       "refs": {
         "RowList$member": null
       }
@@ -1058,6 +1068,16 @@
       }
     },
     "UpdateDataCatalogOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateNamedQueryInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateNamedQueryOutput": {
       "base": null,
       "refs": {
       }

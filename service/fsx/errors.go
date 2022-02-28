@@ -214,8 +214,7 @@ const (
 	// ErrCodeVolumeNotFound for service response error code
 	// "VolumeNotFound".
 	//
-	// No Amazon FSx for NetApp ONTAP volumes were found based upon the supplied
-	// parameters.
+	// No Amazon FSx volumes were found based upon the supplied parameters.
 	ErrCodeVolumeNotFound = "VolumeNotFound"
 )
 

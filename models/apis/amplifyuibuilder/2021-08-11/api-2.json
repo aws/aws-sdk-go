@@ -222,6 +222,20 @@
     }
   },
   "shapes":{
+    "ActionParameters":{
+      "type":"structure",
+      "members":{
+        "anchor":{"shape":"ComponentProperty"},
+        "fields":{"shape":"ComponentProperties"},
+        "global":{"shape":"ComponentProperty"},
+        "id":{"shape":"ComponentProperty"},
+        "model":{"shape":"String"},
+        "state":{"shape":"MutationActionSetStateParameter"},
+        "target":{"shape":"ComponentProperty"},
+        "type":{"shape":"ComponentProperty"},
+        "url":{"shape":"ComponentProperty"}
+      }
+    },
     "Boolean":{
       "type":"boolean",
       "box":true
@@ -248,11 +262,13 @@
         "componentType":{"shape":"ComponentType"},
         "createdAt":{"shape":"SyntheticTimestamp_date_time"},
         "environmentName":{"shape":"String"},
+        "events":{"shape":"ComponentEvents"},
         "id":{"shape":"Uuid"},
         "modifiedAt":{"shape":"SyntheticTimestamp_date_time"},
         "name":{"shape":"ComponentName"},
         "overrides":{"shape":"ComponentOverrides"},
         "properties":{"shape":"ComponentProperties"},
+        "schemaVersion":{"shape":"String"},
         "sourceId":{"shape":"String"},
         "tags":{"shape":"Tags"},
         "variants":{"shape":"ComponentVariants"}
@@ -293,6 +309,7 @@
       "members":{
         "children":{"shape":"ComponentChildList"},
         "componentType":{"shape":"String"},
+        "events":{"shape":"ComponentEvents"},
         "name":{"shape":"String"},
         "properties":{"shape":"ComponentProperties"}
       }
@@ -312,6 +329,7 @@
         "else":{"shape":"ComponentProperty"},
         "field":{"shape":"String"},
         "operand":{"shape":"String"},
+        "operandType":{"shape":"String"},
         "operator":{"shape":"String"},
         "property":{"shape":"String"},
         "then":{"shape":"ComponentProperty"}
@@ -326,6 +344,18 @@
         "predicate":{"shape":"Predicate"},
         "sort":{"shape":"SortPropertyList"}
       }
+    },
+    "ComponentEvent":{
+      "type":"structure",
+      "members":{
+        "action":{"shape":"String"},
+        "parameters":{"shape":"ActionParameters"}
+      }
+    },
+    "ComponentEvents":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"ComponentEvent"}
     },
     "ComponentList":{
       "type":"list",
@@ -357,6 +387,7 @@
         "bindingProperties":{"shape":"ComponentPropertyBindingProperties"},
         "bindings":{"shape":"FormBindings"},
         "collectionBindingProperties":{"shape":"ComponentPropertyBindingProperties"},
+        "componentName":{"shape":"String"},
         "concat":{"shape":"ComponentPropertyList"},
         "condition":{"shape":"ComponentConditionProperty"},
         "configured":{"shape":"Boolean"},
@@ -364,6 +395,7 @@
         "event":{"shape":"String"},
         "importedValue":{"shape":"String"},
         "model":{"shape":"String"},
+        "property":{"shape":"String"},
         "type":{"shape":"String"},
         "userAttribute":{"shape":"String"},
         "value":{"shape":"String"}
@@ -438,9 +470,11 @@
         "children":{"shape":"ComponentChildList"},
         "collectionProperties":{"shape":"ComponentCollectionProperties"},
         "componentType":{"shape":"ComponentType"},
+        "events":{"shape":"ComponentEvents"},
         "name":{"shape":"ComponentName"},
         "overrides":{"shape":"ComponentOverrides"},
         "properties":{"shape":"ComponentProperties"},
+        "schemaVersion":{"shape":"String"},
         "sourceId":{"shape":"String"},
         "tags":{"shape":"Tags"},
         "variants":{"shape":"ComponentVariants"}
@@ -635,6 +669,11 @@
           "shape":"String",
           "location":"uri",
           "locationName":"environmentName"
+        },
+        "nextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
         }
       }
     },
@@ -642,7 +681,8 @@
       "type":"structure",
       "required":["entities"],
       "members":{
-        "entities":{"shape":"ComponentList"}
+        "entities":{"shape":"ComponentList"},
+        "nextToken":{"shape":"String"}
       }
     },
     "ExportThemesRequest":{
@@ -661,6 +701,11 @@
           "shape":"String",
           "location":"uri",
           "locationName":"environmentName"
+        },
+        "nextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
         }
       }
     },
@@ -668,7 +713,8 @@
       "type":"structure",
       "required":["entities"],
       "members":{
-        "entities":{"shape":"ThemeList"}
+        "entities":{"shape":"ThemeList"},
+        "nextToken":{"shape":"String"}
       }
     },
     "FormBindingElement":{
@@ -861,6 +907,19 @@
       "members":{
         "entities":{"shape":"ThemeSummaryList"},
         "nextToken":{"shape":"String"}
+      }
+    },
+    "MutationActionSetStateParameter":{
+      "type":"structure",
+      "required":[
+        "componentName",
+        "property",
+        "set"
+      ],
+      "members":{
+        "componentName":{"shape":"String"},
+        "property":{"shape":"String"},
+        "set":{"shape":"ComponentProperty"}
       }
     },
     "Predicate":{
@@ -1082,10 +1141,12 @@
         "children":{"shape":"ComponentChildList"},
         "collectionProperties":{"shape":"ComponentCollectionProperties"},
         "componentType":{"shape":"ComponentType"},
+        "events":{"shape":"ComponentEvents"},
         "id":{"shape":"Uuid"},
         "name":{"shape":"ComponentName"},
         "overrides":{"shape":"ComponentOverrides"},
         "properties":{"shape":"ComponentProperties"},
+        "schemaVersion":{"shape":"String"},
         "sourceId":{"shape":"String"},
         "variants":{"shape":"ComponentVariants"}
       }

@@ -1,3 +1,19 @@
+Release v1.43.8 (2022-02-28)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service API and documentation
+* `service/amplifyuibuilder`: Updates service API, documentation, and paginators
+* `service/athena`: Updates service API and documentation
+  * This release adds support for updating an existing named query.
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for new AMI property 'lastLaunchedTime'
+* `service/finspace-data`: Updates service API, documentation, and paginators
+* `service/fis`: Updates service API and documentation
+* `service/fsx`: Updates service API and documentation
+* `service/route53-recovery-cluster`: Updates service API and documentation
+* `service/servicecatalog-appregistry`: Updates service API
+
 Release v1.43.7 (2022-02-25)
 ===
 

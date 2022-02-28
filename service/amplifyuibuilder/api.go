@@ -475,6 +475,12 @@ func (c *AmplifyUIBuilder) ExportComponentsRequest(input *ExportComponentsInput)
 		Name:       opExportComponents,
 		HTTPMethod: "GET",
 		HTTPPath:   "/export/app/{appId}/environment/{environmentName}/components",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -527,6 +533,58 @@ func (c *AmplifyUIBuilder) ExportComponentsWithContext(ctx aws.Context, input *E
 	return out, req.Send()
 }
 
+// ExportComponentsPages iterates over the pages of a ExportComponents operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ExportComponents method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ExportComponents operation.
+//    pageNum := 0
+//    err := client.ExportComponentsPages(params,
+//        func(page *amplifyuibuilder.ExportComponentsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *AmplifyUIBuilder) ExportComponentsPages(input *ExportComponentsInput, fn func(*ExportComponentsOutput, bool) bool) error {
+	return c.ExportComponentsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ExportComponentsPagesWithContext same as ExportComponentsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AmplifyUIBuilder) ExportComponentsPagesWithContext(ctx aws.Context, input *ExportComponentsInput, fn func(*ExportComponentsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ExportComponentsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ExportComponentsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ExportComponentsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opExportThemes = "ExportThemes"
 
 // ExportThemesRequest generates a "aws/request.Request" representing the
@@ -558,6 +616,12 @@ func (c *AmplifyUIBuilder) ExportThemesRequest(input *ExportThemesInput) (req *r
 		Name:       opExportThemes,
 		HTTPMethod: "GET",
 		HTTPPath:   "/export/app/{appId}/environment/{environmentName}/themes",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -608,6 +672,58 @@ func (c *AmplifyUIBuilder) ExportThemesWithContext(ctx aws.Context, input *Expor
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExportThemesPages iterates over the pages of a ExportThemes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ExportThemes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ExportThemes operation.
+//    pageNum := 0
+//    err := client.ExportThemesPages(params,
+//        func(page *amplifyuibuilder.ExportThemesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *AmplifyUIBuilder) ExportThemesPages(input *ExportThemesInput, fn func(*ExportThemesOutput, bool) bool) error {
+	return c.ExportThemesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ExportThemesPagesWithContext same as ExportThemesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AmplifyUIBuilder) ExportThemesPagesWithContext(ctx aws.Context, input *ExportThemesInput, fn func(*ExportThemesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ExportThemesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ExportThemesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ExportThemesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opGetComponent = "GetComponent"
@@ -1309,6 +1425,174 @@ func (c *AmplifyUIBuilder) UpdateThemeWithContext(ctx aws.Context, input *Update
 	return out, req.Send()
 }
 
+// Represents the event action configuration for an element of a Component or
+// ComponentChild. Use for the workflow feature in Amplify Studio that allows
+// you to bind events and actions to components. ActionParameters defines the
+// action that is performed when an event occurs on the component.
+type ActionParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The HTML anchor link to the location to open. Specify this value for a navigation
+	// action.
+	Anchor *ComponentProperty `locationName:"anchor" type:"structure"`
+
+	// A dictionary of key-value pairs mapping Amplify Studio properties to fields
+	// in a data model. Use when the action performs an operation on an Amplify
+	// DataStore model.
+	Fields map[string]*ComponentProperty `locationName:"fields" type:"map"`
+
+	// Specifies whether the user should be signed out globally. Specify this value
+	// for an auth sign out action.
+	Global *ComponentProperty `locationName:"global" type:"structure"`
+
+	// The unique ID of the component that the ActionParameters apply to.
+	Id *ComponentProperty `locationName:"id" type:"structure"`
+
+	// The name of the data model. Use when the action performs an operation on
+	// an Amplify DataStore model.
+	Model *string `locationName:"model" type:"string"`
+
+	// A key-value pair that specifies the state property name and its initial value.
+	State *MutationActionSetStateParameter `locationName:"state" type:"structure"`
+
+	// The element within the same component to modify when the action occurs.
+	Target *ComponentProperty `locationName:"target" type:"structure"`
+
+	// The type of navigation action. Valid values are url and anchor. This value
+	// is required for a navigation action.
+	Type *ComponentProperty `locationName:"type" type:"structure"`
+
+	// The URL to the location to open. Specify this value for a navigation action.
+	Url *ComponentProperty `locationName:"url" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActionParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActionParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ActionParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ActionParameters"}
+	if s.Anchor != nil {
+		if err := s.Anchor.Validate(); err != nil {
+			invalidParams.AddNested("Anchor", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Fields != nil {
+		for i, v := range s.Fields {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Fields", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Global != nil {
+		if err := s.Global.Validate(); err != nil {
+			invalidParams.AddNested("Global", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Id != nil {
+		if err := s.Id.Validate(); err != nil {
+			invalidParams.AddNested("Id", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.State != nil {
+		if err := s.State.Validate(); err != nil {
+			invalidParams.AddNested("State", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Target != nil {
+		if err := s.Target.Validate(); err != nil {
+			invalidParams.AddNested("Target", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Type != nil {
+		if err := s.Type.Validate(); err != nil {
+			invalidParams.AddNested("Type", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Url != nil {
+		if err := s.Url.Validate(); err != nil {
+			invalidParams.AddNested("Url", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnchor sets the Anchor field's value.
+func (s *ActionParameters) SetAnchor(v *ComponentProperty) *ActionParameters {
+	s.Anchor = v
+	return s
+}
+
+// SetFields sets the Fields field's value.
+func (s *ActionParameters) SetFields(v map[string]*ComponentProperty) *ActionParameters {
+	s.Fields = v
+	return s
+}
+
+// SetGlobal sets the Global field's value.
+func (s *ActionParameters) SetGlobal(v *ComponentProperty) *ActionParameters {
+	s.Global = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ActionParameters) SetId(v *ComponentProperty) *ActionParameters {
+	s.Id = v
+	return s
+}
+
+// SetModel sets the Model field's value.
+func (s *ActionParameters) SetModel(v string) *ActionParameters {
+	s.Model = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ActionParameters) SetState(v *MutationActionSetStateParameter) *ActionParameters {
+	s.State = v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *ActionParameters) SetTarget(v *ComponentProperty) *ActionParameters {
+	s.Target = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ActionParameters) SetType(v *ComponentProperty) *ActionParameters {
+	s.Type = v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *ActionParameters) SetUrl(v *ComponentProperty) *ActionParameters {
+	s.Url = v
+	return s
+}
+
 // Contains the configuration settings for a user interface (UI) element for
 // an Amplify app. A component is configured as a primary, stand-alone UI element.
 // Use ComponentChild to configure an instance of a Component. A ComponentChild
@@ -1321,7 +1605,8 @@ type Component struct {
 	// AppId is a required field
 	AppId *string `locationName:"appId" type:"string" required:"true"`
 
-	// The information to connect a component's properties to data at runtime.
+	// The information to connect a component's properties to data at runtime. You
+	// can't specify tags as a valid property for bindingProperties.
 	//
 	// BindingProperties is a required field
 	BindingProperties map[string]*ComponentBindingPropertiesValue `locationName:"bindingProperties" type:"map" required:"true"`
@@ -1330,7 +1615,7 @@ type Component struct {
 	Children []*ComponentChild `locationName:"children" type:"list"`
 
 	// The data binding configuration for the component's properties. Use this for
-	// a collection component.
+	// a collection component. You can't specify tags as a valid property for collectionProperties.
 	CollectionProperties map[string]*ComponentDataConfiguration `locationName:"collectionProperties" type:"map"`
 
 	// The type of the component. This can be an Amplify custom UI component or
@@ -1349,6 +1634,10 @@ type Component struct {
 	// EnvironmentName is a required field
 	EnvironmentName *string `locationName:"environmentName" type:"string" required:"true"`
 
+	// Describes the events that can be raised on the component. Use for the workflow
+	// feature in Amplify Studio that allows you to bind events and actions to components.
+	Events map[string]*ComponentEvent `locationName:"events" type:"map"`
+
 	// The unique ID of the component.
 	//
 	// Id is a required field
@@ -1363,15 +1652,20 @@ type Component struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// Describes the component's properties that can be overriden in a customized
-	// instance of the component.
+	// instance of the component. You can't specify tags as a valid property for
+	// overrides.
 	//
 	// Overrides is a required field
 	Overrides map[string]map[string]*string `locationName:"overrides" type:"map" required:"true"`
 
-	// Describes the component's properties.
+	// Describes the component's properties. You can't specify tags as a valid property
+	// for properties.
 	//
 	// Properties is a required field
 	Properties map[string]*ComponentProperty `locationName:"properties" type:"map" required:"true"`
+
+	// The schema version of the component when it was imported.
+	SchemaVersion *string `locationName:"schemaVersion" type:"string"`
 
 	// The unique ID of the component in its original source system, such as Figma.
 	SourceId *string `locationName:"sourceId" type:"string"`
@@ -1446,6 +1740,12 @@ func (s *Component) SetEnvironmentName(v string) *Component {
 	return s
 }
 
+// SetEvents sets the Events field's value.
+func (s *Component) SetEvents(v map[string]*ComponentEvent) *Component {
+	s.Events = v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *Component) SetId(v string) *Component {
 	s.Id = &v
@@ -1473,6 +1773,12 @@ func (s *Component) SetOverrides(v map[string]map[string]*string) *Component {
 // SetProperties sets the Properties field's value.
 func (s *Component) SetProperties(v map[string]*ComponentProperty) *Component {
 	s.Properties = v
+	return s
+}
+
+// SetSchemaVersion sets the SchemaVersion field's value.
+func (s *Component) SetSchemaVersion(v string) *Component {
+	s.SchemaVersion = &v
 	return s
 }
 
@@ -1648,12 +1954,18 @@ type ComponentChild struct {
 	// ComponentType is a required field
 	ComponentType *string `locationName:"componentType" type:"string" required:"true"`
 
+	// Describes the events that can be raised on the child component. Use for the
+	// workflow feature in Amplify Studio that allows you to bind events and actions
+	// to components.
+	Events map[string]*ComponentEvent `locationName:"events" type:"map"`
+
 	// The name of the child component.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// Describes the properties of the child component.
+	// Describes the properties of the child component. You can't specify tags as
+	// a valid property for properties.
 	//
 	// Properties is a required field
 	Properties map[string]*ComponentProperty `locationName:"properties" type:"map" required:"true"`
@@ -1699,6 +2011,16 @@ func (s *ComponentChild) Validate() error {
 			}
 		}
 	}
+	if s.Events != nil {
+		for i, v := range s.Events {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Events", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Properties != nil {
 		for i, v := range s.Properties {
 			if v == nil {
@@ -1728,6 +2050,12 @@ func (s *ComponentChild) SetComponentType(v string) *ComponentChild {
 	return s
 }
 
+// SetEvents sets the Events field's value.
+func (s *ComponentChild) SetEvents(v map[string]*ComponentEvent) *ComponentChild {
+	s.Events = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *ComponentChild) SetName(v string) *ComponentChild {
 	s.Name = &v
@@ -1754,6 +2082,9 @@ type ComponentConditionProperty struct {
 
 	// The value of the property to evaluate.
 	Operand *string `locationName:"operand" type:"string"`
+
+	// The type of the property to evaluate.
+	OperandType *string `locationName:"operandType" type:"string"`
 
 	// The operator to use to perform the evaluation, such as eq to represent equals.
 	Operator *string `locationName:"operator" type:"string"`
@@ -1818,6 +2149,12 @@ func (s *ComponentConditionProperty) SetField(v string) *ComponentConditionPrope
 // SetOperand sets the Operand field's value.
 func (s *ComponentConditionProperty) SetOperand(v string) *ComponentConditionProperty {
 	s.Operand = &v
+	return s
+}
+
+// SetOperandType sets the OperandType field's value.
+func (s *ComponentConditionProperty) SetOperandType(v string) *ComponentConditionProperty {
+	s.OperandType = &v
 	return s
 }
 
@@ -1925,6 +2262,64 @@ func (s *ComponentDataConfiguration) SetSort(v []*SortProperty) *ComponentDataCo
 	return s
 }
 
+// Describes the configuration of an event. You can bind an event and a corresponding
+// action to a Component or a ComponentChild. A button click is an example of
+// an event.
+type ComponentEvent struct {
+	_ struct{} `type:"structure"`
+
+	// The action to perform when a specific event is raised.
+	Action *string `locationName:"action" type:"string"`
+
+	// Describes information about the action.
+	Parameters *ActionParameters `locationName:"parameters" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComponentEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComponentEvent) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ComponentEvent) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ComponentEvent"}
+	if s.Parameters != nil {
+		if err := s.Parameters.Validate(); err != nil {
+			invalidParams.AddNested("Parameters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *ComponentEvent) SetAction(v string) *ComponentEvent {
+	s.Action = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ComponentEvent) SetParameters(v *ActionParameters) *ComponentEvent {
+	s.Parameters = v
+	return s
+}
+
 // Describes the configuration for all of a component's properties. Use ComponentProperty
 // to specify the values to render or bind by default.
 type ComponentProperty struct {
@@ -1940,11 +2335,14 @@ type ComponentProperty struct {
 	// for collection components.
 	CollectionBindingProperties *ComponentPropertyBindingProperties `locationName:"collectionBindingProperties" type:"structure"`
 
+	// The name of the component that is affected by an event.
+	ComponentName *string `locationName:"componentName" type:"string"`
+
 	// A list of component properties to concatenate to create the value to assign
 	// to this component property.
 	Concat []*ComponentProperty `locationName:"concat" type:"list"`
 
-	// The conditional expression to use to assign a value to the component property..
+	// The conditional expression to use to assign a value to the component property.
 	Condition *ComponentConditionProperty `locationName:"condition" type:"structure"`
 
 	// Specifies whether the user configured the property in Amplify Studio after
@@ -1957,12 +2355,15 @@ type ComponentProperty struct {
 	// An event that occurs in your app. Use this for workflow data binding.
 	Event *string `locationName:"event" type:"string"`
 
-	// The default value assigned to property when the component is imported into
-	// an app.
+	// The default value assigned to the property when the component is imported
+	// into an app.
 	ImportedValue *string `locationName:"importedValue" type:"string"`
 
 	// The data model to use to assign a value to the component property.
 	Model *string `locationName:"model" type:"string"`
+
+	// The name of the component's property that is affected by an event.
+	Property *string `locationName:"property" type:"string"`
 
 	// The component type.
 	Type *string `locationName:"type" type:"string"`
@@ -2056,6 +2457,12 @@ func (s *ComponentProperty) SetCollectionBindingProperties(v *ComponentPropertyB
 	return s
 }
 
+// SetComponentName sets the ComponentName field's value.
+func (s *ComponentProperty) SetComponentName(v string) *ComponentProperty {
+	s.ComponentName = &v
+	return s
+}
+
 // SetConcat sets the Concat field's value.
 func (s *ComponentProperty) SetConcat(v []*ComponentProperty) *ComponentProperty {
 	s.Concat = v
@@ -2095,6 +2502,12 @@ func (s *ComponentProperty) SetImportedValue(v string) *ComponentProperty {
 // SetModel sets the Model field's value.
 func (s *ComponentProperty) SetModel(v string) *ComponentProperty {
 	s.Model = &v
+	return s
+}
+
+// SetProperty sets the Property field's value.
+func (s *ComponentProperty) SetProperty(v string) *ComponentProperty {
+	s.Property = &v
 	return s
 }
 
@@ -2258,10 +2671,12 @@ type ComponentVariant struct {
 	_ struct{} `type:"structure"`
 
 	// The properties of the component variant that can be overriden when customizing
-	// an instance of the component.
+	// an instance of the component. You can't specify tags as a valid property
+	// for overrides.
 	Overrides map[string]map[string]*string `locationName:"overrides" type:"map"`
 
-	// The combination of variants that comprise this variant.
+	// The combination of variants that comprise this variant. You can't specify
+	// tags as a valid property for variantValues.
 	VariantValues map[string]*string `locationName:"variantValues" type:"map"`
 }
 
@@ -2317,6 +2732,10 @@ type CreateComponentData struct {
 	// ComponentType is a required field
 	ComponentType *string `locationName:"componentType" min:"1" type:"string" required:"true"`
 
+	// The event configuration for the component. Use for the workflow feature in
+	// Amplify Studio that allows you to bind events and actions to components.
+	Events map[string]*ComponentEvent `locationName:"events" type:"map"`
+
 	// The name of the component
 	//
 	// Name is a required field
@@ -2332,6 +2751,9 @@ type CreateComponentData struct {
 	//
 	// Properties is a required field
 	Properties map[string]*ComponentProperty `locationName:"properties" type:"map" required:"true"`
+
+	// The schema version of the component when it was imported.
+	SchemaVersion *string `locationName:"schemaVersion" type:"string"`
 
 	// The unique ID of the component in its original source system, such as Figma.
 	SourceId *string `locationName:"sourceId" type:"string"`
@@ -2410,6 +2832,16 @@ func (s *CreateComponentData) Validate() error {
 			}
 		}
 	}
+	if s.Events != nil {
+		for i, v := range s.Events {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Events", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Properties != nil {
 		for i, v := range s.Properties {
 			if v == nil {
@@ -2451,6 +2883,12 @@ func (s *CreateComponentData) SetComponentType(v string) *CreateComponentData {
 	return s
 }
 
+// SetEvents sets the Events field's value.
+func (s *CreateComponentData) SetEvents(v map[string]*ComponentEvent) *CreateComponentData {
+	s.Events = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *CreateComponentData) SetName(v string) *CreateComponentData {
 	s.Name = &v
@@ -2466,6 +2904,12 @@ func (s *CreateComponentData) SetOverrides(v map[string]map[string]*string) *Cre
 // SetProperties sets the Properties field's value.
 func (s *CreateComponentData) SetProperties(v map[string]*ComponentProperty) *CreateComponentData {
 	s.Properties = v
+	return s
+}
+
+// SetSchemaVersion sets the SchemaVersion field's value.
+func (s *CreateComponentData) SetSchemaVersion(v string) *CreateComponentData {
+	s.SchemaVersion = &v
 	return s
 }
 
@@ -3240,6 +3684,9 @@ type ExportComponentsInput struct {
 	//
 	// EnvironmentName is a required field
 	EnvironmentName *string `location:"uri" locationName:"environmentName" type:"string" required:"true"`
+
+	// The token to request the next page of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
 // String returns the string representation.
@@ -3294,6 +3741,12 @@ func (s *ExportComponentsInput) SetEnvironmentName(v string) *ExportComponentsIn
 	return s
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *ExportComponentsInput) SetNextToken(v string) *ExportComponentsInput {
+	s.NextToken = &v
+	return s
+}
+
 type ExportComponentsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3301,6 +3754,9 @@ type ExportComponentsOutput struct {
 	//
 	// Entities is a required field
 	Entities []*Component `locationName:"entities" type:"list" required:"true"`
+
+	// The pagination token that's included if more results are available.
+	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
 // String returns the string representation.
@@ -3327,6 +3783,12 @@ func (s *ExportComponentsOutput) SetEntities(v []*Component) *ExportComponentsOu
 	return s
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *ExportComponentsOutput) SetNextToken(v string) *ExportComponentsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ExportThemesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -3339,6 +3801,9 @@ type ExportThemesInput struct {
 	//
 	// EnvironmentName is a required field
 	EnvironmentName *string `location:"uri" locationName:"environmentName" type:"string" required:"true"`
+
+	// The token to request the next page of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
 // String returns the string representation.
@@ -3393,6 +3858,12 @@ func (s *ExportThemesInput) SetEnvironmentName(v string) *ExportThemesInput {
 	return s
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *ExportThemesInput) SetNextToken(v string) *ExportThemesInput {
+	s.NextToken = &v
+	return s
+}
+
 type ExportThemesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3400,6 +3871,9 @@ type ExportThemesOutput struct {
 	//
 	// Entities is a required field
 	Entities []*Theme `locationName:"entities" type:"list" required:"true"`
+
+	// The pagination token that's included if more results are available.
+	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
 // String returns the string representation.
@@ -3423,6 +3897,12 @@ func (s ExportThemesOutput) GoString() string {
 // SetEntities sets the Entities field's value.
 func (s *ExportThemesOutput) SetEntities(v []*Theme) *ExportThemesOutput {
 	s.Entities = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ExportThemesOutput) SetNextToken(v string) *ExportThemesOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -4098,6 +4578,87 @@ func (s *ListThemesOutput) SetEntities(v []*ThemeSummary) *ListThemesOutput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListThemesOutput) SetNextToken(v string) *ListThemesOutput {
 	s.NextToken = &v
+	return s
+}
+
+// Represents the state configuration when an action modifies a property of
+// another element within the same component.
+type MutationActionSetStateParameter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the component that is being modified.
+	//
+	// ComponentName is a required field
+	ComponentName *string `locationName:"componentName" type:"string" required:"true"`
+
+	// The name of the component property to apply the state configuration to.
+	//
+	// Property is a required field
+	Property *string `locationName:"property" type:"string" required:"true"`
+
+	// The state configuration to assign to the property.
+	//
+	// Set is a required field
+	Set *ComponentProperty `locationName:"set" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MutationActionSetStateParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MutationActionSetStateParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MutationActionSetStateParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MutationActionSetStateParameter"}
+	if s.ComponentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComponentName"))
+	}
+	if s.Property == nil {
+		invalidParams.Add(request.NewErrParamRequired("Property"))
+	}
+	if s.Set == nil {
+		invalidParams.Add(request.NewErrParamRequired("Set"))
+	}
+	if s.Set != nil {
+		if err := s.Set.Validate(); err != nil {
+			invalidParams.AddNested("Set", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComponentName sets the ComponentName field's value.
+func (s *MutationActionSetStateParameter) SetComponentName(v string) *MutationActionSetStateParameter {
+	s.ComponentName = &v
+	return s
+}
+
+// SetProperty sets the Property field's value.
+func (s *MutationActionSetStateParameter) SetProperty(v string) *MutationActionSetStateParameter {
+	s.Property = &v
+	return s
+}
+
+// SetSet sets the Set field's value.
+func (s *MutationActionSetStateParameter) SetSet(v *ComponentProperty) *MutationActionSetStateParameter {
+	s.Set = v
 	return s
 }
 
@@ -4878,6 +5439,10 @@ type UpdateComponentData struct {
 	// another custom component.
 	ComponentType *string `locationName:"componentType" min:"1" type:"string"`
 
+	// The event configuration for the component. Use for the workflow feature in
+	// Amplify Studio that allows you to bind events and actions to components.
+	Events map[string]*ComponentEvent `locationName:"events" type:"map"`
+
 	// The unique ID of the component to update.
 	Id *string `locationName:"id" type:"string"`
 
@@ -4889,6 +5454,9 @@ type UpdateComponentData struct {
 
 	// Describes the component's properties.
 	Properties map[string]*ComponentProperty `locationName:"properties" type:"map"`
+
+	// The schema version of the component when it was imported.
+	SchemaVersion *string `locationName:"schemaVersion" type:"string"`
 
 	// The unique ID of the component in its original source system, such as Figma.
 	SourceId *string `locationName:"sourceId" type:"string"`
@@ -4944,6 +5512,16 @@ func (s *UpdateComponentData) Validate() error {
 			}
 		}
 	}
+	if s.Events != nil {
+		for i, v := range s.Events {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Events", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Properties != nil {
 		for i, v := range s.Properties {
 			if v == nil {
@@ -4985,6 +5563,12 @@ func (s *UpdateComponentData) SetComponentType(v string) *UpdateComponentData {
 	return s
 }
 
+// SetEvents sets the Events field's value.
+func (s *UpdateComponentData) SetEvents(v map[string]*ComponentEvent) *UpdateComponentData {
+	s.Events = v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *UpdateComponentData) SetId(v string) *UpdateComponentData {
 	s.Id = &v
@@ -5006,6 +5590,12 @@ func (s *UpdateComponentData) SetOverrides(v map[string]map[string]*string) *Upd
 // SetProperties sets the Properties field's value.
 func (s *UpdateComponentData) SetProperties(v map[string]*ComponentProperty) *UpdateComponentData {
 	s.Properties = v
+	return s
+}
+
+// SetSchemaVersion sets the SchemaVersion field's value.
+func (s *UpdateComponentData) SetSchemaVersion(v string) *UpdateComponentData {
+	s.SchemaVersion = &v
 	return s
 }
 

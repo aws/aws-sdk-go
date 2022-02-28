@@ -66,6 +66,40 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "CreatePermissionGroup":{
+      "name":"CreatePermissionGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/permission-group"
+      },
+      "input":{"shape":"CreatePermissionGroupRequest"},
+      "output":{"shape":"CreatePermissionGroupResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "CreateUser":{
+      "name":"CreateUser",
+      "http":{
+        "method":"POST",
+        "requestUri":"/user"
+      },
+      "input":{"shape":"CreateUserRequest"},
+      "output":{"shape":"CreateUserResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "DeleteDataset":{
       "name":"DeleteDataset",
       "http":{
@@ -74,6 +108,59 @@
       },
       "input":{"shape":"DeleteDatasetRequest"},
       "output":{"shape":"DeleteDatasetResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "DeletePermissionGroup":{
+      "name":"DeletePermissionGroup",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/permission-group/{permissionGroupId}"
+      },
+      "input":{"shape":"DeletePermissionGroupRequest"},
+      "output":{"shape":"DeletePermissionGroupResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "DisableUser":{
+      "name":"DisableUser",
+      "http":{
+        "method":"POST",
+        "requestUri":"/user/{userId}/disable"
+      },
+      "input":{"shape":"DisableUserRequest"},
+      "output":{"shape":"DisableUserResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "EnableUser":{
+      "name":"EnableUser",
+      "http":{
+        "method":"POST",
+        "requestUri":"/user/{userId}/enable"
+      },
+      "input":{"shape":"EnableUserRequest"},
+      "output":{"shape":"EnableUserResponse"},
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
@@ -149,6 +236,22 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "GetUser":{
+      "name":"GetUser",
+      "http":{
+        "method":"GET",
+        "requestUri":"/user/{userId}"
+      },
+      "input":{"shape":"GetUserRequest"},
+      "output":{"shape":"GetUserResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "GetWorkingLocation":{
       "name":"GetWorkingLocation",
       "http":{
@@ -213,6 +316,53 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "ListPermissionGroups":{
+      "name":"ListPermissionGroups",
+      "http":{
+        "method":"GET",
+        "requestUri":"/permission-group"
+      },
+      "input":{"shape":"ListPermissionGroupsRequest"},
+      "output":{"shape":"ListPermissionGroupsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListUsers":{
+      "name":"ListUsers",
+      "http":{
+        "method":"GET",
+        "requestUri":"/user"
+      },
+      "input":{"shape":"ListUsersRequest"},
+      "output":{"shape":"ListUsersResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ResetUserPassword":{
+      "name":"ResetUserPassword",
+      "http":{
+        "method":"POST",
+        "requestUri":"/user/{userId}/password"
+      },
+      "input":{"shape":"ResetUserPasswordRequest"},
+      "output":{"shape":"ResetUserPasswordResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "UpdateChangeset":{
       "name":"UpdateChangeset",
       "http":{
@@ -246,6 +396,40 @@
         {"shape":"ConflictException"},
         {"shape":"ResourceNotFoundException"}
       ]
+    },
+    "UpdatePermissionGroup":{
+      "name":"UpdatePermissionGroup",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/permission-group/{permissionGroupId}"
+      },
+      "input":{"shape":"UpdatePermissionGroupRequest"},
+      "output":{"shape":"UpdatePermissionGroupResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "UpdateUser":{
+      "name":"UpdateUser",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/user/{userId}"
+      },
+      "input":{"shape":"UpdateUserRequest"},
+      "output":{"shape":"UpdateUserResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ]
     }
   },
   "shapes":{
@@ -262,6 +446,29 @@
       "max":255,
       "min":1,
       "pattern":"^alias\\/\\S+"
+    },
+    "ApiAccess":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "ApplicationPermission":{
+      "type":"string",
+      "enum":[
+        "CreateDataset",
+        "ManageClusters",
+        "ManageUsersAndGroups",
+        "ManageAttributeSets",
+        "ViewAuditData",
+        "AccessNotebooks",
+        "GetTemporaryCredentials"
+      ]
+    },
+    "ApplicationPermissionList":{
+      "type":"list",
+      "member":{"shape":"ApplicationPermission"}
     },
     "Boolean":{"type":"boolean"},
     "ChangeType":{
@@ -365,7 +572,8 @@
     "ConflictException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"errorMessage"}
+        "message":{"shape":"errorMessage"},
+        "reason":{"shape":"errorMessage"}
       },
       "error":{"httpStatusCode":409},
       "exception":true
@@ -458,6 +666,53 @@
       "type":"structure",
       "members":{
         "datasetId":{"shape":"DatasetId"}
+      }
+    },
+    "CreatePermissionGroupRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "applicationPermissions"
+      ],
+      "members":{
+        "name":{"shape":"PermissionGroupName"},
+        "description":{"shape":"PermissionGroupDescription"},
+        "applicationPermissions":{"shape":"ApplicationPermissionList"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreatePermissionGroupResponse":{
+      "type":"structure",
+      "members":{
+        "permissionGroupId":{"shape":"PermissionGroupId"}
+      }
+    },
+    "CreateUserRequest":{
+      "type":"structure",
+      "required":[
+        "emailAddress",
+        "type"
+      ],
+      "members":{
+        "emailAddress":{"shape":"Email"},
+        "type":{"shape":"UserType"},
+        "firstName":{"shape":"FirstName"},
+        "lastName":{"shape":"LastName"},
+        "ApiAccess":{"shape":"ApiAccess"},
+        "apiAccessPrincipalArn":{"shape":"RoleArn"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateUserResponse":{
+      "type":"structure",
+      "members":{
+        "userId":{"shape":"UserId"}
       }
     },
     "Credentials":{
@@ -612,11 +867,77 @@
         "datasetId":{"shape":"DatasetId"}
       }
     },
+    "DeletePermissionGroupRequest":{
+      "type":"structure",
+      "required":["permissionGroupId"],
+      "members":{
+        "permissionGroupId":{
+          "shape":"PermissionGroupId",
+          "location":"uri",
+          "locationName":"permissionGroupId"
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
+        }
+      }
+    },
+    "DeletePermissionGroupResponse":{
+      "type":"structure",
+      "members":{
+        "permissionGroupId":{"shape":"PermissionGroupId"}
+      }
+    },
+    "DisableUserRequest":{
+      "type":"structure",
+      "required":["userId"],
+      "members":{
+        "userId":{
+          "shape":"UserId",
+          "location":"uri",
+          "locationName":"userId"
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "DisableUserResponse":{
+      "type":"structure",
+      "members":{
+        "userId":{"shape":"UserId"}
+      }
+    },
     "Email":{
       "type":"string",
       "max":320,
       "min":4,
-      "pattern":"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+      "pattern":"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}",
+      "sensitive":true
+    },
+    "EnableUserRequest":{
+      "type":"structure",
+      "required":["userId"],
+      "members":{
+        "userId":{
+          "shape":"UserId",
+          "location":"uri",
+          "locationName":"userId"
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "EnableUserResponse":{
+      "type":"structure",
+      "members":{
+        "userId":{"shape":"UserId"}
+      }
     },
     "ErrorCategory":{
       "type":"string",
@@ -641,6 +962,13 @@
         "PARQUET",
         "DELIMITED_TEXT"
       ]
+    },
+    "FirstName":{
+      "type":"string",
+      "max":50,
+      "min":1,
+      "pattern":".*\\S.*",
+      "sensitive":true
     },
     "FormatParams":{
       "type":"map",
@@ -778,6 +1106,35 @@
         "durationInMinutes":{"shape":"SessionDuration"}
       }
     },
+    "GetUserRequest":{
+      "type":"structure",
+      "required":["userId"],
+      "members":{
+        "userId":{
+          "shape":"UserId",
+          "location":"uri",
+          "locationName":"userId"
+        }
+      }
+    },
+    "GetUserResponse":{
+      "type":"structure",
+      "members":{
+        "userId":{"shape":"UserId"},
+        "status":{"shape":"UserStatus"},
+        "firstName":{"shape":"FirstName"},
+        "lastName":{"shape":"LastName"},
+        "emailAddress":{"shape":"Email"},
+        "type":{"shape":"UserType"},
+        "apiAccess":{"shape":"ApiAccess"},
+        "apiAccessPrincipalArn":{"shape":"RoleArn"},
+        "createTime":{"shape":"TimestampEpoch"},
+        "lastEnabledTime":{"shape":"TimestampEpoch"},
+        "lastDisabledTime":{"shape":"TimestampEpoch"},
+        "lastModifiedTime":{"shape":"TimestampEpoch"},
+        "lastLoginTime":{"shape":"TimestampEpoch"}
+      }
+    },
     "GetWorkingLocationRequest":{
       "type":"structure",
       "members":{
@@ -814,6 +1171,13 @@
       },
       "error":{"httpStatusCode":500},
       "exception":true
+    },
+    "LastName":{
+      "type":"string",
+      "max":50,
+      "min":1,
+      "pattern":".*\\S.*",
+      "sensitive":true
     },
     "LimitExceededException":{
       "type":"structure",
@@ -904,6 +1268,52 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListPermissionGroupsRequest":{
+      "type":"structure",
+      "required":["maxResults"],
+      "members":{
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"ResultLimit",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListPermissionGroupsResponse":{
+      "type":"structure",
+      "members":{
+        "permissionGroups":{"shape":"PermissionGroupList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListUsersRequest":{
+      "type":"structure",
+      "required":["maxResults"],
+      "members":{
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"ResultLimit",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListUsersResponse":{
+      "type":"structure",
+      "members":{
+        "users":{"shape":"UserList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
     "OwnerName":{
       "type":"string",
       "max":250,
@@ -915,10 +1325,47 @@
       "type":"list",
       "member":{"shape":"StringValueLength1to255"}
     },
+    "Password":{
+      "type":"string",
+      "max":20,
+      "min":8,
+      "pattern":".*\\S.*",
+      "sensitive":true
+    },
+    "PermissionGroup":{
+      "type":"structure",
+      "members":{
+        "permissionGroupId":{"shape":"PermissionGroupId"},
+        "name":{"shape":"PermissionGroupName"},
+        "description":{"shape":"PermissionGroupDescription"},
+        "applicationPermissions":{"shape":"ApplicationPermissionList"},
+        "createTime":{"shape":"TimestampEpoch"},
+        "lastModifiedTime":{"shape":"TimestampEpoch"}
+      }
+    },
+    "PermissionGroupDescription":{
+      "type":"string",
+      "max":4000,
+      "min":1,
+      "pattern":".*\\S.*",
+      "sensitive":true
+    },
     "PermissionGroupId":{
       "type":"string",
       "max":26,
-      "min":1
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "PermissionGroupList":{
+      "type":"list",
+      "member":{"shape":"PermissionGroup"}
+    },
+    "PermissionGroupName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":".*\\S.*",
+      "sensitive":true
     },
     "PermissionGroupParams":{
       "type":"structure",
@@ -933,10 +1380,33 @@
       "min":10,
       "pattern":"^[\\+0-9\\#\\,\\(][\\+0-9\\-\\.\\/\\(\\)\\,\\#\\s]+$"
     },
+    "ResetUserPasswordRequest":{
+      "type":"structure",
+      "required":["userId"],
+      "members":{
+        "userId":{
+          "shape":"UserId",
+          "location":"uri",
+          "locationName":"userId"
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "ResetUserPasswordResponse":{
+      "type":"structure",
+      "members":{
+        "userId":{"shape":"UserId"},
+        "temporaryPassword":{"shape":"Password"}
+      }
+    },
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"errorMessage"}
+        "message":{"shape":"errorMessage"},
+        "reason":{"shape":"errorMessage"}
       },
       "error":{"httpStatusCode":404},
       "exception":true
@@ -955,6 +1425,12 @@
       "type":"integer",
       "max":100,
       "min":1
+    },
+    "RoleArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:aws[a-z\\-]*:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$"
     },
     "S3DestinationFormatOptions":{
       "type":"map",
@@ -1082,10 +1558,104 @@
         "datasetId":{"shape":"DatasetId"}
       }
     },
+    "UpdatePermissionGroupRequest":{
+      "type":"structure",
+      "required":["permissionGroupId"],
+      "members":{
+        "permissionGroupId":{
+          "shape":"PermissionGroupId",
+          "location":"uri",
+          "locationName":"permissionGroupId"
+        },
+        "name":{"shape":"PermissionGroupName"},
+        "description":{"shape":"PermissionGroupDescription"},
+        "applicationPermissions":{"shape":"ApplicationPermissionList"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "UpdatePermissionGroupResponse":{
+      "type":"structure",
+      "members":{
+        "permissionGroupId":{"shape":"PermissionGroupId"}
+      }
+    },
+    "UpdateUserRequest":{
+      "type":"structure",
+      "required":["userId"],
+      "members":{
+        "userId":{
+          "shape":"UserId",
+          "location":"uri",
+          "locationName":"userId"
+        },
+        "type":{"shape":"UserType"},
+        "firstName":{"shape":"FirstName"},
+        "lastName":{"shape":"LastName"},
+        "apiAccess":{"shape":"ApiAccess"},
+        "apiAccessPrincipalArn":{"shape":"RoleArn"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "UpdateUserResponse":{
+      "type":"structure",
+      "members":{
+        "userId":{"shape":"UserId"}
+      }
+    },
+    "User":{
+      "type":"structure",
+      "members":{
+        "userId":{"shape":"UserId"},
+        "status":{"shape":"UserStatus"},
+        "firstName":{"shape":"FirstName"},
+        "lastName":{"shape":"LastName"},
+        "emailAddress":{"shape":"Email"},
+        "type":{"shape":"UserType"},
+        "apiAccess":{"shape":"ApiAccess"},
+        "apiAccessPrincipalArn":{"shape":"RoleArn"},
+        "createTime":{"shape":"TimestampEpoch"},
+        "lastEnabledTime":{"shape":"TimestampEpoch"},
+        "lastDisabledTime":{"shape":"TimestampEpoch"},
+        "lastModifiedTime":{"shape":"TimestampEpoch"},
+        "lastLoginTime":{"shape":"TimestampEpoch"}
+      }
+    },
+    "UserId":{
+      "type":"string",
+      "max":26,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "UserList":{
+      "type":"list",
+      "member":{"shape":"User"}
+    },
+    "UserStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "UserType":{
+      "type":"string",
+      "enum":[
+        "SUPER_USER",
+        "APP_USER"
+      ]
+    },
     "ValidationException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"errorMessage"}
+        "message":{"shape":"errorMessage"},
+        "reason":{"shape":"errorMessage"}
       },
       "error":{"httpStatusCode":400},
       "exception":true

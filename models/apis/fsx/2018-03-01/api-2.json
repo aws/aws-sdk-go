@@ -1201,8 +1201,9 @@
       "required":["ParentVolumeId"],
       "members":{
         "ParentVolumeId":{"shape":"VolumeId"},
-        "StorageCapacityReservationGiB":{"shape":"IntegerNoMax"},
-        "StorageCapacityQuotaGiB":{"shape":"IntegerNoMax"},
+        "StorageCapacityReservationGiB":{"shape":"IntegerNoMaxFromNegativeOne"},
+        "StorageCapacityQuotaGiB":{"shape":"IntegerNoMaxFromNegativeOne"},
+        "RecordSizeKiB":{"shape":"IntegerRecordSizeKiB"},
         "DataCompressionType":{"shape":"OpenZFSDataCompressionType"},
         "CopyTagsToSnapshots":{"shape":"Flag"},
         "OriginSnapshot":{"shape":"CreateOpenZFSOriginSnapshotConfiguration"},
@@ -1587,8 +1588,18 @@
       "type":"structure",
       "members":{
         "SkipFinalBackup":{"shape":"Flag"},
-        "FinalBackupTags":{"shape":"Tags"}
+        "FinalBackupTags":{"shape":"Tags"},
+        "Options":{"shape":"DeleteFileSystemOpenZFSOptions"}
       }
+    },
+    "DeleteFileSystemOpenZFSOption":{
+      "type":"string",
+      "enum":["DELETE_CHILD_VOLUMES_AND_SNAPSHOTS"]
+    },
+    "DeleteFileSystemOpenZFSOptions":{
+      "type":"list",
+      "member":{"shape":"DeleteFileSystemOpenZFSOption"},
+      "max":1
     },
     "DeleteFileSystemOpenZFSResponse":{
       "type":"structure",
@@ -2121,6 +2132,16 @@
       "max":2147483647,
       "min":0
     },
+    "IntegerNoMaxFromNegativeOne":{
+      "type":"integer",
+      "max":2147483647,
+      "min":-1
+    },
+    "IntegerRecordSizeKiB":{
+      "type":"integer",
+      "max":1024,
+      "min":4
+    },
     "InternalServerError":{
       "type":"structure",
       "members":{
@@ -2448,6 +2469,7 @@
     "OpenZFSCreateRootVolumeConfiguration":{
       "type":"structure",
       "members":{
+        "RecordSizeKiB":{"shape":"IntegerRecordSizeKiB"},
         "DataCompressionType":{"shape":"OpenZFSDataCompressionType"},
         "NfsExports":{"shape":"OpenZFSNfsExports"},
         "UserAndGroupQuotas":{"shape":"OpenZFSUserAndGroupQuotas"},
@@ -2459,7 +2481,8 @@
       "type":"string",
       "enum":[
         "NONE",
-        "ZSTD"
+        "ZSTD",
+        "LZ4"
       ]
     },
     "OpenZFSDeploymentType":{
@@ -2543,6 +2566,7 @@
         "VolumePath":{"shape":"VolumePath"},
         "StorageCapacityReservationGiB":{"shape":"IntegerNoMax"},
         "StorageCapacityQuotaGiB":{"shape":"IntegerNoMax"},
+        "RecordSizeKiB":{"shape":"IntegerRecordSizeKiB"},
         "DataCompressionType":{"shape":"OpenZFSDataCompressionType"},
         "CopyTagsToSnapshots":{"shape":"Flag"},
         "OriginSnapshot":{"shape":"OpenZFSOriginSnapshotConfiguration"},
@@ -2774,6 +2798,7 @@
         "VolumeId":{"shape":"VolumeId"},
         "CreationTime":{"shape":"CreationTime"},
         "Lifecycle":{"shape":"SnapshotLifecycle"},
+        "LifecycleTransitionReason":{"shape":"LifecycleTransitionReason"},
         "Tags":{"shape":"Tags"},
         "AdministrativeActions":{"shape":"AdministrativeActions"}
       }
@@ -3225,8 +3250,9 @@
     "UpdateOpenZFSVolumeConfiguration":{
       "type":"structure",
       "members":{
-        "StorageCapacityReservationGiB":{"shape":"IntegerNoMax"},
-        "StorageCapacityQuotaGiB":{"shape":"IntegerNoMax"},
+        "StorageCapacityReservationGiB":{"shape":"IntegerNoMaxFromNegativeOne"},
+        "StorageCapacityQuotaGiB":{"shape":"IntegerNoMaxFromNegativeOne"},
+        "RecordSizeKiB":{"shape":"IntegerRecordSizeKiB"},
         "DataCompressionType":{"shape":"OpenZFSDataCompressionType"},
         "NfsExports":{"shape":"OpenZFSNfsExports"},
         "UserAndGroupQuotas":{"shape":"OpenZFSUserAndGroupQuotas"},

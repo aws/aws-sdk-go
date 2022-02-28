@@ -21379,6 +21379,10 @@
         "BootMode":{
           "shape":"AttributeValue",
           "locationName":"bootMode"
+        },
+        "LastLaunchedTime":{
+          "shape":"AttributeValue",
+          "locationName":"lastLaunchedTime"
         }
       }
     },
@@ -21392,7 +21396,8 @@
         "productCodes",
         "blockDeviceMapping",
         "sriovNetSupport",
-        "bootMode"
+        "bootMode",
+        "lastLaunchedTime"
       ]
     },
     "ImageDiskContainer":{
@@ -32655,6 +32660,7 @@
         "spot-fleet-request",
         "spot-instances-request",
         "subnet",
+        "subnet-cidr-reservation",
         "traffic-mirror-filter",
         "traffic-mirror-session",
         "traffic-mirror-target",
