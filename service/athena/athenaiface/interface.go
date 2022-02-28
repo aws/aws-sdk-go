@@ -215,6 +215,10 @@ type AthenaAPI interface {
 	UpdateDataCatalogWithContext(aws.Context, *athena.UpdateDataCatalogInput, ...request.Option) (*athena.UpdateDataCatalogOutput, error)
 	UpdateDataCatalogRequest(*athena.UpdateDataCatalogInput) (*request.Request, *athena.UpdateDataCatalogOutput)
 
+	UpdateNamedQuery(*athena.UpdateNamedQueryInput) (*athena.UpdateNamedQueryOutput, error)
+	UpdateNamedQueryWithContext(aws.Context, *athena.UpdateNamedQueryInput, ...request.Option) (*athena.UpdateNamedQueryOutput, error)
+	UpdateNamedQueryRequest(*athena.UpdateNamedQueryInput) (*request.Request, *athena.UpdateNamedQueryOutput)
+
 	UpdatePreparedStatement(*athena.UpdatePreparedStatementInput) (*athena.UpdatePreparedStatementOutput, error)
 	UpdatePreparedStatementWithContext(aws.Context, *athena.UpdatePreparedStatementInput, ...request.Option) (*athena.UpdatePreparedStatementOutput, error)
 	UpdatePreparedStatementRequest(*athena.UpdatePreparedStatementInput) (*request.Request, *athena.UpdatePreparedStatementOutput)

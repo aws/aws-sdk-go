@@ -302,6 +302,197 @@ func (c *FinSpaceData) CreateDatasetWithContext(ctx aws.Context, input *CreateDa
 	return out, req.Send()
 }
 
+const opCreatePermissionGroup = "CreatePermissionGroup"
+
+// CreatePermissionGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePermissionGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreatePermissionGroup for more information on using the CreatePermissionGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreatePermissionGroupRequest method.
+//    req, resp := client.CreatePermissionGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreatePermissionGroup
+func (c *FinSpaceData) CreatePermissionGroupRequest(input *CreatePermissionGroupInput) (req *request.Request, output *CreatePermissionGroupOutput) {
+	op := &request.Operation{
+		Name:       opCreatePermissionGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/permission-group",
+	}
+
+	if input == nil {
+		input = &CreatePermissionGroupInput{}
+	}
+
+	output = &CreatePermissionGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreatePermissionGroup API operation for FinSpace Public API.
+//
+// Creates a group of permissions for various actions that a user can perform
+// in FinSpace.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation CreatePermissionGroup for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * LimitExceededException
+//   A limit has exceeded.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreatePermissionGroup
+func (c *FinSpaceData) CreatePermissionGroup(input *CreatePermissionGroupInput) (*CreatePermissionGroupOutput, error) {
+	req, out := c.CreatePermissionGroupRequest(input)
+	return out, req.Send()
+}
+
+// CreatePermissionGroupWithContext is the same as CreatePermissionGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePermissionGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) CreatePermissionGroupWithContext(ctx aws.Context, input *CreatePermissionGroupInput, opts ...request.Option) (*CreatePermissionGroupOutput, error) {
+	req, out := c.CreatePermissionGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateUser = "CreateUser"
+
+// CreateUserRequest generates a "aws/request.Request" representing the
+// client's request for the CreateUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateUser for more information on using the CreateUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateUserRequest method.
+//    req, resp := client.CreateUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreateUser
+func (c *FinSpaceData) CreateUserRequest(input *CreateUserInput) (req *request.Request, output *CreateUserOutput) {
+	op := &request.Operation{
+		Name:       opCreateUser,
+		HTTPMethod: "POST",
+		HTTPPath:   "/user",
+	}
+
+	if input == nil {
+		input = &CreateUserInput{}
+	}
+
+	output = &CreateUserOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateUser API operation for FinSpace Public API.
+//
+// Creates a new user in FinSpace.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation CreateUser for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * LimitExceededException
+//   A limit has exceeded.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreateUser
+func (c *FinSpaceData) CreateUser(input *CreateUserInput) (*CreateUserOutput, error) {
+	req, out := c.CreateUserRequest(input)
+	return out, req.Send()
+}
+
+// CreateUserWithContext is the same as CreateUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) CreateUserWithContext(ctx aws.Context, input *CreateUserInput, opts ...request.Option) (*CreateUserOutput, error) {
+	req, out := c.CreateUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteDataset = "DeleteDataset"
 
 // DeleteDatasetRequest generates a "aws/request.Request" representing the
@@ -395,6 +586,297 @@ func (c *FinSpaceData) DeleteDataset(input *DeleteDatasetInput) (*DeleteDatasetO
 // for more information on using Contexts.
 func (c *FinSpaceData) DeleteDatasetWithContext(ctx aws.Context, input *DeleteDatasetInput, opts ...request.Option) (*DeleteDatasetOutput, error) {
 	req, out := c.DeleteDatasetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeletePermissionGroup = "DeletePermissionGroup"
+
+// DeletePermissionGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePermissionGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeletePermissionGroup for more information on using the DeletePermissionGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeletePermissionGroupRequest method.
+//    req, resp := client.DeletePermissionGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DeletePermissionGroup
+func (c *FinSpaceData) DeletePermissionGroupRequest(input *DeletePermissionGroupInput) (req *request.Request, output *DeletePermissionGroupOutput) {
+	op := &request.Operation{
+		Name:       opDeletePermissionGroup,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/permission-group/{permissionGroupId}",
+	}
+
+	if input == nil {
+		input = &DeletePermissionGroupInput{}
+	}
+
+	output = &DeletePermissionGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeletePermissionGroup API operation for FinSpace Public API.
+//
+// Deletes a permission group. This action is irreversible.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation DeletePermissionGroup for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * LimitExceededException
+//   A limit has exceeded.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DeletePermissionGroup
+func (c *FinSpaceData) DeletePermissionGroup(input *DeletePermissionGroupInput) (*DeletePermissionGroupOutput, error) {
+	req, out := c.DeletePermissionGroupRequest(input)
+	return out, req.Send()
+}
+
+// DeletePermissionGroupWithContext is the same as DeletePermissionGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeletePermissionGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) DeletePermissionGroupWithContext(ctx aws.Context, input *DeletePermissionGroupInput, opts ...request.Option) (*DeletePermissionGroupOutput, error) {
+	req, out := c.DeletePermissionGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDisableUser = "DisableUser"
+
+// DisableUserRequest generates a "aws/request.Request" representing the
+// client's request for the DisableUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisableUser for more information on using the DisableUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisableUserRequest method.
+//    req, resp := client.DisableUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DisableUser
+func (c *FinSpaceData) DisableUserRequest(input *DisableUserInput) (req *request.Request, output *DisableUserOutput) {
+	op := &request.Operation{
+		Name:       opDisableUser,
+		HTTPMethod: "POST",
+		HTTPPath:   "/user/{userId}/disable",
+	}
+
+	if input == nil {
+		input = &DisableUserInput{}
+	}
+
+	output = &DisableUserOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DisableUser API operation for FinSpace Public API.
+//
+// Denies access to the FinSpace web application and API for the specified user.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation DisableUser for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DisableUser
+func (c *FinSpaceData) DisableUser(input *DisableUserInput) (*DisableUserOutput, error) {
+	req, out := c.DisableUserRequest(input)
+	return out, req.Send()
+}
+
+// DisableUserWithContext is the same as DisableUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisableUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) DisableUserWithContext(ctx aws.Context, input *DisableUserInput, opts ...request.Option) (*DisableUserOutput, error) {
+	req, out := c.DisableUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opEnableUser = "EnableUser"
+
+// EnableUserRequest generates a "aws/request.Request" representing the
+// client's request for the EnableUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See EnableUser for more information on using the EnableUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the EnableUserRequest method.
+//    req, resp := client.EnableUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/EnableUser
+func (c *FinSpaceData) EnableUserRequest(input *EnableUserInput) (req *request.Request, output *EnableUserOutput) {
+	op := &request.Operation{
+		Name:       opEnableUser,
+		HTTPMethod: "POST",
+		HTTPPath:   "/user/{userId}/enable",
+	}
+
+	if input == nil {
+		input = &EnableUserInput{}
+	}
+
+	output = &EnableUserOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// EnableUser API operation for FinSpace Public API.
+//
+// Allows the specified user to access the FinSpace web application and API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation EnableUser for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * LimitExceededException
+//   A limit has exceeded.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/EnableUser
+func (c *FinSpaceData) EnableUser(input *EnableUserInput) (*EnableUserOutput, error) {
+	req, out := c.EnableUserRequest(input)
+	return out, req.Send()
+}
+
+// EnableUserWithContext is the same as EnableUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See EnableUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) EnableUserWithContext(ctx aws.Context, input *EnableUserInput, opts ...request.Option) (*EnableUserOutput, error) {
+	req, out := c.EnableUserRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -766,6 +1248,98 @@ func (c *FinSpaceData) GetProgrammaticAccessCredentials(input *GetProgrammaticAc
 // for more information on using Contexts.
 func (c *FinSpaceData) GetProgrammaticAccessCredentialsWithContext(ctx aws.Context, input *GetProgrammaticAccessCredentialsInput, opts ...request.Option) (*GetProgrammaticAccessCredentialsOutput, error) {
 	req, out := c.GetProgrammaticAccessCredentialsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetUser = "GetUser"
+
+// GetUserRequest generates a "aws/request.Request" representing the
+// client's request for the GetUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetUser for more information on using the GetUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetUserRequest method.
+//    req, resp := client.GetUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetUser
+func (c *FinSpaceData) GetUserRequest(input *GetUserInput) (req *request.Request, output *GetUserOutput) {
+	op := &request.Operation{
+		Name:       opGetUser,
+		HTTPMethod: "GET",
+		HTTPPath:   "/user/{userId}",
+	}
+
+	if input == nil {
+		input = &GetUserInput{}
+	}
+
+	output = &GetUserOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetUser API operation for FinSpace Public API.
+//
+// Retrieves details for a specific user.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation GetUser for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetUser
+func (c *FinSpaceData) GetUser(input *GetUserInput) (*GetUserOutput, error) {
+	req, out := c.GetUserRequest(input)
+	return out, req.Send()
+}
+
+// GetUserWithContext is the same as GetUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) GetUserWithContext(ctx aws.Context, input *GetUserInput, opts ...request.Option) (*GetUserOutput, error) {
+	req, out := c.GetUserRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1314,6 +1888,397 @@ func (c *FinSpaceData) ListDatasetsPagesWithContext(ctx aws.Context, input *List
 	return p.Err()
 }
 
+const opListPermissionGroups = "ListPermissionGroups"
+
+// ListPermissionGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the ListPermissionGroups operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPermissionGroups for more information on using the ListPermissionGroups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListPermissionGroupsRequest method.
+//    req, resp := client.ListPermissionGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListPermissionGroups
+func (c *FinSpaceData) ListPermissionGroupsRequest(input *ListPermissionGroupsInput) (req *request.Request, output *ListPermissionGroupsOutput) {
+	op := &request.Operation{
+		Name:       opListPermissionGroups,
+		HTTPMethod: "GET",
+		HTTPPath:   "/permission-group",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListPermissionGroupsInput{}
+	}
+
+	output = &ListPermissionGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPermissionGroups API operation for FinSpace Public API.
+//
+// Lists all available permission groups in FinSpace.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation ListPermissionGroups for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListPermissionGroups
+func (c *FinSpaceData) ListPermissionGroups(input *ListPermissionGroupsInput) (*ListPermissionGroupsOutput, error) {
+	req, out := c.ListPermissionGroupsRequest(input)
+	return out, req.Send()
+}
+
+// ListPermissionGroupsWithContext is the same as ListPermissionGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPermissionGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) ListPermissionGroupsWithContext(ctx aws.Context, input *ListPermissionGroupsInput, opts ...request.Option) (*ListPermissionGroupsOutput, error) {
+	req, out := c.ListPermissionGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListPermissionGroupsPages iterates over the pages of a ListPermissionGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPermissionGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListPermissionGroups operation.
+//    pageNum := 0
+//    err := client.ListPermissionGroupsPages(params,
+//        func(page *finspacedata.ListPermissionGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *FinSpaceData) ListPermissionGroupsPages(input *ListPermissionGroupsInput, fn func(*ListPermissionGroupsOutput, bool) bool) error {
+	return c.ListPermissionGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPermissionGroupsPagesWithContext same as ListPermissionGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) ListPermissionGroupsPagesWithContext(ctx aws.Context, input *ListPermissionGroupsInput, fn func(*ListPermissionGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPermissionGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPermissionGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPermissionGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListUsers = "ListUsers"
+
+// ListUsersRequest generates a "aws/request.Request" representing the
+// client's request for the ListUsers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListUsers for more information on using the ListUsers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListUsersRequest method.
+//    req, resp := client.ListUsersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListUsers
+func (c *FinSpaceData) ListUsersRequest(input *ListUsersInput) (req *request.Request, output *ListUsersOutput) {
+	op := &request.Operation{
+		Name:       opListUsers,
+		HTTPMethod: "GET",
+		HTTPPath:   "/user",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListUsersInput{}
+	}
+
+	output = &ListUsersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListUsers API operation for FinSpace Public API.
+//
+// Lists all available user accounts in FinSpace.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation ListUsers for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListUsers
+func (c *FinSpaceData) ListUsers(input *ListUsersInput) (*ListUsersOutput, error) {
+	req, out := c.ListUsersRequest(input)
+	return out, req.Send()
+}
+
+// ListUsersWithContext is the same as ListUsers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListUsers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) ListUsersWithContext(ctx aws.Context, input *ListUsersInput, opts ...request.Option) (*ListUsersOutput, error) {
+	req, out := c.ListUsersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListUsersPages iterates over the pages of a ListUsers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListUsers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListUsers operation.
+//    pageNum := 0
+//    err := client.ListUsersPages(params,
+//        func(page *finspacedata.ListUsersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *FinSpaceData) ListUsersPages(input *ListUsersInput, fn func(*ListUsersOutput, bool) bool) error {
+	return c.ListUsersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListUsersPagesWithContext same as ListUsersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) ListUsersPagesWithContext(ctx aws.Context, input *ListUsersInput, fn func(*ListUsersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListUsersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListUsersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListUsersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opResetUserPassword = "ResetUserPassword"
+
+// ResetUserPasswordRequest generates a "aws/request.Request" representing the
+// client's request for the ResetUserPassword operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ResetUserPassword for more information on using the ResetUserPassword
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ResetUserPasswordRequest method.
+//    req, resp := client.ResetUserPasswordRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ResetUserPassword
+func (c *FinSpaceData) ResetUserPasswordRequest(input *ResetUserPasswordInput) (req *request.Request, output *ResetUserPasswordOutput) {
+	op := &request.Operation{
+		Name:       opResetUserPassword,
+		HTTPMethod: "POST",
+		HTTPPath:   "/user/{userId}/password",
+	}
+
+	if input == nil {
+		input = &ResetUserPasswordInput{}
+	}
+
+	output = &ResetUserPasswordOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ResetUserPassword API operation for FinSpace Public API.
+//
+// Resets the password for a specified user ID and generates a temporary one.
+// Only a superuser can reset password for other users. Resetting the password
+// immediately invalidates the previous password associated with the user.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation ResetUserPassword for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ResetUserPassword
+func (c *FinSpaceData) ResetUserPassword(input *ResetUserPasswordInput) (*ResetUserPasswordOutput, error) {
+	req, out := c.ResetUserPasswordRequest(input)
+	return out, req.Send()
+}
+
+// ResetUserPasswordWithContext is the same as ResetUserPassword with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ResetUserPassword for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) ResetUserPasswordWithContext(ctx aws.Context, input *ResetUserPasswordInput, opts ...request.Option) (*ResetUserPasswordOutput, error) {
+	req, out := c.ResetUserPasswordRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateChangeset = "UpdateChangeset"
 
 // UpdateChangesetRequest generates a "aws/request.Request" representing the
@@ -1504,6 +2469,197 @@ func (c *FinSpaceData) UpdateDatasetWithContext(ctx aws.Context, input *UpdateDa
 	return out, req.Send()
 }
 
+const opUpdatePermissionGroup = "UpdatePermissionGroup"
+
+// UpdatePermissionGroupRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePermissionGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePermissionGroup for more information on using the UpdatePermissionGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdatePermissionGroupRequest method.
+//    req, resp := client.UpdatePermissionGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdatePermissionGroup
+func (c *FinSpaceData) UpdatePermissionGroupRequest(input *UpdatePermissionGroupInput) (req *request.Request, output *UpdatePermissionGroupOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePermissionGroup,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/permission-group/{permissionGroupId}",
+	}
+
+	if input == nil {
+		input = &UpdatePermissionGroupInput{}
+	}
+
+	output = &UpdatePermissionGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdatePermissionGroup API operation for FinSpace Public API.
+//
+// Modifies the details of a permission group. You cannot modify a permissionGroupID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation UpdatePermissionGroup for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdatePermissionGroup
+func (c *FinSpaceData) UpdatePermissionGroup(input *UpdatePermissionGroupInput) (*UpdatePermissionGroupOutput, error) {
+	req, out := c.UpdatePermissionGroupRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePermissionGroupWithContext is the same as UpdatePermissionGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePermissionGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) UpdatePermissionGroupWithContext(ctx aws.Context, input *UpdatePermissionGroupInput, opts ...request.Option) (*UpdatePermissionGroupOutput, error) {
+	req, out := c.UpdatePermissionGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateUser = "UpdateUser"
+
+// UpdateUserRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateUser for more information on using the UpdateUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateUserRequest method.
+//    req, resp := client.UpdateUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdateUser
+func (c *FinSpaceData) UpdateUserRequest(input *UpdateUserInput) (req *request.Request, output *UpdateUserOutput) {
+	op := &request.Operation{
+		Name:       opUpdateUser,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/user/{userId}",
+	}
+
+	if input == nil {
+		input = &UpdateUserInput{}
+	}
+
+	output = &UpdateUserOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateUser API operation for FinSpace Public API.
+//
+// Modifies the details of the specified user account. You cannot update the
+// userId for a user.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation UpdateUser for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdateUser
+func (c *FinSpaceData) UpdateUser(input *UpdateUserInput) (*UpdateUserOutput, error) {
+	req, out := c.UpdateUserRequest(input)
+	return out, req.Send()
+}
+
+// UpdateUserWithContext is the same as UpdateUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) UpdateUserWithContext(ctx aws.Context, input *UpdateUserInput, opts ...request.Option) (*UpdateUserOutput, error) {
+	req, out := c.UpdateUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // You do not have sufficient access to perform this action.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
@@ -1574,23 +2730,23 @@ type ChangesetErrorInfo struct {
 
 	// The category of the error.
 	//
-	//    * VALIDATION -The inputs to this request are invalid.
+	//    * VALIDATION – The inputs to this request are invalid.
 	//
-	//    * SERVICE_QUOTA_EXCEEDED - Service quotas have been exceeded. Please contact
-	//    AWS support to increase quotas.
+	//    * SERVICE_QUOTA_EXCEEDED – Service quotas have been exceeded. Please
+	//    contact AWS support to increase quotas.
 	//
-	//    * ACCESS_DENIED - Missing required permission to perform this request.
+	//    * ACCESS_DENIED – Missing required permission to perform this request.
 	//
-	//    * RESOURCE_NOT_FOUND - One or more inputs to this request were not found.
+	//    * RESOURCE_NOT_FOUND – One or more inputs to this request were not found.
 	//
-	//    * THROTTLING - The system temporarily lacks sufficient resources to process
-	//    the request.
+	//    * THROTTLING – The system temporarily lacks sufficient resources to
+	//    process the request.
 	//
-	//    * INTERNAL_SERVICE_EXCEPTION - An internal service error has occurred.
+	//    * INTERNAL_SERVICE_EXCEPTION – An internal service error has occurred.
 	//
-	//    * CANCELLED - Cancelled.
+	//    * CANCELLED – Cancelled.
 	//
-	//    * USER_RECOVERABLE - A user recoverable error has occurred.
+	//    * USER_RECOVERABLE – A user recoverable error has occurred.
 	ErrorCategory *string `locationName:"errorCategory" type:"string" enum:"ErrorCategory"`
 
 	// The text of the error message.
@@ -1632,24 +2788,24 @@ type ChangesetSummary struct {
 	_ struct{} `type:"structure"`
 
 	// Beginning time from which the Changeset is active. The value is determined
-	// as Epoch time in milliseconds. For example, the value for Monday, November
+	// as epoch time in milliseconds. For example, the value for Monday, November
 	// 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
 	ActiveFromTimestamp *int64 `locationName:"activeFromTimestamp" type:"long"`
 
-	// Time until which the Changeset is active. The value is determined as Epoch
+	// Time until which the Changeset is active. The value is determined as epoch
 	// time in milliseconds. For example, the value for Monday, November 1, 2021
 	// 12:00:00 PM UTC is specified as 1635768000000.
 	ActiveUntilTimestamp *int64 `locationName:"activeUntilTimestamp" type:"long"`
 
 	// Type that indicates how a Changeset is applied to a Dataset.
 	//
-	//    * REPLACE - Changeset is considered as a replacement to all prior loaded
+	//    * REPLACE – Changeset is considered as a replacement to all prior loaded
 	//    Changesets.
 	//
-	//    * APPEND - Changeset is considered as an addition to the end of all prior
-	//    loaded Changesets.
+	//    * APPEND – Changeset is considered as an addition to the end of all
+	//    prior loaded Changesets.
 	//
-	//    * MODIFY - Changeset is considered as a replacement to a specific prior
+	//    * MODIFY – Changeset is considered as a replacement to a specific prior
 	//    ingested Changeset.
 	ChangeType *string `locationName:"changeType" type:"string" enum:"ChangeType"`
 
@@ -1660,7 +2816,7 @@ type ChangesetSummary struct {
 	ChangesetId *string `locationName:"changesetId" min:"1" type:"string"`
 
 	// The timestamp at which the Changeset was created in FinSpace. The value is
-	// determined as Epoch time in milliseconds. For example, the value for Monday,
+	// determined as epoch time in milliseconds. For example, the value for Monday,
 	// November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
 	CreateTime *int64 `locationName:"createTime" type:"long"`
 
@@ -1679,15 +2835,15 @@ type ChangesetSummary struct {
 
 	// Status of the Changeset ingestion.
 	//
-	//    * PENDING - Changeset is pending creation.
+	//    * PENDING – Changeset is pending creation.
 	//
-	//    * FAILED - Changeset creation has failed.
+	//    * FAILED – Changeset creation has failed.
 	//
-	//    * SUCCESS - Changeset creation has succeeded.
+	//    * SUCCESS – Changeset creation has succeeded.
 	//
-	//    * RUNNING - Changeset creation is running.
+	//    * RUNNING – Changeset creation is running.
 	//
-	//    * STOP_REQUESTED - User requested Changeset creation to stop.
+	//    * STOP_REQUESTED – User requested Changeset creation to stop.
 	Status *string `locationName:"status" type:"string" enum:"IngestionStatus"`
 
 	// The unique identifier of the updated Changeset.
@@ -1800,16 +2956,17 @@ type ColumnDefinition struct {
 	// Description for a column.
 	ColumnDescription *string `locationName:"columnDescription" type:"string"`
 
-	// Name for a column.
+	// The name of a column.
 	ColumnName *string `locationName:"columnName" type:"string"`
 
 	// Data type of a column.
 	//
-	//    * STRING - A String data type. CHAR - A char data type. INTEGER - An integer
-	//    data type. TINYINT - A tinyint data type. SMALLINT - A smallint data type.
-	//    BIGINT - A bigint data type. FLOAT - A float data type. DOUBLE - A double
-	//    data type. DATE - A date data type. DATETIME - A datetime data type. BOOLEAN
-	//    - A boolean data type. BINARY - A binary data type.
+	//    * STRING – A String data type. CHAR – A char data type. INTEGER –
+	//    An integer data type. TINYINT – A tinyint data type. SMALLINT – A
+	//    smallint data type. BIGINT – A bigint data type. FLOAT – A float data
+	//    type. DOUBLE – A double data type. DATE – A date data type. DATETIME
+	//    – A datetime data type. BOOLEAN – A boolean data type. BINARY –
+	//    A binary data type.
 	DataType *string `locationName:"dataType" type:"string" enum:"ColumnDataType"`
 }
 
@@ -1855,6 +3012,8 @@ type ConflictException struct {
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
+
+	Reason *string `locationName:"reason" type:"string"`
 }
 
 // String returns the string representation.
@@ -1900,7 +3059,7 @@ func (s *ConflictException) OrigErr() error {
 }
 
 func (s *ConflictException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -1917,15 +3076,15 @@ func (s *ConflictException) RequestID() string {
 type CreateChangesetInput struct {
 	_ struct{} `type:"structure"`
 
-	// Option to indicate how a Changeset will be applied to a Dataset.
+	// The option to indicate how a Changeset will be applied to a Dataset.
 	//
-	//    * REPLACE - Changeset will be considered as a replacement to all prior
+	//    * REPLACE – Changeset will be considered as a replacement to all prior
 	//    loaded Changesets.
 	//
-	//    * APPEND - Changeset will be considered as an addition to the end of all
-	//    prior loaded Changesets.
+	//    * APPEND – Changeset will be considered as an addition to the end of
+	//    all prior loaded Changesets.
 	//
-	//    * MODIFY - Changeset is considered as a replacement to a specific prior
+	//    * MODIFY – Changeset is considered as a replacement to a specific prior
 	//    ingested Changeset.
 	//
 	// ChangeType is a required field
@@ -1946,13 +3105,13 @@ type CreateChangesetInput struct {
 	//
 	// formatType is a required attribute and can have the following values:
 	//
-	//    * PARQUET - Parquet source file format.
+	//    * PARQUET – Parquet source file format.
 	//
-	//    * CSV - CSV source file format.
+	//    * CSV – CSV source file format.
 	//
-	//    * JSON - JSON source file format.
+	//    * JSON – JSON source file format.
 	//
-	//    * XML - XML source file format.
+	//    * XML – XML source file format.
 	//
 	// Here is an example of how you could specify the formatParams:
 	//
@@ -1983,7 +3142,8 @@ type CreateChangesetInput struct {
 	//
 	// The S3 path that you specify must allow the FinSpace role access. To do that,
 	// you first need to configure the IAM policy on S3 bucket. For more information,
-	// see Loading data from an Amazon S3 Bucket using the FinSpace API (https://docs.aws.amazon.com/finspace/latest/data-api/fs-using-the-finspace-api.html#access-s3-buckets)section.
+	// see Loading data from an Amazon S3 Bucket using the FinSpace API (https://docs.aws.amazon.com/finspace/latest/data-api/fs-using-the-finspace-api.html#access-s3-buckets)
+	// section.
 	//
 	// SourceParams is a required field
 	SourceParams map[string]*string `locationName:"sourceParams" type:"map" required:"true"`
@@ -2110,7 +3270,7 @@ func (s *CreateChangesetOutput) SetDatasetId(v string) *CreateChangesetOutput {
 type CreateDataViewInput struct {
 	_ struct{} `type:"structure"`
 
-	// Beginning time to use for the Dataview. The value is determined as Epoch
+	// Beginning time to use for the Dataview. The value is determined as epoch
 	// time in milliseconds. For example, the value for Monday, November 1, 2021
 	// 12:00:00 PM UTC is specified as 1635768000000.
 	AsOfTimestamp *int64 `locationName:"asOfTimestamp" type:"long"`
@@ -2286,9 +3446,9 @@ type CreateDatasetInput struct {
 
 	// The format in which Dataset data is structured.
 	//
-	//    * TABULAR - Data is structured in a tabular format.
+	//    * TABULAR – Data is structured in a tabular format.
 	//
-	//    * NON_TABULAR - Data is structured in a non-tabular format.
+	//    * NON_TABULAR – Data is structured in a non-tabular format.
 	//
 	// Kind is a required field
 	Kind *string `locationName:"kind" type:"string" required:"true" enum:"DatasetKind"`
@@ -2444,6 +3604,329 @@ func (s *CreateDatasetOutput) SetDatasetId(v string) *CreateDatasetOutput {
 	return s
 }
 
+type CreatePermissionGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The option to indicate FinSpace application permissions that are granted
+	// to a specific group.
+	//
+	//    * CreateDataset – Group members can create new datasets.
+	//
+	//    * ManageClusters – Group members can manage Apache Spark clusters from
+	//    FinSpace notebooks.
+	//
+	//    * ManageUsersAndGroups – Group members can manage users and permission
+	//    groups.
+	//
+	//    * ManageAttributeSets – Group members can manage attribute sets.
+	//
+	//    * ViewAuditData – Group members can view audit data.
+	//
+	//    * AccessNotebooks – Group members will have access to FinSpace notebooks.
+	//
+	//    * GetTemporaryCredentials – Group members can get temporary API credentials.
+	//
+	// ApplicationPermissions is a required field
+	ApplicationPermissions []*string `locationName:"applicationPermissions" type:"list" required:"true"`
+
+	// A token that ensures idempotency. This token expires in 10 minutes.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// A brief description for the permission group.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreatePermissionGroupInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" min:"1" type:"string" sensitive:"true"`
+
+	// The name of the permission group.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreatePermissionGroupInput's
+	// String and GoString methods.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePermissionGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePermissionGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePermissionGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePermissionGroupInput"}
+	if s.ApplicationPermissions == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationPermissions"))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationPermissions sets the ApplicationPermissions field's value.
+func (s *CreatePermissionGroupInput) SetApplicationPermissions(v []*string) *CreatePermissionGroupInput {
+	s.ApplicationPermissions = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreatePermissionGroupInput) SetClientToken(v string) *CreatePermissionGroupInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreatePermissionGroupInput) SetDescription(v string) *CreatePermissionGroupInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreatePermissionGroupInput) SetName(v string) *CreatePermissionGroupInput {
+	s.Name = &v
+	return s
+}
+
+type CreatePermissionGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the permission group.
+	PermissionGroupId *string `locationName:"permissionGroupId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePermissionGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePermissionGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetPermissionGroupId sets the PermissionGroupId field's value.
+func (s *CreatePermissionGroupOutput) SetPermissionGroupId(v string) *CreatePermissionGroupOutput {
+	s.PermissionGroupId = &v
+	return s
+}
+
+type CreateUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// The option to indicate whether the user can use the GetProgrammaticAccessCredentials
+	// API to obtain credentials that can then be used to access other FinSpace
+	// Data API operations.
+	//
+	//    * ENABLED – The user has permissions to use the APIs.
+	//
+	//    * DISABLED – The user does not have permissions to use any APIs.
+	ApiAccess *string `type:"string" enum:"ApiAccess"`
+
+	// The ARN identifier of an AWS user or role that is allowed to call the GetProgrammaticAccessCredentials
+	// API to obtain a credentials token for a specific FinSpace user. This must
+	// be an IAM role within your FinSpace account.
+	ApiAccessPrincipalArn *string `locationName:"apiAccessPrincipalArn" min:"20" type:"string"`
+
+	// A token that ensures idempotency. This token expires in 10 minutes.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The email address of the user that you want to register. The email address
+	// serves as a uniquer identifier for each user and cannot be changed after
+	// it's created.
+	//
+	// EmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateUserInput's
+	// String and GoString methods.
+	//
+	// EmailAddress is a required field
+	EmailAddress *string `locationName:"emailAddress" min:"4" type:"string" required:"true" sensitive:"true"`
+
+	// The first name of the user that you want to register.
+	//
+	// FirstName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateUserInput's
+	// String and GoString methods.
+	FirstName *string `locationName:"firstName" min:"1" type:"string" sensitive:"true"`
+
+	// The last name of the user that you want to register.
+	//
+	// LastName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateUserInput's
+	// String and GoString methods.
+	LastName *string `locationName:"lastName" min:"1" type:"string" sensitive:"true"`
+
+	// The option to indicate the type of user. Use one of the following options
+	// to specify this parameter:
+	//
+	//    * SUPER_USER – A user with permission to all the functionality and data
+	//    in FinSpace.
+	//
+	//    * APP_USER – A user with specific permissions in FinSpace. The users
+	//    are assigned permissions by adding them to a permission group.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"UserType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateUserInput"}
+	if s.ApiAccessPrincipalArn != nil && len(*s.ApiAccessPrincipalArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ApiAccessPrincipalArn", 20))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.EmailAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("EmailAddress"))
+	}
+	if s.EmailAddress != nil && len(*s.EmailAddress) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailAddress", 4))
+	}
+	if s.FirstName != nil && len(*s.FirstName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirstName", 1))
+	}
+	if s.LastName != nil && len(*s.LastName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LastName", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApiAccess sets the ApiAccess field's value.
+func (s *CreateUserInput) SetApiAccess(v string) *CreateUserInput {
+	s.ApiAccess = &v
+	return s
+}
+
+// SetApiAccessPrincipalArn sets the ApiAccessPrincipalArn field's value.
+func (s *CreateUserInput) SetApiAccessPrincipalArn(v string) *CreateUserInput {
+	s.ApiAccessPrincipalArn = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateUserInput) SetClientToken(v string) *CreateUserInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *CreateUserInput) SetEmailAddress(v string) *CreateUserInput {
+	s.EmailAddress = &v
+	return s
+}
+
+// SetFirstName sets the FirstName field's value.
+func (s *CreateUserInput) SetFirstName(v string) *CreateUserInput {
+	s.FirstName = &v
+	return s
+}
+
+// SetLastName sets the LastName field's value.
+func (s *CreateUserInput) SetLastName(v string) *CreateUserInput {
+	s.LastName = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CreateUserInput) SetType(v string) *CreateUserInput {
+	s.Type = &v
+	return s
+}
+
+type CreateUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the user.
+	UserId *string `locationName:"userId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUserOutput) GoString() string {
+	return s.String()
+}
+
+// SetUserId sets the UserId field's value.
+func (s *CreateUserOutput) SetUserId(v string) *CreateUserOutput {
+	s.UserId = &v
+	return s
+}
+
 // Short term API credentials.
 type Credentials struct {
 	_ struct{} `type:"structure"`
@@ -2500,18 +3983,18 @@ type DataViewDestinationTypeParams struct {
 
 	// Destination type for a Dataview.
 	//
-	//    * GLUE_TABLE - Glue table destination type.
+	//    * GLUE_TABLE – Glue table destination type.
 	//
-	//    * S3 - S3 destination type.
+	//    * S3 – S3 destination type.
 	//
 	// DestinationType is a required field
 	DestinationType *string `locationName:"destinationType" type:"string" required:"true"`
 
 	// Data view export file format.
 	//
-	//    * PARQUET - Parquet export file format.
+	//    * PARQUET – Parquet export file format.
 	//
-	//    * DELIMITED_TEXT - Delimited text export file format.
+	//    * DELIMITED_TEXT – Delimited text export file format.
 	S3DestinationExportFileFormat *string `locationName:"s3DestinationExportFileFormat" type:"string" enum:"ExportFileFormat"`
 
 	// Format Options for S3 Destination type.
@@ -2577,23 +4060,23 @@ type DataViewErrorInfo struct {
 
 	// The category of the error.
 	//
-	//    * VALIDATION -The inputs to this request are invalid.
+	//    * VALIDATION – The inputs to this request are invalid.
 	//
-	//    * SERVICE_QUOTA_EXCEEDED - Service quotas have been exceeded. Please contact
-	//    AWS support to increase quotas.
+	//    * SERVICE_QUOTA_EXCEEDED – Service quotas have been exceeded. Please
+	//    contact AWS support to increase quotas.
 	//
-	//    * ACCESS_DENIED - Missing required permission to perform this request.
+	//    * ACCESS_DENIED – Missing required permission to perform this request.
 	//
-	//    * RESOURCE_NOT_FOUND - One or more inputs to this request were not found.
+	//    * RESOURCE_NOT_FOUND – One or more inputs to this request were not found.
 	//
-	//    * THROTTLING - The system temporarily lacks sufficient resources to process
-	//    the request.
+	//    * THROTTLING – The system temporarily lacks sufficient resources to
+	//    process the request.
 	//
-	//    * INTERNAL_SERVICE_EXCEPTION - An internal service error has occurred.
+	//    * INTERNAL_SERVICE_EXCEPTION – An internal service error has occurred.
 	//
-	//    * CANCELLED - Cancelled.
+	//    * CANCELLED – Cancelled.
 	//
-	//    * USER_RECOVERABLE - A user recoverable error has occurred.
+	//    * USER_RECOVERABLE – A user recoverable error has occurred.
 	ErrorCategory *string `locationName:"errorCategory" type:"string" enum:"ErrorCategory"`
 
 	// The text of the error message.
@@ -2634,7 +4117,7 @@ func (s *DataViewErrorInfo) SetErrorMessage(v string) *DataViewErrorInfo {
 type DataViewSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Time range to use for the Dataview. The value is determined as Epoch time
+	// Time range to use for the Dataview. The value is determined as epoch time
 	// in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00
 	// PM UTC is specified as 1635768000000.
 	AsOfTimestamp *int64 `locationName:"asOfTimestamp" type:"long"`
@@ -2643,7 +4126,7 @@ type DataViewSummary struct {
 	AutoUpdate *bool `locationName:"autoUpdate" type:"boolean"`
 
 	// The timestamp at which the Dataview was created in FinSpace. The value is
-	// determined as Epoch time in milliseconds. For example, the value for Monday,
+	// determined as epoch time in milliseconds. For example, the value for Monday,
 	// November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
 	CreateTime *int64 `locationName:"createTime" type:"long"`
 
@@ -2662,7 +4145,7 @@ type DataViewSummary struct {
 	// The structure with error messages.
 	ErrorInfo *DataViewErrorInfo `locationName:"errorInfo" type:"structure"`
 
-	// The last time that a Dataview was modified. The value is determined as Epoch
+	// The last time that a Dataview was modified. The value is determined as epoch
 	// time in milliseconds. For example, the value for Monday, November 1, 2021
 	// 12:00:00 PM UTC is specified as 1635768000000.
 	LastModifiedTime *int64 `locationName:"lastModifiedTime" type:"long"`
@@ -2675,21 +4158,21 @@ type DataViewSummary struct {
 
 	// The status of a Dataview creation.
 	//
-	//    * RUNNING - Dataview creation is running.
+	//    * RUNNING – Dataview creation is running.
 	//
-	//    * STARTING - Dataview creation is starting.
+	//    * STARTING – Dataview creation is starting.
 	//
-	//    * FAILED - Dataview creation has failed.
+	//    * FAILED – Dataview creation has failed.
 	//
-	//    * CANCELLED - Dataview creation has been cancelled.
+	//    * CANCELLED – Dataview creation has been cancelled.
 	//
-	//    * TIMEOUT - Dataview creation has timed out.
+	//    * TIMEOUT – Dataview creation has timed out.
 	//
-	//    * SUCCESS - Dataview creation has succeeded.
+	//    * SUCCESS – Dataview creation has succeeded.
 	//
-	//    * PENDING - Dataview creation is pending.
+	//    * PENDING – Dataview creation is pending.
 	//
-	//    * FAILED_CLEANUP_FAILED - Dataview creation failed and resource cleanup
+	//    * FAILED_CLEANUP_FAILED – Dataview creation failed and resource cleanup
 	//    failed.
 	Status *string `locationName:"status" type:"string" enum:"DataViewStatus"`
 }
@@ -2792,7 +4275,7 @@ type Dataset struct {
 	Alias *string `locationName:"alias" min:"1" type:"string"`
 
 	// The timestamp at which the Dataset was created in FinSpace. The value is
-	// determined as Epoch time in milliseconds. For example, the value for Monday,
+	// determined as epoch time in milliseconds. For example, the value for Monday,
 	// November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
 	CreateTime *int64 `locationName:"createTime" type:"long"`
 
@@ -2810,12 +4293,12 @@ type Dataset struct {
 
 	// The format in which Dataset data is structured.
 	//
-	//    * TABULAR - Data is structured in a tabular format.
+	//    * TABULAR – Data is structured in a tabular format.
 	//
-	//    * NON_TABULAR - Data is structured in a non-tabular format.
+	//    * NON_TABULAR – Data is structured in a non-tabular format.
 	Kind *string `locationName:"kind" type:"string" enum:"DatasetKind"`
 
-	// The last time that the Dataset was modified. The value is determined as Epoch
+	// The last time that the Dataset was modified. The value is determined as epoch
 	// time in milliseconds. For example, the value for Monday, November 1, 2021
 	// 12:00:00 PM UTC is specified as 1635768000000.
 	LastModifiedTime *int64 `locationName:"lastModifiedTime" type:"long"`
@@ -2910,9 +4393,13 @@ type DatasetOwnerInfo struct {
 	_ struct{} `type:"structure"`
 
 	// Email address for the Dataset owner.
-	Email *string `locationName:"email" min:"4" type:"string"`
+	//
+	// Email is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DatasetOwnerInfo's
+	// String and GoString methods.
+	Email *string `locationName:"email" min:"4" type:"string" sensitive:"true"`
 
-	// Name of the Dataset owner.
+	// The name of the Dataset owner.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// Phone number for the Dataset owner.
@@ -3068,6 +4555,282 @@ func (s *DeleteDatasetOutput) SetDatasetId(v string) *DeleteDatasetOutput {
 	return s
 }
 
+type DeletePermissionGroupInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A token that ensures idempotency. This token expires in 10 minutes.
+	ClientToken *string `location:"querystring" locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The unique identifier for the permission group that you want to delete.
+	//
+	// PermissionGroupId is a required field
+	PermissionGroupId *string `location:"uri" locationName:"permissionGroupId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePermissionGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePermissionGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePermissionGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePermissionGroupInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.PermissionGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PermissionGroupId"))
+	}
+	if s.PermissionGroupId != nil && len(*s.PermissionGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PermissionGroupId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *DeletePermissionGroupInput) SetClientToken(v string) *DeletePermissionGroupInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetPermissionGroupId sets the PermissionGroupId field's value.
+func (s *DeletePermissionGroupInput) SetPermissionGroupId(v string) *DeletePermissionGroupInput {
+	s.PermissionGroupId = &v
+	return s
+}
+
+type DeletePermissionGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the deleted permission group.
+	PermissionGroupId *string `locationName:"permissionGroupId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePermissionGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePermissionGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetPermissionGroupId sets the PermissionGroupId field's value.
+func (s *DeletePermissionGroupOutput) SetPermissionGroupId(v string) *DeletePermissionGroupOutput {
+	s.PermissionGroupId = &v
+	return s
+}
+
+type DisableUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that ensures idempotency. This token expires in 10 minutes.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The unique identifier for the user account that you want to disable.
+	//
+	// UserId is a required field
+	UserId *string `location:"uri" locationName:"userId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisableUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisableUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisableUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisableUserInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *DisableUserInput) SetClientToken(v string) *DisableUserInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *DisableUserInput) SetUserId(v string) *DisableUserInput {
+	s.UserId = &v
+	return s
+}
+
+type DisableUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the disabled user account.
+	UserId *string `locationName:"userId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisableUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisableUserOutput) GoString() string {
+	return s.String()
+}
+
+// SetUserId sets the UserId field's value.
+func (s *DisableUserOutput) SetUserId(v string) *DisableUserOutput {
+	s.UserId = &v
+	return s
+}
+
+type EnableUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that ensures idempotency. This token expires in 10 minutes.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The unique identifier for the user account that you want to enable.
+	//
+	// UserId is a required field
+	UserId *string `location:"uri" locationName:"userId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnableUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnableUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EnableUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EnableUserInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *EnableUserInput) SetClientToken(v string) *EnableUserInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *EnableUserInput) SetUserId(v string) *EnableUserInput {
+	s.UserId = &v
+	return s
+}
+
+type EnableUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the enabled user account.
+	UserId *string `locationName:"userId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnableUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnableUserOutput) GoString() string {
+	return s.String()
+}
+
+// SetUserId sets the UserId field's value.
+func (s *EnableUserOutput) SetUserId(v string) *EnableUserOutput {
+	s.UserId = &v
+	return s
+}
+
 // Request to describe a changeset.
 type GetChangesetInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
@@ -3140,24 +4903,24 @@ type GetChangesetOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Beginning time from which the Changeset is active. The value is determined
-	// as Epoch time in milliseconds. For example, the value for Monday, November
+	// as epoch time in milliseconds. For example, the value for Monday, November
 	// 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
 	ActiveFromTimestamp *int64 `locationName:"activeFromTimestamp" type:"long"`
 
-	// Time until which the Changeset is active. The value is determined as Epoch
+	// Time until which the Changeset is active. The value is determined as epoch
 	// time in milliseconds. For example, the value for Monday, November 1, 2021
 	// 12:00:00 PM UTC is specified as 1635768000000.
 	ActiveUntilTimestamp *int64 `locationName:"activeUntilTimestamp" type:"long"`
 
 	// Type that indicates how a Changeset is applied to a Dataset.
 	//
-	//    * REPLACE - Changeset is considered as a replacement to all prior loaded
+	//    * REPLACE – Changeset is considered as a replacement to all prior loaded
 	//    Changesets.
 	//
-	//    * APPEND - Changeset is considered as an addition to the end of all prior
-	//    loaded Changesets.
+	//    * APPEND – Changeset is considered as an addition to the end of all
+	//    prior loaded Changesets.
 	//
-	//    * MODIFY - Changeset is considered as a replacement to a specific prior
+	//    * MODIFY – Changeset is considered as a replacement to a specific prior
 	//    ingested Changeset.
 	ChangeType *string `locationName:"changeType" type:"string" enum:"ChangeType"`
 
@@ -3168,7 +4931,7 @@ type GetChangesetOutput struct {
 	ChangesetId *string `locationName:"changesetId" min:"1" type:"string"`
 
 	// The timestamp at which the Changeset was created in FinSpace. The value is
-	// determined as Epoch time in milliseconds. For example, the value for Monday,
+	// determined as epoch time in milliseconds. For example, the value for Monday,
 	// November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
 	CreateTime *int64 `locationName:"createTime" type:"long"`
 
@@ -3363,7 +5126,7 @@ func (s *GetDataViewInput) SetDatasetId(v string) *GetDataViewInput {
 type GetDataViewOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Time range to use for the Dataview. The value is determined as Epoch time
+	// Time range to use for the Dataview. The value is determined as epoch time
 	// in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00
 	// PM UTC is specified as 1635768000000.
 	AsOfTimestamp *int64 `locationName:"asOfTimestamp" type:"long"`
@@ -3372,7 +5135,7 @@ type GetDataViewOutput struct {
 	AutoUpdate *bool `locationName:"autoUpdate" type:"boolean"`
 
 	// The timestamp at which the Dataview was created in FinSpace. The value is
-	// determined as Epoch time in milliseconds. For example, the value for Monday,
+	// determined as epoch time in milliseconds. For example, the value for Monday,
 	// November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
 	CreateTime *int64 `locationName:"createTime" type:"long"`
 
@@ -3391,7 +5154,7 @@ type GetDataViewOutput struct {
 	// Information about an error that occurred for the Dataview.
 	ErrorInfo *DataViewErrorInfo `locationName:"errorInfo" type:"structure"`
 
-	// The last time that a Dataview was modified. The value is determined as Epoch
+	// The last time that a Dataview was modified. The value is determined as epoch
 	// time in milliseconds. For example, the value for Monday, November 1, 2021
 	// 12:00:00 PM UTC is specified as 1635768000000.
 	LastModifiedTime *int64 `locationName:"lastModifiedTime" type:"long"`
@@ -3404,21 +5167,21 @@ type GetDataViewOutput struct {
 
 	// The status of a Dataview creation.
 	//
-	//    * RUNNING - Dataview creation is running.
+	//    * RUNNING – Dataview creation is running.
 	//
-	//    * STARTING - Dataview creation is starting.
+	//    * STARTING – Dataview creation is starting.
 	//
-	//    * FAILED - Dataview creation has failed.
+	//    * FAILED – Dataview creation has failed.
 	//
-	//    * CANCELLED - Dataview creation has been cancelled.
+	//    * CANCELLED – Dataview creation has been cancelled.
 	//
-	//    * TIMEOUT - Dataview creation has timed out.
+	//    * TIMEOUT – Dataview creation has timed out.
 	//
-	//    * SUCCESS - Dataview creation has succeeded.
+	//    * SUCCESS – Dataview creation has succeeded.
 	//
-	//    * PENDING - Dataview creation is pending.
+	//    * PENDING – Dataview creation is pending.
 	//
-	//    * FAILED_CLEANUP_FAILED - Dataview creation failed and resource cleanup
+	//    * FAILED_CLEANUP_FAILED – Dataview creation failed and resource cleanup
 	//    failed.
 	Status *string `locationName:"status" type:"string" enum:"DataViewStatus"`
 }
@@ -3571,7 +5334,7 @@ type GetDatasetOutput struct {
 	Alias *string `locationName:"alias" min:"1" type:"string"`
 
 	// The timestamp at which the Dataset was created in FinSpace. The value is
-	// determined as Epoch time in milliseconds. For example, the value for Monday,
+	// determined as epoch time in milliseconds. For example, the value for Monday,
 	// November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
 	CreateTime *int64 `locationName:"createTime" type:"long"`
 
@@ -3589,12 +5352,12 @@ type GetDatasetOutput struct {
 
 	// The format in which Dataset data is structured.
 	//
-	//    * TABULAR - Data is structured in a tabular format.
+	//    * TABULAR – Data is structured in a tabular format.
 	//
-	//    * NON_TABULAR - Data is structured in a non-tabular format.
+	//    * NON_TABULAR – Data is structured in a non-tabular format.
 	Kind *string `locationName:"kind" type:"string" enum:"DatasetKind"`
 
-	// The last time that the Dataset was modified. The value is determined as Epoch
+	// The last time that the Dataset was modified. The value is determined as epoch
 	// time in milliseconds. For example, the value for Monday, November 1, 2021
 	// 12:00:00 PM UTC is specified as 1635768000000.
 	LastModifiedTime *int64 `locationName:"lastModifiedTime" type:"long"`
@@ -3604,13 +5367,13 @@ type GetDatasetOutput struct {
 
 	// Status of the Dataset creation.
 	//
-	//    * PENDING - Dataset is pending creation.
+	//    * PENDING – Dataset is pending creation.
 	//
-	//    * FAILED - Dataset creation has failed.
+	//    * FAILED – Dataset creation has failed.
 	//
-	//    * SUCCESS - Dataset creation has succeeded.
+	//    * SUCCESS – Dataset creation has succeeded.
 	//
-	//    * RUNNING - Dataset creation is running.
+	//    * RUNNING – Dataset creation is running.
 	Status *string `locationName:"status" type:"string" enum:"DatasetStatus"`
 }
 
@@ -3795,16 +5558,241 @@ func (s *GetProgrammaticAccessCredentialsOutput) SetDurationInMinutes(v int64) *
 	return s
 }
 
+type GetUserInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the user to get data for.
+	//
+	// UserId is a required field
+	UserId *string `location:"uri" locationName:"userId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetUserInput"}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUserId sets the UserId field's value.
+func (s *GetUserInput) SetUserId(v string) *GetUserInput {
+	s.UserId = &v
+	return s
+}
+
+type GetUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the user can use the GetProgrammaticAccessCredentials API
+	// to obtain credentials that can then be used to access other FinSpace Data
+	// API operations.
+	//
+	//    * ENABLED – The user has permissions to use the APIs.
+	//
+	//    * DISABLED – The user does not have permissions to use any APIs.
+	ApiAccess *string `locationName:"apiAccess" type:"string" enum:"ApiAccess"`
+
+	// The ARN identifier of an AWS user or role that is allowed to call the GetProgrammaticAccessCredentials
+	// API to obtain a credentials token for a specific FinSpace user. This must
+	// be an IAM role within your FinSpace account.
+	ApiAccessPrincipalArn *string `locationName:"apiAccessPrincipalArn" min:"20" type:"string"`
+
+	// The timestamp at which the user account was created in FinSpace. The value
+	// is determined as epoch time in milliseconds.
+	CreateTime *int64 `locationName:"createTime" type:"long"`
+
+	// The email address that is associated with the user.
+	//
+	// EmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetUserOutput's
+	// String and GoString methods.
+	EmailAddress *string `locationName:"emailAddress" min:"4" type:"string" sensitive:"true"`
+
+	// The first name of the user.
+	//
+	// FirstName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetUserOutput's
+	// String and GoString methods.
+	FirstName *string `locationName:"firstName" min:"1" type:"string" sensitive:"true"`
+
+	// Describes the last time the user account was disabled. The value is determined
+	// as epoch time in milliseconds.
+	LastDisabledTime *int64 `locationName:"lastDisabledTime" type:"long"`
+
+	// Describes the last time the user account was enabled. The value is determined
+	// as epoch time in milliseconds.
+	LastEnabledTime *int64 `locationName:"lastEnabledTime" type:"long"`
+
+	// Describes the last time that the user logged into their account. The value
+	// is determined as epoch time in milliseconds.
+	LastLoginTime *int64 `locationName:"lastLoginTime" type:"long"`
+
+	// Describes the last time the user account was updated. The value is determined
+	// as epoch time in milliseconds.
+	LastModifiedTime *int64 `locationName:"lastModifiedTime" type:"long"`
+
+	// The last name of the user.
+	//
+	// LastName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetUserOutput's
+	// String and GoString methods.
+	LastName *string `locationName:"lastName" min:"1" type:"string" sensitive:"true"`
+
+	// The current status of the user account.
+	//
+	//    * CREATING – The user account creation is in progress.
+	//
+	//    * ENABLED – The user account is created and is currently active.
+	//
+	//    * DISABLED – The user account is currently inactive.
+	Status *string `locationName:"status" type:"string" enum:"UserStatus"`
+
+	// Indicates the type of user.
+	//
+	//    * SUPER_USER – A user with permission to all the functionality and data
+	//    in FinSpace.
+	//
+	//    * APP_USER – A user with specific permissions in FinSpace. The users
+	//    are assigned permissions by adding them to a permissions group.
+	Type *string `locationName:"type" type:"string" enum:"UserType"`
+
+	// The unique identifier for the user account that is retrieved.
+	UserId *string `locationName:"userId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUserOutput) GoString() string {
+	return s.String()
+}
+
+// SetApiAccess sets the ApiAccess field's value.
+func (s *GetUserOutput) SetApiAccess(v string) *GetUserOutput {
+	s.ApiAccess = &v
+	return s
+}
+
+// SetApiAccessPrincipalArn sets the ApiAccessPrincipalArn field's value.
+func (s *GetUserOutput) SetApiAccessPrincipalArn(v string) *GetUserOutput {
+	s.ApiAccessPrincipalArn = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *GetUserOutput) SetCreateTime(v int64) *GetUserOutput {
+	s.CreateTime = &v
+	return s
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *GetUserOutput) SetEmailAddress(v string) *GetUserOutput {
+	s.EmailAddress = &v
+	return s
+}
+
+// SetFirstName sets the FirstName field's value.
+func (s *GetUserOutput) SetFirstName(v string) *GetUserOutput {
+	s.FirstName = &v
+	return s
+}
+
+// SetLastDisabledTime sets the LastDisabledTime field's value.
+func (s *GetUserOutput) SetLastDisabledTime(v int64) *GetUserOutput {
+	s.LastDisabledTime = &v
+	return s
+}
+
+// SetLastEnabledTime sets the LastEnabledTime field's value.
+func (s *GetUserOutput) SetLastEnabledTime(v int64) *GetUserOutput {
+	s.LastEnabledTime = &v
+	return s
+}
+
+// SetLastLoginTime sets the LastLoginTime field's value.
+func (s *GetUserOutput) SetLastLoginTime(v int64) *GetUserOutput {
+	s.LastLoginTime = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *GetUserOutput) SetLastModifiedTime(v int64) *GetUserOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetLastName sets the LastName field's value.
+func (s *GetUserOutput) SetLastName(v string) *GetUserOutput {
+	s.LastName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetUserOutput) SetStatus(v string) *GetUserOutput {
+	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GetUserOutput) SetType(v string) *GetUserOutput {
+	s.Type = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *GetUserOutput) SetUserId(v string) *GetUserOutput {
+	s.UserId = &v
+	return s
+}
+
 type GetWorkingLocationInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specify the type of the working location.
 	//
-	//    * SAGEMAKER - Use the Amazon S3 location as a temporary location to store
-	//    data content when working with FinSpace Notebooks that run on SageMaker
+	//    * SAGEMAKER – Use the Amazon S3 location as a temporary location to
+	//    store data content when working with FinSpace Notebooks that run on SageMaker
 	//    studio.
 	//
-	//    * INGESTION - Use the Amazon S3 location as a staging location to copy
+	//    * INGESTION – Use the Amazon S3 location as a staging location to copy
 	//    your data content and then use the location with the Changeset creation
 	//    operation.
 	LocationType *string `locationName:"locationType" type:"string" enum:"LocationType"`
@@ -4024,7 +6012,7 @@ type ListChangesetsInput struct {
 	// The maximum number of results per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token indicating where a results page should begin.
+	// A token that indicates where a results page should begin.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -4091,7 +6079,7 @@ type ListChangesetsOutput struct {
 	// List of Changesets found.
 	Changesets []*ChangesetSummary `locationName:"changesets" type:"list"`
 
-	// A token indicating where a results page should begin.
+	// A token that indicates where a results page should begin.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -4137,7 +6125,7 @@ type ListDataViewsInput struct {
 	// The maximum number of results per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token indicating where a results page should begin.
+	// A token that indicates where a results page should begin.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -4202,7 +6190,7 @@ type ListDataViewsOutput struct {
 	// A list of Dataviews.
 	DataViews []*DataViewSummary `locationName:"dataViews" type:"list"`
 
-	// A token indicating where a results page should begin.
+	// A token that indicates where a results page should begin.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -4243,7 +6231,7 @@ type ListDatasetsInput struct {
 	// The maximum number of results per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token indicating where a results page should begin.
+	// A token that indicates where a results page should begin.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -4297,7 +6285,7 @@ type ListDatasetsOutput struct {
 	// List of Datasets.
 	Datasets []*Dataset `locationName:"datasets" type:"list"`
 
-	// A token indicating where a results page should begin.
+	// A token that indicates where a results page should begin.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -4331,6 +6319,306 @@ func (s *ListDatasetsOutput) SetNextToken(v string) *ListDatasetsOutput {
 	return s
 }
 
+type ListPermissionGroupsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results per page.
+	//
+	// MaxResults is a required field
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer" required:"true"`
+
+	// A token that indicates where a results page should begin.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPermissionGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPermissionGroupsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPermissionGroupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPermissionGroupsInput"}
+	if s.MaxResults == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxResults"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPermissionGroupsInput) SetMaxResults(v int64) *ListPermissionGroupsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPermissionGroupsInput) SetNextToken(v string) *ListPermissionGroupsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListPermissionGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that indicates where a results page should begin.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A list of all the permission groups.
+	PermissionGroups []*PermissionGroup `locationName:"permissionGroups" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPermissionGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPermissionGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPermissionGroupsOutput) SetNextToken(v string) *ListPermissionGroupsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPermissionGroups sets the PermissionGroups field's value.
+func (s *ListPermissionGroupsOutput) SetPermissionGroups(v []*PermissionGroup) *ListPermissionGroupsOutput {
+	s.PermissionGroups = v
+	return s
+}
+
+type ListUsersInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results per page.
+	//
+	// MaxResults is a required field
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer" required:"true"`
+
+	// A token that indicates where a results page should begin.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUsersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUsersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListUsersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListUsersInput"}
+	if s.MaxResults == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxResults"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListUsersInput) SetMaxResults(v int64) *ListUsersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUsersInput) SetNextToken(v string) *ListUsersInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListUsersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that indicates where a results page should begin.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A list of all the user accounts.
+	Users []*User `locationName:"users" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUsersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUsersOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUsersOutput) SetNextToken(v string) *ListUsersOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUsers sets the Users field's value.
+func (s *ListUsersOutput) SetUsers(v []*User) *ListUsersOutput {
+	s.Users = v
+	return s
+}
+
+// The structure for a permission group.
+type PermissionGroup struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the permissions that are granted to a specific group for accessing
+	// the FinSpace application.
+	//
+	//    * CreateDataset – Group members can create new datasets.
+	//
+	//    * ManageClusters – Group members can manage Apache Spark clusters from
+	//    FinSpace notebooks.
+	//
+	//    * ManageUsersAndGroups – Group members can manage users and permission
+	//    groups.
+	//
+	//    * ManageAttributeSets – Group members can manage attribute sets.
+	//
+	//    * ViewAuditData – Group members can view audit data.
+	//
+	//    * AccessNotebooks – Group members will have access to FinSpace notebooks.
+	//
+	//    * GetTemporaryCredentials – Group members can get temporary API credentials.
+	ApplicationPermissions []*string `locationName:"applicationPermissions" type:"list"`
+
+	// The timestamp at which the group was created in FinSpace. The value is determined
+	// as epoch time in milliseconds.
+	CreateTime *int64 `locationName:"createTime" type:"long"`
+
+	// A brief description for the permission group.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PermissionGroup's
+	// String and GoString methods.
+	Description *string `locationName:"description" min:"1" type:"string" sensitive:"true"`
+
+	// Describes the last time the permission group was updated. The value is determined
+	// as epoch time in milliseconds.
+	LastModifiedTime *int64 `locationName:"lastModifiedTime" type:"long"`
+
+	// The name of the permission group.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PermissionGroup's
+	// String and GoString methods.
+	Name *string `locationName:"name" min:"1" type:"string" sensitive:"true"`
+
+	// The unique identifier for the permission group.
+	PermissionGroupId *string `locationName:"permissionGroupId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PermissionGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PermissionGroup) GoString() string {
+	return s.String()
+}
+
+// SetApplicationPermissions sets the ApplicationPermissions field's value.
+func (s *PermissionGroup) SetApplicationPermissions(v []*string) *PermissionGroup {
+	s.ApplicationPermissions = v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *PermissionGroup) SetCreateTime(v int64) *PermissionGroup {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *PermissionGroup) SetDescription(v string) *PermissionGroup {
+	s.Description = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *PermissionGroup) SetLastModifiedTime(v int64) *PermissionGroup {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PermissionGroup) SetName(v string) *PermissionGroup {
+	s.Name = &v
+	return s
+}
+
+// SetPermissionGroupId sets the PermissionGroupId field's value.
+func (s *PermissionGroup) SetPermissionGroupId(v string) *PermissionGroup {
+	s.PermissionGroupId = &v
+	return s
+}
+
 // Permission group parameters for Dataset permissions.
 //
 // Here is an example of how you could specify the PermissionGroupParams:
@@ -4344,7 +6632,7 @@ type PermissionGroupParams struct {
 	// List of resource permissions.
 	DatasetPermissions []*ResourcePermission `locationName:"datasetPermissions" type:"list"`
 
-	// The unique identifier of the PermissionGroup.
+	// The unique identifier for the PermissionGroup.
 	PermissionGroupId *string `locationName:"permissionGroupId" min:"1" type:"string"`
 }
 
@@ -4401,12 +6689,121 @@ func (s *PermissionGroupParams) SetPermissionGroupId(v string) *PermissionGroupP
 	return s
 }
 
+type ResetUserPasswordInput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that ensures idempotency. This token expires in 10 minutes.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The unique identifier of the user that a temporary password is requested
+	// for.
+	//
+	// UserId is a required field
+	UserId *string `location:"uri" locationName:"userId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResetUserPasswordInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResetUserPasswordInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResetUserPasswordInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResetUserPasswordInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *ResetUserPasswordInput) SetClientToken(v string) *ResetUserPasswordInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *ResetUserPasswordInput) SetUserId(v string) *ResetUserPasswordInput {
+	s.UserId = &v
+	return s
+}
+
+type ResetUserPasswordOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A randomly generated temporary password for the requested user account. This
+	// password expires in 7 days.
+	//
+	// TemporaryPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ResetUserPasswordOutput's
+	// String and GoString methods.
+	TemporaryPassword *string `locationName:"temporaryPassword" min:"8" type:"string" sensitive:"true"`
+
+	// The unique identifier of the user that a new password is generated for.
+	UserId *string `locationName:"userId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResetUserPasswordOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResetUserPasswordOutput) GoString() string {
+	return s.String()
+}
+
+// SetTemporaryPassword sets the TemporaryPassword field's value.
+func (s *ResetUserPasswordOutput) SetTemporaryPassword(v string) *ResetUserPasswordOutput {
+	s.TemporaryPassword = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *ResetUserPasswordOutput) SetUserId(v string) *ResetUserPasswordOutput {
+	s.UserId = &v
+	return s
+}
+
 // One or more resources can't be found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
+
+	Reason *string `locationName:"reason" type:"string"`
 }
 
 // String returns the string representation.
@@ -4452,7 +6849,7 @@ func (s *ResourceNotFoundException) OrigErr() error {
 }
 
 func (s *ResourceNotFoundException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -4484,7 +6881,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 //
 //    * DeleteDataset
 //
-// For more information on the ataset permissions, see Supported Dataset Permissions
+// For more information on the dataset permissions, see Supported Dataset Permissions
 // (https://docs.aws.amazon.com/finspace/latest/userguide/managing-user-permissions.html#supported-dataset-permissions)
 // in the FinSpace User Guide.
 type ResourcePermission struct {
@@ -4692,13 +7089,13 @@ type UpdateChangesetInput struct {
 	//
 	// formatType is a required attribute and can have the following values:
 	//
-	//    * PARQUET - Parquet source file format.
+	//    * PARQUET – Parquet source file format.
 	//
-	//    * CSV - CSV source file format.
+	//    * CSV – CSV source file format.
 	//
-	//    * JSON - JSON source file format.
+	//    * JSON – JSON source file format.
 	//
-	//    * XML - XML source file format.
+	//    * XML – XML source file format.
 	//
 	// Here is an example of how you could specify the formatParams:
 	//
@@ -4881,9 +7278,9 @@ type UpdateDatasetInput struct {
 
 	// The format in which the Dataset data is structured.
 	//
-	//    * TABULAR - Data is structured in a tabular format.
+	//    * TABULAR – Data is structured in a tabular format.
 	//
-	//    * NON_TABULAR - Data is structured in a non-tabular format.
+	//    * NON_TABULAR – Data is structured in a non-tabular format.
 	//
 	// Kind is a required field
 	Kind *string `locationName:"kind" type:"string" required:"true" enum:"DatasetKind"`
@@ -5018,12 +7415,510 @@ func (s *UpdateDatasetOutput) SetDatasetId(v string) *UpdateDatasetOutput {
 	return s
 }
 
+type UpdatePermissionGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The permissions that are granted to a specific group for accessing the FinSpace
+	// application.
+	//
+	//    * CreateDataset – Group members can create new datasets.
+	//
+	//    * ManageClusters – Group members can manage Apache Spark clusters from
+	//    FinSpace notebooks.
+	//
+	//    * ManageUsersAndGroups – Group members can manage users and permission
+	//    groups.
+	//
+	//    * ManageAttributeSets – Group members can manage attribute sets.
+	//
+	//    * ViewAuditData – Group members can view audit data.
+	//
+	//    * AccessNotebooks – Group members will have access to FinSpace notebooks.
+	//
+	//    * GetTemporaryCredentials – Group members can get temporary API credentials.
+	ApplicationPermissions []*string `locationName:"applicationPermissions" type:"list"`
+
+	// A token that ensures idempotency. This token expires in 10 minutes.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// A brief description for the permission group.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdatePermissionGroupInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" min:"1" type:"string" sensitive:"true"`
+
+	// The name of the permission group.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdatePermissionGroupInput's
+	// String and GoString methods.
+	Name *string `locationName:"name" min:"1" type:"string" sensitive:"true"`
+
+	// The unique identifier for the permission group to update.
+	//
+	// PermissionGroupId is a required field
+	PermissionGroupId *string `location:"uri" locationName:"permissionGroupId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePermissionGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePermissionGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePermissionGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePermissionGroupInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.PermissionGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PermissionGroupId"))
+	}
+	if s.PermissionGroupId != nil && len(*s.PermissionGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PermissionGroupId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationPermissions sets the ApplicationPermissions field's value.
+func (s *UpdatePermissionGroupInput) SetApplicationPermissions(v []*string) *UpdatePermissionGroupInput {
+	s.ApplicationPermissions = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdatePermissionGroupInput) SetClientToken(v string) *UpdatePermissionGroupInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdatePermissionGroupInput) SetDescription(v string) *UpdatePermissionGroupInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdatePermissionGroupInput) SetName(v string) *UpdatePermissionGroupInput {
+	s.Name = &v
+	return s
+}
+
+// SetPermissionGroupId sets the PermissionGroupId field's value.
+func (s *UpdatePermissionGroupInput) SetPermissionGroupId(v string) *UpdatePermissionGroupInput {
+	s.PermissionGroupId = &v
+	return s
+}
+
+type UpdatePermissionGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the updated permission group.
+	PermissionGroupId *string `locationName:"permissionGroupId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePermissionGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePermissionGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetPermissionGroupId sets the PermissionGroupId field's value.
+func (s *UpdatePermissionGroupOutput) SetPermissionGroupId(v string) *UpdatePermissionGroupOutput {
+	s.PermissionGroupId = &v
+	return s
+}
+
+type UpdateUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// The option to indicate whether the user can use the GetProgrammaticAccessCredentials
+	// API to obtain credentials that can then be used to access other FinSpace
+	// Data API operations.
+	//
+	//    * ENABLED – The user has permissions to use the APIs.
+	//
+	//    * DISABLED – The user does not have permissions to use any APIs.
+	ApiAccess *string `locationName:"apiAccess" type:"string" enum:"ApiAccess"`
+
+	// The ARN identifier of an AWS user or role that is allowed to call the GetProgrammaticAccessCredentials
+	// API to obtain a credentials token for a specific FinSpace user. This must
+	// be an IAM role within your FinSpace account.
+	ApiAccessPrincipalArn *string `locationName:"apiAccessPrincipalArn" min:"20" type:"string"`
+
+	// A token that ensures idempotency. This token expires in 10 minutes.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The first name of the user.
+	//
+	// FirstName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateUserInput's
+	// String and GoString methods.
+	FirstName *string `locationName:"firstName" min:"1" type:"string" sensitive:"true"`
+
+	// The last name of the user.
+	//
+	// LastName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateUserInput's
+	// String and GoString methods.
+	LastName *string `locationName:"lastName" min:"1" type:"string" sensitive:"true"`
+
+	// The option to indicate the type of user.
+	//
+	//    * SUPER_USER– A user with permission to all the functionality and data
+	//    in FinSpace.
+	//
+	//    * APP_USER – A user with specific permissions in FinSpace. The users
+	//    are assigned permissions by adding them to a permissions group.
+	Type *string `locationName:"type" type:"string" enum:"UserType"`
+
+	// The unique identifier for the user account to update.
+	//
+	// UserId is a required field
+	UserId *string `location:"uri" locationName:"userId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateUserInput"}
+	if s.ApiAccessPrincipalArn != nil && len(*s.ApiAccessPrincipalArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ApiAccessPrincipalArn", 20))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.FirstName != nil && len(*s.FirstName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirstName", 1))
+	}
+	if s.LastName != nil && len(*s.LastName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LastName", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApiAccess sets the ApiAccess field's value.
+func (s *UpdateUserInput) SetApiAccess(v string) *UpdateUserInput {
+	s.ApiAccess = &v
+	return s
+}
+
+// SetApiAccessPrincipalArn sets the ApiAccessPrincipalArn field's value.
+func (s *UpdateUserInput) SetApiAccessPrincipalArn(v string) *UpdateUserInput {
+	s.ApiAccessPrincipalArn = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdateUserInput) SetClientToken(v string) *UpdateUserInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetFirstName sets the FirstName field's value.
+func (s *UpdateUserInput) SetFirstName(v string) *UpdateUserInput {
+	s.FirstName = &v
+	return s
+}
+
+// SetLastName sets the LastName field's value.
+func (s *UpdateUserInput) SetLastName(v string) *UpdateUserInput {
+	s.LastName = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *UpdateUserInput) SetType(v string) *UpdateUserInput {
+	s.Type = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *UpdateUserInput) SetUserId(v string) *UpdateUserInput {
+	s.UserId = &v
+	return s
+}
+
+type UpdateUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the updated user account.
+	UserId *string `locationName:"userId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateUserOutput) GoString() string {
+	return s.String()
+}
+
+// SetUserId sets the UserId field's value.
+func (s *UpdateUserOutput) SetUserId(v string) *UpdateUserOutput {
+	s.UserId = &v
+	return s
+}
+
+// The details of the user account.
+type User struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the user can use the GetProgrammaticAccessCredentials API
+	// to obtain credentials that can then be used to access other FinSpace Data
+	// API operations.
+	//
+	//    * ENABLED – The user has permissions to use the APIs.
+	//
+	//    * DISABLED – The user does not have permissions to use any APIs.
+	ApiAccess *string `locationName:"apiAccess" type:"string" enum:"ApiAccess"`
+
+	// The ARN identifier of an AWS user or role that is allowed to call the GetProgrammaticAccessCredentials
+	// API to obtain a credentials token for a specific FinSpace user. This must
+	// be an IAM role within your FinSpace account.
+	ApiAccessPrincipalArn *string `locationName:"apiAccessPrincipalArn" min:"20" type:"string"`
+
+	// The timestamp at which the user account was created in FinSpace. The value
+	// is determined as epoch time in milliseconds.
+	CreateTime *int64 `locationName:"createTime" type:"long"`
+
+	// The email address of the user. The email address serves as a uniquer identifier
+	// for each user and cannot be changed after it's created.
+	//
+	// EmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by User's
+	// String and GoString methods.
+	EmailAddress *string `locationName:"emailAddress" min:"4" type:"string" sensitive:"true"`
+
+	// The first name of the user.
+	//
+	// FirstName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by User's
+	// String and GoString methods.
+	FirstName *string `locationName:"firstName" min:"1" type:"string" sensitive:"true"`
+
+	// Describes the last time the user account was disabled. The value is determined
+	// as epoch time in milliseconds.
+	LastDisabledTime *int64 `locationName:"lastDisabledTime" type:"long"`
+
+	// Describes the last time the user account was enabled. The value is determined
+	// as epoch time in milliseconds.
+	LastEnabledTime *int64 `locationName:"lastEnabledTime" type:"long"`
+
+	// Describes the last time that the user logged into their account. The value
+	// is determined as epoch time in milliseconds.
+	LastLoginTime *int64 `locationName:"lastLoginTime" type:"long"`
+
+	// Describes the last time the user account was updated. The value is determined
+	// as epoch time in milliseconds.
+	LastModifiedTime *int64 `locationName:"lastModifiedTime" type:"long"`
+
+	// The last name of the user.
+	//
+	// LastName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by User's
+	// String and GoString methods.
+	LastName *string `locationName:"lastName" min:"1" type:"string" sensitive:"true"`
+
+	// The current status of the user account.
+	//
+	//    * CREATING – The user account creation is in progress.
+	//
+	//    * ENABLED – The user account is created and is currently active.
+	//
+	//    * DISABLED – The user account is currently inactive.
+	Status *string `locationName:"status" type:"string" enum:"UserStatus"`
+
+	// Indicates the type of user.
+	//
+	//    * SUPER_USER – A user with permission to all the functionality and data
+	//    in FinSpace.
+	//
+	//    * APP_USER – A user with specific permissions in FinSpace. The users
+	//    are assigned permissions by adding them to a permissions group.
+	Type *string `locationName:"type" type:"string" enum:"UserType"`
+
+	// The unique identifier for the user.
+	UserId *string `locationName:"userId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s User) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s User) GoString() string {
+	return s.String()
+}
+
+// SetApiAccess sets the ApiAccess field's value.
+func (s *User) SetApiAccess(v string) *User {
+	s.ApiAccess = &v
+	return s
+}
+
+// SetApiAccessPrincipalArn sets the ApiAccessPrincipalArn field's value.
+func (s *User) SetApiAccessPrincipalArn(v string) *User {
+	s.ApiAccessPrincipalArn = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *User) SetCreateTime(v int64) *User {
+	s.CreateTime = &v
+	return s
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *User) SetEmailAddress(v string) *User {
+	s.EmailAddress = &v
+	return s
+}
+
+// SetFirstName sets the FirstName field's value.
+func (s *User) SetFirstName(v string) *User {
+	s.FirstName = &v
+	return s
+}
+
+// SetLastDisabledTime sets the LastDisabledTime field's value.
+func (s *User) SetLastDisabledTime(v int64) *User {
+	s.LastDisabledTime = &v
+	return s
+}
+
+// SetLastEnabledTime sets the LastEnabledTime field's value.
+func (s *User) SetLastEnabledTime(v int64) *User {
+	s.LastEnabledTime = &v
+	return s
+}
+
+// SetLastLoginTime sets the LastLoginTime field's value.
+func (s *User) SetLastLoginTime(v int64) *User {
+	s.LastLoginTime = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *User) SetLastModifiedTime(v int64) *User {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetLastName sets the LastName field's value.
+func (s *User) SetLastName(v string) *User {
+	s.LastName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *User) SetStatus(v string) *User {
+	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *User) SetType(v string) *User {
+	s.Type = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *User) SetUserId(v string) *User {
+	s.UserId = &v
+	return s
+}
+
 // The input fails to satisfy the constraints specified by an AWS service.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
+
+	Reason *string `locationName:"reason" type:"string"`
 }
 
 // String returns the string representation.
@@ -5069,7 +7964,7 @@ func (s *ValidationException) OrigErr() error {
 }
 
 func (s *ValidationException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -5080,6 +7975,58 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// ApiAccessEnabled is a ApiAccess enum value
+	ApiAccessEnabled = "ENABLED"
+
+	// ApiAccessDisabled is a ApiAccess enum value
+	ApiAccessDisabled = "DISABLED"
+)
+
+// ApiAccess_Values returns all elements of the ApiAccess enum
+func ApiAccess_Values() []string {
+	return []string{
+		ApiAccessEnabled,
+		ApiAccessDisabled,
+	}
+}
+
+const (
+	// ApplicationPermissionCreateDataset is a ApplicationPermission enum value
+	ApplicationPermissionCreateDataset = "CreateDataset"
+
+	// ApplicationPermissionManageClusters is a ApplicationPermission enum value
+	ApplicationPermissionManageClusters = "ManageClusters"
+
+	// ApplicationPermissionManageUsersAndGroups is a ApplicationPermission enum value
+	ApplicationPermissionManageUsersAndGroups = "ManageUsersAndGroups"
+
+	// ApplicationPermissionManageAttributeSets is a ApplicationPermission enum value
+	ApplicationPermissionManageAttributeSets = "ManageAttributeSets"
+
+	// ApplicationPermissionViewAuditData is a ApplicationPermission enum value
+	ApplicationPermissionViewAuditData = "ViewAuditData"
+
+	// ApplicationPermissionAccessNotebooks is a ApplicationPermission enum value
+	ApplicationPermissionAccessNotebooks = "AccessNotebooks"
+
+	// ApplicationPermissionGetTemporaryCredentials is a ApplicationPermission enum value
+	ApplicationPermissionGetTemporaryCredentials = "GetTemporaryCredentials"
+)
+
+// ApplicationPermission_Values returns all elements of the ApplicationPermission enum
+func ApplicationPermission_Values() []string {
+	return []string{
+		ApplicationPermissionCreateDataset,
+		ApplicationPermissionManageClusters,
+		ApplicationPermissionManageUsersAndGroups,
+		ApplicationPermissionManageAttributeSets,
+		ApplicationPermissionViewAuditData,
+		ApplicationPermissionAccessNotebooks,
+		ApplicationPermissionGetTemporaryCredentials,
+	}
 }
 
 // Indicates how the given change will be applied to the dataset.
@@ -5343,5 +8290,41 @@ func LocationType_Values() []string {
 	return []string{
 		LocationTypeIngestion,
 		LocationTypeSagemaker,
+	}
+}
+
+const (
+	// UserStatusCreating is a UserStatus enum value
+	UserStatusCreating = "CREATING"
+
+	// UserStatusEnabled is a UserStatus enum value
+	UserStatusEnabled = "ENABLED"
+
+	// UserStatusDisabled is a UserStatus enum value
+	UserStatusDisabled = "DISABLED"
+)
+
+// UserStatus_Values returns all elements of the UserStatus enum
+func UserStatus_Values() []string {
+	return []string{
+		UserStatusCreating,
+		UserStatusEnabled,
+		UserStatusDisabled,
+	}
+}
+
+const (
+	// UserTypeSuperUser is a UserType enum value
+	UserTypeSuperUser = "SUPER_USER"
+
+	// UserTypeAppUser is a UserType enum value
+	UserTypeAppUser = "APP_USER"
+)
+
+// UserType_Values returns all elements of the UserType enum
+func UserType_Values() []string {
+	return []string{
+		UserTypeSuperUser,
+		UserTypeAppUser,
 	}
 }

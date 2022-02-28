@@ -1092,9 +1092,15 @@
     "Repository": {
       "base": null,
       "refs": {
-        "App$repository": "<p> The repository for the Amplify app. </p>",
+        "App$repository": "<p> The Git repository for the Amplify app. </p>",
         "CreateAppRequest$repository": "<p> The repository for an Amplify app. </p>",
         "UpdateAppRequest$repository": "<p> The name of the repository for an Amplify app </p>"
+      }
+    },
+    "RepositoryCloneMethod": {
+      "base": null,
+      "refs": {
+        "App$repositoryCloneMethod": "<p>The authentication protocol to use to access the Git repository for an Amplify app. For a GitHub repository, specify <code>TOKEN</code>. For an Amazon Web Services CodeCommit repository, specify <code>SIGV4</code>. For GitLab and Bitbucket repositories, specify <code>SSH</code>.</p>"
       }
     },
     "ResourceArn": {

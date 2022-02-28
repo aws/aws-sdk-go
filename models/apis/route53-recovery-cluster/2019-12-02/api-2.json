@@ -80,7 +80,11 @@
       "type":"string",
       "max":255,
       "min":1,
-      "pattern":"^[A-Za-z0-9:\\/_-]*$"
+      "pattern":"^[A-Za-z0-9:.\\/_-]*$"
+    },
+    "Arns":{
+      "type":"list",
+      "member":{"shape":"Arn"}
     },
     "ConflictException":{
       "type":"structure",
@@ -187,7 +191,8 @@
       ],
       "members":{
         "RoutingControlArn":{"shape":"Arn"},
-        "RoutingControlState":{"shape":"RoutingControlState"}
+        "RoutingControlState":{"shape":"RoutingControlState"},
+        "SafetyRulesToOverride":{"shape":"Arns"}
       }
     },
     "UpdateRoutingControlStateResponse":{
@@ -199,7 +204,8 @@
       "type":"structure",
       "required":["UpdateRoutingControlStateEntries"],
       "members":{
-        "UpdateRoutingControlStateEntries":{"shape":"UpdateRoutingControlStateEntries"}
+        "UpdateRoutingControlStateEntries":{"shape":"UpdateRoutingControlStateEntries"},
+        "SafetyRulesToOverride":{"shape":"Arns"}
       }
     },
     "UpdateRoutingControlStatesResponse":{

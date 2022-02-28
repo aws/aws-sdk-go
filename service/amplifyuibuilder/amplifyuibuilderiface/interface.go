@@ -84,9 +84,15 @@ type AmplifyUIBuilderAPI interface {
 	ExportComponentsWithContext(aws.Context, *amplifyuibuilder.ExportComponentsInput, ...request.Option) (*amplifyuibuilder.ExportComponentsOutput, error)
 	ExportComponentsRequest(*amplifyuibuilder.ExportComponentsInput) (*request.Request, *amplifyuibuilder.ExportComponentsOutput)
 
+	ExportComponentsPages(*amplifyuibuilder.ExportComponentsInput, func(*amplifyuibuilder.ExportComponentsOutput, bool) bool) error
+	ExportComponentsPagesWithContext(aws.Context, *amplifyuibuilder.ExportComponentsInput, func(*amplifyuibuilder.ExportComponentsOutput, bool) bool, ...request.Option) error
+
 	ExportThemes(*amplifyuibuilder.ExportThemesInput) (*amplifyuibuilder.ExportThemesOutput, error)
 	ExportThemesWithContext(aws.Context, *amplifyuibuilder.ExportThemesInput, ...request.Option) (*amplifyuibuilder.ExportThemesOutput, error)
 	ExportThemesRequest(*amplifyuibuilder.ExportThemesInput) (*request.Request, *amplifyuibuilder.ExportThemesOutput)
+
+	ExportThemesPages(*amplifyuibuilder.ExportThemesInput, func(*amplifyuibuilder.ExportThemesOutput, bool) bool) error
+	ExportThemesPagesWithContext(aws.Context, *amplifyuibuilder.ExportThemesInput, func(*amplifyuibuilder.ExportThemesOutput, bool) bool, ...request.Option) error
 
 	GetComponent(*amplifyuibuilder.GetComponentInput) (*amplifyuibuilder.GetComponentOutput, error)
 	GetComponentWithContext(aws.Context, *amplifyuibuilder.GetComponentInput, ...request.Option) (*amplifyuibuilder.GetComponentOutput, error)

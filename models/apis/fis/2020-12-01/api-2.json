@@ -309,6 +309,12 @@
       "min":1,
       "pattern":"[\\S]+"
     },
+    "CloudWatchLogGroupArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"[\\S]+"
+    },
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -333,6 +339,15 @@
       "key":{"shape":"ExperimentTemplateActionName"},
       "value":{"shape":"CreateExperimentTemplateActionInput"}
     },
+    "CreateExperimentTemplateLogConfigurationInput":{
+      "type":"structure",
+      "required":["logSchemaVersion"],
+      "members":{
+        "cloudWatchLogsConfiguration":{"shape":"ExperimentTemplateCloudWatchLogsLogConfigurationInput"},
+        "s3Configuration":{"shape":"ExperimentTemplateS3LogConfigurationInput"},
+        "logSchemaVersion":{"shape":"LogSchemaVersion"}
+      }
+    },
     "CreateExperimentTemplateRequest":{
       "type":"structure",
       "required":[
@@ -352,7 +367,8 @@
         "targets":{"shape":"CreateExperimentTemplateTargetInputMap"},
         "actions":{"shape":"CreateExperimentTemplateActionInputMap"},
         "roleArn":{"shape":"RoleArn"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "logConfiguration":{"shape":"CreateExperimentTemplateLogConfigurationInput"}
       }
     },
     "CreateExperimentTemplateResponse":{
@@ -429,7 +445,8 @@
         "creationTime":{"shape":"CreationTime"},
         "startTime":{"shape":"ExperimentStartTime"},
         "endTime":{"shape":"ExperimentEndTime"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "logConfiguration":{"shape":"ExperimentLogConfiguration"}
       }
     },
     "ExperimentAction":{
@@ -521,11 +538,32 @@
       "max":64,
       "pattern":"[\\S]+"
     },
+    "ExperimentCloudWatchLogsLogConfiguration":{
+      "type":"structure",
+      "members":{
+        "logGroupArn":{"shape":"CloudWatchLogGroupArn"}
+      }
+    },
     "ExperimentEndTime":{"type":"timestamp"},
     "ExperimentId":{
       "type":"string",
       "max":64,
       "pattern":"[\\S]+"
+    },
+    "ExperimentLogConfiguration":{
+      "type":"structure",
+      "members":{
+        "cloudWatchLogsConfiguration":{"shape":"ExperimentCloudWatchLogsLogConfiguration"},
+        "s3Configuration":{"shape":"ExperimentS3LogConfiguration"},
+        "logSchemaVersion":{"shape":"LogSchemaVersion"}
+      }
+    },
+    "ExperimentS3LogConfiguration":{
+      "type":"structure",
+      "members":{
+        "bucketName":{"shape":"S3BucketName"},
+        "prefix":{"shape":"S3ObjectKey"}
+      }
     },
     "ExperimentStartTime":{"type":"timestamp"},
     "ExperimentState":{
@@ -654,7 +692,8 @@
         "creationTime":{"shape":"CreationTime"},
         "lastUpdateTime":{"shape":"LastUpdateTime"},
         "roleArn":{"shape":"RoleArn"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "logConfiguration":{"shape":"ExperimentTemplateLogConfiguration"}
       }
     },
     "ExperimentTemplateAction":{
@@ -716,6 +755,19 @@
       "max":64,
       "pattern":"[\\S]+"
     },
+    "ExperimentTemplateCloudWatchLogsLogConfiguration":{
+      "type":"structure",
+      "members":{
+        "logGroupArn":{"shape":"CloudWatchLogGroupArn"}
+      }
+    },
+    "ExperimentTemplateCloudWatchLogsLogConfigurationInput":{
+      "type":"structure",
+      "required":["logGroupArn"],
+      "members":{
+        "logGroupArn":{"shape":"CloudWatchLogGroupArn"}
+      }
+    },
     "ExperimentTemplateDescription":{
       "type":"string",
       "max":512,
@@ -725,6 +777,29 @@
       "type":"string",
       "max":64,
       "pattern":"[\\S]+"
+    },
+    "ExperimentTemplateLogConfiguration":{
+      "type":"structure",
+      "members":{
+        "cloudWatchLogsConfiguration":{"shape":"ExperimentTemplateCloudWatchLogsLogConfiguration"},
+        "s3Configuration":{"shape":"ExperimentTemplateS3LogConfiguration"},
+        "logSchemaVersion":{"shape":"LogSchemaVersion"}
+      }
+    },
+    "ExperimentTemplateS3LogConfiguration":{
+      "type":"structure",
+      "members":{
+        "bucketName":{"shape":"S3BucketName"},
+        "prefix":{"shape":"S3ObjectKey"}
+      }
+    },
+    "ExperimentTemplateS3LogConfigurationInput":{
+      "type":"structure",
+      "required":["bucketName"],
+      "members":{
+        "bucketName":{"shape":"S3BucketName"},
+        "prefix":{"shape":"S3ObjectKey"}
+      }
     },
     "ExperimentTemplateStopCondition":{
       "type":"structure",
@@ -1031,6 +1106,7 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "LogSchemaVersion":{"type":"integer"},
     "NextToken":{
       "type":"string",
       "max":1024,
@@ -1061,6 +1137,18 @@
       "max":2048,
       "min":20,
       "pattern":"[\\S]+"
+    },
+    "S3BucketName":{
+      "type":"string",
+      "max":63,
+      "min":3,
+      "pattern":"[\\S]+"
+    },
+    "S3ObjectKey":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"[\\s\\S]+"
     },
     "ServiceQuotaExceededException":{
       "type":"structure",
@@ -1250,6 +1338,14 @@
       "key":{"shape":"ExperimentTemplateActionName"},
       "value":{"shape":"UpdateExperimentTemplateActionInputItem"}
     },
+    "UpdateExperimentTemplateLogConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "cloudWatchLogsConfiguration":{"shape":"ExperimentTemplateCloudWatchLogsLogConfigurationInput"},
+        "s3Configuration":{"shape":"ExperimentTemplateS3LogConfigurationInput"},
+        "logSchemaVersion":{"shape":"LogSchemaVersion"}
+      }
+    },
     "UpdateExperimentTemplateRequest":{
       "type":"structure",
       "required":["id"],
@@ -1263,7 +1359,8 @@
         "stopConditions":{"shape":"UpdateExperimentTemplateStopConditionInputList"},
         "targets":{"shape":"UpdateExperimentTemplateTargetInputMap"},
         "actions":{"shape":"UpdateExperimentTemplateActionInputMap"},
-        "roleArn":{"shape":"RoleArn"}
+        "roleArn":{"shape":"RoleArn"},
+        "logConfiguration":{"shape":"UpdateExperimentTemplateLogConfigurationInput"}
       }
     },
     "UpdateExperimentTemplateResponse":{

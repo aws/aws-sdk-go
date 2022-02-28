@@ -5,17 +5,28 @@
     "CreateChangeset": "<p>Creates a new Changeset in a FinSpace Dataset.</p>",
     "CreateDataView": "<p>Creates a Dataview for a Dataset.</p>",
     "CreateDataset": "<p>Creates a new FinSpace Dataset.</p>",
+    "CreatePermissionGroup": "<p>Creates a group of permissions for various actions that a user can perform in FinSpace.</p>",
+    "CreateUser": "<p>Creates a new user in FinSpace.</p>",
     "DeleteDataset": "<p>Deletes a FinSpace Dataset.</p>",
+    "DeletePermissionGroup": "<p>Deletes a permission group. This action is irreversible.</p>",
+    "DisableUser": "<p>Denies access to the FinSpace web application and API for the specified user.</p>",
+    "EnableUser": "<p> Allows the specified user to access the FinSpace web application and API.</p>",
     "GetChangeset": "<p>Get information about a Changeset.</p>",
     "GetDataView": "<p>Gets information about a Dataview.</p>",
     "GetDataset": "<p>Returns information about a Dataset.</p>",
     "GetProgrammaticAccessCredentials": "<p>Request programmatic credentials to use with FinSpace SDK.</p>",
+    "GetUser": "<p>Retrieves details for a specific user.</p>",
     "GetWorkingLocation": "<p>A temporary Amazon S3 location, where you can copy your files from a source location to stage or use as a scratch space in FinSpace notebook.</p>",
     "ListChangesets": "<p>Lists the FinSpace Changesets for a Dataset.</p>",
     "ListDataViews": "<p>Lists all available Dataviews for a Dataset.</p>",
     "ListDatasets": "<p>Lists all of the active Datasets that a user has access to.</p>",
+    "ListPermissionGroups": "<p>Lists all available permission groups in FinSpace.</p>",
+    "ListUsers": "<p>Lists all available user accounts in FinSpace.</p>",
+    "ResetUserPassword": "<p>Resets the password for a specified user ID and generates a temporary one. Only a superuser can reset password for other users. Resetting the password immediately invalidates the previous password associated with the user.</p>",
     "UpdateChangeset": "<p>Updates a FinSpace Changeset.</p>",
-    "UpdateDataset": "<p>Updates a FinSpace Dataset.</p>"
+    "UpdateDataset": "<p>Updates a FinSpace Dataset.</p>",
+    "UpdatePermissionGroup": "<p>Modifies the details of a permission group. You cannot modify a <code>permissionGroupID</code>.</p>",
+    "UpdateUser": "<p>Modifies the details of the specified user account. You cannot update the <code>userId</code> for a user.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -32,6 +43,29 @@
         "UpdateDatasetRequest$alias": "<p>The unique resource identifier for a Dataset.</p>"
       }
     },
+    "ApiAccess": {
+      "base": null,
+      "refs": {
+        "CreateUserRequest$ApiAccess": "<p>The option to indicate whether the user can use the <code>GetProgrammaticAccessCredentials</code> API to obtain credentials that can then be used to access other FinSpace Data API operations.</p> <ul> <li> <p> <code>ENABLED</code> – The user has permissions to use the APIs.</p> </li> <li> <p> <code>DISABLED</code> – The user does not have permissions to use any APIs.</p> </li> </ul>",
+        "GetUserResponse$apiAccess": "<p>Indicates whether the user can use the <code>GetProgrammaticAccessCredentials</code> API to obtain credentials that can then be used to access other FinSpace Data API operations. </p> <ul> <li> <p> <code>ENABLED</code> – The user has permissions to use the APIs.</p> </li> <li> <p> <code>DISABLED</code> – The user does not have permissions to use any APIs.</p> </li> </ul>",
+        "UpdateUserRequest$apiAccess": "<p>The option to indicate whether the user can use the <code>GetProgrammaticAccessCredentials</code> API to obtain credentials that can then be used to access other FinSpace Data API operations.</p> <ul> <li> <p> <code>ENABLED</code> – The user has permissions to use the APIs.</p> </li> <li> <p> <code>DISABLED</code> – The user does not have permissions to use any APIs.</p> </li> </ul>",
+        "User$apiAccess": "<p>Indicates whether the user can use the <code>GetProgrammaticAccessCredentials</code> API to obtain credentials that can then be used to access other FinSpace Data API operations.</p> <ul> <li> <p> <code>ENABLED</code> – The user has permissions to use the APIs.</p> </li> <li> <p> <code>DISABLED</code> – The user does not have permissions to use any APIs.</p> </li> </ul>"
+      }
+    },
+    "ApplicationPermission": {
+      "base": null,
+      "refs": {
+        "ApplicationPermissionList$member": null
+      }
+    },
+    "ApplicationPermissionList": {
+      "base": null,
+      "refs": {
+        "CreatePermissionGroupRequest$applicationPermissions": "<p>The option to indicate FinSpace application permissions that are granted to a specific group.</p> <ul> <li> <p> <code>CreateDataset</code> – Group members can create new datasets.</p> </li> <li> <p> <code>ManageClusters</code> – Group members can manage Apache Spark clusters from FinSpace notebooks.</p> </li> <li> <p> <code>ManageUsersAndGroups</code> – Group members can manage users and permission groups.</p> </li> <li> <p> <code>ManageAttributeSets</code> – Group members can manage attribute sets.</p> </li> <li> <p> <code>ViewAuditData</code> – Group members can view audit data.</p> </li> <li> <p> <code>AccessNotebooks</code> – Group members will have access to FinSpace notebooks.</p> </li> <li> <p> <code>GetTemporaryCredentials</code> – Group members can get temporary API credentials.</p> </li> </ul>",
+        "PermissionGroup$applicationPermissions": "<p>Indicates the permissions that are granted to a specific group for accessing the FinSpace application.</p> <ul> <li> <p> <code>CreateDataset</code> – Group members can create new datasets.</p> </li> <li> <p> <code>ManageClusters</code> – Group members can manage Apache Spark clusters from FinSpace notebooks.</p> </li> <li> <p> <code>ManageUsersAndGroups</code> – Group members can manage users and permission groups.</p> </li> <li> <p> <code>ManageAttributeSets</code> – Group members can manage attribute sets.</p> </li> <li> <p> <code>ViewAuditData</code> – Group members can view audit data.</p> </li> <li> <p> <code>AccessNotebooks</code> – Group members will have access to FinSpace notebooks.</p> </li> <li> <p> <code>GetTemporaryCredentials</code> – Group members can get temporary API credentials.</p> </li> </ul>",
+        "UpdatePermissionGroupRequest$applicationPermissions": "<p>The permissions that are granted to a specific group for accessing the FinSpace application.</p> <ul> <li> <p> <code>CreateDataset</code> – Group members can create new datasets.</p> </li> <li> <p> <code>ManageClusters</code> – Group members can manage Apache Spark clusters from FinSpace notebooks.</p> </li> <li> <p> <code>ManageUsersAndGroups</code> – Group members can manage users and permission groups.</p> </li> <li> <p> <code>ManageAttributeSets</code> – Group members can manage attribute sets.</p> </li> <li> <p> <code>ViewAuditData</code> – Group members can view audit data.</p> </li> <li> <p> <code>AccessNotebooks</code> – Group members will have access to FinSpace notebooks.</p> </li> <li> <p> <code>GetTemporaryCredentials</code> – Group members can get temporary API credentials.</p> </li> </ul>"
+      }
+    },
     "Boolean": {
       "base": "Common Boolean data type",
       "refs": {
@@ -43,9 +77,9 @@
     "ChangeType": {
       "base": "Indicates how the given change will be applied to the dataset.",
       "refs": {
-        "ChangesetSummary$changeType": "<p>Type that indicates how a Changeset is applied to a Dataset.</p> <ul> <li> <p> <code>REPLACE</code> - Changeset is considered as a replacement to all prior loaded Changesets.</p> </li> <li> <p> <code>APPEND</code> - Changeset is considered as an addition to the end of all prior loaded Changesets.</p> </li> <li> <p> <code>MODIFY</code> - Changeset is considered as a replacement to a specific prior ingested Changeset.</p> </li> </ul>",
-        "CreateChangesetRequest$changeType": "<p>Option to indicate how a Changeset will be applied to a Dataset.</p> <ul> <li> <p> <code>REPLACE</code> - Changeset will be considered as a replacement to all prior loaded Changesets.</p> </li> <li> <p> <code>APPEND</code> - Changeset will be considered as an addition to the end of all prior loaded Changesets.</p> </li> <li> <p> <code>MODIFY</code> - Changeset is considered as a replacement to a specific prior ingested Changeset.</p> </li> </ul>",
-        "GetChangesetResponse$changeType": "<p>Type that indicates how a Changeset is applied to a Dataset.</p> <ul> <li> <p> <code>REPLACE</code> - Changeset is considered as a replacement to all prior loaded Changesets.</p> </li> <li> <p> <code>APPEND</code> - Changeset is considered as an addition to the end of all prior loaded Changesets.</p> </li> <li> <p> <code>MODIFY</code> - Changeset is considered as a replacement to a specific prior ingested Changeset.</p> </li> </ul>"
+        "ChangesetSummary$changeType": "<p>Type that indicates how a Changeset is applied to a Dataset.</p> <ul> <li> <p> <code>REPLACE</code> – Changeset is considered as a replacement to all prior loaded Changesets.</p> </li> <li> <p> <code>APPEND</code> – Changeset is considered as an addition to the end of all prior loaded Changesets.</p> </li> <li> <p> <code>MODIFY</code> – Changeset is considered as a replacement to a specific prior ingested Changeset.</p> </li> </ul>",
+        "CreateChangesetRequest$changeType": "<p>The option to indicate how a Changeset will be applied to a Dataset.</p> <ul> <li> <p> <code>REPLACE</code> – Changeset will be considered as a replacement to all prior loaded Changesets.</p> </li> <li> <p> <code>APPEND</code> – Changeset will be considered as an addition to the end of all prior loaded Changesets.</p> </li> <li> <p> <code>MODIFY</code> – Changeset is considered as a replacement to a specific prior ingested Changeset.</p> </li> </ul>",
+        "GetChangesetResponse$changeType": "<p>Type that indicates how a Changeset is applied to a Dataset.</p> <ul> <li> <p> <code>REPLACE</code> – Changeset is considered as a replacement to all prior loaded Changesets.</p> </li> <li> <p> <code>APPEND</code> – Changeset is considered as an addition to the end of all prior loaded Changesets.</p> </li> <li> <p> <code>MODIFY</code> – Changeset is considered as a replacement to a specific prior ingested Changeset.</p> </li> </ul>"
       }
     },
     "ChangesetArn": {
@@ -95,15 +129,23 @@
         "CreateChangesetRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
         "CreateDataViewRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
         "CreateDatasetRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "CreatePermissionGroupRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "CreateUserRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
         "DeleteDatasetRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "DeletePermissionGroupRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "DisableUserRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "EnableUserRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "ResetUserPasswordRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
         "UpdateChangesetRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
-        "UpdateDatasetRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>"
+        "UpdateDatasetRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "UpdatePermissionGroupRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "UpdateUserRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>"
       }
     },
     "ColumnDataType": {
       "base": "Data type of a column.",
       "refs": {
-        "ColumnDefinition$dataType": "<p>Data type of a column.</p> <ul> <li> <p> <code>STRING</code> - A String data type.</p> <p> <code>CHAR</code> - A char data type.</p> <p> <code>INTEGER</code> - An integer data type.</p> <p> <code>TINYINT</code> - A tinyint data type.</p> <p> <code>SMALLINT</code> - A smallint data type.</p> <p> <code>BIGINT</code> - A bigint data type.</p> <p> <code>FLOAT</code> - A float data type.</p> <p> <code>DOUBLE</code> - A double data type.</p> <p> <code>DATE</code> - A date data type.</p> <p> <code>DATETIME</code> - A datetime data type.</p> <p> <code>BOOLEAN</code> - A boolean data type.</p> <p> <code>BINARY</code> - A binary data type.</p> </li> </ul>"
+        "ColumnDefinition$dataType": "<p>Data type of a column.</p> <ul> <li> <p> <code>STRING</code> – A String data type.</p> <p> <code>CHAR</code> – A char data type.</p> <p> <code>INTEGER</code> – An integer data type.</p> <p> <code>TINYINT</code> – A tinyint data type.</p> <p> <code>SMALLINT</code> – A smallint data type.</p> <p> <code>BIGINT</code> – A bigint data type.</p> <p> <code>FLOAT</code> – A float data type.</p> <p> <code>DOUBLE</code> – A double data type.</p> <p> <code>DATE</code> – A date data type.</p> <p> <code>DATETIME</code> – A datetime data type.</p> <p> <code>BOOLEAN</code> – A boolean data type.</p> <p> <code>BINARY</code> – A binary data type.</p> </li> </ul>"
       }
     },
     "ColumnDefinition": {
@@ -127,7 +169,7 @@
     "ColumnName": {
       "base": "Column Name",
       "refs": {
-        "ColumnDefinition$columnName": "<p>Name for a column.</p>",
+        "ColumnDefinition$columnName": "<p>The name of a column.</p>",
         "ColumnNameList$member": null
       }
     },
@@ -172,6 +214,26 @@
       "refs": {
       }
     },
+    "CreatePermissionGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreatePermissionGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateUserRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Credentials": {
       "base": "<p>Short term API credentials.</p>",
       "refs": {
@@ -188,7 +250,7 @@
     "DataViewDestinationType": {
       "base": "DataView Destination Type",
       "refs": {
-        "DataViewDestinationTypeParams$destinationType": "<p>Destination type for a Dataview.</p> <ul> <li> <p> <code>GLUE_TABLE</code> - Glue table destination type.</p> </li> <li> <p> <code>S3</code> - S3 destination type.</p> </li> </ul>"
+        "DataViewDestinationTypeParams$destinationType": "<p>Destination type for a Dataview.</p> <ul> <li> <p> <code>GLUE_TABLE</code> – Glue table destination type.</p> </li> <li> <p> <code>S3</code> – S3 destination type.</p> </li> </ul>"
       }
     },
     "DataViewDestinationTypeParams": {
@@ -224,8 +286,8 @@
     "DataViewStatus": {
       "base": "Status of a DataView",
       "refs": {
-        "DataViewSummary$status": "<p>The status of a Dataview creation.</p> <ul> <li> <p> <code>RUNNING</code> - Dataview creation is running.</p> </li> <li> <p> <code>STARTING</code> - Dataview creation is starting.</p> </li> <li> <p> <code>FAILED</code> - Dataview creation has failed.</p> </li> <li> <p> <code>CANCELLED</code> - Dataview creation has been cancelled.</p> </li> <li> <p> <code>TIMEOUT</code> - Dataview creation has timed out.</p> </li> <li> <p> <code>SUCCESS</code> - Dataview creation has succeeded.</p> </li> <li> <p> <code>PENDING</code> - Dataview creation is pending.</p> </li> <li> <p> <code>FAILED_CLEANUP_FAILED</code> - Dataview creation failed and resource cleanup failed.</p> </li> </ul>",
-        "GetDataViewResponse$status": "<p>The status of a Dataview creation.</p> <ul> <li> <p> <code>RUNNING</code> - Dataview creation is running.</p> </li> <li> <p> <code>STARTING</code> - Dataview creation is starting.</p> </li> <li> <p> <code>FAILED</code> - Dataview creation has failed.</p> </li> <li> <p> <code>CANCELLED</code> - Dataview creation has been cancelled.</p> </li> <li> <p> <code>TIMEOUT</code> - Dataview creation has timed out.</p> </li> <li> <p> <code>SUCCESS</code> - Dataview creation has succeeded.</p> </li> <li> <p> <code>PENDING</code> - Dataview creation is pending.</p> </li> <li> <p> <code>FAILED_CLEANUP_FAILED</code> - Dataview creation failed and resource cleanup failed.</p> </li> </ul>"
+        "DataViewSummary$status": "<p>The status of a Dataview creation.</p> <ul> <li> <p> <code>RUNNING</code> – Dataview creation is running.</p> </li> <li> <p> <code>STARTING</code> – Dataview creation is starting.</p> </li> <li> <p> <code>FAILED</code> – Dataview creation has failed.</p> </li> <li> <p> <code>CANCELLED</code> – Dataview creation has been cancelled.</p> </li> <li> <p> <code>TIMEOUT</code> – Dataview creation has timed out.</p> </li> <li> <p> <code>SUCCESS</code> – Dataview creation has succeeded.</p> </li> <li> <p> <code>PENDING</code> – Dataview creation is pending.</p> </li> <li> <p> <code>FAILED_CLEANUP_FAILED</code> – Dataview creation failed and resource cleanup failed.</p> </li> </ul>",
+        "GetDataViewResponse$status": "<p>The status of a Dataview creation.</p> <ul> <li> <p> <code>RUNNING</code> – Dataview creation is running.</p> </li> <li> <p> <code>STARTING</code> – Dataview creation is starting.</p> </li> <li> <p> <code>FAILED</code> – Dataview creation has failed.</p> </li> <li> <p> <code>CANCELLED</code> – Dataview creation has been cancelled.</p> </li> <li> <p> <code>TIMEOUT</code> – Dataview creation has timed out.</p> </li> <li> <p> <code>SUCCESS</code> – Dataview creation has succeeded.</p> </li> <li> <p> <code>PENDING</code> – Dataview creation is pending.</p> </li> <li> <p> <code>FAILED_CLEANUP_FAILED</code> – Dataview creation failed and resource cleanup failed.</p> </li> </ul>"
       }
     },
     "DataViewSummary": {
@@ -285,10 +347,10 @@
     "DatasetKind": {
       "base": "Dataset Kind",
       "refs": {
-        "CreateDatasetRequest$kind": "<p>The format in which Dataset data is structured.</p> <ul> <li> <p> <code>TABULAR</code> - Data is structured in a tabular format.</p> </li> <li> <p> <code>NON_TABULAR</code> - Data is structured in a non-tabular format.</p> </li> </ul>",
-        "Dataset$kind": "<p>The format in which Dataset data is structured.</p> <ul> <li> <p> <code>TABULAR</code> - Data is structured in a tabular format.</p> </li> <li> <p> <code>NON_TABULAR</code> - Data is structured in a non-tabular format.</p> </li> </ul>",
-        "GetDatasetResponse$kind": "<p>The format in which Dataset data is structured.</p> <ul> <li> <p> <code>TABULAR</code> - Data is structured in a tabular format.</p> </li> <li> <p> <code>NON_TABULAR</code> - Data is structured in a non-tabular format.</p> </li> </ul>",
-        "UpdateDatasetRequest$kind": "<p>The format in which the Dataset data is structured.</p> <ul> <li> <p> <code>TABULAR</code> - Data is structured in a tabular format.</p> </li> <li> <p> <code>NON_TABULAR</code> - Data is structured in a non-tabular format.</p> </li> </ul>"
+        "CreateDatasetRequest$kind": "<p>The format in which Dataset data is structured.</p> <ul> <li> <p> <code>TABULAR</code> – Data is structured in a tabular format.</p> </li> <li> <p> <code>NON_TABULAR</code> – Data is structured in a non-tabular format.</p> </li> </ul>",
+        "Dataset$kind": "<p>The format in which Dataset data is structured.</p> <ul> <li> <p> <code>TABULAR</code> – Data is structured in a tabular format.</p> </li> <li> <p> <code>NON_TABULAR</code> – Data is structured in a non-tabular format.</p> </li> </ul>",
+        "GetDatasetResponse$kind": "<p>The format in which Dataset data is structured.</p> <ul> <li> <p> <code>TABULAR</code> – Data is structured in a tabular format.</p> </li> <li> <p> <code>NON_TABULAR</code> – Data is structured in a non-tabular format.</p> </li> </ul>",
+        "UpdateDatasetRequest$kind": "<p>The format in which the Dataset data is structured.</p> <ul> <li> <p> <code>TABULAR</code> – Data is structured in a tabular format.</p> </li> <li> <p> <code>NON_TABULAR</code> – Data is structured in a non-tabular format.</p> </li> </ul>"
       }
     },
     "DatasetList": {
@@ -307,7 +369,7 @@
     "DatasetStatus": {
       "base": "Status of the dataset process returned from scheduler service.",
       "refs": {
-        "GetDatasetResponse$status": "<p>Status of the Dataset creation.</p> <ul> <li> <p> <code>PENDING</code> - Dataset is pending creation.</p> </li> <li> <p> <code>FAILED</code> - Dataset creation has failed.</p> </li> <li> <p> <code>SUCCESS</code> - Dataset creation has succeeded.</p> </li> <li> <p> <code>RUNNING</code> - Dataset creation is running.</p> </li> </ul>"
+        "GetDatasetResponse$status": "<p>Status of the Dataset creation.</p> <ul> <li> <p> <code>PENDING</code> – Dataset is pending creation.</p> </li> <li> <p> <code>FAILED</code> – Dataset creation has failed.</p> </li> <li> <p> <code>SUCCESS</code> – Dataset creation has succeeded.</p> </li> <li> <p> <code>RUNNING</code> – Dataset creation is running.</p> </li> </ul>"
       }
     },
     "DatasetTitle": {
@@ -329,17 +391,50 @@
       "refs": {
       }
     },
-    "Email": {
-      "base": "Email of Dataset Owner",
+    "DeletePermissionGroupRequest": {
+      "base": null,
       "refs": {
-        "DatasetOwnerInfo$email": "<p>Email address for the Dataset owner.</p>"
+      }
+    },
+    "DeletePermissionGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisableUserRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisableUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Email": {
+      "base": null,
+      "refs": {
+        "CreateUserRequest$emailAddress": "<p>The email address of the user that you want to register. The email address serves as a uniquer identifier for each user and cannot be changed after it's created.</p>",
+        "DatasetOwnerInfo$email": "<p>Email address for the Dataset owner.</p>",
+        "GetUserResponse$emailAddress": "<p>The email address that is associated with the user.</p>",
+        "User$emailAddress": "<p>The email address of the user. The email address serves as a uniquer identifier for each user and cannot be changed after it's created.</p>"
+      }
+    },
+    "EnableUserRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "EnableUserResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "ErrorCategory": {
       "base": "Changeset Error Category",
       "refs": {
-        "ChangesetErrorInfo$errorCategory": "<p>The category of the error.</p> <ul> <li> <p> <code>VALIDATION</code> -The inputs to this request are invalid.</p> </li> <li> <p> <code>SERVICE_QUOTA_EXCEEDED</code> - Service quotas have been exceeded. Please contact AWS support to increase quotas.</p> </li> <li> <p> <code>ACCESS_DENIED</code> - Missing required permission to perform this request.</p> </li> <li> <p> <code>RESOURCE_NOT_FOUND</code> - One or more inputs to this request were not found.</p> </li> <li> <p> <code>THROTTLING</code> - The system temporarily lacks sufficient resources to process the request.</p> </li> <li> <p> <code>INTERNAL_SERVICE_EXCEPTION</code> - An internal service error has occurred.</p> </li> <li> <p> <code>CANCELLED</code> - Cancelled.</p> </li> <li> <p> <code>USER_RECOVERABLE</code> - A user recoverable error has occurred.</p> </li> </ul>",
-        "DataViewErrorInfo$errorCategory": "<p>The category of the error.</p> <ul> <li> <p> <code>VALIDATION</code> -The inputs to this request are invalid.</p> </li> <li> <p> <code>SERVICE_QUOTA_EXCEEDED</code> - Service quotas have been exceeded. Please contact AWS support to increase quotas.</p> </li> <li> <p> <code>ACCESS_DENIED</code> - Missing required permission to perform this request.</p> </li> <li> <p> <code>RESOURCE_NOT_FOUND</code> - One or more inputs to this request were not found.</p> </li> <li> <p> <code>THROTTLING</code> - The system temporarily lacks sufficient resources to process the request.</p> </li> <li> <p> <code>INTERNAL_SERVICE_EXCEPTION</code> - An internal service error has occurred.</p> </li> <li> <p> <code>CANCELLED</code> - Cancelled.</p> </li> <li> <p> <code>USER_RECOVERABLE</code> - A user recoverable error has occurred.</p> </li> </ul>"
+        "ChangesetErrorInfo$errorCategory": "<p>The category of the error.</p> <ul> <li> <p> <code>VALIDATION</code> – The inputs to this request are invalid.</p> </li> <li> <p> <code>SERVICE_QUOTA_EXCEEDED</code> – Service quotas have been exceeded. Please contact AWS support to increase quotas.</p> </li> <li> <p> <code>ACCESS_DENIED</code> – Missing required permission to perform this request.</p> </li> <li> <p> <code>RESOURCE_NOT_FOUND</code> – One or more inputs to this request were not found.</p> </li> <li> <p> <code>THROTTLING</code> – The system temporarily lacks sufficient resources to process the request.</p> </li> <li> <p> <code>INTERNAL_SERVICE_EXCEPTION</code> – An internal service error has occurred.</p> </li> <li> <p> <code>CANCELLED</code> – Cancelled.</p> </li> <li> <p> <code>USER_RECOVERABLE</code> – A user recoverable error has occurred.</p> </li> </ul>",
+        "DataViewErrorInfo$errorCategory": "<p>The category of the error.</p> <ul> <li> <p> <code>VALIDATION</code> – The inputs to this request are invalid.</p> </li> <li> <p> <code>SERVICE_QUOTA_EXCEEDED</code> – Service quotas have been exceeded. Please contact AWS support to increase quotas.</p> </li> <li> <p> <code>ACCESS_DENIED</code> – Missing required permission to perform this request.</p> </li> <li> <p> <code>RESOURCE_NOT_FOUND</code> – One or more inputs to this request were not found.</p> </li> <li> <p> <code>THROTTLING</code> – The system temporarily lacks sufficient resources to process the request.</p> </li> <li> <p> <code>INTERNAL_SERVICE_EXCEPTION</code> – An internal service error has occurred.</p> </li> <li> <p> <code>CANCELLED</code> – Cancelled.</p> </li> <li> <p> <code>USER_RECOVERABLE</code> – A user recoverable error has occurred.</p> </li> </ul>"
       }
     },
     "ErrorMessage": {
@@ -352,16 +447,25 @@
     "ExportFileFormat": {
       "base": "Data View Export File Format",
       "refs": {
-        "DataViewDestinationTypeParams$s3DestinationExportFileFormat": "<p>Data view export file format.</p> <ul> <li> <p> <code>PARQUET</code> - Parquet export file format.</p> </li> <li> <p> <code>DELIMITED_TEXT</code> - Delimited text export file format.</p> </li> </ul>"
+        "DataViewDestinationTypeParams$s3DestinationExportFileFormat": "<p>Data view export file format.</p> <ul> <li> <p> <code>PARQUET</code> – Parquet export file format.</p> </li> <li> <p> <code>DELIMITED_TEXT</code> – Delimited text export file format.</p> </li> </ul>"
+      }
+    },
+    "FirstName": {
+      "base": null,
+      "refs": {
+        "CreateUserRequest$firstName": "<p>The first name of the user that you want to register.</p>",
+        "GetUserResponse$firstName": "<p>The first name of the user.</p>",
+        "UpdateUserRequest$firstName": "<p>The first name of the user.</p>",
+        "User$firstName": "<p>The first name of the user.</p>"
       }
     },
     "FormatParams": {
       "base": "Format Parameters of a Changeset",
       "refs": {
         "ChangesetSummary$formatParams": "<p>Options that define the structure of the source file(s).</p>",
-        "CreateChangesetRequest$formatParams": "<p>Options that define the structure of the source file(s) including the format type (<code>formatType</code>), header row (<code>withHeader</code>), data separation character (<code>separator</code>) and the type of compression (<code>compression</code>). </p> <p> <code>formatType</code> is a required attribute and can have the following values: </p> <ul> <li> <p> <code>PARQUET</code> - Parquet source file format.</p> </li> <li> <p> <code>CSV</code> - CSV source file format.</p> </li> <li> <p> <code>JSON</code> - JSON source file format.</p> </li> <li> <p> <code>XML</code> - XML source file format.</p> </li> </ul> <p>Here is an example of how you could specify the <code>formatParams</code>:</p> <p> <code> \"formatParams\": { \"formatType\": \"CSV\", \"withHeader\": \"true\", \"separator\": \",\", \"compression\":\"None\" } </code> </p> <p>Note that if you only provide <code>formatType</code> as <code>CSV</code>, the rest of the attributes will automatically default to CSV values as following:</p> <p> <code> { \"withHeader\": \"true\", \"separator\": \",\" } </code> </p> <p> For more information about supported file formats, see <a href=\"https://docs.aws.amazon.com/finspace/latest/userguide/supported-data-types.html\">Supported Data Types and File Formats</a> in the FinSpace User Guide.</p>",
+        "CreateChangesetRequest$formatParams": "<p>Options that define the structure of the source file(s) including the format type (<code>formatType</code>), header row (<code>withHeader</code>), data separation character (<code>separator</code>) and the type of compression (<code>compression</code>). </p> <p> <code>formatType</code> is a required attribute and can have the following values: </p> <ul> <li> <p> <code>PARQUET</code> – Parquet source file format.</p> </li> <li> <p> <code>CSV</code> – CSV source file format.</p> </li> <li> <p> <code>JSON</code> – JSON source file format.</p> </li> <li> <p> <code>XML</code> – XML source file format.</p> </li> </ul> <p>Here is an example of how you could specify the <code>formatParams</code>:</p> <p> <code> \"formatParams\": { \"formatType\": \"CSV\", \"withHeader\": \"true\", \"separator\": \",\", \"compression\":\"None\" } </code> </p> <p>Note that if you only provide <code>formatType</code> as <code>CSV</code>, the rest of the attributes will automatically default to CSV values as following:</p> <p> <code> { \"withHeader\": \"true\", \"separator\": \",\" } </code> </p> <p> For more information about supported file formats, see <a href=\"https://docs.aws.amazon.com/finspace/latest/userguide/supported-data-types.html\">Supported Data Types and File Formats</a> in the FinSpace User Guide.</p>",
         "GetChangesetResponse$formatParams": "<p>Structure of the source file(s).</p>",
-        "UpdateChangesetRequest$formatParams": "<p>Options that define the structure of the source file(s) including the format type (<code>formatType</code>), header row (<code>withHeader</code>), data separation character (<code>separator</code>) and the type of compression (<code>compression</code>). </p> <p> <code>formatType</code> is a required attribute and can have the following values: </p> <ul> <li> <p> <code>PARQUET</code> - Parquet source file format.</p> </li> <li> <p> <code>CSV</code> - CSV source file format.</p> </li> <li> <p> <code>JSON</code> - JSON source file format.</p> </li> <li> <p> <code>XML</code> - XML source file format.</p> </li> </ul> <p>Here is an example of how you could specify the <code>formatParams</code>:</p> <p> <code> \"formatParams\": { \"formatType\": \"CSV\", \"withHeader\": \"true\", \"separator\": \",\", \"compression\":\"None\" } </code> </p> <p>Note that if you only provide <code>formatType</code> as <code>CSV</code>, the rest of the attributes will automatically default to CSV values as following:</p> <p> <code> { \"withHeader\": \"true\", \"separator\": \",\" } </code> </p> <p> For more information about supported file formats, see <a href=\"https://docs.aws.amazon.com/finspace/latest/userguide/supported-data-types.html\">Supported Data Types and File Formats</a> in the FinSpace User Guide.</p>"
+        "UpdateChangesetRequest$formatParams": "<p>Options that define the structure of the source file(s) including the format type (<code>formatType</code>), header row (<code>withHeader</code>), data separation character (<code>separator</code>) and the type of compression (<code>compression</code>). </p> <p> <code>formatType</code> is a required attribute and can have the following values: </p> <ul> <li> <p> <code>PARQUET</code> – Parquet source file format.</p> </li> <li> <p> <code>CSV</code> – CSV source file format.</p> </li> <li> <p> <code>JSON</code> – JSON source file format.</p> </li> <li> <p> <code>XML</code> – XML source file format.</p> </li> </ul> <p>Here is an example of how you could specify the <code>formatParams</code>:</p> <p> <code> \"formatParams\": { \"formatType\": \"CSV\", \"withHeader\": \"true\", \"separator\": \",\", \"compression\":\"None\" } </code> </p> <p>Note that if you only provide <code>formatType</code> as <code>CSV</code>, the rest of the attributes will automatically default to CSV values as following:</p> <p> <code> { \"withHeader\": \"true\", \"separator\": \",\" } </code> </p> <p> For more information about supported file formats, see <a href=\"https://docs.aws.amazon.com/finspace/latest/userguide/supported-data-types.html\">Supported Data Types and File Formats</a> in the FinSpace User Guide.</p>"
       }
     },
     "GetChangesetRequest": {
@@ -404,6 +508,16 @@
       "refs": {
       }
     },
+    "GetUserRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetWorkingLocationRequest": {
       "base": null,
       "refs": {
@@ -423,13 +537,22 @@
     "IngestionStatus": {
       "base": "Status of the ingestion process returned from scheduler service.",
       "refs": {
-        "ChangesetSummary$status": "<p>Status of the Changeset ingestion.</p> <ul> <li> <p> <code>PENDING</code> - Changeset is pending creation.</p> </li> <li> <p> <code>FAILED</code> - Changeset creation has failed.</p> </li> <li> <p> <code>SUCCESS</code> - Changeset creation has succeeded.</p> </li> <li> <p> <code>RUNNING</code> - Changeset creation is running.</p> </li> <li> <p> <code>STOP_REQUESTED</code> - User requested Changeset creation to stop.</p> </li> </ul>",
+        "ChangesetSummary$status": "<p>Status of the Changeset ingestion.</p> <ul> <li> <p> <code>PENDING</code> – Changeset is pending creation.</p> </li> <li> <p> <code>FAILED</code> – Changeset creation has failed.</p> </li> <li> <p> <code>SUCCESS</code> – Changeset creation has succeeded.</p> </li> <li> <p> <code>RUNNING</code> – Changeset creation is running.</p> </li> <li> <p> <code>STOP_REQUESTED</code> – User requested Changeset creation to stop.</p> </li> </ul>",
         "GetChangesetResponse$status": "<p>The status of Changeset creation operation.</p>"
       }
     },
     "InternalServerException": {
       "base": "<p>The request processing has failed because of an unknown error, exception or failure.</p>",
       "refs": {
+      }
+    },
+    "LastName": {
+      "base": null,
+      "refs": {
+        "CreateUserRequest$lastName": "<p>The last name of the user that you want to register.</p>",
+        "GetUserResponse$lastName": "<p>The last name of the user.</p>",
+        "UpdateUserRequest$lastName": "<p>The last name of the user.</p>",
+        "User$lastName": "<p> The last name of the user.</p>"
       }
     },
     "LimitExceededException": {
@@ -467,21 +590,45 @@
       "refs": {
       }
     },
+    "ListPermissionGroupsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPermissionGroupsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListUsersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListUsersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "OwnerName": {
       "base": "1 - 250 character String",
       "refs": {
-        "DatasetOwnerInfo$name": "<p>Name of the Dataset owner.</p>"
+        "DatasetOwnerInfo$name": "<p>The name of the Dataset owner.</p>"
       }
     },
     "PaginationToken": {
       "base": "Pagination token for list operations",
       "refs": {
-        "ListChangesetsRequest$nextToken": "<p>A token indicating where a results page should begin.</p>",
-        "ListChangesetsResponse$nextToken": "<p>A token indicating where a results page should begin.</p>",
-        "ListDataViewsRequest$nextToken": "<p>A token indicating where a results page should begin.</p>",
-        "ListDataViewsResponse$nextToken": "<p>A token indicating where a results page should begin.</p>",
-        "ListDatasetsRequest$nextToken": "<p>A token indicating where a results page should begin.</p>",
-        "ListDatasetsResponse$nextToken": "<p>A token indicating where a results page should begin.</p>"
+        "ListChangesetsRequest$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListChangesetsResponse$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListDataViewsRequest$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListDataViewsResponse$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListDatasetsRequest$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListDatasetsResponse$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListPermissionGroupsRequest$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListPermissionGroupsResponse$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListUsersRequest$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListUsersResponse$nextToken": "<p>A token that indicates where a results page should begin.</p>"
       }
     },
     "PartitionColumnList": {
@@ -492,10 +639,50 @@
         "GetDataViewResponse$partitionColumns": "<p>Ordered set of column names used to partition data.</p>"
       }
     },
-    "PermissionGroupId": {
-      "base": "Id of the associated PermissionGroup",
+    "Password": {
+      "base": null,
       "refs": {
-        "PermissionGroupParams$permissionGroupId": "<p>The unique identifier of the PermissionGroup.</p>"
+        "ResetUserPasswordResponse$temporaryPassword": "<p>A randomly generated temporary password for the requested user account. This password expires in 7 days.</p>"
+      }
+    },
+    "PermissionGroup": {
+      "base": "<p>The structure for a permission group.</p>",
+      "refs": {
+        "PermissionGroupList$member": null
+      }
+    },
+    "PermissionGroupDescription": {
+      "base": null,
+      "refs": {
+        "CreatePermissionGroupRequest$description": "<p>A brief description for the permission group.</p>",
+        "PermissionGroup$description": "<p> A brief description for the permission group.</p>",
+        "UpdatePermissionGroupRequest$description": "<p>A brief description for the permission group.</p>"
+      }
+    },
+    "PermissionGroupId": {
+      "base": null,
+      "refs": {
+        "CreatePermissionGroupResponse$permissionGroupId": "<p>The unique identifier for the permission group.</p>",
+        "DeletePermissionGroupRequest$permissionGroupId": "<p>The unique identifier for the permission group that you want to delete.</p>",
+        "DeletePermissionGroupResponse$permissionGroupId": "<p>The unique identifier for the deleted permission group.</p>",
+        "PermissionGroup$permissionGroupId": "<p> The unique identifier for the permission group.</p>",
+        "PermissionGroupParams$permissionGroupId": "<p>The unique identifier for the <code>PermissionGroup</code>.</p>",
+        "UpdatePermissionGroupRequest$permissionGroupId": "<p>The unique identifier for the permission group to update.</p>",
+        "UpdatePermissionGroupResponse$permissionGroupId": "<p>The unique identifier for the updated permission group.</p>"
+      }
+    },
+    "PermissionGroupList": {
+      "base": null,
+      "refs": {
+        "ListPermissionGroupsResponse$permissionGroups": "<p>A list of all the permission groups.</p>"
+      }
+    },
+    "PermissionGroupName": {
+      "base": null,
+      "refs": {
+        "CreatePermissionGroupRequest$name": "<p>The name of the permission group.</p>",
+        "PermissionGroup$name": "<p>The name of the permission group.</p>",
+        "UpdatePermissionGroupRequest$name": "<p>The name of the permission group.</p>"
       }
     },
     "PermissionGroupParams": {
@@ -510,13 +697,23 @@
         "DatasetOwnerInfo$phoneNumber": "<p>Phone number for the Dataset owner.</p>"
       }
     },
+    "ResetUserPasswordRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ResetUserPasswordResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ResourceNotFoundException": {
       "base": "<p>One or more resources can't be found.</p>",
       "refs": {
       }
     },
     "ResourcePermission": {
-      "base": "<p>Resource permission for a dataset. When you create a dataset, all the other members of the same user group inherit access to the dataset. You can only create a dataset if your user group has application permission for Create Datasets.</p> <p>The following is a list of valid dataset permissions that you can apply: </p> <ul> <li> <p> <code>ViewDatasetDetails</code> </p> </li> <li> <p> <code>ReadDatasetDetails</code> </p> </li> <li> <p> <code>AddDatasetData</code> </p> </li> <li> <p> <code>CreateSnapshot</code> </p> </li> <li> <p> <code>EditDatasetMetadata</code> </p> </li> <li> <p> <code>DeleteDataset</code> </p> </li> </ul> <p>For more information on the ataset permissions, see <a href=\"https://docs.aws.amazon.com/finspace/latest/userguide/managing-user-permissions.html#supported-dataset-permissions\">Supported Dataset Permissions</a> in the FinSpace User Guide.</p>",
+      "base": "<p>Resource permission for a dataset. When you create a dataset, all the other members of the same user group inherit access to the dataset. You can only create a dataset if your user group has application permission for Create Datasets.</p> <p>The following is a list of valid dataset permissions that you can apply: </p> <ul> <li> <p> <code>ViewDatasetDetails</code> </p> </li> <li> <p> <code>ReadDatasetDetails</code> </p> </li> <li> <p> <code>AddDatasetData</code> </p> </li> <li> <p> <code>CreateSnapshot</code> </p> </li> <li> <p> <code>EditDatasetMetadata</code> </p> </li> <li> <p> <code>DeleteDataset</code> </p> </li> </ul> <p>For more information on the dataset permissions, see <a href=\"https://docs.aws.amazon.com/finspace/latest/userguide/managing-user-permissions.html#supported-dataset-permissions\">Supported Dataset Permissions</a> in the FinSpace User Guide.</p>",
       "refs": {
         "ResourcePermissionsList$member": null
       }
@@ -532,7 +729,18 @@
       "refs": {
         "ListChangesetsRequest$maxResults": "<p>The maximum number of results per page.</p>",
         "ListDataViewsRequest$maxResults": "<p>The maximum number of results per page.</p>",
-        "ListDatasetsRequest$maxResults": "<p>The maximum number of results per page.</p>"
+        "ListDatasetsRequest$maxResults": "<p>The maximum number of results per page.</p>",
+        "ListPermissionGroupsRequest$maxResults": "<p>The maximum number of results per page.</p>",
+        "ListUsersRequest$maxResults": "<p>The maximum number of results per page.</p>"
+      }
+    },
+    "RoleArn": {
+      "base": null,
+      "refs": {
+        "CreateUserRequest$apiAccessPrincipalArn": "<p>The ARN identifier of an AWS user or role that is allowed to call the <code>GetProgrammaticAccessCredentials</code> API to obtain a credentials token for a specific FinSpace user. This must be an IAM role within your FinSpace account.</p>",
+        "GetUserResponse$apiAccessPrincipalArn": "<p>The ARN identifier of an AWS user or role that is allowed to call the <code>GetProgrammaticAccessCredentials</code> API to obtain a credentials token for a specific FinSpace user. This must be an IAM role within your FinSpace account.</p>",
+        "UpdateUserRequest$apiAccessPrincipalArn": "<p>The ARN identifier of an AWS user or role that is allowed to call the <code>GetProgrammaticAccessCredentials</code> API to obtain a credentials token for a specific FinSpace user. This must be an IAM role within your FinSpace account.</p>",
+        "User$apiAccessPrincipalArn": "<p>The ARN identifier of an AWS user or role that is allowed to call the <code>GetProgrammaticAccessCredentials</code> API to obtain a credentials token for a specific FinSpace user. This must be an IAM role within your FinSpace account.</p>"
       }
     },
     "S3DestinationFormatOptions": {
@@ -575,7 +783,7 @@
       "base": "Source Parameters of a Changeset",
       "refs": {
         "ChangesetSummary$sourceParams": "<p>Options that define the location of the data being ingested.</p>",
-        "CreateChangesetRequest$sourceParams": "<p>Options that define the location of the data being ingested (<code>s3SourcePath</code>) and the source of the changeset (<code>sourceType</code>).</p> <p>Both <code>s3SourcePath</code> and <code>sourceType</code> are required attributes.</p> <p>Here is an example of how you could specify the <code>sourceParams</code>:</p> <p> <code> \"sourceParams\": { \"s3SourcePath\": \"s3://finspace-landing-us-east-2-bk7gcfvitndqa6ebnvys4d/scratch/wr5hh8pwkpqqkxa4sxrmcw/ingestion/equity.csv\", \"sourceType\": \"S3\" } </code> </p> <p>The S3 path that you specify must allow the FinSpace role access. To do that, you first need to configure the IAM policy on S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/finspace/latest/data-api/fs-using-the-finspace-api.html#access-s3-buckets\">Loading data from an Amazon S3 Bucket using the FinSpace API</a>section.</p>",
+        "CreateChangesetRequest$sourceParams": "<p>Options that define the location of the data being ingested (<code>s3SourcePath</code>) and the source of the changeset (<code>sourceType</code>).</p> <p>Both <code>s3SourcePath</code> and <code>sourceType</code> are required attributes.</p> <p>Here is an example of how you could specify the <code>sourceParams</code>:</p> <p> <code> \"sourceParams\": { \"s3SourcePath\": \"s3://finspace-landing-us-east-2-bk7gcfvitndqa6ebnvys4d/scratch/wr5hh8pwkpqqkxa4sxrmcw/ingestion/equity.csv\", \"sourceType\": \"S3\" } </code> </p> <p>The S3 path that you specify must allow the FinSpace role access. To do that, you first need to configure the IAM policy on S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/finspace/latest/data-api/fs-using-the-finspace-api.html#access-s3-buckets\">Loading data from an Amazon S3 Bucket using the FinSpace API</a> section.</p>",
         "GetChangesetResponse$sourceParams": "<p>Options that define the location of the data being ingested.</p>",
         "UpdateChangesetRequest$sourceParams": "<p>Options that define the location of the data being ingested (<code>s3SourcePath</code>) and the source of the changeset (<code>sourceType</code>).</p> <p>Both <code>s3SourcePath</code> and <code>sourceType</code> are required attributes.</p> <p>Here is an example of how you could specify the <code>sourceParams</code>:</p> <p> <code> \"sourceParams\": { \"s3SourcePath\": \"s3://finspace-landing-us-east-2-bk7gcfvitndqa6ebnvys4d/scratch/wr5hh8pwkpqqkxa4sxrmcw/ingestion/equity.csv\", \"sourceType\": \"S3\" } </code> </p> <p>The S3 path that you specify must allow the FinSpace role access. To do that, you first need to configure the IAM policy on S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/finspace/latest/data-api/fs-using-the-finspace-api.html#access-s3-buckets\">Loading data from an Amazon S3 Bucket using the FinSpace API</a>section.</p>"
       }
@@ -618,23 +826,35 @@
     "TimestampEpoch": {
       "base": "Milliseconds since UTC epoch",
       "refs": {
-        "ChangesetSummary$createTime": "<p>The timestamp at which the Changeset was created in FinSpace. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
-        "ChangesetSummary$activeUntilTimestamp": "<p>Time until which the Changeset is active. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
-        "ChangesetSummary$activeFromTimestamp": "<p>Beginning time from which the Changeset is active. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
-        "CreateDataViewRequest$asOfTimestamp": "<p>Beginning time to use for the Dataview. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
-        "DataViewSummary$asOfTimestamp": "<p>Time range to use for the Dataview. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
-        "DataViewSummary$createTime": "<p>The timestamp at which the Dataview was created in FinSpace. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
-        "DataViewSummary$lastModifiedTime": "<p>The last time that a Dataview was modified. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
-        "Dataset$createTime": "<p>The timestamp at which the Dataset was created in FinSpace. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
-        "Dataset$lastModifiedTime": "<p>The last time that the Dataset was modified. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
-        "GetChangesetResponse$createTime": "<p>The timestamp at which the Changeset was created in FinSpace. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
-        "GetChangesetResponse$activeUntilTimestamp": "<p>Time until which the Changeset is active. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
-        "GetChangesetResponse$activeFromTimestamp": "<p>Beginning time from which the Changeset is active. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
-        "GetDataViewResponse$asOfTimestamp": "<p>Time range to use for the Dataview. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
-        "GetDataViewResponse$lastModifiedTime": "<p>The last time that a Dataview was modified. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
-        "GetDataViewResponse$createTime": "<p>The timestamp at which the Dataview was created in FinSpace. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
-        "GetDatasetResponse$createTime": "<p>The timestamp at which the Dataset was created in FinSpace. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
-        "GetDatasetResponse$lastModifiedTime": "<p>The last time that the Dataset was modified. The value is determined as Epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>"
+        "ChangesetSummary$createTime": "<p>The timestamp at which the Changeset was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "ChangesetSummary$activeUntilTimestamp": "<p>Time until which the Changeset is active. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "ChangesetSummary$activeFromTimestamp": "<p>Beginning time from which the Changeset is active. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "CreateDataViewRequest$asOfTimestamp": "<p>Beginning time to use for the Dataview. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "DataViewSummary$asOfTimestamp": "<p>Time range to use for the Dataview. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "DataViewSummary$createTime": "<p>The timestamp at which the Dataview was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "DataViewSummary$lastModifiedTime": "<p>The last time that a Dataview was modified. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "Dataset$createTime": "<p>The timestamp at which the Dataset was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "Dataset$lastModifiedTime": "<p>The last time that the Dataset was modified. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetChangesetResponse$createTime": "<p>The timestamp at which the Changeset was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetChangesetResponse$activeUntilTimestamp": "<p>Time until which the Changeset is active. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetChangesetResponse$activeFromTimestamp": "<p>Beginning time from which the Changeset is active. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetDataViewResponse$asOfTimestamp": "<p>Time range to use for the Dataview. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetDataViewResponse$lastModifiedTime": "<p>The last time that a Dataview was modified. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetDataViewResponse$createTime": "<p>The timestamp at which the Dataview was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetDatasetResponse$createTime": "<p>The timestamp at which the Dataset was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetDatasetResponse$lastModifiedTime": "<p>The last time that the Dataset was modified. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetUserResponse$createTime": "<p>The timestamp at which the user account was created in FinSpace. The value is determined as epoch time in milliseconds. </p>",
+        "GetUserResponse$lastEnabledTime": "<p>Describes the last time the user account was enabled. The value is determined as epoch time in milliseconds.</p>",
+        "GetUserResponse$lastDisabledTime": "<p>Describes the last time the user account was disabled. The value is determined as epoch time in milliseconds.</p>",
+        "GetUserResponse$lastModifiedTime": "<p>Describes the last time the user account was updated. The value is determined as epoch time in milliseconds.</p>",
+        "GetUserResponse$lastLoginTime": "<p>Describes the last time that the user logged into their account. The value is determined as epoch time in milliseconds.</p>",
+        "PermissionGroup$createTime": "<p>The timestamp at which the group was created in FinSpace. The value is determined as epoch time in milliseconds. </p>",
+        "PermissionGroup$lastModifiedTime": "<p>Describes the last time the permission group was updated. The value is determined as epoch time in milliseconds. </p>",
+        "User$createTime": "<p>The timestamp at which the user account was created in FinSpace. The value is determined as epoch time in milliseconds. </p>",
+        "User$lastEnabledTime": "<p> Describes the last time the user account was enabled. The value is determined as epoch time in milliseconds. </p>",
+        "User$lastDisabledTime": "<p>Describes the last time the user account was disabled. The value is determined as epoch time in milliseconds.</p>",
+        "User$lastModifiedTime": "<p>Describes the last time the user account was updated. The value is determined as epoch time in milliseconds. </p>",
+        "User$lastLoginTime": "<p>Describes the last time that the user logged into their account. The value is determined as epoch time in milliseconds. </p>"
       }
     },
     "UpdateChangesetRequest": {
@@ -657,6 +877,71 @@
       "refs": {
       }
     },
+    "UpdatePermissionGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdatePermissionGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateUserRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "User": {
+      "base": "<p>The details of the user account.</p>",
+      "refs": {
+        "UserList$member": null
+      }
+    },
+    "UserId": {
+      "base": null,
+      "refs": {
+        "CreateUserResponse$userId": "<p>The unique identifier for the user.</p>",
+        "DisableUserRequest$userId": "<p>The unique identifier for the user account that you want to disable.</p>",
+        "DisableUserResponse$userId": "<p>The unique identifier for the disabled user account.</p>",
+        "EnableUserRequest$userId": "<p>The unique identifier for the user account that you want to enable.</p>",
+        "EnableUserResponse$userId": "<p>The unique identifier for the enabled user account.</p>",
+        "GetUserRequest$userId": "<p>The unique identifier of the user to get data for.</p>",
+        "GetUserResponse$userId": "<p>The unique identifier for the user account that is retrieved.</p>",
+        "ResetUserPasswordRequest$userId": "<p>The unique identifier of the user that a temporary password is requested for.</p>",
+        "ResetUserPasswordResponse$userId": "<p>The unique identifier of the user that a new password is generated for.</p>",
+        "UpdateUserRequest$userId": "<p>The unique identifier for the user account to update.</p>",
+        "UpdateUserResponse$userId": "<p>The unique identifier of the updated user account.</p>",
+        "User$userId": "<p>The unique identifier for the user.</p>"
+      }
+    },
+    "UserList": {
+      "base": null,
+      "refs": {
+        "ListUsersResponse$users": "<p>A list of all the user accounts.</p>"
+      }
+    },
+    "UserStatus": {
+      "base": null,
+      "refs": {
+        "GetUserResponse$status": "<p>The current status of the user account. </p> <ul> <li> <p> <code>CREATING</code> – The user account creation is in progress.</p> </li> <li> <p> <code>ENABLED</code> – The user account is created and is currently active.</p> </li> <li> <p> <code>DISABLED</code> – The user account is currently inactive.</p> </li> </ul>",
+        "User$status": "<p>The current status of the user account. </p> <ul> <li> <p> <code>CREATING</code> – The user account creation is in progress.</p> </li> <li> <p> <code>ENABLED</code> – The user account is created and is currently active.</p> </li> <li> <p> <code>DISABLED</code> – The user account is currently inactive.</p> </li> </ul>"
+      }
+    },
+    "UserType": {
+      "base": null,
+      "refs": {
+        "CreateUserRequest$type": "<p>The option to indicate the type of user. Use one of the following options to specify this parameter:</p> <ul> <li> <p> <code>SUPER_USER</code> – A user with permission to all the functionality and data in FinSpace.</p> </li> <li> <p> <code>APP_USER</code> – A user with specific permissions in FinSpace. The users are assigned permissions by adding them to a permission group.</p> </li> </ul>",
+        "GetUserResponse$type": "<p>Indicates the type of user. </p> <ul> <li> <p> <code>SUPER_USER</code> – A user with permission to all the functionality and data in FinSpace.</p> </li> </ul> <ul> <li> <p> <code>APP_USER</code> – A user with specific permissions in FinSpace. The users are assigned permissions by adding them to a permissions group.</p> </li> </ul>",
+        "UpdateUserRequest$type": "<p>The option to indicate the type of user.</p> <ul> <li> <p> <code>SUPER_USER</code>– A user with permission to all the functionality and data in FinSpace.</p> </li> <li> <p> <code>APP_USER</code> – A user with specific permissions in FinSpace. The users are assigned permissions by adding them to a permissions group.</p> </li> </ul>",
+        "User$type": "<p> Indicates the type of user.</p> <ul> <li> <p> <code>SUPER_USER</code> – A user with permission to all the functionality and data in FinSpace.</p> </li> <li> <p> <code>APP_USER</code> – A user with specific permissions in FinSpace. The users are assigned permissions by adding them to a permissions group.</p> </li> </ul>"
+      }
+    },
     "ValidationException": {
       "base": "<p>The input fails to satisfy the constraints specified by an AWS service.</p>",
       "refs": {
@@ -667,16 +952,19 @@
       "refs": {
         "AccessDeniedException$message": null,
         "ConflictException$message": null,
+        "ConflictException$reason": null,
         "InternalServerException$message": null,
         "LimitExceededException$message": null,
         "ResourceNotFoundException$message": null,
-        "ValidationException$message": null
+        "ResourceNotFoundException$reason": null,
+        "ValidationException$message": null,
+        "ValidationException$reason": null
       }
     },
     "locationType": {
       "base": null,
       "refs": {
-        "GetWorkingLocationRequest$locationType": "<p>Specify the type of the working location.</p> <ul> <li> <p> <code>SAGEMAKER</code> - Use the Amazon S3 location as a temporary location to store data content when working with FinSpace Notebooks that run on SageMaker studio.</p> </li> <li> <p> <code>INGESTION</code> - Use the Amazon S3 location as a staging location to copy your data content and then use the location with the Changeset creation operation.</p> </li> </ul>"
+        "GetWorkingLocationRequest$locationType": "<p>Specify the type of the working location.</p> <ul> <li> <p> <code>SAGEMAKER</code> – Use the Amazon S3 location as a temporary location to store data content when working with FinSpace Notebooks that run on SageMaker studio.</p> </li> <li> <p> <code>INGESTION</code> – Use the Amazon S3 location as a staging location to copy your data content and then use the location with the Changeset creation operation.</p> </li> </ul>"
       }
     },
     "stringValueLength1to1024": {

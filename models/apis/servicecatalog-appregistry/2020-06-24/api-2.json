@@ -1061,7 +1061,11 @@
           "location":"uri",
           "locationName":"application"
         },
-        "name":{"shape":"Name"},
+        "name":{
+          "shape":"Name",
+          "deprecated":true,
+          "deprecatedMessage":"Name update for application is deprecated."
+        },
         "description":{"shape":"Description"}
       }
     },
@@ -1080,7 +1084,11 @@
           "location":"uri",
           "locationName":"attributeGroup"
         },
-        "name":{"shape":"Name"},
+        "name":{
+          "shape":"Name",
+          "deprecated":true,
+          "deprecatedMessage":"Name update for attribute group is deprecated."
+        },
         "description":{"shape":"Description"},
         "attributes":{"shape":"Attributes"}
       }
