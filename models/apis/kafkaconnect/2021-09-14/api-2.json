@@ -93,6 +93,26 @@
       ],
       "idempotent":true
     },
+    "DeleteCustomPlugin":{
+      "name":"DeleteCustomPlugin",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v1/custom-plugins/{customPluginArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteCustomPluginRequest"},
+      "output":{"shape":"DeleteCustomPluginResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalServerErrorException"}
+      ],
+      "idempotent":true
+    },
     "DescribeConnector":{
       "name":"DescribeConnector",
       "http":{
@@ -392,7 +412,7 @@
       ],
       "members":{
         "capacity":{"shape":"Capacity"},
-        "connectorConfiguration":{"shape":"__mapOf__string"},
+        "connectorConfiguration":{"shape":"SyntheticCreateConnectorRequest__mapOf__string"},
         "connectorDescription":{"shape":"__stringMax1024"},
         "connectorName":{"shape":"__stringMin1Max128"},
         "kafkaCluster":{"shape":"KafkaCluster"},
@@ -445,7 +465,7 @@
       "members":{
         "description":{"shape":"__stringMax1024"},
         "name":{"shape":"__stringMin1Max128"},
-        "propertiesFileContent":{"shape":"__string"}
+        "propertiesFileContent":{"shape":"SyntheticCreateWorkerConfigurationRequest__string"}
       }
     },
     "CreateWorkerConfigurationResponse":{
@@ -558,6 +578,24 @@
         "connectorState":{"shape":"ConnectorState"}
       }
     },
+    "DeleteCustomPluginRequest":{
+      "type":"structure",
+      "required":["customPluginArn"],
+      "members":{
+        "customPluginArn":{
+          "shape":"__string",
+          "location":"uri",
+          "locationName":"customPluginArn"
+        }
+      }
+    },
+    "DeleteCustomPluginResponse":{
+      "type":"structure",
+      "members":{
+        "customPluginArn":{"shape":"__string"},
+        "customPluginState":{"shape":"CustomPluginState"}
+      }
+    },
     "DescribeConnectorRequest":{
       "type":"structure",
       "required":["connectorArn"],
@@ -574,7 +612,7 @@
       "members":{
         "capacity":{"shape":"CapacityDescription"},
         "connectorArn":{"shape":"__string"},
-        "connectorConfiguration":{"shape":"__mapOf__string"},
+        "connectorConfiguration":{"shape":"SyntheticDescribeConnectorResponse__mapOf__string"},
         "connectorDescription":{"shape":"__string"},
         "connectorName":{"shape":"__string"},
         "connectorState":{"shape":"ConnectorState"},
@@ -587,6 +625,7 @@
         "logDelivery":{"shape":"LogDeliveryDescription"},
         "plugins":{"shape":"__listOfPluginDescription"},
         "serviceExecutionRoleArn":{"shape":"__string"},
+        "stateDescription":{"shape":"StateDescription"},
         "workerConfiguration":{"shape":"WorkerConfigurationDescription"}
       }
     },
@@ -609,7 +648,8 @@
         "customPluginState":{"shape":"CustomPluginState"},
         "description":{"shape":"__string"},
         "latestRevision":{"shape":"CustomPluginRevisionSummary"},
-        "name":{"shape":"__string"}
+        "name":{"shape":"__string"},
+        "stateDescription":{"shape":"StateDescription"}
       }
     },
     "DescribeWorkerConfigurationRequest":{
@@ -949,6 +989,33 @@
       "exception":true,
       "fault":true
     },
+    "StateDescription":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"__string"},
+        "message":{"shape":"__string"}
+      }
+    },
+    "SyntheticCreateConnectorRequest__mapOf__string":{
+      "type":"map",
+      "key":{"shape":"__string"},
+      "value":{"shape":"__string"},
+      "sensitive":true
+    },
+    "SyntheticCreateWorkerConfigurationRequest__string":{
+      "type":"string",
+      "sensitive":true
+    },
+    "SyntheticDescribeConnectorResponse__mapOf__string":{
+      "type":"map",
+      "key":{"shape":"__string"},
+      "value":{"shape":"__string"},
+      "sensitive":true
+    },
+    "SyntheticWorkerConfigurationRevisionDescription__string":{
+      "type":"string",
+      "sensitive":true
+    },
     "TooManyRequestsException":{
       "type":"structure",
       "members":{
@@ -1037,7 +1104,7 @@
       "members":{
         "creationTime":{"shape":"__timestampIso8601"},
         "description":{"shape":"__string"},
-        "propertiesFileContent":{"shape":"__string"},
+        "propertiesFileContent":{"shape":"SyntheticWorkerConfigurationRevisionDescription__string"},
         "revision":{"shape":"__long"}
       }
     },
@@ -1121,11 +1188,6 @@
       "type":"long",
       "max":9223372036854775807,
       "min":1
-    },
-    "__mapOf__string":{
-      "type":"map",
-      "key":{"shape":"__string"},
-      "value":{"shape":"__string"}
     },
     "__string":{"type":"string"},
     "__stringMax1024":{

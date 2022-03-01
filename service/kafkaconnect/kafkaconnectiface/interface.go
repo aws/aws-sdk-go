@@ -76,6 +76,10 @@ type KafkaConnectAPI interface {
 	DeleteConnectorWithContext(aws.Context, *kafkaconnect.DeleteConnectorInput, ...request.Option) (*kafkaconnect.DeleteConnectorOutput, error)
 	DeleteConnectorRequest(*kafkaconnect.DeleteConnectorInput) (*request.Request, *kafkaconnect.DeleteConnectorOutput)
 
+	DeleteCustomPlugin(*kafkaconnect.DeleteCustomPluginInput) (*kafkaconnect.DeleteCustomPluginOutput, error)
+	DeleteCustomPluginWithContext(aws.Context, *kafkaconnect.DeleteCustomPluginInput, ...request.Option) (*kafkaconnect.DeleteCustomPluginOutput, error)
+	DeleteCustomPluginRequest(*kafkaconnect.DeleteCustomPluginInput) (*request.Request, *kafkaconnect.DeleteCustomPluginOutput)
+
 	DescribeConnector(*kafkaconnect.DescribeConnectorInput) (*kafkaconnect.DescribeConnectorOutput, error)
 	DescribeConnectorWithContext(aws.Context, *kafkaconnect.DescribeConnectorInput, ...request.Option) (*kafkaconnect.DescribeConnectorOutput, error)
 	DescribeConnectorRequest(*kafkaconnect.DescribeConnectorInput) (*request.Request, *kafkaconnect.DescribeConnectorOutput)

@@ -6,6 +6,7 @@
     "CreateCustomPlugin": "<p>Creates a custom plugin using the specified properties.</p>",
     "CreateWorkerConfiguration": "<p>Creates a worker configuration using the specified properties.</p>",
     "DeleteConnector": "<p>Deletes the specified connector.</p>",
+    "DeleteCustomPlugin": "<p>Deletes a custom plugin.</p>",
     "DescribeConnector": "<p>Returns summary information about the connector.</p>",
     "DescribeCustomPlugin": "<p>A summary description of the custom plugin.</p>",
     "DescribeWorkerConfiguration": "<p>Returns information about a worker configuration.</p>",
@@ -181,6 +182,7 @@
       "refs": {
         "CreateCustomPluginResponse$customPluginState": "<p>The state of the custom plugin.</p>",
         "CustomPluginSummary$customPluginState": "<p>The state of the custom plugin.</p>",
+        "DeleteCustomPluginResponse$customPluginState": "<p>The state of the custom plugin.</p>",
         "DescribeCustomPluginResponse$customPluginState": "<p>The state of the custom plugin.</p>"
       }
     },
@@ -196,6 +198,16 @@
       }
     },
     "DeleteConnectorResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteCustomPluginRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteCustomPluginResponse": {
       "base": null,
       "refs": {
       }
@@ -456,6 +468,37 @@
       "refs": {
       }
     },
+    "StateDescription": {
+      "base": "<p>Details about the state of a resource.</p>",
+      "refs": {
+        "DescribeConnectorResponse$stateDescription": "<p>Details about the state of a connector.</p>",
+        "DescribeCustomPluginResponse$stateDescription": "<p>Details about the state of a custom plugin.</p>"
+      }
+    },
+    "SyntheticCreateConnectorRequest__mapOf__string": {
+      "base": null,
+      "refs": {
+        "CreateConnectorRequest$connectorConfiguration": "<p>A map of keys to values that represent the configuration for the connector.</p>"
+      }
+    },
+    "SyntheticCreateWorkerConfigurationRequest__string": {
+      "base": null,
+      "refs": {
+        "CreateWorkerConfigurationRequest$propertiesFileContent": "<p>Base64 encoded contents of connect-distributed.properties file.</p>"
+      }
+    },
+    "SyntheticDescribeConnectorResponse__mapOf__string": {
+      "base": null,
+      "refs": {
+        "DescribeConnectorResponse$connectorConfiguration": "<p>A map of keys to values that represent the configuration for the connector.</p>"
+      }
+    },
+    "SyntheticWorkerConfigurationRevisionDescription__string": {
+      "base": null,
+      "refs": {
+        "WorkerConfigurationRevisionDescription$propertiesFileContent": "<p>Base64 encoded contents of the connect-distributed.properties file.</p>"
+      }
+    },
     "TooManyRequestsException": {
       "base": "<p>HTTP Status Code 429: Limit exceeded. Resource limit reached.</p>",
       "refs": {
@@ -643,13 +686,6 @@
         "WorkerConfiguration$revision": "<p>The revision of the worker configuration.</p>"
       }
     },
-    "__mapOf__string": {
-      "base": null,
-      "refs": {
-        "CreateConnectorRequest$connectorConfiguration": "<p>A map of keys to values that represent the configuration for the connector.</p>",
-        "DescribeConnectorResponse$connectorConfiguration": "<p>A map of keys to values that represent the configuration for the connector.</p>"
-      }
-    },
     "__string": {
       "base": null,
       "refs": {
@@ -671,7 +707,6 @@
         "CreateConnectorResponse$connectorName": "<p>The name of the connector.</p>",
         "CreateCustomPluginResponse$customPluginArn": "<p>The Amazon Resource Name (ARN) that Amazon assigned to the custom plugin.</p>",
         "CreateCustomPluginResponse$name": "<p>The name of the custom plugin.</p>",
-        "CreateWorkerConfigurationRequest$propertiesFileContent": "<p>Base64 encoded contents of connect-distributed.properties file.</p>",
         "CreateWorkerConfigurationResponse$name": "<p>The name of the worker configuration.</p>",
         "CreateWorkerConfigurationResponse$workerConfigurationArn": "<p>The Amazon Resource Name (ARN) that Amazon assigned to the worker configuration.</p>",
         "CustomPlugin$customPluginArn": "<p>The Amazon Resource Name (ARN) of the custom plugin.</p>",
@@ -684,6 +719,8 @@
         "DeleteConnectorRequest$connectorArn": "<p>The Amazon Resource Name (ARN) of the connector that you want to delete.</p>",
         "DeleteConnectorRequest$currentVersion": "<p>The current version of the connector that you want to delete.</p>",
         "DeleteConnectorResponse$connectorArn": "<p>The Amazon Resource Name (ARN) of the connector that you requested to delete.</p>",
+        "DeleteCustomPluginRequest$customPluginArn": "<p>The Amazon Resource Name (ARN) of the custom plugin that you want to delete.</p>",
+        "DeleteCustomPluginResponse$customPluginArn": "<p>The Amazon Resource Name (ARN) of the custom plugin that you requested to delete.</p>",
         "DescribeConnectorRequest$connectorArn": "<p>The Amazon Resource Name (ARN) of the connector that you want to describe.</p>",
         "DescribeConnectorResponse$connectorArn": "<p>The Amazon Resource Name (ARN) of the connector.</p>",
         "DescribeConnectorResponse$connectorDescription": "<p>A summary description of the connector.</p>",
@@ -722,6 +759,12 @@
         "S3LogDeliveryDescription$bucket": "<p>The name of the S3 bucket that is the destination for log delivery.</p>",
         "S3LogDeliveryDescription$prefix": "<p>The S3 prefix that is the destination for log delivery.</p>",
         "ServiceUnavailableException$message": null,
+        "StateDescription$code": "<p>A code that describes the state of a resource.</p>",
+        "StateDescription$message": "<p>A message that describes the state of a resource.</p>",
+        "SyntheticCreateConnectorRequest__mapOf__string$key": null,
+        "SyntheticCreateConnectorRequest__mapOf__string$value": null,
+        "SyntheticDescribeConnectorResponse__mapOf__string$key": null,
+        "SyntheticDescribeConnectorResponse__mapOf__string$value": null,
         "TooManyRequestsException$message": null,
         "UnauthorizedException$message": null,
         "UpdateConnectorRequest$connectorArn": "<p>The Amazon Resource Name (ARN) of the connector that you want to update.</p>",
@@ -730,14 +773,11 @@
         "WorkerConfiguration$workerConfigurationArn": "<p>The Amazon Resource Name (ARN) of the worker configuration.</p>",
         "WorkerConfigurationDescription$workerConfigurationArn": "<p>The Amazon Resource Name (ARN) of the worker configuration.</p>",
         "WorkerConfigurationRevisionDescription$description": "<p>The description of the worker configuration revision.</p>",
-        "WorkerConfigurationRevisionDescription$propertiesFileContent": "<p>Base64 encoded contents of the connect-distributed.properties file.</p>",
         "WorkerConfigurationRevisionSummary$description": "<p>The description of a worker configuration revision.</p>",
         "WorkerConfigurationSummary$description": "<p>The description of a worker configuration.</p>",
         "WorkerConfigurationSummary$name": "<p>The name of the worker configuration.</p>",
         "WorkerConfigurationSummary$workerConfigurationArn": "<p>The Amazon Resource Name (ARN) of the worker configuration.</p>",
-        "__listOf__string$member": null,
-        "__mapOf__string$key": null,
-        "__mapOf__string$value": null
+        "__listOf__string$member": null
       }
     },
     "__stringMax1024": {

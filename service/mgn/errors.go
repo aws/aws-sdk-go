@@ -49,7 +49,7 @@ const (
 	// ErrCodeUninitializedAccountException for service response error code
 	// "UninitializedAccountException".
 	//
-	// Unitialized account exception.
+	// Uninitialized account exception.
 	ErrCodeUninitializedAccountException = "UninitializedAccountException"
 
 	// ErrCodeValidationException for service response error code

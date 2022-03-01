@@ -70,7 +70,7 @@ func (c *Mgn) ChangeServerLifeCycleStateRequest(input *ChangeServerLifeCycleStat
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ResourceNotFoundException
 //   Resource not found exception.
@@ -159,7 +159,7 @@ func (c *Mgn) CreateReplicationConfigurationTemplateRequest(input *CreateReplica
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ValidationException
 //   Validate exception.
@@ -245,7 +245,7 @@ func (c *Mgn) DeleteJobRequest(input *DeleteJobInput) (req *request.Request, out
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ResourceNotFoundException
 //   Resource not found exception.
@@ -332,7 +332,7 @@ func (c *Mgn) DeleteReplicationConfigurationTemplateRequest(input *DeleteReplica
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ResourceNotFoundException
 //   Resource not found exception.
@@ -419,7 +419,7 @@ func (c *Mgn) DeleteSourceServerRequest(input *DeleteSourceServerInput) (req *re
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ResourceNotFoundException
 //   Resource not found exception.
@@ -495,7 +495,7 @@ func (c *Mgn) DeleteVcenterClientRequest(input *DeleteVcenterClientInput) (req *
 
 // DeleteVcenterClient API operation for Application Migration Service.
 //
-// Deletes a single vCenter client by ID.
+// Deletes a given vCenter client by ID.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -506,7 +506,7 @@ func (c *Mgn) DeleteVcenterClientRequest(input *DeleteVcenterClientInput) (req *
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ResourceNotFoundException
 //   Resource not found exception.
@@ -586,7 +586,7 @@ func (c *Mgn) DescribeJobLogItemsRequest(input *DescribeJobLogItemsInput) (req *
 
 // DescribeJobLogItems API operation for Application Migration Service.
 //
-// Retrieves detailed Job log with paging.
+// Retrieves detailed job log items with paging.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -597,7 +597,7 @@ func (c *Mgn) DescribeJobLogItemsRequest(input *DescribeJobLogItemsInput) (req *
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ValidationException
 //   Validate exception.
@@ -728,7 +728,7 @@ func (c *Mgn) DescribeJobsRequest(input *DescribeJobsInput) (req *request.Reques
 //
 // Returns a list of Jobs. Use the JobsID and fromDate and toData filters to
 // limit which jobs are returned. The response is sorted by creationDataTime
-// - latest date first. Jobs are normaly created by the StartTest, StartCutover,
+// - latest date first. Jobs are normally created by the StartTest, StartCutover,
 // and TerminateTargetInstances APIs. Jobs are also created by DiagnosticLaunch
 // and TerminateDiagnosticInstances, which are APIs available only to *Support*
 // and only used in response to relevant support tickets.
@@ -742,7 +742,7 @@ func (c *Mgn) DescribeJobsRequest(input *DescribeJobsInput) (req *request.Reques
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ValidationException
 //   Validate exception.
@@ -882,7 +882,7 @@ func (c *Mgn) DescribeReplicationConfigurationTemplatesRequest(input *DescribeRe
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ResourceNotFoundException
 //   Resource not found exception.
@@ -1025,7 +1025,7 @@ func (c *Mgn) DescribeSourceServersRequest(input *DescribeSourceServersInput) (r
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ValidationException
 //   Validate exception.
@@ -1154,7 +1154,7 @@ func (c *Mgn) DescribeVcenterClientsRequest(input *DescribeVcenterClientsInput) 
 
 // DescribeVcenterClients API operation for Application Migration Service.
 //
-// Lists all vCenter clients.
+// Returns a list of the installed vCenter clients.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1165,7 +1165,7 @@ func (c *Mgn) DescribeVcenterClientsRequest(input *DescribeVcenterClientsInput) 
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ResourceNotFoundException
 //   Resource not found exception.
@@ -1296,13 +1296,13 @@ func (c *Mgn) DisconnectFromServiceRequest(input *DisconnectFromServiceInput) (r
 // Migration Service for enabling the replication of these source servers will
 // be terminated / deleted within 90 minutes. Launched Test or Cutover instances
 // will NOT be terminated. If the agent on the source server has not been prevented
-// from communciating with the Application Migration Service service, then it
+// from communicating with the Application Migration Service service, then it
 // will receive a command to uninstall itself (within approximately 10 minutes).
 // The following properties of the SourceServer will be changed immediately:
 // dataReplicationInfo.dataReplicationState will be set to DISCONNECTED; The
 // totalStorageBytes property for each of dataReplicationInfo.replicatedDisks
-// will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDurationwill
-// be nullified.
+// will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDuration
+// will be nullified.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1313,7 +1313,7 @@ func (c *Mgn) DisconnectFromServiceRequest(input *DisconnectFromServiceInput) (r
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ResourceNotFoundException
 //   Resource not found exception.
@@ -1394,10 +1394,10 @@ func (c *Mgn) FinalizeCutoverRequest(input *FinalizeCutoverInput) (req *request.
 // Test or Cutover instances will NOT be terminated. The AWS Replication Agent
 // will receive a command to uninstall itself (within 10 minutes). The following
 // properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState
-// will be to DISCONNECTED; The SourceServer.lifeCycle.state will be changed
-// to CUTOVER; The totalStorageBytes property fo each of dataReplicationInfo.replicatedDisks
-// will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDurationwill
-// be nullified.
+// will be changed to DISCONNECTED; The SourceServer.lifeCycle.state will be
+// changed to CUTOVER; The totalStorageBytes property fo each of dataReplicationInfo.replicatedDisks
+// will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDuration
+// will be nullified.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1408,7 +1408,7 @@ func (c *Mgn) FinalizeCutoverRequest(input *FinalizeCutoverInput) (req *request.
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ResourceNotFoundException
 //   Resource not found exception.
@@ -1497,7 +1497,7 @@ func (c *Mgn) GetLaunchConfigurationRequest(input *GetLaunchConfigurationInput) 
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ResourceNotFoundException
 //   Resource not found exception.
@@ -1579,7 +1579,7 @@ func (c *Mgn) GetReplicationConfigurationRequest(input *GetReplicationConfigurat
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ResourceNotFoundException
 //   Resource not found exception.
@@ -1827,7 +1827,7 @@ func (c *Mgn) MarkAsArchivedRequest(input *MarkAsArchivedInput) (req *request.Re
 //
 // Archives specific Source Servers by setting the SourceServer.isArchived property
 // to true for specified SourceServers by ID. This command only works for SourceServers
-// with a lifecycle.state which equals DISCONNECTED or CUTOVER.
+// with a lifecycle. state which equals DISCONNECTED or CUTOVER.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1838,7 +1838,7 @@ func (c *Mgn) MarkAsArchivedRequest(input *MarkAsArchivedInput) (req *request.Re
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ResourceNotFoundException
 //   Resource not found exception.
@@ -1927,7 +1927,7 @@ func (c *Mgn) RetryDataReplicationRequest(input *RetryDataReplicationInput) (req
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ResourceNotFoundException
 //   Resource not found exception.
@@ -2014,7 +2014,7 @@ func (c *Mgn) StartCutoverRequest(input *StartCutoverInput) (req *request.Reques
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ValidationException
 //   Validate exception.
@@ -2089,7 +2089,7 @@ func (c *Mgn) StartReplicationRequest(input *StartReplicationInput) (req *reques
 
 // StartReplication API operation for Application Migration Service.
 //
-// Starts replication on source server by ID.
+// Starts replication for SNAPSHOT_SHIPPING agents.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2100,7 +2100,7 @@ func (c *Mgn) StartReplicationRequest(input *StartReplicationInput) (req *reques
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ResourceNotFoundException
 //   Resource not found exception.
@@ -2181,7 +2181,7 @@ func (c *Mgn) StartTestRequest(input *StartTestInput) (req *request.Request, out
 
 // StartTest API operation for Application Migration Service.
 //
-// Lauches a Test Instance for specific Source Servers. This command starts
+// Launches a Test Instance for specific Source Servers. This command starts
 // a LAUNCH job whose initiatedBy property is StartTest and changes the SourceServer.lifeCycle.state
 // property to TESTING.
 //
@@ -2194,7 +2194,7 @@ func (c *Mgn) StartTestRequest(input *StartTestInput) (req *request.Request, out
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ValidationException
 //   Validate exception.
@@ -2378,7 +2378,7 @@ func (c *Mgn) TerminateTargetInstancesRequest(input *TerminateTargetInstancesInp
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ValidationException
 //   Validate exception.
@@ -2558,7 +2558,7 @@ func (c *Mgn) UpdateLaunchConfigurationRequest(input *UpdateLaunchConfigurationI
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ResourceNotFoundException
 //   Resource not found exception.
@@ -2648,7 +2648,7 @@ func (c *Mgn) UpdateReplicationConfigurationRequest(input *UpdateReplicationConf
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ResourceNotFoundException
 //   Resource not found exception.
@@ -2740,7 +2740,7 @@ func (c *Mgn) UpdateReplicationConfigurationTemplateRequest(input *UpdateReplica
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ResourceNotFoundException
 //   Resource not found exception.
@@ -2817,7 +2817,8 @@ func (c *Mgn) UpdateSourceServerReplicationTypeRequest(input *UpdateSourceServer
 
 // UpdateSourceServerReplicationType API operation for Application Migration Service.
 //
-// Updates source server Replication Type by ID.
+// Allows you to change between the AGENT_BASED replication type and the SNAPSHOT_SHIPPING
+// replication type.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2828,7 +2829,7 @@ func (c *Mgn) UpdateSourceServerReplicationTypeRequest(input *UpdateSourceServer
 //
 // Returned Error Types:
 //   * UninitializedAccountException
-//   Unitialized account exception.
+//   Uninitialized account exception.
 //
 //   * ResourceNotFoundException
 //   Resource not found exception.
@@ -3211,10 +3212,10 @@ type ConflictException struct {
 
 	Message_ *string `locationName:"message" type:"string"`
 
-	// A conflict occured when prompting for the Resource ID.
+	// A conflict occurred when prompting for the Resource ID.
 	ResourceId *string `locationName:"resourceId" type:"string"`
 
-	// A conflict occured when prompting for resource type.
+	// A conflict occurred when prompting for resource type.
 	ResourceType *string `locationName:"resourceType" type:"string"`
 }
 
@@ -3300,18 +3301,19 @@ type CreateReplicationConfigurationTemplateInput struct {
 	// DataPlaneRouting is a required field
 	DataPlaneRouting *string `locationName:"dataPlaneRouting" type:"string" required:"true" enum:"ReplicationConfigurationDataPlaneRouting"`
 
-	// Request to configure the Staging Disk EBS volume type to "gp2" during Replication
-	// Settings template creation.
+	// Request to configure the default large staging disk EBS volume type during
+	// Replication Settings template creation.
 	//
 	// DefaultLargeStagingDiskType is a required field
 	DefaultLargeStagingDiskType *string `locationName:"defaultLargeStagingDiskType" type:"string" required:"true" enum:"ReplicationConfigurationDefaultLargeStagingDiskType"`
 
-	// Request to configure EBS enryption during Replication Settings template creation.
+	// Request to configure EBS encryption during Replication Settings template
+	// creation.
 	//
 	// EbsEncryption is a required field
 	EbsEncryption *string `locationName:"ebsEncryption" type:"string" required:"true" enum:"ReplicationConfigurationEbsEncryption"`
 
-	// Request to configure an EBS enryption key during Replication Settings template
+	// Request to configure an EBS encryption key during Replication Settings template
 	// creation.
 	EbsEncryptionKeyArn *string `locationName:"ebsEncryptionKeyArn" min:"20" type:"string"`
 
@@ -3321,7 +3323,7 @@ type CreateReplicationConfigurationTemplateInput struct {
 	// ReplicationServerInstanceType is a required field
 	ReplicationServerInstanceType *string `locationName:"replicationServerInstanceType" type:"string" required:"true"`
 
-	// Request to configure the Replication Server Secuirity group ID during Replication
+	// Request to configure the Replication Server Security group ID during Replication
 	// Settings template creation.
 	//
 	// ReplicationServersSecurityGroupsIDs is a required field
@@ -3333,7 +3335,7 @@ type CreateReplicationConfigurationTemplateInput struct {
 	// StagingAreaSubnetId is a required field
 	StagingAreaSubnetId *string `locationName:"stagingAreaSubnetId" type:"string" required:"true"`
 
-	// Request to configure Staiging Area tags during Replication Settings template
+	// Request to configure Staging Area tags during Replication Settings template
 	// creation.
 	//
 	// StagingAreaTags is a sensitive parameter and its value will be
@@ -3509,7 +3511,7 @@ type CreateReplicationConfigurationTemplateOutput struct {
 	// Service Security group.
 	AssociateDefaultSecurityGroup *bool `locationName:"associateDefaultSecurityGroup" type:"boolean"`
 
-	// Replication Configuration template bandwidth throtting.
+	// Replication Configuration template bandwidth throttling.
 	BandwidthThrottling *int64 `locationName:"bandwidthThrottling" type:"long"`
 
 	// Replication Configuration template create Public IP.
@@ -3518,7 +3520,7 @@ type CreateReplicationConfigurationTemplateOutput struct {
 	// Replication Configuration template data plane routing.
 	DataPlaneRouting *string `locationName:"dataPlaneRouting" type:"string" enum:"ReplicationConfigurationDataPlaneRouting"`
 
-	// Replication Configuration template use dedault large Staging Disk type.
+	// Replication Configuration template use default large Staging Disk type.
 	DefaultLargeStagingDiskType *string `locationName:"defaultLargeStagingDiskType" type:"string" enum:"ReplicationConfigurationDefaultLargeStagingDiskType"`
 
 	// Replication Configuration template EBS encryption.
@@ -3527,7 +3529,7 @@ type CreateReplicationConfigurationTemplateOutput struct {
 	// Replication Configuration template EBS encryption key ARN.
 	EbsEncryptionKeyArn *string `locationName:"ebsEncryptionKeyArn" min:"20" type:"string"`
 
-	// Replication Configuration template template ID.
+	// Replication Configuration template ID.
 	//
 	// ReplicationConfigurationTemplateID is a required field
 	ReplicationConfigurationTemplateID *string `locationName:"replicationConfigurationTemplateID" min:"21" type:"string" required:"true"`
@@ -3724,7 +3726,7 @@ type DataReplicationInfo struct {
 	// Request to query the time when data replication will be complete.
 	EtaDateTime *string `locationName:"etaDateTime" min:"19" type:"string"`
 
-	// Request to query data replication lag durating.
+	// Request to query data replication lag duration.
 	LagDuration *string `locationName:"lagDuration" min:"19" type:"string"`
 
 	// Request to query data replication last snapshot time.
@@ -3912,7 +3914,7 @@ func (s *DataReplicationInitiation) SetSteps(v []*DataReplicationInitiationStep)
 	return s
 }
 
-// Data replication intiation step.
+// Data replication initiation step.
 type DataReplicationInitiationStep struct {
 	_ struct{} `type:"structure"`
 
@@ -4356,10 +4358,10 @@ type DescribeJobsInput struct {
 	// Filters is a required field
 	Filters *DescribeJobsRequestFilters `locationName:"filters" type:"structure" required:"true"`
 
-	// Request to describe Job log by max results.
+	// Request to describe job log items by max results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// Request to describe Job logby next token.
+	// Request to describe job log items by next token.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -4470,7 +4472,7 @@ type DescribeJobsRequestFilters struct {
 	// Request to describe Job log filters by job ID.
 	JobIDs []*string `locationName:"jobIDs" type:"list"`
 
-	// Request to describe Job log by last date.
+	// Request to describe job log items by last date.
 	ToDate *string `locationName:"toDate" min:"19" type:"string"`
 }
 
@@ -5101,7 +5103,7 @@ func (s *Disk) SetDeviceName(v string) *Disk {
 type FinalizeCutoverInput struct {
 	_ struct{} `type:"structure"`
 
-	// Request to finalize Cutover by Soure Server ID.
+	// Request to finalize Cutover by Source Server ID.
 	//
 	// SourceServerID is a required field
 	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string" required:"true"`
@@ -5315,28 +5317,31 @@ func (s *GetLaunchConfigurationInput) SetSourceServerID(v string) *GetLaunchConf
 type GetLaunchConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Launch configuration boot mode.
+	BootMode *string `locationName:"bootMode" type:"string" enum:"BootMode"`
+
 	// Copy Private IP during Launch Configuration.
 	CopyPrivateIp *bool `locationName:"copyPrivateIp" type:"boolean"`
 
 	// Copy Tags during Launch Configuration.
 	CopyTags *bool `locationName:"copyTags" type:"boolean"`
 
-	// Configure EC2 lauch configuration template ID.
+	// Launch configuration EC2 Launch template ID.
 	Ec2LaunchTemplateID *string `locationName:"ec2LaunchTemplateID" type:"string"`
 
-	// Configure launch dispostion for launch configuration.
+	// Launch disposition for launch configuration.
 	LaunchDisposition *string `locationName:"launchDisposition" type:"string" enum:"LaunchDisposition"`
 
-	// Configure launch configuration OS licensing.
+	// Launch configuration OS licensing.
 	Licensing *Licensing `locationName:"licensing" type:"structure"`
 
-	// Configure launch configuration name.
+	// Launch configuration name.
 	Name *string `locationName:"name" type:"string"`
 
-	// Configure launch configuration Source Server ID.
+	// Launch configuration Source Server ID.
 	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string"`
 
-	// Configure launch configuration Target instance type right sizing method.
+	// Launch configuration Target instance type right sizing method.
 	TargetInstanceTypeRightSizingMethod *string `locationName:"targetInstanceTypeRightSizingMethod" type:"string" enum:"TargetInstanceTypeRightSizingMethod"`
 }
 
@@ -5356,6 +5361,12 @@ func (s GetLaunchConfigurationOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetLaunchConfigurationOutput) GoString() string {
 	return s.String()
+}
+
+// SetBootMode sets the BootMode field's value.
+func (s *GetLaunchConfigurationOutput) SetBootMode(v string) *GetLaunchConfigurationOutput {
+	s.BootMode = &v
+	return s
 }
 
 // SetCopyPrivateIp sets the CopyPrivateIp field's value.
@@ -5409,7 +5420,7 @@ func (s *GetLaunchConfigurationOutput) SetTargetInstanceTypeRightSizingMethod(v 
 type GetReplicationConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Request to get Replication Configuaration by Source Server ID.
+	// Request to get Replication Configuration by Source Server ID.
 	//
 	// SourceServerID is a required field
 	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string" required:"true"`
@@ -5825,7 +5836,7 @@ type Job struct {
 	// Job status.
 	Status *string `locationName:"status" type:"string" enum:"JobStatus"`
 
-	// Tags associated with spcific Job.
+	// Tags associated with specific Job.
 	//
 	// Tags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Job's
@@ -6017,17 +6028,17 @@ func (s *JobLogEventData) SetTargetInstanceID(v string) *JobLogEventData {
 	return s
 }
 
-// Configure launced instance.
+// Launched instance.
 type LaunchedInstance struct {
 	_ struct{} `type:"structure"`
 
-	// Configure launced instance EC2 ID.
+	// Launched instance EC2 ID.
 	Ec2InstanceID *string `locationName:"ec2InstanceID" type:"string"`
 
-	// Configure launced instance first boot.
+	// Launched instance first boot.
 	FirstBoot *string `locationName:"firstBoot" type:"string" enum:"FirstBoot"`
 
-	// Configure launced instance Job ID.
+	// Launched instance Job ID.
 	JobID *string `locationName:"jobID" min:"24" type:"string"`
 }
 
@@ -6343,7 +6354,7 @@ func (s *LifeCycleLastCutoverReverted) SetApiCallDateTime(v string) *LifeCycleLa
 type LifeCycleLastTest struct {
 	_ struct{} `type:"structure"`
 
-	// Lifecycle last Test finlized.
+	// Lifecycle last Test finalized.
 	Finalized *LifeCycleLastTestFinalized `locationName:"finalized" type:"structure"`
 
 	// Lifecycle last Test initiated.
@@ -6389,7 +6400,7 @@ func (s *LifeCycleLastTest) SetReverted(v *LifeCycleLastTestReverted) *LifeCycle
 	return s
 }
 
-// Lifecycle last Test finlized.
+// Lifecycle last Test finalized.
 type LifeCycleLastTestFinalized struct {
 	_ struct{} `type:"structure"`
 
@@ -6881,6 +6892,9 @@ type ReplicationConfigurationReplicatedDisk struct {
 
 	// Replication Configuration replicated disk staging disk type.
 	StagingDiskType *string `locationName:"stagingDiskType" type:"string" enum:"ReplicationConfigurationReplicatedDiskStagingDiskType"`
+
+	// Replication Configuration replicated disk throughput.
+	Throughput *int64 `locationName:"throughput" type:"long"`
 }
 
 // String returns the string representation.
@@ -6925,6 +6939,12 @@ func (s *ReplicationConfigurationReplicatedDisk) SetStagingDiskType(v string) *R
 	return s
 }
 
+// SetThroughput sets the Throughput field's value.
+func (s *ReplicationConfigurationReplicatedDisk) SetThroughput(v int64) *ReplicationConfigurationReplicatedDisk {
+	s.Throughput = &v
+	return s
+}
+
 type ReplicationConfigurationTemplate struct {
 	_ struct{} `type:"structure"`
 
@@ -6935,7 +6955,7 @@ type ReplicationConfigurationTemplate struct {
 	// Service Security group.
 	AssociateDefaultSecurityGroup *bool `locationName:"associateDefaultSecurityGroup" type:"boolean"`
 
-	// Replication Configuration template bandwidth throtting.
+	// Replication Configuration template bandwidth throttling.
 	BandwidthThrottling *int64 `locationName:"bandwidthThrottling" type:"long"`
 
 	// Replication Configuration template create Public IP.
@@ -6944,7 +6964,7 @@ type ReplicationConfigurationTemplate struct {
 	// Replication Configuration template data plane routing.
 	DataPlaneRouting *string `locationName:"dataPlaneRouting" type:"string" enum:"ReplicationConfigurationDataPlaneRouting"`
 
-	// Replication Configuration template use dedault large Staging Disk type.
+	// Replication Configuration template use default large Staging Disk type.
 	DefaultLargeStagingDiskType *string `locationName:"defaultLargeStagingDiskType" type:"string" enum:"ReplicationConfigurationDefaultLargeStagingDiskType"`
 
 	// Replication Configuration template EBS encryption.
@@ -6953,7 +6973,7 @@ type ReplicationConfigurationTemplate struct {
 	// Replication Configuration template EBS encryption key ARN.
 	EbsEncryptionKeyArn *string `locationName:"ebsEncryptionKeyArn" min:"20" type:"string"`
 
-	// Replication Configuration template template ID.
+	// Replication Configuration template ID.
 	//
 	// ReplicationConfigurationTemplateID is a required field
 	ReplicationConfigurationTemplateID *string `locationName:"replicationConfigurationTemplateID" min:"21" type:"string" required:"true"`
@@ -7342,7 +7362,7 @@ type ServiceQuotaExceededException struct {
 	// Exceeded the service quota code.
 	QuotaCode *string `locationName:"quotaCode" type:"string"`
 
-	// Exceeded the service quota resource Id.
+	// Exceeded the service quota resource ID.
 	ResourceId *string `locationName:"resourceId" type:"string"`
 
 	// Exceeded the service quota resource type.
@@ -8225,7 +8245,7 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Unitialized account exception.
+// Uninitialized account exception.
 type UninitializedAccountException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8383,6 +8403,9 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateLaunchConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Update Launch configuration boot mode request.
+	BootMode *string `locationName:"bootMode" type:"string" enum:"BootMode"`
+
 	// Update Launch configuration copy Private IP request.
 	CopyPrivateIp *bool `locationName:"copyPrivateIp" type:"boolean"`
 
@@ -8441,6 +8464,12 @@ func (s *UpdateLaunchConfigurationInput) Validate() error {
 	return nil
 }
 
+// SetBootMode sets the BootMode field's value.
+func (s *UpdateLaunchConfigurationInput) SetBootMode(v string) *UpdateLaunchConfigurationInput {
+	s.BootMode = &v
+	return s
+}
+
 // SetCopyPrivateIp sets the CopyPrivateIp field's value.
 func (s *UpdateLaunchConfigurationInput) SetCopyPrivateIp(v bool) *UpdateLaunchConfigurationInput {
 	s.CopyPrivateIp = &v
@@ -8486,28 +8515,31 @@ func (s *UpdateLaunchConfigurationInput) SetTargetInstanceTypeRightSizingMethod(
 type UpdateLaunchConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Launch configuration boot mode.
+	BootMode *string `locationName:"bootMode" type:"string" enum:"BootMode"`
+
 	// Copy Private IP during Launch Configuration.
 	CopyPrivateIp *bool `locationName:"copyPrivateIp" type:"boolean"`
 
 	// Copy Tags during Launch Configuration.
 	CopyTags *bool `locationName:"copyTags" type:"boolean"`
 
-	// Configure EC2 lauch configuration template ID.
+	// Launch configuration EC2 Launch template ID.
 	Ec2LaunchTemplateID *string `locationName:"ec2LaunchTemplateID" type:"string"`
 
-	// Configure launch dispostion for launch configuration.
+	// Launch disposition for launch configuration.
 	LaunchDisposition *string `locationName:"launchDisposition" type:"string" enum:"LaunchDisposition"`
 
-	// Configure launch configuration OS licensing.
+	// Launch configuration OS licensing.
 	Licensing *Licensing `locationName:"licensing" type:"structure"`
 
-	// Configure launch configuration name.
+	// Launch configuration name.
 	Name *string `locationName:"name" type:"string"`
 
-	// Configure launch configuration Source Server ID.
+	// Launch configuration Source Server ID.
 	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string"`
 
-	// Configure launch configuration Target instance type right sizing method.
+	// Launch configuration Target instance type right sizing method.
 	TargetInstanceTypeRightSizingMethod *string `locationName:"targetInstanceTypeRightSizingMethod" type:"string" enum:"TargetInstanceTypeRightSizingMethod"`
 }
 
@@ -8527,6 +8559,12 @@ func (s UpdateLaunchConfigurationOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateLaunchConfigurationOutput) GoString() string {
 	return s.String()
+}
+
+// SetBootMode sets the BootMode field's value.
+func (s *UpdateLaunchConfigurationOutput) SetBootMode(v string) *UpdateLaunchConfigurationOutput {
+	s.BootMode = &v
+	return s
 }
 
 // SetCopyPrivateIp sets the CopyPrivateIp field's value.
@@ -9113,7 +9151,7 @@ type UpdateReplicationConfigurationTemplateOutput struct {
 	// Service Security group.
 	AssociateDefaultSecurityGroup *bool `locationName:"associateDefaultSecurityGroup" type:"boolean"`
 
-	// Replication Configuration template bandwidth throtting.
+	// Replication Configuration template bandwidth throttling.
 	BandwidthThrottling *int64 `locationName:"bandwidthThrottling" type:"long"`
 
 	// Replication Configuration template create Public IP.
@@ -9122,7 +9160,7 @@ type UpdateReplicationConfigurationTemplateOutput struct {
 	// Replication Configuration template data plane routing.
 	DataPlaneRouting *string `locationName:"dataPlaneRouting" type:"string" enum:"ReplicationConfigurationDataPlaneRouting"`
 
-	// Replication Configuration template use dedault large Staging Disk type.
+	// Replication Configuration template use default large Staging Disk type.
 	DefaultLargeStagingDiskType *string `locationName:"defaultLargeStagingDiskType" type:"string" enum:"ReplicationConfigurationDefaultLargeStagingDiskType"`
 
 	// Replication Configuration template EBS encryption.
@@ -9131,7 +9169,7 @@ type UpdateReplicationConfigurationTemplateOutput struct {
 	// Replication Configuration template EBS encryption key ARN.
 	EbsEncryptionKeyArn *string `locationName:"ebsEncryptionKeyArn" min:"20" type:"string"`
 
-	// Replication Configuration template template ID.
+	// Replication Configuration template ID.
 	//
 	// ReplicationConfigurationTemplateID is a required field
 	ReplicationConfigurationTemplateID *string `locationName:"replicationConfigurationTemplateID" min:"21" type:"string" required:"true"`
@@ -9667,6 +9705,22 @@ func (s *VcenterClient) SetVcenterUUID(v string) *VcenterClient {
 }
 
 const (
+	// BootModeLegacyBios is a BootMode enum value
+	BootModeLegacyBios = "LEGACY_BIOS"
+
+	// BootModeUefi is a BootMode enum value
+	BootModeUefi = "UEFI"
+)
+
+// BootMode_Values returns all elements of the BootMode enum
+func BootMode_Values() []string {
+	return []string{
+		BootModeLegacyBios,
+		BootModeUefi,
+	}
+}
+
+const (
 	// ChangeServerLifeCycleStateSourceServerLifecycleStateReadyForTest is a ChangeServerLifeCycleStateSourceServerLifecycleState enum value
 	ChangeServerLifeCycleStateSourceServerLifecycleStateReadyForTest = "READY_FOR_TEST"
 
@@ -10160,6 +10214,9 @@ const (
 
 	// ReplicationConfigurationDefaultLargeStagingDiskTypeSt1 is a ReplicationConfigurationDefaultLargeStagingDiskType enum value
 	ReplicationConfigurationDefaultLargeStagingDiskTypeSt1 = "ST1"
+
+	// ReplicationConfigurationDefaultLargeStagingDiskTypeGp3 is a ReplicationConfigurationDefaultLargeStagingDiskType enum value
+	ReplicationConfigurationDefaultLargeStagingDiskTypeGp3 = "GP3"
 )
 
 // ReplicationConfigurationDefaultLargeStagingDiskType_Values returns all elements of the ReplicationConfigurationDefaultLargeStagingDiskType enum
@@ -10167,6 +10224,7 @@ func ReplicationConfigurationDefaultLargeStagingDiskType_Values() []string {
 	return []string{
 		ReplicationConfigurationDefaultLargeStagingDiskTypeGp2,
 		ReplicationConfigurationDefaultLargeStagingDiskTypeSt1,
+		ReplicationConfigurationDefaultLargeStagingDiskTypeGp3,
 	}
 }
 
@@ -10204,6 +10262,12 @@ const (
 
 	// ReplicationConfigurationReplicatedDiskStagingDiskTypeStandard is a ReplicationConfigurationReplicatedDiskStagingDiskType enum value
 	ReplicationConfigurationReplicatedDiskStagingDiskTypeStandard = "STANDARD"
+
+	// ReplicationConfigurationReplicatedDiskStagingDiskTypeGp3 is a ReplicationConfigurationReplicatedDiskStagingDiskType enum value
+	ReplicationConfigurationReplicatedDiskStagingDiskTypeGp3 = "GP3"
+
+	// ReplicationConfigurationReplicatedDiskStagingDiskTypeIo2 is a ReplicationConfigurationReplicatedDiskStagingDiskType enum value
+	ReplicationConfigurationReplicatedDiskStagingDiskTypeIo2 = "IO2"
 )
 
 // ReplicationConfigurationReplicatedDiskStagingDiskType_Values returns all elements of the ReplicationConfigurationReplicatedDiskStagingDiskType enum
@@ -10215,6 +10279,8 @@ func ReplicationConfigurationReplicatedDiskStagingDiskType_Values() []string {
 		ReplicationConfigurationReplicatedDiskStagingDiskTypeSc1,
 		ReplicationConfigurationReplicatedDiskStagingDiskTypeSt1,
 		ReplicationConfigurationReplicatedDiskStagingDiskTypeStandard,
+		ReplicationConfigurationReplicatedDiskStagingDiskTypeGp3,
+		ReplicationConfigurationReplicatedDiskStagingDiskTypeIo2,
 	}
 }
 
