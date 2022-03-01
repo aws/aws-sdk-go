@@ -1,3 +1,14 @@
+Release v1.43.9 (2022-03-01)
+===
+
+### Service Client Updates
+* `service/kafkaconnect`: Updates service API and documentation
+* `service/mediapackage`: Updates service API
+  * This release adds Hybridcast as an available profile option for Dash Origin Endpoints.
+* `service/mgn`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Documentation updates for Multi-AZ DB clusters.
+
 Release v1.43.8 (2022-02-28)
 ===
 

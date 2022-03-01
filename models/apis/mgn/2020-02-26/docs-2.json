@@ -7,36 +7,36 @@
     "DeleteJob": "<p>Deletes a single Job by ID.</p>",
     "DeleteReplicationConfigurationTemplate": "<p>Deletes a single Replication Configuration Template by ID</p>",
     "DeleteSourceServer": "<p>Deletes a single source server by ID.</p>",
-    "DeleteVcenterClient": "<p>Deletes a single vCenter client by ID.</p>",
-    "DescribeJobLogItems": "<p>Retrieves detailed Job log with paging.</p>",
-    "DescribeJobs": "<p>Returns a list of Jobs. Use the JobsID and fromDate and toData filters to limit which jobs are returned. The response is sorted by creationDataTime - latest date first. Jobs are normaly created by the StartTest, StartCutover, and TerminateTargetInstances APIs. Jobs are also created by DiagnosticLaunch and TerminateDiagnosticInstances, which are APIs available only to *Support* and only used in response to relevant support tickets.</p>",
+    "DeleteVcenterClient": "<p>Deletes a given vCenter client by ID.</p>",
+    "DescribeJobLogItems": "<p>Retrieves detailed job log items with paging.</p>",
+    "DescribeJobs": "<p>Returns a list of Jobs. Use the JobsID and fromDate and toData filters to limit which jobs are returned. The response is sorted by creationDataTime - latest date first. Jobs are normally created by the StartTest, StartCutover, and TerminateTargetInstances APIs. Jobs are also created by DiagnosticLaunch and TerminateDiagnosticInstances, which are APIs available only to *Support* and only used in response to relevant support tickets.</p>",
     "DescribeReplicationConfigurationTemplates": "<p>Lists all ReplicationConfigurationTemplates, filtered by Source Server IDs.</p>",
     "DescribeSourceServers": "<p>Retrieves all SourceServers or multiple SourceServers by ID.</p>",
-    "DescribeVcenterClients": "<p>Lists all vCenter clients.</p>",
-    "DisconnectFromService": "<p>Disconnects specific Source Servers from Application Migration Service. Data replication is stopped immediately. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. If the agent on the source server has not been prevented from communciating with the Application Migration Service service, then it will receive a command to uninstall itself (within approximately 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be set to DISCONNECTED; The totalStorageBytes property for each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDurationwill be nullified.</p>",
-    "FinalizeCutover": "<p>Finalizes the cutover immediately for specific Source Servers. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. The AWS Replication Agent will receive a command to uninstall itself (within 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be to DISCONNECTED; The SourceServer.lifeCycle.state will be changed to CUTOVER; The totalStorageBytes property fo each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDurationwill be nullified.</p>",
+    "DescribeVcenterClients": "<p>Returns a list of the installed vCenter clients.</p>",
+    "DisconnectFromService": "<p>Disconnects specific Source Servers from Application Migration Service. Data replication is stopped immediately. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. If the agent on the source server has not been prevented from communicating with the Application Migration Service service, then it will receive a command to uninstall itself (within approximately 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be set to DISCONNECTED; The totalStorageBytes property for each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDuration will be nullified.</p>",
+    "FinalizeCutover": "<p>Finalizes the cutover immediately for specific Source Servers. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. The AWS Replication Agent will receive a command to uninstall itself (within 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be changed to DISCONNECTED; The SourceServer.lifeCycle.state will be changed to CUTOVER; The totalStorageBytes property fo each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDuration will be nullified.</p>",
     "GetLaunchConfiguration": "<p>Lists all LaunchConfigurations available, filtered by Source Server IDs.</p>",
     "GetReplicationConfiguration": "<p>Lists all ReplicationConfigurations, filtered by Source Server ID.</p>",
     "InitializeService": "<p>Initialize Application Migration Service.</p>",
     "ListTagsForResource": "<p>List all tags for your Application Migration Service resources.</p>",
-    "MarkAsArchived": "<p>Archives specific Source Servers by setting the SourceServer.isArchived property to true for specified SourceServers by ID. This command only works for SourceServers with a lifecycle.state which equals DISCONNECTED or CUTOVER.</p>",
+    "MarkAsArchived": "<p>Archives specific Source Servers by setting the SourceServer.isArchived property to true for specified SourceServers by ID. This command only works for SourceServers with a lifecycle. state which equals DISCONNECTED or CUTOVER.</p>",
     "RetryDataReplication": "<p>Causes the data replication initiation sequence to begin immediately upon next Handshake for specified SourceServer IDs, regardless of when the previous initiation started. This command will not work if the SourceServer is not stalled or is in a DISCONNECTED or STOPPED state.</p>",
     "StartCutover": "<p>Launches a Cutover Instance for specific Source Servers. This command starts a LAUNCH job whose initiatedBy property is StartCutover and changes the SourceServer.lifeCycle.state property to CUTTING_OVER.</p>",
-    "StartReplication": "<p>Starts replication on source server by ID.</p>",
-    "StartTest": "<p>Lauches a Test Instance for specific Source Servers. This command starts a LAUNCH job whose initiatedBy property is StartTest and changes the SourceServer.lifeCycle.state property to TESTING.</p>",
+    "StartReplication": "<p>Starts replication for SNAPSHOT_SHIPPING agents.</p>",
+    "StartTest": "<p>Launches a Test Instance for specific Source Servers. This command starts a LAUNCH job whose initiatedBy property is StartTest and changes the SourceServer.lifeCycle.state property to TESTING.</p>",
     "TagResource": "<p>Adds or overwrites only the specified tags for the specified Application Migration Service resource or resources. When you specify an existing tag key, the value is overwritten with the new value. Each resource can have a maximum of 50 tags. Each tag consists of a key and optional value.</p>",
     "TerminateTargetInstances": "<p>Starts a job that terminates specific launched EC2 Test and Cutover instances. This command will not work for any Source Server with a lifecycle.state of TESTING, CUTTING_OVER, or CUTOVER.</p>",
     "UntagResource": "<p>Deletes the specified set of tags from the specified set of Application Migration Service resources.</p>",
     "UpdateLaunchConfiguration": "<p>Updates multiple LaunchConfigurations by Source Server ID.</p>",
     "UpdateReplicationConfiguration": "<p>Allows you to update multiple ReplicationConfigurations by Source Server ID.</p>",
     "UpdateReplicationConfigurationTemplate": "<p>Updates multiple ReplicationConfigurationTemplates by ID.</p>",
-    "UpdateSourceServerReplicationType": "<p>Updates source server Replication Type by ID.</p>"
+    "UpdateSourceServerReplicationType": "<p>Allows you to change between the AGENT_BASED replication type and the SNAPSHOT_SHIPPING replication type.</p>"
   },
   "shapes": {
     "ARN": {
       "base": null,
       "refs": {
-        "CreateReplicationConfigurationTemplateRequest$ebsEncryptionKeyArn": "<p>Request to configure an EBS enryption key during Replication Settings template creation.</p>",
+        "CreateReplicationConfigurationTemplateRequest$ebsEncryptionKeyArn": "<p>Request to configure an EBS encryption key during Replication Settings template creation.</p>",
         "Job$arn": "<p>the ARN of the specific Job.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>List tags for resource request by ARN.</p>",
         "ReplicationConfiguration$ebsEncryptionKeyArn": "<p>Replication Configuration EBS encryption key ARN.</p>",
@@ -85,6 +85,13 @@
         "UpdateReplicationConfigurationTemplateRequest$useDedicatedReplicationServer": "<p>Update replication configuration template use dedicated Replication Server request.</p>"
       }
     },
+    "BootMode": {
+      "base": null,
+      "refs": {
+        "LaunchConfiguration$bootMode": "<p>Launch configuration boot mode.</p>",
+        "UpdateLaunchConfigurationRequest$bootMode": "<p>Update Launch configuration boot mode request.</p>"
+      }
+    },
     "BoundedString": {
       "base": null,
       "refs": {
@@ -96,7 +103,7 @@
         "IdentificationHints$hostname": "<p>Hostname identification hint.</p>",
         "IdentificationHints$vmPath": "<p>vCenter VM path identification hint.</p>",
         "IdentificationHints$vmWareUuid": "<p>vmWare UUID identification hint.</p>",
-        "LaunchConfiguration$ec2LaunchTemplateID": "<p>Configure EC2 lauch configuration template ID.</p>",
+        "LaunchConfiguration$ec2LaunchTemplateID": "<p>Launch configuration EC2 Launch template ID.</p>",
         "NetworkInterface$macAddress": "<p>Network interface Mac address.</p>",
         "OS$fullString": "<p>OS full string.</p>",
         "ReplicationConfigurationReplicatedDisk$deviceName": "<p>Replication Configuration replicated disk device name.</p>",
@@ -181,7 +188,7 @@
       }
     },
     "DataReplicationInitiationStep": {
-      "base": "<p>Data replication intiation step.</p>",
+      "base": "<p>Data replication initiation step.</p>",
       "refs": {
         "DataReplicationInitiationSteps$member": null
       }
@@ -342,7 +349,7 @@
         "IdentificationHints$awsInstanceID": "<p>AWS Instance ID identification hint.</p>",
         "JobLogEventData$conversionServerID": "<p>Job Event conversion Server ID.</p>",
         "JobLogEventData$targetInstanceID": "<p>Job Event Target instance ID.</p>",
-        "LaunchedInstance$ec2InstanceID": "<p>Configure launced instance EC2 ID.</p>"
+        "LaunchedInstance$ec2InstanceID": "<p>Launched instance EC2 ID.</p>"
       }
     },
     "EC2InstanceType": {
@@ -364,7 +371,7 @@
     "FirstBoot": {
       "base": null,
       "refs": {
-        "LaunchedInstance$firstBoot": "<p>Configure launced instance first boot.</p>"
+        "LaunchedInstance$firstBoot": "<p>Launched instance first boot.</p>"
       }
     },
     "GetLaunchConfigurationRequest": {
@@ -387,12 +394,12 @@
       "base": null,
       "refs": {
         "DataReplicationInfo$etaDateTime": "<p>Request to query the time when data replication will be complete.</p>",
-        "DataReplicationInfo$lagDuration": "<p>Request to query data replication lag durating.</p>",
+        "DataReplicationInfo$lagDuration": "<p>Request to query data replication lag duration.</p>",
         "DataReplicationInfo$lastSnapshotDateTime": "<p>Request to query data replication last snapshot time.</p>",
         "DataReplicationInitiation$nextAttemptDateTime": "<p>Request to query next data initiation date and time.</p>",
         "DataReplicationInitiation$startDateTime": "<p>Request to query data initiation start date and time.</p>",
         "DescribeJobsRequestFilters$fromDate": "<p>Request to describe Job log filters by date.</p>",
-        "DescribeJobsRequestFilters$toDate": "<p>Request to describe Job log by last date.</p>",
+        "DescribeJobsRequestFilters$toDate": "<p>Request to describe job log items by last date.</p>",
         "Job$creationDateTime": "<p>Job creation time.</p>",
         "Job$endDateTime": "<p>Job end time.</p>",
         "JobLog$logDateTime": "<p>Job log event date and time.</p>",
@@ -453,7 +460,7 @@
         "DescribeJobLogItemsRequest$jobID": "<p>Request to describe Job log job ID.</p>",
         "DescribeJobsRequestFiltersJobIDs$member": null,
         "Job$jobID": "<p>Job ID.</p>",
-        "LaunchedInstance$jobID": "<p>Configure launced instance Job ID.</p>",
+        "LaunchedInstance$jobID": "<p>Launched instance Job ID.</p>",
         "LifeCycleLastCutoverInitiated$jobID": "<p>Lifecycle last Cutover initiated by Job ID.</p>",
         "LifeCycleLastTestInitiated$jobID": "<p>Lifecycle last Test initiated Job ID.</p>"
       }
@@ -507,8 +514,8 @@
         "AccessDeniedException$message": null,
         "ConflictException$code": null,
         "ConflictException$message": null,
-        "ConflictException$resourceId": "<p>A conflict occured when prompting for the Resource ID.</p>",
-        "ConflictException$resourceType": "<p>A conflict occured when prompting for resource type.</p>",
+        "ConflictException$resourceId": "<p>A conflict occurred when prompting for the Resource ID.</p>",
+        "ConflictException$resourceType": "<p>A conflict occurred when prompting for resource type.</p>",
         "DataReplicationError$rawError": "<p>Error in data replication.</p>",
         "InternalServerException$message": null,
         "JobLogEventData$rawError": "<p>Job error.</p>",
@@ -519,7 +526,7 @@
         "ServiceQuotaExceededException$code": null,
         "ServiceQuotaExceededException$message": null,
         "ServiceQuotaExceededException$quotaCode": "<p>Exceeded the service quota code.</p>",
-        "ServiceQuotaExceededException$resourceId": "<p>Exceeded the service quota resource Id.</p>",
+        "ServiceQuotaExceededException$resourceId": "<p>Exceeded the service quota resource ID.</p>",
         "ServiceQuotaExceededException$resourceType": "<p>Exceeded the service quota resource type.</p>",
         "ServiceQuotaExceededException$serviceCode": "<p>Exceeded the service quota service code.</p>",
         "ThrottlingException$message": null,
@@ -542,7 +549,7 @@
     "LaunchDisposition": {
       "base": null,
       "refs": {
-        "LaunchConfiguration$launchDisposition": "<p>Configure launch dispostion for launch configuration.</p>",
+        "LaunchConfiguration$launchDisposition": "<p>Launch disposition for launch configuration.</p>",
         "UpdateLaunchConfigurationRequest$launchDisposition": "<p>Update Launch configuration launch disposition request.</p>"
       }
     },
@@ -553,7 +560,7 @@
       }
     },
     "LaunchedInstance": {
-      "base": "<p>Configure launced instance.</p>",
+      "base": "<p>Launched instance.</p>",
       "refs": {
         "SourceServer$launchedInstance": "<p>Source server launched instance.</p>"
       }
@@ -561,7 +568,7 @@
     "Licensing": {
       "base": "<p>Configure Licensing.</p>",
       "refs": {
-        "LaunchConfiguration$licensing": "<p>Configure launch configuration OS licensing.</p>",
+        "LaunchConfiguration$licensing": "<p>Launch configuration OS licensing.</p>",
         "UpdateLaunchConfigurationRequest$licensing": "<p>Update Launch configuration licensing request.</p>"
       }
     },
@@ -602,9 +609,9 @@
       }
     },
     "LifeCycleLastTestFinalized": {
-      "base": "<p>Lifecycle last Test finlized.</p>",
+      "base": "<p>Lifecycle last Test finalized.</p>",
       "refs": {
-        "LifeCycleLastTest$finalized": "<p>Lifecycle last Test finlized.</p>"
+        "LifeCycleLastTest$finalized": "<p>Lifecycle last Test finalized.</p>"
       }
     },
     "LifeCycleLastTestInitiated": {
@@ -670,7 +677,7 @@
       "refs": {
         "DescribeJobLogItemsRequest$nextToken": "<p>Request to describe Job log next token.</p>",
         "DescribeJobLogItemsResponse$nextToken": "<p>Request to describe Job log response next token.</p>",
-        "DescribeJobsRequest$nextToken": "<p>Request to describe Job logby next token.</p>",
+        "DescribeJobsRequest$nextToken": "<p>Request to describe job log items by next token.</p>",
         "DescribeJobsResponse$nextToken": "<p>Request to describe Job response by next token.</p>",
         "DescribeReplicationConfigurationTemplatesRequest$nextToken": "<p>Request to describe Replication Configuration template by next token.</p>",
         "DescribeReplicationConfigurationTemplatesResponse$nextToken": "<p>Request to describe Replication Configuration template by next token.</p>",
@@ -705,7 +712,8 @@
         "InternalServerException$retryAfterSeconds": "<p>The server encountered an unexpected condition that prevented it from fulfilling the request. The request will be retried again after x seconds.</p>",
         "ReplicationConfiguration$bandwidthThrottling": "<p>Replication Configuration set bandwidth throttling.</p>",
         "ReplicationConfigurationReplicatedDisk$iops": "<p>Replication Configuration replicated disk IOPs.</p>",
-        "ReplicationConfigurationTemplate$bandwidthThrottling": "<p>Replication Configuration template bandwidth throtting.</p>",
+        "ReplicationConfigurationReplicatedDisk$throughput": "<p>Replication Configuration replicated disk throughput.</p>",
+        "ReplicationConfigurationTemplate$bandwidthThrottling": "<p>Replication Configuration template bandwidth throttling.</p>",
         "SourceProperties$ramBytes": "<p>Source server RAM in bytes.</p>",
         "UpdateReplicationConfigurationRequest$bandwidthThrottling": "<p>Update replication configuration bandwidth throttling request.</p>",
         "UpdateReplicationConfigurationTemplateRequest$bandwidthThrottling": "<p>Update replication configuration template bandwidth throttling request.</p>"
@@ -729,9 +737,9 @@
     "ReplicationConfigurationDefaultLargeStagingDiskType": {
       "base": null,
       "refs": {
-        "CreateReplicationConfigurationTemplateRequest$defaultLargeStagingDiskType": "<p>Request to configure the Staging Disk EBS volume type to \"gp2\" during Replication Settings template creation.</p>",
+        "CreateReplicationConfigurationTemplateRequest$defaultLargeStagingDiskType": "<p>Request to configure the default large staging disk EBS volume type during Replication Settings template creation.</p>",
         "ReplicationConfiguration$defaultLargeStagingDiskType": "<p>Replication Configuration use default large Staging Disks.</p>",
-        "ReplicationConfigurationTemplate$defaultLargeStagingDiskType": "<p>Replication Configuration template use dedault large Staging Disk type.</p>",
+        "ReplicationConfigurationTemplate$defaultLargeStagingDiskType": "<p>Replication Configuration template use default large Staging Disk type.</p>",
         "UpdateReplicationConfigurationRequest$defaultLargeStagingDiskType": "<p>Update replication configuration use default large Staging Disk type request.</p>",
         "UpdateReplicationConfigurationTemplateRequest$defaultLargeStagingDiskType": "<p>Update replication configuration template use default large Staging Disk type request.</p>"
       }
@@ -739,7 +747,7 @@
     "ReplicationConfigurationEbsEncryption": {
       "base": null,
       "refs": {
-        "CreateReplicationConfigurationTemplateRequest$ebsEncryption": "<p>Request to configure EBS enryption during Replication Settings template creation.</p>",
+        "CreateReplicationConfigurationTemplateRequest$ebsEncryption": "<p>Request to configure EBS encryption during Replication Settings template creation.</p>",
         "ReplicationConfiguration$ebsEncryption": "<p>Replication Configuration EBS encryption.</p>",
         "ReplicationConfigurationTemplate$ebsEncryption": "<p>Replication Configuration template EBS encryption.</p>",
         "UpdateReplicationConfigurationRequest$ebsEncryption": "<p>Update replication configuration EBS encryption request.</p>",
@@ -775,7 +783,7 @@
       "base": null,
       "refs": {
         "DeleteReplicationConfigurationTemplateRequest$replicationConfigurationTemplateID": "<p>Request to delete Replication Configuration Template from service by Replication Configuration Template ID.</p>",
-        "ReplicationConfigurationTemplate$replicationConfigurationTemplateID": "<p>Replication Configuration template template ID.</p>",
+        "ReplicationConfigurationTemplate$replicationConfigurationTemplateID": "<p>Replication Configuration template ID.</p>",
         "ReplicationConfigurationTemplateIDs$member": null,
         "UpdateReplicationConfigurationTemplateRequest$replicationConfigurationTemplateID": "<p>Update replication configuration template template ID request.</p>"
       }
@@ -795,7 +803,7 @@
     "ReplicationServersSecurityGroupsIDs": {
       "base": null,
       "refs": {
-        "CreateReplicationConfigurationTemplateRequest$replicationServersSecurityGroupsIDs": "<p>Request to configure the Replication Server Secuirity group ID during Replication Settings template creation.</p>",
+        "CreateReplicationConfigurationTemplateRequest$replicationServersSecurityGroupsIDs": "<p>Request to configure the Replication Server Security group ID during Replication Settings template creation.</p>",
         "ReplicationConfiguration$replicationServersSecurityGroupsIDs": "<p>Replication Configuration Replication Server Security Group IDs.</p>",
         "ReplicationConfigurationTemplate$replicationServersSecurityGroupsIDs": "<p>Replication Configuration template server Security Groups IDs.</p>",
         "UpdateReplicationConfigurationRequest$replicationServersSecurityGroupsIDs": "<p>Update replication configuration Replication Server Security Groups IDs request.</p>",
@@ -840,7 +848,7 @@
     "SmallBoundedString": {
       "base": null,
       "refs": {
-        "LaunchConfiguration$name": "<p>Configure launch configuration name.</p>",
+        "LaunchConfiguration$name": "<p>Launch configuration name.</p>",
         "ReplicationConfiguration$name": "<p>Replication Configuration name.</p>",
         "UpdateLaunchConfigurationRequest$name": "<p>Update Launch configuration name request.</p>",
         "UpdateReplicationConfigurationRequest$name": "<p>Update replication configuration name request.</p>"
@@ -865,11 +873,11 @@
         "DeleteSourceServerRequest$sourceServerID": "<p>Request to delete Source Server from service by Server ID.</p>",
         "DescribeSourceServersRequestFiltersIDs$member": null,
         "DisconnectFromServiceRequest$sourceServerID": "<p>Request to disconnect Source Server from service by Server ID.</p>",
-        "FinalizeCutoverRequest$sourceServerID": "<p>Request to finalize Cutover by Soure Server ID.</p>",
+        "FinalizeCutoverRequest$sourceServerID": "<p>Request to finalize Cutover by Source Server ID.</p>",
         "GetLaunchConfigurationRequest$sourceServerID": "<p>Request to get Launch Configuration information by Source Server ID.</p>",
-        "GetReplicationConfigurationRequest$sourceServerID": "<p>Request to get Replication Configuaration by Source Server ID.</p>",
+        "GetReplicationConfigurationRequest$sourceServerID": "<p>Request to get Replication Configuration by Source Server ID.</p>",
         "JobLogEventData$sourceServerID": "<p>Job Event Source Server ID.</p>",
-        "LaunchConfiguration$sourceServerID": "<p>Configure launch configuration Source Server ID.</p>",
+        "LaunchConfiguration$sourceServerID": "<p>Launch configuration Source Server ID.</p>",
         "MarkAsArchivedRequest$sourceServerID": "<p>Mark as archived by Source Server ID.</p>",
         "ParticipatingServer$sourceServerID": "<p>Participating server Source Server ID.</p>",
         "ReplicationConfiguration$sourceServerID": "<p>Replication Configuration Source Server ID.</p>",
@@ -931,7 +939,7 @@
       "base": null,
       "refs": {
         "DescribeJobLogItemsRequest$maxResults": "<p>Request to describe Job log item maximum results.</p>",
-        "DescribeJobsRequest$maxResults": "<p>Request to describe Job log by max results.</p>",
+        "DescribeJobsRequest$maxResults": "<p>Request to describe job log items by max results.</p>",
         "DescribeReplicationConfigurationTemplatesRequest$maxResults": "<p>Request to describe Replication Configuration template by max results.</p>",
         "DescribeSourceServersRequest$maxResults": "<p>Request to filter Source Servers list by maximum results.</p>",
         "DescribeVcenterClientsRequest$maxResults": "<p>Maximum results to be returned in DescribeVcenterClients.</p>"
@@ -974,9 +982,9 @@
     "TagsMap": {
       "base": null,
       "refs": {
-        "CreateReplicationConfigurationTemplateRequest$stagingAreaTags": "<p>Request to configure Staiging Area tags during Replication Settings template creation.</p>",
+        "CreateReplicationConfigurationTemplateRequest$stagingAreaTags": "<p>Request to configure Staging Area tags during Replication Settings template creation.</p>",
         "CreateReplicationConfigurationTemplateRequest$tags": "<p>Request to configure tags during Replication Settings template creation.</p>",
-        "Job$tags": "<p>Tags associated with spcific Job.</p>",
+        "Job$tags": "<p>Tags associated with specific Job.</p>",
         "ListTagsForResourceResponse$tags": "<p>List tags for resource response.</p>",
         "ReplicationConfiguration$stagingAreaTags": "<p>Replication Configuration Staging Area tags.</p>",
         "ReplicationConfigurationTemplate$stagingAreaTags": "<p>Replication Configuration template Staging Area Tags.</p>",
@@ -995,7 +1003,7 @@
     "TargetInstanceTypeRightSizingMethod": {
       "base": null,
       "refs": {
-        "LaunchConfiguration$targetInstanceTypeRightSizingMethod": "<p>Configure launch configuration Target instance type right sizing method.</p>",
+        "LaunchConfiguration$targetInstanceTypeRightSizingMethod": "<p>Launch configuration Target instance type right sizing method.</p>",
         "UpdateLaunchConfigurationRequest$targetInstanceTypeRightSizingMethod": "<p>Update Launch configuration Target instance right sizing request.</p>"
       }
     },
@@ -1021,7 +1029,7 @@
       }
     },
     "UninitializedAccountException": {
-      "base": "<p>Unitialized account exception.</p>",
+      "base": "<p>Uninitialized account exception.</p>",
       "refs": {
       }
     },

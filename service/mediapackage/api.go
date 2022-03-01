@@ -7122,6 +7122,9 @@ const (
 
 	// ProfileHbbtv15 is a Profile enum value
 	ProfileHbbtv15 = "HBBTV_1_5"
+
+	// ProfileHybridcast is a Profile enum value
+	ProfileHybridcast = "HYBRIDCAST"
 )
 
 // Profile_Values returns all elements of the Profile enum
@@ -7129,6 +7132,7 @@ func Profile_Values() []string {
 	return []string{
 		ProfileNone,
 		ProfileHbbtv15,
+		ProfileHybridcast,
 	}
 }
 

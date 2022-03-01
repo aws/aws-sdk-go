@@ -485,6 +485,13 @@
       "type":"boolean",
       "box":true
     },
+    "BootMode":{
+      "type":"string",
+      "enum":[
+        "LEGACY_BIOS",
+        "UEFI"
+      ]
+    },
     "BoundedString":{
       "type":"string",
       "max":256,
@@ -1055,6 +1062,7 @@
     "LaunchConfiguration":{
       "type":"structure",
       "members":{
+        "bootMode":{"shape":"BootMode"},
         "copyPrivateIp":{"shape":"Boolean"},
         "copyTags":{"shape":"Boolean"},
         "ec2LaunchTemplateID":{"shape":"BoundedString"},
@@ -1277,7 +1285,8 @@
       "type":"string",
       "enum":[
         "GP2",
-        "ST1"
+        "ST1",
+        "GP3"
       ]
     },
     "ReplicationConfigurationEbsEncryption":{
@@ -1293,7 +1302,8 @@
         "deviceName":{"shape":"BoundedString"},
         "iops":{"shape":"PositiveInteger"},
         "isBootDisk":{"shape":"Boolean"},
-        "stagingDiskType":{"shape":"ReplicationConfigurationReplicatedDiskStagingDiskType"}
+        "stagingDiskType":{"shape":"ReplicationConfigurationReplicatedDiskStagingDiskType"},
+        "throughput":{"shape":"PositiveInteger"}
       }
     },
     "ReplicationConfigurationReplicatedDiskStagingDiskType":{
@@ -1304,7 +1314,9 @@
         "IO1",
         "SC1",
         "ST1",
-        "STANDARD"
+        "STANDARD",
+        "GP3",
+        "IO2"
       ]
     },
     "ReplicationConfigurationReplicatedDisks":{
@@ -1629,6 +1641,7 @@
       "type":"structure",
       "required":["sourceServerID"],
       "members":{
+        "bootMode":{"shape":"BootMode"},
         "copyPrivateIp":{"shape":"Boolean"},
         "copyTags":{"shape":"Boolean"},
         "launchDisposition":{"shape":"LaunchDisposition"},
