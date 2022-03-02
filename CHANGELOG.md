@@ -1,3 +1,17 @@
+Release v1.43.10 (2022-03-02)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * This release adds support for S3 Object Ownership by allowing the S3 bucket owner full control canned ACL to be set when Athena writes query results to S3 buckets.
+* `service/cloudtrail`: Updates service API and documentation
+  * Add bytesScanned field into responses of DescribeQuery and GetQueryResults.
+* `service/ecr`: Updates service API and documentation
+  * This release adds support for tracking images lastRecordedPullTime.
+* `service/gamelift`: Updates service documentation
+  * Minor updates to address errors.
+* `service/keyspaces`: Updates service API, documentation, waiters, paginators, and examples
+
 Release v1.43.9 (2022-03-01)
 ===
 

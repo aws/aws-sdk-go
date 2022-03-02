@@ -3881,7 +3881,7 @@ func (c *GameLift) DescribeEC2InstanceLimitsRequest(input *DescribeEC2InstanceLi
 
 // DescribeEC2InstanceLimits API operation for Amazon GameLift.
 //
-// The GameLift service limits and current utilization for an Amazon Web Services
+// Retrieves the instance limits and current utilization for an Amazon Web Services
 // Region or location. Instance limits control the number of instances, per
 // instance type, per location, that your Amazon Web Services account can use.
 // Learn more at Amazon EC2 Instance Types (http://aws.amazon.com/ec2/instance-types/).
@@ -6561,7 +6561,7 @@ func (c *GameLift) DescribeMatchmakingRequest(input *DescribeMatchmakingInput) (
 // ticket status. This practice can cause you to exceed your API limit, which
 // results in errors. Instead, as a best practice, set up an Amazon Simple Notification
 // Service to receive notifications, and provide the topic ARN in the matchmaking
-// configuration. Continuously poling ticket status with DescribeMatchmaking
+// configuration. Continuously polling ticket status with DescribeMatchmaking
 // should only be used for games in development with low matchmaking usage.
 //
 // Learn more

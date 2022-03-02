@@ -92,7 +92,7 @@ const (
 	// "InactiveQueryException".
 	//
 	// The specified query cannot be canceled because it is in the FINISHED, FAILED,
-	// or CANCELLED state.
+	// TIMED_OUT, or CANCELLED state.
 	ErrCodeInactiveQueryException = "InactiveQueryException"
 
 	// ErrCodeInsightNotEnabledException for service response error code

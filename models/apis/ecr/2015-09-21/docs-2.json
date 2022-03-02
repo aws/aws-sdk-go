@@ -31,7 +31,7 @@
     "ListImages": "<p>Lists all the image IDs for the specified repository.</p> <p>You can filter images based on whether or not they are tagged by using the <code>tagStatus</code> filter and specifying either <code>TAGGED</code>, <code>UNTAGGED</code> or <code>ANY</code>. For example, you can filter your results to return only <code>UNTAGGED</code> images and then pipe that result to a <a>BatchDeleteImage</a> operation to delete them. Or, you can filter your results to return only <code>TAGGED</code> images to list all of the tags in your repository.</p>",
     "ListTagsForResource": "<p>List the tags for an Amazon ECR resource.</p>",
     "PutImage": "<p>Creates or updates the image manifest and tags associated with an image.</p> <p>When an image is pushed and all new image layers have been uploaded, the PutImage API is called once to create or update the image manifest and the tags associated with the image.</p> <note> <p>This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
-    "PutImageScanningConfiguration": "<p>Updates the image scanning configuration for the specified repository.</p>",
+    "PutImageScanningConfiguration": "<important> <p>The <code>PutImageScanningConfiguration</code> API is being deprecated, in favor of specifying the image scanning configuration at the registry level. For more information, see <a>PutRegistryScanningConfiguration</a>.</p> </important> <p>Updates the image scanning configuration for the specified repository.</p>",
     "PutImageTagMutability": "<p>Updates the image tag mutability settings for the specified repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-tag-mutability.html\">Image tag mutability</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "PutLifecyclePolicy": "<p>Creates or updates the lifecycle policy for the specified repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html\">Lifecycle policy template</a>.</p>",
     "PutRegistryPolicy": "<p>Creates or updates the permissions policy for your registry.</p> <p>A registry policy is used to specify permissions for another Amazon Web Services account and is used when configuring cross-account replication. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-permissions.html\">Registry permissions</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
@@ -1256,6 +1256,12 @@
         "Recommendation$text": "<p>The recommended course of action to remediate the finding.</p>"
       }
     },
+    "RecordedPullTimestamp": {
+      "base": null,
+      "refs": {
+        "ImageDetail$lastRecordedPullTime": "<p>The date and time, expressed in standard JavaScript date format, when Amazon ECR recorded the last image pull.</p> <note> <p>Amazon ECR refreshes the last image pull timestamp at least once every 24 hours. For example, if you pull an image once a day then the <code>lastRecordedPullTime</code> timestamp will indicate the exact time that the image was last pulled. However, if you pull an image once an hour, because Amazon ECR refreshes the <code>lastRecordedPullTime</code> timestamp at least once every 24 hours, the result may not be the exact time that the image was last pulled.</p> </note>"
+      }
+    },
     "ReferenceUrlsList": {
       "base": null,
       "refs": {
@@ -1619,7 +1625,7 @@
     "ScanFrequency": {
       "base": null,
       "refs": {
-        "RegistryScanningRule$scanFrequency": "<p>The frequency that scans are performed at for a private registry.</p>",
+        "RegistryScanningRule$scanFrequency": "<p>The frequency that scans are performed at for a private registry. When the <code>ENHANCED</code> scan type is specified, the supported scan frequencies are <code>CONTINUOUS_SCAN</code> and <code>SCAN_ON_PUSH</code>. When the <code>BASIC</code> scan type is specified, the <code>SCAN_ON_PUSH</code> and <code>MANUAL</code> scan frequencies are supported.</p>",
         "RepositoryScanningConfiguration$scanFrequency": "<p>The scan frequency for the repository.</p>"
       }
     },
@@ -1657,7 +1663,7 @@
     "ScanType": {
       "base": null,
       "refs": {
-        "PutRegistryScanningConfigurationRequest$scanType": "<p>The scanning type to set for the registry.</p> <p>By default, the <code>BASIC</code> scan type is used. When basic scanning is set, you may specify filters to determine which individual repositories, or all repositories, are scanned when new images are pushed. Alternatively, you can do manual scans of images with basic scanning.</p> <p>When the <code>ENHANCED</code> scan type is set, Amazon Inspector provides automated, continuous scanning of all repositories in your registry.</p>",
+        "PutRegistryScanningConfigurationRequest$scanType": "<p>The scanning type to set for the registry.</p> <p>When a registry scanning configuration is not defined, by default the <code>BASIC</code> scan type is used. When basic scanning is used, you may specify filters to determine which individual repositories, or all repositories, are scanned when new images are pushed to those repositories. Alternatively, you can do manual scans of images with basic scanning.</p> <p>When the <code>ENHANCED</code> scan type is set, Amazon Inspector provides automated vulnerability scanning. You may choose between continuous scanning or scan on push and you may specify filters to determine which individual repositories, or all repositories, are scanned.</p>",
         "RegistryScanningConfiguration$scanType": "<p>The type of scanning configured for the registry.</p>"
       }
     },
@@ -1793,7 +1799,7 @@
       }
     },
     "Tag": {
-      "base": "<p>The metadata that you apply to a resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>",
+      "base": "<p>The metadata to apply to a resource to help you categorize and organize them. Each tag consists of a key and a value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>",
       "refs": {
         "TagList$member": null
       }
@@ -1841,7 +1847,7 @@
     "TagValue": {
       "base": null,
       "refs": {
-        "Tag$Value": "<p>The optional part of a key-value pair that make up a tag. A <code>value</code> acts as a descriptor within a tag category (key).</p>",
+        "Tag$Value": "<p>A <code>value</code> acts as a descriptor within a tag category (key).</p>",
         "Tags$value": null
       }
     },

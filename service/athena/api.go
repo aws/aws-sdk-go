@@ -3619,6 +3619,63 @@ func (c *Athena) UpdateWorkGroupWithContext(ctx aws.Context, input *UpdateWorkGr
 	return out, req.Send()
 }
 
+// Indicates that an Amazon S3 canned ACL should be set to control ownership
+// of stored query results. When Athena stores query results in Amazon S3, the
+// canned ACL is set with the x-amz-acl request header. For more information
+// about S3 Object Ownership, see Object Ownership settings (https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html#object-ownership-overview)
+// in the Amazon S3 User Guide.
+type AclConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 canned ACL that Athena should specify when storing query results.
+	// Currently the only supported canned ACL is BUCKET_OWNER_FULL_CONTROL. If
+	// a query runs in a workgroup and the workgroup overrides client-side settings,
+	// then the Amazon S3 canned ACL specified in the workgroup's settings is used
+	// for all queries that run in the workgroup. For more information about Amazon
+	// S3 canned ACLs, see Canned ACL (https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl)
+	// in the Amazon S3 User Guide.
+	//
+	// S3AclOption is a required field
+	S3AclOption *string `type:"string" required:"true" enum:"S3AclOption"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AclConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AclConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AclConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AclConfiguration"}
+	if s.S3AclOption == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3AclOption"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3AclOption sets the S3AclOption field's value.
+func (s *AclConfiguration) SetS3AclOption(v string) *AclConfiguration {
+	s.S3AclOption = &v
+	return s
+}
+
 // Provides information about an Athena query error. The AthenaError feature
 // provides standardized error information to help you understand failed queries
 // and take steps after a query failure occurs. AthenaError includes an ErrorCategory
@@ -7767,6 +7824,15 @@ func (s *ResourceNotFoundException) RequestID() string {
 type ResultConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates that an Amazon S3 canned ACL should be set to control ownership
+	// of stored query results. Currently the only supported canned ACL is BUCKET_OWNER_FULL_CONTROL.
+	// This is a client-side setting. If workgroup settings override client-side
+	// settings, then the query uses the ACL configuration that is specified for
+	// the workgroup, and also uses the location for storing query results specified
+	// in the workgroup. For more information, see WorkGroupConfiguration$EnforceWorkGroupConfiguration
+	// and Workgroup Settings Override Client-Side Settings (https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html).
+	AclConfiguration *AclConfiguration `type:"structure"`
+
 	// If query results are encrypted in Amazon S3, indicates the encryption option
 	// used (for example, SSE-KMS or CSE-KMS) and key information. This is a client-side
 	// setting. If workgroup settings override client-side settings, then the query
@@ -7822,6 +7888,11 @@ func (s ResultConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ResultConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ResultConfiguration"}
+	if s.AclConfiguration != nil {
+		if err := s.AclConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("AclConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.EncryptionConfiguration != nil {
 		if err := s.EncryptionConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("EncryptionConfiguration", err.(request.ErrInvalidParams))
@@ -7832,6 +7903,12 @@ func (s *ResultConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAclConfiguration sets the AclConfiguration field's value.
+func (s *ResultConfiguration) SetAclConfiguration(v *AclConfiguration) *ResultConfiguration {
+	s.AclConfiguration = v
+	return s
 }
 
 // SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
@@ -7856,6 +7933,9 @@ func (s *ResultConfiguration) SetOutputLocation(v string) *ResultConfiguration {
 // and encryption configuration for the query results.
 type ResultConfigurationUpdates struct {
 	_ struct{} `type:"structure"`
+
+	// The ACL configuration for the query results.
+	AclConfiguration *AclConfiguration `type:"structure"`
 
 	// The encryption configuration for the query results.
 	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
@@ -7882,6 +7962,14 @@ type ResultConfigurationUpdates struct {
 	// in EnforceWorkGroupConfiguration (true/false) in the WorkGroupConfiguration.
 	// See WorkGroupConfiguration$EnforceWorkGroupConfiguration.
 	OutputLocation *string `type:"string"`
+
+	// If set to true, indicates that the previously-specified ACL configuration
+	// for queries in this workgroup should be ignored and set to null. If set to
+	// false or not set, and a value is present in the AclConfiguration of ResultConfigurationUpdates,
+	// the AclConfiguration in the workgroup's ResultConfiguration is updated with
+	// the new value. For more information, see Workgroup Settings Override Client-Side
+	// Settings (https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html).
+	RemoveAclConfiguration *bool `type:"boolean"`
 
 	// If set to "true", indicates that the previously-specified encryption configuration
 	// (also known as the client-side setting) for queries in this workgroup should
@@ -7931,6 +8019,11 @@ func (s ResultConfigurationUpdates) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ResultConfigurationUpdates) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ResultConfigurationUpdates"}
+	if s.AclConfiguration != nil {
+		if err := s.AclConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("AclConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.EncryptionConfiguration != nil {
 		if err := s.EncryptionConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("EncryptionConfiguration", err.(request.ErrInvalidParams))
@@ -7941,6 +8034,12 @@ func (s *ResultConfigurationUpdates) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAclConfiguration sets the AclConfiguration field's value.
+func (s *ResultConfigurationUpdates) SetAclConfiguration(v *AclConfiguration) *ResultConfigurationUpdates {
+	s.AclConfiguration = v
+	return s
 }
 
 // SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
@@ -7958,6 +8057,12 @@ func (s *ResultConfigurationUpdates) SetExpectedBucketOwner(v string) *ResultCon
 // SetOutputLocation sets the OutputLocation field's value.
 func (s *ResultConfigurationUpdates) SetOutputLocation(v string) *ResultConfigurationUpdates {
 	s.OutputLocation = &v
+	return s
+}
+
+// SetRemoveAclConfiguration sets the RemoveAclConfiguration field's value.
+func (s *ResultConfigurationUpdates) SetRemoveAclConfiguration(v bool) *ResultConfigurationUpdates {
+	s.RemoveAclConfiguration = &v
 	return s
 }
 
@@ -9730,6 +9835,18 @@ func QueryExecutionState_Values() []string {
 		QueryExecutionStateSucceeded,
 		QueryExecutionStateFailed,
 		QueryExecutionStateCancelled,
+	}
+}
+
+const (
+	// S3AclOptionBucketOwnerFullControl is a S3AclOption enum value
+	S3AclOptionBucketOwnerFullControl = "BUCKET_OWNER_FULL_CONTROL"
+)
+
+// S3AclOption_Values returns all elements of the S3AclOption enum
+func S3AclOption_Values() []string {
+	return []string{
+		S3AclOptionBucketOwnerFullControl,
 	}
 }
 
