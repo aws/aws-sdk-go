@@ -202,10 +202,10 @@ func (c *CloudTrail) CancelQueryRequest(input *CancelQueryInput) (req *request.R
 // CancelQuery API operation for AWS CloudTrail.
 //
 // Cancels a query if the query is not in a terminated state, such as CANCELLED,
-// FAILED or FINISHED. You must specify an ARN value for EventDataStore. The
-// ID of the query that you want to cancel is also required. When you run CancelQuery,
-// the query status might show as CANCELLED even if the operation is not yet
-// finished.
+// FAILED, TIMED_OUT, or FINISHED. You must specify an ARN value for EventDataStore.
+// The ID of the query that you want to cancel is also required. When you run
+// CancelQuery, the query status might show as CANCELLED even if the operation
+// is not yet finished.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -227,7 +227,7 @@ func (c *CloudTrail) CancelQueryRequest(input *CancelQueryInput) (req *request.R
 //
 //   * InactiveQueryException
 //   The specified query cannot be canceled because it is in the FINISHED, FAILED,
-//   or CANCELLED state.
+//   TIMED_OUT, or CANCELLED state.
 //
 //   * InvalidParameterException
 //   The request includes a parameter that is not valid.
@@ -2091,7 +2091,8 @@ func (c *CloudTrail) ListQueriesRequest(input *ListQueriesInput) (req *request.R
 // must specify an ARN value for EventDataStore. Optionally, to shorten the
 // list of results, you can specify a time range, formatted as timestamps, by
 // adding StartTime and EndTime parameters, and a QueryStatus value. Valid values
-// for QueryStatus include QUEUED, RUNNING, FINISHED, FAILED, or CANCELLED.
+// for QueryStatus include QUEUED, RUNNING, FINISHED, FAILED, TIMED_OUT, or
+// CANCELLED.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5826,7 +5827,7 @@ type DescribeQueryOutput struct {
 	QueryStatistics *QueryStatisticsForDescribeQuery `type:"structure"`
 
 	// The status of a query. Values for QueryStatus include QUEUED, RUNNING, FINISHED,
-	// FAILED, or CANCELLED
+	// FAILED, TIMED_OUT, or CANCELLED
 	QueryStatus *string `type:"string" enum:"QueryStatus"`
 
 	// The SQL code of a query.
@@ -7121,7 +7122,7 @@ type GetQueryResultsOutput struct {
 	QueryStatistics *QueryStatistics `type:"structure"`
 
 	// The status of the query. Values include QUEUED, RUNNING, FINISHED, FAILED,
-	// or CANCELLED.
+	// TIMED_OUT, or CANCELLED.
 	QueryStatus *string `type:"string" enum:"QueryStatus"`
 }
 
@@ -7571,7 +7572,7 @@ func (s *InactiveEventDataStoreException) RequestID() string {
 }
 
 // The specified query cannot be canceled because it is in the FINISHED, FAILED,
-// or CANCELLED state.
+// TIMED_OUT, or CANCELLED state.
 type InactiveQueryException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -9927,7 +9928,7 @@ type ListQueriesInput struct {
 	NextToken *string `min:"4" type:"string"`
 
 	// The status of queries that you want to return in results. Valid values for
-	// QueryStatus include QUEUED, RUNNING, FINISHED, FAILED, or CANCELLED.
+	// QueryStatus include QUEUED, RUNNING, FINISHED, FAILED, TIMED_OUT, or CANCELLED.
 	QueryStatus *string `type:"string" enum:"QueryStatus"`
 
 	// Use with EndTime to bound a ListQueries request, and limit its results to
@@ -11175,8 +11176,8 @@ type Query struct {
 	// The ID of a query.
 	QueryId *string `min:"36" type:"string"`
 
-	// The status of the query. This can be QUEUED, RUNNING, FINISHED, FAILED, or
-	// CANCELLED.
+	// The status of the query. This can be QUEUED, RUNNING, FINISHED, FAILED, TIMED_OUT,
+	// or CANCELLED.
 	QueryStatus *string `type:"string" enum:"QueryStatus"`
 }
 
@@ -11284,6 +11285,11 @@ func (s *QueryIdNotFoundException) RequestID() string {
 type QueryStatistics struct {
 	_ struct{} `type:"structure"`
 
+	// The total bytes that the query scanned in the event data store. This value
+	// matches the number of bytes for which your account is billed for the query,
+	// unless the query is still running.
+	BytesScanned *int64 `type:"long"`
+
 	// The number of results returned.
 	ResultsCount *int64 `type:"integer"`
 
@@ -11309,6 +11315,12 @@ func (s QueryStatistics) GoString() string {
 	return s.String()
 }
 
+// SetBytesScanned sets the BytesScanned field's value.
+func (s *QueryStatistics) SetBytesScanned(v int64) *QueryStatistics {
+	s.BytesScanned = &v
+	return s
+}
+
 // SetResultsCount sets the ResultsCount field's value.
 func (s *QueryStatistics) SetResultsCount(v int64) *QueryStatistics {
 	s.ResultsCount = &v
@@ -11326,6 +11338,11 @@ func (s *QueryStatistics) SetTotalResultsCount(v int64) *QueryStatistics {
 // the query's creation time.
 type QueryStatisticsForDescribeQuery struct {
 	_ struct{} `type:"structure"`
+
+	// The total bytes that the query scanned in the event data store. This value
+	// matches the number of bytes for which your account is billed for the query,
+	// unless the query is still running.
+	BytesScanned *int64 `type:"long"`
 
 	// The creation time of the query.
 	CreationTime *time.Time `type:"timestamp"`
@@ -11356,6 +11373,12 @@ func (s QueryStatisticsForDescribeQuery) String() string {
 // value will be replaced with "sensitive".
 func (s QueryStatisticsForDescribeQuery) GoString() string {
 	return s.String()
+}
+
+// SetBytesScanned sets the BytesScanned field's value.
+func (s *QueryStatisticsForDescribeQuery) SetBytesScanned(v int64) *QueryStatisticsForDescribeQuery {
+	s.BytesScanned = &v
+	return s
 }
 
 // SetCreationTime sets the CreationTime field's value.
@@ -13484,6 +13507,9 @@ const (
 
 	// QueryStatusCancelled is a QueryStatus enum value
 	QueryStatusCancelled = "CANCELLED"
+
+	// QueryStatusTimedOut is a QueryStatus enum value
+	QueryStatusTimedOut = "TIMED_OUT"
 )
 
 // QueryStatus_Values returns all elements of the QueryStatus enum
@@ -13494,6 +13520,7 @@ func QueryStatus_Values() []string {
 		QueryStatusFinished,
 		QueryStatusFailed,
 		QueryStatusCancelled,
+		QueryStatusTimedOut,
 	}
 }
 

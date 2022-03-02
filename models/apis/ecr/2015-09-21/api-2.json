@@ -1304,7 +1304,8 @@
         "imageScanStatus":{"shape":"ImageScanStatus"},
         "imageScanFindingsSummary":{"shape":"ImageScanFindingsSummary"},
         "imageManifestMediaType":{"shape":"MediaType"},
-        "artifactMediaType":{"shape":"MediaType"}
+        "artifactMediaType":{"shape":"MediaType"},
+        "lastRecordedPullTime":{"shape":"RecordedPullTimestamp"}
       }
     },
     "ImageDetailList":{
@@ -1930,6 +1931,7 @@
       }
     },
     "RecommendationText":{"type":"string"},
+    "RecordedPullTimestamp":{"type":"timestamp"},
     "ReferenceUrlsList":{
       "type":"list",
       "member":{"shape":"Url"}

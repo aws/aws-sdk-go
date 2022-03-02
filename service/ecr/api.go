@@ -3145,6 +3145,11 @@ func (c *ECR) PutImageScanningConfigurationRequest(input *PutImageScanningConfig
 
 // PutImageScanningConfiguration API operation for Amazon EC2 Container Registry.
 //
+//
+// The PutImageScanningConfiguration API is being deprecated, in favor of specifying
+// the image scanning configuration at the registry level. For more information,
+// see PutRegistryScanningConfiguration.
+//
 // Updates the image scanning configuration for the specified repository.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -8102,6 +8107,17 @@ type ImageDetail struct {
 	// The list of tags associated with this image.
 	ImageTags []*string `locationName:"imageTags" type:"list"`
 
+	// The date and time, expressed in standard JavaScript date format, when Amazon
+	// ECR recorded the last image pull.
+	//
+	// Amazon ECR refreshes the last image pull timestamp at least once every 24
+	// hours. For example, if you pull an image once a day then the lastRecordedPullTime
+	// timestamp will indicate the exact time that the image was last pulled. However,
+	// if you pull an image once an hour, because Amazon ECR refreshes the lastRecordedPullTime
+	// timestamp at least once every 24 hours, the result may not be the exact time
+	// that the image was last pulled.
+	LastRecordedPullTime *time.Time `locationName:"lastRecordedPullTime" type:"timestamp"`
+
 	// The Amazon Web Services account ID associated with the registry to which
 	// this image belongs.
 	RegistryId *string `locationName:"registryId" type:"string"`
@@ -8173,6 +8189,12 @@ func (s *ImageDetail) SetImageSizeInBytes(v int64) *ImageDetail {
 // SetImageTags sets the ImageTags field's value.
 func (s *ImageDetail) SetImageTags(v []*string) *ImageDetail {
 	s.ImageTags = v
+	return s
+}
+
+// SetLastRecordedPullTime sets the LastRecordedPullTime field's value.
+func (s *ImageDetail) SetLastRecordedPullTime(v time.Time) *ImageDetail {
+	s.LastRecordedPullTime = &v
 	return s
 }
 
@@ -11230,13 +11252,16 @@ type PutRegistryScanningConfigurationInput struct {
 
 	// The scanning type to set for the registry.
 	//
-	// By default, the BASIC scan type is used. When basic scanning is set, you
-	// may specify filters to determine which individual repositories, or all repositories,
-	// are scanned when new images are pushed. Alternatively, you can do manual
-	// scans of images with basic scanning.
+	// When a registry scanning configuration is not defined, by default the BASIC
+	// scan type is used. When basic scanning is used, you may specify filters to
+	// determine which individual repositories, or all repositories, are scanned
+	// when new images are pushed to those repositories. Alternatively, you can
+	// do manual scans of images with basic scanning.
 	//
-	// When the ENHANCED scan type is set, Amazon Inspector provides automated,
-	// continuous scanning of all repositories in your registry.
+	// When the ENHANCED scan type is set, Amazon Inspector provides automated vulnerability
+	// scanning. You may choose between continuous scanning or scan on push and
+	// you may specify filters to determine which individual repositories, or all
+	// repositories, are scanned.
 	ScanType *string `locationName:"scanType" type:"string" enum:"ScanType"`
 }
 
@@ -11623,7 +11648,10 @@ type RegistryScanningRule struct {
 	// RepositoryFilters is a required field
 	RepositoryFilters []*ScanningRepositoryFilter `locationName:"repositoryFilters" type:"list" required:"true"`
 
-	// The frequency that scans are performed at for a private registry.
+	// The frequency that scans are performed at for a private registry. When the
+	// ENHANCED scan type is specified, the supported scan frequencies are CONTINUOUS_SCAN
+	// and SCAN_ON_PUSH. When the BASIC scan type is specified, the SCAN_ON_PUSH
+	// and MANUAL scan frequencies are supported.
 	//
 	// ScanFrequency is a required field
 	ScanFrequency *string `locationName:"scanFrequency" type:"string" required:"true" enum:"ScanFrequency"`
@@ -13199,10 +13227,10 @@ func (s *StartLifecyclePolicyPreviewOutput) SetStatus(v string) *StartLifecycleP
 	return s
 }
 
-// The metadata that you apply to a resource to help you categorize and organize
-// them. Each tag consists of a key and an optional value, both of which you
-// define. Tag keys can have a maximum character length of 128 characters, and
-// tag values can have a maximum length of 256 characters.
+// The metadata to apply to a resource to help you categorize and organize them.
+// Each tag consists of a key and a value, both of which you define. Tag keys
+// can have a maximum character length of 128 characters, and tag values can
+// have a maximum length of 256 characters.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -13210,8 +13238,7 @@ type Tag struct {
 	// that acts like a category for more specific tag values.
 	Key *string `type:"string"`
 
-	// The optional part of a key-value pair that make up a tag. A value acts as
-	// a descriptor within a tag category (key).
+	// A value acts as a descriptor within a tag category (key).
 	Value *string `type:"string"`
 }
 

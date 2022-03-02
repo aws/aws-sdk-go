@@ -1596,7 +1596,8 @@
       "type":"structure",
       "members":{
         "ResultsCount":{"shape":"Integer"},
-        "TotalResultsCount":{"shape":"Integer"}
+        "TotalResultsCount":{"shape":"Integer"},
+        "BytesScanned":{"shape":"Long"}
       }
     },
     "QueryStatisticsForDescribeQuery":{
@@ -1604,6 +1605,7 @@
       "members":{
         "EventsMatched":{"shape":"Long"},
         "EventsScanned":{"shape":"Long"},
+        "BytesScanned":{"shape":"Long"},
         "ExecutionTimeInMillis":{"shape":"Integer"},
         "CreationTime":{"shape":"Date"}
       }
@@ -1615,7 +1617,8 @@
         "RUNNING",
         "FINISHED",
         "FAILED",
-        "CANCELLED"
+        "CANCELLED",
+        "TIMED_OUT"
       ]
     },
     "ReadWriteType":{

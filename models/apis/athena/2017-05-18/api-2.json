@@ -486,6 +486,13 @@
     }
   },
   "shapes":{
+    "AclConfiguration":{
+      "type":"structure",
+      "required":["S3AclOption"],
+      "members":{
+        "S3AclOption":{"shape":"S3AclOption"}
+      }
+    },
     "AmazonResourceName":{
       "type":"string",
       "max":1011,
@@ -1345,7 +1352,8 @@
       "members":{
         "OutputLocation":{"shape":"String"},
         "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
-        "ExpectedBucketOwner":{"shape":"String"}
+        "ExpectedBucketOwner":{"shape":"String"},
+        "AclConfiguration":{"shape":"AclConfiguration"}
       }
     },
     "ResultConfigurationUpdates":{
@@ -1356,7 +1364,9 @@
         "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
         "RemoveEncryptionConfiguration":{"shape":"BoxedBoolean"},
         "ExpectedBucketOwner":{"shape":"String"},
-        "RemoveExpectedBucketOwner":{"shape":"BoxedBoolean"}
+        "RemoveExpectedBucketOwner":{"shape":"BoxedBoolean"},
+        "AclConfiguration":{"shape":"AclConfiguration"},
+        "RemoveAclConfiguration":{"shape":"BoxedBoolean"}
       }
     },
     "ResultSet":{
@@ -1381,6 +1391,10 @@
     "RowList":{
       "type":"list",
       "member":{"shape":"Row"}
+    },
+    "S3AclOption":{
+      "type":"string",
+      "enum":["BUCKET_OWNER_FULL_CONTROL"]
     },
     "StartQueryExecutionInput":{
       "type":"structure",
