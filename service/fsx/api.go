@@ -1277,8 +1277,7 @@ func (c *FSx) CreateVolumeRequest(input *CreateVolumeInput) (req *request.Reques
 
 // CreateVolume API operation for Amazon FSx.
 //
-// Creates an Amazon FSx for NetApp ONTAP or Amazon FSx for OpenZFS storage
-// volume.
+// Creates an FSx for ONTAP or Amazon FSx for OpenZFS storage volume.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1310,7 +1309,7 @@ func (c *FSx) CreateVolumeRequest(input *CreateVolumeInput) (req *request.Reques
 //   increase some service limits by contacting Amazon Web Services Support.
 //
 //   * StorageVirtualMachineNotFound
-//   No Amazon FSx for NetApp ONTAP SVMs were found based upon the supplied parameters.
+//   No FSx for ONTAP SVMs were found based upon the supplied parameters.
 //
 //   * UnsupportedOperation
 //   The requested operation is not supported for this resource or API.
@@ -1417,7 +1416,7 @@ func (c *FSx) CreateVolumeFromBackupRequest(input *CreateVolumeFromBackupInput) 
 //   increase some service limits by contacting Amazon Web Services Support.
 //
 //   * StorageVirtualMachineNotFound
-//   No Amazon FSx for NetApp ONTAP SVMs were found based upon the supplied parameters.
+//   No FSx for ONTAP SVMs were found based upon the supplied parameters.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateVolumeFromBackup
 func (c *FSx) CreateVolumeFromBackup(input *CreateVolumeFromBackupInput) (*CreateVolumeFromBackupOutput, error) {
@@ -1923,7 +1922,7 @@ func (c *FSx) DeleteStorageVirtualMachineRequest(input *DeleteStorageVirtualMach
 //   A generic error indicating a server-side failure.
 //
 //   * StorageVirtualMachineNotFound
-//   No Amazon FSx for NetApp ONTAP SVMs were found based upon the supplied parameters.
+//   No FSx for ONTAP SVMs were found based upon the supplied parameters.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteStorageVirtualMachine
 func (c *FSx) DeleteStorageVirtualMachine(input *DeleteStorageVirtualMachineInput) (*DeleteStorageVirtualMachineOutput, error) {
@@ -3081,7 +3080,7 @@ func (c *FSx) DescribeStorageVirtualMachinesRequest(input *DescribeStorageVirtua
 //   A generic error indicating a server-side failure.
 //
 //   * StorageVirtualMachineNotFound
-//   No Amazon FSx for NetApp ONTAP SVMs were found based upon the supplied parameters.
+//   No FSx for ONTAP SVMs were found based upon the supplied parameters.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeStorageVirtualMachines
 func (c *FSx) DescribeStorageVirtualMachines(input *DescribeStorageVirtualMachinesInput) (*DescribeStorageVirtualMachinesOutput, error) {
@@ -4341,7 +4340,7 @@ func (c *FSx) UpdateStorageVirtualMachineRequest(input *UpdateStorageVirtualMach
 //   A generic error indicating a server-side failure.
 //
 //   * StorageVirtualMachineNotFound
-//   No Amazon FSx for NetApp ONTAP SVMs were found based upon the supplied parameters.
+//   No FSx for ONTAP SVMs were found based upon the supplied parameters.
 //
 //   * UnsupportedOperation
 //   The requested operation is not supported for this resource or API.
@@ -6175,6 +6174,11 @@ type CreateDataRepositoryAssociationInput struct {
 	// or imported to. This file system directory can be linked to only one Amazon
 	// S3 bucket, and no other S3 bucket can be linked to the directory.
 	//
+	// If you specify only a forward slash (/) as the file system path, you can
+	// link only 1 data repository to the file system. You can only specify "/"
+	// as the file system path for the first data repository associated with a file
+	// system.
+	//
 	// FileSystemPath is a required field
 	FileSystemPath *string `min:"1" type:"string" required:"true"`
 
@@ -7120,10 +7124,10 @@ type CreateFileSystemLustreConfiguration struct {
 	//    that were deleted in the S3 bucket.
 	//
 	// For more information, see Automatically import updates from your S3 bucket
-	// (https://docs.aws.amazon.com/fsx/latest/LustreGuide/autoimport-data-repo.html).
+	// (https://docs.aws.amazon.com/fsx/latest/LustreGuide/older-deployment-types.html#legacy-auto-import-from-s3).
 	//
 	// This parameter is not supported for file systems with the Persistent_2 deployment
-	// type. Instead, use CreateDataRepositoryAssociation" to create a data repository
+	// type. Instead, use CreateDataRepositoryAssociation to create a data repository
 	// association to link your Lustre file system to a data repository.
 	AutoImportPolicy *string `type:"string" enum:"AutoImportPolicyType"`
 
@@ -7439,6 +7443,9 @@ type CreateFileSystemOntapConfiguration struct {
 	// Specifies the IP address range in which the endpoints to access your file
 	// system will be created. By default, Amazon FSx selects an unused IP address
 	// range for you from the 198.19.* range.
+	//
+	// The Endpoint IP address range you select for your file system must exist
+	// outside the VPC's CIDR range and must be at least /30 or larger.
 	EndpointIpAddressRange *string `min:"9" type:"string"`
 
 	// The ONTAP administrative password for the fsxadmin user with which you administer
@@ -7623,8 +7630,8 @@ type CreateFileSystemOpenZFSConfiguration struct {
 	DailyAutomaticBackupStartTime *string `min:"5" type:"string"`
 
 	// Specifies the file system deployment type. Amazon FSx for OpenZFS supports
-	// SINGLE_AZ_1. SINGLE_AZ_1 is a file system configured for a single Availability
-	// Zone (AZ) of redundancy.
+	// SINGLE_AZ_1. SINGLE_AZ_1 deployment type is configured for redundancy within
+	// a single Availability Zone.
 	//
 	// DeploymentType is a required field
 	DeploymentType *string `type:"string" required:"true" enum:"OpenZFSDeploymentType"`
@@ -8268,12 +8275,17 @@ type CreateOpenZFSVolumeConfiguration struct {
 	//    * NONE - Doesn't compress the data on the volume. NONE is the default.
 	//
 	//    * ZSTD - Compresses the data in the volume using the Zstandard (ZSTD)
-	//    compression algorithm. Compared to LZ4, Z-Standard provides a better compression
-	//    ratio to minimize on-disk storage utilization.
+	//    compression algorithm. ZSTD compression provides a higher level of data
+	//    compression and higher read throughput performance than LZ4 compression.
 	//
 	//    * LZ4 - Compresses the data in the volume using the LZ4 compression algorithm.
-	//    Compared to Z-Standard, LZ4 is less compute-intensive and delivers higher
-	//    write throughput speeds.
+	//    LZ4 compression provides a lower level of compression and higher write
+	//    throughput performance than ZSTD compression.
+	//
+	// For more information about volume compression types and the performance of
+	// your Amazon FSx for OpenZFS file system, see Tips for maximizing performance
+	// (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/performance.html#performance-tips-zfs)
+	// File system and volume settings in the Amazon FSx for OpenZFS User Guide.
 	DataCompressionType *string `type:"string" enum:"OpenZFSDataCompressionType"`
 
 	// The configuration object for mounting a Network File System (NFS) file system.
@@ -8283,7 +8295,8 @@ type CreateOpenZFSVolumeConfiguration struct {
 	// of the data for the volume.
 	OriginSnapshot *CreateOpenZFSOriginSnapshotConfiguration `type:"structure"`
 
-	// The ID of the volume to use as the parent volume.
+	// The ID of the volume to use as the parent volume of the volume that you are
+	// creating.
 	//
 	// ParentVolumeId is a required field
 	ParentVolumeId *string `min:"23" type:"string" required:"true"`
@@ -8291,23 +8304,35 @@ type CreateOpenZFSVolumeConfiguration struct {
 	// A Boolean value indicating whether the volume is read-only.
 	ReadOnly *bool `type:"boolean"`
 
-	// Specifies the record size of an OpenZFS volume, in kibibytes (KiB). Valid
-	// values are 4, 8, 16, 32, 64, 128, 256, 512, or 1024 KiB. The default is 128
-	// KiB. Most workloads should use the default record size. Database workflows
-	// can benefit from a smaller record size, while streaming workflows can benefit
-	// from a larger record size. For additional guidance on when to set a custom
-	// record size, see Tips for maximizing performance (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/performance.html#performance-tips-zfs)
+	// Specifies the suggested block size for a volume in a ZFS dataset, in kibibytes
+	// (KiB). Valid values are 4, 8, 16, 32, 64, 128, 256, 512, or 1024 KiB. The
+	// default is 128 KiB. We recommend using the default setting for the majority
+	// of use cases. Generally, workloads that write in fixed small or large record
+	// sizes may benefit from setting a custom record size, like database workloads
+	// (small record size) or media streaming workloads (large record size). For
+	// additional guidance on when to set a custom record size, see ZFS Record size
+	// (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/performance.html#record-size-performance)
 	// in the Amazon FSx for OpenZFS User Guide.
 	RecordSizeKiB *int64 `min:"4" type:"integer"`
 
-	// The maximum amount of storage in gibibytes (GiB) that the volume can use
-	// from its parent. You can't specify a quota larger than the storage on the
-	// parent volume. To not specify a storage capacity quota, set this to -1.
+	// Sets the maximum storage size in gibibytes (GiB) for the volume. You can
+	// specify a quota that is larger than the storage on the parent volume. A volume
+	// quota limits the amount of storage that the volume can consume to the configured
+	// amount, but does not guarantee the space will be available on the parent
+	// volume. To guarantee quota space, you must also set StorageCapacityReservationGiB.
+	// To not specify a storage capacity quota, set this to -1.
+	//
+	// For more information, see Volume properties (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/managing-volumes.html#volume-properties)
+	// in the Amazon FSx for OpenZFS User Guide.
 	StorageCapacityQuotaGiB *int64 `type:"integer"`
 
-	// The amount of storage in gibibytes (GiB) to reserve from the parent volume.
-	// You can't reserve more storage than the parent volume has reserved. To not
-	// specify a storage capacity reservation, set this to -1.
+	// Specifies the amount of storage in gibibytes (GiB) to reserve from the parent
+	// volume. Setting StorageCapacityReservationGiB guarantees that the specified
+	// amount of storage space on the parent volume will always be available for
+	// the volume. You can't reserve more storage than the parent volume has. To
+	// not specify a storage capacity reservation, set this to 0 or -1. For more
+	// information, see Volume properties (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/managing-volumes.html#volume-properties)
+	// in the Amazon FSx for OpenZFS User Guide.
 	StorageCapacityReservationGiB *int64 `type:"integer"`
 
 	// An object specifying how much storage users or groups can use on the volume.
@@ -9194,6 +9219,11 @@ type DataRepositoryAssociation struct {
 	// This path specifies where in your file system files will be exported from
 	// or imported to. This file system directory can be linked to only one Amazon
 	// S3 bucket, and no other S3 bucket can be linked to the directory.
+	//
+	// If you specify only a forward slash (/) as the file system path, you can
+	// link only 1 data repository to the file system. You can only specify "/"
+	// as the file system path for the first data repository associated with a file
+	// system.
 	FileSystemPath *string `min:"1" type:"string"`
 
 	// For files imported from a data repository, this value determines the stripe
@@ -14436,6 +14466,11 @@ type OntapFileSystemConfiguration struct {
 
 	// The IP address range in which the endpoints to access your file system are
 	// created.
+	//
+	// The Endpoint IP address range you select for your file system must exist
+	// outside the VPC's CIDR range and must be at least /30 or larger. If you do
+	// not specify this optional parameter, Amazon FSx will automatically select
+	// a CIDR block for you.
 	EndpointIpAddressRange *string `min:"9" type:"string"`
 
 	// The Management and Intercluster endpoints that are used to access data or
@@ -15039,7 +15074,7 @@ func (s *OpenZFSFileSystemConfiguration) SetWeeklyMaintenanceStartTime(v string)
 	return s
 }
 
-// The Network File System NFS) configurations for mounting an Amazon FSx for
+// The Network File System (NFS) configurations for mounting an Amazon FSx for
 // OpenZFS file system.
 type OpenZFSNfsExport struct {
 	_ struct{} `type:"structure"`
@@ -16671,7 +16706,7 @@ func (s *StorageVirtualMachineFilter) SetValues(v []*string) *StorageVirtualMach
 	return s
 }
 
-// No Amazon FSx for NetApp ONTAP SVMs were found based upon the supplied parameters.
+// No FSx for ONTAP SVMs were found based upon the supplied parameters.
 type StorageVirtualMachineNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

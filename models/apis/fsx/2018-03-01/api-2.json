@@ -2355,7 +2355,7 @@
       "type":"string",
       "max":4096,
       "min":1,
-      "pattern":"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{3,4096}$"
+      "pattern":"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,4096}$"
     },
     "NetBiosAlias":{
       "type":"string",

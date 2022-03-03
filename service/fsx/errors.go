@@ -202,7 +202,7 @@ const (
 	// ErrCodeStorageVirtualMachineNotFound for service response error code
 	// "StorageVirtualMachineNotFound".
 	//
-	// No Amazon FSx for NetApp ONTAP SVMs were found based upon the supplied parameters.
+	// No FSx for ONTAP SVMs were found based upon the supplied parameters.
 	ErrCodeStorageVirtualMachineNotFound = "StorageVirtualMachineNotFound"
 
 	// ErrCodeUnsupportedOperation for service response error code

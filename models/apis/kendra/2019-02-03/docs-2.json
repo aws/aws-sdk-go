@@ -158,7 +158,7 @@
     "AuthenticationConfiguration": {
       "base": "<p>Provides the configuration information to connect to websites that require user authentication.</p>",
       "refs": {
-        "WebCrawlerConfiguration$AuthenticationConfiguration": "<p>Provides configuration information required to connect to websites using authentication.</p> <p>You can connect to websites using basic authentication of user name and password.</p> <p>You must provide the website host name and port number. For example, the host name of https://a.example.com/page1.html is \"a.example.com\" and the port is 443, the standard port for HTTPS. You use a secret in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">Secrets Manager</a> to store your authentication credentials.</p>"
+        "WebCrawlerConfiguration$AuthenticationConfiguration": "<p>Configuration information required to connect to websites using authentication.</p> <p>You can connect to websites using basic authentication of user name and password.</p> <p>You must provide the website host name and port number. For example, the host name of https://a.example.com/page1.html is \"a.example.com\" and the port is 443, the standard port for HTTPS. You use a secret in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">Secrets Manager</a> to store your authentication credentials.</p>"
       }
     },
     "BasicAuthenticationConfiguration": {
@@ -266,6 +266,7 @@
         "SharePointConfiguration$CrawlAttachments": "<p> <code>TRUE</code> to include attachments to documents stored in your Microsoft SharePoint site in the index; otherwise, <code>FALSE</code>.</p>",
         "SharePointConfiguration$UseChangeLog": "<p>Set to <code>TRUE</code> to use the Microsoft SharePoint change log to determine the documents that need to be updated in the index. Depending on the size of the SharePoint change log, it may take longer for Amazon Kendra to use the change log than it takes it to determine the changed documents using the Amazon Kendra document crawler.</p>",
         "SharePointConfiguration$DisableLocalGroups": "<p>A Boolean value that specifies whether local groups are disabled (<code>True</code>) or enabled (<code>False</code>). </p>",
+        "SpellCorrectionConfiguration$IncludeQuerySpellCheckSuggestions": "<p> <code>TRUE</code> to suggest spell corrections for queries.</p>",
         "WorkDocsConfiguration$CrawlComments": "<p> <code>TRUE</code> to include comments on documents in your index. Including comments in your index means each comment is a document that can be searched on.</p> <p>The default is set to <code>FALSE</code>.</p>",
         "WorkDocsConfiguration$UseChangeLog": "<p> <code>TRUE</code> to use the change logs to update documents in your index instead of scanning all documents.</p> <p>If you are syncing your Amazon WorkDocs data source with your index for the first time, all documents are scanned. After your first sync, you can use the change logs to update your documents in your index for future syncs.</p> <p>The default is set to <code>FALSE</code>.</p>"
       }
@@ -393,7 +394,7 @@
       }
     },
     "ConfluenceConfiguration": {
-      "base": "<p>Provides configuration information for data sources that connect to Confluence.</p>",
+      "base": "<p>Provides the configuration information to connect to Confluence as your data source.</p>",
       "refs": {
         "DataSourceConfiguration$ConfluenceConfiguration": "<p>Provides configuration information for connecting to a Confluence data source.</p>"
       }
@@ -466,13 +467,13 @@
       }
     },
     "ConnectionConfiguration": {
-      "base": "<p>Provides the information necessary to connect to a database.</p>",
+      "base": "<p>Provides the configuration information that's required to connect to a database.</p>",
       "refs": {
-        "DatabaseConfiguration$ConnectionConfiguration": "<p>The information necessary to connect to a database.</p>"
+        "DatabaseConfiguration$ConnectionConfiguration": "<p>Configuration information that's required to connect to a database.</p>"
       }
     },
     "ContentSourceConfiguration": {
-      "base": "<p>Configuration information for your content sources, such as data sources, FAQs, and content indexed directly via <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html\">BatchPutDocument</a>.</p>",
+      "base": "<p>Provides the configuration information for your content sources, such as data sources, FAQs, and content indexed directly via <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html\">BatchPutDocument</a>.</p>",
       "refs": {
         "ExperienceConfiguration$ContentSourceConfiguration": "<p>The identifiers of your data sources and FAQs. Or, you can specify that you want to use documents indexed via the <code>BatchPutDocument</code> API. This is the content you want to use for your Amazon Kendra experience.</p>"
       }
@@ -481,6 +482,18 @@
       "base": null,
       "refs": {
         "Document$ContentType": "<p>The file type of the document in the <code>Blob</code> field.</p>"
+      }
+    },
+    "Correction": {
+      "base": "<p>A corrected misspelled word in a query.</p>",
+      "refs": {
+        "CorrectionList$member": null
+      }
+    },
+    "CorrectionList": {
+      "base": null,
+      "refs": {
+        "SpellCorrectedQuery$Corrections": "<p>The corrected misspelled word or words in a query.</p>"
       }
     },
     "CrawlDepth": {
@@ -559,11 +572,11 @@
       }
     },
     "DataSourceConfiguration": {
-      "base": "<p>Configuration information for an Amazon Kendra data source.</p>",
+      "base": "<p>Provides the configuration information for an Amazon Kendra data source.</p>",
       "refs": {
-        "CreateDataSourceRequest$Configuration": "<p>The connector configuration information that is required to access the repository.</p> <p>You can't specify the <code>Configuration</code> parameter when the <code>Type</code> parameter is set to <code>CUSTOM</code>. If you do, you receive a <code>ValidationException</code> exception.</p> <p>The <code>Configuration</code> parameter is required for all other data sources.</p>",
-        "DescribeDataSourceResponse$Configuration": "<p>Information that describes where the data source is located and how the data source is configured. The specific information in the description depends on the data source provider.</p>",
-        "UpdateDataSourceRequest$Configuration": "<p>Configuration information for an Amazon Kendra data source.</p>"
+        "CreateDataSourceRequest$Configuration": "<p>Configuration information that is required to access the data source repository.</p> <p>You can't specify the <code>Configuration</code> parameter when the <code>Type</code> parameter is set to <code>CUSTOM</code>. If you do, you receive a <code>ValidationException</code> exception.</p> <p>The <code>Configuration</code> parameter is required for all other data sources.</p>",
+        "DescribeDataSourceResponse$Configuration": "<p>Describes how the data source is configured. The specific information in the description depends on the data source provider.</p>",
+        "UpdateDataSourceRequest$Configuration": "<p>Configuration information for an Amazon Kendra data source you want to update.</p>"
       }
     },
     "DataSourceDateFieldFormat": {
@@ -597,7 +610,7 @@
       }
     },
     "DataSourceGroup": {
-      "base": "<p> Data source information for user context filtering. </p>",
+      "base": "<p>Data source information for user context filtering.</p>",
       "refs": {
         "DataSourceGroups$member": null
       }
@@ -747,7 +760,7 @@
       "base": null,
       "refs": {
         "ColumnConfiguration$FieldMappings": "<p>An array of objects that map database column names to the corresponding fields in an index. You must first create the fields in the index using the <code>UpdateIndex</code> API.</p>",
-        "FsxConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Amazon FSx data source attributes or field names to Amazon Kendra index field names in Amazon Kendra. To create custom fields, use the <code>UpdateIndex</code> API before you map to Amazon FSx fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Amazon FSx data source field names must exist in your Amazon FSx custom metadata.</p>",
+        "FsxConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Amazon FSx data source attributes or field names to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Amazon FSx fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Amazon FSx data source field names must exist in your Amazon FSx custom metadata.</p>",
         "GoogleDriveConfiguration$FieldMappings": "<p>Defines mapping between a field in the Google Drive and a Amazon Kendra index field.</p> <p>If you are using the console, you can define index fields when creating the mapping. If you are using the API, you must first create the field using the <code>UpdateIndex</code> API.</p>",
         "OneDriveConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Microsoft OneDrive fields to custom fields in the Amazon Kendra index. You must first create the index fields before you map OneDrive fields.</p>",
         "SalesforceChatterFeedConfiguration$FieldMappings": "<p>Maps fields from a Salesforce chatter feed into Amazon Kendra index fields.</p>",
@@ -770,18 +783,18 @@
       }
     },
     "DataSourceVpcConfiguration": {
-      "base": "<p>Provides information for connecting to an Amazon VPC.</p>",
+      "base": "<p>Provides the configuration information to connect to an Amazon VPC.</p>",
       "refs": {
         "ConfluenceConfiguration$VpcConfiguration": "<p>Specifies the information for connecting to an Amazon VPC.</p>",
         "DatabaseConfiguration$VpcConfiguration": null,
-        "FsxConfiguration$VpcConfiguration": "<p>Provides the configuration information for connecting to an Amazon Virtual Private Cloud for your Amazon FSx. Your Amazon FSx instance must reside inside your VPC.</p>",
+        "FsxConfiguration$VpcConfiguration": "<p>Configuration information for connecting to an Amazon Virtual Private Cloud for your Amazon FSx. Your Amazon FSx instance must reside inside your VPC.</p>",
         "SharePointConfiguration$VpcConfiguration": null
       }
     },
     "DatabaseConfiguration": {
-      "base": "<p>Provides the information necessary to connect a database to an index. </p>",
+      "base": "<p>Provides the configuration information to connect to a index. </p>",
       "refs": {
-        "DataSourceConfiguration$DatabaseConfiguration": "<p>Provides information necessary to create a data source connector for a database.</p>"
+        "DataSourceConfiguration$DatabaseConfiguration": "<p>Provides the configuration information to connect to a database as your data source.</p>"
       }
     },
     "DatabaseEngineType": {
@@ -1127,7 +1140,7 @@
       "base": null,
       "refs": {
         "DescribeIndexResponse$DocumentMetadataConfigurations": "<p>Configuration settings for any metadata applied to the documents in the index.</p>",
-        "UpdateIndexRequest$DocumentMetadataConfigurationUpdates": "<p>The document metadata to update. </p>"
+        "UpdateIndexRequest$DocumentMetadataConfigurationUpdates": "<p>The document metadata you want to update.</p>"
       }
     },
     "DocumentMetadataConfigurationName": {
@@ -1186,7 +1199,7 @@
       }
     },
     "EntityConfiguration": {
-      "base": "<p>Provides the configuration information of users or groups in your Amazon Web Services SSO identity source to grant access your Amazon Kendra experience.</p>",
+      "base": "<p>Provides the configuration information for users or groups in your Amazon Web Services SSO identity source to grant access your Amazon Kendra experience.</p>",
       "refs": {
         "AssociateEntityList$member": null,
         "DisassociateEntityList$member": null
@@ -1216,7 +1229,7 @@
       }
     },
     "EntityPersonaConfiguration": {
-      "base": "<p>Provides the configuration information of users or groups in your Amazon Web Services SSO identity source for access to your Amazon Kendra experience. Specific permissions are defined for each user or group once they are granted access to your Amazon Kendra experience.</p>",
+      "base": "<p>Provides the configuration information for users or groups in your Amazon Web Services SSO identity source for access to your Amazon Kendra experience. Specific permissions are defined for each user or group once they are granted access to your Amazon Kendra experience.</p>",
       "refs": {
         "EntityPersonaConfigurationList$member": null
       }
@@ -1289,15 +1302,15 @@
       }
     },
     "ExperienceConfiguration": {
-      "base": "<p>Specifies the configuration information for your Amazon Kendra experience. This includes the data source IDs and/or FAQ IDs, and user or group information to grant access to your Amazon Kendra experience.</p>",
+      "base": "<p>Provides the configuration information for your Amazon Kendra experience. This includes the data source IDs and/or FAQ IDs, and user or group information to grant access to your Amazon Kendra experience.</p>",
       "refs": {
-        "CreateExperienceRequest$Configuration": "<p>Provides the configuration information for your Amazon Kendra experience. This includes <code>ContentSourceConfiguration</code>, which specifies the data source IDs and/or FAQ IDs, and <code>UserIdentityConfiguration</code>, which specifies the user or group information to grant access to your Amazon Kendra experience.</p>",
+        "CreateExperienceRequest$Configuration": "<p>Configuration information for your Amazon Kendra experience. This includes <code>ContentSourceConfiguration</code>, which specifies the data source IDs and/or FAQ IDs, and <code>UserIdentityConfiguration</code>, which specifies the user or group information to grant access to your Amazon Kendra experience.</p>",
         "DescribeExperienceResponse$Configuration": "<p>Shows the configuration information for your Amazon Kendra experience. This includes <code>ContentSourceConfiguration</code>, which specifies the data source IDs and/or FAQ IDs, and <code>UserIdentityConfiguration</code>, which specifies the user or group information to grant access to your Amazon Kendra experience.</p>",
-        "UpdateExperienceRequest$Configuration": "<p>Provides the user configuration information. This includes the Amazon Web Services SSO field name that contains the identifiers of your users, such as their emails.</p>"
+        "UpdateExperienceRequest$Configuration": "<p>Configuration information for your Amazon Kendra you want to update.</p>"
       }
     },
     "ExperienceEndpoint": {
-      "base": "<p>Provides the configuration information of the endpoint for your Amazon Kendra experience.</p>",
+      "base": "<p>Provides the configuration information for the endpoint for your Amazon Kendra experience.</p>",
       "refs": {
         "ExperienceEndpoints$member": null
       }
@@ -1514,9 +1527,9 @@
       }
     },
     "GoogleDriveConfiguration": {
-      "base": "<p>Provides configuration information for data sources that connect to Google Drive.</p>",
+      "base": "<p>Provides the configuration information to connect to Google Drive as your data source.</p>",
       "refs": {
-        "DataSourceConfiguration$GoogleDriveConfiguration": "<p>Provides configuration for data sources that connect to Google Drive. </p>"
+        "DataSourceConfiguration$GoogleDriveConfiguration": "<p>Provides the configuration information to connect to Google Drive as your data source. </p>"
       }
     },
     "GroupAttributeField": {
@@ -1624,7 +1637,7 @@
       }
     },
     "IndexConfigurationSummary": {
-      "base": "<p>A summary of information about an index.</p>",
+      "base": "<p>A summary of information on the configuration of an index.</p>",
       "refs": {
         "IndexConfigurationSummaryList$member": null
       }
@@ -1632,7 +1645,7 @@
     "IndexConfigurationSummaryList": {
       "base": null,
       "refs": {
-        "ListIndicesResponse$IndexConfigurationSummaryItems": "<p>An array of summary information for one or more indexes.</p>"
+        "ListIndicesResponse$IndexConfigurationSummaryItems": "<p>An array of summary information on the configuration of one or more indexes.</p>"
       }
     },
     "IndexEdition": {
@@ -1772,6 +1785,8 @@
     "Integer": {
       "base": null,
       "refs": {
+        "Correction$BeginOffset": "<p>The zero-based location in the response string or text where the corrected word starts.</p>",
+        "Correction$EndOffset": "<p>The zero-based location in the response string or text where the corrected word ends.</p>",
         "DescribeQuerySuggestionsBlockListResponse$ItemCount": "<p>Shows the current number of valid, non-empty words or phrases in the block list text file.</p>",
         "DescribeQuerySuggestionsConfigResponse$QueryLogLookBackWindowInDays": "<p>Shows how recent your queries are in your query log time window (in days).</p>",
         "DescribeQuerySuggestionsConfigResponse$TotalSuggestionsCount": "<p>Shows the current total count of query suggestions for an index.</p> <p>This count can change when you update your query suggestions settings, if you filter out certain queries from suggestions using a block list, and as the query log accumulates more queries for Amazon Kendra to learn from.</p>",
@@ -1812,13 +1827,13 @@
       }
     },
     "JsonTokenTypeConfiguration": {
-      "base": "<p>Configuration information for the JSON token type.</p>",
+      "base": "<p>Provides the configuration information for the JSON token type.</p>",
       "refs": {
         "UserTokenConfiguration$JsonTokenTypeConfiguration": "<p>Information about the JSON token type configuration.</p>"
       }
     },
     "JwtTokenTypeConfiguration": {
-      "base": "<p>Configuration information for the JWT token type.</p>",
+      "base": "<p>Provides the configuration information for the JWT token type.</p>",
       "refs": {
         "UserTokenConfiguration$JwtTokenTypeConfiguration": "<p>Information about the JWT token type configuration.</p>"
       }
@@ -2163,9 +2178,9 @@
       }
     },
     "OneDriveConfiguration": {
-      "base": "<p>Provides configuration information for data sources that connect to OneDrive.</p>",
+      "base": "<p>Provides the configuration information to connect to OneDrive as your data source.</p>",
       "refs": {
-        "DataSourceConfiguration$OneDriveConfiguration": "<p>Provides configuration for data sources that connect to Microsoft OneDrive.</p>"
+        "DataSourceConfiguration$OneDriveConfiguration": "<p>Provides the configuration information to connect to Microsoft OneDrive as your data source.</p>"
       }
     },
     "OneDriveUser": {
@@ -2271,7 +2286,7 @@
     "ProxyConfiguration": {
       "base": "<p>Provides the configuration information for a web proxy to connect to website hosts.</p>",
       "refs": {
-        "WebCrawlerConfiguration$ProxyConfiguration": "<p>Provides configuration information required to connect to your internal websites via a web proxy.</p> <p>You must provide the website host name and port number. For example, the host name of https://a.example.com/page1.html is \"a.example.com\" and the port is 443, the standard port for HTTPS.</p> <p>Web proxy credentials are optional and you can use them to connect to a web proxy server that requires basic authentication. To store web proxy credentials, you use a secret in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">Secrets Manager</a>.</p>"
+        "WebCrawlerConfiguration$ProxyConfiguration": "<p>Configuration information required to connect to your internal websites via a web proxy.</p> <p>You must provide the website host name and port number. For example, the host name of https://a.example.com/page1.html is \"a.example.com\" and the port is 443, the standard port for HTTPS.</p> <p>Web proxy credentials are optional and you can use them to connect to a web proxy server that requires basic authentication. To store web proxy credentials, you use a secret in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">Secrets Manager</a>.</p>"
       }
     },
     "PutPrincipalMappingRequest": {
@@ -2479,9 +2494,9 @@
       }
     },
     "S3DataSourceConfiguration": {
-      "base": "<p>Provides configuration information for a data source to index documents in an Amazon S3 bucket.</p>",
+      "base": "<p>Provides the configuration information to connect to an Amazon S3 bucket.</p>",
       "refs": {
-        "DataSourceConfiguration$S3Configuration": "<p>Provides information to create a data source connector for a document repository in an Amazon S3 bucket.</p>"
+        "DataSourceConfiguration$S3Configuration": "<p>Provides the configuration information to connect to an Amazon S3 bucket as your data source.</p>"
       }
     },
     "S3ObjectKey": {
@@ -2510,7 +2525,7 @@
       }
     },
     "SalesforceChatterFeedConfiguration": {
-      "base": "<p>Defines configuration for syncing a Salesforce chatter feed. The contents of the object comes from the Salesforce FeedItem table.</p>",
+      "base": "<p>The configuration information for syncing a Salesforce chatter feed. The contents of the object comes from the Salesforce FeedItem table.</p>",
       "refs": {
         "SalesforceConfiguration$ChatterFeedConfiguration": "<p>Specifies configuration information for Salesforce chatter feeds.</p>"
       }
@@ -2530,7 +2545,7 @@
     "SalesforceConfiguration": {
       "base": "<p>Provides configuration information for connecting to a Salesforce data source.</p>",
       "refs": {
-        "DataSourceConfiguration$SalesforceConfiguration": "<p>Provides configuration information for data sources that connect to a Salesforce site.</p>"
+        "DataSourceConfiguration$SalesforceConfiguration": "<p>Provides the configuration information to connect to Salesforce as your data source.</p>"
       }
     },
     "SalesforceCustomKnowledgeArticleTypeConfiguration": {
@@ -2542,7 +2557,7 @@
     "SalesforceCustomKnowledgeArticleTypeConfigurationList": {
       "base": null,
       "refs": {
-        "SalesforceKnowledgeArticleConfiguration$CustomKnowledgeArticleTypeConfigurations": "<p>Provides configuration information for custom Salesforce knowledge articles.</p>"
+        "SalesforceKnowledgeArticleConfiguration$CustomKnowledgeArticleTypeConfigurations": "<p>Configuration information for custom Salesforce knowledge articles.</p>"
       }
     },
     "SalesforceCustomKnowledgeArticleTypeName": {
@@ -2552,7 +2567,7 @@
       }
     },
     "SalesforceKnowledgeArticleConfiguration": {
-      "base": "<p>Specifies configuration information for the knowledge article types that Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles and the standard fields of knowledge articles, or the custom fields of custom knowledge articles, but not both </p>",
+      "base": "<p>Provides the configuration information for the knowledge article types that Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles and the standard fields of knowledge articles, or the custom fields of custom knowledge articles, but not both </p>",
       "refs": {
         "SalesforceConfiguration$KnowledgeArticleConfiguration": "<p>Specifies configuration information for the knowledge article types that Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles and the standard fields of knowledge articles, or the custom fields of custom knowledge articles, but not both.</p>"
       }
@@ -2570,19 +2585,19 @@
       }
     },
     "SalesforceStandardKnowledgeArticleTypeConfiguration": {
-      "base": "<p>Provides configuration information for standard Salesforce knowledge articles.</p>",
+      "base": "<p>Configuration information for standard Salesforce knowledge articles.</p>",
       "refs": {
-        "SalesforceKnowledgeArticleConfiguration$StandardKnowledgeArticleTypeConfiguration": "<p>Provides configuration information for standard Salesforce knowledge articles.</p>"
+        "SalesforceKnowledgeArticleConfiguration$StandardKnowledgeArticleTypeConfiguration": "<p>Configuration information for standard Salesforce knowledge articles.</p>"
       }
     },
     "SalesforceStandardObjectAttachmentConfiguration": {
-      "base": "<p>Provides configuration information for processing attachments to Salesforce standard objects. </p>",
+      "base": "<p>Provides the configuration information for processing attachments to Salesforce standard objects. </p>",
       "refs": {
-        "SalesforceConfiguration$StandardObjectAttachmentConfiguration": "<p>Provides configuration information for processing attachments to Salesforce standard objects. </p>"
+        "SalesforceConfiguration$StandardObjectAttachmentConfiguration": "<p>Configuration information for processing attachments to Salesforce standard objects. </p>"
       }
     },
     "SalesforceStandardObjectConfiguration": {
-      "base": "<p>Specifies configuration information for indexing a single standard object.</p>",
+      "base": "<p>Provides the configuration information for indexing a single standard object.</p>",
       "refs": {
         "SalesforceStandardObjectConfigurationList$member": null
       }
@@ -2631,7 +2646,7 @@
         "BasicAuthenticationConfiguration$Credentials": "<p>Your secret ARN, which you can create in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">Secrets Manager</a> </p> <p>You use a secret if basic authentication credentials are required to connect to a website. The secret stores your credentials of user name and password.</p>",
         "ConfluenceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key/value pairs required to connect to your Confluence server. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username - The user name or email address of a user with administrative privileges for the Confluence server.</p> </li> <li> <p>password - The password associated with the user logging in to the Confluence server.</p> </li> </ul>",
         "ConnectionConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in Secrets Manager. The credentials should be a user/password pair. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-database.html\">Using a Database Data Source</a>. For more information about Secrets Manager, see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is Secrets Manager</a> in the <i> Secrets Manager </i> user guide.</p>",
-        "FsxConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Amazon FSx file system. Windows is currently the only supported type. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username—The Active Directory user name, along with the Domain Name System (DNS) domain name. For example, <i>user@corp.example.com</i>. The Active Directory user account must have read and mounting access to the Amazon FSx file system for Windows.</p> </li> <li> <p>password—The password of the active directory user with read and mounting access Amazon FSx Windows file system.</p> </li> </ul>",
+        "FsxConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Amazon FSx file system. Windows is currently the only supported type. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username—The Active Directory user name, along with the Domain Name System (DNS) domain name. For example, <i>user@corp.example.com</i>. The Active Directory user account must have read and mounting access to the Amazon FSx file system for Windows.</p> </li> <li> <p>password—The password of the Active Directory user account with read and mounting access to the Amazon FSx Windows file system.</p> </li> </ul>",
         "GoogleDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of a Secrets Managersecret that contains the credentials required to connect to Google Drive. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-google-drive.html\">Using a Google Workspace Drive data source</a>.</p>",
         "OneDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Managersecret that contains the user name and password to connect to OneDrive. The user namd should be the application ID for the OneDrive application, and the password is the application key for the OneDrive application.</p>",
         "ProxyConfiguration$Credentials": "<p>Your secret ARN, which you can create in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">Secrets Manager</a> </p> <p>The credentials are optional. You use a secret if web proxy credentials are required to connect to a website host. Amazon Kendra currently support basic authentication to connect to a web proxy server. The secret stores your credentials.</p>",
@@ -2653,9 +2668,9 @@
       }
     },
     "SeedUrlConfiguration": {
-      "base": "<p>Provides the configuration information of the seed or starting point URLs to crawl.</p> <p> <i>When selecting websites to index, you must adhere to the <a href=\"https://aws.amazon.com/aup/\">Amazon Acceptable Use Policy</a> and all other Amazon terms. Remember that you must only use Amazon Kendra Web Crawler to index your own webpages, or webpages that you have authorization to index.</i> </p>",
+      "base": "<p>Provides the configuration information for the seed or starting point URLs to crawl.</p> <p> <i>When selecting websites to index, you must adhere to the <a href=\"https://aws.amazon.com/aup/\">Amazon Acceptable Use Policy</a> and all other Amazon terms. Remember that you must only use Amazon Kendra Web Crawler to index your own webpages, or webpages that you have authorization to index.</i> </p>",
       "refs": {
-        "Urls$SeedUrlConfiguration": "<p>Provides the configuration of the seed or starting point URLs of the websites you want to crawl.</p> <p>You can choose to crawl only the website host names, or the website host names with subdomains, or the website host names with subdomains and other domains that the webpages link to.</p> <p>You can list up to 100 seed URLs.</p>"
+        "Urls$SeedUrlConfiguration": "<p>Configuration of the seed or starting point URLs of the websites you want to crawl.</p> <p>You can choose to crawl only the website host names, or the website host names with subdomains, or the website host names with subdomains and other domains that the webpages link to.</p> <p>You can list up to 100 seed URLs.</p>"
       }
     },
     "SeedUrlList": {
@@ -2684,9 +2699,9 @@
       }
     },
     "ServiceNowConfiguration": {
-      "base": "<p>Provides configuration information required to connect to a ServiceNow data source.</p>",
+      "base": "<p>Provides the configuration information to connect to ServiceNow as your data source.</p>",
       "refs": {
-        "DataSourceConfiguration$ServiceNowConfiguration": "<p>Provides configuration for data sources that connect to ServiceNow instances.</p>"
+        "DataSourceConfiguration$ServiceNowConfiguration": "<p>Provides the configuration information to connect to ServiceNow as your data source.</p>"
       }
     },
     "ServiceNowHostUrl": {
@@ -2696,9 +2711,9 @@
       }
     },
     "ServiceNowKnowledgeArticleConfiguration": {
-      "base": "<p>Provides configuration information for crawling knowledge articles in the ServiceNow site.</p>",
+      "base": "<p>Provides the configuration information for crawling knowledge articles in the ServiceNow site.</p>",
       "refs": {
-        "ServiceNowConfiguration$KnowledgeArticleConfiguration": "<p>Provides configuration information for crawling knowledge articles in the ServiceNow site.</p>"
+        "ServiceNowConfiguration$KnowledgeArticleConfiguration": "<p>Configuration information for crawling knowledge articles in the ServiceNow site.</p>"
       }
     },
     "ServiceNowKnowledgeArticleFilterQuery": {
@@ -2708,9 +2723,9 @@
       }
     },
     "ServiceNowServiceCatalogConfiguration": {
-      "base": "<p>Provides configuration information for crawling service catalog items in the ServiceNow site</p>",
+      "base": "<p>Provides the configuration information for crawling service catalog items in the ServiceNow site</p>",
       "refs": {
-        "ServiceNowConfiguration$ServiceCatalogConfiguration": "<p>Provides configuration information for crawling service catalogs in the ServiceNow site.</p>"
+        "ServiceNowConfiguration$ServiceCatalogConfiguration": "<p>Configuration information for crawling service catalogs in the ServiceNow site.</p>"
       }
     },
     "ServiceQuotaExceededException": {
@@ -2719,9 +2734,9 @@
       }
     },
     "SharePointConfiguration": {
-      "base": "<p>Provides configuration information for connecting to a Microsoft SharePoint data source.</p>",
+      "base": "<p>Provides the configuration information to connect to Microsoft SharePoint as your data source.</p>",
       "refs": {
-        "DataSourceConfiguration$SharePointConfiguration": "<p>Provides information necessary to create a data source connector for a Microsoft SharePoint site.</p>"
+        "DataSourceConfiguration$SharePointConfiguration": "<p>Provides the configuration information to connect to Microsoft SharePoint as your data source.</p>"
       }
     },
     "SharePointUrlList": {
@@ -2749,9 +2764,9 @@
       }
     },
     "SiteMapsConfiguration": {
-      "base": "<p>Provides the configuration information of the sitemap URLs to crawl.</p> <p> <i>When selecting websites to index, you must adhere to the <a href=\"https://aws.amazon.com/aup/\">Amazon Acceptable Use Policy</a> and all other Amazon terms. Remember that you must only use Amazon Kendra Web Crawler to index your own webpages, or webpages that you have authorization to index.</i> </p>",
+      "base": "<p>Provides the configuration information for the sitemap URLs to crawl.</p> <p> <i>When selecting websites to index, you must adhere to the <a href=\"https://aws.amazon.com/aup/\">Amazon Acceptable Use Policy</a> and all other Amazon terms. Remember that you must only use Amazon Kendra Web Crawler to index your own webpages, or webpages that you have authorization to index.</i> </p>",
       "refs": {
-        "Urls$SiteMapsConfiguration": "<p>Provides the configuration of the sitemap URLs of the websites you want to crawl.</p> <p>Only URLs belonging to the same website host names are crawled. You can list up to three sitemap URLs.</p>"
+        "Urls$SiteMapsConfiguration": "<p>Configuration of the sitemap URLs of the websites you want to crawl.</p> <p>Only URLs belonging to the same website host names are crawled. You can list up to three sitemap URLs.</p>"
       }
     },
     "SiteMapsList": {
@@ -2790,8 +2805,26 @@
         "QueryRequest$SortingConfiguration": "<p>Provides information that determines how the results of the query are sorted. You can set the field that Amazon Kendra should sort the results on, and specify whether the results should be sorted in ascending or descending order. In the case of ties in sorting the results, the results are sorted by relevance.</p> <p>If you don't provide sorting configuration, the results are sorted by the relevance that Amazon Kendra determines for the result.</p>"
       }
     },
+    "SpellCorrectedQuery": {
+      "base": "<p>A query with suggested spell corrections. </p>",
+      "refs": {
+        "SpellCorrectedQueryList$member": null
+      }
+    },
+    "SpellCorrectedQueryList": {
+      "base": null,
+      "refs": {
+        "QueryResult$SpellCorrectedQueries": "<p>A list of information related to suggested spell corrections for a query.</p>"
+      }
+    },
+    "SpellCorrectionConfiguration": {
+      "base": "<p>Provides the configuration information for suggested query spell corrections.</p> <p>Suggested spell corrections are based on words that appear in your indexed documents and how closely a corrected word matches a misspelled word.</p> <p>This feature is designed with certain defaults or limits. For information on the current limits and how to request more support for some limits, see the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/query-spell-check.html\">Spell Checker documentation</a>.</p>",
+      "refs": {
+        "QueryRequest$SpellCorrectionConfiguration": "<p>Enables suggested spell corrections for queries.</p>"
+      }
+    },
     "SqlConfiguration": {
-      "base": "<p>Provides information that configures Amazon Kendra to use a SQL database.</p>",
+      "base": "<p>Provides the configuration information to use a SQL database.</p>",
       "refs": {
         "DatabaseConfiguration$SqlConfiguration": "<p>Provides information about how Amazon Kendra uses quote marks around SQL identifiers when querying a database data source.</p>"
       }
@@ -2827,6 +2860,8 @@
       "base": null,
       "refs": {
         "AdditionalResultAttribute$Key": "<p>The key that identifies the attribute.</p>",
+        "Correction$Term": "<p>The string or text of a misspelled word in a query.</p>",
+        "Correction$CorrectedTerm": "<p>The string or text of a corrected misspelled word in a query.</p>",
         "DataSourceSyncJob$ExecutionId": "<p>A unique identifier for the synchronization job.</p>",
         "DataSourceSyncJob$DataSourceErrorCode": "<p>If the reason that the synchronization failed is due to an error with the underlying data source, this field contains a code that identifies the error.</p>",
         "DocumentAttributeStringListValue$member": null,
@@ -2856,6 +2891,12 @@
       "base": null,
       "refs": {
         "DataSourceVpcConfiguration$SubnetIds": "<p>A list of identifiers for subnets within your Amazon VPC. The subnets should be able to connect to each other in the VPC, and they should have outgoing access to the Internet through a NAT device.</p>"
+      }
+    },
+    "SuggestedQueryText": {
+      "base": null,
+      "refs": {
+        "SpellCorrectedQuery$SuggestedQueryText": "<p>The query with the suggested spell corrections.</p>"
       }
     },
     "Suggestion": {
@@ -3173,7 +3214,7 @@
       }
     },
     "UserIdentityConfiguration": {
-      "base": "<p>Configuration information for the identifiers of your users.</p>",
+      "base": "<p>Provides the configuration information for the identifiers of your users.</p>",
       "refs": {
         "ExperienceConfiguration$UserIdentityConfiguration": "<p>The Amazon Web Services SSO field name that contains the identifiers of your users, such as their emails.</p>"
       }
@@ -3185,7 +3226,7 @@
       }
     },
     "UserTokenConfiguration": {
-      "base": "<p>Provides configuration information for a token configuration.</p>",
+      "base": "<p>Provides the configuration information for a token.</p>",
       "refs": {
         "UserTokenConfigurationList$member": null
       }

@@ -6900,6 +6900,9 @@ type DestinationConnectorProperties struct {
 	// The properties required to query Amazon Lookout for Metrics.
 	LookoutMetrics *LookoutMetricsDestinationProperties `type:"structure"`
 
+	// The properties required to query Marketo.
+	Marketo *MarketoDestinationProperties `type:"structure"`
+
 	// The properties required to query Amazon Redshift.
 	Redshift *RedshiftDestinationProperties `type:"structure"`
 
@@ -6961,6 +6964,11 @@ func (s *DestinationConnectorProperties) Validate() error {
 	if s.Honeycode != nil {
 		if err := s.Honeycode.Validate(); err != nil {
 			invalidParams.AddNested("Honeycode", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Marketo != nil {
+		if err := s.Marketo.Validate(); err != nil {
+			invalidParams.AddNested("Marketo", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Redshift != nil {
@@ -7032,6 +7040,12 @@ func (s *DestinationConnectorProperties) SetHoneycode(v *HoneycodeDestinationPro
 // SetLookoutMetrics sets the LookoutMetrics field's value.
 func (s *DestinationConnectorProperties) SetLookoutMetrics(v *LookoutMetricsDestinationProperties) *DestinationConnectorProperties {
 	s.LookoutMetrics = v
+	return s
+}
+
+// SetMarketo sets the Marketo field's value.
+func (s *DestinationConnectorProperties) SetMarketo(v *MarketoDestinationProperties) *DestinationConnectorProperties {
+	s.Marketo = v
 	return s
 }
 
@@ -9320,6 +9334,72 @@ func (s *MarketoConnectorProfileProperties) Validate() error {
 // SetInstanceUrl sets the InstanceUrl field's value.
 func (s *MarketoConnectorProfileProperties) SetInstanceUrl(v string) *MarketoConnectorProfileProperties {
 	s.InstanceUrl = &v
+	return s
+}
+
+// The properties that Amazon AppFlow applies when you use Marketo as a flow
+// destination.
+type MarketoDestinationProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The settings that determine how Amazon AppFlow handles an error when placing
+	// data in the destination. For example, this setting would determine if the
+	// flow should fail after one insertion error, or continue and attempt to insert
+	// every record regardless of the initial failure. ErrorHandlingConfig is a
+	// part of the destination connector details.
+	ErrorHandlingConfig *ErrorHandlingConfig `locationName:"errorHandlingConfig" type:"structure"`
+
+	// The object specified in the Marketo flow destination.
+	//
+	// Object is a required field
+	Object *string `locationName:"object" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MarketoDestinationProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MarketoDestinationProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MarketoDestinationProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MarketoDestinationProperties"}
+	if s.Object == nil {
+		invalidParams.Add(request.NewErrParamRequired("Object"))
+	}
+	if s.ErrorHandlingConfig != nil {
+		if err := s.ErrorHandlingConfig.Validate(); err != nil {
+			invalidParams.AddNested("ErrorHandlingConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetErrorHandlingConfig sets the ErrorHandlingConfig field's value.
+func (s *MarketoDestinationProperties) SetErrorHandlingConfig(v *ErrorHandlingConfig) *MarketoDestinationProperties {
+	s.ErrorHandlingConfig = v
+	return s
+}
+
+// SetObject sets the Object field's value.
+func (s *MarketoDestinationProperties) SetObject(v string) *MarketoDestinationProperties {
+	s.Object = &v
 	return s
 }
 

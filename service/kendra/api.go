@@ -7555,7 +7555,8 @@ func (s *ConfluenceBlogToIndexFieldMapping) SetIndexFieldName(v string) *Conflue
 	return s
 }
 
-// Provides configuration information for data sources that connect to Confluence.
+// Provides the configuration information to connect to Confluence as your data
+// source.
 type ConfluenceConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -8062,7 +8063,7 @@ func (s *ConfluenceSpaceToIndexFieldMapping) SetIndexFieldName(v string) *Conflu
 	return s
 }
 
-// Provides the information necessary to connect to a database.
+// Provides the configuration information that's required to connect to a database.
 type ConnectionConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -8185,8 +8186,8 @@ func (s *ConnectionConfiguration) SetTableName(v string) *ConnectionConfiguratio
 	return s
 }
 
-// Configuration information for your content sources, such as data sources,
-// FAQs, and content indexed directly via BatchPutDocument (https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html).
+// Provides the configuration information for your content sources, such as
+// data sources, FAQs, and content indexed directly via BatchPutDocument (https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html).
 type ContentSourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -8253,6 +8254,67 @@ func (s *ContentSourceConfiguration) SetFaqIds(v []*string) *ContentSourceConfig
 	return s
 }
 
+// A corrected misspelled word in a query.
+type Correction struct {
+	_ struct{} `type:"structure"`
+
+	// The zero-based location in the response string or text where the corrected
+	// word starts.
+	BeginOffset *int64 `type:"integer"`
+
+	// The string or text of a corrected misspelled word in a query.
+	CorrectedTerm *string `min:"1" type:"string"`
+
+	// The zero-based location in the response string or text where the corrected
+	// word ends.
+	EndOffset *int64 `type:"integer"`
+
+	// The string or text of a misspelled word in a query.
+	Term *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Correction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Correction) GoString() string {
+	return s.String()
+}
+
+// SetBeginOffset sets the BeginOffset field's value.
+func (s *Correction) SetBeginOffset(v int64) *Correction {
+	s.BeginOffset = &v
+	return s
+}
+
+// SetCorrectedTerm sets the CorrectedTerm field's value.
+func (s *Correction) SetCorrectedTerm(v string) *Correction {
+	s.CorrectedTerm = &v
+	return s
+}
+
+// SetEndOffset sets the EndOffset field's value.
+func (s *Correction) SetEndOffset(v int64) *Correction {
+	s.EndOffset = &v
+	return s
+}
+
+// SetTerm sets the Term field's value.
+func (s *Correction) SetTerm(v string) *Correction {
+	s.Term = &v
+	return s
+}
+
 type CreateDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8261,7 +8323,7 @@ type CreateDataSourceInput struct {
 	// create only one data source.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The connector configuration information that is required to access the repository.
+	// Configuration information that is required to access the data source repository.
 	//
 	// You can't specify the Configuration parameter when the Type parameter is
 	// set to CUSTOM. If you do, you receive a ValidationException exception.
@@ -8501,10 +8563,10 @@ type CreateExperienceInput struct {
 	// token creates only one Amazon Kendra experience.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// Provides the configuration information for your Amazon Kendra experience.
-	// This includes ContentSourceConfiguration, which specifies the data source
-	// IDs and/or FAQ IDs, and UserIdentityConfiguration, which specifies the user
-	// or group information to grant access to your Amazon Kendra experience.
+	// Configuration information for your Amazon Kendra experience. This includes
+	// ContentSourceConfiguration, which specifies the data source IDs and/or FAQ
+	// IDs, and UserIdentityConfiguration, which specifies the user or group information
+	// to grant access to your Amazon Kendra experience.
 	Configuration *ExperienceConfiguration `type:"structure"`
 
 	// A description for your Amazon Kendra experience.
@@ -9548,39 +9610,43 @@ func (s *CustomDocumentEnrichmentConfiguration) SetRoleArn(v string) *CustomDocu
 	return s
 }
 
-// Configuration information for an Amazon Kendra data source.
+// Provides the configuration information for an Amazon Kendra data source.
 type DataSourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// Provides configuration information for connecting to a Confluence data source.
 	ConfluenceConfiguration *ConfluenceConfiguration `type:"structure"`
 
-	// Provides information necessary to create a data source connector for a database.
+	// Provides the configuration information to connect to a database as your data
+	// source.
 	DatabaseConfiguration *DatabaseConfiguration `type:"structure"`
 
 	// Provides the configuration information to connect to Amazon FSx as your data
 	// source.
 	FsxConfiguration *FsxConfiguration `type:"structure"`
 
-	// Provides configuration for data sources that connect to Google Drive.
+	// Provides the configuration information to connect to Google Drive as your
+	// data source.
 	GoogleDriveConfiguration *GoogleDriveConfiguration `type:"structure"`
 
-	// Provides configuration for data sources that connect to Microsoft OneDrive.
+	// Provides the configuration information to connect to Microsoft OneDrive as
+	// your data source.
 	OneDriveConfiguration *OneDriveConfiguration `type:"structure"`
 
-	// Provides information to create a data source connector for a document repository
-	// in an Amazon S3 bucket.
+	// Provides the configuration information to connect to an Amazon S3 bucket
+	// as your data source.
 	S3Configuration *S3DataSourceConfiguration `type:"structure"`
 
-	// Provides configuration information for data sources that connect to a Salesforce
-	// site.
+	// Provides the configuration information to connect to Salesforce as your data
+	// source.
 	SalesforceConfiguration *SalesforceConfiguration `type:"structure"`
 
-	// Provides configuration for data sources that connect to ServiceNow instances.
+	// Provides the configuration information to connect to ServiceNow as your data
+	// source.
 	ServiceNowConfiguration *ServiceNowConfiguration `type:"structure"`
 
-	// Provides information necessary to create a data source connector for a Microsoft
-	// SharePoint site.
+	// Provides the configuration information to connect to Microsoft SharePoint
+	// as your data source.
 	SharePointConfiguration *SharePointConfiguration `type:"structure"`
 
 	// Provides the configuration information required for Amazon Kendra Web Crawler.
@@ -10229,7 +10295,7 @@ func (s *DataSourceToIndexFieldMapping) SetIndexFieldName(v string) *DataSourceT
 	return s
 }
 
-// Provides information for connecting to an Amazon VPC.
+// Provides the configuration information to connect to an Amazon VPC.
 type DataSourceVpcConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -10299,7 +10365,7 @@ func (s *DataSourceVpcConfiguration) SetSubnetIds(v []*string) *DataSourceVpcCon
 	return s
 }
 
-// Provides the information necessary to connect a database to an index.
+// Provides the configuration information to connect to a index.
 type DatabaseConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -10313,7 +10379,7 @@ type DatabaseConfiguration struct {
 	// ColumnConfiguration is a required field
 	ColumnConfiguration *ColumnConfiguration `type:"structure" required:"true"`
 
-	// The information necessary to connect to a database.
+	// Configuration information that's required to connect to a database.
 	//
 	// ConnectionConfiguration is a required field
 	ConnectionConfiguration *ConnectionConfiguration `type:"structure" required:"true"`
@@ -10327,7 +10393,7 @@ type DatabaseConfiguration struct {
 	// identifiers when querying a database data source.
 	SqlConfiguration *SqlConfiguration `type:"structure"`
 
-	// Provides information for connecting to an Amazon VPC.
+	// Provides the configuration information to connect to an Amazon VPC.
 	VpcConfiguration *DataSourceVpcConfiguration `type:"structure"`
 }
 
@@ -11136,9 +11202,8 @@ func (s *DescribeDataSourceInput) SetIndexId(v string) *DescribeDataSourceInput 
 type DescribeDataSourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information that describes where the data source is located and how the data
-	// source is configured. The specific information in the description depends
-	// on the data source provider.
+	// Describes how the data source is configured. The specific information in
+	// the description depends on the data source provider.
 	Configuration *DataSourceConfiguration `type:"structure"`
 
 	// The Unix timestamp of when the data source was created.
@@ -13759,7 +13824,7 @@ func (s *DocumentsMetadataConfiguration) SetS3Prefix(v string) *DocumentsMetadat
 	return s
 }
 
-// Provides the configuration information of users or groups in your Amazon
+// Provides the configuration information for users or groups in your Amazon
 // Web Services SSO identity source to grant access your Amazon Kendra experience.
 type EntityConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -13913,7 +13978,7 @@ func (s *EntityDisplayData) SetUserName(v string) *EntityDisplayData {
 	return s
 }
 
-// Provides the configuration information of users or groups in your Amazon
+// Provides the configuration information for users or groups in your Amazon
 // Web Services SSO identity source for access to your Amazon Kendra experience.
 // Specific permissions are defined for each user or group once they are granted
 // access to your Amazon Kendra experience.
@@ -13984,7 +14049,7 @@ func (s *EntityPersonaConfiguration) SetPersona(v string) *EntityPersonaConfigur
 	return s
 }
 
-// Specifies the configuration information for your Amazon Kendra experience.
+// Provides the configuration information for your Amazon Kendra experience.
 // This includes the data source IDs and/or FAQ IDs, and user or group information
 // to grant access to your Amazon Kendra experience.
 type ExperienceConfiguration struct {
@@ -14050,7 +14115,7 @@ func (s *ExperienceConfiguration) SetUserIdentityConfiguration(v *UserIdentityCo
 	return s
 }
 
-// Provides the configuration information of the endpoint for your Amazon Kendra
+// Provides the configuration information for the endpoint for your Amazon Kendra
 // experience.
 type ExperienceEndpoint struct {
 	_ struct{} `type:"structure"`
@@ -14502,9 +14567,9 @@ type FsxConfiguration struct {
 	ExclusionPatterns []*string `type:"list"`
 
 	// A list of DataSourceToIndexFieldMapping objects that map Amazon FSx data
-	// source attributes or field names to Amazon Kendra index field names in Amazon
-	// Kendra. To create custom fields, use the UpdateIndex API before you map to
-	// Amazon FSx fields. For more information, see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// source attributes or field names to Amazon Kendra index field names. To create
+	// custom fields, use the UpdateIndex API before you map to Amazon FSx fields.
+	// For more information, see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
 	// The Amazon FSx data source field names must exist in your Amazon FSx custom
 	// metadata.
 	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
@@ -14542,13 +14607,12 @@ type FsxConfiguration struct {
 	//    Directory user account must have read and mounting access to the Amazon
 	//    FSx file system for Windows.
 	//
-	//    * password—The password of the active directory user with read and mounting
-	//    access Amazon FSx Windows file system.
+	//    * password—The password of the Active Directory user account with read
+	//    and mounting access to the Amazon FSx Windows file system.
 	SecretArn *string `min:"1" type:"string"`
 
-	// Provides the configuration information for connecting to an Amazon Virtual
-	// Private Cloud for your Amazon FSx. Your Amazon FSx instance must reside inside
-	// your VPC.
+	// Configuration information for connecting to an Amazon Virtual Private Cloud
+	// for your Amazon FSx. Your Amazon FSx instance must reside inside your VPC.
 	//
 	// VpcConfiguration is a required field
 	VpcConfiguration *DataSourceVpcConfiguration `type:"structure" required:"true"`
@@ -14960,8 +15024,8 @@ func (s *GetSnapshotsOutput) SetSnapshotsDataHeader(v []*string) *GetSnapshotsOu
 	return s
 }
 
-// Provides configuration information for data sources that connect to Google
-// Drive.
+// Provides the configuration information to connect to Google Drive as your
+// data source.
 type GoogleDriveConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -15547,7 +15611,7 @@ func (s *HookConfiguration) SetS3Bucket(v string) *HookConfiguration {
 	return s
 }
 
-// A summary of information about an index.
+// A summary of information on the configuration of an index.
 type IndexConfigurationSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -15885,7 +15949,7 @@ func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Configuration information for the JSON token type.
+// Provides the configuration information for the JSON token type.
 type JsonTokenTypeConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -15952,7 +16016,7 @@ func (s *JsonTokenTypeConfiguration) SetUserNameAttributeField(v string) *JsonTo
 	return s
 }
 
-// Configuration information for the JWT token type.
+// Provides the configuration information for the JWT token type.
 type JwtTokenTypeConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -17036,7 +17100,7 @@ func (s *ListIndicesInput) SetNextToken(v string) *ListIndicesInput {
 type ListIndicesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An array of summary information for one or more indexes.
+	// An array of summary information on the configuration of one or more indexes.
 	IndexConfigurationSummaryItems []*IndexConfigurationSummary `type:"list"`
 
 	// If the response is truncated, Amazon Kendra returns this token that you can
@@ -17511,7 +17575,8 @@ func (s *MemberUser) SetUserId(v string) *MemberUser {
 	return s
 }
 
-// Provides configuration information for data sources that connect to OneDrive.
+// Provides the configuration information to connect to OneDrive as your data
+// source.
 type OneDriveConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -18209,6 +18274,9 @@ type QueryInput struct {
 	// relevance that Amazon Kendra determines for the result.
 	SortingConfiguration *SortingConfiguration `type:"structure"`
 
+	// Enables suggested spell corrections for queries.
+	SpellCorrectionConfiguration *SpellCorrectionConfiguration `type:"structure"`
+
 	// The user context token or user and group information.
 	UserContext *UserContext `type:"structure"`
 
@@ -18284,6 +18352,11 @@ func (s *QueryInput) Validate() error {
 			invalidParams.AddNested("SortingConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.SpellCorrectionConfiguration != nil {
+		if err := s.SpellCorrectionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SpellCorrectionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.UserContext != nil {
 		if err := s.UserContext.Validate(); err != nil {
 			invalidParams.AddNested("UserContext", err.(request.ErrInvalidParams))
@@ -18356,6 +18429,12 @@ func (s *QueryInput) SetSortingConfiguration(v *SortingConfiguration) *QueryInpu
 	return s
 }
 
+// SetSpellCorrectionConfiguration sets the SpellCorrectionConfiguration field's value.
+func (s *QueryInput) SetSpellCorrectionConfiguration(v *SpellCorrectionConfiguration) *QueryInput {
+	s.SpellCorrectionConfiguration = v
+	return s
+}
+
 // SetUserContext sets the UserContext field's value.
 func (s *QueryInput) SetUserContext(v *UserContext) *QueryInput {
 	s.UserContext = v
@@ -18381,6 +18460,9 @@ type QueryOutput struct {
 
 	// The results of the search.
 	ResultItems []*QueryResultItem `type:"list"`
+
+	// A list of information related to suggested spell corrections for a query.
+	SpellCorrectedQueries []*SpellCorrectedQuery `type:"list"`
 
 	// The total number of items found by the search; however, you can only retrieve
 	// up to 100 items. For example, if the search found 192 items, you can only
@@ -18428,6 +18510,12 @@ func (s *QueryOutput) SetQueryId(v string) *QueryOutput {
 // SetResultItems sets the ResultItems field's value.
 func (s *QueryOutput) SetResultItems(v []*QueryResultItem) *QueryOutput {
 	s.ResultItems = v
+	return s
+}
+
+// SetSpellCorrectedQueries sets the SpellCorrectedQueries field's value.
+func (s *QueryOutput) SetSpellCorrectedQueries(v []*SpellCorrectedQuery) *QueryOutput {
+	s.SpellCorrectedQueries = v
 	return s
 }
 
@@ -19094,8 +19182,7 @@ func (s *ResourceUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Provides configuration information for a data source to index documents in
-// an Amazon S3 bucket.
+// Provides the configuration information to connect to an Amazon S3 bucket.
 type S3DataSourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -19298,8 +19385,8 @@ func (s *S3Path) SetKey(v string) *S3Path {
 	return s
 }
 
-// Defines configuration for syncing a Salesforce chatter feed. The contents
-// of the object comes from the Salesforce FeedItem table.
+// The configuration information for syncing a Salesforce chatter feed. The
+// contents of the object comes from the Salesforce FeedItem table.
 type SalesforceChatterFeedConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -19461,8 +19548,8 @@ type SalesforceConfiguration struct {
 	// ServerUrl is a required field
 	ServerUrl *string `min:"1" type:"string" required:"true"`
 
-	// Provides configuration information for processing attachments to Salesforce
-	// standard objects.
+	// Configuration information for processing attachments to Salesforce standard
+	// objects.
 	StandardObjectAttachmentConfiguration *SalesforceStandardObjectAttachmentConfiguration `type:"structure"`
 
 	// Specifies the Salesforce standard objects that Amazon Kendra indexes.
@@ -19695,14 +19782,14 @@ func (s *SalesforceCustomKnowledgeArticleTypeConfiguration) SetName(v string) *S
 	return s
 }
 
-// Specifies configuration information for the knowledge article types that
+// Provides the configuration information for the knowledge article types that
 // Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles
 // and the standard fields of knowledge articles, or the custom fields of custom
 // knowledge articles, but not both
 type SalesforceKnowledgeArticleConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Provides configuration information for custom Salesforce knowledge articles.
+	// Configuration information for custom Salesforce knowledge articles.
 	CustomKnowledgeArticleTypeConfigurations []*SalesforceCustomKnowledgeArticleTypeConfiguration `min:"1" type:"list"`
 
 	// Specifies the document states that should be included when Amazon Kendra
@@ -19711,7 +19798,7 @@ type SalesforceKnowledgeArticleConfiguration struct {
 	// IncludedStates is a required field
 	IncludedStates []*string `min:"1" type:"list" required:"true"`
 
-	// Provides configuration information for standard Salesforce knowledge articles.
+	// Configuration information for standard Salesforce knowledge articles.
 	StandardKnowledgeArticleTypeConfiguration *SalesforceStandardKnowledgeArticleTypeConfiguration `type:"structure"`
 }
 
@@ -19785,7 +19872,7 @@ func (s *SalesforceKnowledgeArticleConfiguration) SetStandardKnowledgeArticleTyp
 	return s
 }
 
-// Provides configuration information for standard Salesforce knowledge articles.
+// Configuration information for standard Salesforce knowledge articles.
 type SalesforceStandardKnowledgeArticleTypeConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -19871,7 +19958,7 @@ func (s *SalesforceStandardKnowledgeArticleTypeConfiguration) SetFieldMappings(v
 	return s
 }
 
-// Provides configuration information for processing attachments to Salesforce
+// Provides the configuration information for processing attachments to Salesforce
 // standard objects.
 type SalesforceStandardObjectAttachmentConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -19940,7 +20027,7 @@ func (s *SalesforceStandardObjectAttachmentConfiguration) SetFieldMappings(v []*
 	return s
 }
 
-// Specifies configuration information for indexing a single standard object.
+// Provides the configuration information for indexing a single standard object.
 type SalesforceStandardObjectConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -20141,7 +20228,7 @@ func (s *Search) SetSortable(v bool) *Search {
 	return s
 }
 
-// Provides the configuration information of the seed or starting point URLs
+// Provides the configuration information for the seed or starting point URLs
 // to crawl.
 //
 // When selecting websites to index, you must adhere to the Amazon Acceptable
@@ -20269,7 +20356,7 @@ func (s *ServerSideEncryptionConfiguration) SetKmsKeyId(v string) *ServerSideEnc
 	return s
 }
 
-// Provides configuration information required to connect to a ServiceNow data
+// Provides the configuration information to connect to ServiceNow as your data
 // source.
 type ServiceNowConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -20293,8 +20380,8 @@ type ServiceNowConfiguration struct {
 	// HostUrl is a required field
 	HostUrl *string `min:"1" type:"string" required:"true"`
 
-	// Provides configuration information for crawling knowledge articles in the
-	// ServiceNow site.
+	// Configuration information for crawling knowledge articles in the ServiceNow
+	// site.
 	KnowledgeArticleConfiguration *ServiceNowKnowledgeArticleConfiguration `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the Secrets Manager secret that contains
@@ -20303,7 +20390,7 @@ type ServiceNowConfiguration struct {
 	// SecretArn is a required field
 	SecretArn *string `min:"1" type:"string" required:"true"`
 
-	// Provides configuration information for crawling service catalogs in the ServiceNow
+	// Configuration information for crawling service catalogs in the ServiceNow
 	// site.
 	ServiceCatalogConfiguration *ServiceNowServiceCatalogConfiguration `type:"structure"`
 
@@ -20403,8 +20490,8 @@ func (s *ServiceNowConfiguration) SetServiceNowBuildVersion(v string) *ServiceNo
 	return s
 }
 
-// Provides configuration information for crawling knowledge articles in the
-// ServiceNow site.
+// Provides the configuration information for crawling knowledge articles in
+// the ServiceNow site.
 type ServiceNowKnowledgeArticleConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -20539,8 +20626,8 @@ func (s *ServiceNowKnowledgeArticleConfiguration) SetIncludeAttachmentFilePatter
 	return s
 }
 
-// Provides configuration information for crawling service catalog items in
-// the ServiceNow site
+// Provides the configuration information for crawling service catalog items
+// in the ServiceNow site
 type ServiceNowServiceCatalogConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -20728,8 +20815,8 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Provides configuration information for connecting to a Microsoft SharePoint
-// data source.
+// Provides the configuration information to connect to Microsoft SharePoint
+// as your data source.
 type SharePointConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -20797,7 +20884,7 @@ type SharePointConfiguration struct {
 	// crawler.
 	UseChangeLog *bool `type:"boolean"`
 
-	// Provides information for connecting to an Amazon VPC.
+	// Provides the configuration information to connect to an Amazon VPC.
 	VpcConfiguration *DataSourceVpcConfiguration `type:"structure"`
 }
 
@@ -20942,7 +21029,7 @@ func (s *SharePointConfiguration) SetVpcConfiguration(v *DataSourceVpcConfigurat
 	return s
 }
 
-// Provides the configuration information of the sitemap URLs to crawl.
+// Provides the configuration information for the sitemap URLs to crawl.
 //
 // When selecting websites to index, you must adhere to the Amazon Acceptable
 // Use Policy (https://aws.amazon.com/aup/) and all other Amazon terms. Remember
@@ -21089,7 +21176,102 @@ func (s *SortingConfiguration) SetSortOrder(v string) *SortingConfiguration {
 	return s
 }
 
-// Provides information that configures Amazon Kendra to use a SQL database.
+// A query with suggested spell corrections.
+type SpellCorrectedQuery struct {
+	_ struct{} `type:"structure"`
+
+	// The corrected misspelled word or words in a query.
+	Corrections []*Correction `type:"list"`
+
+	// The query with the suggested spell corrections.
+	SuggestedQueryText *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SpellCorrectedQuery) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SpellCorrectedQuery) GoString() string {
+	return s.String()
+}
+
+// SetCorrections sets the Corrections field's value.
+func (s *SpellCorrectedQuery) SetCorrections(v []*Correction) *SpellCorrectedQuery {
+	s.Corrections = v
+	return s
+}
+
+// SetSuggestedQueryText sets the SuggestedQueryText field's value.
+func (s *SpellCorrectedQuery) SetSuggestedQueryText(v string) *SpellCorrectedQuery {
+	s.SuggestedQueryText = &v
+	return s
+}
+
+// Provides the configuration information for suggested query spell corrections.
+//
+// Suggested spell corrections are based on words that appear in your indexed
+// documents and how closely a corrected word matches a misspelled word.
+//
+// This feature is designed with certain defaults or limits. For information
+// on the current limits and how to request more support for some limits, see
+// the Spell Checker documentation (https://docs.aws.amazon.com/kendra/latest/dg/query-spell-check.html).
+type SpellCorrectionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// TRUE to suggest spell corrections for queries.
+	//
+	// IncludeQuerySpellCheckSuggestions is a required field
+	IncludeQuerySpellCheckSuggestions *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SpellCorrectionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SpellCorrectionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SpellCorrectionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SpellCorrectionConfiguration"}
+	if s.IncludeQuerySpellCheckSuggestions == nil {
+		invalidParams.Add(request.NewErrParamRequired("IncludeQuerySpellCheckSuggestions"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIncludeQuerySpellCheckSuggestions sets the IncludeQuerySpellCheckSuggestions field's value.
+func (s *SpellCorrectionConfiguration) SetIncludeQuerySpellCheckSuggestions(v bool) *SpellCorrectionConfiguration {
+	s.IncludeQuerySpellCheckSuggestions = &v
+	return s
+}
+
+// Provides the configuration information to use a SQL database.
 type SqlConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -22183,7 +22365,7 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Configuration information for an Amazon Kendra data source.
+	// Configuration information for an Amazon Kendra data source you want to update.
 	Configuration *DataSourceConfiguration `type:"structure"`
 
 	// Configuration information for altering document metadata and content during
@@ -22361,9 +22543,7 @@ func (s UpdateDataSourceOutput) GoString() string {
 type UpdateExperienceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Provides the user configuration information. This includes the Amazon Web
-	// Services SSO field name that contains the identifiers of your users, such
-	// as their emails.
+	// Configuration information for your Amazon Kendra you want to update.
 	Configuration *ExperienceConfiguration `type:"structure"`
 
 	// The description of your Amazon Kendra experience you want to update.
@@ -22510,7 +22690,7 @@ type UpdateIndexInput struct {
 	// A new description for the index.
 	Description *string `type:"string"`
 
-	// The document metadata to update.
+	// The document metadata you want to update.
 	DocumentMetadataConfigurationUpdates []*DocumentMetadataConfiguration `type:"list"`
 
 	// The identifier of the index to update.
@@ -23127,8 +23307,8 @@ func (s UpdateThesaurusOutput) GoString() string {
 type Urls struct {
 	_ struct{} `type:"structure"`
 
-	// Provides the configuration of the seed or starting point URLs of the websites
-	// you want to crawl.
+	// Configuration of the seed or starting point URLs of the websites you want
+	// to crawl.
 	//
 	// You can choose to crawl only the website host names, or the website host
 	// names with subdomains, or the website host names with subdomains and other
@@ -23137,8 +23317,7 @@ type Urls struct {
 	// You can list up to 100 seed URLs.
 	SeedUrlConfiguration *SeedUrlConfiguration `type:"structure"`
 
-	// Provides the configuration of the sitemap URLs of the websites you want to
-	// crawl.
+	// Configuration of the sitemap URLs of the websites you want to crawl.
 	//
 	// Only URLs belonging to the same website host names are crawled. You can list
 	// up to three sitemap URLs.
@@ -23369,7 +23548,7 @@ func (s *UserGroupResolutionConfiguration) SetUserGroupResolutionMode(v string) 
 	return s
 }
 
-// Configuration information for the identifiers of your users.
+// Provides the configuration information for the identifiers of your users.
 type UserIdentityConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -23420,7 +23599,7 @@ func (s *UserIdentityConfiguration) SetIdentityAttributeName(v string) *UserIden
 	return s
 }
 
-// Provides configuration information for a token configuration.
+// Provides the configuration information for a token.
 type UserTokenConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -23589,8 +23768,7 @@ func (s *Warning) SetMessage(v string) *Warning {
 type WebCrawlerConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Provides configuration information required to connect to websites using
-	// authentication.
+	// Configuration information required to connect to websites using authentication.
 	//
 	// You can connect to websites using basic authentication of user name and password.
 	//
@@ -23636,8 +23814,8 @@ type WebCrawlerConfiguration struct {
 	// 300.
 	MaxUrlsPerMinuteCrawlRate *int64 `min:"1" type:"integer"`
 
-	// Provides configuration information required to connect to your internal websites
-	// via a web proxy.
+	// Configuration information required to connect to your internal websites via
+	// a web proxy.
 	//
 	// You must provide the website host name and port number. For example, the
 	// host name of https://a.example.com/page1.html is "a.example.com" and the
