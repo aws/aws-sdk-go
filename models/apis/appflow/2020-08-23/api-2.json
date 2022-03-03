@@ -1338,6 +1338,7 @@
         "Honeycode":{"shape":"HoneycodeDestinationProperties"},
         "CustomerProfiles":{"shape":"CustomerProfilesDestinationProperties"},
         "Zendesk":{"shape":"ZendeskDestinationProperties"},
+        "Marketo":{"shape":"MarketoDestinationProperties"},
         "CustomConnector":{"shape":"CustomConnectorDestinationProperties"},
         "SAPOData":{"shape":"SAPODataDestinationProperties"}
       }
@@ -1903,6 +1904,14 @@
       "required":["instanceUrl"],
       "members":{
         "instanceUrl":{"shape":"InstanceUrl"}
+      }
+    },
+    "MarketoDestinationProperties":{
+      "type":"structure",
+      "required":["object"],
+      "members":{
+        "object":{"shape":"Object"},
+        "errorHandlingConfig":{"shape":"ErrorHandlingConfig"}
       }
     },
     "MarketoMetadata":{

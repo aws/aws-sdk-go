@@ -1,3 +1,14 @@
+Release v1.43.11 (2022-03-03)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/fsx`: Updates service API and documentation
+* `service/greengrassv2`: Updates service documentation
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now suggests spell corrections for a query. For more information, see https://docs.aws.amazon.com/kendra/latest/dg/query-spell-check.html
+* `service/timestream-query`: Updates service documentation
+
 Release v1.43.10 (2022-03-02)
 ===
 

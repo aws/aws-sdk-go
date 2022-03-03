@@ -1009,6 +1009,7 @@
         "CustomConnectorDestinationProperties$errorHandlingConfig": "<p>The settings that determine how Amazon AppFlow handles an error when placing data in the custom connector as destination.</p>",
         "EventBridgeDestinationProperties$errorHandlingConfig": null,
         "HoneycodeDestinationProperties$errorHandlingConfig": null,
+        "MarketoDestinationProperties$errorHandlingConfig": null,
         "RedshiftDestinationProperties$errorHandlingConfig": "<p> The settings that determine how Amazon AppFlow handles an error when placing data in the Amazon Redshift destination. For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the destination connector details. </p>",
         "SAPODataDestinationProperties$errorHandlingConfig": null,
         "SalesforceDestinationProperties$errorHandlingConfig": "<p> The settings that determine how Amazon AppFlow handles an error when placing data in the Salesforce destination. For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the destination connector details. </p>",
@@ -1429,6 +1430,12 @@
         "ConnectorProfileProperties$Marketo": "<p> The connector-specific properties required by Marketo. </p>"
       }
     },
+    "MarketoDestinationProperties": {
+      "base": "<p>The properties that Amazon AppFlow applies when you use Marketo as a flow destination.</p>",
+      "refs": {
+        "DestinationConnectorProperties$Marketo": "<p>The properties required to query Marketo.</p>"
+      }
+    },
     "MarketoMetadata": {
       "base": "<p> The connector metadata specific to Marketo. </p>",
       "refs": {
@@ -1550,6 +1557,7 @@
         "GoogleAnalyticsSourceProperties$object": "<p> The object specified in the Google Analytics flow source. </p>",
         "HoneycodeDestinationProperties$object": "<p> The object specified in the Amazon Honeycode flow destination. </p>",
         "InforNexusSourceProperties$object": "<p> The object specified in the Infor Nexus flow source. </p>",
+        "MarketoDestinationProperties$object": "<p>The object specified in the Marketo flow destination.</p>",
         "MarketoSourceProperties$object": "<p> The object specified in the Marketo flow source. </p>",
         "RedshiftDestinationProperties$object": "<p> The object specified in the Amazon Redshift flow destination. </p>",
         "SAPODataDestinationProperties$objectPath": "<p>The object path specified in the SAPOData flow destination.</p>",

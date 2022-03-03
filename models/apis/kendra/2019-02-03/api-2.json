@@ -1470,6 +1470,19 @@
         "PPT"
       ]
     },
+    "Correction":{
+      "type":"structure",
+      "members":{
+        "BeginOffset":{"shape":"Integer"},
+        "EndOffset":{"shape":"Integer"},
+        "Term":{"shape":"String"},
+        "CorrectedTerm":{"shape":"String"}
+      }
+    },
+    "CorrectionList":{
+      "type":"list",
+      "member":{"shape":"Correction"}
+    },
     "CrawlDepth":{
       "type":"integer",
       "max":10,
@@ -3587,7 +3600,8 @@
         "PageSize":{"shape":"Integer"},
         "SortingConfiguration":{"shape":"SortingConfiguration"},
         "UserContext":{"shape":"UserContext"},
-        "VisitorId":{"shape":"VisitorId"}
+        "VisitorId":{"shape":"VisitorId"},
+        "SpellCorrectionConfiguration":{"shape":"SpellCorrectionConfiguration"}
       }
     },
     "QueryResult":{
@@ -3597,7 +3611,8 @@
         "ResultItems":{"shape":"QueryResultItemList"},
         "FacetResults":{"shape":"FacetResultList"},
         "TotalNumberOfResults":{"shape":"Integer"},
-        "Warnings":{"shape":"WarningList"}
+        "Warnings":{"shape":"WarningList"},
+        "SpellCorrectedQueries":{"shape":"SpellCorrectedQueryList"}
       }
     },
     "QueryResultItem":{
@@ -4169,6 +4184,24 @@
         "SortOrder":{"shape":"SortOrder"}
       }
     },
+    "SpellCorrectedQuery":{
+      "type":"structure",
+      "members":{
+        "SuggestedQueryText":{"shape":"SuggestedQueryText"},
+        "Corrections":{"shape":"CorrectionList"}
+      }
+    },
+    "SpellCorrectedQueryList":{
+      "type":"list",
+      "member":{"shape":"SpellCorrectedQuery"}
+    },
+    "SpellCorrectionConfiguration":{
+      "type":"structure",
+      "required":["IncludeQuerySpellCheckSuggestions"],
+      "members":{
+        "IncludeQuerySpellCheckSuggestions":{"shape":"Boolean"}
+      }
+    },
     "SqlConfiguration":{
       "type":"structure",
       "members":{
@@ -4244,6 +4277,11 @@
       "type":"list",
       "member":{"shape":"SubnetId"},
       "max":6,
+      "min":1
+    },
+    "SuggestedQueryText":{
+      "type":"string",
+      "max":1000,
       "min":1
     },
     "Suggestion":{
