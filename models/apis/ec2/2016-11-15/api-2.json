@@ -9218,7 +9218,10 @@
     },
     "CreateIpamPoolRequest":{
       "type":"structure",
-      "required":["IpamScopeId"],
+      "required":[
+        "IpamScopeId",
+        "AddressFamily"
+      ],
       "members":{
         "DryRun":{"shape":"Boolean"},
         "IpamScopeId":{"shape":"IpamScopeId"},

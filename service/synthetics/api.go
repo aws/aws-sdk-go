@@ -1802,9 +1802,12 @@ func (s *Canary) SetVpcConfig(v *VpcConfigOutput) *Canary {
 type CanaryCodeInput struct {
 	_ struct{} `type:"structure"`
 
-	// The entry point to use for the source code when running the canary. This
-	// value must end with the string .handler. The string is limited to 29 characters
-	// or fewer.
+	// The entry point to use for the source code when running the canary. For canaries
+	// that use the syn-python-selenium-1.0 runtime or a syn-nodejs.puppeteer runtime
+	// earlier than syn-nodejs.puppeteer-3.4, the handler must be specified as fileName.handler.
+	// For syn-python-selenium-1.1, syn-nodejs.puppeteer-3.4, and later runtimes,
+	// the handler can be specified as fileName.functionName , or you can specify
+	// a folder where canary scripts reside as folder/fileName.functionName .
 	//
 	// Handler is a required field
 	Handler *string `min:"1" type:"string" required:"true"`

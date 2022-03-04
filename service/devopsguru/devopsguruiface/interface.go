@@ -76,6 +76,10 @@ type DevOpsGuruAPI interface {
 	DescribeAnomalyWithContext(aws.Context, *devopsguru.DescribeAnomalyInput, ...request.Option) (*devopsguru.DescribeAnomalyOutput, error)
 	DescribeAnomalyRequest(*devopsguru.DescribeAnomalyInput) (*request.Request, *devopsguru.DescribeAnomalyOutput)
 
+	DescribeEventSourcesConfig(*devopsguru.DescribeEventSourcesConfigInput) (*devopsguru.DescribeEventSourcesConfigOutput, error)
+	DescribeEventSourcesConfigWithContext(aws.Context, *devopsguru.DescribeEventSourcesConfigInput, ...request.Option) (*devopsguru.DescribeEventSourcesConfigOutput, error)
+	DescribeEventSourcesConfigRequest(*devopsguru.DescribeEventSourcesConfigInput) (*request.Request, *devopsguru.DescribeEventSourcesConfigOutput)
+
 	DescribeFeedback(*devopsguru.DescribeFeedbackInput) (*devopsguru.DescribeFeedbackOutput, error)
 	DescribeFeedbackWithContext(aws.Context, *devopsguru.DescribeFeedbackInput, ...request.Option) (*devopsguru.DescribeFeedbackOutput, error)
 	DescribeFeedbackRequest(*devopsguru.DescribeFeedbackInput) (*request.Request, *devopsguru.DescribeFeedbackOutput)
@@ -191,6 +195,10 @@ type DevOpsGuruAPI interface {
 	StartCostEstimation(*devopsguru.StartCostEstimationInput) (*devopsguru.StartCostEstimationOutput, error)
 	StartCostEstimationWithContext(aws.Context, *devopsguru.StartCostEstimationInput, ...request.Option) (*devopsguru.StartCostEstimationOutput, error)
 	StartCostEstimationRequest(*devopsguru.StartCostEstimationInput) (*request.Request, *devopsguru.StartCostEstimationOutput)
+
+	UpdateEventSourcesConfig(*devopsguru.UpdateEventSourcesConfigInput) (*devopsguru.UpdateEventSourcesConfigOutput, error)
+	UpdateEventSourcesConfigWithContext(aws.Context, *devopsguru.UpdateEventSourcesConfigInput, ...request.Option) (*devopsguru.UpdateEventSourcesConfigOutput, error)
+	UpdateEventSourcesConfigRequest(*devopsguru.UpdateEventSourcesConfigInput) (*request.Request, *devopsguru.UpdateEventSourcesConfigOutput)
 
 	UpdateResourceCollection(*devopsguru.UpdateResourceCollectionInput) (*devopsguru.UpdateResourceCollectionOutput, error)
 	UpdateResourceCollectionWithContext(aws.Context, *devopsguru.UpdateResourceCollectionInput, ...request.Option) (*devopsguru.UpdateResourceCollectionOutput, error)

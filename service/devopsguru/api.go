@@ -415,6 +415,100 @@ func (c *DevOpsGuru) DescribeAnomalyWithContext(ctx aws.Context, input *Describe
 	return out, req.Send()
 }
 
+const opDescribeEventSourcesConfig = "DescribeEventSourcesConfig"
+
+// DescribeEventSourcesConfigRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEventSourcesConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeEventSourcesConfig for more information on using the DescribeEventSourcesConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeEventSourcesConfigRequest method.
+//    req, resp := client.DescribeEventSourcesConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeEventSourcesConfig
+func (c *DevOpsGuru) DescribeEventSourcesConfigRequest(input *DescribeEventSourcesConfigInput) (req *request.Request, output *DescribeEventSourcesConfigOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEventSourcesConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/event-sources",
+	}
+
+	if input == nil {
+		input = &DescribeEventSourcesConfigInput{}
+	}
+
+	output = &DescribeEventSourcesConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeEventSourcesConfig API operation for Amazon DevOps Guru.
+//
+// This operation lists details about a DevOps Guru event source that is shared
+// with your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation DescribeEventSourcesConfig for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
+//
+//   * InternalServerException
+//   An internal failure in an Amazon service occurred.
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeEventSourcesConfig
+func (c *DevOpsGuru) DescribeEventSourcesConfig(input *DescribeEventSourcesConfigInput) (*DescribeEventSourcesConfigOutput, error) {
+	req, out := c.DescribeEventSourcesConfigRequest(input)
+	return out, req.Send()
+}
+
+// DescribeEventSourcesConfigWithContext is the same as DescribeEventSourcesConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEventSourcesConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) DescribeEventSourcesConfigWithContext(ctx aws.Context, input *DescribeEventSourcesConfigInput, opts ...request.Option) (*DescribeEventSourcesConfigOutput, error) {
+	req, out := c.DescribeEventSourcesConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeFeedback = "DescribeFeedback"
 
 // DescribeFeedbackRequest generates a "aws/request.Request" representing the
@@ -3062,6 +3156,100 @@ func (c *DevOpsGuru) StartCostEstimationWithContext(ctx aws.Context, input *Star
 	return out, req.Send()
 }
 
+const opUpdateEventSourcesConfig = "UpdateEventSourcesConfig"
+
+// UpdateEventSourcesConfigRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateEventSourcesConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateEventSourcesConfig for more information on using the UpdateEventSourcesConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateEventSourcesConfigRequest method.
+//    req, resp := client.UpdateEventSourcesConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/UpdateEventSourcesConfig
+func (c *DevOpsGuru) UpdateEventSourcesConfigRequest(input *UpdateEventSourcesConfigInput) (req *request.Request, output *UpdateEventSourcesConfigOutput) {
+	op := &request.Operation{
+		Name:       opUpdateEventSourcesConfig,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/event-sources",
+	}
+
+	if input == nil {
+		input = &UpdateEventSourcesConfigInput{}
+	}
+
+	output = &UpdateEventSourcesConfigOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateEventSourcesConfig API operation for Amazon DevOps Guru.
+//
+// Updates the event source configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation UpdateEventSourcesConfig for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
+//
+//   * InternalServerException
+//   An internal failure in an Amazon service occurred.
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/UpdateEventSourcesConfig
+func (c *DevOpsGuru) UpdateEventSourcesConfig(input *UpdateEventSourcesConfigInput) (*UpdateEventSourcesConfigOutput, error) {
+	req, out := c.UpdateEventSourcesConfigRequest(input)
+	return out, req.Send()
+}
+
+// UpdateEventSourcesConfigWithContext is the same as UpdateEventSourcesConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateEventSourcesConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) UpdateEventSourcesConfigWithContext(ctx aws.Context, input *UpdateEventSourcesConfigInput, opts ...request.Option) (*UpdateEventSourcesConfigOutput, error) {
+	req, out := c.UpdateEventSourcesConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateResourceCollection = "UpdateResourceCollection"
 
 // UpdateResourceCollectionRequest generates a "aws/request.Request" representing the
@@ -3510,6 +3698,38 @@ func (s *AddNotificationChannelOutput) SetId(v string) *AddNotificationChannelOu
 	return s
 }
 
+// Information about your account's integration with Amazon CodeGuru Profiler.
+type AmazonCodeGuruProfilerIntegration struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the CodeGuru Profiler integration.
+	Status *string `type:"string" enum:"EventSourceOptInStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonCodeGuruProfilerIntegration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonCodeGuruProfilerIntegration) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *AmazonCodeGuruProfilerIntegration) SetStatus(v string) *AmazonCodeGuruProfilerIntegration {
+	s.Status = &v
+	return s
+}
+
 // A time range that specifies when DevOps Guru opens and then closes an anomaly.
 // This is different from AnomalyTimeRange, which specifies the time range when
 // DevOps Guru actually observes the anomalous behavior.
@@ -3640,6 +3860,57 @@ func (s *AnomalySourceDetails) SetCloudWatchMetrics(v []*CloudWatchMetricsDetail
 // SetPerformanceInsightsMetrics sets the PerformanceInsightsMetrics field's value.
 func (s *AnomalySourceDetails) SetPerformanceInsightsMetrics(v []*PerformanceInsightsMetricsDetail) *AnomalySourceDetails {
 	s.PerformanceInsightsMetrics = v
+	return s
+}
+
+// Metadata about an anomaly. The anomaly is detected using analysis of the
+// metric data over a period of time
+type AnomalySourceMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The source of the anomaly.
+	Source *string `type:"string"`
+
+	// The name of the anomaly's resource.
+	SourceResourceName *string `type:"string"`
+
+	// The anomaly's resource type.
+	SourceResourceType *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalySourceMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalySourceMetadata) GoString() string {
+	return s.String()
+}
+
+// SetSource sets the Source field's value.
+func (s *AnomalySourceMetadata) SetSource(v string) *AnomalySourceMetadata {
+	s.Source = &v
+	return s
+}
+
+// SetSourceResourceName sets the SourceResourceName field's value.
+func (s *AnomalySourceMetadata) SetSourceResourceName(v string) *AnomalySourceMetadata {
+	s.SourceResourceName = &v
+	return s
+}
+
+// SetSourceResourceType sets the SourceResourceType field's value.
+func (s *AnomalySourceMetadata) SetSourceResourceType(v string) *AnomalySourceMetadata {
+	s.SourceResourceType = &v
 	return s
 }
 
@@ -4552,6 +4823,59 @@ func (s *DescribeAnomalyOutput) SetProactiveAnomaly(v *ProactiveAnomaly) *Descri
 // SetReactiveAnomaly sets the ReactiveAnomaly field's value.
 func (s *DescribeAnomalyOutput) SetReactiveAnomaly(v *ReactiveAnomaly) *DescribeAnomalyOutput {
 	s.ReactiveAnomaly = v
+	return s
+}
+
+type DescribeEventSourcesConfigInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEventSourcesConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEventSourcesConfigInput) GoString() string {
+	return s.String()
+}
+
+type DescribeEventSourcesConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the event source.
+	EventSources *EventSourcesConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEventSourcesConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEventSourcesConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventSources sets the EventSources field's value.
+func (s *DescribeEventSourcesConfigOutput) SetEventSources(v *EventSourcesConfig) *DescribeEventSourcesConfigOutput {
+	s.EventSources = v
 	return s
 }
 
@@ -5562,6 +5886,38 @@ func (s *EventResource) SetName(v string) *EventResource {
 // SetType sets the Type field's value.
 func (s *EventResource) SetType(v string) *EventResource {
 	s.Type = &v
+	return s
+}
+
+// Describes the event sources.
+type EventSourcesConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Information about your account's integration with Amazon CodeGuru Profiler.
+	AmazonCodeGuruProfiler *AmazonCodeGuruProfilerIntegration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventSourcesConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventSourcesConfig) GoString() string {
+	return s.String()
+}
+
+// SetAmazonCodeGuruProfiler sets the AmazonCodeGuruProfiler field's value.
+func (s *EventSourcesConfig) SetAmazonCodeGuruProfiler(v *AmazonCodeGuruProfilerIntegration) *EventSourcesConfig {
+	s.AmazonCodeGuruProfiler = v
 	return s
 }
 
@@ -7975,6 +8331,9 @@ type ProactiveAnomaly struct {
 	// when the anomaly is opened and the time when it is closed.
 	AnomalyReportedTimeRange *AnomalyReportedTimeRange `type:"structure"`
 
+	// Information about a resource in which DevOps Guru detected anomalous behavior.
+	AnomalyResources []*AnomalyResource `type:"list"`
+
 	// A time range that specifies when the observed unusual behavior in an anomaly
 	// started and ended. This is different from AnomalyReportedTimeRange, which
 	// specifies the time range when DevOps Guru opens and then closes an anomaly.
@@ -8014,6 +8373,9 @@ type ProactiveAnomaly struct {
 	// the anomaly. The one supported source is Amazon CloudWatch metrics.
 	SourceDetails *AnomalySourceDetails `type:"structure"`
 
+	// The metadata for the anomaly.
+	SourceMetadata *AnomalySourceMetadata `type:"structure"`
+
 	// The status of a proactive anomaly.
 	Status *string `type:"string" enum:"AnomalyStatus"`
 
@@ -8042,6 +8404,12 @@ func (s ProactiveAnomaly) GoString() string {
 // SetAnomalyReportedTimeRange sets the AnomalyReportedTimeRange field's value.
 func (s *ProactiveAnomaly) SetAnomalyReportedTimeRange(v *AnomalyReportedTimeRange) *ProactiveAnomaly {
 	s.AnomalyReportedTimeRange = v
+	return s
+}
+
+// SetAnomalyResources sets the AnomalyResources field's value.
+func (s *ProactiveAnomaly) SetAnomalyResources(v []*AnomalyResource) *ProactiveAnomaly {
+	s.AnomalyResources = v
 	return s
 }
 
@@ -8093,6 +8461,12 @@ func (s *ProactiveAnomaly) SetSourceDetails(v *AnomalySourceDetails) *ProactiveA
 	return s
 }
 
+// SetSourceMetadata sets the SourceMetadata field's value.
+func (s *ProactiveAnomaly) SetSourceMetadata(v *AnomalySourceMetadata) *ProactiveAnomaly {
+	s.SourceMetadata = v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *ProactiveAnomaly) SetStatus(v string) *ProactiveAnomaly {
 	s.Status = &v
@@ -8112,6 +8486,9 @@ type ProactiveAnomalySummary struct {
 	// An AnomalyReportedTimeRange object that specifies the time range between
 	// when the anomaly is opened and the time when it is closed.
 	AnomalyReportedTimeRange *AnomalyReportedTimeRange `type:"structure"`
+
+	// Information about a resource in which DevOps Guru detected anomalous behavior.
+	AnomalyResources []*AnomalyResource `type:"list"`
 
 	// A time range that specifies when the observed unusual behavior in an anomaly
 	// started and ended. This is different from AnomalyReportedTimeRange, which
@@ -8152,6 +8529,9 @@ type ProactiveAnomalySummary struct {
 	// the anomaly. The one supported source is Amazon CloudWatch metrics.
 	SourceDetails *AnomalySourceDetails `type:"structure"`
 
+	// Returns the metadata of the source.
+	SourceMetadata *AnomalySourceMetadata `type:"structure"`
+
 	// The status of the anomaly.
 	Status *string `type:"string" enum:"AnomalyStatus"`
 
@@ -8180,6 +8560,12 @@ func (s ProactiveAnomalySummary) GoString() string {
 // SetAnomalyReportedTimeRange sets the AnomalyReportedTimeRange field's value.
 func (s *ProactiveAnomalySummary) SetAnomalyReportedTimeRange(v *AnomalyReportedTimeRange) *ProactiveAnomalySummary {
 	s.AnomalyReportedTimeRange = v
+	return s
+}
+
+// SetAnomalyResources sets the AnomalyResources field's value.
+func (s *ProactiveAnomalySummary) SetAnomalyResources(v []*AnomalyResource) *ProactiveAnomalySummary {
+	s.AnomalyResources = v
 	return s
 }
 
@@ -8231,6 +8617,12 @@ func (s *ProactiveAnomalySummary) SetSourceDetails(v *AnomalySourceDetails) *Pro
 	return s
 }
 
+// SetSourceMetadata sets the SourceMetadata field's value.
+func (s *ProactiveAnomalySummary) SetSourceMetadata(v *AnomalySourceMetadata) *ProactiveAnomalySummary {
+	s.SourceMetadata = v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *ProactiveAnomalySummary) SetStatus(v string) *ProactiveAnomalySummary {
 	s.Status = &v
@@ -8246,6 +8638,9 @@ func (s *ProactiveAnomalySummary) SetUpdateTime(v time.Time) *ProactiveAnomalySu
 // Details about a proactive insight. This object is returned by ListInsights.
 type ProactiveInsight struct {
 	_ struct{} `type:"structure"`
+
+	// Describes the proactive insight.
+	Description *string `type:"string"`
 
 	// The ID of the proactive insight.
 	Id *string `min:"1" type:"string"`
@@ -8300,6 +8695,12 @@ func (s ProactiveInsight) String() string {
 // value will be replaced with "sensitive".
 func (s ProactiveInsight) GoString() string {
 	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *ProactiveInsight) SetDescription(v string) *ProactiveInsight {
+	s.Description = &v
+	return s
 }
 
 // SetId sets the Id field's value.
@@ -8982,6 +9383,9 @@ func (s *ReactiveAnomalySummary) SetType(v string) *ReactiveAnomalySummary {
 type ReactiveInsight struct {
 	_ struct{} `type:"structure"`
 
+	// Describes the reactive insight.
+	Description *string `type:"string"`
+
 	// The ID of a reactive insight.
 	Id *string `min:"1" type:"string"`
 
@@ -9031,6 +9435,12 @@ func (s ReactiveInsight) String() string {
 // value will be replaced with "sensitive".
 func (s ReactiveInsight) GoString() string {
 	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *ReactiveInsight) SetDescription(v string) *ReactiveInsight {
+	s.Description = &v
+	return s
 }
 
 // SetId sets the Id field's value.
@@ -9298,6 +9708,9 @@ func (s *ReactiveOrganizationInsightSummary) SetStatus(v string) *ReactiveOrgani
 type Recommendation struct {
 	_ struct{} `type:"structure"`
 
+	// The category type of the recommendation.
+	Category *string `type:"string"`
+
 	// A description of the problem.
 	Description *string `type:"string"`
 
@@ -9335,6 +9748,12 @@ func (s Recommendation) String() string {
 // value will be replaced with "sensitive".
 func (s Recommendation) GoString() string {
 	return s.String()
+}
+
+// SetCategory sets the Category field's value.
+func (s *Recommendation) SetCategory(v string) *Recommendation {
+	s.Category = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -11394,6 +11813,59 @@ func (s *UpdateCloudFormationCollectionFilter) SetStackNames(v []*string) *Updat
 	return s
 }
 
+type UpdateEventSourcesConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the event source.
+	EventSources *EventSourcesConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventSourcesConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventSourcesConfigInput) GoString() string {
+	return s.String()
+}
+
+// SetEventSources sets the EventSources field's value.
+func (s *UpdateEventSourcesConfigInput) SetEventSources(v *EventSourcesConfig) *UpdateEventSourcesConfigInput {
+	s.EventSources = v
+	return s
+}
+
+type UpdateEventSourcesConfigOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventSourcesConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventSourcesConfigOutput) GoString() string {
+	return s.String()
+}
+
 // Contains information used to update a collection of Amazon Web Services resources.
 type UpdateResourceCollectionFilter struct {
 	_ struct{} `type:"structure"`
@@ -12060,6 +12532,22 @@ func EventDataSource_Values() []string {
 	return []string{
 		EventDataSourceAwsCloudTrail,
 		EventDataSourceAwsCodeDeploy,
+	}
+}
+
+const (
+	// EventSourceOptInStatusEnabled is a EventSourceOptInStatus enum value
+	EventSourceOptInStatusEnabled = "ENABLED"
+
+	// EventSourceOptInStatusDisabled is a EventSourceOptInStatus enum value
+	EventSourceOptInStatusDisabled = "DISABLED"
+)
+
+// EventSourceOptInStatus_Values returns all elements of the EventSourceOptInStatus enum
+func EventSourceOptInStatus_Values() []string {
+	return []string{
+		EventSourceOptInStatusEnabled,
+		EventSourceOptInStatusDisabled,
 	}
 }
 

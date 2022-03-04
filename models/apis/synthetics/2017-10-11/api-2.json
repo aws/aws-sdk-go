@@ -281,7 +281,7 @@
         "S3Key":{"shape":"String"},
         "S3Version":{"shape":"String"},
         "ZipFile":{"shape":"Blob"},
-        "Handler":{"shape":"String"}
+        "Handler":{"shape":"CodeHandler"}
       }
     },
     "CanaryCodeOutput":{
@@ -414,6 +414,12 @@
         "LastStarted":{"shape":"Timestamp"},
         "LastStopped":{"shape":"Timestamp"}
       }
+    },
+    "CodeHandler":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^([0-9a-zA-Z_-]+\\/)*[0-9A-Za-z_\\\\-]+\\.[A-Za-z_][A-Za-z0-9_]*$"
     },
     "ConflictException":{
       "type":"structure",

@@ -80,6 +80,22 @@
         {"shape":"ValidationException"}
       ]
     },
+    "DescribeEventSourcesConfig":{
+      "name":"DescribeEventSourcesConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/event-sources",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeEventSourcesConfigRequest"},
+      "output":{"shape":"DescribeEventSourcesConfigResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "DescribeFeedback":{
       "name":"DescribeFeedback",
       "http":{
@@ -413,6 +429,22 @@
         {"shape":"ValidationException"}
       ]
     },
+    "UpdateEventSourcesConfig":{
+      "name":"UpdateEventSourcesConfig",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/event-sources",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateEventSourcesConfigRequest"},
+      "output":{"shape":"UpdateEventSourcesConfigResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "UpdateResourceCollection":{
       "name":"UpdateResourceCollection",
       "http":{
@@ -496,6 +528,12 @@
         "Id":{"shape":"NotificationChannelId"}
       }
     },
+    "AmazonCodeGuruProfilerIntegration":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"EventSourceOptInStatus"}
+      }
+    },
     "AnomalyDescription":{"type":"string"},
     "AnomalyId":{
       "type":"string",
@@ -535,11 +573,20 @@
         "HIGH"
       ]
     },
+    "AnomalySource":{"type":"string"},
     "AnomalySourceDetails":{
       "type":"structure",
       "members":{
         "CloudWatchMetrics":{"shape":"CloudWatchMetricsDetails"},
         "PerformanceInsightsMetrics":{"shape":"PerformanceInsightsMetricsDetails"}
+      }
+    },
+    "AnomalySourceMetadata":{
+      "type":"structure",
+      "members":{
+        "Source":{"shape":"AnomalySource"},
+        "SourceResourceName":{"shape":"ResourceName"},
+        "SourceResourceType":{"shape":"ResourceType"}
       }
     },
     "AnomalyStatus":{
@@ -801,6 +848,17 @@
         "ReactiveAnomaly":{"shape":"ReactiveAnomaly"}
       }
     },
+    "DescribeEventSourcesConfigRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DescribeEventSourcesConfigResponse":{
+      "type":"structure",
+      "members":{
+        "EventSources":{"shape":"EventSourcesConfig"}
+      }
+    },
     "DescribeFeedbackRequest":{
       "type":"structure",
       "members":{
@@ -1019,6 +1077,19 @@
       "min":10,
       "pattern":"^[a-z]+[a-z0-9]*\\.amazonaws\\.com|aws\\.events$"
     },
+    "EventSourceOptInStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "EventSourcesConfig":{
+      "type":"structure",
+      "members":{
+        "AmazonCodeGuruProfiler":{"shape":"AmazonCodeGuruProfilerIntegration"}
+      }
+    },
     "EventTimeRange":{
       "type":"structure",
       "required":[
@@ -1078,6 +1149,7 @@
         "NextToken":{"shape":"UuidNextToken"}
       }
     },
+    "InsightDescription":{"type":"string"},
     "InsightFeedback":{
       "type":"structure",
       "members":{
@@ -1566,7 +1638,9 @@
         "SourceDetails":{"shape":"AnomalySourceDetails"},
         "AssociatedInsightId":{"shape":"InsightId"},
         "ResourceCollection":{"shape":"ResourceCollection"},
-        "Limit":{"shape":"AnomalyLimit"}
+        "Limit":{"shape":"AnomalyLimit"},
+        "SourceMetadata":{"shape":"AnomalySourceMetadata"},
+        "AnomalyResources":{"shape":"AnomalyResources"}
       }
     },
     "ProactiveAnomalySummary":{
@@ -1582,7 +1656,9 @@
         "SourceDetails":{"shape":"AnomalySourceDetails"},
         "AssociatedInsightId":{"shape":"InsightId"},
         "ResourceCollection":{"shape":"ResourceCollection"},
-        "Limit":{"shape":"AnomalyLimit"}
+        "Limit":{"shape":"AnomalyLimit"},
+        "SourceMetadata":{"shape":"AnomalySourceMetadata"},
+        "AnomalyResources":{"shape":"AnomalyResources"}
       }
     },
     "ProactiveInsight":{
@@ -1595,7 +1671,8 @@
         "InsightTimeRange":{"shape":"InsightTimeRange"},
         "PredictionTimeRange":{"shape":"PredictionTimeRange"},
         "ResourceCollection":{"shape":"ResourceCollection"},
-        "SsmOpsItemId":{"shape":"SsmOpsItemId"}
+        "SsmOpsItemId":{"shape":"SsmOpsItemId"},
+        "Description":{"shape":"InsightDescription"}
       }
     },
     "ProactiveInsightSummary":{
@@ -1695,7 +1772,8 @@
         "Status":{"shape":"InsightStatus"},
         "InsightTimeRange":{"shape":"InsightTimeRange"},
         "ResourceCollection":{"shape":"ResourceCollection"},
-        "SsmOpsItemId":{"shape":"SsmOpsItemId"}
+        "SsmOpsItemId":{"shape":"SsmOpsItemId"},
+        "Description":{"shape":"InsightDescription"}
       }
     },
     "ReactiveInsightSummary":{
@@ -1741,9 +1819,11 @@
         "Name":{"shape":"RecommendationName"},
         "Reason":{"shape":"RecommendationReason"},
         "RelatedEvents":{"shape":"RecommendationRelatedEvents"},
-        "RelatedAnomalies":{"shape":"RecommendationRelatedAnomalies"}
+        "RelatedAnomalies":{"shape":"RecommendationRelatedAnomalies"},
+        "Category":{"shape":"RecommendationCategory"}
       }
     },
+    "RecommendationCategory":{"type":"string"},
     "RecommendationDescription":{"type":"string"},
     "RecommendationLink":{"type":"string"},
     "RecommendationName":{"type":"string"},
@@ -2212,6 +2292,17 @@
       "type":"structure",
       "members":{
         "StackNames":{"shape":"UpdateStackNames"}
+      }
+    },
+    "UpdateEventSourcesConfigRequest":{
+      "type":"structure",
+      "members":{
+        "EventSources":{"shape":"EventSourcesConfig"}
+      }
+    },
+    "UpdateEventSourcesConfigResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "UpdateResourceCollectionAction":{
