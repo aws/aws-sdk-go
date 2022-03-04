@@ -37431,6 +37431,9 @@ const (
 
 	// InstanceStorageResourceTypeAgentEvents is a InstanceStorageResourceType enum value
 	InstanceStorageResourceTypeAgentEvents = "AGENT_EVENTS"
+
+	// InstanceStorageResourceTypeRealTimeContactAnalysisSegments is a InstanceStorageResourceType enum value
+	InstanceStorageResourceTypeRealTimeContactAnalysisSegments = "REAL_TIME_CONTACT_ANALYSIS_SEGMENTS"
 )
 
 // InstanceStorageResourceType_Values returns all elements of the InstanceStorageResourceType enum
@@ -37442,6 +37445,7 @@ func InstanceStorageResourceType_Values() []string {
 		InstanceStorageResourceTypeMediaStreams,
 		InstanceStorageResourceTypeContactTraceRecords,
 		InstanceStorageResourceTypeAgentEvents,
+		InstanceStorageResourceTypeRealTimeContactAnalysisSegments,
 	}
 }
 

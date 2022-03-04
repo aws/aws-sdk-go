@@ -208,6 +208,12 @@ type TransferAPI interface {
 	UpdateUser(*transfer.UpdateUserInput) (*transfer.UpdateUserOutput, error)
 	UpdateUserWithContext(aws.Context, *transfer.UpdateUserInput, ...request.Option) (*transfer.UpdateUserOutput, error)
 	UpdateUserRequest(*transfer.UpdateUserInput) (*request.Request, *transfer.UpdateUserOutput)
+
+	WaitUntilServerOffline(*transfer.DescribeServerInput) error
+	WaitUntilServerOfflineWithContext(aws.Context, *transfer.DescribeServerInput, ...request.WaiterOption) error
+
+	WaitUntilServerOnline(*transfer.DescribeServerInput) error
+	WaitUntilServerOnlineWithContext(aws.Context, *transfer.DescribeServerInput, ...request.WaiterOption) error
 }
 
 var _ TransferAPI = (*transfer.Transfer)(nil)

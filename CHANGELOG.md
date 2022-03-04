@@ -1,3 +1,19 @@
+Release v1.43.12 (2022-03-04)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API
+* `service/devops-guru`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Documentation updates for Amazon EC2.
+* `service/macie`: Updates service documentation
+  * Amazon Macie Classic (macie) has been discontinued and is no longer available. A new Amazon Macie (macie2) is now available with significant design improvements and additional features.
+* `service/sts`: Updates service documentation
+  * Documentation updates for AWS Security Token Service.
+* `service/synthetics`: Updates service API and documentation
+* `service/transfer`: Updates service waiters
+  * Add waiters for server online and offline.
+
 Release v1.43.11 (2022-03-03)
 ===
 
