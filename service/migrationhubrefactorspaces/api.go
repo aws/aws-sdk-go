@@ -60,8 +60,8 @@ func (c *MigrationHubRefactorSpaces) CreateApplicationRequest(input *CreateAppli
 // Creates an Amazon Web Services Migration Hub Refactor Spaces application.
 // The account that owns the environment also owns the applications created
 // inside the environment, regardless of the account that creates the application.
-// Refactor Spaces provisions the Amazon API Gateway and Network Load Balancer
-// for the application proxy inside your account.
+// Refactor Spaces provisions an Amazon API Gateway, API Gateway VPC link, and
+// Network Load Balancer for the application proxy inside your account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -159,10 +159,11 @@ func (c *MigrationHubRefactorSpaces) CreateEnvironmentRequest(input *CreateEnvir
 // CreateEnvironment API operation for AWS Migration Hub Refactor Spaces.
 //
 // Creates an Amazon Web Services Migration Hub Refactor Spaces environment.
-// The caller owns the environment resource, and they are referred to as the
-// environment owner. The environment owner has cross-account visibility and
-// control of Refactor Spaces resources that are added to the environment by
-// other accounts that the environment is shared with. When creating an environment,
+// The caller owns the environment resource, and all Refactor Spaces applications,
+// services, and routes created within the environment. They are referred to
+// as the environment owner. The environment owner has cross-account visibility
+// and control of Refactor Spaces resources that are added to the environment
+// by other accounts that the environment is shared with. When creating an environment,
 // Refactor Spaces provisions a transit gateway in your account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -276,11 +277,12 @@ func (c *MigrationHubRefactorSpaces) CreateRouteRequest(input *CreateRouteInput)
 //    IP address, Refactor Spaces routes traffic over the public internet.
 //
 //    * If the service has an Lambda function endpoint, then Refactor Spaces
-//    uses the API Gateway Lambda integration.
+//    configures the Lambda function's resource policy to allow the application's
+//    API Gateway to invoke the function.
 //
-// A health check is performed on the service when the route is created. If
-// the health check fails, the route transitions to FAILED, and no traffic is
-// sent to the service.
+// A one-time health check is performed on the service when the route is created.
+// If the health check fails, the route transitions to FAILED, and no traffic
+// is sent to the service.
 //
 // For Lambda functions, the Lambda function state is checked. If the function
 // is not active, the function configuration is updated so that Lambda resources
@@ -299,6 +301,10 @@ func (c *MigrationHubRefactorSpaces) CreateRouteRequest(input *CreateRouteInput)
 // your target groups (https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html).
 // The health check is considered successful if at least one target within the
 // target group transitions to a healthy state.
+//
+// Services can have HTTP or HTTPS URL endpoints. For HTTPS URLs, publicly-signed
+// certificates are supported. Private Certificate Authorities (CAs) are permitted
+// only if the CA's domain is publicly resolvable.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -400,10 +406,10 @@ func (c *MigrationHubRefactorSpaces) CreateServiceRequest(input *CreateServiceIn
 // of which account in the environment creates the service. Services have either
 // a URL endpoint in a virtual private cloud (VPC), or a Lambda function endpoint.
 //
-// If an Amazon Web Services resourceis launched in a service VPC, and you want
-// it to be accessible to all of an environment’s services with VPCs and routes,
-// apply the RefactorSpacesSecurityGroup to the resource. Alternatively, to
-// add more cross-account constraints, apply your own security group.
+// If an Amazon Web Services resource is launched in a service VPC, and you
+// want it to be accessible to all of an environment’s services with VPCs
+// and routes, apply the RefactorSpacesSecurityGroup to the resource. Alternatively,
+// to add more cross-account constraints, apply your own security group.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1589,8 +1595,8 @@ func (c *MigrationHubRefactorSpaces) ListEnvironmentVpcsRequest(input *ListEnvir
 
 // ListEnvironmentVpcs API operation for AWS Migration Hub Refactor Spaces.
 //
-// Lists all the virtual private clouds (VPCs) that are part of an Amazon Web
-// Services Migration Hub Refactor Spaces environment.
+// Lists all Amazon Web Services Migration Hub Refactor Spaces service virtual
+// private clouds (VPCs) that are part of the environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2827,7 +2833,7 @@ type ApplicationSummary struct {
 	// The unique identifier of the application.
 	ApplicationId *string `min:"14" type:"string"`
 
-	// he Amazon Resource Name (ARN) of the application.
+	// The Amazon Resource Name (ARN) of the application.
 	Arn *string `min:"20" type:"string"`
 
 	// The Amazon Web Services account ID of the application creator.
@@ -2848,7 +2854,8 @@ type ApplicationSummary struct {
 	// The name of the application.
 	Name *string `min:"3" type:"string"`
 
-	// The Amazon Web Services account ID of the application owner.
+	// The Amazon Web Services account ID of the application owner (which is always
+	// the same as the environment owner account ID).
 	OwnerAccountId *string `min:"12" type:"string"`
 
 	// The proxy type of the proxy created within the application.
@@ -3214,7 +3221,8 @@ type CreateApplicationOutput struct {
 	// The name of the application.
 	Name *string `min:"3" type:"string"`
 
-	// The Amazon Web Services account ID of the application owner.
+	// The Amazon Web Services account ID of the application owner (which is always
+	// the same as the environment owner account ID).
 	OwnerAccountId *string `min:"12" type:"string"`
 
 	// The proxy type of the proxy created within the application.
@@ -3721,11 +3729,11 @@ type CreateRouteOutput struct {
 	// The route type of the route.
 	RouteType *string `type:"string" enum:"RouteType"`
 
-	// The ID of service in which the rute iscreated. Traffic that matches this
+	// The ID of service in which the route is created. Traffic that matches this
 	// route is forwarded to this service.
 	ServiceId *string `min:"14" type:"string"`
 
-	// he current state of the route.
+	// The current state of the route.
 	State *string `type:"string" enum:"RouteState"`
 
 	// The tags assigned to the created route. A tag is a label that you assign
@@ -4593,7 +4601,7 @@ func (s *DeleteRouteInput) SetRouteIdentifier(v string) *DeleteRouteInput {
 type DeleteRouteOutput struct {
 	_ struct{} `type:"structure"`
 
-	// he ID of the application that the route belongs to.
+	// The ID of the application that the route belongs to.
 	ApplicationId *string `min:"14" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the route.
@@ -5233,7 +5241,8 @@ type GetApplicationOutput struct {
 	// The name of the application.
 	Name *string `min:"3" type:"string"`
 
-	// The Amazon Web Services account ID of the application owner.
+	// The Amazon Web Services account ID of the application owner (which is always
+	// the same as the environment owner account ID).
 	OwnerAccountId *string `min:"12" type:"string"`
 
 	// The proxy type of the proxy created within the application.

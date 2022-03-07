@@ -401,7 +401,6 @@
     },
     "EngineTranscribeSettings":{
       "type":"structure",
-      "required":["LanguageCode"],
       "members":{
         "LanguageCode":{"shape":"TranscribeLanguageCode"},
         "VocabularyFilterMethod":{"shape":"TranscribeVocabularyFilterMethod"},
@@ -413,7 +412,10 @@
         "ContentIdentificationType":{"shape":"TranscribeContentIdentificationType"},
         "ContentRedactionType":{"shape":"TranscribeContentRedactionType"},
         "PiiEntityTypes":{"shape":"TranscribePiiEntityTypes"},
-        "LanguageModelName":{"shape":"TranscribeLanguageModelName"}
+        "LanguageModelName":{"shape":"TranscribeLanguageModelName"},
+        "IdentifyLanguage":{"shape":"Boolean"},
+        "LanguageOptions":{"shape":"TranscribeLanguageOptions"},
+        "PreferredLanguage":{"shape":"TranscribeLanguageCode"}
       }
     },
     "ExternalMeetingId":{
@@ -670,6 +672,12 @@
       "max":200,
       "min":1,
       "pattern":"^[0-9a-zA-Z._-]+"
+    },
+    "TranscribeLanguageOptions":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^[a-zA-Z-,]+"
     },
     "TranscribeMedicalContentIdentificationType":{
       "type":"string",

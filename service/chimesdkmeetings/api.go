@@ -1606,10 +1606,12 @@ type CreateMeetingInput struct {
 
 	// The Region in which to create the meeting.
 	//
-	// Available values: af-south-1 , ap-northeast-1 , ap-northeast-2 , ap-south-1
-	// , ap-southeast-1 , ap-southeast-2 , ca-central-1 , eu-central-1 , eu-north-1
-	// , eu-south-1 , eu-west-1 , eu-west-2 , eu-west-3 , sa-east-1 , us-east-1
-	// , us-east-2 , us-west-1 , us-west-2 .
+	// Available values: af-south-1, ap-northeast-1, ap-northeast-2, ap-south-1,
+	// ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-north-1, eu-south-1,
+	// eu-west-1, eu-west-2, eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1,
+	// us-west-2.
+	//
+	// Available values in AWS GovCloud (US) Regions: us-gov-east-1, us-gov-west-1.
 	//
 	// MediaRegion is a required field
 	MediaRegion *string `min:"2" type:"string" required:"true"`
@@ -1773,6 +1775,13 @@ type CreateMeetingWithAttendeesInput struct {
 	ExternalMeetingId *string `min:"2" type:"string" required:"true" sensitive:"true"`
 
 	// The Region in which to create the meeting.
+	//
+	// Available values: af-south-1, ap-northeast-1, ap-northeast-2, ap-south-1,
+	// ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-north-1, eu-south-1,
+	// eu-west-1, eu-west-2, eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1,
+	// us-west-2.
+	//
+	// Available values in AWS GovCloud (US) Regions: us-gov-east-1, us-gov-west-1.
 	//
 	// MediaRegion is a required field
 	MediaRegion *string `min:"2" type:"string" required:"true"`
@@ -2235,13 +2244,18 @@ type EngineTranscribeSettings struct {
 	// the partial results to change.
 	EnablePartialResultsStabilization *bool `type:"boolean"`
 
+	// Automatically identifies the language spoken in media files.
+	IdentifyLanguage *bool `type:"boolean"`
+
 	// The language code specified for the Amazon Transcribe engine.
-	//
-	// LanguageCode is a required field
-	LanguageCode *string `type:"string" required:"true" enum:"TranscribeLanguageCode"`
+	LanguageCode *string `type:"string" enum:"TranscribeLanguageCode"`
 
 	// The name of the language model used during transcription.
 	LanguageModelName *string `min:"1" type:"string"`
+
+	// Language codes for the languages that you want to identify. You must provide
+	// at least 2 codes.
+	LanguageOptions *string `min:"1" type:"string"`
 
 	// The stabity level of a partial results transcription. Determines how stable
 	// you want the transcription results to be. A higher level means the transcription
@@ -2257,6 +2271,9 @@ type EngineTranscribeSettings struct {
 	//
 	// PiiEntityTypes is an optional parameter with a default value of ALL.
 	PiiEntityTypes *string `min:"1" type:"string"`
+
+	// Language code for the preferred language.
+	PreferredLanguage *string `type:"string" enum:"TranscribeLanguageCode"`
 
 	// The AWS Region passed to Amazon Transcribe. If you don't specify a Region,
 	// Amazon Chime uses the meeting's Region.
@@ -2293,11 +2310,11 @@ func (s EngineTranscribeSettings) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *EngineTranscribeSettings) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "EngineTranscribeSettings"}
-	if s.LanguageCode == nil {
-		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
-	}
 	if s.LanguageModelName != nil && len(*s.LanguageModelName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LanguageModelName", 1))
+	}
+	if s.LanguageOptions != nil && len(*s.LanguageOptions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LanguageOptions", 1))
 	}
 	if s.PiiEntityTypes != nil && len(*s.PiiEntityTypes) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("PiiEntityTypes", 1))
@@ -2327,6 +2344,12 @@ func (s *EngineTranscribeSettings) SetEnablePartialResultsStabilization(v bool) 
 	return s
 }
 
+// SetIdentifyLanguage sets the IdentifyLanguage field's value.
+func (s *EngineTranscribeSettings) SetIdentifyLanguage(v bool) *EngineTranscribeSettings {
+	s.IdentifyLanguage = &v
+	return s
+}
+
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *EngineTranscribeSettings) SetLanguageCode(v string) *EngineTranscribeSettings {
 	s.LanguageCode = &v
@@ -2339,6 +2362,12 @@ func (s *EngineTranscribeSettings) SetLanguageModelName(v string) *EngineTranscr
 	return s
 }
 
+// SetLanguageOptions sets the LanguageOptions field's value.
+func (s *EngineTranscribeSettings) SetLanguageOptions(v string) *EngineTranscribeSettings {
+	s.LanguageOptions = &v
+	return s
+}
+
 // SetPartialResultsStability sets the PartialResultsStability field's value.
 func (s *EngineTranscribeSettings) SetPartialResultsStability(v string) *EngineTranscribeSettings {
 	s.PartialResultsStability = &v
@@ -2348,6 +2377,12 @@ func (s *EngineTranscribeSettings) SetPartialResultsStability(v string) *EngineT
 // SetPiiEntityTypes sets the PiiEntityTypes field's value.
 func (s *EngineTranscribeSettings) SetPiiEntityTypes(v string) *EngineTranscribeSettings {
 	s.PiiEntityTypes = &v
+	return s
+}
+
+// SetPreferredLanguage sets the PreferredLanguage field's value.
+func (s *EngineTranscribeSettings) SetPreferredLanguage(v string) *EngineTranscribeSettings {
+	s.PreferredLanguage = &v
 	return s
 }
 
@@ -2914,6 +2949,8 @@ type Meeting struct {
 	// ap-northeast-1, ap-northeast-2, ap-south-1, ap-southeast-1, ap-southeast-2,
 	// ca-central-1, eu-central-1, eu-north-1, eu-south-1, eu-west-1, eu-west-2,
 	// eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1, us-west-2.
+	//
+	// Available values in AWS GovCloud (US) Regions: us-gov-east-1, us-gov-west-1.
 	MediaRegion *string `min:"2" type:"string"`
 
 	// The features available to a meeting, such as Amazon Voice Focus.
@@ -2984,7 +3021,7 @@ func (s *Meeting) SetMeetingId(v string) *Meeting {
 	return s
 }
 
-// The configuration settings of the features available to a meeting.
+// The configuration settings of the features available to a meeting.>
 type MeetingFeaturesConfiguration struct {
 	_ struct{} `type:"structure"`
 

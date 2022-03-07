@@ -2526,7 +2526,8 @@
       "type":"string",
       "enum":[
         "TASK_DEFINITION",
-        "SERVICE"
+        "SERVICE",
+        "NONE"
       ]
     },
     "ProxyConfiguration":{
@@ -3521,7 +3522,11 @@
         "platformVersion":{"shape":"String"},
         "forceNewDeployment":{"shape":"Boolean"},
         "healthCheckGracePeriodSeconds":{"shape":"BoxedInteger"},
-        "enableExecuteCommand":{"shape":"BoxedBoolean"}
+        "enableExecuteCommand":{"shape":"BoxedBoolean"},
+        "enableECSManagedTags":{"shape":"BoxedBoolean"},
+        "loadBalancers":{"shape":"LoadBalancers"},
+        "propagateTags":{"shape":"PropagateTags"},
+        "serviceRegistries":{"shape":"ServiceRegistries"}
       }
     },
     "UpdateServiceResponse":{
