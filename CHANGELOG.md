@@ -1,3 +1,12 @@
+Release v1.43.13 (2022-03-07)
+===
+
+### Service Client Updates
+* `service/chime-sdk-meetings`: Updates service API and documentation
+* `service/ecs`: Updates service API and documentation
+  * Amazon ECS UpdateService API now supports additional parameters: loadBalancers, propagateTags, enableECSManagedTags, and serviceRegistries
+* `service/migration-hub-refactor-spaces`: Updates service documentation
+
 Release v1.43.12 (2022-03-04)
 ===
 
