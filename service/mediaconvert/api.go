@@ -6755,8 +6755,11 @@ type CmfcSettings struct {
 	// want those SCTE-35 markers in this output.
 	Scte35Source *string `locationName:"scte35Source" type:"string" enum:"CmfcScte35Source"`
 
-	// Applies to CMAF outputs. Use this setting to specify whether the service
-	// inserts the ID3 timed metadata from the input in this output.
+	// To include ID3 metadata in this output: Set ID3 metadata (timedMetadata)
+	// to Passthrough (PASSTHROUGH). Specify this ID3 metadata in Custom ID3 metadata
+	// inserter (timedMetadataInsertion). MediaConvert writes each instance of ID3
+	// metadata in a separate Event Message (eMSG) box. To exclude this ID3 metadata:
+	// Set ID3 metadata to None (NONE) or leave blank.
 	TimedMetadata *string `locationName:"timedMetadata" type:"string" enum:"CmfcTimedMetadata"`
 }
 
@@ -13338,6 +13341,14 @@ type HlsGroupSettings struct {
 	// line from the manifest.
 	CaptionLanguageSetting *string `locationName:"captionLanguageSetting" type:"string" enum:"HlsCaptionLanguageSetting"`
 
+	// Set Caption segment length control (CaptionSegmentLengthControl) to Match
+	// video (MATCH_VIDEO) to create caption segments that align with the video
+	// segments from the first video output in this output group. For example, if
+	// the video segments are 2 seconds long, your WebVTT segments will also be
+	// 2 seconds long. Keep the default setting, Large segments (LARGE_SEGMENTS)
+	// to create caption segments that are 300 seconds long.
+	CaptionSegmentLengthControl *string `locationName:"captionSegmentLengthControl" type:"string" enum:"HlsCaptionSegmentLengthControl"`
+
 	// Disable this setting only when your workflow requires the #EXT-X-ALLOW-CACHE:no
 	// tag. Otherwise, keep the default value Enabled (ENABLED) and control caching
 	// in your video distribution set up. For example, use the Cache-Control http
@@ -13454,10 +13465,19 @@ type HlsGroupSettings struct {
 	// the actual duration of a track in a segment is longer than the target duration.
 	TargetDurationCompatibilityMode *string `locationName:"targetDurationCompatibilityMode" type:"string" enum:"HlsTargetDurationCompatibilityMode"`
 
-	// Indicates ID3 frame that has the timecode.
+	// Specify the type of the ID3 frame (timedMetadataId3Frame) to use for ID3
+	// timestamps (timedMetadataId3Period) in your output. To include ID3 timestamps:
+	// Specify PRIV (PRIV) or TDRL (TDRL) and set ID3 metadata (timedMetadata) to
+	// Passthrough (PASSTHROUGH). To exclude ID3 timestamps: Set ID3 timestamp frame
+	// type to None (NONE).
 	TimedMetadataId3Frame *string `locationName:"timedMetadataId3Frame" type:"string" enum:"HlsTimedMetadataId3Frame"`
 
-	// Timed Metadata interval in seconds.
+	// Specify the interval in seconds to write ID3 timestamps in your output. The
+	// first timestamp starts at the output timecode and date, and increases incrementally
+	// with each ID3 timestamp. To use the default interval of 10 seconds: Leave
+	// blank. To include this metadata in your output: Set ID3 timestamp frame type
+	// (timedMetadataId3Frame) to PRIV (PRIV) or TDRL (TDRL), and set ID3 metadata
+	// (timedMetadata) to Passthrough (PASSTHROUGH).
 	TimedMetadataId3Period *int64 `locationName:"timedMetadataId3Period" type:"integer"`
 
 	// Provides an extra millisecond delta offset to fine tune the timestamps.
@@ -13567,6 +13587,12 @@ func (s *HlsGroupSettings) SetCaptionLanguageMappings(v []*HlsCaptionLanguageMap
 // SetCaptionLanguageSetting sets the CaptionLanguageSetting field's value.
 func (s *HlsGroupSettings) SetCaptionLanguageSetting(v string) *HlsGroupSettings {
 	s.CaptionLanguageSetting = &v
+	return s
+}
+
+// SetCaptionSegmentLengthControl sets the CaptionSegmentLengthControl field's value.
+func (s *HlsGroupSettings) SetCaptionSegmentLengthControl(v string) *HlsGroupSettings {
+	s.CaptionSegmentLengthControl = &v
 	return s
 }
 
@@ -14078,7 +14104,7 @@ func (s *HopDestination) SetWaitMinutes(v int64) *HopDestination {
 type Id3Insertion struct {
 	_ struct{} `type:"structure"`
 
-	// Use ID3 tag (Id3) to provide a tag value in base64-encode format.
+	// Use ID3 tag (Id3) to provide a fully formed ID3 tag in base64-encode format.
 	Id3 *string `locationName:"id3" type:"string"`
 
 	// Provide a Timecode (TimeCode) in HH:MM:SS:FF or HH:MM:SS;FF format.
@@ -14180,11 +14206,14 @@ func (s *ImageInserter) SetInsertableImages(v []*InsertableImage) *ImageInserter
 type ImscDestinationSettings struct {
 	_ struct{} `type:"structure"`
 
-	// Specify whether to flag this caption track as accessibility in your HLS/CMAF
-	// parent manifest. When you choose ENABLED, MediaConvert includes the parameters
-	// CHARACTERISTICS="public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound"
-	// and AUTOSELECT="YES" in the EXT-X-MEDIA entry for this track. When you keep
-	// the default choice, DISABLED, MediaConvert leaves this parameter out.
+	// Set Accessibility subtitles (Accessibility) to Enabled (ENABLED) if the ISMC
+	// or WebVTT captions track is intended to provide accessibility for people
+	// who are deaf or hard of hearing. When you enable this feature, MediaConvert
+	// adds the following attributes under EXT-X-MEDIA in the HLS or CMAF manifest
+	// for this track: CHARACTERISTICS="public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound"
+	// and AUTOSELECT="YES". Keep the default value, Disabled (DISABLED), if the
+	// captions track is not intended to provide such accessibility. MediaConvert
+	// will not add the above attributes.
 	Accessibility *string `locationName:"accessibility" type:"string" enum:"ImscAccessibilitySubs"`
 
 	// Keep this setting enabled to have MediaConvert use the font style and position
@@ -15674,10 +15703,9 @@ type JobSettings struct {
 	// These settings don't affect input clipping.
 	TimecodeConfig *TimecodeConfig `locationName:"timecodeConfig" type:"structure"`
 
-	// Enable Timed metadata insertion (TimedMetadataInsertion) to include ID3 tags
-	// in any HLS outputs. To include timed metadata, you must enable it here, enable
-	// it in each output container, and specify tags and timecodes in ID3 insertion
-	// (Id3Insertion) objects.
+	// Insert user-defined custom ID3 metadata (id3) at timecodes (timecode) that
+	// you specify. In each output that you want to include this metadata, you must
+	// set ID3 metadata (timedMetadata) to Passthrough (PASSTHROUGH).
 	TimedMetadataInsertion *TimedMetadataInsertion `locationName:"timedMetadataInsertion" type:"structure"`
 }
 
@@ -16051,10 +16079,9 @@ type JobTemplateSettings struct {
 	// These settings don't affect input clipping.
 	TimecodeConfig *TimecodeConfig `locationName:"timecodeConfig" type:"structure"`
 
-	// Enable Timed metadata insertion (TimedMetadataInsertion) to include ID3 tags
-	// in any HLS outputs. To include timed metadata, you must enable it here, enable
-	// it in each output container, and specify tags and timecodes in ID3 insertion
-	// (Id3Insertion) objects.
+	// Insert user-defined custom ID3 metadata (id3) at timecodes (timecode) that
+	// you specify. In each output that you want to include this metadata, you must
+	// set ID3 metadata (timedMetadata) to Passthrough (PASSTHROUGH).
 	TimedMetadataInsertion *TimedMetadataInsertion `locationName:"timedMetadataInsertion" type:"structure"`
 }
 
@@ -17651,11 +17678,14 @@ type M3u8Settings struct {
 	// XML (sccXml).
 	Scte35Source *string `locationName:"scte35Source" type:"string" enum:"M3u8Scte35Source"`
 
-	// Applies to HLS outputs. Use this setting to specify whether the service inserts
-	// the ID3 timed metadata from the input in this output.
+	// Set ID3 metadata (timedMetadata) to Passthrough (PASSTHROUGH) to include
+	// ID3 metadata in this output. This includes ID3 metadata from the following
+	// features: ID3 timestamp period (timedMetadataId3Period), and Custom ID3 metadata
+	// inserter (timedMetadataInsertion). To exclude this ID3 metadata in this output:
+	// set ID3 metadata to None (NONE) or leave blank.
 	TimedMetadata *string `locationName:"timedMetadata" type:"string" enum:"TimedMetadata"`
 
-	// Packet Identifier (PID) of the timed metadata stream in the transport stream.
+	// Packet Identifier (PID) of the ID3 metadata stream in the transport stream.
 	TimedMetadataPid *int64 `locationName:"timedMetadataPid" min:"32" type:"integer"`
 
 	// The value of the transport stream ID field in the Program Map Table.
@@ -18452,8 +18482,11 @@ type MpdSettings struct {
 	// want those SCTE-35 markers in this output.
 	Scte35Source *string `locationName:"scte35Source" type:"string" enum:"MpdScte35Source"`
 
-	// Applies to DASH outputs. Use this setting to specify whether the service
-	// inserts the ID3 timed metadata from the input in this output.
+	// To include ID3 metadata in this output: Set ID3 metadata (timedMetadata)
+	// to Passthrough (PASSTHROUGH). Specify this ID3 metadata in Custom ID3 metadata
+	// inserter (timedMetadataInsertion). MediaConvert writes each instance of ID3
+	// metadata in a separate Event Message (eMSG) box. To exclude this ID3 metadata:
+	// Set ID3 metadata to None (NONE) or leave blank.
 	TimedMetadata *string `locationName:"timedMetadata" type:"string" enum:"MpdTimedMetadata"`
 }
 
@@ -19883,22 +19916,22 @@ type NoiseReducerTemporalFilterSettings struct {
 	// and creates better VQ for low bitrate outputs.
 	AggressiveMode *int64 `locationName:"aggressiveMode" type:"integer"`
 
-	// When you set Noise reducer (noiseReducer) to Temporal (TEMPORAL), the sharpness
-	// of your output is reduced. You can optionally use Post temporal sharpening
-	// (PostTemporalSharpening) to apply sharpening to the edges of your output.
-	// The default behavior, Auto (AUTO), allows the transcoder to determine whether
-	// to apply sharpening, depending on your input type and quality. When you set
-	// Post temporal sharpening to Enabled (ENABLED), specify how much sharpening
-	// is applied using Post temporal sharpening strength (PostTemporalSharpeningStrength).
-	// Set Post temporal sharpening to Disabled (DISABLED) to not apply sharpening.
+	// When you set Noise reducer (noiseReducer) to Temporal (TEMPORAL), the bandwidth
+	// and sharpness of your output is reduced. You can optionally use Post temporal
+	// sharpening (postTemporalSharpening) to apply sharpening to the edges of your
+	// output. Note that Post temporal sharpening will also make the bandwidth reduction
+	// from the Noise reducer smaller. The default behavior, Auto (AUTO), allows
+	// the transcoder to determine whether to apply sharpening, depending on your
+	// input type and quality. When you set Post temporal sharpening to Enabled
+	// (ENABLED), specify how much sharpening is applied using Post temporal sharpening
+	// strength (postTemporalSharpeningStrength). Set Post temporal sharpening to
+	// Disabled (DISABLED) to not apply sharpening.
 	PostTemporalSharpening *string `locationName:"postTemporalSharpening" type:"string" enum:"NoiseFilterPostTemporalSharpening"`
 
-	// Use Post temporal sharpening strength (PostTemporalSharpeningStrength) to
+	// Use Post temporal sharpening strength (postTemporalSharpeningStrength) to
 	// define the amount of sharpening the transcoder applies to your output. Set
-	// Post temporal sharpening strength to Low (LOW), or leave blank, to apply
-	// a low amount of sharpening. Set Post temporal sharpening strength to Medium
-	// (MEDIUM) to apply medium amount of sharpening. Set Post temporal sharpening
-	// strength to High (HIGH) to apply a high amount of sharpening.
+	// Post temporal sharpening strength to Low (LOW), Medium (MEDIUM), or High
+	// (HIGH) to indicate the amount of sharpening.
 	PostTemporalSharpeningStrength *string `locationName:"postTemporalSharpeningStrength" type:"string" enum:"NoiseFilterPostTemporalSharpeningStrength"`
 
 	// The speed of the filter (higher number is faster). Low setting reduces bit
@@ -22660,10 +22693,9 @@ func (s *TimecodeConfig) SetTimestampOffset(v string) *TimecodeConfig {
 	return s
 }
 
-// Enable Timed metadata insertion (TimedMetadataInsertion) to include ID3 tags
-// in any HLS outputs. To include timed metadata, you must enable it here, enable
-// it in each output container, and specify tags and timecodes in ID3 insertion
-// (Id3Insertion) objects.
+// Insert user-defined custom ID3 metadata (id3) at timecodes (timecode) that
+// you specify. In each output that you want to include this metadata, you must
+// set ID3 metadata (timedMetadata) to Passthrough (PASSTHROUGH).
 type TimedMetadataInsertion struct {
 	_ struct{} `type:"structure"`
 
@@ -24284,6 +24316,14 @@ type VideoSelector struct {
 	// the service defaults to using values you specify in the input settings.
 	ColorSpaceUsage *string `locationName:"colorSpaceUsage" type:"string" enum:"ColorSpaceUsage"`
 
+	// Set Embedded timecode override (embeddedTimecodeOverride) to Use MDPM (USE_MDPM)
+	// when your AVCHD input contains timecode tag data in the Modified Digital
+	// Video Pack Metadata (MDPM). When you do, we recommend you also set Timecode
+	// source (inputTimecodeSource) to Embedded (EMBEDDED). Leave Embedded timecode
+	// override blank, or set to None (NONE), when your input does not contain MDPM
+	// timecode.
+	EmbeddedTimecodeOverride *string `locationName:"embeddedTimecodeOverride" type:"string" enum:"EmbeddedTimecodeOverride"`
+
 	// Use these settings to provide HDR 10 metadata that is missing or inaccurate
 	// in your input video. Appropriate values vary depending on the input video
 	// and must be provided by a color grader. The color grader generates these
@@ -24380,6 +24420,12 @@ func (s *VideoSelector) SetColorSpace(v string) *VideoSelector {
 // SetColorSpaceUsage sets the ColorSpaceUsage field's value.
 func (s *VideoSelector) SetColorSpaceUsage(v string) *VideoSelector {
 	s.ColorSpaceUsage = &v
+	return s
+}
+
+// SetEmbeddedTimecodeOverride sets the EmbeddedTimecodeOverride field's value.
+func (s *VideoSelector) SetEmbeddedTimecodeOverride(v string) *VideoSelector {
+	s.EmbeddedTimecodeOverride = &v
 	return s
 }
 
@@ -25021,11 +25067,14 @@ func (s *WavSettings) SetSampleRate(v int64) *WavSettings {
 type WebvttDestinationSettings struct {
 	_ struct{} `type:"structure"`
 
-	// Specify whether to flag this caption track as accessibility in your HLS/CMAF
-	// parent manifest. When you choose ENABLED, MediaConvert includes the parameters
-	// CHARACTERISTICS="public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound"
-	// and AUTOSELECT="YES" in the EXT-X-MEDIA entry for this track. When you keep
-	// the default choice, DISABLED, MediaConvert leaves this parameter out.
+	// Set Accessibility subtitles (Accessibility) to Enabled (ENABLED) if the ISMC
+	// or WebVTT captions track is intended to provide accessibility for people
+	// who are deaf or hard of hearing. When you enable this feature, MediaConvert
+	// adds the following attributes under EXT-X-MEDIA in the HLS or CMAF manifest
+	// for this track: CHARACTERISTICS="public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound"
+	// and AUTOSELECT="YES". Keep the default value, Disabled (DISABLED), if the
+	// captions track is not intended to provide such accessibility. MediaConvert
+	// will not add the above attributes.
 	Accessibility *string `locationName:"accessibility" type:"string" enum:"WebvttAccessibilitySubs"`
 
 	// Set Style passthrough (StylePassthrough) to ENABLED to use the available
@@ -27979,8 +28028,11 @@ func CmfcScte35Source_Values() []string {
 	}
 }
 
-// Applies to CMAF outputs. Use this setting to specify whether the service
-// inserts the ID3 timed metadata from the input in this output.
+// To include ID3 metadata in this output: Set ID3 metadata (timedMetadata)
+// to Passthrough (PASSTHROUGH). Specify this ID3 metadata in Custom ID3 metadata
+// inserter (timedMetadataInsertion). MediaConvert writes each instance of ID3
+// metadata in a separate Event Message (eMSG) box. To exclude this ID3 metadata:
+// Set ID3 metadata to None (NONE) or leave blank.
 const (
 	// CmfcTimedMetadataPassthrough is a CmfcTimedMetadata enum value
 	CmfcTimedMetadataPassthrough = "PASSTHROUGH"
@@ -29561,6 +29613,28 @@ func EmbeddedTerminateCaptions_Values() []string {
 	return []string{
 		EmbeddedTerminateCaptionsEndOfInput,
 		EmbeddedTerminateCaptionsDisabled,
+	}
+}
+
+// Set Embedded timecode override (embeddedTimecodeOverride) to Use MDPM (USE_MDPM)
+// when your AVCHD input contains timecode tag data in the Modified Digital
+// Video Pack Metadata (MDPM). When you do, we recommend you also set Timecode
+// source (inputTimecodeSource) to Embedded (EMBEDDED). Leave Embedded timecode
+// override blank, or set to None (NONE), when your input does not contain MDPM
+// timecode.
+const (
+	// EmbeddedTimecodeOverrideNone is a EmbeddedTimecodeOverride enum value
+	EmbeddedTimecodeOverrideNone = "NONE"
+
+	// EmbeddedTimecodeOverrideUseMdpm is a EmbeddedTimecodeOverride enum value
+	EmbeddedTimecodeOverrideUseMdpm = "USE_MDPM"
+)
+
+// EmbeddedTimecodeOverride_Values returns all elements of the EmbeddedTimecodeOverride enum
+func EmbeddedTimecodeOverride_Values() []string {
+	return []string{
+		EmbeddedTimecodeOverrideNone,
+		EmbeddedTimecodeOverrideUseMdpm,
 	}
 }
 
@@ -31165,6 +31239,28 @@ func HlsCaptionLanguageSetting_Values() []string {
 	}
 }
 
+// Set Caption segment length control (CaptionSegmentLengthControl) to Match
+// video (MATCH_VIDEO) to create caption segments that align with the video
+// segments from the first video output in this output group. For example, if
+// the video segments are 2 seconds long, your WebVTT segments will also be
+// 2 seconds long. Keep the default setting, Large segments (LARGE_SEGMENTS)
+// to create caption segments that are 300 seconds long.
+const (
+	// HlsCaptionSegmentLengthControlLargeSegments is a HlsCaptionSegmentLengthControl enum value
+	HlsCaptionSegmentLengthControlLargeSegments = "LARGE_SEGMENTS"
+
+	// HlsCaptionSegmentLengthControlMatchVideo is a HlsCaptionSegmentLengthControl enum value
+	HlsCaptionSegmentLengthControlMatchVideo = "MATCH_VIDEO"
+)
+
+// HlsCaptionSegmentLengthControl_Values returns all elements of the HlsCaptionSegmentLengthControl enum
+func HlsCaptionSegmentLengthControl_Values() []string {
+	return []string{
+		HlsCaptionSegmentLengthControlLargeSegments,
+		HlsCaptionSegmentLengthControlMatchVideo,
+	}
+}
+
 // Disable this setting only when your workflow requires the #EXT-X-ALLOW-CACHE:no
 // tag. Otherwise, keep the default value Enabled (ENABLED) and control caching
 // in your video distribution set up. For example, use the Cache-Control http
@@ -31546,7 +31642,11 @@ func HlsTargetDurationCompatibilityMode_Values() []string {
 	}
 }
 
-// Indicates ID3 frame that has the timecode.
+// Specify the type of the ID3 frame (timedMetadataId3Frame) to use for ID3
+// timestamps (timedMetadataId3Period) in your output. To include ID3 timestamps:
+// Specify PRIV (PRIV) or TDRL (TDRL) and set ID3 metadata (timedMetadata) to
+// Passthrough (PASSTHROUGH). To exclude ID3 timestamps: Set ID3 timestamp frame
+// type to None (NONE).
 const (
 	// HlsTimedMetadataId3FrameNone is a HlsTimedMetadataId3Frame enum value
 	HlsTimedMetadataId3FrameNone = "NONE"
@@ -31567,11 +31667,14 @@ func HlsTimedMetadataId3Frame_Values() []string {
 	}
 }
 
-// Specify whether to flag this caption track as accessibility in your HLS/CMAF
-// parent manifest. When you choose ENABLED, MediaConvert includes the parameters
-// CHARACTERISTICS="public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound"
-// and AUTOSELECT="YES" in the EXT-X-MEDIA entry for this track. When you keep
-// the default choice, DISABLED, MediaConvert leaves this parameter out.
+// Set Accessibility subtitles (Accessibility) to Enabled (ENABLED) if the ISMC
+// or WebVTT captions track is intended to provide accessibility for people
+// who are deaf or hard of hearing. When you enable this feature, MediaConvert
+// adds the following attributes under EXT-X-MEDIA in the HLS or CMAF manifest
+// for this track: CHARACTERISTICS="public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound"
+// and AUTOSELECT="YES". Keep the default value, Disabled (DISABLED), if the
+// captions track is not intended to provide such accessibility. MediaConvert
+// will not add the above attributes.
 const (
 	// ImscAccessibilitySubsDisabled is a ImscAccessibilitySubs enum value
 	ImscAccessibilitySubsDisabled = "DISABLED"
@@ -33415,8 +33518,11 @@ func MpdScte35Source_Values() []string {
 	}
 }
 
-// Applies to DASH outputs. Use this setting to specify whether the service
-// inserts the ID3 timed metadata from the input in this output.
+// To include ID3 metadata in this output: Set ID3 metadata (timedMetadata)
+// to Passthrough (PASSTHROUGH). Specify this ID3 metadata in Custom ID3 metadata
+// inserter (timedMetadataInsertion). MediaConvert writes each instance of ID3
+// metadata in a separate Event Message (eMSG) box. To exclude this ID3 metadata:
+// Set ID3 metadata to None (NONE) or leave blank.
 const (
 	// MpdTimedMetadataPassthrough is a MpdTimedMetadata enum value
 	MpdTimedMetadataPassthrough = "PASSTHROUGH"
@@ -34109,14 +34215,16 @@ func NielsenUniqueTicPerAudioTrackType_Values() []string {
 	}
 }
 
-// When you set Noise reducer (noiseReducer) to Temporal (TEMPORAL), the sharpness
-// of your output is reduced. You can optionally use Post temporal sharpening
-// (PostTemporalSharpening) to apply sharpening to the edges of your output.
-// The default behavior, Auto (AUTO), allows the transcoder to determine whether
-// to apply sharpening, depending on your input type and quality. When you set
-// Post temporal sharpening to Enabled (ENABLED), specify how much sharpening
-// is applied using Post temporal sharpening strength (PostTemporalSharpeningStrength).
-// Set Post temporal sharpening to Disabled (DISABLED) to not apply sharpening.
+// When you set Noise reducer (noiseReducer) to Temporal (TEMPORAL), the bandwidth
+// and sharpness of your output is reduced. You can optionally use Post temporal
+// sharpening (postTemporalSharpening) to apply sharpening to the edges of your
+// output. Note that Post temporal sharpening will also make the bandwidth reduction
+// from the Noise reducer smaller. The default behavior, Auto (AUTO), allows
+// the transcoder to determine whether to apply sharpening, depending on your
+// input type and quality. When you set Post temporal sharpening to Enabled
+// (ENABLED), specify how much sharpening is applied using Post temporal sharpening
+// strength (postTemporalSharpeningStrength). Set Post temporal sharpening to
+// Disabled (DISABLED) to not apply sharpening.
 const (
 	// NoiseFilterPostTemporalSharpeningDisabled is a NoiseFilterPostTemporalSharpening enum value
 	NoiseFilterPostTemporalSharpeningDisabled = "DISABLED"
@@ -34137,12 +34245,10 @@ func NoiseFilterPostTemporalSharpening_Values() []string {
 	}
 }
 
-// Use Post temporal sharpening strength (PostTemporalSharpeningStrength) to
+// Use Post temporal sharpening strength (postTemporalSharpeningStrength) to
 // define the amount of sharpening the transcoder applies to your output. Set
-// Post temporal sharpening strength to Low (LOW), or leave blank, to apply
-// a low amount of sharpening. Set Post temporal sharpening strength to Medium
-// (MEDIUM) to apply medium amount of sharpening. Set Post temporal sharpening
-// strength to High (HIGH) to apply a high amount of sharpening.
+// Post temporal sharpening strength to Low (LOW), Medium (MEDIUM), or High
+// (HIGH) to indicate the amount of sharpening.
 const (
 	// NoiseFilterPostTemporalSharpeningStrengthLow is a NoiseFilterPostTemporalSharpeningStrength enum value
 	NoiseFilterPostTemporalSharpeningStrengthLow = "LOW"
@@ -35046,8 +35152,11 @@ func TimecodeSource_Values() []string {
 	}
 }
 
-// Applies to HLS outputs. Use this setting to specify whether the service inserts
-// the ID3 timed metadata from the input in this output.
+// Set ID3 metadata (timedMetadata) to Passthrough (PASSTHROUGH) to include
+// ID3 metadata in this output. This includes ID3 metadata from the following
+// features: ID3 timestamp period (timedMetadataId3Period), and Custom ID3 metadata
+// inserter (timedMetadataInsertion). To exclude this ID3 metadata in this output:
+// set ID3 metadata to None (NONE) or leave blank.
 const (
 	// TimedMetadataPassthrough is a TimedMetadata enum value
 	TimedMetadataPassthrough = "PASSTHROUGH"
@@ -35651,11 +35760,14 @@ func WavFormat_Values() []string {
 	}
 }
 
-// Specify whether to flag this caption track as accessibility in your HLS/CMAF
-// parent manifest. When you choose ENABLED, MediaConvert includes the parameters
-// CHARACTERISTICS="public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound"
-// and AUTOSELECT="YES" in the EXT-X-MEDIA entry for this track. When you keep
-// the default choice, DISABLED, MediaConvert leaves this parameter out.
+// Set Accessibility subtitles (Accessibility) to Enabled (ENABLED) if the ISMC
+// or WebVTT captions track is intended to provide accessibility for people
+// who are deaf or hard of hearing. When you enable this feature, MediaConvert
+// adds the following attributes under EXT-X-MEDIA in the HLS or CMAF manifest
+// for this track: CHARACTERISTICS="public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound"
+// and AUTOSELECT="YES". Keep the default value, Disabled (DISABLED), if the
+// captions track is not intended to provide such accessibility. MediaConvert
+// will not add the above attributes.
 const (
 	// WebvttAccessibilitySubsDisabled is a WebvttAccessibilitySubs enum value
 	WebvttAccessibilitySubsDisabled = "DISABLED"

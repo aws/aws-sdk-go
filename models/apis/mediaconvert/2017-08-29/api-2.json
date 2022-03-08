@@ -4117,6 +4117,13 @@
         "DISABLED"
       ]
     },
+    "EmbeddedTimecodeOverride": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "USE_MDPM"
+      ]
+    },
     "Endpoint": {
       "type": "structure",
       "members": {
@@ -5307,6 +5314,13 @@
         "NONE"
       ]
     },
+    "HlsCaptionSegmentLengthControl": {
+      "type": "string",
+      "enum": [
+        "LARGE_SEGMENTS",
+        "MATCH_VIDEO"
+      ]
+    },
     "HlsClientCache": {
       "type": "string",
       "enum": [
@@ -5401,6 +5415,10 @@
         "CaptionLanguageSetting": {
           "shape": "HlsCaptionLanguageSetting",
           "locationName": "captionLanguageSetting"
+        },
+        "CaptionSegmentLengthControl": {
+          "shape": "HlsCaptionSegmentLengthControl",
+          "locationName": "captionSegmentLengthControl"
         },
         "ClientCache": {
           "shape": "HlsClientCache",
@@ -9624,6 +9642,10 @@
         "ColorSpaceUsage": {
           "shape": "ColorSpaceUsage",
           "locationName": "colorSpaceUsage"
+        },
+        "EmbeddedTimecodeOverride": {
+          "shape": "EmbeddedTimecodeOverride",
+          "locationName": "embeddedTimecodeOverride"
         },
         "Hdr10Metadata": {
           "shape": "Hdr10Metadata",
