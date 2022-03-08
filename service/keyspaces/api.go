@@ -575,6 +575,9 @@ func (c *Keyspaces) GetTableRequest(input *GetTableInput) (req *request.Request,
 // Returns information about the table, including the table's name and current
 // status, the keyspace name, configuration settings, and metadata.
 //
+// To read table metadata using GetTable, Select action permissions for the
+// table and system tables are required to complete the operation.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1272,10 +1275,13 @@ func (c *Keyspaces) TagResourceRequest(input *TagResourceInput) (req *request.Re
 //
 // Associates a set of tags with a Amazon Keyspaces resource. You can then activate
 // these user-defined tags so that they appear on the Cost Management Console
-// for cost allocation tracking.
+// for cost allocation tracking. For more information, see Adding tags and labels
+// to Amazon Keyspaces resources (https://docs.aws.amazon.com/keyspaces/latest/devguide/tagging-keyspaces.html)
+// in the Amazon Keyspaces Developer Guide.
 //
-// For more information, see Adding tags and labels to Amazon Keyspaces resources
-// (https://docs.aws.amazon.com/keyspaces/latest/devguide/tagging-keyspaces.html)
+// For IAM policy examples that show how to control access to Amazon Keyspaces
+// resources based on tags, see Amazon Keyspaces resource access based on tags
+// (https://docs.aws.amazon.com/keyspaces/latest/devguide/security_iam_id-based-policy-examples-tags)
 // in the Amazon Keyspaces Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions

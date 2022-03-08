@@ -12352,6 +12352,9 @@ const (
 
 	// NodegroupIssueCodeClusterUnreachable is a NodegroupIssueCode enum value
 	NodegroupIssueCodeClusterUnreachable = "ClusterUnreachable"
+
+	// NodegroupIssueCodeEc2subnetMissingIpv6assignment is a NodegroupIssueCode enum value
+	NodegroupIssueCodeEc2subnetMissingIpv6assignment = "Ec2SubnetMissingIpv6Assignment"
 )
 
 // NodegroupIssueCode_Values returns all elements of the NodegroupIssueCode enum
@@ -12375,6 +12378,7 @@ func NodegroupIssueCode_Values() []string {
 		NodegroupIssueCodeAccessDenied,
 		NodegroupIssueCodeInternalFailure,
 		NodegroupIssueCodeClusterUnreachable,
+		NodegroupIssueCodeEc2subnetMissingIpv6assignment,
 	}
 }
 
