@@ -1,3 +1,9 @@
+Release v1.43.15 (2022-03-09)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API, documentation, and paginators
+
 Release v1.43.14 (2022-03-08)
 ===
 
