@@ -2365,6 +2365,95 @@ func (c *Comprehend) DescribeSentimentDetectionJobWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
+const opDescribeTargetedSentimentDetectionJob = "DescribeTargetedSentimentDetectionJob"
+
+// DescribeTargetedSentimentDetectionJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTargetedSentimentDetectionJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeTargetedSentimentDetectionJob for more information on using the DescribeTargetedSentimentDetectionJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeTargetedSentimentDetectionJobRequest method.
+//    req, resp := client.DescribeTargetedSentimentDetectionJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DescribeTargetedSentimentDetectionJob
+func (c *Comprehend) DescribeTargetedSentimentDetectionJobRequest(input *DescribeTargetedSentimentDetectionJobInput) (req *request.Request, output *DescribeTargetedSentimentDetectionJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeTargetedSentimentDetectionJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeTargetedSentimentDetectionJobInput{}
+	}
+
+	output = &DescribeTargetedSentimentDetectionJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeTargetedSentimentDetectionJob API operation for Amazon Comprehend.
+//
+// Gets the properties associated with a targeted sentiment detection job. Use
+// this operation to get the status of the job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation DescribeTargetedSentimentDetectionJob for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * JobNotFoundException
+//   The specified job was not found. Check the job ID and try again.
+//
+//   * TooManyRequestsException
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DescribeTargetedSentimentDetectionJob
+func (c *Comprehend) DescribeTargetedSentimentDetectionJob(input *DescribeTargetedSentimentDetectionJobInput) (*DescribeTargetedSentimentDetectionJobOutput, error) {
+	req, out := c.DescribeTargetedSentimentDetectionJobRequest(input)
+	return out, req.Send()
+}
+
+// DescribeTargetedSentimentDetectionJobWithContext is the same as DescribeTargetedSentimentDetectionJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeTargetedSentimentDetectionJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) DescribeTargetedSentimentDetectionJobWithContext(ctx aws.Context, input *DescribeTargetedSentimentDetectionJobInput, opts ...request.Option) (*DescribeTargetedSentimentDetectionJobOutput, error) {
+	req, out := c.DescribeTargetedSentimentDetectionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeTopicsDetectionJob = "DescribeTopicsDetectionJob"
 
 // DescribeTopicsDetectionJobRequest generates a "aws/request.Request" representing the
@@ -4836,6 +4925,152 @@ func (c *Comprehend) ListTagsForResourceWithContext(ctx aws.Context, input *List
 	return out, req.Send()
 }
 
+const opListTargetedSentimentDetectionJobs = "ListTargetedSentimentDetectionJobs"
+
+// ListTargetedSentimentDetectionJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListTargetedSentimentDetectionJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTargetedSentimentDetectionJobs for more information on using the ListTargetedSentimentDetectionJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTargetedSentimentDetectionJobsRequest method.
+//    req, resp := client.ListTargetedSentimentDetectionJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListTargetedSentimentDetectionJobs
+func (c *Comprehend) ListTargetedSentimentDetectionJobsRequest(input *ListTargetedSentimentDetectionJobsInput) (req *request.Request, output *ListTargetedSentimentDetectionJobsOutput) {
+	op := &request.Operation{
+		Name:       opListTargetedSentimentDetectionJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTargetedSentimentDetectionJobsInput{}
+	}
+
+	output = &ListTargetedSentimentDetectionJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTargetedSentimentDetectionJobs API operation for Amazon Comprehend.
+//
+// Gets a list of targeted sentiment detection jobs that you have submitted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation ListTargetedSentimentDetectionJobs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * TooManyRequestsException
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * InvalidFilterException
+//   The filter specified for the operation is invalid. Specify a different filter.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListTargetedSentimentDetectionJobs
+func (c *Comprehend) ListTargetedSentimentDetectionJobs(input *ListTargetedSentimentDetectionJobsInput) (*ListTargetedSentimentDetectionJobsOutput, error) {
+	req, out := c.ListTargetedSentimentDetectionJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListTargetedSentimentDetectionJobsWithContext is the same as ListTargetedSentimentDetectionJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTargetedSentimentDetectionJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListTargetedSentimentDetectionJobsWithContext(ctx aws.Context, input *ListTargetedSentimentDetectionJobsInput, opts ...request.Option) (*ListTargetedSentimentDetectionJobsOutput, error) {
+	req, out := c.ListTargetedSentimentDetectionJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTargetedSentimentDetectionJobsPages iterates over the pages of a ListTargetedSentimentDetectionJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTargetedSentimentDetectionJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListTargetedSentimentDetectionJobs operation.
+//    pageNum := 0
+//    err := client.ListTargetedSentimentDetectionJobsPages(params,
+//        func(page *comprehend.ListTargetedSentimentDetectionJobsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Comprehend) ListTargetedSentimentDetectionJobsPages(input *ListTargetedSentimentDetectionJobsInput, fn func(*ListTargetedSentimentDetectionJobsOutput, bool) bool) error {
+	return c.ListTargetedSentimentDetectionJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTargetedSentimentDetectionJobsPagesWithContext same as ListTargetedSentimentDetectionJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListTargetedSentimentDetectionJobsPagesWithContext(ctx aws.Context, input *ListTargetedSentimentDetectionJobsInput, fn func(*ListTargetedSentimentDetectionJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTargetedSentimentDetectionJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTargetedSentimentDetectionJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTargetedSentimentDetectionJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTopicsDetectionJobs = "ListTopicsDetectionJobs"
 
 // ListTopicsDetectionJobsRequest generates a "aws/request.Request" representing the
@@ -5704,7 +5939,7 @@ func (c *Comprehend) StartSentimentDetectionJobRequest(input *StartSentimentDete
 // StartSentimentDetectionJob API operation for Amazon Comprehend.
 //
 // Starts an asynchronous sentiment detection job for a collection of documents.
-// use the operation to track the status of a job.
+// Use the operation to track the status of a job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5749,6 +5984,101 @@ func (c *Comprehend) StartSentimentDetectionJob(input *StartSentimentDetectionJo
 // for more information on using Contexts.
 func (c *Comprehend) StartSentimentDetectionJobWithContext(ctx aws.Context, input *StartSentimentDetectionJobInput, opts ...request.Option) (*StartSentimentDetectionJobOutput, error) {
 	req, out := c.StartSentimentDetectionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartTargetedSentimentDetectionJob = "StartTargetedSentimentDetectionJob"
+
+// StartTargetedSentimentDetectionJobRequest generates a "aws/request.Request" representing the
+// client's request for the StartTargetedSentimentDetectionJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartTargetedSentimentDetectionJob for more information on using the StartTargetedSentimentDetectionJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartTargetedSentimentDetectionJobRequest method.
+//    req, resp := client.StartTargetedSentimentDetectionJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/StartTargetedSentimentDetectionJob
+func (c *Comprehend) StartTargetedSentimentDetectionJobRequest(input *StartTargetedSentimentDetectionJobInput) (req *request.Request, output *StartTargetedSentimentDetectionJobOutput) {
+	op := &request.Operation{
+		Name:       opStartTargetedSentimentDetectionJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartTargetedSentimentDetectionJobInput{}
+	}
+
+	output = &StartTargetedSentimentDetectionJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartTargetedSentimentDetectionJob API operation for Amazon Comprehend.
+//
+// Starts an asynchronous targeted sentiment detection job for a collection
+// of documents. Use the operation to track the status of a job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation StartTargetedSentimentDetectionJob for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * TooManyRequestsException
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * KmsKeyValidationException
+//   The KMS customer managed key (CMK) entered cannot be validated. Verify the
+//   key and re-enter it.
+//
+//   * TooManyTagsException
+//   The request contains more tags than can be associated with a resource (50
+//   tags per resource). The maximum number of tags includes both existing tags
+//   and those included in your current request.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/StartTargetedSentimentDetectionJob
+func (c *Comprehend) StartTargetedSentimentDetectionJob(input *StartTargetedSentimentDetectionJobInput) (*StartTargetedSentimentDetectionJobOutput, error) {
+	req, out := c.StartTargetedSentimentDetectionJobRequest(input)
+	return out, req.Send()
+}
+
+// StartTargetedSentimentDetectionJobWithContext is the same as StartTargetedSentimentDetectionJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartTargetedSentimentDetectionJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) StartTargetedSentimentDetectionJobWithContext(ctx aws.Context, input *StartTargetedSentimentDetectionJobInput, opts ...request.Option) (*StartTargetedSentimentDetectionJobOutput, error) {
+	req, out := c.StartTargetedSentimentDetectionJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6398,6 +6728,102 @@ func (c *Comprehend) StopSentimentDetectionJob(input *StopSentimentDetectionJobI
 // for more information on using Contexts.
 func (c *Comprehend) StopSentimentDetectionJobWithContext(ctx aws.Context, input *StopSentimentDetectionJobInput, opts ...request.Option) (*StopSentimentDetectionJobOutput, error) {
 	req, out := c.StopSentimentDetectionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopTargetedSentimentDetectionJob = "StopTargetedSentimentDetectionJob"
+
+// StopTargetedSentimentDetectionJobRequest generates a "aws/request.Request" representing the
+// client's request for the StopTargetedSentimentDetectionJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopTargetedSentimentDetectionJob for more information on using the StopTargetedSentimentDetectionJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopTargetedSentimentDetectionJobRequest method.
+//    req, resp := client.StopTargetedSentimentDetectionJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/StopTargetedSentimentDetectionJob
+func (c *Comprehend) StopTargetedSentimentDetectionJobRequest(input *StopTargetedSentimentDetectionJobInput) (req *request.Request, output *StopTargetedSentimentDetectionJobOutput) {
+	op := &request.Operation{
+		Name:       opStopTargetedSentimentDetectionJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopTargetedSentimentDetectionJobInput{}
+	}
+
+	output = &StopTargetedSentimentDetectionJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopTargetedSentimentDetectionJob API operation for Amazon Comprehend.
+//
+// Stops a targeted sentiment detection job in progress.
+//
+// If the job state is IN_PROGRESS the job is marked for termination and put
+// into the STOP_REQUESTED state. If the job completes before it can be stopped,
+// it is put into the COMPLETED state; otherwise the job is be stopped and put
+// into the STOPPED state.
+//
+// If the job is in the COMPLETED or FAILED state when you call the StopDominantLanguageDetectionJob
+// operation, the operation returns a 400 Internal Request Exception.
+//
+// When a job is stopped, any documents already processed are written to the
+// output location.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation StopTargetedSentimentDetectionJob for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * JobNotFoundException
+//   The specified job was not found. Check the job ID and try again.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/StopTargetedSentimentDetectionJob
+func (c *Comprehend) StopTargetedSentimentDetectionJob(input *StopTargetedSentimentDetectionJobInput) (*StopTargetedSentimentDetectionJobOutput, error) {
+	req, out := c.StopTargetedSentimentDetectionJobRequest(input)
+	return out, req.Send()
+}
+
+// StopTargetedSentimentDetectionJobWithContext is the same as StopTargetedSentimentDetectionJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopTargetedSentimentDetectionJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) StopTargetedSentimentDetectionJobWithContext(ctx aws.Context, input *StopTargetedSentimentDetectionJobInput, opts ...request.Option) (*StopTargetedSentimentDetectionJobOutput, error) {
+	req, out := c.StopTargetedSentimentDetectionJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -10263,6 +10689,88 @@ func (s *DescribeSentimentDetectionJobOutput) SetSentimentDetectionJobProperties
 	return s
 }
 
+type DescribeTargetedSentimentDetectionJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier that Amazon Comprehend generated for the job. The operation
+	// returns this identifier in its response.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTargetedSentimentDetectionJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTargetedSentimentDetectionJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTargetedSentimentDetectionJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTargetedSentimentDetectionJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *DescribeTargetedSentimentDetectionJobInput) SetJobId(v string) *DescribeTargetedSentimentDetectionJobInput {
+	s.JobId = &v
+	return s
+}
+
+type DescribeTargetedSentimentDetectionJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains the properties associated with a targeted sentiment
+	// detection job.
+	TargetedSentimentDetectionJobProperties *TargetedSentimentDetectionJobProperties `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTargetedSentimentDetectionJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTargetedSentimentDetectionJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetTargetedSentimentDetectionJobProperties sets the TargetedSentimentDetectionJobProperties field's value.
+func (s *DescribeTargetedSentimentDetectionJobOutput) SetTargetedSentimentDetectionJobProperties(v *TargetedSentimentDetectionJobProperties) *DescribeTargetedSentimentDetectionJobOutput {
+	s.TargetedSentimentDetectionJobProperties = v
+	return s
+}
+
 type DescribeTopicsDetectionJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12929,8 +13437,9 @@ type EntityRecognizerEvaluationMetrics struct {
 
 	// A measure of how accurate the recognizer results are for the test data. It
 	// is derived from the Precision and Recall values. The F1Score is the harmonic
-	// average of the two scores. The highest score is 1, and the worst score is
-	// 0.
+	// average of the two scores. For plain text entity recognizer models, the range
+	// is 0 to 100, where 100 is the best score. For PDF/Word entity recognizer
+	// models, the range is 0 to 1, where 1 is the best score.
 	F1Score *float64 `type:"double"`
 
 	// A measure of the usefulness of the recognizer results in the test data. High
@@ -16159,6 +16668,118 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
+type ListTargetedSentimentDetectionJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters the jobs that are returned. You can filter jobs on their name, status,
+	// or the date and time that they were submitted. You can only set one filter
+	// at a time.
+	Filter *TargetedSentimentDetectionJobFilter `type:"structure"`
+
+	// The maximum number of results to return in each page. The default is 100.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTargetedSentimentDetectionJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTargetedSentimentDetectionJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTargetedSentimentDetectionJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTargetedSentimentDetectionJobsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListTargetedSentimentDetectionJobsInput) SetFilter(v *TargetedSentimentDetectionJobFilter) *ListTargetedSentimentDetectionJobsInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTargetedSentimentDetectionJobsInput) SetMaxResults(v int64) *ListTargetedSentimentDetectionJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTargetedSentimentDetectionJobsInput) SetNextToken(v string) *ListTargetedSentimentDetectionJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListTargetedSentimentDetectionJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `min:"1" type:"string"`
+
+	// A list containing the properties of each job that is returned.
+	TargetedSentimentDetectionJobPropertiesList []*TargetedSentimentDetectionJobProperties `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTargetedSentimentDetectionJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTargetedSentimentDetectionJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTargetedSentimentDetectionJobsOutput) SetNextToken(v string) *ListTargetedSentimentDetectionJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTargetedSentimentDetectionJobPropertiesList sets the TargetedSentimentDetectionJobPropertiesList field's value.
+func (s *ListTargetedSentimentDetectionJobsOutput) SetTargetedSentimentDetectionJobPropertiesList(v []*TargetedSentimentDetectionJobProperties) *ListTargetedSentimentDetectionJobsOutput {
+	s.TargetedSentimentDetectionJobPropertiesList = v
+	return s
+}
+
 type ListTopicsDetectionJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16271,7 +16892,7 @@ func (s *ListTopicsDetectionJobsOutput) SetTopicsDetectionJobPropertiesList(v []
 	return s
 }
 
-// Provides configuration parameters for the output of topic detection jobs.
+// Provides configuration parameters for the output of inference jobs.
 type OutputDataConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -16298,6 +16919,10 @@ type OutputDataConfig struct {
 	// in a directory specific to the job. The S3Uri field contains the location
 	// of the output file, called output.tar.gz. It is a compressed archive that
 	// contains the ouput of the operation.
+	//
+	// For a PII entity detection job, the output file is plain text, not a compressed
+	// archive. The output file name is the same as the input file, with .out appended
+	// at the end.
 	//
 	// S3Uri is a required field
 	S3Uri *string `type:"string" required:"true"`
@@ -16702,6 +17327,10 @@ type PiiOutputDataConfig struct {
 
 	// When you use the PiiOutputDataConfig object with asynchronous operations,
 	// you specify the Amazon S3 location where you want to write the output data.
+	//
+	// For a PII entity detection job, the output file is plain text, not a compressed
+	// archive. The output file name is the same as the input file, with .out appended
+	// at the end.
 	//
 	// S3Uri is a required field
 	S3Uri *string `type:"string" required:"true"`
@@ -19202,6 +19831,254 @@ func (s *StartSentimentDetectionJobOutput) SetJobStatus(v string) *StartSentimen
 	return s
 }
 
+type StartTargetedSentimentDetectionJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the request. If you don't set the client request
+	// token, Amazon Comprehend generates one.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to your input data.
+	// For more information, see Role-based permissions (https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions).
+	//
+	// DataAccessRoleArn is a required field
+	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
+
+	// The input properties for an inference job.
+	//
+	// InputDataConfig is a required field
+	InputDataConfig *InputDataConfig `type:"structure" required:"true"`
+
+	// The identifier of the job.
+	JobName *string `min:"1" type:"string"`
+
+	// The language of the input documents. You can specify any of the primary languages
+	// supported by Amazon Comprehend. All documents must be in the same language.
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
+
+	// Specifies where to send the output files.
+	//
+	// OutputDataConfig is a required field
+	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
+
+	// Tags to be associated with the targeted sentiment detection job. A tag is
+	// a key-value pair that adds metadata to a resource used by Amazon Comprehend.
+	// For example, a tag with "Sales" as the key might be added to a resource to
+	// indicate its use by the sales department.
+	Tags []*Tag `type:"list"`
+
+	// ID for the KMS key that Amazon Comprehend uses to encrypt data on the storage
+	// volume attached to the ML compute instance(s) that process the analysis job.
+	// The VolumeKmsKeyId can be either of the following formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	VolumeKmsKeyId *string `type:"string"`
+
+	// Configuration parameters for an optional private Virtual Private Cloud (VPC)
+	// containing the resources you are using for the job. For more information,
+	// see Amazon VPC (https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html).
+	VpcConfig *VpcConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartTargetedSentimentDetectionJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartTargetedSentimentDetectionJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartTargetedSentimentDetectionJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartTargetedSentimentDetectionJobInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.DataAccessRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataAccessRoleArn"))
+	}
+	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 20))
+	}
+	if s.InputDataConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputDataConfig"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.OutputDataConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputDataConfig"))
+	}
+	if s.InputDataConfig != nil {
+		if err := s.InputDataConfig.Validate(); err != nil {
+			invalidParams.AddNested("InputDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OutputDataConfig != nil {
+		if err := s.OutputDataConfig.Validate(); err != nil {
+			invalidParams.AddNested("OutputDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.VpcConfig != nil {
+		if err := s.VpcConfig.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartTargetedSentimentDetectionJobInput) SetClientRequestToken(v string) *StartTargetedSentimentDetectionJobInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *StartTargetedSentimentDetectionJobInput) SetDataAccessRoleArn(v string) *StartTargetedSentimentDetectionJobInput {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetInputDataConfig sets the InputDataConfig field's value.
+func (s *StartTargetedSentimentDetectionJobInput) SetInputDataConfig(v *InputDataConfig) *StartTargetedSentimentDetectionJobInput {
+	s.InputDataConfig = v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *StartTargetedSentimentDetectionJobInput) SetJobName(v string) *StartTargetedSentimentDetectionJobInput {
+	s.JobName = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *StartTargetedSentimentDetectionJobInput) SetLanguageCode(v string) *StartTargetedSentimentDetectionJobInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetOutputDataConfig sets the OutputDataConfig field's value.
+func (s *StartTargetedSentimentDetectionJobInput) SetOutputDataConfig(v *OutputDataConfig) *StartTargetedSentimentDetectionJobInput {
+	s.OutputDataConfig = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StartTargetedSentimentDetectionJobInput) SetTags(v []*Tag) *StartTargetedSentimentDetectionJobInput {
+	s.Tags = v
+	return s
+}
+
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *StartTargetedSentimentDetectionJobInput) SetVolumeKmsKeyId(v string) *StartTargetedSentimentDetectionJobInput {
+	s.VolumeKmsKeyId = &v
+	return s
+}
+
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *StartTargetedSentimentDetectionJobInput) SetVpcConfig(v *VpcConfig) *StartTargetedSentimentDetectionJobInput {
+	s.VpcConfig = v
+	return s
+}
+
+type StartTargetedSentimentDetectionJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the targeted sentiment detection job. It
+	// is a unique, fully qualified identifier for the job. It includes the AWS
+	// account, Region, and the job ID. The format of the ARN is as follows:
+	//
+	// arn:<partition>:comprehend:<region>:<account-id>:targeted-sentiment-detection-job/<job-id>
+	//
+	// The following is an example job ARN:
+	//
+	// arn:aws:comprehend:us-west-2:111122223333:targeted-sentiment-detection-job/1234abcd12ab34cd56ef1234567890ab
+	JobArn *string `type:"string"`
+
+	// The identifier generated for the job. To get the status of a job, use this
+	// identifier with the operation.
+	JobId *string `min:"1" type:"string"`
+
+	// The status of the job.
+	//
+	//    * SUBMITTED - The job has been received and is queued for processing.
+	//
+	//    * IN_PROGRESS - Amazon Comprehend is processing the job.
+	//
+	//    * COMPLETED - The job was successfully completed and the output is available.
+	//
+	//    * FAILED - The job did not complete. To get details, use the operation.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartTargetedSentimentDetectionJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartTargetedSentimentDetectionJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *StartTargetedSentimentDetectionJobOutput) SetJobArn(v string) *StartTargetedSentimentDetectionJobOutput {
+	s.JobArn = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StartTargetedSentimentDetectionJobOutput) SetJobId(v string) *StartTargetedSentimentDetectionJobOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *StartTargetedSentimentDetectionJobOutput) SetJobStatus(v string) *StartTargetedSentimentDetectionJobOutput {
+	s.JobStatus = &v
+	return s
+}
+
 type StartTopicsDetectionJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19990,6 +20867,96 @@ func (s *StopSentimentDetectionJobOutput) SetJobStatus(v string) *StopSentimentD
 	return s
 }
 
+type StopTargetedSentimentDetectionJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the targeted sentiment detection job to stop.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopTargetedSentimentDetectionJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopTargetedSentimentDetectionJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopTargetedSentimentDetectionJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopTargetedSentimentDetectionJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StopTargetedSentimentDetectionJobInput) SetJobId(v string) *StopTargetedSentimentDetectionJobInput {
+	s.JobId = &v
+	return s
+}
+
+type StopTargetedSentimentDetectionJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the targeted sentiment detection job to stop.
+	JobId *string `min:"1" type:"string"`
+
+	// Either STOP_REQUESTED if the job is currently running, or STOPPED if the
+	// job was previously stopped with the StopSentimentDetectionJob operation.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopTargetedSentimentDetectionJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopTargetedSentimentDetectionJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StopTargetedSentimentDetectionJobOutput) SetJobId(v string) *StopTargetedSentimentDetectionJobOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *StopTargetedSentimentDetectionJobOutput) SetJobStatus(v string) *StopTargetedSentimentDetectionJobOutput {
+	s.JobStatus = &v
+	return s
+}
+
 type StopTrainingDocumentClassifierInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20361,6 +21328,243 @@ func (s TagResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
+}
+
+// Provides information for filtering a list of dominant language detection
+// jobs. For more information, see the operation.
+type TargetedSentimentDetectionJobFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Filters on the name of the job.
+	JobName *string `min:"1" type:"string"`
+
+	// Filters the list of jobs based on job status. Returns only jobs with the
+	// specified status.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+
+	// Filters the list of jobs based on the time that the job was submitted for
+	// processing. Returns only jobs submitted after the specified time. Jobs are
+	// returned in descending order, newest to oldest.
+	SubmitTimeAfter *time.Time `type:"timestamp"`
+
+	// Filters the list of jobs based on the time that the job was submitted for
+	// processing. Returns only jobs submitted before the specified time. Jobs are
+	// returned in ascending order, oldest to newest.
+	SubmitTimeBefore *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetedSentimentDetectionJobFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetedSentimentDetectionJobFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TargetedSentimentDetectionJobFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TargetedSentimentDetectionJobFilter"}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobName sets the JobName field's value.
+func (s *TargetedSentimentDetectionJobFilter) SetJobName(v string) *TargetedSentimentDetectionJobFilter {
+	s.JobName = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *TargetedSentimentDetectionJobFilter) SetJobStatus(v string) *TargetedSentimentDetectionJobFilter {
+	s.JobStatus = &v
+	return s
+}
+
+// SetSubmitTimeAfter sets the SubmitTimeAfter field's value.
+func (s *TargetedSentimentDetectionJobFilter) SetSubmitTimeAfter(v time.Time) *TargetedSentimentDetectionJobFilter {
+	s.SubmitTimeAfter = &v
+	return s
+}
+
+// SetSubmitTimeBefore sets the SubmitTimeBefore field's value.
+func (s *TargetedSentimentDetectionJobFilter) SetSubmitTimeBefore(v time.Time) *TargetedSentimentDetectionJobFilter {
+	s.SubmitTimeBefore = &v
+	return s
+}
+
+// Provides information about a targeted sentiment detection job.
+type TargetedSentimentDetectionJobProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to
+	// your input data.
+	DataAccessRoleArn *string `min:"20" type:"string"`
+
+	// The time that the targeted sentiment detection job ended.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The input properties for an inference job.
+	InputDataConfig *InputDataConfig `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the targeted sentiment detection job. It
+	// is a unique, fully qualified identifier for the job. It includes the AWS
+	// account, Region, and the job ID. The format of the ARN is as follows:
+	//
+	// arn:<partition>:comprehend:<region>:<account-id>:targeted-sentiment-detection-job/<job-id>
+	//
+	// The following is an example job ARN:
+	//
+	// arn:aws:comprehend:us-west-2:111122223333:targeted-sentiment-detection-job/1234abcd12ab34cd56ef1234567890ab
+	JobArn *string `type:"string"`
+
+	// The identifier assigned to the targeted sentiment detection job.
+	JobId *string `min:"1" type:"string"`
+
+	// The name that you assigned to the targeted sentiment detection job.
+	JobName *string `min:"1" type:"string"`
+
+	// The current status of the targeted sentiment detection job. If the status
+	// is FAILED, the Messages field shows the reason for the failure.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+
+	// The language code of the input documents.
+	LanguageCode *string `type:"string" enum:"LanguageCode"`
+
+	// A description of the status of a job.
+	Message *string `type:"string"`
+
+	// Provides configuration parameters for the output of inference jobs.
+	OutputDataConfig *OutputDataConfig `type:"structure"`
+
+	// The time that the targeted sentiment detection job was submitted for processing.
+	SubmitTime *time.Time `type:"timestamp"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt data on the storage volume attached to the ML compute instance(s)
+	// that process the targeted sentiment detection job. The VolumeKmsKeyId can
+	// be either of the following formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	VolumeKmsKeyId *string `type:"string"`
+
+	// Configuration parameters for an optional private Virtual Private Cloud (VPC)
+	// containing the resources you are using for the job. For more information,
+	// see Amazon VPC (https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html).
+	VpcConfig *VpcConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetedSentimentDetectionJobProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetedSentimentDetectionJobProperties) GoString() string {
+	return s.String()
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *TargetedSentimentDetectionJobProperties) SetDataAccessRoleArn(v string) *TargetedSentimentDetectionJobProperties {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *TargetedSentimentDetectionJobProperties) SetEndTime(v time.Time) *TargetedSentimentDetectionJobProperties {
+	s.EndTime = &v
+	return s
+}
+
+// SetInputDataConfig sets the InputDataConfig field's value.
+func (s *TargetedSentimentDetectionJobProperties) SetInputDataConfig(v *InputDataConfig) *TargetedSentimentDetectionJobProperties {
+	s.InputDataConfig = v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *TargetedSentimentDetectionJobProperties) SetJobArn(v string) *TargetedSentimentDetectionJobProperties {
+	s.JobArn = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *TargetedSentimentDetectionJobProperties) SetJobId(v string) *TargetedSentimentDetectionJobProperties {
+	s.JobId = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *TargetedSentimentDetectionJobProperties) SetJobName(v string) *TargetedSentimentDetectionJobProperties {
+	s.JobName = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *TargetedSentimentDetectionJobProperties) SetJobStatus(v string) *TargetedSentimentDetectionJobProperties {
+	s.JobStatus = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *TargetedSentimentDetectionJobProperties) SetLanguageCode(v string) *TargetedSentimentDetectionJobProperties {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *TargetedSentimentDetectionJobProperties) SetMessage(v string) *TargetedSentimentDetectionJobProperties {
+	s.Message = &v
+	return s
+}
+
+// SetOutputDataConfig sets the OutputDataConfig field's value.
+func (s *TargetedSentimentDetectionJobProperties) SetOutputDataConfig(v *OutputDataConfig) *TargetedSentimentDetectionJobProperties {
+	s.OutputDataConfig = v
+	return s
+}
+
+// SetSubmitTime sets the SubmitTime field's value.
+func (s *TargetedSentimentDetectionJobProperties) SetSubmitTime(v time.Time) *TargetedSentimentDetectionJobProperties {
+	s.SubmitTime = &v
+	return s
+}
+
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *TargetedSentimentDetectionJobProperties) SetVolumeKmsKeyId(v string) *TargetedSentimentDetectionJobProperties {
+	s.VolumeKmsKeyId = &v
+	return s
+}
+
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *TargetedSentimentDetectionJobProperties) SetVpcConfig(v *VpcConfig) *TargetedSentimentDetectionJobProperties {
+	s.VpcConfig = v
+	return s
 }
 
 // The size of the input text exceeds the limit. Use a smaller document.
