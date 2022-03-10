@@ -1368,6 +1368,11 @@
       "type":"string",
       "enum":["PHI"]
     },
+    "MedicalMediaSampleRateHertz":{
+      "type":"integer",
+      "max":48000,
+      "min":16000
+    },
     "MedicalTranscript":{
       "type":"structure",
       "members":{
@@ -1380,7 +1385,7 @@
         "MedicalTranscriptionJobName":{"shape":"TranscriptionJobName"},
         "TranscriptionJobStatus":{"shape":"TranscriptionJobStatus"},
         "LanguageCode":{"shape":"LanguageCode"},
-        "MediaSampleRateHertz":{"shape":"MediaSampleRateHertz"},
+        "MediaSampleRateHertz":{"shape":"MedicalMediaSampleRateHertz"},
         "MediaFormat":{"shape":"MediaFormat"},
         "Media":{"shape":"Media"},
         "Transcript":{"shape":"MedicalTranscript"},
@@ -1654,7 +1659,7 @@
       "members":{
         "MedicalTranscriptionJobName":{"shape":"TranscriptionJobName"},
         "LanguageCode":{"shape":"LanguageCode"},
-        "MediaSampleRateHertz":{"shape":"MediaSampleRateHertz"},
+        "MediaSampleRateHertz":{"shape":"MedicalMediaSampleRateHertz"},
         "MediaFormat":{"shape":"MediaFormat"},
         "Media":{"shape":"Media"},
         "OutputBucketName":{"shape":"OutputBucketName"},

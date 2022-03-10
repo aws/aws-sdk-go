@@ -1,3 +1,12 @@
+Release v1.43.16 (2022-03-10)
+===
+
+### Service Client Updates
+* `service/models.lex.v2`: Updates service API
+* `service/transcribe`: Updates service API and documentation
+* `service/transfer`: Updates service API and documentation
+  * Adding more descriptive error types for managed workflows
+
 Release v1.43.15 (2022-03-09)
 ===
 

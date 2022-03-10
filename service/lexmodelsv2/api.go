@@ -11768,9 +11768,7 @@ type CreateSlotInput struct {
 
 	// The unique identifier for the slot type associated with this slot. The slot
 	// type determines the values that can be entered into the slot.
-	//
-	// SlotTypeId is a required field
-	SlotTypeId *string `locationName:"slotTypeId" min:"1" type:"string" required:"true"`
+	SlotTypeId *string `locationName:"slotTypeId" min:"1" type:"string"`
 
 	// Specifies prompts that Amazon Lex sends to the user to elicit a response
 	// that provides the value for the slot.
@@ -11829,9 +11827,6 @@ func (s *CreateSlotInput) Validate() error {
 	}
 	if s.SlotName != nil && len(*s.SlotName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SlotName", 1))
-	}
-	if s.SlotTypeId == nil {
-		invalidParams.Add(request.NewErrParamRequired("SlotTypeId"))
 	}
 	if s.SlotTypeId != nil && len(*s.SlotTypeId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SlotTypeId", 1))
@@ -27098,9 +27093,7 @@ type UpdateSlotInput struct {
 	SlotName *string `locationName:"slotName" min:"1" type:"string" required:"true"`
 
 	// The unique identifier of the new slot type to associate with this slot.
-	//
-	// SlotTypeId is a required field
-	SlotTypeId *string `locationName:"slotTypeId" min:"1" type:"string" required:"true"`
+	SlotTypeId *string `locationName:"slotTypeId" min:"1" type:"string"`
 
 	// A new set of prompts that Amazon Lex sends to the user to elicit a response
 	// the provides a value for the slot.
@@ -27165,9 +27158,6 @@ func (s *UpdateSlotInput) Validate() error {
 	}
 	if s.SlotName != nil && len(*s.SlotName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SlotName", 1))
-	}
-	if s.SlotTypeId == nil {
-		invalidParams.Add(request.NewErrParamRequired("SlotTypeId"))
 	}
 	if s.SlotTypeId != nil && len(*s.SlotTypeId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SlotTypeId", 1))
