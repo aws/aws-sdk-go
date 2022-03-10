@@ -1006,7 +1006,16 @@
     "ExecutionErrorMessage":{"type":"string"},
     "ExecutionErrorType":{
       "type":"string",
-      "enum":["PERMISSION_DENIED"]
+      "enum":[
+        "PERMISSION_DENIED",
+        "CUSTOM_STEP_FAILED",
+        "THROTTLED",
+        "ALREADY_EXISTS",
+        "NOT_FOUND",
+        "BAD_REQUEST",
+        "TIMEOUT",
+        "INTERNAL_SERVER_ERROR"
+      ]
     },
     "ExecutionId":{
       "type":"string",
