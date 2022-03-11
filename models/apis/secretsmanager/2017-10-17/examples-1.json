@@ -27,7 +27,7 @@
           "ClientRequestToken": "EXAMPLE1-90ab-cdef-fedc-ba987SECRET1",
           "Description": "My test database secret created with the CLI",
           "Name": "MyTestDatabaseSecret",
-          "SecretString": "{\"username\":\"david\",\"password\":\"BnQw!XDWgaEeT9XGTT29\"}"
+          "SecretString": "{\"username\":\"david\",\"password\":\"EXAMPLE-PASSWORD\"}"
         },
         "output": {
           "ARN": "arn:aws:secretsmanager:us-west-2:123456789012:secret:MyTestDatabaseSecret-a1b2c3",
@@ -103,7 +103,9 @@
           "RotationEnabled": true,
           "RotationLambdaARN": "arn:aws:lambda:us-west-2:123456789012:function:MyTestRotationLambda",
           "RotationRules": {
-            "AutomaticallyAfterDays": 30
+            "AutomaticallyAfterDays": 14,
+            "Duration": "2h",
+            "ScheduleExpression": "cron(0 16 1,15 * ? *)"
           },
           "Tags": [
             {
@@ -143,7 +145,7 @@
           "RequireEachIncludedType": true
         },
         "output": {
-          "RandomPassword": "N+Z43a,>vx7j O8^*<8i3"
+          "RandomPassword": "EXAMPLE-PASSWORD"
         },
         "comments": {
           "input": {
@@ -180,14 +182,13 @@
     "GetSecretValue": [
       {
         "input": {
-          "SecretId": "MyTestDatabaseSecret",
-          "VersionStage": "AWSPREVIOUS"
+          "SecretId": "MyTestDatabaseSecret"
         },
         "output": {
           "ARN": "arn:aws:secretsmanager:us-west-2:123456789012:secret:MyTestDatabaseSecret-a1b2c3",
           "CreatedDate": 1523477145.713,
           "Name": "MyTestDatabaseSecret",
-          "SecretString": "{\n  \"username\":\"david\",\n  \"password\":\"BnQw&XDWgaEeT9XGTT29\"\n}\n",
+          "SecretString": "{\n  \"username\":\"david\",\n  \"password\":\"EXAMPLE-PASSWORD\"\n}\n",
           "VersionId": "EXAMPLE1-90ab-cdef-fedc-ba987SECRET1",
           "VersionStages": [
             "AWSPREVIOUS"
@@ -199,7 +200,7 @@
           "output": {
           }
         },
-        "description": "The following example shows how to retrieve the secret string value from the version of the secret that has the AWSPREVIOUS staging label attached. If you want to retrieve the AWSCURRENT version of the secret, then you can omit the VersionStage parameter because it defaults to AWSCURRENT.",
+        "description": "The following example shows how to retrieve a secret string value.",
         "id": "to-retrieve-the-encrypted-secret-value-of-a-secret-1524000702484",
         "title": "To retrieve the encrypted secret value of a secret"
       }
@@ -312,7 +313,7 @@
         "input": {
           "ClientRequestToken": "EXAMPLE2-90ab-cdef-fedc-ba987EXAMPLE",
           "SecretId": "MyTestDatabaseSecret",
-          "SecretString": "{\"username\":\"david\",\"password\":\"BnQw!XDWgaEeT9XGTT29\"}"
+          "SecretString": "{\"username\":\"david\",\"password\":\"EXAMPLE-PASSWORD\"}"
         },
         "output": {
           "ARN": "arn:aws:secretsmanager:us-west-2:123456789012:secret:MyTestDatabaseSecret-a1b2c3",
@@ -358,7 +359,8 @@
         "input": {
           "RotationLambdaARN": "arn:aws:lambda:us-west-2:123456789012:function:MyTestDatabaseRotationLambda",
           "RotationRules": {
-            "AutomaticallyAfterDays": 30
+            "Duration": "2h",
+            "ScheduleExpression": "cron(0 16 1,15 * ? *)"
           },
           "SecretId": "MyTestDatabaseSecret"
         },
@@ -373,7 +375,7 @@
           "output": {
           }
         },
-        "description": "The following example configures rotation for a secret by providing the ARN of a Lambda rotation function (which must already exist) and the number of days between rotation. The first rotation happens immediately upon completion of this command. The rotation function runs asynchronously in the background.",
+        "description": "The following example configures rotation for a secret using a cron expression. The first rotation happens immediately after the changes are stored in the secret. The rotation schedule is the first and 15th day of every month. The rotation window begins at 4:00 PM UTC and ends at 6:00 PM.",
         "id": "to-configure-rotation-for-a-secret-1524001629475",
         "title": "To configure rotation for a secret"
       },

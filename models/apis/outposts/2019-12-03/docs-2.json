@@ -17,7 +17,7 @@
     "ListCatalogItems": "<p>Use to create a list of every item in the catalog. Add filters to your request to return a more specific list of results. Use filters to match an item class, storage option, or EC2 family. </p> <p>If you specify multiple filters, the filters are joined with an <code>AND</code>, and the request returns only results that match all of the specified filters.</p>",
     "ListOrders": "<p>Create a list of the Outpost orders for your Amazon Web Services account. You can filter your request by Outpost to return a more specific list of results. </p>",
     "ListOutposts": "<p>Create a list of the Outposts for your Amazon Web Services account. Add filters to your request to return a more specific list of results. Use filters to match an Outpost lifecycle status, Availability Zone (<code>us-east-1a</code>), and AZ ID (<code>use1-az1</code>). </p> <p>If you specify multiple filters, the filters are joined with an <code>AND</code>, and the request returns only results that match all of the specified filters.</p>",
-    "ListSites": "<p>Lists the sites for your Amazon Web Services account.</p>",
+    "ListSites": "<p>Create a list of the Outpost sites for your Amazon Web Services account. Add operating address filters to your request to return a more specific list of results. Use filters to match site city, country code, or state/region of the operating address. </p> <p>If you specify multiple filters, the filters are joined with an <code>AND</code>, and the request returns only results that match all of the specified filters.</p>",
     "ListTagsForResource": "<p>Lists the tags for the specified resource.</p>",
     "TagResource": "<p>Adds tags to the specified resource.</p>",
     "UntagResource": "<p>Removes tags from the specified resource.</p>",
@@ -168,7 +168,14 @@
       "base": null,
       "refs": {
         "Address$City": "<p>The city for the address.</p>",
+        "CityList$member": null,
         "Site$OperatingAddressCity": "<p> City where the hardware is installed and powered on. </p>"
+      }
+    },
+    "CityList": {
+      "base": null,
+      "refs": {
+        "ListSitesInput$OperatingAddressCityFilter": "<p> A filter for the city of the Outpost site. </p> <p>Filter values are case sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values.</p>"
       }
     },
     "ConflictException": {
@@ -192,7 +199,14 @@
       "base": null,
       "refs": {
         "Address$CountryCode": "<p>The ISO-3166 two-letter country code for the address.</p>",
+        "CountryCodeList$member": null,
         "Site$OperatingAddressCountryCode": "<p> The ISO-3166 two-letter country code where the hardware is installed and powered on. </p>"
+      }
+    },
+    "CountryCodeList": {
+      "base": null,
+      "refs": {
+        "ListSitesInput$OperatingAddressCountryCodeFilter": "<p> A filter for the country code of the Outpost site. </p> <p>Filter values are case sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values.</p>"
       }
     },
     "CreateOrderInput": {
@@ -785,7 +799,14 @@
       "base": null,
       "refs": {
         "Address$StateOrRegion": "<p>The state for the address.</p>",
-        "Site$OperatingAddressStateOrRegion": "<p> State or region where the hardware is installed and powered on. </p>"
+        "Site$OperatingAddressStateOrRegion": "<p> State or region where the hardware is installed and powered on. </p>",
+        "StateOrRegionList$member": null
+      }
+    },
+    "StateOrRegionList": {
+      "base": null,
+      "refs": {
+        "ListSitesInput$OperatingAddressStateOrRegionFilter": "<p> A filter for the state/region of the Outpost site. </p> <p>Filter values are case sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values.</p>"
       }
     },
     "String": {

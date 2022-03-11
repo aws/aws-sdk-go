@@ -519,6 +519,10 @@
       "min":1,
       "pattern":"^\\S[\\S ]*$"
     },
+    "CityList":{
+      "type":"list",
+      "member":{"shape":"City"}
+    },
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -546,6 +550,10 @@
       "max":2,
       "min":2,
       "pattern":"^[A-Z]{2}$"
+    },
+    "CountryCodeList":{
+      "type":"list",
+      "member":{"shape":"CountryCode"}
     },
     "CreateOrderInput":{
       "type":"structure",
@@ -1004,6 +1012,21 @@
           "shape":"MaxResults1000",
           "location":"querystring",
           "locationName":"MaxResults"
+        },
+        "OperatingAddressCountryCodeFilter":{
+          "shape":"CountryCodeList",
+          "location":"querystring",
+          "locationName":"OperatingAddressCountryCodeFilter"
+        },
+        "OperatingAddressStateOrRegionFilter":{
+          "shape":"StateOrRegionList",
+          "location":"querystring",
+          "locationName":"OperatingAddressStateOrRegionFilter"
+        },
+        "OperatingAddressCityFilter":{
+          "shape":"CityList",
+          "location":"querystring",
+          "locationName":"OperatingAddressCityFilter"
         }
       }
     },
@@ -1331,6 +1354,10 @@
       "max":50,
       "min":1,
       "pattern":"^\\S[\\S ]*$"
+    },
+    "StateOrRegionList":{
+      "type":"list",
+      "member":{"shape":"StateOrRegion"}
     },
     "String":{
       "type":"string",

@@ -186,7 +186,7 @@
     "UpdateRoom": "<p>Updates room details, such as the room name, for a room in an Amazon Chime Enterprise account.</p>",
     "UpdateRoomMembership": "<p>Updates room membership details, such as the member role, for a room in an Amazon Chime Enterprise account. The member role designates whether the member is a chat room administrator or a general chat room member. The member role can be updated only for user IDs.</p>",
     "UpdateSipMediaApplication": "<p>Updates the details of the specified SIP media application.</p>",
-    "UpdateSipMediaApplicationCall": "<p>Allows you to trigger a Lambda function at any time while a call is active, and replace the current actions with new actions returned by the invocation.</p>",
+    "UpdateSipMediaApplicationCall": "<p>Invokes the AWS Lambda function associated with the SIP media application and transaction ID in an update request. The Lambda function can then return a new set of actions.</p>",
     "UpdateSipRule": "<p>Updates the details of the specified SIP rule.</p>",
     "UpdateUser": "<p>Updates user details for a specified user ID. Currently, only <code>LicenseType</code> updates are supported for this action.</p>",
     "UpdateUserSettings": "<p>Updates the settings for the specified user, such as phone number settings.</p>",
@@ -586,7 +586,8 @@
         "AlexaForBusinessMetadata$IsAlexaForBusinessEnabled": "<p>Starts or stops Alexa for Business.</p>",
         "CreateVoiceConnectorRequest$RequireEncryption": "<p>When enabled, requires encryption for the Amazon Chime Voice Connector.</p>",
         "EngineTranscribeSettings$EnablePartialResultsStabilization": "<p>Generates partial transcription results that are less likely to change as meeting attendees speak. It does so by only allowing the last few words from the partial results to change.</p>",
-        "LoggingConfiguration$EnableSIPLogs": "<p>When true, enables SIP message logs for sending to Amazon CloudWatch Logs.</p>",
+        "LoggingConfiguration$EnableSIPLogs": "<p>Boolean that enables SIP message logs to CloudWatch logs.</p>",
+        "LoggingConfiguration$EnableMediaMetricLogs": "<p>Boolean that enables logging of detailed media metrics for Voice Connectors to CloudWatch logs.</p>",
         "Origination$Disabled": "<p>When origination settings are disabled, inbound calls are not enabled for your Amazon Chime Voice Connector. This parameter is not required, but you must specify this parameter or <code>Routes</code>.</p>",
         "Proxy$Disabled": "<p>When true, stops proxy sessions from being created on the specified Amazon Chime Voice Connector.</p>",
         "PutVoiceConnectorProxyRequest$Disabled": "<p>When true, stops proxy sessions from being created on the specified Amazon Chime Voice Connector.</p>",
@@ -3894,7 +3895,7 @@
     "TagList": {
       "base": null,
       "refs": {
-        "CreateAppInstanceRequest$Tags": "<p>Tags assigned to the <code>AppInstanceUser</code>.</p>",
+        "CreateAppInstanceRequest$Tags": "<p>Tags assigned to the <code>AppInstance</code>.</p>",
         "CreateAppInstanceUserRequest$Tags": "<p>Tags assigned to the <code>AppInstanceUser</code>.</p>",
         "CreateChannelRequest$Tags": "<p>The tags for the creation request.</p>",
         "ListAttendeeTagsResponse$Tags": "<p>A list of tag key-value pairs.</p>",
@@ -3982,7 +3983,7 @@
     "TranscribeContentIdentificationType": {
       "base": null,
       "refs": {
-        "EngineTranscribeSettings$ContentIdentificationType": "<p>Set this field to <code>PII</code> to identify personal health information in the transcription output.</p>"
+        "EngineTranscribeSettings$ContentIdentificationType": "<p>Set this field to <code>PII</code> to identify personally identifiable information in the transcription output.</p>"
       }
     },
     "TranscribeContentRedactionType": {
@@ -4317,7 +4318,7 @@
         "MediaPlacement$ScreenViewingUrl": "<p>The screen viewing URL.</p>",
         "MediaPlacement$SignalingUrl": "<p>The signaling URL.</p>",
         "MediaPlacement$TurnControlUrl": "<p>The turn control URL.</p>",
-        "MediaPlacement$EventIngestionUrl": "<p>The event ingestion URL.</p>"
+        "MediaPlacement$EventIngestionUrl": "<p>The event ingestion URL to which you send client meeting events.</p>"
       }
     },
     "UrlType": {

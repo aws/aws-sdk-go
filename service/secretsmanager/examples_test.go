@@ -72,7 +72,7 @@ func ExampleSecretsManager_CreateSecret_shared00() {
 		ClientRequestToken: aws.String("EXAMPLE1-90ab-cdef-fedc-ba987SECRET1"),
 		Description:        aws.String("My test database secret created with the CLI"),
 		Name:               aws.String("MyTestDatabaseSecret"),
-		SecretString:       aws.String("{\"username\":\"david\",\"password\":\"BnQw!XDWgaEeT9XGTT29\"}"),
+		SecretString:       aws.String("{\"username\":\"david\",\"password\":\"EXAMPLE-PASSWORD\"}"),
 	}
 
 	result, err := svc.CreateSecret(input)
@@ -296,15 +296,11 @@ func ExampleSecretsManager_GetResourcePolicy_shared00() {
 
 // To retrieve the encrypted secret value of a secret
 //
-// The following example shows how to retrieve the secret string value from the version
-// of the secret that has the AWSPREVIOUS staging label attached. If you want to retrieve
-// the AWSCURRENT version of the secret, then you can omit the VersionStage parameter
-// because it defaults to AWSCURRENT.
+// The following example shows how to retrieve a secret string value.
 func ExampleSecretsManager_GetSecretValue_shared00() {
 	svc := secretsmanager.New(session.New())
 	input := &secretsmanager.GetSecretValueInput{
-		SecretId:     aws.String("MyTestDatabaseSecret"),
-		VersionStage: aws.String("AWSPREVIOUS"),
+		SecretId: aws.String("MyTestDatabaseSecret"),
 	}
 
 	result, err := svc.GetSecretValue(input)
@@ -452,7 +448,7 @@ func ExampleSecretsManager_PutSecretValue_shared00() {
 	input := &secretsmanager.PutSecretValueInput{
 		ClientRequestToken: aws.String("EXAMPLE2-90ab-cdef-fedc-ba987EXAMPLE"),
 		SecretId:           aws.String("MyTestDatabaseSecret"),
-		SecretString:       aws.String("{\"username\":\"david\",\"password\":\"BnQw!XDWgaEeT9XGTT29\"}"),
+		SecretString:       aws.String("{\"username\":\"david\",\"password\":\"EXAMPLE-PASSWORD\"}"),
 	}
 
 	result, err := svc.PutSecretValue(input)
@@ -527,16 +523,17 @@ func ExampleSecretsManager_RestoreSecret_shared00() {
 
 // To configure rotation for a secret
 //
-// The following example configures rotation for a secret by providing the ARN of a
-// Lambda rotation function (which must already exist) and the number of days between
-// rotation. The first rotation happens immediately upon completion of this command.
-// The rotation function runs asynchronously in the background.
+// The following example configures rotation for a secret using a cron expression. The
+// first rotation happens immediately after the changes are stored in the secret. The
+// rotation schedule is the first and 15th day of every month. The rotation window begins
+// at 4:00 PM UTC and ends at 6:00 PM.
 func ExampleSecretsManager_RotateSecret_shared00() {
 	svc := secretsmanager.New(session.New())
 	input := &secretsmanager.RotateSecretInput{
 		RotationLambdaARN: aws.String("arn:aws:lambda:us-west-2:123456789012:function:MyTestDatabaseRotationLambda"),
 		RotationRules: &secretsmanager.RotationRulesType{
-			AutomaticallyAfterDays: aws.Int64(30),
+			Duration:           aws.String("2h"),
+			ScheduleExpression: aws.String("cron(0 16 1,15 * ? *)"),
 		},
 		SecretId: aws.String("MyTestDatabaseSecret"),
 	}
