@@ -10615,12 +10615,19 @@ func (c *Connect) StartContactRecordingRequest(input *StartContactRecordingInput
 
 // StartContactRecording API operation for Amazon Connect Service.
 //
-// Starts recording the contact when the agent joins the call. StartContactRecording
-// is a one-time action. For example, if you use StopContactRecording to stop
-// recording an ongoing call, you can't use StartContactRecording to restart
-// it. For scenarios where the recording has started and you want to suspend
-// and resume it, such as when collecting sensitive information (for example,
-// a credit card number), use SuspendContactRecording and ResumeContactRecording.
+// Starts recording the contact:
+//
+//    * If the API is called before the agent joins the call, recording starts
+//    when the agent joins the call.
+//
+//    * If the API is called after the agent joins the call, recording starts
+//    at the time of the API call.
+//
+// StartContactRecording is a one-time action. For example, if you use StopContactRecording
+// to stop recording an ongoing call, you can't use StartContactRecording to
+// restart it. For scenarios where the recording has started and you want to
+// suspend and resume it, such as when collecting sensitive information (for
+// example, a credit card number), use SuspendContactRecording and ResumeContactRecording.
 //
 // You can use this API to override the recording behavior configured in the
 // Set recording behavior (https://docs.aws.amazon.com/connect/latest/adminguide/set-recording-behavior.html)
@@ -11020,7 +11027,16 @@ func (c *Connect) StopContactRequest(input *StopContactInput) (req *request.Requ
 
 // StopContact API operation for Amazon Connect Service.
 //
-// Ends the specified contact.
+// Ends the specified contact. This call does not work for the following initiation
+// methods:
+//
+//    * CALLBACK
+//
+//    * DISCONNECT
+//
+//    * TRANSFER
+//
+//    * QUEUE_TRANSFER
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15795,7 +15811,7 @@ type ChatMessage struct {
 	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true"`
 
-	// The type of the content. Supported types are text and plain.
+	// The type of the content. Supported types are text/plain.
 	//
 	// ContentType is a required field
 	ContentType *string `min:"1" type:"string" required:"true"`
@@ -31235,6 +31251,10 @@ type StartChatContactInput struct {
 	//
 	// ParticipantDetails is a required field
 	ParticipantDetails *ParticipantDetails `type:"structure" required:"true"`
+
+	// The supported chat message content types. Content types can be text/plain
+	// or both text/plain and text/markdown.
+	SupportedMessagingContentTypes []*string `type:"list"`
 }
 
 // String returns the string representation.
@@ -31329,6 +31349,12 @@ func (s *StartChatContactInput) SetInstanceId(v string) *StartChatContactInput {
 // SetParticipantDetails sets the ParticipantDetails field's value.
 func (s *StartChatContactInput) SetParticipantDetails(v *ParticipantDetails) *StartChatContactInput {
 	s.ParticipantDetails = v
+	return s
+}
+
+// SetSupportedMessagingContentTypes sets the SupportedMessagingContentTypes field's value.
+func (s *StartChatContactInput) SetSupportedMessagingContentTypes(v []*string) *StartChatContactInput {
+	s.SupportedMessagingContentTypes = v
 	return s
 }
 

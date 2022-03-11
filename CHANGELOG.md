@@ -1,3 +1,17 @@
+Release v1.43.17 (2022-03-11)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API and documentation
+  * Chime VoiceConnector Logging APIs will now support MediaMetricLogs. Also CreateMeetingDialOut now returns AccessDeniedException.
+* `service/connect`: Updates service API and documentation
+* `service/lambda`: Updates service API and documentation
+  * Adds PrincipalOrgID support to AddPermission API. Customers can use it to manage permissions to lambda functions at AWS Organizations level.
+* `service/outposts`: Updates service API and documentation
+* `service/secretsmanager`: Updates service documentation and examples
+  * Documentation updates for Secrets Manager.
+* `service/transcribe-streaming`: Updates service API and documentation
+
 Release v1.43.16 (2022-03-10)
 ===
 

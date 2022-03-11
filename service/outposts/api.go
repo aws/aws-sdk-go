@@ -1587,7 +1587,13 @@ func (c *Outposts) ListSitesRequest(input *ListSitesInput) (req *request.Request
 
 // ListSites API operation for AWS Outposts.
 //
-// Lists the sites for your Amazon Web Services account.
+// Create a list of the Outpost sites for your Amazon Web Services account.
+// Add operating address filters to your request to return a more specific list
+// of results. Use filters to match site city, country code, or state/region
+// of the operating address.
+//
+// If you specify multiple filters, the filters are joined with an AND, and
+// the request returns only results that match all of the specified filters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4588,6 +4594,27 @@ type ListSitesInput struct {
 
 	// The pagination token.
 	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
+
+	// A filter for the city of the Outpost site.
+	//
+	// Filter values are case sensitive. If you specify multiple values for a filter,
+	// the values are joined with an OR, and the request returns all results that
+	// match any of the specified values.
+	OperatingAddressCityFilter []*string `location:"querystring" locationName:"OperatingAddressCityFilter" type:"list"`
+
+	// A filter for the country code of the Outpost site.
+	//
+	// Filter values are case sensitive. If you specify multiple values for a filter,
+	// the values are joined with an OR, and the request returns all results that
+	// match any of the specified values.
+	OperatingAddressCountryCodeFilter []*string `location:"querystring" locationName:"OperatingAddressCountryCodeFilter" type:"list"`
+
+	// A filter for the state/region of the Outpost site.
+	//
+	// Filter values are case sensitive. If you specify multiple values for a filter,
+	// the values are joined with an OR, and the request returns all results that
+	// match any of the specified values.
+	OperatingAddressStateOrRegionFilter []*string `location:"querystring" locationName:"OperatingAddressStateOrRegionFilter" type:"list"`
 }
 
 // String returns the string representation.
@@ -4633,6 +4660,24 @@ func (s *ListSitesInput) SetMaxResults(v int64) *ListSitesInput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListSitesInput) SetNextToken(v string) *ListSitesInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetOperatingAddressCityFilter sets the OperatingAddressCityFilter field's value.
+func (s *ListSitesInput) SetOperatingAddressCityFilter(v []*string) *ListSitesInput {
+	s.OperatingAddressCityFilter = v
+	return s
+}
+
+// SetOperatingAddressCountryCodeFilter sets the OperatingAddressCountryCodeFilter field's value.
+func (s *ListSitesInput) SetOperatingAddressCountryCodeFilter(v []*string) *ListSitesInput {
+	s.OperatingAddressCountryCodeFilter = v
+	return s
+}
+
+// SetOperatingAddressStateOrRegionFilter sets the OperatingAddressStateOrRegionFilter field's value.
+func (s *ListSitesInput) SetOperatingAddressStateOrRegionFilter(v []*string) *ListSitesInput {
+	s.OperatingAddressStateOrRegionFilter = v
 	return s
 }
 

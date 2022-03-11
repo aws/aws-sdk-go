@@ -1072,7 +1072,8 @@
           "location":"querystring",
           "locationName":"Qualifier"
         },
-        "RevisionId":{"shape":"String"}
+        "RevisionId":{"shape":"String"},
+        "PrincipalOrgID":{"shape":"PrincipalOrgID"}
       }
     },
     "AddPermissionResponse":{
@@ -2906,6 +2907,12 @@
     "Principal":{
       "type":"string",
       "pattern":"[^\\s]+"
+    },
+    "PrincipalOrgID":{
+      "type":"string",
+      "max":34,
+      "min":12,
+      "pattern":"^o-[a-z0-9]{10,32}$"
     },
     "ProvisionedConcurrencyConfigList":{
       "type":"list",

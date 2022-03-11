@@ -6528,7 +6528,8 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
-        "ChatDurationInMinutes":{"shape":"ChatDurationInMinutes"}
+        "ChatDurationInMinutes":{"shape":"ChatDurationInMinutes"},
+        "SupportedMessagingContentTypes":{"shape":"SupportedMessagingContentTypes"}
       }
     },
     "StartChatContactResponse":{
@@ -6716,6 +6717,15 @@
       "min":1
     },
     "String":{"type":"string"},
+    "SupportedMessagingContentType":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "SupportedMessagingContentTypes":{
+      "type":"list",
+      "member":{"shape":"SupportedMessagingContentType"}
+    },
     "SuspendContactRecordingRequest":{
       "type":"structure",
       "required":[

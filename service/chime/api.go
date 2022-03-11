@@ -2589,6 +2589,9 @@ func (c *Chime) CreateMeetingDialOutRequest(input *CreateMeetingDialOutInput) (r
 //   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation.
+//
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
@@ -19986,8 +19989,9 @@ func (c *Chime) UpdateSipMediaApplicationCallRequest(input *UpdateSipMediaApplic
 
 // UpdateSipMediaApplicationCall API operation for Amazon Chime.
 //
-// Allows you to trigger a Lambda function at any time while a call is active,
-// and replace the current actions with new actions returned by the invocation.
+// Invokes the AWS Lambda function associated with the SIP media application
+// and transaction ID in an update request. The Lambda function can then return
+// a new set of actions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -24375,7 +24379,7 @@ type CreateAppInstanceInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// Tags assigned to the AppInstanceUser.
+	// Tags assigned to the AppInstance.
 	Tags []*Tag `min:"1" type:"list"`
 }
 
@@ -31263,8 +31267,8 @@ func (s *EngineTranscribeMedicalSettings) SetVocabularyName(v string) *EngineTra
 type EngineTranscribeSettings struct {
 	_ struct{} `type:"structure"`
 
-	// Set this field to PII to identify personal health information in the transcription
-	// output.
+	// Set this field to PII to identify personally identifiable information in
+	// the transcription output.
 	ContentIdentificationType *string `type:"string" enum:"TranscribeContentIdentificationType"`
 
 	// Set this field to PII to redact personally identifiable information in the
@@ -37887,7 +37891,11 @@ func (s *ListVoiceConnectorsOutput) SetVoiceConnectors(v []*VoiceConnector) *Lis
 type LoggingConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// When true, enables SIP message logs for sending to Amazon CloudWatch Logs.
+	// Boolean that enables logging of detailed media metrics for Voice Connectors
+	// to CloudWatch logs.
+	EnableMediaMetricLogs *bool `type:"boolean"`
+
+	// Boolean that enables SIP message logs to CloudWatch logs.
 	EnableSIPLogs *bool `type:"boolean"`
 }
 
@@ -37907,6 +37915,12 @@ func (s LoggingConfiguration) String() string {
 // value will be replaced with "sensitive".
 func (s LoggingConfiguration) GoString() string {
 	return s.String()
+}
+
+// SetEnableMediaMetricLogs sets the EnableMediaMetricLogs field's value.
+func (s *LoggingConfiguration) SetEnableMediaMetricLogs(v bool) *LoggingConfiguration {
+	s.EnableMediaMetricLogs = &v
+	return s
 }
 
 // SetEnableSIPLogs sets the EnableSIPLogs field's value.
@@ -38129,7 +38143,7 @@ type MediaPlacement struct {
 	// The audio host URL.
 	AudioHostUrl *string `type:"string"`
 
-	// The event ingestion URL.
+	// The event ingestion URL to which you send client meeting events.
 	EventIngestionUrl *string `type:"string"`
 
 	// The screen data URL.

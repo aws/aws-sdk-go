@@ -55,12 +55,12 @@
         "StartMedicalStreamTranscriptionResponse$ShowSpeakerLabel": "<p>Shows whether speaker identification was enabled in the stream.</p>",
         "StartMedicalStreamTranscriptionResponse$EnableChannelIdentification": "<p>Shows whether channel identification has been enabled in the stream.</p>",
         "StartStreamTranscriptionRequest$ShowSpeakerLabel": "<p>When <code>true</code>, enables speaker identification in your media stream.</p>",
-        "StartStreamTranscriptionRequest$EnableChannelIdentification": "<p>When <code>true</code>, instructs Amazon Transcribe to process each audio channel separately, then merges the transcription output of each channel into a single transcription.</p> <p>Amazon Transcribe also produces a transcription of each item. An item includes the start time, end time, and any alternative transcriptions.</p> <p>You can't set both <code>ShowSpeakerLabel</code> and <code>EnableChannelIdentification</code> in the same request. If you set both, your request returns a <code>BadRequestException</code>.</p>",
+        "StartStreamTranscriptionRequest$EnableChannelIdentification": "<p>When <code>true</code>, instructs Amazon Transcribe to process each audio channel separately, then merges the transcription output of each channel into a single transcription.</p> <p>Amazon Transcribe also produces a transcription of each item. An item includes the start time, end time, and any alternative transcriptions.</p>",
         "StartStreamTranscriptionRequest$EnablePartialResultsStabilization": "<p>When <code>true</code>, instructs Amazon Transcribe to present transcription results that have the partial results stabilized. Normally, any word or phrase from one partial result can change in a subsequent partial result. With partial results stabilization enabled, only the last few words of one partial result can change in another partial result.</p>",
         "StartStreamTranscriptionRequest$IdentifyLanguage": "<p>Optional. Set this value to <code>true</code> to enable language identification for your media stream.</p>",
-        "StartStreamTranscriptionResponse$ShowSpeakerLabel": "<p>Shows whether speaker identification was enabled in the stream.</p>",
-        "StartStreamTranscriptionResponse$EnableChannelIdentification": "<p>Shows whether channel identification has been enabled in the stream.</p>",
-        "StartStreamTranscriptionResponse$EnablePartialResultsStabilization": "<p>Shows whether partial results stabilization has been enabled in the stream.</p>",
+        "StartStreamTranscriptionResponse$ShowSpeakerLabel": "<p>Shows whether speaker identification was enabled in the transcription.</p>",
+        "StartStreamTranscriptionResponse$EnableChannelIdentification": "<p>Shows whether channel identification was enabled in the stream.</p>",
+        "StartStreamTranscriptionResponse$EnablePartialResultsStabilization": "<p>Shows whether partial results stabilization was enabled in the transcription.</p>",
         "StartStreamTranscriptionResponse$IdentifyLanguage": "<p>The language code of the language identified in your media stream.</p>"
       }
     },
@@ -201,10 +201,10 @@
     "MediaSampleRateHertz": {
       "base": null,
       "refs": {
-        "StartMedicalStreamTranscriptionRequest$MediaSampleRateHertz": "<p>The sample rate of the input audio in Hertz.</p>",
-        "StartMedicalStreamTranscriptionResponse$MediaSampleRateHertz": "<p>The sample rate of the input audio in Hertz.</p>",
-        "StartStreamTranscriptionRequest$MediaSampleRateHertz": "<p>The sample rate, in Hertz (Hz), of the input audio. We suggest that you use 8,000 Hz for low quality audio and 16,000 Hz or higher for high quality audio.</p>",
-        "StartStreamTranscriptionResponse$MediaSampleRateHertz": "<p>The sample rate, in Hertz (Hz), for the input audio stream. Use 8,000 Hz for low quality audio and 16,000 Hz or higher for high quality audio.</p>"
+        "StartMedicalStreamTranscriptionRequest$MediaSampleRateHertz": "<p>The sample rate of the input audio (in Hertz). Amazon Transcribe medical supports a range from 16,000 Hz to 48,000 Hz. Note that the sample rate you specify must match that of your audio.</p>",
+        "StartMedicalStreamTranscriptionResponse$MediaSampleRateHertz": "<p>The sample rate of the input audio, in Hertz (Hz).</p>",
+        "StartStreamTranscriptionRequest$MediaSampleRateHertz": "<p>The sample rate of the input audio (in Hertz). Low-quality audio, such as telephone audio, is typically around 8,000 Hz. High-quality audio typically ranges from 16,000 Hz to 48,000 Hz. Note that the sample rate you specify must match that of your audio.</p>",
+        "StartStreamTranscriptionResponse$MediaSampleRateHertz": "<p>The sample rate, in Hertz (Hz), for the input audio stream.</p>"
       }
     },
     "MedicalAlternative": {
@@ -284,7 +284,7 @@
       "base": null,
       "refs": {
         "StartStreamTranscriptionRequest$LanguageModelName": "<p>The name of the language model you want to use.</p>",
-        "StartStreamTranscriptionResponse$LanguageModelName": "<p>The name of the language model used in your media stream.</p>"
+        "StartStreamTranscriptionResponse$LanguageModelName": "<p>The name of the custom language model used in the transcription.</p>"
       }
     },
     "NumberOfChannels": {
@@ -314,7 +314,7 @@
       "base": null,
       "refs": {
         "StartMedicalStreamTranscriptionResponse$RequestId": "<p>An identifier for the streaming transcription.</p>",
-        "StartStreamTranscriptionResponse$RequestId": "<p>An identifier for the streaming transcription.</p>"
+        "StartStreamTranscriptionResponse$RequestId": "<p>An identifier for the transcription.</p>"
       }
     },
     "Result": {
@@ -432,14 +432,21 @@
       "base": null,
       "refs": {
         "StartStreamTranscriptionRequest$VocabularyFilterMethod": "<p>The manner in which you use your vocabulary filter to filter words in your transcript. <code>Remove</code> removes filtered words from your transcription results. <code>Mask</code> masks filtered words with a <code>***</code> in your transcription results. <code>Tag</code> keeps the filtered words in your transcription results and tags them. The tag appears as <code>VocabularyFilterMatch</code> equal to <code>True</code>.</p>",
-        "StartStreamTranscriptionResponse$VocabularyFilterMethod": "<p>The vocabulary filtering method used in the media stream.</p>"
+        "StartStreamTranscriptionResponse$VocabularyFilterMethod": "<p>The vocabulary filtering method used when processing the stream.</p>"
       }
     },
     "VocabularyFilterName": {
       "base": null,
       "refs": {
-        "StartStreamTranscriptionRequest$VocabularyFilterName": "<p>The name of the vocabulary filter you've created that is unique to your account. Provide the name in this field to successfully use it in a stream.</p>",
-        "StartStreamTranscriptionResponse$VocabularyFilterName": "<p>The name of the vocabulary filter used in your media stream.</p>"
+        "StartStreamTranscriptionRequest$VocabularyFilterName": "<p>The name of the vocabulary filter you want to use with your transcription.</p> <p>This operation is not intended for use in conjunction with the <code>IdentifyLanguage</code> operation. If you're using <code>IdentifyLanguage</code> in your request and want to use one or more vocabulary filters with your transcription, use the <code>VocabularyFilterNames</code> operation instead.</p>",
+        "StartStreamTranscriptionResponse$VocabularyFilterName": "<p>The name of the vocabulary filter used when processing the stream.</p>"
+      }
+    },
+    "VocabularyFilterNames": {
+      "base": null,
+      "refs": {
+        "StartStreamTranscriptionRequest$VocabularyFilterNames": "<p>The names of the vocabulary filters you want to use with your transcription.</p> <p>Note that if the vocabulary filters you specify are in languages that don't match the language identified in your media, your job fails.</p> <p>This operation is only intended for use in conjunction with the <code>IdentifyLanguage</code> operation. If you're not using <code>IdentifyLanguage</code> in your request and want to use a vocabulary filter with your transcription, use the <code>VocabularyFilterName</code> operation instead.</p>",
+        "StartStreamTranscriptionResponse$VocabularyFilterNames": "<p>The name of the vocabulary filter used when processing the stream.</p>"
       }
     },
     "VocabularyName": {
@@ -447,8 +454,15 @@
       "refs": {
         "StartMedicalStreamTranscriptionRequest$VocabularyName": "<p>The name of the medical custom vocabulary to use when processing the real-time stream.</p>",
         "StartMedicalStreamTranscriptionResponse$VocabularyName": "<p>The name of the vocabulary used when processing the stream.</p>",
-        "StartStreamTranscriptionRequest$VocabularyName": "<p>The name of the vocabulary to use when processing the transcription job.</p>",
-        "StartStreamTranscriptionResponse$VocabularyName": "<p>The name of the vocabulary used when processing the stream.</p>"
+        "StartStreamTranscriptionRequest$VocabularyName": "<p>The name of the custom vocabulary you want to use with your transcription.</p> <p>This operation is not intended for use in conjunction with the <code>IdentifyLanguage</code> operation. If you're using <code>IdentifyLanguage</code> in your request and want to use one or more custom vocabularies with your transcription, use the <code>VocabularyNames</code> operation instead.</p>",
+        "StartStreamTranscriptionResponse$VocabularyName": "<p>The name of the custom vocabulary used when processing the stream.</p>"
+      }
+    },
+    "VocabularyNames": {
+      "base": null,
+      "refs": {
+        "StartStreamTranscriptionRequest$VocabularyNames": "<p>The names of the custom vocabularies you want to use with your transcription.</p> <p>Note that if the custom vocabularies you specify are in languages that don't match the language identified in your media, your job fails.</p> <p>This operation is only intended for use in conjunction with the <code>IdentifyLanguage</code> operation. If you're not using <code>IdentifyLanguage</code> in your request and want to use a custom vocabulary with your transcription, use the <code>VocabularyName</code> operation instead.</p>",
+        "StartStreamTranscriptionResponse$VocabularyNames": "<p>The name of the custom vocabulary used when processing the stream.</p>"
       }
     }
   }

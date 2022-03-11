@@ -599,6 +599,16 @@
           "shape":"LanguageCode",
           "location":"header",
           "locationName":"x-amzn-transcribe-preferred-language"
+        },
+        "VocabularyNames":{
+          "shape":"VocabularyNames",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-vocabulary-names"
+        },
+        "VocabularyFilterNames":{
+          "shape":"VocabularyFilterNames",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-vocabulary-filter-names"
         }
       },
       "payload":"AudioStream"
@@ -706,6 +716,16 @@
           "shape":"LanguageCode",
           "location":"header",
           "locationName":"x-amzn-transcribe-preferred-language"
+        },
+        "VocabularyNames":{
+          "shape":"VocabularyNames",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-vocabulary-names"
+        },
+        "VocabularyFilterNames":{
+          "shape":"VocabularyFilterNames",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-vocabulary-filter-names"
         }
       },
       "payload":"TranscriptResultStream"
@@ -757,11 +777,23 @@
       "min":1,
       "pattern":"^[0-9a-zA-Z._-]+"
     },
+    "VocabularyFilterNames":{
+      "type":"string",
+      "max":3000,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9,-._]+"
+    },
     "VocabularyName":{
       "type":"string",
       "max":200,
       "min":1,
       "pattern":"^[0-9a-zA-Z._-]+"
+    },
+    "VocabularyNames":{
+      "type":"string",
+      "max":3000,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9,-._]+"
     }
   }
 }

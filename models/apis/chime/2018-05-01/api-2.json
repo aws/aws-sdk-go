@@ -501,6 +501,7 @@
         {"shape":"ResourceLimitExceededException"},
         {"shape":"ThrottledClientException"},
         {"shape":"UnauthorizedClientException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -7499,7 +7500,8 @@
     "LoggingConfiguration":{
       "type":"structure",
       "members":{
-        "EnableSIPLogs":{"shape":"Boolean"}
+        "EnableSIPLogs":{"shape":"Boolean"},
+        "EnableMediaMetricLogs":{"shape":"Boolean"}
       }
     },
     "LogoutUserRequest":{

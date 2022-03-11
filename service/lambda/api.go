@@ -164,20 +164,21 @@ func (c *Lambda) AddPermissionRequest(input *AddPermissionInput) (req *request.R
 
 // AddPermission API operation for AWS Lambda.
 //
-// Grants an Amazon Web Services service or another account permission to use
-// a function. You can apply the policy at the function level, or specify a
-// qualifier to restrict access to a single version or alias. If you use a qualifier,
-// the invoker must use the full Amazon Resource Name (ARN) of that version
-// or alias to invoke the function. Note: Lambda does not support adding policies
-// to version $LATEST.
+// Grants an Amazon Web Services service, account, or organization permission
+// to use a function. You can apply the policy at the function level, or specify
+// a qualifier to restrict access to a single version or alias. If you use a
+// qualifier, the invoker must use the full Amazon Resource Name (ARN) of that
+// version or alias to invoke the function. Note: Lambda does not support adding
+// policies to version $LATEST.
 //
 // To grant permission to another account, specify the account ID as the Principal.
-// For Amazon Web Services services, the principal is a domain-style identifier
-// defined by the service, like s3.amazonaws.com or sns.amazonaws.com. For Amazon
-// Web Services services, you can also specify the ARN of the associated resource
-// as the SourceArn. If you grant permission to a service principal without
-// specifying the source, other accounts could potentially configure resources
-// in their account to invoke your Lambda function.
+// To grant permission to an organization defined in Organizations, specify
+// the organization ID as the PrincipalOrgID. For Amazon Web Services services,
+// the principal is a domain-style identifier defined by the service, like s3.amazonaws.com
+// or sns.amazonaws.com. For Amazon Web Services services, you can also specify
+// the ARN of the associated resource as the SourceArn. If you grant permission
+// to a service principal without specifying the source, other accounts could
+// potentially configure resources in their account to invoke your Lambda function.
 //
 // This action adds a statement to a resource-based permissions policy for the
 // function. For more information about function policies, see Lambda Function
@@ -6648,6 +6649,10 @@ type AddPermissionInput struct {
 	// Principal is a required field
 	Principal *string `type:"string" required:"true"`
 
+	// The identifier for your organization in Organizations. Use this to grant
+	// permissions to all the Amazon Web Services accounts under this organization.
+	PrincipalOrgID *string `min:"12" type:"string"`
+
 	// Specify a version or alias to add permissions to a published version of the
 	// function.
 	Qualifier *string `location:"querystring" locationName:"Qualifier" min:"1" type:"string"`
@@ -6710,6 +6715,9 @@ func (s *AddPermissionInput) Validate() error {
 	if s.Principal == nil {
 		invalidParams.Add(request.NewErrParamRequired("Principal"))
 	}
+	if s.PrincipalOrgID != nil && len(*s.PrincipalOrgID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("PrincipalOrgID", 12))
+	}
 	if s.Qualifier != nil && len(*s.Qualifier) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Qualifier", 1))
 	}
@@ -6747,6 +6755,12 @@ func (s *AddPermissionInput) SetFunctionName(v string) *AddPermissionInput {
 // SetPrincipal sets the Principal field's value.
 func (s *AddPermissionInput) SetPrincipal(v string) *AddPermissionInput {
 	s.Principal = &v
+	return s
+}
+
+// SetPrincipalOrgID sets the PrincipalOrgID field's value.
+func (s *AddPermissionInput) SetPrincipalOrgID(v string) *AddPermissionInput {
+	s.PrincipalOrgID = &v
 	return s
 }
 
