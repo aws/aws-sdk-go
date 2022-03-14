@@ -1677,7 +1677,8 @@
         "GoogleDriveConfiguration":{"shape":"GoogleDriveConfiguration"},
         "WebCrawlerConfiguration":{"shape":"WebCrawlerConfiguration"},
         "WorkDocsConfiguration":{"shape":"WorkDocsConfiguration"},
-        "FsxConfiguration":{"shape":"FsxConfiguration"}
+        "FsxConfiguration":{"shape":"FsxConfiguration"},
+        "SlackConfiguration":{"shape":"SlackConfiguration"}
       }
     },
     "DataSourceDateFieldFormat":{
@@ -1849,7 +1850,8 @@
         "GOOGLEDRIVE",
         "WEBCRAWLER",
         "WORKDOCS",
-        "FSX"
+        "FSX",
+        "SLACK"
       ]
     },
     "DataSourceVpcConfiguration":{
@@ -3282,6 +3284,11 @@
       }
     },
     "Long":{"type":"long"},
+    "LookBackPeriod":{
+      "type":"integer",
+      "max":168,
+      "min":0
+    },
     "MaxContentSizePerPageInMegaBytes":{
       "type":"float",
       "max":50,
@@ -3540,6 +3547,10 @@
         "GROUP"
       ]
     },
+    "PrivateChannelFilter":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "ProxyConfiguration":{
       "type":"structure",
       "required":[
@@ -3551,6 +3562,10 @@
         "Port":{"shape":"Port"},
         "Credentials":{"shape":"SecretArn"}
       }
+    },
+    "PublicChannelFilter":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "PutPrincipalMappingRequest":{
       "type":"structure",
@@ -4135,6 +4150,12 @@
       "min":1,
       "pattern":"^\\P{C}*$"
     },
+    "SinceCrawlDate":{
+      "type":"string",
+      "max":10,
+      "min":10,
+      "pattern":"(20\\d{2})-(0?[1-9]|1[0-2])-(0?[1-9]|1\\d|2\\d|3[01])"
+    },
     "SiteMap":{
       "type":"string",
       "max":2048,
@@ -4153,6 +4174,46 @@
       "member":{"shape":"SiteMap"},
       "max":3,
       "min":0
+    },
+    "SlackConfiguration":{
+      "type":"structure",
+      "required":[
+        "TeamId",
+        "SecretArn",
+        "SlackEntityList",
+        "SinceCrawlDate"
+      ],
+      "members":{
+        "TeamId":{"shape":"TeamId"},
+        "SecretArn":{"shape":"SecretArn"},
+        "VpcConfiguration":{"shape":"DataSourceVpcConfiguration"},
+        "SlackEntityList":{"shape":"SlackEntityList"},
+        "UseChangeLog":{"shape":"Boolean"},
+        "CrawlBotMessage":{"shape":"Boolean"},
+        "ExcludeArchived":{"shape":"Boolean"},
+        "SinceCrawlDate":{"shape":"SinceCrawlDate"},
+        "LookBackPeriod":{"shape":"LookBackPeriod"},
+        "PrivateChannelFilter":{"shape":"PrivateChannelFilter"},
+        "PublicChannelFilter":{"shape":"PublicChannelFilter"},
+        "InclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "ExclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"}
+      }
+    },
+    "SlackEntity":{
+      "type":"string",
+      "enum":[
+        "PUBLIC_CHANNEL",
+        "PRIVATE_CHANNEL",
+        "GROUP_MESSAGE",
+        "DIRECT_MESSAGE"
+      ]
+    },
+    "SlackEntityList":{
+      "type":"list",
+      "member":{"shape":"SlackEntity"},
+      "max":4,
+      "min":1
     },
     "SnapshotsDataHeaderFields":{
       "type":"list",
@@ -4377,6 +4438,12 @@
       "type":"string",
       "max":256,
       "min":0
+    },
+    "TeamId":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[A-Z0-9]*"
     },
     "TenantDomain":{
       "type":"string",

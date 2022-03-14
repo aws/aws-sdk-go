@@ -1,3 +1,14 @@
+Release v1.43.18 (2022-03-14)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API and documentation
+* `service/elasticache`: Updates service documentation
+  * Doc only update for ElastiCache
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now provides a data source connector for Slack. For more information, see https://docs.aws.amazon.com/kendra/latest/dg/data-source-slack.html
+* `service/timestream-query`: Updates service API
+
 Release v1.43.17 (2022-03-11)
 ===
 

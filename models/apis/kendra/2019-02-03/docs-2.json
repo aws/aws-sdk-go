@@ -264,11 +264,14 @@
         "ServiceNowKnowledgeArticleConfiguration$CrawlAttachments": "<p>Indicates whether Amazon Kendra should index attachments to knowledge articles.</p>",
         "ServiceNowServiceCatalogConfiguration$CrawlAttachments": "<p>Indicates whether Amazon Kendra should crawl attachments to the service catalog items. </p>",
         "SharePointConfiguration$CrawlAttachments": "<p> <code>TRUE</code> to include attachments to documents stored in your Microsoft SharePoint site in the index; otherwise, <code>FALSE</code>.</p>",
-        "SharePointConfiguration$UseChangeLog": "<p>Set to <code>TRUE</code> to use the Microsoft SharePoint change log to determine the documents that need to be updated in the index. Depending on the size of the SharePoint change log, it may take longer for Amazon Kendra to use the change log than it takes it to determine the changed documents using the Amazon Kendra document crawler.</p>",
+        "SharePointConfiguration$UseChangeLog": "<p> <code>TRUE</code> to use the SharePoint change log to determine which documents require updating in the index. Depending on the change log's size, it may take longer for Amazon Kendra to use the change log than to scan all of your documents in SharePoint.</p>",
         "SharePointConfiguration$DisableLocalGroups": "<p>A Boolean value that specifies whether local groups are disabled (<code>True</code>) or enabled (<code>False</code>). </p>",
+        "SlackConfiguration$UseChangeLog": "<p> <code>TRUE</code> to use the Slack change log to determine which documents require updating in the index. Depending on the Slack change log's size, it may take longer for Amazon Kendra to use the change log than to scan all of your documents in Slack.</p>",
+        "SlackConfiguration$CrawlBotMessage": "<p> <code>TRUE</code> to index bot messages from your Slack workspace team.</p>",
+        "SlackConfiguration$ExcludeArchived": "<p> <code>TRUE</code> to exclude archived messages to index from your Slack workspace team.</p>",
         "SpellCorrectionConfiguration$IncludeQuerySpellCheckSuggestions": "<p> <code>TRUE</code> to suggest spell corrections for queries.</p>",
         "WorkDocsConfiguration$CrawlComments": "<p> <code>TRUE</code> to include comments on documents in your index. Including comments in your index means each comment is a document that can be searched on.</p> <p>The default is set to <code>FALSE</code>.</p>",
-        "WorkDocsConfiguration$UseChangeLog": "<p> <code>TRUE</code> to use the change logs to update documents in your index instead of scanning all documents.</p> <p>If you are syncing your Amazon WorkDocs data source with your index for the first time, all documents are scanned. After your first sync, you can use the change logs to update your documents in your index for future syncs.</p> <p>The default is set to <code>FALSE</code>.</p>"
+        "WorkDocsConfiguration$UseChangeLog": "<p> <code>TRUE</code> to use the Amazon WorkDocs change log to determine which documents require updating in the index. Depending on the change log's size, it may take longer for Amazon Kendra to use the change log than to scan all of your documents in Amazon WorkDocs.</p>"
       }
     },
     "CapacityUnitsConfiguration": {
@@ -346,15 +349,15 @@
       }
     },
     "ConfluenceAttachmentConfiguration": {
-      "base": "<p>Specifies the attachment settings for the Confluence data source. Attachment settings are optional, if you don't specify settings attachments, Amazon Kendra won't index them.</p>",
+      "base": "<p>Configuration of attachment settings for the Confluence data source. Attachment settings are optional, if you don't specify settings attachments, Amazon Kendra won't index them.</p>",
       "refs": {
-        "ConfluenceConfiguration$AttachmentConfiguration": "<p>Specifies configuration information for indexing attachments to Confluence blogs and pages.</p>"
+        "ConfluenceConfiguration$AttachmentConfiguration": "<p>Configuration information for indexing attachments to Confluence blogs and pages.</p>"
       }
     },
     "ConfluenceAttachmentFieldMappingsList": {
       "base": null,
       "refs": {
-        "ConfluenceAttachmentConfiguration$AttachmentFieldMappings": "<p>Defines how attachment metadata fields should be mapped to index fields. Before you can map a field, you must first create an index field with a matching type using the console or the <code>UpdateIndex</code> API.</p> <p>If you specify the <code>AttachentFieldMappings</code> parameter, you must specify at least one field mapping.</p>"
+        "ConfluenceAttachmentConfiguration$AttachmentFieldMappings": "<p>Maps attributes or field names of Confluence attachments to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Confluence fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Confluence data source field names must exist in your Confluence custom metadata.</p> <p>If you specify the <code>AttachentFieldMappings</code> parameter, you must specify at least one field mapping.</p>"
       }
     },
     "ConfluenceAttachmentFieldName": {
@@ -364,21 +367,21 @@
       }
     },
     "ConfluenceAttachmentToIndexFieldMapping": {
-      "base": "<p>Defines the mapping between a field in the Confluence data source to a Amazon Kendra index field.</p> <p>You must first create the index field using the <code>UpdateIndex</code> API. </p>",
+      "base": "<p>Maps attributes or field names of Confluence attachments to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Confluence fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Confuence data source field names must exist in your Confluence custom metadata.</p>",
       "refs": {
         "ConfluenceAttachmentFieldMappingsList$member": null
       }
     },
     "ConfluenceBlogConfiguration": {
-      "base": "<p>Specifies the blog settings for the Confluence data source. Blogs are always indexed unless filtered from the index by the <code>ExclusionPatterns</code> or <code>InclusionPatterns</code> fields in the <code>ConfluenceConfiguration</code> object.</p>",
+      "base": "<p>Configuration of blog settings for the Confluence data source. Blogs are always indexed unless filtered from the index by the <code>ExclusionPatterns</code> or <code>InclusionPatterns</code> fields in the <code>ConfluenceConfiguration</code> object.</p>",
       "refs": {
-        "ConfluenceConfiguration$BlogConfiguration": "<p> Specifies configuration information for indexing Confluence blogs.</p>"
+        "ConfluenceConfiguration$BlogConfiguration": "<p>Configuration information for indexing Confluence blogs.</p>"
       }
     },
     "ConfluenceBlogFieldMappingsList": {
       "base": null,
       "refs": {
-        "ConfluenceBlogConfiguration$BlogFieldMappings": "<p>Defines how blog metadata fields should be mapped to index fields. Before you can map a field, you must first create an index field with a matching type using the console or the <code>UpdateIndex</code> API.</p> <p>If you specify the <code>BlogFieldMappings</code> parameter, you must specify at least one field mapping.</p>"
+        "ConfluenceBlogConfiguration$BlogFieldMappings": "<p>Maps attributes or field names of Confluence blogs to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Confluence fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Confluence data source field names must exist in your Confluence custom metadata.</p> <p>If you specify the <code>BlogFieldMappings</code> parameter, you must specify at least one field mapping.</p>"
       }
     },
     "ConfluenceBlogFieldName": {
@@ -388,7 +391,7 @@
       }
     },
     "ConfluenceBlogToIndexFieldMapping": {
-      "base": "<p>Defines the mapping between a blog field in the Confluence data source to a Amazon Kendra index field.</p> <p>You must first create the index field using the <code>UpdateIndex</code> API. </p>",
+      "base": "<p>Maps attributes or field names of Confluence blog to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Confluence fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Confluence data source field names must exist in your Confluence custom metadata.</p>",
       "refs": {
         "ConfluenceBlogFieldMappingsList$member": null
       }
@@ -396,43 +399,43 @@
     "ConfluenceConfiguration": {
       "base": "<p>Provides the configuration information to connect to Confluence as your data source.</p>",
       "refs": {
-        "DataSourceConfiguration$ConfluenceConfiguration": "<p>Provides configuration information for connecting to a Confluence data source.</p>"
+        "DataSourceConfiguration$ConfluenceConfiguration": "<p>Provides the configuration information to connect to Confluence as your data source.</p>"
       }
     },
     "ConfluencePageConfiguration": {
-      "base": "<p>Specifies the page settings for the Confluence data source.</p>",
+      "base": "<p>Configuration of the page settings for the Confluence data source.</p>",
       "refs": {
-        "ConfluenceConfiguration$PageConfiguration": "<p>Specifies configuration information for indexing Confluence pages.</p>"
+        "ConfluenceConfiguration$PageConfiguration": "<p>Configuration information for indexing Confluence pages.</p>"
       }
     },
     "ConfluencePageFieldMappingsList": {
       "base": null,
       "refs": {
-        "ConfluencePageConfiguration$PageFieldMappings": "<p>Defines how page metadata fields should be mapped to index fields. Before you can map a field, you must first create an index field with a matching type using the console or the <code>UpdateIndex</code> API.</p> <p>If you specify the <code>PageFieldMappings</code> parameter, you must specify at least one field mapping.</p>"
+        "ConfluencePageConfiguration$PageFieldMappings": "<p>&gt;Maps attributes or field names of Confluence pages to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Confluence fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Confluence data source field names must exist in your Confluence custom metadata.</p> <p>If you specify the <code>PageFieldMappings</code> parameter, you must specify at least one field mapping.</p>"
       }
     },
     "ConfluencePageFieldName": {
       "base": null,
       "refs": {
-        "ConfluencePageToIndexFieldMapping$DataSourceFieldName": "<p>The name of the field in the data source. </p>"
+        "ConfluencePageToIndexFieldMapping$DataSourceFieldName": "<p>The name of the field in the data source.</p>"
       }
     },
     "ConfluencePageToIndexFieldMapping": {
-      "base": "<p>Defines the mapping between a field in the Confluence data source to a Amazon Kendra index field.</p> <p>You must first create the index field using the <code>UpdateIndex</code> API.</p>",
+      "base": "<p>&gt;Maps attributes or field names of Confluence pages to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Confluence fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Confluence data source field names must exist in your Confluence custom metadata.</p>",
       "refs": {
         "ConfluencePageFieldMappingsList$member": null
       }
     },
     "ConfluenceSpaceConfiguration": {
-      "base": "<p>Specifies the configuration for indexing Confluence spaces.</p>",
+      "base": "<p>Configuration information for indexing Confluence spaces.</p>",
       "refs": {
-        "ConfluenceConfiguration$SpaceConfiguration": "<p>Specifies configuration information for indexing Confluence spaces.</p>"
+        "ConfluenceConfiguration$SpaceConfiguration": "<p>Configuration information for indexing Confluence spaces.</p>"
       }
     },
     "ConfluenceSpaceFieldMappingsList": {
       "base": null,
       "refs": {
-        "ConfluenceSpaceConfiguration$SpaceFieldMappings": "<p>Defines how space metadata fields should be mapped to index fields. Before you can map a field, you must first create an index field with a matching type using the console or the <code>UpdateIndex</code> API.</p> <p>If you specify the <code>SpaceFieldMappings</code> parameter, you must specify at least one field mapping.</p>"
+        "ConfluenceSpaceConfiguration$SpaceFieldMappings": "<p>Maps attributes or field names of Confluence spaces to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Confluence fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Confluence data source field names must exist in your Confluence custom metadata.</p> <p>If you specify the <code>SpaceFieldMappings</code> parameter, you must specify at least one field mapping.</p>"
       }
     },
     "ConfluenceSpaceFieldName": {
@@ -455,7 +458,7 @@
       }
     },
     "ConfluenceSpaceToIndexFieldMapping": {
-      "base": "<p>Defines the mapping between a field in the Confluence data source to an Amazon Kendra index field.</p> <p>You must first create the index field using the <code>UpdateIndex</code> API.</p>",
+      "base": "<p>&gt;Maps attributes or field names of Confluence spaces to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Confluence fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Confluence data source field names must exist in your Confluence custom metadata.</p>",
       "refs": {
         "ConfluenceSpaceFieldMappingsList$member": null
       }
@@ -654,29 +657,31 @@
     "DataSourceInclusionsExclusionsStrings": {
       "base": null,
       "refs": {
-        "ConfluenceConfiguration$InclusionPatterns": "<p>A list of regular expression patterns that apply to a URL on the Confluence server. An inclusion pattern can apply to a blog post, a page, a space, or an attachment. Items that match the patterns are included in the index. Items that don't match the pattern are excluded from the index. If an item matches both an inclusion pattern and an exclusion pattern, the item isn't included in the index.</p>",
-        "ConfluenceConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns that apply to a URL on the Confluence server. An exclusion pattern can apply to a blog post, a page, a space, or an attachment. Items that match the pattern are excluded from the index. Items that don't match the pattern are included in the index. If a item matches both an exclusion pattern and an inclusion pattern, the item isn't included in the index.</p>",
-        "FsxConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain files in your Amazon FSx file system. Files that match the patterns are included in the index. Files that don't match the patterns are excluded from the index. If a file matches both an inclusion pattern and an exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
-        "FsxConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain files in your Amazon FSx file system. Files that match the patterns are excluded from the index. Files that don’t match the patterns are included in the index. If a file matches both an inclusion pattern and an exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
-        "GoogleDriveConfiguration$InclusionPatterns": "<p>A list of regular expression patterns that apply to path on Google Drive. Items that match the pattern are included in the index from both shared drives and users' My Drives. Items that don't match the pattern are excluded from the index. If an item matches both an inclusion pattern and an exclusion pattern, it is excluded from the index.</p>",
-        "GoogleDriveConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns that apply to the path on Google Drive. Items that match the pattern are excluded from the index from both shared drives and users' My Drives. Items that don't match the pattern are included in the index. If an item matches both an exclusion pattern and an inclusion pattern, it is excluded from the index.</p>",
-        "OneDriveConfiguration$InclusionPatterns": "<p>A list of regular expression patterns. Documents that match the pattern are included in the index. Documents that don't match the pattern are excluded from the index. If a document matches both an inclusion pattern and an exclusion pattern, the document is not included in the index. </p> <p>The exclusion pattern is applied to the file name.</p>",
-        "OneDriveConfiguration$ExclusionPatterns": "<p>List of regular expressions applied to documents. Items that match the exclusion pattern are not indexed. If you provide both an inclusion pattern and an exclusion pattern, any item that matches the exclusion pattern isn't indexed. </p> <p>The exclusion pattern is applied to the file name.</p>",
+        "ConfluenceConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain blog posts, pages, spaces, or attachments in your Confluence. Content that matches the patterns are included in the index. Content that doesn't match the patterns is excluded from the index. If content matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the content isn't included in the index.</p>",
+        "ConfluenceConfiguration$ExclusionPatterns": "<p>&gt;A list of regular expression patterns to exclude certain blog posts, pages, spaces, or attachments in your Confluence. Content that matches the patterns are excluded from the index. Content that doesn't match the patterns is included in the index. If content matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the content isn't included in the index.</p>",
+        "FsxConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain files in your Amazon FSx file system. Files that match the patterns are included in the index. Files that don't match the patterns are excluded from the index. If a file matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
+        "FsxConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain files in your Amazon FSx file system. Files that match the patterns are excluded from the index. Files that don't match the patterns are included in the index. If a file matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
+        "GoogleDriveConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain items in your Google Drive, including shared drives and users' My Drives. Items that match the patterns are included in the index. Items that don't match the patterns are excluded from the index. If an item matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the item isn't included in the index.</p>",
+        "GoogleDriveConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain items in your Google Drive, including shared drives and users' My Drives. Items that match the patterns are excluded from the index. Items that don't match the patterns are included in the index. If an item matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the item isn't included in the index.</p>",
+        "OneDriveConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain documents in your OneDrive. Documents that match the patterns are included in the index. Documents that don't match the patterns are excluded from the index. If a document matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the document isn't included in the index.</p> <p>The pattern is applied to the file name.</p>",
+        "OneDriveConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain documents in your OneDrive. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the document isn't included in the index.</p> <p>The pattern is applied to the file name.</p>",
         "S3DataSourceConfiguration$InclusionPrefixes": "<p>A list of S3 prefixes for the documents that should be included in the index.</p>",
         "S3DataSourceConfiguration$InclusionPatterns": "<p>A list of glob patterns for documents that should be indexed. If a document that matches an inclusion pattern also matches an exclusion pattern, the document is not indexed.</p> <p>Some <a href=\"https://docs.aws.amazon.com/cli/latest/reference/s3/#use-of-exclude-and-include-filters\">examples</a> are:</p> <ul> <li> <p> <i>*.txt</i> will include all text files in a directory (files with the extension .txt).</p> </li> <li> <p> <i>**/*.txt</i> will include all text files in a directory and its subdirectories.</p> </li> <li> <p> <i>*tax*</i> will include all files in a directory that contain 'tax' in the file name, such as 'tax', 'taxes', 'income_tax'.</p> </li> </ul>",
         "S3DataSourceConfiguration$ExclusionPatterns": "<p>A list of glob patterns for documents that should not be indexed. If a document that matches an inclusion prefix or inclusion pattern also matches an exclusion pattern, the document is not indexed.</p> <p>Some <a href=\"https://docs.aws.amazon.com/cli/latest/reference/s3/#use-of-exclude-and-include-filters\">examples</a> are:</p> <ul> <li> <p> <i>*.png , *.jpg</i> will exclude all PNG and JPEG image files in a directory (files with the extensions .png and .jpg).</p> </li> <li> <p> <i>*internal*</i> will exclude all files in a directory that contain 'internal' in the file name, such as 'internal', 'internal_only', 'company_internal'.</p> </li> <li> <p> <i>**/*internal*</i> will exclude all internal-related files in a directory and its subdirectories.</p> </li> </ul>",
-        "SalesforceConfiguration$IncludeAttachmentFilePatterns": "<p>A list of regular expression patterns. Documents that match the patterns are included in the index. Documents that don't match the patterns are excluded from the index. If a document matches both an inclusion pattern and an exclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the name of the attached file.</p>",
-        "SalesforceConfiguration$ExcludeAttachmentFilePatterns": "<p>A list of regular expression patterns. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an exclusion pattern and an inclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the name of the attached file.</p>",
-        "ServiceNowKnowledgeArticleConfiguration$IncludeAttachmentFilePatterns": "<p>List of regular expressions applied to knowledge articles. Items that don't match the inclusion pattern are not indexed. The regex is applied to the field specified in the <code>PatternTargetField</code>.</p>",
-        "ServiceNowKnowledgeArticleConfiguration$ExcludeAttachmentFilePatterns": "<p>List of regular expressions applied to knowledge articles. Items that don't match the inclusion pattern are not indexed. The regex is applied to the field specified in the <code>PatternTargetField</code> </p>",
-        "ServiceNowServiceCatalogConfiguration$IncludeAttachmentFilePatterns": "<p>A list of regular expression patterns. Documents that match the patterns are included in the index. Documents that don't match the patterns are excluded from the index. If a document matches both an exclusion pattern and an inclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the file name of the attachment.</p>",
-        "ServiceNowServiceCatalogConfiguration$ExcludeAttachmentFilePatterns": "<p>A list of regular expression patterns. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an exclusion pattern and an inclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the file name of the attachment.</p>",
-        "SharePointConfiguration$InclusionPatterns": "<p>A list of regular expression patterns. Documents that match the patterns are included in the index. Documents that don't match the patterns are excluded from the index. If a document matches both an inclusion pattern and an exclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the display URL of the SharePoint document.</p>",
-        "SharePointConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an exclusion pattern and an inclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the display URL of the SharePoint document.</p>",
-        "WebCrawlerConfiguration$UrlInclusionPatterns": "<p>The regular expression pattern to include certain URLs to crawl.</p> <p>If there is a regular expression pattern to exclude certain URLs that conflicts with the include pattern, the exclude pattern takes precedence.</p>",
-        "WebCrawlerConfiguration$UrlExclusionPatterns": "<p>The regular expression pattern to exclude certain URLs to crawl.</p> <p>If there is a regular expression pattern to include certain URLs that conflicts with the exclude pattern, the exclude pattern takes precedence.</p>",
-        "WorkDocsConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain files in your Amazon WorkDocs site repository. Files that match the patterns are included in the index. Files that don't match the patterns are excluded from the index. If a file matches both an inclusion pattern and an exclusion pattern, the exclusion pattern takes precedence and the file isn’t included in the index.</p>",
-        "WorkDocsConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain files in your Amazon WorkDocs site repository. Files that match the patterns are excluded from the index. Files that don’t match the patterns are included in the index. If a file matches both an inclusion pattern and an exclusion pattern, the exclusion pattern takes precedence and the file isn’t included in the index.</p>"
+        "SalesforceConfiguration$IncludeAttachmentFilePatterns": "<p>A list of regular expression patterns to include certain documents in your Salesforce. Documents that match the patterns are included in the index. Documents that don't match the patterns are excluded from the index. If a document matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the document isn't included in the index.</p> <p>The pattern is applied to the name of the attached file.</p>",
+        "SalesforceConfiguration$ExcludeAttachmentFilePatterns": "<p>A list of regular expression patterns to exclude certain documents in your Salesforce. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the document isn't included in the index.</p> <p>The pattern is applied to the name of the attached file.</p>",
+        "ServiceNowKnowledgeArticleConfiguration$IncludeAttachmentFilePatterns": "<p>A list of regular expression patterns to include certain attachments of knowledge articles in your ServiceNow. Item that match the patterns are included in the index. Items that don't match the patterns are excluded from the index. If an item matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the item isn't included in the index.</p> <p>The regex is applied to the field specified in the <code>PatternTargetField</code>.</p>",
+        "ServiceNowKnowledgeArticleConfiguration$ExcludeAttachmentFilePatterns": "<p>A list of regular expression patterns to exclude certain attachments of knowledge articles in your ServiceNow. Item that match the patterns are excluded from the index. Items that don't match the patterns are included in the index. If an item matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the item isn't included in the index.</p> <p>The regex is applied to the field specified in the <code>PatternTargetField</code>.</p>",
+        "ServiceNowServiceCatalogConfiguration$IncludeAttachmentFilePatterns": "<p>A list of regular expression patterns to include certain attachments of catalogs in your ServiceNow. Item that match the patterns are included in the index. Items that don't match the patterns are excluded from the index. If an item matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the item isn't included in the index.</p> <p>The regex is applied to the file name of the attachment.</p>",
+        "ServiceNowServiceCatalogConfiguration$ExcludeAttachmentFilePatterns": "<p>A list of regular expression patterns to exclude certain attachments of catalogs in your ServiceNow. Item that match the patterns are excluded from the index. Items that don't match the patterns are included in the index. If an item matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the item isn't included in the index.</p> <p>The regex is applied to the file name of the attachment.</p>",
+        "SharePointConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain documents in your SharePoint. Documents that match the patterns are included in the index. Documents that don't match the patterns are excluded from the index. If a document matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the document isn't included in the index.</p> <p>The regex is applied to the display URL of the SharePoint document.</p>",
+        "SharePointConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain documents in your SharePoint. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the document isn't included in the index.</p> <p>The regex is applied to the display URL of the SharePoint document.</p>",
+        "SlackConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain attached files in your Slack workspace team. Files that match the patterns are included in the index. Files that don't match the patterns are excluded from the index. If a file matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
+        "SlackConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain attached files in your Slack workspace team. Files that match the patterns are excluded from the index. Files that don’t match the patterns are included in the index. If a file matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
+        "WebCrawlerConfiguration$UrlInclusionPatterns": "<p>A list of regular expression patterns to include certain URLs to crawl. URLs that match the patterns are included in the index. URLs that don't match the patterns are excluded from the index. If a URL matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the URL file isn't included in the index.</p>",
+        "WebCrawlerConfiguration$UrlExclusionPatterns": "<p>A list of regular expression patterns to exclude certain URLs to crawl. URLs that match the patterns are excluded from the index. URLs that don't match the patterns are included in the index. If a URL matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the URL file isn't included in the index.</p>",
+        "WorkDocsConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain files in your Amazon WorkDocs site repository. Files that match the patterns are included in the index. Files that don't match the patterns are excluded from the index. If a file matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
+        "WorkDocsConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain files in your Amazon WorkDocs site repository. Files that match the patterns are excluded from the index. Files that don’t match the patterns are included in the index. If a file matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>"
       }
     },
     "DataSourceInclusionsExclusionsStringsMember": {
@@ -761,17 +766,18 @@
       "refs": {
         "ColumnConfiguration$FieldMappings": "<p>An array of objects that map database column names to the corresponding fields in an index. You must first create the fields in the index using the <code>UpdateIndex</code> API.</p>",
         "FsxConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Amazon FSx data source attributes or field names to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Amazon FSx fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Amazon FSx data source field names must exist in your Amazon FSx custom metadata.</p>",
-        "GoogleDriveConfiguration$FieldMappings": "<p>Defines mapping between a field in the Google Drive and a Amazon Kendra index field.</p> <p>If you are using the console, you can define index fields when creating the mapping. If you are using the API, you must first create the field using the <code>UpdateIndex</code> API.</p>",
-        "OneDriveConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Microsoft OneDrive fields to custom fields in the Amazon Kendra index. You must first create the index fields before you map OneDrive fields.</p>",
+        "GoogleDriveConfiguration$FieldMappings": "<p>Maps Google Drive data source attributes or field names to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Google Drive fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Google Drive data source field names must exist in your Google Drive custom metadata.</p>",
+        "OneDriveConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map OneDrive data source attributes or field names to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to OneDrive fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The OneDrive data source field names must exist in your OneDrive custom metadata.</p>",
         "SalesforceChatterFeedConfiguration$FieldMappings": "<p>Maps fields from a Salesforce chatter feed into Amazon Kendra index fields.</p>",
-        "SalesforceCustomKnowledgeArticleTypeConfiguration$FieldMappings": "<p>One or more objects that map fields in the custom knowledge article to fields in the Amazon Kendra index.</p>",
-        "SalesforceStandardKnowledgeArticleTypeConfiguration$FieldMappings": "<p>One or more objects that map fields in the knowledge article to Amazon Kendra index fields. The index field must exist before you can map a Salesforce field to it.</p>",
+        "SalesforceCustomKnowledgeArticleTypeConfiguration$FieldMappings": "<p>Maps attributes or field names of the custom knowledge article to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Salesforce fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Salesforce data source field names must exist in your Salesforce custom metadata.</p>",
+        "SalesforceStandardKnowledgeArticleTypeConfiguration$FieldMappings": "<p>Maps attributes or field names of the knowledge article to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Salesforce fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Salesforce data source field names must exist in your Salesforce custom metadata.</p>",
         "SalesforceStandardObjectAttachmentConfiguration$FieldMappings": "<p>One or more objects that map fields in attachments to Amazon Kendra index fields.</p>",
-        "SalesforceStandardObjectConfiguration$FieldMappings": "<p>One or more objects that map fields in the standard object to Amazon Kendra index fields. The index field must exist before you can map a Salesforce field to it.</p>",
-        "ServiceNowKnowledgeArticleConfiguration$FieldMappings": "<p>Mapping between ServiceNow fields and Amazon Kendra index fields. You must create the index field before you map the field.</p>",
-        "ServiceNowServiceCatalogConfiguration$FieldMappings": "<p>Mapping between ServiceNow fields and Amazon Kendra index fields. You must create the index field before you map the field.</p>",
-        "SharePointConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Microsoft SharePoint attributes to custom fields in the Amazon Kendra index. You must first create the index fields using the <code>UpdateIndex</code> API before you map SharePoint attributes. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping Data Source Fields</a>.</p>",
-        "WorkDocsConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Amazon WorkDocs field names to custom index field names in Amazon Kendra. You must first create the custom index fields using the <code>UpdateIndex</code> API before you map to Amazon WorkDocs fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping Data Source Fields</a>. The Amazon WorkDocs data source field names need to exist in your Amazon WorkDocs custom metadata.</p>"
+        "SalesforceStandardObjectConfiguration$FieldMappings": "<p>Maps attributes or field names of the standard object to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Salesforce fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Salesforce data source field names must exist in your Salesforce custom metadata.</p>",
+        "ServiceNowKnowledgeArticleConfiguration$FieldMappings": "<p>Maps attributes or field names of knoweldge articles to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to ServiceNow fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The ServiceNow data source field names must exist in your ServiceNow custom metadata.</p>",
+        "ServiceNowServiceCatalogConfiguration$FieldMappings": "<p>Maps attributes or field names of catalogs to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to ServiceNow fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The ServiceNow data source field names must exist in your ServiceNow custom metadata.</p>",
+        "SharePointConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map SharePoint data source attributes or field names to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to SharePoint fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The SharePoint data source field names must exist in your SharePoint custom metadata.</p>",
+        "SlackConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Slack data source attributes or field names to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Slack fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Slack data source field names must exist in your Slack custom metadata.</p>",
+        "WorkDocsConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Amazon WorkDocs data source attributes or field names to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Amazon WorkDocs fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Amazon WorkDocs data source field names must exist in your Amazon WorkDocs custom metadata.</p>"
       }
     },
     "DataSourceType": {
@@ -785,10 +791,11 @@
     "DataSourceVpcConfiguration": {
       "base": "<p>Provides the configuration information to connect to an Amazon VPC.</p>",
       "refs": {
-        "ConfluenceConfiguration$VpcConfiguration": "<p>Specifies the information for connecting to an Amazon VPC.</p>",
+        "ConfluenceConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Confluence. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "DatabaseConfiguration$VpcConfiguration": null,
-        "FsxConfiguration$VpcConfiguration": "<p>Configuration information for connecting to an Amazon Virtual Private Cloud for your Amazon FSx. Your Amazon FSx instance must reside inside your VPC.</p>",
-        "SharePointConfiguration$VpcConfiguration": null
+        "FsxConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Amazon FSx. Your Amazon FSx instance must reside inside your VPC.</p>",
+        "SharePointConfiguration$VpcConfiguration": null,
+        "SlackConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Slack. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>"
       }
     },
     "DatabaseConfiguration": {
@@ -1529,7 +1536,7 @@
     "GoogleDriveConfiguration": {
       "base": "<p>Provides the configuration information to connect to Google Drive as your data source.</p>",
       "refs": {
-        "DataSourceConfiguration$GoogleDriveConfiguration": "<p>Provides the configuration information to connect to Google Drive as your data source. </p>"
+        "DataSourceConfiguration$GoogleDriveConfiguration": "<p>Provides the configuration information to connect to Google Drive as your data source.</p>"
       }
     },
     "GroupAttributeField": {
@@ -1994,6 +2001,12 @@
         "DocumentAttributeValue$LongValue": "<p>A long integer value.</p>"
       }
     },
+    "LookBackPeriod": {
+      "base": null,
+      "refs": {
+        "SlackConfiguration$LookBackPeriod": "<p>The number of hours for change log to look back from when you last synchronized your data. You can look back up to 7 days or 168 hours.</p> <p>Change log updates your index only if new content was added since you last synced your data. Updated or deleted content from before you last synced does not get updated in your index. To capture updated or deleted content before you last synced, set the <code>LookBackPeriod</code> to the number of hours you want change log to look back.</p>"
+      }
+    },
     "MaxContentSizePerPageInMegaBytes": {
       "base": null,
       "refs": {
@@ -2283,10 +2296,22 @@
         "Principal$Type": "<p>The type of principal.</p>"
       }
     },
+    "PrivateChannelFilter": {
+      "base": null,
+      "refs": {
+        "SlackConfiguration$PrivateChannelFilter": "<p>The list of private channel names from your Slack workspace team. You use this if you want to index specific private channels, not all private channels. You can also use regular expression patterns to filter private channels.</p>"
+      }
+    },
     "ProxyConfiguration": {
       "base": "<p>Provides the configuration information for a web proxy to connect to website hosts.</p>",
       "refs": {
         "WebCrawlerConfiguration$ProxyConfiguration": "<p>Configuration information required to connect to your internal websites via a web proxy.</p> <p>You must provide the website host name and port number. For example, the host name of https://a.example.com/page1.html is \"a.example.com\" and the port is 443, the standard port for HTTPS.</p> <p>Web proxy credentials are optional and you can use them to connect to a web proxy server that requires basic authentication. To store web proxy credentials, you use a secret in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">Secrets Manager</a>.</p>"
+      }
+    },
+    "PublicChannelFilter": {
+      "base": null,
+      "refs": {
+        "SlackConfiguration$PublicChannelFilter": "<p>The list of public channel names to index from your Slack workspace team. You use this if you want to index specific public channels, not all public channels. You can also use regular expression patterns to filter public channels.</p>"
       }
     },
     "PutPrincipalMappingRequest": {
@@ -2527,7 +2552,7 @@
     "SalesforceChatterFeedConfiguration": {
       "base": "<p>The configuration information for syncing a Salesforce chatter feed. The contents of the object comes from the Salesforce FeedItem table.</p>",
       "refs": {
-        "SalesforceConfiguration$ChatterFeedConfiguration": "<p>Specifies configuration information for Salesforce chatter feeds.</p>"
+        "SalesforceConfiguration$ChatterFeedConfiguration": "<p>Configuration information for Salesforce chatter feeds.</p>"
       }
     },
     "SalesforceChatterFeedIncludeFilterType": {
@@ -2543,13 +2568,13 @@
       }
     },
     "SalesforceConfiguration": {
-      "base": "<p>Provides configuration information for connecting to a Salesforce data source.</p>",
+      "base": "<p>Provides the configuration information to connect to Salesforce as your data source.</p>",
       "refs": {
         "DataSourceConfiguration$SalesforceConfiguration": "<p>Provides the configuration information to connect to Salesforce as your data source.</p>"
       }
     },
     "SalesforceCustomKnowledgeArticleTypeConfiguration": {
-      "base": "<p>Provides configuration information for indexing Salesforce custom articles.</p>",
+      "base": "<p>Provides the configuration information for indexing Salesforce custom articles.</p>",
       "refs": {
         "SalesforceCustomKnowledgeArticleTypeConfigurationList$member": null
       }
@@ -2569,7 +2594,7 @@
     "SalesforceKnowledgeArticleConfiguration": {
       "base": "<p>Provides the configuration information for the knowledge article types that Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles and the standard fields of knowledge articles, or the custom fields of custom knowledge articles, but not both </p>",
       "refs": {
-        "SalesforceConfiguration$KnowledgeArticleConfiguration": "<p>Specifies configuration information for the knowledge article types that Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles and the standard fields of knowledge articles, or the custom fields of custom knowledge articles, but not both.</p>"
+        "SalesforceConfiguration$KnowledgeArticleConfiguration": "<p>Configuration information for the knowledge article types that Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles and the standard fields of knowledge articles, or the custom fields of custom knowledge articles, but not both.</p>"
       }
     },
     "SalesforceKnowledgeArticleState": {
@@ -2585,13 +2610,13 @@
       }
     },
     "SalesforceStandardKnowledgeArticleTypeConfiguration": {
-      "base": "<p>Configuration information for standard Salesforce knowledge articles.</p>",
+      "base": "<p>Provides the configuration information for standard Salesforce knowledge articles.</p>",
       "refs": {
         "SalesforceKnowledgeArticleConfiguration$StandardKnowledgeArticleTypeConfiguration": "<p>Configuration information for standard Salesforce knowledge articles.</p>"
       }
     },
     "SalesforceStandardObjectAttachmentConfiguration": {
-      "base": "<p>Provides the configuration information for processing attachments to Salesforce standard objects. </p>",
+      "base": "<p>Provides the configuration information for processing attachments to Salesforce standard objects.</p>",
       "refs": {
         "SalesforceConfiguration$StandardObjectAttachmentConfiguration": "<p>Configuration information for processing attachments to Salesforce standard objects. </p>"
       }
@@ -2605,7 +2630,7 @@
     "SalesforceStandardObjectConfigurationList": {
       "base": null,
       "refs": {
-        "SalesforceConfiguration$StandardObjectConfigurations": "<p>Specifies the Salesforce standard objects that Amazon Kendra indexes.</p>"
+        "SalesforceConfiguration$StandardObjectConfigurations": "<p>Configuration of the Salesforce standard objects that Amazon Kendra indexes.</p>"
       }
     },
     "SalesforceStandardObjectName": {
@@ -2644,7 +2669,7 @@
       "base": null,
       "refs": {
         "BasicAuthenticationConfiguration$Credentials": "<p>Your secret ARN, which you can create in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">Secrets Manager</a> </p> <p>You use a secret if basic authentication credentials are required to connect to a website. The secret stores your credentials of user name and password.</p>",
-        "ConfluenceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key/value pairs required to connect to your Confluence server. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username - The user name or email address of a user with administrative privileges for the Confluence server.</p> </li> <li> <p>password - The password associated with the user logging in to the Confluence server.</p> </li> </ul>",
+        "ConfluenceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Confluence server. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username—The user name or email address of a user with administrative privileges for the Confluence server.</p> </li> <li> <p>password—The password associated with the user logging in to the Confluence server.</p> </li> </ul>",
         "ConnectionConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in Secrets Manager. The credentials should be a user/password pair. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-database.html\">Using a Database Data Source</a>. For more information about Secrets Manager, see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is Secrets Manager</a> in the <i> Secrets Manager </i> user guide.</p>",
         "FsxConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Amazon FSx file system. Windows is currently the only supported type. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username—The Active Directory user name, along with the Domain Name System (DNS) domain name. For example, <i>user@corp.example.com</i>. The Active Directory user account must have read and mounting access to the Amazon FSx file system for Windows.</p> </li> <li> <p>password—The password of the Active Directory user account with read and mounting access to the Amazon FSx Windows file system.</p> </li> </ul>",
         "GoogleDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of a Secrets Managersecret that contains the credentials required to connect to Google Drive. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-google-drive.html\">Using a Google Workspace Drive data source</a>.</p>",
@@ -2652,7 +2677,8 @@
         "ProxyConfiguration$Credentials": "<p>Your secret ARN, which you can create in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">Secrets Manager</a> </p> <p>The credentials are optional. You use a secret if web proxy credentials are required to connect to a website host. Amazon Kendra currently support basic authentication to connect to a web proxy server. The secret stores your credentials.</p>",
         "SalesforceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Managersecret that contains the key/value pairs required to connect to your Salesforce instance. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>authenticationUrl - The OAUTH endpoint that Amazon Kendra connects to get an OAUTH token. </p> </li> <li> <p>consumerKey - The application public key generated when you created your Salesforce application.</p> </li> <li> <p>consumerSecret - The application private key generated when you created your Salesforce application.</p> </li> <li> <p>password - The password associated with the user logging in to the Salesforce instance.</p> </li> <li> <p>securityToken - The token associated with the user account logging in to the Salesforce instance.</p> </li> <li> <p>username - The user name of the user logging in to the Salesforce instance.</p> </li> </ul>",
         "ServiceNowConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of the Secrets Manager secret that contains the user name and password required to connect to the ServiceNow instance.</p>",
-        "SharePointConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in Secrets Manager. The credentials should be a user/password pair. If you use SharePoint Server, you also need to provide the sever domain name as part of the credentials. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html\">Using a Microsoft SharePoint Data Source</a>. For more information about Secrets Manager see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is Secrets Manager</a> in the <i>Secrets Manager </i> user guide.</p>"
+        "SharePointConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in Secrets Manager. The credentials should be a user/password pair. If you use SharePoint Server, you also need to provide the sever domain name as part of the credentials. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html\">Using a Microsoft SharePoint Data Source</a>. For more information about Secrets Manager see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is Secrets Manager</a> in the <i>Secrets Manager </i> user guide.</p>",
+        "SlackConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Slack workspace team. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>slackToken—The user or bot token created in Slack. For more information on creating a token in Slack, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-slack.html#slack-authentication\">Authentication for a Slack data source</a>.</p> </li> </ul>"
       }
     },
     "SecurityGroupIdList": {
@@ -2689,7 +2715,7 @@
     "ServiceNowAuthenticationType": {
       "base": null,
       "refs": {
-        "ServiceNowConfiguration$AuthenticationType": "<p>Determines the type of authentication used to connect to the ServiceNow instance. If you choose <code>HTTP_BASIC</code>, Amazon Kendra is authenticated using the user name and password provided in the Secrets Manager secret in the <code>SecretArn</code> field. When you choose <code>OAUTH2</code>, Amazon Kendra is authenticated using the OAuth token and secret provided in the Secrets Manager secret, and the user name and password are used to determine which information Amazon Kendra has access to.</p> <p>When you use <code>OAUTH2</code> authentication, you must generate a token and a client secret using the ServiceNow console. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-servicenow.html\">Using a ServiceNow data source</a>.</p>"
+        "ServiceNowConfiguration$AuthenticationType": "<p>The type of authentication used to connect to the ServiceNow instance. If you choose <code>HTTP_BASIC</code>, Amazon Kendra is authenticated using the user name and password provided in the Secrets Manager secret in the <code>SecretArn</code> field. When you choose <code>OAUTH2</code>, Amazon Kendra is authenticated using the OAuth token and secret provided in the Secrets Manager secret, and the user name and password are used to determine which information Amazon Kendra has access to.</p> <p>When you use <code>OAUTH2</code> authentication, you must generate a token and a client secret using the ServiceNow console. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-servicenow.html\">Using a ServiceNow data source</a>.</p>"
       }
     },
     "ServiceNowBuildVersionType": {
@@ -2707,7 +2733,7 @@
     "ServiceNowHostUrl": {
       "base": null,
       "refs": {
-        "ServiceNowConfiguration$HostUrl": "<p>The ServiceNow instance that the data source connects to. The host endpoint should look like the following: <code>{instance}.service-now.com.</code> </p>"
+        "ServiceNowConfiguration$HostUrl": "<p>The ServiceNow instance that the data source connects to. The host endpoint should look like the following: <i>{instance}.service-now.com.</i> </p>"
       }
     },
     "ServiceNowKnowledgeArticleConfiguration": {
@@ -2757,6 +2783,12 @@
         "ExcludeSharedDrivesList$member": null
       }
     },
+    "SinceCrawlDate": {
+      "base": null,
+      "refs": {
+        "SlackConfiguration$SinceCrawlDate": "<p>The date to start crawling your data from your Slack workspace team. The date must follow this format: <code>yyyy-mm-dd</code>.</p>"
+      }
+    },
     "SiteMap": {
       "base": null,
       "refs": {
@@ -2773,6 +2805,24 @@
       "base": null,
       "refs": {
         "SiteMapsConfiguration$SiteMaps": "<p>The list of sitemap URLs of the websites you want to crawl.</p> <p>The list can include a maximum of three sitemap URLs.</p>"
+      }
+    },
+    "SlackConfiguration": {
+      "base": "<p>Provides the configuration information to connect to Slack as your data source.</p>",
+      "refs": {
+        "DataSourceConfiguration$SlackConfiguration": "<p>Provides the configuration information to connect to Slack as your data source.</p>"
+      }
+    },
+    "SlackEntity": {
+      "base": null,
+      "refs": {
+        "SlackEntityList$member": null
+      }
+    },
+    "SlackEntityList": {
+      "base": null,
+      "refs": {
+        "SlackConfiguration$SlackEntityList": "<p>Specify whether to index public channels, private channels, group messages, and direct messages. You can specify one or more of these options.</p>"
       }
     },
     "SnapshotsDataHeaderFields": {
@@ -2867,6 +2917,8 @@
         "DocumentAttributeStringListValue$member": null,
         "JsonTokenTypeConfiguration$UserNameAttributeField": "<p>The user name attribute field.</p>",
         "JsonTokenTypeConfiguration$GroupAttributeField": "<p>The group attribute field.</p>",
+        "PrivateChannelFilter$member": null,
+        "PublicChannelFilter$member": null,
         "SnapshotsDataHeaderFields$member": null,
         "SnapshotsDataRecord$member": null,
         "StartDataSourceSyncJobResponse$ExecutionId": "<p>Identifies a particular synchronization job.</p>",
@@ -2992,6 +3044,12 @@
       "base": null,
       "refs": {
         "Tag$Value": "<p>The value associated with the tag. The value may be an empty string but it can't be null.</p>"
+      }
+    },
+    "TeamId": {
+      "base": null,
+      "refs": {
+        "SlackConfiguration$TeamId": "<p>The identifier of the team in the Slack workspace. For example, <i>T0123456789</i>.</p> <p>You can find your team ID in the URL of the main page of your Slack workspace. When you log in to Slack via a browser, you are directed to the URL of the main page. For example, <i>https://app.slack.com/client/<b>T0123456789</b>/...</i>.</p>"
       }
     },
     "TenantDomain": {
@@ -3160,7 +3218,7 @@
     "Url": {
       "base": null,
       "refs": {
-        "ConfluenceConfiguration$ServerUrl": "<p>The URL of your Confluence instance. Use the full URL of the server. For example, <code>https://server.example.com:port/</code>. You can also use an IP address, for example, <code>https://192.168.1.113/</code>.</p>",
+        "ConfluenceConfiguration$ServerUrl": "<p>The URL of your Confluence instance. Use the full URL of the server. For example, <i>https://server.example.com:port/</i>. You can also use an IP address, for example, <i>https://192.168.1.113/</i>.</p>",
         "JwtTokenTypeConfiguration$URL": "<p>The signing key URL.</p>",
         "QueryResultItem$DocumentURI": "<p>The URI of the original location of the document.</p>",
         "SalesforceConfiguration$ServerUrl": "<p>The instance URL for the Salesforce site that you want to index.</p>",
