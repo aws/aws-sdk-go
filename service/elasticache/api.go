@@ -8402,7 +8402,7 @@ type CacheEngineVersion struct {
 	// The name of the cache parameter group family associated with this cache engine.
 	//
 	// Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 |
-	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.0 | redis6.2
+	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x
 	CacheParameterGroupFamily *string `type:"string"`
 
 	// The name of the cache engine.
@@ -15329,7 +15329,7 @@ type EngineDefaults struct {
 	// default parameters apply.
 	//
 	// Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 |
-	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.0 | redis6.2
+	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.0 | redis6.x
 	CacheParameterGroupFamily *string `type:"string"`
 
 	// Provides an identifier to allow retrieval of paginated results.

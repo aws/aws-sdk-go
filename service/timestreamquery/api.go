@@ -5858,6 +5858,9 @@ const (
 
 	// ScalarMeasureValueTypeVarchar is a ScalarMeasureValueType enum value
 	ScalarMeasureValueTypeVarchar = "VARCHAR"
+
+	// ScalarMeasureValueTypeTimestamp is a ScalarMeasureValueType enum value
+	ScalarMeasureValueTypeTimestamp = "TIMESTAMP"
 )
 
 // ScalarMeasureValueType_Values returns all elements of the ScalarMeasureValueType enum
@@ -5867,6 +5870,7 @@ func ScalarMeasureValueType_Values() []string {
 		ScalarMeasureValueTypeBoolean,
 		ScalarMeasureValueTypeDouble,
 		ScalarMeasureValueTypeVarchar,
+		ScalarMeasureValueTypeTimestamp,
 	}
 }
 

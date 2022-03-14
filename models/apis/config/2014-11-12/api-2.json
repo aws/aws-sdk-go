@@ -4373,7 +4373,9 @@
         "AWS::Kinesis::StreamConsumer",
         "AWS::CodeDeploy::Application",
         "AWS::CodeDeploy::DeploymentConfig",
-        "AWS::CodeDeploy::DeploymentGroup"
+        "AWS::CodeDeploy::DeploymentGroup",
+        "AWS::EC2::LaunchTemplate",
+        "AWS::ECR::PublicRepository"
       ]
     },
     "ResourceTypeList":{

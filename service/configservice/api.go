@@ -8574,7 +8574,7 @@ func (c *ConfigService) PutConfigurationAggregatorRequest(input *PutConfiguratio
 // an organization.
 //
 // accountIds that are passed will be replaced with existing accounts. If you
-// want to add additional accounts into the aggregator, call DescribeAggregator
+// want to add additional accounts into the aggregator, call DescribeConfigurationAggregators
 // to get the previous accounts and then append new ones.
 //
 // Config should be enabled in source accounts and regions you want to aggregate.
@@ -25857,8 +25857,8 @@ type PutConformancePackInput struct {
 	// the template body with a minimum length of 1 byte and a maximum length of
 	// 51,200 bytes.
 	//
-	// You can only use a YAML template with one resource type, that is, config
-	// rule and a remediation action.
+	// You can only use a YAML template with two resource types: config rule (AWS::Config::ConfigRule)
+	// and a remediation action (AWS::Config::RemediationConfiguration).
 	TemplateBody *string `min:"1" type:"string"`
 
 	// Location of file containing the template body (s3://bucketname/prefix). The
@@ -31099,6 +31099,12 @@ const (
 
 	// ResourceTypeAwsCodeDeployDeploymentGroup is a ResourceType enum value
 	ResourceTypeAwsCodeDeployDeploymentGroup = "AWS::CodeDeploy::DeploymentGroup"
+
+	// ResourceTypeAwsEc2LaunchTemplate is a ResourceType enum value
+	ResourceTypeAwsEc2LaunchTemplate = "AWS::EC2::LaunchTemplate"
+
+	// ResourceTypeAwsEcrPublicRepository is a ResourceType enum value
+	ResourceTypeAwsEcrPublicRepository = "AWS::ECR::PublicRepository"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -31219,6 +31225,8 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsCodeDeployApplication,
 		ResourceTypeAwsCodeDeployDeploymentConfig,
 		ResourceTypeAwsCodeDeployDeploymentGroup,
+		ResourceTypeAwsEc2LaunchTemplate,
+		ResourceTypeAwsEcrPublicRepository,
 	}
 }
 

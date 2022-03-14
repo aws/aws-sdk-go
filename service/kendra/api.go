@@ -7275,15 +7275,18 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Specifies the attachment settings for the Confluence data source. Attachment
+// Configuration of attachment settings for the Confluence data source. Attachment
 // settings are optional, if you don't specify settings attachments, Amazon
 // Kendra won't index them.
 type ConfluenceAttachmentConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Defines how attachment metadata fields should be mapped to index fields.
-	// Before you can map a field, you must first create an index field with a matching
-	// type using the console or the UpdateIndex API.
+	// Maps attributes or field names of Confluence attachments to Amazon Kendra
+	// index field names. To create custom fields, use the UpdateIndex API before
+	// you map to Confluence fields. For more information, see Mapping data source
+	// fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Confluence data source field names must exist in your Confluence custom
+	// metadata.
 	//
 	// If you specify the AttachentFieldMappings parameter, you must specify at
 	// least one field mapping.
@@ -7347,10 +7350,12 @@ func (s *ConfluenceAttachmentConfiguration) SetCrawlAttachments(v bool) *Conflue
 	return s
 }
 
-// Defines the mapping between a field in the Confluence data source to a Amazon
-// Kendra index field.
-//
-// You must first create the index field using the UpdateIndex API.
+// Maps attributes or field names of Confluence attachments to Amazon Kendra
+// index field names. To create custom fields, use the UpdateIndex API before
+// you map to Confluence fields. For more information, see Mapping data source
+// fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+// The Confuence data source field names must exist in your Confluence custom
+// metadata.
 type ConfluenceAttachmentToIndexFieldMapping struct {
 	_ struct{} `type:"structure"`
 
@@ -7421,15 +7426,17 @@ func (s *ConfluenceAttachmentToIndexFieldMapping) SetIndexFieldName(v string) *C
 	return s
 }
 
-// Specifies the blog settings for the Confluence data source. Blogs are always
-// indexed unless filtered from the index by the ExclusionPatterns or InclusionPatterns
-// fields in the ConfluenceConfiguration object.
+// Configuration of blog settings for the Confluence data source. Blogs are
+// always indexed unless filtered from the index by the ExclusionPatterns or
+// InclusionPatterns fields in the ConfluenceConfiguration object.
 type ConfluenceBlogConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Defines how blog metadata fields should be mapped to index fields. Before
-	// you can map a field, you must first create an index field with a matching
-	// type using the console or the UpdateIndex API.
+	// Maps attributes or field names of Confluence blogs to Amazon Kendra index
+	// field names. To create custom fields, use the UpdateIndex API before you
+	// map to Confluence fields. For more information, see Mapping data source fields
+	// (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html). The Confluence
+	// data source field names must exist in your Confluence custom metadata.
 	//
 	// If you specify the BlogFieldMappings parameter, you must specify at least
 	// one field mapping.
@@ -7483,10 +7490,11 @@ func (s *ConfluenceBlogConfiguration) SetBlogFieldMappings(v []*ConfluenceBlogTo
 	return s
 }
 
-// Defines the mapping between a blog field in the Confluence data source to
-// a Amazon Kendra index field.
-//
-// You must first create the index field using the UpdateIndex API.
+// Maps attributes or field names of Confluence blog to Amazon Kendra index
+// field names. To create custom fields, use the UpdateIndex API before you
+// map to Confluence fields. For more information, see Mapping data source fields
+// (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html). The Confluence
+// data source field names must exist in your Confluence custom metadata.
 type ConfluenceBlogToIndexFieldMapping struct {
 	_ struct{} `type:"structure"`
 
@@ -7560,40 +7568,40 @@ func (s *ConfluenceBlogToIndexFieldMapping) SetIndexFieldName(v string) *Conflue
 type ConfluenceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies configuration information for indexing attachments to Confluence
-	// blogs and pages.
+	// Configuration information for indexing attachments to Confluence blogs and
+	// pages.
 	AttachmentConfiguration *ConfluenceAttachmentConfiguration `type:"structure"`
 
-	// Specifies configuration information for indexing Confluence blogs.
+	// Configuration information for indexing Confluence blogs.
 	BlogConfiguration *ConfluenceBlogConfiguration `type:"structure"`
 
-	// A list of regular expression patterns that apply to a URL on the Confluence
-	// server. An exclusion pattern can apply to a blog post, a page, a space, or
-	// an attachment. Items that match the pattern are excluded from the index.
-	// Items that don't match the pattern are included in the index. If a item matches
-	// both an exclusion pattern and an inclusion pattern, the item isn't included
-	// in the index.
+	// >A list of regular expression patterns to exclude certain blog posts, pages,
+	// spaces, or attachments in your Confluence. Content that matches the patterns
+	// are excluded from the index. Content that doesn't match the patterns is included
+	// in the index. If content matches both an inclusion and exclusion pattern,
+	// the exclusion pattern takes precedence and the content isn't included in
+	// the index.
 	ExclusionPatterns []*string `type:"list"`
 
-	// A list of regular expression patterns that apply to a URL on the Confluence
-	// server. An inclusion pattern can apply to a blog post, a page, a space, or
-	// an attachment. Items that match the patterns are included in the index. Items
-	// that don't match the pattern are excluded from the index. If an item matches
-	// both an inclusion pattern and an exclusion pattern, the item isn't included
-	// in the index.
+	// A list of regular expression patterns to include certain blog posts, pages,
+	// spaces, or attachments in your Confluence. Content that matches the patterns
+	// are included in the index. Content that doesn't match the patterns is excluded
+	// from the index. If content matches both an inclusion and exclusion pattern,
+	// the exclusion pattern takes precedence and the content isn't included in
+	// the index.
 	InclusionPatterns []*string `type:"list"`
 
-	// Specifies configuration information for indexing Confluence pages.
+	// Configuration information for indexing Confluence pages.
 	PageConfiguration *ConfluencePageConfiguration `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of an Secrets Manager secret that contains
-	// the key/value pairs required to connect to your Confluence server. The secret
+	// the key-value pairs required to connect to your Confluence server. The secret
 	// must contain a JSON structure with the following keys:
 	//
-	//    * username - The user name or email address of a user with administrative
+	//    * username—The user name or email address of a user with administrative
 	//    privileges for the Confluence server.
 	//
-	//    * password - The password associated with the user logging in to the Confluence
+	//    * password—The password associated with the user logging in to the Confluence
 	//    server.
 	//
 	// SecretArn is a required field
@@ -7606,7 +7614,7 @@ type ConfluenceConfiguration struct {
 	// ServerUrl is a required field
 	ServerUrl *string `min:"1" type:"string" required:"true"`
 
-	// Specifies configuration information for indexing Confluence spaces.
+	// Configuration information for indexing Confluence spaces.
 	SpaceConfiguration *ConfluenceSpaceConfiguration `type:"structure"`
 
 	// Specifies the version of the Confluence installation that you are connecting
@@ -7615,7 +7623,8 @@ type ConfluenceConfiguration struct {
 	// Version is a required field
 	Version *string `type:"string" required:"true" enum:"ConfluenceVersion"`
 
-	// Specifies the information for connecting to an Amazon VPC.
+	// Configuration information for an Amazon Virtual Private Cloud to connect
+	// to your Confluence. For more information, see Configuring a VPC (https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html).
 	VpcConfiguration *DataSourceVpcConfiguration `type:"structure"`
 }
 
@@ -7747,13 +7756,15 @@ func (s *ConfluenceConfiguration) SetVpcConfiguration(v *DataSourceVpcConfigurat
 	return s
 }
 
-// Specifies the page settings for the Confluence data source.
+// Configuration of the page settings for the Confluence data source.
 type ConfluencePageConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Defines how page metadata fields should be mapped to index fields. Before
-	// you can map a field, you must first create an index field with a matching
-	// type using the console or the UpdateIndex API.
+	// >Maps attributes or field names of Confluence pages to Amazon Kendra index
+	// field names. To create custom fields, use the UpdateIndex API before you
+	// map to Confluence fields. For more information, see Mapping data source fields
+	// (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html). The Confluence
+	// data source field names must exist in your Confluence custom metadata.
 	//
 	// If you specify the PageFieldMappings parameter, you must specify at least
 	// one field mapping.
@@ -7807,10 +7818,11 @@ func (s *ConfluencePageConfiguration) SetPageFieldMappings(v []*ConfluencePageTo
 	return s
 }
 
-// Defines the mapping between a field in the Confluence data source to a Amazon
-// Kendra index field.
-//
-// You must first create the index field using the UpdateIndex API.
+// >Maps attributes or field names of Confluence pages to Amazon Kendra index
+// field names. To create custom fields, use the UpdateIndex API before you
+// map to Confluence fields. For more information, see Mapping data source fields
+// (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html). The Confluence
+// data source field names must exist in your Confluence custom metadata.
 type ConfluencePageToIndexFieldMapping struct {
 	_ struct{} `type:"structure"`
 
@@ -7879,7 +7891,7 @@ func (s *ConfluencePageToIndexFieldMapping) SetIndexFieldName(v string) *Conflue
 	return s
 }
 
-// Specifies the configuration for indexing Confluence spaces.
+// Configuration information for indexing Confluence spaces.
 type ConfluenceSpaceConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -7905,9 +7917,11 @@ type ConfluenceSpaceConfiguration struct {
 	// in both the IncludeSpaces and the ExcludeSpaces list, the space is excluded.
 	IncludeSpaces []*string `min:"1" type:"list"`
 
-	// Defines how space metadata fields should be mapped to index fields. Before
-	// you can map a field, you must first create an index field with a matching
-	// type using the console or the UpdateIndex API.
+	// Maps attributes or field names of Confluence spaces to Amazon Kendra index
+	// field names. To create custom fields, use the UpdateIndex API before you
+	// map to Confluence fields. For more information, see Mapping data source fields
+	// (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html). The Confluence
+	// data source field names must exist in your Confluence custom metadata.
 	//
 	// If you specify the SpaceFieldMappings parameter, you must specify at least
 	// one field mapping.
@@ -7991,10 +8005,11 @@ func (s *ConfluenceSpaceConfiguration) SetSpaceFieldMappings(v []*ConfluenceSpac
 	return s
 }
 
-// Defines the mapping between a field in the Confluence data source to an Amazon
-// Kendra index field.
-//
-// You must first create the index field using the UpdateIndex API.
+// >Maps attributes or field names of Confluence spaces to Amazon Kendra index
+// field names. To create custom fields, use the UpdateIndex API before you
+// map to Confluence fields. For more information, see Mapping data source fields
+// (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html). The Confluence
+// data source field names must exist in your Confluence custom metadata.
 type ConfluenceSpaceToIndexFieldMapping struct {
 	_ struct{} `type:"structure"`
 
@@ -9614,7 +9629,8 @@ func (s *CustomDocumentEnrichmentConfiguration) SetRoleArn(v string) *CustomDocu
 type DataSourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Provides configuration information for connecting to a Confluence data source.
+	// Provides the configuration information to connect to Confluence as your data
+	// source.
 	ConfluenceConfiguration *ConfluenceConfiguration `type:"structure"`
 
 	// Provides the configuration information to connect to a database as your data
@@ -9648,6 +9664,9 @@ type DataSourceConfiguration struct {
 	// Provides the configuration information to connect to Microsoft SharePoint
 	// as your data source.
 	SharePointConfiguration *SharePointConfiguration `type:"structure"`
+
+	// Provides the configuration information to connect to Slack as your data source.
+	SlackConfiguration *SlackConfiguration `type:"structure"`
 
 	// Provides the configuration information required for Amazon Kendra Web Crawler.
 	WebCrawlerConfiguration *WebCrawlerConfiguration `type:"structure"`
@@ -9723,6 +9742,11 @@ func (s *DataSourceConfiguration) Validate() error {
 			invalidParams.AddNested("SharePointConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.SlackConfiguration != nil {
+		if err := s.SlackConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SlackConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.WebCrawlerConfiguration != nil {
 		if err := s.WebCrawlerConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("WebCrawlerConfiguration", err.(request.ErrInvalidParams))
@@ -9791,6 +9815,12 @@ func (s *DataSourceConfiguration) SetServiceNowConfiguration(v *ServiceNowConfig
 // SetSharePointConfiguration sets the SharePointConfiguration field's value.
 func (s *DataSourceConfiguration) SetSharePointConfiguration(v *SharePointConfiguration) *DataSourceConfiguration {
 	s.SharePointConfiguration = v
+	return s
+}
+
+// SetSlackConfiguration sets the SlackConfiguration field's value.
+func (s *DataSourceConfiguration) SetSlackConfiguration(v *SlackConfiguration) *DataSourceConfiguration {
+	s.SlackConfiguration = v
 	return s
 }
 
@@ -14561,9 +14591,9 @@ type FsxConfiguration struct {
 
 	// A list of regular expression patterns to exclude certain files in your Amazon
 	// FSx file system. Files that match the patterns are excluded from the index.
-	// Files that don’t match the patterns are included in the index. If a file
-	// matches both an inclusion pattern and an exclusion pattern, the exclusion
-	// pattern takes precedence and the file isn't included in the index.
+	// Files that don't match the patterns are included in the index. If a file
+	// matches both an inclusion and exclusion pattern, the exclusion pattern takes
+	// precedence and the file isn't included in the index.
 	ExclusionPatterns []*string `type:"list"`
 
 	// A list of DataSourceToIndexFieldMapping objects that map Amazon FSx data
@@ -14593,8 +14623,8 @@ type FsxConfiguration struct {
 	// A list of regular expression patterns to include certain files in your Amazon
 	// FSx file system. Files that match the patterns are included in the index.
 	// Files that don't match the patterns are excluded from the index. If a file
-	// matches both an inclusion pattern and an exclusion pattern, the exclusion
-	// pattern takes precedence and the file isn't included in the index.
+	// matches both an inclusion and exclusion pattern, the exclusion pattern takes
+	// precedence and the file isn't included in the index.
 	InclusionPatterns []*string `type:"list"`
 
 	// The Amazon Resource Name (ARN) of an Secrets Manager secret that contains
@@ -14611,8 +14641,8 @@ type FsxConfiguration struct {
 	//    and mounting access to the Amazon FSx Windows file system.
 	SecretArn *string `min:"1" type:"string"`
 
-	// Configuration information for connecting to an Amazon Virtual Private Cloud
-	// for your Amazon FSx. Your Amazon FSx instance must reside inside your VPC.
+	// Configuration information for an Amazon Virtual Private Cloud to connect
+	// to your Amazon FSx. Your Amazon FSx instance must reside inside your VPC.
 	//
 	// VpcConfiguration is a required field
 	VpcConfiguration *DataSourceVpcConfiguration `type:"structure" required:"true"`
@@ -15045,26 +15075,28 @@ type GoogleDriveConfiguration struct {
 	// unless they are excluded in another way.
 	ExcludeUserAccounts []*string `type:"list"`
 
-	// A list of regular expression patterns that apply to the path on Google Drive.
-	// Items that match the pattern are excluded from the index from both shared
-	// drives and users' My Drives. Items that don't match the pattern are included
-	// in the index. If an item matches both an exclusion pattern and an inclusion
-	// pattern, it is excluded from the index.
+	// A list of regular expression patterns to exclude certain items in your Google
+	// Drive, including shared drives and users' My Drives. Items that match the
+	// patterns are excluded from the index. Items that don't match the patterns
+	// are included in the index. If an item matches both an inclusion and exclusion
+	// pattern, the exclusion pattern takes precedence and the item isn't included
+	// in the index.
 	ExclusionPatterns []*string `type:"list"`
 
-	// Defines mapping between a field in the Google Drive and a Amazon Kendra index
-	// field.
-	//
-	// If you are using the console, you can define index fields when creating the
-	// mapping. If you are using the API, you must first create the field using
-	// the UpdateIndex API.
+	// Maps Google Drive data source attributes or field names to Amazon Kendra
+	// index field names. To create custom fields, use the UpdateIndex API before
+	// you map to Google Drive fields. For more information, see Mapping data source
+	// fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Google Drive data source field names must exist in your Google Drive
+	// custom metadata.
 	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 
-	// A list of regular expression patterns that apply to path on Google Drive.
-	// Items that match the pattern are included in the index from both shared drives
-	// and users' My Drives. Items that don't match the pattern are excluded from
-	// the index. If an item matches both an inclusion pattern and an exclusion
-	// pattern, it is excluded from the index.
+	// A list of regular expression patterns to include certain items in your Google
+	// Drive, including shared drives and users' My Drives. Items that match the
+	// patterns are included in the index. Items that don't match the patterns are
+	// excluded from the index. If an item matches both an inclusion and exclusion
+	// pattern, the exclusion pattern takes precedence and the item isn't included
+	// in the index.
 	InclusionPatterns []*string `type:"list"`
 
 	// The Amazon Resource Name (ARN) of a Secrets Managersecret that contains the
@@ -17584,24 +17616,29 @@ type OneDriveConfiguration struct {
 	// enabled (False).
 	DisableLocalGroups *bool `type:"boolean"`
 
-	// List of regular expressions applied to documents. Items that match the exclusion
-	// pattern are not indexed. If you provide both an inclusion pattern and an
-	// exclusion pattern, any item that matches the exclusion pattern isn't indexed.
+	// A list of regular expression patterns to exclude certain documents in your
+	// OneDrive. Documents that match the patterns are excluded from the index.
+	// Documents that don't match the patterns are included in the index. If a document
+	// matches both an inclusion and exclusion pattern, the exclusion pattern takes
+	// precedence and the document isn't included in the index.
 	//
-	// The exclusion pattern is applied to the file name.
+	// The pattern is applied to the file name.
 	ExclusionPatterns []*string `type:"list"`
 
-	// A list of DataSourceToIndexFieldMapping objects that map Microsoft OneDrive
-	// fields to custom fields in the Amazon Kendra index. You must first create
-	// the index fields before you map OneDrive fields.
+	// A list of DataSourceToIndexFieldMapping objects that map OneDrive data source
+	// attributes or field names to Amazon Kendra index field names. To create custom
+	// fields, use the UpdateIndex API before you map to OneDrive fields. For more
+	// information, see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The OneDrive data source field names must exist in your OneDrive custom metadata.
 	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 
-	// A list of regular expression patterns. Documents that match the pattern are
-	// included in the index. Documents that don't match the pattern are excluded
-	// from the index. If a document matches both an inclusion pattern and an exclusion
-	// pattern, the document is not included in the index.
+	// A list of regular expression patterns to include certain documents in your
+	// OneDrive. Documents that match the patterns are included in the index. Documents
+	// that don't match the patterns are excluded from the index. If a document
+	// matches both an inclusion and exclusion pattern, the exclusion pattern takes
+	// precedence and the document isn't included in the index.
 	//
-	// The exclusion pattern is applied to the file name.
+	// The pattern is applied to the file name.
 	InclusionPatterns []*string `type:"list"`
 
 	// A list of user accounts whose documents should be indexed.
@@ -19487,36 +19524,39 @@ func (s *SalesforceChatterFeedConfiguration) SetIncludeFilterTypes(v []*string) 
 	return s
 }
 
-// Provides configuration information for connecting to a Salesforce data source.
+// Provides the configuration information to connect to Salesforce as your data
+// source.
 type SalesforceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies configuration information for Salesforce chatter feeds.
+	// Configuration information for Salesforce chatter feeds.
 	ChatterFeedConfiguration *SalesforceChatterFeedConfiguration `type:"structure"`
 
 	// Indicates whether Amazon Kendra should index attachments to Salesforce objects.
 	CrawlAttachments *bool `type:"boolean"`
 
-	// A list of regular expression patterns. Documents that match the patterns
-	// are excluded from the index. Documents that don't match the patterns are
-	// included in the index. If a document matches both an exclusion pattern and
-	// an inclusion pattern, the document is not included in the index.
+	// A list of regular expression patterns to exclude certain documents in your
+	// Salesforce. Documents that match the patterns are excluded from the index.
+	// Documents that don't match the patterns are included in the index. If a document
+	// matches both an inclusion and exclusion pattern, the exclusion pattern takes
+	// precedence and the document isn't included in the index.
 	//
-	// The regex is applied to the name of the attached file.
+	// The pattern is applied to the name of the attached file.
 	ExcludeAttachmentFilePatterns []*string `type:"list"`
 
-	// A list of regular expression patterns. Documents that match the patterns
-	// are included in the index. Documents that don't match the patterns are excluded
-	// from the index. If a document matches both an inclusion pattern and an exclusion
-	// pattern, the document is not included in the index.
+	// A list of regular expression patterns to include certain documents in your
+	// Salesforce. Documents that match the patterns are included in the index.
+	// Documents that don't match the patterns are excluded from the index. If a
+	// document matches both an inclusion and exclusion pattern, the exclusion pattern
+	// takes precedence and the document isn't included in the index.
 	//
-	// The regex is applied to the name of the attached file.
+	// The pattern is applied to the name of the attached file.
 	IncludeAttachmentFilePatterns []*string `type:"list"`
 
-	// Specifies configuration information for the knowledge article types that
-	// Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles
-	// and the standard fields of knowledge articles, or the custom fields of custom
-	// knowledge articles, but not both.
+	// Configuration information for the knowledge article types that Amazon Kendra
+	// indexes. Amazon Kendra indexes standard knowledge articles and the standard
+	// fields of knowledge articles, or the custom fields of custom knowledge articles,
+	// but not both.
 	KnowledgeArticleConfiguration *SalesforceKnowledgeArticleConfiguration `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of an Secrets Managersecret that contains
@@ -19552,7 +19592,7 @@ type SalesforceConfiguration struct {
 	// objects.
 	StandardObjectAttachmentConfiguration *SalesforceStandardObjectAttachmentConfiguration `type:"structure"`
 
-	// Specifies the Salesforce standard objects that Amazon Kendra indexes.
+	// Configuration of the Salesforce standard objects that Amazon Kendra indexes.
 	StandardObjectConfigurations []*SalesforceStandardObjectConfiguration `min:"1" type:"list"`
 }
 
@@ -19678,7 +19718,7 @@ func (s *SalesforceConfiguration) SetStandardObjectConfigurations(v []*Salesforc
 	return s
 }
 
-// Provides configuration information for indexing Salesforce custom articles.
+// Provides the configuration information for indexing Salesforce custom articles.
 type SalesforceCustomKnowledgeArticleTypeConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -19692,8 +19732,12 @@ type SalesforceCustomKnowledgeArticleTypeConfiguration struct {
 	// title.
 	DocumentTitleFieldName *string `min:"1" type:"string"`
 
-	// One or more objects that map fields in the custom knowledge article to fields
-	// in the Amazon Kendra index.
+	// Maps attributes or field names of the custom knowledge article to Amazon
+	// Kendra index field names. To create custom fields, use the UpdateIndex API
+	// before you map to Salesforce fields. For more information, see Mapping data
+	// source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Salesforce data source field names must exist in your Salesforce custom
+	// metadata.
 	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 
 	// The name of the configuration.
@@ -19872,7 +19916,8 @@ func (s *SalesforceKnowledgeArticleConfiguration) SetStandardKnowledgeArticleTyp
 	return s
 }
 
-// Configuration information for standard Salesforce knowledge articles.
+// Provides the configuration information for standard Salesforce knowledge
+// articles.
 type SalesforceStandardKnowledgeArticleTypeConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -19884,9 +19929,12 @@ type SalesforceStandardKnowledgeArticleTypeConfiguration struct {
 	// The name of the field that contains the document title.
 	DocumentTitleFieldName *string `min:"1" type:"string"`
 
-	// One or more objects that map fields in the knowledge article to Amazon Kendra
-	// index fields. The index field must exist before you can map a Salesforce
-	// field to it.
+	// Maps attributes or field names of the knowledge article to Amazon Kendra
+	// index field names. To create custom fields, use the UpdateIndex API before
+	// you map to Salesforce fields. For more information, see Mapping data source
+	// fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Salesforce data source field names must exist in your Salesforce custom
+	// metadata.
 	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 }
 
@@ -20041,9 +20089,11 @@ type SalesforceStandardObjectConfiguration struct {
 	// title.
 	DocumentTitleFieldName *string `min:"1" type:"string"`
 
-	// One or more objects that map fields in the standard object to Amazon Kendra
-	// index fields. The index field must exist before you can map a Salesforce
-	// field to it.
+	// Maps attributes or field names of the standard object to Amazon Kendra index
+	// field names. To create custom fields, use the UpdateIndex API before you
+	// map to Salesforce fields. For more information, see Mapping data source fields
+	// (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html). The Salesforce
+	// data source field names must exist in your Salesforce custom metadata.
 	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 
 	// The name of the standard object.
@@ -20361,8 +20411,8 @@ func (s *ServerSideEncryptionConfiguration) SetKmsKeyId(v string) *ServerSideEnc
 type ServiceNowConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Determines the type of authentication used to connect to the ServiceNow instance.
-	// If you choose HTTP_BASIC, Amazon Kendra is authenticated using the user name
+	// The type of authentication used to connect to the ServiceNow instance. If
+	// you choose HTTP_BASIC, Amazon Kendra is authenticated using the user name
 	// and password provided in the Secrets Manager secret in the SecretArn field.
 	// When you choose OAUTH2, Amazon Kendra is authenticated using the OAuth token
 	// and secret provided in the Secrets Manager secret, and the user name and
@@ -20508,13 +20558,20 @@ type ServiceNowKnowledgeArticleConfiguration struct {
 	// field.
 	DocumentTitleFieldName *string `min:"1" type:"string"`
 
-	// List of regular expressions applied to knowledge articles. Items that don't
-	// match the inclusion pattern are not indexed. The regex is applied to the
-	// field specified in the PatternTargetField
+	// A list of regular expression patterns to exclude certain attachments of knowledge
+	// articles in your ServiceNow. Item that match the patterns are excluded from
+	// the index. Items that don't match the patterns are included in the index.
+	// If an item matches both an inclusion and exclusion pattern, the exclusion
+	// pattern takes precedence and the item isn't included in the index.
+	//
+	// The regex is applied to the field specified in the PatternTargetField.
 	ExcludeAttachmentFilePatterns []*string `type:"list"`
 
-	// Mapping between ServiceNow fields and Amazon Kendra index fields. You must
-	// create the index field before you map the field.
+	// Maps attributes or field names of knoweldge articles to Amazon Kendra index
+	// field names. To create custom fields, use the UpdateIndex API before you
+	// map to ServiceNow fields. For more information, see Mapping data source fields
+	// (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html). The ServiceNow
+	// data source field names must exist in your ServiceNow custom metadata.
 	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 
 	// A query that selects the knowledge articles to index. The query can return
@@ -20525,9 +20582,13 @@ type ServiceNowKnowledgeArticleConfiguration struct {
 	// information, see Specifying documents to index with a query (https://docs.aws.amazon.com/kendra/latest/dg/servicenow-query.html).
 	FilterQuery *string `min:"1" type:"string"`
 
-	// List of regular expressions applied to knowledge articles. Items that don't
-	// match the inclusion pattern are not indexed. The regex is applied to the
-	// field specified in the PatternTargetField.
+	// A list of regular expression patterns to include certain attachments of knowledge
+	// articles in your ServiceNow. Item that match the patterns are included in
+	// the index. Items that don't match the patterns are excluded from the index.
+	// If an item matches both an inclusion and exclusion pattern, the exclusion
+	// pattern takes precedence and the item isn't included in the index.
+	//
+	// The regex is applied to the field specified in the PatternTargetField.
 	IncludeAttachmentFilePatterns []*string `type:"list"`
 }
 
@@ -20645,22 +20706,27 @@ type ServiceNowServiceCatalogConfiguration struct {
 	// field.
 	DocumentTitleFieldName *string `min:"1" type:"string"`
 
-	// A list of regular expression patterns. Documents that match the patterns
-	// are excluded from the index. Documents that don't match the patterns are
-	// included in the index. If a document matches both an exclusion pattern and
-	// an inclusion pattern, the document is not included in the index.
+	// A list of regular expression patterns to exclude certain attachments of catalogs
+	// in your ServiceNow. Item that match the patterns are excluded from the index.
+	// Items that don't match the patterns are included in the index. If an item
+	// matches both an inclusion and exclusion pattern, the exclusion pattern takes
+	// precedence and the item isn't included in the index.
 	//
 	// The regex is applied to the file name of the attachment.
 	ExcludeAttachmentFilePatterns []*string `type:"list"`
 
-	// Mapping between ServiceNow fields and Amazon Kendra index fields. You must
-	// create the index field before you map the field.
+	// Maps attributes or field names of catalogs to Amazon Kendra index field names.
+	// To create custom fields, use the UpdateIndex API before you map to ServiceNow
+	// fields. For more information, see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The ServiceNow data source field names must exist in your ServiceNow custom
+	// metadata.
 	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 
-	// A list of regular expression patterns. Documents that match the patterns
-	// are included in the index. Documents that don't match the patterns are excluded
-	// from the index. If a document matches both an exclusion pattern and an inclusion
-	// pattern, the document is not included in the index.
+	// A list of regular expression patterns to include certain attachments of catalogs
+	// in your ServiceNow. Item that match the patterns are included in the index.
+	// Items that don't match the patterns are excluded from the index. If an item
+	// matches both an inclusion and exclusion pattern, the exclusion pattern takes
+	// precedence and the item isn't included in the index.
 	//
 	// The regex is applied to the file name of the attachment.
 	IncludeAttachmentFilePatterns []*string `type:"list"`
@@ -20831,24 +20897,28 @@ type SharePointConfiguration struct {
 	// The Microsoft SharePoint attribute field that contains the title of the document.
 	DocumentTitleFieldName *string `min:"1" type:"string"`
 
-	// A list of regular expression patterns. Documents that match the patterns
-	// are excluded from the index. Documents that don't match the patterns are
-	// included in the index. If a document matches both an exclusion pattern and
-	// an inclusion pattern, the document is not included in the index.
+	// A list of regular expression patterns to exclude certain documents in your
+	// SharePoint. Documents that match the patterns are excluded from the index.
+	// Documents that don't match the patterns are included in the index. If a document
+	// matches both an inclusion and exclusion pattern, the exclusion pattern takes
+	// precedence and the document isn't included in the index.
 	//
 	// The regex is applied to the display URL of the SharePoint document.
 	ExclusionPatterns []*string `type:"list"`
 
-	// A list of DataSourceToIndexFieldMapping objects that map Microsoft SharePoint
-	// attributes to custom fields in the Amazon Kendra index. You must first create
-	// the index fields using the UpdateIndex API before you map SharePoint attributes.
-	// For more information, see Mapping Data Source Fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// A list of DataSourceToIndexFieldMapping objects that map SharePoint data
+	// source attributes or field names to Amazon Kendra index field names. To create
+	// custom fields, use the UpdateIndex API before you map to SharePoint fields.
+	// For more information, see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The SharePoint data source field names must exist in your SharePoint custom
+	// metadata.
 	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 
-	// A list of regular expression patterns. Documents that match the patterns
-	// are included in the index. Documents that don't match the patterns are excluded
-	// from the index. If a document matches both an inclusion pattern and an exclusion
-	// pattern, the document is not included in the index.
+	// A list of regular expression patterns to include certain documents in your
+	// SharePoint. Documents that match the patterns are included in the index.
+	// Documents that don't match the patterns are excluded from the index. If a
+	// document matches both an inclusion and exclusion pattern, the exclusion pattern
+	// takes precedence and the document isn't included in the index.
 	//
 	// The regex is applied to the display URL of the SharePoint document.
 	InclusionPatterns []*string `type:"list"`
@@ -20877,11 +20947,10 @@ type SharePointConfiguration struct {
 	// Urls is a required field
 	Urls []*string `min:"1" type:"list" required:"true"`
 
-	// Set to TRUE to use the Microsoft SharePoint change log to determine the documents
-	// that need to be updated in the index. Depending on the size of the SharePoint
-	// change log, it may take longer for Amazon Kendra to use the change log than
-	// it takes it to determine the changed documents using the Amazon Kendra document
-	// crawler.
+	// TRUE to use the SharePoint change log to determine which documents require
+	// updating in the index. Depending on the change log's size, it may take longer
+	// for Amazon Kendra to use the change log than to scan all of your documents
+	// in SharePoint.
 	UseChangeLog *bool `type:"boolean"`
 
 	// Provides the configuration information to connect to an Amazon VPC.
@@ -21080,6 +21149,254 @@ func (s *SiteMapsConfiguration) Validate() error {
 // SetSiteMaps sets the SiteMaps field's value.
 func (s *SiteMapsConfiguration) SetSiteMaps(v []*string) *SiteMapsConfiguration {
 	s.SiteMaps = v
+	return s
+}
+
+// Provides the configuration information to connect to Slack as your data source.
+type SlackConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// TRUE to index bot messages from your Slack workspace team.
+	CrawlBotMessage *bool `type:"boolean"`
+
+	// TRUE to exclude archived messages to index from your Slack workspace team.
+	ExcludeArchived *bool `type:"boolean"`
+
+	// A list of regular expression patterns to exclude certain attached files in
+	// your Slack workspace team. Files that match the patterns are excluded from
+	// the index. Files that don’t match the patterns are included in the index.
+	// If a file matches both an inclusion and exclusion pattern, the exclusion
+	// pattern takes precedence and the file isn't included in the index.
+	ExclusionPatterns []*string `type:"list"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map Slack data source
+	// attributes or field names to Amazon Kendra index field names. To create custom
+	// fields, use the UpdateIndex API before you map to Slack fields. For more
+	// information, see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Slack data source field names must exist in your Slack custom metadata.
+	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// A list of regular expression patterns to include certain attached files in
+	// your Slack workspace team. Files that match the patterns are included in
+	// the index. Files that don't match the patterns are excluded from the index.
+	// If a file matches both an inclusion and exclusion pattern, the exclusion
+	// pattern takes precedence and the file isn't included in the index.
+	InclusionPatterns []*string `type:"list"`
+
+	// The number of hours for change log to look back from when you last synchronized
+	// your data. You can look back up to 7 days or 168 hours.
+	//
+	// Change log updates your index only if new content was added since you last
+	// synced your data. Updated or deleted content from before you last synced
+	// does not get updated in your index. To capture updated or deleted content
+	// before you last synced, set the LookBackPeriod to the number of hours you
+	// want change log to look back.
+	LookBackPeriod *int64 `type:"integer"`
+
+	// The list of private channel names from your Slack workspace team. You use
+	// this if you want to index specific private channels, not all private channels.
+	// You can also use regular expression patterns to filter private channels.
+	PrivateChannelFilter []*string `type:"list"`
+
+	// The list of public channel names to index from your Slack workspace team.
+	// You use this if you want to index specific public channels, not all public
+	// channels. You can also use regular expression patterns to filter public channels.
+	PublicChannelFilter []*string `type:"list"`
+
+	// The Amazon Resource Name (ARN) of an Secrets Manager secret that contains
+	// the key-value pairs required to connect to your Slack workspace team. The
+	// secret must contain a JSON structure with the following keys:
+	//
+	//    * slackToken—The user or bot token created in Slack. For more information
+	//    on creating a token in Slack, see Authentication for a Slack data source
+	//    (https://docs.aws.amazon.com/kendra/latest/dg/data-source-slack.html#slack-authentication).
+	//
+	// SecretArn is a required field
+	SecretArn *string `min:"1" type:"string" required:"true"`
+
+	// The date to start crawling your data from your Slack workspace team. The
+	// date must follow this format: yyyy-mm-dd.
+	//
+	// SinceCrawlDate is a required field
+	SinceCrawlDate *string `min:"10" type:"string" required:"true"`
+
+	// Specify whether to index public channels, private channels, group messages,
+	// and direct messages. You can specify one or more of these options.
+	//
+	// SlackEntityList is a required field
+	SlackEntityList []*string `min:"1" type:"list" required:"true"`
+
+	// The identifier of the team in the Slack workspace. For example, T0123456789.
+	//
+	// You can find your team ID in the URL of the main page of your Slack workspace.
+	// When you log in to Slack via a browser, you are directed to the URL of the
+	// main page. For example, https://app.slack.com/client/T0123456789/....
+	//
+	// TeamId is a required field
+	TeamId *string `min:"1" type:"string" required:"true"`
+
+	// TRUE to use the Slack change log to determine which documents require updating
+	// in the index. Depending on the Slack change log's size, it may take longer
+	// for Amazon Kendra to use the change log than to scan all of your documents
+	// in Slack.
+	UseChangeLog *bool `type:"boolean"`
+
+	// Configuration information for an Amazon Virtual Private Cloud to connect
+	// to your Slack. For more information, see Configuring a VPC (https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html).
+	VpcConfiguration *DataSourceVpcConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SlackConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SlackConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SlackConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SlackConfiguration"}
+	if s.FieldMappings != nil && len(s.FieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FieldMappings", 1))
+	}
+	if s.SecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretArn"))
+	}
+	if s.SecretArn != nil && len(*s.SecretArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretArn", 1))
+	}
+	if s.SinceCrawlDate == nil {
+		invalidParams.Add(request.NewErrParamRequired("SinceCrawlDate"))
+	}
+	if s.SinceCrawlDate != nil && len(*s.SinceCrawlDate) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("SinceCrawlDate", 10))
+	}
+	if s.SlackEntityList == nil {
+		invalidParams.Add(request.NewErrParamRequired("SlackEntityList"))
+	}
+	if s.SlackEntityList != nil && len(s.SlackEntityList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SlackEntityList", 1))
+	}
+	if s.TeamId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TeamId"))
+	}
+	if s.TeamId != nil && len(*s.TeamId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TeamId", 1))
+	}
+	if s.FieldMappings != nil {
+		for i, v := range s.FieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.VpcConfiguration != nil {
+		if err := s.VpcConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCrawlBotMessage sets the CrawlBotMessage field's value.
+func (s *SlackConfiguration) SetCrawlBotMessage(v bool) *SlackConfiguration {
+	s.CrawlBotMessage = &v
+	return s
+}
+
+// SetExcludeArchived sets the ExcludeArchived field's value.
+func (s *SlackConfiguration) SetExcludeArchived(v bool) *SlackConfiguration {
+	s.ExcludeArchived = &v
+	return s
+}
+
+// SetExclusionPatterns sets the ExclusionPatterns field's value.
+func (s *SlackConfiguration) SetExclusionPatterns(v []*string) *SlackConfiguration {
+	s.ExclusionPatterns = v
+	return s
+}
+
+// SetFieldMappings sets the FieldMappings field's value.
+func (s *SlackConfiguration) SetFieldMappings(v []*DataSourceToIndexFieldMapping) *SlackConfiguration {
+	s.FieldMappings = v
+	return s
+}
+
+// SetInclusionPatterns sets the InclusionPatterns field's value.
+func (s *SlackConfiguration) SetInclusionPatterns(v []*string) *SlackConfiguration {
+	s.InclusionPatterns = v
+	return s
+}
+
+// SetLookBackPeriod sets the LookBackPeriod field's value.
+func (s *SlackConfiguration) SetLookBackPeriod(v int64) *SlackConfiguration {
+	s.LookBackPeriod = &v
+	return s
+}
+
+// SetPrivateChannelFilter sets the PrivateChannelFilter field's value.
+func (s *SlackConfiguration) SetPrivateChannelFilter(v []*string) *SlackConfiguration {
+	s.PrivateChannelFilter = v
+	return s
+}
+
+// SetPublicChannelFilter sets the PublicChannelFilter field's value.
+func (s *SlackConfiguration) SetPublicChannelFilter(v []*string) *SlackConfiguration {
+	s.PublicChannelFilter = v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *SlackConfiguration) SetSecretArn(v string) *SlackConfiguration {
+	s.SecretArn = &v
+	return s
+}
+
+// SetSinceCrawlDate sets the SinceCrawlDate field's value.
+func (s *SlackConfiguration) SetSinceCrawlDate(v string) *SlackConfiguration {
+	s.SinceCrawlDate = &v
+	return s
+}
+
+// SetSlackEntityList sets the SlackEntityList field's value.
+func (s *SlackConfiguration) SetSlackEntityList(v []*string) *SlackConfiguration {
+	s.SlackEntityList = v
+	return s
+}
+
+// SetTeamId sets the TeamId field's value.
+func (s *SlackConfiguration) SetTeamId(v string) *SlackConfiguration {
+	s.TeamId = &v
+	return s
+}
+
+// SetUseChangeLog sets the UseChangeLog field's value.
+func (s *SlackConfiguration) SetUseChangeLog(v bool) *SlackConfiguration {
+	s.UseChangeLog = &v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *SlackConfiguration) SetVpcConfiguration(v *DataSourceVpcConfiguration) *SlackConfiguration {
+	s.VpcConfiguration = v
 	return s
 }
 
@@ -23826,16 +24143,18 @@ type WebCrawlerConfiguration struct {
 	// you use a secret in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html).
 	ProxyConfiguration *ProxyConfiguration `type:"structure"`
 
-	// The regular expression pattern to exclude certain URLs to crawl.
-	//
-	// If there is a regular expression pattern to include certain URLs that conflicts
-	// with the exclude pattern, the exclude pattern takes precedence.
+	// A list of regular expression patterns to exclude certain URLs to crawl. URLs
+	// that match the patterns are excluded from the index. URLs that don't match
+	// the patterns are included in the index. If a URL matches both an inclusion
+	// and exclusion pattern, the exclusion pattern takes precedence and the URL
+	// file isn't included in the index.
 	UrlExclusionPatterns []*string `type:"list"`
 
-	// The regular expression pattern to include certain URLs to crawl.
-	//
-	// If there is a regular expression pattern to exclude certain URLs that conflicts
-	// with the include pattern, the exclude pattern takes precedence.
+	// A list of regular expression patterns to include certain URLs to crawl. URLs
+	// that match the patterns are included in the index. URLs that don't match
+	// the patterns are excluded from the index. If a URL matches both an inclusion
+	// and exclusion pattern, the exclusion pattern takes precedence and the URL
+	// file isn't included in the index.
 	UrlInclusionPatterns []*string `type:"list"`
 
 	// Specifies the seed or starting point URLs of the websites or the sitemap
@@ -23983,24 +24302,23 @@ type WorkDocsConfiguration struct {
 	// A list of regular expression patterns to exclude certain files in your Amazon
 	// WorkDocs site repository. Files that match the patterns are excluded from
 	// the index. Files that don’t match the patterns are included in the index.
-	// If a file matches both an inclusion pattern and an exclusion pattern, the
-	// exclusion pattern takes precedence and the file isn’t included in the index.
+	// If a file matches both an inclusion and exclusion pattern, the exclusion
+	// pattern takes precedence and the file isn't included in the index.
 	ExclusionPatterns []*string `type:"list"`
 
 	// A list of DataSourceToIndexFieldMapping objects that map Amazon WorkDocs
-	// field names to custom index field names in Amazon Kendra. You must first
-	// create the custom index fields using the UpdateIndex API before you map to
-	// Amazon WorkDocs fields. For more information, see Mapping Data Source Fields
-	// (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html). The Amazon
-	// WorkDocs data source field names need to exist in your Amazon WorkDocs custom
-	// metadata.
+	// data source attributes or field names to Amazon Kendra index field names.
+	// To create custom fields, use the UpdateIndex API before you map to Amazon
+	// WorkDocs fields. For more information, see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Amazon WorkDocs data source field names must exist in your Amazon WorkDocs
+	// custom metadata.
 	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 
 	// A list of regular expression patterns to include certain files in your Amazon
 	// WorkDocs site repository. Files that match the patterns are included in the
 	// index. Files that don't match the patterns are excluded from the index. If
-	// a file matches both an inclusion pattern and an exclusion pattern, the exclusion
-	// pattern takes precedence and the file isn’t included in the index.
+	// a file matches both an inclusion and exclusion pattern, the exclusion pattern
+	// takes precedence and the file isn't included in the index.
 	InclusionPatterns []*string `type:"list"`
 
 	// The identifier of the directory corresponding to your Amazon WorkDocs site
@@ -24015,14 +24333,10 @@ type WorkDocsConfiguration struct {
 	// OrganizationId is a required field
 	OrganizationId *string `min:"12" type:"string" required:"true"`
 
-	// TRUE to use the change logs to update documents in your index instead of
-	// scanning all documents.
-	//
-	// If you are syncing your Amazon WorkDocs data source with your index for the
-	// first time, all documents are scanned. After your first sync, you can use
-	// the change logs to update your documents in your index for future syncs.
-	//
-	// The default is set to FALSE.
+	// TRUE to use the Amazon WorkDocs change log to determine which documents require
+	// updating in the index. Depending on the change log's size, it may take longer
+	// for Amazon Kendra to use the change log than to scan all of your documents
+	// in Amazon WorkDocs.
 	UseChangeLog *bool `type:"boolean"`
 }
 
@@ -24493,6 +24807,9 @@ const (
 
 	// DataSourceTypeFsx is a DataSourceType enum value
 	DataSourceTypeFsx = "FSX"
+
+	// DataSourceTypeSlack is a DataSourceType enum value
+	DataSourceTypeSlack = "SLACK"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -24510,6 +24827,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeWebcrawler,
 		DataSourceTypeWorkdocs,
 		DataSourceTypeFsx,
+		DataSourceTypeSlack,
 	}
 }
 
@@ -25263,6 +25581,30 @@ func SharePointVersion_Values() []string {
 		SharePointVersionSharepoint2013,
 		SharePointVersionSharepoint2016,
 		SharePointVersionSharepointOnline,
+	}
+}
+
+const (
+	// SlackEntityPublicChannel is a SlackEntity enum value
+	SlackEntityPublicChannel = "PUBLIC_CHANNEL"
+
+	// SlackEntityPrivateChannel is a SlackEntity enum value
+	SlackEntityPrivateChannel = "PRIVATE_CHANNEL"
+
+	// SlackEntityGroupMessage is a SlackEntity enum value
+	SlackEntityGroupMessage = "GROUP_MESSAGE"
+
+	// SlackEntityDirectMessage is a SlackEntity enum value
+	SlackEntityDirectMessage = "DIRECT_MESSAGE"
+)
+
+// SlackEntity_Values returns all elements of the SlackEntity enum
+func SlackEntity_Values() []string {
+	return []string{
+		SlackEntityPublicChannel,
+		SlackEntityPrivateChannel,
+		SlackEntityGroupMessage,
+		SlackEntityDirectMessage,
 	}
 }
 
