@@ -11953,7 +11953,7 @@ type GetBackupVaultNotificationsOutput struct {
 
 	// An array of events that indicate the status of jobs to back up resources
 	// to the backup vault.
-	BackupVaultEvents []*string `type:"list"`
+	BackupVaultEvents []*string `type:"list" enum:"VaultEvent"`
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
@@ -15385,7 +15385,7 @@ type PutBackupVaultNotificationsInput struct {
 	// list above.
 	//
 	// BackupVaultEvents is a required field
-	BackupVaultEvents []*string `type:"list" required:"true"`
+	BackupVaultEvents []*string `type:"list" required:"true" enum:"VaultEvent"`
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and

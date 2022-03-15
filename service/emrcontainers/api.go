@@ -3334,7 +3334,7 @@ type ListJobRunsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 
 	// The states of the job run.
-	States []*string `location:"querystring" locationName:"states" type:"list"`
+	States []*string `location:"querystring" locationName:"states" type:"list" enum:"JobRunState"`
 
 	// The ID of the virtual cluster for which to list the job run.
 	//
@@ -3480,7 +3480,7 @@ type ListManagedEndpointsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 
 	// The states of the managed endpoints.
-	States []*string `location:"querystring" locationName:"states" type:"list"`
+	States []*string `location:"querystring" locationName:"states" type:"list" enum:"EndpointState"`
 
 	// The types of the managed endpoints.
 	Types []*string `location:"querystring" locationName:"types" type:"list"`
@@ -3713,7 +3713,7 @@ type ListVirtualClustersInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 
 	// The states of the requested virtual clusters.
-	States []*string `location:"querystring" locationName:"states" type:"list"`
+	States []*string `location:"querystring" locationName:"states" type:"list" enum:"VirtualClusterState"`
 }
 
 // String returns the string representation.

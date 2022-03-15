@@ -16848,7 +16848,7 @@ type Alarm struct {
 
 	// The contact protocols for the alarm, such as Email, SMS (text messaging),
 	// or both.
-	ContactProtocols []*string `locationName:"contactProtocols" type:"list"`
+	ContactProtocols []*string `locationName:"contactProtocols" type:"list" enum:"ContactProtocol"`
 
 	// The timestamp when the alarm was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
@@ -16876,7 +16876,7 @@ type Alarm struct {
 	NotificationEnabled *bool `locationName:"notificationEnabled" type:"boolean"`
 
 	// The alarm states that trigger a notification.
-	NotificationTriggers []*string `locationName:"notificationTriggers" type:"list"`
+	NotificationTriggers []*string `locationName:"notificationTriggers" type:"list" enum:"AlarmState"`
 
 	// The period, in seconds, over which the statistic is applied.
 	Period *int64 `locationName:"period" min:"60" type:"integer"`
@@ -18479,7 +18479,7 @@ type Bundle struct {
 	// that the bundle supports. You can only launch a WINDOWS bundle on a blueprint
 	// that supports the WINDOWS platform. LINUX_UNIX blueprints require a LINUX_UNIX
 	// bundle.
-	SupportedPlatforms []*string `locationName:"supportedPlatforms" type:"list"`
+	SupportedPlatforms []*string `locationName:"supportedPlatforms" type:"list" enum:"InstancePlatform"`
 
 	// The data transfer rate per month in GB (e.g., 2000).
 	TransferPerMonthInGb *int64 `locationName:"transferPerMonthInGb" type:"integer"`
@@ -28301,7 +28301,7 @@ type GetBucketMetricDataInput struct {
 	//    calculation.
 	//
 	// Statistics is a required field
-	Statistics []*string `locationName:"statistics" type:"list" required:"true"`
+	Statistics []*string `locationName:"statistics" type:"list" required:"true" enum:"MetricStatistic"`
 
 	// The unit for the metric data request.
 	//
@@ -28671,7 +28671,7 @@ type GetCertificatesInput struct {
 	//
 	// When omitted, the response includes all of your certificates in the AWS Region
 	// where the request is made, regardless of their current status.
-	CertificateStatuses []*string `locationName:"certificateStatuses" type:"list"`
+	CertificateStatuses []*string `locationName:"certificateStatuses" type:"list" enum:"CertificateStatus"`
 
 	// Indicates whether to include detailed information about the certificates
 	// in the response.
@@ -28835,7 +28835,7 @@ type GetContactMethodsInput struct {
 	//
 	// Specify a protocol in your request to return information about a specific
 	// contact method protocol.
-	Protocols []*string `locationName:"protocols" type:"list"`
+	Protocols []*string `locationName:"protocols" type:"list" enum:"ContactProtocol"`
 }
 
 // String returns the string representation.
@@ -29365,7 +29365,7 @@ type GetContainerServiceMetricDataInput struct {
 	//    calculation.
 	//
 	// Statistics is a required field
-	Statistics []*string `locationName:"statistics" type:"list" required:"true"`
+	Statistics []*string `locationName:"statistics" type:"list" required:"true" enum:"MetricStatistic"`
 }
 
 // String returns the string representation.
@@ -30182,7 +30182,7 @@ type GetDistributionMetricDataInput struct {
 	//    calculation.
 	//
 	// Statistics is a required field
-	Statistics []*string `locationName:"statistics" type:"list" required:"true"`
+	Statistics []*string `locationName:"statistics" type:"list" required:"true" enum:"MetricStatistic"`
 
 	// The unit for the metric data request.
 	//
@@ -30909,7 +30909,7 @@ type GetInstanceMetricDataInput struct {
 	//    calculation.
 	//
 	// Statistics is a required field
-	Statistics []*string `locationName:"statistics" type:"list" required:"true"`
+	Statistics []*string `locationName:"statistics" type:"list" required:"true" enum:"MetricStatistic"`
 
 	// The unit for the metric data request. Valid units depend on the metric data
 	// being requested. For the valid units to specify with each available metric,
@@ -31815,7 +31815,7 @@ type GetLoadBalancerMetricDataInput struct {
 	//    calculation.
 	//
 	// Statistics is a required field
-	Statistics []*string `locationName:"statistics" type:"list" required:"true"`
+	Statistics []*string `locationName:"statistics" type:"list" required:"true" enum:"MetricStatistic"`
 
 	// The unit for the metric data request. Valid units depend on the metric data
 	// being requested. For the valid units with each available metric, see the
@@ -33290,7 +33290,7 @@ type GetRelationalDatabaseMetricDataInput struct {
 	//    calculation.
 	//
 	// Statistics is a required field
-	Statistics []*string `locationName:"statistics" type:"list" required:"true"`
+	Statistics []*string `locationName:"statistics" type:"list" required:"true" enum:"MetricStatistic"`
 
 	// The unit for the metric data request. Valid units depend on the metric data
 	// being requested. For the valid units with each available metric, see the
@@ -33981,7 +33981,7 @@ type HeaderObject struct {
 	_ struct{} `type:"structure"`
 
 	// The specific headers to forward to your distribution's origin.
-	HeadersAllowList []*string `locationName:"headersAllowList" type:"list"`
+	HeadersAllowList []*string `locationName:"headersAllowList" type:"list" enum:"HeaderEnum"`
 
 	// The headers that you want your distribution to forward to your origin and
 	// base caching on.
@@ -37828,7 +37828,7 @@ type PutAlarmInput struct {
 	//
 	// Use the CreateContactMethod action to configure a contact protocol in an
 	// AWS Region.
-	ContactProtocols []*string `locationName:"contactProtocols" type:"list"`
+	ContactProtocols []*string `locationName:"contactProtocols" type:"list" enum:"ContactProtocol"`
 
 	// The number of data points that must be not within the specified threshold
 	// to trigger the alarm. If you are setting an "M out of N" alarm, this value
@@ -37914,7 +37914,7 @@ type PutAlarmInput struct {
 	//    INSUFFICIENT_DATA state.
 	//
 	// The notification trigger defaults to ALARM if you don't specify this parameter.
-	NotificationTriggers []*string `locationName:"notificationTriggers" type:"list"`
+	NotificationTriggers []*string `locationName:"notificationTriggers" type:"list" enum:"AlarmState"`
 
 	// The value against which the specified statistic is compared.
 	//

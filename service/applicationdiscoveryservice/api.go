@@ -6530,7 +6530,7 @@ type StartExportTaskInput struct {
 
 	// The file format for the returned export data. Default value is CSV. Note:
 	// The GRAPHML option has been deprecated.
-	ExportDataFormat []*string `locationName:"exportDataFormat" type:"list"`
+	ExportDataFormat []*string `locationName:"exportDataFormat" type:"list" enum:"ExportDataFormat"`
 
 	// If a filter is present, it selects the single agentId of the Application
 	// Discovery Agent for which data is exported. The agentId can be found in the

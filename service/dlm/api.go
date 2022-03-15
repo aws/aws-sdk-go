@@ -1780,7 +1780,7 @@ type GetLifecyclePoliciesInput struct {
 	PolicyIds []*string `location:"querystring" locationName:"policyIds" type:"list"`
 
 	// The resource type.
-	ResourceTypes []*string `location:"querystring" locationName:"resourceTypes" min:"1" type:"list"`
+	ResourceTypes []*string `location:"querystring" locationName:"resourceTypes" min:"1" type:"list" enum:"ResourceTypeValues"`
 
 	// The activation state.
 	State *string `location:"querystring" locationName:"state" type:"string" enum:"GettablePolicyStateValues"`
@@ -2533,7 +2533,7 @@ type PolicyDetails struct {
 	// If you specify OUTPOST, Amazon Data Lifecycle Manager backs up all resources
 	// of the specified type with matching target tags across all of the Outposts
 	// in your account.
-	ResourceLocations []*string `min:"1" type:"list"`
+	ResourceLocations []*string `min:"1" type:"list" enum:"ResourceLocationValues"`
 
 	// The target resource type for snapshot and AMI lifecycle policies. Use VOLUME
 	// to create snapshots of individual volumes or use INSTANCE to create multi-volume
@@ -2541,7 +2541,7 @@ type PolicyDetails struct {
 	//
 	// This parameter is required for snapshot and AMI policies only. If you are
 	// creating an event-based policy, omit this parameter.
-	ResourceTypes []*string `min:"1" type:"list"`
+	ResourceTypes []*string `min:"1" type:"list" enum:"ResourceTypeValues"`
 
 	// The schedules of policy-defined actions for snapshot and AMI lifecycle policies.
 	// A policy can have up to four schedules—one mandatory schedule and up to

@@ -2786,7 +2786,7 @@ type DashPackage struct {
 	// into multiple periods. If empty, the content will notbe partitioned into
 	// more than one period. If the list contains "ADS", new periods will be created
 	// wherethe Asset contains SCTE-35 ad markers.
-	PeriodTriggers []*string `locationName:"periodTriggers" type:"list"`
+	PeriodTriggers []*string `locationName:"periodTriggers" type:"list" enum:"PeriodTriggersElement"`
 
 	// Duration (in seconds) of each segment. Actual segments will berounded to
 	// the nearest multiple of the source segment duration.

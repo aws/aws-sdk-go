@@ -9239,7 +9239,7 @@ type RulesSourceList struct {
 	// for HTTP. You can specify either or both.
 	//
 	// TargetTypes is a required field
-	TargetTypes []*string `type:"list" required:"true"`
+	TargetTypes []*string `type:"list" required:"true" enum:"TargetType"`
 
 	// The domains that you want to inspect for in your traffic flows. Valid domain
 	// specifications are the following:
@@ -9978,11 +9978,11 @@ type TCPFlagField struct {
 	//    in the packet.
 	//
 	// Flags is a required field
-	Flags []*string `type:"list" required:"true"`
+	Flags []*string `type:"list" required:"true" enum:"TCPFlag"`
 
 	// The set of flags to consider in the inspection. To inspect all flags in the
 	// valid values list, leave this with no setting.
-	Masks []*string `type:"list"`
+	Masks []*string `type:"list" enum:"TCPFlag"`
 }
 
 // String returns the string representation.

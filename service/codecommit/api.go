@@ -20808,7 +20808,7 @@ type GetMergeOptionsOutput struct {
 	// The merge option or strategy used to merge the code.
 	//
 	// MergeOptions is a required field
-	MergeOptions []*string `locationName:"mergeOptions" type:"list" required:"true"`
+	MergeOptions []*string `locationName:"mergeOptions" type:"list" required:"true" enum:"MergeOptionTypeEnum"`
 
 	// The commit ID of the source commit specifier that was used in the merge evaluation.
 	//
@@ -32567,7 +32567,7 @@ type RepositoryTrigger struct {
 	// The valid value "all" cannot be used with any other values.
 	//
 	// Events is a required field
-	Events []*string `locationName:"events" type:"list" required:"true"`
+	Events []*string `locationName:"events" type:"list" required:"true" enum:"RepositoryTriggerEventEnum"`
 
 	// The name of the trigger.
 	//

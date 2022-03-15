@@ -9806,7 +9806,7 @@ type ListLaunchProfilesInput struct {
 	PrincipalId *string `location:"querystring" locationName:"principalId" type:"string"`
 
 	// Filter this request to launch profiles in any of the given states.
-	States []*string `location:"querystring" locationName:"states" type:"list"`
+	States []*string `location:"querystring" locationName:"states" type:"list" enum:"LaunchProfileState"`
 
 	// The studio ID.
 	//
@@ -10163,7 +10163,7 @@ type ListStudioComponentsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// Filters the request to studio components that are in one of the given states.
-	States []*string `location:"querystring" locationName:"states" type:"list"`
+	States []*string `location:"querystring" locationName:"states" type:"list" enum:"StudioComponentState"`
 
 	// The studio ID.
 	//
@@ -10171,7 +10171,7 @@ type ListStudioComponentsInput struct {
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 
 	// Filters the request to studio components that are of one of the given types.
-	Types []*string `location:"querystring" locationName:"types" type:"list"`
+	Types []*string `location:"querystring" locationName:"types" type:"list" enum:"StudioComponentType"`
 }
 
 // String returns the string representation.
@@ -11555,7 +11555,7 @@ type StreamConfiguration struct {
 	// session with this launch profile.
 	//
 	// Ec2InstanceTypes is a required field
-	Ec2InstanceTypes []*string `locationName:"ec2InstanceTypes" min:"1" type:"list" required:"true"`
+	Ec2InstanceTypes []*string `locationName:"ec2InstanceTypes" min:"1" type:"list" required:"true" enum:"StreamingInstanceType"`
 
 	// The length of time, in minutes, that a streaming session can be active before
 	// it is stopped or terminated. After this point, Nimble Studio automatically
@@ -11656,7 +11656,7 @@ type StreamConfigurationCreate struct {
 	// session with this launch profile.
 	//
 	// Ec2InstanceTypes is a required field
-	Ec2InstanceTypes []*string `locationName:"ec2InstanceTypes" min:"1" type:"list" required:"true"`
+	Ec2InstanceTypes []*string `locationName:"ec2InstanceTypes" min:"1" type:"list" required:"true" enum:"StreamingInstanceType"`
 
 	// The length of time, in minutes, that a streaming session can be active before
 	// it is stopped or terminated. After this point, Nimble Studio automatically
@@ -11785,7 +11785,7 @@ type StreamConfigurationSessionStorage struct {
 	// is UPLOAD.
 	//
 	// Mode is a required field
-	Mode []*string `locationName:"mode" min:"1" type:"list" required:"true"`
+	Mode []*string `locationName:"mode" min:"1" type:"list" required:"true" enum:"StreamingSessionStorageMode"`
 
 	// The configuration for the upload storage root of the streaming session.
 	Root *StreamingSessionStorageRoot `locationName:"root" type:"structure"`

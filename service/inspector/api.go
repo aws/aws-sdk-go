@@ -4264,12 +4264,12 @@ type AgentFilter struct {
 	// SHUTDOWN, UNHEALTHY, THROTTLED, and UNKNOWN.
 	//
 	// AgentHealthCodes is a required field
-	AgentHealthCodes []*string `locationName:"agentHealthCodes" type:"list" required:"true"`
+	AgentHealthCodes []*string `locationName:"agentHealthCodes" type:"list" required:"true" enum:"AgentHealthCode"`
 
 	// The current health state of the agent. Values can be set to HEALTHY or UNHEALTHY.
 	//
 	// AgentHealths is a required field
-	AgentHealths []*string `locationName:"agentHealths" type:"list" required:"true"`
+	AgentHealths []*string `locationName:"agentHealths" type:"list" required:"true" enum:"AgentHealth"`
 }
 
 // String returns the string representation.
@@ -4823,7 +4823,7 @@ type AssessmentRunFilter struct {
 	// For a record to match a filter, one of the values specified for this data
 	// type property must be the exact match of the value of the assessmentRunState
 	// property of the AssessmentRun data type.
-	States []*string `locationName:"states" type:"list"`
+	States []*string `locationName:"states" type:"list" enum:"AssessmentRunState"`
 }
 
 // String returns the string representation.
@@ -7559,7 +7559,7 @@ type FindingFilter struct {
 	// For a record to match a filter, one of the values that is specified for this
 	// data type property must be the exact match of the value of the severity property
 	// of the Finding data type.
-	Severities []*string `locationName:"severities" type:"list"`
+	Severities []*string `locationName:"severities" type:"list" enum:"Severity"`
 
 	// For a record to match a filter, the value that is specified for this data
 	// type property must be contained in the list of values of the userAttributes

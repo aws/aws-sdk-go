@@ -5544,12 +5544,12 @@ type InputService25TestShapeInputService25TestCaseOperation1Input struct {
 
 	HeaderEnum *string `location:"header" locationName:"x-amz-enum" type:"string" enum:"InputService25TestShapeEnumType"`
 
-	ListEnums []*string `type:"list"`
+	ListEnums []*string `type:"list" enum:"InputService25TestShapeEnumType"`
 
 	// URIFooEnum is a required field
 	URIFooEnum *string `location:"uri" locationName:"URIEnum" type:"string" required:"true" enum:"InputService25TestShapeEnumType"`
 
-	URIListEnums []*string `location:"querystring" locationName:"ListEnums" type:"list"`
+	URIListEnums []*string `location:"querystring" locationName:"ListEnums" type:"list" enum:"InputService25TestShapeEnumType"`
 }
 
 // Validate inspects the fields of the type to determine if they are valid.
@@ -5609,12 +5609,12 @@ type InputService25TestShapeInputService25TestCaseOperation2Input struct {
 
 	HeaderEnum *string `location:"header" locationName:"x-amz-enum" type:"string" enum:"InputService25TestShapeEnumType"`
 
-	ListEnums []*string `type:"list"`
+	ListEnums []*string `type:"list" enum:"InputService25TestShapeEnumType"`
 
 	// URIFooEnum is a required field
 	URIFooEnum *string `location:"uri" locationName:"URIEnum" type:"string" required:"true" enum:"InputService25TestShapeEnumType"`
 
-	URIListEnums []*string `location:"querystring" locationName:"ListEnums" type:"list"`
+	URIListEnums []*string `location:"querystring" locationName:"ListEnums" type:"list" enum:"InputService25TestShapeEnumType"`
 }
 
 // Validate inspects the fields of the type to determine if they are valid.

@@ -9760,7 +9760,7 @@ type CopyProductInput struct {
 
 	// The copy options. If the value is CopyTags, the tags from the source product
 	// are copied to the target product.
-	CopyOptions []*string `type:"list"`
+	CopyOptions []*string `type:"list" enum:"CopyOption"`
 
 	// A unique identifier that you provide to ensure idempotency. If multiple requests
 	// differ only by the idempotency token, the same response is returned for each
@@ -20848,7 +20848,7 @@ type ResourceChange struct {
 	ResourceType *string `min:"1" type:"string"`
 
 	// The change scope.
-	Scope []*string `type:"list"`
+	Scope []*string `type:"list" enum:"ResourceAttribute"`
 }
 
 // String returns the string representation.

@@ -7143,7 +7143,7 @@ type PhoneNumberInformation struct {
 	Iso2CountryCode *string `type:"string"`
 
 	// The capabilities of each phone number.
-	NumberCapabilities []*string `type:"list"`
+	NumberCapabilities []*string `type:"list" enum:"NumberCapability"`
 
 	// The phone number.
 	PhoneNumber *string `type:"string"`

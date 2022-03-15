@@ -4937,7 +4937,7 @@ type DescribeAlarmHistoryInput struct {
 	// Use this parameter to specify whether you want the operation to return metric
 	// alarms or composite alarms. If you omit this parameter, only metric alarms
 	// are returned.
-	AlarmTypes []*string `type:"list"`
+	AlarmTypes []*string `type:"list" enum:"AlarmType"`
 
 	// The ending date to retrieve alarm history.
 	EndDate *time.Time `type:"timestamp"`
@@ -5261,7 +5261,7 @@ type DescribeAlarmsInput struct {
 	// Use this parameter to specify whether you want the operation to return metric
 	// alarms or composite alarms. If you omit this parameter, only metric alarms
 	// are returned.
-	AlarmTypes []*string `type:"list"`
+	AlarmTypes []*string `type:"list" enum:"AlarmType"`
 
 	// If you use this parameter and specify the name of a composite alarm, the
 	// operation returns information about the "children" alarms of the alarm you
@@ -5459,7 +5459,7 @@ type DescribeAnomalyDetectorsInput struct {
 
 	// The anomaly detector types to request when using DescribeAnomalyDetectorsInput.
 	// If empty, defaults to SINGLE_METRIC.
-	AnomalyDetectorTypes []*string `type:"list"`
+	AnomalyDetectorTypes []*string `type:"list" enum:"AnomalyDetectorType"`
 
 	// Limits the results to only the anomaly detection models that are associated
 	// with the specified metric dimensions. If there are multiple metrics that
@@ -6789,7 +6789,7 @@ type GetMetricStatisticsInput struct {
 	// The metric statistics, other than percentile. For percentile statistics,
 	// use ExtendedStatistics. When calling GetMetricStatistics, you must specify
 	// either Statistics or ExtendedStatistics, but not both.
-	Statistics []*string `min:"1" type:"list"`
+	Statistics []*string `min:"1" type:"list" enum:"Statistic"`
 
 	// The unit for a given metric. If you omit Unit, all data that was collected
 	// with any unit is returned, along with the corresponding units that were specified

@@ -6600,7 +6600,7 @@ type KmsGrantConfiguration struct {
 	// A list of operations that the grant permits.
 	//
 	// Operations is a required field
-	Operations []*string `locationName:"operations" type:"list" required:"true"`
+	Operations []*string `locationName:"operations" type:"list" required:"true" enum:"KmsGrantOperation"`
 
 	// The principal that is given permission to retire the grant by using RetireGrant
 	// (https://docs.aws.amazon.com/kms/latest/APIReference/API_RetireGrant.html)

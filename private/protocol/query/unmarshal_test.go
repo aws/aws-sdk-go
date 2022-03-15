@@ -2774,7 +2774,7 @@ type OutputService17TestShapeOutputService17TestCaseOperation1Output struct {
 
 	FooEnum *string `type:"string" enum:"OutputService17TestShapeEC2EnumType"`
 
-	ListEnums []*string `type:"list"`
+	ListEnums []*string `type:"list" enum:"OutputService17TestShapeEC2EnumType"`
 }
 
 // SetFooEnum sets the FooEnum field's value.

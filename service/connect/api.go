@@ -22663,7 +22663,7 @@ type Filters struct {
 	_ struct{} `type:"structure"`
 
 	// The channel to use to filter the metrics.
-	Channels []*string `type:"list"`
+	Channels []*string `type:"list" enum:"Channel"`
 
 	// The queues to use to filter the metrics. You should specify at least one
 	// queue, and can specify up to 100 queues per request. The GetCurrentMetricsData
@@ -22924,7 +22924,7 @@ type GetCurrentMetricDataInput struct {
 	// VOICE, CHAT, and TASK channels are supported.
 	//
 	// If no Grouping is included in the request, a summary of metrics is returned.
-	Groupings []*string `type:"list"`
+	Groupings []*string `type:"list" enum:"Grouping"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -23190,7 +23190,7 @@ type GetMetricDataInput struct {
 	// apply to the metrics for each queue rather than aggregated for all queues.
 	//
 	// If no grouping is specified, a summary of metrics for all queues is returned.
-	Groupings []*string `type:"list"`
+	Groupings []*string `type:"list" enum:"Grouping"`
 
 	// The metrics to retrieve. Specify the name, unit, and statistic for each metric.
 	// The following historical metrics are available. For a description of each
@@ -25656,7 +25656,7 @@ type ListAgentStatusesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Available agent status types.
-	AgentStatusTypes []*string `location:"querystring" locationName:"AgentStatusTypes" type:"list"`
+	AgentStatusTypes []*string `location:"querystring" locationName:"AgentStatusTypes" type:"list" enum:"AgentStatusType"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -26137,7 +26137,7 @@ type ListContactFlowsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The type of contact flow.
-	ContactFlowTypes []*string `location:"querystring" locationName:"contactFlowTypes" type:"list"`
+	ContactFlowTypes []*string `location:"querystring" locationName:"contactFlowTypes" type:"list" enum:"ContactFlowType"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -26278,7 +26278,7 @@ type ListContactReferencesInput struct {
 	// The type of reference.
 	//
 	// ReferenceTypes is a required field
-	ReferenceTypes []*string `location:"querystring" locationName:"referenceTypes" type:"list" required:"true"`
+	ReferenceTypes []*string `location:"querystring" locationName:"referenceTypes" type:"list" required:"true" enum:"ReferenceType"`
 }
 
 // String returns the string representation.
@@ -27325,10 +27325,10 @@ type ListPhoneNumbersInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The ISO country code.
-	PhoneNumberCountryCodes []*string `location:"querystring" locationName:"phoneNumberCountryCodes" type:"list"`
+	PhoneNumberCountryCodes []*string `location:"querystring" locationName:"phoneNumberCountryCodes" type:"list" enum:"PhoneNumberCountryCode"`
 
 	// The type of phone number.
-	PhoneNumberTypes []*string `location:"querystring" locationName:"phoneNumberTypes" type:"list"`
+	PhoneNumberTypes []*string `location:"querystring" locationName:"phoneNumberTypes" type:"list" enum:"PhoneNumberType"`
 }
 
 // String returns the string representation.
@@ -27695,7 +27695,7 @@ type ListQueuesInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The type of queue.
-	QueueTypes []*string `location:"querystring" locationName:"queueTypes" type:"list"`
+	QueueTypes []*string `location:"querystring" locationName:"queueTypes" type:"list" enum:"QueueType"`
 }
 
 // String returns the string representation.
@@ -27818,7 +27818,7 @@ type ListQuickConnectsInput struct {
 	// The type of quick connect. In the Amazon Connect console, when you create
 	// a quick connect, you are prompted to assign one of the following types: Agent
 	// (USER), External (PHONE_NUMBER), or Queue (QUEUE).
-	QuickConnectTypes []*string `location:"querystring" locationName:"QuickConnectTypes" type:"list"`
+	QuickConnectTypes []*string `location:"querystring" locationName:"QuickConnectTypes" type:"list" enum:"QuickConnectType"`
 }
 
 // String returns the string representation.

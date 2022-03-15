@@ -4183,7 +4183,7 @@ type CreateServerInput struct {
 	//
 	// If Protocol is set only to SFTP, the EndpointType can be set to PUBLIC and
 	// the IdentityProviderType can be set to SERVICE_MANAGED.
-	Protocols []*string `min:"1" type:"list"`
+	Protocols []*string `min:"1" type:"list" enum:"Protocol"`
 
 	// Specifies the name of the security policy that is attached to the server.
 	SecurityPolicyName *string `type:"string"`
@@ -6401,7 +6401,7 @@ type DescribedServer struct {
 	//    * FTPS (File Transfer Protocol Secure): File transfer with TLS encryption
 	//
 	//    * FTP (File Transfer Protocol): Unencrypted file transfer
-	Protocols []*string `min:"1" type:"list"`
+	Protocols []*string `min:"1" type:"list" enum:"Protocol"`
 
 	// Specifies the name of the security policy that is attached to the server.
 	SecurityPolicyName *string `type:"string"`
@@ -10936,7 +10936,7 @@ type UpdateServerInput struct {
 	//
 	// If Protocol is set only to SFTP, the EndpointType can be set to PUBLIC and
 	// the IdentityProviderType can be set to SERVICE_MANAGED.
-	Protocols []*string `min:"1" type:"list"`
+	Protocols []*string `min:"1" type:"list" enum:"Protocol"`
 
 	// Specifies the name of the security policy that is attached to the server.
 	SecurityPolicyName *string `type:"string"`

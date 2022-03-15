@@ -3820,7 +3820,7 @@ type Connector struct {
 	AssociatedOn *time.Time `locationName:"associatedOn" type:"timestamp"`
 
 	// The capabilities of the connector.
-	CapabilityList []*string `locationName:"capabilityList" type:"list"`
+	CapabilityList []*string `locationName:"capabilityList" type:"list" enum:"ConnectorCapability"`
 
 	// The ID of the connector.
 	ConnectorId *string `locationName:"connectorId" type:"string"`

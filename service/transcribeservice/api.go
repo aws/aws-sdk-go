@@ -4571,7 +4571,7 @@ type CallAnalyticsJobSettings struct {
 	// an array of the languages that can be present in the audio. Refer to Supported
 	// languages (https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html)
 	// for additional information.
-	LanguageOptions []*string `min:"1" type:"list"`
+	LanguageOptions []*string `min:"1" type:"list" enum:"LanguageCode"`
 
 	// Set to mask to remove filtered text from the transcript and replace it with
 	// three asterisks ("***") as placeholder text. Set to remove to remove filtered
@@ -4950,7 +4950,7 @@ type ContentRedaction struct {
 
 	// The types of personally identifiable information (PII) you want to redact
 	// in your transcript.
-	PiiEntityTypes []*string `type:"list"`
+	PiiEntityTypes []*string `type:"list" enum:"PiiEntityType"`
 
 	// The output transcript file stored in either the default S3 bucket or in a
 	// bucket you specify.
@@ -9863,7 +9863,7 @@ type SentimentFilter struct {
 	// You can specify one or more values.
 	//
 	// Sentiments is a required field
-	Sentiments []*string `min:"1" type:"list" required:"true"`
+	Sentiments []*string `min:"1" type:"list" required:"true" enum:"SentimentValue"`
 }
 
 // String returns the string representation.
@@ -10655,7 +10655,7 @@ type StartTranscriptionJobInput struct {
 	//
 	// To transcribe speech in Modern Standard Arabic (ar-SA), your audio or video
 	// file must be encoded at a sample rate of 16,000 Hz or higher.
-	LanguageOptions []*string `min:"1" type:"list"`
+	LanguageOptions []*string `min:"1" type:"list" enum:"LanguageCode"`
 
 	// An object that describes the input media for a transcription job.
 	//
@@ -11010,7 +11010,7 @@ type Subtitles struct {
 	_ struct{} `type:"structure"`
 
 	// Specify the output format for your subtitle file.
-	Formats []*string `type:"list"`
+	Formats []*string `type:"list" enum:"SubtitleFormat"`
 }
 
 // String returns the string representation.
@@ -11044,7 +11044,7 @@ type SubtitlesOutput_ struct {
 
 	// Specify the output format for your subtitle file; if you select both SRT
 	// and VTT formats, two output files are generated.
-	Formats []*string `type:"list"`
+	Formats []*string `type:"list" enum:"SubtitleFormat"`
 
 	// Contains the output location for your subtitle file. This location must be
 	// an S3 bucket.
@@ -11485,7 +11485,7 @@ type TranscriptionJob struct {
 
 	// An object that shows the optional array of languages inputted for transcription
 	// jobs with automatic language identification enabled.
-	LanguageOptions []*string `min:"1" type:"list"`
+	LanguageOptions []*string `min:"1" type:"list" enum:"LanguageCode"`
 
 	// An object that describes the input media for the transcription job.
 	Media *Media `type:"structure"`

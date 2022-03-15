@@ -1580,7 +1580,7 @@ type GetComplianceSummaryInput struct {
 
 	// Specifies a list of attributes to group the counts of noncompliant resources
 	// by. If supplied, the counts are sorted by those attributes.
-	GroupBy []*string `type:"list"`
+	GroupBy []*string `type:"list" enum:"GroupByAttribute"`
 
 	// Specifies the maximum number of results to be returned in each page. A query
 	// can return fewer than this maximum, even if there are more results still

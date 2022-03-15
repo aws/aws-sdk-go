@@ -2712,7 +2712,7 @@ type AwsManagedResources struct {
 	// The choice of application destination that you specify.
 	//
 	// TargetDestination is a required field
-	TargetDestination []*string `locationName:"targetDestination" min:"1" type:"list" required:"true"`
+	TargetDestination []*string `locationName:"targetDestination" min:"1" type:"list" required:"true" enum:"AwsManagedTargetDestination"`
 }
 
 // String returns the string representation.
@@ -4154,7 +4154,7 @@ type Heterogeneous struct {
 	// The target database engine for heterogeneous database migration preference.
 	//
 	// TargetDatabaseEngine is a required field
-	TargetDatabaseEngine []*string `locationName:"targetDatabaseEngine" min:"1" type:"list" required:"true"`
+	TargetDatabaseEngine []*string `locationName:"targetDatabaseEngine" min:"1" type:"list" required:"true" enum:"HeterogeneousTargetDatabaseEngine"`
 }
 
 // String returns the string representation.
@@ -4202,7 +4202,7 @@ type Homogeneous struct {
 	_ struct{} `type:"structure"`
 
 	// The target database engine for homogeneous database migration preferences.
-	TargetDatabaseEngine []*string `locationName:"targetDatabaseEngine" type:"list"`
+	TargetDatabaseEngine []*string `locationName:"targetDatabaseEngine" type:"list" enum:"HomogeneousTargetDatabaseEngine"`
 }
 
 // String returns the string representation.
@@ -4987,7 +4987,7 @@ type NoDatabaseMigrationPreference struct {
 	// The target database engine for database migration preference that you specify.
 	//
 	// TargetDatabaseEngine is a required field
-	TargetDatabaseEngine []*string `locationName:"targetDatabaseEngine" min:"1" type:"list" required:"true"`
+	TargetDatabaseEngine []*string `locationName:"targetDatabaseEngine" min:"1" type:"list" required:"true" enum:"TargetDatabaseEngine"`
 }
 
 // String returns the string representation.
@@ -5037,7 +5037,7 @@ type NoManagementPreference struct {
 	// The choice of application destination that you specify.
 	//
 	// TargetDestination is a required field
-	TargetDestination []*string `locationName:"targetDestination" min:"1" type:"list" required:"true"`
+	TargetDestination []*string `locationName:"targetDestination" min:"1" type:"list" required:"true" enum:"NoPreferenceTargetDestination"`
 }
 
 // String returns the string representation.
@@ -5503,7 +5503,7 @@ type SelfManageResources struct {
 	// Self-managed resources target destination.
 	//
 	// TargetDestination is a required field
-	TargetDestination []*string `locationName:"targetDestination" min:"1" type:"list" required:"true"`
+	TargetDestination []*string `locationName:"targetDestination" min:"1" type:"list" required:"true" enum:"SelfManageTargetDestination"`
 }
 
 // String returns the string representation.

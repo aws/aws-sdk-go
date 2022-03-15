@@ -5766,7 +5766,7 @@ type Device struct {
 
 	// The explicit permissions to provide to the container for the device. By default,
 	// the container has permissions for read, write, and mknod for the device.
-	Permissions []*string `locationName:"permissions" type:"list"`
+	Permissions []*string `locationName:"permissions" type:"list" enum:"DeviceCgroupPermission"`
 }
 
 // String returns the string representation.
@@ -6359,7 +6359,7 @@ type JobDefinition struct {
 
 	// The platform capabilities required by the job definition. If no value is
 	// specified, it defaults to EC2. Jobs run on Fargate resources specify FARGATE.
-	PlatformCapabilities []*string `locationName:"platformCapabilities" type:"list"`
+	PlatformCapabilities []*string `locationName:"platformCapabilities" type:"list" enum:"PlatformCapability"`
 
 	// Specifies whether to propagate the tags from the job or job definition to
 	// the corresponding Amazon ECS task. If no value is specified, the tags aren't
@@ -6610,7 +6610,7 @@ type JobDetail struct {
 
 	// The platform capabilities required by the job definition. If no value is
 	// specified, it defaults to EC2. Jobs run on Fargate resources specify FARGATE.
-	PlatformCapabilities []*string `locationName:"platformCapabilities" type:"list"`
+	PlatformCapabilities []*string `locationName:"platformCapabilities" type:"list" enum:"PlatformCapability"`
 
 	// Specifies whether to propagate the tags from the job or job definition to
 	// the corresponding Amazon ECS task. If no value is specified, the tags aren't
@@ -8540,7 +8540,7 @@ type RegisterJobDefinitionInput struct {
 	// The platform capabilities required by the job definition. If no value is
 	// specified, it defaults to EC2. To run the job on Fargate resources, specify
 	// FARGATE.
-	PlatformCapabilities []*string `locationName:"platformCapabilities" type:"list"`
+	PlatformCapabilities []*string `locationName:"platformCapabilities" type:"list" enum:"PlatformCapability"`
 
 	// Specifies whether to propagate the tags from the job or job definition to
 	// the corresponding Amazon ECS task. If no value is specified, the tags are

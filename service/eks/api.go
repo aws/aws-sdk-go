@@ -8918,7 +8918,7 @@ type LogSetup struct {
 	Enabled *bool `locationName:"enabled" type:"boolean"`
 
 	// The available cluster control plane log types.
-	Types []*string `locationName:"types" type:"list"`
+	Types []*string `locationName:"types" type:"list" enum:"LogType"`
 }
 
 // String returns the string representation.

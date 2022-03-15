@@ -1154,7 +1154,7 @@ type BundleDetails struct {
 	_ struct{} `type:"structure"`
 
 	// Developer desktop or mobile app or website platforms.
-	AvailablePlatforms []*string `locationName:"availablePlatforms" type:"list"`
+	AvailablePlatforms []*string `locationName:"availablePlatforms" type:"list" enum:"Platform"`
 
 	// Unique bundle identifier.
 	BundleId *string `locationName:"bundleId" type:"string"`

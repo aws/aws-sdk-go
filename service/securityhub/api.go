@@ -38120,7 +38120,7 @@ type Product struct {
 	//    * UPDATE_FINDINGS_IN_SECURITY_HUB - The integration does not send new
 	//    findings to Security Hub, but does make updates to the findings that it
 	//    receives from Security Hub.
-	IntegrationTypes []*string `type:"list"`
+	IntegrationTypes []*string `type:"list" enum:"IntegrationType"`
 
 	// For integrations with Amazon Web Services services, the Amazon Web Services
 	// Console URL from which to activate the service.

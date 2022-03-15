@@ -9041,7 +9041,7 @@ type GrpcRetryPolicy struct {
 	_ struct{} `type:"structure"`
 
 	// Specify at least one of the valid values.
-	GrpcRetryEvents []*string `locationName:"grpcRetryEvents" min:"1" type:"list"`
+	GrpcRetryEvents []*string `locationName:"grpcRetryEvents" min:"1" type:"list" enum:"GrpcRetryPolicyEvent"`
 
 	// Specify at least one of the following values.
 	//
@@ -9068,7 +9068,7 @@ type GrpcRetryPolicy struct {
 	// Specify a valid value. The event occurs before any processing of a request
 	// has started and is encountered when the upstream is temporarily or permanently
 	// unavailable.
-	TcpRetryEvents []*string `locationName:"tcpRetryEvents" min:"1" type:"list"`
+	TcpRetryEvents []*string `locationName:"tcpRetryEvents" min:"1" type:"list" enum:"TcpRetryPolicyEvent"`
 }
 
 // String returns the string representation.
@@ -10486,7 +10486,7 @@ type HttpRetryPolicy struct {
 	// Specify a valid value. The event occurs before any processing of a request
 	// has started and is encountered when the upstream is temporarily or permanently
 	// unavailable.
-	TcpRetryEvents []*string `locationName:"tcpRetryEvents" min:"1" type:"list"`
+	TcpRetryEvents []*string `locationName:"tcpRetryEvents" min:"1" type:"list" enum:"TcpRetryPolicyEvent"`
 }
 
 // String returns the string representation.

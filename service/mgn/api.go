@@ -4750,10 +4750,10 @@ type DescribeSourceServersRequestFilters struct {
 	IsArchived *bool `locationName:"isArchived" type:"boolean"`
 
 	// Request to filter Source Servers list by life cycle states.
-	LifeCycleStates []*string `locationName:"lifeCycleStates" type:"list"`
+	LifeCycleStates []*string `locationName:"lifeCycleStates" type:"list" enum:"LifeCycleState"`
 
 	// Request to filter Source Servers list by replication type.
-	ReplicationTypes []*string `locationName:"replicationTypes" type:"list"`
+	ReplicationTypes []*string `locationName:"replicationTypes" type:"list" enum:"ReplicationType"`
 
 	// Request to filter Source Servers list by Source Server ID.
 	SourceServerIDs []*string `locationName:"sourceServerIDs" type:"list"`

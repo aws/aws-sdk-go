@@ -1124,7 +1124,7 @@ type DescribeSavingsPlansInput struct {
 	SavingsPlanIds []*string `locationName:"savingsPlanIds" type:"list"`
 
 	// The states.
-	States []*string `locationName:"states" type:"list"`
+	States []*string `locationName:"states" type:"list" enum:"SavingsPlanState"`
 }
 
 // String returns the string representation.
@@ -1211,19 +1211,19 @@ type DescribeSavingsPlansOfferingRatesInput struct {
 	Operations []*string `locationName:"operations" type:"list"`
 
 	// The AWS products.
-	Products []*string `locationName:"products" type:"list"`
+	Products []*string `locationName:"products" type:"list" enum:"SavingsPlanProductType"`
 
 	// The IDs of the offerings.
 	SavingsPlanOfferingIds []*string `locationName:"savingsPlanOfferingIds" type:"list"`
 
 	// The payment options.
-	SavingsPlanPaymentOptions []*string `locationName:"savingsPlanPaymentOptions" type:"list"`
+	SavingsPlanPaymentOptions []*string `locationName:"savingsPlanPaymentOptions" type:"list" enum:"SavingsPlanPaymentOption"`
 
 	// The plan types.
-	SavingsPlanTypes []*string `locationName:"savingsPlanTypes" type:"list"`
+	SavingsPlanTypes []*string `locationName:"savingsPlanTypes" type:"list" enum:"SavingsPlanType"`
 
 	// The services.
-	ServiceCodes []*string `locationName:"serviceCodes" type:"list"`
+	ServiceCodes []*string `locationName:"serviceCodes" type:"list" enum:"SavingsPlanRateServiceCode"`
 
 	// The usage details of the line item in the billing report.
 	UsageTypes []*string `locationName:"usageTypes" type:"list"`
@@ -1352,7 +1352,7 @@ type DescribeSavingsPlansOfferingsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The currencies.
-	Currencies []*string `locationName:"currencies" type:"list"`
+	Currencies []*string `locationName:"currencies" type:"list" enum:"CurrencyCode"`
 
 	// The descriptions.
 	Descriptions []*string `locationName:"descriptions" type:"list"`
@@ -1377,10 +1377,10 @@ type DescribeSavingsPlansOfferingsInput struct {
 	Operations []*string `locationName:"operations" type:"list"`
 
 	// The payment options.
-	PaymentOptions []*string `locationName:"paymentOptions" type:"list"`
+	PaymentOptions []*string `locationName:"paymentOptions" type:"list" enum:"SavingsPlanPaymentOption"`
 
 	// The plan type.
-	PlanTypes []*string `locationName:"planTypes" type:"list"`
+	PlanTypes []*string `locationName:"planTypes" type:"list" enum:"SavingsPlanType"`
 
 	// The product type.
 	ProductType *string `locationName:"productType" type:"string" enum:"SavingsPlanProductType"`
@@ -1878,7 +1878,7 @@ type SavingsPlan struct {
 	PaymentOption *string `locationName:"paymentOption" type:"string" enum:"SavingsPlanPaymentOption"`
 
 	// The product types.
-	ProductTypes []*string `locationName:"productTypes" type:"list"`
+	ProductTypes []*string `locationName:"productTypes" type:"list" enum:"SavingsPlanProductType"`
 
 	// The recurring payment amount.
 	RecurringPaymentAmount *string `locationName:"recurringPaymentAmount" type:"string"`
@@ -2104,7 +2104,7 @@ type SavingsPlanOffering struct {
 	PlanType *string `locationName:"planType" type:"string" enum:"SavingsPlanType"`
 
 	// The product type.
-	ProductTypes []*string `locationName:"productTypes" type:"list"`
+	ProductTypes []*string `locationName:"productTypes" type:"list" enum:"SavingsPlanProductType"`
 
 	// The properties.
 	Properties []*SavingsPlanOfferingProperty `locationName:"properties" type:"list"`

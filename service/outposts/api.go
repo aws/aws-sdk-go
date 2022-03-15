@@ -2652,7 +2652,7 @@ type CatalogItem struct {
 	PowerKva *float64 `type:"float"`
 
 	// The supported storage options for the catalog item.
-	SupportedStorage []*string `type:"list"`
+	SupportedStorage []*string `type:"list" enum:"SupportedStorageEnum"`
 
 	// The uplink speed this catalog item requires for the connection to the Region.
 	SupportedUplinkGbps []*int64 `type:"list"`
@@ -4214,7 +4214,7 @@ type ListCatalogItemsInput struct {
 	// Filter values are case sensitive. If you specify multiple values for a filter,
 	// the values are joined with an OR, and the request returns all results that
 	// match any of the specified values.
-	ItemClassFilter []*string `location:"querystring" locationName:"ItemClassFilter" type:"list"`
+	ItemClassFilter []*string `location:"querystring" locationName:"ItemClassFilter" type:"list" enum:"CatalogItemClass"`
 
 	// The maximum page size.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
@@ -4227,7 +4227,7 @@ type ListCatalogItemsInput struct {
 	// Filter values are case sensitive. If you specify multiple values for a filter,
 	// the values are joined with an OR, and the request returns all results that
 	// match any of the specified values.
-	SupportedStorageFilter []*string `location:"querystring" locationName:"SupportedStorageFilter" type:"list"`
+	SupportedStorageFilter []*string `location:"querystring" locationName:"SupportedStorageFilter" type:"list" enum:"SupportedStorageEnum"`
 }
 
 // String returns the string representation.

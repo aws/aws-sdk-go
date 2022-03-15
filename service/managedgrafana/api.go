@@ -1449,7 +1449,7 @@ type AuthenticationDescription struct {
 	// Grafana workspace.
 	//
 	// Providers is a required field
-	Providers []*string `locationName:"providers" type:"list" required:"true"`
+	Providers []*string `locationName:"providers" type:"list" required:"true" enum:"AuthenticationProviderTypes"`
 
 	// A structure containing information about how this workspace works with SAML,
 	// including what attributes within the assertion are to be mapped to user information
@@ -1503,7 +1503,7 @@ type AuthenticationSummary struct {
 	// methods for user authentication.
 	//
 	// Providers is a required field
-	Providers []*string `locationName:"providers" type:"list" required:"true"`
+	Providers []*string `locationName:"providers" type:"list" required:"true" enum:"AuthenticationProviderTypes"`
 
 	// Specifies whether the workplace's user authentication method is fully configured.
 	SamlConfigurationStatus *string `locationName:"samlConfigurationStatus" type:"string" enum:"SamlConfigurationStatus"`
@@ -1666,7 +1666,7 @@ type CreateWorkspaceInput struct {
 	// Grafana (https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html).
 	//
 	// AuthenticationProviders is a required field
-	AuthenticationProviders []*string `locationName:"authenticationProviders" type:"list" required:"true"`
+	AuthenticationProviders []*string `locationName:"authenticationProviders" type:"list" required:"true" enum:"AuthenticationProviderTypes"`
 
 	// A unique, case-sensitive, user-provided identifier to ensure the idempotency
 	// of the request.
@@ -1710,7 +1710,7 @@ type CreateWorkspaceInput struct {
 	// If you don't specify a data source here, you can still add it as a data source
 	// in the workspace console later. However, you will then have to manually configure
 	// permissions for it.
-	WorkspaceDataSources []*string `locationName:"workspaceDataSources" type:"list"`
+	WorkspaceDataSources []*string `locationName:"workspaceDataSources" type:"list" enum:"DataSourceType"`
 
 	// A description for the workspace. This is used only to help you identify this
 	// workspace.
@@ -1731,7 +1731,7 @@ type CreateWorkspaceInput struct {
 	// in this workspace. Specifying these data sources here enables Amazon Managed
 	// Grafana to create IAM roles and permissions that allow Amazon Managed Grafana
 	// to use these channels.
-	WorkspaceNotificationDestinations []*string `locationName:"workspaceNotificationDestinations" type:"list"`
+	WorkspaceNotificationDestinations []*string `locationName:"workspaceNotificationDestinations" type:"list" enum:"NotificationDestinationType"`
 
 	// Specifies the organizational units that this workspace is allowed to use
 	// data sources from, if this workspace is in an account that is part of an
@@ -3347,7 +3347,7 @@ type UpdateWorkspaceAuthenticationInput struct {
 	// Grafana (https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html).
 	//
 	// AuthenticationProviders is a required field
-	AuthenticationProviders []*string `locationName:"authenticationProviders" type:"list" required:"true"`
+	AuthenticationProviders []*string `locationName:"authenticationProviders" type:"list" required:"true" enum:"AuthenticationProviderTypes"`
 
 	// If the workspace uses SAML, use this structure to map SAML assertion attributes
 	// to workspace user information and define which groups in the assertion attribute
@@ -3499,7 +3499,7 @@ type UpdateWorkspaceInput struct {
 	// If you don't specify a data source here, you can still add it as a data source
 	// later in the workspace console. However, you will then have to manually configure
 	// permissions for it.
-	WorkspaceDataSources []*string `locationName:"workspaceDataSources" type:"list"`
+	WorkspaceDataSources []*string `locationName:"workspaceDataSources" type:"list" enum:"DataSourceType"`
 
 	// A description for the workspace. This is used only to help you identify this
 	// workspace.
@@ -3525,7 +3525,7 @@ type UpdateWorkspaceInput struct {
 	// in this workspace. Specifying these data sources here enables Amazon Managed
 	// Grafana to create IAM roles and permissions that allow Amazon Managed Grafana
 	// to use these channels.
-	WorkspaceNotificationDestinations []*string `locationName:"workspaceNotificationDestinations" type:"list"`
+	WorkspaceNotificationDestinations []*string `locationName:"workspaceNotificationDestinations" type:"list" enum:"NotificationDestinationType"`
 
 	// Specifies the organizational units that this workspace is allowed to use
 	// data sources from, if this workspace is in an account that is part of an
@@ -3899,7 +3899,7 @@ type WorkspaceDescription struct {
 	// to read data from these sources.
 	//
 	// DataSources is a required field
-	DataSources []*string `locationName:"dataSources" type:"list" required:"true"`
+	DataSources []*string `locationName:"dataSources" type:"list" required:"true" enum:"DataSourceType"`
 
 	// The user-defined description of the workspace.
 	//
@@ -3954,7 +3954,7 @@ type WorkspaceDescription struct {
 	// The Amazon Web Services notification channels that Amazon Managed Grafana
 	// can automatically create IAM roles and permissions for, to allow Amazon Managed
 	// Grafana to use these channels.
-	NotificationDestinations []*string `locationName:"notificationDestinations" type:"list"`
+	NotificationDestinations []*string `locationName:"notificationDestinations" type:"list" enum:"NotificationDestinationType"`
 
 	// The name of the IAM role that is used to access resources through Organizations.
 	//
@@ -4200,7 +4200,7 @@ type WorkspaceSummary struct {
 	// The Amazon Web Services notification channels that Amazon Managed Grafana
 	// can automatically create IAM roles and permissions for, which allows Amazon
 	// Managed Grafana to use these channels.
-	NotificationDestinations []*string `locationName:"notificationDestinations" type:"list"`
+	NotificationDestinations []*string `locationName:"notificationDestinations" type:"list" enum:"NotificationDestinationType"`
 
 	// The current status of the workspace.
 	//

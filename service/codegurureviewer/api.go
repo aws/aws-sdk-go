@@ -1960,7 +1960,7 @@ type CodeReview struct {
 
 	// They types of analysis performed during a repository analysis or a pull request
 	// review. You can specify either Security, CodeQuality, or both.
-	AnalysisTypes []*string `type:"list"`
+	AnalysisTypes []*string `type:"list" enum:"AnalysisType"`
 
 	// The Amazon Resource Name (ARN) of the RepositoryAssociation (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html)
 	// that contains the reviewed source code. You can retrieve associated repository
@@ -2290,7 +2290,7 @@ type CodeReviewType struct {
 
 	// They types of analysis performed during a repository analysis or a pull request
 	// review. You can specify either Security, CodeQuality, or both.
-	AnalysisTypes []*string `type:"list"`
+	AnalysisTypes []*string `type:"list" enum:"AnalysisType"`
 
 	// A code review that analyzes all code under a specified branch in an associated
 	// repository. The associated repository is specified using its ARN in CreateCodeReview
@@ -3221,7 +3221,7 @@ type ListCodeReviewsInput struct {
 
 	// List of provider types for filtering that needs to be applied before displaying
 	// the result. For example, providerTypes=[GitHub] lists code reviews from GitHub.
-	ProviderTypes []*string `location:"querystring" locationName:"ProviderTypes" min:"1" type:"list"`
+	ProviderTypes []*string `location:"querystring" locationName:"ProviderTypes" min:"1" type:"list" enum:"ProviderType"`
 
 	// List of repository names for filtering that needs to be applied before displaying
 	// the result.
@@ -3239,7 +3239,7 @@ type ListCodeReviewsInput struct {
 	//    * Failed: The code review failed.
 	//
 	//    * Deleting: The code review is being deleted.
-	States []*string `location:"querystring" locationName:"States" min:"1" type:"list"`
+	States []*string `location:"querystring" locationName:"States" min:"1" type:"list" enum:"JobState"`
 
 	// The type of code reviews to list in the response.
 	//
@@ -3667,7 +3667,7 @@ type ListRepositoryAssociationsInput struct {
 	Owners []*string `location:"querystring" locationName:"Owner" min:"1" type:"list"`
 
 	// List of provider types to use as a filter.
-	ProviderTypes []*string `location:"querystring" locationName:"ProviderType" min:"1" type:"list"`
+	ProviderTypes []*string `location:"querystring" locationName:"ProviderType" min:"1" type:"list" enum:"ProviderType"`
 
 	// List of repository association states to use as a filter.
 	//
@@ -3696,7 +3696,7 @@ type ListRepositoryAssociationsInput struct {
 	//    For more information, see Using tags to control access to associated repositories
 	//    (https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/auth-and-access-control-using-tags.html)
 	//    in the Amazon CodeGuru Reviewer User Guide.
-	States []*string `location:"querystring" locationName:"State" min:"1" type:"list"`
+	States []*string `location:"querystring" locationName:"State" min:"1" type:"list" enum:"RepositoryAssociationState"`
 }
 
 // String returns the string representation.
@@ -4084,7 +4084,7 @@ type PutRecommendationFeedbackInput struct {
 	// you send an empty list it clears all your feedback.
 	//
 	// Reactions is a required field
-	Reactions []*string `type:"list" required:"true"`
+	Reactions []*string `type:"list" required:"true" enum:"Reaction"`
 
 	// The recommendation ID that can be used to track the provided recommendations
 	// and then to collect the feedback.
@@ -4192,7 +4192,7 @@ type RecommendationFeedback struct {
 
 	// List for storing reactions. Reactions are utf-8 text code for emojis. You
 	// can send an empty list to clear off all your feedback.
-	Reactions []*string `type:"list"`
+	Reactions []*string `type:"list" enum:"Reaction"`
 
 	// The recommendation ID that can be used to track the provided recommendations.
 	// Later on it can be used to collect the feedback.
@@ -4266,7 +4266,7 @@ type RecommendationFeedbackSummary struct {
 	_ struct{} `type:"structure"`
 
 	// List for storing reactions. Reactions are utf-8 text code for emojis.
-	Reactions []*string `type:"list"`
+	Reactions []*string `type:"list" enum:"Reaction"`
 
 	// The recommendation ID that can be used to track the provided recommendations.
 	// Later on it can be used to collect the feedback.

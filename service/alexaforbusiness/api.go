@@ -21040,7 +21040,7 @@ type StartDeviceSyncInput struct {
 	// Request structure to start the device sync. Required.
 	//
 	// Features is a required field
-	Features []*string `type:"list" required:"true"`
+	Features []*string `type:"list" required:"true" enum:"Feature"`
 
 	// The ARN of the room with which the device to sync is associated. Required.
 	RoomArn *string `type:"string"`

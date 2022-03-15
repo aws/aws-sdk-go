@@ -3078,19 +3078,19 @@ type ConnectorConfiguration struct {
 	SupportedApiVersions []*string `locationName:"supportedApiVersions" type:"list"`
 
 	// Lists the connectors that are available for use as destinations.
-	SupportedDestinationConnectors []*string `locationName:"supportedDestinationConnectors" type:"list"`
+	SupportedDestinationConnectors []*string `locationName:"supportedDestinationConnectors" type:"list" enum:"ConnectorType"`
 
 	// A list of operators supported by the connector.
-	SupportedOperators []*string `locationName:"supportedOperators" type:"list"`
+	SupportedOperators []*string `locationName:"supportedOperators" type:"list" enum:"Operators"`
 
 	// Specifies the supported flow frequency for that connector.
-	SupportedSchedulingFrequencies []*string `locationName:"supportedSchedulingFrequencies" type:"list"`
+	SupportedSchedulingFrequencies []*string `locationName:"supportedSchedulingFrequencies" type:"list" enum:"ScheduleFrequencyType"`
 
 	// Specifies the supported trigger types for the flow.
-	SupportedTriggerTypes []*string `locationName:"supportedTriggerTypes" type:"list"`
+	SupportedTriggerTypes []*string `locationName:"supportedTriggerTypes" type:"list" enum:"TriggerType"`
 
 	// A list of write operations supported by the connector.
-	SupportedWriteOperations []*string `locationName:"supportedWriteOperations" type:"list"`
+	SupportedWriteOperations []*string `locationName:"supportedWriteOperations" type:"list" enum:"WriteOperationType"`
 }
 
 // String returns the string representation.
@@ -6443,7 +6443,7 @@ type DescribeConnectorsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The type of connector, such as Salesforce, Amplitude, and so on.
-	ConnectorTypes []*string `locationName:"connectorTypes" type:"list"`
+	ConnectorTypes []*string `locationName:"connectorTypes" type:"list" enum:"ConnectorType"`
 
 	// The maximum number of items that should be returned in the result set. The
 	// default is 20.
@@ -7116,7 +7116,7 @@ type DestinationFieldProperties struct {
 	// A list of supported write operations. For each write operation listed, this
 	// field can be used in idFieldNames when that write operation is present as
 	// a destination option.
-	SupportedWriteOperations []*string `locationName:"supportedWriteOperations" type:"list"`
+	SupportedWriteOperations []*string `locationName:"supportedWriteOperations" type:"list" enum:"WriteOperationType"`
 }
 
 // String returns the string representation.
@@ -7840,7 +7840,7 @@ type FieldTypeDetails struct {
 	// The list of operators supported by a field.
 	//
 	// FilterOperators is a required field
-	FilterOperators []*string `locationName:"filterOperators" type:"list" required:"true"`
+	FilterOperators []*string `locationName:"filterOperators" type:"list" required:"true" enum:"Operator"`
 
 	// The date format that the field supports.
 	SupportedDateFormat *string `locationName:"supportedDateFormat" type:"string"`
@@ -9559,7 +9559,7 @@ type OAuth2Defaults struct {
 	AuthCodeUrls []*string `locationName:"authCodeUrls" type:"list"`
 
 	// OAuth 2.0 grant types supported by the connector.
-	Oauth2GrantTypesSupported []*string `locationName:"oauth2GrantTypesSupported" type:"list"`
+	Oauth2GrantTypesSupported []*string `locationName:"oauth2GrantTypesSupported" type:"list" enum:"OAuth2GrantType"`
 
 	// OAuth 2.0 scopes that the connector supports.
 	OauthScopes []*string `locationName:"oauthScopes" type:"list"`

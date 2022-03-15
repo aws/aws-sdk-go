@@ -6619,7 +6619,7 @@ type DescribeServiceUpdatesInput struct {
 	ServiceUpdateName *string `type:"string"`
 
 	// The status(es) of the service updates to filter on
-	Status []*string `type:"list"`
+	Status []*string `type:"list" enum:"ServiceUpdateStatus"`
 }
 
 // String returns the string representation.

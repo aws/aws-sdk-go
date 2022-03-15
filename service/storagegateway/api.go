@@ -14797,7 +14797,7 @@ type DescribeGatewayInformationOutput struct {
 
 	// A list of the metadata cache sizes that the gateway can support based on
 	// its current hardware specifications.
-	SupportedGatewayCapacities []*string `type:"list"`
+	SupportedGatewayCapacities []*string `type:"list" enum:"GatewayCapacity"`
 
 	// A list of up to 50 tags assigned to the gateway, sorted alphabetically by
 	// key name. Each tag is a key-value pair. For a gateway with more than 10 tags

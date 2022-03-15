@@ -20650,7 +20650,7 @@ type Account struct {
 	SigninDelegateGroups []*SigninDelegateGroup `type:"list"`
 
 	// Supported licenses for the Amazon Chime account.
-	SupportedLicenses []*string `type:"list"`
+	SupportedLicenses []*string `type:"list" enum:"License"`
 }
 
 // String returns the string representation.
@@ -26355,7 +26355,7 @@ type CreateProxySessionInput struct {
 	// The proxy session capabilities.
 	//
 	// Capabilities is a required field
-	Capabilities []*string `type:"list" required:"true"`
+	Capabilities []*string `type:"list" required:"true" enum:"Capability"`
 
 	// The number of minutes allowed for the proxy session.
 	ExpiryMinutes *int64 `min:"1" type:"integer"`
@@ -39168,7 +39168,7 @@ type PhoneNumberCountry struct {
 	CountryCode *string `type:"string"`
 
 	// The supported phone number types.
-	SupportedPhoneNumberTypes []*string `type:"list"`
+	SupportedPhoneNumberTypes []*string `type:"list" enum:"PhoneNumberType"`
 }
 
 // String returns the string representation.
@@ -39400,7 +39400,7 @@ type ProxySession struct {
 	_ struct{} `type:"structure"`
 
 	// The proxy session capabilities.
-	Capabilities []*string `type:"list"`
+	Capabilities []*string `type:"list" enum:"Capability"`
 
 	// The created time stamp, in ISO 8601 format.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -45295,7 +45295,7 @@ type UpdateProxySessionInput struct {
 	// The proxy session capabilities.
 	//
 	// Capabilities is a required field
-	Capabilities []*string `type:"list" required:"true"`
+	Capabilities []*string `type:"list" required:"true" enum:"Capability"`
 
 	// The number of minutes allowed for the proxy session.
 	ExpiryMinutes *int64 `min:"1" type:"integer"`

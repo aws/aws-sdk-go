@@ -6853,7 +6853,7 @@ type ListAssignmentsForHITInput struct {
 	_ struct{} `type:"structure"`
 
 	// The status of the assignments to return: Submitted | Approved | Rejected
-	AssignmentStatuses []*string `type:"list"`
+	AssignmentStatuses []*string `type:"list" enum:"AssignmentStatus"`
 
 	// The ID of the HIT.
 	//
@@ -7639,7 +7639,7 @@ type ListReviewPolicyResultsForHITInput struct {
 	// The Policy Level(s) to retrieve review results for - HIT or Assignment. If
 	// omitted, the default behavior is to retrieve all data for both policy levels.
 	// For a list of all the described policies, see Review Policies.
-	PolicyLevels []*string `type:"list"`
+	PolicyLevels []*string `type:"list" enum:"ReviewPolicyLevel"`
 
 	// Specify if the operation should retrieve a list of the actions taken executing
 	// the Review Policies and their outcomes.
@@ -8266,7 +8266,7 @@ type NotificationSpecification struct {
 	// SendTestEventNotification operation.
 	//
 	// EventTypes is a required field
-	EventTypes []*string `type:"list" required:"true"`
+	EventTypes []*string `type:"list" required:"true" enum:"EventType"`
 
 	// The method Amazon Mechanical Turk uses to send the notification. Valid Values:
 	// Email | SQS | SNS.

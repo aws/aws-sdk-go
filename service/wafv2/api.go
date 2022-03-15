@@ -9431,7 +9431,7 @@ type GeoMatchStatement struct {
 
 	// An array of two-character country codes, for example, [ "US", "CN" ], from
 	// the alpha-2 country ISO codes of the ISO 3166 international standard.
-	CountryCodes []*string `min:"1" type:"list"`
+	CountryCodes []*string `min:"1" type:"list" enum:"CountryCode"`
 
 	// The configuration for inspecting IP addresses in an HTTP header that you
 	// specify, instead of using the IP address that's reported by the web request

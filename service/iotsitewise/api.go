@@ -14955,7 +14955,7 @@ type GetAssetPropertyAggregatesInput struct {
 	// The data aggregating function.
 	//
 	// AggregateTypes is a required field
-	AggregateTypes []*string `location:"querystring" locationName:"aggregateTypes" min:"1" type:"list" required:"true"`
+	AggregateTypes []*string `location:"querystring" locationName:"aggregateTypes" min:"1" type:"list" required:"true" enum:"AggregateType"`
 
 	// The ID of the asset.
 	AssetId *string `location:"querystring" locationName:"assetId" min:"36" type:"string"`
@@ -14984,7 +14984,7 @@ type GetAssetPropertyAggregatesInput struct {
 	PropertyId *string `location:"querystring" locationName:"propertyId" min:"36" type:"string"`
 
 	// The quality by which to filter asset data.
-	Qualities []*string `location:"querystring" locationName:"qualities" min:"1" type:"list"`
+	Qualities []*string `location:"querystring" locationName:"qualities" min:"1" type:"list" enum:"Quality"`
 
 	// The time interval over which to aggregate data.
 	//
@@ -15204,7 +15204,7 @@ type GetAssetPropertyValueHistoryInput struct {
 	PropertyId *string `location:"querystring" locationName:"propertyId" min:"36" type:"string"`
 
 	// The quality by which to filter asset data.
-	Qualities []*string `location:"querystring" locationName:"qualities" min:"1" type:"list"`
+	Qualities []*string `location:"querystring" locationName:"qualities" min:"1" type:"list" enum:"Quality"`
 
 	// The exclusive start of the range from which to query historical data, expressed
 	// in seconds in Unix epoch time.

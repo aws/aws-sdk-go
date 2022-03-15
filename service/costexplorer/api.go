@@ -4045,7 +4045,7 @@ type CostCategoryValues struct {
 	// The match options that you can use to filter your results. MatchOptions is
 	// only applicable for actions related to cost category. The default values
 	// for MatchOptions is EQUALS and CASE_SENSITIVE.
-	MatchOptions []*string `type:"list"`
+	MatchOptions []*string `type:"list" enum:"MatchOption"`
 
 	// The specific value of the Cost Category.
 	Values []*string `type:"list"`
@@ -5284,7 +5284,7 @@ type DimensionValues struct {
 	// The match options that you can use to filter your results. MatchOptions is
 	// only applicable for actions related to Cost Category. The default values
 	// for MatchOptions are EQUALS and CASE_SENSITIVE.
-	MatchOptions []*string `type:"list"`
+	MatchOptions []*string `type:"list" enum:"MatchOption"`
 
 	// The metadata values that you can use to filter and group your results. You
 	// can use GetDimensionValues to find specific values.
@@ -9261,7 +9261,7 @@ type GetSavingsPlansUtilizationDetailsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The data type.
-	DataType []*string `type:"list"`
+	DataType []*string `type:"list" enum:"SavingsPlansDataType"`
 
 	// Filters Savings Plans utilization coverage data for active Savings Plans
 	// dimensions. You can filter data with the following dimensions:
@@ -11888,7 +11888,7 @@ type RightsizingRecommendation struct {
 	// The list of possible reasons why the recommendation is generated such as
 	// under or over utilization of specific metrics (for example, CPU, Memory,
 	// Network).
-	FindingReasonCodes []*string `type:"list"`
+	FindingReasonCodes []*string `type:"list" enum:"FindingReasonCode"`
 
 	// The details for the modification recommendations.
 	ModifyRecommendationDetail *ModifyRecommendationDetail `type:"structure"`
@@ -13418,7 +13418,7 @@ type TagValues struct {
 	// The match options that you can use to filter your results. MatchOptions is
 	// only applicable for actions related to Cost Category. The default values
 	// for MatchOptions are EQUALS and CASE_SENSITIVE.
-	MatchOptions []*string `type:"list"`
+	MatchOptions []*string `type:"list" enum:"MatchOption"`
 
 	// The specific value of the tag.
 	Values []*string `type:"list"`
@@ -13484,7 +13484,7 @@ type TargetInstance struct {
 	// Explains the actions you might need to take in order to successfully migrate
 	// your workloads from the current instance type to the recommended instance
 	// type.
-	PlatformDifferences []*string `type:"list"`
+	PlatformDifferences []*string `type:"list" enum:"PlatformDifference"`
 
 	// Details on the target instance type.
 	ResourceDetails *ResourceDetails `type:"structure"`

@@ -2278,7 +2278,7 @@ type CorsRule struct {
 	//
 	// Each CORS rule must contain at least one AllowedMethods and one AllowedOrigins
 	// element.
-	AllowedMethods []*string `min:"1" type:"list"`
+	AllowedMethods []*string `min:"1" type:"list" enum:"MethodName"`
 
 	// One or more response headers that you want users to be able to access from
 	// their applications (for example, from a JavaScript XMLHttpRequest object).

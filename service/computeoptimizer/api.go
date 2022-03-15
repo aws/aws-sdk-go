@@ -2181,7 +2181,7 @@ type AutoScalingGroupRecommendation struct {
 	//    * PostgreSql - Infers that PostgreSQL might be running on the instances.
 	//
 	//    * Redis - Infers that Redis might be running on the instances.
-	InferredWorkloadTypes []*string `locationName:"inferredWorkloadTypes" type:"list"`
+	InferredWorkloadTypes []*string `locationName:"inferredWorkloadTypes" type:"list" enum:"InferredWorkloadType"`
 
 	// The timestamp of when the Auto Scaling group recommendation was last generated.
 	LastRefreshTimestamp *time.Time `locationName:"lastRefreshTimestamp" type:"timestamp"`
@@ -2472,7 +2472,7 @@ type DeleteRecommendationPreferencesInput struct {
 	// the only recommendation preference that can be deleted.
 	//
 	// RecommendationPreferenceNames is a required field
-	RecommendationPreferenceNames []*string `locationName:"recommendationPreferenceNames" type:"list" required:"true"`
+	RecommendationPreferenceNames []*string `locationName:"recommendationPreferenceNames" type:"list" required:"true" enum:"RecommendationPreferenceName"`
 
 	// The target resource type of the recommendation preference to delete.
 	//
@@ -2831,7 +2831,7 @@ type EffectiveRecommendationPreferences struct {
 	//    * A ExportEC2InstanceRecommendations or ExportAutoScalingGroupRecommendations
 	//    request, Compute Optimizer exports recommendations that consist of Graviton2
 	//    instance types only.
-	CpuVendorArchitectures []*string `locationName:"cpuVendorArchitectures" type:"list"`
+	CpuVendorArchitectures []*string `locationName:"cpuVendorArchitectures" type:"list" enum:"CpuVendorArchitecture"`
 
 	// Describes the activation status of the enhanced infrastructure metrics preference.
 	//
@@ -3002,7 +3002,7 @@ type ExportAutoScalingGroupRecommendationsInput struct {
 	// The recommendations data to include in the export file. For more information
 	// about the fields that can be exported, see Exported files (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files)
 	// in the Compute Optimizer User Guide.
-	FieldsToExport []*string `locationName:"fieldsToExport" type:"list"`
+	FieldsToExport []*string `locationName:"fieldsToExport" type:"list" enum:"ExportableAutoScalingGroupField"`
 
 	// The format of the export file.
 	//
@@ -3226,7 +3226,7 @@ type ExportEBSVolumeRecommendationsInput struct {
 	// The recommendations data to include in the export file. For more information
 	// about the fields that can be exported, see Exported files (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files)
 	// in the Compute Optimizer User Guide.
-	FieldsToExport []*string `locationName:"fieldsToExport" type:"list"`
+	FieldsToExport []*string `locationName:"fieldsToExport" type:"list" enum:"ExportableVolumeField"`
 
 	// The format of the export file.
 	//
@@ -3407,7 +3407,7 @@ type ExportEC2InstanceRecommendationsInput struct {
 	// The recommendations data to include in the export file. For more information
 	// about the fields that can be exported, see Exported files (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files)
 	// in the Compute Optimizer User Guide.
-	FieldsToExport []*string `locationName:"fieldsToExport" type:"list"`
+	FieldsToExport []*string `locationName:"fieldsToExport" type:"list" enum:"ExportableInstanceField"`
 
 	// The format of the export file.
 	//
@@ -3594,7 +3594,7 @@ type ExportLambdaFunctionRecommendationsInput struct {
 	// The recommendations data to include in the export file. For more information
 	// about the fields that can be exported, see Exported files (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files)
 	// in the Compute Optimizer User Guide.
-	FieldsToExport []*string `locationName:"fieldsToExport" type:"list"`
+	FieldsToExport []*string `locationName:"fieldsToExport" type:"list" enum:"ExportableLambdaFunctionField"`
 
 	// The format of the export file.
 	//
@@ -5280,7 +5280,7 @@ type InstanceRecommendation struct {
 	// in the Amazon Elastic Compute Cloud User Guide. For more information about
 	// EBS volume metrics, see Amazon CloudWatch metrics for Amazon EBS (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cloudwatch_ebs.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
-	FindingReasonCodes []*string `locationName:"findingReasonCodes" type:"list"`
+	FindingReasonCodes []*string `locationName:"findingReasonCodes" type:"list" enum:"InstanceRecommendationFindingReasonCode"`
 
 	// The applications that might be running on the instance as inferred by Compute
 	// Optimizer.
@@ -5302,7 +5302,7 @@ type InstanceRecommendation struct {
 	//    * PostgreSql - Infers that PostgreSQL might be running on the instance.
 	//
 	//    * Redis - Infers that Redis might be running on the instance.
-	InferredWorkloadTypes []*string `locationName:"inferredWorkloadTypes" type:"list"`
+	InferredWorkloadTypes []*string `locationName:"inferredWorkloadTypes" type:"list" enum:"InferredWorkloadType"`
 
 	// The Amazon Resource Name (ARN) of the current instance.
 	InstanceArn *string `locationName:"instanceArn" type:"string"`
@@ -5538,7 +5538,7 @@ type InstanceRecommendationOption struct {
 	//    Alternatively, you might switch to an Amazon Machine Image (AMI) that
 	//    supports the new architecture. For more information about the CPU architecture
 	//    for each instance type, see Amazon EC2 Instance Types (http://aws.amazon.com/ec2/instance-types/).
-	PlatformDifferences []*string `locationName:"platformDifferences" type:"list"`
+	PlatformDifferences []*string `locationName:"platformDifferences" type:"list" enum:"PlatformDifference"`
 
 	// An array of objects that describe the projected utilization metrics of the
 	// instance recommendation option.
@@ -5993,7 +5993,7 @@ type LambdaFunctionRecommendation struct {
 	//    because Compute Optimizer cannot generate a recommendation with a high
 	//    degree of confidence. This finding reason code is part of the Unavailable
 	//    finding classification.
-	FindingReasonCodes []*string `locationName:"findingReasonCodes" type:"list"`
+	FindingReasonCodes []*string `locationName:"findingReasonCodes" type:"list" enum:"LambdaFunctionRecommendationFindingReasonCode"`
 
 	// The Amazon Resource Name (ARN) of the current function.
 	FunctionArn *string `locationName:"functionArn" type:"string"`
@@ -6797,7 +6797,7 @@ type RecommendationPreferences struct {
 	//    * A ExportEC2InstanceRecommendations or ExportAutoScalingGroupRecommendations
 	//    request, Compute Optimizer exports recommendations that consist of Graviton2
 	//    instance types only.
-	CpuVendorArchitectures []*string `locationName:"cpuVendorArchitectures" type:"list"`
+	CpuVendorArchitectures []*string `locationName:"cpuVendorArchitectures" type:"list" enum:"CpuVendorArchitecture"`
 }
 
 // String returns the string representation.

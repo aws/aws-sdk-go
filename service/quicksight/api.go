@@ -37468,7 +37468,7 @@ type UntagColumnOperation struct {
 	// The column tags to remove from this column.
 	//
 	// TagNames is a required field
-	TagNames []*string `type:"list" required:"true"`
+	TagNames []*string `type:"list" required:"true" enum:"ColumnTagName"`
 }
 
 // String returns the string representation.

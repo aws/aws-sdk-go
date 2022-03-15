@@ -4996,7 +4996,7 @@ type AutoExportPolicy struct {
 	//    repository when they are deleted on the file system.
 	//
 	// You can define any combination of event types for your AutoExportPolicy.
-	Events []*string `type:"list"`
+	Events []*string `type:"list" enum:"EventType"`
 }
 
 // String returns the string representation.
@@ -5045,7 +5045,7 @@ type AutoImportPolicy struct {
 	//    as corresponding files are deleted in the data repository.
 	//
 	// You can define any combination of event types for your AutoImportPolicy.
-	Events []*string `type:"list"`
+	Events []*string `type:"list" enum:"EventType"`
 }
 
 // String returns the string representation.
@@ -10609,7 +10609,7 @@ type DeleteFileSystemOpenZFSConfiguration struct {
 	// volume, use the string DELETE_CHILD_VOLUMES_AND_SNAPSHOTS. If your file system
 	// has child volumes and you don't use this option, the delete request will
 	// fail.
-	Options []*string `type:"list"`
+	Options []*string `type:"list" enum:"DeleteFileSystemOpenZFSOption"`
 
 	// By default, Amazon FSx for OpenZFS takes a final backup on your behalf when
 	// the DeleteFileSystem operation is invoked. Doing this helps protect you from
@@ -11310,7 +11310,7 @@ type DeleteVolumeOpenZFSConfiguration struct {
 
 	// To delete the volume's child volumes, snapshots, and clones, use the string
 	// DELETE_CHILD_VOLUMES_AND_SNAPSHOTS.
-	Options []*string `type:"list"`
+	Options []*string `type:"list" enum:"DeleteOpenZFSVolumeOption"`
 }
 
 // String returns the string representation.
@@ -15657,7 +15657,7 @@ type RestoreVolumeFromSnapshotInput struct {
 	//    * DELETE_CLONED_VOLUMES - Deletes any volumes cloned from this volume.
 	//    If there are any cloned volumes and this option isn't used, RestoreVolumeFromSnapshot
 	//    fails.
-	Options []*string `type:"list"`
+	Options []*string `type:"list" enum:"RestoreOpenZFSVolumeOption"`
 
 	// The ID of the source snapshot. Specifies the snapshot that you are restoring
 	// from.
@@ -19348,7 +19348,7 @@ type WindowsFileSystemConfiguration struct {
 	DeploymentType *string `type:"string" enum:"WindowsDeploymentType"`
 
 	// The list of maintenance operations in progress for this file system.
-	MaintenanceOperationsInProgress []*string `type:"list"`
+	MaintenanceOperationsInProgress []*string `type:"list" enum:"FileSystemMaintenanceOperation"`
 
 	// For MULTI_AZ_1 deployment types, the IP address of the primary, or preferred,
 	// file server.

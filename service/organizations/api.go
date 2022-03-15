@@ -20478,7 +20478,7 @@ type ListCreateAccountStatusInput struct {
 
 	// A list of one or more states that you want included in the response. If this
 	// parameter isn't present, all requests are included in the response.
-	States []*string `type:"list"`
+	States []*string `type:"list" enum:"CreateAccountState"`
 }
 
 // String returns the string representation.

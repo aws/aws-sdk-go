@@ -3483,7 +3483,7 @@ type ConfigurationProfileSummary struct {
 	Type *string `type:"string"`
 
 	// The types of validators in the configuration profile.
-	ValidatorTypes []*string `type:"list"`
+	ValidatorTypes []*string `type:"list" enum:"ValidatorType"`
 }
 
 // String returns the string representation.

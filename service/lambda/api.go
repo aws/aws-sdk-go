@@ -7603,7 +7603,7 @@ type CreateEventSourceMappingInput struct {
 
 	// (Streams and Amazon SQS) A list of current response type enums applied to
 	// the event source mapping.
-	FunctionResponseTypes []*string `type:"list"`
+	FunctionResponseTypes []*string `type:"list" enum:"FunctionResponseType"`
 
 	// (Streams and Amazon SQS standard queues) The maximum amount of time, in seconds,
 	// that Lambda spends gathering records before invoking the function.
@@ -7839,7 +7839,7 @@ type CreateFunctionInput struct {
 	// The instruction set architecture that the function supports. Enter a string
 	// array with one of the valid values (arm64 or x86_64). The default value is
 	// x86_64.
-	Architectures []*string `min:"1" type:"list"`
+	Architectures []*string `min:"1" type:"list" enum:"Architecture"`
 
 	// The code for the function.
 	//
@@ -9672,7 +9672,7 @@ type EventSourceMappingConfiguration struct {
 
 	// (Streams only) A list of current response type enums applied to the event
 	// source mapping.
-	FunctionResponseTypes []*string `type:"list"`
+	FunctionResponseTypes []*string `type:"list" enum:"FunctionResponseType"`
 
 	// The date that the event source mapping was last updated or that its state
 	// changed.
@@ -10191,7 +10191,7 @@ type FunctionConfiguration struct {
 	// The instruction set architecture that the function supports. Architecture
 	// is a string array with one of the valid values. The default architecture
 	// value is x86_64.
-	Architectures []*string `min:"1" type:"list"`
+	Architectures []*string `min:"1" type:"list" enum:"Architecture"`
 
 	// The SHA256 hash of the function's deployment package.
 	CodeSha256 *string `type:"string"`
@@ -11466,10 +11466,10 @@ type GetLayerVersionByArnOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of compatible instruction set architectures (https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html).
-	CompatibleArchitectures []*string `type:"list"`
+	CompatibleArchitectures []*string `type:"list" enum:"Architecture"`
 
 	// The layer's compatible runtimes.
-	CompatibleRuntimes []*string `type:"list"`
+	CompatibleRuntimes []*string `type:"list" enum:"Runtime"`
 
 	// Details about the layer version.
 	Content *LayerVersionContentOutput `type:"structure"`
@@ -11633,10 +11633,10 @@ type GetLayerVersionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of compatible instruction set architectures (https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html).
-	CompatibleArchitectures []*string `type:"list"`
+	CompatibleArchitectures []*string `type:"list" enum:"Architecture"`
 
 	// The layer's compatible runtimes.
-	CompatibleRuntimes []*string `type:"list"`
+	CompatibleRuntimes []*string `type:"list" enum:"Runtime"`
 
 	// Details about the layer version.
 	Content *LayerVersionContentOutput `type:"structure"`
@@ -13511,10 +13511,10 @@ type LayerVersionsListItem struct {
 	_ struct{} `type:"structure"`
 
 	// A list of compatible instruction set architectures (https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html).
-	CompatibleArchitectures []*string `type:"list"`
+	CompatibleArchitectures []*string `type:"list" enum:"Architecture"`
 
 	// The layer's compatible runtimes.
-	CompatibleRuntimes []*string `type:"list"`
+	CompatibleRuntimes []*string `type:"list" enum:"Runtime"`
 
 	// The date that the version was created, in ISO 8601 format. For example, 2018-11-27T15:10:45.123+0000.
 	CreatedDate *string `type:"string"`
@@ -15284,11 +15284,11 @@ type PublishLayerVersionInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of compatible instruction set architectures (https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html).
-	CompatibleArchitectures []*string `type:"list"`
+	CompatibleArchitectures []*string `type:"list" enum:"Architecture"`
 
 	// A list of compatible function runtimes (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html).
 	// Used for filtering with ListLayers and ListLayerVersions.
-	CompatibleRuntimes []*string `type:"list"`
+	CompatibleRuntimes []*string `type:"list" enum:"Runtime"`
 
 	// The function layer archive.
 	//
@@ -15396,10 +15396,10 @@ type PublishLayerVersionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of compatible instruction set architectures (https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html).
-	CompatibleArchitectures []*string `type:"list"`
+	CompatibleArchitectures []*string `type:"list" enum:"Architecture"`
 
 	// The layer's compatible runtimes.
-	CompatibleRuntimes []*string `type:"list"`
+	CompatibleRuntimes []*string `type:"list" enum:"Runtime"`
 
 	// Details about the layer version.
 	Content *LayerVersionContentOutput `type:"structure"`
@@ -17693,7 +17693,7 @@ type UpdateEventSourceMappingInput struct {
 
 	// (Streams and Amazon SQS) A list of current response type enums applied to
 	// the event source mapping.
-	FunctionResponseTypes []*string `type:"list"`
+	FunctionResponseTypes []*string `type:"list" enum:"FunctionResponseType"`
 
 	// (Streams and Amazon SQS standard queues) The maximum amount of time, in seconds,
 	// that Lambda spends gathering records before invoking the function.
@@ -17879,7 +17879,7 @@ type UpdateFunctionCodeInput struct {
 	// The instruction set architecture that the function supports. Enter a string
 	// array with one of the valid values (arm64 or x86_64). The default value is
 	// x86_64.
-	Architectures []*string `min:"1" type:"list"`
+	Architectures []*string `min:"1" type:"list" enum:"Architecture"`
 
 	// Set to true to validate the request parameters and access permissions without
 	// modifying the function code.

@@ -13149,7 +13149,7 @@ type ListEnvironmentAccountConnectionsInput struct {
 	RequestedBy *string `locationName:"requestedBy" type:"string" required:"true" enum:"EnvironmentAccountConnectionRequesterAccountType"`
 
 	// The status details for each listed environment account connection.
-	Statuses []*string `locationName:"statuses" type:"list"`
+	Statuses []*string `locationName:"statuses" type:"list" enum:"EnvironmentAccountConnectionStatus"`
 }
 
 // String returns the string representation.

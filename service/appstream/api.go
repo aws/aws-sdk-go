@@ -6113,7 +6113,7 @@ type Application struct {
 	Name *string `min:"1" type:"string"`
 
 	// The platforms on which the application can run.
-	Platforms []*string `type:"list"`
+	Platforms []*string `type:"list" enum:"PlatformType"`
 
 	// The working directory for the application.
 	WorkingDirectory *string `min:"1" type:"string"`
@@ -7327,7 +7327,7 @@ type CreateApplicationInput struct {
 	// are supported for Elastic fleets.
 	//
 	// Platforms is a required field
-	Platforms []*string `type:"list" required:"true"`
+	Platforms []*string `type:"list" required:"true" enum:"PlatformType"`
 
 	// The tags assigned to the application.
 	Tags map[string]*string `min:"1" type:"map"`
@@ -16091,7 +16091,7 @@ type UpdateApplicationInput struct {
 	AppBlockArn *string `type:"string"`
 
 	// The attributes to delete for an application.
-	AttributesToDelete []*string `type:"list"`
+	AttributesToDelete []*string `type:"list" enum:"ApplicationAttribute"`
 
 	// The description of the application.
 	Description *string `type:"string"`
@@ -16485,7 +16485,7 @@ type UpdateFleetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The fleet attributes to delete.
-	AttributesToDelete []*string `type:"list"`
+	AttributesToDelete []*string `type:"list" enum:"FleetAttribute"`
 
 	// The desired capacity for the fleet. This is not allowed for Elastic fleets.
 	ComputeCapacity *ComputeCapacity `type:"structure"`
@@ -16976,7 +16976,7 @@ type UpdateStackInput struct {
 	ApplicationSettings *ApplicationSettings `type:"structure"`
 
 	// The stack attributes to delete.
-	AttributesToDelete []*string `type:"list"`
+	AttributesToDelete []*string `type:"list" enum:"StackAttribute"`
 
 	// Deletes the storage connectors currently enabled for the stack.
 	//

@@ -3107,7 +3107,7 @@ type DashPackage struct {
 	// A list of SCTE-35 message types that are treated as ad markers in the output.
 	// If empty, noad markers are output. Specify multiple items to create ad markers
 	// for all of the includedmessage types.
-	AdTriggers []*string `locationName:"adTriggers" type:"list"`
+	AdTriggers []*string `locationName:"adTriggers" type:"list" enum:"__AdTriggersElement"`
 
 	// This setting allows the delivery restriction flags on SCTE-35 segmentation
 	// descriptors todetermine whether a message signals an ad. Choosing "NONE"
@@ -3146,7 +3146,7 @@ type DashPackage struct {
 	// into multiple periods. If empty, the content will notbe partitioned into
 	// more than one period. If the list contains "ADS", new periods will be created
 	// wherethe Channel source contains SCTE-35 ad markers.
-	PeriodTriggers []*string `locationName:"periodTriggers" type:"list"`
+	PeriodTriggers []*string `locationName:"periodTriggers" type:"list" enum:"__PeriodTriggersElement"`
 
 	// The Dynamic Adaptive Streaming over HTTP (DASH) profile type. When set to
 	// "HBBTV_1_5", HbbTV 1.5 compliant output is enabled.
@@ -4441,7 +4441,7 @@ type HlsManifestCreateOrUpdateParameters struct {
 	// A list of SCTE-35 message types that are treated as ad markers in the output.
 	// If empty, noad markers are output. Specify multiple items to create ad markers
 	// for all of the includedmessage types.
-	AdTriggers []*string `locationName:"adTriggers" type:"list"`
+	AdTriggers []*string `locationName:"adTriggers" type:"list" enum:"__AdTriggersElement"`
 
 	// This setting allows the delivery restriction flags on SCTE-35 segmentation
 	// descriptors todetermine whether a message signals an ad. Choosing "NONE"
@@ -4589,7 +4589,7 @@ type HlsPackage struct {
 	// A list of SCTE-35 message types that are treated as ad markers in the output.
 	// If empty, noad markers are output. Specify multiple items to create ad markers
 	// for all of the includedmessage types.
-	AdTriggers []*string `locationName:"adTriggers" type:"list"`
+	AdTriggers []*string `locationName:"adTriggers" type:"list" enum:"__AdTriggersElement"`
 
 	// This setting allows the delivery restriction flags on SCTE-35 segmentation
 	// descriptors todetermine whether a message signals an ad. Choosing "NONE"

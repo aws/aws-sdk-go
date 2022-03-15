@@ -6127,7 +6127,7 @@ type CreateRecommendationTemplateInput struct {
 	// Test
 	//
 	// The template is a TestRecommendation template.
-	RecommendationTypes []*string `locationName:"recommendationTypes" min:"1" type:"list"`
+	RecommendationTypes []*string `locationName:"recommendationTypes" min:"1" type:"list" enum:"RenderRecommendationType"`
 
 	// The tags assigned to the resource. A tag is a label that you assign to an
 	// Amazon Web Services resource. Each tag consists of a key/value pair.
@@ -8012,7 +8012,7 @@ type ListAppAssessmentsInput struct {
 	AssessmentName *string `location:"querystring" locationName:"assessmentName" type:"string"`
 
 	// The current status of the assessment for the resiliency policy.
-	AssessmentStatus []*string `location:"querystring" locationName:"assessmentStatus" min:"1" type:"list"`
+	AssessmentStatus []*string `location:"querystring" locationName:"assessmentStatus" min:"1" type:"list" enum:"AssessmentStatus"`
 
 	// The current status of compliance for the resiliency policy.
 	ComplianceStatus *string `location:"querystring" locationName:"complianceStatus" type:"string" enum:"ComplianceStatus"`
@@ -8937,7 +8937,7 @@ type ListRecommendationTemplatesInput struct {
 	ReverseOrder *bool `location:"querystring" locationName:"reverseOrder" type:"boolean"`
 
 	// The status of the action.
-	Status []*string `location:"querystring" locationName:"status" min:"1" type:"list"`
+	Status []*string `location:"querystring" locationName:"status" min:"1" type:"list" enum:"RecommendationTemplateStatus"`
 }
 
 // String returns the string representation.
@@ -10347,7 +10347,7 @@ type RecommendationTemplate struct {
 	// The template is a TestRecommendation template.
 	//
 	// RecommendationTypes is a required field
-	RecommendationTypes []*string `locationName:"recommendationTypes" min:"1" type:"list" required:"true"`
+	RecommendationTypes []*string `locationName:"recommendationTypes" min:"1" type:"list" required:"true" enum:"RenderRecommendationType"`
 
 	// The start time for the action.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`

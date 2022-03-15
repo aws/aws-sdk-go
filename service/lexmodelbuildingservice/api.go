@@ -5314,7 +5314,7 @@ type BuiltinIntentMetadata struct {
 	Signature *string `locationName:"signature" type:"string"`
 
 	// A list of identifiers for the locales that the intent supports.
-	SupportedLocales []*string `locationName:"supportedLocales" type:"list"`
+	SupportedLocales []*string `locationName:"supportedLocales" type:"list" enum:"Locale"`
 }
 
 // String returns the string representation.
@@ -5389,7 +5389,7 @@ type BuiltinSlotTypeMetadata struct {
 	Signature *string `locationName:"signature" type:"string"`
 
 	// A list of target locales for the slot.
-	SupportedLocales []*string `locationName:"supportedLocales" type:"list"`
+	SupportedLocales []*string `locationName:"supportedLocales" type:"list" enum:"Locale"`
 }
 
 // String returns the string representation.
@@ -8602,7 +8602,7 @@ type GetBuiltinIntentOutput struct {
 	Slots []*BuiltinIntentSlot `locationName:"slots" type:"list"`
 
 	// A list of locales that the intent supports.
-	SupportedLocales []*string `locationName:"supportedLocales" type:"list"`
+	SupportedLocales []*string `locationName:"supportedLocales" type:"list" enum:"Locale"`
 }
 
 // String returns the string representation.

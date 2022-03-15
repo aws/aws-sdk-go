@@ -14447,7 +14447,7 @@ type DescribeServiceUpdatesInput struct {
 	ServiceUpdateName *string `type:"string"`
 
 	// The status of the service update
-	ServiceUpdateStatus []*string `type:"list"`
+	ServiceUpdateStatus []*string `type:"list" enum:"ServiceUpdateStatus"`
 }
 
 // String returns the string representation.
@@ -14703,7 +14703,7 @@ type DescribeUpdateActionsInput struct {
 	ServiceUpdateName *string `type:"string"`
 
 	// The status of the service update
-	ServiceUpdateStatus []*string `type:"list"`
+	ServiceUpdateStatus []*string `type:"list" enum:"ServiceUpdateStatus"`
 
 	// The range of time specified to search for service updates that are in available
 	// status
@@ -14713,7 +14713,7 @@ type DescribeUpdateActionsInput struct {
 	ShowNodeLevelUpdateStatus *bool `type:"boolean"`
 
 	// The status of the update action.
-	UpdateActionStatus []*string `type:"list"`
+	UpdateActionStatus []*string `type:"list" enum:"UpdateActionStatus"`
 }
 
 // String returns the string representation.

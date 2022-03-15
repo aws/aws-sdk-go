@@ -3812,7 +3812,7 @@ type CreatePermissionInput struct {
 	// IssueCertificate, GetCertificate, and ListPermissions.
 	//
 	// Actions is a required field
-	Actions []*string `min:"1" type:"list" required:"true"`
+	Actions []*string `min:"1" type:"list" required:"true" enum:"ActionType"`
 
 	// The Amazon Resource Name (ARN) of the CA that grants the permissions. You
 	// can find the ARN by calling the ListCertificateAuthorities (https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_ListCertificateAuthorities.html)
@@ -7045,7 +7045,7 @@ type Permission struct {
 	_ struct{} `type:"structure"`
 
 	// The private CA actions that can be performed by the designated AWS service.
-	Actions []*string `min:"1" type:"list"`
+	Actions []*string `min:"1" type:"list" enum:"ActionType"`
 
 	// The Amazon Resource Number (ARN) of the private CA from which the permission
 	// was issued.
