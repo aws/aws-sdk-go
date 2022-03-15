@@ -15,6 +15,9 @@ import (
 func TestValidDataFiles(t *testing.T) {
 	const expectedFileSuffix = "_expected"
 	filepath.Walk("./testdata/valid", func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
 		if strings.HasSuffix(path, expectedFileSuffix) {
 			return nil
 		}
