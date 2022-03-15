@@ -13308,7 +13308,7 @@ type HlsGroupSettings struct {
 	// Choose one or more ad marker types to decorate your Apple HLS manifest. This
 	// setting does not determine whether SCTE-35 markers appear in the outputs
 	// themselves.
-	AdMarkers []*string `locationName:"adMarkers" type:"list"`
+	AdMarkers []*string `locationName:"adMarkers" type:"list" enum:"HlsAdMarkers"`
 
 	// By default, the service creates one top-level .m3u8 HLS manifest for each
 	// HLS output group in your job. This default manifest references every output
@@ -22443,7 +22443,7 @@ type TeletextDestinationSettings struct {
 	// If you pass through the entire set of Teletext data, don't use this field.
 	// When you pass through a set of Teletext pages, your output has the same page
 	// types as your input.
-	PageTypes []*string `locationName:"pageTypes" type:"list"`
+	PageTypes []*string `locationName:"pageTypes" type:"list" enum:"TeletextPageType"`
 }
 
 // String returns the string representation.

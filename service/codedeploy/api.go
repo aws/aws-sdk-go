@@ -5852,7 +5852,7 @@ type AutoRollbackConfiguration struct {
 	Enabled *bool `locationName:"enabled" type:"boolean"`
 
 	// The event type or types that trigger a rollback.
-	Events []*string `locationName:"events" type:"list"`
+	Events []*string `locationName:"events" type:"list" enum:"AutoRollbackEvent"`
 }
 
 // String returns the string representation.
@@ -17180,12 +17180,12 @@ type ListDeploymentInstancesInput struct {
 	//    * Skipped: Include those instances with skipped deployments.
 	//
 	//    * Unknown: Include those instances with deployments in an unknown state.
-	InstanceStatusFilter []*string `locationName:"instanceStatusFilter" type:"list"`
+	InstanceStatusFilter []*string `locationName:"instanceStatusFilter" type:"list" enum:"InstanceStatus"`
 
 	// The set of instances in a blue/green deployment, either those in the original
 	// environment ("BLUE") or those in the replacement environment ("GREEN"), for
 	// which you want to view instance information.
-	InstanceTypeFilter []*string `locationName:"instanceTypeFilter" type:"list"`
+	InstanceTypeFilter []*string `locationName:"instanceTypeFilter" type:"list" enum:"InstanceType"`
 
 	// An identifier returned from the previous list deployment instances call.
 	// It can be used to return the next set of deployment instances in the list.
@@ -17425,7 +17425,7 @@ type ListDeploymentsInput struct {
 	//    * Failed: Include failed deployments in the resulting list.
 	//
 	//    * Stopped: Include stopped deployments in the resulting list.
-	IncludeOnlyStatuses []*string `locationName:"includeOnlyStatuses" type:"list"`
+	IncludeOnlyStatuses []*string `locationName:"includeOnlyStatuses" type:"list" enum:"DeploymentStatus"`
 
 	// An identifier returned from the previous list deployments call. It can be
 	// used to return the next set of deployments in the list.
@@ -20118,7 +20118,7 @@ type TriggerConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The event type or types for which notifications are triggered.
-	TriggerEvents []*string `locationName:"triggerEvents" type:"list"`
+	TriggerEvents []*string `locationName:"triggerEvents" type:"list" enum:"TriggerEventType"`
 
 	// The name of the notification trigger.
 	TriggerName *string `locationName:"triggerName" type:"string"`

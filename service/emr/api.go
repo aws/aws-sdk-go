@@ -7990,7 +7990,7 @@ type DescribeJobFlowsInput struct {
 	JobFlowIds []*string `type:"list"`
 
 	// Return only job flows whose state is contained in this list.
-	JobFlowStates []*string `type:"list"`
+	JobFlowStates []*string `type:"list" enum:"JobFlowExecutionState"`
 }
 
 // String returns the string representation.
@@ -12565,7 +12565,7 @@ type ListClustersInput struct {
 	// The cluster state filters to apply when listing clusters. Clusters that change
 	// state while this action runs may be not be returned as expected in the list
 	// of clusters.
-	ClusterStates []*string `type:"list"`
+	ClusterStates []*string `type:"list" enum:"ClusterState"`
 
 	// The creation date and time beginning value filter for listing clusters.
 	CreatedAfter *time.Time `type:"timestamp"`
@@ -12872,11 +12872,11 @@ type ListInstancesInput struct {
 	InstanceGroupId *string `type:"string"`
 
 	// The type of instance group for which to list the instances.
-	InstanceGroupTypes []*string `type:"list"`
+	InstanceGroupTypes []*string `type:"list" enum:"InstanceGroupType"`
 
 	// A list of instance states that will filter the instances returned with this
 	// request.
-	InstanceStates []*string `type:"list"`
+	InstanceStates []*string `type:"list" enum:"InstanceState"`
 
 	// The pagination token that indicates the next set of results to retrieve.
 	Marker *string `type:"string"`
@@ -13337,7 +13337,7 @@ type ListStepsInput struct {
 	StepIds []*string `type:"list"`
 
 	// The filter to limit the step list based on certain states.
-	StepStates []*string `type:"list"`
+	StepStates []*string `type:"list" enum:"StepState"`
 }
 
 // String returns the string representation.

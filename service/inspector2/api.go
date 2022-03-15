@@ -6363,7 +6363,7 @@ type DisableInput struct {
 	AccountIds []*string `locationName:"accountIds" type:"list"`
 
 	// The resource scan types you want to disable.
-	ResourceTypes []*string `locationName:"resourceTypes" type:"list"`
+	ResourceTypes []*string `locationName:"resourceTypes" type:"list" enum:"ResourceScanType"`
 }
 
 // String returns the string representation.
@@ -6982,7 +6982,7 @@ type EnableInput struct {
 	// The resource scan types you want to enable.
 	//
 	// ResourceTypes is a required field
-	ResourceTypes []*string `locationName:"resourceTypes" min:"1" type:"list" required:"true"`
+	ResourceTypes []*string `locationName:"resourceTypes" min:"1" type:"list" required:"true" enum:"ResourceScanType"`
 }
 
 // String returns the string representation.

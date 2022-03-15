@@ -4809,7 +4809,7 @@ type DisableEnhancedMonitoringInput struct {
 	// in the Amazon Kinesis Data Streams Developer Guide.
 	//
 	// ShardLevelMetrics is a required field
-	ShardLevelMetrics []*string `min:"1" type:"list" required:"true"`
+	ShardLevelMetrics []*string `min:"1" type:"list" required:"true" enum:"MetricsName"`
 
 	// The name of the Kinesis data stream for which to disable enhanced monitoring.
 	//
@@ -4899,7 +4899,7 @@ type EnableEnhancedMonitoringInput struct {
 	// in the Amazon Kinesis Data Streams Developer Guide.
 	//
 	// ShardLevelMetrics is a required field
-	ShardLevelMetrics []*string `min:"1" type:"list" required:"true"`
+	ShardLevelMetrics []*string `min:"1" type:"list" required:"true" enum:"MetricsName"`
 
 	// The name of the stream for which to enable enhanced monitoring.
 	//
@@ -4987,7 +4987,7 @@ type EnhancedMetrics struct {
 	// For more information, see Monitoring the Amazon Kinesis Data Streams Service
 	// with Amazon CloudWatch (https://docs.aws.amazon.com/kinesis/latest/dev/monitoring-with-cloudwatch.html)
 	// in the Amazon Kinesis Data Streams Developer Guide.
-	ShardLevelMetrics []*string `min:"1" type:"list"`
+	ShardLevelMetrics []*string `min:"1" type:"list" enum:"MetricsName"`
 }
 
 // String returns the string representation.
@@ -5020,11 +5020,11 @@ type EnhancedMonitoringOutput struct {
 
 	// Represents the current state of the metrics that are in the enhanced state
 	// before the operation.
-	CurrentShardLevelMetrics []*string `min:"1" type:"list"`
+	CurrentShardLevelMetrics []*string `min:"1" type:"list" enum:"MetricsName"`
 
 	// Represents the list of all the metrics that would be in the enhanced state
 	// after the operation.
-	DesiredShardLevelMetrics []*string `min:"1" type:"list"`
+	DesiredShardLevelMetrics []*string `min:"1" type:"list" enum:"MetricsName"`
 
 	// The name of the Kinesis data stream.
 	StreamName *string `min:"1" type:"string"`

@@ -9737,7 +9737,7 @@ type ImportWorkspaceImageInput struct {
 	// for BYOL images, see Bring Your Own Windows Desktop Licenses (https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html).
 	//
 	// Although this parameter is an array, only one item is allowed at this time.
-	Applications []*string `min:"1" type:"list"`
+	Applications []*string `min:"1" type:"list" enum:"Application"`
 
 	// The identifier of the EC2 image.
 	//

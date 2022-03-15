@@ -12486,7 +12486,7 @@ type EventDestination struct {
 	// The types of events that Amazon SES sends to the specified event destinations.
 	//
 	// MatchingEventTypes is a required field
-	MatchingEventTypes []*string `type:"list" required:"true"`
+	MatchingEventTypes []*string `type:"list" required:"true" enum:"EventType"`
 
 	// A name that identifies the event destination.
 	//
@@ -12591,7 +12591,7 @@ type EventDestinationDefinition struct {
 
 	// An array that specifies which events the Amazon SES API v2 should send to
 	// the destinations in this EventDestinationDefinition.
-	MatchingEventTypes []*string `type:"list"`
+	MatchingEventTypes []*string `type:"list" enum:"EventType"`
 
 	// An object that defines an Amazon Pinpoint project destination for email events.
 	// You can send email event data to a Amazon Pinpoint project to view metrics
@@ -16480,7 +16480,7 @@ type ListSuppressedDestinationsInput struct {
 	PageSize *int64 `location:"querystring" locationName:"PageSize" type:"integer"`
 
 	// The factors that caused the email address to be added to .
-	Reasons []*string `location:"querystring" locationName:"Reason" type:"list"`
+	Reasons []*string `location:"querystring" locationName:"Reason" type:"list" enum:"SuppressionListReason"`
 
 	// Used to filter the list of suppressed email destinations so that it only
 	// includes addresses that were added to the list after a specific date. The
@@ -17534,7 +17534,7 @@ type PutAccountSuppressionAttributesInput struct {
 	//    * BOUNCE – Amazon SES adds an email address to the suppression list
 	//    for your account when a message sent to that address results in a hard
 	//    bounce.
-	SuppressedReasons []*string `type:"list"`
+	SuppressedReasons []*string `type:"list" enum:"SuppressionListReason"`
 }
 
 // String returns the string representation.
@@ -17872,7 +17872,7 @@ type PutConfigurationSetSuppressionOptionsInput struct {
 	//    * BOUNCE – Amazon SES adds an email address to the suppression list
 	//    for your account when a message sent to that address results in a hard
 	//    bounce.
-	SuppressedReasons []*string `type:"list"`
+	SuppressedReasons []*string `type:"list" enum:"SuppressionListReason"`
 }
 
 // String returns the string representation.
@@ -20086,7 +20086,7 @@ type SuppressionAttributes struct {
 	//    * BOUNCE – Amazon SES adds an email address to the suppression list
 	//    for your account when a message sent to that address results in a hard
 	//    bounce.
-	SuppressedReasons []*string `type:"list"`
+	SuppressedReasons []*string `type:"list" enum:"SuppressionListReason"`
 }
 
 // String returns the string representation.
@@ -20181,7 +20181,7 @@ type SuppressionOptions struct {
 	//    * BOUNCE – Amazon SES adds an email address to the suppression list
 	//    for your account when a message sent to that address results in a hard
 	//    bounce.
-	SuppressedReasons []*string `type:"list"`
+	SuppressedReasons []*string `type:"list" enum:"SuppressionListReason"`
 }
 
 // String returns the string representation.

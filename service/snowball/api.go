@@ -6763,7 +6763,7 @@ type Notification struct {
 	_ struct{} `type:"structure"`
 
 	// The list of job states that will trigger a notification for this job.
-	JobStatesToNotify []*string `type:"list"`
+	JobStatesToNotify []*string `type:"list" enum:"JobState"`
 
 	// Any change in job state will trigger a notification for this job.
 	NotifyAll *bool `type:"boolean"`

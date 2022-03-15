@@ -5949,7 +5949,7 @@ type GetExperimentResultsInput struct {
 
 	// The names of the report types that you want to see. Currently, BayesianInference
 	// is the only valid value.
-	ReportNames []*string `locationName:"reportNames" type:"list"`
+	ReportNames []*string `locationName:"reportNames" type:"list" enum:"ExperimentReportName"`
 
 	// The statistics that you want to see in the returned results.
 	//
@@ -5972,7 +5972,7 @@ type GetExperimentResultsInput struct {
 	//    each variation. The statistic uses the same statistic specified in the
 	//    baseStat parameter. Therefore, if baseStat is mean, this returns the mean
 	//    of the values collected for each variation.
-	ResultStats []*string `locationName:"resultStats" type:"list"`
+	ResultStats []*string `locationName:"resultStats" type:"list" enum:"ExperimentResultRequestType"`
 
 	// The date and time that the experiment started.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`

@@ -9068,7 +9068,7 @@ func (s *CreateMemberOutput) SetArn(v string) *CreateMemberOutput {
 type CreateSampleFindingsInput struct {
 	_ struct{} `type:"structure"`
 
-	FindingTypes []*string `locationName:"findingTypes" type:"list"`
+	FindingTypes []*string `locationName:"findingTypes" type:"list" enum:"FindingType"`
 }
 
 // String returns the string representation.

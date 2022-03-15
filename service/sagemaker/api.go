@@ -24398,14 +24398,14 @@ type AdditionalInferenceSpecificationDefinition struct {
 	SupportedContentTypes []*string `type:"list"`
 
 	// A list of the instance types that are used to generate inferences in real-time.
-	SupportedRealtimeInferenceInstanceTypes []*string `type:"list"`
+	SupportedRealtimeInferenceInstanceTypes []*string `type:"list" enum:"ProductionVariantInstanceType"`
 
 	// The supported MIME types for the output data.
 	SupportedResponseMIMETypes []*string `type:"list"`
 
 	// A list of the instance types on which a transformation job can be run or
 	// on which an endpoint can be deployed.
-	SupportedTransformInstanceTypes []*string `min:"1" type:"list"`
+	SupportedTransformInstanceTypes []*string `min:"1" type:"list" enum:"TransformInstanceType"`
 }
 
 // String returns the string representation.
@@ -28921,7 +28921,7 @@ type ChannelSpecification struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The allowed compression types, if data compression is used.
-	SupportedCompressionTypes []*string `type:"list"`
+	SupportedCompressionTypes []*string `type:"list" enum:"CompressionType"`
 
 	// The supported MIME types for the data.
 	//
@@ -28938,7 +28938,7 @@ type ChannelSpecification struct {
 	// to your algorithm without using the EBS volume.
 	//
 	// SupportedInputModes is a required field
-	SupportedInputModes []*string `min:"1" type:"list" required:"true"`
+	SupportedInputModes []*string `min:"1" type:"list" required:"true" enum:"TrainingInputMode"`
 }
 
 // String returns the string representation.
@@ -36017,7 +36017,7 @@ type CreateNotebookInstanceInput struct {
 	// instance. Currently, only one instance type can be associated with a notebook
 	// instance. For more information, see Using Elastic Inference in Amazon SageMaker
 	// (https://docs.aws.amazon.com/sagemaker/latest/dg/ei.html).
-	AcceleratorTypes []*string `type:"list"`
+	AcceleratorTypes []*string `type:"list" enum:"NotebookInstanceAcceleratorType"`
 
 	// An array of up to three Git repositories to associate with the notebook instance.
 	// These can be either the names of Git repositories stored as resources in
@@ -49695,7 +49695,7 @@ type DescribeNotebookInstanceOutput struct {
 	// notebook instance. Currently only one EI instance type can be associated
 	// with a notebook instance. For more information, see Using Elastic Inference
 	// in Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/ei.html).
-	AcceleratorTypes []*string `type:"list"`
+	AcceleratorTypes []*string `type:"list" enum:"NotebookInstanceAcceleratorType"`
 
 	// An array of up to three Git repositories associated with the notebook instance.
 	// These can be either the names of Git repositories stored as resources in
@@ -60140,7 +60140,7 @@ type InferenceSpecification struct {
 	//
 	// This parameter is required for unversioned models, and optional for versioned
 	// models.
-	SupportedRealtimeInferenceInstanceTypes []*string `type:"list"`
+	SupportedRealtimeInferenceInstanceTypes []*string `type:"list" enum:"ProductionVariantInstanceType"`
 
 	// The supported MIME types for the output data.
 	//
@@ -60152,7 +60152,7 @@ type InferenceSpecification struct {
 	//
 	// This parameter is required for unversioned models, and optional for versioned
 	// models.
-	SupportedTransformInstanceTypes []*string `min:"1" type:"list"`
+	SupportedTransformInstanceTypes []*string `min:"1" type:"list" enum:"TransformInstanceType"`
 }
 
 // String returns the string representation.
@@ -61056,7 +61056,7 @@ type LabelingJobDataAttributes struct {
 	// Declares that your content is free of personally identifiable information
 	// or adult content. Amazon SageMaker may restrict the Amazon Mechanical Turk
 	// workers that can view your task based on this information.
-	ContentClassifiers []*string `type:"list"`
+	ContentClassifiers []*string `type:"list" enum:"ContentClassifier"`
 }
 
 // String returns the string representation.
@@ -80701,7 +80701,7 @@ type QueryFilters struct {
 
 	// Filter the lineage entities connected to the StartArn(s) by the type of the
 	// lineage entity.
-	LineageTypes []*string `type:"list"`
+	LineageTypes []*string `type:"list" enum:"LineageType"`
 
 	// Filter the lineage entities connected to the StartArn(s) after the last modified
 	// date.
@@ -87063,7 +87063,7 @@ type TrainingSpecification struct {
 	// A list of the instance types that this algorithm can use for training.
 	//
 	// SupportedTrainingInstanceTypes is a required field
-	SupportedTrainingInstanceTypes []*string `type:"list" required:"true"`
+	SupportedTrainingInstanceTypes []*string `type:"list" required:"true" enum:"TrainingInstanceType"`
 
 	// A list of the metrics that the algorithm emits that can be used as the objective
 	// metric in a hyperparameter tuning job.
@@ -91145,7 +91145,7 @@ type UpdateNotebookInstanceInput struct {
 	// notebook instance. Currently only one EI instance type can be associated
 	// with a notebook instance. For more information, see Using Elastic Inference
 	// in Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/ei.html).
-	AcceleratorTypes []*string `type:"list"`
+	AcceleratorTypes []*string `type:"list" enum:"NotebookInstanceAcceleratorType"`
 
 	// An array of up to three Git repositories to associate with the notebook instance.
 	// These can be either the names of Git repositories stored as resources in

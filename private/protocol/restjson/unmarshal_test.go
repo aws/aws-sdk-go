@@ -2563,7 +2563,7 @@ type OutputService14TestShapeOutputService14TestCaseOperation1Output struct {
 
 	HeaderEnum *string `location:"header" locationName:"x-amz-enum" type:"string" enum:"OutputService14TestShapeRESTJSONEnumType"`
 
-	ListEnums []*string `type:"list"`
+	ListEnums []*string `type:"list" enum:"OutputService14TestShapeRESTJSONEnumType"`
 }
 
 // SetFooEnum sets the FooEnum field's value.
@@ -2591,7 +2591,7 @@ type OutputService14TestShapeOutputService14TestCaseOperation2Input struct {
 
 	HeaderEnum *string `location:"header" locationName:"x-amz-enum" type:"string" enum:"OutputService14TestShapeRESTJSONEnumType"`
 
-	ListEnums []*string `type:"list"`
+	ListEnums []*string `type:"list" enum:"OutputService14TestShapeRESTJSONEnumType"`
 }
 
 // SetFooEnum sets the FooEnum field's value.

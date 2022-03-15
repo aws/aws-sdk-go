@@ -6514,7 +6514,7 @@ type EventDestination struct {
 	// The types of events that Amazon Pinpoint sends to the specified event destinations.
 	//
 	// MatchingEventTypes is a required field
-	MatchingEventTypes []*string `type:"list" required:"true"`
+	MatchingEventTypes []*string `type:"list" required:"true" enum:"EventType"`
 
 	// A name that identifies the event destination.
 	//
@@ -6617,7 +6617,7 @@ type EventDestinationDefinition struct {
 
 	// An array that specifies which events Amazon Pinpoint should send to the destinations
 	// in this EventDestinationDefinition.
-	MatchingEventTypes []*string `type:"list"`
+	MatchingEventTypes []*string `type:"list" enum:"EventType"`
 
 	// An object that defines a Amazon Pinpoint destination for email events. You
 	// can use Amazon Pinpoint events to create attributes in Amazon Pinpoint projects.

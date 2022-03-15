@@ -2258,7 +2258,7 @@ type BrokerInstanceOption struct {
 	StorageType *string `locationName:"storageType" type:"string" enum:"BrokerStorageType"`
 
 	// The list of supported deployment modes.
-	SupportedDeploymentModes []*string `locationName:"supportedDeploymentModes" type:"list"`
+	SupportedDeploymentModes []*string `locationName:"supportedDeploymentModes" type:"list" enum:"DeploymentMode"`
 
 	// The list of supported engine versions.
 	SupportedEngineVersions []*string `locationName:"supportedEngineVersions" type:"list"`

@@ -2760,7 +2760,7 @@ type Filters struct {
 	_ struct{} `type:"structure"`
 
 	// Specify one or more ExtendedKeyUsage extension values.
-	ExtendedKeyUsage []*string `locationName:"extendedKeyUsage" type:"list"`
+	ExtendedKeyUsage []*string `locationName:"extendedKeyUsage" type:"list" enum:"ExtendedKeyUsageName"`
 
 	// Specify one or more algorithms that can be used to generate key pairs.
 	//
@@ -2768,10 +2768,10 @@ type Filters struct {
 	// at least one domain. To return other certificate types, provide the desired
 	// type signatures in a comma-separated list. For example, "keyTypes": ["RSA_2048,RSA_4096"]
 	// returns both RSA_2048 and RSA_4096 certificates.
-	KeyTypes []*string `locationName:"keyTypes" type:"list"`
+	KeyTypes []*string `locationName:"keyTypes" type:"list" enum:"KeyAlgorithm"`
 
 	// Specify one or more KeyUsage extension values.
-	KeyUsage []*string `locationName:"keyUsage" type:"list"`
+	KeyUsage []*string `locationName:"keyUsage" type:"list" enum:"KeyUsageName"`
 }
 
 // String returns the string representation.
@@ -3601,7 +3601,7 @@ type ListCertificatesInput struct {
 	_ struct{} `type:"structure"`
 
 	// Filter the certificate list by status value.
-	CertificateStatuses []*string `type:"list"`
+	CertificateStatuses []*string `type:"list" enum:"CertificateStatus"`
 
 	// Filter the certificate list. For more information, see the Filters structure.
 	Includes *Filters `type:"structure"`

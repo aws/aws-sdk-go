@@ -849,7 +849,7 @@ type HumanLoopDataAttributes struct {
 	// view your task based on this information.
 	//
 	// ContentClassifiers is a required field
-	ContentClassifiers []*string `type:"list" required:"true"`
+	ContentClassifiers []*string `type:"list" required:"true" enum:"ContentClassifier"`
 }
 
 // String returns the string representation.

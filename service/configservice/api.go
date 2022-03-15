@@ -16187,7 +16187,7 @@ type DescribeComplianceByConfigRuleInput struct {
 	// Filters the results by compliance.
 	//
 	// The allowed values are COMPLIANT and NON_COMPLIANT.
-	ComplianceTypes []*string `type:"list"`
+	ComplianceTypes []*string `type:"list" enum:"ComplianceType"`
 
 	// Specify one or more Config rule names to filter the results by rule.
 	ConfigRuleNames []*string `type:"list"`
@@ -16280,7 +16280,7 @@ type DescribeComplianceByResourceInput struct {
 	// Filters the results by compliance.
 	//
 	// The allowed values are COMPLIANT, NON_COMPLIANT, and INSUFFICIENT_DATA.
-	ComplianceTypes []*string `type:"list"`
+	ComplianceTypes []*string `type:"list" enum:"ComplianceType"`
 
 	// The maximum number of evaluation results returned on each page. The default
 	// is 10. You cannot specify a number greater than 100. If you specify 0, Config
@@ -16614,7 +16614,7 @@ type DescribeConfigurationAggregatorSourcesStatusInput struct {
 	//    * Valid value SUCCEEDED indicates the data was successfully moved.
 	//
 	//    * Valid value OUTDATED indicates the data is not the most recent.
-	UpdateStatus []*string `min:"1" type:"list"`
+	UpdateStatus []*string `min:"1" type:"list" enum:"AggregatedSourceStatusType"`
 }
 
 // String returns the string representation.
@@ -19614,7 +19614,7 @@ type GetComplianceDetailsByConfigRuleInput struct {
 	// Filters the results by compliance.
 	//
 	// The allowed values are COMPLIANT, NON_COMPLIANT, and NOT_APPLICABLE.
-	ComplianceTypes []*string `type:"list"`
+	ComplianceTypes []*string `type:"list" enum:"ComplianceType"`
 
 	// The name of the Config rule for which you want compliance information.
 	//
@@ -19737,7 +19737,7 @@ type GetComplianceDetailsByResourceInput struct {
 	// Filters the results by compliance.
 	//
 	// The allowed values are COMPLIANT, NON_COMPLIANT, and NOT_APPLICABLE.
-	ComplianceTypes []*string `type:"list"`
+	ComplianceTypes []*string `type:"list" enum:"ComplianceType"`
 
 	// The nextToken string returned on a previous page that you use to get the
 	// next page of results in a paginated response.
@@ -24979,7 +24979,7 @@ type OrganizationCustomRuleMetadata struct {
 	//    specified for MaximumExecutionFrequency.
 	//
 	// OrganizationConfigRuleTriggerTypes is a required field
-	OrganizationConfigRuleTriggerTypes []*string `type:"list" required:"true"`
+	OrganizationConfigRuleTriggerTypes []*string `type:"list" required:"true" enum:"OrganizationConfigRuleTriggerType"`
 
 	// The ID of the Amazon Web Services resource that was evaluated.
 	ResourceIdScope *string `min:"1" type:"string"`
@@ -27193,7 +27193,7 @@ type RecordingGroup struct {
 	//
 	// For a list of valid resourceTypes values, see the resourceType Value column
 	// in Supported Amazon Web Services resource Types (https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources).
-	ResourceTypes []*string `locationName:"resourceTypes" type:"list"`
+	ResourceTypes []*string `locationName:"resourceTypes" type:"list" enum:"ResourceType"`
 }
 
 // String returns the string representation.

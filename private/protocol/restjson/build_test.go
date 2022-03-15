@@ -4961,11 +4961,11 @@ type InputService22TestShapeInputService22TestCaseOperation1Input struct {
 
 	HeaderEnum *string `location:"header" locationName:"x-amz-enum" type:"string" enum:"InputService22TestShapeEnumType"`
 
-	ListEnums []*string `type:"list"`
+	ListEnums []*string `type:"list" enum:"InputService22TestShapeEnumType"`
 
 	QueryFooEnum *string `location:"querystring" locationName:"Enum" type:"string" enum:"InputService22TestShapeEnumType"`
 
-	QueryListEnums []*string `location:"querystring" locationName:"List" type:"list"`
+	QueryListEnums []*string `location:"querystring" locationName:"List" type:"list" enum:"InputService22TestShapeEnumType"`
 }
 
 // SetFooEnum sets the FooEnum field's value.
@@ -5009,11 +5009,11 @@ type InputService22TestShapeInputService22TestCaseOperation2Input struct {
 
 	HeaderEnum *string `location:"header" locationName:"x-amz-enum" type:"string" enum:"InputService22TestShapeEnumType"`
 
-	ListEnums []*string `type:"list"`
+	ListEnums []*string `type:"list" enum:"InputService22TestShapeEnumType"`
 
 	QueryFooEnum *string `location:"querystring" locationName:"Enum" type:"string" enum:"InputService22TestShapeEnumType"`
 
-	QueryListEnums []*string `location:"querystring" locationName:"List" type:"list"`
+	QueryListEnums []*string `location:"querystring" locationName:"List" type:"list" enum:"InputService22TestShapeEnumType"`
 }
 
 // SetFooEnum sets the FooEnum field's value.

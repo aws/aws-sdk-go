@@ -3627,7 +3627,7 @@ type CreatePermissionGroupInput struct {
 	//    * GetTemporaryCredentials – Group members can get temporary API credentials.
 	//
 	// ApplicationPermissions is a required field
-	ApplicationPermissions []*string `locationName:"applicationPermissions" type:"list" required:"true"`
+	ApplicationPermissions []*string `locationName:"applicationPermissions" type:"list" required:"true" enum:"ApplicationPermission"`
 
 	// A token that ensures idempotency. This token expires in 10 minutes.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
@@ -6537,7 +6537,7 @@ type PermissionGroup struct {
 	//    * AccessNotebooks – Group members will have access to FinSpace notebooks.
 	//
 	//    * GetTemporaryCredentials – Group members can get temporary API credentials.
-	ApplicationPermissions []*string `locationName:"applicationPermissions" type:"list"`
+	ApplicationPermissions []*string `locationName:"applicationPermissions" type:"list" enum:"ApplicationPermission"`
 
 	// The timestamp at which the group was created in FinSpace. The value is determined
 	// as epoch time in milliseconds.
@@ -7436,7 +7436,7 @@ type UpdatePermissionGroupInput struct {
 	//    * AccessNotebooks – Group members will have access to FinSpace notebooks.
 	//
 	//    * GetTemporaryCredentials – Group members can get temporary API credentials.
-	ApplicationPermissions []*string `locationName:"applicationPermissions" type:"list"`
+	ApplicationPermissions []*string `locationName:"applicationPermissions" type:"list" enum:"ApplicationPermission"`
 
 	// A token that ensures idempotency. This token expires in 10 minutes.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`

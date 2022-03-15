@@ -5744,7 +5744,7 @@ type GetRouteOutput struct {
 	// A list of HTTP methods to match. An empty list matches all values. If a method
 	// is present, only HTTP requests using that method are forwarded to this route’s
 	// service.
-	Methods []*string `type:"list"`
+	Methods []*string `type:"list" enum:"HttpMethod"`
 
 	// The Amazon Web Services account ID of the route owner.
 	OwnerAccountId *string `min:"12" type:"string"`
@@ -7282,7 +7282,7 @@ type RouteSummary struct {
 	// A list of HTTP methods to match. An empty list matches all values. If a method
 	// is present, only HTTP requests using that method are forwarded to this route’s
 	// service.
-	Methods []*string `type:"list"`
+	Methods []*string `type:"list" enum:"HttpMethod"`
 
 	// The Amazon Web Services account ID of the route owner.
 	OwnerAccountId *string `min:"12" type:"string"`
@@ -7969,7 +7969,7 @@ type UriPathRouteInput_ struct {
 	// A list of HTTP methods to match. An empty list matches all values. If a method
 	// is present, only HTTP requests using that method are forwarded to this route’s
 	// service.
-	Methods []*string `type:"list"`
+	Methods []*string `type:"list" enum:"HttpMethod"`
 
 	// The path to use to match traffic. Paths must start with / and are relative
 	// to the base of the application.

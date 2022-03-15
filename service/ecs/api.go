@@ -11628,7 +11628,7 @@ type DescribeCapacityProvidersInput struct {
 	// Specifies whether or not you want to see the resource tags for the capacity
 	// provider. If TAGS is specified, the tags are included in the response. If
 	// this field is omitted, tags aren't included in the response.
-	Include []*string `locationName:"include" type:"list"`
+	Include []*string `locationName:"include" type:"list" enum:"CapacityProviderField"`
 
 	// The maximum number of account setting results returned by DescribeCapacityProviders
 	// in paginated output. When this parameter is used, DescribeCapacityProviders
@@ -11764,7 +11764,7 @@ type DescribeClustersInput struct {
 	// by launch type.
 	//
 	// If TAGS is specified, the metadata tags associated with the cluster are included.
-	Include []*string `locationName:"include" type:"list"`
+	Include []*string `locationName:"include" type:"list" enum:"ClusterField"`
 }
 
 // String returns the string representation.
@@ -11858,7 +11858,7 @@ type DescribeContainerInstancesInput struct {
 	// is specified, the container instance health is included in the response.
 	// If this field is omitted, tags and container instance health status aren't
 	// included in the response.
-	Include []*string `locationName:"include" type:"list"`
+	Include []*string `locationName:"include" type:"list" enum:"ContainerInstanceField"`
 }
 
 // String returns the string representation.
@@ -11962,7 +11962,7 @@ type DescribeServicesInput struct {
 	// Determines whether you want to see the resource tags for the service. If
 	// TAGS is specified, the tags are included in the response. If this field is
 	// omitted, tags aren't included in the response.
-	Include []*string `locationName:"include" type:"list"`
+	Include []*string `locationName:"include" type:"list" enum:"ServiceField"`
 
 	// A list of services to describe. You may specify up to 10 services to describe
 	// in a single operation.
@@ -12066,7 +12066,7 @@ type DescribeTaskDefinitionInput struct {
 	// Determines whether to see the resource tags for the task definition. If TAGS
 	// is specified, the tags are included in the response. If this field is omitted,
 	// tags aren't included in the response.
-	Include []*string `locationName:"include" type:"list"`
+	Include []*string `locationName:"include" type:"list" enum:"TaskDefinitionField"`
 
 	// The family for the latest ACTIVE revision, family and revision (family:revision)
 	// for a specific revision in the family, or full Amazon Resource Name (ARN)
@@ -12196,7 +12196,7 @@ type DescribeTaskSetsInput struct {
 	// Specifies whether to see the resource tags for the task set. If TAGS is specified,
 	// the tags are included in the response. If this field is omitted, tags aren't
 	// included in the response.
-	Include []*string `locationName:"include" type:"list"`
+	Include []*string `locationName:"include" type:"list" enum:"TaskSetField"`
 
 	// The short name or full Amazon Resource Name (ARN) of the service that the
 	// task sets exist in.
@@ -12318,7 +12318,7 @@ type DescribeTasksInput struct {
 	// Specifies whether you want to see the resource tags for the task. If TAGS
 	// is specified, the tags are included in the response. If this field is omitted,
 	// tags aren't included in the response.
-	Include []*string `locationName:"include" type:"list"`
+	Include []*string `locationName:"include" type:"list" enum:"TaskField"`
 
 	// A list of up to 100 task IDs or full ARN entries.
 	//
@@ -12429,7 +12429,7 @@ type Device struct {
 
 	// The explicit permissions to provide to the container for the device. By default,
 	// the container has permissions for read, write, and mknod for the device.
-	Permissions []*string `locationName:"permissions" type:"list"`
+	Permissions []*string `locationName:"permissions" type:"list" enum:"DeviceCgroupPermission"`
 }
 
 // String returns the string representation.
@@ -17742,7 +17742,7 @@ type RegisterTaskDefinitionInput struct {
 	// A client exception is returned if the task definition doesn't validate against
 	// the compatibilities specified. If no value is specified, the parameter is
 	// omitted from the response.
-	RequiresCompatibilities []*string `locationName:"requiresCompatibilities" type:"list"`
+	RequiresCompatibilities []*string `locationName:"requiresCompatibilities" type:"list" enum:"Compatibility"`
 
 	// The operating system that your tasks definitions run on. A platform family
 	// is specified only for tasks using the Fargate launch type.
@@ -21372,7 +21372,7 @@ type TaskDefinition struct {
 	// The task launch types the task definition validated against during task definition
 	// registration. For more information, see Amazon ECS launch types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html)
 	// in the Amazon Elastic Container Service Developer Guide.
-	Compatibilities []*string `locationName:"compatibilities" type:"list"`
+	Compatibilities []*string `locationName:"compatibilities" type:"list" enum:"Compatibility"`
 
 	// A list of container definitions in JSON format that describe the different
 	// containers that make up your task. For more information about container definition
@@ -21577,7 +21577,7 @@ type TaskDefinition struct {
 	// The task launch types the task definition was validated against. To determine
 	// which task launch types the task definition is validated for, see the TaskDefinition$compatibilities
 	// parameter.
-	RequiresCompatibilities []*string `locationName:"requiresCompatibilities" type:"list"`
+	RequiresCompatibilities []*string `locationName:"requiresCompatibilities" type:"list" enum:"Compatibility"`
 
 	// The revision of the task in a particular family. The revision is a version
 	// number of a task definition in a family. When you register a task definition

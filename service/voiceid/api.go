@@ -4067,7 +4067,7 @@ type FraudDetectionResult struct {
 	// The reason speaker was flagged by the fraud detection system. This is only
 	// be populated if fraud detection Decision is HIGH_RISK, and only has one possible
 	// value: KNOWN_FRAUDSTER.
-	Reasons []*string `type:"list"`
+	Reasons []*string `type:"list" enum:"FraudDetectionReason"`
 
 	// Details about each risk analyzed for this speaker.
 	RiskDetails *FraudRiskDetails `type:"structure"`

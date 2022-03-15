@@ -5715,7 +5715,7 @@ type CreateGrantInput struct {
 	// Allowed operations for the grant.
 	//
 	// AllowedOperations is a required field
-	AllowedOperations []*string `min:"1" type:"list" required:"true"`
+	AllowedOperations []*string `min:"1" type:"list" required:"true" enum:"AllowedOperation"`
 
 	// Unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request.
@@ -5885,7 +5885,7 @@ type CreateGrantVersionInput struct {
 	_ struct{} `type:"structure"`
 
 	// Allowed operations for the grant.
-	AllowedOperations []*string `min:"1" type:"list"`
+	AllowedOperations []*string `min:"1" type:"list" enum:"AllowedOperation"`
 
 	// Unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request.
@@ -6583,7 +6583,7 @@ type CreateLicenseManagerReportGeneratorInput struct {
 	//    for a license configuration.
 	//
 	// Type is a required field
-	Type []*string `type:"list" required:"true"`
+	Type []*string `type:"list" required:"true" enum:"ReportType"`
 }
 
 // String returns the string representation.
@@ -9110,7 +9110,7 @@ type Grant struct {
 	// Granted operations.
 	//
 	// GrantedOperations is a required field
-	GrantedOperations []*string `min:"1" type:"list" required:"true"`
+	GrantedOperations []*string `min:"1" type:"list" required:"true" enum:"AllowedOperation"`
 
 	// The grantee principal ARN.
 	//
@@ -12681,7 +12681,7 @@ type ReceivedMetadata struct {
 	_ struct{} `type:"structure"`
 
 	// Allowed operations.
-	AllowedOperations []*string `min:"1" type:"list"`
+	AllowedOperations []*string `min:"1" type:"list" enum:"AllowedOperation"`
 
 	// Received status.
 	ReceivedStatus *string `type:"string" enum:"ReceivedStatus"`
@@ -13012,7 +13012,7 @@ type ReportGenerator struct {
 	ReportGeneratorName *string `type:"string"`
 
 	// Type of reports that are generated.
-	ReportType []*string `type:"list"`
+	ReportType []*string `type:"list" enum:"ReportType"`
 
 	// Details of the S3 bucket that report generator reports are published to.
 	S3Location *S3Location `type:"structure"`
@@ -13974,7 +13974,7 @@ type UpdateLicenseManagerReportGeneratorInput struct {
 	//    for a license configuration.
 	//
 	// Type is a required field
-	Type []*string `type:"list" required:"true"`
+	Type []*string `type:"list" required:"true" enum:"ReportType"`
 }
 
 // String returns the string representation.

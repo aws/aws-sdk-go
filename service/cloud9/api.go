@@ -2096,7 +2096,7 @@ type DescribeEnvironmentMembershipsInput struct {
 	//    * read-write: Has read-write access to the environment.
 	//
 	// If no value is specified, information about all environment members are returned.
-	Permissions []*string `locationName:"permissions" type:"list"`
+	Permissions []*string `locationName:"permissions" type:"list" enum:"Permissions"`
 
 	// The Amazon Resource Name (ARN) of an individual environment member to get
 	// information about. If no value is specified, information about all environment

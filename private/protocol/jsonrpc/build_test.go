@@ -1996,7 +1996,7 @@ type InputService8TestShapeInputService8TestCaseOperation1Input struct {
 
 	FooEnum *string `type:"string" enum:"InputService8TestShapeEnumType"`
 
-	ListEnums []*string `type:"list"`
+	ListEnums []*string `type:"list" enum:"InputService8TestShapeEnumType"`
 }
 
 // SetFooEnum sets the FooEnum field's value.
@@ -2020,7 +2020,7 @@ type InputService8TestShapeInputService8TestCaseOperation2Input struct {
 
 	FooEnum *string `type:"string" enum:"InputService8TestShapeEnumType"`
 
-	ListEnums []*string `type:"list"`
+	ListEnums []*string `type:"list" enum:"InputService8TestShapeEnumType"`
 }
 
 // SetFooEnum sets the FooEnum field's value.

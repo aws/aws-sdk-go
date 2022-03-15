@@ -12349,7 +12349,7 @@ type AdminCreateUserInput struct {
 	// Specify "EMAIL" if email will be used to send the welcome message. Specify
 	// "SMS" if the phone number will be used. The default value is "SMS". You can
 	// specify more than one value.
-	DesiredDeliveryMediums []*string `type:"list"`
+	DesiredDeliveryMediums []*string `type:"list" enum:"DeliveryMediumType"`
 
 	// This parameter is used only if the phone_number_verified or email_verified
 	// attribute is set to True. Otherwise, it is ignored.
@@ -16708,7 +16708,7 @@ type CompromisedCredentialsRiskConfigurationType struct {
 
 	// Perform the action for these events. The default is to perform all events
 	// if no event filter is specified.
-	EventFilter []*string `type:"list"`
+	EventFilter []*string `type:"list" enum:"EventFilterType"`
 }
 
 // String returns the string representation.
@@ -18037,7 +18037,7 @@ type CreateUserPoolClientInput struct {
 	// Set to client_credentials to specify that the client should get the access
 	// token (and, optionally, ID token, based on scopes) from the token endpoint
 	// using a combination of client and client_secret.
-	AllowedOAuthFlows []*string `type:"list"`
+	AllowedOAuthFlows []*string `type:"list" enum:"OAuthFlowType"`
 
 	// Set to true if the client is allowed to follow the OAuth protocol when interacting
 	// with Amazon Cognito user pools.
@@ -18130,7 +18130,7 @@ type CreateUserPoolClientInput struct {
 	//    * ALLOW_USER_SRP_AUTH: Enable SRP-based authentication.
 	//
 	//    * ALLOW_REFRESH_TOKEN_AUTH: Enable authflow to refresh tokens.
-	ExplicitAuthFlows []*string `type:"list"`
+	ExplicitAuthFlows []*string `type:"list" enum:"ExplicitAuthFlowsType"`
 
 	// Boolean to specify whether you want to generate a secret for the user pool
 	// client being created.
@@ -18539,10 +18539,10 @@ type CreateUserPoolInput struct {
 
 	// Attributes supported as an alias for this user pool. Possible values: phone_number,
 	// email, or preferred_username.
-	AliasAttributes []*string `type:"list"`
+	AliasAttributes []*string `type:"list" enum:"AliasAttributeType"`
 
 	// The attributes to be auto-verified. Possible values: email, phone_number.
-	AutoVerifiedAttributes []*string `type:"list"`
+	AutoVerifiedAttributes []*string `type:"list" enum:"VerifiedAttributeType"`
 
 	// The device configuration.
 	DeviceConfiguration *DeviceConfigurationType `type:"structure"`
@@ -18614,7 +18614,7 @@ type CreateUserPoolInput struct {
 
 	// Specifies whether a user can use an email address or phone number as a username
 	// when they sign up.
-	UsernameAttributes []*string `type:"list"`
+	UsernameAttributes []*string `type:"list" enum:"UsernameAttributeType"`
 
 	// Case sensitivity on the username input for the selected sign-in option. For
 	// example, when case sensitivity is set to False, users can sign in using either
@@ -30286,7 +30286,7 @@ type UpdateUserPoolClientInput struct {
 	// Set to client_credentials to specify that the client should get the access
 	// token (and, optionally, ID token, based on scopes) from the token endpoint
 	// using a combination of client and client_secret.
-	AllowedOAuthFlows []*string `type:"list"`
+	AllowedOAuthFlows []*string `type:"list" enum:"OAuthFlowType"`
 
 	// Set to true if the client is allowed to follow the OAuth protocol when interacting
 	// with Amazon Cognito user pools.
@@ -30381,7 +30381,7 @@ type UpdateUserPoolClientInput struct {
 	//    * ALLOW_USER_SRP_AUTH: Enable SRP-based authentication.
 	//
 	//    * ALLOW_REFRESH_TOKEN_AUTH: Enable authflow to refresh tokens.
-	ExplicitAuthFlows []*string `type:"list"`
+	ExplicitAuthFlows []*string `type:"list" enum:"ExplicitAuthFlowsType"`
 
 	// The time limit after which the ID token is no longer valid and can't be used.
 	IdTokenValidity *int64 `min:"1" type:"integer"`
@@ -30787,7 +30787,7 @@ type UpdateUserPoolInput struct {
 
 	// The attributes that are automatically verified when Amazon Cognito requests
 	// to update user pools.
-	AutoVerifiedAttributes []*string `type:"list"`
+	AutoVerifiedAttributes []*string `type:"list" enum:"VerifiedAttributeType"`
 
 	// Device configuration.
 	DeviceConfiguration *DeviceConfigurationType `type:"structure"`
@@ -31715,7 +31715,7 @@ type UserPoolClientType struct {
 	// Set to client_credentials to specify that the client should get the access
 	// token (and, optionally, ID token, based on scopes) from the token endpoint
 	// using a combination of client and client_secret.
-	AllowedOAuthFlows []*string `type:"list"`
+	AllowedOAuthFlows []*string `type:"list" enum:"OAuthFlowType"`
 
 	// Set to true if the client is allowed to follow the OAuth protocol when interacting
 	// with Amazon Cognito user pools.
@@ -31817,7 +31817,7 @@ type UserPoolClientType struct {
 	//    * ALLOW_USER_SRP_AUTH: Enable SRP-based authentication.
 	//
 	//    * ALLOW_REFRESH_TOKEN_AUTH: Enable authflow to refresh tokens.
-	ExplicitAuthFlows []*string `type:"list"`
+	ExplicitAuthFlows []*string `type:"list" enum:"ExplicitAuthFlowsType"`
 
 	// The time limit specified by tokenValidityUnits, defaulting to hours, after
 	// which the refresh token is no longer valid and can't be used.
@@ -32229,13 +32229,13 @@ type UserPoolType struct {
 	AdminCreateUserConfig *AdminCreateUserConfigType `type:"structure"`
 
 	// The attributes that are aliased in a user pool.
-	AliasAttributes []*string `type:"list"`
+	AliasAttributes []*string `type:"list" enum:"AliasAttributeType"`
 
 	// The Amazon Resource Name (ARN) for the user pool.
 	Arn *string `min:"20" type:"string"`
 
 	// The attributes that are auto-verified in a user pool.
-	AutoVerifiedAttributes []*string `type:"list"`
+	AutoVerifiedAttributes []*string `type:"list" enum:"VerifiedAttributeType"`
 
 	// The date the user pool was created.
 	CreationDate *time.Time `type:"timestamp"`
@@ -32348,7 +32348,7 @@ type UserPoolType struct {
 
 	// Specifies whether a user can use an email address or phone number as a username
 	// when they sign up.
-	UsernameAttributes []*string `type:"list"`
+	UsernameAttributes []*string `type:"list" enum:"UsernameAttributeType"`
 
 	// Case sensitivity of the username input for the selected sign-in option. For
 	// example, when case sensitivity is set to False, users can sign in using either

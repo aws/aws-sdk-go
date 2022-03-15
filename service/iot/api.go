@@ -33073,7 +33073,7 @@ type CreateOTAUpdateInput struct {
 	// The protocol used to transfer the OTA update image. Valid values are [HTTP],
 	// [MQTT], [HTTP, MQTT]. When both HTTP and MQTT are specified, the target device
 	// can choose the protocol.
-	Protocols []*string `locationName:"protocols" min:"1" type:"list"`
+	Protocols []*string `locationName:"protocols" min:"1" type:"list" enum:"Protocol"`
 
 	// The IAM role that grants Amazon Web Services IoT Core access to the Amazon
 	// S3, IoT jobs and Amazon Web Services Code Signing resources to create an
@@ -55458,7 +55458,7 @@ type OTAUpdateInfo struct {
 	// The protocol used to transfer the OTA update image. Valid values are [HTTP],
 	// [MQTT], [HTTP, MQTT]. When both HTTP and MQTT are specified, the target device
 	// can choose the protocol.
-	Protocols []*string `locationName:"protocols" min:"1" type:"list"`
+	Protocols []*string `locationName:"protocols" min:"1" type:"list" enum:"Protocol"`
 
 	// Specifies whether the OTA update will continue to run (CONTINUOUS), or will
 	// be complete after all those things specified as targets have completed the

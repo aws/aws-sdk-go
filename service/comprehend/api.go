@@ -12360,7 +12360,7 @@ type DocumentReaderConfig struct {
 	DocumentReadMode *string `type:"string" enum:"DocumentReadMode"`
 
 	// Specifies how the text in an input file should be processed:
-	FeatureTypes []*string `min:"1" type:"list"`
+	FeatureTypes []*string `min:"1" type:"list" enum:"DocumentReadFeatureTypes"`
 }
 
 // String returns the string representation.
@@ -17496,7 +17496,7 @@ type RedactionConfig struct {
 
 	// An array of the types of PII entities that Amazon Comprehend detects in the
 	// input text for your request.
-	PiiEntityTypes []*string `type:"list"`
+	PiiEntityTypes []*string `type:"list" enum:"PiiEntityType"`
 }
 
 // String returns the string representation.

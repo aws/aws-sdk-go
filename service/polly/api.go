@@ -2919,7 +2919,7 @@ type StartSpeechSynthesisTaskInput struct {
 	SnsTopicArn *string `type:"string"`
 
 	// The type of speech marks returned for the input text.
-	SpeechMarkTypes []*string `type:"list"`
+	SpeechMarkTypes []*string `type:"list" enum:"SpeechMarkType"`
 
 	// The input text to synthesize. If you specify ssml as the TextType, follow
 	// the SSML format for the input text.
@@ -3133,7 +3133,7 @@ type SynthesisTask struct {
 	SnsTopicArn *string `type:"string"`
 
 	// The type of speech marks returned for the input text.
-	SpeechMarkTypes []*string `type:"list"`
+	SpeechMarkTypes []*string `type:"list" enum:"SpeechMarkType"`
 
 	// The Amazon Polly generated identifier for a speech synthesis task.
 	TaskId *string `type:"string"`
@@ -3388,7 +3388,7 @@ type SynthesizeSpeechInput struct {
 	SampleRate *string `type:"string"`
 
 	// The type of speech marks returned for the input text.
-	SpeechMarkTypes []*string `type:"list"`
+	SpeechMarkTypes []*string `type:"list" enum:"SpeechMarkType"`
 
 	// Input text to synthesize. If you specify ssml as the TextType, follow the
 	// SSML format for the input text.
@@ -3769,7 +3769,7 @@ type Voice struct {
 	// For example, the default language for Aditi is Indian English (en-IN) because
 	// it was first used for that language. Since Aditi is bilingual and fluent
 	// in both Indian English and Hindi, this parameter would show the code hi-IN.
-	AdditionalLanguageCodes []*string `type:"list"`
+	AdditionalLanguageCodes []*string `type:"list" enum:"LanguageCode"`
 
 	// Gender of the voice.
 	Gender *string `type:"string" enum:"Gender"`
@@ -3790,7 +3790,7 @@ type Voice struct {
 
 	// Specifies which engines (standard or neural) that are supported by a given
 	// voice.
-	SupportedEngines []*string `type:"list"`
+	SupportedEngines []*string `type:"list" enum:"Engine"`
 }
 
 // String returns the string representation.

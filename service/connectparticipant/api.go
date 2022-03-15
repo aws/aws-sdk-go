@@ -1206,7 +1206,7 @@ type CreateParticipantConnectionInput struct {
 	// Type of connection information required.
 	//
 	// Type is a required field
-	Type []*string `min:"1" type:"list" required:"true"`
+	Type []*string `min:"1" type:"list" required:"true" enum:"ConnectionType"`
 }
 
 // String returns the string representation.

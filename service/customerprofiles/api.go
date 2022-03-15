@@ -10499,7 +10499,7 @@ type ObjectTypeKey struct {
 	// of the profile. A NEW_ONLY key is only used if the profile does not already
 	// exist before the object is ingested, otherwise it is only used for matching
 	// objects to profiles.
-	StandardIdentifiers []*string `type:"list"`
+	StandardIdentifiers []*string `type:"list" enum:"StandardIdentifier"`
 }
 
 // String returns the string representation.

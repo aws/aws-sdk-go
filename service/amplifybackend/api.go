@@ -3268,11 +3268,11 @@ type BackendStoragePermissions struct {
 	// S3 bucket.
 	//
 	// Authenticated is a required field
-	Authenticated []*string `locationName:"authenticated" type:"list" required:"true"`
+	Authenticated []*string `locationName:"authenticated" type:"list" required:"true" enum:"AuthenticatedElement"`
 
 	// Lists all unauthenticated user read, write, and delete permissions for your
 	// S3 bucket.
-	UnAuthenticated []*string `locationName:"unAuthenticated" type:"list"`
+	UnAuthenticated []*string `locationName:"unAuthenticated" type:"list" enum:"UnAuthenticatedElement"`
 }
 
 // String returns the string representation.
@@ -3981,7 +3981,7 @@ type CreateBackendAuthOAuthConfig struct {
 	// from your Amplify app.
 	//
 	// OAuthScopes is a required field
-	OAuthScopes []*string `locationName:"oAuthScopes" type:"list" required:"true"`
+	OAuthScopes []*string `locationName:"oAuthScopes" type:"list" required:"true" enum:"OAuthScopesElement"`
 
 	// The redirected URI for signing in to your Amplify app.
 	//
@@ -4149,7 +4149,7 @@ type CreateBackendAuthPasswordPolicyConfig struct {
 
 	// Additional constraints for the password used to access the backend of your
 	// Amplify project.
-	AdditionalConstraints []*string `locationName:"additionalConstraints" type:"list"`
+	AdditionalConstraints []*string `locationName:"additionalConstraints" type:"list" enum:"AdditionalConstraintsElement"`
 
 	// The minimum length of the password used to access the backend of your Amplify
 	// project.
@@ -4324,7 +4324,7 @@ type CreateBackendAuthUserPoolConfig struct {
 	// The required attributes to sign up new users in the user pool.
 	//
 	// RequiredSignUpAttributes is a required field
-	RequiredSignUpAttributes []*string `locationName:"requiredSignUpAttributes" type:"list" required:"true"`
+	RequiredSignUpAttributes []*string `locationName:"requiredSignUpAttributes" type:"list" required:"true" enum:"RequiredSignUpAttributesElement"`
 
 	// Describes the sign-in methods that your Amplify app users use to log in using
 	// the Amazon Cognito user pool, configured as a part of your Amplify project.
@@ -7842,7 +7842,7 @@ func (s *S3BucketInfo) SetName(v string) *S3BucketInfo {
 type Settings struct {
 	_ struct{} `type:"structure"`
 
-	MfaTypes []*string `locationName:"mfaTypes" type:"list"`
+	MfaTypes []*string `locationName:"mfaTypes" type:"list" enum:"MfaTypesElement"`
 
 	// The body of the SMS message.
 	SmsMessage *string `locationName:"smsMessage" type:"string"`
@@ -8427,7 +8427,7 @@ type UpdateBackendAuthOAuthConfig struct {
 
 	// The list of OAuth-related flows that can allow users to authenticate from
 	// your Amplify app.
-	OAuthScopes []*string `locationName:"oAuthScopes" type:"list"`
+	OAuthScopes []*string `locationName:"oAuthScopes" type:"list" enum:"OAuthScopesElement"`
 
 	// Redirect URLs that OAuth uses when a user signs in to an Amplify app.
 	RedirectSignInURIs []*string `locationName:"redirectSignInURIs" type:"list"`
@@ -8571,7 +8571,7 @@ type UpdateBackendAuthPasswordPolicyConfig struct {
 
 	// Describes additional constraints on password requirements to sign in to the
 	// auth resource, configured as a part of your Amplify project.
-	AdditionalConstraints []*string `locationName:"additionalConstraints" type:"list"`
+	AdditionalConstraints []*string `locationName:"additionalConstraints" type:"list" enum:"AdditionalConstraintsElement"`
 
 	// Describes the minimum length of the password required to sign in to the auth
 	// resource, configured as a part of your Amplify project.

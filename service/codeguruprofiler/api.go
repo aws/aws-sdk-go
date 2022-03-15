@@ -3029,7 +3029,7 @@ type Channel struct {
 	// in Profiler.
 	//
 	// EventPublishers is a required field
-	EventPublishers []*string `locationName:"eventPublishers" min:"1" type:"list" required:"true"`
+	EventPublishers []*string `locationName:"eventPublishers" min:"1" type:"list" required:"true" enum:"EventPublisher"`
 
 	// Unique identifier for each Channel in the notification configuration of a
 	// Profiling Group. A random UUID for channelId is used when adding a channel

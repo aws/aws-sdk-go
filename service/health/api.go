@@ -3344,7 +3344,7 @@ type EntityFilter struct {
 	LastUpdatedTimes []*DateTimeRange `locationName:"lastUpdatedTimes" min:"1" type:"list"`
 
 	// A list of entity status codes (IMPAIRED, UNIMPAIRED, or UNKNOWN).
-	StatusCodes []*string `locationName:"statusCodes" min:"1" type:"list"`
+	StatusCodes []*string `locationName:"statusCodes" min:"1" type:"list" enum:"EntityStatusCode"`
 
 	// A map of entity tags attached to the affected entity.
 	//
@@ -3871,12 +3871,12 @@ type EventFilter struct {
 	EventArns []*string `locationName:"eventArns" min:"1" type:"list"`
 
 	// A list of event status codes.
-	EventStatusCodes []*string `locationName:"eventStatusCodes" min:"1" type:"list"`
+	EventStatusCodes []*string `locationName:"eventStatusCodes" min:"1" type:"list" enum:"EventStatusCode"`
 
 	// A list of event type category codes. Possible values are issue, accountNotification,
 	// or scheduledChange. Currently, the investigation value isn't supported at
 	// this time.
-	EventTypeCategories []*string `locationName:"eventTypeCategories" min:"1" type:"list"`
+	EventTypeCategories []*string `locationName:"eventTypeCategories" min:"1" type:"list" enum:"EventTypeCategory"`
 
 	// A list of unique identifiers for event types. For example, "AWS_EC2_SYSTEM_MAINTENANCE_EVENT","AWS_RDS_MAINTENANCE_SCHEDULED".
 	EventTypeCodes []*string `locationName:"eventTypeCodes" min:"1" type:"list"`
@@ -4113,7 +4113,7 @@ type EventTypeFilter struct {
 	// A list of event type category codes. Possible values are issue, accountNotification,
 	// or scheduledChange. Currently, the investigation value isn't supported at
 	// this time.
-	EventTypeCategories []*string `locationName:"eventTypeCategories" min:"1" type:"list"`
+	EventTypeCategories []*string `locationName:"eventTypeCategories" min:"1" type:"list" enum:"EventTypeCategory"`
 
 	// A list of event type codes.
 	EventTypeCodes []*string `locationName:"eventTypeCodes" min:"1" type:"list"`
@@ -4637,12 +4637,12 @@ type OrganizationEventFilter struct {
 	EntityValues []*string `locationName:"entityValues" min:"1" type:"list"`
 
 	// A list of event status codes.
-	EventStatusCodes []*string `locationName:"eventStatusCodes" min:"1" type:"list"`
+	EventStatusCodes []*string `locationName:"eventStatusCodes" min:"1" type:"list" enum:"EventStatusCode"`
 
 	// A list of event type category codes. Possible values are issue, accountNotification,
 	// or scheduledChange. Currently, the investigation value isn't supported at
 	// this time.
-	EventTypeCategories []*string `locationName:"eventTypeCategories" min:"1" type:"list"`
+	EventTypeCategories []*string `locationName:"eventTypeCategories" min:"1" type:"list" enum:"EventTypeCategory"`
 
 	// A list of unique identifiers for event types. For example, "AWS_EC2_SYSTEM_MAINTENANCE_EVENT","AWS_RDS_MAINTENANCE_SCHEDULED".
 	EventTypeCodes []*string `locationName:"eventTypeCodes" min:"1" type:"list"`

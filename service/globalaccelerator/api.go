@@ -7159,7 +7159,7 @@ type CustomRoutingDestinationConfiguration struct {
 	// accelerator. The protocol can be either TCP or UDP.
 	//
 	// Protocols is a required field
-	Protocols []*string `min:"1" type:"list" required:"true"`
+	Protocols []*string `min:"1" type:"list" required:"true" enum:"CustomRoutingProtocol"`
 
 	// The last port, inclusive, in the range of ports for the endpoint group that
 	// is associated with a custom routing accelerator.
@@ -7244,7 +7244,7 @@ type CustomRoutingDestinationDescription struct {
 
 	// The protocol for the endpoint group that is associated with a custom routing
 	// accelerator. The protocol can be either TCP or UDP.
-	Protocols []*string `type:"list"`
+	Protocols []*string `type:"list" enum:"Protocol"`
 
 	// The last port, inclusive, in the range of ports for the endpoint group that
 	// is associated with a custom routing accelerator.
@@ -11003,7 +11003,7 @@ type PortMapping struct {
 	EndpointId *string `type:"string"`
 
 	// The protocols supported by the endpoint group.
-	Protocols []*string `min:"1" type:"list"`
+	Protocols []*string `min:"1" type:"list" enum:"CustomRoutingProtocol"`
 }
 
 // String returns the string representation.

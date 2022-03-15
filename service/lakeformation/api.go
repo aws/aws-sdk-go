@@ -5344,10 +5344,10 @@ type BatchPermissionsRequestEntry struct {
 	Id *string `min:"1" type:"string" required:"true"`
 
 	// The permissions to be granted.
-	Permissions []*string `type:"list"`
+	Permissions []*string `type:"list" enum:"Permission"`
 
 	// Indicates if the option to pass permissions is granted.
-	PermissionsWithGrantOption []*string `type:"list"`
+	PermissionsWithGrantOption []*string `type:"list" enum:"Permission"`
 
 	// The principal to be granted a permission.
 	Principal *DataLakePrincipal `type:"structure"`
@@ -8440,13 +8440,13 @@ type GetTemporaryGluePartitionCredentialsInput struct {
 
 	// Filters the request based on the user having been granted a list of specified
 	// permissions on the requested resource(s).
-	Permissions []*string `type:"list"`
+	Permissions []*string `type:"list" enum:"Permission"`
 
 	// A list of supported permission types for the partition. Valid values are
 	// COLUMN_PERMISSION and CELL_FILTER_PERMISSION.
 	//
 	// SupportedPermissionTypes is a required field
-	SupportedPermissionTypes []*string `min:"1" type:"list" required:"true"`
+	SupportedPermissionTypes []*string `min:"1" type:"list" required:"true" enum:"PermissionType"`
 
 	// The ARN of the partitions' table.
 	//
@@ -8609,13 +8609,13 @@ type GetTemporaryGlueTableCredentialsInput struct {
 
 	// Filters the request based on the user having been granted a list of specified
 	// permissions on the requested resource(s).
-	Permissions []*string `type:"list"`
+	Permissions []*string `type:"list" enum:"Permission"`
 
 	// A list of supported permission types for the table. Valid values are COLUMN_PERMISSION
 	// and CELL_FILTER_PERMISSION.
 	//
 	// SupportedPermissionTypes is a required field
-	SupportedPermissionTypes []*string `min:"1" type:"list" required:"true"`
+	SupportedPermissionTypes []*string `min:"1" type:"list" required:"true" enum:"PermissionType"`
 
 	// The ARN identifying a table in the Data Catalog for the temporary credentials
 	// request.
@@ -9079,12 +9079,12 @@ type GrantPermissionsInput struct {
 	// Lake Formation resources.
 	//
 	// Permissions is a required field
-	Permissions []*string `type:"list" required:"true"`
+	Permissions []*string `type:"list" required:"true" enum:"Permission"`
 
 	// Indicates a list of the granted permissions that the principal may pass to
 	// other users. These permissions may only be a subset of the permissions granted
 	// in the Privileges.
-	PermissionsWithGrantOption []*string `type:"list"`
+	PermissionsWithGrantOption []*string `type:"list" enum:"Permission"`
 
 	// The principal to be granted the permissions on the resource. Supported principals
 	// are IAM users or IAM roles, and they are defined by their principal type
@@ -10751,7 +10751,7 @@ type PrincipalPermissions struct {
 	_ struct{} `type:"structure"`
 
 	// The permissions that are granted to the principal.
-	Permissions []*string `type:"list"`
+	Permissions []*string `type:"list" enum:"Permission"`
 
 	// The principal who is granted permissions.
 	Principal *DataLakePrincipal `type:"structure"`
@@ -10811,11 +10811,11 @@ type PrincipalResourcePermissions struct {
 	AdditionalDetails *DetailsMap `type:"structure"`
 
 	// The permissions to be granted or revoked on the resource.
-	Permissions []*string `type:"list"`
+	Permissions []*string `type:"list" enum:"Permission"`
 
 	// Indicates whether to grant the ability to grant permissions (as a subset
 	// of permissions granted).
-	PermissionsWithGrantOption []*string `type:"list"`
+	PermissionsWithGrantOption []*string `type:"list" enum:"Permission"`
 
 	// The Data Lake principal to be granted or revoked permissions.
 	Principal *DataLakePrincipal `type:"structure"`
@@ -11615,11 +11615,11 @@ type RevokePermissionsInput struct {
 	// about permissions, see Security and Access Control to Metadata and Data (https://docs-aws.amazon.com/lake-formation/latest/dg/security-data-access.html).
 	//
 	// Permissions is a required field
-	Permissions []*string `type:"list" required:"true"`
+	Permissions []*string `type:"list" required:"true" enum:"Permission"`
 
 	// Indicates a list of permissions for which to revoke the grant option allowing
 	// the principal to pass permissions to other principals.
-	PermissionsWithGrantOption []*string `type:"list"`
+	PermissionsWithGrantOption []*string `type:"list" enum:"Permission"`
 
 	// The principal to be revoked permissions on the resource.
 	//

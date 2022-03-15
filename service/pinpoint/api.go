@@ -17595,7 +17595,7 @@ type CustomDeliveryConfiguration struct {
 	// The types of endpoints to send the campaign or treatment to. Each valid value
 	// maps to a type of channel that you can associate with an endpoint by using
 	// the ChannelType property of an endpoint.
-	EndpointTypes []*string `type:"list"`
+	EndpointTypes []*string `type:"list" enum:"EndpointTypesElement"`
 }
 
 // String returns the string representation.
@@ -17660,7 +17660,7 @@ type CustomMessageActivity struct {
 	// The types of endpoints to send the custom message to. Each valid value maps
 	// to a type of channel that you can associate with an endpoint by using the
 	// ChannelType property of an endpoint.
-	EndpointTypes []*string `type:"list"`
+	EndpointTypes []*string `type:"list" enum:"EndpointTypesElement"`
 
 	// Specifies the message data included in a custom channel message that's sent
 	// to participants in a journey.

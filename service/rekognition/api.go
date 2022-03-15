@@ -11302,7 +11302,7 @@ type DetectFacesInput struct {
 	//
 	// If you provide both, ["ALL", "DEFAULT"], the service uses a logical AND operator
 	// to determine which attributes to return (in this case, all attributes).
-	Attributes []*string `type:"list"`
+	Attributes []*string `type:"list" enum:"Attribute"`
 
 	// The input image as base64-encoded bytes or an S3 object. If you use the AWS
 	// CLI to call Amazon Rekognition operations, passing base64-encoded image bytes
@@ -14520,7 +14520,7 @@ type HumanLoopDataAttributes struct {
 	_ struct{} `type:"structure"`
 
 	// Sets whether the input image is free of personally identifiable information.
-	ContentClassifiers []*string `type:"list"`
+	ContentClassifiers []*string `type:"list" enum:"ContentClassifier"`
 }
 
 // String returns the string representation.
@@ -14899,7 +14899,7 @@ type IndexFacesInput struct {
 	//
 	// If you provide both, ["ALL", "DEFAULT"], the service uses a logical AND operator
 	// to determine which attributes to return (in this case, all attributes).
-	DetectionAttributes []*string `type:"list"`
+	DetectionAttributes []*string `type:"list" enum:"Attribute"`
 
 	// The ID you want to assign to all the faces detected in the image.
 	ExternalImageId *string `min:"1" type:"string"`
@@ -17393,7 +17393,7 @@ type ProtectiveEquipmentSummarizationAttributes struct {
 	// returned in ProtectiveEquipmentSummary by DetectProtectiveEquipment.
 	//
 	// RequiredEquipmentTypes is a required field
-	RequiredEquipmentTypes []*string `type:"list" required:"true"`
+	RequiredEquipmentTypes []*string `type:"list" required:"true" enum:"ProtectiveEquipmentType"`
 }
 
 // String returns the string representation.
@@ -19770,7 +19770,7 @@ type StartSegmentDetectionInput struct {
 	// and SHOT.
 	//
 	// SegmentTypes is a required field
-	SegmentTypes []*string `min:"1" type:"list" required:"true"`
+	SegmentTypes []*string `min:"1" type:"list" required:"true" enum:"SegmentType"`
 
 	// Video file stored in an Amazon S3 bucket. Amazon Rekognition video start
 	// operations such as StartLabelDetection use Video to specify a video for analysis.
@@ -21261,7 +21261,7 @@ type UnindexedFace struct {
 	//    * LOW_CONFIDENCE - The face was detected with a low confidence.
 	//
 	//    * SMALL_BOUNDING_BOX - The bounding box around the face is too small.
-	Reasons []*string `type:"list"`
+	Reasons []*string `type:"list" enum:"Reason"`
 }
 
 // String returns the string representation.

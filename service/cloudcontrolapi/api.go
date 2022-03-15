@@ -3390,10 +3390,10 @@ type ResourceRequestStatusFilter struct {
 	//    canceled.
 	//
 	//    * CANCEL_COMPLETE: The operation has been canceled.
-	OperationStatuses []*string `type:"list"`
+	OperationStatuses []*string `type:"list" enum:"OperationStatus"`
 
 	// The operation types to include in the filter.
-	Operations []*string `type:"list"`
+	Operations []*string `type:"list" enum:"Operation"`
 }
 
 // String returns the string representation.

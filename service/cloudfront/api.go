@@ -9956,7 +9956,7 @@ type AllowedMethods struct {
 	// process and forward to your origin.
 	//
 	// Items is a required field
-	Items []*string `locationNameList:"Method" type:"list" required:"true"`
+	Items []*string `locationNameList:"Method" type:"list" required:"true" enum:"Method"`
 
 	// The number of HTTP methods that you want CloudFront to forward to your origin.
 	// Valid values are 2 (for GET and HEAD requests), 3 (for GET, HEAD, and OPTIONS
@@ -11202,7 +11202,7 @@ type CachedMethods struct {
 	// cache responses to.
 	//
 	// Items is a required field
-	Items []*string `locationNameList:"Method" type:"list" required:"true"`
+	Items []*string `locationNameList:"Method" type:"list" required:"true" enum:"Method"`
 
 	// The number of HTTP methods for which you want CloudFront to cache responses.
 	// Valid values are 2 (for caching responses to GET and HEAD requests) and 3
@@ -24661,7 +24661,7 @@ type OriginSslProtocols struct {
 	// A list that contains allowed SSL/TLS protocols for this distribution.
 	//
 	// Items is a required field
-	Items []*string `locationNameList:"SslProtocol" type:"list" required:"true"`
+	Items []*string `locationNameList:"SslProtocol" type:"list" required:"true" enum:"SslProtocol"`
 
 	// The number of SSL/TLS protocols that you want to allow CloudFront to use
 	// when establishing an HTTPS connection with this origin.
@@ -26116,7 +26116,7 @@ type ResponseHeadersPolicyAccessControlAllowMethods struct {
 	// ALL is a special value that includes all of the listed HTTP methods.
 	//
 	// Items is a required field
-	Items []*string `locationNameList:"Method" type:"list" required:"true"`
+	Items []*string `locationNameList:"Method" type:"list" required:"true" enum:"ResponseHeadersPolicyAccessControlAllowMethodsValues"`
 
 	// The number of HTTP methods in the list.
 	//

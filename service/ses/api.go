@@ -9194,7 +9194,7 @@ type DescribeConfigurationSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of configuration set attributes to return.
-	ConfigurationSetAttributeNames []*string `type:"list"`
+	ConfigurationSetAttributeNames []*string `type:"list" enum:"ConfigurationSetAttribute"`
 
 	// The name of the configuration set to describe.
 	//
@@ -9596,7 +9596,7 @@ type EventDestination struct {
 	// The type of email sending events to publish to the event destination.
 	//
 	// MatchingEventTypes is a required field
-	MatchingEventTypes []*string `type:"list" required:"true"`
+	MatchingEventTypes []*string `type:"list" required:"true" enum:"EventType"`
 
 	// The name of the event destination. The name must:
 	//

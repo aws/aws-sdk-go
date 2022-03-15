@@ -9227,7 +9227,7 @@ type ResourceIdPreference struct {
 
 	// Identifies the Amazon EFS resources to which the ID preference setting applies,
 	// FILE_SYSTEM and MOUNT_TARGET.
-	Resources []*string `type:"list"`
+	Resources []*string `type:"list" enum:"Resource"`
 }
 
 // String returns the string representation.

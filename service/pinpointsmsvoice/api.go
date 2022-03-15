@@ -1272,7 +1272,7 @@ type EventDestination struct {
 
 	// An array of EventDestination objects. Each EventDestination object includes
 	// ARNs and other information that define an event destination.
-	MatchingEventTypes []*string `type:"list"`
+	MatchingEventTypes []*string `type:"list" enum:"EventType"`
 
 	// A name that identifies the event destination configuration.
 	Name *string `type:"string"`
@@ -1355,7 +1355,7 @@ type EventDestinationDefinition struct {
 
 	// An array of EventDestination objects. Each EventDestination object includes
 	// ARNs and other information that define an event destination.
-	MatchingEventTypes []*string `type:"list"`
+	MatchingEventTypes []*string `type:"list" enum:"EventType"`
 
 	// An object that contains information about an event destination that sends
 	// data to Amazon SNS.

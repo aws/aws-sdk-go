@@ -28731,7 +28731,7 @@ type DocumentDescription struct {
 	PendingReviewVersion *string `type:"string"`
 
 	// The list of operating system (OS) platforms compatible with this SSM document.
-	PlatformTypes []*string `type:"list"`
+	PlatformTypes []*string `type:"list" enum:"PlatformType"`
 
 	// A list of SSM documents required by a document. For example, an ApplicationConfiguration
 	// document requires an ApplicationConfigurationSchema document.
@@ -29064,7 +29064,7 @@ type DocumentIdentifier struct {
 	Owner *string `type:"string"`
 
 	// The operating system platform.
-	PlatformTypes []*string `type:"list"`
+	PlatformTypes []*string `type:"list" enum:"PlatformType"`
 
 	// A list of SSM documents required by a document. For example, an ApplicationConfiguration
 	// document requires an ApplicationConfigurationSchema document.
@@ -43600,7 +43600,7 @@ type NotificationConfig struct {
 	// about these events, see Monitoring Systems Manager status changes using Amazon
 	// SNS notifications (https://docs.aws.amazon.com/systems-manager/latest/userguide/monitoring-sns-notifications.html)
 	// in the Amazon Web Services Systems Manager User Guide.
-	NotificationEvents []*string `type:"list"`
+	NotificationEvents []*string `type:"list" enum:"NotificationEvent"`
 
 	// The type of notification.
 	//

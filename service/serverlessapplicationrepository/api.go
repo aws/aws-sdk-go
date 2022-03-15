@@ -2185,7 +2185,7 @@ type CreateApplicationVersionOutput struct {
 
 	ParameterDefinitions []*ParameterDefinition `locationName:"parameterDefinitions" type:"list"`
 
-	RequiredCapabilities []*string `locationName:"requiredCapabilities" type:"list"`
+	RequiredCapabilities []*string `locationName:"requiredCapabilities" type:"list" enum:"Capability"`
 
 	ResourcesSupported *bool `locationName:"resourcesSupported" type:"boolean"`
 
@@ -4686,7 +4686,7 @@ type Version struct {
 	// the call will fail.
 	//
 	// RequiredCapabilities is a required field
-	RequiredCapabilities []*string `locationName:"requiredCapabilities" type:"list" required:"true"`
+	RequiredCapabilities []*string `locationName:"requiredCapabilities" type:"list" required:"true" enum:"Capability"`
 
 	// Whether all of the AWS resources contained in this application are supported
 	// in the region in which it is being retrieved.

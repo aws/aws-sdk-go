@@ -7832,7 +7832,7 @@ type DescribeEnvironmentHealthInput struct {
 
 	// Specify the response elements to return. To retrieve all attributes, set
 	// to All. If no attribute names are specified, returns the name of the environment.
-	AttributeNames []*string `type:"list"`
+	AttributeNames []*string `type:"list" enum:"EnvironmentHealthAttribute"`
 
 	// Specify the environment by ID.
 	//
@@ -8634,7 +8634,7 @@ type DescribeInstancesHealthInput struct {
 
 	// Specifies the response elements you wish to receive. To retrieve all attributes,
 	// set to All. If no attribute names are specified, returns a list of instances.
-	AttributeNames []*string `type:"list"`
+	AttributeNames []*string `type:"list" enum:"InstancesHealthAttribute"`
 
 	// Specify the AWS Elastic Beanstalk environment by ID.
 	EnvironmentId *string `type:"string"`

@@ -876,13 +876,13 @@ type ReportDefinition struct {
 
 	// A list of manifests that you want Amazon Web Services to create for this
 	// report.
-	AdditionalArtifacts []*string `type:"list"`
+	AdditionalArtifacts []*string `type:"list" enum:"AdditionalArtifact"`
 
 	// A list of strings that indicate additional content that Amazon Web Services
 	// includes in the report, such as individual resource IDs.
 	//
 	// AdditionalSchemaElements is a required field
-	AdditionalSchemaElements []*string `type:"list" required:"true"`
+	AdditionalSchemaElements []*string `type:"list" required:"true" enum:"SchemaElement"`
 
 	// The Amazon resource name of the billing view. You can get this value by using
 	// the billing view service public APIs.

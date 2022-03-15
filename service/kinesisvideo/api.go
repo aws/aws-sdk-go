@@ -4186,7 +4186,7 @@ type SingleMasterChannelEndpointConfiguration struct {
 	// This property is used to determine the nature of communication over this
 	// SINGLE_MASTER signaling channel. If WSS is specified, this API returns a
 	// websocket endpoint. If HTTPS is specified, this API returns an HTTPS endpoint.
-	Protocols []*string `min:"1" type:"list"`
+	Protocols []*string `min:"1" type:"list" enum:"ChannelProtocol"`
 
 	// This property is used to determine messaging permissions in this SINGLE_MASTER
 	// signaling channel. If MASTER is specified, this API returns an endpoint that

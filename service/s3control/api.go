@@ -12275,7 +12275,7 @@ type JobManifestGeneratorFilter struct {
 
 	// If provided, the generated manifest should include only source bucket objects
 	// that have one of the specified Replication statuses.
-	ObjectReplicationStatuses []*string `type:"list"`
+	ObjectReplicationStatuses []*string `type:"list" enum:"ReplicationStatus"`
 }
 
 // String returns the string representation.
@@ -12410,7 +12410,7 @@ type JobManifestSpec struct {
 
 	// If the specified manifest object is in the S3BatchOperations_CSV_20180820
 	// format, this element describes which columns contain the required data.
-	Fields []*string `type:"list"`
+	Fields []*string `type:"list" enum:"JobManifestFieldName"`
 
 	// Indicates which of the available formats the specified manifest uses.
 	//
@@ -13548,7 +13548,7 @@ type ListJobsInput struct {
 
 	// The List Jobs request returns jobs that match the statuses listed in this
 	// element.
-	JobStatuses []*string `location:"querystring" locationName:"jobStatuses" type:"list"`
+	JobStatuses []*string `location:"querystring" locationName:"jobStatuses" type:"list" enum:"JobStatus"`
 
 	// The maximum number of jobs that Amazon S3 will include in the List Jobs response.
 	// If there are more jobs than this number, the response will include a pagination
@@ -14453,7 +14453,7 @@ type ObjectLambdaConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// A container for allowed features. Valid inputs are GetObject-Range and GetObject-PartNumber.
-	AllowedFeatures []*string `locationNameList:"AllowedFeature" type:"list"`
+	AllowedFeatures []*string `locationNameList:"AllowedFeature" type:"list" enum:"ObjectLambdaAllowedFeature"`
 
 	// A container for whether the CloudWatch metrics configuration is enabled.
 	CloudWatchMetricsEnabled *bool `type:"boolean"`
@@ -14596,7 +14596,7 @@ type ObjectLambdaTransformationConfiguration struct {
 	// Valid input is GetObject.
 	//
 	// Actions is a required field
-	Actions []*string `locationNameList:"Action" type:"list" required:"true"`
+	Actions []*string `locationNameList:"Action" type:"list" required:"true" enum:"ObjectLambdaTransformationConfigurationAction"`
 
 	// A container for the content transformation of an Object Lambda Access Point
 	// configuration.

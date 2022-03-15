@@ -36251,7 +36251,7 @@ type GetUnfilteredPartitionMetadataInput struct {
 	PartitionValues []*string `type:"list" required:"true"`
 
 	// SupportedPermissionTypes is a required field
-	SupportedPermissionTypes []*string `min:"1" type:"list" required:"true"`
+	SupportedPermissionTypes []*string `min:"1" type:"list" required:"true" enum:"PermissionType"`
 
 	// TableName is a required field
 	TableName *string `min:"1" type:"string" required:"true"`
@@ -36417,7 +36417,7 @@ type GetUnfilteredPartitionsMetadataInput struct {
 	Segment *Segment `type:"structure"`
 
 	// SupportedPermissionTypes is a required field
-	SupportedPermissionTypes []*string `min:"1" type:"list" required:"true"`
+	SupportedPermissionTypes []*string `min:"1" type:"list" required:"true" enum:"PermissionType"`
 
 	// TableName is a required field
 	TableName *string `min:"1" type:"string" required:"true"`
@@ -36590,7 +36590,7 @@ type GetUnfilteredTableMetadataInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// SupportedPermissionTypes is a required field
-	SupportedPermissionTypes []*string `min:"1" type:"list" required:"true"`
+	SupportedPermissionTypes []*string `min:"1" type:"list" required:"true" enum:"PermissionType"`
 }
 
 // String returns the string representation.
@@ -42420,7 +42420,7 @@ type PrincipalPermissions struct {
 	_ struct{} `type:"structure"`
 
 	// The permissions that are granted to the principal.
-	Permissions []*string `type:"list"`
+	Permissions []*string `type:"list" enum:"Permission"`
 
 	// The principal who is granted permissions.
 	Principal *DataLakePrincipal `type:"structure"`

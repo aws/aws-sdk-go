@@ -3446,7 +3446,7 @@ type InputService15TestShapeInputService15TestCaseOperation1Input struct {
 
 	FooEnum *string `type:"string" enum:"InputService15TestShapeEnumType"`
 
-	ListEnums []*string `type:"list"`
+	ListEnums []*string `type:"list" enum:"InputService15TestShapeEnumType"`
 }
 
 // SetFooEnum sets the FooEnum field's value.
@@ -3470,7 +3470,7 @@ type InputService15TestShapeInputService15TestCaseOperation2Input struct {
 
 	FooEnum *string `type:"string" enum:"InputService15TestShapeEnumType"`
 
-	ListEnums []*string `type:"list"`
+	ListEnums []*string `type:"list" enum:"InputService15TestShapeEnumType"`
 }
 
 // SetFooEnum sets the FooEnum field's value.
@@ -3494,7 +3494,7 @@ type InputService15TestShapeInputService15TestCaseOperation3Input struct {
 
 	FooEnum *string `type:"string" enum:"InputService15TestShapeEnumType"`
 
-	ListEnums []*string `type:"list"`
+	ListEnums []*string `type:"list" enum:"InputService15TestShapeEnumType"`
 }
 
 // SetFooEnum sets the FooEnum field's value.

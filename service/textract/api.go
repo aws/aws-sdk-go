@@ -1477,7 +1477,7 @@ type AnalyzeDocumentInput struct {
 	// of FeatureTypes).
 	//
 	// FeatureTypes is a required field
-	FeatureTypes []*string `type:"list" required:"true"`
+	FeatureTypes []*string `type:"list" required:"true" enum:"FeatureType"`
 
 	// Sets the configuration for the human in the loop workflow for analyzing documents.
 	HumanLoopConfig *HumanLoopConfig `type:"structure"`
@@ -2018,7 +2018,7 @@ type Block struct {
 	//    * VALUE - The field text.
 	//
 	// EntityTypes isn't returned by DetectDocumentText and GetDocumentTextDetection.
-	EntityTypes []*string `type:"list"`
+	EntityTypes []*string `type:"list" enum:"EntityType"`
 
 	// The location of the recognized text on the image. It includes an axis-aligned,
 	// coarse bounding box that surrounds the text, and a finer-grain polygon for
@@ -3475,7 +3475,7 @@ type HumanLoopDataAttributes struct {
 
 	// Sets whether the input image is free of personally identifiable information
 	// or adult content.
-	ContentClassifiers []*string `type:"list"`
+	ContentClassifiers []*string `type:"list" enum:"ContentClassifier"`
 }
 
 // String returns the string representation.
@@ -4657,7 +4657,7 @@ type StartDocumentAnalysisInput struct {
 	// of FeatureTypes).
 	//
 	// FeatureTypes is a required field
-	FeatureTypes []*string `type:"list" required:"true"`
+	FeatureTypes []*string `type:"list" required:"true" enum:"FeatureType"`
 
 	// An identifier that you specify that's included in the completion notification
 	// published to the Amazon SNS topic. For example, you can use JobTag to identify

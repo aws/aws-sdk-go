@@ -19444,7 +19444,7 @@ type SalesforceChatterFeedConfiguration struct {
 	// ACTIVE_USERS only documents from users who have an active account are indexed.
 	// When you specify STANDARD_USER only documents for Salesforce standard users
 	// are documented. You can specify both.
-	IncludeFilterTypes []*string `min:"1" type:"list"`
+	IncludeFilterTypes []*string `min:"1" type:"list" enum:"SalesforceChatterFeedIncludeFilterType"`
 }
 
 // String returns the string representation.
@@ -19840,7 +19840,7 @@ type SalesforceKnowledgeArticleConfiguration struct {
 	// indexes knowledge articles. You must specify at least one state.
 	//
 	// IncludedStates is a required field
-	IncludedStates []*string `min:"1" type:"list" required:"true"`
+	IncludedStates []*string `min:"1" type:"list" required:"true" enum:"SalesforceKnowledgeArticleState"`
 
 	// Configuration information for standard Salesforce knowledge articles.
 	StandardKnowledgeArticleTypeConfiguration *SalesforceStandardKnowledgeArticleTypeConfiguration `type:"structure"`
@@ -21224,7 +21224,7 @@ type SlackConfiguration struct {
 	// and direct messages. You can specify one or more of these options.
 	//
 	// SlackEntityList is a required field
-	SlackEntityList []*string `min:"1" type:"list" required:"true"`
+	SlackEntityList []*string `min:"1" type:"list" required:"true" enum:"SlackEntity"`
 
 	// The identifier of the team in the Slack workspace. For example, T0123456789.
 	//

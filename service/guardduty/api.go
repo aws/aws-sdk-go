@@ -10155,7 +10155,7 @@ type GetFindingsStatisticsInput struct {
 	// The types of finding statistics to retrieve.
 	//
 	// FindingStatisticTypes is a required field
-	FindingStatisticTypes []*string `locationName:"findingStatisticTypes" type:"list" required:"true"`
+	FindingStatisticTypes []*string `locationName:"findingStatisticTypes" type:"list" required:"true" enum:"FindingStatisticType"`
 }
 
 // String returns the string representation.
@@ -16576,7 +16576,7 @@ type UsageCriteria struct {
 	// The data sources to aggregate usage statistics from.
 	//
 	// DataSources is a required field
-	DataSources []*string `locationName:"dataSources" type:"list" required:"true"`
+	DataSources []*string `locationName:"dataSources" type:"list" required:"true" enum:"DataSource"`
 
 	// The resources to aggregate usage statistics from. Only accepts exact resource
 	// names.

@@ -10385,10 +10385,10 @@ type SearchInsightsFilters struct {
 	ServiceCollection *ServiceCollection `type:"structure"`
 
 	// An array of severity values used to search for insights.
-	Severities []*string `type:"list"`
+	Severities []*string `type:"list" enum:"InsightSeverity"`
 
 	// An array of status values used to search for insights.
-	Statuses []*string `type:"list"`
+	Statuses []*string `type:"list" enum:"InsightStatus"`
 }
 
 // String returns the string representation.
@@ -10618,10 +10618,10 @@ type SearchOrganizationInsightsFilters struct {
 	ServiceCollection *ServiceCollection `type:"structure"`
 
 	// An array of severity values used to search for insights.
-	Severities []*string `type:"list"`
+	Severities []*string `type:"list" enum:"InsightSeverity"`
 
 	// An array of status values used to search for insights.
-	Statuses []*string `type:"list"`
+	Statuses []*string `type:"list" enum:"InsightStatus"`
 }
 
 // String returns the string representation.
@@ -10857,7 +10857,7 @@ type ServiceCollection struct {
 
 	// An array of strings that each specifies the name of an Amazon Web Services
 	// service.
-	ServiceNames []*string `type:"list"`
+	ServiceNames []*string `type:"list" enum:"ServiceName"`
 }
 
 // String returns the string representation.

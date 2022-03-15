@@ -11646,7 +11646,7 @@ type ProjectCache struct {
 	//    project sources. Cached items are overridden if a source item has the
 	//    same name. Directories are specified using cache paths in the buildspec
 	//    file.
-	Modes []*string `locationName:"modes" type:"list"`
+	Modes []*string `locationName:"modes" type:"list" enum:"CacheMode"`
 
 	// The type of cache used by the build project. Valid values include:
 	//

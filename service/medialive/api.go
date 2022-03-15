@@ -16888,7 +16888,7 @@ type HlsGroupSettings struct {
 
 	// Choose one or more ad marker types to pass SCTE35 signals through to this
 	// group of Apple HLS outputs.
-	AdMarkers []*string `locationName:"adMarkers" type:"list"`
+	AdMarkers []*string `locationName:"adMarkers" type:"list" enum:"HlsAdMarkers"`
 
 	// A partial URI prefix that will be prepended to each output in the media .m3u8
 	// file. Can be used if base manifest is delivered from a different URL than
@@ -25814,7 +25814,7 @@ type RtmpGroupSettings struct {
 	// Choose the ad marker type for this output group. MediaLive will create a
 	// message based on the content of each SCTE-35 message, format it for that
 	// marker type, and insert it in the datastream.
-	AdMarkers []*string `locationName:"adMarkers" type:"list"`
+	AdMarkers []*string `locationName:"adMarkers" type:"list" enum:"RtmpAdMarkers"`
 
 	// Authentication scheme to use when connecting with CDN
 	AuthenticationScheme *string `locationName:"authenticationScheme" type:"string" enum:"AuthenticationScheme"`

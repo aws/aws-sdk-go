@@ -6767,7 +6767,7 @@ type SearchEntitiesInput struct {
 	// The entity types for which to search.
 	//
 	// EntityTypes is a required field
-	EntityTypes []*string `locationName:"entityTypes" type:"list" required:"true"`
+	EntityTypes []*string `locationName:"entityTypes" type:"list" required:"true" enum:"EntityType"`
 
 	// Optional filter to apply to the search. Valid filters are NAME NAMESPACE,
 	// SEMANTIC_TYPE_PATH and REFERENCED_ENTITY_ID. REFERENCED_ENTITY_ID filters

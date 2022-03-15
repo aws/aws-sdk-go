@@ -20825,7 +20825,7 @@ type FleetAttributes struct {
 
 	// A list of fleet activity that has been suspended using StopFleetActions.
 	// This includes fleet auto-scaling.
-	StoppedActions []*string `min:"1" type:"list"`
+	StoppedActions []*string `min:"1" type:"list" enum:"FleetAction"`
 
 	// A time stamp indicating when this data object was terminated. Format is a
 	// number expressed in Unix time as milliseconds (for example "1469498468.057").
@@ -21566,7 +21566,7 @@ type GameServerGroup struct {
 
 	// A list of activities that are currently suspended for this game server group.
 	// If this property is empty, all activities are occurring.
-	SuspendedActions []*string `min:"1" type:"list"`
+	SuspendedActions []*string `min:"1" type:"list" enum:"GameServerGroupAction"`
 }
 
 // String returns the string representation.
@@ -24617,7 +24617,7 @@ type LocationAttributes struct {
 	LocationState *LocationState `type:"structure"`
 
 	// A list of fleet actions that have been suspended in the fleet location.
-	StoppedActions []*string `min:"1" type:"list"`
+	StoppedActions []*string `min:"1" type:"list" enum:"FleetAction"`
 
 	// The status of fleet activity updates to the location. The status PENDING_UPDATE
 	// indicates that StopFleetActions or StartFleetActions has been requested but
@@ -25924,7 +25924,7 @@ type PriorityConfiguration struct {
 	//
 	//    * LOCATION -- FleetIQ prioritizes based on the provided order of locations,
 	//    as defined in LocationOrder.
-	PriorityOrder []*string `min:"1" type:"list"`
+	PriorityOrder []*string `min:"1" type:"list" enum:"PriorityType"`
 }
 
 // String returns the string representation.
@@ -26604,7 +26604,7 @@ type ResumeGameServerGroupInput struct {
 	// The activity to resume for this game server group.
 	//
 	// ResumeActions is a required field
-	ResumeActions []*string `min:"1" type:"list" required:"true"`
+	ResumeActions []*string `min:"1" type:"list" required:"true" enum:"GameServerGroupAction"`
 }
 
 // String returns the string representation.
@@ -27587,7 +27587,7 @@ type StartFleetActionsInput struct {
 	// List of actions to restart on the fleet.
 	//
 	// Actions is a required field
-	Actions []*string `min:"1" type:"list" required:"true"`
+	Actions []*string `min:"1" type:"list" required:"true" enum:"FleetAction"`
 
 	// A unique identifier for the fleet to restart actions on. You can use either
 	// the fleet ID or ARN value.
@@ -28187,7 +28187,7 @@ type StopFleetActionsInput struct {
 	// List of actions to suspend on the fleet.
 	//
 	// Actions is a required field
-	Actions []*string `min:"1" type:"list" required:"true"`
+	Actions []*string `min:"1" type:"list" required:"true" enum:"FleetAction"`
 
 	// A unique identifier for the fleet to stop actions on. You can use either
 	// the fleet ID or ARN value.
@@ -28465,7 +28465,7 @@ type SuspendGameServerGroupInput struct {
 	// The activity to suspend for this game server group.
 	//
 	// SuspendActions is a required field
-	SuspendActions []*string `min:"1" type:"list" required:"true"`
+	SuspendActions []*string `min:"1" type:"list" required:"true" enum:"GameServerGroupAction"`
 }
 
 // String returns the string representation.

@@ -15609,7 +15609,7 @@ type GetNetworkRoutesInput struct {
 	RouteTableIdentifier *RouteTableIdentifier `type:"structure" required:"true"`
 
 	// The route states.
-	States []*string `type:"list"`
+	States []*string `type:"list" enum:"RouteState"`
 
 	// The routes with a subnet that match the specified CIDR filter.
 	SubnetOfMatches []*string `type:"list"`
@@ -15619,7 +15619,7 @@ type GetNetworkRoutesInput struct {
 	SupernetOfMatches []*string `type:"list"`
 
 	// The route types.
-	Types []*string `type:"list"`
+	Types []*string `type:"list" enum:"RouteType"`
 }
 
 // String returns the string representation.

@@ -5740,7 +5740,7 @@ type ListContactsInput struct {
 	// Status of a contact reservation.
 	//
 	// StatusList is a required field
-	StatusList []*string `locationName:"statusList" type:"list" required:"true"`
+	StatusList []*string `locationName:"statusList" type:"list" required:"true" enum:"ContactStatus"`
 }
 
 // String returns the string representation.

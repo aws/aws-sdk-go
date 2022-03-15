@@ -1317,7 +1317,7 @@ type AppMonitorConfiguration struct {
 	//
 	//    * http indicates that RUM collects data about HTTP errors thrown by your
 	//    application.
-	Telemetries []*string `type:"list"`
+	Telemetries []*string `type:"list" enum:"Telemetry"`
 }
 
 // String returns the string representation.

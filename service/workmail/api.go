@@ -15290,7 +15290,7 @@ type Permission struct {
 	// irrespective of other folder-level permissions set on the mailbox.
 	//
 	// PermissionValues is a required field
-	PermissionValues []*string `type:"list" required:"true"`
+	PermissionValues []*string `type:"list" required:"true" enum:"PermissionType"`
 }
 
 // String returns the string representation.
@@ -15722,7 +15722,7 @@ type PutMailboxPermissionsInput struct {
 	// irrespective of other folder-level permissions set on the mailbox.
 	//
 	// PermissionValues is a required field
-	PermissionValues []*string `type:"list" required:"true"`
+	PermissionValues []*string `type:"list" required:"true" enum:"PermissionType"`
 }
 
 // String returns the string representation.
