@@ -130,6 +130,19 @@ func TestListOfEnums(t *testing.T) {
 				"X-Amz-Test-Header": {"foo,bar"},
 			},
 		},
+		{
+			Input: func() interface{} {
+				type v struct {
+					List []*string `type:"list" location:"header" locationName:"x-amz-test-header" enum:"FooBar"`
+				}
+				return &v{
+					List: []*string{aws.String("f,o,o"), nil, aws.String(""), nil, aws.String(`"bar"`)},
+				}
+			}(),
+			Expected: http.Header{
+				"X-Amz-Test-Header": {`"f,o,o","\"bar\""`},
+			},
+		},
 	}
 
 	for i, tt := range cases {

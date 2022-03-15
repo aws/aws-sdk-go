@@ -288,7 +288,11 @@ func convertType(v reflect.Value, tag reflect.StructTag) (str string, err error)
 			if i != 0 {
 				buff.WriteRune(',')
 			}
-			buff.WriteString(*sv)
+			item := *sv
+			if strings.Index(item, `,`) != -1 || strings.Index(item, `"`) != -1 {
+				item = strconv.Quote(item)
+			}
+			buff.WriteString(item)
 		}
 		str = string(buff.Bytes())
 	case []byte:
