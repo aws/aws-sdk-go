@@ -145,8 +145,19 @@ const (
 	// ErrCodeTargetNotConnectedException for service response error code
 	// "TargetNotConnectedException".
 	//
-	// The target container isn't properly configured with the execute command agent
-	// or the container is no longer active or running.
+	// The execute command cannot run. This error can be caused by any of the following
+	// configuration issues:
+	//
+	//    * Incorrect IAM permissions
+	//
+	//    * The SSM agent is not installed or is not running
+	//
+	//    * There is an interface Amazon VPC endpoint for Amazon ECS, but there
+	//    is not one for for Systems Manager Session Manager
+	//
+	// For information about how to troubleshoot the issues, see Troubleshooting
+	// issues with ECS Exec (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html)
+	// in the Amazon Elastic Container Service Developer Guide.
 	ErrCodeTargetNotConnectedException = "TargetNotConnectedException"
 
 	// ErrCodeTargetNotFoundException for service response error code

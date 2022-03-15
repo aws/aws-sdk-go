@@ -155,6 +155,10 @@ type DataExchangeAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *dataexchange.ListTagsForResourceInput, ...request.Option) (*dataexchange.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*dataexchange.ListTagsForResourceInput) (*request.Request, *dataexchange.ListTagsForResourceOutput)
 
+	RevokeRevision(*dataexchange.RevokeRevisionInput) (*dataexchange.RevokeRevisionOutput, error)
+	RevokeRevisionWithContext(aws.Context, *dataexchange.RevokeRevisionInput, ...request.Option) (*dataexchange.RevokeRevisionOutput, error)
+	RevokeRevisionRequest(*dataexchange.RevokeRevisionInput) (*request.Request, *dataexchange.RevokeRevisionOutput)
+
 	SendApiAsset(*dataexchange.SendApiAssetInput) (*dataexchange.SendApiAssetOutput, error)
 	SendApiAssetWithContext(aws.Context, *dataexchange.SendApiAssetInput, ...request.Option) (*dataexchange.SendApiAssetOutput, error)
 	SendApiAssetRequest(*dataexchange.SendApiAssetInput) (*request.Request, *dataexchange.SendApiAssetOutput)

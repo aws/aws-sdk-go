@@ -1440,7 +1440,7 @@
     "DataSourceConfigs":{
       "type":"list",
       "member":{"shape":"DataSourceConfig"},
-      "max":5,
+      "max":6,
       "min":1
     },
     "DataSourceNames":{
@@ -1938,7 +1938,7 @@
       "type":"map",
       "key":{"shape":"EnvironmentVariableKey"},
       "value":{"shape":"EnvironmentVariableValue"},
-      "max":16,
+      "max":20,
       "min":0
     },
     "EnvironmentVariableValue":{
@@ -2324,9 +2324,12 @@
     },
     "LoggingConfig":{
       "type":"structure",
-      "required":["recordAllRosTopics"],
       "members":{
-        "recordAllRosTopics":{"shape":"BoxedBoolean"}
+        "recordAllRosTopics":{
+          "shape":"BoxedBoolean",
+          "deprecated":true,
+          "deprecatedMessage":"AWS RoboMaker is ending support for ROS software suite. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/software-support-policy.html."
+        }
       }
     },
     "MaxConcurrency":{"type":"integer"},
@@ -2527,9 +2530,17 @@
         "applicationVersion":{"shape":"Version"},
         "launchConfig":{"shape":"LaunchConfig"},
         "uploadConfigurations":{"shape":"UploadConfigurations"},
-        "useDefaultUploadConfigurations":{"shape":"BoxedBoolean"},
+        "useDefaultUploadConfigurations":{
+          "shape":"BoxedBoolean",
+          "deprecated":true,
+          "deprecatedMessage":"AWS RoboMaker is ending support for ROS software suite. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/software-support-policy.html."
+        },
         "tools":{"shape":"Tools"},
-        "useDefaultTools":{"shape":"BoxedBoolean"}
+        "useDefaultTools":{
+          "shape":"BoxedBoolean",
+          "deprecated":true,
+          "deprecatedMessage":"AWS RoboMaker is ending support for ROS software suite. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/software-support-policy.html."
+        }
       }
     },
     "RobotApplicationConfigs":{
@@ -2706,9 +2717,17 @@
         "launchConfig":{"shape":"LaunchConfig"},
         "uploadConfigurations":{"shape":"UploadConfigurations"},
         "worldConfigs":{"shape":"WorldConfigs"},
-        "useDefaultUploadConfigurations":{"shape":"BoxedBoolean"},
+        "useDefaultUploadConfigurations":{
+          "shape":"BoxedBoolean",
+          "deprecated":true,
+          "deprecatedMessage":"AWS RoboMaker is ending support for ROS software suite. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/software-support-policy.html."
+        },
         "tools":{"shape":"Tools"},
-        "useDefaultTools":{"shape":"BoxedBoolean"}
+        "useDefaultTools":{
+          "shape":"BoxedBoolean",
+          "deprecated":true,
+          "deprecatedMessage":"AWS RoboMaker is ending support for ROS software suite. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/software-support-policy.html."
+        }
       }
     },
     "SimulationApplicationConfigs":{
@@ -3327,7 +3346,8 @@
         "arn":{"shape":"Arn"},
         "status":{"shape":"WorldExportJobStatus"},
         "createdAt":{"shape":"CreatedAt"},
-        "worlds":{"shape":"Arns"}
+        "worlds":{"shape":"Arns"},
+        "outputLocation":{"shape":"OutputLocation"}
       }
     },
     "WorldFailure":{

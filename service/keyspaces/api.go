@@ -1153,26 +1153,26 @@ func (c *Keyspaces) RestoreTableRequest(input *RestoreTableInput) (req *request.
 //
 // You can also overwrite these settings during restore:
 //
-//    * Read/write capacity mode
+// • Read/write capacity mode
 //
-//    * Provisioned throughput capacity settings
+// • Provisioned throughput capacity settings
 //
-//    * Point-in-time (PITR) settings
+// • Point-in-time (PITR) settings
 //
-//    * Tags
+// • Tags
 //
 // For more information, see PITR restore settings (https://docs.aws.amazon.com/keyspaces/latest/devguide/PointInTimeRecovery_HowItWorks.html#howitworks_backup_settings)
 // in the Amazon Keyspaces Developer Guide.
 //
-// The following settings are not restored, and you must configure them manually
-// for the new table.
+// Note that the following settings are not restored, and you must configure
+// them manually for the new table:
 //
-//    * Automatic scaling policies (for tables that use provisioned capacity
-//    mode)
+// • Automatic scaling policies (for tables that use provisioned capacity
+// mode)
 //
-//    * Identity and Access Management (IAM) policies
+// • Identity and Access Management (IAM) policies
 //
-//    * Amazon CloudWatch metrics and alarms
+// • Amazon CloudWatch metrics and alarms
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1603,14 +1603,15 @@ func (s *AccessDeniedException) RequestID() string {
 // Amazon Keyspaces has two read/write capacity modes for processing reads and
 // writes on your tables:
 //
-//    * On-demand (default)
+// • On-demand (default)
 //
-//    * Provisioned
+// • Provisioned
 //
-//    <p> The read/write capacity mode that you choose controls how you are
-//    charged for read and write throughput and how table throughput capacity
-//    is managed. </p> <p>For more information, see <a href="https://docs.aws.amazon.com/keyspaces/latest/devguide/ReadWriteCapacityMode.html">Read/write
-//    capacity modes</a> in the <i>Amazon Keyspaces Developer Guide</i>.</p>
+// The read/write capacity mode that you choose controls how you are charged
+// for read and write throughput and how table throughput capacity is managed.
+//
+// For more information, see Read/write capacity modes (https://docs.aws.amazon.com/keyspaces/latest/devguide/ReadWriteCapacityMode.html)
+// in the Amazon Keyspaces Developer Guide.
 type CapacitySpecification struct {
 	_ struct{} `type:"structure"`
 
@@ -1620,10 +1621,10 @@ type CapacitySpecification struct {
 
 	// The read/write throughput capacity mode for a table. The options are:
 	//
-	//    * throughputMode:PAY_PER_REQUEST and
+	// • throughputMode:PAY_PER_REQUEST and
 	//
-	//    * throughputMode:PROVISIONED. The provisioned capacity mode requires readCapacityUnits
-	//    and writeCapacityUnits as inputs.
+	// • throughputMode:PROVISIONED - Provisioned capacity mode requires readCapacityUnits
+	// and writeCapacityUnits as input.
 	//
 	// The default is throughput_mode:PAY_PER_REQUEST.
 	//
@@ -1695,9 +1696,9 @@ func (s *CapacitySpecification) SetWriteCapacityUnits(v int64) *CapacitySpecific
 
 // The read/write throughput capacity mode for a table. The options are:
 //
-//    * throughputMode:PAY_PER_REQUEST and
+// • throughputMode:PAY_PER_REQUEST and
 //
-//    * throughputMode:PROVISIONED.
+// • throughputMode:PROVISIONED.
 //
 // For more information, see Read/write capacity modes (https://docs.aws.amazon.com/keyspaces/latest/devguide/ReadWriteCapacityMode.html)
 // in the Amazon Keyspaces Developer Guide.
@@ -1714,10 +1715,10 @@ type CapacitySpecificationSummary struct {
 
 	// The read/write throughput capacity mode for a table. The options are:
 	//
-	//    * throughputMode:PAY_PER_REQUEST and
+	// • throughputMode:PAY_PER_REQUEST and
 	//
-	//    * throughputMode:PROVISIONED. The provisioned capacity mode requires readCapacityUnits
-	//    and writeCapacityUnits as inputs.
+	// • throughputMode:PROVISIONED - Provisioned capacity mode requires readCapacityUnits
+	// and writeCapacityUnits as input.
 	//
 	// The default is throughput_mode:PAY_PER_REQUEST.
 	//
@@ -2127,10 +2128,10 @@ type CreateTableInput struct {
 	// Specifies the read/write throughput capacity mode for the table. The options
 	// are:
 	//
-	//    * throughputMode:PAY_PER_REQUEST and
+	// • throughputMode:PAY_PER_REQUEST and
 	//
-	//    * throughputMode:PROVISIONED. The provisioned capacity mode requires readCapacityUnits
-	//    and writeCapacityUnits as inputs.
+	// • throughputMode:PROVISIONED - Provisioned capacity mode requires readCapacityUnits
+	// and writeCapacityUnits as input.
 	//
 	// The default is throughput_mode:PAY_PER_REQUEST.
 	//
@@ -2150,14 +2151,16 @@ type CreateTableInput struct {
 	// Specifies how the encryption key for encryption at rest is managed for the
 	// table. You can choose one of the following KMS key (KMS key):
 	//
-	//    <ul> <li> <p> <code>type:AWS_OWNED_KMS_KEY</code> - This key is owned
-	//    by Amazon Keyspaces. </p> </li> <li> <p> <code>type:CUSTOMER_MANAGED_KMS_KEY</code>
-	//    - This key is stored in your account and is created, owned, and managed
-	//    by you. This option requires the <code>kms_key_identifier</code> of the
-	//    KMS key in Amazon Resource Name (ARN) format as input. </p> </li> </ul>
-	//    <p>The default is <code>type:AWS_OWNED_KMS_KEY</code>. </p> <p>For more
-	//    information, see <a href="https://docs.aws.amazon.com/keyspaces/latest/devguide/EncryptionAtRest.html">Encryption
-	//    at rest</a> in the <i>Amazon Keyspaces Developer Guide</i>.</p>
+	// • type:AWS_OWNED_KMS_KEY - This key is owned by Amazon Keyspaces.
+	//
+	// • type:CUSTOMER_MANAGED_KMS_KEY - This key is stored in your account and
+	// is created, owned, and managed by you. This option requires the kms_key_identifier
+	// of the KMS key in Amazon Resource Name (ARN) format as input.
+	//
+	// The default is type:AWS_OWNED_KMS_KEY.
+	//
+	// For more information, see Encryption at rest (https://docs.aws.amazon.com/keyspaces/latest/devguide/EncryptionAtRest.html)
+	// in the Amazon Keyspaces Developer Guide.
 	EncryptionSpecification *EncryptionSpecification `locationName:"encryptionSpecification" type:"structure"`
 
 	// The name of the keyspace that the table is going to be created in.
@@ -2168,9 +2171,9 @@ type CreateTableInput struct {
 	// Specifies if pointInTimeRecovery is enabled or disabled for the table. The
 	// options are:
 	//
-	//    * ENABLED
+	// • ENABLED
 	//
-	//    * DISABLED
+	// • DISABLED
 	//
 	// If it's not specified, the default is DISABLED.
 	//
@@ -2182,28 +2185,34 @@ type CreateTableInput struct {
 	//
 	// For each column to be created:
 	//
-	//    * name - The name of the column.
+	// • name - The name of the column.
 	//
-	//    * type - An Amazon Keyspaces data type. For more information, see Data
-	//    types (https://docs.aws.amazon.com/keyspaces/latest/devguide/cql.elements.html#cql.data-types)
-	//    in the Amazon Keyspaces Developer Guide.
+	// • type - An Amazon Keyspaces data type. For more information, see Data
+	// types (https://docs.aws.amazon.com/keyspaces/latest/devguide/cql.elements.html#cql.data-types)
+	// in the Amazon Keyspaces Developer Guide.
 	//
-	//    <p>The primary key of the table consists of the following columns:</p>
-	//    <ul> <li> <p> <code>partitionKeys</code> - The partition key can be a
-	//    single column, or it can be a compound value composed of two or more columns.
-	//    The partition key portion of the primary key is required and determines
-	//    how Amazon Keyspaces stores your data.</p> <ul> <li> <p> <i> <code>name</code>
-	//    </i> - The name of each partition key column.</p> </li> </ul> </li> <li>
-	//    <p> <code>clusteringKeys</code> - The optional clustering column portion
-	//    of your primary key determines how the data is clustered and sorted within
-	//    each partition.</p> <ul> <li> <p> <i> <code>name</code> </i> - The name
-	//    of the clustering column. </p> </li> <li> <p> <i> <code>orderBy</code>
-	//    </i> - Sets the ascendant (<code>ASC</code>) or descendant (<code>DESC</code>)
-	//    order modifier.</p> </li> </ul> </li> </ul> <p>To define a column as static
-	//    use <code> <i>staticColumns</i> </code> - Static columns store values
-	//    that are shared by all rows in the same partition:</p> <ul> <li> <p> <i>
-	//    <code>name</code> </i> - The name of the column.</p> </li> <li> <p> <code>
-	//    <i>type</i> </code> - An Amazon Keyspaces data type.</p> </li> </ul>
+	// The primary key of the table consists of the following columns:
+	//
+	// • partitionKeys - The partition key can be a single column, or it can be
+	// a compound value composed of two or more columns. The partition key portion
+	// of the primary key is required and determines how Amazon Keyspaces stores
+	// your data.
+	//
+	// • name - The name of each partition key column.
+	//
+	// • clusteringKeys - The optional clustering column portion of your primary
+	// key determines how the data is clustered and sorted within each partition.
+	//
+	// • name - The name of the clustering column.
+	//
+	// • orderBy - Sets the ascendant (ASC) or descendant (DESC) order modifier.
+	//
+	// To define a column as static use staticColumns - Static columns store values
+	// that are shared by all rows in the same partition:
+	//
+	// • name - The name of the column.
+	//
+	// • type - An Amazon Keyspaces data type.
 	//
 	// SchemaDefinition is a required field
 	SchemaDefinition *SchemaDefinition `locationName:"schemaDefinition" type:"structure" required:"true"`
@@ -2222,9 +2231,9 @@ type CreateTableInput struct {
 
 	// Enables Time to Live custom settings for the table. The options are:
 	//
-	//    * status:enabled
+	// • status:enabled
 	//
-	//    * status:disabled
+	// • status:disabled
 	//
 	// The default is status:disabled. After ttl is enabled, you can't disable it
 	// for the table.
@@ -2581,12 +2590,12 @@ func (s DeleteTableOutput) GoString() string {
 // and integrates with Key Management Service for storing and managing the encryption
 // key. You can choose one of the following KMS keys (KMS keys):
 //
-//    * Amazon Web Services owned key - This is the default encryption type.
-//    The key is owned by Amazon Keyspaces (no additional charge).
+// • Amazon Web Services owned key - This is the default encryption type.
+// The key is owned by Amazon Keyspaces (no additional charge).
 //
-//    * Customer managed key - This key is stored in your account and is created,
-//    owned, and managed by you. You have full control over the customer managed
-//    key (KMS charges apply).
+// • Customer managed key - This key is stored in your account and is created,
+// owned, and managed by you. You have full control over the customer managed
+// key (KMS charges apply).
 //
 // For more information about encryption at rest in Amazon Keyspaces, see Encryption
 // at rest (https://docs.aws.amazon.com/keyspaces/latest/devguide/EncryptionAtRest.html)
@@ -2604,11 +2613,11 @@ type EncryptionSpecification struct {
 	// The encryption option specified for the table. You can choose one of the
 	// following KMS keys (KMS keys):
 	//
-	//    * type:AWS_OWNED_KMS_KEY - This key is owned by Amazon Keyspaces.
+	// • type:AWS_OWNED_KMS_KEY - This key is owned by Amazon Keyspaces.
 	//
-	//    * type:CUSTOMER_MANAGED_KMS_KEY - This key is stored in your account and
-	//    is created, owned, and managed by you. This option requires the kms_key_identifier
-	//    of the KMS key in Amazon Resource Name (ARN) format as input.
+	// • type:CUSTOMER_MANAGED_KMS_KEY - This key is stored in your account and
+	// is created, owned, and managed by you. This option requires the kms_key_identifier
+	// of the KMS key in Amazon Resource Name (ARN) format as input.
 	//
 	// The default is type:AWS_OWNED_KMS_KEY.
 	//
@@ -2829,9 +2838,9 @@ type GetTableOutput struct {
 
 	// The read/write throughput capacity mode for a table. The options are:
 	//
-	//    * throughputMode:PAY_PER_REQUEST and
+	// • throughputMode:PAY_PER_REQUEST
 	//
-	//    * throughputMode:PROVISIONED.
+	// • throughputMode:PROVISIONED
 	CapacitySpecification *CapacitySpecificationSummary `locationName:"capacitySpecification" type:"structure"`
 
 	// The the description of the specified table.
@@ -3474,9 +3483,9 @@ type PointInTimeRecovery struct {
 
 	// The options are:
 	//
-	//    * ENABLED
+	// • ENABLED
 	//
-	//    * DISABLED
+	// • DISABLED
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"PointInTimeRecoveryStatus"`
@@ -3638,10 +3647,10 @@ type RestoreTableInput struct {
 	// Specifies the read/write throughput capacity mode for the target table. The
 	// options are:
 	//
-	//    * throughputMode:PAY_PER_REQUEST and
+	// • throughputMode:PAY_PER_REQUEST
 	//
-	//    * throughputMode:PROVISIONED. The provisioned capacity mode requires readCapacityUnits
-	//    and writeCapacityUnits as inputs.
+	// • throughputMode:PROVISIONED - Provisioned capacity mode requires readCapacityUnits
+	// and writeCapacityUnits as input.
 	//
 	// The default is throughput_mode:PAY_PER_REQUEST.
 	//
@@ -3652,22 +3661,24 @@ type RestoreTableInput struct {
 	// Specifies the encryption settings for the target table. You can choose one
 	// of the following KMS key (KMS key):
 	//
-	//    <ul> <li> <p> <code>type:AWS_OWNED_KMS_KEY</code> - This key is owned
-	//    by Amazon Keyspaces. </p> </li> <li> <p> <code>type:CUSTOMER_MANAGED_KMS_KEY</code>
-	//    - This key is stored in your account and is created, owned, and managed
-	//    by you. This option requires the <code>kms_key_identifier</code> of the
-	//    KMS key in Amazon Resource Name (ARN) format as input. </p> </li> </ul>
-	//    <p>The default is <code>type:AWS_OWNED_KMS_KEY</code>. </p> <p>For more
-	//    information, see <a href="https://docs.aws.amazon.com/keyspaces/latest/devguide/EncryptionAtRest.html">Encryption
-	//    at rest</a> in the <i>Amazon Keyspaces Developer Guide</i>.</p>
+	// • type:AWS_OWNED_KMS_KEY - This key is owned by Amazon Keyspaces.
+	//
+	// • type:CUSTOMER_MANAGED_KMS_KEY - This key is stored in your account and
+	// is created, owned, and managed by you. This option requires the kms_key_identifier
+	// of the KMS key in Amazon Resource Name (ARN) format as input.
+	//
+	// The default is type:AWS_OWNED_KMS_KEY.
+	//
+	// For more information, see Encryption at rest (https://docs.aws.amazon.com/keyspaces/latest/devguide/EncryptionAtRest.html)
+	// in the Amazon Keyspaces Developer Guide.
 	EncryptionSpecificationOverride *EncryptionSpecification `locationName:"encryptionSpecificationOverride" type:"structure"`
 
 	// Specifies the pointInTimeRecovery settings for the target table. The options
 	// are:
 	//
-	//    * ENABLED
+	// • ENABLED
 	//
-	//    * DISABLED
+	// • DISABLED
 	//
 	// If it's not specified, the default is DISABLED.
 	//
@@ -4506,20 +4517,20 @@ type UpdateTableInput struct {
 
 	// For each column to be added to the specified table:
 	//
-	//    * name - The name of the column.
+	// • name - The name of the column.
 	//
-	//    * type - An Amazon Keyspaces data type. For more information, see Data
-	//    types (https://docs.aws.amazon.com/keyspaces/latest/devguide/cql.elements.html#cql.data-types)
-	//    in the Amazon Keyspaces Developer Guide.
+	// • type - An Amazon Keyspaces data type. For more information, see Data
+	// types (https://docs.aws.amazon.com/keyspaces/latest/devguide/cql.elements.html#cql.data-types)
+	// in the Amazon Keyspaces Developer Guide.
 	AddColumns []*ColumnDefinition `locationName:"addColumns" min:"1" type:"list"`
 
 	// Modifies the read/write throughput capacity mode for the table. The options
 	// are:
 	//
-	//    * throughputMode:PAY_PER_REQUEST and
+	// • throughputMode:PAY_PER_REQUEST and
 	//
-	//    * throughputMode:PROVISIONED. The provisioned capacity mode requires readCapacityUnits
-	//    and writeCapacityUnits as inputs.
+	// • throughputMode:PROVISIONED - Provisioned capacity mode requires readCapacityUnits
+	// and writeCapacityUnits as input.
 	//
 	// The default is throughput_mode:PAY_PER_REQUEST.
 	//
@@ -4536,14 +4547,16 @@ type UpdateTableInput struct {
 	// Modifies the encryption settings of the table. You can choose one of the
 	// following KMS key (KMS key):
 	//
-	//    <ul> <li> <p> <code>type:AWS_OWNED_KMS_KEY</code> - This key is owned
-	//    by Amazon Keyspaces. </p> </li> <li> <p> <code>type:CUSTOMER_MANAGED_KMS_KEY</code>
-	//    - This key is stored in your account and is created, owned, and managed
-	//    by you. This option requires the <code>kms_key_identifier</code> of the
-	//    KMS key in Amazon Resource Name (ARN) format as input. </p> </li> </ul>
-	//    <p>The default is <code>AWS_OWNED_KMS_KEY</code>. </p> <p>For more information,
-	//    see <a href="https://docs.aws.amazon.com/keyspaces/latest/devguide/EncryptionAtRest.html">Encryption
-	//    at rest</a> in the <i>Amazon Keyspaces Developer Guide</i>.</p>
+	// • type:AWS_OWNED_KMS_KEY - This key is owned by Amazon Keyspaces.
+	//
+	// • type:CUSTOMER_MANAGED_KMS_KEY - This key is stored in your account and
+	// is created, owned, and managed by you. This option requires the kms_key_identifier
+	// of the KMS key in Amazon Resource Name (ARN) format as input.
+	//
+	// The default is AWS_OWNED_KMS_KEY.
+	//
+	// For more information, see Encryption at rest (https://docs.aws.amazon.com/keyspaces/latest/devguide/EncryptionAtRest.html)
+	// in the Amazon Keyspaces Developer Guide.
 	EncryptionSpecification *EncryptionSpecification `locationName:"encryptionSpecification" type:"structure"`
 
 	// The name of the keyspace the specified table is stored in.
@@ -4553,9 +4566,9 @@ type UpdateTableInput struct {
 
 	// Modifies the pointInTimeRecovery settings of the table. The options are:
 	//
-	//    * ENABLED
+	// • ENABLED
 	//
-	//    * DISABLED
+	// • DISABLED
 	//
 	// If it's not specified, the default is DISABLED.
 	//
@@ -4570,9 +4583,9 @@ type UpdateTableInput struct {
 
 	// Modifies Time to Live custom settings for the table. The options are:
 	//
-	//    * status:enabled
+	// • status:enabled
 	//
-	//    * status:disabled
+	// • status:disabled
 	//
 	// The default is status:disabled. After ttl is enabled, you can't disable it
 	// for the table.

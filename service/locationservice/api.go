@@ -7772,7 +7772,7 @@ type CalculateRouteTruckModeOptions struct {
 	// Valid Values: false | true
 	AvoidFerries *bool `type:"boolean"`
 
-	// Avoids ferries when calculating routes.
+	// Avoids tolls when calculating routes.
 	//
 	// Default Value: false
 	//
@@ -10291,7 +10291,7 @@ type DevicePositionUpdate struct {
 	// DeviceId is a required field
 	DeviceId *string `min:"1" type:"string" required:"true"`
 
-	// The latest device position defined in WGS 84 (https://earth-info.nga.mil/GandG/wgs84/index.html)
+	// The latest device position defined in WGS 84 (https://earth-info.nga.mil/index.php?dir=wgs84&action=wgs84)
 	// format: [X or longitude, Y or latitude].
 	//
 	// Position is a sensitive parameter and its value will be
@@ -11041,6 +11041,10 @@ type GetMapGlyphsInput struct {
 	// styles:
 	//
 	//    * VectorHereBerlin – Fira GO Regular | Fira GO Bold
+	//
+	//    * VectorHereExplore, VectorHereExploreTruck – Firo GO Italic | Fira
+	//    GO Map | Fira GO Map Bold | Noto Sans CJK JP Bold | Noto Sans CJK JP Light
+	//    | Noto Sans CJK JP Regular
 	//
 	// FontStack is a required field
 	FontStack *string `location:"uri" locationName:"FontStack" type:"string" required:"true"`
@@ -13384,10 +13388,16 @@ type MapConfiguration struct {
 	// Valid HERE Technologies map styles (https://docs.aws.amazon.com/location/latest/developerguide/HERE.html):
 	//
 	//    * VectorHereBerlin – The HERE Berlin map style is a high contrast detailed
-	//    base map of the world that blends 3D and 2D rendering. When using HERE
-	//    as your data provider, and selecting the Style VectorHereBerlin, you may
-	//    not use HERE Technologies maps for Asset Management. See the AWS Service
-	//    Terms (https://aws.amazon.com/service-terms/) for Amazon Location Service.
+	//    base map of the world that blends 3D and 2D rendering.
+	//
+	//    * VectorHereExplore – A default HERE map style containing a neutral,
+	//    global map and its features including roads, buildings, landmarks, and
+	//    water features. It also now includes a fully designed map of Japan.
+	//
+	//    * VectorHereExploreTruck – A global map containing truck restrictions
+	//    and attributes (e.g. width / height / HAZMAT) symbolized with highlighted
+	//    segments and icons on top of HERE Explore to support use cases within
+	//    transport and logistics.
 	//
 	// Style is a required field
 	Style *string `min:"1" type:"string" required:"true"`
@@ -13880,7 +13890,8 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The result for one SnappedDeparturePosition SnappedDestinationPosition pair.
+// The result for the calculated route of one DeparturePosition DestinationPosition
+// pair.
 type RouteMatrixEntry struct {
 	_ struct{} `type:"structure"`
 

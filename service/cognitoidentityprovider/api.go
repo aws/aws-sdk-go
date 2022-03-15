@@ -385,20 +385,20 @@ func (c *CognitoIdentityProvider) AdminCreateUserRequest(input *AdminCreateUserI
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
-// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// you can send SMS messages to US phone numbers. If you use SMS text messages
 // in Amazon Cognito, you must register a phone number with Amazon Pinpoint
-// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito will use
-// the registered number automatically. Otherwise, Amazon Cognito users that
-// must receive SMS messages might be unable to sign up, activate their accounts,
+// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito uses the
+// registered number automatically. Otherwise, Amazon Cognito users who must
+// receive SMS messages might not be able to sign up, activate their accounts,
 // or sign in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
 // Amazon Web Service, Amazon Simple Notification Service might place your account
-// in SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
-// , you will have limitations, such as sending messages only to verified phone
-// numbers. After testing in the sandbox environment, you can move out of the
-// SMS sandbox and into production. For more information, see SMS message settings
-// for Amazon Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you can send messages only to verified phone numbers. After you test your
+// app while in the sandbox environment, you can move out of the sandbox and
+// into production. For more information, see SMS message settings for Amazon
+// Cognito user pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // This message is based on a template that you configured in your call to create
@@ -748,14 +748,14 @@ func (c *CognitoIdentityProvider) AdminDisableProviderForUserRequest(input *Admi
 
 // AdminDisableProviderForUser API operation for Amazon Cognito Identity Provider.
 //
-// Disables the user from signing in with the specified external (SAML or social)
-// identity provider. If the user to disable is a Amazon Cognito User Pools
-// native username + password user, they aren't permitted to use their password
+// Prevents the user from signing in with the specified external (SAML or social)
+// identity provider. If the user that you want to deactivate is a Amazon Cognito
+// user pools native username + password user, they can't use their password
 // to sign in. If the user to deactivate is a linked external identity provider
-// (IdP) user, any link between that user and an existing user is removed. The
-// next time the external user (no longer attached to the previously linked
-// DestinationUser) signs in, they must create a new user account. See AdminLinkProviderForUser
-// (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html).
+// (IdP) user, any link between that user and an existing user is removed. When
+// the external user signs in again, and the user is no longer attached to the
+// previously linked DestinationUser, the user must create a new user account.
+// See AdminLinkProviderForUser (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html).
 //
 // This action is enabled only for admin access and requires developer credentials.
 //
@@ -1386,20 +1386,20 @@ func (c *CognitoIdentityProvider) AdminInitiateAuthRequest(input *AdminInitiateA
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
-// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// you can send SMS messages to US phone numbers. If you use SMS text messages
 // in Amazon Cognito, you must register a phone number with Amazon Pinpoint
-// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito will use
-// the registered number automatically. Otherwise, Amazon Cognito users that
-// must receive SMS messages might be unable to sign up, activate their accounts,
+// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito uses the
+// registered number automatically. Otherwise, Amazon Cognito users who must
+// receive SMS messages might not be able to sign up, activate their accounts,
 // or sign in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
 // Amazon Web Service, Amazon Simple Notification Service might place your account
-// in SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
-// , you will have limitations, such as sending messages only to verified phone
-// numbers. After testing in the sandbox environment, you can move out of the
-// SMS sandbox and into production. For more information, see SMS message settings
-// for Amazon Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you can send messages only to verified phone numbers. After you test your
+// app while in the sandbox environment, you can move out of the sandbox and
+// into production. For more information, see SMS message settings for Amazon
+// Cognito user pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Calling this action requires developer credentials.
@@ -2191,20 +2191,20 @@ func (c *CognitoIdentityProvider) AdminResetUserPasswordRequest(input *AdminRese
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
-// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// you can send SMS messages to US phone numbers. If you use SMS text messages
 // in Amazon Cognito, you must register a phone number with Amazon Pinpoint
-// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito will use
-// the registered number automatically. Otherwise, Amazon Cognito users that
-// must receive SMS messages might be unable to sign up, activate their accounts,
+// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito uses the
+// registered number automatically. Otherwise, Amazon Cognito users who must
+// receive SMS messages might not be able to sign up, activate their accounts,
 // or sign in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
 // Amazon Web Service, Amazon Simple Notification Service might place your account
-// in SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
-// , you will have limitations, such as sending messages only to verified phone
-// numbers. After testing in the sandbox environment, you can move out of the
-// SMS sandbox and into production. For more information, see SMS message settings
-// for Amazon Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you can send messages only to verified phone numbers. After you test your
+// app while in the sandbox environment, you can move out of the sandbox and
+// into production. For more information, see SMS message settings for Amazon
+// Cognito user pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Calling this action requires developer credentials.
@@ -2338,20 +2338,20 @@ func (c *CognitoIdentityProvider) AdminRespondToAuthChallengeRequest(input *Admi
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
-// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// you can send SMS messages to US phone numbers. If you use SMS text messages
 // in Amazon Cognito, you must register a phone number with Amazon Pinpoint
-// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito will use
-// the registered number automatically. Otherwise, Amazon Cognito users that
-// must receive SMS messages might be unable to sign up, activate their accounts,
+// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito uses the
+// registered number automatically. Otherwise, Amazon Cognito users who must
+// receive SMS messages might not be able to sign up, activate their accounts,
 // or sign in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
 // Amazon Web Service, Amazon Simple Notification Service might place your account
-// in SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
-// , you will have limitations, such as sending messages only to verified phone
-// numbers. After testing in the sandbox environment, you can move out of the
-// SMS sandbox and into production. For more information, see SMS message settings
-// for Amazon Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you can send messages only to verified phone numbers. After you test your
+// app while in the sandbox environment, you can move out of the sandbox and
+// into production. For more information, see SMS message settings for Amazon
+// Cognito user pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Calling this action requires developer credentials.
@@ -3038,20 +3038,20 @@ func (c *CognitoIdentityProvider) AdminUpdateUserAttributesRequest(input *AdminU
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
-// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// you can send SMS messages to US phone numbers. If you use SMS text messages
 // in Amazon Cognito, you must register a phone number with Amazon Pinpoint
-// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito will use
-// the registered number automatically. Otherwise, Amazon Cognito users that
-// must receive SMS messages might be unable to sign up, activate their accounts,
+// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito uses the
+// registered number automatically. Otherwise, Amazon Cognito users who must
+// receive SMS messages might not be able to sign up, activate their accounts,
 // or sign in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
 // Amazon Web Service, Amazon Simple Notification Service might place your account
-// in SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
-// , you will have limitations, such as sending messages only to verified phone
-// numbers. After testing in the sandbox environment, you can move out of the
-// SMS sandbox and into production. For more information, see SMS message settings
-// for Amazon Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you can send messages only to verified phone numbers. After you test your
+// app while in the sandbox environment, you can move out of the sandbox and
+// into production. For more information, see SMS message settings for Amazon
+// Cognito user pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Calling this action requires developer credentials.
@@ -4296,20 +4296,20 @@ func (c *CognitoIdentityProvider) CreateUserPoolRequest(input *CreateUserPoolInp
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
-// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// you can send SMS messages to US phone numbers. If you use SMS text messages
 // in Amazon Cognito, you must register a phone number with Amazon Pinpoint
-// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito will use
-// the registered number automatically. Otherwise, Amazon Cognito users that
-// must receive SMS messages might be unable to sign up, activate their accounts,
+// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito uses the
+// registered number automatically. Otherwise, Amazon Cognito users who must
+// receive SMS messages might not be able to sign up, activate their accounts,
 // or sign in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
 // Amazon Web Service, Amazon Simple Notification Service might place your account
-// in SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
-// , you will have limitations, such as sending messages only to verified phone
-// numbers. After testing in the sandbox environment, you can move out of the
-// SMS sandbox and into production. For more information, see SMS message settings
-// for Amazon Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you can send messages only to verified phone numbers. After you test your
+// app while in the sandbox environment, you can move out of the sandbox and
+// into production. For more information, see SMS message settings for Amazon
+// Cognito user pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6189,20 +6189,20 @@ func (c *CognitoIdentityProvider) ForgotPasswordRequest(input *ForgotPasswordInp
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
-// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// you can send SMS messages to US phone numbers. If you use SMS text messages
 // in Amazon Cognito, you must register a phone number with Amazon Pinpoint
-// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito will use
-// the registered number automatically. Otherwise, Amazon Cognito users that
-// must receive SMS messages might be unable to sign up, activate their accounts,
+// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito uses the
+// registered number automatically. Otherwise, Amazon Cognito users who must
+// receive SMS messages might not be able to sign up, activate their accounts,
 // or sign in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
 // Amazon Web Service, Amazon Simple Notification Service might place your account
-// in SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
-// , you will have limitations, such as sending messages only to verified phone
-// numbers. After testing in the sandbox environment, you can move out of the
-// SMS sandbox and into production. For more information, see SMS message settings
-// for Amazon Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you can send messages only to verified phone numbers. After you test your
+// app while in the sandbox environment, you can move out of the sandbox and
+// into production. For more information, see SMS message settings for Amazon
+// Cognito user pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6263,9 +6263,6 @@ func (c *CognitoIdentityProvider) ForgotPasswordRequest(input *ForgotPasswordInp
 //
 //   * UserNotFoundException
 //   This exception is thrown when a user isn't found.
-//
-//   * UserNotConfirmedException
-//   This exception is thrown when a user isn't confirmed successfully.
 //
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
@@ -7021,20 +7018,20 @@ func (c *CognitoIdentityProvider) GetUserAttributeVerificationCodeRequest(input 
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
-// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// you can send SMS messages to US phone numbers. If you use SMS text messages
 // in Amazon Cognito, you must register a phone number with Amazon Pinpoint
-// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito will use
-// the registered number automatically. Otherwise, Amazon Cognito users that
-// must receive SMS messages might be unable to sign up, activate their accounts,
+// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito uses the
+// registered number automatically. Otherwise, Amazon Cognito users who must
+// receive SMS messages might not be able to sign up, activate their accounts,
 // or sign in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
 // Amazon Web Service, Amazon Simple Notification Service might place your account
-// in SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
-// , you will have limitations, such as sending messages only to verified phone
-// numbers. After testing in the sandbox environment, you can move out of the
-// SMS sandbox and into production. For more information, see SMS message settings
-// for Amazon Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you can send messages only to verified phone numbers. After you test your
+// app while in the sandbox environment, you can move out of the sandbox and
+// into production. For more information, see SMS message settings for Amazon
+// Cognito user pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -7373,20 +7370,20 @@ func (c *CognitoIdentityProvider) InitiateAuthRequest(input *InitiateAuthInput) 
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
-// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// you can send SMS messages to US phone numbers. If you use SMS text messages
 // in Amazon Cognito, you must register a phone number with Amazon Pinpoint
-// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito will use
-// the registered number automatically. Otherwise, Amazon Cognito users that
-// must receive SMS messages might be unable to sign up, activate their accounts,
+// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito uses the
+// registered number automatically. Otherwise, Amazon Cognito users who must
+// receive SMS messages might not be able to sign up, activate their accounts,
 // or sign in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
 // Amazon Web Service, Amazon Simple Notification Service might place your account
-// in SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
-// , you will have limitations, such as sending messages only to verified phone
-// numbers. After testing in the sandbox environment, you can move out of the
-// SMS sandbox and into production. For more information, see SMS message settings
-// for Amazon Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you can send messages only to verified phone numbers. After you test your
+// app while in the sandbox environment, you can move out of the sandbox and
+// into production. For more information, see SMS message settings for Amazon
+// Cognito user pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -8885,20 +8882,20 @@ func (c *CognitoIdentityProvider) ResendConfirmationCodeRequest(input *ResendCon
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
-// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// you can send SMS messages to US phone numbers. If you use SMS text messages
 // in Amazon Cognito, you must register a phone number with Amazon Pinpoint
-// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito will use
-// the registered number automatically. Otherwise, Amazon Cognito users that
-// must receive SMS messages might be unable to sign up, activate their accounts,
+// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito uses the
+// registered number automatically. Otherwise, Amazon Cognito users who must
+// receive SMS messages might not be able to sign up, activate their accounts,
 // or sign in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
 // Amazon Web Service, Amazon Simple Notification Service might place your account
-// in SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
-// , you will have limitations, such as sending messages only to verified phone
-// numbers. After testing in the sandbox environment, you can move out of the
-// SMS sandbox and into production. For more information, see SMS message settings
-// for Amazon Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you can send messages only to verified phone numbers. After you test your
+// app while in the sandbox environment, you can move out of the sandbox and
+// into production. For more information, see SMS message settings for Amazon
+// Cognito user pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9034,20 +9031,20 @@ func (c *CognitoIdentityProvider) RespondToAuthChallengeRequest(input *RespondTo
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
-// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// you can send SMS messages to US phone numbers. If you use SMS text messages
 // in Amazon Cognito, you must register a phone number with Amazon Pinpoint
-// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito will use
-// the registered number automatically. Otherwise, Amazon Cognito users that
-// must receive SMS messages might be unable to sign up, activate their accounts,
+// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito uses the
+// registered number automatically. Otherwise, Amazon Cognito users who must
+// receive SMS messages might not be able to sign up, activate their accounts,
 // or sign in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
 // Amazon Web Service, Amazon Simple Notification Service might place your account
-// in SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
-// , you will have limitations, such as sending messages only to verified phone
-// numbers. After testing in the sandbox environment, you can move out of the
-// SMS sandbox and into production. For more information, see SMS message settings
-// for Amazon Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you can send messages only to verified phone numbers. After you test your
+// app while in the sandbox environment, you can move out of the sandbox and
+// into production. For more information, see SMS message settings for Amazon
+// Cognito user pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9627,20 +9624,20 @@ func (c *CognitoIdentityProvider) SetUserPoolMfaConfigRequest(input *SetUserPool
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
-// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// you can send SMS messages to US phone numbers. If you use SMS text messages
 // in Amazon Cognito, you must register a phone number with Amazon Pinpoint
-// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito will use
-// the registered number automatically. Otherwise, Amazon Cognito users that
-// must receive SMS messages might be unable to sign up, activate their accounts,
+// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito uses the
+// registered number automatically. Otherwise, Amazon Cognito users who must
+// receive SMS messages might not be able to sign up, activate their accounts,
 // or sign in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
 // Amazon Web Service, Amazon Simple Notification Service might place your account
-// in SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
-// , you will have limitations, such as sending messages only to verified phone
-// numbers. After testing in the sandbox environment, you can move out of the
-// SMS sandbox and into production. For more information, see SMS message settings
-// for Amazon Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you can send messages only to verified phone numbers. After you test your
+// app while in the sandbox environment, you can move out of the sandbox and
+// into production. For more information, see SMS message settings for Amazon
+// Cognito user pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9855,20 +9852,20 @@ func (c *CognitoIdentityProvider) SignUpRequest(input *SignUpInput) (req *reques
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
-// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// you can send SMS messages to US phone numbers. If you use SMS text messages
 // in Amazon Cognito, you must register a phone number with Amazon Pinpoint
-// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito will use
-// the registered number automatically. Otherwise, Amazon Cognito users that
-// must receive SMS messages might be unable to sign up, activate their accounts,
+// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito uses the
+// registered number automatically. Otherwise, Amazon Cognito users who must
+// receive SMS messages might not be able to sign up, activate their accounts,
 // or sign in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
 // Amazon Web Service, Amazon Simple Notification Service might place your account
-// in SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
-// , you will have limitations, such as sending messages only to verified phone
-// numbers. After testing in the sandbox environment, you can move out of the
-// SMS sandbox and into production. For more information, see SMS message settings
-// for Amazon Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you can send messages only to verified phone numbers. After you test your
+// app while in the sandbox environment, you can move out of the sandbox and
+// into production. For more information, see SMS message settings for Amazon
+// Cognito user pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -10905,20 +10902,20 @@ func (c *CognitoIdentityProvider) UpdateUserAttributesRequest(input *UpdateUserA
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
-// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// you can send SMS messages to US phone numbers. If you use SMS text messages
 // in Amazon Cognito, you must register a phone number with Amazon Pinpoint
-// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito will use
-// the registered number automatically. Otherwise, Amazon Cognito users that
-// must receive SMS messages might be unable to sign up, activate their accounts,
+// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito uses the
+// registered number automatically. Otherwise, Amazon Cognito users who must
+// receive SMS messages might not be able to sign up, activate their accounts,
 // or sign in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
 // Amazon Web Service, Amazon Simple Notification Service might place your account
-// in SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
-// , you will have limitations, such as sending messages only to verified phone
-// numbers. After testing in the sandbox environment, you can move out of the
-// SMS sandbox and into production. For more information, see SMS message settings
-// for Amazon Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you can send messages only to verified phone numbers. After you test your
+// app while in the sandbox environment, you can move out of the sandbox and
+// into production. For more information, see SMS message settings for Amazon
+// Cognito user pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -11072,20 +11069,20 @@ func (c *CognitoIdentityProvider) UpdateUserPoolRequest(input *UpdateUserPoolInp
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
-// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// you can send SMS messages to US phone numbers. If you use SMS text messages
 // in Amazon Cognito, you must register a phone number with Amazon Pinpoint
-// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito will use
-// the registered number automatically. Otherwise, Amazon Cognito users that
-// must receive SMS messages might be unable to sign up, activate their accounts,
+// (https://console.aws.amazon.com/pinpoint/home/). Amazon Cognito uses the
+// registered number automatically. Otherwise, Amazon Cognito users who must
+// receive SMS messages might not be able to sign up, activate their accounts,
 // or sign in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
 // Amazon Web Service, Amazon Simple Notification Service might place your account
-// in SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
-// , you will have limitations, such as sending messages only to verified phone
-// numbers. After testing in the sandbox environment, you can move out of the
-// SMS sandbox and into production. For more information, see SMS message settings
-// for Amazon Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the SMS sandbox. In sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you can send messages only to verified phone numbers. After you test your
+// app while in the sandbox environment, you can move out of the sandbox and
+// into production. For more information, see SMS message settings for Amazon
+// Cognito user pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -11691,7 +11688,8 @@ func (s *AccountRecoverySettingType) SetRecoveryMechanisms(v []*RecoveryOptionTy
 type AccountTakeoverActionType struct {
 	_ struct{} `type:"structure"`
 
-	// The event action.
+	// The action to take in response to the account takeover action. Valid values
+	// are:
 	//
 	//    * BLOCK Choosing this action will block the request.
 	//
@@ -12125,7 +12123,7 @@ type AdminConfirmSignUpInput struct {
 	// can process the ClientMetadata value to enhance your workflow for your specific
 	// needs.
 	//
-	// For more information, see Customizing User Pool Workflows with Lambda Triggers
+	// For more information, see Customizing user pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
 	// in the Amazon Cognito Developer Guide.
 	//
@@ -12330,7 +12328,7 @@ type AdminCreateUserInput struct {
 	// request. In your function code in Lambda, you can process the clientMetadata
 	// value to enhance your workflow for your specific needs.
 	//
-	// For more information, see Customizing User Pool Workflows with Lambda Triggers
+	// For more information, see Customizing user pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
 	// in the Amazon Cognito Developer Guide.
 	//
@@ -12389,7 +12387,7 @@ type AdminCreateUserInput struct {
 	// TemporaryPassword is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminCreateUserInput's
 	// String and GoString methods.
-	TemporaryPassword *string `min:"6" type:"string" sensitive:"true"`
+	TemporaryPassword *string `type:"string" sensitive:"true"`
 
 	// An array of name-value pairs that contain user attributes and attribute values
 	// to be set for the user to be created. You can create a user without specifying
@@ -12473,9 +12471,6 @@ func (s AdminCreateUserInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AdminCreateUserInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AdminCreateUserInput"}
-	if s.TemporaryPassword != nil && len(*s.TemporaryPassword) < 6 {
-		invalidParams.Add(request.NewErrParamMinLen("TemporaryPassword", 6))
-	}
 	if s.UserPoolId == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
 	}
@@ -13425,8 +13420,6 @@ type AdminGetUserOutput struct {
 	//
 	//    * ARCHIVED - User is no longer active.
 	//
-	//    * COMPROMISED - User is disabled due to a potential security threat.
-	//
 	//    * UNKNOWN - User status isn't known.
 	//
 	//    * RESET_REQUIRED - User is confirmed, but the user must request a code
@@ -13630,7 +13623,7 @@ type AdminInitiateAuthInput struct {
 	//
 	//    * Verify auth challenge
 	//
-	// For more information, see Customizing User Pool Workflows with Lambda Triggers
+	// For more information, see Customizing user pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
 	// in the Amazon Cognito Developer Guide.
 	//
@@ -13870,12 +13863,12 @@ func (s *AdminInitiateAuthOutput) SetSession(v string) *AdminInitiateAuthOutput 
 type AdminLinkProviderForUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// The existing user in the user pool to be linked to the external identity
-	// provider user account. Can be a native (Username + Password) Amazon Cognito
-	// User Pools user or a federated user (for example, a SAML or Facebook user).
-	// If the user doesn't exist, an exception is thrown. This is the user that
-	// is returned when the new user (with the linked identity provider attribute)
-	// signs in.
+	// The existing user in the user pool that you want to assign to the external
+	// identity provider user account. This user can be a native (Username + Password)
+	// Amazon Cognito user pools user or a federated user (for example, a SAML or
+	// Facebook user). If the user doesn't exist, Amazon Cognito generates an exception.
+	// Amazon Cognito returns this user when the new user (with the linked identity
+	// provider attribute) signs in.
 	//
 	// For a native username + password user, the ProviderAttributeValue for the
 	// DestinationUser should be the username in the user pool. For a federated
@@ -14532,7 +14525,7 @@ type AdminResetUserPasswordInput struct {
 	// process the clientMetadata value to enhance your workflow for your specific
 	// needs.
 	//
-	// For more information, see Customizing User Pool Workflows with Lambda Triggers
+	// For more information, see Customizing user pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
 	// in the Amazon Cognito Developer Guide.
 	//
@@ -14700,17 +14693,32 @@ type AdminRespondToAuthChallengeInput struct {
 	//
 	// You create custom workflows by assigning Lambda functions to user pool triggers.
 	// When you use the AdminRespondToAuthChallenge API action, Amazon Cognito invokes
-	// any functions that are assigned to the following triggers: pre sign-up, custom
-	// message, post authentication, user migration, pre token generation, define
-	// auth challenge, create auth challenge, and verify auth challenge response.
+	// any functions that you have assigned to the following triggers:
+	//
+	//    * pre sign-up
+	//
+	//    * custom message
+	//
+	//    * post authentication
+	//
+	//    * user migration
+	//
+	//    * pre token generation
+	//
+	//    * define auth challenge
+	//
+	//    * create auth challenge
+	//
+	//    * verify auth challenge response
+	//
 	// When Amazon Cognito invokes any of these functions, it passes a JSON payload,
 	// which the function receives as input. This payload contains a clientMetadata
-	// attribute, which provides the data that you assigned to the ClientMetadata
+	// attribute that provides the data that you assigned to the ClientMetadata
 	// parameter in your AdminRespondToAuthChallenge request. In your function code
 	// in Lambda, you can process the clientMetadata value to enhance your workflow
 	// for your specific needs.
 	//
-	// For more information, see Customizing User Pool Workflows with Lambda Triggers
+	// For more information, see Customizing user pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
 	// in the Amazon Cognito Developer Guide.
 	//
@@ -15027,7 +15035,7 @@ type AdminSetUserPasswordInput struct {
 	// String and GoString methods.
 	//
 	// Password is a required field
-	Password *string `min:"6" type:"string" required:"true" sensitive:"true"`
+	Password *string `type:"string" required:"true" sensitive:"true"`
 
 	// True if the password is permanent, False if it is temporary.
 	Permanent *bool `type:"boolean"`
@@ -15070,9 +15078,6 @@ func (s *AdminSetUserPasswordInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AdminSetUserPasswordInput"}
 	if s.Password == nil {
 		invalidParams.Add(request.NewErrParamRequired("Password"))
-	}
-	if s.Password != nil && len(*s.Password) < 6 {
-		invalidParams.Add(request.NewErrParamMinLen("Password", 6))
 	}
 	if s.UserPoolId == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
@@ -15519,7 +15524,7 @@ type AdminUpdateUserAttributesInput struct {
 	// process the clientMetadata value to enhance your workflow for your specific
 	// needs.
 	//
-	// For more information, see Customizing User Pool Workflows with Lambda Triggers
+	// For more information, see Customizing user pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
 	// in the Amazon Cognito Developer Guide.
 	//
@@ -15826,15 +15831,15 @@ func (s *AliasExistsException) RequestID() string {
 // The Amazon Pinpoint analytics configuration for collecting metrics for a
 // user pool.
 //
-// In Regions where Pinpoint isn't available, User Pools only supports sending
-// events to Amazon Pinpoint projects in us-east-1. In Regions where Pinpoint
-// is available, User Pools will support sending events to Amazon Pinpoint projects
-// within that same Region.
+// In Regions where Amazon Pinpointisn't available, user pools only support
+// sending events to Amazon Pinpoint projects in us-east-1. In Regions where
+// Amazon Pinpoint is available, user pools support sending events to Amazon
+// Pinpoint projects within that same Region.
 type AnalyticsConfigurationType struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of an Amazon Pinpoint project. You can use
-	// the Amazon Pinpoint project for integration with the chosen User Pool Client.
+	// the Amazon Pinpoint project to integrate with the chosen user pool Client.
 	// Amazon Cognito publishes events to the Amazon Pinpointproject declared by
 	// the app ARN.
 	ApplicationArn *string `min:"20" type:"string"`
@@ -15923,9 +15928,9 @@ func (s *AnalyticsConfigurationType) SetUserDataShared(v bool) *AnalyticsConfigu
 // An endpoint uniquely identifies a mobile device, email address, or phone
 // number that can receive messages from Amazon Pinpoint analytics.
 //
-// Amazon Cognito User Pools only supports sending events to Amazon Pinpoint
+// Amazon Cognito user pools only support sending events to Amazon Pinpoint
 // projects in the US East (N. Virginia) us-east-1 Region, regardless of the
-// Region in which the user pool resides.
+// Region where the user pool resides.
 type AnalyticsMetadataType struct {
 	_ struct{} `type:"structure"`
 
@@ -16374,7 +16379,7 @@ type ChangePasswordInput struct {
 	// String and GoString methods.
 	//
 	// PreviousPassword is a required field
-	PreviousPassword *string `min:"6" type:"string" required:"true" sensitive:"true"`
+	PreviousPassword *string `type:"string" required:"true" sensitive:"true"`
 
 	// The new password.
 	//
@@ -16383,7 +16388,7 @@ type ChangePasswordInput struct {
 	// String and GoString methods.
 	//
 	// ProposedPassword is a required field
-	ProposedPassword *string `min:"6" type:"string" required:"true" sensitive:"true"`
+	ProposedPassword *string `type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -16413,14 +16418,8 @@ func (s *ChangePasswordInput) Validate() error {
 	if s.PreviousPassword == nil {
 		invalidParams.Add(request.NewErrParamRequired("PreviousPassword"))
 	}
-	if s.PreviousPassword != nil && len(*s.PreviousPassword) < 6 {
-		invalidParams.Add(request.NewErrParamMinLen("PreviousPassword", 6))
-	}
 	if s.ProposedPassword == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProposedPassword"))
-	}
-	if s.ProposedPassword != nil && len(*s.ProposedPassword) < 6 {
-		invalidParams.Add(request.NewErrParamMinLen("ProposedPassword", 6))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -16975,7 +16974,7 @@ type ConfirmForgotPasswordInput struct {
 	// ConfirmForgotPassword request. In your function code in Lambda, you can process
 	// the clientMetadata value to enhance your workflow for your specific needs.
 	//
-	// For more information, see Customizing User Pool Workflows with Lambda Triggers
+	// For more information, see Customizing user pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
 	// in the Amazon Cognito Developer Guide.
 	//
@@ -17006,7 +17005,7 @@ type ConfirmForgotPasswordInput struct {
 	// String and GoString methods.
 	//
 	// Password is a required field
-	Password *string `min:"6" type:"string" required:"true" sensitive:"true"`
+	Password *string `type:"string" required:"true" sensitive:"true"`
 
 	// A keyed-hash message authentication code (HMAC) calculated using the secret
 	// key of a user pool client and username plus the client ID in the message.
@@ -17067,9 +17066,6 @@ func (s *ConfirmForgotPasswordInput) Validate() error {
 	}
 	if s.Password == nil {
 		invalidParams.Add(request.NewErrParamRequired("Password"))
-	}
-	if s.Password != nil && len(*s.Password) < 6 {
-		invalidParams.Add(request.NewErrParamMinLen("Password", 6))
 	}
 	if s.SecretHash != nil && len(*s.SecretHash) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SecretHash", 1))
@@ -17188,7 +17184,7 @@ type ConfirmSignUpInput struct {
 	// In your function code in Lambda, you can process the clientMetadata value
 	// to enhance your workflow for your specific needs.
 	//
-	// For more information, see Customizing User Pool Workflows with Lambda Triggers
+	// For more information, see Customizing user pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
 	// in the Amazon Cognito Developer Guide.
 	//
@@ -18053,13 +18049,14 @@ type CreateUserPoolClientInput struct {
 	// are also supported.
 	AllowedOAuthScopes []*string `type:"list"`
 
-	// The Amazon Pinpoint analytics configuration for collecting metrics for this
-	// user pool.
+	// The user pool analytics configuration for collecting metrics and sending
+	// them to your Amazon Pinpoint campaign.
 	//
-	// In Amazon Web Services Regions where isn't available, User Pools only supports
-	// sending events to Amazon Pinpoint projects in Amazon Web Services Region
-	// us-east-1. In Regions where is available, User Pools will support sending
-	// events to Amazon Pinpoint projects within that same Region.
+	// In Amazon Web Services Regions where Amazon Pinpoint isn't available, user
+	// pools only support sending events to Amazon Pinpoint projects in Amazon Web
+	// Services Region us-east-1. In Regions where Amazon Pinpoint is available,
+	// user pools support sending events to Amazon Pinpoint projects within that
+	// same Region.
 	AnalyticsConfiguration *AnalyticsConfigurationType `type:"structure"`
 
 	// A list of allowed redirect (callback) URLs for the identity providers.
@@ -18112,8 +18109,9 @@ type CreateUserPoolClientInput struct {
 
 	// The authentication flows that are supported by the user pool clients. Flow
 	// names without the ALLOW_ prefix are no longer supported, in favor of new
-	// names with the ALLOW_ prefix. Note that values with ALLOW_ prefix must be
-	// used only along with the ALLOW_ prefix.
+	// names with the ALLOW_ prefix.
+	//
+	// Values with ALLOW_ prefix must be used only along with the ALLOW_ prefix.
 	//
 	// Valid values include:
 	//
@@ -18186,12 +18184,12 @@ type CreateUserPoolClientInput struct {
 	// The user pool attributes that the app client can write to.
 	//
 	// If your app client allows users to sign in through an identity provider,
-	// this array must include all attributes that are mapped to identity provider
+	// this array must include all attributes that you have mapped to identity provider
 	// attributes. Amazon Cognito updates mapped attributes when users sign in to
-	// your application through an identity provider. If your app client lacks write
-	// access to a mapped attribute, Amazon Cognito throws an error when it tries
-	// to update the attribute. For more information, see Specifying Identity Provider
-	// Attribute Mappings for Your User Pool (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html).
+	// your application through an identity provider. If your app client does not
+	// have write access to a mapped attribute, Amazon Cognito throws an error when
+	// it tries to update the attribute. For more information, see Specifying Identity
+	// Provider Attribute Mappings for Your user pool (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html).
 	WriteAttributes []*string `type:"list"`
 }
 
@@ -18549,7 +18547,9 @@ type CreateUserPoolInput struct {
 	// The device configuration.
 	DeviceConfiguration *DeviceConfigurationType `type:"structure"`
 
-	// The email configuration.
+	// The email configuration of your user pool. The email configuration type sets
+	// your preferred sending method, Amazon Web Services Region, and sender for
+	// messages from your user pool.
 	EmailConfiguration *EmailConfigurationType `type:"structure"`
 
 	// A string representing the email verification message. EmailVerificationMessage
@@ -18592,7 +18592,12 @@ type CreateUserPoolInput struct {
 	// A string representing the SMS authentication message.
 	SmsAuthenticationMessage *string `min:"6" type:"string"`
 
-	// The SMS configuration.
+	// The SMS configuration with the settings that your Amazon Cognito user pool
+	// must use to send an SMS message from your Amazon Web Services account through
+	// Amazon Simple Notification Service. To send SMS messages with Amazon SNS
+	// in the Amazon Web Services Region that you want, the Amazon Cognito user
+	// pool uses an Identity and Access Management (IAM) role in your Amazon Web
+	// Services account.
 	SmsConfiguration *SmsConfigurationType `type:"structure"`
 
 	// A string representing the SMS verification message.
@@ -20741,11 +20746,14 @@ func (s *DuplicateProviderException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The email configuration type.
+// The email configuration of your user pool. The email configuration type sets
+// your preferred sending method, Amazon Web Services Region, and sender for
+// messages from your user pool.
 //
-// Amazon Cognito has specific Regions for use with Amazon Simple Email Service.
-// For more information on the supported Regions, see Email settings for Amazon
-// Cognito user pools (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-email.html).
+// Amazon Cognito can send email messages with Amazon Simple Email Service resources
+// in the Amazon Web Services Region where you created your user pool, and in
+// alternate Regions in some cases. For more information on the supported Regions,
+// see Email settings for Amazon Cognito user pools (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-email.html).
 type EmailConfigurationType struct {
 	_ struct{} `type:"structure"`
 
@@ -20755,20 +20763,23 @@ type EmailConfigurationType struct {
 	// all of the rules in that configuration set are applied to the email. Configuration
 	// sets can be used to apply the following types of rules to emails:
 	//
-	//    * Event publishing – Amazon Simple Email Service can track the number
-	//    of send, delivery, open, click, bounce, and complaint events for each
-	//    email sent. Use event publishing to send information about these events
-	//    to other Amazon Web Services services such as and Amazon CloudWatch.
+	// Event publishing
 	//
-	//    * IP pool management – When leasing dedicated IP addresses with Amazon
-	//    Simple Email Service, you can create groups of IP addresses, called dedicated
-	//    IP pools. You can then associate the dedicated IP pools with configuration
-	//    sets.
+	// Amazon Simple Email Service can track the number of send, delivery, open,
+	// click, bounce, and complaint events for each email sent. Use event publishing
+	// to send information about these events to other Amazon Web Services services
+	// such as and Amazon CloudWatch
+	//
+	// IP pool management
+	//
+	// When leasing dedicated IP addresses with Amazon Simple Email Service, you
+	// can create groups of IP addresses, called dedicated IP pools. You can then
+	// associate the dedicated IP pools with configuration sets.
 	ConfigurationSet *string `min:"1" type:"string"`
 
-	// Specifies whether Amazon Cognito emails your users by using its built-in
-	// email functionality or your Amazon Simple Email Service email configuration.
-	// Specify one of the following values:
+	// Specifies whether Amazon Cognito uses its built-in functionality to send
+	// your users email messages, or uses your Amazon Simple Email Service email
+	// configuration. Specify one of the following values:
 	//
 	// COGNITO_DEFAULT
 	//
@@ -20846,6 +20857,12 @@ type EmailConfigurationType struct {
 	//
 	//    * If you specify DEVELOPER, Amazon Cognito emails your users with this
 	//    address by calling Amazon SES on your behalf.
+	//
+	// The Region value of the SourceArn parameter must indicate a supported Amazon
+	// Web Services Region of your user pool. Typically, the Region in the SourceArn
+	// and the user pool Region are the same. For more information, see Amazon SES
+	// email configuration regions (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-email.html#user-pool-email-developer-region-mapping)
+	// in the Amazon Cognito Developer Guide (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html).
 	SourceArn *string `min:"20" type:"string"`
 }
 
@@ -21331,7 +21348,7 @@ type ForgotPasswordInput struct {
 	// code in Lambda, you can process the clientMetadata value to enhance your
 	// workflow for your specific needs.
 	//
-	// For more information, see Customizing User Pool Workflows with Lambda Triggers
+	// For more information, see Customizing user pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
 	// in the Amazon Cognito Developer Guide.
 	//
@@ -22085,7 +22102,7 @@ type GetUserAttributeVerificationCodeInput struct {
 	// Lambda, you can process the clientMetadata value to enhance your workflow
 	// for your specific needs.
 	//
-	// For more information, see Customizing User Pool Workflows with Lambda Triggers
+	// For more information, see Customizing user pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
 	// in the Amazon Cognito Developer Guide.
 	//
@@ -22931,7 +22948,7 @@ type InitiateAuthInput struct {
 	//
 	//    * Verify auth challenge
 	//
-	// For more information, see Customizing User Pool Workflows with Lambda Triggers
+	// For more information, see Customizing user pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
 	// in the Amazon Cognito Developer Guide.
 	//
@@ -23042,8 +23059,10 @@ type InitiateAuthOutput struct {
 	// name is returned in the AdminInitiateAuth response if you must pass another
 	// challenge.
 	//
-	// Valid values include the following. Note that all of these challenges require
-	// USERNAME and SECRET_HASH (if applicable) in the parameters.
+	// Valid values include the following:
+	//
+	// All of the following challenges require USERNAME and SECRET_HASH (if applicable)
+	// in the parameters.
 	//
 	//    * SMS_MFA: Next challenge is to supply an SMS_MFA_CODE, delivered via
 	//    SMS.
@@ -25252,9 +25271,9 @@ func (s *MFAMethodNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// This data type is no longer supported. You can use it only for SMS multi-factor
-// authentication (MFA) configurations. You can't use it for time-based one-time
-// password (TOTP) software token MFA configurations.
+// This data type is no longer supported. Applies only to SMS multi-factor authentication
+// (MFA) configurations. Does not apply to time-based one-time password (TOTP)
+// software token MFA configurations.
 type MFAOptionType struct {
 	_ struct{} `type:"structure"`
 
@@ -26167,7 +26186,7 @@ type ResendConfirmationCodeInput struct {
 	// process the clientMetadata value to enhance your workflow for your specific
 	// needs.
 	//
-	// For more information, see Customizing User Pool Workflows with Lambda Triggers
+	// For more information, see Customizing user pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
 	// in the Amazon Cognito Developer Guide.
 	//
@@ -26580,7 +26599,7 @@ type RespondToAuthChallengeInput struct {
 	// function code in Lambda, you can process the clientMetadata value to enhance
 	// your workflow for your specific needs.
 	//
-	// For more information, see Customizing User Pool Workflows with Lambda Triggers
+	// For more information, see Customizing user pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
 	// in the Amazon Cognito Developer Guide.
 	//
@@ -27574,8 +27593,8 @@ type SetUserPoolMfaConfigInput struct {
 	_ struct{} `type:"structure"`
 
 	// The MFA configuration. If you set the MfaConfiguration value to ‘ON’,
-	// only users with an MFA factor set up can sign in. To learn more, see Adding
-	// Multi-Factor Authentication (MFA) to a User Pool (cognito/latest/developerguide/user-pool-settings-mfa.html).
+	// only users who have set up an MFA factor can sign in. To learn more, see
+	// Adding Multi-Factor Authentication (MFA) to a user pool (cognito/latest/developerguide/user-pool-settings-mfa.html).
 	// Valid values include:
 	//
 	//    * OFF MFA won't be used for any users.
@@ -27846,7 +27865,7 @@ type SignUpInput struct {
 	// code in Lambda, you can process the clientMetadata value to enhance your
 	// workflow for your specific needs.
 	//
-	// For more information, see Customizing User Pool Workflows with Lambda Triggers
+	// For more information, see Customizing user pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
 	// in the Amazon Cognito Developer Guide.
 	//
@@ -27871,7 +27890,7 @@ type SignUpInput struct {
 	// String and GoString methods.
 	//
 	// Password is a required field
-	Password *string `min:"6" type:"string" required:"true" sensitive:"true"`
+	Password *string `type:"string" required:"true" sensitive:"true"`
 
 	// A keyed-hash message authentication code (HMAC) calculated using the secret
 	// key of a user pool client and username plus the client ID in the message.
@@ -27934,9 +27953,6 @@ func (s *SignUpInput) Validate() error {
 	}
 	if s.Password == nil {
 		invalidParams.Add(request.NewErrParamRequired("Password"))
-	}
-	if s.Password != nil && len(*s.Password) < 6 {
-		invalidParams.Add(request.NewErrParamMinLen("Password", 6))
 	}
 	if s.SecretHash != nil && len(*s.SecretHash) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SecretHash", 1))
@@ -28083,23 +28099,24 @@ func (s *SignUpOutput) SetUserSub(v string) *SignUpOutput {
 	return s
 }
 
-// The SMS configuration type that includes the settings the Amazon Cognito
-// User Pool must call for the Amazon Simple Notification Service service to
-// send an SMS message from your Amazon Web Services account. The Amazon Cognito
-// User Pool makes the request to the Amazon SNS Service by using an Identity
-// and Access Management role that you provide for your Amazon Web Services
-// account.
+// The SMS configuration type is the settings that your Amazon Cognito user
+// pool must use to send an SMS message from your Amazon Web Services account
+// through Amazon Simple Notification Service. To send SMS messages with Amazon
+// SNS in the Amazon Web Services Region that you want, the Amazon Cognito user
+// pool uses an Identity and Access Management (IAM) role in your Amazon Web
+// Services account.
 type SmsConfigurationType struct {
 	_ struct{} `type:"structure"`
 
-	// The external ID is a value that you should use to add security to your IAM
-	// role that is used to call Amazon SNS to send SMS messages for your user pool.
-	// If you provide an ExternalId, the Amazon Cognito User Pool will include it
-	// when attempting to assume your IAM role so that you can set your roles trust
-	// policy to require the ExternalID. If you use the Amazon Cognito Management
-	// Console to create a role for SMS multi-factor authentication (MFA), Amazon
-	// Cognito will create a role with the required permissions and a trust policy
-	// that demonstrates use of the ExternalId.
+	// The external ID provides additional security for your IAM role. You can use
+	// an ExternalId with the IAM role that you use with Amazon SNS to send SMS
+	// messages for your user pool. If you provide an ExternalId, your Amazon Cognito
+	// user pool includes it in the request to assume your IAM role. You can configure
+	// the role trust policy to require that Amazon Cognito, and any principal,
+	// provide the ExternalID. If you use the Amazon Cognito Management Console
+	// to create a role for SMS multi-factor authentication (MFA), Amazon Cognito
+	// creates a role with the required permissions and a trust policy that demonstrates
+	// use of the ExternalId.
 	//
 	// For more information about the ExternalId of a role, see How to use an external
 	// ID when granting access to your Amazon Web Services resources to a third
@@ -28112,6 +28129,16 @@ type SmsConfigurationType struct {
 	//
 	// SnsCallerArn is a required field
 	SnsCallerArn *string `min:"20" type:"string" required:"true"`
+
+	// The Amazon Web Services Region to use with Amazon SNS integration. You can
+	// choose the same Region as your user pool, or a supported Legacy Amazon SNS
+	// alternate Region.
+	//
+	// Amazon Cognito resources in the Asia Pacific (Seoul) Amazon Web Services
+	// Region must use your Amazon SNS configuration in the Asia Pacific (Tokyo)
+	// Region. For more information, see SMS message settings for Amazon Cognito
+	// user pools (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html).
+	SnsRegion *string `min:"5" type:"string"`
 }
 
 // String returns the string representation.
@@ -28141,6 +28168,9 @@ func (s *SmsConfigurationType) Validate() error {
 	if s.SnsCallerArn != nil && len(*s.SnsCallerArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("SnsCallerArn", 20))
 	}
+	if s.SnsRegion != nil && len(*s.SnsRegion) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("SnsRegion", 5))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -28160,6 +28190,12 @@ func (s *SmsConfigurationType) SetSnsCallerArn(v string) *SmsConfigurationType {
 	return s
 }
 
+// SetSnsRegion sets the SnsRegion field's value.
+func (s *SmsConfigurationType) SetSnsRegion(v string) *SmsConfigurationType {
+	s.SnsRegion = &v
+	return s
+}
+
 // The SMS text message multi-factor authentication (MFA) configuration type.
 type SmsMfaConfigType struct {
 	_ struct{} `type:"structure"`
@@ -28170,7 +28206,12 @@ type SmsMfaConfigType struct {
 	// will be used.
 	SmsAuthenticationMessage *string `min:"6" type:"string"`
 
-	// The SMS configuration.
+	// The SMS configuration with the settings that your Amazon Cognito user pool
+	// must use to send an SMS message from your Amazon Web Services account through
+	// Amazon Simple Notification Service. To request Amazon SNS in the Amazon Web
+	// Services Region that you want, the Amazon Cognito user pool uses an Identity
+	// and Access Management (IAM) role that you provide for your Amazon Web Services
+	// account.
 	SmsConfiguration *SmsConfigurationType `type:"structure"`
 }
 
@@ -30103,7 +30144,7 @@ type UpdateUserAttributesInput struct {
 	// UpdateUserAttributes request. In your function code in Lambda, you can process
 	// the clientMetadata value to enhance your workflow for your specific needs.
 	//
-	// For more information, see Customizing User Pool Workflows with Lambda Triggers
+	// For more information, see Customizing user pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
 	// in the Amazon Cognito Developer Guide.
 	//
@@ -30260,10 +30301,10 @@ type UpdateUserPoolClientInput struct {
 	// The Amazon Pinpoint analytics configuration for collecting metrics for this
 	// user pool.
 	//
-	// In Amazon Web Services Regions where isn't available, User Pools only supports
-	// sending events to Amazon Pinpoint projects in us-east-1. In Regions where
-	// Pinpoint is available, User Pools will support sending events to Amazon Pinpoint
-	// projects within that same Region.
+	// In Amazon Web Services Regions where Amazon Pinpoint isn't available, user
+	// pools only support sending events to Amazon Pinpoint projects in us-east-1.
+	// In Regions where Amazon Pinpoint is available, user pools support sending
+	// events to Amazon Pinpoint projects within that same Region.
 	AnalyticsConfiguration *AnalyticsConfigurationType `type:"structure"`
 
 	// A list of allowed redirect (callback) URLs for the identity providers.
@@ -30751,7 +30792,9 @@ type UpdateUserPoolInput struct {
 	// Device configuration.
 	DeviceConfiguration *DeviceConfigurationType `type:"structure"`
 
-	// Email configuration.
+	// The email configuration of your user pool. The email configuration type sets
+	// your preferred sending method, Amazon Web Services Region, and sender for
+	// email invitation and verification messages from your user pool.
 	EmailConfiguration *EmailConfigurationType `type:"structure"`
 
 	// The contents of the email verification message.
@@ -30783,7 +30826,12 @@ type UpdateUserPoolInput struct {
 	// The contents of the SMS authentication message.
 	SmsAuthenticationMessage *string `min:"6" type:"string"`
 
-	// SMS configuration.
+	// The SMS configuration with the settings that your Amazon Cognito user pool
+	// must use to send an SMS message from your Amazon Web Services account through
+	// Amazon Simple Notification Service. To send SMS messages with Amazon SNS
+	// in the Amazon Web Services Region that you want, the Amazon Cognito user
+	// pool uses an Identity and Access Management (IAM) role in your Amazon Web
+	// Services account.
 	SmsConfiguration *SmsConfigurationType `type:"structure"`
 
 	// A container with information about the SMS verification message.
@@ -31681,9 +31729,9 @@ type UserPoolClientType struct {
 
 	// The Amazon Pinpoint analytics configuration for the user pool client.
 	//
-	// Amazon Cognito User Pools only supports sending events to Amazon Pinpoint
+	// Amazon Cognito user pools only support sending events to Amazon Pinpoint
 	// projects in the US East (N. Virginia) us-east-1 Region, regardless of the
-	// Region in which the user pool resides.
+	// Region where the user pool resides.
 	AnalyticsConfiguration *AnalyticsConfigurationType `type:"structure"`
 
 	// A list of allowed redirect (callback) URLs for the identity providers.
@@ -32206,10 +32254,13 @@ type UserPoolType struct {
 	// The domain prefix, if the user pool has a domain associated with it.
 	Domain *string `min:"1" type:"string"`
 
-	// The email configuration.
+	// The email configuration of your user pool. The email configuration type sets
+	// your preferred sending method, Amazon Web Services Region, and sender for
+	// messages tfrom your user pool.
 	EmailConfiguration *EmailConfigurationType `type:"structure"`
 
-	// The reason why the email configuration can't send the messages to your users.
+	// Deprecated. Review error codes from API requests with EventSource:cognito-idp.amazonaws.com
+	// in CloudTrail for information about problems with user pool email configuration.
 	EmailConfigurationFailure *string `type:"string"`
 
 	// The contents of the email verification message.
@@ -32253,7 +32304,12 @@ type UserPoolType struct {
 	// The contents of the SMS authentication message.
 	SmsAuthenticationMessage *string `min:"6" type:"string"`
 
-	// The SMS configuration.
+	// The SMS configuration with the settings that your Amazon Cognito user pool
+	// must use to send an SMS message from your Amazon Web Services account through
+	// Amazon Simple Notification Service. To send SMS messages with Amazon SNS
+	// in the Amazon Web Services Region that you want, the Amazon Cognito user
+	// pool uses an Identity and Access Management (IAM) role in your Amazon Web
+	// Services account.
 	SmsConfiguration *SmsConfigurationType `type:"structure"`
 
 	// The reason why the SMS configuration can't send the messages to your users.
@@ -32261,15 +32317,19 @@ type UserPoolType struct {
 	// This message might include comma-separated values to describe why your SMS
 	// configuration can't send messages to user pool end users.
 	//
-	//    * InvalidSmsRoleAccessPolicyException - The Identity and Access Management
-	//    role that Amazon Cognito uses to send SMS messages isn't properly configured.
-	//    For more information, see SmsConfigurationType (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SmsConfigurationType.html).
+	// InvalidSmsRoleAccessPolicyException
 	//
-	//    * SNSSandbox - The Amazon Web Services account is in SNS Sandbox and messages
-	//    will only reach verified end users. This parameter won’t get populated
-	//    with SNSSandbox if the IAM user creating the user pool doesn’t have
-	//    SNS permissions. To learn how to move your Amazon Web Services account
-	//    out of the sandbox, see Moving out of the SMS sandbox (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox-moving-to-production.html).
+	// The Identity and Access Management role that Amazon Cognito uses to send
+	// SMS messages isn't properly configured. For more information, see SmsConfigurationType
+	// (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SmsConfigurationType.html).
+	//
+	// SNSSandbox
+	//
+	// The Amazon Web Services account is in the SNS SMS Sandbox and messages will
+	// only reach verified end users. This parameter won’t get populated with
+	// SNSSandbox if the IAM user creating the user pool doesn’t have SNS permissions.
+	// To learn how to move your Amazon Web Services account out of the sandbox,
+	// see Moving out of the SMS sandbox (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox-moving-to-production.html).
 	SmsConfigurationFailure *string `type:"string"`
 
 	// The contents of the SMS verification message.
@@ -32531,8 +32591,6 @@ type UserType struct {
 	//
 	//    * ARCHIVED - User is no longer active.
 	//
-	//    * COMPROMISED - User is disabled due to a potential security threat.
-	//
 	//    * UNKNOWN - User status isn't known.
 	//
 	//    * RESET_REQUIRED - User is confirmed, but the user must request a code
@@ -32620,14 +32678,18 @@ type UsernameConfigurationType struct {
 	//
 	// Valid values include:
 	//
-	//    * True : Enables case sensitivity for all username input. When this option
-	//    is set to True, users must sign in using the exact capitalization of their
-	//    given username, such as “UserName”. This is the default value.
+	// True
 	//
-	//    * False : Enables case insensitivity for all username input. For example,
-	//    when this option is set to False, users can sign in using either "username"
-	//    or "Username". This option also enables both preferred_username and email
-	//    alias to be case insensitive, in addition to the username attribute.
+	// Enables case sensitivity for all username input. When this option is set
+	// to True, users must sign in using the exact capitalization of their given
+	// username, such as “UserName”. This is the default value.
+	//
+	// False
+	//
+	// Enables case insensitivity for all username input. For example, when this
+	// option is set to False, users can sign in using either "username" or "Username".
+	// This option also enables both preferred_username and email alias to be case
+	// insensitive, in addition to the username attribute.
 	//
 	// CaseSensitive is a required field
 	CaseSensitive *bool `type:"boolean" required:"true"`

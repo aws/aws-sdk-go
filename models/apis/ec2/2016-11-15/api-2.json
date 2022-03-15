@@ -11269,7 +11269,8 @@
       "required":["IpamId"],
       "members":{
         "DryRun":{"shape":"Boolean"},
-        "IpamId":{"shape":"IpamId"}
+        "IpamId":{"shape":"IpamId"},
+        "Cascade":{"shape":"Boolean"}
       }
     },
     "DeleteIpamResult":{
@@ -31330,7 +31331,8 @@
       "type":"structure",
       "required":[
         "IpamPoolId",
-        "Cidr"
+        "Cidr",
+        "IpamPoolAllocationId"
       ],
       "members":{
         "DryRun":{"shape":"Boolean"},

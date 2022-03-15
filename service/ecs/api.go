@@ -2210,8 +2210,19 @@ func (c *ECS) ExecuteCommandRequest(input *ExecuteCommandInput) (req *request.Re
 //   with ListClusters. Amazon ECS clusters are Region specific.
 //
 //   * TargetNotConnectedException
-//   The target container isn't properly configured with the execute command agent
-//   or the container is no longer active or running.
+//   The execute command cannot run. This error can be caused by any of the following
+//   configuration issues:
+//
+//      * Incorrect IAM permissions
+//
+//      * The SSM agent is not installed or is not running
+//
+//      * There is an interface Amazon VPC endpoint for Amazon ECS, but there
+//      is not one for for Systems Manager Session Manager
+//
+//   For information about how to troubleshoot the issues, see Troubleshooting
+//   issues with ECS Exec (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html)
+//   in the Amazon Elastic Container Service Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/ExecuteCommand
 func (c *ECS) ExecuteCommand(input *ExecuteCommandInput) (*ExecuteCommandOutput, error) {
@@ -5465,7 +5476,7 @@ func (c *ECS) UpdateContainerInstancesStateRequest(input *UpdateContainerInstanc
 //    healthy. Tasks for services that do not use a load balancer are considered
 //    healthy if they're in the RUNNING state. Tasks for services that use a
 //    load balancer are considered healthy if they're in the RUNNING state and
-//    are reported as healthy by the load balancer..
+//    are reported as healthy by the load balancer.
 //
 //    * The maximumPercent parameter represents an upper limit on the number
 //    of running tasks during task replacement. You can use this to define the
@@ -5586,18 +5597,17 @@ func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *request.Requ
 // Modifies the parameters of a service.
 //
 // For services using the rolling update (ECS) you can update the desired count,
-// the deployment configuration, the network configuration, load balancers,
-// service registries, enable ECS managed tags option, propagate tags option,
-// task placement constraints and strategies, and the task definition. When
-// you update any of these parameters, Amazon ECS starts new tasks with the
-// new configuration.
+// deployment configuration, network configuration, load balancers, service
+// registries, enable ECS managed tags option, propagate tags option, task placement
+// constraints and strategies, and task definition. When you update any of these
+// parameters, Amazon ECS starts new tasks with the new configuration.
 //
 // For services using the blue/green (CODE_DEPLOY) deployment controller, only
-// the desired count, deployment configuration, task placement constraints and
-// strategies, enable ECS managed tags option, and propagate tags can be updated
-// using this API. If the network configuration, platform version, task definition,
-// or load balancer need to be updated, create a new CodeDeploy deployment.
-// For more information, see CreateDeployment (https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_CreateDeployment.html)
+// the desired count, deployment configuration, health check grace period, task
+// placement constraints and strategies, enable ECS managed tags option, and
+// propagate tags can be updated using this API. If the network configuration,
+// platform version, task definition, or load balancer need to be updated, create
+// a new CodeDeploy deployment. For more information, see CreateDeployment (https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_CreateDeployment.html)
 // in the CodeDeploy API Reference.
 //
 // For services using an external deployment controller, you can update only
@@ -9754,10 +9764,9 @@ type CreateServiceInput struct {
 	// in the Amazon Elastic Container Service Developer Guide.
 	PlatformVersion *string `locationName:"platformVersion" type:"string"`
 
-	// Specifies whether to propagate the tags from the task definition or the service
-	// to the tasks in the service. If no value is specified, the tags aren't propagated.
-	// Tags can only be propagated to the tasks within the service during service
-	// creation. To add tags to a task after service creation or task creation,
+	// Specifies whether to propagate the tags from the task definition to the task.
+	// If no value is specified, the tags aren't propagated. Tags can only be propagated
+	// to the task during task creation. To add tags to a task after task creation,
 	// use the TagResource API action.
 	PropagateTags *string `locationName:"propagateTags" type:"string" enum:"PropagateTags"`
 
@@ -13531,6 +13540,12 @@ func (s *FirelensConfiguration) SetType(v string) *FirelensConfiguration {
 // that are specified in a container definition override any Docker health checks
 // that exist in the container image (such as those specified in a parent image
 // or from the image's Dockerfile).
+//
+// The Amazon ECS container agent only monitors and reports on the health checks
+// specified in the task definition. Amazon ECS does not monitor Docker health
+// checks that are embedded in a container image and not specified in the container
+// definition. Health check parameters that are specified in a container definition
+// override any Docker health checks that exist in the container image.
 //
 // You can view the health status of both individual containers and a task with
 // the DescribeTasks API operation or when viewing the task details in the console.
@@ -18369,6 +18384,9 @@ type RunTaskInput struct {
 	// Determines whether to use the execute command functionality for the containers
 	// in this task. If true, this enables execute command functionality on all
 	// containers in the task.
+	//
+	// If true, then the task definition must have a task role, or you must provide
+	// one as an override.
 	EnableExecuteCommand *bool `locationName:"enableExecuteCommand" type:"boolean"`
 
 	// The name of the task group to associate with the task. The default value
@@ -18488,10 +18506,23 @@ type RunTaskInput struct {
 	// The family and revision (family:revision) or full ARN of the task definition
 	// to run. If a revision isn't specified, the latest ACTIVE revision is used.
 	//
+	// When you create an IAM policy for run-task, you can set the resource to be
+	// the latest task definition revision, or a specific revision.
+	//
 	// The full ARN value must match the value that you specified as the Resource
-	// of the IAM principal's permissions policy. For example, if the Resource is
-	// arn:aws:ecs:us-east-1:111122223333:task-definition/TaskFamilyName:*, the
-	// taskDefinition ARN value must be arn:aws:ecs:us-east-1:111122223333:task-definition/TaskFamilyName.
+	// of the IAM principal's permissions policy.
+	//
+	// When you specify the policy resource as the latest task definition version
+	// (by setting the Resource in the policy to arn:aws:ecs:us-east-1:111122223333:task-definition/TaskFamilyName),
+	// then set this value to arn:aws:ecs:us-east-1:111122223333:task-definition/TaskFamilyName.
+	//
+	// When you specify the policy resource as a specific task definition version
+	// (by setting the Resource in the policy to arn:aws:ecs:us-east-1:111122223333:task-definition/TaskFamilyName:1
+	// or arn:aws:ecs:us-east-1:111122223333:task-definition/TaskFamilyName:*),
+	// then set this value to arn:aws:ecs:us-east-1:111122223333:task-definition/TaskFamilyName:1.
+	//
+	// For more information, see Policy Resources for Amazon ECS (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/security_iam_service-with-iam.html#security_iam_service-with-iam-id-based-policies-resources)
+	// in the Amazon Elastic Container Service developer Guide.
 	//
 	// TaskDefinition is a required field
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
@@ -20710,8 +20741,19 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// The target container isn't properly configured with the execute command agent
-// or the container is no longer active or running.
+// The execute command cannot run. This error can be caused by any of the following
+// configuration issues:
+//
+//    * Incorrect IAM permissions
+//
+//    * The SSM agent is not installed or is not running
+//
+//    * There is an interface Amazon VPC endpoint for Amazon ECS, but there
+//    is not one for for Systems Manager Session Manager
+//
+// For information about how to troubleshoot the issues, see Troubleshooting
+// issues with ECS Exec (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html)
+// in the Amazon Elastic Container Service Developer Guide.
 type TargetNotConnectedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
