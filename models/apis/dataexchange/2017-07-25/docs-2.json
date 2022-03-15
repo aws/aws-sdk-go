@@ -22,6 +22,7 @@
     "ListJobs" : "<p>This operation lists your jobs sorted by CreatedAt in descending order.</p>",
     "ListRevisionAssets" : "<p>This operation lists a revision's assets sorted alphabetically in descending order.</p>",
     "ListTagsForResource" : "<p>This operation lists the tags on the resource.</p>",
+    "RevokeRevision" : "<p>This operation revokes subscribers' access to a revision.</p>",
     "SendApiAsset" : "<p>This operation invokes an API Gateway API asset. The request is proxied to the provider’s API Gateway API.</p>",
     "StartJob" : "<p>This operation starts a job.</p>",
     "TagResource" : "<p>This operation tags a resource.</p>",
@@ -77,7 +78,7 @@
       }
     },
     "Asset" : {
-      "base" : "<p>An asset in AWS Data Exchange is a piece of data (S3 object) or a means of fulfilling data (Amazon Redshift datashare or Amazon API Gateway API). The asset can be a structured data file, an image file, or some other data file that can be stored as an S3 object, an Amazon API Gateway API, or an Amazon Redshift datashare (Preview). When you create an import job for your files, API Gateway APIs, or Amazon Redshift datashares, you create an asset in AWS Data Exchange.</p>",
+      "base" : "<p>An asset in AWS Data Exchange is a piece of data (S3 object) or a means of fulfilling data (Amazon Redshift datashare or Amazon API Gateway API). The asset can be a structured data file, an image file, or some other data file that can be stored as an S3 object, an Amazon API Gateway API, or an Amazon Redshift datashare. When you create an import job for your files, API Gateway APIs, or Amazon Redshift datashares, you create an asset in AWS Data Exchange.</p>",
       "refs" : { }
     },
     "AssetDestinationEntry" : {
@@ -94,7 +95,7 @@
       }
     },
     "AssetEntry" : {
-      "base" : "<p>An asset in AWS Data Exchange is a piece of data (S3 object) or a means of fulfilling data (Amazon Redshift datashare or Amazon API Gateway API). The asset can be a structured data file, an image file, or some other data file that can be stored as an S3 object, an Amazon API Gateway API, or an Amazon Redshift datashare (Preview). When you create an import job for your files, API Gateway APIs, or Amazon Redshift datashares, you create an asset in AWS Data Exchange.</p>",
+      "base" : "<p>An asset in AWS Data Exchange is a piece of data (S3 object) or a means of fulfilling data (Amazon Redshift datashare or Amazon API Gateway API). The asset can be a structured data file, an image file, or some other data file that can be stored as an S3 object, an Amazon API Gateway API, or an Amazon Redshift datashare. When you create an import job for your files, API Gateway APIs, or Amazon Redshift datashares, you create an asset in AWS Data Exchange.</p>",
       "refs" : {
         "ListOfAssetEntry$member" : null
       }
@@ -571,6 +572,10 @@
         "Event$RevisionPublished" : "<p>What occurs to start the revision publish action.</p>"
       }
     },
+    "RevokeRevisionRequest" : {
+      "base" : "<p>The request sent to revoke the revision.</p>",
+      "refs" : { }
+    },
     "S3SnapshotAsset" : {
       "base" : "<p>The S3 object that is the asset.</p>",
       "refs" : {
@@ -642,12 +647,15 @@
         "JobEntry$CreatedAt" : "<p>The date and time that the job was created, in ISO 8601 format.</p>",
         "JobEntry$UpdatedAt" : "<p>The date and time that the job was last updated, in ISO 8601 format.</p>",
         "Revision$CreatedAt" : "<p>The date and time that the revision was created, in ISO 8601 format.</p>",
+        "Revision$RevokedAt" : "<p>The date and time that the revision was revoked, in ISO 8601 format.</p>",
         "Revision$UpdatedAt" : "<p>The date and time that the revision was last updated, in ISO 8601 format.</p>",
         "RevisionEntry$CreatedAt" : "<p>The date and time that the revision was created, in ISO 8601 format.</p>",
+        "RevisionEntry$RevokedAt" : "<p>The date and time that the revision was revoked, in ISO 8601 format.</p>",
         "RevisionEntry$UpdatedAt" : "<p>The date and time that the revision was last updated, in ISO 8601 format.</p>",
         "TaggedDataSet$CreatedAt" : "<p>The date and time that the data set was created, in ISO 8601 format.</p>",
         "TaggedDataSet$UpdatedAt" : "<p>The date and time that the data set was last updated, in ISO 8601 format.</p>",
         "TaggedRevision$CreatedAt" : "<p>The date and time that the revision was created, in ISO 8601 format.</p>",
+        "TaggedRevision$RevokedAt" : "<p>The date and time that the revision was revoked, in ISO 8601 format.</p>",
         "TaggedRevision$UpdatedAt" : "<p>The date and time that the revision was last updated, in ISO 8601 format.</p>"
       }
     },
@@ -683,8 +691,11 @@
       "base" : null,
       "refs" : {
         "Revision$Finalized" : "<p>To publish a revision to a data set in a product, the revision must first be finalized. Finalizing a revision tells AWS Data Exchange that changes to the assets in the revision are complete. After it's in this read-only state, you can publish the revision to your products.</p> <p>Finalized revisions can be published through the AWS Data Exchange console or the AWS Marketplace Catalog API, using the StartChangeSet AWS Marketplace Catalog API action. When using the API, revisions are uniquely identified by their ARN.</p>",
+        "Revision$Revoked" : "<p>A status indicating that subscribers' access to the revision was revoked.</p>",
         "RevisionEntry$Finalized" : "<p>To publish a revision to a data set in a product, the revision must first be finalized. Finalizing a revision tells AWS Data Exchange that your changes to the assets in the revision are complete. After it's in this read-only state, you can publish the revision to your products.</p> <p>Finalized revisions can be published through the AWS Data Exchange console or the AWS Marketplace Catalog API, using the StartChangeSet AWS Marketplace Catalog API action. When using the API, revisions are uniquely identified by their ARN.</p>",
+        "RevisionEntry$Revoked" : "<p>A status indicating that subscribers' access to the revision was revoked.</p>",
         "TaggedRevision$Finalized" : "<p>To publish a revision to a data set in a product, the revision must first be finalized. Finalizing a revision tells AWS Data Exchange that your changes to the assets in the revision are complete. After it's in this read-only state, you can publish the revision to your products.</p> <p>Finalized revisions can be published through the AWS Data Exchange console or the AWS Marketplace Catalog API, using the StartChangeSet AWS Marketplace Catalog API action. When using the API, revisions are uniquely identified by their ARN.</p>",
+        "TaggedRevision$Revoked" : "<p>A status indicating that subscribers' access to the revision was revoked.</p>",
         "UpdateRevisionRequest$Finalized" : "<p>Finalizing a revision tells AWS Data Exchange that your changes to the assets in the revision are complete. After it's in this read-only state, you can publish the revision to your products.</p>"
       }
     },
@@ -806,6 +817,15 @@
         "RevisionEntry$Comment" : "<p>An optional comment about the revision.</p>",
         "TaggedRevision$Comment" : "<p>An optional comment about the revision.</p>",
         "UpdateRevisionRequest$Comment" : "<p>An optional comment about the revision.</p>"
+      }
+    },
+    "__stringMin10Max512" : {
+      "base" : null,
+      "refs" : {
+        "Revision$RevocationComment" : "<p>A required comment to inform subscribers of the reason their access to the revision was revoked.</p>",
+        "RevisionEntry$RevocationComment" : "<p>A required comment to inform subscribers of the reason their access to the revision was revoked.</p>",
+        "RevokeRevisionRequest$RevocationComment" : "<p>A required comment to inform subscribers of the reason their access to the revision was revoked.</p>",
+        "TaggedRevision$RevocationComment" : "<p>A required comment to inform subscribers of the reason their access to the revision was revoked.</p>"
       }
     },
     "__stringMin24Max24PatternAZaZ094AZaZ092AZaZ093" : {

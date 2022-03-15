@@ -358,6 +358,10 @@ func (c *DataExchange) CreateJobRequest(input *CreateJobInput) (req *request.Req
 //   * AccessDeniedException
 //   Access to the resource is denied.
 //
+//   * ConflictException
+//   The request couldn't be completed because it conflicted with the current
+//   state of the resource.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CreateJob
 func (c *DataExchange) CreateJob(input *CreateJobInput) (*CreateJobOutput, error) {
 	req, out := c.CreateJobRequest(input)
@@ -2096,6 +2100,101 @@ func (c *DataExchange) ListTagsForResourceWithContext(ctx aws.Context, input *Li
 	return out, req.Send()
 }
 
+const opRevokeRevision = "RevokeRevision"
+
+// RevokeRevisionRequest generates a "aws/request.Request" representing the
+// client's request for the RevokeRevision operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RevokeRevision for more information on using the RevokeRevision
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RevokeRevisionRequest method.
+//    req, resp := client.RevokeRevisionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/RevokeRevision
+func (c *DataExchange) RevokeRevisionRequest(input *RevokeRevisionInput) (req *request.Request, output *RevokeRevisionOutput) {
+	op := &request.Operation{
+		Name:       opRevokeRevision,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/data-sets/{DataSetId}/revisions/{RevisionId}/revoke",
+	}
+
+	if input == nil {
+		input = &RevokeRevisionInput{}
+	}
+
+	output = &RevokeRevisionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RevokeRevision API operation for AWS Data Exchange.
+//
+// This operation revokes subscribers' access to a revision.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Exchange's
+// API operation RevokeRevision for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The request was invalid.
+//
+//   * InternalServerException
+//   An exception occurred with the service.
+//
+//   * AccessDeniedException
+//   Access to the resource is denied.
+//
+//   * ResourceNotFoundException
+//   The resource couldn't be found.
+//
+//   * ThrottlingException
+//   The limit on the number of requests per second was exceeded.
+//
+//   * ConflictException
+//   The request couldn't be completed because it conflicted with the current
+//   state of the resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/RevokeRevision
+func (c *DataExchange) RevokeRevision(input *RevokeRevisionInput) (*RevokeRevisionOutput, error) {
+	req, out := c.RevokeRevisionRequest(input)
+	return out, req.Send()
+}
+
+// RevokeRevisionWithContext is the same as RevokeRevision with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RevokeRevision for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataExchange) RevokeRevisionWithContext(ctx aws.Context, input *RevokeRevisionInput, opts ...request.Option) (*RevokeRevisionOutput, error) {
+	req, out := c.RevokeRevisionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opSendApiAsset = "SendApiAsset"
 
 // SendApiAssetRequest generates a "aws/request.Request" representing the
@@ -3148,9 +3247,8 @@ func (s *AssetDetails) SetS3SnapshotAsset(v *S3SnapshotAsset) *AssetDetails {
 // fulfilling data (Amazon Redshift datashare or Amazon API Gateway API). The
 // asset can be a structured data file, an image file, or some other data file
 // that can be stored as an S3 object, an Amazon API Gateway API, or an Amazon
-// Redshift datashare (Preview). When you create an import job for your files,
-// API Gateway APIs, or Amazon Redshift datashares, you create an asset in AWS
-// Data Exchange.
+// Redshift datashare. When you create an import job for your files, API Gateway
+// APIs, or Amazon Redshift datashares, you create an asset in AWS Data Exchange.
 type AssetEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -4226,6 +4324,13 @@ type CreateRevisionOutput struct {
 	// A unique identifier.
 	Id *string `type:"string"`
 
+	RevocationComment *string `min:"10" type:"string"`
+
+	Revoked *bool `type:"boolean"`
+
+	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	RevokedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
 	// A unique identifier.
 	SourceId *string `type:"string"`
 
@@ -4286,6 +4391,24 @@ func (s *CreateRevisionOutput) SetFinalized(v bool) *CreateRevisionOutput {
 // SetId sets the Id field's value.
 func (s *CreateRevisionOutput) SetId(v string) *CreateRevisionOutput {
 	s.Id = &v
+	return s
+}
+
+// SetRevocationComment sets the RevocationComment field's value.
+func (s *CreateRevisionOutput) SetRevocationComment(v string) *CreateRevisionOutput {
+	s.RevocationComment = &v
+	return s
+}
+
+// SetRevoked sets the Revoked field's value.
+func (s *CreateRevisionOutput) SetRevoked(v bool) *CreateRevisionOutput {
+	s.Revoked = &v
+	return s
+}
+
+// SetRevokedAt sets the RevokedAt field's value.
+func (s *CreateRevisionOutput) SetRevokedAt(v time.Time) *CreateRevisionOutput {
+	s.RevokedAt = &v
 	return s
 }
 
@@ -6166,6 +6289,13 @@ type GetRevisionOutput struct {
 	// A unique identifier.
 	Id *string `type:"string"`
 
+	RevocationComment *string `min:"10" type:"string"`
+
+	Revoked *bool `type:"boolean"`
+
+	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	RevokedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
 	// A unique identifier.
 	SourceId *string `type:"string"`
 
@@ -6226,6 +6356,24 @@ func (s *GetRevisionOutput) SetFinalized(v bool) *GetRevisionOutput {
 // SetId sets the Id field's value.
 func (s *GetRevisionOutput) SetId(v string) *GetRevisionOutput {
 	s.Id = &v
+	return s
+}
+
+// SetRevocationComment sets the RevocationComment field's value.
+func (s *GetRevisionOutput) SetRevocationComment(v string) *GetRevisionOutput {
+	s.RevocationComment = &v
+	return s
+}
+
+// SetRevoked sets the Revoked field's value.
+func (s *GetRevisionOutput) SetRevoked(v bool) *GetRevisionOutput {
+	s.Revoked = &v
+	return s
+}
+
+// SetRevokedAt sets the RevokedAt field's value.
+func (s *GetRevisionOutput) SetRevokedAt(v time.Time) *GetRevisionOutput {
+	s.RevokedAt = &v
 	return s
 }
 
@@ -8426,6 +8574,16 @@ type RevisionEntry struct {
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
+	// A required comment to inform subscribers of the reason their access to the
+	// revision was revoked.
+	RevocationComment *string `min:"10" type:"string"`
+
+	// A status indicating that subscribers' access to the revision was revoked.
+	Revoked *bool `type:"boolean"`
+
+	// The date and time that the revision was revoked, in ISO 8601 format.
+	RevokedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
 	// The revision ID of the owned revision corresponding to the entitled revision
 	// being viewed. This parameter is returned when a revision owner is viewing
 	// the entitled copy of its owned revision.
@@ -8491,6 +8649,24 @@ func (s *RevisionEntry) SetId(v string) *RevisionEntry {
 	return s
 }
 
+// SetRevocationComment sets the RevocationComment field's value.
+func (s *RevisionEntry) SetRevocationComment(v string) *RevisionEntry {
+	s.RevocationComment = &v
+	return s
+}
+
+// SetRevoked sets the Revoked field's value.
+func (s *RevisionEntry) SetRevoked(v bool) *RevisionEntry {
+	s.Revoked = &v
+	return s
+}
+
+// SetRevokedAt sets the RevokedAt field's value.
+func (s *RevisionEntry) SetRevokedAt(v time.Time) *RevisionEntry {
+	s.RevokedAt = &v
+	return s
+}
+
 // SetSourceId sets the SourceId field's value.
 func (s *RevisionEntry) SetSourceId(v string) *RevisionEntry {
 	s.SourceId = &v
@@ -8547,6 +8723,204 @@ func (s *RevisionPublished) Validate() error {
 // SetDataSetId sets the DataSetId field's value.
 func (s *RevisionPublished) SetDataSetId(v string) *RevisionPublished {
 	s.DataSetId = &v
+	return s
+}
+
+// The request sent to revoke the revision.
+type RevokeRevisionInput struct {
+	_ struct{} `type:"structure"`
+
+	// DataSetId is a required field
+	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
+
+	// RevisionId is a required field
+	RevisionId *string `location:"uri" locationName:"RevisionId" type:"string" required:"true"`
+
+	// A required comment to inform subscribers of the reason their access to the
+	// revision was revoked.
+	//
+	// RevocationComment is a required field
+	RevocationComment *string `min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RevokeRevisionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RevokeRevisionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RevokeRevisionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RevokeRevisionInput"}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.DataSetId != nil && len(*s.DataSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSetId", 1))
+	}
+	if s.RevisionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionId"))
+	}
+	if s.RevisionId != nil && len(*s.RevisionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RevisionId", 1))
+	}
+	if s.RevocationComment == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevocationComment"))
+	}
+	if s.RevocationComment != nil && len(*s.RevocationComment) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("RevocationComment", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *RevokeRevisionInput) SetDataSetId(v string) *RevokeRevisionInput {
+	s.DataSetId = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *RevokeRevisionInput) SetRevisionId(v string) *RevokeRevisionInput {
+	s.RevisionId = &v
+	return s
+}
+
+// SetRevocationComment sets the RevocationComment field's value.
+func (s *RevokeRevisionInput) SetRevocationComment(v string) *RevokeRevisionInput {
+	s.RevocationComment = &v
+	return s
+}
+
+type RevokeRevisionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	Arn *string `type:"string"`
+
+	Comment *string `type:"string"`
+
+	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// A unique identifier.
+	DataSetId *string `type:"string"`
+
+	Finalized *bool `type:"boolean"`
+
+	// A unique identifier.
+	Id *string `type:"string"`
+
+	RevocationComment *string `min:"10" type:"string"`
+
+	Revoked *bool `type:"boolean"`
+
+	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	RevokedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// A unique identifier.
+	SourceId *string `type:"string"`
+
+	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RevokeRevisionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RevokeRevisionOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *RevokeRevisionOutput) SetArn(v string) *RevokeRevisionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetComment sets the Comment field's value.
+func (s *RevokeRevisionOutput) SetComment(v string) *RevokeRevisionOutput {
+	s.Comment = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *RevokeRevisionOutput) SetCreatedAt(v time.Time) *RevokeRevisionOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *RevokeRevisionOutput) SetDataSetId(v string) *RevokeRevisionOutput {
+	s.DataSetId = &v
+	return s
+}
+
+// SetFinalized sets the Finalized field's value.
+func (s *RevokeRevisionOutput) SetFinalized(v bool) *RevokeRevisionOutput {
+	s.Finalized = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *RevokeRevisionOutput) SetId(v string) *RevokeRevisionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetRevocationComment sets the RevocationComment field's value.
+func (s *RevokeRevisionOutput) SetRevocationComment(v string) *RevokeRevisionOutput {
+	s.RevocationComment = &v
+	return s
+}
+
+// SetRevoked sets the Revoked field's value.
+func (s *RevokeRevisionOutput) SetRevoked(v bool) *RevokeRevisionOutput {
+	s.Revoked = &v
+	return s
+}
+
+// SetRevokedAt sets the RevokedAt field's value.
+func (s *RevokeRevisionOutput) SetRevokedAt(v time.Time) *RevokeRevisionOutput {
+	s.RevokedAt = &v
+	return s
+}
+
+// SetSourceId sets the SourceId field's value.
+func (s *RevokeRevisionOutput) SetSourceId(v string) *RevokeRevisionOutput {
+	s.SourceId = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *RevokeRevisionOutput) SetUpdatedAt(v time.Time) *RevokeRevisionOutput {
+	s.UpdatedAt = &v
 	return s
 }
 
@@ -9734,6 +10108,13 @@ type UpdateRevisionOutput struct {
 	// A unique identifier.
 	Id *string `type:"string"`
 
+	RevocationComment *string `min:"10" type:"string"`
+
+	Revoked *bool `type:"boolean"`
+
+	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	RevokedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
 	// A unique identifier.
 	SourceId *string `type:"string"`
 
@@ -9792,6 +10173,24 @@ func (s *UpdateRevisionOutput) SetFinalized(v bool) *UpdateRevisionOutput {
 // SetId sets the Id field's value.
 func (s *UpdateRevisionOutput) SetId(v string) *UpdateRevisionOutput {
 	s.Id = &v
+	return s
+}
+
+// SetRevocationComment sets the RevocationComment field's value.
+func (s *UpdateRevisionOutput) SetRevocationComment(v string) *UpdateRevisionOutput {
+	s.RevocationComment = &v
+	return s
+}
+
+// SetRevoked sets the Revoked field's value.
+func (s *UpdateRevisionOutput) SetRevoked(v bool) *UpdateRevisionOutput {
+	s.Revoked = &v
+	return s
+}
+
+// SetRevokedAt sets the RevokedAt field's value.
+func (s *UpdateRevisionOutput) SetRevokedAt(v time.Time) *UpdateRevisionOutput {
+	s.RevokedAt = &v
 	return s
 }
 

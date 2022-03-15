@@ -10764,28 +10764,28 @@ func (c *RDS) ModifyCurrentDBClusterCapacityRequest(input *ModifyCurrentDBCluste
 
 // ModifyCurrentDBClusterCapacity API operation for Amazon Relational Database Service.
 //
-// Set the capacity of an Aurora Serverless DB cluster to a specific value.
+// Set the capacity of an Aurora Serverless v1 DB cluster to a specific value.
 //
-// Aurora Serverless scales seamlessly based on the workload on the DB cluster.
+// Aurora Serverless v1 scales seamlessly based on the workload on the DB cluster.
 // In some cases, the capacity might not scale fast enough to meet a sudden
 // change in workload, such as a large number of new transactions. Call ModifyCurrentDBClusterCapacity
 // to set the capacity explicitly.
 //
-// After this call sets the DB cluster capacity, Aurora Serverless can automatically
+// After this call sets the DB cluster capacity, Aurora Serverless v1 can automatically
 // scale the DB cluster based on the cooldown period for scaling up and the
 // cooldown period for scaling down.
 //
-// For more information about Aurora Serverless, see Using Amazon Aurora Serverless
-// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html)
+// For more information about Aurora Serverless v1, see Using Amazon Aurora
+// Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html)
 // in the Amazon Aurora User Guide.
 //
 // If you call ModifyCurrentDBClusterCapacity with the default TimeoutAction,
-// connections that prevent Aurora Serverless from finding a scaling point might
-// be dropped. For more information about scaling points, see Autoscaling for
-// Aurora Serverless (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.how-it-works.html#aurora-serverless.how-it-works.auto-scaling)
+// connections that prevent Aurora Serverless v1 from finding a scaling point
+// might be dropped. For more information about scaling points, see Autoscaling
+// for Aurora Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.how-it-works.html#aurora-serverless.how-it-works.auto-scaling)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora Serverless DB clusters.
+// This action only applies to Aurora Serverless v1 DB clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11200,7 +11200,7 @@ func (c *RDS) ModifyDBClusterParameterGroupRequest(input *ModifyDBClusterParamet
 // parameter group has been created or modified.
 //
 // If the modified DB cluster parameter group is used by an Aurora Serverless
-// cluster, Aurora applies the update immediately. The cluster restart might
+// v1 cluster, Aurora applies the update immediately. The cluster restart might
 // interrupt your workload. In that case, your application must reopen any connections
 // and retry any transactions that were active when the parameter changes took
 // effect.
@@ -19215,7 +19215,7 @@ type CreateDBClusterInput struct {
 	//
 	// For more information about exporting CloudWatch Logs for Amazon RDS, see
 	// Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
-	// in the Amazon Relational Database Service User Guide.
+	// in the Amazon RDS User Guide.
 	//
 	// For more information about exporting CloudWatch Logs for Amazon Aurora, see
 	// Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
@@ -19240,13 +19240,13 @@ type CreateDBClusterInput struct {
 	EnableGlobalWriteForwarding *bool `type:"boolean"`
 
 	// A value that indicates whether to enable the HTTP endpoint for an Aurora
-	// Serverless DB cluster. By default, the HTTP endpoint is disabled.
+	// Serverless v1 DB cluster. By default, the HTTP endpoint is disabled.
 	//
 	// When enabled, the HTTP endpoint provides a connectionless web service API
-	// for running SQL queries on the Aurora Serverless DB cluster. You can also
+	// for running SQL queries on the Aurora Serverless v1 DB cluster. You can also
 	// query your database from inside the RDS console with the query editor.
 	//
-	// For more information, see Using the Data API for Aurora Serverless (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
+	// For more information, see Using the Data API for Aurora Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
 	// in the Amazon Aurora User Guide.
 	//
 	// Valid for: Aurora DB clusters only
@@ -19257,7 +19257,7 @@ type CreateDBClusterInput struct {
 	// isn't enabled.
 	//
 	// For more information, see IAM Database Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html)
-	// in the Amazon Aurora User Guide.
+	// in the Amazon Aurora User Guide..
 	//
 	// Valid for: Aurora DB clusters only
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
@@ -19308,7 +19308,7 @@ type CreateDBClusterInput struct {
 	// Limitations and requirements apply to some DB engine modes. For more information,
 	// see the following sections in the Amazon Aurora User Guide:
 	//
-	//    * Limitations of Aurora Serverless (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html#aurora-serverless.limitations)
+	//    * Limitations of Aurora Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html#aurora-serverless.limitations)
 	//
 	//    * Limitations of Parallel Query (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-mysql-parallel-query.html#aurora-mysql-parallel-query-limitations)
 	//
@@ -20492,7 +20492,7 @@ type CreateDBInstanceInput struct {
 	//
 	// For the list of permissions required for the IAM role, see Configure IAM
 	// and your VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html#custom-setup-orcl.iam-vpc)
-	// in the Amazon Relational Database Service User Guide.
+	// in the Amazon RDS User Guide.
 	//
 	// This setting is required for RDS Custom.
 	CustomIamInstanceProfile *string `type:"string"`
@@ -20696,7 +20696,7 @@ type CreateDBInstanceInput struct {
 	// The list of log types that need to be enabled for exporting to CloudWatch
 	// Logs. The values in the list depend on the DB engine. For more information,
 	// see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
-	// in the Amazon Relational Database Service User Guide.
+	// in the Amazon RDS User Guide.
 	//
 	// Amazon Aurora
 	//
@@ -20758,7 +20758,7 @@ type CreateDBInstanceInput struct {
 
 	// A value that indicates whether to enable Performance Insights for the DB
 	// instance. For more information, see Using Amazon Performance Insights (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html)
-	// in the Amazon Relational Database Service User Guide.
+	// in the Amazon RDS User Guide.
 	//
 	// This setting doesn't apply to RDS Custom.
 	EnablePerformanceInsights *bool `type:"boolean"`
@@ -20827,7 +20827,7 @@ type CreateDBInstanceInput struct {
 	// is required for RDS Custom for Oracle. The CEV name has the following format:
 	// 19.customized_string . An example identifier is 19.my_cev1. For more information,
 	// see Creating an RDS Custom for Oracle DB instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-creating.html#custom-creating.create)
-	// in the Amazon RDS User Guide..
+	// in the Amazon RDS User Guide.
 	//
 	// Amazon RDS Custom for SQL Server
 	//
@@ -21622,7 +21622,7 @@ type CreateDBInstanceReadReplicaInput struct {
 	//
 	// For the list of permissions required for the IAM role, see Configure IAM
 	// and your VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html#custom-setup-orcl.iam-vpc)
-	// in the Amazon Relational Database Service User Guide.
+	// in the Amazon RDS User Guide.
 	//
 	// This setting is required for RDS Custom.
 	CustomIamInstanceProfile *string `type:"string"`
@@ -23772,11 +23772,11 @@ type DBCluster struct {
 	// Specifies the number of days for which automatic DB snapshots are retained.
 	BackupRetentionPeriod *int64 `type:"integer"`
 
-	// The current capacity of an Aurora Serverless DB cluster. The capacity is
-	// 0 (zero) when the cluster is paused.
+	// The current capacity of an Aurora Serverless v1 DB cluster. The capacity
+	// is 0 (zero) when the cluster is paused.
 	//
-	// For more information about Aurora Serverless, see Using Amazon Aurora Serverless
-	// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html)
+	// For more information about Aurora Serverless v1, see Using Amazon Aurora
+	// Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html)
 	// in the Amazon Aurora User Guide.
 	Capacity *int64 `type:"integer"`
 
@@ -23889,13 +23889,13 @@ type DBCluster struct {
 	HostedZoneId *string `type:"string"`
 
 	// A value that indicates whether the HTTP endpoint for an Aurora Serverless
-	// DB cluster is enabled.
+	// v1 DB cluster is enabled.
 	//
 	// When enabled, the HTTP endpoint provides a connectionless web service API
-	// for running SQL queries on the Aurora Serverless DB cluster. You can also
+	// for running SQL queries on the Aurora Serverless v1 DB cluster. You can also
 	// query your database from inside the RDS console with the query editor.
 	//
-	// For more information, see Using the Data API for Aurora Serverless (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
+	// For more information, see Using the Data API for Aurora Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
 	// in the Amazon Aurora User Guide.
 	HttpEndpointEnabled *bool `type:"boolean"`
 
@@ -24018,7 +24018,7 @@ type DBCluster struct {
 	// Shows the scaling configuration for an Aurora DB cluster in serverless DB
 	// engine mode.
 	//
-	// For more information, see Using Amazon Aurora Serverless (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html)
+	// For more information, see Using Amazon Aurora Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html)
 	// in the Amazon Aurora User Guide.
 	ScalingConfigurationInfo *ScalingConfigurationInfo `type:"structure"`
 
@@ -25593,7 +25593,7 @@ type DBInstance struct {
 	//
 	// For the list of permissions required for the IAM role, see Configure IAM
 	// and your VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html#custom-setup-orcl.iam-vpc)
-	// in the Amazon Relational Database Service User Guide.
+	// in the Amazon RDS User Guide.
 	CustomIamInstanceProfile *string `type:"string"`
 
 	// Specifies whether a customer-owned IP address (CoIP) is enabled for an RDS
@@ -31081,7 +31081,7 @@ type DescribeDBClusterParametersOutput struct {
 
 	// An optional pagination token provided by a previous DescribeDBClusterParameters
 	// request. If this parameter is specified, the response includes only records
-	// beyond the marker, up to the value specified by MaxRecords .
+	// beyond the marker, up to the value specified by MaxRecords.
 	Marker *string `type:"string"`
 
 	// Provides a list of parameters for the DB cluster parameter group.
@@ -31981,7 +31981,7 @@ type DescribeDBInstanceAutomatedBackupsOutput struct {
 
 	// An optional pagination token provided by a previous request. If this parameter
 	// is specified, the response includes only records beyond the marker, up to
-	// the value specified by MaxRecords .
+	// the value specified by MaxRecords.
 	Marker *string `type:"string"`
 }
 
@@ -34483,7 +34483,7 @@ type DescribeEventsOutput struct {
 
 	// An optional pagination token provided by a previous Events request. If this
 	// parameter is specified, the response includes only records beyond the marker,
-	// up to the value specified by MaxRecords .
+	// up to the value specified by MaxRecords.
 	Marker *string `type:"string"`
 }
 
@@ -35347,7 +35347,7 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 
 	// An optional pagination token provided by a previous DescribeOrderableDBInstanceOptions
 	// request. If this parameter is specified, the response includes only records
-	// beyond the marker, up to the value specified by MaxRecords .
+	// beyond the marker, up to the value specified by MaxRecords.
 	Marker *string `type:"string"`
 
 	// The maximum number of records to include in the response. If more records
@@ -35469,7 +35469,7 @@ type DescribeOrderableDBInstanceOptionsOutput struct {
 
 	// An optional pagination token provided by a previous OrderableDBInstanceOptions
 	// request. If this parameter is specified, the response includes only records
-	// beyond the marker, up to the value specified by MaxRecords .
+	// beyond the marker, up to the value specified by MaxRecords.
 	Marker *string `type:"string"`
 
 	// An OrderableDBInstanceOption structure containing information about orderable
@@ -38305,8 +38305,8 @@ type ModifyCurrentDBClusterCapacityInput struct {
 
 	// The DB cluster capacity.
 	//
-	// When you change the capacity of a paused Aurora Serverless DB cluster, it
-	// automatically resumes.
+	// When you change the capacity of a paused Aurora Serverless v1 DB cluster,
+	// it automatically resumes.
 	//
 	// Constraints:
 	//
@@ -38327,9 +38327,9 @@ type ModifyCurrentDBClusterCapacityInput struct {
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
-	// The amount of time, in seconds, that Aurora Serverless tries to find a scaling
-	// point to perform seamless scaling before enforcing the timeout action. The
-	// default is 300.
+	// The amount of time, in seconds, that Aurora Serverless v1 tries to find a
+	// scaling point to perform seamless scaling before enforcing the timeout action.
+	// The default is 300.
 	//
 	// Specify a value between 10 and 600 seconds.
 	SecondsBeforeTimeout *int64 `type:"integer"`
@@ -39163,7 +39163,7 @@ type ModifyDBClusterInput struct {
 	//
 	// For more information about exporting CloudWatch Logs for Amazon RDS, see
 	// Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
-	// in the Amazon Relational Database Service User Guide.
+	// in the Amazon RDS User Guide.
 	//
 	// For more information about exporting CloudWatch Logs for Amazon Aurora, see
 	// Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
@@ -39263,13 +39263,13 @@ type ModifyDBClusterInput struct {
 	EnableGlobalWriteForwarding *bool `type:"boolean"`
 
 	// A value that indicates whether to enable the HTTP endpoint for an Aurora
-	// Serverless DB cluster. By default, the HTTP endpoint is disabled.
+	// Serverless v1 DB cluster. By default, the HTTP endpoint is disabled.
 	//
 	// When enabled, the HTTP endpoint provides a connectionless web service API
-	// for running SQL queries on the Aurora Serverless DB cluster. You can also
+	// for running SQL queries on the Aurora Serverless v1 DB cluster. You can also
 	// query your database from inside the RDS console with the query editor.
 	//
-	// For more information, see Using the Data API for Aurora Serverless (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
+	// For more information, see Using the Data API for Aurora Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
 	// in the Amazon Aurora User Guide.
 	//
 	// Valid for: Aurora DB clusters only
@@ -40296,7 +40296,7 @@ type ModifyDBInstanceInput struct {
 	// instance.
 	//
 	// For more information, see Using Amazon Performance Insights (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html)
-	// in the Amazon Relational Database Service User Guide.
+	// in the Amazon RDS User Guide..
 	//
 	// This setting doesn't apply to RDS Custom.
 	EnablePerformanceInsights *bool `type:"boolean"`
@@ -46241,7 +46241,7 @@ type RestoreDBClusterFromSnapshotInput struct {
 	//
 	// For more information about exporting CloudWatch Logs for Amazon RDS, see
 	// Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
-	// in the Amazon Relational Database Service User Guide.
+	// in the Amazon RDS User Guide..
 	//
 	// For more information about exporting CloudWatch Logs for Amazon Aurora, see
 	// Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
@@ -46817,7 +46817,7 @@ type RestoreDBClusterToPointInTimeInput struct {
 	//
 	// For more information about exporting CloudWatch Logs for Amazon RDS, see
 	// Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
-	// in the Amazon Relational Database Service User Guide.
+	// in the Amazon RDS User Guide..
 	//
 	// For more information about exporting CloudWatch Logs for Amazon Aurora, see
 	// Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
@@ -46838,10 +46838,10 @@ type RestoreDBClusterToPointInTimeInput struct {
 
 	// The engine mode of the new cluster. Specify provisioned or serverless, depending
 	// on the type of the cluster you are creating. You can create an Aurora Serverless
-	// clone from a provisioned cluster, or a provisioned clone from an Aurora Serverless
-	// cluster. To create a clone that is an Aurora Serverless cluster, the original
-	// cluster must be an Aurora Serverless cluster or an encrypted provisioned
-	// cluster.
+	// v1 clone from a provisioned cluster, or a provisioned clone from an Aurora
+	// Serverless v1 cluster. To create a clone that is an Aurora Serverless v1
+	// cluster, the original cluster must be an Aurora Serverless v1 cluster or
+	// an encrypted provisioned cluster.
 	//
 	// Valid for: Aurora DB clusters only
 	EngineMode *string `type:"string"`
@@ -47950,7 +47950,7 @@ type RestoreDBInstanceFromS3Input struct {
 	// instance.
 	//
 	// For more information, see Using Amazon Performance Insights (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html)
-	// in the Amazon Relational Database Service User Guide.
+	// in the Amazon RDS User Guide..
 	EnablePerformanceInsights *bool `type:"boolean"`
 
 	// The name of the database engine to be used for this instance.
@@ -48573,7 +48573,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//
 	// For the list of permissions required for the IAM role, see Configure IAM
 	// and your VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html#custom-setup-orcl.iam-vpc)
-	// in the Amazon Relational Database Service User Guide.
+	// in the Amazon RDS User Guide.
 	//
 	// This setting is required for RDS Custom.
 	CustomIamInstanceProfile *string `type:"string"`
@@ -49321,9 +49321,9 @@ func (s *RevokeDBSecurityGroupIngressOutput) SetDBSecurityGroup(v *DBSecurityGro
 	return s
 }
 
-// Contains the scaling configuration of an Aurora Serverless DB cluster.
+// Contains the scaling configuration of an Aurora Serverless v1 DB cluster.
 //
-// For more information, see Using Amazon Aurora Serverless (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html)
+// For more information, see Using Amazon Aurora Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html)
 // in the Amazon Aurora User Guide.
 type ScalingConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -49359,9 +49359,9 @@ type ScalingConfiguration struct {
 	// The minimum capacity must be less than or equal to the maximum capacity.
 	MinCapacity *int64 `type:"integer"`
 
-	// The amount of time, in seconds, that Aurora Serverless tries to find a scaling
-	// point to perform seamless scaling before enforcing the timeout action. The
-	// default is 300.
+	// The amount of time, in seconds, that Aurora Serverless v1 tries to find a
+	// scaling point to perform seamless scaling before enforcing the timeout action.
+	// The default is 300.
 	//
 	// Specify a value between 60 and 600 seconds.
 	SecondsBeforeTimeout *int64 `type:"integer"`
@@ -49381,9 +49381,9 @@ type ScalingConfiguration struct {
 	// point isn't found in the timeout period.
 	//
 	// If you specify ForceApplyCapacityChange, connections that prevent Aurora
-	// Serverless from finding a scaling point might be dropped.
+	// Serverless v1 from finding a scaling point might be dropped.
 	//
-	// For more information, see Autoscaling for Aurora Serverless (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.how-it-works.html#aurora-serverless.how-it-works.auto-scaling)
+	// For more information, see Autoscaling for Aurora Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.how-it-works.html#aurora-serverless.how-it-works.auto-scaling)
 	// in the Amazon Aurora User Guide.
 	TimeoutAction *string `type:"string"`
 }
@@ -49445,7 +49445,7 @@ func (s *ScalingConfiguration) SetTimeoutAction(v string) *ScalingConfiguration 
 // Shows the scaling configuration for an Aurora DB cluster in serverless DB
 // engine mode.
 //
-// For more information, see Using Amazon Aurora Serverless (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html)
+// For more information, see Using Amazon Aurora Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html)
 // in the Amazon Aurora User Guide.
 type ScalingConfigurationInfo struct {
 	_ struct{} `type:"structure"`
@@ -49453,8 +49453,8 @@ type ScalingConfigurationInfo struct {
 	// A value that indicates whether automatic pause is allowed for the Aurora
 	// DB cluster in serverless DB engine mode.
 	//
-	// When the value is set to false for an Aurora Serverless DB cluster, the DB
-	// cluster automatically resumes.
+	// When the value is set to false for an Aurora Serverless v1 DB cluster, the
+	// DB cluster automatically resumes.
 	AutoPause *bool `type:"boolean"`
 
 	// The maximum capacity for an Aurora DB cluster in serverless DB engine mode.
@@ -49473,7 +49473,7 @@ type ScalingConfigurationInfo struct {
 	SecondsUntilAutoPause *int64 `type:"integer"`
 
 	// The action that occurs when Aurora times out while attempting to change the
-	// capacity of an Aurora Serverless cluster. The value is either ForceApplyCapacityChange
+	// capacity of an Aurora Serverless v1 cluster. The value is either ForceApplyCapacityChange
 	// or RollbackCapacityChange.
 	//
 	// ForceApplyCapacityChange, the default, sets the capacity to the specified

@@ -8375,11 +8375,6 @@ func (s *CreateSimulationJobInput) Validate() error {
 			}
 		}
 	}
-	if s.LoggingConfig != nil {
-		if err := s.LoggingConfig.Validate(); err != nil {
-			invalidParams.AddNested("LoggingConfig", err.(request.ErrInvalidParams))
-		}
-	}
 	if s.OutputLocation != nil {
 		if err := s.OutputLocation.Validate(); err != nil {
 			invalidParams.AddNested("OutputLocation", err.(request.ErrInvalidParams))
@@ -14876,8 +14871,10 @@ type LoggingConfig struct {
 
 	// A boolean indicating whether to record all ROS topics.
 	//
-	// RecordAllRosTopics is a required field
-	RecordAllRosTopics *bool `locationName:"recordAllRosTopics" type:"boolean" required:"true"`
+	// This API is no longer supported and will throw an error if used.
+	//
+	// Deprecated: AWS RoboMaker is ending support for ROS software suite. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/software-support-policy.html.
+	RecordAllRosTopics *bool `locationName:"recordAllRosTopics" deprecated:"true" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -14896,19 +14893,6 @@ func (s LoggingConfig) String() string {
 // value will be replaced with "sensitive".
 func (s LoggingConfig) GoString() string {
 	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *LoggingConfig) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "LoggingConfig"}
-	if s.RecordAllRosTopics == nil {
-		invalidParams.Add(request.NewErrParamRequired("RecordAllRosTopics"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
 }
 
 // SetRecordAllRosTopics sets the RecordAllRosTopics field's value.
@@ -15729,14 +15713,22 @@ type RobotApplicationConfig struct {
 
 	// A Boolean indicating whether to use default robot application tools. The
 	// default tools are rviz, rqt, terminal and rosbag record. The default is False.
-	UseDefaultTools *bool `locationName:"useDefaultTools" type:"boolean"`
+	//
+	// This API is no longer supported and will throw an error if used.
+	//
+	// Deprecated: AWS RoboMaker is ending support for ROS software suite. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/software-support-policy.html.
+	UseDefaultTools *bool `locationName:"useDefaultTools" deprecated:"true" type:"boolean"`
 
 	// A Boolean indicating whether to use default upload configurations. By default,
 	// .ros and .gazebo files are uploaded when the application terminates and all
 	// ROS topics will be recorded.
 	//
 	// If you set this value, you must specify an outputLocation.
-	UseDefaultUploadConfigurations *bool `locationName:"useDefaultUploadConfigurations" type:"boolean"`
+	//
+	// This API is no longer supported and will throw an error if used.
+	//
+	// Deprecated: AWS RoboMaker is ending support for ROS software suite. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/software-support-policy.html.
+	UseDefaultUploadConfigurations *bool `locationName:"useDefaultUploadConfigurations" deprecated:"true" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -16249,14 +16241,22 @@ type SimulationApplicationConfig struct {
 	// A Boolean indicating whether to use default simulation application tools.
 	// The default tools are rviz, rqt, terminal and rosbag record. The default
 	// is False.
-	UseDefaultTools *bool `locationName:"useDefaultTools" type:"boolean"`
+	//
+	// This API is no longer supported and will throw an error if used.
+	//
+	// Deprecated: AWS RoboMaker is ending support for ROS software suite. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/software-support-policy.html.
+	UseDefaultTools *bool `locationName:"useDefaultTools" deprecated:"true" type:"boolean"`
 
 	// A Boolean indicating whether to use default upload configurations. By default,
 	// .ros and .gazebo files are uploaded when the application terminates and all
 	// ROS topics will be recorded.
 	//
 	// If you set this value, you must specify an outputLocation.
-	UseDefaultUploadConfigurations *bool `locationName:"useDefaultUploadConfigurations" type:"boolean"`
+	//
+	// This API is no longer supported and will throw an error if used.
+	//
+	// Deprecated: AWS RoboMaker is ending support for ROS software suite. For additional information, see https://docs.aws.amazon.com/robomaker/latest/dg/software-support-policy.html.
+	UseDefaultUploadConfigurations *bool `locationName:"useDefaultUploadConfigurations" deprecated:"true" type:"boolean"`
 
 	// A list of world configurations.
 	WorldConfigs []*WorldConfig `locationName:"worldConfigs" type:"list"`
@@ -16937,11 +16937,6 @@ func (s *SimulationJobRequest) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DataSources", i), err.(request.ErrInvalidParams))
 			}
-		}
-	}
-	if s.LoggingConfig != nil {
-		if err := s.LoggingConfig.Validate(); err != nil {
-			invalidParams.AddNested("LoggingConfig", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.OutputLocation != nil {
@@ -19203,6 +19198,9 @@ type WorldExportJobSummary struct {
 	// created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
+	// The output location.
+	OutputLocation *OutputLocation `locationName:"outputLocation" type:"structure"`
+
 	// The status of the world export job.
 	//
 	// Pending
@@ -19261,6 +19259,12 @@ func (s *WorldExportJobSummary) SetArn(v string) *WorldExportJobSummary {
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *WorldExportJobSummary) SetCreatedAt(v time.Time) *WorldExportJobSummary {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetOutputLocation sets the OutputLocation field's value.
+func (s *WorldExportJobSummary) SetOutputLocation(v *OutputLocation) *WorldExportJobSummary {
+	s.OutputLocation = v
 	return s
 }
 

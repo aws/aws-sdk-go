@@ -1053,7 +1053,6 @@
         {"shape":"InvalidEmailRoleAccessPolicyException"},
         {"shape":"CodeDeliveryFailureException"},
         {"shape":"UserNotFoundException"},
-        {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"}
       ],
       "authtype":"none"
@@ -2623,7 +2622,7 @@
     "BlockedIPRangeListType":{
       "type":"list",
       "member":{"shape":"StringType"},
-      "max":20
+      "max":200
     },
     "BooleanType":{"type":"boolean"},
     "CSSType":{"type":"string"},
@@ -4277,7 +4276,6 @@
     "PasswordType":{
       "type":"string",
       "max":256,
-      "min":6,
       "pattern":"[\\S]+",
       "sensitive":true
     },
@@ -4399,6 +4397,11 @@
       "type":"integer",
       "max":315360000,
       "min":0
+    },
+    "RegionCodeType":{
+      "type":"string",
+      "max":32,
+      "min":5
     },
     "ResendConfirmationCodeRequest":{
       "type":"structure",
@@ -4764,14 +4767,15 @@
     "SkippedIPRangeListType":{
       "type":"list",
       "member":{"shape":"StringType"},
-      "max":20
+      "max":200
     },
     "SmsConfigurationType":{
       "type":"structure",
       "required":["SnsCallerArn"],
       "members":{
         "SnsCallerArn":{"shape":"ArnType"},
-        "ExternalId":{"shape":"StringType"}
+        "ExternalId":{"shape":"StringType"},
+        "SnsRegion":{"shape":"RegionCodeType"}
       }
     },
     "SmsMfaConfigType":{

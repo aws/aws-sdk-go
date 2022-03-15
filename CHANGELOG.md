@@ -1,3 +1,19 @@
+Release v1.43.19 (2022-03-15)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API and documentation
+* `service/dataexchange`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Adds the Cascade parameter to the DeleteIpam API. Customers can use this parameter to automatically delete their IPAM, including non-default scopes, pools, cidrs, and allocations. There mustn't be any pools provisioned in the default public scope to use this parameter.
+* `service/ecs`: Updates service documentation
+  * Documentation only update to address tickets
+* `service/keyspaces`: Updates service documentation
+* `service/location`: Updates service documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Various documentation improvements
+* `service/robomaker`: Updates service API and documentation
+
 Release v1.43.18 (2022-03-14)
 ===
 
