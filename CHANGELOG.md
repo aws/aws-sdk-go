@@ -1,3 +1,13 @@
+Release v1.43.20 (2022-03-16)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service API and documentation
+* `service/amplifybackend`: Updates service API and documentation
+* `service/billingconductor`: Adds new service
+* `service/s3outposts`: Updates service API, documentation, and paginators
+* `service/ssm-incidents`: Updates service API and documentation
+
 Release v1.43.19 (2022-03-15)
 ===
 

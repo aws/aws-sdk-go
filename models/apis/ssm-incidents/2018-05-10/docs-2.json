@@ -81,7 +81,6 @@
         "IncidentRecord$arn": "<p>The Amazon Resource Name (ARN) of the incident record.</p>",
         "IncidentRecord$lastModifiedBy": "<p>Who modified the incident most recently.</p>",
         "IncidentRecordSource$createdBy": "<p>The principal that started the incident.</p>",
-        "IncidentRecordSource$invokedBy": "<p>The principal the assumed the role specified of the <code>createdBy</code>.</p>",
         "IncidentRecordSource$resourceArn": "<p>The resource that caused the incident to be created.</p>",
         "IncidentRecordSummary$arn": "<p>The Amazon Resource Name (ARN) of the incident.</p>",
         "ItemValue$arn": "<p>The Amazon Resource Name (ARN) of the related item, if the related item is an Amazon resource.</p>",
@@ -784,6 +783,12 @@
       "refs": {
         "ServiceQuotaExceededException$serviceCode": "<p>Originating service code</p>",
         "ThrottlingException$serviceCode": "<p>Originating service code</p>"
+      }
+    },
+    "ServicePrincipal": {
+      "base": null,
+      "refs": {
+        "IncidentRecordSource$invokedBy": "<p>The principal the assumed the role specified of the <code>createdBy</code>.</p>"
       }
     },
     "ServiceQuotaExceededException": {

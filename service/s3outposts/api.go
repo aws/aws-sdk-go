@@ -57,15 +57,9 @@ func (c *S3Outposts) CreateEndpointRequest(input *CreateEndpointInput) (req *req
 
 // CreateEndpoint API operation for Amazon S3 on Outposts.
 //
-// Amazon S3 on Outposts Access Points simplify managing data access at scale
-// for shared datasets in S3 on Outposts. S3 on Outposts uses endpoints to connect
-// to Outposts buckets so that you can perform actions within your virtual private
-// cloud (VPC). For more information, see Accessing S3 on Outposts using VPC
-// only access points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/AccessingS3Outposts.html).
+// Creates an endpoint and associates it with the specified Outpost.
 //
-// This action creates an endpoint and associates it with the specified Outposts.
-//
-// It can take up to 5 minutes for this action to complete.
+// It can take up to 5 minutes for this action to finish.
 //
 // Related actions include:
 //
@@ -163,15 +157,9 @@ func (c *S3Outposts) DeleteEndpointRequest(input *DeleteEndpointInput) (req *req
 
 // DeleteEndpoint API operation for Amazon S3 on Outposts.
 //
-// Amazon S3 on Outposts Access Points simplify managing data access at scale
-// for shared datasets in S3 on Outposts. S3 on Outposts uses endpoints to connect
-// to Outposts buckets so that you can perform actions within your virtual private
-// cloud (VPC). For more information, see Accessing S3 on Outposts using VPC
-// only access points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/AccessingS3Outposts.html).
+// Deletes an endpoint.
 //
-// This action deletes an endpoint.
-//
-// It can take up to 5 minutes for this action to complete.
+// It can take up to 5 minutes for this action to finish.
 //
 // Related actions include:
 //
@@ -271,13 +259,7 @@ func (c *S3Outposts) ListEndpointsRequest(input *ListEndpointsInput) (req *reque
 
 // ListEndpoints API operation for Amazon S3 on Outposts.
 //
-// Amazon S3 on Outposts Access Points simplify managing data access at scale
-// for shared datasets in S3 on Outposts. S3 on Outposts uses endpoints to connect
-// to Outposts buckets so that you can perform actions within your virtual private
-// cloud (VPC). For more information, see Accessing S3 on Outposts using VPC
-// only access points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/AccessingS3Outposts.html).
-//
-// This action lists endpoints associated with the Outposts.
+// Lists endpoints associated with the specified Outpost.
 //
 // Related actions include:
 //
@@ -372,6 +354,159 @@ func (c *S3Outposts) ListEndpointsPagesWithContext(ctx aws.Context, input *ListE
 
 	for p.Next() {
 		if !fn(p.Page().(*ListEndpointsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListSharedEndpoints = "ListSharedEndpoints"
+
+// ListSharedEndpointsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSharedEndpoints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSharedEndpoints for more information on using the ListSharedEndpoints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListSharedEndpointsRequest method.
+//    req, resp := client.ListSharedEndpointsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3outposts-2017-07-25/ListSharedEndpoints
+func (c *S3Outposts) ListSharedEndpointsRequest(input *ListSharedEndpointsInput) (req *request.Request, output *ListSharedEndpointsOutput) {
+	op := &request.Operation{
+		Name:       opListSharedEndpoints,
+		HTTPMethod: "GET",
+		HTTPPath:   "/S3Outposts/ListSharedEndpoints",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSharedEndpointsInput{}
+	}
+
+	output = &ListSharedEndpointsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSharedEndpoints API operation for Amazon S3 on Outposts.
+//
+// Lists all endpoints associated with an Outpost that has been shared by Amazon
+// Web Services Resource Access Manager (RAM).
+//
+// Related actions include:
+//
+//    * CreateEndpoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_CreateEndpoint.html)
+//
+//    * DeleteEndpoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_DeleteEndpoint.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon S3 on Outposts's
+// API operation ListSharedEndpoints for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   There was an exception with the internal server.
+//
+//   * ResourceNotFoundException
+//   The requested resource was not found.
+//
+//   * AccessDeniedException
+//   Access was denied for this action.
+//
+//   * ValidationException
+//   There was an exception validating this data.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3outposts-2017-07-25/ListSharedEndpoints
+func (c *S3Outposts) ListSharedEndpoints(input *ListSharedEndpointsInput) (*ListSharedEndpointsOutput, error) {
+	req, out := c.ListSharedEndpointsRequest(input)
+	return out, req.Send()
+}
+
+// ListSharedEndpointsWithContext is the same as ListSharedEndpoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSharedEndpoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Outposts) ListSharedEndpointsWithContext(ctx aws.Context, input *ListSharedEndpointsInput, opts ...request.Option) (*ListSharedEndpointsOutput, error) {
+	req, out := c.ListSharedEndpointsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSharedEndpointsPages iterates over the pages of a ListSharedEndpoints operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSharedEndpoints method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListSharedEndpoints operation.
+//    pageNum := 0
+//    err := client.ListSharedEndpointsPages(params,
+//        func(page *s3outposts.ListSharedEndpointsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *S3Outposts) ListSharedEndpointsPages(input *ListSharedEndpointsInput, fn func(*ListSharedEndpointsOutput, bool) bool) error {
+	return c.ListSharedEndpointsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSharedEndpointsPagesWithContext same as ListSharedEndpointsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Outposts) ListSharedEndpointsPagesWithContext(ctx aws.Context, input *ListSharedEndpointsInput, fn func(*ListSharedEndpointsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSharedEndpointsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSharedEndpointsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSharedEndpointsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -510,16 +645,20 @@ func (s *ConflictException) RequestID() string {
 type CreateEndpointInput struct {
 	_ struct{} `type:"structure"`
 
-	// The type of access for the on-premise network connectivity for the Outpost
-	// endpoint. To access the endpoint from an on-premises network, you must specify
-	// the access type and provide the customer owned IPv4 pool.
+	// The type of access for the network connectivity for the Amazon S3 on Outposts
+	// endpoint. To use the Amazon Web Services VPC, choose Private. To use the
+	// endpoint with an on-premises network, choose CustomerOwnedIp. If you choose
+	// CustomerOwnedIp, you must also provide the customer-owned IP address pool
+	// (CoIP pool).
+	//
+	// Private is the default access type value.
 	AccessType *string `type:"string" enum:"EndpointAccessType"`
 
-	// The ID of the customer-owned IPv4 pool for the endpoint. IP addresses will
-	// be allocated from this pool for the endpoint.
+	// The ID of the customer-owned IPv4 address pool (CoIP pool) for the endpoint.
+	// IP addresses are allocated from this pool for the endpoint.
 	CustomerOwnedIpv4Pool *string `type:"string"`
 
-	// The ID of the AWS Outposts.
+	// The ID of the Outposts.
 	//
 	// OutpostId is a required field
 	OutpostId *string `type:"string" required:"true"`
@@ -530,7 +669,7 @@ type CreateEndpointInput struct {
 	SecurityGroupId *string `type:"string" required:"true"`
 
 	// The ID of the subnet in the selected VPC. The endpoint subnet must belong
-	// to the Outpost that has the Amazon S3 on Outposts provisioned.
+	// to the Outpost that has Amazon S3 on Outposts provisioned.
 	//
 	// SubnetId is a required field
 	SubnetId *string `type:"string" required:"true"`
@@ -642,7 +781,7 @@ type DeleteEndpointInput struct {
 	// EndpointId is a required field
 	EndpointId *string `location:"querystring" locationName:"endpointId" type:"string" required:"true"`
 
-	// The ID of the AWS Outposts.
+	// The ID of the Outposts.
 	//
 	// OutpostId is a required field
 	OutpostId *string `location:"querystring" locationName:"outpostId" type:"string" required:"true"`
@@ -719,11 +858,13 @@ func (s DeleteEndpointOutput) GoString() string {
 // Amazon S3 on Outposts Access Points simplify managing data access at scale
 // for shared datasets in S3 on Outposts. S3 on Outposts uses endpoints to connect
 // to Outposts buckets so that you can perform actions within your virtual private
-// cloud (VPC). For more information, see Accessing S3 on Outposts using VPC
-// only access points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/AccessingS3Outposts.html).
+// cloud (VPC). For more information, see Accessing S3 on Outposts using VPC-only
+// access points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/WorkingWithS3Outposts.html)
+// in the Amazon Simple Storage Service User Guide.
 type Endpoint struct {
 	_ struct{} `type:"structure"`
 
+	// The type of connectivity used to access the Amazon S3 on Outposts endpoint.
 	AccessType *string `type:"string" enum:"EndpointAccessType"`
 
 	// The VPC CIDR committed by this endpoint.
@@ -732,7 +873,7 @@ type Endpoint struct {
 	// The time the endpoint was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The ID of the customer-owned IPv4 pool used for the endpoint.
+	// The ID of the customer-owned IPv4 address pool used for the endpoint.
 	CustomerOwnedIpv4Pool *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the endpoint.
@@ -741,7 +882,7 @@ type Endpoint struct {
 	// The network interface of the endpoint.
 	NetworkInterfaces []*NetworkInterface `type:"list"`
 
-	// The ID of the AWS Outposts.
+	// The ID of the Outposts.
 	OutpostsId *string `type:"string"`
 
 	// The ID of the security group used for the endpoint.
@@ -908,10 +1049,11 @@ func (s *InternalServerException) RequestID() string {
 type ListEndpointsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The max number of endpoints that can be returned on the request.
+	// The maximum number of endpoints that will be returned in the response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
-	// The next endpoint requested in the list.
+	// If a previous response from this operation included a NextToken value, provide
+	// that value here to retrieve the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -961,10 +1103,12 @@ func (s *ListEndpointsInput) SetNextToken(v string) *ListEndpointsInput {
 type ListEndpointsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns an array of endpoints associated with AWS Outposts.
+	// The list of endpoints associated with the specified Outpost.
 	Endpoints []*Endpoint `type:"list"`
 
-	// The next endpoint returned in the list.
+	// If the number of endpoints associated with the specified Outpost exceeds
+	// MaxResults, you can include this value in subsequent calls to this operation
+	// to retrieve more results.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -994,6 +1138,117 @@ func (s *ListEndpointsOutput) SetEndpoints(v []*Endpoint) *ListEndpointsOutput {
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListEndpointsOutput) SetNextToken(v string) *ListEndpointsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListSharedEndpointsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of endpoints that will be returned in the response.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// If a previous response from this operation included a NextToken value, you
+	// can provide that value here to retrieve the next page of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The ID of the Amazon Web Services Outpost.
+	//
+	// OutpostId is a required field
+	OutpostId *string `location:"querystring" locationName:"outpostId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSharedEndpointsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSharedEndpointsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSharedEndpointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSharedEndpointsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.OutpostId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutpostId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSharedEndpointsInput) SetMaxResults(v int64) *ListSharedEndpointsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSharedEndpointsInput) SetNextToken(v string) *ListSharedEndpointsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOutpostId sets the OutpostId field's value.
+func (s *ListSharedEndpointsInput) SetOutpostId(v string) *ListSharedEndpointsInput {
+	s.OutpostId = &v
+	return s
+}
+
+type ListSharedEndpointsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of endpoints associated with the specified Outpost that have been
+	// shared by Amazon Web Services Resource Access Manager (RAM).
+	Endpoints []*Endpoint `type:"list"`
+
+	// If the number of endpoints associated with the specified Outpost exceeds
+	// MaxResults, you can include this value in subsequent calls to this operation
+	// to retrieve more results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSharedEndpointsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSharedEndpointsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndpoints sets the Endpoints field's value.
+func (s *ListSharedEndpointsOutput) SetEndpoints(v []*Endpoint) *ListSharedEndpointsOutput {
+	s.Endpoints = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSharedEndpointsOutput) SetNextToken(v string) *ListSharedEndpointsOutput {
 	s.NextToken = &v
 	return s
 }
