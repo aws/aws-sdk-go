@@ -20,16 +20,20 @@ import (
 )
 
 var (
-	// CA PEM
+	// TLSBundleCA is the CA PEM
 	TLSBundleCA []byte
 
-	// Server PEM
+	// TLSBundleCert is the Server PEM
 	TLSBundleCert []byte
-	TLSBundleKey  []byte
 
-	// Client PEM
+	// TLSBundleKey is the Server private key PEM
+	TLSBundleKey []byte
+
+	// ClientTLSCert is the Client PEM
 	ClientTLSCert []byte
-	ClientTLSKey  []byte
+
+	// ClientTLSKey is the Client private key PEM
+	ClientTLSKey []byte
 )
 
 func init() {
