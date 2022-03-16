@@ -74,6 +74,13 @@ type S3OutpostsAPI interface {
 
 	ListEndpointsPages(*s3outposts.ListEndpointsInput, func(*s3outposts.ListEndpointsOutput, bool) bool) error
 	ListEndpointsPagesWithContext(aws.Context, *s3outposts.ListEndpointsInput, func(*s3outposts.ListEndpointsOutput, bool) bool, ...request.Option) error
+
+	ListSharedEndpoints(*s3outposts.ListSharedEndpointsInput) (*s3outposts.ListSharedEndpointsOutput, error)
+	ListSharedEndpointsWithContext(aws.Context, *s3outposts.ListSharedEndpointsInput, ...request.Option) (*s3outposts.ListSharedEndpointsOutput, error)
+	ListSharedEndpointsRequest(*s3outposts.ListSharedEndpointsInput) (*request.Request, *s3outposts.ListSharedEndpointsOutput)
+
+	ListSharedEndpointsPages(*s3outposts.ListSharedEndpointsInput, func(*s3outposts.ListSharedEndpointsOutput, bool) bool) error
+	ListSharedEndpointsPagesWithContext(aws.Context, *s3outposts.ListSharedEndpointsInput, func(*s3outposts.ListSharedEndpointsOutput, bool) bool, ...request.Option) error
 }
 
 var _ S3OutpostsAPI = (*s3outposts.S3Outposts)(nil)

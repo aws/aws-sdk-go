@@ -57,6 +57,21 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"}
       ]
+    },
+    "ListSharedEndpoints":{
+      "name":"ListSharedEndpoints",
+      "http":{
+        "method":"GET",
+        "requestUri":"/S3Outposts/ListSharedEndpoints"
+      },
+      "input":{"shape":"ListSharedEndpointsRequest"},
+      "output":{"shape":"ListSharedEndpointsResult"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
+      ]
     }
   },
   "shapes":{
@@ -191,6 +206,34 @@
       }
     },
     "ListEndpointsResult":{
+      "type":"structure",
+      "members":{
+        "Endpoints":{"shape":"Endpoints"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListSharedEndpointsRequest":{
+      "type":"structure",
+      "required":["OutpostId"],
+      "members":{
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "OutpostId":{
+          "shape":"OutpostId",
+          "location":"querystring",
+          "locationName":"outpostId"
+        }
+      }
+    },
+    "ListSharedEndpointsResult":{
       "type":"structure",
       "members":{
         "Endpoints":{"shape":"Endpoints"},

@@ -1457,9 +1457,31 @@
         "UserPoolName" : {
           "shape" : "__string",
           "locationName" : "userPoolName"
+        },
+        "VerificationMessage" : {
+          "shape" : "CreateBackendAuthVerificationMessageConfig",
+          "locationName" : "verificationMessage"
         }
       },
       "required" : [ "RequiredSignUpAttributes", "SignInMethod", "UserPoolName" ]
+    },
+    "CreateBackendAuthVerificationMessageConfig" : {
+      "type" : "structure",
+      "members" : {
+        "DeliveryMethod" : {
+          "shape" : "DeliveryMethod",
+          "locationName" : "deliveryMethod"
+        },
+        "EmailSettings" : {
+          "shape" : "EmailSettings",
+          "locationName" : "emailSettings"
+        },
+        "SmsSettings" : {
+          "shape" : "SmsSettings",
+          "locationName" : "smsSettings"
+        }
+      },
+      "required" : [ "DeliveryMethod" ]
     },
     "CreateBackendConfigReqObj" : {
       "type" : "structure",
@@ -3421,8 +3443,30 @@
         "PasswordPolicy" : {
           "shape" : "UpdateBackendAuthPasswordPolicyConfig",
           "locationName" : "passwordPolicy"
+        },
+        "VerificationMessage" : {
+          "shape" : "UpdateBackendAuthVerificationMessageConfig",
+          "locationName" : "verificationMessage"
         }
       }
+    },
+    "UpdateBackendAuthVerificationMessageConfig" : {
+      "type" : "structure",
+      "members" : {
+        "DeliveryMethod" : {
+          "shape" : "DeliveryMethod",
+          "locationName" : "deliveryMethod"
+        },
+        "EmailSettings" : {
+          "shape" : "EmailSettings",
+          "locationName" : "emailSettings"
+        },
+        "SmsSettings" : {
+          "shape" : "SmsSettings",
+          "locationName" : "smsSettings"
+        }
+      },
+      "required" : [ "DeliveryMethod" ]
     },
     "UpdateBackendConfigReqObj" : {
       "type" : "structure",

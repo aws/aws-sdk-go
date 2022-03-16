@@ -3683,22 +3683,23 @@ func (s *CreateBackendAPIOutput) SetStatus(v string) *CreateBackendAPIOutput {
 	return s
 }
 
-// Describes the forgot password policy for authenticating into the Amplify
-// app.
+// (DEPRECATED) Describes the forgot password policy for authenticating into
+// the Amplify app.
 type CreateBackendAuthForgotPasswordConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Describes which mode to use (either SMS or email) to deliver messages to
-	// app users who want to recover their password.
+	// (DEPRECATED) Describes which mode to use (either SMS or email) to deliver
+	// messages to app users who want to recover their password.
 	//
 	// DeliveryMethod is a required field
 	DeliveryMethod *string `locationName:"deliveryMethod" type:"string" required:"true" enum:"DeliveryMethod"`
 
-	// The configuration for the email sent when an app user forgets their password.
+	// (DEPRECATED) The configuration for the email sent when an app user forgets
+	// their password.
 	EmailSettings *EmailSettings `locationName:"emailSettings" type:"structure"`
 
-	// The configuration for the SMS message sent when an app user forgets their
-	// password.
+	// (DEPRECATED) The configuration for the SMS message sent when an app user
+	// forgets their password.
 	SmsSettings *SmsSettings `locationName:"smsSettings" type:"structure"`
 }
 
@@ -4305,8 +4306,8 @@ func (s *CreateBackendAuthResourceConfig) SetUserPoolConfigs(v *CreateBackendAut
 type CreateBackendAuthUserPoolConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Describes the forgotten password policy for your Amazon Cognito user pool,
-	// configured as a part of your Amplify project.
+	// (DEPRECATED) Describes the forgotten password policy for your Amazon Cognito
+	// user pool, configured as a part of your Amplify project.
 	ForgotPassword *CreateBackendAuthForgotPasswordConfig `locationName:"forgotPassword" type:"structure"`
 
 	// Describes whether to apply multi-factor authentication policies for your
@@ -4336,6 +4337,10 @@ type CreateBackendAuthUserPoolConfig struct {
 	//
 	// UserPoolName is a required field
 	UserPoolName *string `locationName:"userPoolName" type:"string" required:"true"`
+
+	// Describes the email or SMS verification message for your Amazon Cognito user
+	// pool, configured as a part of your Amplify project.
+	VerificationMessage *CreateBackendAuthVerificationMessageConfig `locationName:"verificationMessage" type:"structure"`
 }
 
 // String returns the string representation.
@@ -4388,6 +4393,11 @@ func (s *CreateBackendAuthUserPoolConfig) Validate() error {
 			invalidParams.AddNested("PasswordPolicy", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.VerificationMessage != nil {
+		if err := s.VerificationMessage.Validate(); err != nil {
+			invalidParams.AddNested("VerificationMessage", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4434,6 +4444,78 @@ func (s *CreateBackendAuthUserPoolConfig) SetSignInMethod(v string) *CreateBacke
 // SetUserPoolName sets the UserPoolName field's value.
 func (s *CreateBackendAuthUserPoolConfig) SetUserPoolName(v string) *CreateBackendAuthUserPoolConfig {
 	s.UserPoolName = &v
+	return s
+}
+
+// SetVerificationMessage sets the VerificationMessage field's value.
+func (s *CreateBackendAuthUserPoolConfig) SetVerificationMessage(v *CreateBackendAuthVerificationMessageConfig) *CreateBackendAuthUserPoolConfig {
+	s.VerificationMessage = v
+	return s
+}
+
+// Creates an email or SMS verification message for the auth resource configured
+// for your Amplify project.
+type CreateBackendAuthVerificationMessageConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The type of verification message to send.
+	//
+	// DeliveryMethod is a required field
+	DeliveryMethod *string `locationName:"deliveryMethod" type:"string" required:"true" enum:"DeliveryMethod"`
+
+	// The settings for the email message.
+	EmailSettings *EmailSettings `locationName:"emailSettings" type:"structure"`
+
+	// The settings for the SMS message.
+	SmsSettings *SmsSettings `locationName:"smsSettings" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBackendAuthVerificationMessageConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBackendAuthVerificationMessageConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateBackendAuthVerificationMessageConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateBackendAuthVerificationMessageConfig"}
+	if s.DeliveryMethod == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeliveryMethod"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeliveryMethod sets the DeliveryMethod field's value.
+func (s *CreateBackendAuthVerificationMessageConfig) SetDeliveryMethod(v string) *CreateBackendAuthVerificationMessageConfig {
+	s.DeliveryMethod = &v
+	return s
+}
+
+// SetEmailSettings sets the EmailSettings field's value.
+func (s *CreateBackendAuthVerificationMessageConfig) SetEmailSettings(v *EmailSettings) *CreateBackendAuthVerificationMessageConfig {
+	s.EmailSettings = v
+	return s
+}
+
+// SetSmsSettings sets the SmsSettings field's value.
+func (s *CreateBackendAuthVerificationMessageConfig) SetSmsSettings(v *SmsSettings) *CreateBackendAuthVerificationMessageConfig {
+	s.SmsSettings = v
 	return s
 }
 
@@ -5682,13 +5764,14 @@ func (s *DeleteTokenOutput) SetIsSuccess(v bool) *DeleteTokenOutput {
 	return s
 }
 
+// The settings for the email message.
 type EmailSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The body of the email.
+	// The contents of the email message.
 	EmailMessage *string `locationName:"emailMessage" type:"string"`
 
-	// The subject of the email.
+	// The contents of the subject line of the email message.
 	EmailSubject *string `locationName:"emailSubject" type:"string"`
 }
 
@@ -7878,10 +7961,11 @@ func (s *Settings) SetSmsMessage(v string) *Settings {
 	return s
 }
 
+// The settings for the SMS message.
 type SmsSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The body of the SMS message.
+	// The contents of the SMS message.
 	SmsMessage *string `locationName:"smsMessage" type:"string"`
 }
 
@@ -8191,20 +8275,21 @@ func (s *UpdateBackendAPIOutput) SetStatus(v string) *UpdateBackendAPIOutput {
 	return s
 }
 
-// Describes the forgot password policy for authenticating into the Amplify
-// app.
+// (DEPRECATED) Describes the forgot password policy for authenticating into
+// the Amplify app.
 type UpdateBackendAuthForgotPasswordConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Describes which mode to use (either SMS or email) to deliver messages to
-	// app users that want to recover their password.
+	// (DEPRECATED) Describes which mode to use (either SMS or email) to deliver
+	// messages to app users that want to recover their password.
 	DeliveryMethod *string `locationName:"deliveryMethod" type:"string" enum:"DeliveryMethod"`
 
-	// The configuration for the email sent when an app user forgets their password.
+	// (DEPRECATED) The configuration for the email sent when an app user forgets
+	// their password.
 	EmailSettings *EmailSettings `locationName:"emailSettings" type:"structure"`
 
-	// The configuration for the SMS message sent when an Amplify app user forgets
-	// their password.
+	// (DEPRECATED) The configuration for the SMS message sent when an Amplify app
+	// user forgets their password.
 	SmsSettings *SmsSettings `locationName:"smsSettings" type:"structure"`
 }
 
@@ -8666,6 +8751,11 @@ func (s *UpdateBackendAuthResourceConfig) Validate() error {
 	if s.UserPoolConfigs == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserPoolConfigs"))
 	}
+	if s.UserPoolConfigs != nil {
+		if err := s.UserPoolConfigs.Validate(); err != nil {
+			invalidParams.AddNested("UserPoolConfigs", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8702,8 +8792,8 @@ func (s *UpdateBackendAuthResourceConfig) SetUserPoolConfigs(v *UpdateBackendAut
 type UpdateBackendAuthUserPoolConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Describes the forgot password policy for your Amazon Cognito user pool, configured
-	// as a part of your Amplify project.
+	// (DEPRECATED) Describes the forgot password policy for your Amazon Cognito
+	// user pool, configured as a part of your Amplify project.
 	ForgotPassword *UpdateBackendAuthForgotPasswordConfig `locationName:"forgotPassword" type:"structure"`
 
 	// Describes whether to apply multi-factor authentication policies for your
@@ -8717,6 +8807,10 @@ type UpdateBackendAuthUserPoolConfig struct {
 	// Describes the password policy for your Amazon Cognito user pool, configured
 	// as a part of your Amplify project.
 	PasswordPolicy *UpdateBackendAuthPasswordPolicyConfig `locationName:"passwordPolicy" type:"structure"`
+
+	// Describes the email or SMS verification message for your Amazon Cognito user
+	// pool, configured as a part of your Amplify project.
+	VerificationMessage *UpdateBackendAuthVerificationMessageConfig `locationName:"verificationMessage" type:"structure"`
 }
 
 // String returns the string representation.
@@ -8735,6 +8829,21 @@ func (s UpdateBackendAuthUserPoolConfig) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateBackendAuthUserPoolConfig) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateBackendAuthUserPoolConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateBackendAuthUserPoolConfig"}
+	if s.VerificationMessage != nil {
+		if err := s.VerificationMessage.Validate(); err != nil {
+			invalidParams.AddNested("VerificationMessage", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetForgotPassword sets the ForgotPassword field's value.
@@ -8758,6 +8867,78 @@ func (s *UpdateBackendAuthUserPoolConfig) SetOAuth(v *UpdateBackendAuthOAuthConf
 // SetPasswordPolicy sets the PasswordPolicy field's value.
 func (s *UpdateBackendAuthUserPoolConfig) SetPasswordPolicy(v *UpdateBackendAuthPasswordPolicyConfig) *UpdateBackendAuthUserPoolConfig {
 	s.PasswordPolicy = v
+	return s
+}
+
+// SetVerificationMessage sets the VerificationMessage field's value.
+func (s *UpdateBackendAuthUserPoolConfig) SetVerificationMessage(v *UpdateBackendAuthVerificationMessageConfig) *UpdateBackendAuthUserPoolConfig {
+	s.VerificationMessage = v
+	return s
+}
+
+// Updates the configuration of the email or SMS message for the auth resource
+// configured for your Amplify project.
+type UpdateBackendAuthVerificationMessageConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The type of verification message to send.
+	//
+	// DeliveryMethod is a required field
+	DeliveryMethod *string `locationName:"deliveryMethod" type:"string" required:"true" enum:"DeliveryMethod"`
+
+	// The settings for the email message.
+	EmailSettings *EmailSettings `locationName:"emailSettings" type:"structure"`
+
+	// The settings for the SMS message.
+	SmsSettings *SmsSettings `locationName:"smsSettings" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateBackendAuthVerificationMessageConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateBackendAuthVerificationMessageConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateBackendAuthVerificationMessageConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateBackendAuthVerificationMessageConfig"}
+	if s.DeliveryMethod == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeliveryMethod"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeliveryMethod sets the DeliveryMethod field's value.
+func (s *UpdateBackendAuthVerificationMessageConfig) SetDeliveryMethod(v string) *UpdateBackendAuthVerificationMessageConfig {
+	s.DeliveryMethod = &v
+	return s
+}
+
+// SetEmailSettings sets the EmailSettings field's value.
+func (s *UpdateBackendAuthVerificationMessageConfig) SetEmailSettings(v *EmailSettings) *UpdateBackendAuthVerificationMessageConfig {
+	s.EmailSettings = v
+	return s
+}
+
+// SetSmsSettings sets the SmsSettings field's value.
+func (s *UpdateBackendAuthVerificationMessageConfig) SetSmsSettings(v *SmsSettings) *UpdateBackendAuthVerificationMessageConfig {
+	s.SmsSettings = v
 	return s
 }
 
@@ -9324,6 +9505,7 @@ func AuthenticatedElement_Values() []string {
 	}
 }
 
+// The type of verification message to send.
 const (
 	// DeliveryMethodEmail is a DeliveryMethod enum value
 	DeliveryMethodEmail = "EMAIL"

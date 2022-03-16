@@ -146,9 +146,9 @@
       "refs" : { }
     },
     "CreateBackendAuthForgotPasswordConfig" : {
-      "base" : "<p>Describes the forgot password policy for authenticating into the Amplify app.</p>",
+      "base" : "<p><b>(DEPRECATED)</b> Describes the forgot password policy for authenticating into the Amplify app.</p>",
       "refs" : {
-        "CreateBackendAuthUserPoolConfig$ForgotPassword" : "<p>Describes the forgotten password policy for your Amazon Cognito user pool, configured as a part of your Amplify project.</p>"
+        "CreateBackendAuthUserPoolConfig$ForgotPassword" : "<p><b>(DEPRECATED)</b> Describes the forgotten password policy for your Amazon Cognito user pool, configured as a part of your Amplify project.</p>"
       }
     },
     "CreateBackendAuthIdentityPoolConfig" : {
@@ -192,6 +192,12 @@
         "CreateBackendAuthResourceConfig$UserPoolConfigs" : "<p>Describes authentication configuration for the Amazon Cognito user pool, provisioned as a part of your auth resource in the Amplify project.</p>"
       }
     },
+    "CreateBackendAuthVerificationMessageConfig" : {
+      "base" : "<p>Creates an email or SMS verification message for the auth resource configured for your Amplify project.</p>",
+      "refs" : {
+        "CreateBackendAuthUserPoolConfig$VerificationMessage" : "<p>Describes the email or SMS verification message for your Amazon Cognito user pool, configured as a part of your Amplify project.</p>"
+      }
+    },
     "CreateBackendConfigReqObj" : {
       "base" : "<p>The request object for this operation.</p>",
       "refs" : { }
@@ -231,17 +237,21 @@
       "refs" : { }
     },
     "DeliveryMethod" : {
-      "base" : null,
+      "base" : "<p>The type of verification message to send.</p>",
       "refs" : {
-        "CreateBackendAuthForgotPasswordConfig$DeliveryMethod" : "<p>Describes which mode to use (either SMS or email) to deliver messages to app users who want to recover their password.</p>",
-        "UpdateBackendAuthForgotPasswordConfig$DeliveryMethod" : "<p>Describes which mode to use (either SMS or email) to deliver messages to app users that want to recover their password.</p>"
+        "CreateBackendAuthForgotPasswordConfig$DeliveryMethod" : "<p><b>(DEPRECATED)</b> Describes which mode to use (either SMS or email) to deliver messages to app users who want to recover their password.</p>",
+        "CreateBackendAuthVerificationMessageConfig$DeliveryMethod" : "<p>The type of verification message to send.</p>",
+        "UpdateBackendAuthForgotPasswordConfig$DeliveryMethod" : "<p><b>(DEPRECATED)</b> Describes which mode to use (either SMS or email) to deliver messages to app users that want to recover their password.</p>",
+        "UpdateBackendAuthVerificationMessageConfig$DeliveryMethod" : "<p>The type of verification message to send.</p>"
       }
     },
     "EmailSettings" : {
-      "base" : null,
+      "base" : "<p>The settings for the email message.</p>",
       "refs" : {
-        "CreateBackendAuthForgotPasswordConfig$EmailSettings" : "<p>The configuration for the email sent when an app user forgets their password.</p>",
-        "UpdateBackendAuthForgotPasswordConfig$EmailSettings" : "<p>The configuration for the email sent when an app user forgets their password.</p>"
+        "CreateBackendAuthForgotPasswordConfig$EmailSettings" : "<p><b>(DEPRECATED)</b> The configuration for the email sent when an app user forgets their password.</p>",
+        "CreateBackendAuthVerificationMessageConfig$EmailSettings" : "<p>The settings for the email message.</p>",
+        "UpdateBackendAuthForgotPasswordConfig$EmailSettings" : "<p><b>(DEPRECATED)</b> The configuration for the email sent when an app user forgets their password.</p>",
+        "UpdateBackendAuthVerificationMessageConfig$EmailSettings" : "<p>The settings for the email message.</p>"
       }
     },
     "GatewayTimeoutException" : {
@@ -382,7 +392,7 @@
     "ResourceConfig" : {
       "base" : null,
       "refs" : {
-        "CreateBackendReqObj$ResourceConfig" : "<p>The resource configuration for creating backend storage.</p>"
+        "CreateBackendReqObj$ResourceConfig" : "<p>The resource configuration for creating a backend.</p>"
       }
     },
     "S3BucketInfo" : {
@@ -422,10 +432,12 @@
       }
     },
     "SmsSettings" : {
-      "base" : null,
+      "base" : "<p>The settings for the SMS message.</p>",
       "refs" : {
-        "CreateBackendAuthForgotPasswordConfig$SmsSettings" : "<p>The configuration for the SMS message sent when an app user forgets their password.</p>",
-        "UpdateBackendAuthForgotPasswordConfig$SmsSettings" : "<p>The configuration for the SMS message sent when an Amplify app user forgets their password.</p>"
+        "CreateBackendAuthForgotPasswordConfig$SmsSettings" : "<p><b>(DEPRECATED)</b> The configuration for the SMS message sent when an app user forgets their password.</p>",
+        "CreateBackendAuthVerificationMessageConfig$SmsSettings" : "<p>The settings for the SMS message.</p>",
+        "UpdateBackendAuthForgotPasswordConfig$SmsSettings" : "<p><b>(DEPRECATED)</b> The configuration for the SMS message sent when an Amplify app user forgets their password.</p>",
+        "UpdateBackendAuthVerificationMessageConfig$SmsSettings" : "<p>The settings for the SMS message.</p>"
       }
     },
     "SocialProviderSettings" : {
@@ -446,9 +458,9 @@
       "refs" : { }
     },
     "UpdateBackendAuthForgotPasswordConfig" : {
-      "base" : "<p>Describes the forgot password policy for authenticating into the Amplify app.</p>",
+      "base" : "<p><b>(DEPRECATED)</b> Describes the forgot password policy for authenticating into the Amplify app.</p>",
       "refs" : {
-        "UpdateBackendAuthUserPoolConfig$ForgotPassword" : "<p>Describes the forgot password policy for your Amazon Cognito user pool, configured as a part of your Amplify project.</p>"
+        "UpdateBackendAuthUserPoolConfig$ForgotPassword" : "<p><b>(DEPRECATED)</b> Describes the forgot password policy for your Amazon Cognito user pool, configured as a part of your Amplify project.</p>"
       }
     },
     "UpdateBackendAuthIdentityPoolConfig" : {
@@ -489,6 +501,12 @@
       "base" : "<p>Describes the Amazon Cognito user pool configuration for the authorization resource to be configured for your Amplify project on an update.</p>",
       "refs" : {
         "UpdateBackendAuthResourceConfig$UserPoolConfigs" : "<p>Describes the authentication configuration for the Amazon Cognito user pool, provisioned as a part of your auth resource in the Amplify project.</p>"
+      }
+    },
+    "UpdateBackendAuthVerificationMessageConfig" : {
+      "base" : "<p>Updates the configuration of the email or SMS message for the auth resource configured for your Amplify project.</p>",
+      "refs" : {
+        "UpdateBackendAuthUserPoolConfig$VerificationMessage" : "<p>Describes the email or SMS verification message for your Amazon Cognito user pool, configured as a part of your Amplify project.</p>"
       }
     },
     "UpdateBackendConfigReqObj" : {
@@ -730,8 +748,8 @@
         "DeleteBackendRespObj$JobId" : "<p>The ID for the job.</p>",
         "DeleteBackendRespObj$Operation" : "<p>The name of the operation.</p>",
         "DeleteBackendRespObj$Status" : "<p>The current status of the request.</p>",
-        "EmailSettings$EmailMessage" : "<p>The body of the email.</p>",
-        "EmailSettings$EmailSubject" : "<p>The subject of the email.</p>",
+        "EmailSettings$EmailMessage" : "<p>The contents of the email message.</p>",
+        "EmailSettings$EmailSubject" : "<p>The contents of the subject line of the email message.</p>",
         "GetBackendAPICodegenRespObj$Models" : "<p>Stringified JSON of the datastore model.</p>",
         "GetBackendAPIRespObj$AppId" : "<p>The app ID.</p>",
         "GetBackendAPIRespObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
@@ -790,7 +808,7 @@
         "S3BucketInfo$CreationDate" : "<p>The creation date of the S3 bucket.</p>",
         "S3BucketInfo$Name" : "<p>The name of the S3 bucket.</p>",
         "Settings$SmsMessage" : "<p>The body of the SMS message.</p>",
-        "SmsSettings$SmsMessage" : "<p>The body of the SMS message.</p>",
+        "SmsSettings$SmsMessage" : "<p>The contents of the SMS message.</p>",
         "UpdateBackendAuthOAuthConfig$DomainPrefix" : "<p>The Amazon Cognito domain prefix used to create a hosted UI for authentication.</p>",
         "UpdateBackendAuthReqObj$ResourceName" : "<p>The name of this resource.</p>",
         "UpdateBackendStorageReqObj$ResourceName" : "<p>The name of the storage resource.</p>",
