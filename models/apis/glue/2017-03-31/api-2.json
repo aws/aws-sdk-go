@@ -236,6 +236,23 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "CancelStatement":{
+      "name":"CancelStatement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelStatementRequest"},
+      "output":{"shape":"CancelStatementResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"IllegalSessionStateException"}
+      ]
+    },
     "CheckSchemaVersionValidity":{
       "name":"CheckSchemaVersionValidity",
       "http":{
@@ -482,6 +499,25 @@
         {"shape":"InvalidInputException"},
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
+        {"shape":"ResourceNumberLimitExceededException"}
+      ]
+    },
+    "CreateSession":{
+      "name":"CreateSession",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateSessionRequest"},
+      "output":{"shape":"CreateSessionResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ValidationException"},
+        {"shape":"AlreadyExistsException"},
         {"shape":"ResourceNumberLimitExceededException"}
       ]
     },
@@ -812,6 +848,23 @@
         {"shape":"InvalidInputException"},
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"}
+      ]
+    },
+    "DeleteSession":{
+      "name":"DeleteSession",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteSessionRequest"},
+      "output":{"shape":"DeleteSessionResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"IllegalSessionStateException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DeleteTable":{
@@ -1511,6 +1564,39 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "GetSession":{
+      "name":"GetSession",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSessionRequest"},
+      "output":{"shape":"GetSessionResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InvalidInputException"}
+      ]
+    },
+    "GetStatement":{
+      "name":"GetStatement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetStatementRequest"},
+      "output":{"shape":"GetStatementResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"IllegalSessionStateException"}
+      ]
+    },
     "GetTable":{
       "name":"GetTable",
       "http":{
@@ -1892,6 +1978,38 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "ListSessions":{
+      "name":"ListSessions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListSessionsRequest"},
+      "output":{"shape":"ListSessionsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"}
+      ]
+    },
+    "ListStatements":{
+      "name":"ListStatements",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListStatementsRequest"},
+      "output":{"shape":"ListStatementsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"IllegalSessionStateException"}
+      ]
+    },
     "ListTriggers":{
       "name":"ListTriggers",
       "http":{
@@ -2060,6 +2178,25 @@
         {"shape":"OperationTimeoutException"},
         {"shape":"ConcurrentRunsExceededException"},
         {"shape":"IllegalWorkflowStateException"}
+      ]
+    },
+    "RunStatement":{
+      "name":"RunStatement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RunStatementRequest"},
+      "output":{"shape":"RunStatementResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNumberLimitExceededException"},
+        {"shape":"IllegalSessionStateException"}
       ]
     },
     "SearchTables":{
@@ -2266,6 +2403,23 @@
         {"shape":"SchedulerNotRunningException"},
         {"shape":"SchedulerTransitioningException"},
         {"shape":"OperationTimeoutException"}
+      ]
+    },
+    "StopSession":{
+      "name":"StopSession",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopSessionRequest"},
+      "output":{"shape":"StopSessionResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"IllegalSessionStateException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "StopTrigger":{
@@ -2664,10 +2818,16 @@
       "exception":true
     },
     "AttemptCount":{"type":"integer"},
+    "AuditColumnNamesList":{
+      "type":"list",
+      "member":{"shape":"ColumnNameString"}
+    },
     "AuditContext":{
       "type":"structure",
       "members":{
-        "AdditionalAuditContext":{"shape":"AuditContextString"}
+        "AdditionalAuditContext":{"shape":"AuditContextString"},
+        "RequestedColumns":{"shape":"AuditColumnNamesList"},
+        "AllColumnsRequested":{"shape":"NullableBoolean"}
       }
     },
     "AuditContextString":{
@@ -3168,6 +3328,23 @@
         "TransformId":{"shape":"HashString"},
         "TaskRunId":{"shape":"HashString"},
         "Status":{"shape":"TaskStatusType"}
+      }
+    },
+    "CancelStatementRequest":{
+      "type":"structure",
+      "required":[
+        "SessionId",
+        "Id"
+      ],
+      "members":{
+        "SessionId":{"shape":"NameString"},
+        "Id":{"shape":"IntegerValue"},
+        "RequestOrigin":{"shape":"OrchestrationNameString"}
+      }
+    },
+    "CancelStatementResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "CatalogEncryptionMode":{
@@ -4146,6 +4323,37 @@
         "CreatedTimestamp":{"shape":"TimestampValue"}
       }
     },
+    "CreateSessionRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Role",
+        "Command"
+      ],
+      "members":{
+        "Id":{"shape":"NameString"},
+        "Description":{"shape":"DescriptionString"},
+        "Role":{"shape":"OrchestrationRoleArn"},
+        "Command":{"shape":"SessionCommand"},
+        "Timeout":{"shape":"Timeout"},
+        "IdleTimeout":{"shape":"Timeout"},
+        "DefaultArguments":{"shape":"OrchestrationArgumentsMap"},
+        "Connections":{"shape":"ConnectionsList"},
+        "MaxCapacity":{"shape":"NullableDouble"},
+        "NumberOfWorkers":{"shape":"NullableInteger"},
+        "WorkerType":{"shape":"WorkerType"},
+        "SecurityConfiguration":{"shape":"NameString"},
+        "GlueVersion":{"shape":"GlueVersionString"},
+        "Tags":{"shape":"TagsMap"},
+        "RequestOrigin":{"shape":"OrchestrationNameString"}
+      }
+    },
+    "CreateSessionResponse":{
+      "type":"structure",
+      "members":{
+        "Session":{"shape":"Session"}
+      }
+    },
     "CreateTableRequest":{
       "type":"structure",
       "required":[
@@ -4658,6 +4866,20 @@
       "members":{
       }
     },
+    "DeleteSessionRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"NameString"},
+        "RequestOrigin":{"shape":"OrchestrationNameString"}
+      }
+    },
+    "DeleteSessionResponse":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"NameString"}
+      }
+    },
     "DeleteTableRequest":{
       "type":"structure",
       "required":[
@@ -4827,6 +5049,7 @@
         "NumberOfDistinctValues":{"shape":"NonNegativeLong"}
       }
     },
+    "DoubleValue":{"type":"double"},
     "DynamoDBTarget":{
       "type":"structure",
       "members":{
@@ -5734,6 +5957,38 @@
         "NextToken":{"shape":"GenericString"}
       }
     },
+    "GetSessionRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"NameString"},
+        "RequestOrigin":{"shape":"OrchestrationNameString"}
+      }
+    },
+    "GetSessionResponse":{
+      "type":"structure",
+      "members":{
+        "Session":{"shape":"Session"}
+      }
+    },
+    "GetStatementRequest":{
+      "type":"structure",
+      "required":[
+        "SessionId",
+        "Id"
+      ],
+      "members":{
+        "SessionId":{"shape":"NameString"},
+        "Id":{"shape":"IntegerValue"},
+        "RequestOrigin":{"shape":"OrchestrationNameString"}
+      }
+    },
+    "GetStatementResponse":{
+      "type":"structure",
+      "members":{
+        "Statement":{"shape":"Statement"}
+      }
+    },
     "GetTableRequest":{
       "type":"structure",
       "required":[
@@ -6059,7 +6314,7 @@
       "type":"string",
       "max":10240,
       "min":1,
-      "pattern":"arn:aws:glue:.*"
+      "pattern":"arn:(aws|aws-us-gov|aws-cn):glue:.*"
     },
     "GlueTable":{
       "type":"structure",
@@ -6129,6 +6384,13 @@
       "exception":true
     },
     "IllegalBlueprintStateException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"MessageString"}
+      },
+      "exception":true
+    },
+    "IllegalSessionStateException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"MessageString"}
@@ -6580,6 +6842,39 @@
         "NextToken":{"shape":"SchemaRegistryTokenString"}
       }
     },
+    "ListSessionsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"OrchestrationToken"},
+        "MaxResults":{"shape":"PageSize"},
+        "Tags":{"shape":"TagsMap"},
+        "RequestOrigin":{"shape":"OrchestrationNameString"}
+      }
+    },
+    "ListSessionsResponse":{
+      "type":"structure",
+      "members":{
+        "Ids":{"shape":"SessionIdList"},
+        "Sessions":{"shape":"SessionList"},
+        "NextToken":{"shape":"OrchestrationToken"}
+      }
+    },
+    "ListStatementsRequest":{
+      "type":"structure",
+      "required":["SessionId"],
+      "members":{
+        "SessionId":{"shape":"NameString"},
+        "RequestOrigin":{"shape":"OrchestrationNameString"},
+        "NextToken":{"shape":"OrchestrationToken"}
+      }
+    },
+    "ListStatementsResponse":{
+      "type":"structure",
+      "members":{
+        "Statements":{"shape":"StatementList"},
+        "NextToken":{"shape":"OrchestrationToken"}
+      }
+    },
     "ListTriggersRequest":{
       "type":"structure",
       "members":{
@@ -6669,6 +6964,7 @@
         "NumberOfDistinctValues":{"shape":"NonNegativeLong"}
       }
     },
+    "LongValue":{"type":"long"},
     "MLTransform":{
       "type":"structure",
       "members":{
@@ -6893,6 +7189,19 @@
       },
       "exception":true
     },
+    "OrchestrationArgumentsMap":{
+      "type":"map",
+      "key":{"shape":"OrchestrationNameString"},
+      "value":{"shape":"OrchestrationArgumentsValue"},
+      "max":75,
+      "min":0
+    },
+    "OrchestrationArgumentsValue":{
+      "type":"string",
+      "max":4096,
+      "min":0,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
     "OrchestrationIAMRoleArn":{
       "type":"string",
       "max":1024,
@@ -6905,15 +7214,29 @@
       "min":1,
       "pattern":"[\\.\\-_A-Za-z0-9]+"
     },
+    "OrchestrationRoleArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:aws[^:]*:iam::[0-9]*:role/.+"
+    },
     "OrchestrationS3Location":{
       "type":"string",
       "max":8192,
       "min":1,
       "pattern":"^s3://([^/]+)/([^/]+/)*([^/]+)$"
     },
+    "OrchestrationStatementCodeString":{
+      "type":"string",
+      "max":68000
+    },
     "OrchestrationStringList":{
       "type":"list",
       "member":{"shape":"GenericString"}
+    },
+    "OrchestrationToken":{
+      "type":"string",
+      "max":400000
     },
     "Order":{
       "type":"structure",
@@ -7105,7 +7428,6 @@
     },
     "PolicyJsonString":{
       "type":"string",
-      "max":10240,
       "min":2
     },
     "Predecessor":{
@@ -7438,6 +7760,24 @@
     "RoleString":{"type":"string"},
     "RowTag":{"type":"string"},
     "RunId":{"type":"string"},
+    "RunStatementRequest":{
+      "type":"structure",
+      "required":[
+        "SessionId",
+        "Code"
+      ],
+      "members":{
+        "SessionId":{"shape":"NameString"},
+        "Code":{"shape":"OrchestrationStatementCodeString"},
+        "RequestOrigin":{"shape":"OrchestrationNameString"}
+      }
+    },
+    "RunStatementResponse":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"IntegerValue"}
+      }
+    },
     "S3Encryption":{
       "type":"structure",
       "members":{
@@ -7647,7 +7987,10 @@
         "DELETING"
       ]
     },
-    "ScriptLocationString":{"type":"string"},
+    "ScriptLocationString":{
+      "type":"string",
+      "max":400000
+    },
     "SearchPropertyPredicates":{
       "type":"list",
       "member":{"shape":"PropertyPredicate"}
@@ -7707,6 +8050,50 @@
         "SerializationLibrary":{"shape":"NameString"},
         "Parameters":{"shape":"ParametersMap"}
       }
+    },
+    "Session":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"NameString"},
+        "CreatedOn":{"shape":"TimestampValue"},
+        "Status":{"shape":"SessionStatus"},
+        "ErrorMessage":{"shape":"DescriptionString"},
+        "Description":{"shape":"DescriptionString"},
+        "Role":{"shape":"OrchestrationRoleArn"},
+        "Command":{"shape":"SessionCommand"},
+        "DefaultArguments":{"shape":"OrchestrationArgumentsMap"},
+        "Connections":{"shape":"ConnectionsList"},
+        "Progress":{"shape":"DoubleValue"},
+        "MaxCapacity":{"shape":"NullableDouble"},
+        "SecurityConfiguration":{"shape":"NameString"},
+        "GlueVersion":{"shape":"GlueVersionString"}
+      }
+    },
+    "SessionCommand":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NameString"},
+        "PythonVersion":{"shape":"PythonVersionString"}
+      }
+    },
+    "SessionIdList":{
+      "type":"list",
+      "member":{"shape":"NameString"}
+    },
+    "SessionList":{
+      "type":"list",
+      "member":{"shape":"Session"}
+    },
+    "SessionStatus":{
+      "type":"string",
+      "enum":[
+        "PROVISIONING",
+        "READY",
+        "FAILED",
+        "TIMEOUT",
+        "STOPPING",
+        "STOPPED"
+      ]
     },
     "SkewedInfo":{
       "type":"structure",
@@ -7910,6 +8297,50 @@
         "BatchWindow":{"shape":"NullableInteger"}
       }
     },
+    "Statement":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"IntegerValue"},
+        "Code":{"shape":"GenericString"},
+        "State":{"shape":"StatementState"},
+        "Output":{"shape":"StatementOutput"},
+        "Progress":{"shape":"DoubleValue"},
+        "StartedOn":{"shape":"LongValue"},
+        "CompletedOn":{"shape":"LongValue"}
+      }
+    },
+    "StatementList":{
+      "type":"list",
+      "member":{"shape":"Statement"}
+    },
+    "StatementOutput":{
+      "type":"structure",
+      "members":{
+        "Data":{"shape":"StatementOutputData"},
+        "ExecutionCount":{"shape":"IntegerValue"},
+        "Status":{"shape":"StatementState"},
+        "ErrorName":{"shape":"GenericString"},
+        "ErrorValue":{"shape":"GenericString"},
+        "Traceback":{"shape":"OrchestrationStringList"}
+      }
+    },
+    "StatementOutputData":{
+      "type":"structure",
+      "members":{
+        "TextPlain":{"shape":"GenericString"}
+      }
+    },
+    "StatementState":{
+      "type":"string",
+      "enum":[
+        "WAITING",
+        "RUNNING",
+        "AVAILABLE",
+        "CANCELLING",
+        "CANCELLED",
+        "ERROR"
+      ]
+    },
     "StopCrawlerRequest":{
       "type":"structure",
       "required":["Name"],
@@ -7932,6 +8363,20 @@
     "StopCrawlerScheduleResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "StopSessionRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"NameString"},
+        "RequestOrigin":{"shape":"OrchestrationNameString"}
+      }
+    },
+    "StopSessionResponse":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"NameString"}
       }
     },
     "StopTriggerRequest":{

@@ -17,6 +17,7 @@
     "BatchStopJobRun": "<p>Stops one or more job runs for a specified job definition.</p>",
     "BatchUpdatePartition": "<p>Updates one or more partitions in a batch operation.</p>",
     "CancelMLTaskRun": "<p>Cancels (stops) a task run. Machine learning task runs are asynchronous tasks that Glue runs on your behalf as part of various machine learning workflows. You can cancel a machine learning task run at any time by calling <code>CancelMLTaskRun</code> with a task run's parent transform's <code>TransformID</code> and the task run's <code>TaskRunId</code>. </p>",
+    "CancelStatement": "<p>Cancels the statement..</p>",
     "CheckSchemaVersionValidity": "<p>Validates the supplied schema. This call has no side effects, it simply validates using the supplied schema using <code>DataFormat</code> as the format. Since it does not take a schema set name, no compatibility checks are performed.</p>",
     "CreateBlueprint": "<p>Registers a blueprint with Glue.</p>",
     "CreateClassifier": "<p>Creates a classifier in the user's account. This can be a <code>GrokClassifier</code>, an <code>XMLClassifier</code>, a <code>JsonClassifier</code>, or a <code>CsvClassifier</code>, depending on which field of the request is present.</p>",
@@ -32,6 +33,7 @@
     "CreateSchema": "<p>Creates a new schema set and registers the schema definition. Returns an error if the schema set already exists without actually registering the version.</p> <p>When the schema set is created, a version checkpoint will be set to the first version. Compatibility mode \"DISABLED\" restricts any additional schema versions from being added after the first schema version. For all other compatibility modes, validation of compatibility settings will be applied only from the second version onwards when the <code>RegisterSchemaVersion</code> API is used.</p> <p>When this API is called without a <code>RegistryId</code>, this will create an entry for a \"default-registry\" in the registry database tables, if it is not already present.</p>",
     "CreateScript": "<p>Transforms a directed acyclic graph (DAG) into code.</p>",
     "CreateSecurityConfiguration": "<p>Creates a new security configuration. A security configuration is a set of security properties that can be used by Glue. You can use a security configuration to encrypt data at rest. For information about using security configurations in Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/encryption-security-configuration.html\">Encrypting Data Written by Crawlers, Jobs, and Development Endpoints</a>.</p>",
+    "CreateSession": "<p>Creates a new session.</p>",
     "CreateTable": "<p>Creates a new table definition in the Data Catalog.</p>",
     "CreateTrigger": "<p>Creates a new trigger.</p>",
     "CreateUserDefinedFunction": "<p>Creates a new function definition in the Data Catalog.</p>",
@@ -53,6 +55,7 @@
     "DeleteSchema": "<p>Deletes the entire schema set, including the schema set and all of its versions. To get the status of the delete operation, you can call <code>GetSchema</code> API after the asynchronous call. Deleting a registry will deactivate all online operations for the schema, such as the <code>GetSchemaByDefinition</code>, and <code>RegisterSchemaVersion</code> APIs.</p>",
     "DeleteSchemaVersions": "<p>Remove versions from the specified schema. A version number or range may be supplied. If the compatibility mode forbids deleting of a version that is necessary, such as BACKWARDS_FULL, an error is returned. Calling the <code>GetSchemaVersions</code> API after this call will list the status of the deleted versions.</p> <p>When the range of version numbers contain check pointed version, the API will return a 409 conflict and will not proceed with the deletion. You have to remove the checkpoint first using the <code>DeleteSchemaCheckpoint</code> API before using this API.</p> <p>You cannot use the <code>DeleteSchemaVersions</code> API to delete the first schema version in the schema set. The first schema version can only be deleted by the <code>DeleteSchema</code> API. This operation will also delete the attached <code>SchemaVersionMetadata</code> under the schema versions. Hard deletes will be enforced on the database.</p> <p>If the compatibility mode forbids deleting of a version that is necessary, such as BACKWARDS_FULL, an error is returned.</p>",
     "DeleteSecurityConfiguration": "<p>Deletes a specified security configuration.</p>",
+    "DeleteSession": "<p>Deletes the session.</p>",
     "DeleteTable": "<p>Removes a table definition from the Data Catalog.</p> <note> <p>After completing this operation, you no longer have access to the table versions and partitions that belong to the deleted table. Glue deletes these \"orphaned\" resources asynchronously in a timely manner, at the discretion of the service.</p> <p>To ensure the immediate deletion of all related resources, before calling <code>DeleteTable</code>, use <code>DeleteTableVersion</code> or <code>BatchDeleteTableVersion</code>, and <code>DeletePartition</code> or <code>BatchDeletePartition</code>, to delete any resources that belong to the table.</p> </note>",
     "DeleteTableVersion": "<p>Deletes a specified version of a table.</p>",
     "DeleteTrigger": "<p>Deletes a specified trigger. If the trigger is not found, no exception is thrown.</p>",
@@ -100,6 +103,8 @@
     "GetSchemaVersionsDiff": "<p>Fetches the schema version difference in the specified difference type between two stored schema versions in the Schema Registry.</p> <p>This API allows you to compare two schema versions between two schema definitions under the same schema.</p>",
     "GetSecurityConfiguration": "<p>Retrieves a specified security configuration.</p>",
     "GetSecurityConfigurations": "<p>Retrieves a list of all security configurations.</p>",
+    "GetSession": "<p>Retrieves the session.</p>",
+    "GetStatement": "<p>Retrieves the statement.</p>",
     "GetTable": "<p>Retrieves the <code>Table</code> definition in a Data Catalog for a specified table.</p>",
     "GetTableVersion": "<p>Retrieves a specified version of a table.</p>",
     "GetTableVersions": "<p>Retrieves a list of strings that identify available versions of a specified table.</p>",
@@ -125,6 +130,8 @@
     "ListRegistries": "<p>Returns a list of registries that you have created, with minimal registry information. Registries in the <code>Deleting</code> status will not be included in the results. Empty results will be returned if there are no registries available.</p>",
     "ListSchemaVersions": "<p>Returns a list of schema versions that you have created, with minimal information. Schema versions in Deleted status will not be included in the results. Empty results will be returned if there are no schema versions available.</p>",
     "ListSchemas": "<p>Returns a list of schemas with minimal details. Schemas in Deleting status will not be included in the results. Empty results will be returned if there are no schemas available.</p> <p>When the <code>RegistryId</code> is not provided, all the schemas across registries will be part of the API response.</p>",
+    "ListSessions": "<p>Retrieve a session..</p>",
+    "ListStatements": "<p>Lists statements for the session.</p>",
     "ListTriggers": "<p>Retrieves the names of all trigger resources in this Amazon Web Services account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
     "ListWorkflows": "<p>Lists names of workflows created in the account.</p>",
     "PutDataCatalogEncryptionSettings": "<p>Sets the security configuration for a specified catalog. After the configuration has been set, the specified encryption is applied to every catalog write thereafter.</p>",
@@ -136,6 +143,7 @@
     "RemoveSchemaVersionMetadata": "<p>Removes a key value pair from the schema version metadata for the specified schema version ID.</p>",
     "ResetJobBookmark": "<p>Resets a bookmark entry.</p>",
     "ResumeWorkflowRun": "<p>Restarts selected nodes of a previous partially completed workflow run and resumes the workflow run. The selected nodes and all nodes that are downstream from the selected nodes are run.</p>",
+    "RunStatement": "<p>Executes the statement.</p>",
     "SearchTables": "<p>Searches a set of tables based on properties in the table metadata as well as on the parent database. You can search against text or filter conditions. </p> <p>You can only get tables that you have access to based on the security policies defined in Lake Formation. You need at least a read-only access to the table for it to be returned. If you do not have access to all the columns in the table, these columns will not be searched against when returning the list of tables back to you. If you have access to the columns but not the data in the columns, those columns and the associated metadata for those columns will be included in the search. </p>",
     "StartBlueprintRun": "<p>Starts a new run of the specified blueprint.</p>",
     "StartCrawler": "<p>Starts a crawl using the specified crawler, regardless of what is scheduled. If the crawler is already running, returns a <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-exceptions.html#aws-glue-api-exceptions-CrawlerRunningException\">CrawlerRunningException</a>.</p>",
@@ -149,6 +157,7 @@
     "StartWorkflowRun": "<p>Starts a new run of the specified workflow.</p>",
     "StopCrawler": "<p>If the specified crawler is running, stops the crawl.</p>",
     "StopCrawlerSchedule": "<p>Sets the schedule state of the specified crawler to <code>NOT_SCHEDULED</code>, but does not stop the crawler if it is already running.</p>",
+    "StopSession": "<p>Stops the session.</p>",
     "StopTrigger": "<p>Stops a specified trigger.</p>",
     "StopWorkflowRun": "<p>Stops the execution of the specified workflow run.</p>",
     "TagResource": "<p>Adds tags to a resource. A tag is a label you can assign to an Amazon Web Services resource. In Glue, you can tag only certain resources. For information about what resources you can tag, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">Amazon Web Services Tags in Glue</a>.</p>",
@@ -215,8 +224,14 @@
         "JobRun$Attempt": "<p>The number of the attempt to run this job.</p>"
       }
     },
-    "AuditContext": {
+    "AuditColumnNamesList": {
       "base": null,
+      "refs": {
+        "AuditContext$RequestedColumns": "<p>The requested columns for audit.</p>"
+      }
+    },
+    "AuditContext": {
+      "base": "<p>A structure containing information for audit.</p>",
       "refs": {
         "GetUnfilteredPartitionMetadataRequest$AuditContext": null,
         "GetUnfilteredPartitionsMetadataRequest$AuditContext": null,
@@ -226,7 +241,7 @@
     "AuditContextString": {
       "base": null,
       "refs": {
-        "AuditContext$AdditionalAuditContext": null
+        "AuditContext$AdditionalAuditContext": "<p>The context for the audit..</p>"
       }
     },
     "BackfillError": {
@@ -623,6 +638,16 @@
       "refs": {
       }
     },
+    "CancelStatementRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelStatementResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CatalogEncryptionMode": {
       "base": null,
       "refs": {
@@ -890,6 +915,7 @@
     "ColumnNameString": {
       "base": null,
       "refs": {
+        "AuditColumnNamesList$member": null,
         "FindMatchesParameters$PrimaryKeyColumnName": "<p>The name of a column that uniquely identifies rows in the source table. Used to help identify matching records.</p>",
         "SchemaColumn$Name": "<p>The name of the column.</p>"
       }
@@ -1088,8 +1114,10 @@
       "base": "<p>Specifies the connections used by a job.</p>",
       "refs": {
         "CreateJobRequest$Connections": "<p>The connections used for this job.</p>",
+        "CreateSessionRequest$Connections": "<p>The number of connections to use for the session. </p>",
         "Job$Connections": "<p>The connections used for this job.</p>",
-        "JobUpdate$Connections": "<p>The connections used for this job.</p>"
+        "JobUpdate$Connections": "<p>The connections used for this job.</p>",
+        "Session$Connections": "<p>The number of connections used for the session.</p>"
       }
     },
     "Crawl": {
@@ -1357,6 +1385,16 @@
       }
     },
     "CreateSecurityConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSessionRequest": {
+      "base": "<p>Request to create a new session.</p>",
+      "refs": {
+      }
+    },
+    "CreateSessionResponse": {
       "base": null,
       "refs": {
       }
@@ -1756,6 +1794,16 @@
       "refs": {
       }
     },
+    "DeleteSessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSessionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteTableRequest": {
       "base": null,
       "refs": {
@@ -1832,6 +1880,7 @@
         "CreateRegistryResponse$Description": "<p>A description of the registry.</p>",
         "CreateSchemaInput$Description": "<p>An optional description of the schema. If description is not provided, there will not be any automatic default value for this.</p>",
         "CreateSchemaResponse$Description": "<p>A description of the schema if specified when created.</p>",
+        "CreateSessionRequest$Description": "<p>The description of the session. </p>",
         "CreateTriggerRequest$Description": "<p>A description of the new trigger.</p>",
         "Database$Description": "<p>A description of the database.</p>",
         "DatabaseInput$Description": "<p>A description of the database.</p>",
@@ -1845,6 +1894,8 @@
         "MLTransform$Description": "<p>A user-defined, long-form description text for the machine learning transform. Descriptions are not guaranteed to be unique and can be changed at any time.</p>",
         "RegistryListItem$Description": "<p>A description of the registry.</p>",
         "SchemaListItem$Description": "<p>A description for the schema.</p>",
+        "Session$ErrorMessage": "<p>The error message displayed during the session.</p>",
+        "Session$Description": "<p>The description of the session.</p>",
         "Table$Description": "<p>A description of the table.</p>",
         "TableInput$Description": "<p>A description of the table.</p>",
         "Trigger$Description": "<p>A description of this trigger.</p>",
@@ -1904,6 +1955,13 @@
       "base": "<p>Defines column statistics supported for floating-point number data columns.</p>",
       "refs": {
         "ColumnStatisticsData$DoubleColumnStatisticsData": "<p>Double column statistics data.</p>"
+      }
+    },
+    "DoubleValue": {
+      "base": null,
+      "refs": {
+        "Session$Progress": "<p>The code execution progress of the session.</p>",
+        "Statement$Progress": "<p>The code execution progress.</p>"
       }
     },
     "DynamoDBTarget": {
@@ -2199,6 +2257,10 @@
         "MapValue$value": null,
         "OrchestrationStringList$member": null,
         "PublicKeysList$member": null,
+        "Statement$Code": "<p>The execution code of the statement.</p>",
+        "StatementOutput$ErrorName": "<p>The name of the error in the output.</p>",
+        "StatementOutput$ErrorValue": "<p>The error value of the output.</p>",
+        "StatementOutputData$TextPlain": "<p>The code execution output in text format.</p>",
         "StringList$member": null,
         "TaskRun$LogGroupName": "<p>The names of the log group for secure logging, associated with this task run.</p>",
         "TaskRun$ErrorString": "<p>The list of error strings associated with this task run.</p>",
@@ -2650,6 +2712,26 @@
       "refs": {
       }
     },
+    "GetSessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSessionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetStatementRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetStatementResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetTableRequest": {
       "base": null,
       "refs": {
@@ -2878,12 +2960,14 @@
         "CreateDevEndpointResponse$GlueVersion": "<p>Glue version determines the versions of Apache Spark and Python that Glue supports. The Python version indicates the version supported for running your ETL scripts on development endpoints. </p> <p>For more information about the available Glue versions and corresponding Spark and Python versions, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/add-job.html\">Glue version</a> in the developer guide.</p>",
         "CreateJobRequest$GlueVersion": "<p>Glue version determines the versions of Apache Spark and Python that Glue supports. The Python version indicates the version supported for jobs of type Spark. </p> <p>For more information about the available Glue versions and corresponding Spark and Python versions, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/add-job.html\">Glue version</a> in the developer guide.</p> <p>Jobs that are created without specifying a Glue version default to Glue 0.9.</p>",
         "CreateMLTransformRequest$GlueVersion": "<p>This value determines which version of Glue this machine learning transform is compatible with. Glue 1.0 is recommended for most customers. If the value is not set, the Glue compatibility defaults to Glue 0.9. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/release-notes.html#release-notes-versions\">Glue Versions</a> in the developer guide.</p>",
+        "CreateSessionRequest$GlueVersion": "<p>The Glue version determines the versions of Apache Spark and Python that AWS Glue supports. The GlueVersion must be greater than 2.0. </p>",
         "DevEndpoint$GlueVersion": "<p>Glue version determines the versions of Apache Spark and Python that Glue supports. The Python version indicates the version supported for running your ETL scripts on development endpoints. </p> <p>For more information about the available Glue versions and corresponding Spark and Python versions, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/add-job.html\">Glue version</a> in the developer guide.</p> <p>Development endpoints that are created without specifying a Glue version default to Glue 0.9.</p> <p>You can specify a version of Python support for development endpoints by using the <code>Arguments</code> parameter in the <code>CreateDevEndpoint</code> or <code>UpdateDevEndpoint</code> APIs. If no arguments are provided, the version defaults to Python 2.</p>",
         "GetMLTransformResponse$GlueVersion": "<p>This value determines which version of Glue this machine learning transform is compatible with. Glue 1.0 is recommended for most customers. If the value is not set, the Glue compatibility defaults to Glue 0.9. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/release-notes.html#release-notes-versions\">Glue Versions</a> in the developer guide.</p>",
         "Job$GlueVersion": "<p>Glue version determines the versions of Apache Spark and Python that Glue supports. The Python version indicates the version supported for jobs of type Spark. </p> <p>For more information about the available Glue versions and corresponding Spark and Python versions, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/add-job.html\">Glue version</a> in the developer guide.</p> <p>Jobs that are created without specifying a Glue version default to Glue 0.9.</p>",
         "JobRun$GlueVersion": "<p>Glue version determines the versions of Apache Spark and Python that Glue supports. The Python version indicates the version supported for jobs of type Spark. </p> <p>For more information about the available Glue versions and corresponding Spark and Python versions, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/add-job.html\">Glue version</a> in the developer guide.</p> <p>Jobs that are created without specifying a Glue version default to Glue 0.9.</p>",
         "JobUpdate$GlueVersion": "<p>Glue version determines the versions of Apache Spark and Python that Glue supports. The Python version indicates the version supported for jobs of type Spark. </p> <p>For more information about the available Glue versions and corresponding Spark and Python versions, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/add-job.html\">Glue version</a> in the developer guide.</p>",
         "MLTransform$GlueVersion": "<p>This value determines which version of Glue this machine learning transform is compatible with. Glue 1.0 is recommended for most customers. If the value is not set, the Glue compatibility defaults to Glue 0.9. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/release-notes.html#release-notes-versions\">Glue Versions</a> in the developer guide.</p>",
+        "Session$GlueVersion": "<p>The Glue version determines the versions of Apache Spark and Python that AWS Glue supports. The GlueVersion must be greater than 2.0.</p>",
         "TransformFilterCriteria$GlueVersion": "<p>This value determines which version of Glue this machine learning transform is compatible with. Glue 1.0 is recommended for most customers. If the value is not set, the Glue compatibility defaults to Glue 0.9. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/release-notes.html#release-notes-versions\">Glue Versions</a> in the developer guide.</p>",
         "UpdateMLTransformRequest$GlueVersion": "<p>This value determines which version of Glue this machine learning transform is compatible with. Glue 1.0 is recommended for most customers. If the value is not set, the Glue compatibility defaults to Glue 0.9. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/release-notes.html#release-notes-versions\">Glue Versions</a> in the developer guide.</p>"
       }
@@ -2981,6 +3065,11 @@
       "refs": {
       }
     },
+    "IllegalSessionStateException": {
+      "base": "<p>The session is in an invalid state to perform a requested operation.</p>",
+      "refs": {
+      }
+    },
     "IllegalWorkflowStateException": {
       "base": "<p>The workflow is in an invalid state to perform a requested operation.</p>",
       "refs": {
@@ -3019,19 +3108,24 @@
     "IntegerValue": {
       "base": null,
       "refs": {
+        "CancelStatementRequest$Id": "<p>The ID of the statement to be cancelled.</p>",
         "CreateDevEndpointRequest$NumberOfNodes": "<p>The number of Glue Data Processing Units (DPUs) to allocate to this <code>DevEndpoint</code>.</p>",
         "CreateDevEndpointResponse$ZeppelinRemoteSparkInterpreterPort": "<p>The Apache Zeppelin port for the remote Apache Spark interpreter.</p>",
         "CreateDevEndpointResponse$NumberOfNodes": "<p>The number of Glue Data Processing Units (DPUs) allocated to this DevEndpoint.</p>",
         "CreateJobRequest$AllocatedCapacity": "<p>This parameter is deprecated. Use <code>MaxCapacity</code> instead.</p> <p>The number of Glue data processing units (DPUs) to allocate to this Job. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>.</p>",
         "DevEndpoint$ZeppelinRemoteSparkInterpreterPort": "<p>The Apache Zeppelin port for the remote Apache Spark interpreter.</p>",
         "DevEndpoint$NumberOfNodes": "<p>The number of Glue Data Processing Units (DPUs) allocated to this <code>DevEndpoint</code>.</p>",
+        "GetStatementRequest$Id": "<p>The Id of the statement.</p>",
         "Job$AllocatedCapacity": "<p>This field is deprecated. Use <code>MaxCapacity</code> instead.</p> <p>The number of Glue data processing units (DPUs) allocated to runs of this job. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>.</p> <p/>",
         "JobBookmarkEntry$Version": "<p>The version of the job.</p>",
         "JobBookmarkEntry$Run": "<p>The run ID number.</p>",
         "JobBookmarkEntry$Attempt": "<p>The attempt ID number.</p>",
         "JobRun$AllocatedCapacity": "<p>This field is deprecated. Use <code>MaxCapacity</code> instead.</p> <p>The number of Glue data processing units (DPUs) allocated to this JobRun. From 2 to 100 DPUs can be allocated; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>.</p>",
         "JobUpdate$AllocatedCapacity": "<p>This field is deprecated. Use <code>MaxCapacity</code> instead.</p> <p>The number of Glue data processing units (DPUs) to allocate to this job. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>.</p>",
+        "RunStatementResponse$Id": "<p>Returns the Id of the statement that was run.</p>",
         "StartJobRunRequest$AllocatedCapacity": "<p>This field is deprecated. Use <code>MaxCapacity</code> instead.</p> <p>The number of Glue data processing units (DPUs) to allocate to this JobRun. From 2 to 100 DPUs can be allocated; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>.</p>",
+        "Statement$Id": "<p>The ID of the statement.</p>",
+        "StatementOutput$ExecutionCount": "<p>The execution count of the output.</p>",
         "WorkflowRunStatistics$TotalActions": "<p>Total number of Actions in the workflow run.</p>",
         "WorkflowRunStatistics$TimeoutActions": "<p>Total number of Actions that timed out.</p>",
         "WorkflowRunStatistics$FailedActions": "<p>Total number of Actions that have failed.</p>",
@@ -3357,6 +3451,26 @@
       "refs": {
       }
     },
+    "ListSessionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSessionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListStatementsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListStatementsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTriggersRequest": {
       "base": null,
       "refs": {
@@ -3440,6 +3554,13 @@
       "base": "<p>Defines column statistics supported for integer data columns.</p>",
       "refs": {
         "ColumnStatisticsData$LongColumnStatisticsData": "<p>Long column statistics data.</p>"
+      }
+    },
+    "LongValue": {
+      "base": null,
+      "refs": {
+        "Statement$StartedOn": "<p>The unix time and date that the job definition was started.</p>",
+        "Statement$CompletedOn": "<p>The unix time and date that the job definition was completed.</p>"
       }
     },
     "MLTransform": {
@@ -3538,9 +3659,10 @@
         "CrawlerRunningException$Message": "<p>A message describing the problem.</p>",
         "CrawlerStoppingException$Message": "<p>A message describing the problem.</p>",
         "EntityNotFoundException$Message": "<p>A message describing the problem.</p>",
-        "GlueEncryptionException$Message": "<p>A message describing the problem.</p>",
+        "GlueEncryptionException$Message": "<p>The message describing the problem.</p>",
         "IdempotentParameterMismatchException$Message": "<p>A message describing the problem.</p>",
         "IllegalBlueprintStateException$Message": null,
+        "IllegalSessionStateException$Message": "<p>A message describing the problem.</p>",
         "IllegalWorkflowStateException$Message": "<p>A message describing the problem.</p>",
         "InternalServiceException$Message": "<p>A message describing the problem.</p>",
         "InvalidInputException$Message": "<p>A message describing the problem.</p>",
@@ -3643,6 +3765,7 @@
         "BatchUpdatePartitionRequest$DatabaseName": "<p>The name of the metadata database in which the partition is to be updated.</p>",
         "BatchUpdatePartitionRequest$TableName": "<p>The name of the metadata table in which the partition is to be updated.</p>",
         "BlueprintRun$WorkflowName": "<p>The name of a workflow that is created as a result of a successful blueprint run. If a blueprint run has an error, there will not be a workflow created.</p>",
+        "CancelStatementRequest$SessionId": "<p>The Session ID of the statement to be cancelled.</p>",
         "CatalogEntry$DatabaseName": "<p>The database in which the table metadata resides.</p>",
         "CatalogEntry$TableName": "<p>The name of the table in question.</p>",
         "CatalogImportStatus$ImportedBy": "<p>The name of the person who initiated the migration.</p>",
@@ -3680,6 +3803,8 @@
         "CreatePartitionRequest$TableName": "<p>The name of the metadata table in which the partition is to be created.</p>",
         "CreateSecurityConfigurationRequest$Name": "<p>The name for the new security configuration.</p>",
         "CreateSecurityConfigurationResponse$Name": "<p>The name assigned to the new security configuration.</p>",
+        "CreateSessionRequest$Id": "<p>The ID of the session request. </p>",
+        "CreateSessionRequest$SecurityConfiguration": "<p>The name of the SecurityConfiguration structure to be used with the session </p>",
         "CreateTableRequest$DatabaseName": "<p>The catalog database in which to create the new table. For Hive compatibility, this name is entirely lowercase.</p>",
         "CreateTriggerRequest$Name": "<p>The name of the trigger.</p>",
         "CreateTriggerRequest$WorkflowName": "<p>The name of the workflow associated with the trigger.</p>",
@@ -3714,6 +3839,8 @@
         "DeletePartitionRequest$DatabaseName": "<p>The name of the catalog database in which the table in question resides.</p>",
         "DeletePartitionRequest$TableName": "<p>The name of the table that contains the partition to be deleted.</p>",
         "DeleteSecurityConfigurationRequest$Name": "<p>The name of the security configuration to delete.</p>",
+        "DeleteSessionRequest$Id": "<p>The ID of the session to be deleted.</p>",
+        "DeleteSessionResponse$Id": "<p>Returns the ID of the deleted session.</p>",
         "DeleteTableRequest$DatabaseName": "<p>The name of the catalog database in which the table resides. For Hive compatibility, this name is entirely lowercase.</p>",
         "DeleteTableRequest$Name": "<p>The name of the table to be deleted. For Hive compatibility, this name is entirely lowercase.</p>",
         "DeleteTableVersionRequest$DatabaseName": "<p>The database in the catalog in which the table resides. For Hive compatibility, this name is entirely lowercase.</p>",
@@ -3754,6 +3881,8 @@
         "GetPartitionsRequest$DatabaseName": "<p>The name of the catalog database where the partitions reside.</p>",
         "GetPartitionsRequest$TableName": "<p>The name of the partitions' table.</p>",
         "GetSecurityConfigurationRequest$Name": "<p>The name of the security configuration to retrieve.</p>",
+        "GetSessionRequest$Id": "<p>The ID of the session. </p>",
+        "GetStatementRequest$SessionId": "<p>The Session ID of the statement.</p>",
         "GetTableRequest$DatabaseName": "<p>The name of the database in the catalog in which the table resides. For Hive compatibility, this name is entirely lowercase.</p>",
         "GetTableRequest$Name": "<p>The name of the table for which to retrieve the definition. For Hive compatibility, this name is entirely lowercase.</p>",
         "GetTableVersionRequest$DatabaseName": "<p>The database in the catalog in which the table resides. For Hive compatibility, this name is entirely lowercase.</p>",
@@ -3792,6 +3921,7 @@
         "JsonClassifier$Name": "<p>The name of the classifier.</p>",
         "KeyList$member": null,
         "KeySchemaElement$Name": "<p>The name of a partition key.</p>",
+        "ListStatementsRequest$SessionId": "<p>The Session ID of the statements.</p>",
         "ListTriggersRequest$DependentJobName": "<p> The name of the job for which to retrieve triggers. The trigger that can start this job is returned. If there is no such trigger, all triggers are returned.</p>",
         "MLTransform$Name": "<p>A user-defined name for the machine learning transform. Names are not guaranteed unique and can be changed at any time.</p>",
         "MLUserDataEncryption$KmsKeyId": "<p>The ID for the customer-provided KMS key.</p>",
@@ -3810,10 +3940,15 @@
         "Predecessor$JobName": "<p>The name of the job definition used by the predecessor job run.</p>",
         "PutWorkflowRunPropertiesRequest$Name": "<p>Name of the workflow which was run.</p>",
         "ResumeWorkflowRunRequest$Name": "<p>The name of the workflow to resume.</p>",
+        "RunStatementRequest$SessionId": "<p>The Session Id of the statement to be run.</p>",
         "SecurityConfiguration$Name": "<p>The name of the security configuration.</p>",
         "SecurityGroupIdList$member": null,
         "SerDeInfo$Name": "<p>Name of the SerDe.</p>",
         "SerDeInfo$SerializationLibrary": "<p>Usually the class that implements the SerDe. An example is <code>org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe</code>.</p>",
+        "Session$Id": "<p>The ID of the session.</p>",
+        "Session$SecurityConfiguration": "<p>The name of the SecurityConfiguration structure to be used with the session.</p>",
+        "SessionCommand$Name": "<p>Specifies the name of the SessionCommand.Can be 'glueetl' or 'gluestreaming'.</p>",
+        "SessionIdList$member": null,
         "StartCrawlerRequest$Name": "<p>Name of the crawler to start.</p>",
         "StartCrawlerScheduleRequest$CrawlerName": "<p>Name of the crawler to schedule.</p>",
         "StartJobRunRequest$JobName": "<p>The name of the job definition to use.</p>",
@@ -3823,6 +3958,8 @@
         "StartWorkflowRunRequest$Name": "<p>The name of the workflow to start.</p>",
         "StopCrawlerRequest$Name": "<p>Name of the crawler to stop.</p>",
         "StopCrawlerScheduleRequest$CrawlerName": "<p>Name of the crawler whose schedule state to set.</p>",
+        "StopSessionRequest$Id": "<p>The ID of the session to be stopped.</p>",
+        "StopSessionResponse$Id": "<p>Returns the Id of the stopped session.</p>",
         "StopTriggerRequest$Name": "<p>The name of the trigger to stop.</p>",
         "StopTriggerResponse$Name": "<p>The name of the trigger that was stopped.</p>",
         "StopWorkflowRunRequest$Name": "<p>The name of the workflow to stop.</p>",
@@ -3982,6 +4119,7 @@
     "NullableBoolean": {
       "base": null,
       "refs": {
+        "AuditContext$AllColumnsRequested": "<p>All columns request for audit.</p>",
         "BatchGetBlueprintsRequest$IncludeBlueprint": "<p>Specifies whether or not to include the blueprint in the response.</p>",
         "BatchGetBlueprintsRequest$IncludeParameterSpec": "<p>Specifies whether or not to include the parameters, as a JSON string, for the blueprint in the response.</p>",
         "BatchGetWorkflowsRequest$IncludeGraph": "<p>Specifies whether to include a graph when returning the workflow resource metadata.</p>",
@@ -4008,12 +4146,14 @@
       "refs": {
         "CreateJobRequest$MaxCapacity": "<p>For Glue version 1.0 or earlier jobs, using the standard worker type, the number of Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\") or Apache Spark streaming ETL job (<code>JobCommand.Name</code>=\"gluestreaming\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul> <p>For Glue version 2.0 jobs, you cannot instead specify a <code>Maximum capacity</code>. Instead, you should specify a <code>Worker type</code> and the <code>Number of workers</code>.</p>",
         "CreateMLTransformRequest$MaxCapacity": "<p>The number of Glue data processing units (DPUs) that are allocated to task runs for this transform. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>. </p> <p> <code>MaxCapacity</code> is a mutually exclusive option with <code>NumberOfWorkers</code> and <code>WorkerType</code>.</p> <ul> <li> <p>If either <code>NumberOfWorkers</code> or <code>WorkerType</code> is set, then <code>MaxCapacity</code> cannot be set.</p> </li> <li> <p>If <code>MaxCapacity</code> is set then neither <code>NumberOfWorkers</code> or <code>WorkerType</code> can be set.</p> </li> <li> <p>If <code>WorkerType</code> is set, then <code>NumberOfWorkers</code> is required (and vice versa).</p> </li> <li> <p> <code>MaxCapacity</code> and <code>NumberOfWorkers</code> must both be at least 1.</p> </li> </ul> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p>",
+        "CreateSessionRequest$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that can be allocated when the job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB memory. </p>",
         "DynamoDBTarget$scanRate": "<p>The percentage of the configured read capacity units to use by the Glue crawler. Read capacity units is a term defined by DynamoDB, and is a numeric value that acts as rate limiter for the number of reads that can be performed on that table per second.</p> <p>The valid values are null or a value between 0.1 to 1.5. A null value is used when user does not provide a value, and defaults to 0.5 of the configured Read Capacity Unit (for provisioned tables), or 0.25 of the max configured Read Capacity Unit (for tables using on-demand mode).</p>",
         "GetMLTransformResponse$MaxCapacity": "<p>The number of Glue data processing units (DPUs) that are allocated to task runs for this transform. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>. </p> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p>",
         "Job$MaxCapacity": "<p>For Glue version 1.0 or earlier jobs, using the standard worker type, the number of Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job, an Apache Spark ETL job, or an Apache Spark streaming ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\") or Apache Spark streaming ETL job (<code>JobCommand.Name</code>=\"gluestreaming\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul> <p>For Glue version 2.0 jobs, you cannot instead specify a <code>Maximum capacity</code>. Instead, you should specify a <code>Worker type</code> and the <code>Number of workers</code>.</p>",
         "JobRun$MaxCapacity": "<p>The number of Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
         "JobUpdate$MaxCapacity": "<p>For Glue version 1.0 or earlier jobs, using the standard worker type, the number of Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\") or Apache Spark streaming ETL job (<code>JobCommand.Name</code>=\"gluestreaming\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul> <p>For Glue version 2.0 jobs, you cannot instead specify a <code>Maximum capacity</code>. Instead, you should specify a <code>Worker type</code> and the <code>Number of workers</code>.</p>",
         "MLTransform$MaxCapacity": "<p>The number of Glue data processing units (DPUs) that are allocated to task runs for this transform. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"http://aws.amazon.com/glue/pricing/\">Glue pricing page</a>. </p> <p> <code>MaxCapacity</code> is a mutually exclusive option with <code>NumberOfWorkers</code> and <code>WorkerType</code>.</p> <ul> <li> <p>If either <code>NumberOfWorkers</code> or <code>WorkerType</code> is set, then <code>MaxCapacity</code> cannot be set.</p> </li> <li> <p>If <code>MaxCapacity</code> is set then neither <code>NumberOfWorkers</code> or <code>WorkerType</code> can be set.</p> </li> <li> <p>If <code>WorkerType</code> is set, then <code>NumberOfWorkers</code> is required (and vice versa).</p> </li> <li> <p> <code>MaxCapacity</code> and <code>NumberOfWorkers</code> must both be at least 1.</p> </li> </ul> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p>",
+        "Session$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that can be allocated when the job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB memory. </p>",
         "StartJobRunRequest$MaxCapacity": "<p>The number of Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job, or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
         "UpdateMLTransformRequest$MaxCapacity": "<p>The number of Glue data processing units (DPUs) that are allocated to task runs for this transform. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>. </p> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p>"
       }
@@ -4026,6 +4166,7 @@
         "CreateJobRequest$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when a job runs.</p> <p>The maximum number of workers you can define are 299 for <code>G.1X</code>, and 149 for <code>G.2X</code>. </p>",
         "CreateMLTransformRequest$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when this task runs.</p> <p>If <code>WorkerType</code> is set, then <code>NumberOfWorkers</code> is required (and vice versa).</p>",
         "CreateMLTransformRequest$MaxRetries": "<p>The maximum number of times to retry a task for this transform after a task run fails.</p>",
+        "CreateSessionRequest$NumberOfWorkers": "<p>The number of workers to use for the session. </p>",
         "CreateWorkflowRequest$MaxConcurrentRuns": "<p>You can use this parameter to prevent unwanted multiple updates to data, to control costs, or in some cases, to prevent exceeding the maximum number of concurrent runs of any of the component jobs. If you leave this parameter blank, there is no limit to the number of concurrent workflow runs.</p>",
         "DevEndpoint$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated to the development endpoint.</p> <p>The maximum number of workers you can define are 299 for <code>G.1X</code>, and 149 for <code>G.2X</code>. </p>",
         "GetMLTransformResponse$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when this task runs.</p>",
@@ -4050,6 +4191,19 @@
       "refs": {
       }
     },
+    "OrchestrationArgumentsMap": {
+      "base": null,
+      "refs": {
+        "CreateSessionRequest$DefaultArguments": "<p>A map array of key-value pairs. Max is 75 pairs. </p>",
+        "Session$DefaultArguments": "<p>A map array of key-value pairs. Max is 75 pairs. </p>"
+      }
+    },
+    "OrchestrationArgumentsValue": {
+      "base": null,
+      "refs": {
+        "OrchestrationArgumentsMap$value": null
+      }
+    },
     "OrchestrationIAMRoleArn": {
       "base": null,
       "refs": {
@@ -4065,10 +4219,27 @@
         "BlueprintDetails$BlueprintName": "<p>The name of the blueprint.</p>",
         "BlueprintNames$member": null,
         "BlueprintRun$BlueprintName": "<p>The name of the blueprint.</p>",
+        "CancelStatementRequest$RequestOrigin": "<p>The origin of the request to cancel the statement.</p>",
         "CreateBlueprintRequest$Name": "<p>The name of the blueprint.</p>",
+        "CreateSessionRequest$RequestOrigin": "<p>The origin of the request. </p>",
+        "DeleteSessionRequest$RequestOrigin": "<p>The name of the origin of the delete session request.</p>",
         "GetBlueprintRunRequest$BlueprintName": "<p>The name of the blueprint.</p>",
+        "GetSessionRequest$RequestOrigin": "<p>The origin of the request. </p>",
+        "GetStatementRequest$RequestOrigin": "<p>The origin of the request.</p>",
+        "ListSessionsRequest$RequestOrigin": "<p>The origin of the request. </p>",
+        "ListStatementsRequest$RequestOrigin": "<p>The origin of the request to list statements.</p>",
+        "OrchestrationArgumentsMap$key": null,
+        "RunStatementRequest$RequestOrigin": "<p>The origin of the request.</p>",
         "StartBlueprintRunRequest$BlueprintName": "<p>The name of the blueprint.</p>",
+        "StopSessionRequest$RequestOrigin": "<p>The origin of the request.</p>",
         "UpdateBlueprintRequest$Name": "<p>The name of the blueprint.</p>"
+      }
+    },
+    "OrchestrationRoleArn": {
+      "base": null,
+      "refs": {
+        "CreateSessionRequest$Role": "<p>The IAM Role ARN </p>",
+        "Session$Role": "<p>The name or Amazon Resource Name (ARN) of the IAM role associated with the Session.</p>"
       }
     },
     "OrchestrationS3Location": {
@@ -4078,10 +4249,26 @@
         "UpdateBlueprintRequest$BlueprintLocation": "<p>Specifies a path in Amazon S3 where the blueprint is published.</p>"
       }
     },
+    "OrchestrationStatementCodeString": {
+      "base": null,
+      "refs": {
+        "RunStatementRequest$Code": "<p>The statement code to be run.</p>"
+      }
+    },
     "OrchestrationStringList": {
       "base": null,
       "refs": {
-        "ConnectionsList$Connections": "<p>A list of connections used by the job.</p>"
+        "ConnectionsList$Connections": "<p>A list of connections used by the job.</p>",
+        "StatementOutput$Traceback": "<p>The traceback of the output.</p>"
+      }
+    },
+    "OrchestrationToken": {
+      "base": null,
+      "refs": {
+        "ListSessionsRequest$NextToken": "<p>The token for the next set of results, or null if there are no more result. </p>",
+        "ListSessionsResponse$NextToken": "<p>The token for the next set of results, or null if there are no more result. </p>",
+        "ListStatementsRequest$NextToken": null,
+        "ListStatementsResponse$NextToken": null
       }
     },
     "Order": {
@@ -4132,6 +4319,7 @@
         "ListDevEndpointsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListJobsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListMLTransformsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
+        "ListSessionsRequest$MaxResults": "<p>The maximum number of results. </p>",
         "ListTriggersRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListWorkflowsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "SearchTablesRequest$MaxResults": "<p>The maximum number of tables to return in a single response.</p>"
@@ -4429,7 +4617,8 @@
     "PythonVersionString": {
       "base": null,
       "refs": {
-        "JobCommand$PythonVersion": "<p>The Python version being used to run a Python shell job. Allowed values are 2 or 3.</p>"
+        "JobCommand$PythonVersion": "<p>The Python version being used to run a Python shell job. Allowed values are 2 or 3.</p>",
+        "SessionCommand$PythonVersion": "<p>Specifies the Python version. The Python version indicates the version supported for jobs of type Spark.</p>"
       }
     },
     "QuerySchemaVersionMetadataInput": {
@@ -4627,6 +4816,16 @@
         "JobBookmarkEntry$PreviousRunId": "<p>The unique run identifier associated with the previous job run.</p>",
         "JobBookmarkEntry$RunId": "<p>The run ID number.</p>",
         "ResetJobBookmarkRequest$RunId": "<p>The unique run identifier associated with this job run.</p>"
+      }
+    },
+    "RunStatementRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RunStatementResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "S3Encryption": {
@@ -4953,6 +5152,39 @@
         "StorageDescriptor$SerdeInfo": "<p>The serialization/deserialization (SerDe) information.</p>"
       }
     },
+    "Session": {
+      "base": "<p>The period in which a remote Spark runtime environment is running.</p>",
+      "refs": {
+        "CreateSessionResponse$Session": "<p>Returns the session object in the response.</p>",
+        "GetSessionResponse$Session": "<p>The session object is returned in the response.</p>",
+        "SessionList$member": null
+      }
+    },
+    "SessionCommand": {
+      "base": "<p>The <code>SessionCommand</code> that runs the job.</p>",
+      "refs": {
+        "CreateSessionRequest$Command": "<p>The <code>SessionCommand</code> that runs the job. </p>",
+        "Session$Command": "<p>The command object.See SessionCommand.</p>"
+      }
+    },
+    "SessionIdList": {
+      "base": null,
+      "refs": {
+        "ListSessionsResponse$Ids": "<p>Returns the Id of the session. </p>"
+      }
+    },
+    "SessionList": {
+      "base": null,
+      "refs": {
+        "ListSessionsResponse$Sessions": "<p>Returns the session object. </p>"
+      }
+    },
+    "SessionStatus": {
+      "base": null,
+      "refs": {
+        "Session$Status": "<p>The session status. </p>"
+      }
+    },
     "SkewedInfo": {
       "base": "<p>Specifies skewed values in a table. Skewed values are those that occur with very high frequency.</p>",
       "refs": {
@@ -5090,6 +5322,38 @@
         "WorkflowRun$StartingEventBatchCondition": "<p>The batch condition that started the workflow run.</p>"
       }
     },
+    "Statement": {
+      "base": "<p>The statement or request for a particular action to occur in a session.</p>",
+      "refs": {
+        "GetStatementResponse$Statement": "<p>Returns the statement.</p>",
+        "StatementList$member": null
+      }
+    },
+    "StatementList": {
+      "base": null,
+      "refs": {
+        "ListStatementsResponse$Statements": "<p>Returns the list of statements.</p>"
+      }
+    },
+    "StatementOutput": {
+      "base": "<p>The code execution output in JSON format.</p>",
+      "refs": {
+        "Statement$Output": "<p>The output in JSON.</p>"
+      }
+    },
+    "StatementOutputData": {
+      "base": "<p>The code execution output in JSON format.</p>",
+      "refs": {
+        "StatementOutput$Data": "<p>The code execution output.</p>"
+      }
+    },
+    "StatementState": {
+      "base": null,
+      "refs": {
+        "Statement$State": "<p>The state while request is actioned.</p>",
+        "StatementOutput$Status": "<p>The status of the code execution output.</p>"
+      }
+    },
     "StopCrawlerRequest": {
       "base": null,
       "refs": {
@@ -5106,6 +5370,16 @@
       }
     },
     "StopCrawlerScheduleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopSessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopSessionResponse": {
       "base": null,
       "refs": {
       }
@@ -5279,6 +5553,7 @@
         "CreateRegistryResponse$Tags": "<p>The tags for the registry.</p>",
         "CreateSchemaInput$Tags": "<p>Amazon Web Services tags that contain a key value pair and may be searched by console, command line, or API. If specified, follows the Amazon Web Services tags-on-create pattern.</p>",
         "CreateSchemaResponse$Tags": "<p>The tags for the schema.</p>",
+        "CreateSessionRequest$Tags": "<p>The map of key value pairs (tags) belonging to the session.</p>",
         "CreateTriggerRequest$Tags": "<p>The tags to use with this trigger. You may use tags to limit access to the trigger. For more information about tags in Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">Amazon Web Services Tags in Glue</a> in the developer guide. </p>",
         "CreateWorkflowRequest$Tags": "<p>The tags to be used with this workflow.</p>",
         "GetTagsResponse$Tags": "<p>The requested tags.</p>",
@@ -5287,6 +5562,7 @@
         "ListDevEndpointsRequest$Tags": "<p>Specifies to return only these tagged resources.</p>",
         "ListJobsRequest$Tags": "<p>Specifies to return only these tagged resources.</p>",
         "ListMLTransformsRequest$Tags": "<p>Specifies to return only these tagged resources.</p>",
+        "ListSessionsRequest$Tags": "<p>Tags belonging to the session. </p>",
         "ListTriggersRequest$Tags": "<p>Specifies to return only these tagged resources.</p>",
         "TagResourceRequest$TagsToAdd": "<p>Tags to add to this resource.</p>"
       }
@@ -5350,6 +5626,8 @@
         "Action$Timeout": "<p>The <code>JobRun</code> timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours). This overrides the timeout value set in the parent job.</p>",
         "CreateJobRequest$Timeout": "<p>The job timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
         "CreateMLTransformRequest$Timeout": "<p>The timeout of the task run for this transform in minutes. This is the maximum time that a task run for this transform can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
+        "CreateSessionRequest$Timeout": "<p>The number of seconds before request times out. </p>",
+        "CreateSessionRequest$IdleTimeout": "<p>The number of seconds when idle before request times out. </p>",
         "GetMLTransformResponse$Timeout": "<p>The timeout for a task run for this transform in minutes. This is the maximum time that a task run for this transform can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
         "Job$Timeout": "<p>The job timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
         "JobRun$Timeout": "<p>The <code>JobRun</code> timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours). This overrides the timeout value set in the parent job.</p>",
@@ -5437,6 +5715,7 @@
         "JobRun$CompletedOn": "<p>The date and time that this job run completed.</p>",
         "LastActiveDefinition$LastModifiedOn": "<p>The date and time the blueprint was last modified.</p>",
         "SecurityConfiguration$CreatedTimeStamp": "<p>The time at which this security configuration was created.</p>",
+        "Session$CreatedOn": "<p>The time and date when the session was created.</p>",
         "Workflow$CreatedOn": "<p>The date and time when the workflow was created.</p>",
         "Workflow$LastModifiedOn": "<p>The date and time when the workflow was last modified.</p>",
         "WorkflowRun$StartedOn": "<p>The date and time when the workflow run was started.</p>",
@@ -6010,6 +6289,7 @@
         "CreateDevEndpointResponse$WorkerType": "<p>The type of predefined worker that is allocated to the development endpoint. May be a value of Standard, G.1X, or G.2X.</p>",
         "CreateJobRequest$WorkerType": "<p>The type of predefined worker that is allocated when a job runs. Accepts a value of Standard, G.1X, or G.2X.</p> <ul> <li> <p>For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 50GB disk, and 2 executors per worker.</p> </li> <li> <p>For the <code>G.1X</code> worker type, each worker maps to 1 DPU (4 vCPU, 16 GB of memory, 64 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> <li> <p>For the <code>G.2X</code> worker type, each worker maps to 2 DPU (8 vCPU, 32 GB of memory, 128 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> </ul>",
         "CreateMLTransformRequest$WorkerType": "<p>The type of predefined worker that is allocated when this task runs. Accepts a value of Standard, G.1X, or G.2X.</p> <ul> <li> <p>For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 50GB disk, and 2 executors per worker.</p> </li> <li> <p>For the <code>G.1X</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 64GB disk, and 1 executor per worker.</p> </li> <li> <p>For the <code>G.2X</code> worker type, each worker provides 8 vCPU, 32 GB of memory and a 128GB disk, and 1 executor per worker.</p> </li> </ul> <p> <code>MaxCapacity</code> is a mutually exclusive option with <code>NumberOfWorkers</code> and <code>WorkerType</code>.</p> <ul> <li> <p>If either <code>NumberOfWorkers</code> or <code>WorkerType</code> is set, then <code>MaxCapacity</code> cannot be set.</p> </li> <li> <p>If <code>MaxCapacity</code> is set then neither <code>NumberOfWorkers</code> or <code>WorkerType</code> can be set.</p> </li> <li> <p>If <code>WorkerType</code> is set, then <code>NumberOfWorkers</code> is required (and vice versa).</p> </li> <li> <p> <code>MaxCapacity</code> and <code>NumberOfWorkers</code> must both be at least 1.</p> </li> </ul>",
+        "CreateSessionRequest$WorkerType": "<p>The Worker Type. Can be one of G.1X, G.2X, Standard </p>",
         "DevEndpoint$WorkerType": "<p>The type of predefined worker that is allocated to the development endpoint. Accepts a value of Standard, G.1X, or G.2X.</p> <ul> <li> <p>For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 50GB disk, and 2 executors per worker.</p> </li> <li> <p>For the <code>G.1X</code> worker type, each worker maps to 1 DPU (4 vCPU, 16 GB of memory, 64 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> <li> <p>For the <code>G.2X</code> worker type, each worker maps to 2 DPU (8 vCPU, 32 GB of memory, 128 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> </ul> <p>Known issue: when a development endpoint is created with the <code>G.2X</code> <code>WorkerType</code> configuration, the Spark drivers for the development endpoint will run on 4 vCPU, 16 GB of memory, and a 64 GB disk. </p>",
         "GetMLTransformResponse$WorkerType": "<p>The type of predefined worker that is allocated when this task runs. Accepts a value of Standard, G.1X, or G.2X.</p> <ul> <li> <p>For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 50GB disk, and 2 executors per worker.</p> </li> <li> <p>For the <code>G.1X</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 64GB disk, and 1 executor per worker.</p> </li> <li> <p>For the <code>G.2X</code> worker type, each worker provides 8 vCPU, 32 GB of memory and a 128GB disk, and 1 executor per worker.</p> </li> </ul>",
         "Job$WorkerType": "<p>The type of predefined worker that is allocated when a job runs. Accepts a value of Standard, G.1X, or G.2X.</p> <ul> <li> <p>For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 50GB disk, and 2 executors per worker.</p> </li> <li> <p>For the <code>G.1X</code> worker type, each worker maps to 1 DPU (4 vCPU, 16 GB of memory, 64 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> <li> <p>For the <code>G.2X</code> worker type, each worker maps to 2 DPU (8 vCPU, 32 GB of memory, 128 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> </ul>",
