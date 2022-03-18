@@ -1357,6 +1357,101 @@ func (c *Glue) CancelMLTaskRunWithContext(ctx aws.Context, input *CancelMLTaskRu
 	return out, req.Send()
 }
 
+const opCancelStatement = "CancelStatement"
+
+// CancelStatementRequest generates a "aws/request.Request" representing the
+// client's request for the CancelStatement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelStatement for more information on using the CancelStatement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CancelStatementRequest method.
+//    req, resp := client.CancelStatementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CancelStatement
+func (c *Glue) CancelStatementRequest(input *CancelStatementInput) (req *request.Request, output *CancelStatementOutput) {
+	op := &request.Operation{
+		Name:       opCancelStatement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CancelStatementInput{}
+	}
+
+	output = &CancelStatementOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CancelStatement API operation for AWS Glue.
+//
+// Cancels the statement..
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation CancelStatement for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * IllegalSessionStateException
+//   The session is in an invalid state to perform a requested operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CancelStatement
+func (c *Glue) CancelStatement(input *CancelStatementInput) (*CancelStatementOutput, error) {
+	req, out := c.CancelStatementRequest(input)
+	return out, req.Send()
+}
+
+// CancelStatementWithContext is the same as CancelStatement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelStatement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) CancelStatementWithContext(ctx aws.Context, input *CancelStatementInput, opts ...request.Option) (*CancelStatementOutput, error) {
+	req, out := c.CancelStatementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCheckSchemaVersionValidity = "CheckSchemaVersionValidity"
 
 // CheckSchemaVersionValidityRequest generates a "aws/request.Request" representing the
@@ -2783,6 +2878,106 @@ func (c *Glue) CreateSecurityConfiguration(input *CreateSecurityConfigurationInp
 // for more information on using Contexts.
 func (c *Glue) CreateSecurityConfigurationWithContext(ctx aws.Context, input *CreateSecurityConfigurationInput, opts ...request.Option) (*CreateSecurityConfigurationOutput, error) {
 	req, out := c.CreateSecurityConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateSession = "CreateSession"
+
+// CreateSessionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateSession for more information on using the CreateSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateSessionRequest method.
+//    req, resp := client.CreateSessionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CreateSession
+func (c *Glue) CreateSessionRequest(input *CreateSessionInput) (req *request.Request, output *CreateSessionOutput) {
+	op := &request.Operation{
+		Name:       opCreateSession,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateSessionInput{}
+	}
+
+	output = &CreateSessionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateSession API operation for AWS Glue.
+//
+// Creates a new session.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation CreateSession for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * IdempotentParameterMismatchException
+//   The same unique identifier was associated with two different records.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * ValidationException
+//   A value could not be validated.
+//
+//   * AlreadyExistsException
+//   A resource to be created or added already exists.
+//
+//   * ResourceNumberLimitExceededException
+//   A resource numerical limit was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CreateSession
+func (c *Glue) CreateSession(input *CreateSessionInput) (*CreateSessionOutput, error) {
+	req, out := c.CreateSessionRequest(input)
+	return out, req.Send()
+}
+
+// CreateSessionWithContext is the same as CreateSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) CreateSessionWithContext(ctx aws.Context, input *CreateSessionInput, opts ...request.Option) (*CreateSessionOutput, error) {
+	req, out := c.CreateSessionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4733,6 +4928,100 @@ func (c *Glue) DeleteSecurityConfiguration(input *DeleteSecurityConfigurationInp
 // for more information on using Contexts.
 func (c *Glue) DeleteSecurityConfigurationWithContext(ctx aws.Context, input *DeleteSecurityConfigurationInput, opts ...request.Option) (*DeleteSecurityConfigurationOutput, error) {
 	req, out := c.DeleteSecurityConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteSession = "DeleteSession"
+
+// DeleteSessionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteSession for more information on using the DeleteSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteSessionRequest method.
+//    req, resp := client.DeleteSessionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/DeleteSession
+func (c *Glue) DeleteSessionRequest(input *DeleteSessionInput) (req *request.Request, output *DeleteSessionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteSession,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteSessionInput{}
+	}
+
+	output = &DeleteSessionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteSession API operation for AWS Glue.
+//
+// Deletes the session.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation DeleteSession for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * IllegalSessionStateException
+//   The session is in an invalid state to perform a requested operation.
+//
+//   * ConcurrentModificationException
+//   Two processes are trying to modify a resource simultaneously.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/DeleteSession
+func (c *Glue) DeleteSession(input *DeleteSessionInput) (*DeleteSessionOutput, error) {
+	req, out := c.DeleteSessionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteSessionWithContext is the same as DeleteSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) DeleteSessionWithContext(ctx aws.Context, input *DeleteSessionInput, opts ...request.Option) (*DeleteSessionOutput, error) {
+	req, out := c.DeleteSessionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -9783,6 +10072,191 @@ func (c *Glue) GetSecurityConfigurationsPagesWithContext(ctx aws.Context, input 
 	return p.Err()
 }
 
+const opGetSession = "GetSession"
+
+// GetSessionRequest generates a "aws/request.Request" representing the
+// client's request for the GetSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSession for more information on using the GetSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetSessionRequest method.
+//    req, resp := client.GetSessionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetSession
+func (c *Glue) GetSessionRequest(input *GetSessionInput) (req *request.Request, output *GetSessionOutput) {
+	op := &request.Operation{
+		Name:       opGetSession,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetSessionInput{}
+	}
+
+	output = &GetSessionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSession API operation for AWS Glue.
+//
+// Retrieves the session.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation GetSession for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetSession
+func (c *Glue) GetSession(input *GetSessionInput) (*GetSessionOutput, error) {
+	req, out := c.GetSessionRequest(input)
+	return out, req.Send()
+}
+
+// GetSessionWithContext is the same as GetSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetSessionWithContext(ctx aws.Context, input *GetSessionInput, opts ...request.Option) (*GetSessionOutput, error) {
+	req, out := c.GetSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetStatement = "GetStatement"
+
+// GetStatementRequest generates a "aws/request.Request" representing the
+// client's request for the GetStatement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetStatement for more information on using the GetStatement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetStatementRequest method.
+//    req, resp := client.GetStatementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetStatement
+func (c *Glue) GetStatementRequest(input *GetStatementInput) (req *request.Request, output *GetStatementOutput) {
+	op := &request.Operation{
+		Name:       opGetStatement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetStatementInput{}
+	}
+
+	output = &GetStatementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetStatement API operation for AWS Glue.
+//
+// Retrieves the statement.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation GetStatement for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * IllegalSessionStateException
+//   The session is in an invalid state to perform a requested operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetStatement
+func (c *Glue) GetStatement(input *GetStatementInput) (*GetStatementOutput, error) {
+	req, out := c.GetStatementRequest(input)
+	return out, req.Send()
+}
+
+// GetStatementWithContext is the same as GetStatement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetStatement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetStatementWithContext(ctx aws.Context, input *GetStatementInput, opts ...request.Option) (*GetStatementOutput, error) {
+	req, out := c.GetStatementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetTable = "GetTable"
 
 // GetTableRequest generates a "aws/request.Request" representing the
@@ -12837,6 +13311,246 @@ func (c *Glue) ListSchemasPagesWithContext(ctx aws.Context, input *ListSchemasIn
 	return p.Err()
 }
 
+const opListSessions = "ListSessions"
+
+// ListSessionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSessions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSessions for more information on using the ListSessions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListSessionsRequest method.
+//    req, resp := client.ListSessionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListSessions
+func (c *Glue) ListSessionsRequest(input *ListSessionsInput) (req *request.Request, output *ListSessionsOutput) {
+	op := &request.Operation{
+		Name:       opListSessions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSessionsInput{}
+	}
+
+	output = &ListSessionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSessions API operation for AWS Glue.
+//
+// Retrieve a session..
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation ListSessions for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListSessions
+func (c *Glue) ListSessions(input *ListSessionsInput) (*ListSessionsOutput, error) {
+	req, out := c.ListSessionsRequest(input)
+	return out, req.Send()
+}
+
+// ListSessionsWithContext is the same as ListSessions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSessions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListSessionsWithContext(ctx aws.Context, input *ListSessionsInput, opts ...request.Option) (*ListSessionsOutput, error) {
+	req, out := c.ListSessionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSessionsPages iterates over the pages of a ListSessions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSessions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListSessions operation.
+//    pageNum := 0
+//    err := client.ListSessionsPages(params,
+//        func(page *glue.ListSessionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Glue) ListSessionsPages(input *ListSessionsInput, fn func(*ListSessionsOutput, bool) bool) error {
+	return c.ListSessionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSessionsPagesWithContext same as ListSessionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListSessionsPagesWithContext(ctx aws.Context, input *ListSessionsInput, fn func(*ListSessionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSessionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSessionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSessionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListStatements = "ListStatements"
+
+// ListStatementsRequest generates a "aws/request.Request" representing the
+// client's request for the ListStatements operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListStatements for more information on using the ListStatements
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListStatementsRequest method.
+//    req, resp := client.ListStatementsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListStatements
+func (c *Glue) ListStatementsRequest(input *ListStatementsInput) (req *request.Request, output *ListStatementsOutput) {
+	op := &request.Operation{
+		Name:       opListStatements,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListStatementsInput{}
+	}
+
+	output = &ListStatementsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListStatements API operation for AWS Glue.
+//
+// Lists statements for the session.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation ListStatements for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * IllegalSessionStateException
+//   The session is in an invalid state to perform a requested operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListStatements
+func (c *Glue) ListStatements(input *ListStatementsInput) (*ListStatementsOutput, error) {
+	req, out := c.ListStatementsRequest(input)
+	return out, req.Send()
+}
+
+// ListStatementsWithContext is the same as ListStatements with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListStatements for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListStatementsWithContext(ctx aws.Context, input *ListStatementsInput, opts ...request.Option) (*ListStatementsOutput, error) {
+	req, out := c.ListStatementsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListTriggers = "ListTriggers"
 
 // ListTriggersRequest generates a "aws/request.Request" representing the
@@ -13960,6 +14674,106 @@ func (c *Glue) ResumeWorkflowRun(input *ResumeWorkflowRunInput) (*ResumeWorkflow
 // for more information on using Contexts.
 func (c *Glue) ResumeWorkflowRunWithContext(ctx aws.Context, input *ResumeWorkflowRunInput, opts ...request.Option) (*ResumeWorkflowRunOutput, error) {
 	req, out := c.ResumeWorkflowRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRunStatement = "RunStatement"
+
+// RunStatementRequest generates a "aws/request.Request" representing the
+// client's request for the RunStatement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RunStatement for more information on using the RunStatement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RunStatementRequest method.
+//    req, resp := client.RunStatementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/RunStatement
+func (c *Glue) RunStatementRequest(input *RunStatementInput) (req *request.Request, output *RunStatementOutput) {
+	op := &request.Operation{
+		Name:       opRunStatement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RunStatementInput{}
+	}
+
+	output = &RunStatementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RunStatement API operation for AWS Glue.
+//
+// Executes the statement.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation RunStatement for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * ValidationException
+//   A value could not be validated.
+//
+//   * ResourceNumberLimitExceededException
+//   A resource numerical limit was exceeded.
+//
+//   * IllegalSessionStateException
+//   The session is in an invalid state to perform a requested operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/RunStatement
+func (c *Glue) RunStatement(input *RunStatementInput) (*RunStatementOutput, error) {
+	req, out := c.RunStatementRequest(input)
+	return out, req.Send()
+}
+
+// RunStatementWithContext is the same as RunStatement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RunStatement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) RunStatementWithContext(ctx aws.Context, input *RunStatementInput, opts ...request.Option) (*RunStatementOutput, error) {
+	req, out := c.RunStatementRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -15264,6 +16078,100 @@ func (c *Glue) StopCrawlerSchedule(input *StopCrawlerScheduleInput) (*StopCrawle
 // for more information on using Contexts.
 func (c *Glue) StopCrawlerScheduleWithContext(ctx aws.Context, input *StopCrawlerScheduleInput, opts ...request.Option) (*StopCrawlerScheduleOutput, error) {
 	req, out := c.StopCrawlerScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopSession = "StopSession"
+
+// StopSessionRequest generates a "aws/request.Request" representing the
+// client's request for the StopSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopSession for more information on using the StopSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopSessionRequest method.
+//    req, resp := client.StopSessionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/StopSession
+func (c *Glue) StopSessionRequest(input *StopSessionInput) (req *request.Request, output *StopSessionOutput) {
+	op := &request.Operation{
+		Name:       opStopSession,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopSessionInput{}
+	}
+
+	output = &StopSessionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopSession API operation for AWS Glue.
+//
+// Stops the session.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation StopSession for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * IllegalSessionStateException
+//   The session is in an invalid state to perform a requested operation.
+//
+//   * ConcurrentModificationException
+//   Two processes are trying to modify a resource simultaneously.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/StopSession
+func (c *Glue) StopSession(input *StopSessionInput) (*StopSessionOutput, error) {
+	req, out := c.StopSessionRequest(input)
+	return out, req.Send()
+}
+
+// StopSessionWithContext is the same as StopSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) StopSessionWithContext(ctx aws.Context, input *StopSessionInput, opts ...request.Option) (*StopSessionOutput, error) {
+	req, out := c.StopSessionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -17566,10 +18474,18 @@ func (s *AlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A structure containing information for audit.
 type AuditContext struct {
 	_ struct{} `type:"structure"`
 
+	// The context for the audit..
 	AdditionalAuditContext *string `type:"string"`
+
+	// All columns request for audit.
+	AllColumnsRequested *bool `type:"boolean"`
+
+	// The requested columns for audit.
+	RequestedColumns []*string `type:"list"`
 }
 
 // String returns the string representation.
@@ -17593,6 +18509,18 @@ func (s AuditContext) GoString() string {
 // SetAdditionalAuditContext sets the AdditionalAuditContext field's value.
 func (s *AuditContext) SetAdditionalAuditContext(v string) *AuditContext {
 	s.AdditionalAuditContext = &v
+	return s
+}
+
+// SetAllColumnsRequested sets the AllColumnsRequested field's value.
+func (s *AuditContext) SetAllColumnsRequested(v bool) *AuditContext {
+	s.AllColumnsRequested = &v
+	return s
+}
+
+// SetRequestedColumns sets the RequestedColumns field's value.
+func (s *AuditContext) SetRequestedColumns(v []*string) *AuditContext {
+	s.RequestedColumns = v
 	return s
 }
 
@@ -19973,6 +20901,103 @@ func (s *CancelMLTaskRunOutput) SetTaskRunId(v string) *CancelMLTaskRunOutput {
 func (s *CancelMLTaskRunOutput) SetTransformId(v string) *CancelMLTaskRunOutput {
 	s.TransformId = &v
 	return s
+}
+
+type CancelStatementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the statement to be cancelled.
+	//
+	// Id is a required field
+	Id *int64 `type:"integer" required:"true"`
+
+	// The origin of the request to cancel the statement.
+	RequestOrigin *string `min:"1" type:"string"`
+
+	// The Session ID of the statement to be cancelled.
+	//
+	// SessionId is a required field
+	SessionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelStatementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelStatementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelStatementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelStatementInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.RequestOrigin != nil && len(*s.RequestOrigin) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RequestOrigin", 1))
+	}
+	if s.SessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionId"))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *CancelStatementInput) SetId(v int64) *CancelStatementInput {
+	s.Id = &v
+	return s
+}
+
+// SetRequestOrigin sets the RequestOrigin field's value.
+func (s *CancelStatementInput) SetRequestOrigin(v string) *CancelStatementInput {
+	s.RequestOrigin = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *CancelStatementInput) SetSessionId(v string) *CancelStatementInput {
+	s.SessionId = &v
+	return s
+}
+
+type CancelStatementOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelStatementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelStatementOutput) GoString() string {
+	return s.String()
 }
 
 // Specifies a table definition in the Glue Data Catalog.
@@ -25561,6 +26586,249 @@ func (s *CreateSecurityConfigurationOutput) SetName(v string) *CreateSecurityCon
 	return s
 }
 
+// Request to create a new session.
+type CreateSessionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The SessionCommand that runs the job.
+	//
+	// Command is a required field
+	Command *SessionCommand `type:"structure" required:"true"`
+
+	// The number of connections to use for the session.
+	Connections *ConnectionsList `type:"structure"`
+
+	// A map array of key-value pairs. Max is 75 pairs.
+	DefaultArguments map[string]*string `type:"map"`
+
+	// The description of the session.
+	Description *string `type:"string"`
+
+	// The Glue version determines the versions of Apache Spark and Python that
+	// AWS Glue supports. The GlueVersion must be greater than 2.0.
+	GlueVersion *string `min:"1" type:"string"`
+
+	// The ID of the session request.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The number of seconds when idle before request times out.
+	IdleTimeout *int64 `min:"1" type:"integer"`
+
+	// The number of AWS Glue data processing units (DPUs) that can be allocated
+	// when the job runs. A DPU is a relative measure of processing power that consists
+	// of 4 vCPUs of compute capacity and 16 GB memory.
+	MaxCapacity *float64 `type:"double"`
+
+	// The number of workers to use for the session.
+	NumberOfWorkers *int64 `type:"integer"`
+
+	// The origin of the request.
+	RequestOrigin *string `min:"1" type:"string"`
+
+	// The IAM Role ARN
+	//
+	// Role is a required field
+	Role *string `min:"20" type:"string" required:"true"`
+
+	// The name of the SecurityConfiguration structure to be used with the session
+	SecurityConfiguration *string `min:"1" type:"string"`
+
+	// The map of key value pairs (tags) belonging to the session.
+	Tags map[string]*string `type:"map"`
+
+	// The number of seconds before request times out.
+	Timeout *int64 `min:"1" type:"integer"`
+
+	// The Worker Type. Can be one of G.1X, G.2X, Standard
+	WorkerType *string `type:"string" enum:"WorkerType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSessionInput"}
+	if s.Command == nil {
+		invalidParams.Add(request.NewErrParamRequired("Command"))
+	}
+	if s.GlueVersion != nil && len(*s.GlueVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlueVersion", 1))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.IdleTimeout != nil && *s.IdleTimeout < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("IdleTimeout", 1))
+	}
+	if s.RequestOrigin != nil && len(*s.RequestOrigin) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RequestOrigin", 1))
+	}
+	if s.Role == nil {
+		invalidParams.Add(request.NewErrParamRequired("Role"))
+	}
+	if s.Role != nil && len(*s.Role) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("Role", 20))
+	}
+	if s.SecurityConfiguration != nil && len(*s.SecurityConfiguration) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityConfiguration", 1))
+	}
+	if s.Timeout != nil && *s.Timeout < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Timeout", 1))
+	}
+	if s.Command != nil {
+		if err := s.Command.Validate(); err != nil {
+			invalidParams.AddNested("Command", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCommand sets the Command field's value.
+func (s *CreateSessionInput) SetCommand(v *SessionCommand) *CreateSessionInput {
+	s.Command = v
+	return s
+}
+
+// SetConnections sets the Connections field's value.
+func (s *CreateSessionInput) SetConnections(v *ConnectionsList) *CreateSessionInput {
+	s.Connections = v
+	return s
+}
+
+// SetDefaultArguments sets the DefaultArguments field's value.
+func (s *CreateSessionInput) SetDefaultArguments(v map[string]*string) *CreateSessionInput {
+	s.DefaultArguments = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateSessionInput) SetDescription(v string) *CreateSessionInput {
+	s.Description = &v
+	return s
+}
+
+// SetGlueVersion sets the GlueVersion field's value.
+func (s *CreateSessionInput) SetGlueVersion(v string) *CreateSessionInput {
+	s.GlueVersion = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateSessionInput) SetId(v string) *CreateSessionInput {
+	s.Id = &v
+	return s
+}
+
+// SetIdleTimeout sets the IdleTimeout field's value.
+func (s *CreateSessionInput) SetIdleTimeout(v int64) *CreateSessionInput {
+	s.IdleTimeout = &v
+	return s
+}
+
+// SetMaxCapacity sets the MaxCapacity field's value.
+func (s *CreateSessionInput) SetMaxCapacity(v float64) *CreateSessionInput {
+	s.MaxCapacity = &v
+	return s
+}
+
+// SetNumberOfWorkers sets the NumberOfWorkers field's value.
+func (s *CreateSessionInput) SetNumberOfWorkers(v int64) *CreateSessionInput {
+	s.NumberOfWorkers = &v
+	return s
+}
+
+// SetRequestOrigin sets the RequestOrigin field's value.
+func (s *CreateSessionInput) SetRequestOrigin(v string) *CreateSessionInput {
+	s.RequestOrigin = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *CreateSessionInput) SetRole(v string) *CreateSessionInput {
+	s.Role = &v
+	return s
+}
+
+// SetSecurityConfiguration sets the SecurityConfiguration field's value.
+func (s *CreateSessionInput) SetSecurityConfiguration(v string) *CreateSessionInput {
+	s.SecurityConfiguration = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateSessionInput) SetTags(v map[string]*string) *CreateSessionInput {
+	s.Tags = v
+	return s
+}
+
+// SetTimeout sets the Timeout field's value.
+func (s *CreateSessionInput) SetTimeout(v int64) *CreateSessionInput {
+	s.Timeout = &v
+	return s
+}
+
+// SetWorkerType sets the WorkerType field's value.
+func (s *CreateSessionInput) SetWorkerType(v string) *CreateSessionInput {
+	s.WorkerType = &v
+	return s
+}
+
+type CreateSessionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the session object in the response.
+	Session *Session `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSessionOutput) GoString() string {
+	return s.String()
+}
+
+// SetSession sets the Session field's value.
+func (s *CreateSessionOutput) SetSession(v *Session) *CreateSessionOutput {
+	s.Session = v
+	return s
+}
+
 type CreateTableInput struct {
 	_ struct{} `type:"structure"`
 
@@ -28492,6 +29760,98 @@ func (s DeleteSecurityConfigurationOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteSessionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the session to be deleted.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The name of the origin of the delete session request.
+	RequestOrigin *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSessionInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.RequestOrigin != nil && len(*s.RequestOrigin) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RequestOrigin", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteSessionInput) SetId(v string) *DeleteSessionInput {
+	s.Id = &v
+	return s
+}
+
+// SetRequestOrigin sets the RequestOrigin field's value.
+func (s *DeleteSessionInput) SetRequestOrigin(v string) *DeleteSessionInput {
+	s.RequestOrigin = &v
+	return s
+}
+
+type DeleteSessionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the ID of the deleted session.
+	Id *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSessionOutput) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteSessionOutput) SetId(v string) *DeleteSessionOutput {
+	s.Id = &v
+	return s
+}
+
 type DeleteTableInput struct {
 	_ struct{} `type:"structure"`
 
@@ -29698,7 +31058,7 @@ type EncryptionException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// A message describing the problem.
+	// The message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -35414,6 +36774,204 @@ func (s *GetSecurityConfigurationsOutput) SetSecurityConfigurations(v []*Securit
 	return s
 }
 
+type GetSessionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the session.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The origin of the request.
+	RequestOrigin *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSessionInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.RequestOrigin != nil && len(*s.RequestOrigin) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RequestOrigin", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetSessionInput) SetId(v string) *GetSessionInput {
+	s.Id = &v
+	return s
+}
+
+// SetRequestOrigin sets the RequestOrigin field's value.
+func (s *GetSessionInput) SetRequestOrigin(v string) *GetSessionInput {
+	s.RequestOrigin = &v
+	return s
+}
+
+type GetSessionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The session object is returned in the response.
+	Session *Session `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSessionOutput) GoString() string {
+	return s.String()
+}
+
+// SetSession sets the Session field's value.
+func (s *GetSessionOutput) SetSession(v *Session) *GetSessionOutput {
+	s.Session = v
+	return s
+}
+
+type GetStatementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Id of the statement.
+	//
+	// Id is a required field
+	Id *int64 `type:"integer" required:"true"`
+
+	// The origin of the request.
+	RequestOrigin *string `min:"1" type:"string"`
+
+	// The Session ID of the statement.
+	//
+	// SessionId is a required field
+	SessionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStatementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStatementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetStatementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetStatementInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.RequestOrigin != nil && len(*s.RequestOrigin) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RequestOrigin", 1))
+	}
+	if s.SessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionId"))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetStatementInput) SetId(v int64) *GetStatementInput {
+	s.Id = &v
+	return s
+}
+
+// SetRequestOrigin sets the RequestOrigin field's value.
+func (s *GetStatementInput) SetRequestOrigin(v string) *GetStatementInput {
+	s.RequestOrigin = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *GetStatementInput) SetSessionId(v string) *GetStatementInput {
+	s.SessionId = &v
+	return s
+}
+
+type GetStatementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the statement.
+	Statement *Statement `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStatementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStatementOutput) GoString() string {
+	return s.String()
+}
+
+// SetStatement sets the Statement field's value.
+func (s *GetStatementOutput) SetStatement(v *Statement) *GetStatementOutput {
+	s.Statement = v
+	return s
+}
+
 type GetTableInput struct {
 	_ struct{} `type:"structure"`
 
@@ -36239,6 +37797,7 @@ func (s *GetTriggersOutput) SetTriggers(v []*Trigger) *GetTriggersOutput {
 type GetUnfilteredPartitionMetadataInput struct {
 	_ struct{} `type:"structure"`
 
+	// A structure containing information for audit.
 	AuditContext *AuditContext `type:"structure"`
 
 	// CatalogId is a required field
@@ -36398,6 +37957,7 @@ func (s *GetUnfilteredPartitionMetadataOutput) SetPartition(v *Partition) *GetUn
 type GetUnfilteredPartitionsMetadataInput struct {
 	_ struct{} `type:"structure"`
 
+	// A structure containing information for audit.
 	AuditContext *AuditContext `type:"structure"`
 
 	// CatalogId is a required field
@@ -36578,6 +38138,7 @@ func (s *GetUnfilteredPartitionsMetadataOutput) SetUnfilteredPartitions(v []*Unf
 type GetUnfilteredTableMetadataInput struct {
 	_ struct{} `type:"structure"`
 
+	// A structure containing information for audit.
 	AuditContext *AuditContext `type:"structure"`
 
 	// CatalogId is a required field
@@ -37670,6 +39231,71 @@ func (s *IllegalBlueprintStateException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *IllegalBlueprintStateException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The session is in an invalid state to perform a requested operation.
+type IllegalSessionStateException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message describing the problem.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IllegalSessionStateException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IllegalSessionStateException) GoString() string {
+	return s.String()
+}
+
+func newErrorIllegalSessionStateException(v protocol.ResponseMetadata) error {
+	return &IllegalSessionStateException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *IllegalSessionStateException) Code() string {
+	return "IllegalSessionStateException"
+}
+
+// Message returns the exception's message.
+func (s *IllegalSessionStateException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *IllegalSessionStateException) OrigErr() error {
+	return nil
+}
+
+func (s *IllegalSessionStateException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *IllegalSessionStateException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *IllegalSessionStateException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -40374,6 +42000,237 @@ func (s *ListSchemasOutput) SetNextToken(v string) *ListSchemasOutput {
 // SetSchemas sets the Schemas field's value.
 func (s *ListSchemasOutput) SetSchemas(v []*SchemaListItem) *ListSchemasOutput {
 	s.Schemas = v
+	return s
+}
+
+type ListSessionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results, or null if there are no more result.
+	NextToken *string `type:"string"`
+
+	// The origin of the request.
+	RequestOrigin *string `min:"1" type:"string"`
+
+	// Tags belonging to the session.
+	Tags map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSessionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSessionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSessionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSessionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.RequestOrigin != nil && len(*s.RequestOrigin) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RequestOrigin", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSessionsInput) SetMaxResults(v int64) *ListSessionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSessionsInput) SetNextToken(v string) *ListSessionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestOrigin sets the RequestOrigin field's value.
+func (s *ListSessionsInput) SetRequestOrigin(v string) *ListSessionsInput {
+	s.RequestOrigin = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListSessionsInput) SetTags(v map[string]*string) *ListSessionsInput {
+	s.Tags = v
+	return s
+}
+
+type ListSessionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the Id of the session.
+	Ids []*string `type:"list"`
+
+	// The token for the next set of results, or null if there are no more result.
+	NextToken *string `type:"string"`
+
+	// Returns the session object.
+	Sessions []*Session `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSessionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSessionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetIds sets the Ids field's value.
+func (s *ListSessionsOutput) SetIds(v []*string) *ListSessionsOutput {
+	s.Ids = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSessionsOutput) SetNextToken(v string) *ListSessionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSessions sets the Sessions field's value.
+func (s *ListSessionsOutput) SetSessions(v []*Session) *ListSessionsOutput {
+	s.Sessions = v
+	return s
+}
+
+type ListStatementsInput struct {
+	_ struct{} `type:"structure"`
+
+	NextToken *string `type:"string"`
+
+	// The origin of the request to list statements.
+	RequestOrigin *string `min:"1" type:"string"`
+
+	// The Session ID of the statements.
+	//
+	// SessionId is a required field
+	SessionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStatementsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStatementsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListStatementsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListStatementsInput"}
+	if s.RequestOrigin != nil && len(*s.RequestOrigin) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RequestOrigin", 1))
+	}
+	if s.SessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionId"))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStatementsInput) SetNextToken(v string) *ListStatementsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestOrigin sets the RequestOrigin field's value.
+func (s *ListStatementsInput) SetRequestOrigin(v string) *ListStatementsInput {
+	s.RequestOrigin = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *ListStatementsInput) SetSessionId(v string) *ListStatementsInput {
+	s.SessionId = &v
+	return s
+}
+
+type ListStatementsOutput struct {
+	_ struct{} `type:"structure"`
+
+	NextToken *string `type:"string"`
+
+	// Returns the list of statements.
+	Statements []*Statement `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStatementsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStatementsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStatementsOutput) SetNextToken(v string) *ListStatementsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatements sets the Statements field's value.
+func (s *ListStatementsOutput) SetStatements(v []*Statement) *ListStatementsOutput {
+	s.Statements = v
 	return s
 }
 
@@ -44080,6 +45937,112 @@ func (s *ResumeWorkflowRunOutput) SetRunId(v string) *ResumeWorkflowRunOutput {
 	return s
 }
 
+type RunStatementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The statement code to be run.
+	//
+	// Code is a required field
+	Code *string `type:"string" required:"true"`
+
+	// The origin of the request.
+	RequestOrigin *string `min:"1" type:"string"`
+
+	// The Session Id of the statement to be run.
+	//
+	// SessionId is a required field
+	SessionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RunStatementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RunStatementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RunStatementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RunStatementInput"}
+	if s.Code == nil {
+		invalidParams.Add(request.NewErrParamRequired("Code"))
+	}
+	if s.RequestOrigin != nil && len(*s.RequestOrigin) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RequestOrigin", 1))
+	}
+	if s.SessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionId"))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCode sets the Code field's value.
+func (s *RunStatementInput) SetCode(v string) *RunStatementInput {
+	s.Code = &v
+	return s
+}
+
+// SetRequestOrigin sets the RequestOrigin field's value.
+func (s *RunStatementInput) SetRequestOrigin(v string) *RunStatementInput {
+	s.RequestOrigin = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *RunStatementInput) SetSessionId(v string) *RunStatementInput {
+	s.SessionId = &v
+	return s
+}
+
+type RunStatementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the Id of the statement that was run.
+	Id *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RunStatementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RunStatementOutput) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *RunStatementOutput) SetId(v int64) *RunStatementOutput {
+	s.Id = &v
+	return s
+}
+
 // Specifies how Amazon Simple Storage Service (Amazon S3) data should be encrypted.
 type S3Encryption struct {
 	_ struct{} `type:"structure"`
@@ -45274,6 +47237,205 @@ func (s *SerDeInfo) SetSerializationLibrary(v string) *SerDeInfo {
 	return s
 }
 
+// The period in which a remote Spark runtime environment is running.
+type Session struct {
+	_ struct{} `type:"structure"`
+
+	// The command object.See SessionCommand.
+	Command *SessionCommand `type:"structure"`
+
+	// The number of connections used for the session.
+	Connections *ConnectionsList `type:"structure"`
+
+	// The time and date when the session was created.
+	CreatedOn *time.Time `type:"timestamp"`
+
+	// A map array of key-value pairs. Max is 75 pairs.
+	DefaultArguments map[string]*string `type:"map"`
+
+	// The description of the session.
+	Description *string `type:"string"`
+
+	// The error message displayed during the session.
+	ErrorMessage *string `type:"string"`
+
+	// The Glue version determines the versions of Apache Spark and Python that
+	// AWS Glue supports. The GlueVersion must be greater than 2.0.
+	GlueVersion *string `min:"1" type:"string"`
+
+	// The ID of the session.
+	Id *string `min:"1" type:"string"`
+
+	// The number of AWS Glue data processing units (DPUs) that can be allocated
+	// when the job runs. A DPU is a relative measure of processing power that consists
+	// of 4 vCPUs of compute capacity and 16 GB memory.
+	MaxCapacity *float64 `type:"double"`
+
+	// The code execution progress of the session.
+	Progress *float64 `type:"double"`
+
+	// The name or Amazon Resource Name (ARN) of the IAM role associated with the
+	// Session.
+	Role *string `min:"20" type:"string"`
+
+	// The name of the SecurityConfiguration structure to be used with the session.
+	SecurityConfiguration *string `min:"1" type:"string"`
+
+	// The session status.
+	Status *string `type:"string" enum:"SessionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Session) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Session) GoString() string {
+	return s.String()
+}
+
+// SetCommand sets the Command field's value.
+func (s *Session) SetCommand(v *SessionCommand) *Session {
+	s.Command = v
+	return s
+}
+
+// SetConnections sets the Connections field's value.
+func (s *Session) SetConnections(v *ConnectionsList) *Session {
+	s.Connections = v
+	return s
+}
+
+// SetCreatedOn sets the CreatedOn field's value.
+func (s *Session) SetCreatedOn(v time.Time) *Session {
+	s.CreatedOn = &v
+	return s
+}
+
+// SetDefaultArguments sets the DefaultArguments field's value.
+func (s *Session) SetDefaultArguments(v map[string]*string) *Session {
+	s.DefaultArguments = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Session) SetDescription(v string) *Session {
+	s.Description = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *Session) SetErrorMessage(v string) *Session {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetGlueVersion sets the GlueVersion field's value.
+func (s *Session) SetGlueVersion(v string) *Session {
+	s.GlueVersion = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Session) SetId(v string) *Session {
+	s.Id = &v
+	return s
+}
+
+// SetMaxCapacity sets the MaxCapacity field's value.
+func (s *Session) SetMaxCapacity(v float64) *Session {
+	s.MaxCapacity = &v
+	return s
+}
+
+// SetProgress sets the Progress field's value.
+func (s *Session) SetProgress(v float64) *Session {
+	s.Progress = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *Session) SetRole(v string) *Session {
+	s.Role = &v
+	return s
+}
+
+// SetSecurityConfiguration sets the SecurityConfiguration field's value.
+func (s *Session) SetSecurityConfiguration(v string) *Session {
+	s.SecurityConfiguration = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Session) SetStatus(v string) *Session {
+	s.Status = &v
+	return s
+}
+
+// The SessionCommand that runs the job.
+type SessionCommand struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the name of the SessionCommand.Can be 'glueetl' or 'gluestreaming'.
+	Name *string `min:"1" type:"string"`
+
+	// Specifies the Python version. The Python version indicates the version supported
+	// for jobs of type Spark.
+	PythonVersion *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionCommand) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionCommand) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SessionCommand) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SessionCommand"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *SessionCommand) SetName(v string) *SessionCommand {
+	s.Name = &v
+	return s
+}
+
+// SetPythonVersion sets the PythonVersion field's value.
+func (s *SessionCommand) SetPythonVersion(v string) *SessionCommand {
+	s.PythonVersion = &v
+	return s
+}
+
 // Specifies skewed values in a table. Skewed values are those that occur with
 // very high frequency.
 type SkewedInfo struct {
@@ -46429,6 +48591,201 @@ func (s *StartingEventBatchCondition) SetBatchWindow(v int64) *StartingEventBatc
 	return s
 }
 
+// The statement or request for a particular action to occur in a session.
+type Statement struct {
+	_ struct{} `type:"structure"`
+
+	// The execution code of the statement.
+	Code *string `type:"string"`
+
+	// The unix time and date that the job definition was completed.
+	CompletedOn *int64 `type:"long"`
+
+	// The ID of the statement.
+	Id *int64 `type:"integer"`
+
+	// The output in JSON.
+	Output *StatementOutput_ `type:"structure"`
+
+	// The code execution progress.
+	Progress *float64 `type:"double"`
+
+	// The unix time and date that the job definition was started.
+	StartedOn *int64 `type:"long"`
+
+	// The state while request is actioned.
+	State *string `type:"string" enum:"StatementState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Statement) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Statement) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *Statement) SetCode(v string) *Statement {
+	s.Code = &v
+	return s
+}
+
+// SetCompletedOn sets the CompletedOn field's value.
+func (s *Statement) SetCompletedOn(v int64) *Statement {
+	s.CompletedOn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Statement) SetId(v int64) *Statement {
+	s.Id = &v
+	return s
+}
+
+// SetOutput sets the Output field's value.
+func (s *Statement) SetOutput(v *StatementOutput_) *Statement {
+	s.Output = v
+	return s
+}
+
+// SetProgress sets the Progress field's value.
+func (s *Statement) SetProgress(v float64) *Statement {
+	s.Progress = &v
+	return s
+}
+
+// SetStartedOn sets the StartedOn field's value.
+func (s *Statement) SetStartedOn(v int64) *Statement {
+	s.StartedOn = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Statement) SetState(v string) *Statement {
+	s.State = &v
+	return s
+}
+
+// The code execution output in JSON format.
+type StatementOutputData struct {
+	_ struct{} `type:"structure"`
+
+	// The code execution output in text format.
+	TextPlain *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StatementOutputData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StatementOutputData) GoString() string {
+	return s.String()
+}
+
+// SetTextPlain sets the TextPlain field's value.
+func (s *StatementOutputData) SetTextPlain(v string) *StatementOutputData {
+	s.TextPlain = &v
+	return s
+}
+
+// The code execution output in JSON format.
+type StatementOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The code execution output.
+	Data *StatementOutputData `type:"structure"`
+
+	// The name of the error in the output.
+	ErrorName *string `type:"string"`
+
+	// The error value of the output.
+	ErrorValue *string `type:"string"`
+
+	// The execution count of the output.
+	ExecutionCount *int64 `type:"integer"`
+
+	// The status of the code execution output.
+	Status *string `type:"string" enum:"StatementState"`
+
+	// The traceback of the output.
+	Traceback []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StatementOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StatementOutput_) GoString() string {
+	return s.String()
+}
+
+// SetData sets the Data field's value.
+func (s *StatementOutput_) SetData(v *StatementOutputData) *StatementOutput_ {
+	s.Data = v
+	return s
+}
+
+// SetErrorName sets the ErrorName field's value.
+func (s *StatementOutput_) SetErrorName(v string) *StatementOutput_ {
+	s.ErrorName = &v
+	return s
+}
+
+// SetErrorValue sets the ErrorValue field's value.
+func (s *StatementOutput_) SetErrorValue(v string) *StatementOutput_ {
+	s.ErrorValue = &v
+	return s
+}
+
+// SetExecutionCount sets the ExecutionCount field's value.
+func (s *StatementOutput_) SetExecutionCount(v int64) *StatementOutput_ {
+	s.ExecutionCount = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StatementOutput_) SetStatus(v string) *StatementOutput_ {
+	s.Status = &v
+	return s
+}
+
+// SetTraceback sets the Traceback field's value.
+func (s *StatementOutput_) SetTraceback(v []*string) *StatementOutput_ {
+	s.Traceback = v
+	return s
+}
+
 type StopCrawlerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -46569,6 +48926,98 @@ func (s StopCrawlerScheduleOutput) String() string {
 // value will be replaced with "sensitive".
 func (s StopCrawlerScheduleOutput) GoString() string {
 	return s.String()
+}
+
+type StopSessionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the session to be stopped.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The origin of the request.
+	RequestOrigin *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopSessionInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.RequestOrigin != nil && len(*s.RequestOrigin) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RequestOrigin", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *StopSessionInput) SetId(v string) *StopSessionInput {
+	s.Id = &v
+	return s
+}
+
+// SetRequestOrigin sets the RequestOrigin field's value.
+func (s *StopSessionInput) SetRequestOrigin(v string) *StopSessionInput {
+	s.RequestOrigin = &v
+	return s
+}
+
+type StopSessionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the Id of the stopped session.
+	Id *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSessionOutput) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *StopSessionOutput) SetId(v string) *StopSessionOutput {
+	s.Id = &v
+	return s
 }
 
 type StopTriggerInput struct {
@@ -53192,6 +55641,38 @@ func SchemaVersionStatus_Values() []string {
 }
 
 const (
+	// SessionStatusProvisioning is a SessionStatus enum value
+	SessionStatusProvisioning = "PROVISIONING"
+
+	// SessionStatusReady is a SessionStatus enum value
+	SessionStatusReady = "READY"
+
+	// SessionStatusFailed is a SessionStatus enum value
+	SessionStatusFailed = "FAILED"
+
+	// SessionStatusTimeout is a SessionStatus enum value
+	SessionStatusTimeout = "TIMEOUT"
+
+	// SessionStatusStopping is a SessionStatus enum value
+	SessionStatusStopping = "STOPPING"
+
+	// SessionStatusStopped is a SessionStatus enum value
+	SessionStatusStopped = "STOPPED"
+)
+
+// SessionStatus_Values returns all elements of the SessionStatus enum
+func SessionStatus_Values() []string {
+	return []string{
+		SessionStatusProvisioning,
+		SessionStatusReady,
+		SessionStatusFailed,
+		SessionStatusTimeout,
+		SessionStatusStopping,
+		SessionStatusStopped,
+	}
+}
+
+const (
 	// SortAsc is a Sort enum value
 	SortAsc = "ASC"
 
@@ -53220,6 +55701,38 @@ func SortDirectionType_Values() []string {
 	return []string{
 		SortDirectionTypeDescending,
 		SortDirectionTypeAscending,
+	}
+}
+
+const (
+	// StatementStateWaiting is a StatementState enum value
+	StatementStateWaiting = "WAITING"
+
+	// StatementStateRunning is a StatementState enum value
+	StatementStateRunning = "RUNNING"
+
+	// StatementStateAvailable is a StatementState enum value
+	StatementStateAvailable = "AVAILABLE"
+
+	// StatementStateCancelling is a StatementState enum value
+	StatementStateCancelling = "CANCELLING"
+
+	// StatementStateCancelled is a StatementState enum value
+	StatementStateCancelled = "CANCELLED"
+
+	// StatementStateError is a StatementState enum value
+	StatementStateError = "ERROR"
+)
+
+// StatementState_Values returns all elements of the StatementState enum
+func StatementState_Values() []string {
+	return []string{
+		StatementStateWaiting,
+		StatementStateRunning,
+		StatementStateAvailable,
+		StatementStateCancelling,
+		StatementStateCancelled,
+		StatementStateError,
 	}
 }
 

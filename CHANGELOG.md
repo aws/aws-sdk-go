@@ -1,3 +1,10 @@
+Release v1.43.21 (2022-03-18)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API, documentation, and paginators
+  * Added 9 new APIs for AWS Glue Interactive Sessions: ListSessions, StopSession, CreateSession, GetSession, DeleteSession, RunStatement, GetStatement, ListStatements, CancelStatement
+
 Release v1.43.20 (2022-03-16)
 ===
 
