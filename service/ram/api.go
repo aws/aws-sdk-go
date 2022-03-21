@@ -2564,8 +2564,8 @@ func (c *RAM) ListResourcesRequest(input *ListResourcesInput) (req *request.Requ
 
 // ListResources API operation for AWS Resource Access Manager.
 //
-// Lists the resources that you added to a resource shares or the resources
-// that are shared with you.
+// Lists the resources that you added to a resource share or the resources that
+// are shared with you.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4769,9 +4769,10 @@ type GetResourceSharesInput struct {
 	// Specifies that you want to retrieve details of only those resource shares
 	// that match the following:
 	//
-	//    * SELF – resources that you are sharing
+	//    * SELF – resource shares that your account shares with other accounts
 	//
-	//    * OTHER-ACCOUNTS – resources that other accounts share with you
+	//    * OTHER-ACCOUNTS – resource shares that other accounts share with your
+	//    account
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" type:"string" required:"true" enum:"ResourceOwner"`
@@ -5807,9 +5808,9 @@ type ListPrincipalsInput struct {
 	// Specifies that you want to list information for only resource shares that
 	// match the following:
 	//
-	//    * SELF – resources that you are sharing
+	//    * SELF – principals that your account is sharing resources with
 	//
-	//    * OTHER-ACCOUNTS – resources that other accounts share with you
+	//    * OTHER-ACCOUNTS – principals that are sharing resources with your account
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" type:"string" required:"true" enum:"ResourceOwner"`
@@ -6232,9 +6233,9 @@ type ListResourcesInput struct {
 
 	// Specifies that you want to list only the resource shares that match the following:
 	//
-	//    * SELF – resources that you are sharing
+	//    * SELF – resources that your account shares with other accounts
 	//
-	//    * OTHER-ACCOUNTS – resources that other accounts share with you
+	//    * OTHER-ACCOUNTS – resources that other accounts share with your account
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" type:"string" required:"true" enum:"ResourceOwner"`

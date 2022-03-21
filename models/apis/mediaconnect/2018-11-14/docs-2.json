@@ -70,6 +70,12 @@
       "base": "The result of a successful AddFlowVpcInterfaces request. The response includes the details of the newly added VPC interfaces.",
       "refs": {}
     },
+    "AddMaintenance": {
+      "base": "Create maintenance setting for a flow",
+      "refs": {
+        "CreateFlowRequest$Maintenance": null
+      }
+    },
     "AddMediaStreamRequest": {
       "base": "The media stream that you want to add to the flow.",
       "refs": {
@@ -324,6 +330,21 @@
       "base": "Provides a summary of a flow, including its ARN, Availability Zone, and source type.",
       "refs": {
         "__listOfListedFlow$member": null
+      }
+    },
+    "Maintenance": {
+      "base": "The maintenance setting of a flow",
+      "refs": {
+        "Flow$Maintenance": null,
+        "ListedFlow$Maintenance": null
+      }
+    },
+    "MaintenanceDay": {
+      "base": null,
+      "refs": {
+        "AddMaintenance$MaintenanceDay": "A day of a week when the maintenance will happen. Use Monday/Tuesday/Wednesday/Thursday/Friday/Saturday/Sunday.",
+        "Maintenance$MaintenanceDay": "A day of a week when the maintenance will happen. Use Monday/Tuesday/Wednesday/Thursday/Friday/Saturday/Sunday.",
+        "UpdateMaintenance$MaintenanceDay": "A day of a week when the maintenance will happen. use Monday/Tuesday/Wednesday/Thursday/Friday/Saturday/Sunday."
       }
     },
     "MediaStream": {
@@ -632,6 +653,12 @@
       "base": "The result of a successful UpdateFlowSource request. The response includes the ARN of the flow that was updated and the updated source configuration.",
       "refs": {}
     },
+    "UpdateMaintenance": {
+      "base": "Update maintenance setting for a flow",
+      "refs": {
+        "UpdateFlowRequest$Maintenance": null
+      }
+    },
     "VpcInterface": {
       "base": "The settings for a VPC Source.",
       "refs": {
@@ -893,6 +920,7 @@
         "AddFlowOutputsResponse$FlowArn": "The ARN of the flow that these outputs were added to.",
         "AddFlowSourcesResponse$FlowArn": "The ARN of the flow that these sources were added to.",
         "AddFlowVpcInterfacesResponse$FlowArn": "The ARN of the flow that these VPC interfaces were added to.",
+        "AddMaintenance$MaintenanceStartHour": "UTC time when the maintenance will happen. Use 24-hour HH:MM format. Minutes must be 00. Example: 13:00. The default value is 02:00.",
         "AddMediaStreamRequest$Description": "A description that can help you quickly identify what your media stream is used for.",
         "AddMediaStreamRequest$MediaStreamName": "A name that helps you distinguish one media stream from another.",
         "AddMediaStreamRequest$VideoFormat": "The resolution of the video.",
@@ -944,6 +972,9 @@
         "ListedFlow$Description": "A description of the flow.",
         "ListedFlow$FlowArn": "The ARN of the flow.",
         "ListedFlow$Name": "The name of the flow.",
+        "Maintenance$MaintenanceDeadline": "The Maintenance has to be performed before this deadline in ISO UTC format. Example: 2021-01-30T08:30:00Z.",
+        "Maintenance$MaintenanceScheduledDate": "A scheduled date in ISO UTC format when the maintenance will happen. Use YYYY-MM-DD format. Example: 2021-01-30.",
+        "Maintenance$MaintenanceStartHour": "UTC time when the maintenance will happen. Use 24-hour HH:MM format. Minutes must be 00. Example: 13:00. The default value is 02:00.",
         "MediaStream$Description": "A description that can help you quickly identify what your media stream is used for.",
         "MediaStream$MediaStreamName": "A name that helps you distinguish one media stream from another.",
         "MediaStream$VideoFormat": "The resolution of the video.",
@@ -1031,6 +1062,8 @@
         "UpdateFlowSourceRequest$VpcInterfaceName": "The name of the VPC interface to use for this source.",
         "UpdateFlowSourceRequest$WhitelistCidr": "The range of IP addresses that should be allowed to contribute content to your source. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16.",
         "UpdateFlowSourceResponse$FlowArn": "The ARN of the flow that you want to update.",
+        "UpdateMaintenance$MaintenanceScheduledDate": "A scheduled date in ISO UTC format when the maintenance will happen. Use YYYY-MM-DD format. Example: 2021-01-30.",
+        "UpdateMaintenance$MaintenanceStartHour": "UTC time when the maintenance will happen. Use 24-hour HH:MM format. Minutes must be 00. Example: 13:00. The default value is 02:00.",
         "VpcInterface$Name": "Immutable and has to be a unique against other VpcInterfaces in this Flow.",
         "VpcInterface$RoleArn": "Role Arn MediaConnect can assumes to create ENIs in customer's account",
         "VpcInterface$SubnetId": "Subnet must be in the AZ of the Flow",

@@ -1629,6 +1629,10 @@ type CreateMeetingInput struct {
 	// The configuration for resource targets to receive notifications when meeting
 	// and attendee events occur.
 	NotificationsConfiguration *NotificationsConfiguration `type:"structure"`
+
+	// When specified, replicates the media from the primary meeting to the new
+	// meeting.
+	PrimaryMeetingId *string `min:"2" type:"string"`
 }
 
 // String returns the string representation.
@@ -1669,6 +1673,9 @@ func (s *CreateMeetingInput) Validate() error {
 	}
 	if s.MeetingHostId != nil && len(*s.MeetingHostId) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("MeetingHostId", 2))
+	}
+	if s.PrimaryMeetingId != nil && len(*s.PrimaryMeetingId) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("PrimaryMeetingId", 2))
 	}
 	if s.NotificationsConfiguration != nil {
 		if err := s.NotificationsConfiguration.Validate(); err != nil {
@@ -1715,6 +1722,12 @@ func (s *CreateMeetingInput) SetMeetingHostId(v string) *CreateMeetingInput {
 // SetNotificationsConfiguration sets the NotificationsConfiguration field's value.
 func (s *CreateMeetingInput) SetNotificationsConfiguration(v *NotificationsConfiguration) *CreateMeetingInput {
 	s.NotificationsConfiguration = v
+	return s
+}
+
+// SetPrimaryMeetingId sets the PrimaryMeetingId field's value.
+func (s *CreateMeetingInput) SetPrimaryMeetingId(v string) *CreateMeetingInput {
+	s.PrimaryMeetingId = &v
 	return s
 }
 
@@ -1799,6 +1812,10 @@ type CreateMeetingWithAttendeesInput struct {
 	// The configuration for resource targets to receive notifications when meeting
 	// and attendee events occur.
 	NotificationsConfiguration *NotificationsConfiguration `type:"structure"`
+
+	// When specified, replicates the media from the primary meeting to the new
+	// meeting.
+	PrimaryMeetingId *string `min:"2" type:"string"`
 }
 
 // String returns the string representation.
@@ -1845,6 +1862,9 @@ func (s *CreateMeetingWithAttendeesInput) Validate() error {
 	}
 	if s.MeetingHostId != nil && len(*s.MeetingHostId) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("MeetingHostId", 2))
+	}
+	if s.PrimaryMeetingId != nil && len(*s.PrimaryMeetingId) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("PrimaryMeetingId", 2))
 	}
 	if s.Attendees != nil {
 		for i, v := range s.Attendees {
@@ -1907,6 +1927,12 @@ func (s *CreateMeetingWithAttendeesInput) SetMeetingHostId(v string) *CreateMeet
 // SetNotificationsConfiguration sets the NotificationsConfiguration field's value.
 func (s *CreateMeetingWithAttendeesInput) SetNotificationsConfiguration(v *NotificationsConfiguration) *CreateMeetingWithAttendeesInput {
 	s.NotificationsConfiguration = v
+	return s
+}
+
+// SetPrimaryMeetingId sets the PrimaryMeetingId field's value.
+func (s *CreateMeetingWithAttendeesInput) SetPrimaryMeetingId(v string) *CreateMeetingWithAttendeesInput {
+	s.PrimaryMeetingId = &v
 	return s
 }
 
@@ -2965,6 +2991,9 @@ type Meeting struct {
 
 	// The Amazon Chime SDK meeting ID.
 	MeetingId *string `type:"string"`
+
+	// When specified, replicates the media from the primary meeting to this meeting.
+	PrimaryMeetingId *string `min:"2" type:"string"`
 }
 
 // String returns the string representation.
@@ -3018,6 +3047,12 @@ func (s *Meeting) SetMeetingHostId(v string) *Meeting {
 // SetMeetingId sets the MeetingId field's value.
 func (s *Meeting) SetMeetingId(v string) *Meeting {
 	s.MeetingId = &v
+	return s
+}
+
+// SetPrimaryMeetingId sets the PrimaryMeetingId field's value.
+func (s *Meeting) SetPrimaryMeetingId(v string) *Meeting {
+	s.PrimaryMeetingId = &v
 	return s
 }
 

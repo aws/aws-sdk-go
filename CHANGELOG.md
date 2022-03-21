@@ -1,3 +1,15 @@
+Release v1.43.22 (2022-03-21)
+===
+
+### Service Client Updates
+* `service/chime-sdk-meetings`: Updates service API and documentation
+* `service/ecr`: Updates service documentation and paginators
+  * This release includes a fix in the DescribeImageScanFindings paginated output.
+* `service/mediaconnect`: Updates service API and documentation
+* `service/quicksight`: Updates service API and documentation
+  * AWS QuickSight Service Features - Expand public API support for group management.
+* `service/ram`: Updates service documentation
+
 Release v1.43.21 (2022-03-18)
 ===
 

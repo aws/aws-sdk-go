@@ -10,7 +10,7 @@
     "CreateDataSource": "<p>Creates a data source.</p>",
     "CreateFolder": "<p>Creates an empty shared folder.</p>",
     "CreateFolderMembership": "<p>Adds an asset, such as a dashboard, analysis, or dataset into a folder.</p>",
-    "CreateGroup": "<p>Creates an Amazon QuickSight group.</p> <p>The permissions resource is <code>arn:aws:quicksight:us-east-1:<i>&lt;relevant-aws-account-id&gt;</i>:group/default/<i>&lt;group-name&gt;</i> </code>.</p> <p>The response is a group object.</p>",
+    "CreateGroup": "<p>Creates an Amazon QuickSight group.</p> <p>The permissions resource is <code>arn:aws:quicksight:&lt;your-region&gt;:<i>&lt;relevant-aws-account-id&gt;</i>:group/default/<i>&lt;group-name&gt;</i> </code>.</p> <p>The response is a group object.</p>",
     "CreateGroupMembership": "<p>Adds an Amazon QuickSight user to an Amazon QuickSight group. </p>",
     "CreateIAMPolicyAssignment": "<p>Creates an assignment with one specified IAM policy, identified by its Amazon Resource Name (ARN). This policy assignment is attached to the specified groups or users of Amazon QuickSight. Assignment names are unique per Amazon Web Services account. To avoid overwriting rules in other namespaces, use assignment names that are unique.</p>",
     "CreateIngestion": "<p>Creates and starts a new SPICE ingestion for a dataset. You can manually refresh datasets in an Enterprise edition account 32 times in a 24-hour period. You can manually refresh datasets in a Standard edition account 8 times in a 24-hour period. Each 24-hour period is measured starting 24 hours before the current date and time.</p> <p>Any ingestions operating on tagged datasets inherit the same tags automatically for use in access control. For an example, see <a href=\"http://aws.amazon.com/premiumsupport/knowledge-center/iam-ec2-resource-tags/\">How do I create an IAM policy to control access to Amazon EC2 resources using tags?</a> in the Amazon Web Services Knowledge Center. Tags are visible on the tagged dataset, but not on the ingestion resource.</p>",
@@ -50,6 +50,7 @@
     "DescribeFolderPermissions": "<p>Describes permissions for a folder.</p>",
     "DescribeFolderResolvedPermissions": "<p>Describes the folder resolved permissions. Permissions consists of both folder direct permissions and the inherited permissions from the ancestor folders.</p>",
     "DescribeGroup": "<p>Returns an Amazon QuickSight group's description and Amazon Resource Name (ARN). </p>",
+    "DescribeGroupMembership": "<p>Use the <code>DescribeGroupMembership</code> operation to determine if a user is a member of the specified group. If the user exists and is a member of the specified group, an associated <code>GroupMember</code> object is returned.</p>",
     "DescribeIAMPolicyAssignment": "<p>Describes an existing IAM policy assignment, as specified by the assignment name.</p>",
     "DescribeIngestion": "<p>Describes a SPICE ingestion.</p>",
     "DescribeIpRestriction": "<p>Provides a summary and status of IP rules.</p>",
@@ -92,6 +93,7 @@
     "SearchAnalyses": "<p>Searches for analyses that belong to the user specified in the filter.</p> <note> <p>This operation is eventually consistent. The results are best effort and may not reflect very recent updates and changes.</p> </note>",
     "SearchDashboards": "<p>Searches for dashboards that belong to a user. </p> <note> <p>This operation is eventually consistent. The results are best effort and may not reflect very recent updates and changes.</p> </note>",
     "SearchFolders": "<p>Searches the subfolders in a folder.</p>",
+    "SearchGroups": "<p>Use the <code>SearchGroups</code> operation to search groups in a specified Amazon QuickSight namespace using the supplied filters.</p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon QuickSight resource. </p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values. You can use the <code>TagResource</code> operation with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource. Amazon QuickSight supports tagging on data set, data source, dashboard, and template. </p> <p>Tagging for Amazon QuickSight works in a similar way to tagging for other Amazon Web Services services, except for the following:</p> <ul> <li> <p>You can't use tags to track costs for Amazon QuickSight. This isn't possible because you can't tag the resources that Amazon QuickSight costs are based on, for example Amazon QuickSight storage capacity (SPICE), number of users, type of users, and usage metrics.</p> </li> <li> <p>Amazon QuickSight doesn't currently support the tag editor for Resource Groups.</p> </li> </ul>",
     "UntagResource": "<p>Removes a tag or tags from a resource.</p>",
     "UpdateAccountCustomization": "<p>Updates Amazon QuickSight customizations the current Amazon Web Services Region. Currently, the only customization you can use is a theme.</p> <p>You can use customizations for your Amazon Web Services account or, if you specify a namespace, for a Amazon QuickSight namespace instead. Customizations that apply to a namespace override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation. </p>",
@@ -503,6 +505,7 @@
         "DescribeFolderPermissionsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the folder.</p>",
         "DescribeFolderRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the folder.</p>",
         "DescribeFolderResolvedPermissionsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the folder.</p>",
+        "DescribeGroupMembershipRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "DescribeGroupRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "DescribeIAMPolicyAssignmentRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the assignment that you want to describe.</p>",
         "DescribeIngestionRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
@@ -546,6 +549,7 @@
         "SearchAnalysesRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the analyses that you're searching for.</p>",
         "SearchDashboardsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the user whose dashboards you're searching for. </p>",
         "SearchFoldersRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the folder.</p>",
+        "SearchGroupsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "UpdateAccountCustomizationRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to update Amazon QuickSight customizations for.</p>",
         "UpdateAccountCustomizationResponse$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to update Amazon QuickSight customizations for.</p>",
         "UpdateAccountSettingsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the Amazon QuickSight settings that you want to list.</p>",
@@ -1609,6 +1613,16 @@
       "refs": {
       }
     },
+    "DescribeGroupMembershipRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeGroupMembershipResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeGroupRequest": {
       "base": null,
       "refs": {
@@ -2013,17 +2027,31 @@
         "UpdateGroupRequest$Description": "<p>The description for the group that you want to update.</p>"
       }
     },
+    "GroupFilterAttribute": {
+      "base": null,
+      "refs": {
+        "GroupSearchFilter$Name": "<p>The name of the value that you want to use as a filter, for example <code>\"Name\": \"GROUP_NAME\"</code>. Currently, the only supported name is <code>GROUP_NAME</code>.</p>"
+      }
+    },
+    "GroupFilterOperator": {
+      "base": null,
+      "refs": {
+        "GroupSearchFilter$Operator": "<p>The comparison operator that you want to use as a filter, for example <code>\"Operator\": \"StartsWith\"</code>. Currently, the only supported operator is <code>StartsWith</code>.</p>"
+      }
+    },
     "GroupList": {
       "base": null,
       "refs": {
         "ListGroupsResponse$GroupList": "<p>The list of the groups.</p>",
-        "ListUserGroupsResponse$GroupList": "<p>The list of groups the user is a member of.</p>"
+        "ListUserGroupsResponse$GroupList": "<p>The list of groups the user is a member of.</p>",
+        "SearchGroupsResponse$GroupList": "<p>A list of groups in a specified namespace that match the filters you set in your <code>SearchGroups</code> request.</p>"
       }
     },
     "GroupMember": {
       "base": "<p>A member of an Amazon QuickSight group. Currently, group members must be users. Groups can't be members of another group. .</p>",
       "refs": {
         "CreateGroupMembershipResponse$GroupMember": "<p>The group member.</p>",
+        "DescribeGroupMembershipResponse$GroupMember": null,
         "GroupMemberList$member": null
       }
     },
@@ -2038,6 +2066,7 @@
       "refs": {
         "CreateGroupMembershipRequest$MemberName": "<p>The name of the user that you want to add to the group membership.</p>",
         "DeleteGroupMembershipRequest$MemberName": "<p>The name of the user that you want to delete from the group membership.</p>",
+        "DescribeGroupMembershipRequest$MemberName": "<p>The user name of the user that you want to search for.</p>",
         "GroupMember$MemberName": "<p>The name of the group member (user).</p>"
       }
     },
@@ -2048,10 +2077,23 @@
         "CreateGroupRequest$GroupName": "<p>A name for the group that you want to create.</p>",
         "DeleteGroupMembershipRequest$GroupName": "<p>The name of the group that you want to delete the user from.</p>",
         "DeleteGroupRequest$GroupName": "<p>The name of the group that you want to delete.</p>",
+        "DescribeGroupMembershipRequest$GroupName": "<p>The name of the group that you want to search.</p>",
         "DescribeGroupRequest$GroupName": "<p>The name of the group that you want to describe.</p>",
         "Group$GroupName": "<p>The name of the group.</p>",
         "ListGroupMembershipsRequest$GroupName": "<p>The name of the group that you want to see a membership list of.</p>",
         "UpdateGroupRequest$GroupName": "<p>The name of the group that you want to update.</p>"
+      }
+    },
+    "GroupSearchFilter": {
+      "base": "<p>A <code>GroupSearchFilter</code> object that you want to apply to your search.</p>",
+      "refs": {
+        "GroupSearchFilterList$member": null
+      }
+    },
+    "GroupSearchFilterList": {
+      "base": null,
+      "refs": {
+        "SearchGroupsRequest$Filters": "<p>The structure for the search filters that you want to apply to your search.</p>"
       }
     },
     "GutterStyle": {
@@ -2655,7 +2697,8 @@
         "ListUsersRequest$MaxResults": "<p>The maximum number of results to return from this request.</p>",
         "SearchAnalysesRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "SearchDashboardsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
-        "SearchFoldersRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>"
+        "SearchFoldersRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
+        "SearchGroupsRequest$MaxResults": "<p>The maximum number of results to return from this request.</p>"
       }
     },
     "MemberIdArnPair": {
@@ -2684,28 +2727,29 @@
         "AccountSettings$DefaultNamespace": "<p>The default Amazon QuickSight namespace for your Amazon Web Services account. </p>",
         "CreateAccountCustomizationRequest$Namespace": "<p>The Amazon QuickSight namespace that you want to add customizations to.</p>",
         "CreateAccountCustomizationResponse$Namespace": "<p>The namespace associated with the customization you're creating. </p>",
-        "CreateGroupMembershipRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
-        "CreateGroupRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
+        "CreateGroupMembershipRequest$Namespace": "<p>The namespace that you want the user to be a part of.</p>",
+        "CreateGroupRequest$Namespace": "<p>The namespace that you want the group to be a part of.</p>",
         "CreateIAMPolicyAssignmentRequest$Namespace": "<p>The namespace that contains the assignment.</p>",
         "CreateNamespaceRequest$Namespace": "<p>The name that you want to use to describe the new namespace.</p>",
         "CreateNamespaceResponse$Name": "<p>The name of the new namespace that you created.</p>",
         "DeleteAccountCustomizationRequest$Namespace": "<p>The Amazon QuickSight namespace that you're deleting the customizations from.</p>",
-        "DeleteGroupMembershipRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
-        "DeleteGroupRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
+        "DeleteGroupMembershipRequest$Namespace": "<p>The namespace of the group that you want to remove a user from.</p>",
+        "DeleteGroupRequest$Namespace": "<p>The namespace of the group that you want to delete.</p>",
         "DeleteIAMPolicyAssignmentRequest$Namespace": "<p>The namespace that contains the assignment.</p>",
         "DeleteNamespaceRequest$Namespace": "<p>The namespace that you want to delete.</p>",
         "DeleteUserByPrincipalIdRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
         "DeleteUserRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
         "DescribeAccountCustomizationRequest$Namespace": "<p>The Amazon QuickSight namespace that you want to describe Amazon QuickSight customizations for.</p>",
         "DescribeAccountCustomizationResponse$Namespace": "<p>The Amazon QuickSight namespace that you're describing. </p>",
-        "DescribeGroupRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
+        "DescribeGroupMembershipRequest$Namespace": "<p>The namespace that includes the group you are searching within.</p>",
+        "DescribeGroupRequest$Namespace": "<p>The namespace of the group that you want described.</p>",
         "DescribeIAMPolicyAssignmentRequest$Namespace": "<p>The namespace that contains the assignment.</p>",
         "DescribeNamespaceRequest$Namespace": "<p>The namespace that you want to describe.</p>",
         "DescribeUserRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
         "GenerateEmbedUrlForAnonymousUserRequest$Namespace": "<p>The Amazon QuickSight namespace that the anonymous user virtually belongs to. If you are not using an Amazon QuickSight custom namespace, set this to <code>default</code>.</p>",
         "GetDashboardEmbedUrlRequest$Namespace": "<p>The Amazon QuickSight namespace that contains the dashboard IDs in this request. If you're not using a custom namespace, set <code>Namespace = default</code>.</p>",
-        "ListGroupMembershipsRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
-        "ListGroupsRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
+        "ListGroupMembershipsRequest$Namespace": "<p>The namespace of the group that you want a list of users from.</p>",
+        "ListGroupsRequest$Namespace": "<p>The namespace that you want a list of groups from.</p>",
         "ListIAMPolicyAssignmentsForUserRequest$Namespace": "<p>The namespace of the assignment.</p>",
         "ListIAMPolicyAssignmentsRequest$Namespace": "<p>The namespace for the assignments.</p>",
         "ListUserGroupsRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
@@ -2713,10 +2757,11 @@
         "NamespaceInfoV2$Name": "<p>The name of the error.</p>",
         "RegisterUserRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
         "RowLevelPermissionDataSet$Namespace": "<p>The namespace associated with the dataset that contains permissions for RLS.</p>",
+        "SearchGroupsRequest$Namespace": "<p>The namespace that you want to search.</p>",
         "UpdateAccountCustomizationRequest$Namespace": "<p>The namespace that you want to update Amazon QuickSight customizations for.</p>",
         "UpdateAccountCustomizationResponse$Namespace": "<p>The namespace associated with the customization that you're updating.</p>",
         "UpdateAccountSettingsRequest$DefaultNamespace": "<p>The default namespace for this Amazon Web Services account. Currently, the default is <code>default</code>. Identity and Access Management (IAM) users that register for the first time with Amazon QuickSight provide an email that becomes associated with the default namespace.</p>",
-        "UpdateGroupRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
+        "UpdateGroupRequest$Namespace": "<p>The namespace of the group that you want to update.</p>",
         "UpdateIAMPolicyAssignmentRequest$Namespace": "<p>The namespace of the assignment.</p>",
         "UpdateUserRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>"
       }
@@ -3253,8 +3298,8 @@
     "RoleName": {
       "base": null,
       "refs": {
-        "RegisterUserRequest$CustomPermissionsName": "<p>(Enterprise edition only) The name of the custom permissions profile that you want to assign to this user. Customized permissions allows you to control a user's access by restricting access the following operations:</p> <ul> <li> <p>Create and update data sources</p> </li> <li> <p>Create and update datasets</p> </li> <li> <p>Create and update email reports</p> </li> <li> <p>Subscribe to email reports</p> </li> </ul> <p>To add custom permissions to an existing user, use <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateUser.html\">UpdateUser</a> </code> instead.</p> <p>A set of custom permissions includes any combination of these restrictions. Currently, you need to create the profile names for custom permission sets by using the Amazon QuickSight console. Then, you use the <code>RegisterUser</code> API operation to assign the named set of permissions to a QuickSight user. </p> <p>Amazon QuickSight custom permissions are applied through IAM policies. Therefore, they override the permissions typically granted by assigning Amazon QuickSight users to one of the default security cohorts in Amazon QuickSight (admin, author, reader).</p> <p>This feature is available only to Amazon QuickSight Enterprise edition subscriptions.</p>",
-        "UpdateUserRequest$CustomPermissionsName": "<p>(Enterprise edition only) The name of the custom permissions profile that you want to assign to this user. Customized permissions allows you to control a user's access by restricting access the following operations:</p> <ul> <li> <p>Create and update data sources</p> </li> <li> <p>Create and update datasets</p> </li> <li> <p>Create and update email reports</p> </li> <li> <p>Subscribe to email reports</p> </li> </ul> <p>A set of custom permissions includes any combination of these restrictions. Currently, you need to create the profile names for custom permission sets by using the Amazon QuickSight console. Then, you use the <code>RegisterUser</code> API operation to assign the named set of permissions to a QuickSight user. </p> <p>Amazon QuickSight custom permissions are applied through IAM policies. Therefore, they override the permissions typically granted by assigning Amazon QuickSight users to one of the default security cohorts in Amazon QuickSight (admin, author, reader).</p> <p>This feature is available only to Amazon QuickSight Enterprise edition subscriptions.</p>",
+        "RegisterUserRequest$CustomPermissionsName": "<p>(Enterprise edition only) The name of the custom permissions profile that you want to assign to this user. Customized permissions allows you to control a user's access by restricting access the following operations:</p> <ul> <li> <p>Create and update data sources</p> </li> <li> <p>Create and update datasets</p> </li> <li> <p>Create and update email reports</p> </li> <li> <p>Subscribe to email reports</p> </li> </ul> <p>To add custom permissions to an existing user, use <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateUser.html\">UpdateUser</a> </code> instead.</p> <p>A set of custom permissions includes any combination of these restrictions. Currently, you need to create the profile names for custom permission sets by using the Amazon QuickSight console. Then, you use the <code>RegisterUser</code> API operation to assign the named set of permissions to a Amazon QuickSight user. </p> <p>Amazon QuickSight custom permissions are applied through IAM policies. Therefore, they override the permissions typically granted by assigning Amazon QuickSight users to one of the default security cohorts in Amazon QuickSight (admin, author, reader).</p> <p>This feature is available only to Amazon QuickSight Enterprise edition subscriptions.</p>",
+        "UpdateUserRequest$CustomPermissionsName": "<p>(Enterprise edition only) The name of the custom permissions profile that you want to assign to this user. Customized permissions allows you to control a user's access by restricting access the following operations:</p> <ul> <li> <p>Create and update data sources</p> </li> <li> <p>Create and update datasets</p> </li> <li> <p>Create and update email reports</p> </li> <li> <p>Subscribe to email reports</p> </li> </ul> <p>A set of custom permissions includes any combination of these restrictions. Currently, you need to create the profile names for custom permission sets by using the Amazon QuickSight console. Then, you use the <code>RegisterUser</code> API operation to assign the named set of permissions to a Amazon QuickSight user. </p> <p>Amazon QuickSight custom permissions are applied through IAM policies. Therefore, they override the permissions typically granted by assigning Amazon QuickSight users to one of the default security cohorts in Amazon QuickSight (admin, author, reader).</p> <p>This feature is available only to Amazon QuickSight Enterprise edition subscriptions.</p>",
         "User$CustomPermissionsName": "<p>The custom permissions profile associated with this user.</p>"
       }
     },
@@ -3367,6 +3412,16 @@
       }
     },
     "SearchFoldersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchGroupsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchGroupsResponse": {
       "base": null,
       "refs": {
       }
@@ -3539,6 +3594,7 @@
         "DescribeFolderPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeFolderResolvedPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeFolderResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeGroupMembershipResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeGroupResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeIAMPolicyAssignmentResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeIngestionResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -3582,6 +3638,7 @@
         "SearchAnalysesResponse$Status": "<p>The HTTP status of the request.</p>",
         "SearchDashboardsResponse$Status": "<p>The HTTP status of the request.</p>",
         "SearchFoldersResponse$Status": "<p>The HTTP status of the request.</p>",
+        "SearchGroupsResponse$Status": "<p>The HTTP status of the request.</p>",
         "TagResourceResponse$Status": "<p>The HTTP status of the request.</p>",
         "UntagResourceResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateAccountCustomizationResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -3683,6 +3740,7 @@
         "DescribeFolderPermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeFolderResolvedPermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeFolderResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeGroupMembershipResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeGroupResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeIAMPolicyAssignmentResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeIngestionRequest$DataSetId": "<p>The ID of the dataset used in the ingestion.</p>",
@@ -3706,6 +3764,7 @@
         "GetDashboardEmbedUrlResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "GetSessionEmbedUrlResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "Group$PrincipalId": "<p>The principal ID of the group.</p>",
+        "GroupSearchFilter$Value": "<p>The value of the named item, in this case <code>GROUP_NAME</code>, that you want to use as a filter.</p>",
         "IAMPolicyAssignment$AssignmentId": "<p>Assignment ID.</p>",
         "IdentityMap$key": null,
         "IdentityTypeNotSupportedException$Message": null,
@@ -3817,6 +3876,9 @@
         "SearchFoldersRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "SearchFoldersResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "SearchFoldersResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "SearchGroupsRequest$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
+        "SearchGroupsResponse$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
+        "SearchGroupsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "SessionLifetimeInMinutesInvalidException$Message": null,
         "SessionLifetimeInMinutesInvalidException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
         "StringList$member": null,

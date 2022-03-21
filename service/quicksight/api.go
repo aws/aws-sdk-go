@@ -921,7 +921,7 @@ func (c *QuickSight) CreateGroupRequest(input *CreateGroupInput) (req *request.R
 //
 // Creates an Amazon QuickSight group.
 //
-// The permissions resource is arn:aws:quicksight:us-east-1:<relevant-aws-account-id>:group/default/<group-name> .
+// The permissions resource is arn:aws:quicksight:<your-region>:<relevant-aws-account-id>:group/default/<group-name> .
 //
 // The response is a group object.
 //
@@ -4996,6 +4996,109 @@ func (c *QuickSight) DescribeGroup(input *DescribeGroupInput) (*DescribeGroupOut
 // for more information on using Contexts.
 func (c *QuickSight) DescribeGroupWithContext(ctx aws.Context, input *DescribeGroupInput, opts ...request.Option) (*DescribeGroupOutput, error) {
 	req, out := c.DescribeGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeGroupMembership = "DescribeGroupMembership"
+
+// DescribeGroupMembershipRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeGroupMembership operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeGroupMembership for more information on using the DescribeGroupMembership
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeGroupMembershipRequest method.
+//    req, resp := client.DescribeGroupMembershipRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeGroupMembership
+func (c *QuickSight) DescribeGroupMembershipRequest(input *DescribeGroupMembershipInput) (req *request.Request, output *DescribeGroupMembershipOutput) {
+	op := &request.Operation{
+		Name:       opDescribeGroupMembership,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}/groups/{GroupName}/members/{MemberName}",
+	}
+
+	if input == nil {
+		input = &DescribeGroupMembershipInput{}
+	}
+
+	output = &DescribeGroupMembershipOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeGroupMembership API operation for Amazon QuickSight.
+//
+// Use the DescribeGroupMembership operation to determine if a user is a member
+// of the specified group. If the user exists and is a member of the specified
+// group, an associated GroupMember object is returned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeGroupMembership for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * PreconditionNotMetException
+//   One or more preconditions aren't met.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+//   * ResourceUnavailableException
+//   This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeGroupMembership
+func (c *QuickSight) DescribeGroupMembership(input *DescribeGroupMembershipInput) (*DescribeGroupMembershipOutput, error) {
+	req, out := c.DescribeGroupMembershipRequest(input)
+	return out, req.Send()
+}
+
+// DescribeGroupMembershipWithContext is the same as DescribeGroupMembership with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeGroupMembership for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeGroupMembershipWithContext(ctx aws.Context, input *DescribeGroupMembershipInput, opts ...request.Option) (*DescribeGroupMembershipOutput, error) {
+	req, out := c.DescribeGroupMembershipRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -10163,6 +10266,111 @@ func (c *QuickSight) SearchFolders(input *SearchFoldersInput) (*SearchFoldersOut
 // for more information on using Contexts.
 func (c *QuickSight) SearchFoldersWithContext(ctx aws.Context, input *SearchFoldersInput, opts ...request.Option) (*SearchFoldersOutput, error) {
 	req, out := c.SearchFoldersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opSearchGroups = "SearchGroups"
+
+// SearchGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the SearchGroups operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchGroups for more information on using the SearchGroups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SearchGroupsRequest method.
+//    req, resp := client.SearchGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/SearchGroups
+func (c *QuickSight) SearchGroupsRequest(input *SearchGroupsInput) (req *request.Request, output *SearchGroupsOutput) {
+	op := &request.Operation{
+		Name:       opSearchGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}/groups-search",
+	}
+
+	if input == nil {
+		input = &SearchGroupsInput{}
+	}
+
+	output = &SearchGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchGroups API operation for Amazon QuickSight.
+//
+// Use the SearchGroups operation to search groups in a specified Amazon QuickSight
+// namespace using the supplied filters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation SearchGroups for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * InvalidNextTokenException
+//   The NextToken value isn't valid.
+//
+//   * PreconditionNotMetException
+//   One or more preconditions aren't met.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+//   * ResourceUnavailableException
+//   This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/SearchGroups
+func (c *QuickSight) SearchGroups(input *SearchGroupsInput) (*SearchGroupsOutput, error) {
+	req, out := c.SearchGroupsRequest(input)
+	return out, req.Send()
+}
+
+// SearchGroupsWithContext is the same as SearchGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) SearchGroupsWithContext(ctx aws.Context, input *SearchGroupsInput, opts ...request.Option) (*SearchGroupsOutput, error) {
+	req, out := c.SearchGroupsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -16418,7 +16626,7 @@ type CreateGroupInput struct {
 	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
 
-	// The namespace. Currently, you should set this to default.
+	// The namespace that you want the group to be a part of.
 	//
 	// Namespace is a required field
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
@@ -16517,7 +16725,7 @@ type CreateGroupMembershipInput struct {
 	// MemberName is a required field
 	MemberName *string `location:"uri" locationName:"MemberName" min:"1" type:"string" required:"true"`
 
-	// The namespace. Currently, you should set this to default.
+	// The namespace that you want the user to be a part of.
 	//
 	// Namespace is a required field
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
@@ -21075,7 +21283,7 @@ type DeleteGroupInput struct {
 	// GroupName is a required field
 	GroupName *string `location:"uri" locationName:"GroupName" min:"1" type:"string" required:"true"`
 
-	// The namespace. Currently, you should set this to default.
+	// The namespace of the group that you want to delete.
 	//
 	// Namespace is a required field
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
@@ -21165,7 +21373,7 @@ type DeleteGroupMembershipInput struct {
 	// MemberName is a required field
 	MemberName *string `location:"uri" locationName:"MemberName" min:"1" type:"string" required:"true"`
 
-	// The namespace. Currently, you should set this to default.
+	// The namespace of the group that you want to remove a user from.
 	//
 	// Namespace is a required field
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
@@ -24097,7 +24305,7 @@ type DescribeGroupInput struct {
 	// GroupName is a required field
 	GroupName *string `location:"uri" locationName:"GroupName" min:"1" type:"string" required:"true"`
 
-	// The namespace. Currently, you should set this to default.
+	// The namespace of the group that you want described.
 	//
 	// Namespace is a required field
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
@@ -24164,6 +24372,158 @@ func (s *DescribeGroupInput) SetGroupName(v string) *DescribeGroupInput {
 // SetNamespace sets the Namespace field's value.
 func (s *DescribeGroupInput) SetNamespace(v string) *DescribeGroupInput {
 	s.Namespace = &v
+	return s
+}
+
+type DescribeGroupMembershipInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID for the Amazon Web Services account that the group is in. Currently,
+	// you use the ID for the Amazon Web Services account that contains your Amazon
+	// QuickSight account.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The name of the group that you want to search.
+	//
+	// GroupName is a required field
+	GroupName *string `location:"uri" locationName:"GroupName" min:"1" type:"string" required:"true"`
+
+	// The user name of the user that you want to search for.
+	//
+	// MemberName is a required field
+	MemberName *string `location:"uri" locationName:"MemberName" min:"1" type:"string" required:"true"`
+
+	// The namespace that includes the group you are searching within.
+	//
+	// Namespace is a required field
+	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeGroupMembershipInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeGroupMembershipInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeGroupMembershipInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeGroupMembershipInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.GroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupName"))
+	}
+	if s.GroupName != nil && len(*s.GroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
+	}
+	if s.MemberName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberName"))
+	}
+	if s.MemberName != nil && len(*s.MemberName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberName", 1))
+	}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeGroupMembershipInput) SetAwsAccountId(v string) *DescribeGroupMembershipInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *DescribeGroupMembershipInput) SetGroupName(v string) *DescribeGroupMembershipInput {
+	s.GroupName = &v
+	return s
+}
+
+// SetMemberName sets the MemberName field's value.
+func (s *DescribeGroupMembershipInput) SetMemberName(v string) *DescribeGroupMembershipInput {
+	s.MemberName = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *DescribeGroupMembershipInput) SetNamespace(v string) *DescribeGroupMembershipInput {
+	s.Namespace = &v
+	return s
+}
+
+type DescribeGroupMembershipOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A member of an Amazon QuickSight group. Currently, group members must be
+	// users. Groups can't be members of another group. .
+	GroupMember *GroupMember `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeGroupMembershipOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeGroupMembershipOutput) GoString() string {
+	return s.String()
+}
+
+// SetGroupMember sets the GroupMember field's value.
+func (s *DescribeGroupMembershipOutput) SetGroupMember(v *GroupMember) *DescribeGroupMembershipOutput {
+	s.GroupMember = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeGroupMembershipOutput) SetRequestId(v string) *DescribeGroupMembershipOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeGroupMembershipOutput) SetStatus(v int64) *DescribeGroupMembershipOutput {
+	s.Status = &v
 	return s
 }
 
@@ -27179,6 +27539,84 @@ func (s *GroupMember) SetMemberName(v string) *GroupMember {
 	return s
 }
 
+// A GroupSearchFilter object that you want to apply to your search.
+type GroupSearchFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the value that you want to use as a filter, for example "Name":
+	// "GROUP_NAME". Currently, the only supported name is GROUP_NAME.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true" enum:"GroupFilterAttribute"`
+
+	// The comparison operator that you want to use as a filter, for example "Operator":
+	// "StartsWith". Currently, the only supported operator is StartsWith.
+	//
+	// Operator is a required field
+	Operator *string `type:"string" required:"true" enum:"GroupFilterOperator"`
+
+	// The value of the named item, in this case GROUP_NAME, that you want to use
+	// as a filter.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GroupSearchFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GroupSearchFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GroupSearchFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GroupSearchFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *GroupSearchFilter) SetName(v string) *GroupSearchFilter {
+	s.Name = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *GroupSearchFilter) SetOperator(v string) *GroupSearchFilter {
+	s.Operator = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *GroupSearchFilter) SetValue(v string) *GroupSearchFilter {
+	s.Value = &v
+	return s
+}
+
 // The display options for gutter spacing between tiles on a sheet.
 type GutterStyle struct {
 	_ struct{} `type:"structure"`
@@ -29107,7 +29545,7 @@ type ListGroupMembershipsInput struct {
 	// The maximum number of results to return from this request.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
-	// The namespace. Currently, you should set this to default.
+	// The namespace of the group that you want a list of users from.
 	//
 	// Namespace is a required field
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
@@ -29266,7 +29704,7 @@ type ListGroupsInput struct {
 	// The maximum number of results to return.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
-	// The namespace. Currently, you should set this to default.
+	// The namespace that you want a list of groups from.
 	//
 	// Namespace is a required field
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
@@ -32686,7 +33124,7 @@ type RegisterUserInput struct {
 	// A set of custom permissions includes any combination of these restrictions.
 	// Currently, you need to create the profile names for custom permission sets
 	// by using the Amazon QuickSight console. Then, you use the RegisterUser API
-	// operation to assign the named set of permissions to a QuickSight user.
+	// operation to assign the named set of permissions to a Amazon QuickSight user.
 	//
 	// Amazon QuickSight custom permissions are applied through IAM policies. Therefore,
 	// they override the permissions typically granted by assigning Amazon QuickSight
@@ -34727,6 +35165,181 @@ func (s *SearchFoldersOutput) SetRequestId(v string) *SearchFoldersOutput {
 
 // SetStatus sets the Status field's value.
 func (s *SearchFoldersOutput) SetStatus(v int64) *SearchFoldersOutput {
+	s.Status = &v
+	return s
+}
+
+type SearchGroupsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID for the Amazon Web Services account that the group is in. Currently,
+	// you use the ID for the Amazon Web Services account that contains your Amazon
+	// QuickSight account.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The structure for the search filters that you want to apply to your search.
+	//
+	// Filters is a required field
+	Filters []*GroupSearchFilter `min:"1" type:"list" required:"true"`
+
+	// The maximum number of results to return from this request.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The namespace that you want to search.
+	//
+	// Namespace is a required field
+	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
+
+	// A pagination token that can be used in a subsequent request.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchGroupsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchGroupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchGroupsInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.Filters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Filters"))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *SearchGroupsInput) SetAwsAccountId(v string) *SearchGroupsInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *SearchGroupsInput) SetFilters(v []*GroupSearchFilter) *SearchGroupsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchGroupsInput) SetMaxResults(v int64) *SearchGroupsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *SearchGroupsInput) SetNamespace(v string) *SearchGroupsInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchGroupsInput) SetNextToken(v string) *SearchGroupsInput {
+	s.NextToken = &v
+	return s
+}
+
+type SearchGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of groups in a specified namespace that match the filters you set
+	// in your SearchGroups request.
+	GroupList []*Group `type:"list"`
+
+	// A pagination token that can be used in a subsequent request.
+	NextToken *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetGroupList sets the GroupList field's value.
+func (s *SearchGroupsOutput) SetGroupList(v []*Group) *SearchGroupsOutput {
+	s.GroupList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchGroupsOutput) SetNextToken(v string) *SearchGroupsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *SearchGroupsOutput) SetRequestId(v string) *SearchGroupsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SearchGroupsOutput) SetStatus(v int64) *SearchGroupsOutput {
 	s.Status = &v
 	return s
 }
@@ -40091,7 +40704,7 @@ type UpdateGroupInput struct {
 	// GroupName is a required field
 	GroupName *string `location:"uri" locationName:"GroupName" min:"1" type:"string" required:"true"`
 
-	// The namespace. Currently, you should set this to default.
+	// The namespace of the group that you want to update.
 	//
 	// Namespace is a required field
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
@@ -41623,7 +42236,7 @@ type UpdateUserInput struct {
 	// A set of custom permissions includes any combination of these restrictions.
 	// Currently, you need to create the profile names for custom permission sets
 	// by using the Amazon QuickSight console. Then, you use the RegisterUser API
-	// operation to assign the named set of permissions to a QuickSight user.
+	// operation to assign the named set of permissions to a Amazon QuickSight user.
 	//
 	// Amazon QuickSight custom permissions are applied through IAM policies. Therefore,
 	// they override the permissions typically granted by assigning Amazon QuickSight
@@ -42770,6 +43383,30 @@ func GeoSpatialDataRole_Values() []string {
 		GeoSpatialDataRolePostcode,
 		GeoSpatialDataRoleLongitude,
 		GeoSpatialDataRoleLatitude,
+	}
+}
+
+const (
+	// GroupFilterAttributeGroupName is a GroupFilterAttribute enum value
+	GroupFilterAttributeGroupName = "GROUP_NAME"
+)
+
+// GroupFilterAttribute_Values returns all elements of the GroupFilterAttribute enum
+func GroupFilterAttribute_Values() []string {
+	return []string{
+		GroupFilterAttributeGroupName,
+	}
+}
+
+const (
+	// GroupFilterOperatorStartsWith is a GroupFilterOperator enum value
+	GroupFilterOperatorStartsWith = "StartsWith"
+)
+
+// GroupFilterOperator_Values returns all elements of the GroupFilterOperator enum
+func GroupFilterOperator_Values() []string {
+	return []string{
+		GroupFilterOperatorStartsWith,
 	}
 }
 
