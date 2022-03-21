@@ -3894,6 +3894,68 @@ func (s *AddFlowVpcInterfacesOutput) SetVpcInterfaces(v []*VpcInterface) *AddFlo
 	return s
 }
 
+// Create maintenance setting for a flow
+type AddMaintenance struct {
+	_ struct{} `type:"structure"`
+
+	// A day of a week when the maintenance will happen. Use Monday/Tuesday/Wednesday/Thursday/Friday/Saturday/Sunday.
+	//
+	// MaintenanceDay is a required field
+	MaintenanceDay *string `locationName:"maintenanceDay" type:"string" required:"true" enum:"MaintenanceDay"`
+
+	// UTC time when the maintenance will happen. Use 24-hour HH:MM format. Minutes
+	// must be 00. Example: 13:00. The default value is 02:00.
+	//
+	// MaintenanceStartHour is a required field
+	MaintenanceStartHour *string `locationName:"maintenanceStartHour" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddMaintenance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddMaintenance) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddMaintenance) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddMaintenance"}
+	if s.MaintenanceDay == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaintenanceDay"))
+	}
+	if s.MaintenanceStartHour == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaintenanceStartHour"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaintenanceDay sets the MaintenanceDay field's value.
+func (s *AddMaintenance) SetMaintenanceDay(v string) *AddMaintenance {
+	s.MaintenanceDay = &v
+	return s
+}
+
+// SetMaintenanceStartHour sets the MaintenanceStartHour field's value.
+func (s *AddMaintenance) SetMaintenanceStartHour(v string) *AddMaintenance {
+	s.MaintenanceStartHour = &v
+	return s
+}
+
 // The media stream that you want to add to the flow.
 type AddMediaStreamRequest struct {
 	_ struct{} `type:"structure"`
@@ -4352,6 +4414,9 @@ type CreateFlowInput struct {
 	// The entitlements that you want to grant on a flow.
 	Entitlements []*GrantEntitlementRequest `locationName:"entitlements" type:"list"`
 
+	// Create maintenance setting for a flow
+	Maintenance *AddMaintenance `locationName:"maintenance" type:"structure"`
+
 	// The media streams that you want to add to the flow. You can associate these
 	// media streams with sources and outputs on the flow.
 	MediaStreams []*AddMediaStreamRequest `locationName:"mediaStreams" type:"list"`
@@ -4408,6 +4473,11 @@ func (s *CreateFlowInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Entitlements", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.Maintenance != nil {
+		if err := s.Maintenance.Validate(); err != nil {
+			invalidParams.AddNested("Maintenance", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.MediaStreams != nil {
@@ -4471,6 +4541,12 @@ func (s *CreateFlowInput) SetAvailabilityZone(v string) *CreateFlowInput {
 // SetEntitlements sets the Entitlements field's value.
 func (s *CreateFlowInput) SetEntitlements(v []*GrantEntitlementRequest) *CreateFlowInput {
 	s.Entitlements = v
+	return s
+}
+
+// SetMaintenance sets the Maintenance field's value.
+func (s *CreateFlowInput) SetMaintenance(v *AddMaintenance) *CreateFlowInput {
+	s.Maintenance = v
 	return s
 }
 
@@ -5482,6 +5558,9 @@ type Flow struct {
 	// FlowArn is a required field
 	FlowArn *string `locationName:"flowArn" type:"string" required:"true"`
 
+	// The maintenance setting of a flow
+	Maintenance *Maintenance `locationName:"maintenance" type:"structure"`
+
 	// The media streams that are associated with the flow. After you associate
 	// a media stream with a source, you can also associate it with outputs on the
 	// flow.
@@ -5561,6 +5640,12 @@ func (s *Flow) SetEntitlements(v []*Entitlement) *Flow {
 // SetFlowArn sets the FlowArn field's value.
 func (s *Flow) SetFlowArn(v string) *Flow {
 	s.FlowArn = &v
+	return s
+}
+
+// SetMaintenance sets the Maintenance field's value.
+func (s *Flow) SetMaintenance(v *Maintenance) *Flow {
+	s.Maintenance = v
 	return s
 }
 
@@ -6962,6 +7047,9 @@ type ListedFlow struct {
 	// FlowArn is a required field
 	FlowArn *string `locationName:"flowArn" type:"string" required:"true"`
 
+	// The maintenance setting of a flow
+	Maintenance *Maintenance `locationName:"maintenance" type:"structure"`
+
 	// The name of the flow.
 	//
 	// Name is a required field
@@ -7017,6 +7105,12 @@ func (s *ListedFlow) SetFlowArn(v string) *ListedFlow {
 	return s
 }
 
+// SetMaintenance sets the Maintenance field's value.
+func (s *ListedFlow) SetMaintenance(v *Maintenance) *ListedFlow {
+	s.Maintenance = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *ListedFlow) SetName(v string) *ListedFlow {
 	s.Name = &v
@@ -7032,6 +7126,68 @@ func (s *ListedFlow) SetSourceType(v string) *ListedFlow {
 // SetStatus sets the Status field's value.
 func (s *ListedFlow) SetStatus(v string) *ListedFlow {
 	s.Status = &v
+	return s
+}
+
+// The maintenance setting of a flow
+type Maintenance struct {
+	_ struct{} `type:"structure"`
+
+	// A day of a week when the maintenance will happen. Use Monday/Tuesday/Wednesday/Thursday/Friday/Saturday/Sunday.
+	MaintenanceDay *string `locationName:"maintenanceDay" type:"string" enum:"MaintenanceDay"`
+
+	// The Maintenance has to be performed before this deadline in ISO UTC format.
+	// Example: 2021-01-30T08:30:00Z.
+	MaintenanceDeadline *string `locationName:"maintenanceDeadline" type:"string"`
+
+	// A scheduled date in ISO UTC format when the maintenance will happen. Use
+	// YYYY-MM-DD format. Example: 2021-01-30.
+	MaintenanceScheduledDate *string `locationName:"maintenanceScheduledDate" type:"string"`
+
+	// UTC time when the maintenance will happen. Use 24-hour HH:MM format. Minutes
+	// must be 00. Example: 13:00. The default value is 02:00.
+	MaintenanceStartHour *string `locationName:"maintenanceStartHour" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Maintenance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Maintenance) GoString() string {
+	return s.String()
+}
+
+// SetMaintenanceDay sets the MaintenanceDay field's value.
+func (s *Maintenance) SetMaintenanceDay(v string) *Maintenance {
+	s.MaintenanceDay = &v
+	return s
+}
+
+// SetMaintenanceDeadline sets the MaintenanceDeadline field's value.
+func (s *Maintenance) SetMaintenanceDeadline(v string) *Maintenance {
+	s.MaintenanceDeadline = &v
+	return s
+}
+
+// SetMaintenanceScheduledDate sets the MaintenanceScheduledDate field's value.
+func (s *Maintenance) SetMaintenanceScheduledDate(v string) *Maintenance {
+	s.MaintenanceScheduledDate = &v
+	return s
+}
+
+// SetMaintenanceStartHour sets the MaintenanceStartHour field's value.
+func (s *Maintenance) SetMaintenanceStartHour(v string) *Maintenance {
+	s.MaintenanceStartHour = &v
 	return s
 }
 
@@ -10124,6 +10280,9 @@ type UpdateFlowInput struct {
 	// FlowArn is a required field
 	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
 
+	// Update maintenance setting for a flow
+	Maintenance *UpdateMaintenance `locationName:"maintenance" type:"structure"`
+
 	// The settings for source failover.
 	SourceFailoverConfig *UpdateFailoverConfig `locationName:"sourceFailoverConfig" type:"structure"`
 }
@@ -10165,6 +10324,12 @@ func (s *UpdateFlowInput) Validate() error {
 // SetFlowArn sets the FlowArn field's value.
 func (s *UpdateFlowInput) SetFlowArn(v string) *UpdateFlowInput {
 	s.FlowArn = &v
+	return s
+}
+
+// SetMaintenance sets the Maintenance field's value.
+func (s *UpdateFlowInput) SetMaintenance(v *UpdateMaintenance) *UpdateFlowInput {
+	s.Maintenance = v
 	return s
 }
 
@@ -10882,6 +11047,58 @@ func (s *UpdateFlowSourceOutput) SetSource(v *Source) *UpdateFlowSourceOutput {
 	return s
 }
 
+// Update maintenance setting for a flow
+type UpdateMaintenance struct {
+	_ struct{} `type:"structure"`
+
+	// A day of a week when the maintenance will happen. use Monday/Tuesday/Wednesday/Thursday/Friday/Saturday/Sunday.
+	MaintenanceDay *string `locationName:"maintenanceDay" type:"string" enum:"MaintenanceDay"`
+
+	// A scheduled date in ISO UTC format when the maintenance will happen. Use
+	// YYYY-MM-DD format. Example: 2021-01-30.
+	MaintenanceScheduledDate *string `locationName:"maintenanceScheduledDate" type:"string"`
+
+	// UTC time when the maintenance will happen. Use 24-hour HH:MM format. Minutes
+	// must be 00. Example: 13:00. The default value is 02:00.
+	MaintenanceStartHour *string `locationName:"maintenanceStartHour" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMaintenance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMaintenance) GoString() string {
+	return s.String()
+}
+
+// SetMaintenanceDay sets the MaintenanceDay field's value.
+func (s *UpdateMaintenance) SetMaintenanceDay(v string) *UpdateMaintenance {
+	s.MaintenanceDay = &v
+	return s
+}
+
+// SetMaintenanceScheduledDate sets the MaintenanceScheduledDate field's value.
+func (s *UpdateMaintenance) SetMaintenanceScheduledDate(v string) *UpdateMaintenance {
+	s.MaintenanceScheduledDate = &v
+	return s
+}
+
+// SetMaintenanceStartHour sets the MaintenanceStartHour field's value.
+func (s *UpdateMaintenance) SetMaintenanceStartHour(v string) *UpdateMaintenance {
+	s.MaintenanceStartHour = &v
+	return s
+}
+
 // The settings for a VPC Source.
 type VpcInterface struct {
 	_ struct{} `type:"structure"`
@@ -11260,6 +11477,42 @@ func KeyType_Values() []string {
 		KeyTypeSpeke,
 		KeyTypeStaticKey,
 		KeyTypeSrtPassword,
+	}
+}
+
+const (
+	// MaintenanceDayMonday is a MaintenanceDay enum value
+	MaintenanceDayMonday = "Monday"
+
+	// MaintenanceDayTuesday is a MaintenanceDay enum value
+	MaintenanceDayTuesday = "Tuesday"
+
+	// MaintenanceDayWednesday is a MaintenanceDay enum value
+	MaintenanceDayWednesday = "Wednesday"
+
+	// MaintenanceDayThursday is a MaintenanceDay enum value
+	MaintenanceDayThursday = "Thursday"
+
+	// MaintenanceDayFriday is a MaintenanceDay enum value
+	MaintenanceDayFriday = "Friday"
+
+	// MaintenanceDaySaturday is a MaintenanceDay enum value
+	MaintenanceDaySaturday = "Saturday"
+
+	// MaintenanceDaySunday is a MaintenanceDay enum value
+	MaintenanceDaySunday = "Sunday"
+)
+
+// MaintenanceDay_Values returns all elements of the MaintenanceDay enum
+func MaintenanceDay_Values() []string {
+	return []string{
+		MaintenanceDayMonday,
+		MaintenanceDayTuesday,
+		MaintenanceDayWednesday,
+		MaintenanceDayThursday,
+		MaintenanceDayFriday,
+		MaintenanceDaySaturday,
+		MaintenanceDaySunday,
 	}
 }
 

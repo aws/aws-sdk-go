@@ -11,7 +11,10 @@
         "imageScanFindings"
       ],
       "output_token": "nextToken",
-      "result_key": "imageScanFindings.findings"
+      "result_key": [
+        "imageScanFindings.findings",
+        "imageScanFindings.enhancedFindings"
+      ]
     },
     "DescribeImages": {
       "input_token": "nextToken",

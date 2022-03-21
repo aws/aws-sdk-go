@@ -1117,6 +1117,23 @@
         }
       }
     },
+    "AddMaintenance": {
+      "type": "structure",
+      "members": {
+        "MaintenanceDay": {
+          "shape": "MaintenanceDay",
+          "locationName": "maintenanceDay"
+        },
+        "MaintenanceStartHour": {
+          "shape": "__string",
+          "locationName": "maintenanceStartHour"
+        }
+      },
+      "required": [
+        "MaintenanceDay",
+        "MaintenanceStartHour"
+      ]
+    },
     "AddMediaStreamRequest": {
       "type": "structure",
       "members": {
@@ -1313,6 +1330,10 @@
         "VpcInterfaces": {
           "shape": "__listOfVpcInterfaceRequest",
           "locationName": "vpcInterfaces"
+        },
+        "Maintenance": {
+          "shape": "AddMaintenance",
+          "locationName": "maintenance"
         }
       },
       "required": [
@@ -1700,6 +1721,10 @@
         "VpcInterfaces": {
           "shape": "__listOfVpcInterface",
           "locationName": "vpcInterfaces"
+        },
+        "Maintenance": {
+          "shape": "Maintenance",
+          "locationName": "maintenance"
         }
       },
       "required": [
@@ -2141,6 +2166,10 @@
         "Status": {
           "shape": "Status",
           "locationName": "status"
+        },
+        "Maintenance": {
+          "shape": "Maintenance",
+          "locationName": "maintenance"
         }
       },
       "required": [
@@ -2150,6 +2179,39 @@
         "AvailabilityZone",
         "FlowArn",
         "Name"
+      ]
+    },
+    "Maintenance": {
+      "type": "structure",
+      "members": {
+        "MaintenanceDay": {
+          "shape": "MaintenanceDay",
+          "locationName": "maintenanceDay"
+        },
+        "MaintenanceDeadline": {
+          "shape": "__string",
+          "locationName": "maintenanceDeadline"
+        },
+        "MaintenanceScheduledDate": {
+          "shape": "__string",
+          "locationName": "maintenanceScheduledDate"
+        },
+        "MaintenanceStartHour": {
+          "shape": "__string",
+          "locationName": "maintenanceStartHour"
+        }
+      }
+    },
+    "MaintenanceDay": {
+      "type": "string",
+      "enum": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
       ]
     },
     "MaxResults": {
@@ -3442,6 +3504,10 @@
         "SourceFailoverConfig": {
           "shape": "UpdateFailoverConfig",
           "locationName": "sourceFailoverConfig"
+        },
+        "Maintenance": {
+          "shape": "UpdateMaintenance",
+          "locationName": "maintenance"
         }
       },
       "required": [
@@ -3546,6 +3612,23 @@
         "Source": {
           "shape": "Source",
           "locationName": "source"
+        }
+      }
+    },
+    "UpdateMaintenance": {
+      "type": "structure",
+      "members": {
+        "MaintenanceDay": {
+          "shape": "MaintenanceDay",
+          "locationName": "maintenanceDay"
+        },
+        "MaintenanceScheduledDate": {
+          "shape": "__string",
+          "locationName": "maintenanceScheduledDate"
+        },
+        "MaintenanceStartHour": {
+          "shape": "__string",
+          "locationName": "maintenanceStartHour"
         }
       }
     },

@@ -290,6 +290,14 @@
         "CreateMeetingWithAttendeesRequest$NotificationsConfiguration": "<p>The configuration for resource targets to receive notifications when meeting and attendee events occur.</p>"
       }
     },
+    "PrimaryMeetingId": {
+      "base": null,
+      "refs": {
+        "CreateMeetingRequest$PrimaryMeetingId": "<p>When specified, replicates the media from the primary meeting to the new meeting.</p>",
+        "CreateMeetingWithAttendeesRequest$PrimaryMeetingId": "<p>When specified, replicates the media from the primary meeting to the new meeting.</p>",
+        "Meeting$PrimaryMeetingId": "<p>When specified, replicates the media from the primary meeting to this meeting.</p>"
+      }
+    },
     "ResultMax": {
       "base": null,
       "refs": {

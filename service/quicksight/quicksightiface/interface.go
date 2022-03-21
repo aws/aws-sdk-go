@@ -252,6 +252,10 @@ type QuickSightAPI interface {
 	DescribeGroupWithContext(aws.Context, *quicksight.DescribeGroupInput, ...request.Option) (*quicksight.DescribeGroupOutput, error)
 	DescribeGroupRequest(*quicksight.DescribeGroupInput) (*request.Request, *quicksight.DescribeGroupOutput)
 
+	DescribeGroupMembership(*quicksight.DescribeGroupMembershipInput) (*quicksight.DescribeGroupMembershipOutput, error)
+	DescribeGroupMembershipWithContext(aws.Context, *quicksight.DescribeGroupMembershipInput, ...request.Option) (*quicksight.DescribeGroupMembershipOutput, error)
+	DescribeGroupMembershipRequest(*quicksight.DescribeGroupMembershipInput) (*request.Request, *quicksight.DescribeGroupMembershipOutput)
+
 	DescribeIAMPolicyAssignment(*quicksight.DescribeIAMPolicyAssignmentInput) (*quicksight.DescribeIAMPolicyAssignmentOutput, error)
 	DescribeIAMPolicyAssignmentWithContext(aws.Context, *quicksight.DescribeIAMPolicyAssignmentInput, ...request.Option) (*quicksight.DescribeIAMPolicyAssignmentOutput, error)
 	DescribeIAMPolicyAssignmentRequest(*quicksight.DescribeIAMPolicyAssignmentInput) (*request.Request, *quicksight.DescribeIAMPolicyAssignmentOutput)
@@ -461,6 +465,10 @@ type QuickSightAPI interface {
 	SearchFolders(*quicksight.SearchFoldersInput) (*quicksight.SearchFoldersOutput, error)
 	SearchFoldersWithContext(aws.Context, *quicksight.SearchFoldersInput, ...request.Option) (*quicksight.SearchFoldersOutput, error)
 	SearchFoldersRequest(*quicksight.SearchFoldersInput) (*request.Request, *quicksight.SearchFoldersOutput)
+
+	SearchGroups(*quicksight.SearchGroupsInput) (*quicksight.SearchGroupsOutput, error)
+	SearchGroupsWithContext(aws.Context, *quicksight.SearchGroupsInput, ...request.Option) (*quicksight.SearchGroupsOutput, error)
+	SearchGroupsRequest(*quicksight.SearchGroupsInput) (*request.Request, *quicksight.SearchGroupsOutput)
 
 	TagResource(*quicksight.TagResourceInput) (*quicksight.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *quicksight.TagResourceInput, ...request.Option) (*quicksight.TagResourceOutput, error)

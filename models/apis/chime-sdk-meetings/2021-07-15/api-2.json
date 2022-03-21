@@ -309,7 +309,8 @@
         "MeetingHostId":{"shape":"ExternalUserId"},
         "ExternalMeetingId":{"shape":"ExternalMeetingId"},
         "NotificationsConfiguration":{"shape":"NotificationsConfiguration"},
-        "MeetingFeatures":{"shape":"MeetingFeaturesConfiguration"}
+        "MeetingFeatures":{"shape":"MeetingFeaturesConfiguration"},
+        "PrimaryMeetingId":{"shape":"PrimaryMeetingId"}
       }
     },
     "CreateMeetingResponse":{
@@ -336,7 +337,8 @@
         "ExternalMeetingId":{"shape":"ExternalMeetingId"},
         "MeetingFeatures":{"shape":"MeetingFeaturesConfiguration"},
         "NotificationsConfiguration":{"shape":"NotificationsConfiguration"},
-        "Attendees":{"shape":"CreateMeetingWithAttendeesRequestItemList"}
+        "Attendees":{"shape":"CreateMeetingWithAttendeesRequestItemList"},
+        "PrimaryMeetingId":{"shape":"PrimaryMeetingId"}
       }
     },
     "CreateMeetingWithAttendeesRequestItemList":{
@@ -556,7 +558,8 @@
         "ExternalMeetingId":{"shape":"ExternalMeetingId"},
         "MediaRegion":{"shape":"MediaRegion"},
         "MediaPlacement":{"shape":"MediaPlacement"},
-        "MeetingFeatures":{"shape":"MeetingFeaturesConfiguration"}
+        "MeetingFeatures":{"shape":"MeetingFeaturesConfiguration"},
+        "PrimaryMeetingId":{"shape":"PrimaryMeetingId"}
       }
     },
     "MeetingFeatureStatus":{
@@ -589,6 +592,11 @@
         "SnsTopicArn":{"shape":"Arn"},
         "SqsQueueArn":{"shape":"Arn"}
       }
+    },
+    "PrimaryMeetingId":{
+      "type":"string",
+      "max":64,
+      "min":2
     },
     "ResultMax":{
       "type":"integer",

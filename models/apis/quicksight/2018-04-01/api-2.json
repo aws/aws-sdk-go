@@ -863,6 +863,24 @@
         {"shape":"ResourceUnavailableException"}
       ]
     },
+    "DescribeGroupMembership":{
+      "name":"DescribeGroupMembership",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/namespaces/{Namespace}/groups/{GroupName}/members/{MemberName}"
+      },
+      "input":{"shape":"DescribeGroupMembershipRequest"},
+      "output":{"shape":"DescribeGroupMembershipResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
     "DescribeIAMPolicyAssignment":{
       "name":"DescribeIAMPolicyAssignment",
       "http":{
@@ -1602,6 +1620,25 @@
         {"shape":"InvalidNextTokenException"},
         {"shape":"UnsupportedUserEditionException"},
         {"shape":"InternalFailureException"}
+      ]
+    },
+    "SearchGroups":{
+      "name":"SearchGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}/namespaces/{Namespace}/groups-search"
+      },
+      "input":{"shape":"SearchGroupsRequest"},
+      "output":{"shape":"SearchGroupsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceUnavailableException"}
       ]
     },
     "TagResource":{
@@ -4612,6 +4649,48 @@
         "RequestId":{"shape":"String"}
       }
     },
+    "DescribeGroupMembershipRequest":{
+      "type":"structure",
+      "required":[
+        "MemberName",
+        "GroupName",
+        "AwsAccountId",
+        "Namespace"
+      ],
+      "members":{
+        "MemberName":{
+          "shape":"GroupMemberName",
+          "location":"uri",
+          "locationName":"MemberName"
+        },
+        "GroupName":{
+          "shape":"GroupName",
+          "location":"uri",
+          "locationName":"GroupName"
+        },
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Namespace":{
+          "shape":"Namespace",
+          "location":"uri",
+          "locationName":"Namespace"
+        }
+      }
+    },
+    "DescribeGroupMembershipResponse":{
+      "type":"structure",
+      "members":{
+        "GroupMember":{"shape":"GroupMember"},
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
     "DescribeGroupRequest":{
       "type":"structure",
       "required":[
@@ -5453,6 +5532,14 @@
       "max":512,
       "min":1
     },
+    "GroupFilterAttribute":{
+      "type":"string",
+      "enum":["GROUP_NAME"]
+    },
+    "GroupFilterOperator":{
+      "type":"string",
+      "enum":["StartsWith"]
+    },
     "GroupList":{
       "type":"list",
       "member":{"shape":"Group"}
@@ -5478,6 +5565,25 @@
       "type":"string",
       "min":1,
       "pattern":"[\\u0020-\\u00FF]+"
+    },
+    "GroupSearchFilter":{
+      "type":"structure",
+      "required":[
+        "Operator",
+        "Name",
+        "Value"
+      ],
+      "members":{
+        "Operator":{"shape":"GroupFilterOperator"},
+        "Name":{"shape":"GroupFilterAttribute"},
+        "Value":{"shape":"String"}
+      }
+    },
+    "GroupSearchFilterList":{
+      "type":"list",
+      "member":{"shape":"GroupSearchFilter"},
+      "max":1,
+      "min":1
     },
     "GutterStyle":{
       "type":"structure",
@@ -7469,6 +7575,50 @@
         "FolderSummaryList":{"shape":"FolderSummaryList"},
         "NextToken":{"shape":"String"},
         "RequestId":{"shape":"String"}
+      }
+    },
+    "SearchGroupsRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "Namespace",
+        "Filters"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "Namespace":{
+          "shape":"Namespace",
+          "location":"uri",
+          "locationName":"Namespace"
+        },
+        "Filters":{"shape":"GroupSearchFilterList"}
+      }
+    },
+    "SearchGroupsResponse":{
+      "type":"structure",
+      "members":{
+        "GroupList":{"shape":"GroupList"},
+        "NextToken":{"shape":"String"},
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
       }
     },
     "ServiceNowParameters":{

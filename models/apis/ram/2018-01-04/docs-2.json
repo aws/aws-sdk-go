@@ -21,7 +21,7 @@
     "ListPrincipals": "<p>Lists the principals that you are sharing resources with or that are sharing resources with you.</p>",
     "ListResourceSharePermissions": "<p>Lists the RAM permissions that are associated with a resource share.</p>",
     "ListResourceTypes": "<p>Lists the resource types that can be shared by RAM.</p>",
-    "ListResources": "<p>Lists the resources that you added to a resource shares or the resources that are shared with you.</p>",
+    "ListResources": "<p>Lists the resources that you added to a resource share or the resources that are shared with you.</p>",
     "PromoteResourceShareCreatedFromPolicy": "<p>When you attach a resource-based permission policy to a resource, it automatically creates a resource share. However, resource shares created this way are visible only to the resource share owner, and the resource share can't be modified in RAM.</p> <p>You can use this operation to promote the resource share to a full RAM resource share. When you promote a resource share, you can then manage the resource share in RAM and it becomes visible to all of the principals you shared it with.</p>",
     "RejectResourceShareInvitation": "<p>Rejects an invitation to a resource share from another Amazon Web Services account.</p>",
     "TagResource": "<p>Adds the specified tag keys and values to the specified resource share. The tags are attached only to the resource share, not to the resources that are in the resource share.</p>",
@@ -430,9 +430,9 @@
     "ResourceOwner": {
       "base": null,
       "refs": {
-        "GetResourceSharesRequest$resourceOwner": "<p>Specifies that you want to retrieve details of only those resource shares that match the following:</p> <ul> <li> <p> <b> <code>SELF</code> </b> – resources that you are sharing</p> </li> <li> <p> <b> <code>OTHER-ACCOUNTS</code> </b> – resources that other accounts share with you</p> </li> </ul>",
-        "ListPrincipalsRequest$resourceOwner": "<p>Specifies that you want to list information for only resource shares that match the following:</p> <ul> <li> <p> <b> <code>SELF</code> </b> – resources that you are sharing</p> </li> <li> <p> <b> <code>OTHER-ACCOUNTS</code> </b> – resources that other accounts share with you</p> </li> </ul>",
-        "ListResourcesRequest$resourceOwner": "<p>Specifies that you want to list only the resource shares that match the following:</p> <ul> <li> <p> <b> <code>SELF</code> </b> – resources that you are sharing</p> </li> <li> <p> <b> <code>OTHER-ACCOUNTS</code> </b> – resources that other accounts share with you</p> </li> </ul>"
+        "GetResourceSharesRequest$resourceOwner": "<p>Specifies that you want to retrieve details of only those resource shares that match the following:</p> <ul> <li> <p> <b> <code>SELF</code> </b> – resource shares that your account shares with other accounts</p> </li> <li> <p> <b> <code>OTHER-ACCOUNTS</code> </b> – resource shares that other accounts share with your account</p> </li> </ul>",
+        "ListPrincipalsRequest$resourceOwner": "<p>Specifies that you want to list information for only resource shares that match the following:</p> <ul> <li> <p> <b> <code>SELF</code> </b> – principals that your account is sharing resources with</p> </li> <li> <p> <b> <code>OTHER-ACCOUNTS</code> </b> – principals that are sharing resources with your account</p> </li> </ul>",
+        "ListResourcesRequest$resourceOwner": "<p>Specifies that you want to list only the resource shares that match the following:</p> <ul> <li> <p> <b> <code>SELF</code> </b> – resources that your account shares with other accounts</p> </li> <li> <p> <b> <code>OTHER-ACCOUNTS</code> </b> – resources that other accounts share with your account</p> </li> </ul>"
       }
     },
     "ResourceRegionScope": {
