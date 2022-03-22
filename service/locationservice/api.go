@@ -2675,7 +2675,7 @@ func (c *LocationService) GetDevicePositionHistoryRequest(input *GetDevicePositi
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
-			LimitToken:      "",
+			LimitToken:      "MaxResults",
 			TruncationToken: "",
 		},
 	}
@@ -10563,6 +10563,12 @@ type GetDevicePositionHistoryInput struct {
 	//    * The time specified for EndTimeExclusive must be after the time for StartTimeInclusive.
 	EndTimeExclusive *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// An optional limit for the number of device positions returned in a single
+	// call.
+	//
+	// Default value: 100
+	MaxResults *int64 `min:"1" type:"integer"`
+
 	// The pagination token specifying which page of results to return in the response.
 	// If no token is provided, the default page is the first page.
 	//
@@ -10611,6 +10617,9 @@ func (s *GetDevicePositionHistoryInput) Validate() error {
 	if s.DeviceId != nil && len(*s.DeviceId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DeviceId", 1))
 	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
 	if s.NextToken != nil && len(*s.NextToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
 	}
@@ -10636,6 +10645,12 @@ func (s *GetDevicePositionHistoryInput) SetDeviceId(v string) *GetDevicePosition
 // SetEndTimeExclusive sets the EndTimeExclusive field's value.
 func (s *GetDevicePositionHistoryInput) SetEndTimeExclusive(v time.Time) *GetDevicePositionHistoryInput {
 	s.EndTimeExclusive = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetDevicePositionHistoryInput) SetMaxResults(v int64) *GetDevicePositionHistoryInput {
+	s.MaxResults = &v
 	return s
 }
 

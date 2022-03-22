@@ -376,7 +376,8 @@
         "sv-SE",
         "tr-TR",
         "en-NZ",
-        "en-ZA"
+        "en-ZA",
+        "ca-ES"
       ]
     },
     "LanguageCodeList":{
@@ -829,7 +830,8 @@
         "Zeina",
         "Zhiyu",
         "Aria",
-        "Ayanda"
+        "Ayanda",
+        "Arlet"
       ]
     },
     "VoiceList":{

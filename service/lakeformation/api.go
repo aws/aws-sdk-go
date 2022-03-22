@@ -13916,17 +13916,8 @@ const (
 	// PermissionCreateTag is a Permission enum value
 	PermissionCreateTag = "CREATE_TAG"
 
-	// PermissionAlterTag is a Permission enum value
-	PermissionAlterTag = "ALTER_TAG"
-
-	// PermissionDeleteTag is a Permission enum value
-	PermissionDeleteTag = "DELETE_TAG"
-
-	// PermissionDescribeTag is a Permission enum value
-	PermissionDescribeTag = "DESCRIBE_TAG"
-
-	// PermissionAssociateTag is a Permission enum value
-	PermissionAssociateTag = "ASSOCIATE_TAG"
+	// PermissionAssociate is a Permission enum value
+	PermissionAssociate = "ASSOCIATE"
 )
 
 // Permission_Values returns all elements of the Permission enum
@@ -13943,10 +13934,7 @@ func Permission_Values() []string {
 		PermissionCreateTable,
 		PermissionDataLocationAccess,
 		PermissionCreateTag,
-		PermissionAlterTag,
-		PermissionDeleteTag,
-		PermissionDescribeTag,
-		PermissionAssociateTag,
+		PermissionAssociate,
 	}
 }
 

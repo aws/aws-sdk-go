@@ -689,6 +689,12 @@
       "refs": {
       }
     },
+    "GetDevicePositionHistoryRequestMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "GetDevicePositionHistoryRequest$MaxResults": "<p>An optional limit for the number of device positions returned in a single call.</p> <p>Default value: <code>100</code> </p>"
+      }
+    },
     "GetDevicePositionHistoryResponse": {
       "base": null,
       "refs": {

@@ -173,9 +173,21 @@ type CostExplorerAPI interface {
 	ListCostCategoryDefinitionsPages(*costexplorer.ListCostCategoryDefinitionsInput, func(*costexplorer.ListCostCategoryDefinitionsOutput, bool) bool) error
 	ListCostCategoryDefinitionsPagesWithContext(aws.Context, *costexplorer.ListCostCategoryDefinitionsInput, func(*costexplorer.ListCostCategoryDefinitionsOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*costexplorer.ListTagsForResourceInput) (*costexplorer.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *costexplorer.ListTagsForResourceInput, ...request.Option) (*costexplorer.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*costexplorer.ListTagsForResourceInput) (*request.Request, *costexplorer.ListTagsForResourceOutput)
+
 	ProvideAnomalyFeedback(*costexplorer.ProvideAnomalyFeedbackInput) (*costexplorer.ProvideAnomalyFeedbackOutput, error)
 	ProvideAnomalyFeedbackWithContext(aws.Context, *costexplorer.ProvideAnomalyFeedbackInput, ...request.Option) (*costexplorer.ProvideAnomalyFeedbackOutput, error)
 	ProvideAnomalyFeedbackRequest(*costexplorer.ProvideAnomalyFeedbackInput) (*request.Request, *costexplorer.ProvideAnomalyFeedbackOutput)
+
+	TagResource(*costexplorer.TagResourceInput) (*costexplorer.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *costexplorer.TagResourceInput, ...request.Option) (*costexplorer.TagResourceOutput, error)
+	TagResourceRequest(*costexplorer.TagResourceInput) (*request.Request, *costexplorer.TagResourceOutput)
+
+	UntagResource(*costexplorer.UntagResourceInput) (*costexplorer.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *costexplorer.UntagResourceInput, ...request.Option) (*costexplorer.UntagResourceOutput, error)
+	UntagResourceRequest(*costexplorer.UntagResourceInput) (*request.Request, *costexplorer.UntagResourceOutput)
 
 	UpdateAnomalyMonitor(*costexplorer.UpdateAnomalyMonitorInput) (*costexplorer.UpdateAnomalyMonitorOutput, error)
 	UpdateAnomalyMonitorWithContext(aws.Context, *costexplorer.UpdateAnomalyMonitorInput, ...request.Option) (*costexplorer.UpdateAnomalyMonitorOutput, error)

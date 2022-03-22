@@ -373,6 +373,19 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "ProvideAnomalyFeedback":{
       "name":"ProvideAnomalyFeedback",
       "http":{
@@ -382,6 +395,33 @@
       "input":{"shape":"ProvideAnomalyFeedbackRequest"},
       "output":{"shape":"ProvideAnomalyFeedbackResponse"},
       "errors":[
+        {"shape":"LimitExceededException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
         {"shape":"LimitExceededException"}
       ]
     },
@@ -813,7 +853,8 @@
       "type":"structure",
       "required":["AnomalyMonitor"],
       "members":{
-        "AnomalyMonitor":{"shape":"AnomalyMonitor"}
+        "AnomalyMonitor":{"shape":"AnomalyMonitor"},
+        "ResourceTags":{"shape":"ResourceTagList"}
       }
     },
     "CreateAnomalyMonitorResponse":{
@@ -827,7 +868,8 @@
       "type":"structure",
       "required":["AnomalySubscription"],
       "members":{
-        "AnomalySubscription":{"shape":"AnomalySubscription"}
+        "AnomalySubscription":{"shape":"AnomalySubscription"},
+        "ResourceTags":{"shape":"ResourceTagList"}
       }
     },
     "CreateAnomalySubscriptionResponse":{
@@ -849,7 +891,8 @@
         "RuleVersion":{"shape":"CostCategoryRuleVersion"},
         "Rules":{"shape":"CostCategoryRulesList"},
         "DefaultValue":{"shape":"CostCategoryValue"},
-        "SplitChargeRules":{"shape":"CostCategorySplitChargeRulesList"}
+        "SplitChargeRules":{"shape":"CostCategorySplitChargeRulesList"},
+        "ResourceTags":{"shape":"ResourceTagList"}
       }
     },
     "CreateCostCategoryDefinitionResponse":{
@@ -1673,6 +1716,19 @@
         "NextToken":{"shape":"NextPageToken"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"Arn"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceTags":{"shape":"ResourceTagList"}
+      }
+    },
     "LookbackPeriodInDays":{
       "type":"string",
       "enum":[
@@ -2013,9 +2069,45 @@
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"ErrorMessage"}
+        "Message":{"shape":"ErrorMessage"},
+        "ResourceName":{"shape":"Arn"}
       },
       "exception":true
+    },
+    "ResourceTag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"ResourceTagKey"},
+        "Value":{"shape":"ResourceTagValue"}
+      }
+    },
+    "ResourceTagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "ResourceTagKeyList":{
+      "type":"list",
+      "member":{"shape":"ResourceTagKey"},
+      "max":200,
+      "min":0
+    },
+    "ResourceTagList":{
+      "type":"list",
+      "member":{"shape":"ResourceTag"},
+      "max":200,
+      "min":0
+    },
+    "ResourceTagValue":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "ResourceUtilization":{
       "type":"structure",
@@ -2362,6 +2454,22 @@
       "type":"list",
       "member":{"shape":"Entity"}
     },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "ResourceTags"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"Arn"},
+        "ResourceTags":{"shape":"ResourceTagList"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "TagValues":{
       "type":"structure",
       "members":{
@@ -2404,6 +2512,14 @@
         "CurrencyCode":{"shape":"GenericString"}
       }
     },
+    "TooManyTagsException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"},
+        "ResourceName":{"shape":"Arn"}
+      },
+      "exception":true
+    },
     "TotalActualHours":{"type":"string"},
     "TotalActualUnits":{"type":"string"},
     "TotalAmortizedFee":{"type":"string"},
@@ -2443,6 +2559,22 @@
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "ResourceTagKeys"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"Arn"},
+        "ResourceTagKeys":{"shape":"ResourceTagKeyList"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UnusedHours":{"type":"string"},
     "UnusedUnits":{"type":"string"},

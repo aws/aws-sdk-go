@@ -3518,7 +3518,7 @@ type SynthesizeSpeechOutput struct {
 	//    audio/pcm in a signed 16-bit, 1 channel (mono), little-endian format.
 	//
 	//    * If you request json as the OutputFormat, the ContentType returned is
-	//    audio/json.
+	//    application/x-json-stream.
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
 
 	// Number of characters synthesized.
@@ -3978,6 +3978,9 @@ const (
 
 	// LanguageCodeEnZa is a LanguageCode enum value
 	LanguageCodeEnZa = "en-ZA"
+
+	// LanguageCodeCaEs is a LanguageCode enum value
+	LanguageCodeCaEs = "ca-ES"
 )
 
 // LanguageCode_Values returns all elements of the LanguageCode enum
@@ -4014,6 +4017,7 @@ func LanguageCode_Values() []string {
 		LanguageCodeTrTr,
 		LanguageCodeEnNz,
 		LanguageCodeEnZa,
+		LanguageCodeCaEs,
 	}
 }
 
@@ -4300,6 +4304,9 @@ const (
 
 	// VoiceIdAyanda is a VoiceId enum value
 	VoiceIdAyanda = "Ayanda"
+
+	// VoiceIdArlet is a VoiceId enum value
+	VoiceIdArlet = "Arlet"
 )
 
 // VoiceId_Values returns all elements of the VoiceId enum
@@ -4370,5 +4377,6 @@ func VoiceId_Values() []string {
 		VoiceIdZhiyu,
 		VoiceIdAria,
 		VoiceIdAyanda,
+		VoiceIdArlet,
 	}
 }
