@@ -2528,6 +2528,89 @@ func (c *CostExplorer) ListCostCategoryDefinitionsPagesWithContext(ctx aws.Conte
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/ListTagsForResource
+func (c *CostExplorer) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for AWS Cost Explorer Service.
+//
+// Returns a list of resource tags associated with the resource specified by
+// the Amazon Resource Name (ARN).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified ARN in the request doesn't exist.
+//
+//   * LimitExceededException
+//   You made too many calls in a short period of time. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/ListTagsForResource
+func (c *CostExplorer) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opProvideAnomalyFeedback = "ProvideAnomalyFeedback"
 
 // ProvideAnomalyFeedbackRequest generates a "aws/request.Request" representing the
@@ -2607,6 +2690,186 @@ func (c *CostExplorer) ProvideAnomalyFeedbackWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/TagResource
+func (c *CostExplorer) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for AWS Cost Explorer Service.
+//
+// An API operation for adding one or more tags (key-value pairs) to a resource.
+//
+// You can use the TagResource operation with a resource that already has tags.
+// If you specify a new tag key for the resource, this tag is appended to the
+// list of tags associated with the resource. If you specify a tag key that
+// is already associated with the resource, the new tag value you specify replaces
+// the previous value for that tag.
+//
+// Although the maximum number of array members is 200, user-tag maximum is
+// 50. The remaining are reserved for Amazon Web Services use.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified ARN in the request doesn't exist.
+//
+//   * TooManyTagsException
+//   Can occur if you specify a number of tags for a resource greater than the
+//   maximum 50 user tags per resource.
+//
+//   * LimitExceededException
+//   You made too many calls in a short period of time. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/TagResource
+func (c *CostExplorer) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/UntagResource
+func (c *CostExplorer) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for AWS Cost Explorer Service.
+//
+// Removes one or more tags from a resource. Specify only tag key(s) in your
+// request. Do not specify the value.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified ARN in the request doesn't exist.
+//
+//   * LimitExceededException
+//   You made too many calls in a short period of time. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/UntagResource
+func (c *CostExplorer) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateAnomalyMonitor = "UpdateAnomalyMonitor"
 
 // UpdateAnomalyMonitorRequest generates a "aws/request.Request" representing the
@@ -2652,7 +2915,7 @@ func (c *CostExplorer) UpdateAnomalyMonitorRequest(input *UpdateAnomalyMonitorIn
 // UpdateAnomalyMonitor API operation for AWS Cost Explorer Service.
 //
 // Updates an existing cost anomaly monitor. The changes made are applied going
-// forward, and doesn'tt change anomalies detected in the past.
+// forward, and doesn't change anomalies detected in the past.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4370,6 +4633,30 @@ type CreateAnomalyMonitorInput struct {
 	//
 	// AnomalyMonitor is a required field
 	AnomalyMonitor *AnomalyMonitor `type:"structure" required:"true"`
+
+	// An optional list of tags to associate with the specified AnomalyMonitor (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_AnomalyMonitor.html).
+	// You can use resource tags to control access to your monitor using IAM policies.
+	//
+	// Each tag consists of a key and a value, and each key must be unique for the
+	// resource. The following restrictions apply to resource tags:
+	//
+	//    * Although the maximum number of array members is 200, you can assign
+	//    a maximum of 50 user-tags to one resource. The remaining are reserved
+	//    for Amazon Web Services use
+	//
+	//    * The maximum length of a key is 128 characters
+	//
+	//    * The maximum length of a value is 256 characters
+	//
+	//    * Valid characters for keys and values are: A-Z, a-z, spaces, _.:/=+-
+	//
+	//    * Keys and values are case sensitive
+	//
+	//    * Keys and values are trimmed for any leading or trailing whitespaces
+	//
+	//    * Don’t use aws: as a prefix for your keys. This prefix is reserved
+	//    for Amazon Web Services use
+	ResourceTags []*ResourceTag `type:"list"`
 }
 
 // String returns the string representation.
@@ -4401,6 +4688,16 @@ func (s *CreateAnomalyMonitorInput) Validate() error {
 			invalidParams.AddNested("AnomalyMonitor", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ResourceTags != nil {
+		for i, v := range s.ResourceTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ResourceTags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4411,6 +4708,12 @@ func (s *CreateAnomalyMonitorInput) Validate() error {
 // SetAnomalyMonitor sets the AnomalyMonitor field's value.
 func (s *CreateAnomalyMonitorInput) SetAnomalyMonitor(v *AnomalyMonitor) *CreateAnomalyMonitorInput {
 	s.AnomalyMonitor = v
+	return s
+}
+
+// SetResourceTags sets the ResourceTags field's value.
+func (s *CreateAnomalyMonitorInput) SetResourceTags(v []*ResourceTag) *CreateAnomalyMonitorInput {
+	s.ResourceTags = v
 	return s
 }
 
@@ -4454,6 +4757,32 @@ type CreateAnomalySubscriptionInput struct {
 	//
 	// AnomalySubscription is a required field
 	AnomalySubscription *AnomalySubscription `type:"structure" required:"true"`
+
+	// An optional list of tags to associate with the specified AnomalySubscription
+	// (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_AnomalySubscription.html).
+	// You can use resource tags to control access to your subscription using IAM
+	// policies.
+	//
+	// Each tag consists of a key and a value, and each key must be unique for the
+	// resource. The following restrictions apply to resource tags:
+	//
+	//    * Although the maximum number of array members is 200, you can assign
+	//    a maximum of 50 user-tags to one resource. The remaining are reserved
+	//    for Amazon Web Services use
+	//
+	//    * The maximum length of a key is 128 characters
+	//
+	//    * The maximum length of a value is 256 characters
+	//
+	//    * Valid characters for keys and values are: A-Z, a-z, spaces, _.:/=+-
+	//
+	//    * Keys and values are case sensitive
+	//
+	//    * Keys and values are trimmed for any leading or trailing whitespaces
+	//
+	//    * Don’t use aws: as a prefix for your keys. This prefix is reserved
+	//    for Amazon Web Services use
+	ResourceTags []*ResourceTag `type:"list"`
 }
 
 // String returns the string representation.
@@ -4485,6 +4814,16 @@ func (s *CreateAnomalySubscriptionInput) Validate() error {
 			invalidParams.AddNested("AnomalySubscription", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ResourceTags != nil {
+		for i, v := range s.ResourceTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ResourceTags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4495,6 +4834,12 @@ func (s *CreateAnomalySubscriptionInput) Validate() error {
 // SetAnomalySubscription sets the AnomalySubscription field's value.
 func (s *CreateAnomalySubscriptionInput) SetAnomalySubscription(v *AnomalySubscription) *CreateAnomalySubscriptionInput {
 	s.AnomalySubscription = v
+	return s
+}
+
+// SetResourceTags sets the ResourceTags field's value.
+func (s *CreateAnomalySubscriptionInput) SetResourceTags(v []*ResourceTag) *CreateAnomalySubscriptionInput {
+	s.ResourceTags = v
 	return s
 }
 
@@ -4541,6 +4886,31 @@ type CreateCostCategoryDefinitionInput struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// An optional list of tags to associate with the specified CostCategory (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CostCategory.html).
+	// You can use resource tags to control access to your cost category using IAM
+	// policies.
+	//
+	// Each tag consists of a key and a value, and each key must be unique for the
+	// resource. The following restrictions apply to resource tags:
+	//
+	//    * Although the maximum number of array members is 200, you can assign
+	//    a maximum of 50 user-tags to one resource. The remaining are reserved
+	//    for Amazon Web Services use
+	//
+	//    * The maximum length of a key is 128 characters
+	//
+	//    * The maximum length of a value is 256 characters
+	//
+	//    * Valid characters for keys and values are: A-Z, a-z, spaces, _.:/=+-
+	//
+	//    * Keys and values are case sensitive
+	//
+	//    * Keys and values are trimmed for any leading or trailing whitespaces
+	//
+	//    * Don’t use aws: as a prefix for your keys. This prefix is reserved
+	//    for Amazon Web Services use
+	ResourceTags []*ResourceTag `type:"list"`
 
 	// The rule schema version in this particular Cost Category.
 	//
@@ -4600,6 +4970,16 @@ func (s *CreateCostCategoryDefinitionInput) Validate() error {
 	if s.SplitChargeRules != nil && len(s.SplitChargeRules) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SplitChargeRules", 1))
 	}
+	if s.ResourceTags != nil {
+		for i, v := range s.ResourceTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ResourceTags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Rules != nil {
 		for i, v := range s.Rules {
 			if v == nil {
@@ -4636,6 +5016,12 @@ func (s *CreateCostCategoryDefinitionInput) SetDefaultValue(v string) *CreateCos
 // SetName sets the Name field's value.
 func (s *CreateCostCategoryDefinitionInput) SetName(v string) *CreateCostCategoryDefinitionInput {
 	s.Name = &v
+	return s
+}
+
+// SetResourceTags sets the ResourceTags field's value.
+func (s *CreateCostCategoryDefinitionInput) SetResourceTags(v []*ResourceTag) *CreateCostCategoryDefinitionInput {
+	s.ResourceTags = v
 	return s
 }
 
@@ -6512,11 +6898,10 @@ type GetCostAndUsageInput struct {
 	// to define any combination of dimension filters. For more information, see
 	// Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html).
 	//
-	// Valid values for MatchOptions for CostCategories and Tags are EQUALS, ABSENT,
-	// and CASE_SENSITIVE.
+	// Valid values for MatchOptions for Dimensions are EQUALS and CASE_SENSITIVE.
 	//
-	// The default values are EQUALS and CASE_SENSITIVE. Valid values for MatchOptions
-	// for Dimensions are EQUALS and CASE_SENSITIVE.
+	// Valid values for MatchOptions for CostCategories and Tags are EQUALS, ABSENT,
+	// and CASE_SENSITIVE. Default values are EQUALS and CASE_SENSITIVE.
 	Filter *Expression `type:"structure"`
 
 	// Sets the Amazon Web Services cost granularity to MONTHLY or DAILY, or HOURLY.
@@ -6729,11 +7114,10 @@ type GetCostAndUsageWithResourcesInput struct {
 	// by or filter by a ResourceId. It requires the Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// "SERVICE = Amazon Elastic Compute Cloud - Compute" in the filter.
 	//
-	// Valid values for MatchOptions for CostCategories and Tags are EQUALS, ABSENT,
-	// and CASE_SENSITIVE.
+	// Valid values for MatchOptions for Dimensions are EQUALS and CASE_SENSITIVE.
 	//
-	// The default values are EQUALS and CASE_SENSITIVE. Valid values for MatchOptions
-	// for Dimensions are EQUALS and CASE_SENSITIVE.
+	// Valid values for MatchOptions for CostCategories and Tags are EQUALS, ABSENT,
+	// and CASE_SENSITIVE. Default values are EQUALS and CASE_SENSITIVE.
 	//
 	// Filter is a required field
 	Filter *Expression `type:"structure" required:"true"`
@@ -10533,6 +10917,87 @@ func (s *ListCostCategoryDefinitionsOutput) SetNextToken(v string) *ListCostCate
 	return s
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource. For a list of supported resources,
+	// see ResourceTag (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_ResourceTag.html).
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of tag key value pairs that are associated with the response.
+	ResourceTags []*ResourceTag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourceTags sets the ResourceTags field's value.
+func (s *ListTagsForResourceOutput) SetResourceTags(v []*ResourceTag) *ListTagsForResourceOutput {
+	s.ResourceTags = v
+	return s
+}
+
 // The aggregated value for a metric.
 type MetricValue struct {
 	_ struct{} `type:"structure"`
@@ -11726,6 +12191,8 @@ type ResourceNotFoundException struct {
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
+
+	ResourceName *string `min:"20" type:"string"`
 }
 
 // String returns the string representation.
@@ -11771,7 +12238,7 @@ func (s *ResourceNotFoundException) OrigErr() error {
 }
 
 func (s *ResourceNotFoundException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -11782,6 +12249,75 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The tag structure that contains a tag key and value.
+//
+// Tagging is supported only for the following Cost Explorer resource types:
+// AnomalyMonitor (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_AnomalyMonitor.html),
+// AnomalySubscription (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_AnomalySubscription.html),
+// CostCategory (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CostCategory.html).
+type ResourceTag struct {
+	_ struct{} `type:"structure"`
+
+	// The key that is associated with the tag.
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// The value that is associated with the tag.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceTag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceTag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResourceTag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResourceTag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *ResourceTag) SetKey(v string) *ResourceTag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ResourceTag) SetValue(v string) *ResourceTag {
+	s.Value = &v
+	return s
 }
 
 // Resource utilization of current resource.
@@ -13401,6 +13937,122 @@ func (s *Subscriber) SetType(v string) *Subscriber {
 	return s
 }
 
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource. For a list of supported resources,
+	// see ResourceTag (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_ResourceTag.html).
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"20" type:"string" required:"true"`
+
+	// A list of tag key-value pairs to be added to the resource.
+	//
+	// Each tag consists of a key and a value, and each key must be unique for the
+	// resource. The following restrictions apply to resource tags:
+	//
+	//    * Although the maximum number of array members is 200, you can assign
+	//    a maximum of 50 user-tags to one resource. The remaining are reserved
+	//    for Amazon Web Services use
+	//
+	//    * The maximum length of a key is 128 characters
+	//
+	//    * The maximum length of a value is 256 characters
+	//
+	//    * Valid characters for keys and values are: A-Z, a-z, spaces, _.:/=+-
+	//
+	//    * Keys and values are case sensitive
+	//
+	//    * Keys and values are trimmed for any leading or trailing whitespaces
+	//
+	//    * Don’t use aws: as a prefix for your keys. This prefix is reserved
+	//    for Amazon Web Services use
+	//
+	// ResourceTags is a required field
+	ResourceTags []*ResourceTag `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 20))
+	}
+	if s.ResourceTags == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceTags"))
+	}
+	if s.ResourceTags != nil {
+		for i, v := range s.ResourceTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ResourceTags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceTags sets the ResourceTags field's value.
+func (s *TagResourceInput) SetResourceTags(v []*ResourceTag) *TagResourceInput {
+	s.ResourceTags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // The values that are available for a tag.
 //
 // If Values and Key aren't specified, the ABSENT MatchOption is applied to
@@ -13590,6 +14242,73 @@ func (s *TerminateRecommendationDetail) SetCurrencyCode(v string) *TerminateReco
 func (s *TerminateRecommendationDetail) SetEstimatedMonthlySavings(v string) *TerminateRecommendationDetail {
 	s.EstimatedMonthlySavings = &v
 	return s
+}
+
+// Can occur if you specify a number of tags for a resource greater than the
+// maximum 50 user tags per resource.
+type TooManyTagsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	ResourceName *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagsException) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyTagsException(v protocol.ResponseMetadata) error {
+	return &TooManyTagsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TooManyTagsException) Code() string {
+	return "TooManyTagsException"
+}
+
+// Message returns the exception's message.
+func (s *TooManyTagsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TooManyTagsException) OrigErr() error {
+	return nil
+}
+
+func (s *TooManyTagsException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TooManyTagsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TooManyTagsException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Filters cost anomalies based on the total impact.
@@ -13853,6 +14572,95 @@ func (s *UnresolvableUsageUnitException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *UnresolvableUsageUnitException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource. For a list of supported resources,
+	// see ResourceTag (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_ResourceTag.html).
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"20" type:"string" required:"true"`
+
+	// A list of tag keys associated with tags that need to be removed from the
+	// resource. If you specify a tag key that does not exist, it is ignored. Although
+	// the maximum number of array members is 200, user-tag maximum is 50. The remaining
+	// are reserved for Amazon Web Services use.
+	//
+	// ResourceTagKeys is a required field
+	ResourceTagKeys []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 20))
+	}
+	if s.ResourceTagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceTagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceTagKeys sets the ResourceTagKeys field's value.
+func (s *UntagResourceInput) SetResourceTagKeys(v []*string) *UntagResourceInput {
+	s.ResourceTagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateAnomalyMonitorInput struct {

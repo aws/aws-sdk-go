@@ -1,3 +1,15 @@
+Release v1.43.23 (2022-03-22)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/ecs`: Updates service documentation
+  * Documentation only update to address tickets
+* `service/lakeformation`: Updates service API
+* `service/location`: Updates service API, documentation, and paginators
+* `service/polly`: Updates service API and documentation
+  * Amazon Polly adds new Catalan voice - Arlet. Arlet is available as Neural voice only.
+
 Release v1.43.22 (2022-03-21)
 ===
 

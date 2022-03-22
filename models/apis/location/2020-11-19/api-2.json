@@ -2074,6 +2074,7 @@
           "locationName":"DeviceId"
         },
         "EndTimeExclusive":{"shape":"Timestamp"},
+        "MaxResults":{"shape":"GetDevicePositionHistoryRequestMaxResultsInteger"},
         "NextToken":{"shape":"Token"},
         "StartTimeInclusive":{"shape":"Timestamp"},
         "TrackerName":{
@@ -2082,6 +2083,12 @@
           "locationName":"TrackerName"
         }
       }
+    },
+    "GetDevicePositionHistoryRequestMaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
     },
     "GetDevicePositionHistoryResponse":{
       "type":"structure",
