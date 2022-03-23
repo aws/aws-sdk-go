@@ -31402,6 +31402,10 @@ type RestoreFromClusterSnapshotInput struct {
 	// The elastic IP (EIP) address for the cluster.
 	ElasticIp *string `type:"string"`
 
+	// Enables support for restoring an unencrypted snapshot to a cluster encrypted
+	// with Key Management Service (KMS) and a CMK.
+	Encrypted *bool `type:"boolean"`
+
 	// An option that specifies whether to create the cluster with enhanced VPC
 	// routing enabled. To create a cluster that uses enhanced VPC routing, the
 	// cluster must be in a VPC. For more information, see Enhanced VPC Routing
@@ -31430,8 +31434,13 @@ type RestoreFromClusterSnapshotInput struct {
 	// in the Amazon Redshift Cluster Management Guide.
 	IamRoles []*string `locationNameList:"IamRoleArn" type:"list"`
 
-	// The Key Management Service (KMS) key ID of the encryption key that you want
-	// to use to encrypt data in the cluster that you restore from a shared snapshot.
+	// The Key Management Service (KMS) key ID of the encryption key to encrypt
+	// data in the cluster restored from a shared snapshot. You can also provide
+	// the key ID when you restore from an unencrypted snapshot to an encrypted
+	// cluster in the same account. Additionally, you can specify a new KMS key
+	// ID when you restore from an encrypted snapshot in the same account in order
+	// to change it. In that case, the restored cluster is encrypted with the new
+	// KMS key ID.
 	KmsKeyId *string `type:"string"`
 
 	// The name of the maintenance track for the restored cluster. When you take
@@ -31631,6 +31640,12 @@ func (s *RestoreFromClusterSnapshotInput) SetDefaultIamRoleArn(v string) *Restor
 // SetElasticIp sets the ElasticIp field's value.
 func (s *RestoreFromClusterSnapshotInput) SetElasticIp(v string) *RestoreFromClusterSnapshotInput {
 	s.ElasticIp = &v
+	return s
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *RestoreFromClusterSnapshotInput) SetEncrypted(v bool) *RestoreFromClusterSnapshotInput {
+	s.Encrypted = &v
 	return s
 }
 

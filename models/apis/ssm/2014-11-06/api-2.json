@@ -9211,7 +9211,8 @@
         "Parameter",
         "PatchBaseline",
         "OpsItem",
-        "OpsMetadata"
+        "OpsMetadata",
+        "Automation"
       ]
     },
     "ResponseCode":{"type":"integer"},

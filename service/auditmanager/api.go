@@ -16977,7 +16977,7 @@ type UpdateSettingsInput struct {
 
 	// The Amazon Simple Notification Service (Amazon SNS) topic that Audit Manager
 	// sends notifications to.
-	SnsTopic *string `locationName:"snsTopic" min:"20" type:"string"`
+	SnsTopic *string `locationName:"snsTopic" min:"4" type:"string"`
 }
 
 // String returns the string representation.
@@ -17004,8 +17004,8 @@ func (s *UpdateSettingsInput) Validate() error {
 	if s.KmsKey != nil && len(*s.KmsKey) < 7 {
 		invalidParams.Add(request.NewErrParamMinLen("KmsKey", 7))
 	}
-	if s.SnsTopic != nil && len(*s.SnsTopic) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("SnsTopic", 20))
+	if s.SnsTopic != nil && len(*s.SnsTopic) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("SnsTopic", 4))
 	}
 	if s.DefaultAssessmentReportsDestination != nil {
 		if err := s.DefaultAssessmentReportsDestination.Validate(); err != nil {
