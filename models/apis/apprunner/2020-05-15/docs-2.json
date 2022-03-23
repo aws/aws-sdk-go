@@ -663,7 +663,7 @@
     "OperationType": {
       "base": null,
       "refs": {
-        "OperationSummary$Type": "<p>The type of operation. It indicates a specific action that occured.</p>"
+        "OperationSummary$Type": "<p>The type of operation. It indicates a specific action that occurred.</p>"
       }
     },
     "PauseServiceRequest": {

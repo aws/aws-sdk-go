@@ -85,7 +85,7 @@ func (c *LookoutForVision) CreateDatasetRequest(input *CreateDatasetInput) (req 
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -203,7 +203,7 @@ func (c *LookoutForVision) CreateModelRequest(input *CreateModelInput) (req *req
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -308,7 +308,7 @@ func (c *LookoutForVision) CreateProjectRequest(input *CreateProjectInput) (req 
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -425,7 +425,7 @@ func (c *LookoutForVision) DeleteDatasetRequest(input *DeleteDatasetInput) (req 
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -529,7 +529,7 @@ func (c *LookoutForVision) DeleteModelRequest(input *DeleteModelInput) (req *req
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -635,7 +635,7 @@ func (c *LookoutForVision) DeleteProjectRequest(input *DeleteProjectInput) (req 
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -734,7 +734,7 @@ func (c *LookoutForVision) DescribeDatasetRequest(input *DescribeDatasetInput) (
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -833,7 +833,7 @@ func (c *LookoutForVision) DescribeModelRequest(input *DescribeModelInput) (req 
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -935,7 +935,7 @@ func (c *LookoutForVision) DescribeModelPackagingJobRequest(input *DescribeModel
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ResourceNotFoundException
@@ -1031,7 +1031,7 @@ func (c *LookoutForVision) DescribeProjectRequest(input *DescribeProjectInput) (
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -1139,7 +1139,7 @@ func (c *LookoutForVision) DetectAnomaliesRequest(input *DetectAnomaliesInput) (
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -1246,7 +1246,7 @@ func (c *LookoutForVision) ListDatasetEntriesRequest(input *ListDatasetEntriesIn
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -1406,7 +1406,7 @@ func (c *LookoutForVision) ListModelPackagingJobsRequest(input *ListModelPackagi
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ResourceNotFoundException
@@ -1563,7 +1563,7 @@ func (c *LookoutForVision) ListModelsRequest(input *ListModelsInput) (req *reque
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -1723,7 +1723,7 @@ func (c *LookoutForVision) ListProjectsRequest(input *ListProjectsInput) (req *r
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -1875,7 +1875,7 @@ func (c *LookoutForVision) ListTagsForResourceRequest(input *ListTagsForResource
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -1984,7 +1984,7 @@ func (c *LookoutForVision) StartModelRequest(input *StartModelInput) (req *reque
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -2113,7 +2113,7 @@ func (c *LookoutForVision) StartModelPackagingJobRequest(input *StartModelPackag
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -2220,7 +2220,7 @@ func (c *LookoutForVision) StopModelRequest(input *StopModelInput) (req *request
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -2322,7 +2322,7 @@ func (c *LookoutForVision) TagResourceRequest(input *TagResourceInput) (req *req
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -2429,7 +2429,7 @@ func (c *LookoutForVision) UntagResourceRequest(input *UntagResourceInput) (req 
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -2544,7 +2544,7 @@ func (c *LookoutForVision) UpdateDatasetEntriesRequest(input *UpdateDatasetEntri
 //   Amazon Lookout for Vision experienced a service issue. Try your call again.
 //
 //   * ValidationException
-//   An input validation error occured. For example, invalid characters in a project
+//   An input validation error occurred. For example, invalid characters in a project
 //   name, or if a pagination token is invalid.
 //
 //   * ConflictException
@@ -7318,7 +7318,7 @@ func (s *UpdateDatasetEntriesOutput) SetStatus(v string) *UpdateDatasetEntriesOu
 	return s
 }
 
-// An input validation error occured. For example, invalid characters in a project
+// An input validation error occurred. For example, invalid characters in a project
 // name, or if a pagination token is invalid.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`

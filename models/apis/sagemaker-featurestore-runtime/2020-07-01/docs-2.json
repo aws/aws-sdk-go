@@ -22,7 +22,7 @@
     "BatchGetRecordErrors": {
       "base": null,
       "refs": {
-        "BatchGetRecordResponse$Errors": "<p>A list of errors that have occured when retrieving a batch of Records.</p>"
+        "BatchGetRecordResponse$Errors": "<p>A list of errors that have occurred when retrieving a batch of Records.</p>"
       }
     },
     "BatchGetRecordIdentifier": {
@@ -113,7 +113,7 @@
       "base": null,
       "refs": {
         "AccessForbidden$Message": null,
-        "BatchGetRecordError$ErrorMessage": "<p>The error message of an error that has occured when attempting to retrieve a record in the batch.</p>",
+        "BatchGetRecordError$ErrorMessage": "<p>The error message of an error that has occurred when attempting to retrieve a record in the batch.</p>",
         "InternalFailure$Message": null,
         "ResourceNotFound$Message": null,
         "ServiceUnavailable$Message": null,
@@ -165,7 +165,7 @@
       "refs": {
         "BatchGetRecordError$FeatureGroupName": "<p>The name of the feature group that the record belongs to.</p>",
         "BatchGetRecordError$RecordIdentifierValueAsString": "<p>The value for the <code>RecordIdentifier</code> in string format of a Record from a <code>FeatureGroup</code> that is causing an error when attempting to be retrieved.</p>",
-        "BatchGetRecordError$ErrorCode": "<p>The error code of an error that has occured when attempting to retrieve a batch of Records. For more information on errors, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_feature_store_GetRecord.html#API_feature_store_GetRecord_Errors\"> Errors</a>.</p>",
+        "BatchGetRecordError$ErrorCode": "<p>The error code of an error that has occurred when attempting to retrieve a batch of Records. For more information on errors, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_feature_store_GetRecord.html#API_feature_store_GetRecord_Errors\"> Errors</a>.</p>",
         "BatchGetRecordResultDetail$FeatureGroupName": "<p>The <code>FeatureGroupName</code> containing Records you retrieved in a batch.</p>",
         "BatchGetRecordResultDetail$RecordIdentifierValueAsString": "<p>The value of the record identifer in string format.</p>",
         "DeleteRecordRequest$RecordIdentifierValueAsString": "<p>The value for the <code>RecordIdentifier</code> that uniquely identifies the record, in string format. </p>",

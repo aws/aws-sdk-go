@@ -50,7 +50,7 @@ const (
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
-	// An input validation error occured. For example, invalid characters in a project
+	// An input validation error occurred. For example, invalid characters in a project
 	// name, or if a pagination token is invalid.
 	ErrCodeValidationException = "ValidationException"
 )

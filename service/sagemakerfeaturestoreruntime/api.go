@@ -449,13 +449,13 @@ func (s *AccessForbidden) RequestID() string {
 type BatchGetRecordError struct {
 	_ struct{} `type:"structure"`
 
-	// The error code of an error that has occured when attempting to retrieve a
+	// The error code of an error that has occurred when attempting to retrieve a
 	// batch of Records. For more information on errors, see Errors (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_feature_store_GetRecord.html#API_feature_store_GetRecord_Errors).
 	//
 	// ErrorCode is a required field
 	ErrorCode *string `type:"string" required:"true"`
 
-	// The error message of an error that has occured when attempting to retrieve
+	// The error message of an error that has occurred when attempting to retrieve
 	// a record in the batch.
 	//
 	// ErrorMessage is a required field
@@ -659,7 +659,7 @@ func (s *BatchGetRecordInput) SetIdentifiers(v []*BatchGetRecordIdentifier) *Bat
 type BatchGetRecordOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of errors that have occured when retrieving a batch of Records.
+	// A list of errors that have occurred when retrieving a batch of Records.
 	//
 	// Errors is a required field
 	Errors []*BatchGetRecordError `type:"list" required:"true"`

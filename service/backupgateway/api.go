@@ -2500,7 +2500,7 @@ type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// A description of which internal error occured.
+	// A description of which internal error occurred.
 	ErrorCode *string `type:"string"`
 
 	Message_ *string `locationName:"Message" type:"string"`

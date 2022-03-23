@@ -7756,7 +7756,7 @@ func (c *Rekognition) UpdateDatasetEntriesRequest(input *UpdateDatasetEntriesInp
 // a while to complete. Use DescribeDataset to check the current status. The
 // dataset updated successfully if the value of Status is UPDATE_COMPLETE.
 //
-// To check if any non-terminal errors occured, call ListDatasetEntries and
+// To check if any non-terminal errors occurred, call ListDatasetEntries and
 // check for the presence of errors lists in the JSON Lines.
 //
 // Dataset update fails if a terminal error occurs (Status = UPDATE_FAILED).

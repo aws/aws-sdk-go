@@ -2936,7 +2936,7 @@ type GetDocumentAnalysisOutput struct {
 	NextToken *string `min:"1" type:"string"`
 
 	// Returns if the detection job could not be completed. Contains explanation
-	// for what error occured.
+	// for what error occurred.
 	StatusMessage *string `type:"string"`
 
 	// A list of warnings that occurred during the document-analysis operation.
@@ -3103,7 +3103,7 @@ type GetDocumentTextDetectionOutput struct {
 	NextToken *string `min:"1" type:"string"`
 
 	// Returns if the detection job could not be completed. Contains explanation
-	// for what error occured.
+	// for what error occurred.
 	StatusMessage *string `type:"string"`
 
 	// A list of warnings that occurred during the text-detection operation for
@@ -3272,7 +3272,7 @@ type GetExpenseAnalysisOutput struct {
 	NextToken *string `min:"1" type:"string"`
 
 	// Returns if the detection job could not be completed. Contains explanation
-	// for what error occured.
+	// for what error occurred.
 	StatusMessage *string `type:"string"`
 
 	// A list of warnings that occurred during the text-detection operation for

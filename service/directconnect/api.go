@@ -7743,7 +7743,7 @@ type CreateConnectionInput struct {
 	// Indicates whether you want the connection to support MAC Security (MACsec).
 	//
 	// MAC Security (MACsec) is only available on dedicated connections. For information
-	// about MAC Security (MACsec) prerequisties, see MACsec prerequisties (https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-mac-sec-getting-started.html#mac-sec-prerequisites)
+	// about MAC Security (MACsec) prerequisite, see MACsec prerequisite (https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-mac-sec-getting-started.html#mac-sec-prerequisites)
 	// in the Direct Connect User Guide.
 	RequestMACSec *bool `locationName:"requestMACSec" type:"boolean"`
 
@@ -8315,7 +8315,7 @@ type CreateLagInput struct {
 	// Indicates whether the connection will support MAC Security (MACsec).
 	//
 	// All connections in the LAG must be capable of supporting MAC Security (MACsec).
-	// For information about MAC Security (MACsec) prerequisties, see MACsec prerequisties
+	// For information about MAC Security (MACsec) prerequisite, see MACsec prerequisite
 	// (https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-mac-sec-getting-started.html#mac-sec-prerequisites)
 	// in the Direct Connect User Guide.
 	RequestMACSec *bool `locationName:"requestMACSec" type:"boolean"`

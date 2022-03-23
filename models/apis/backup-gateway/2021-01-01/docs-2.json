@@ -449,7 +449,7 @@
         "AccessDeniedException$Message": null,
         "ConflictException$ErrorCode": "<p>A description of why the operation is not supported.</p>",
         "ConflictException$Message": null,
-        "InternalServerException$ErrorCode": "<p>A description of which internal error occured.</p>",
+        "InternalServerException$ErrorCode": "<p>A description of which internal error occurred.</p>",
         "InternalServerException$Message": null,
         "ResourceNotFoundException$ErrorCode": "<p>A description of which resource wasn't found.</p>",
         "ResourceNotFoundException$Message": null,

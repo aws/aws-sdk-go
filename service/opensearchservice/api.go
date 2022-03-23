@@ -77,7 +77,7 @@ func (c *OpenSearchService) AcceptInboundConnectionRequest(input *AcceptInboundC
 //   Gives http status code of 409.
 //
 //   * DisabledOperationException
-//   An error occured because the client wanted to access a not supported operation.
+//   An error occurred because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/AcceptInboundConnection
@@ -452,7 +452,7 @@ func (c *OpenSearchService) CreateDomainRequest(input *CreateDomainInput) (req *
 //   An error occurred while processing the request.
 //
 //   * DisabledOperationException
-//   An error occured because the client wanted to access a not supported operation.
+//   An error occurred because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 //   * InternalException
@@ -567,7 +567,7 @@ func (c *OpenSearchService) CreateOutboundConnectionRequest(input *CreateOutboun
 //   code of 400.
 //
 //   * DisabledOperationException
-//   An error occured because the client wanted to access a not supported operation.
+//   An error occurred because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/CreateOutboundConnection
@@ -849,7 +849,7 @@ func (c *OpenSearchService) DeleteInboundConnectionRequest(input *DeleteInboundC
 //   http status code of 400.
 //
 //   * DisabledOperationException
-//   An error occured because the client wanted to access a not supported operation.
+//   An error occurred because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DeleteInboundConnection
@@ -934,7 +934,7 @@ func (c *OpenSearchService) DeleteOutboundConnectionRequest(input *DeleteOutboun
 //   http status code of 400.
 //
 //   * DisabledOperationException
-//   An error occured because the client wanted to access a not supported operation.
+//   An error occurred because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DeleteOutboundConnection
@@ -1644,7 +1644,7 @@ func (c *OpenSearchService) DescribeInboundConnectionsRequest(input *DescribeInb
 //   by customer. Returns an HTTP status code of 400.
 //
 //   * DisabledOperationException
-//   An error occured because the client wanted to access a not supported operation.
+//   An error occurred because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeInboundConnections
@@ -1888,7 +1888,7 @@ func (c *OpenSearchService) DescribeOutboundConnectionsRequest(input *DescribeOu
 //   by customer. Returns an HTTP status code of 400.
 //
 //   * DisabledOperationException
-//   An error occured because the client wanted to access a not supported operation.
+//   An error occurred because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeOutboundConnections
@@ -2189,7 +2189,7 @@ func (c *OpenSearchService) DescribeReservedInstanceOfferingsRequest(input *Desc
 //   400.
 //
 //   * DisabledOperationException
-//   An error occured because the client wanted to access a not supported operation.
+//   An error occurred because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 //   * InternalException
@@ -2345,7 +2345,7 @@ func (c *OpenSearchService) DescribeReservedInstancesRequest(input *DescribeRese
 //   400.
 //
 //   * DisabledOperationException
-//   An error occured because the client wanted to access a not supported operation.
+//   An error occurred because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeReservedInstances
@@ -2586,7 +2586,7 @@ func (c *OpenSearchService) GetCompatibleVersionsRequest(input *GetCompatibleVer
 //   http status code of 400.
 //
 //   * DisabledOperationException
-//   An error occured because the client wanted to access a not supported operation.
+//   An error occurred because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 //   * ValidationException
@@ -2843,7 +2843,7 @@ func (c *OpenSearchService) GetUpgradeHistoryRequest(input *GetUpgradeHistoryInp
 //   http status code of 400.
 //
 //   * DisabledOperationException
-//   An error occured because the client wanted to access a not supported operation.
+//   An error occurred because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 //   * ValidationException
@@ -2992,7 +2992,7 @@ func (c *OpenSearchService) GetUpgradeStatusRequest(input *GetUpgradeStatusInput
 //   http status code of 400.
 //
 //   * DisabledOperationException
-//   An error occured because the client wanted to access a not supported operation.
+//   An error occurred because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 //   * ValidationException
@@ -3874,7 +3874,7 @@ func (c *OpenSearchService) PurchaseReservedInstanceOfferingRequest(input *Purch
 //   Gives http status code of 409.
 //
 //   * DisabledOperationException
-//   An error occured because the client wanted to access a not supported operation.
+//   An error occurred because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 //   * ValidationException
@@ -3968,7 +3968,7 @@ func (c *OpenSearchService) RejectInboundConnectionRequest(input *RejectInboundC
 //   http status code of 400.
 //
 //   * DisabledOperationException
-//   An error occured because the client wanted to access a not supported operation.
+//   An error occurred because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/RejectInboundConnection
@@ -4442,7 +4442,7 @@ func (c *OpenSearchService) UpgradeDomainRequest(input *UpgradeDomainInput) (req
 //   code of 400.
 //
 //   * DisabledOperationException
-//   An error occured because the client wanted to access a not supported operation.
+//   An error occurred because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 //   * ValidationException
@@ -8602,7 +8602,7 @@ func (s *DescribeReservedInstancesOutput) SetReservedInstances(v []*ReservedInst
 	return s
 }
 
-// An error occured because the client wanted to access a not supported operation.
+// An error occurred because the client wanted to access a not supported operation.
 // Gives http status code of 409.
 type DisabledOperationException struct {
 	_            struct{}                  `type:"structure"`

@@ -6548,7 +6548,7 @@ type OperationSummary struct {
 	// (for example, an App Runner service).
 	TargetArn *string `min:"1" type:"string"`
 
-	// The type of operation. It indicates a specific action that occured.
+	// The type of operation. It indicates a specific action that occurred.
 	Type *string `type:"string" enum:"OperationType"`
 
 	// The time when the operation was last updated. It's in the Unix time stamp

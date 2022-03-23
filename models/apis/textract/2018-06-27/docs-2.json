@@ -641,9 +641,9 @@
     "StatusMessage": {
       "base": null,
       "refs": {
-        "GetDocumentAnalysisResponse$StatusMessage": "<p>Returns if the detection job could not be completed. Contains explanation for what error occured.</p>",
-        "GetDocumentTextDetectionResponse$StatusMessage": "<p>Returns if the detection job could not be completed. Contains explanation for what error occured. </p>",
-        "GetExpenseAnalysisResponse$StatusMessage": "<p>Returns if the detection job could not be completed. Contains explanation for what error occured. </p>"
+        "GetDocumentAnalysisResponse$StatusMessage": "<p>Returns if the detection job could not be completed. Contains explanation for what error occurred.</p>",
+        "GetDocumentTextDetectionResponse$StatusMessage": "<p>Returns if the detection job could not be completed. Contains explanation for what error occurred. </p>",
+        "GetExpenseAnalysisResponse$StatusMessage": "<p>Returns if the detection job could not be completed. Contains explanation for what error occurred. </p>"
       }
     },
     "String": {
