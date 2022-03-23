@@ -254,7 +254,7 @@
       "members":{
         "Message":{"shape":"ErrorMessage"}
       },
-      "error":{"httpStatusCode":503},
+      "error":{"httpStatusCode":409},
       "exception":true
     },
     "DataLength":{"type":"integer"},
@@ -506,7 +506,8 @@
       "type":"string",
       "enum":[
         "ACCOUNT_THROTTLED",
-        "DEPENDENCY_REQUEST_THROTTLED"
+        "DEPENDENCY_REQUEST_THROTTLED",
+        "RESOURCE_LEVEL_THROTTLE"
       ]
     },
     "ResourceNotFoundException":{
@@ -600,7 +601,7 @@
     "TagValue":{
       "type":"string",
       "max":255,
-      "pattern":"^[\\S\\s]+$"
+      "pattern":"^[\\S\\s]*$"
     },
     "Tags":{
       "type":"list",
@@ -609,7 +610,7 @@
     "TimeStamp":{"type":"timestamp"},
     "Timeout":{
       "type":"integer",
-      "max":60,
+      "max":4320,
       "min":10
     },
     "ValidationException":{
@@ -634,7 +635,8 @@
         "INVALID_TAG",
         "INVALID_DEPENDENCY_REQUEST",
         "INVALID_PARAMETER_VALUE",
-        "INVALID_VOLUME_SIZE"
+        "INVALID_VOLUME_SIZE",
+        "CONFLICTING_BLOCK_UPDATE"
       ]
     },
     "VolumeSize":{

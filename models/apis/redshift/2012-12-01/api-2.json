@@ -5778,7 +5778,8 @@
         "AquaConfigurationStatus":{"shape":"AquaConfigurationStatus"},
         "DefaultIamRoleArn":{"shape":"String"},
         "ReservedNodeId":{"shape":"String"},
-        "TargetReservedNodeOfferingId":{"shape":"String"}
+        "TargetReservedNodeOfferingId":{"shape":"String"},
+        "Encrypted":{"shape":"BooleanOptional"}
       }
     },
     "RestoreFromClusterSnapshotResult":{

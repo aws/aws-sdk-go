@@ -1,3 +1,19 @@
+Release v1.43.24 (2022-03-23)
+===
+
+### Service Client Updates
+* `service/auditmanager`: Updates service API
+* `service/ebs`: Updates service API and documentation
+* `service/elasticache`: Updates service documentation
+  * Doc only update for ElastiCache
+* `service/gamesparks`: Adds new service
+* `service/redshift`: Updates service API and documentation
+  * This release adds a new [--encrypted | --no-encrypted] field in restore-from-cluster-snapshot API. Customers can now restore an unencrypted snapshot to a cluster encrypted with AWS Managed Key or their own KMS key.
+* `service/ssm`: Updates service API and documentation
+  * Update AddTagsToResource, ListTagsForResource, and RemoveTagsFromResource APIs to reflect the support for tagging Automation resources. Includes other minor documentation updates.
+* `service/transfer`: Updates service documentation
+  * Documentation updates for AWS Transfer Family to describe how to remove an associated workflow from a server.
+
 Release v1.43.23 (2022-03-22)
 ===
 

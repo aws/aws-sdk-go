@@ -59,13 +59,13 @@ func (c *SSM) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *requ
 // AddTagsToResource API operation for Amazon Simple Systems Manager (SSM).
 //
 // Adds or overwrites one or more tags for the specified resource. Tags are
-// metadata that you can assign to your documents, managed nodes, maintenance
-// windows, Parameter Store parameters, and patch baselines. Tags enable you
-// to categorize your resources in different ways, for example, by purpose,
-// owner, or environment. Each tag consists of a key and an optional value,
-// both of which you define. For example, you could define a set of tags for
-// your account's managed nodes that helps you track each node's owner and stack
-// level. For example:
+// metadata that you can assign to your automations, documents, managed nodes,
+// maintenance windows, Parameter Store parameters, and patch baselines. Tags
+// enable you to categorize your resources in different ways, for example, by
+// purpose, owner, or environment. Each tag consists of a key and an optional
+// value, both of which you define. For example, you could define a set of tags
+// for your account's managed nodes that helps you track each node's owner and
+// stack level. For example:
 //
 //    * Key=Owner,Value=DbAdmin
 //
@@ -79,7 +79,8 @@ func (c *SSM) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *requ
 //
 //    * Key=Stack,Value=Test
 //
-// Each resource can have a maximum of 50 tags.
+// Most resources can have a maximum of 50 tags. Automations can have a maximum
+// of 5 tags.
 //
 // We recommend that you devise a set of tag keys that meets your needs for
 // each resource type. Using a consistent set of tag keys makes it easier for
@@ -15765,6 +15766,8 @@ type AddTagsToResourceInput struct {
 	// MaintenanceWindow: mw-012345abcde
 	//
 	// PatchBaseline: pb-012345abcde
+	//
+	// Automation: example-c160-4567-8519-012345abcde
 	//
 	// OpsMetadata object: ResourceID for tagging is created from the Amazon Resource
 	// Name (ARN) for the object. Specifically, ResourceID is created from the strings
@@ -33744,7 +33747,7 @@ func (s *GetParametersOutput) SetParameters(v []*Parameter) *GetParametersOutput
 type GetPatchBaselineForPatchGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns he operating system rule specified for patch groups using the patch
+	// Returns the operating system rule specified for patch groups using the patch
 	// baseline.
 	OperatingSystem *string `type:"string" enum:"OperatingSystem"`
 
@@ -48488,13 +48491,10 @@ type PutParameterInput struct {
 	// Systems Manager parameters (https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-su-create.html)
 	// in the Amazon Web Services Systems Manager User Guide.
 	//
-	// The maximum length constraint listed below includes capacity for additional
-	// system attributes that aren't part of the name. The maximum length for a
-	// parameter name, including the full length of the parameter ARN, is 1011 characters.
-	// For example, the length of the following parameter name is 65 characters,
-	// not 20 characters:
-	//
-	// arn:aws:ssm:us-east-2:111122223333:parameter/ExampleParameterName
+	// The maximum length constraint of 2048 characters listed below includes 1037
+	// characters reserved for internal use by Systems Manager. The maximum length
+	// for a parameter name that you create is 1011 characters. This includes the
+	// characters in the ARN that precede the name you specify, such as arn:aws:ssm:us-east-2:111122223333:parameter/.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -49654,6 +49654,8 @@ type RemoveTagsFromResourceInput struct {
 	// ManagedInstance: mi-012345abcde
 	//
 	// MaintenanceWindow: mw-012345abcde
+	//
+	// Automation: example-c160-4567-8519-012345abcde
 	//
 	// PatchBaseline: pb-012345abcde
 	//
@@ -52670,7 +52672,7 @@ type StartAutomationExecutionInput struct {
 	//
 	//    * Key=OS,Value=Windows
 	//
-	// To add tags to an existing patch baseline, use the AddTagsToResource operation.
+	// To add tags to an existing automation, use the AddTagsToResource operation.
 	Tags []*Tag `type:"list"`
 
 	// A location is a combination of Amazon Web Services Regions and/or Amazon
@@ -53127,7 +53129,8 @@ type StartSessionInput struct {
 	// launched by default.
 	DocumentName *string `type:"string"`
 
-	// Reserved for future use.
+	// The values you want to specify for the parameters defined in the Session
+	// document.
 	Parameters map[string][]*string `type:"map"`
 
 	// The reason for connecting to the instance. This value is included in the
@@ -59928,6 +59931,9 @@ const (
 
 	// ResourceTypeForTaggingOpsMetadata is a ResourceTypeForTagging enum value
 	ResourceTypeForTaggingOpsMetadata = "OpsMetadata"
+
+	// ResourceTypeForTaggingAutomation is a ResourceTypeForTagging enum value
+	ResourceTypeForTaggingAutomation = "Automation"
 )
 
 // ResourceTypeForTagging_Values returns all elements of the ResourceTypeForTagging enum
@@ -59940,6 +59946,7 @@ func ResourceTypeForTagging_Values() []string {
 		ResourceTypeForTaggingPatchBaseline,
 		ResourceTypeForTaggingOpsItem,
 		ResourceTypeForTaggingOpsMetadata,
+		ResourceTypeForTaggingAutomation,
 	}
 }
 
