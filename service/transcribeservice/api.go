@@ -4426,7 +4426,7 @@ type CallAnalyticsJob struct {
 	// following media formats are supported: MP3, MP4, WAV, FLAC, OGG, and WebM.
 	MediaFormat *string `type:"string" enum:"MediaFormat"`
 
-	// The sample rate, in Hertz, of the audio.
+	// The sample rate, in Hertz, of the input audio.
 	MediaSampleRateHertz *int64 `min:"8000" type:"integer"`
 
 	// Provides information about the settings used to run a transcription job.
@@ -10627,6 +10627,8 @@ type StartTranscriptionJobInput struct {
 	// Set this field to true to enable automatic language identification. Automatic
 	// language identification is disabled by default. You receive a BadRequestException
 	// error if you enter a value for a LanguageCode.
+	//
+	// You must include either LanguageCode or IdentifyLanguage in your request.
 	IdentifyLanguage *bool `type:"boolean"`
 
 	// Provides information about how a transcription job is executed. Use this
@@ -10639,7 +10641,8 @@ type StartTranscriptionJobInput struct {
 	// pairs, that provide an added layer of security for your data.
 	KMSEncryptionContext map[string]*string `min:"1" type:"map"`
 
-	// The language code for the language used in the input media file.
+	// The language code for the language used in the input media file. You must
+	// include either LanguageCode or IdentifyLanguage in your request.
 	//
 	// To transcribe speech in Modern Standard Arabic (ar-SA), your audio or video
 	// file must be encoded at a sample rate of 16,000 Hz or higher.
@@ -10977,7 +10980,7 @@ func (s *StartTranscriptionJobInput) SetTranscriptionJobName(v string) *StartTra
 type StartTranscriptionJobOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An object containing details of the asynchronous transcription job.
+	// Provides information about your asynchronous transcription job.
 	TranscriptionJob *TranscriptionJob `type:"structure"`
 }
 
@@ -11005,12 +11008,21 @@ func (s *StartTranscriptionJobOutput) SetTranscriptionJob(v *TranscriptionJob) *
 	return s
 }
 
-// Generate subtitles for your batch transcription job.
+// Generate subtitles for your batch transcription job. Note that your subtitle
+// files are placed in the same location as your transcription output.
 type Subtitles struct {
 	_ struct{} `type:"structure"`
 
-	// Specify the output format for your subtitle file.
+	// Specify the output format for your subtitle file; if you select both srt
+	// and vtt formats, two output files are generated.
 	Formats []*string `type:"list" enum:"SubtitleFormat"`
+
+	// Defines the starting value that is assigned to the first subtitle segment.
+	//
+	// The default start index for Amazon Transcribe is 0, which differs from the
+	// more widely used standard of 1. If you're uncertain which value to use, we
+	// recommend choosing 1, as this may improve compatibility with other services.
+	OutputStartIndex *int64 `type:"integer"`
 }
 
 // String returns the string representation.
@@ -11037,14 +11049,25 @@ func (s *Subtitles) SetFormats(v []*string) *Subtitles {
 	return s
 }
 
-// Choose the output format for your subtitle file and the S3 location where
-// you want your file saved.
+// SetOutputStartIndex sets the OutputStartIndex field's value.
+func (s *Subtitles) SetOutputStartIndex(v int64) *Subtitles {
+	s.OutputStartIndex = &v
+	return s
+}
+
+// The S3 location where your subtitle files are located. Note that your subtitle
+// files are placed in the same location as your transcription output. Refer
+// to TranscriptFileUri to download your files.
 type SubtitlesOutput_ struct {
 	_ struct{} `type:"structure"`
 
-	// Specify the output format for your subtitle file; if you select both SRT
-	// and VTT formats, two output files are generated.
+	// The format of your subtitle files. If your request specified both srt and
+	// vtt formats, both formats are shown.
 	Formats []*string `type:"list" enum:"SubtitleFormat"`
+
+	// Shows the output start index value for your subtitle files. If you did not
+	// specify a value in your request, the default value of 0 is used.
+	OutputStartIndex *int64 `type:"integer"`
 
 	// Contains the output location for your subtitle file. This location must be
 	// an S3 bucket.
@@ -11072,6 +11095,12 @@ func (s SubtitlesOutput_) GoString() string {
 // SetFormats sets the Formats field's value.
 func (s *SubtitlesOutput_) SetFormats(v []*string) *SubtitlesOutput_ {
 	s.Formats = v
+	return s
+}
+
+// SetOutputStartIndex sets the OutputStartIndex field's value.
+func (s *SubtitlesOutput_) SetOutputStartIndex(v int64) *SubtitlesOutput_ {
+	s.OutputStartIndex = &v
 	return s
 }
 

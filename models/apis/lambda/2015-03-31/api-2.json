@@ -1334,7 +1334,8 @@
         "FileSystemConfigs":{"shape":"FileSystemConfigList"},
         "ImageConfig":{"shape":"ImageConfig"},
         "CodeSigningConfigArn":{"shape":"CodeSigningConfigArn"},
-        "Architectures":{"shape":"ArchitecturesList"}
+        "Architectures":{"shape":"ArchitecturesList"},
+        "EphemeralStorage":{"shape":"EphemeralStorage"}
       }
     },
     "Date":{"type":"timestamp"},
@@ -1632,6 +1633,18 @@
       "value":{"shape":"EnvironmentVariableValue"},
       "sensitive":true
     },
+    "EphemeralStorage":{
+      "type":"structure",
+      "required":["Size"],
+      "members":{
+        "Size":{"shape":"EphemeralStorageSize"}
+      }
+    },
+    "EphemeralStorageSize":{
+      "type":"integer",
+      "max":10240,
+      "min":512
+    },
     "EventSourceMappingConfiguration":{
       "type":"structure",
       "members":{
@@ -1776,7 +1789,8 @@
         "ImageConfigResponse":{"shape":"ImageConfigResponse"},
         "SigningProfileVersionArn":{"shape":"Arn"},
         "SigningJobArn":{"shape":"Arn"},
-        "Architectures":{"shape":"ArchitecturesList"}
+        "Architectures":{"shape":"ArchitecturesList"},
+        "EphemeralStorage":{"shape":"EphemeralStorage"}
       }
     },
     "FunctionEventInvokeConfig":{
@@ -3625,7 +3639,8 @@
         "RevisionId":{"shape":"String"},
         "Layers":{"shape":"LayerList"},
         "FileSystemConfigs":{"shape":"FileSystemConfigList"},
-        "ImageConfig":{"shape":"ImageConfig"}
+        "ImageConfig":{"shape":"ImageConfig"},
+        "EphemeralStorage":{"shape":"EphemeralStorage"}
       }
     },
     "UpdateFunctionEventInvokeConfigRequest":{

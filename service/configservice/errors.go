@@ -31,7 +31,7 @@ const (
 	//    * For PutConfigRule, the Lambda function cannot be invoked. Check the
 	//    function ARN, and check the function's permissions.
 	//
-	//    * For PutOrganizationConfigRule, organization config rule cannot be created
+	//    * For PutOrganizationConfigRule, organization Config rule cannot be created
 	//    because you do not have permissions to call IAM GetRole action or create
 	//    a service linked role.
 	//
@@ -177,7 +177,7 @@ const (
 	// ErrCodeMaxNumberOfOrganizationConfigRulesExceededException for service response error code
 	// "MaxNumberOfOrganizationConfigRulesExceededException".
 	//
-	// You have reached the limit of the number of organization config rules you
+	// You have reached the limit of the number of organization Config rules you
 	// can create.
 	ErrCodeMaxNumberOfOrganizationConfigRulesExceededException = "MaxNumberOfOrganizationConfigRulesExceededException"
 
@@ -230,8 +230,9 @@ const (
 	// ErrCodeNoSuchConfigRuleException for service response error code
 	// "NoSuchConfigRuleException".
 	//
-	// One or more Config rules in the request are invalid. Verify that the rule
-	// names are correct and try again.
+	// The Config rule in the request is not valid. Verify that the rule is an Config
+	// Custom Policy rule, that the rule name is correct, and that valid Amazon
+	// Resouce Names (ARNs) are used before trying again.
 	ErrCodeNoSuchConfigRuleException = "NoSuchConfigRuleException"
 
 	// ErrCodeNoSuchConfigRuleInConformancePackException for service response error code
@@ -267,7 +268,9 @@ const (
 	// ErrCodeNoSuchOrganizationConfigRuleException for service response error code
 	// "NoSuchOrganizationConfigRuleException".
 	//
-	// You specified one or more organization config rules that do not exist.
+	// The Config rule in the request is not valid. Verify that the rule is an organization
+	// Config Custom Policy rule, that the rule name is correct, and that valid
+	// Amazon Resouce Names (ARNs) are used before trying again.
 	ErrCodeNoSuchOrganizationConfigRuleException = "NoSuchOrganizationConfigRuleException"
 
 	// ErrCodeNoSuchOrganizationConformancePackException for service response error code
@@ -374,10 +377,10 @@ const (
 	//    and Config cannot delete this rule. Delete the remediation action associated
 	//    with the rule before deleting the rule and try your request again later.
 	//
-	//    * For PutConfigOrganizationRule, organization config rule deletion is
+	//    * For PutConfigOrganizationRule, organization Config rule deletion is
 	//    in progress. Try your request again later.
 	//
-	//    * For DeleteOrganizationConfigRule, organization config rule creation
+	//    * For DeleteOrganizationConfigRule, organization Config rule creation
 	//    is in progress. Try your request again later.
 	//
 	//    * For PutConformancePack and PutOrganizationConformancePack, a conformance
