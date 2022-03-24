@@ -79,7 +79,7 @@
         "Settings$ShowSpeakerLabels": "<p>Determines whether the transcription job uses speaker recognition to identify different speakers in the input audio. Speaker recognition labels individual speakers in the audio file. If you set the <code>ShowSpeakerLabels</code> field to true, you must also set the maximum number of speaker labels <code>MaxSpeakerLabels</code> field.</p> <p>You can't set both <code>ShowSpeakerLabels</code> and <code>ChannelIdentification</code> in the same request. If you set both, your request returns a <code>BadRequestException</code>.</p>",
         "Settings$ChannelIdentification": "<p>Instructs Amazon Transcribe to process each audio channel separately and then merge the transcription output of each channel into a single transcription.</p> <p>Amazon Transcribe also produces a transcription of each item detected on an audio channel, including the start time and end time of the item and alternative transcriptions of the item including the confidence that Amazon Transcribe has in the transcription.</p> <p>You can't set both <code>ShowSpeakerLabels</code> and <code>ChannelIdentification</code> in the same request. If you set both, your request returns a <code>BadRequestException</code>.</p>",
         "Settings$ShowAlternatives": "<p>Determines whether the transcription contains alternative transcriptions. If you set the <code>ShowAlternatives</code> field to true, you must also set the maximum number of alternatives to return in the <code>MaxAlternatives</code> field.</p>",
-        "StartTranscriptionJobRequest$IdentifyLanguage": "<p>Set this field to <code>true</code> to enable automatic language identification. Automatic language identification is disabled by default. You receive a <code>BadRequestException</code> error if you enter a value for a <code>LanguageCode</code>.</p>",
+        "StartTranscriptionJobRequest$IdentifyLanguage": "<p>Set this field to <code>true</code> to enable automatic language identification. Automatic language identification is disabled by default. You receive a <code>BadRequestException</code> error if you enter a value for a <code>LanguageCode</code>.</p> <p>You must include either <code>LanguageCode</code> or <code>IdentifyLanguage</code> in your request.</p>",
         "TranscriptFilter$Negate": "<p>If <code>TRUE</code>, the rule that you specify is applied to everything except for the phrases that you specify.</p>",
         "TranscriptionJob$IdentifyLanguage": "<p>A value that shows if automatic language identification was enabled for a transcription job.</p>",
         "TranscriptionJobSummary$IdentifyLanguage": "<p>Whether automatic language identification was enabled for a transcription job.</p>"
@@ -509,7 +509,7 @@
         "MedicalTranscriptionJob$LanguageCode": "<p>The language code for the language spoken in the source audio file. US English (en-US) is the only supported language for medical transcriptions. Any other value you enter for language code results in a <code>BadRequestException</code> error.</p>",
         "MedicalTranscriptionJobSummary$LanguageCode": "<p>The language of the transcript in the source audio file.</p>",
         "StartMedicalTranscriptionJobRequest$LanguageCode": "<p>The language code for the language spoken in the input media file. US English (en-US) is the valid value for medical transcription jobs. Any other value you enter for language code results in a <code>BadRequestException</code> error.</p>",
-        "StartTranscriptionJobRequest$LanguageCode": "<p>The language code for the language used in the input media file.</p> <p>To transcribe speech in Modern Standard Arabic (ar-SA), your audio or video file must be encoded at a sample rate of 16,000 Hz or higher.</p>",
+        "StartTranscriptionJobRequest$LanguageCode": "<p>The language code for the language used in the input media file. You must include either <code>LanguageCode</code> or <code>IdentifyLanguage</code> in your request.</p> <p>To transcribe speech in Modern Standard Arabic (ar-SA), your audio or video file must be encoded at a sample rate of 16,000 Hz or higher.</p>",
         "TranscriptionJob$LanguageCode": "<p>The language code for the input speech.</p>",
         "TranscriptionJobSummary$LanguageCode": "<p>The language code for the input speech.</p>",
         "UpdateMedicalVocabularyRequest$LanguageCode": "<p>The language code of the language used for the entries in the updated vocabulary. U.S. English (en-US) is the only valid language code in Amazon Transcribe Medical.</p>",
@@ -696,7 +696,7 @@
     "MediaSampleRateHertz": {
       "base": null,
       "refs": {
-        "CallAnalyticsJob$MediaSampleRateHertz": "<p>The sample rate, in Hertz, of the audio.</p>",
+        "CallAnalyticsJob$MediaSampleRateHertz": "<p>The sample rate, in Hertz, of the input audio.</p>",
         "StartTranscriptionJobRequest$MediaSampleRateHertz": "<p>The sample rate, in Hertz, of the audio track in the input media file. </p> <p>If you do not specify the media sample rate, Amazon Transcribe determines the sample rate. If you specify the sample rate, it must match the sample rate detected by Amazon Transcribe. In most cases, you should leave the <code>MediaSampleRateHertz</code> field blank and let Amazon Transcribe determine the sample rate.</p>",
         "TranscriptionJob$MediaSampleRateHertz": "<p>The sample rate, in Hertz (Hz), of the audio track in the input media file.</p>"
       }
@@ -1016,18 +1016,25 @@
     "SubtitleFormats": {
       "base": null,
       "refs": {
-        "Subtitles$Formats": "<p>Specify the output format for your subtitle file.</p>",
-        "SubtitlesOutput$Formats": "<p>Specify the output format for your subtitle file; if you select both SRT and VTT formats, two output files are generated.</p>"
+        "Subtitles$Formats": "<p>Specify the output format for your subtitle file; if you select both <code>srt</code> and <code>vtt</code> formats, two output files are generated.</p>",
+        "SubtitlesOutput$Formats": "<p>The format of your subtitle files. If your request specified both <code>srt</code> and <code>vtt</code> formats, both formats are shown.</p>"
+      }
+    },
+    "SubtitleOutputStartIndex": {
+      "base": null,
+      "refs": {
+        "Subtitles$OutputStartIndex": "<p>Defines the starting value that is assigned to the first subtitle segment.</p> <p>The default start index for Amazon Transcribe is <code>0</code>, which differs from the more widely used standard of <code>1</code>. If you're uncertain which value to use, we recommend choosing <code>1</code>, as this may improve compatibility with other services.</p>",
+        "SubtitlesOutput$OutputStartIndex": "<p>Shows the output start index value for your subtitle files. If you did not specify a value in your request, the default value of <code>0</code> is used.</p>"
       }
     },
     "Subtitles": {
-      "base": "<p>Generate subtitles for your batch transcription job.</p>",
+      "base": "<p>Generate subtitles for your batch transcription job. Note that your subtitle files are placed in the same location as your transcription output.</p>",
       "refs": {
         "StartTranscriptionJobRequest$Subtitles": "<p>Add subtitles to your batch transcription job.</p>"
       }
     },
     "SubtitlesOutput": {
-      "base": "<p>Choose the output format for your subtitle file and the S3 location where you want your file saved.</p>",
+      "base": "<p>The S3 location where your subtitle files are located. Note that your subtitle files are placed in the same location as your transcription output. Refer to <code>TranscriptFileUri</code> to download your files.</p>",
       "refs": {
         "TranscriptionJob$Subtitles": "<p>Generate subtitles for your batch transcription job.</p>"
       }
@@ -1125,7 +1132,7 @@
       "base": "<p>Describes an asynchronous transcription job that was created with the <code>StartTranscriptionJob</code> operation. </p>",
       "refs": {
         "GetTranscriptionJobResponse$TranscriptionJob": "<p>An object that contains the results of the transcription job.</p>",
-        "StartTranscriptionJobResponse$TranscriptionJob": "<p>An object containing details of the asynchronous transcription job.</p>"
+        "StartTranscriptionJobResponse$TranscriptionJob": "<p>Provides information about your asynchronous transcription job.</p>"
       }
     },
     "TranscriptionJobName": {

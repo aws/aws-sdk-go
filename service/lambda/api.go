@@ -7862,6 +7862,10 @@ type CreateFunctionInput struct {
 	// Environment variables that are accessible from function code during execution.
 	Environment *Environment `type:"structure"`
 
+	// The size of the function’s /tmp directory in MB. The default value is 512,
+	// but can be any whole number between 512 and 10240 MB.
+	EphemeralStorage *EphemeralStorage `type:"structure"`
+
 	// Connection settings for an Amazon EFS file system.
 	FileSystemConfigs []*FileSystemConfig `type:"list"`
 
@@ -7990,6 +7994,11 @@ func (s *CreateFunctionInput) Validate() error {
 			invalidParams.AddNested("Code", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.EphemeralStorage != nil {
+		if err := s.EphemeralStorage.Validate(); err != nil {
+			invalidParams.AddNested("EphemeralStorage", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.FileSystemConfigs != nil {
 		for i, v := range s.FileSystemConfigs {
 			if v == nil {
@@ -8040,6 +8049,12 @@ func (s *CreateFunctionInput) SetDescription(v string) *CreateFunctionInput {
 // SetEnvironment sets the Environment field's value.
 func (s *CreateFunctionInput) SetEnvironment(v *Environment) *CreateFunctionInput {
 	s.Environment = v
+	return s
+}
+
+// SetEphemeralStorage sets the EphemeralStorage field's value.
+func (s *CreateFunctionInput) SetEphemeralStorage(v *EphemeralStorage) *CreateFunctionInput {
+	s.EphemeralStorage = v
 	return s
 }
 
@@ -9634,6 +9649,57 @@ func (s *EnvironmentResponse) SetVariables(v map[string]*string) *EnvironmentRes
 	return s
 }
 
+// The size of the function’s /tmp directory in MB. The default value is 512,
+// but can be any whole number between 512 and 10240 MB.
+type EphemeralStorage struct {
+	_ struct{} `type:"structure"`
+
+	// The size of the function’s /tmp directory.
+	//
+	// Size is a required field
+	Size *int64 `min:"512" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EphemeralStorage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EphemeralStorage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EphemeralStorage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EphemeralStorage"}
+	if s.Size == nil {
+		invalidParams.Add(request.NewErrParamRequired("Size"))
+	}
+	if s.Size != nil && *s.Size < 512 {
+		invalidParams.Add(request.NewErrParamMinValue("Size", 512))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSize sets the Size field's value.
+func (s *EphemeralStorage) SetSize(v int64) *EphemeralStorage {
+	s.Size = &v
+	return s
+}
+
 // A mapping between an Amazon Web Services resource and a Lambda function.
 // For details, see CreateEventSourceMapping.
 type EventSourceMappingConfiguration struct {
@@ -10208,6 +10274,10 @@ type FunctionConfiguration struct {
 	// The function's environment variables (https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html).
 	Environment *EnvironmentResponse `type:"structure"`
 
+	// The size of the function’s /tmp directory in MB. The default value is 512,
+	// but can be any whole number between 512 and 10240 MB.
+	EphemeralStorage *EphemeralStorage `type:"structure"`
+
 	// Connection settings for an Amazon EFS file system (https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html).
 	FileSystemConfigs []*FileSystemConfig `type:"list"`
 
@@ -10345,6 +10415,12 @@ func (s *FunctionConfiguration) SetDescription(v string) *FunctionConfiguration 
 // SetEnvironment sets the Environment field's value.
 func (s *FunctionConfiguration) SetEnvironment(v *EnvironmentResponse) *FunctionConfiguration {
 	s.Environment = v
+	return s
+}
+
+// SetEphemeralStorage sets the EphemeralStorage field's value.
+func (s *FunctionConfiguration) SetEphemeralStorage(v *EphemeralStorage) *FunctionConfiguration {
+	s.EphemeralStorage = v
 	return s
 }
 
@@ -18058,6 +18134,10 @@ type UpdateFunctionConfigurationInput struct {
 	// Environment variables that are accessible from function code during execution.
 	Environment *Environment `type:"structure"`
 
+	// The size of the function’s /tmp directory in MB. The default value is 512,
+	// but can be any whole number between 512 and 10240 MB.
+	EphemeralStorage *EphemeralStorage `type:"structure"`
+
 	// Connection settings for an Amazon EFS file system.
 	FileSystemConfigs []*FileSystemConfig `type:"list"`
 
@@ -18164,6 +18244,11 @@ func (s *UpdateFunctionConfigurationInput) Validate() error {
 	if s.Timeout != nil && *s.Timeout < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Timeout", 1))
 	}
+	if s.EphemeralStorage != nil {
+		if err := s.EphemeralStorage.Validate(); err != nil {
+			invalidParams.AddNested("EphemeralStorage", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.FileSystemConfigs != nil {
 		for i, v := range s.FileSystemConfigs {
 			if v == nil {
@@ -18196,6 +18281,12 @@ func (s *UpdateFunctionConfigurationInput) SetDescription(v string) *UpdateFunct
 // SetEnvironment sets the Environment field's value.
 func (s *UpdateFunctionConfigurationInput) SetEnvironment(v *Environment) *UpdateFunctionConfigurationInput {
 	s.Environment = v
+	return s
+}
+
+// SetEphemeralStorage sets the EphemeralStorage field's value.
+func (s *UpdateFunctionConfigurationInput) SetEphemeralStorage(v *EphemeralStorage) *UpdateFunctionConfigurationInput {
+	s.EphemeralStorage = v
 	return s
 }
 

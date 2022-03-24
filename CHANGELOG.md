@@ -1,3 +1,12 @@
+Release v1.43.25 (2022-03-24)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API and documentation
+* `service/lambda`: Updates service API and documentation
+  * Adds support for increased ephemeral storage (/tmp) up to 10GB for Lambda functions. Customers can now provision up to 10 GB of ephemeral storage per function instance, a 20x increase over the previous limit of 512 MB.
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.43.24 (2022-03-23)
 ===
 

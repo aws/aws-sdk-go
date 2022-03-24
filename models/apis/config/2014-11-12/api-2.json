@@ -732,6 +732,18 @@
         {"shape":"InvalidNextTokenException"}
       ]
     },
+    "GetCustomRulePolicy":{
+      "name":"GetCustomRulePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCustomRulePolicyRequest"},
+      "output":{"shape":"GetCustomRulePolicyResponse"},
+      "errors":[
+        {"shape":"NoSuchConfigRuleException"}
+      ]
+    },
     "GetDiscoveredResourceCounts":{
       "name":"GetDiscoveredResourceCounts",
       "http":{
@@ -773,6 +785,19 @@
         {"shape":"NoSuchOrganizationConformancePackException"},
         {"shape":"InvalidLimitException"},
         {"shape":"InvalidNextTokenException"},
+        {"shape":"OrganizationAccessDeniedException"}
+      ]
+    },
+    "GetOrganizationCustomRulePolicy":{
+      "name":"GetOrganizationCustomRulePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetOrganizationCustomRulePolicyRequest"},
+      "output":{"shape":"GetOrganizationCustomRulePolicyResponse"},
+      "errors":[
+        {"shape":"NoSuchOrganizationConfigRuleException"},
         {"shape":"OrganizationAccessDeniedException"}
       ]
     },
@@ -1637,7 +1662,10 @@
         "LastDeactivatedTime":{"shape":"Date"},
         "LastErrorCode":{"shape":"String"},
         "LastErrorMessage":{"shape":"String"},
-        "FirstEvaluationStarted":{"shape":"Boolean"}
+        "FirstEvaluationStarted":{"shape":"Boolean"},
+        "LastDebugLogDeliveryStatus":{"shape":"String"},
+        "LastDebugLogDeliveryStatusReason":{"shape":"String"},
+        "LastDebugLogDeliveryTime":{"shape":"Date"}
       }
     },
     "ConfigRuleEvaluationStatusList":{
@@ -2007,7 +2035,25 @@
       "max":100,
       "min":0
     },
+    "CustomPolicyDetails":{
+      "type":"structure",
+      "required":[
+        "PolicyRuntime",
+        "PolicyText"
+      ],
+      "members":{
+        "PolicyRuntime":{"shape":"PolicyRuntime"},
+        "PolicyText":{"shape":"PolicyText"},
+        "EnableDebugLogDelivery":{"shape":"Boolean"}
+      }
+    },
     "Date":{"type":"timestamp"},
+    "DebugLogDeliveryAccounts":{
+      "type":"list",
+      "member":{"shape":"AccountId"},
+      "max":1000,
+      "min":0
+    },
     "DeleteAggregationAuthorizationRequest":{
       "type":"structure",
       "required":[
@@ -2940,6 +2986,18 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "GetCustomRulePolicyRequest":{
+      "type":"structure",
+      "members":{
+        "ConfigRuleName":{"shape":"ConfigRuleName"}
+      }
+    },
+    "GetCustomRulePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "PolicyText":{"shape":"PolicyText"}
+      }
+    },
     "GetDiscoveredResourceCountsRequest":{
       "type":"structure",
       "members":{
@@ -2988,6 +3046,19 @@
       "members":{
         "OrganizationConformancePackDetailedStatuses":{"shape":"OrganizationConformancePackDetailedStatuses"},
         "NextToken":{"shape":"String"}
+      }
+    },
+    "GetOrganizationCustomRulePolicyRequest":{
+      "type":"structure",
+      "required":["OrganizationConfigRuleName"],
+      "members":{
+        "OrganizationConfigRuleName":{"shape":"OrganizationConfigRuleName"}
+      }
+    },
+    "GetOrganizationCustomRulePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "PolicyText":{"shape":"PolicyText"}
       }
     },
     "GetResourceConfigHistoryRequest":{
@@ -3462,7 +3533,8 @@
         "OrganizationManagedRuleMetadata":{"shape":"OrganizationManagedRuleMetadata"},
         "OrganizationCustomRuleMetadata":{"shape":"OrganizationCustomRuleMetadata"},
         "ExcludedAccounts":{"shape":"ExcludedAccounts"},
-        "LastUpdateTime":{"shape":"Date"}
+        "LastUpdateTime":{"shape":"Date"},
+        "OrganizationCustomPolicyRuleMetadata":{"shape":"OrganizationCustomPolicyRuleMetadataNoPolicy"}
       }
     },
     "OrganizationConfigRuleDetailedStatus":{
@@ -3506,6 +3578,17 @@
         "OversizedConfigurationItemChangeNotification",
         "ScheduledNotification"
       ]
+    },
+    "OrganizationConfigRuleTriggerTypeNoSN":{
+      "type":"string",
+      "enum":[
+        "ConfigurationItemChangeNotification",
+        "OversizedConfigurationItemChangeNotification"
+      ]
+    },
+    "OrganizationConfigRuleTriggerTypeNoSNs":{
+      "type":"list",
+      "member":{"shape":"OrganizationConfigRuleTriggerTypeNoSN"}
     },
     "OrganizationConfigRuleTriggerTypes":{
       "type":"list",
@@ -3591,6 +3674,41 @@
     "OrganizationConformancePacks":{
       "type":"list",
       "member":{"shape":"OrganizationConformancePack"}
+    },
+    "OrganizationCustomPolicyRuleMetadata":{
+      "type":"structure",
+      "required":[
+        "PolicyRuntime",
+        "PolicyText"
+      ],
+      "members":{
+        "Description":{"shape":"StringWithCharLimit256Min0"},
+        "OrganizationConfigRuleTriggerTypes":{"shape":"OrganizationConfigRuleTriggerTypeNoSNs"},
+        "InputParameters":{"shape":"StringWithCharLimit2048"},
+        "MaximumExecutionFrequency":{"shape":"MaximumExecutionFrequency"},
+        "ResourceTypesScope":{"shape":"ResourceTypesScope"},
+        "ResourceIdScope":{"shape":"StringWithCharLimit768"},
+        "TagKeyScope":{"shape":"StringWithCharLimit128"},
+        "TagValueScope":{"shape":"StringWithCharLimit256"},
+        "PolicyRuntime":{"shape":"PolicyRuntime"},
+        "PolicyText":{"shape":"PolicyText"},
+        "DebugLogDeliveryAccounts":{"shape":"DebugLogDeliveryAccounts"}
+      }
+    },
+    "OrganizationCustomPolicyRuleMetadataNoPolicy":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"StringWithCharLimit256Min0"},
+        "OrganizationConfigRuleTriggerTypes":{"shape":"OrganizationConfigRuleTriggerTypeNoSNs"},
+        "InputParameters":{"shape":"StringWithCharLimit2048"},
+        "MaximumExecutionFrequency":{"shape":"MaximumExecutionFrequency"},
+        "ResourceTypesScope":{"shape":"ResourceTypesScope"},
+        "ResourceIdScope":{"shape":"StringWithCharLimit768"},
+        "TagKeyScope":{"shape":"StringWithCharLimit128"},
+        "TagValueScope":{"shape":"StringWithCharLimit256"},
+        "PolicyRuntime":{"shape":"PolicyRuntime"},
+        "DebugLogDeliveryAccounts":{"shape":"DebugLogDeliveryAccounts"}
+      }
     },
     "OrganizationCustomRuleMetadata":{
       "type":"structure",
@@ -3683,7 +3801,8 @@
       "type":"string",
       "enum":[
         "CUSTOM_LAMBDA",
-        "AWS"
+        "AWS",
+        "CUSTOM_POLICY"
       ]
     },
     "PageSizeLimit":{
@@ -3717,6 +3836,17 @@
       "box":true,
       "max":100,
       "min":1
+    },
+    "PolicyRuntime":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"guard\\-2\\.x\\.x"
+    },
+    "PolicyText":{
+      "type":"string",
+      "max":10000,
+      "min":0
     },
     "PutAggregationAuthorizationRequest":{
       "type":"structure",
@@ -3830,7 +3960,8 @@
         "OrganizationConfigRuleName":{"shape":"OrganizationConfigRuleName"},
         "OrganizationManagedRuleMetadata":{"shape":"OrganizationManagedRuleMetadata"},
         "OrganizationCustomRuleMetadata":{"shape":"OrganizationCustomRuleMetadata"},
-        "ExcludedAccounts":{"shape":"ExcludedAccounts"}
+        "ExcludedAccounts":{"shape":"ExcludedAccounts"},
+        "OrganizationCustomPolicyRuleMetadata":{"shape":"OrganizationCustomPolicyRuleMetadata"}
       }
     },
     "PutOrganizationConfigRuleResponse":{
@@ -4375,7 +4506,8 @@
         "AWS::CodeDeploy::DeploymentConfig",
         "AWS::CodeDeploy::DeploymentGroup",
         "AWS::EC2::LaunchTemplate",
-        "AWS::ECR::PublicRepository"
+        "AWS::ECR::PublicRepository",
+        "AWS::GuardDuty::Detector"
       ]
     },
     "ResourceTypeList":{
@@ -4507,14 +4639,12 @@
     },
     "Source":{
       "type":"structure",
-      "required":[
-        "Owner",
-        "SourceIdentifier"
-      ],
+      "required":["Owner"],
       "members":{
         "Owner":{"shape":"Owner"},
         "SourceIdentifier":{"shape":"StringWithCharLimit256"},
-        "SourceDetails":{"shape":"SourceDetails"}
+        "SourceDetails":{"shape":"SourceDetails"},
+        "CustomPolicyDetails":{"shape":"CustomPolicyDetails"}
       }
     },
     "SourceDetail":{

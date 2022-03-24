@@ -547,6 +547,20 @@
         "EnvironmentResponse$Variables": "<p>Environment variable key-value pairs.</p>"
       }
     },
+    "EphemeralStorage": {
+      "base": "<p>The size of the function’s /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10240 MB.</p>",
+      "refs": {
+        "CreateFunctionRequest$EphemeralStorage": "<p>The size of the function’s /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10240 MB.</p>",
+        "FunctionConfiguration$EphemeralStorage": "<p>The size of the function’s /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10240 MB.</p>",
+        "UpdateFunctionConfigurationRequest$EphemeralStorage": "<p>The size of the function’s /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10240 MB.</p>"
+      }
+    },
+    "EphemeralStorageSize": {
+      "base": null,
+      "refs": {
+        "EphemeralStorage$Size": "<p>The size of the function’s /tmp directory.</p>"
+      }
+    },
     "EventSourceMappingConfiguration": {
       "base": "<p>A mapping between an Amazon Web Services resource and a Lambda function. For details, see <a>CreateEventSourceMapping</a>.</p>",
       "refs": {

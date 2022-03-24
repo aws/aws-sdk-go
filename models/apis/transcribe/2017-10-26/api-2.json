@@ -1733,17 +1733,24 @@
       "type":"list",
       "member":{"shape":"SubtitleFormat"}
     },
+    "SubtitleOutputStartIndex":{
+      "type":"integer",
+      "max":1,
+      "min":0
+    },
     "Subtitles":{
       "type":"structure",
       "members":{
-        "Formats":{"shape":"SubtitleFormats"}
+        "Formats":{"shape":"SubtitleFormats"},
+        "OutputStartIndex":{"shape":"SubtitleOutputStartIndex"}
       }
     },
     "SubtitlesOutput":{
       "type":"structure",
       "members":{
         "Formats":{"shape":"SubtitleFormats"},
-        "SubtitleFileUris":{"shape":"SubtitleFileUris"}
+        "SubtitleFileUris":{"shape":"SubtitleFileUris"},
+        "OutputStartIndex":{"shape":"SubtitleOutputStartIndex"}
       }
     },
     "Tag":{

@@ -16019,6 +16019,36 @@
           }
         }
       },
+      "meetings-chime" : {
+        "endpoints" : {
+          "us-gov-east-1" : {
+            "variants" : [ {
+              "hostname" : "meetings-chime-fips.us-gov-east-1.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
+          },
+          "us-gov-east-1-fips" : {
+            "credentialScope" : {
+              "region" : "us-gov-east-1"
+            },
+            "deprecated" : true,
+            "hostname" : "meetings-chime-fips.us-gov-east-1.amazonaws.com"
+          },
+          "us-gov-west-1" : {
+            "variants" : [ {
+              "hostname" : "meetings-chime-fips.us-gov-west-1.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
+          },
+          "us-gov-west-1-fips" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "deprecated" : true,
+            "hostname" : "meetings-chime-fips.us-gov-west-1.amazonaws.com"
+          }
+        }
+      },
       "metering.marketplace" : {
         "defaults" : {
           "credentialScope" : {
