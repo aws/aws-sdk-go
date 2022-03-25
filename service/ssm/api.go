@@ -59,13 +59,13 @@ func (c *SSM) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *requ
 // AddTagsToResource API operation for Amazon Simple Systems Manager (SSM).
 //
 // Adds or overwrites one or more tags for the specified resource. Tags are
-// metadata that you can assign to your automations, documents, managed nodes,
-// maintenance windows, Parameter Store parameters, and patch baselines. Tags
-// enable you to categorize your resources in different ways, for example, by
-// purpose, owner, or environment. Each tag consists of a key and an optional
-// value, both of which you define. For example, you could define a set of tags
-// for your account's managed nodes that helps you track each node's owner and
-// stack level. For example:
+// metadata that you can assign to your documents, managed nodes, maintenance
+// windows, Parameter Store parameters, and patch baselines. Tags enable you
+// to categorize your resources in different ways, for example, by purpose,
+// owner, or environment. Each tag consists of a key and an optional value,
+// both of which you define. For example, you could define a set of tags for
+// your account's managed nodes that helps you track each node's owner and stack
+// level. For example:
 //
 //    * Key=Owner,Value=DbAdmin
 //
@@ -79,8 +79,7 @@ func (c *SSM) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *requ
 //
 //    * Key=Stack,Value=Test
 //
-// Most resources can have a maximum of 50 tags. Automations can have a maximum
-// of 5 tags.
+// Each resource can have a maximum of 50 tags.
 //
 // We recommend that you devise a set of tag keys that meets your needs for
 // each resource type. Using a consistent set of tag keys makes it easier for
@@ -8599,12 +8598,15 @@ func (c *SSM) GetMaintenanceWindowTaskRequest(input *GetMaintenanceWindowTaskInp
 
 // GetMaintenanceWindowTask API operation for Amazon Simple Systems Manager (SSM).
 //
-// Lists the tasks in a maintenance window.
+// Retrieves the details of a maintenance window task.
 //
 // For maintenance window tasks without a specified target, you can't supply
 // values for --max-errors and --max-concurrency. Instead, the system inserts
 // a placeholder value of 1, which may be reported in the response to this command.
 // These values don't affect the running of your task and can be ignored.
+//
+// To retrieve a list of tasks in a maintenance window, instead use the DescribeMaintenanceWindowTasks
+// command.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14559,6 +14561,10 @@ func (c *SSM) UpdateDocumentDefaultVersionRequest(input *UpdateDocumentDefaultVe
 //
 // Set the default version of a document.
 //
+// If you change a document version for a State Manager association, Systems
+// Manager immediately runs the association unless you previously specifed the
+// apply-only-at-cron-interval parameter.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -15767,8 +15773,6 @@ type AddTagsToResourceInput struct {
 	//
 	// PatchBaseline: pb-012345abcde
 	//
-	// Automation: example-c160-4567-8519-012345abcde
-	//
 	// OpsMetadata object: ResourceID for tagging is created from the Amazon Resource
 	// Name (ARN) for the object. Specifically, ResourceID is created from the strings
 	// that come after the word opsmetadata in the ARN. For example, an OpsMetadata
@@ -16162,7 +16166,10 @@ type Association struct {
 	// The association version.
 	AssociationVersion *string `type:"string"`
 
-	// The version of the document used in the association.
+	// The version of the document used in the association. If you change a document
+	// version for a State Manager association, Systems Manager immediately runs
+	// the association unless you previously specifed the apply-only-at-cron-interval
+	// parameter.
 	//
 	// State Manager doesn't support running associations that use a new version
 	// of a document if that document is shared from another account. State Manager
@@ -49655,8 +49662,6 @@ type RemoveTagsFromResourceInput struct {
 	//
 	// MaintenanceWindow: mw-012345abcde
 	//
-	// Automation: example-c160-4567-8519-012345abcde
-	//
 	// PatchBaseline: pb-012345abcde
 	//
 	// OpsMetadata object: ResourceID for tagging is created from the Amazon Resource
@@ -52672,7 +52677,7 @@ type StartAutomationExecutionInput struct {
 	//
 	//    * Key=OS,Value=Windows
 	//
-	// To add tags to an existing automation, use the AddTagsToResource operation.
+	// To add tags to an existing patch baseline, use the AddTagsToResource operation.
 	Tags []*Tag `type:"list"`
 
 	// A location is a combination of Amazon Web Services Regions and/or Amazon
@@ -55046,11 +55051,20 @@ type UpdateAssociationInput struct {
 	// this option if you don't want an association to run immediately after you
 	// update it. This parameter isn't supported for rate expressions.
 	//
-	// Also, if you specified this option when you created the association, you
-	// can reset it. To do so, specify the no-apply-only-at-cron-interval parameter
-	// when you update the association from the command line. This parameter forces
-	// the association to run immediately after updating it and according to the
-	// interval specified.
+	// If you chose this option when you created an association and later you edit
+	// that association or you make changes to the SSM document on which that association
+	// is based (by using the Documents page in the console), State Manager applies
+	// the association at the next specified cron interval. For example, if you
+	// chose the Latest version of an SSM document when you created an association
+	// and you edit the association by choosing a different document version on
+	// the Documents page, State Manager applies the association at the next specified
+	// cron interval if you previously selected this option. If this option wasn't
+	// selected, State Manager immediately runs the association.
+	//
+	// You can reset this option. To do so, specify the no-apply-only-at-cron-interval
+	// parameter when you update the association from the command line. This parameter
+	// forces the association to run immediately after updating it and according
+	// to the interval specified.
 	ApplyOnlyAtCronInterval *bool `type:"boolean"`
 
 	// The ID of the association you want to update.
@@ -55606,6 +55620,10 @@ type UpdateDocumentInput struct {
 	// The version of the document that you want to update. Currently, Systems Manager
 	// supports updating only the latest version of the document. You can specify
 	// the version number of the latest version or use the $LATEST variable.
+	//
+	// If you change a document version for a State Manager association, Systems
+	// Manager immediately runs the association unless you previously specifed the
+	// apply-only-at-cron-interval parameter.
 	DocumentVersion *string `type:"string"`
 
 	// The name of the SSM document that you want to update.
@@ -59159,6 +59177,9 @@ const (
 
 	// OperatingSystemRaspbian is a OperatingSystem enum value
 	OperatingSystemRaspbian = "RASPBIAN"
+
+	// OperatingSystemRockyLinux is a OperatingSystem enum value
+	OperatingSystemRockyLinux = "ROCKY_LINUX"
 )
 
 // OperatingSystem_Values returns all elements of the OperatingSystem enum
@@ -59175,6 +59196,7 @@ func OperatingSystem_Values() []string {
 		OperatingSystemDebian,
 		OperatingSystemMacos,
 		OperatingSystemRaspbian,
+		OperatingSystemRockyLinux,
 	}
 }
 
