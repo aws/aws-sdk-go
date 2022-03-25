@@ -1871,7 +1871,7 @@ func (c *Batch) SubmitJobRequest(input *SubmitJobInput) (req *request.Request, o
 // and memory requirements that are specified in the resourceRequirements objects
 // in the job definition are the exception. They can't be overridden this way
 // using the memory and vcpus parameters. Rather, you must specify updates to
-// job definition parameters in a ResourceRequirements object that's included
+// job definition parameters in a resourceRequirements object that's included
 // in the containerOverrides parameter.
 //
 // Job queues with a scheduling policy are limited to 500 active fair share
@@ -3639,9 +3639,9 @@ type ContainerDetail struct {
 	// a log stream name when they reach the RUNNING status.
 	LogStreamName *string `locationName:"logStreamName" type:"string"`
 
-	// For jobs run on EC2 resources that didn't specify memory requirements using
-	// resourceRequirements, the number of MiB of memory reserved for the job. For
-	// other jobs, including all run on Fargate resources, see resourceRequirements.
+	// For jobs running on EC2 resources that didn't specify memory requirements
+	// using resourceRequirements, the number of MiB of memory reserved for the
+	// job. For other jobs, including all run on Fargate resources, see resourceRequirements.
 	Memory *int64 `locationName:"memory" type:"integer"`
 
 	// The mount points for data volumes in your container.
@@ -3918,7 +3918,7 @@ type ContainerOverrides struct {
 
 	// This parameter is deprecated, use resourceRequirements to override the memory
 	// requirements specified in the job definition. It's not supported for jobs
-	// that run on Fargate resources. For jobs run on EC2 resources, it overrides
+	// running on Fargate resources. For jobs running on EC2 resources, it overrides
 	// the memory parameter set in the job definition, but doesn't override any
 	// memory requirement specified in the resourceRequirements structure in the
 	// job definition. To override memory requirements that are specified in the
@@ -3937,8 +3937,8 @@ type ContainerOverrides struct {
 	ResourceRequirements []*ResourceRequirement `locationName:"resourceRequirements" type:"list"`
 
 	// This parameter is deprecated, use resourceRequirements to override the vcpus
-	// parameter that's set in the job definition. It's not supported for jobs that
-	// run on Fargate resources. For jobs run on EC2 resources, it overrides the
+	// parameter that's set in the job definition. It's not supported for jobs running
+	// on Fargate resources. For jobs running on EC2 resources, it overrides the
 	// vcpus parameter set in the job definition, but doesn't override any vCPU
 	// requirement specified in the resourceRequirements structure in the job definition.
 	// To override vCPU requirements that are specified in the resourceRequirements
@@ -4074,6 +4074,9 @@ type ContainerProperties struct {
 	// resources that they're scheduled on. For example, ARM-based Docker images
 	// can only run on ARM-based compute resources.
 	//
+	//    * Images in Amazon ECR Public repositories use the full registry/repository[:tag]
+	//    or registry/repository[@digest] naming conventions. For example, public.ecr.aws/registry_alias/my-web-app:latest .
+	//
 	//    * Images in Amazon ECR repositories use the full registry and repository
 	//    URI (for example, 012345678910.dkr.ecr.<region-name>.amazonaws.com/<repository-name>).
 	//
@@ -4135,12 +4138,13 @@ type ContainerProperties struct {
 	LogConfiguration *LogConfiguration `locationName:"logConfiguration" type:"structure"`
 
 	// This parameter is deprecated, use resourceRequirements to specify the memory
-	// requirements for the job definition. It's not supported for jobs that run
-	// on Fargate resources. For jobs run on EC2 resources, it specifies the memory
-	// hard limit (in MiB) for a container. If your container attempts to exceed
-	// the specified number, it's terminated. You must specify at least 4 MiB of
-	// memory for a job using this parameter. The memory hard limit can be specified
-	// in several places. It must be specified for each node at least once.
+	// requirements for the job definition. It's not supported for jobs running
+	// on Fargate resources. For jobs running on EC2 resources, it specifies the
+	// memory hard limit (in MiB) for a container. If your container attempts to
+	// exceed the specified number, it's terminated. You must specify at least 4
+	// MiB of memory for a job using this parameter. The memory hard limit can be
+	// specified in several places. It must be specified for each node at least
+	// once.
 	//
 	// Deprecated: This field is deprecated, use resourceRequirements instead.
 	Memory *int64 `locationName:"memory" deprecated:"true" type:"integer"`
@@ -4198,9 +4202,9 @@ type ContainerProperties struct {
 	User *string `locationName:"user" type:"string"`
 
 	// This parameter is deprecated, use resourceRequirements to specify the vCPU
-	// requirements for the job definition. It's not supported for jobs that run
-	// on Fargate resources. For jobs run on EC2 resources, it specifies the number
-	// of vCPUs reserved for the job.
+	// requirements for the job definition. It's not supported for jobs running
+	// on Fargate resources. For jobs running on EC2 resources, it specifies the
+	// number of vCPUs reserved for the job.
 	//
 	// Each vCPU is equivalent to 1,024 CPU shares. This parameter maps to CpuShares
 	// in the Create a container (https://docs.docker.com/engine/api/v1.23/#create-a-container)
@@ -4536,7 +4540,7 @@ type CreateComputeEnvironmentInput struct {
 	// identifiers. If this parameter isn't provided for a fair share job queue,
 	// no vCPU capacity is reserved.
 	//
-	// This parameter is only supported when the type parameter is set to UNMANAGED/
+	// This parameter is only supported when the type parameter is set to UNMANAGED.
 	UnmanagedvCpus *int64 `locationName:"unmanagedvCpus" type:"integer"`
 }
 

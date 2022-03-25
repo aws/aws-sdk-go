@@ -1,3 +1,14 @@
+Release v1.43.26 (2022-03-25)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service documentation
+  * Bug Fix: Fixed a bug where shapes were marked as unboxed and were not serialized and sent over the wire, causing an API error from the service.
+* `service/ec2`: Updates service API and documentation
+  * This is release adds support for Amazon VPC Reachability Analyzer to analyze path through a Transit Gateway.
+* `service/ssm`: Updates service API and documentation
+  * This Patch Manager release supports creating, updating, and deleting Patch Baselines for Rocky Linux OS.
+
 Release v1.43.25 (2022-03-24)
 ===
 

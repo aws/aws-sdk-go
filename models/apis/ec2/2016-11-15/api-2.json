@@ -5042,6 +5042,26 @@
         "Description":{"shape":"String"}
       }
     },
+    "AdditionalDetail":{
+      "type":"structure",
+      "members":{
+        "AdditionalDetailType":{
+          "shape":"String",
+          "locationName":"additionalDetailType"
+        },
+        "Component":{
+          "shape":"AnalysisComponent",
+          "locationName":"component"
+        }
+      }
+    },
+    "AdditionalDetailList":{
+      "type":"list",
+      "member":{
+        "shape":"AdditionalDetail",
+        "locationName":"item"
+      }
+    },
     "Address":{
       "type":"structure",
       "members":{
@@ -8200,7 +8220,7 @@
       "type":"structure",
       "members":{
         "PoolId":{
-          "shape":"CoipPoolId",
+          "shape":"Ipv4PoolCoipId",
           "locationName":"poolId"
         },
         "PoolCidrs":{
@@ -8225,7 +8245,7 @@
     "CoipPoolIdSet":{
       "type":"list",
       "member":{
-        "shape":"CoipPoolId",
+        "shape":"Ipv4PoolCoipId",
         "locationName":"item"
       }
     },
@@ -18541,6 +18561,22 @@
         "VpnGateway":{
           "shape":"AnalysisComponent",
           "locationName":"vpnGateway"
+        },
+        "TransitGateway":{
+          "shape":"AnalysisComponent",
+          "locationName":"transitGateway"
+        },
+        "TransitGatewayRouteTable":{
+          "shape":"AnalysisComponent",
+          "locationName":"transitGatewayRouteTable"
+        },
+        "TransitGatewayRouteTableRoute":{
+          "shape":"TransitGatewayRouteTableRoute",
+          "locationName":"transitGatewayRouteTableRoute"
+        },
+        "TransitGatewayAttachment":{
+          "shape":"AnalysisComponent",
+          "locationName":"transitGatewayAttachment"
         }
       }
     },
@@ -19805,7 +19841,7 @@
       "type":"structure",
       "required":["PoolId"],
       "members":{
-        "PoolId":{"shape":"CoipPoolId"},
+        "PoolId":{"shape":"Ipv4PoolCoipId"},
         "Filters":{
           "shape":"FilterList",
           "locationName":"Filter"
@@ -25029,6 +25065,7 @@
         "delete-failed"
       ]
     },
+    "Ipv4PoolCoipId":{"type":"string"},
     "Ipv4PoolEc2Id":{"type":"string"},
     "Ipv4PrefixList":{
       "type":"list",
@@ -29686,6 +29723,18 @@
         "Vpc":{
           "shape":"AnalysisComponent",
           "locationName":"vpc"
+        },
+        "AdditionalDetails":{
+          "shape":"AdditionalDetailList",
+          "locationName":"additionalDetailSet"
+        },
+        "TransitGateway":{
+          "shape":"AnalysisComponent",
+          "locationName":"transitGateway"
+        },
+        "TransitGatewayRouteTableRoute":{
+          "shape":"TransitGatewayRouteTableRoute",
+          "locationName":"transitGatewayRouteTableRoute"
         }
       }
     },
@@ -37606,6 +37655,39 @@
       "member":{
         "shape":"TransitGatewayRouteTablePropagation",
         "locationName":"item"
+      }
+    },
+    "TransitGatewayRouteTableRoute":{
+      "type":"structure",
+      "members":{
+        "DestinationCidr":{
+          "shape":"String",
+          "locationName":"destinationCidr"
+        },
+        "State":{
+          "shape":"String",
+          "locationName":"state"
+        },
+        "RouteOrigin":{
+          "shape":"String",
+          "locationName":"routeOrigin"
+        },
+        "PrefixListId":{
+          "shape":"String",
+          "locationName":"prefixListId"
+        },
+        "AttachmentId":{
+          "shape":"String",
+          "locationName":"attachmentId"
+        },
+        "ResourceId":{
+          "shape":"String",
+          "locationName":"resourceId"
+        },
+        "ResourceType":{
+          "shape":"String",
+          "locationName":"resourceType"
+        }
       }
     },
     "TransitGatewayRouteTableState":{

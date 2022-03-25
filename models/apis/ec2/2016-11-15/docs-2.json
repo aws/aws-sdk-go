@@ -767,6 +767,18 @@
         "AddPrefixListEntries$member": null
       }
     },
+    "AdditionalDetail": {
+      "base": "<p>Describes an additional detail for a path analysis.</p>",
+      "refs": {
+        "AdditionalDetailList$member": null
+      }
+    },
+    "AdditionalDetailList": {
+      "base": null,
+      "refs": {
+        "PathComponent$AdditionalDetails": "<p>The additional details.</p>"
+      }
+    },
     "Address": {
       "base": "<p>Describes an Elastic IP address, or a carrier IP address.</p>",
       "refs": {
@@ -936,6 +948,7 @@
     "AnalysisComponent": {
       "base": "<p>Describes a path component.</p>",
       "refs": {
+        "AdditionalDetail$Component": "<p>The path component.</p>",
         "AnalysisComponentList$member": null,
         "AnalysisLoadBalancerTarget$Instance": "<p>Information about the instance.</p>",
         "Explanation$Acl": "<p>The network ACL.</p>",
@@ -961,12 +974,16 @@
         "Explanation$VpcEndpoint": "<p>The VPC endpoint.</p>",
         "Explanation$VpnConnection": "<p>The VPN connection.</p>",
         "Explanation$VpnGateway": "<p>The VPN gateway.</p>",
+        "Explanation$TransitGateway": "<p>The transit gateway.</p>",
+        "Explanation$TransitGatewayRouteTable": "<p>The transit gateway route table.</p>",
+        "Explanation$TransitGatewayAttachment": "<p>The transit gateway attachment.</p>",
         "PathComponent$AttachedTo": "<p>The resource to which the path component is attached.</p>",
         "PathComponent$Component": "<p>The component.</p>",
         "PathComponent$DestinationVpc": "<p>The destination VPC.</p>",
         "PathComponent$SourceVpc": "<p>The source VPC.</p>",
         "PathComponent$Subnet": "<p>The subnet.</p>",
-        "PathComponent$Vpc": "<p>The component VPC.</p>"
+        "PathComponent$Vpc": "<p>The component VPC.</p>",
+        "PathComponent$TransitGateway": null
       }
     },
     "AnalysisComponentList": {
@@ -3181,9 +3198,6 @@
     "CoipPoolId": {
       "base": null,
       "refs": {
-        "CoipPool$PoolId": "<p>The ID of the address pool.</p>",
-        "CoipPoolIdSet$member": null,
-        "GetCoipPoolUsageRequest$PoolId": "<p>The ID of the address pool.</p>",
         "ModifySubnetAttributeRequest$CustomerOwnedIpv4Pool": "<p>The customer-owned IPv4 address pool associated with the subnet.</p> <p>You must set this value when you specify <code>true</code> for <code>MapCustomerOwnedIpOnLaunch</code>.</p>",
         "Subnet$CustomerOwnedIpv4Pool": "<p>The customer-owned IPv4 address pool associated with the subnet.</p>"
       }
@@ -7947,8 +7961,8 @@
         "DescribeNetworkAclsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>association.association-id</code> - The ID of an association ID for the ACL.</p> </li> <li> <p> <code>association.network-acl-id</code> - The ID of the network ACL involved in the association.</p> </li> <li> <p> <code>association.subnet-id</code> - The ID of the subnet involved in the association.</p> </li> <li> <p> <code>default</code> - Indicates whether the ACL is the default network ACL for the VPC.</p> </li> <li> <p> <code>entry.cidr</code> - The IPv4 CIDR range specified in the entry.</p> </li> <li> <p> <code>entry.icmp.code</code> - The ICMP code specified in the entry, if any.</p> </li> <li> <p> <code>entry.icmp.type</code> - The ICMP type specified in the entry, if any.</p> </li> <li> <p> <code>entry.ipv6-cidr</code> - The IPv6 CIDR range specified in the entry.</p> </li> <li> <p> <code>entry.port-range.from</code> - The start of the port range specified in the entry. </p> </li> <li> <p> <code>entry.port-range.to</code> - The end of the port range specified in the entry. </p> </li> <li> <p> <code>entry.protocol</code> - The protocol specified in the entry (<code>tcp</code> | <code>udp</code> | <code>icmp</code> or a protocol number).</p> </li> <li> <p> <code>entry.rule-action</code> - Allows or denies the matching traffic (<code>allow</code> | <code>deny</code>).</p> </li> <li> <p> <code>entry.rule-number</code> - The number of an entry (in other words, rule) in the set of ACL entries.</p> </li> <li> <p> <code>network-acl-id</code> - The ID of the network ACL.</p> </li> <li> <p> <code>owner-id</code> - The ID of the Amazon Web Services account that owns the network ACL.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC for the network ACL.</p> </li> </ul>",
         "DescribeNetworkInsightsAccessScopeAnalysesRequest$Filters": "<p>There are no supported filters.</p>",
         "DescribeNetworkInsightsAccessScopesRequest$Filters": "<p>There are no supported filters.</p>",
-        "DescribeNetworkInsightsAnalysesRequest$Filters": "<p>The filters. The following are possible values:</p> <ul> <li> <p>PathFound - A Boolean value that indicates whether a feasible path is found.</p> </li> <li> <p>Status - The status of the analysis (running | succeeded | failed).</p> </li> </ul>",
-        "DescribeNetworkInsightsPathsRequest$Filters": "<p>The filters. The following are possible values:</p> <ul> <li> <p>Destination - The ID of the resource.</p> </li> <li> <p>DestinationPort - The destination port.</p> </li> <li> <p>Name - The path name.</p> </li> <li> <p>Protocol - The protocol.</p> </li> <li> <p>Source - The ID of the resource.</p> </li> </ul>",
+        "DescribeNetworkInsightsAnalysesRequest$Filters": "<p>The filters. The following are the possible values:</p> <ul> <li> <p>PathFound - A Boolean value that indicates whether a feasible path is found.</p> </li> <li> <p>Status - The status of the analysis (running | succeeded | failed).</p> </li> </ul>",
+        "DescribeNetworkInsightsPathsRequest$Filters": "<p>The filters. The following are the possible values:</p> <ul> <li> <p>Destination - The ID of the resource.</p> </li> <li> <p>DestinationPort - The destination port.</p> </li> <li> <p>Name - The path name.</p> </li> <li> <p>Protocol - The protocol.</p> </li> <li> <p>Source - The ID of the resource.</p> </li> </ul>",
         "DescribeNetworkInterfacePermissionsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>network-interface-permission.network-interface-permission-id</code> - The ID of the permission.</p> </li> <li> <p> <code>network-interface-permission.network-interface-id</code> - The ID of the network interface.</p> </li> <li> <p> <code>network-interface-permission.aws-account-id</code> - The Amazon Web Services account ID.</p> </li> <li> <p> <code>network-interface-permission.aws-service</code> - The Amazon Web Service.</p> </li> <li> <p> <code>network-interface-permission.permission</code> - The type of permission (<code>INSTANCE-ATTACH</code> | <code>EIP-ASSOCIATE</code>).</p> </li> </ul>",
         "DescribeNetworkInterfacesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>addresses.private-ip-address</code> - The private IPv4 addresses associated with the network interface.</p> </li> <li> <p> <code>addresses.primary</code> - Whether the private IPv4 address is the primary IP address associated with the network interface. </p> </li> <li> <p> <code>addresses.association.public-ip</code> - The association ID returned when the network interface was associated with the Elastic IP address (IPv4).</p> </li> <li> <p> <code>addresses.association.owner-id</code> - The owner ID of the addresses associated with the network interface.</p> </li> <li> <p> <code>association.association-id</code> - The association ID returned when the network interface was associated with an IPv4 address.</p> </li> <li> <p> <code>association.allocation-id</code> - The allocation ID returned when you allocated the Elastic IP address (IPv4) for your network interface.</p> </li> <li> <p> <code>association.ip-owner-id</code> - The owner of the Elastic IP address (IPv4) associated with the network interface.</p> </li> <li> <p> <code>association.public-ip</code> - The address of the Elastic IP address (IPv4) bound to the network interface.</p> </li> <li> <p> <code>association.public-dns-name</code> - The public DNS name for the network interface (IPv4).</p> </li> <li> <p> <code>attachment.attachment-id</code> - The ID of the interface attachment.</p> </li> <li> <p> <code>attachment.attach-time</code> - The time that the network interface was attached to an instance.</p> </li> <li> <p> <code>attachment.delete-on-termination</code> - Indicates whether the attachment is deleted when an instance is terminated.</p> </li> <li> <p> <code>attachment.device-index</code> - The device index to which the network interface is attached.</p> </li> <li> <p> <code>attachment.instance-id</code> - The ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>attachment.instance-owner-id</code> - The owner ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>attachment.status</code> - The status of the attachment (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p> </li> <li> <p> <code>availability-zone</code> - The Availability Zone of the network interface.</p> </li> <li> <p> <code>description</code> - The description of the network interface.</p> </li> <li> <p> <code>group-id</code> - The ID of a security group associated with the network interface.</p> </li> <li> <p> <code>group-name</code> - The name of a security group associated with the network interface.</p> </li> <li> <p> <code>ipv6-addresses.ipv6-address</code> - An IPv6 address associated with the network interface.</p> </li> <li> <p> <code>interface-type</code> - The type of network interface (<code>api_gateway_managed</code> | <code>aws_codestar_connections_managed</code> | <code>branch</code> | <code>efa</code> | <code>gateway_load_balancer</code> | <code>gateway_load_balancer_endpoint</code> | <code>global_accelerator_managed</code> | <code>interface</code> | <code>iot_rules_managed</code> | <code>lambda</code> | <code>load_balancer</code> | <code>nat_gateway</code> | <code>network_load_balancer</code> | <code>quicksight</code> | <code>transit_gateway</code> | <code>trunk</code> | <code>vpc_endpoint</code>).</p> </li> <li> <p> <code>mac-address</code> - The MAC address of the network interface.</p> </li> <li> <p> <code>network-interface-id</code> - The ID of the network interface.</p> </li> <li> <p> <code>owner-id</code> - The Amazon Web Services account ID of the network interface owner.</p> </li> <li> <p> <code>private-ip-address</code> - The private IPv4 address or addresses of the network interface.</p> </li> <li> <p> <code>private-dns-name</code> - The private DNS name of the network interface (IPv4).</p> </li> <li> <p> <code>requester-id</code> - The alias or Amazon Web Services account ID of the principal or service that created the network interface.</p> </li> <li> <p> <code>requester-managed</code> - Indicates whether the network interface is being managed by an Amazon Web Service (for example, Amazon Web Services Management Console, Auto Scaling, and so on).</p> </li> <li> <p> <code>source-dest-check</code> - Indicates whether the network interface performs source/destination checking. A value of <code>true</code> means checking is enabled, and <code>false</code> means checking is disabled. The value must be <code>false</code> for the network interface to perform network address translation (NAT) in your VPC. </p> </li> <li> <p> <code>status</code> - The status of the network interface. If the network interface is not attached to an instance, the status is <code>available</code>; if a network interface is attached to an instance the status is <code>in-use</code>.</p> </li> <li> <p> <code>subnet-id</code> - The ID of the subnet for the network interface.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC for the network interface.</p> </li> </ul>",
         "DescribePlacementGroupsRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>group-name</code> - The name of the placement group.</p> </li> <li> <p> <code>group-arn</code> - The Amazon Resource Name (ARN) of the placement group.</p> </li> <li> <p> <code>state</code> - The state of the placement group (<code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code>).</p> </li> <li> <p> <code>strategy</code> - The strategy of the placement group (<code>cluster</code> | <code>spread</code> | <code>partition</code>).</p> </li> <li> <p> <code>tag:&lt;key&gt;</code> - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources that have a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
@@ -10965,6 +10979,14 @@
       "base": null,
       "refs": {
         "Ipam$State": "<p>The state of the IPAM.</p>"
+      }
+    },
+    "Ipv4PoolCoipId": {
+      "base": null,
+      "refs": {
+        "CoipPool$PoolId": "<p>The ID of the address pool.</p>",
+        "CoipPoolIdSet$member": null,
+        "GetCoipPoolUsageRequest$PoolId": "<p>The ID of the address pool.</p>"
       }
     },
     "Ipv4PoolEc2Id": {
@@ -16258,6 +16280,7 @@
         "AddIpamOperatingRegion$RegionName": "<p>The name of the operating Region.</p>",
         "AddPrefixListEntry$Cidr": "<p>The CIDR block.</p>",
         "AddPrefixListEntry$Description": "<p>A description for the entry.</p> <p>Constraints: Up to 255 characters in length.</p>",
+        "AdditionalDetail$AdditionalDetailType": "<p>The information type.</p>",
         "Address$InstanceId": "<p>The ID of the instance that the address is associated with (if any).</p>",
         "Address$PublicIp": "<p>The Elastic IP address.</p>",
         "Address$AllocationId": "<p>The ID representing the allocation of the address for use with EC2-VPC.</p>",
@@ -16306,11 +16329,11 @@
         "AnalysisRouteTableRoute$InstanceId": "<p>The ID of the instance, such as a NAT instance.</p>",
         "AnalysisRouteTableRoute$NatGatewayId": "<p>The ID of a NAT gateway.</p>",
         "AnalysisRouteTableRoute$NetworkInterfaceId": "<p>The ID of a network interface.</p>",
-        "AnalysisRouteTableRoute$Origin": "<p>Describes how the route was created. The following are possible values:</p> <ul> <li> <p> <code>CreateRouteTable</code> - The route was automatically created when the route table was created.</p> </li> <li> <p> <code>CreateRoute</code> - The route was manually added to the route table.</p> </li> <li> <p> <code>EnableVgwRoutePropagation</code> - The route was propagated by route propagation.</p> </li> </ul>",
+        "AnalysisRouteTableRoute$Origin": "<p>Describes how the route was created. The following are the possible values:</p> <ul> <li> <p>CreateRouteTable - The route was automatically created when the route table was created.</p> </li> <li> <p>CreateRoute - The route was manually added to the route table.</p> </li> <li> <p>EnableVgwRoutePropagation - The route was propagated by route propagation.</p> </li> </ul>",
         "AnalysisRouteTableRoute$TransitGatewayId": "<p>The ID of a transit gateway.</p>",
         "AnalysisRouteTableRoute$VpcPeeringConnectionId": "<p>The ID of a VPC peering connection.</p>",
         "AnalysisSecurityGroupRule$Cidr": "<p>The IPv4 address range, in CIDR notation.</p>",
-        "AnalysisSecurityGroupRule$Direction": "<p>The direction. The following are possible values:</p> <ul> <li> <p>egress</p> </li> <li> <p>ingress</p> </li> </ul>",
+        "AnalysisSecurityGroupRule$Direction": "<p>The direction. The following are the possible values:</p> <ul> <li> <p>egress</p> </li> <li> <p>ingress</p> </li> </ul>",
         "AnalysisSecurityGroupRule$SecurityGroupId": "<p>The security group ID.</p>",
         "AnalysisSecurityGroupRule$PrefixListId": "<p>The prefix list ID.</p>",
         "AnalysisSecurityGroupRule$Protocol": "<p>The protocol name.</p>",
@@ -16907,7 +16930,7 @@
         "EventInformation$EventSubType": "<p>The event.</p> <p> <code>error</code> events:</p> <ul> <li> <p> <code>iamFleetRoleInvalid</code> - The EC2 Fleet or Spot Fleet does not have the required permissions either to launch or terminate an instance.</p> </li> <li> <p> <code>allLaunchSpecsTemporarilyBlacklisted</code> - None of the configurations are valid, and several attempts to launch instances have failed. For more information, see the description of the event.</p> </li> <li> <p> <code>spotInstanceCountLimitExceeded</code> - You've reached the limit on the number of Spot Instances that you can launch.</p> </li> <li> <p> <code>spotFleetRequestConfigurationInvalid</code> - The configuration is not valid. For more information, see the description of the event.</p> </li> </ul> <p> <code>fleetRequestChange</code> events:</p> <ul> <li> <p> <code>active</code> - The EC2 Fleet or Spot Fleet request has been validated and Amazon EC2 is attempting to maintain the target number of running instances.</p> </li> <li> <p> <code>cancelled</code> - The EC2 Fleet or Spot Fleet request is canceled and has no running instances. The EC2 Fleet or Spot Fleet will be deleted two days after its instances are terminated.</p> </li> <li> <p> <code>cancelled_running</code> - The EC2 Fleet or Spot Fleet request is canceled and does not launch additional instances. Its existing instances continue to run until they are interrupted or terminated. The request remains in this state until all instances are interrupted or terminated.</p> </li> <li> <p> <code>cancelled_terminating</code> - The EC2 Fleet or Spot Fleet request is canceled and its instances are terminating. The request remains in this state until all instances are terminated.</p> </li> <li> <p> <code>expired</code> - The EC2 Fleet or Spot Fleet request has expired. If the request was created with <code>TerminateInstancesWithExpiration</code> set, a subsequent <code>terminated</code> event indicates that the instances are terminated.</p> </li> <li> <p> <code>modify_in_progress</code> - The EC2 Fleet or Spot Fleet request is being modified. The request remains in this state until the modification is fully processed.</p> </li> <li> <p> <code>modify_succeeded</code> - The EC2 Fleet or Spot Fleet request was modified.</p> </li> <li> <p> <code>submitted</code> - The EC2 Fleet or Spot Fleet request is being evaluated and Amazon EC2 is preparing to launch the target number of instances.</p> </li> <li> <p> <code>progress</code> - The EC2 Fleet or Spot Fleet request is in the process of being fulfilled.</p> </li> </ul> <p> <code>instanceChange</code> events:</p> <ul> <li> <p> <code>launched</code> - A new instance was launched.</p> </li> <li> <p> <code>terminated</code> - An instance was terminated by the user.</p> </li> <li> <p> <code>termination_notified</code> - An instance termination notification was sent when a Spot Instance was terminated by Amazon EC2 during scale-down, when the target capacity of the fleet was modified down, for example, from a target capacity of 4 to a target capacity of 3.</p> </li> </ul> <p> <code>Information</code> events:</p> <ul> <li> <p> <code>fleetProgressHalted</code> - The price in every launch specification is not valid because it is below the Spot price (all the launch specifications have produced <code>launchSpecUnusable</code> events). A launch specification might become valid if the Spot price changes.</p> </li> <li> <p> <code>launchSpecTemporarilyBlacklisted</code> - The configuration is not valid and several attempts to launch instances have failed. For more information, see the description of the event.</p> </li> <li> <p> <code>launchSpecUnusable</code> - The price in a launch specification is not valid because it is below the Spot price.</p> </li> <li> <p> <code>registerWithLoadBalancersFailed</code> - An attempt to register instances with load balancers failed. For more information, see the description of the event.</p> </li> </ul>",
         "EventInformation$InstanceId": "<p>The ID of the instance. This information is available only for <code>instanceChange</code> events.</p>",
         "ExecutableByStringList$member": null,
-        "Explanation$Direction": "<p>The direction. The following are possible values:</p> <ul> <li> <p>egress</p> </li> <li> <p>ingress</p> </li> </ul>",
+        "Explanation$Direction": "<p>The direction. The following are the possible values:</p> <ul> <li> <p>egress</p> </li> <li> <p>ingress</p> </li> </ul>",
         "Explanation$ExplanationCode": "<p>The explanation code.</p>",
         "Explanation$MissingComponent": "<p>The missing component.</p>",
         "Explanation$PacketField": "<p>The packet field.</p>",
@@ -17944,6 +17967,13 @@
         "TransitGatewayRouteTableAssociation$ResourceId": "<p>The ID of the resource.</p>",
         "TransitGatewayRouteTablePropagation$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
         "TransitGatewayRouteTablePropagation$ResourceId": "<p>The ID of the resource.</p>",
+        "TransitGatewayRouteTableRoute$DestinationCidr": "<p>The CIDR block used for destination matches.</p>",
+        "TransitGatewayRouteTableRoute$State": "<p>The state of the route.</p>",
+        "TransitGatewayRouteTableRoute$RouteOrigin": "<p>The route origin. The following are the possible values:</p> <ul> <li> <p>static</p> </li> <li> <p>propagated</p> </li> </ul>",
+        "TransitGatewayRouteTableRoute$PrefixListId": "<p>The ID of the prefix list.</p>",
+        "TransitGatewayRouteTableRoute$AttachmentId": "<p>The ID of the route attachment.</p>",
+        "TransitGatewayRouteTableRoute$ResourceId": "<p>The ID of the resource for the route attachment.</p>",
+        "TransitGatewayRouteTableRoute$ResourceType": "<p>The resource type for the route attachment.</p>",
         "TransitGatewayVpcAttachment$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
         "TransitGatewayVpcAttachment$TransitGatewayId": "<p>The ID of the transit gateway.</p>",
         "TransitGatewayVpcAttachment$VpcId": "<p>The ID of the VPC.</p>",
@@ -19392,6 +19422,13 @@
       "base": null,
       "refs": {
         "GetTransitGatewayRouteTablePropagationsResult$TransitGatewayRouteTablePropagations": "<p>Information about the route table propagations.</p>"
+      }
+    },
+    "TransitGatewayRouteTableRoute": {
+      "base": "<p>Describes a route in a transit gateway route table.</p>",
+      "refs": {
+        "Explanation$TransitGatewayRouteTableRoute": "<p>The transit gateway route table route.</p>",
+        "PathComponent$TransitGatewayRouteTableRoute": "<p>The route in a transit gateway route table.</p>"
       }
     },
     "TransitGatewayRouteTableState": {
