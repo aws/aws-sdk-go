@@ -12,6 +12,7 @@ import (
 	"sort"
 	"strings"
 	"text/template"
+	"unicode"
 )
 
 // An Operation defines a specific API Operation.
@@ -652,6 +653,7 @@ func (o *Operation) GenerateAction() error {
 	}
 
 	actionParameters["awsRegion"] = plugin.ActionParameter{
+		DisplayName: "AWS Region",
 		Type:        "string",
 		Description: "AWS Region(s), More than 1 region can be provided seperated by \",\", Use \"*\" to run on all regions",
 		Required:    isRegionRequired,
@@ -674,6 +676,7 @@ func (o *Operation) GenerateAction() error {
 		}
 
 		actionParameters[memberName] = plugin.ActionParameter{
+			DisplayName: getDisplayName(memberName),
 			Type:        blinkType,
 			Description: strings.TrimSpace(description),
 			Required: func(name string, requiredList []string) bool {
@@ -695,6 +698,7 @@ func (o *Operation) GenerateAction() error {
 
 	opAction := plugin.Action{}
 	opAction.Name = actionName
+	opAction.DisplayName = getDisplayName(actionName)
 	opAction.Description = strings.TrimSpace(description)
 	opAction.Enabled = true
 	opAction.Parameters = actionParameters
@@ -755,6 +759,36 @@ func getTypeForUniqueCases(paramName string, currentType string) string {
 		return "code:json"
 	}
 	return currentType
+}
+
+func getDisplayName(name string) string {
+	name = strings.ReplaceAll(name, "_", " ")
+	name = strings.ReplaceAll(name, ".", " ")
+	name = strings.ReplaceAll(name, "[]", "")
+	for i := 1; i < len(name); i++ {
+		if unicode.IsLower(rune(name[i-1])) && unicode.IsUpper(rune(name[i])) && (i+1 < len(name) || !unicode.IsUpper(rune(name[i+1]))) {
+			name = name[:i] + " " + name[i:]
+		}
+	}
+	upperCaseWords := []string{"url", "id", "ids", "ip", "ssl"}
+	words := strings.Split(name, " ")
+	for i, word := range words {
+		if contains(upperCaseWords, word) {
+			words[i] = strings.ToUpper(word)
+		}
+	}
+	name = strings.Join(words, " ")
+	name = strings.ReplaceAll(name, "IDS", "IDs")
+	return strings.Join(strings.Fields(strings.Title(name)), " ")
+}
+
+func contains(list []string, word string) bool {
+	for _, item := range list {
+		if item == word {
+			return true
+		}
+	}
+	return false
 }
 
 // tplInfSig defines the template for rendering an Operation's signature within an Interface definition.
