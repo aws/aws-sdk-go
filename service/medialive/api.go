@@ -6625,10 +6625,6 @@ type AudioDescription struct {
 	// ISO 639 language code specified by the input.
 	LanguageCodeControl *string `locationName:"languageCodeControl" type:"string" enum:"AudioDescriptionLanguageCodeControl"`
 
-	// The name of this AudioDescription. Outputs will use this name to uniquely
-	// identify this AudioDescription. Description names should be unique within
-	// this Live Event.
-	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
@@ -9606,6 +9602,9 @@ type Channel struct {
 	// The log level being written to CloudWatch Logs.
 	LogLevel *string `locationName:"logLevel" type:"string" enum:"LogLevel"`
 
+	// Maintenance settings for this channel.
+	Maintenance *MaintenanceStatus `locationName:"maintenance" type:"structure"`
+
 	// The name of the channel. (user-mutable)
 	Name *string `locationName:"name" type:"string"`
 
@@ -9702,6 +9701,12 @@ func (s *Channel) SetInputSpecification(v *InputSpecification) *Channel {
 // SetLogLevel sets the LogLevel field's value.
 func (s *Channel) SetLogLevel(v string) *Channel {
 	s.LogLevel = &v
+	return s
+}
+
+// SetMaintenance sets the Maintenance field's value.
+func (s *Channel) SetMaintenance(v *MaintenanceStatus) *Channel {
+	s.Maintenance = v
 	return s
 }
 
@@ -9811,6 +9816,9 @@ type ChannelSummary struct {
 	// The log level being written to CloudWatch Logs.
 	LogLevel *string `locationName:"logLevel" type:"string" enum:"LogLevel"`
 
+	// Maintenance settings for this channel.
+	Maintenance *MaintenanceStatus `locationName:"maintenance" type:"structure"`
+
 	// The name of the channel. (user-mutable)
 	Name *string `locationName:"name" type:"string"`
 
@@ -9898,6 +9906,12 @@ func (s *ChannelSummary) SetInputSpecification(v *InputSpecification) *ChannelSu
 // SetLogLevel sets the LogLevel field's value.
 func (s *ChannelSummary) SetLogLevel(v string) *ChannelSummary {
 	s.LogLevel = &v
+	return s
+}
+
+// SetMaintenance sets the Maintenance field's value.
+func (s *ChannelSummary) SetMaintenance(v *MaintenanceStatus) *ChannelSummary {
+	s.Maintenance = v
 	return s
 }
 
@@ -10099,6 +10113,8 @@ type CreateChannelInput struct {
 	// The log level the user wants for their channel.
 	LogLevel *string `locationName:"logLevel" type:"string" enum:"LogLevel"`
 
+	Maintenance *MaintenanceCreateSettings `locationName:"maintenance" type:"structure"`
+
 	Name *string `locationName:"name" type:"string"`
 
 	RequestId *string `locationName:"requestId" type:"string" idempotencyToken:"true"`
@@ -10211,6 +10227,12 @@ func (s *CreateChannelInput) SetInputSpecification(v *InputSpecification) *Creat
 // SetLogLevel sets the LogLevel field's value.
 func (s *CreateChannelInput) SetLogLevel(v string) *CreateChannelInput {
 	s.LogLevel = &v
+	return s
+}
+
+// SetMaintenance sets the Maintenance field's value.
+func (s *CreateChannelInput) SetMaintenance(v *MaintenanceCreateSettings) *CreateChannelInput {
+	s.Maintenance = v
 	return s
 }
 
@@ -10992,6 +11014,8 @@ type DeleteChannelOutput struct {
 	// The log level the user wants for their channel.
 	LogLevel *string `locationName:"logLevel" type:"string" enum:"LogLevel"`
 
+	Maintenance *MaintenanceStatus `locationName:"maintenance" type:"structure"`
+
 	Name *string `locationName:"name" type:"string"`
 
 	PipelineDetails []*PipelineDetail `locationName:"pipelineDetails" type:"list"`
@@ -11083,6 +11107,12 @@ func (s *DeleteChannelOutput) SetInputSpecification(v *InputSpecification) *Dele
 // SetLogLevel sets the LogLevel field's value.
 func (s *DeleteChannelOutput) SetLogLevel(v string) *DeleteChannelOutput {
 	s.LogLevel = &v
+	return s
+}
+
+// SetMaintenance sets the Maintenance field's value.
+func (s *DeleteChannelOutput) SetMaintenance(v *MaintenanceStatus) *DeleteChannelOutput {
+	s.Maintenance = v
 	return s
 }
 
@@ -11984,6 +12014,8 @@ type DescribeChannelOutput struct {
 	// The log level the user wants for their channel.
 	LogLevel *string `locationName:"logLevel" type:"string" enum:"LogLevel"`
 
+	Maintenance *MaintenanceStatus `locationName:"maintenance" type:"structure"`
+
 	Name *string `locationName:"name" type:"string"`
 
 	PipelineDetails []*PipelineDetail `locationName:"pipelineDetails" type:"list"`
@@ -12075,6 +12107,12 @@ func (s *DescribeChannelOutput) SetInputSpecification(v *InputSpecification) *De
 // SetLogLevel sets the LogLevel field's value.
 func (s *DescribeChannelOutput) SetLogLevel(v string) *DescribeChannelOutput {
 	s.LogLevel = &v
+	return s
+}
+
+// SetMaintenance sets the Maintenance field's value.
+func (s *DescribeChannelOutput) SetMaintenance(v *MaintenanceStatus) *DescribeChannelOutput {
+	s.Maintenance = v
 	return s
 }
 
@@ -14241,9 +14279,8 @@ func (s *Eac3Settings) SetSurroundMode(v string) *Eac3Settings {
 type EbuTtDDestinationSettings struct {
 	_ struct{} `type:"structure"`
 
-	// Applies only if you plan to convert these source captions to EBU-TT-D or
-	// TTML in an output. Complete this field if you want to include the name of
-	// the copyright holder in the copyright metadata tag in the TTML
+	// Complete this field if you want to include the name of the copyright holder
+	// in the copyright tag in the captions metadata.
 	CopyrightHolder *string `locationName:"copyrightHolder" type:"string"`
 
 	// Specifies how to handle the gap between the lines (in multi-line captions).-
@@ -21814,6 +21851,159 @@ func (s *M3u8Settings) SetVideoPid(v string) *M3u8Settings {
 	return s
 }
 
+type MaintenanceCreateSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Choose one day of the week for maintenance. The chosen day is used for all
+	// future maintenance windows.
+	MaintenanceDay *string `locationName:"maintenanceDay" type:"string" enum:"MaintenanceDay"`
+
+	// Choose the hour that maintenance will start. The chosen time is used for
+	// all future maintenance windows.
+	MaintenanceStartTime *string `locationName:"maintenanceStartTime" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MaintenanceCreateSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MaintenanceCreateSettings) GoString() string {
+	return s.String()
+}
+
+// SetMaintenanceDay sets the MaintenanceDay field's value.
+func (s *MaintenanceCreateSettings) SetMaintenanceDay(v string) *MaintenanceCreateSettings {
+	s.MaintenanceDay = &v
+	return s
+}
+
+// SetMaintenanceStartTime sets the MaintenanceStartTime field's value.
+func (s *MaintenanceCreateSettings) SetMaintenanceStartTime(v string) *MaintenanceCreateSettings {
+	s.MaintenanceStartTime = &v
+	return s
+}
+
+type MaintenanceStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The currently selected maintenance day.
+	MaintenanceDay *string `locationName:"maintenanceDay" type:"string" enum:"MaintenanceDay"`
+
+	// Maintenance is required by the displayed date and time. Date and time is
+	// in ISO.
+	MaintenanceDeadline *string `locationName:"maintenanceDeadline" type:"string"`
+
+	// The currently scheduled maintenance date and time. Date and time is in ISO.
+	MaintenanceScheduledDate *string `locationName:"maintenanceScheduledDate" type:"string"`
+
+	// The currently selected maintenance start time. Time is in UTC.
+	MaintenanceStartTime *string `locationName:"maintenanceStartTime" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MaintenanceStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MaintenanceStatus) GoString() string {
+	return s.String()
+}
+
+// SetMaintenanceDay sets the MaintenanceDay field's value.
+func (s *MaintenanceStatus) SetMaintenanceDay(v string) *MaintenanceStatus {
+	s.MaintenanceDay = &v
+	return s
+}
+
+// SetMaintenanceDeadline sets the MaintenanceDeadline field's value.
+func (s *MaintenanceStatus) SetMaintenanceDeadline(v string) *MaintenanceStatus {
+	s.MaintenanceDeadline = &v
+	return s
+}
+
+// SetMaintenanceScheduledDate sets the MaintenanceScheduledDate field's value.
+func (s *MaintenanceStatus) SetMaintenanceScheduledDate(v string) *MaintenanceStatus {
+	s.MaintenanceScheduledDate = &v
+	return s
+}
+
+// SetMaintenanceStartTime sets the MaintenanceStartTime field's value.
+func (s *MaintenanceStatus) SetMaintenanceStartTime(v string) *MaintenanceStatus {
+	s.MaintenanceStartTime = &v
+	return s
+}
+
+type MaintenanceUpdateSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Choose one day of the week for maintenance. The chosen day is used for all
+	// future maintenance windows.
+	MaintenanceDay *string `locationName:"maintenanceDay" type:"string" enum:"MaintenanceDay"`
+
+	// Choose a specific date for maintenance to occur. The chosen date is used
+	// for the next maintenance window only.
+	MaintenanceScheduledDate *string `locationName:"maintenanceScheduledDate" type:"string"`
+
+	// Choose the hour that maintenance will start. The chosen time is used for
+	// all future maintenance windows.
+	MaintenanceStartTime *string `locationName:"maintenanceStartTime" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MaintenanceUpdateSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MaintenanceUpdateSettings) GoString() string {
+	return s.String()
+}
+
+// SetMaintenanceDay sets the MaintenanceDay field's value.
+func (s *MaintenanceUpdateSettings) SetMaintenanceDay(v string) *MaintenanceUpdateSettings {
+	s.MaintenanceDay = &v
+	return s
+}
+
+// SetMaintenanceScheduledDate sets the MaintenanceScheduledDate field's value.
+func (s *MaintenanceUpdateSettings) SetMaintenanceScheduledDate(v string) *MaintenanceUpdateSettings {
+	s.MaintenanceScheduledDate = &v
+	return s
+}
+
+// SetMaintenanceStartTime sets the MaintenanceStartTime field's value.
+func (s *MaintenanceUpdateSettings) SetMaintenanceStartTime(v string) *MaintenanceUpdateSettings {
+	s.MaintenanceStartTime = &v
+	return s
+}
+
 // The settings for a MediaConnect Flow.
 type MediaConnectFlow struct {
 	_ struct{} `type:"structure"`
@@ -24590,8 +24780,7 @@ func (s *OutputDestinationSettings) SetUsername(v string) *OutputDestinationSett
 type OutputGroup struct {
 	_ struct{} `type:"structure"`
 
-	// Custom output group name optionally defined by the user. Only letters, numbers,
-	// and the underscore character allowed; only 32 characters allowed.
+	// Custom output group name optionally defined by the user.
 	Name *string `locationName:"name" type:"string"`
 
 	// Settings associated with the output group.
@@ -27328,6 +27517,8 @@ type StartChannelOutput struct {
 	// The log level the user wants for their channel.
 	LogLevel *string `locationName:"logLevel" type:"string" enum:"LogLevel"`
 
+	Maintenance *MaintenanceStatus `locationName:"maintenance" type:"structure"`
+
 	Name *string `locationName:"name" type:"string"`
 
 	PipelineDetails []*PipelineDetail `locationName:"pipelineDetails" type:"list"`
@@ -27419,6 +27610,12 @@ func (s *StartChannelOutput) SetInputSpecification(v *InputSpecification) *Start
 // SetLogLevel sets the LogLevel field's value.
 func (s *StartChannelOutput) SetLogLevel(v string) *StartChannelOutput {
 	s.LogLevel = &v
+	return s
+}
+
+// SetMaintenance sets the Maintenance field's value.
+func (s *StartChannelOutput) SetMaintenance(v *MaintenanceStatus) *StartChannelOutput {
+	s.Maintenance = v
 	return s
 }
 
@@ -27988,6 +28185,8 @@ type StopChannelOutput struct {
 	// The log level the user wants for their channel.
 	LogLevel *string `locationName:"logLevel" type:"string" enum:"LogLevel"`
 
+	Maintenance *MaintenanceStatus `locationName:"maintenance" type:"structure"`
+
 	Name *string `locationName:"name" type:"string"`
 
 	PipelineDetails []*PipelineDetail `locationName:"pipelineDetails" type:"list"`
@@ -28079,6 +28278,12 @@ func (s *StopChannelOutput) SetInputSpecification(v *InputSpecification) *StopCh
 // SetLogLevel sets the LogLevel field's value.
 func (s *StopChannelOutput) SetLogLevel(v string) *StopChannelOutput {
 	s.LogLevel = &v
+	return s
+}
+
+// SetMaintenance sets the Maintenance field's value.
+func (s *StopChannelOutput) SetMaintenance(v *MaintenanceStatus) *StopChannelOutput {
+	s.Maintenance = v
 	return s
 }
 
@@ -28732,9 +28937,8 @@ func (s *TransferringInputDeviceSummary) SetTransferType(v string) *Transferring
 type TtmlDestinationSettings struct {
 	_ struct{} `type:"structure"`
 
-	// When set to passthrough, passes through style and position information from
-	// a TTML-like input source (TTML, SMPTE-TT, CFF-TT) to the CFF-TT output or
-	// TTML output.
+	// This field is not currently supported and will not affect the output styling.
+	// Leave the default value.
 	StyleControl *string `locationName:"styleControl" type:"string" enum:"TtmlDestinationStyleControl"`
 }
 
@@ -29153,6 +29357,8 @@ type UpdateChannelInput struct {
 	// The log level the user wants for their channel.
 	LogLevel *string `locationName:"logLevel" type:"string" enum:"LogLevel"`
 
+	Maintenance *MaintenanceUpdateSettings `locationName:"maintenance" type:"structure"`
+
 	Name *string `locationName:"name" type:"string"`
 
 	RoleArn *string `locationName:"roleArn" type:"string"`
@@ -29256,6 +29462,12 @@ func (s *UpdateChannelInput) SetInputSpecification(v *InputSpecification) *Updat
 // SetLogLevel sets the LogLevel field's value.
 func (s *UpdateChannelInput) SetLogLevel(v string) *UpdateChannelInput {
 	s.LogLevel = &v
+	return s
+}
+
+// SetMaintenance sets the Maintenance field's value.
+func (s *UpdateChannelInput) SetMaintenance(v *MaintenanceUpdateSettings) *UpdateChannelInput {
+	s.Maintenance = v
 	return s
 }
 
@@ -34624,6 +34836,43 @@ func M3u8TimedMetadataBehavior_Values() []string {
 	return []string{
 		M3u8TimedMetadataBehaviorNoPassthrough,
 		M3u8TimedMetadataBehaviorPassthrough,
+	}
+}
+
+// The currently selected maintenance day.
+const (
+	// MaintenanceDayMonday is a MaintenanceDay enum value
+	MaintenanceDayMonday = "MONDAY"
+
+	// MaintenanceDayTuesday is a MaintenanceDay enum value
+	MaintenanceDayTuesday = "TUESDAY"
+
+	// MaintenanceDayWednesday is a MaintenanceDay enum value
+	MaintenanceDayWednesday = "WEDNESDAY"
+
+	// MaintenanceDayThursday is a MaintenanceDay enum value
+	MaintenanceDayThursday = "THURSDAY"
+
+	// MaintenanceDayFriday is a MaintenanceDay enum value
+	MaintenanceDayFriday = "FRIDAY"
+
+	// MaintenanceDaySaturday is a MaintenanceDay enum value
+	MaintenanceDaySaturday = "SATURDAY"
+
+	// MaintenanceDaySunday is a MaintenanceDay enum value
+	MaintenanceDaySunday = "SUNDAY"
+)
+
+// MaintenanceDay_Values returns all elements of the MaintenanceDay enum
+func MaintenanceDay_Values() []string {
+	return []string{
+		MaintenanceDayMonday,
+		MaintenanceDayTuesday,
+		MaintenanceDayWednesday,
+		MaintenanceDayThursday,
+		MaintenanceDayFriday,
+		MaintenanceDaySaturday,
+		MaintenanceDaySunday,
 	}
 }
 

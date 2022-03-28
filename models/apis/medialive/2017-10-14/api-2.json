@@ -3623,6 +3623,10 @@
           "shape": "LogLevel",
           "locationName": "logLevel"
         },
+        "Maintenance": {
+          "shape": "MaintenanceStatus",
+          "locationName": "maintenance"
+        },
         "Name": {
           "shape": "__string",
           "locationName": "name"
@@ -3737,6 +3741,10 @@
           "shape": "LogLevel",
           "locationName": "logLevel"
         },
+        "Maintenance": {
+          "shape": "MaintenanceStatus",
+          "locationName": "maintenance"
+        },
         "Name": {
           "shape": "__string",
           "locationName": "name"
@@ -3826,6 +3834,10 @@
           "shape": "LogLevel",
           "locationName": "logLevel"
         },
+        "Maintenance": {
+          "shape": "MaintenanceCreateSettings",
+          "locationName": "maintenance"
+        },
         "Name": {
           "shape": "__string",
           "locationName": "name"
@@ -3884,6 +3896,10 @@
         "LogLevel": {
           "shape": "LogLevel",
           "locationName": "logLevel"
+        },
+        "Maintenance": {
+          "shape": "MaintenanceCreateSettings",
+          "locationName": "maintenance"
         },
         "Name": {
           "shape": "__string",
@@ -4359,6 +4375,10 @@
           "shape": "LogLevel",
           "locationName": "logLevel"
         },
+        "Maintenance": {
+          "shape": "MaintenanceStatus",
+          "locationName": "maintenance"
+        },
         "Name": {
           "shape": "__string",
           "locationName": "name"
@@ -4709,6 +4729,10 @@
         "LogLevel": {
           "shape": "LogLevel",
           "locationName": "logLevel"
+        },
+        "Maintenance": {
+          "shape": "MaintenanceStatus",
+          "locationName": "maintenance"
         },
         "Name": {
           "shape": "__string",
@@ -9305,6 +9329,69 @@
         "PASSTHROUGH"
       ]
     },
+    "MaintenanceCreateSettings": {
+      "type": "structure",
+      "members": {
+        "MaintenanceDay": {
+          "shape": "MaintenanceDay",
+          "locationName": "maintenanceDay"
+        },
+        "MaintenanceStartTime": {
+          "shape": "__stringPattern010920300",
+          "locationName": "maintenanceStartTime"
+        }
+      }
+    },
+    "MaintenanceDay": {
+      "type": "string",
+      "enum": [
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY"
+      ]
+    },
+    "MaintenanceStatus": {
+      "type": "structure",
+      "members": {
+        "MaintenanceDay": {
+          "shape": "MaintenanceDay",
+          "locationName": "maintenanceDay"
+        },
+        "MaintenanceDeadline": {
+          "shape": "__string",
+          "locationName": "maintenanceDeadline"
+        },
+        "MaintenanceScheduledDate": {
+          "shape": "__string",
+          "locationName": "maintenanceScheduledDate"
+        },
+        "MaintenanceStartTime": {
+          "shape": "__string",
+          "locationName": "maintenanceStartTime"
+        }
+      }
+    },
+    "MaintenanceUpdateSettings": {
+      "type": "structure",
+      "members": {
+        "MaintenanceDay": {
+          "shape": "MaintenanceDay",
+          "locationName": "maintenanceDay"
+        },
+        "MaintenanceScheduledDate": {
+          "shape": "__string",
+          "locationName": "maintenanceScheduledDate"
+        },
+        "MaintenanceStartTime": {
+          "shape": "__stringPattern010920300",
+          "locationName": "maintenanceStartTime"
+        }
+      }
+    },
     "MaxResults": {
       "type": "integer",
       "min": 1,
@@ -11466,6 +11553,10 @@
           "shape": "LogLevel",
           "locationName": "logLevel"
         },
+        "Maintenance": {
+          "shape": "MaintenanceStatus",
+          "locationName": "maintenance"
+        },
         "Name": {
           "shape": "__string",
           "locationName": "name"
@@ -11695,6 +11786,10 @@
         "LogLevel": {
           "shape": "LogLevel",
           "locationName": "logLevel"
+        },
+        "Maintenance": {
+          "shape": "MaintenanceStatus",
+          "locationName": "maintenance"
         },
         "Name": {
           "shape": "__string",
@@ -12109,6 +12204,10 @@
           "shape": "LogLevel",
           "locationName": "logLevel"
         },
+        "Maintenance": {
+          "shape": "MaintenanceUpdateSettings",
+          "locationName": "maintenance"
+        },
         "Name": {
           "shape": "__string",
           "locationName": "name"
@@ -12197,6 +12296,10 @@
         "LogLevel": {
           "shape": "LogLevel",
           "locationName": "logLevel"
+        },
+        "Maintenance": {
+          "shape": "MaintenanceUpdateSettings",
+          "locationName": "maintenance"
         },
         "Name": {
           "shape": "__string",
@@ -13516,6 +13619,10 @@
       "type": "string",
       "min": 6,
       "max": 6
+    },
+    "__stringPattern010920300": {
+      "type": "string",
+      "pattern": "^([0,1]?[0-9]|2[0-3]):00$"
     },
     "__timestampIso8601": {
       "type": "timestamp",
