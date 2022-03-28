@@ -1,3 +1,11 @@
+Release v1.43.27 (2022-03-28)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service documentation
+* `service/medialive`: Updates service API and documentation
+  * This release adds support for selecting a maintenance window.
+
 Release v1.43.26 (2022-03-25)
 ===
 
