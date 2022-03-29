@@ -1,3 +1,10 @@
+Release v1.43.28 (2022-03-29)
+===
+
+### Service Client Updates
+* `service/organizations`: Updates service API and documentation
+  * This release provides the new CloseAccount API that enables principals in the management account to close any member account within an organization.
+
 Release v1.43.27 (2022-03-28)
 ===
 

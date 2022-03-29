@@ -72,6 +72,10 @@ type OrganizationsAPI interface {
 	CancelHandshakeWithContext(aws.Context, *organizations.CancelHandshakeInput, ...request.Option) (*organizations.CancelHandshakeOutput, error)
 	CancelHandshakeRequest(*organizations.CancelHandshakeInput) (*request.Request, *organizations.CancelHandshakeOutput)
 
+	CloseAccount(*organizations.CloseAccountInput) (*organizations.CloseAccountOutput, error)
+	CloseAccountWithContext(aws.Context, *organizations.CloseAccountInput, ...request.Option) (*organizations.CloseAccountOutput, error)
+	CloseAccountRequest(*organizations.CloseAccountInput) (*request.Request, *organizations.CloseAccountOutput)
+
 	CreateAccount(*organizations.CreateAccountInput) (*organizations.CreateAccountOutput, error)
 	CreateAccountWithContext(aws.Context, *organizations.CreateAccountInput, ...request.Option) (*organizations.CreateAccountOutput, error)
 	CreateAccountRequest(*organizations.CreateAccountInput) (*request.Request, *organizations.CreateAccountOutput)
