@@ -77,6 +77,27 @@
         {"shape":"TooManyRequestsException"}
       ]
     },
+    "CloseAccount":{
+      "name":"CloseAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CloseAccountRequest"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountAlreadyClosedException"},
+        {"shape":"AccountNotFoundException"},
+        {"shape":"AWSOrganizationsNotInUseException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ConstraintViolationException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ServiceException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"UnsupportedAPIEndpointException"}
+      ]
+    },
     "CreateAccount":{
       "name":"CreateAccount",
       "http":{
@@ -1019,6 +1040,13 @@
         "JoinedTimestamp":{"shape":"Timestamp"}
       }
     },
+    "AccountAlreadyClosedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
     "AccountAlreadyRegisteredException":{
       "type":"structure",
       "members":{
@@ -1044,9 +1072,9 @@
     },
     "AccountName":{
       "type":"string",
-      "max":50,
+      "max":128,
       "min":1,
-      "pattern":"[\\u0020-\\u007E]+",
+      "pattern":"[\\s\\S]*",
       "sensitive":true
     },
     "AccountNotFoundException":{
@@ -1074,7 +1102,8 @@
       "type":"string",
       "enum":[
         "ACTIVE",
-        "SUSPENDED"
+        "SUSPENDED",
+        "PENDING_CLOSURE"
       ]
     },
     "Accounts":{
@@ -1152,7 +1181,21 @@
       "type":"list",
       "member":{"shape":"Child"}
     },
+    "CloseAccountRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{"shape":"AccountId"}
+      }
+    },
     "ConcurrentModificationException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
+    "ConflictException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"ExceptionMessage"}
@@ -1197,7 +1240,11 @@
         "CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR",
         "CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG",
         "DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE",
-        "MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE"
+        "MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE",
+        "CANNOT_CLOSE_MANAGEMENT_ACCOUNT",
+        "CLOSE_ACCOUNT_QUOTA_EXCEEDED",
+        "CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED",
+        "SERVICE_ACCESS_NOT_ENABLED"
       ]
     },
     "CreateAccountFailureReason":{
@@ -1218,6 +1265,13 @@
         "MISSING_PAYMENT_INSTRUMENT"
       ]
     },
+    "CreateAccountName":{
+      "type":"string",
+      "max":50,
+      "min":1,
+      "pattern":"[\\u0020-\\u007E]+",
+      "sensitive":true
+    },
     "CreateAccountRequest":{
       "type":"structure",
       "required":[
@@ -1226,7 +1280,7 @@
       ],
       "members":{
         "Email":{"shape":"Email"},
-        "AccountName":{"shape":"AccountName"},
+        "AccountName":{"shape":"CreateAccountName"},
         "RoleName":{"shape":"RoleName"},
         "IamUserAccessToBilling":{"shape":"IAMUserAccessToBilling"},
         "Tags":{"shape":"Tags"}
@@ -1259,7 +1313,7 @@
       "type":"structure",
       "members":{
         "Id":{"shape":"CreateAccountRequestId"},
-        "AccountName":{"shape":"AccountName"},
+        "AccountName":{"shape":"CreateAccountName"},
         "State":{"shape":"CreateAccountState"},
         "RequestedTimestamp":{"shape":"Timestamp"},
         "CompletedTimestamp":{"shape":"Timestamp"},
@@ -1287,7 +1341,7 @@
       ],
       "members":{
         "Email":{"shape":"Email"},
-        "AccountName":{"shape":"AccountName"},
+        "AccountName":{"shape":"CreateAccountName"},
         "RoleName":{"shape":"RoleName"},
         "IamUserAccessToBilling":{"shape":"IAMUserAccessToBilling"},
         "Tags":{"shape":"Tags"}
@@ -1712,7 +1766,8 @@
         "INVITE_DISABLED_DURING_ENABLE_ALL_FEATURES",
         "PAYMENT_INSTRUMENT_REQUIRED",
         "ORGANIZATION_FROM_DIFFERENT_SELLER_OF_RECORD",
-        "ORGANIZATION_MEMBERSHIP_CHANGE_RATE_LIMIT_EXCEEDED"
+        "ORGANIZATION_MEMBERSHIP_CHANGE_RATE_LIMIT_EXCEEDED",
+        "MANAGEMENT_ACCOUNT_EMAIL_NOT_VERIFIED"
       ]
     },
     "HandshakeFilter":{
