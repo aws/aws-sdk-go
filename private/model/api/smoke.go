@@ -27,9 +27,15 @@ type SmokeTestCase struct {
 }
 
 var smokeTestsCustomizations = map[string]func(*SmokeTestSuite) error{
-	"sts":         stsSmokeTestCustomization,
-	"waf":         wafSmokeTestCustomization,
-	"wafregional": wafRegionalSmokeTestCustomization,
+	"sts":          stsSmokeTestCustomization,
+	"waf":          wafSmokeTestCustomization,
+	"wafregional":  wafRegionalSmokeTestCustomization,
+	"iotdataplane": iotDataPlaneSmokeTestCustomization,
+}
+
+func iotDataPlaneSmokeTestCustomization(suite *SmokeTestSuite) error {
+	suite.TestCases = []SmokeTestCase{}
+	return nil
 }
 
 func wafSmokeTestCustomization(suite *SmokeTestSuite) error {
