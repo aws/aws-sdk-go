@@ -1,3 +1,15 @@
+Release v1.43.29 (2022-03-30)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release simplifies the auto-recovery configuration process enabling customers to set the recovery behavior to disabled or default
+* `service/fms`: Updates service API, documentation, and paginators
+* `service/fsx`: Updates service API and documentation
+* `service/iot`: Updates service documentation
+  * Doc only update for IoT that fixes customer-reported issues.
+* `service/iot-data`: Updates service API and documentation
+
 Release v1.43.28 (2022-03-29)
 ===
 

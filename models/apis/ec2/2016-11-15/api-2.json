@@ -3752,6 +3752,15 @@
       "input":{"shape":"ModifyInstanceEventWindowRequest"},
       "output":{"shape":"ModifyInstanceEventWindowResult"}
     },
+    "ModifyInstanceMaintenanceOptions":{
+      "name":"ModifyInstanceMaintenanceOptions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyInstanceMaintenanceOptionsRequest"},
+      "output":{"shape":"ModifyInstanceMaintenanceOptionsResult"}
+    },
     "ModifyInstanceMetadataOptions":{
       "name":"ModifyInstanceMetadataOptions",
       "http":{
@@ -22355,6 +22364,10 @@
         "Ipv6Address":{
           "shape":"String",
           "locationName":"ipv6Address"
+        },
+        "MaintenanceOptions":{
+          "shape":"InstanceMaintenanceOptions",
+          "locationName":"maintenanceOptions"
         }
       }
     },
@@ -22445,6 +22458,13 @@
         "sriovNetSupport",
         "enaSupport",
         "enclaveOptions"
+      ]
+    },
+    "InstanceAutoRecoveryState":{
+      "type":"string",
+      "enum":[
+        "disabled",
+        "default"
       ]
     },
     "InstanceBlockDeviceMapping":{
@@ -22894,6 +22914,21 @@
       "member":{
         "shape":"Instance",
         "locationName":"item"
+      }
+    },
+    "InstanceMaintenanceOptions":{
+      "type":"structure",
+      "members":{
+        "AutoRecovery":{
+          "shape":"InstanceAutoRecoveryState",
+          "locationName":"autoRecovery"
+        }
+      }
+    },
+    "InstanceMaintenanceOptionsRequest":{
+      "type":"structure",
+      "members":{
+        "AutoRecovery":{"shape":"InstanceAutoRecoveryState"}
       }
     },
     "InstanceMarketOptionsRequest":{
@@ -25518,6 +25553,13 @@
         }
       }
     },
+    "LaunchTemplateAutoRecoveryState":{
+      "type":"string",
+      "enum":[
+        "default",
+        "disabled"
+      ]
+    },
     "LaunchTemplateBlockDeviceMapping":{
       "type":"structure",
       "members":{
@@ -25785,6 +25827,21 @@
       "member":{
         "shape":"LaunchTemplateId",
         "locationName":"item"
+      }
+    },
+    "LaunchTemplateInstanceMaintenanceOptions":{
+      "type":"structure",
+      "members":{
+        "AutoRecovery":{
+          "shape":"LaunchTemplateAutoRecoveryState",
+          "locationName":"autoRecovery"
+        }
+      }
+    },
+    "LaunchTemplateInstanceMaintenanceOptionsRequest":{
+      "type":"structure",
+      "members":{
+        "AutoRecovery":{"shape":"LaunchTemplateAutoRecoveryState"}
       }
     },
     "LaunchTemplateInstanceMarketOptions":{
@@ -27450,6 +27507,28 @@
         "InstanceEventWindow":{
           "shape":"InstanceEventWindow",
           "locationName":"instanceEventWindow"
+        }
+      }
+    },
+    "ModifyInstanceMaintenanceOptionsRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "AutoRecovery":{"shape":"InstanceAutoRecoveryState"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ModifyInstanceMaintenanceOptionsResult":{
+      "type":"structure",
+      "members":{
+        "InstanceId":{
+          "shape":"String",
+          "locationName":"instanceId"
+        },
+        "AutoRecovery":{
+          "shape":"InstanceAutoRecoveryState",
+          "locationName":"autoRecovery"
         }
       }
     },
@@ -31847,7 +31926,8 @@
         "MetadataOptions":{"shape":"LaunchTemplateInstanceMetadataOptionsRequest"},
         "EnclaveOptions":{"shape":"LaunchTemplateEnclaveOptionsRequest"},
         "InstanceRequirements":{"shape":"InstanceRequirementsRequest"},
-        "PrivateDnsNameOptions":{"shape":"LaunchTemplatePrivateDnsNameOptionsRequest"}
+        "PrivateDnsNameOptions":{"shape":"LaunchTemplatePrivateDnsNameOptionsRequest"},
+        "MaintenanceOptions":{"shape":"LaunchTemplateInstanceMaintenanceOptionsRequest"}
       }
     },
     "RequestSpotFleetRequest":{
@@ -32878,6 +32958,10 @@
         "PrivateDnsNameOptions":{
           "shape":"LaunchTemplatePrivateDnsNameOptions",
           "locationName":"privateDnsNameOptions"
+        },
+        "MaintenanceOptions":{
+          "shape":"LaunchTemplateInstanceMaintenanceOptions",
+          "locationName":"maintenanceOptions"
         }
       }
     },
@@ -33483,7 +33567,8 @@
         },
         "MetadataOptions":{"shape":"InstanceMetadataOptionsRequest"},
         "EnclaveOptions":{"shape":"EnclaveOptionsRequest"},
-        "PrivateDnsNameOptions":{"shape":"PrivateDnsNameOptionsRequest"}
+        "PrivateDnsNameOptions":{"shape":"PrivateDnsNameOptionsRequest"},
+        "MaintenanceOptions":{"shape":"InstanceMaintenanceOptionsRequest"}
       }
     },
     "RunScheduledInstancesRequest":{

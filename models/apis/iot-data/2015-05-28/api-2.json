@@ -2,7 +2,7 @@
   "version":"2.0",
   "metadata":{
     "apiVersion":"2015-05-28",
-    "endpointPrefix":"data.iot",
+    "endpointPrefix":"data-ats.iot",
     "protocol":"rest-json",
     "serviceFullName":"AWS IoT Data Plane",
     "serviceId":"IoT Data Plane",

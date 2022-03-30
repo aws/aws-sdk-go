@@ -28,6 +28,21 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "AssociateThirdPartyFirewall":{
+      "name":"AssociateThirdPartyFirewall",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateThirdPartyFirewallRequest"},
+      "output":{"shape":"AssociateThirdPartyFirewallResponse"},
+      "errors":[
+        {"shape":"InvalidOperationException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
     "DeleteAppsList":{
       "name":"DeleteAppsList",
       "http":{
@@ -91,6 +106,21 @@
       "input":{"shape":"DisassociateAdminAccountRequest"},
       "errors":[
         {"shape":"InvalidOperationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
+    "DisassociateThirdPartyFirewall":{
+      "name":"DisassociateThirdPartyFirewall",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateThirdPartyFirewallRequest"},
+      "output":{"shape":"DisassociateThirdPartyFirewallResponse"},
+      "errors":[
+        {"shape":"InvalidOperationException"},
+        {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalErrorException"}
       ]
@@ -195,6 +225,21 @@
         {"shape":"InternalErrorException"}
       ]
     },
+    "GetThirdPartyFirewallAssociationStatus":{
+      "name":"GetThirdPartyFirewallAssociationStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetThirdPartyFirewallAssociationStatusRequest"},
+      "output":{"shape":"GetThirdPartyFirewallAssociationStatusResponse"},
+      "errors":[
+        {"shape":"InvalidOperationException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
     "GetViolationDetails":{
       "name":"GetViolationDetails",
       "http":{
@@ -292,6 +337,21 @@
         {"shape":"InvalidOperationException"},
         {"shape":"InternalErrorException"},
         {"shape":"InvalidInputException"}
+      ]
+    },
+    "ListThirdPartyFirewallFirewallPolicies":{
+      "name":"ListThirdPartyFirewallFirewallPolicies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListThirdPartyFirewallFirewallPoliciesRequest"},
+      "output":{"shape":"ListThirdPartyFirewallFirewallPoliciesResponse"},
+      "errors":[
+        {"shape":"InvalidOperationException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "PutAppsList":{
@@ -465,6 +525,19 @@
         "AdminAccount":{"shape":"AWSAccountId"}
       }
     },
+    "AssociateThirdPartyFirewallRequest":{
+      "type":"structure",
+      "required":["ThirdPartyFirewall"],
+      "members":{
+        "ThirdPartyFirewall":{"shape":"ThirdPartyFirewall"}
+      }
+    },
+    "AssociateThirdPartyFirewallResponse":{
+      "type":"structure",
+      "members":{
+        "ThirdPartyFirewallStatus":{"shape":"ThirdPartyFirewallAssociationStatus"}
+      }
+    },
     "AwsEc2InstanceViolation":{
       "type":"structure",
       "members":{
@@ -597,6 +670,19 @@
     "DisassociateAdminAccountRequest":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DisassociateThirdPartyFirewallRequest":{
+      "type":"structure",
+      "required":["ThirdPartyFirewall"],
+      "members":{
+        "ThirdPartyFirewall":{"shape":"ThirdPartyFirewall"}
+      }
+    },
+    "DisassociateThirdPartyFirewallResponse":{
+      "type":"structure",
+      "members":{
+        "ThirdPartyFirewallStatus":{"shape":"ThirdPartyFirewallAssociationStatus"}
       }
     },
     "DnsDuplicateRuleGroupViolation":{
@@ -748,7 +834,22 @@
     },
     "FirewallDeploymentModel":{
       "type":"string",
-      "enum":["CENTRALIZED"]
+      "enum":[
+        "CENTRALIZED",
+        "DISTRIBUTED"
+      ]
+    },
+    "FirewallPolicyId":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "FirewallPolicyName":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "FirewallSubnetIsOutOfScopeViolation":{
       "type":"structure",
@@ -758,6 +859,15 @@
         "SubnetAvailabilityZone":{"shape":"LengthBoundedString"},
         "SubnetAvailabilityZoneId":{"shape":"LengthBoundedString"},
         "VpcEndpointId":{"shape":"ResourceId"}
+      }
+    },
+    "FirewallSubnetMissingVPCEndpointViolation":{
+      "type":"structure",
+      "members":{
+        "FirewallSubnetId":{"shape":"ResourceId"},
+        "VpcId":{"shape":"ResourceId"},
+        "SubnetAvailabilityZone":{"shape":"LengthBoundedString"},
+        "SubnetAvailabilityZoneId":{"shape":"LengthBoundedString"}
       }
     },
     "GetAdminAccountRequest":{
@@ -864,6 +974,20 @@
       "members":{
         "ProtocolsList":{"shape":"ProtocolsListData"},
         "ProtocolsListArn":{"shape":"ResourceArn"}
+      }
+    },
+    "GetThirdPartyFirewallAssociationStatusRequest":{
+      "type":"structure",
+      "required":["ThirdPartyFirewall"],
+      "members":{
+        "ThirdPartyFirewall":{"shape":"ThirdPartyFirewall"}
+      }
+    },
+    "GetThirdPartyFirewallAssociationStatusResponse":{
+      "type":"structure",
+      "members":{
+        "ThirdPartyFirewallStatus":{"shape":"ThirdPartyFirewallAssociationStatus"},
+        "MarketplaceOnboardingStatus":{"shape":"MarketplaceSubscriptionOnboardingStatus"}
       }
     },
     "GetViolationDetailsRequest":{
@@ -1036,11 +1160,38 @@
         "TagList":{"shape":"TagList"}
       }
     },
+    "ListThirdPartyFirewallFirewallPoliciesRequest":{
+      "type":"structure",
+      "required":[
+        "ThirdPartyFirewall",
+        "MaxResults"
+      ],
+      "members":{
+        "ThirdPartyFirewall":{"shape":"ThirdPartyFirewall"},
+        "NextToken":{"shape":"PaginationToken"},
+        "MaxResults":{"shape":"PaginationMaxResults"}
+      }
+    },
+    "ListThirdPartyFirewallFirewallPoliciesResponse":{
+      "type":"structure",
+      "members":{
+        "ThirdPartyFirewallFirewallPolicies":{"shape":"ThirdPartyFirewallFirewallPolicies"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
     "ManagedServiceData":{
       "type":"string",
       "max":8192,
       "min":1,
       "pattern":"^((?!\\\\[nr]).)+"
+    },
+    "MarketplaceSubscriptionOnboardingStatus":{
+      "type":"string",
+      "enum":[
+        "NO_SUBSCRIPTION",
+        "NOT_COMPLETE",
+        "COMPLETE"
+      ]
     },
     "MemberAccounts":{
       "type":"list",
@@ -1285,7 +1436,8 @@
     "PolicyOption":{
       "type":"structure",
       "members":{
-        "NetworkFirewallPolicy":{"shape":"NetworkFirewallPolicy"}
+        "NetworkFirewallPolicy":{"shape":"NetworkFirewallPolicy"},
+        "ThirdPartyFirewallPolicy":{"shape":"ThirdPartyFirewallPolicy"}
       }
     },
     "PolicySummary":{
@@ -1566,7 +1718,11 @@
         "DnsRuleGroupLimitExceededViolation":{"shape":"DnsRuleGroupLimitExceededViolation"},
         "PossibleRemediationActions":{"shape":"PossibleRemediationActions"},
         "FirewallSubnetIsOutOfScopeViolation":{"shape":"FirewallSubnetIsOutOfScopeViolation"},
-        "RouteHasOutOfScopeEndpointViolation":{"shape":"RouteHasOutOfScopeEndpointViolation"}
+        "RouteHasOutOfScopeEndpointViolation":{"shape":"RouteHasOutOfScopeEndpointViolation"},
+        "ThirdPartyFirewallMissingFirewallViolation":{"shape":"ThirdPartyFirewallMissingFirewallViolation"},
+        "ThirdPartyFirewallMissingSubnetViolation":{"shape":"ThirdPartyFirewallMissingSubnetViolation"},
+        "ThirdPartyFirewallMissingExpectedRouteTableViolation":{"shape":"ThirdPartyFirewallMissingExpectedRouteTableViolation"},
+        "FirewallSubnetMissingVPCEndpointViolation":{"shape":"FirewallSubnetMissingVPCEndpointViolation"}
       }
     },
     "ResourceViolations":{
@@ -1646,7 +1802,8 @@
         "SECURITY_GROUPS_CONTENT_AUDIT",
         "SECURITY_GROUPS_USAGE_AUDIT",
         "NETWORK_FIREWALL",
-        "DNS_FIREWALL"
+        "DNS_FIREWALL",
+        "THIRD_PARTY_FIREWALL"
       ]
     },
     "StatefulRuleGroup":{
@@ -1753,6 +1910,65 @@
       "type":"list",
       "member":{"shape":"TargetViolationReason"}
     },
+    "ThirdPartyFirewall":{
+      "type":"string",
+      "enum":["PALO_ALTO_NETWORKS_CLOUD_NGFW"]
+    },
+    "ThirdPartyFirewallAssociationStatus":{
+      "type":"string",
+      "enum":[
+        "ONBOARDING",
+        "ONBOARD_COMPLETE",
+        "OFFBOARDING",
+        "OFFBOARD_COMPLETE",
+        "NOT_EXIST"
+      ]
+    },
+    "ThirdPartyFirewallFirewallPolicies":{
+      "type":"list",
+      "member":{"shape":"ThirdPartyFirewallFirewallPolicy"}
+    },
+    "ThirdPartyFirewallFirewallPolicy":{
+      "type":"structure",
+      "members":{
+        "FirewallPolicyId":{"shape":"FirewallPolicyId"},
+        "FirewallPolicyName":{"shape":"FirewallPolicyName"}
+      }
+    },
+    "ThirdPartyFirewallMissingExpectedRouteTableViolation":{
+      "type":"structure",
+      "members":{
+        "ViolationTarget":{"shape":"ViolationTarget"},
+        "VPC":{"shape":"ResourceId"},
+        "AvailabilityZone":{"shape":"LengthBoundedString"},
+        "CurrentRouteTable":{"shape":"ResourceId"},
+        "ExpectedRouteTable":{"shape":"ResourceId"}
+      }
+    },
+    "ThirdPartyFirewallMissingFirewallViolation":{
+      "type":"structure",
+      "members":{
+        "ViolationTarget":{"shape":"ViolationTarget"},
+        "VPC":{"shape":"ResourceId"},
+        "AvailabilityZone":{"shape":"LengthBoundedString"},
+        "TargetViolationReason":{"shape":"TargetViolationReason"}
+      }
+    },
+    "ThirdPartyFirewallMissingSubnetViolation":{
+      "type":"structure",
+      "members":{
+        "ViolationTarget":{"shape":"ViolationTarget"},
+        "VPC":{"shape":"ResourceId"},
+        "AvailabilityZone":{"shape":"LengthBoundedString"},
+        "TargetViolationReason":{"shape":"TargetViolationReason"}
+      }
+    },
+    "ThirdPartyFirewallPolicy":{
+      "type":"structure",
+      "members":{
+        "FirewallDeploymentModel":{"shape":"FirewallDeploymentModel"}
+      }
+    },
     "TimeStamp":{"type":"timestamp"},
     "UntagResourceRequest":{
       "type":"structure",
@@ -1812,6 +2028,7 @@
         "MISSING_FIREWALL_SUBNET_IN_AZ",
         "MISSING_EXPECTED_ROUTE_TABLE",
         "NETWORK_FIREWALL_POLICY_MODIFIED",
+        "FIREWALL_SUBNET_IS_OUT_OF_SCOPE",
         "INTERNET_GATEWAY_MISSING_EXPECTED_ROUTE",
         "FIREWALL_SUBNET_MISSING_EXPECTED_ROUTE",
         "UNEXPECTED_FIREWALL_ROUTES",
@@ -1823,8 +2040,8 @@
         "BLACK_HOLE_ROUTE_DETECTED",
         "BLACK_HOLE_ROUTE_DETECTED_IN_FIREWALL_SUBNET",
         "RESOURCE_MISSING_DNS_FIREWALL",
-        "FIREWALL_SUBNET_IS_OUT_OF_SCOPE",
-        "ROUTE_HAS_OUT_OF_SCOPE_ENDPOINT"
+        "ROUTE_HAS_OUT_OF_SCOPE_ENDPOINT",
+        "FIREWALL_SUBNET_MISSING_VPCE_ENDPOINT"
       ]
     },
     "ViolationTarget":{

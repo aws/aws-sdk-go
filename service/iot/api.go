@@ -31370,20 +31370,23 @@ type CreateCustomMetricInput struct {
 	// generate a unique client request.
 	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// Field represents a friendly name in the console for the custom metric; it
-	// doesn't have to be unique. Don't use this name as the metric identifier in
-	// the device metric report. Can be updated once defined.
+	// The friendly name in the console for the custom metric. This name doesn't
+	// have to be unique. Don't use this name as the metric identifier in the device
+	// metric report. You can update the friendly name after you define it.
 	DisplayName *string `locationName:"displayName" type:"string"`
 
 	// The name of the custom metric. This will be used in the metric report submitted
-	// from the device/thing. Shouldn't begin with aws:. Cannot be updated once
-	// defined.
+	// from the device/thing. The name can't begin with aws:. You can't change the
+	// name after you define it.
 	//
 	// MetricName is a required field
 	MetricName *string `location:"uri" locationName:"metricName" min:"1" type:"string" required:"true"`
 
-	// The type of the custom metric. Types include string-list, ip-address-list,
-	// number-list, and number.
+	// The type of the custom metric.
+	//
+	// The type number only takes a single metric value as an input, but when you
+	// submit the metrics value in the DeviceMetrics report, you must pass it as
+	// an array with a single value.
 	//
 	// MetricType is a required field
 	MetricType *string `locationName:"metricType" type:"string" required:"true" enum:"CustomMetricType"`
@@ -31475,7 +31478,7 @@ func (s *CreateCustomMetricInput) SetTags(v []*Tag) *CreateCustomMetricInput {
 type CreateCustomMetricOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Number (ARN) of the custom metric, e.g. arn:aws-partition:iot:region:accountId:custommetric/metricName
+	// The Amazon Resource Number (ARN) of the custom metric. For example, arn:aws-partition:iot:region:accountId:custommetric/metricName
 	MetricArn *string `locationName:"metricArn" type:"string"`
 
 	// The name of the custom metric to be used in the metric report.
@@ -34043,6 +34046,9 @@ type CreateRoleAliasInput struct {
 
 	// How long (in seconds) the credentials will be valid. The default value is
 	// 3,600 seconds.
+	//
+	// This value must be less than or equal to the maximum session duration of
+	// the IAM role that the role alias references.
 	CredentialDurationSeconds *int64 `locationName:"credentialDurationSeconds" min:"900" type:"integer"`
 
 	// The role alias that points to a role ARN. This allows you to change the role
@@ -35314,13 +35320,21 @@ type CustomCodeSigning struct {
 	// The certificate chain.
 	CertificateChain *CodeSigningCertificateChain `locationName:"certificateChain" type:"structure"`
 
-	// The hash algorithm used to code sign the file.
+	// The hash algorithm used to code sign the file. You can use a string as the
+	// algorithm name if the target over-the-air (OTA) update devices are able to
+	// verify the signature that was generated using the same signature algorithm.
+	// For example, FreeRTOS uses SHA256 or SHA1, so you can pass either of them
+	// based on which was used for generating the signature.
 	HashAlgorithm *string `locationName:"hashAlgorithm" type:"string"`
 
 	// The signature for the file.
 	Signature *CodeSigningSignature `locationName:"signature" type:"structure"`
 
-	// The signature algorithm used to code sign the file.
+	// The signature algorithm used to code sign the file. You can use a string
+	// as the algorithm name if the target over-the-air (OTA) update devices are
+	// able to verify the signature that was generated using the same signature
+	// algorithm. For example, FreeRTOS uses ECDSA or RSA, so you can pass either
+	// of them based on which was used for generating the signature.
 	SignatureAlgorithm *string `locationName:"signatureAlgorithm" type:"string"`
 }
 
@@ -38995,8 +39009,11 @@ type DescribeCustomMetricOutput struct {
 	// The name of the custom metric.
 	MetricName *string `locationName:"metricName" min:"1" type:"string"`
 
-	// The type of the custom metric. Types include string-list, ip-address-list,
-	// number-list, and number.
+	// The type of the custom metric.
+	//
+	// The type number only takes a single metric value as an input, but while submitting
+	// the metrics value in the DeviceMetrics report, it must be passed as an array
+	// with a single value.
 	MetricType *string `locationName:"metricType" type:"string" enum:"CustomMetricType"`
 }
 
@@ -56627,6 +56644,8 @@ type RegisterCACertificateInput struct {
 	RegistrationConfig *RegistrationConfig `locationName:"registrationConfig" type:"structure"`
 
 	// A boolean value that specifies if the CA certificate is set to active.
+	//
+	// Valid values: ACTIVE | INACTIVE
 	SetAsActive *bool `location:"querystring" locationName:"setAsActive" type:"boolean"`
 
 	// Metadata which can be used to manage the CA certificate.
@@ -56790,10 +56809,13 @@ type RegisterCertificateInput struct {
 
 	// A boolean value that specifies if the certificate is set to active.
 	//
+	// Valid values: ACTIVE | INACTIVE
+	//
 	// Deprecated: SetAsActive has been deprecated
 	SetAsActive *bool `location:"querystring" locationName:"setAsActive" deprecated:"true" type:"boolean"`
 
-	// The status of the register certificate request.
+	// The status of the register certificate request. Valid values that you can
+	// use include ACTIVE, INACTIVE, and REVOKED.
 	Status *string `locationName:"status" type:"string" enum:"CertificateStatus"`
 }
 
@@ -64522,8 +64544,11 @@ type UpdateCustomMetricOutput struct {
 	// The name of the custom metric.
 	MetricName *string `locationName:"metricName" min:"1" type:"string"`
 
-	// The type of the custom metric. Types include string-list, ip-address-list,
-	// number-list, and number.
+	// The type of the custom metric.
+	//
+	// The type number only takes a single metric value as an input, but while submitting
+	// the metrics value in the DeviceMetrics report, it must be passed as an array
+	// with a single value.
 	MetricType *string `locationName:"metricType" type:"string" enum:"CustomMetricType"`
 }
 
@@ -65774,6 +65799,9 @@ type UpdateRoleAliasInput struct {
 	_ struct{} `type:"structure"`
 
 	// The number of seconds the credential will be valid.
+	//
+	// This value must be less than or equal to the maximum session duration of
+	// the IAM role that the role alias references.
 	CredentialDurationSeconds *int64 `locationName:"credentialDurationSeconds" min:"900" type:"integer"`
 
 	// The role alias to update.

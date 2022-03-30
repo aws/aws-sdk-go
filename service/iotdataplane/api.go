@@ -166,8 +166,8 @@ func (c *IoTDataPlane) GetRetainedMessageRequest(input *GetRetainedMessageInput)
 // Requires permission to access the GetRetainedMessage (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiotfleethubfordevicemanagement.html#awsiotfleethubfordevicemanagement-actions-as-permissions)
 // action.
 //
-// For more information about messaging costs, see IoT Core pricing - Messaging
-// (http://aws.amazon.com/iot-core/pricing/#Messaging).
+// For more information about messaging costs, see Amazon Web Services IoT Core
+// pricing - Messaging (http://aws.amazon.com/iot-core/pricing/#Messaging).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -480,8 +480,8 @@ func (c *IoTDataPlane) ListRetainedMessagesRequest(input *ListRetainedMessagesIn
 // Requires permission to access the ListRetainedMessages (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiotfleethubfordevicemanagement.html#awsiotfleethubfordevicemanagement-actions-as-permissions)
 // action.
 //
-// For more information about messaging costs, see IoT Core pricing - Messaging
-// (http://aws.amazon.com/iot-core/pricing/#Messaging).
+// For more information about messaging costs, see Amazon Web Services IoT Core
+// pricing - Messaging (http://aws.amazon.com/iot-core/pricing/#Messaging).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -633,8 +633,8 @@ func (c *IoTDataPlane) PublishRequest(input *PublishInput) (req *request.Request
 // For more information about MQTT messages, see MQTT Protocol (http://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html)
 // in the IoT Developer Guide.
 //
-// For more information about messaging costs, see IoT Core pricing - Messaging
-// (http://aws.amazon.com/iot-core/pricing/#Messaging).
+// For more information about messaging costs, see Amazon Web Services IoT Core
+// pricing - Messaging (http://aws.amazon.com/iot-core/pricing/#Messaging).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1567,7 +1567,7 @@ type PublishInput struct {
 	// The message body. MQTT accepts text, binary, and empty (null) message payloads.
 	//
 	// Publishing an empty (null) payload with retain = true deletes the retained
-	// message identified by topic from IoT Core.
+	// message identified by topic from Amazon Web Services IoT Core.
 	Payload []byte `locationName:"payload" type:"blob"`
 
 	// The Quality of Service (QoS) level.
