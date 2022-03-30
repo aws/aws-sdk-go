@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 // Service information constants
 const (
 	ServiceName = "data.iot"       // Name of service.
-	EndpointsID = ServiceName      // ID to lookup a service endpoint with.
+	EndpointsID = "data-ats.iot"   // ID to lookup a service endpoint with.
 	ServiceID   = "IoT Data Plane" // ServiceID is a unique identifier of a specific service.
 )
 

@@ -422,6 +422,7 @@
     "ModifyInstanceCreditSpecification": "<p>Modifies the credit option for CPU usage on a running or stopped burstable performance instance. The credit options are <code>standard</code> and <code>unlimited</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html\">Burstable performance instances</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "ModifyInstanceEventStartTime": "<p>Modifies the start time for a scheduled Amazon EC2 instance event.</p>",
     "ModifyInstanceEventWindow": "<p>Modifies the specified event window.</p> <p>You can define either a set of time ranges or a cron expression when modifying the event window, but not both.</p> <p>To modify the targets associated with the event window, use the <a>AssociateInstanceEventWindow</a> and <a>DisassociateInstanceEventWindow</a> API.</p> <p>If Amazon Web Services has already scheduled an event, modifying an event window won't change the time of the scheduled event.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/event-windows.html\">Define event windows for scheduled events</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+    "ModifyInstanceMaintenanceOptions": "<p>Modifies the recovery behavior of your instance to disable simplified automatic recovery or set the recovery behavior to default. The default configuration will not enable simplified automatic recovery for an unsupported instance type. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recover.html#instance-configuration-recovery\">Simplified automatic recovery</a>.</p>",
     "ModifyInstanceMetadataOptions": "<p>Modify the instance metadata parameters on a running or stopped instance. When you modify the parameters on a stopped instance, they are applied when the instance is started. When you modify the parameters on a running instance, the API responds with a state of “pending”. After the parameter modifications are successfully applied to the instance, the state of the modifications changes from “pending” to “applied” in subsequent describe-instances API calls. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html\">Instance metadata and user data</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "ModifyInstancePlacement": "<p>Modifies the placement attributes for a specified instance. You can do the following:</p> <ul> <li> <p>Modify the affinity between an instance and a <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html\">Dedicated Host</a>. When affinity is set to <code>host</code> and the instance is not associated with a specific Dedicated Host, the next time the instance is launched, it is automatically associated with the host on which it lands. If the instance is restarted or rebooted, this relationship persists.</p> </li> <li> <p>Change the Dedicated Host with which an instance is associated.</p> </li> <li> <p>Change the instance tenancy of an instance.</p> </li> <li> <p>Move an instance to or from a <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html\">placement group</a>.</p> </li> </ul> <p>At least one attribute for affinity, host ID, tenancy, or placement group name must be specified in the request. Affinity and tenancy can be modified in the same request.</p> <p>To modify the host ID, tenancy, placement group, or partition for an instance, the instance must be in the <code>stopped</code> state.</p>",
     "ModifyIpam": "<p>Modify the configurations of an IPAM. </p>",
@@ -2172,7 +2173,7 @@
         "ModifyDefaultCreditSpecificationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyEbsDefaultKmsKeyIdRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyFleetRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
-        "ModifyFleetResult$Return": "<p>Is <code>true</code> if the request succeeds, and an error otherwise.</p>",
+        "ModifyFleetResult$Return": "<p>If the request succeeds, the response returns <code>true</code>. If the request fails, no response is returned, and instead an error message is returned.</p>",
         "ModifyFpgaImageAttributeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyIdFormatRequest$UseLongIds": "<p>Indicate whether the resource should use longer IDs (17-character IDs).</p>",
         "ModifyIdentityIdFormatRequest$UseLongIds": "<p>Indicates whether the resource should use longer IDs (17-character IDs)</p>",
@@ -2183,6 +2184,7 @@
         "ModifyInstanceCreditSpecificationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyInstanceEventStartTimeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyInstanceEventWindowRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "ModifyInstanceMaintenanceOptionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyInstanceMetadataOptionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyInstancePlacementResult$Return": "<p>Is <code>true</code> if the request succeeds, and an error otherwise.</p>",
         "ModifyIpamPoolRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2203,7 +2205,7 @@
         "ModifySecurityGroupRulesResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, returns an error.</p>",
         "ModifySnapshotAttributeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifySnapshotTierRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
-        "ModifySpotFleetRequestResponse$Return": "<p>Is <code>true</code> if the request succeeds, and an error otherwise.</p>",
+        "ModifySpotFleetRequestResponse$Return": "<p>If the request succeeds, the response returns <code>true</code>. If the request fails, no response is returned, and instead an error message is returned.</p>",
         "ModifyTrafficMirrorFilterNetworkServicesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyTrafficMirrorFilterRuleRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyTrafficMirrorSessionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -9474,7 +9476,16 @@
       "refs": {
         "DescribeInstanceAttributeRequest$Attribute": "<p>The instance attribute.</p> <p>Note: The <code>enaSupport</code> attribute is not supported at this time.</p>",
         "ModifyInstanceAttributeRequest$Attribute": "<p>The name of the attribute.</p>",
-        "ResetInstanceAttributeRequest$Attribute": "<p>The attribute to reset.</p> <important> <p>You can only reset the following attributes: <code>kernel</code> | <code>ramdisk</code> | <code>sourceDestCheck</code>. To change an instance attribute, use <a>ModifyInstanceAttribute</a>.</p> </important>"
+        "ResetInstanceAttributeRequest$Attribute": "<p>The attribute to reset.</p> <important> <p>You can only reset the following attributes: <code>kernel</code> | <code>ramdisk</code> | <code>sourceDestCheck</code>.</p> </important>"
+      }
+    },
+    "InstanceAutoRecoveryState": {
+      "base": null,
+      "refs": {
+        "InstanceMaintenanceOptions$AutoRecovery": "<p>Provides information on the current automatic recovery behavior of your instance.</p>",
+        "InstanceMaintenanceOptionsRequest$AutoRecovery": "<p>Disables the automatic recovery behavior of your instance or sets it to default. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recover.html#instance-configuration-recovery\">Simplified automatic recovery</a>.</p>",
+        "ModifyInstanceMaintenanceOptionsRequest$AutoRecovery": "<p>Disables the automatic recovery behavior of your instance or sets it to default.</p>",
+        "ModifyInstanceMaintenanceOptionsResult$AutoRecovery": "<p>Provides information on the current automatic recovery behavior of your instance.</p>"
       }
     },
     "InstanceBlockDeviceMapping": {
@@ -9710,6 +9721,7 @@
         "ModifyInstanceAttributeRequest$InstanceId": "<p>The ID of the instance.</p>",
         "ModifyInstanceCapacityReservationAttributesRequest$InstanceId": "<p>The ID of the instance to be modified.</p>",
         "ModifyInstanceEventStartTimeRequest$InstanceId": "<p>The ID of the instance with the scheduled event.</p>",
+        "ModifyInstanceMaintenanceOptionsRequest$InstanceId": "<p>The ID of the instance.</p>",
         "ModifyInstanceMetadataOptionsRequest$InstanceId": "<p>The ID of the instance.</p>",
         "ModifyInstancePlacementRequest$InstanceId": "<p>The ID of the instance that you are modifying.</p>",
         "ModifyPrivateDnsNameOptionsRequest$InstanceId": "<p>The ID of the instance.</p>",
@@ -9838,6 +9850,18 @@
       "base": null,
       "refs": {
         "Reservation$Instances": "<p>The instances.</p>"
+      }
+    },
+    "InstanceMaintenanceOptions": {
+      "base": "<p>The maintenance options for the instance.</p>",
+      "refs": {
+        "Instance$MaintenanceOptions": "<p>Provides information on the recovery and maintenance options of your instance.</p>"
+      }
+    },
+    "InstanceMaintenanceOptionsRequest": {
+      "base": "<p>The maintenance options for the instance.</p>",
+      "refs": {
+        "RunInstancesRequest$MaintenanceOptions": "<p>The maintenance and recovery options for the instance.</p>"
       }
     },
     "InstanceMarketOptionsRequest": {
@@ -11313,6 +11337,13 @@
         "DescribeFleetsInstances$LaunchTemplateAndOverrides": "<p>The launch templates and overrides that were used for launching the instances. The values that you specify in the Overrides replace the values in the launch template.</p>"
       }
     },
+    "LaunchTemplateAutoRecoveryState": {
+      "base": null,
+      "refs": {
+        "LaunchTemplateInstanceMaintenanceOptions$AutoRecovery": "<p>Disables the automatic recovery behavior of your instance or sets it to default.</p>",
+        "LaunchTemplateInstanceMaintenanceOptionsRequest$AutoRecovery": "<p>Disables the automatic recovery behavior of your instance or sets it to default. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recover.html#instance-configuration-recovery\">Simplified automatic recovery</a>.</p>"
+      }
+    },
     "LaunchTemplateBlockDeviceMapping": {
       "base": "<p>Describes a block device mapping.</p>",
       "refs": {
@@ -11484,6 +11515,18 @@
       "base": null,
       "refs": {
         "DescribeLaunchTemplatesRequest$LaunchTemplateIds": "<p>One or more launch template IDs.</p>"
+      }
+    },
+    "LaunchTemplateInstanceMaintenanceOptions": {
+      "base": "<p>The maintenance options of your instance.</p>",
+      "refs": {
+        "ResponseLaunchTemplateData$MaintenanceOptions": "<p>The maintenance options for your instance.</p>"
+      }
+    },
+    "LaunchTemplateInstanceMaintenanceOptionsRequest": {
+      "base": "<p>The maintenance options of your instance.</p>",
+      "refs": {
+        "RequestLaunchTemplateData$MaintenanceOptions": "<p>The maintenance options for the instance.</p>"
       }
     },
     "LaunchTemplateInstanceMarketOptions": {
@@ -12451,6 +12494,16 @@
       }
     },
     "ModifyInstanceEventWindowResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyInstanceMaintenanceOptionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyInstanceMaintenanceOptionsResult": {
       "base": null,
       "refs": {
       }
@@ -17403,6 +17456,7 @@
         "ModifyInstanceCreditSpecificationRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "ModifyInstanceEventStartTimeRequest$InstanceEventId": "<p>The ID of the event whose date and time you are modifying.</p>",
         "ModifyInstanceEventWindowRequest$Name": "<p>The name of the event window.</p>",
+        "ModifyInstanceMaintenanceOptionsResult$InstanceId": "<p>The ID of the instance.</p>",
         "ModifyInstanceMetadataOptionsResult$InstanceId": "<p>The ID of the instance.</p>",
         "ModifyInstancePlacementRequest$HostResourceGroupArn": "<p>The ARN of the host resource group in which to place the instance.</p>",
         "ModifyIpamPoolRequest$Description": "<p>The description of the IPAM pool you want to modify.</p>",

@@ -798,7 +798,7 @@ func (c *FSx) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 //    * Creates a new, empty Amazon FSx file system with an assigned ID, and
 //    an initial lifecycle state of CREATING.
 //
-//    * Returns the description of the file system.
+//    * Returns the description of the file system in JSON format.
 //
 // This operation requires a client request token in the request that Amazon
 // FSx uses to ensure idempotent creation. This means that calling the operation
@@ -4118,6 +4118,8 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //
 //    * StorageCapacity
 //
+//    * ThroughputCapacity
+//
 //    * WeeklyMaintenanceStartTime
 //
 // For the Amazon FSx for OpenZFS file systems, you can update the following
@@ -5856,13 +5858,21 @@ type CopyBackupInput struct {
 	// precedence.
 	CopyTags *bool `type:"boolean"`
 
-	// The ID of the Key Management Service (KMS) key used to encrypt the file system's
-	// data for Amazon FSx for Windows File Server file systems, Amazon FSx for
-	// NetApp ONTAP file systems, and Amazon FSx for Lustre PERSISTENT_1 and PERSISTENT_2
-	// file systems at rest. If this ID isn't specified, the key managed by Amazon
-	// FSx is used. The Amazon FSx for Lustre SCRATCH_1 and SCRATCH_2 file systems
-	// are always encrypted at rest using Amazon FSx-managed keys. For more information,
-	// see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
+	// Specifies the ID of the Key Management Service (KMS) key to use for encrypting
+	// data on Amazon FSx file systems, as follows:
+	//
+	//    * Amazon FSx for Lustre PERSISTENT_1 and PERSISTENT_2 deployment types
+	//    only. SCRATCH_1 and SCRATCH_2 types are encrypted using the Amazon FSx
+	//    service KMS key for your account.
+	//
+	//    * Amazon FSx for NetApp ONTAP
+	//
+	//    * Amazon FSx for OpenZFS
+	//
+	//    * Amazon FSx for Windows File Server
+	//
+	// If a KmsKeyId isn't specified, the Amazon FSx-managed KMS key for your account
+	// is used. For more information, see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
 	// in the Key Management Service API Reference.
 	KmsKeyId *string `min:"1" type:"string"`
 
@@ -6535,13 +6545,21 @@ type CreateFileSystemFromBackupInput struct {
 	// backup's FileSystemTypeVersion setting.
 	FileSystemTypeVersion *string `min:"1" type:"string"`
 
-	// The ID of the Key Management Service (KMS) key used to encrypt the file system's
-	// data for Amazon FSx for Windows File Server file systems, Amazon FSx for
-	// NetApp ONTAP file systems, and Amazon FSx for Lustre PERSISTENT_1 and PERSISTENT_2
-	// file systems at rest. If this ID isn't specified, the key managed by Amazon
-	// FSx is used. The Amazon FSx for Lustre SCRATCH_1 and SCRATCH_2 file systems
-	// are always encrypted at rest using Amazon FSx-managed keys. For more information,
-	// see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
+	// Specifies the ID of the Key Management Service (KMS) key to use for encrypting
+	// data on Amazon FSx file systems, as follows:
+	//
+	//    * Amazon FSx for Lustre PERSISTENT_1 and PERSISTENT_2 deployment types
+	//    only. SCRATCH_1 and SCRATCH_2 types are encrypted using the Amazon FSx
+	//    service KMS key for your account.
+	//
+	//    * Amazon FSx for NetApp ONTAP
+	//
+	//    * Amazon FSx for OpenZFS
+	//
+	//    * Amazon FSx for Windows File Server
+	//
+	// If a KmsKeyId isn't specified, the Amazon FSx-managed KMS key for your account
+	// is used. For more information, see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
 	// in the Key Management Service API Reference.
 	KmsKeyId *string `min:"1" type:"string"`
 
@@ -6811,13 +6829,21 @@ type CreateFileSystemInput struct {
 	// type, the CreateFileSystem operation fails.
 	FileSystemTypeVersion *string `min:"1" type:"string"`
 
-	// The ID of the Key Management Service (KMS) key used to encrypt the file system's
-	// data for Amazon FSx for Windows File Server file systems, Amazon FSx for
-	// NetApp ONTAP file systems, and Amazon FSx for Lustre PERSISTENT_1 and PERSISTENT_2
-	// file systems at rest. If this ID isn't specified, the key managed by Amazon
-	// FSx is used. The Amazon FSx for Lustre SCRATCH_1 and SCRATCH_2 file systems
-	// are always encrypted at rest using Amazon FSx-managed keys. For more information,
-	// see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
+	// Specifies the ID of the Key Management Service (KMS) key to use for encrypting
+	// data on Amazon FSx file systems, as follows:
+	//
+	//    * Amazon FSx for Lustre PERSISTENT_1 and PERSISTENT_2 deployment types
+	//    only. SCRATCH_1 and SCRATCH_2 types are encrypted using the Amazon FSx
+	//    service KMS key for your account.
+	//
+	//    * Amazon FSx for NetApp ONTAP
+	//
+	//    * Amazon FSx for OpenZFS
+	//
+	//    * Amazon FSx for Windows File Server
+	//
+	// If a KmsKeyId isn't specified, the Amazon FSx-managed KMS key for your account
+	// is used. For more information, see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
 	// in the Key Management Service API Reference.
 	KmsKeyId *string `min:"1" type:"string"`
 
@@ -12554,14 +12580,18 @@ type FileSystem struct {
 	// or 2.12.
 	FileSystemTypeVersion *string `min:"1" type:"string"`
 
-	// The ID of the Key Management Service (KMS) key used to encrypt the file system's
-	// data for Amazon FSx for Windows File Server file systems, Amazon FSx for
-	// NetApp ONTAP file systems, and PERSISTENT Amazon FSx for Lustre file systems
-	// at rest. If this ID isn't specified, the Amazon FSx-managed key for your
-	// account is used. The scratch Amazon FSx for Lustre file systems are always
-	// encrypted at rest using the Amazon FSx-managed key for your account. For
-	// more information, see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
-	// in the Key Management Service API Reference.
+	// The ID of the Key Management Service (KMS) key used to encrypt Amazon FSx
+	// file system data. Used as follows with Amazon FSx file system types:
+	//
+	//    * Amazon FSx for Lustre PERSISTENT_1 and PERSISTENT_2 deployment types
+	//    only. SCRATCH_1 and SCRATCH_2 types are encrypted using the Amazon FSx
+	//    service KMS key for your account.
+	//
+	//    * Amazon FSx for NetApp ONTAP
+	//
+	//    * Amazon FSx for OpenZFS
+	//
+	//    * Amazon FSx for Windows File Server
 	KmsKeyId *string `min:"1" type:"string"`
 
 	// The lifecycle status of the file system. The following are the possible values
@@ -12597,7 +12627,7 @@ type FileSystem struct {
 	// than one.
 	NetworkInterfaceIds []*string `type:"list"`
 
-	// The configuration for this FSx for ONTAP file system.
+	// The configuration for this Amazon FSx for NetApp ONTAP file system.
 	OntapConfiguration *OntapFileSystemConfiguration `type:"structure"`
 
 	// The configuration for this Amazon FSx for OpenZFS file system.
@@ -12608,7 +12638,7 @@ type FileSystem struct {
 	// Web Services account to which the IAM user belongs is the owner.
 	OwnerId *string `min:"12" type:"string"`
 
-	// The Amazon Resource Name (ARN) for the file system resource.
+	// The Amazon Resource Name (ARN) of the file system resource.
 	ResourceARN *string `min:"8" type:"string"`
 
 	// The storage capacity of the file system in gibibytes (GiB).
@@ -12639,7 +12669,7 @@ type FileSystem struct {
 	// The ID of the primary virtual private cloud (VPC) for the file system.
 	VpcId *string `min:"12" type:"string"`
 
-	// The configuration for this FSx for Windows File Server file system.
+	// The configuration for this Amazon FSx for Windows File Server file system.
 	WindowsConfiguration *WindowsFileSystemConfiguration `type:"structure"`
 }
 
@@ -14486,7 +14516,8 @@ type OntapFileSystemConfiguration struct {
 	// The VPC route tables in which your file system's endpoints are created.
 	RouteTableIds []*string `type:"list"`
 
-	// The sustained throughput of an Amazon FSx file system in MBps.
+	// The sustained throughput of an Amazon FSx file system in Megabytes per second
+	// (MBps).
 	ThroughputCapacity *int64 `min:"8" type:"integer"`
 
 	// A recurring weekly time, in the format D:HH:MM.
@@ -14724,7 +14755,7 @@ func (s *OntapVolumeConfiguration) SetUUID(v string) *OntapVolumeConfiguration {
 	return s
 }
 
-// Specifies who can mount the file system and the options that can be used
+// Specifies who can mount an OpenZFS file system and the options available
 // while mounting the file system.
 type OpenZFSClientConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -16502,7 +16533,7 @@ func (s *SourceBackupUnavailable) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Describes the Amazon FSx for NetApp ONTAP storage virtual machine (SVM) configuraton.
+// Describes the Amazon FSx for NetApp ONTAP storage virtual machine (SVM) configuration.
 type StorageVirtualMachine struct {
 	_ struct{} `type:"structure"`
 
@@ -17797,6 +17828,11 @@ type UpdateFileSystemOntapConfiguration struct {
 	// String and GoString methods.
 	FsxAdminPassword *string `min:"8" type:"string" sensitive:"true"`
 
+	// Specifies the throughput of an FSx for NetApp ONTAP file system, measured
+	// in megabytes per second (MBps). Valid values are 64, 128, 256, 512, 1024,
+	// 2048, 3072, or 4096 MB/s.
+	ThroughputCapacity *int64 `min:"8" type:"integer"`
+
 	// A recurring weekly time, in the format D:HH:MM.
 	//
 	// D is the day of the week, for which 1 represents Monday and 7 represents
@@ -17837,6 +17873,9 @@ func (s *UpdateFileSystemOntapConfiguration) Validate() error {
 	if s.FsxAdminPassword != nil && len(*s.FsxAdminPassword) < 8 {
 		invalidParams.Add(request.NewErrParamMinLen("FsxAdminPassword", 8))
 	}
+	if s.ThroughputCapacity != nil && *s.ThroughputCapacity < 8 {
+		invalidParams.Add(request.NewErrParamMinValue("ThroughputCapacity", 8))
+	}
 	if s.WeeklyMaintenanceStartTime != nil && len(*s.WeeklyMaintenanceStartTime) < 7 {
 		invalidParams.Add(request.NewErrParamMinLen("WeeklyMaintenanceStartTime", 7))
 	}
@@ -17868,6 +17907,12 @@ func (s *UpdateFileSystemOntapConfiguration) SetDiskIopsConfiguration(v *DiskIop
 // SetFsxAdminPassword sets the FsxAdminPassword field's value.
 func (s *UpdateFileSystemOntapConfiguration) SetFsxAdminPassword(v string) *UpdateFileSystemOntapConfiguration {
 	s.FsxAdminPassword = &v
+	return s
+}
+
+// SetThroughputCapacity sets the ThroughputCapacity field's value.
+func (s *UpdateFileSystemOntapConfiguration) SetThroughputCapacity(v int64) *UpdateFileSystemOntapConfiguration {
+	s.ThroughputCapacity = &v
 	return s
 }
 
@@ -18612,7 +18657,7 @@ func (s *UpdateStorageVirtualMachineInput) SetSvmAdminPassword(v string) *Update
 type UpdateStorageVirtualMachineOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Describes the Amazon FSx for NetApp ONTAP storage virtual machine (SVM) configuraton.
+	// Describes the Amazon FSx for NetApp ONTAP storage virtual machine (SVM) configuration.
 	StorageVirtualMachine *StorageVirtualMachine `type:"structure"`
 }
 

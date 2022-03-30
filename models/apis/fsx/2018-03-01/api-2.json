@@ -3189,7 +3189,8 @@
         "DailyAutomaticBackupStartTime":{"shape":"DailyTime"},
         "FsxAdminPassword":{"shape":"AdminPassword"},
         "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"},
-        "DiskIopsConfiguration":{"shape":"DiskIopsConfiguration"}
+        "DiskIopsConfiguration":{"shape":"DiskIopsConfiguration"},
+        "ThroughputCapacity":{"shape":"MegabytesPerSecond"}
       }
     },
     "UpdateFileSystemOpenZFSConfiguration":{

@@ -64,6 +64,10 @@ type FMSAPI interface {
 	AssociateAdminAccountWithContext(aws.Context, *fms.AssociateAdminAccountInput, ...request.Option) (*fms.AssociateAdminAccountOutput, error)
 	AssociateAdminAccountRequest(*fms.AssociateAdminAccountInput) (*request.Request, *fms.AssociateAdminAccountOutput)
 
+	AssociateThirdPartyFirewall(*fms.AssociateThirdPartyFirewallInput) (*fms.AssociateThirdPartyFirewallOutput, error)
+	AssociateThirdPartyFirewallWithContext(aws.Context, *fms.AssociateThirdPartyFirewallInput, ...request.Option) (*fms.AssociateThirdPartyFirewallOutput, error)
+	AssociateThirdPartyFirewallRequest(*fms.AssociateThirdPartyFirewallInput) (*request.Request, *fms.AssociateThirdPartyFirewallOutput)
+
 	DeleteAppsList(*fms.DeleteAppsListInput) (*fms.DeleteAppsListOutput, error)
 	DeleteAppsListWithContext(aws.Context, *fms.DeleteAppsListInput, ...request.Option) (*fms.DeleteAppsListOutput, error)
 	DeleteAppsListRequest(*fms.DeleteAppsListInput) (*request.Request, *fms.DeleteAppsListOutput)
@@ -83,6 +87,10 @@ type FMSAPI interface {
 	DisassociateAdminAccount(*fms.DisassociateAdminAccountInput) (*fms.DisassociateAdminAccountOutput, error)
 	DisassociateAdminAccountWithContext(aws.Context, *fms.DisassociateAdminAccountInput, ...request.Option) (*fms.DisassociateAdminAccountOutput, error)
 	DisassociateAdminAccountRequest(*fms.DisassociateAdminAccountInput) (*request.Request, *fms.DisassociateAdminAccountOutput)
+
+	DisassociateThirdPartyFirewall(*fms.DisassociateThirdPartyFirewallInput) (*fms.DisassociateThirdPartyFirewallOutput, error)
+	DisassociateThirdPartyFirewallWithContext(aws.Context, *fms.DisassociateThirdPartyFirewallInput, ...request.Option) (*fms.DisassociateThirdPartyFirewallOutput, error)
+	DisassociateThirdPartyFirewallRequest(*fms.DisassociateThirdPartyFirewallInput) (*request.Request, *fms.DisassociateThirdPartyFirewallOutput)
 
 	GetAdminAccount(*fms.GetAdminAccountInput) (*fms.GetAdminAccountOutput, error)
 	GetAdminAccountWithContext(aws.Context, *fms.GetAdminAccountInput, ...request.Option) (*fms.GetAdminAccountOutput, error)
@@ -111,6 +119,10 @@ type FMSAPI interface {
 	GetProtocolsList(*fms.GetProtocolsListInput) (*fms.GetProtocolsListOutput, error)
 	GetProtocolsListWithContext(aws.Context, *fms.GetProtocolsListInput, ...request.Option) (*fms.GetProtocolsListOutput, error)
 	GetProtocolsListRequest(*fms.GetProtocolsListInput) (*request.Request, *fms.GetProtocolsListOutput)
+
+	GetThirdPartyFirewallAssociationStatus(*fms.GetThirdPartyFirewallAssociationStatusInput) (*fms.GetThirdPartyFirewallAssociationStatusOutput, error)
+	GetThirdPartyFirewallAssociationStatusWithContext(aws.Context, *fms.GetThirdPartyFirewallAssociationStatusInput, ...request.Option) (*fms.GetThirdPartyFirewallAssociationStatusOutput, error)
+	GetThirdPartyFirewallAssociationStatusRequest(*fms.GetThirdPartyFirewallAssociationStatusInput) (*request.Request, *fms.GetThirdPartyFirewallAssociationStatusOutput)
 
 	GetViolationDetails(*fms.GetViolationDetailsInput) (*fms.GetViolationDetailsOutput, error)
 	GetViolationDetailsWithContext(aws.Context, *fms.GetViolationDetailsInput, ...request.Option) (*fms.GetViolationDetailsOutput, error)
@@ -154,6 +166,13 @@ type FMSAPI interface {
 	ListTagsForResource(*fms.ListTagsForResourceInput) (*fms.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *fms.ListTagsForResourceInput, ...request.Option) (*fms.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*fms.ListTagsForResourceInput) (*request.Request, *fms.ListTagsForResourceOutput)
+
+	ListThirdPartyFirewallFirewallPolicies(*fms.ListThirdPartyFirewallFirewallPoliciesInput) (*fms.ListThirdPartyFirewallFirewallPoliciesOutput, error)
+	ListThirdPartyFirewallFirewallPoliciesWithContext(aws.Context, *fms.ListThirdPartyFirewallFirewallPoliciesInput, ...request.Option) (*fms.ListThirdPartyFirewallFirewallPoliciesOutput, error)
+	ListThirdPartyFirewallFirewallPoliciesRequest(*fms.ListThirdPartyFirewallFirewallPoliciesInput) (*request.Request, *fms.ListThirdPartyFirewallFirewallPoliciesOutput)
+
+	ListThirdPartyFirewallFirewallPoliciesPages(*fms.ListThirdPartyFirewallFirewallPoliciesInput, func(*fms.ListThirdPartyFirewallFirewallPoliciesOutput, bool) bool) error
+	ListThirdPartyFirewallFirewallPoliciesPagesWithContext(aws.Context, *fms.ListThirdPartyFirewallFirewallPoliciesInput, func(*fms.ListThirdPartyFirewallFirewallPoliciesOutput, bool) bool, ...request.Option) error
 
 	PutAppsList(*fms.PutAppsListInput) (*fms.PutAppsListOutput, error)
 	PutAppsListWithContext(aws.Context, *fms.PutAppsListInput, ...request.Option) (*fms.PutAppsListOutput, error)
