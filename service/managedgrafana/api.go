@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opAssociateLicense = "AssociateLicense"
@@ -725,6 +726,99 @@ func (c *ManagedGrafana) ListPermissionsPagesWithContext(ctx aws.Context, input 
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/ListTagsForResource
+func (c *ManagedGrafana) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Amazon Managed Grafana.
+//
+// The ListTagsForResource operation returns the tags that are associated with
+// the Amazon Managed Service for Grafana resource specified by the resourceArn.
+// Currently, the only resource that can be tagged is a workspace.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Managed Grafana's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The request references a resource that does not exist.
+//
+//   * ThrottlingException
+//   The request was denied because of request throttling. Retry the request.
+//
+//   * ValidationException
+//   The value of a parameter in the request caused an error.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InternalServerException
+//   Unexpected error while processing the request. Retry the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/ListTagsForResource
+func (c *ManagedGrafana) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedGrafana) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListWorkspaces = "ListWorkspaces"
 
 // ListWorkspacesRequest generates a "aws/request.Request" representing the
@@ -868,6 +962,197 @@ func (c *ManagedGrafana) ListWorkspacesPagesWithContext(ctx aws.Context, input *
 	}
 
 	return p.Err()
+}
+
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/TagResource
+func (c *ManagedGrafana) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Amazon Managed Grafana.
+//
+// The TagResource operation associates tags with an Amazon Managed Grafana
+// resource. Currently, the only resource that can be tagged is workspaces.
+//
+// If you specify a new tag key for the resource, this tag is appended to the
+// list of tags associated with the resource. If you specify a tag key that
+// is already associated with the resource, the new tag value that you specify
+// replaces the previous value for that tag.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Managed Grafana's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The request references a resource that does not exist.
+//
+//   * ThrottlingException
+//   The request was denied because of request throttling. Retry the request.
+//
+//   * ValidationException
+//   The value of a parameter in the request caused an error.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InternalServerException
+//   Unexpected error while processing the request. Retry the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/TagResource
+func (c *ManagedGrafana) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedGrafana) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/UntagResource
+func (c *ManagedGrafana) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Amazon Managed Grafana.
+//
+// The UntagResource operation removes the association of the tag with the Amazon
+// Managed Grafana resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Managed Grafana's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The request references a resource that does not exist.
+//
+//   * ThrottlingException
+//   The request was denied because of request throttling. Retry the request.
+//
+//   * ValidationException
+//   The value of a parameter in the request caused an error.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InternalServerException
+//   Unexpected error while processing the request. Retry the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/UntagResource
+func (c *ManagedGrafana) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedGrafana) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdatePermissions = "UpdatePermissions"
@@ -1681,9 +1966,11 @@ type CreateWorkspaceInput struct {
 	// String and GoString methods.
 	OrganizationRoleName *string `locationName:"organizationRoleName" min:"1" type:"string" sensitive:"true"`
 
-	// If you specify Service Managed, Amazon Managed Grafana automatically creates
-	// the IAM roles and provisions the permissions that the workspace needs to
-	// use Amazon Web Services data sources and notification channels.
+	// If you specify SERVICE_MANAGED on AWS Grafana console, Amazon Managed Grafana
+	// automatically creates the IAM roles and provisions the permissions that the
+	// workspace needs to use Amazon Web Services data sources and notification
+	// channels. In CLI mode, the permissionType SERVICE_MANAGED will not create
+	// the IAM role for you.
 	//
 	// If you specify CUSTOMER_MANAGED, you will manage those roles and permissions
 	// yourself. If you are creating this workspace in a member account of an organization
@@ -1692,7 +1979,7 @@ type CreateWorkspaceInput struct {
 	// you must choose CUSTOMER_MANAGED.
 	//
 	// For more information, see Amazon Managed Grafana permissions and policies
-	// for Amazon Web Services data sources and notification channels (https://docs.aws.amazon.com/grafana/latest/userguide/AMG-manage-permissions.html)
+	// for Amazon Web Services data sources and notification channels (https://docs.aws.amazon.com/grafana/latest/userguide/AMG-manage-permissions.html).
 	//
 	// PermissionType is a required field
 	PermissionType *string `locationName:"permissionType" type:"string" required:"true" enum:"PermissionType"`
@@ -1700,6 +1987,9 @@ type CreateWorkspaceInput struct {
 	// The name of the CloudFormation stack set to use to generate IAM roles to
 	// be used for this workspace.
 	StackSetName *string `locationName:"stackSetName" type:"string"`
+
+	// The list of tags associated with the workspace.
+	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// Specify the Amazon Web Services data sources that you want to be queried
 	// in this workspace. Specifying these data sources here enables Amazon Managed
@@ -1714,6 +2004,8 @@ type CreateWorkspaceInput struct {
 
 	// A description for the workspace. This is used only to help you identify this
 	// workspace.
+	//
+	// Pattern: ^[\\p{L}\\p{Z}\\p{N}\\p{P}]{0,2048}$
 	//
 	// WorkspaceDescription is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateWorkspaceInput's
@@ -1744,10 +2036,8 @@ type CreateWorkspaceInput struct {
 
 	// The workspace needs an IAM role that grants permissions to the Amazon Web
 	// Services resources that the workspace will view data from. If you already
-	// have a role that you want to use, specify it here. If you omit this field
-	// and you specify some Amazon Web Services resources in workspaceDataSources
-	// or workspaceNotificationDestinations, a new IAM role with the necessary permissions
-	// is automatically created.
+	// have a role that you want to use, specify it here. The permission type should
+	// be set to CUSTOMER_MANAGED.
 	//
 	// WorkspaceRoleArn is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateWorkspaceInput's
@@ -1831,6 +2121,12 @@ func (s *CreateWorkspaceInput) SetPermissionType(v string) *CreateWorkspaceInput
 // SetStackSetName sets the StackSetName field's value.
 func (s *CreateWorkspaceInput) SetStackSetName(v string) *CreateWorkspaceInput {
 	s.StackSetName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateWorkspaceInput) SetTags(v map[string]*string) *CreateWorkspaceInput {
+	s.Tags = v
 	return s
 }
 
@@ -2523,6 +2819,86 @@ func (s *ListPermissionsOutput) SetPermissions(v []*PermissionEntry) *ListPermis
 	return s
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the resource the list of tags are associated with.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of tags that are associated with the resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
 type ListWorkspacesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -3013,6 +3389,93 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the resource the tag is associated with.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+
+	// The list of tag keys and values to associate with the resource. You can associate
+	// tag keys only, tags (key and values) only or a combination of tag keys and
+	// tags.
+	//
+	// Tags is a required field
+	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // The request was denied because of request throttling. Retry the request.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
@@ -3085,6 +3548,91 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the resource the tag association is removed from.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+
+	// The key values of the tag to be removed from the resource.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 // A structure containing information about one error encountered while performing
@@ -3694,6 +4242,8 @@ type User struct {
 
 	// The ID of the user or group.
 	//
+	// Pattern: ^([0-9a-fA-F]{10}-|)[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$
+	//
 	// Id is a required field
 	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
 
@@ -3995,6 +4545,9 @@ type WorkspaceDescription struct {
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"WorkspaceStatus"`
 
+	// The list of tags associated with the workspace.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
 	// The IAM role that grants permissions to the Amazon Web Services resources
 	// that the workspace will view data from. This role must already exist.
 	//
@@ -4142,6 +4695,12 @@ func (s *WorkspaceDescription) SetStatus(v string) *WorkspaceDescription {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *WorkspaceDescription) SetTags(v map[string]*string) *WorkspaceDescription {
+	s.Tags = v
+	return s
+}
+
 // SetWorkspaceRoleArn sets the WorkspaceRoleArn field's value.
 func (s *WorkspaceDescription) SetWorkspaceRoleArn(v string) *WorkspaceDescription {
 	s.WorkspaceRoleArn = &v
@@ -4206,6 +4765,9 @@ type WorkspaceSummary struct {
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"WorkspaceStatus"`
+
+	// The list of tags associated with the workspace.
+	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
 // String returns the string representation.
@@ -4286,6 +4848,12 @@ func (s *WorkspaceSummary) SetStatus(v string) *WorkspaceSummary {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *WorkspaceSummary) SetTags(v map[string]*string) *WorkspaceSummary {
+	s.Tags = v
+	return s
+}
+
 const (
 	// AccountAccessTypeCurrentAccount is a AccountAccessType enum value
 	AccountAccessTypeCurrentAccount = "CURRENT_ACCOUNT"
@@ -4336,6 +4904,12 @@ const (
 
 	// DataSourceTypeSitewise is a DataSourceType enum value
 	DataSourceTypeSitewise = "SITEWISE"
+
+	// DataSourceTypeAthena is a DataSourceType enum value
+	DataSourceTypeAthena = "ATHENA"
+
+	// DataSourceTypeRedshift is a DataSourceType enum value
+	DataSourceTypeRedshift = "REDSHIFT"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -4347,6 +4921,8 @@ func DataSourceType_Values() []string {
 		DataSourceTypeXray,
 		DataSourceTypeTimestream,
 		DataSourceTypeSitewise,
+		DataSourceTypeAthena,
+		DataSourceTypeRedshift,
 	}
 }
 

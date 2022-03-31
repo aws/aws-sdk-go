@@ -1083,6 +1083,98 @@ func (c *WorkSpaces) CreateWorkspacesWithContext(ctx aws.Context, input *CreateW
 	return out, req.Send()
 }
 
+const opDeleteClientBranding = "DeleteClientBranding"
+
+// DeleteClientBrandingRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteClientBranding operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteClientBranding for more information on using the DeleteClientBranding
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteClientBrandingRequest method.
+//    req, resp := client.DeleteClientBrandingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DeleteClientBranding
+func (c *WorkSpaces) DeleteClientBrandingRequest(input *DeleteClientBrandingInput) (req *request.Request, output *DeleteClientBrandingOutput) {
+	op := &request.Operation{
+		Name:       opDeleteClientBranding,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteClientBrandingInput{}
+	}
+
+	output = &DeleteClientBrandingOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteClientBranding API operation for Amazon WorkSpaces.
+//
+// Deletes customized client branding. Client branding allows you to customize
+// your WorkSpace's client login portal. You can tailor your login portal company
+// logo, the support email address, support link, link to reset password, and
+// a custom message for users trying to sign in.
+//
+// After you delete your customized client branding, your login portal reverts
+// to the default client branding.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation DeleteClientBranding for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValuesException
+//   One or more parameter values are not valid.
+//
+//   * ResourceNotFoundException
+//   The resource could not be found.
+//
+//   * AccessDeniedException
+//   The user is not authorized to access a resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DeleteClientBranding
+func (c *WorkSpaces) DeleteClientBranding(input *DeleteClientBrandingInput) (*DeleteClientBrandingOutput, error) {
+	req, out := c.DeleteClientBrandingRequest(input)
+	return out, req.Send()
+}
+
+// DeleteClientBrandingWithContext is the same as DeleteClientBranding with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteClientBranding for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) DeleteClientBrandingWithContext(ctx aws.Context, input *DeleteClientBrandingInput, opts ...request.Option) (*DeleteClientBrandingOutput, error) {
+	req, out := c.DeleteClientBrandingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteConnectClientAddIn = "DeleteConnectClientAddIn"
 
 // DeleteConnectClientAddInRequest generates a "aws/request.Request" representing the
@@ -1888,6 +1980,97 @@ func (c *WorkSpaces) DescribeAccountModifications(input *DescribeAccountModifica
 // for more information on using Contexts.
 func (c *WorkSpaces) DescribeAccountModificationsWithContext(ctx aws.Context, input *DescribeAccountModificationsInput, opts ...request.Option) (*DescribeAccountModificationsOutput, error) {
 	req, out := c.DescribeAccountModificationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeClientBranding = "DescribeClientBranding"
+
+// DescribeClientBrandingRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeClientBranding operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeClientBranding for more information on using the DescribeClientBranding
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeClientBrandingRequest method.
+//    req, resp := client.DescribeClientBrandingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DescribeClientBranding
+func (c *WorkSpaces) DescribeClientBrandingRequest(input *DescribeClientBrandingInput) (req *request.Request, output *DescribeClientBrandingOutput) {
+	op := &request.Operation{
+		Name:       opDescribeClientBranding,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeClientBrandingInput{}
+	}
+
+	output = &DescribeClientBrandingOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeClientBranding API operation for Amazon WorkSpaces.
+//
+// Describes the specified client branding. Client branding allows you to customize
+// the log in page of various device types for your users. You can add your
+// company logo, the support email address, support link, link to reset password,
+// and a custom message for users trying to sign in.
+//
+// Only device types that have branding information configured will be shown
+// in the response.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation DescribeClientBranding for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValuesException
+//   One or more parameter values are not valid.
+//
+//   * ResourceNotFoundException
+//   The resource could not be found.
+//
+//   * AccessDeniedException
+//   The user is not authorized to access a resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DescribeClientBranding
+func (c *WorkSpaces) DescribeClientBranding(input *DescribeClientBrandingInput) (*DescribeClientBrandingOutput, error) {
+	req, out := c.DescribeClientBrandingRequest(input)
+	return out, req.Send()
+}
+
+// DescribeClientBrandingWithContext is the same as DescribeClientBranding with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeClientBranding for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) DescribeClientBrandingWithContext(ctx aws.Context, input *DescribeClientBrandingInput, opts ...request.Option) (*DescribeClientBrandingOutput, error) {
+	req, out := c.DescribeClientBrandingRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3333,6 +3516,109 @@ func (c *WorkSpaces) DisassociateIpGroups(input *DisassociateIpGroupsInput) (*Di
 // for more information on using Contexts.
 func (c *WorkSpaces) DisassociateIpGroupsWithContext(ctx aws.Context, input *DisassociateIpGroupsInput, opts ...request.Option) (*DisassociateIpGroupsOutput, error) {
 	req, out := c.DisassociateIpGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opImportClientBranding = "ImportClientBranding"
+
+// ImportClientBrandingRequest generates a "aws/request.Request" representing the
+// client's request for the ImportClientBranding operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ImportClientBranding for more information on using the ImportClientBranding
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ImportClientBrandingRequest method.
+//    req, resp := client.ImportClientBrandingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ImportClientBranding
+func (c *WorkSpaces) ImportClientBrandingRequest(input *ImportClientBrandingInput) (req *request.Request, output *ImportClientBrandingOutput) {
+	op := &request.Operation{
+		Name:       opImportClientBranding,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ImportClientBrandingInput{}
+	}
+
+	output = &ImportClientBrandingOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ImportClientBranding API operation for Amazon WorkSpaces.
+//
+// Imports client branding. Client branding allows you to customize your WorkSpace's
+// client login portal. You can tailor your login portal company logo, the support
+// email address, support link, link to reset password, and a custom message
+// for users trying to sign in.
+//
+// After you import client branding, the default branding experience for the
+// specified platform type is replaced with the imported experience
+//
+//    * You must specify at least one platform type when importing client branding.
+//
+//    * You can import up to 6 MB of data with each request. If your request
+//    exceeds this limit, you can import client branding for different platform
+//    types using separate requests.
+//
+//    * In each platform type, the SupportEmail and SupportLink parameters are
+//    mutually exclusive. You can specify only one parameter for each platform
+//    type, but not both.
+//
+//    * Imported data can take up to a minute to appear in the WorkSpaces client.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation ImportClientBranding for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValuesException
+//   One or more parameter values are not valid.
+//
+//   * ResourceLimitExceededException
+//   Your resource limits have been exceeded.
+//
+//   * AccessDeniedException
+//   The user is not authorized to access a resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ImportClientBranding
+func (c *WorkSpaces) ImportClientBranding(input *ImportClientBrandingInput) (*ImportClientBrandingOutput, error) {
+	req, out := c.ImportClientBrandingRequest(input)
+	return out, req.Send()
+}
+
+// ImportClientBrandingWithContext is the same as ImportClientBranding with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ImportClientBranding for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) ImportClientBrandingWithContext(ctx aws.Context, input *ImportClientBrandingInput, opts ...request.Option) (*ImportClientBrandingOutput, error) {
+	req, out := c.ImportClientBrandingRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7247,6 +7533,207 @@ func (s *CreateWorkspacesOutput) SetPendingRequests(v []*Workspace) *CreateWorks
 	return s
 }
 
+// Returns default client branding attributes that were imported. These attributes
+// display on the client login screen.
+//
+// Client branding attributes are public facing. Ensure that you don't include
+// sensitive information.
+type DefaultClientBrandingAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// The forgotten password link. This is the web address that users can go to
+	// if they forget the password for their WorkSpace.
+	ForgotPasswordLink *string `min:"1" type:"string"`
+
+	// The login message. Specified as a key value pair, in which the key is a locale
+	// and the value is the localized message for that locale. The only key supported
+	// is en_US.
+	LoginMessage map[string]*string `type:"map"`
+
+	// The logo URL. This is the link where users can download the logo image. The
+	// only supported image format is .png.
+	LogoUrl *string `min:"1" type:"string"`
+
+	// The support email. The company's customer support email address.
+	//
+	//    * In each platform type, the SupportEmail and SupportLink parameters are
+	//    mutually exclusive. You can specify one parameter for each platform type,
+	//    but not both.
+	//
+	//    * The default email is workspaces-feedback@amazon.com.
+	SupportEmail *string `min:"6" type:"string"`
+
+	// The support link. The link for the company's customer support page for their
+	// WorkSpace.
+	//
+	//    * In each platform type, the SupportEmail and SupportLink parameters are
+	//    mutually exclusive.You can specify one parameter for each platform type,
+	//    but not both.
+	//
+	//    * The default support link is workspaces-feedback@amazon.com.
+	SupportLink *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultClientBrandingAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultClientBrandingAttributes) GoString() string {
+	return s.String()
+}
+
+// SetForgotPasswordLink sets the ForgotPasswordLink field's value.
+func (s *DefaultClientBrandingAttributes) SetForgotPasswordLink(v string) *DefaultClientBrandingAttributes {
+	s.ForgotPasswordLink = &v
+	return s
+}
+
+// SetLoginMessage sets the LoginMessage field's value.
+func (s *DefaultClientBrandingAttributes) SetLoginMessage(v map[string]*string) *DefaultClientBrandingAttributes {
+	s.LoginMessage = v
+	return s
+}
+
+// SetLogoUrl sets the LogoUrl field's value.
+func (s *DefaultClientBrandingAttributes) SetLogoUrl(v string) *DefaultClientBrandingAttributes {
+	s.LogoUrl = &v
+	return s
+}
+
+// SetSupportEmail sets the SupportEmail field's value.
+func (s *DefaultClientBrandingAttributes) SetSupportEmail(v string) *DefaultClientBrandingAttributes {
+	s.SupportEmail = &v
+	return s
+}
+
+// SetSupportLink sets the SupportLink field's value.
+func (s *DefaultClientBrandingAttributes) SetSupportLink(v string) *DefaultClientBrandingAttributes {
+	s.SupportLink = &v
+	return s
+}
+
+// The default client branding attributes to be imported. These attributes display
+// on the client login screen.
+//
+// Client branding attributes are public facing. Ensure that you do not include
+// sensitive information.
+type DefaultImportClientBrandingAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// The forgotten password link. This is the web address that users can go to
+	// if they forget the password for their WorkSpace.
+	ForgotPasswordLink *string `min:"1" type:"string"`
+
+	// The login message. Specified as a key value pair, in which the key is a locale
+	// and the value is the localized message for that locale. The only key supported
+	// is en_US.
+	LoginMessage map[string]*string `type:"map"`
+
+	// The logo. This is the link where users can download the logo image. The only
+	// image format accepted is .png.
+	// Logo is automatically base64 encoded/decoded by the SDK.
+	Logo []byte `min:"1" type:"blob"`
+
+	// The support email. The company's customer support email address.
+	//
+	//    * In each platform type, the SupportEmail and SupportLink parameters are
+	//    mutually exclusive. You can specify one parameter for each platform type,
+	//    but not both.
+	//
+	//    * The default email is workspaces-feedback@amazon.com.
+	SupportEmail *string `min:"6" type:"string"`
+
+	// The support link. The link for the company's customer support page for their
+	// WorkSpace.
+	//
+	//    * In each platform type, the SupportEmail and SupportLink parameters are
+	//    mutually exclusive. You can specify one parameter for each platform type,
+	//    but not both.
+	//
+	//    * The default support link is workspaces-feedback@amazon.com.
+	SupportLink *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultImportClientBrandingAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultImportClientBrandingAttributes) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DefaultImportClientBrandingAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DefaultImportClientBrandingAttributes"}
+	if s.ForgotPasswordLink != nil && len(*s.ForgotPasswordLink) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ForgotPasswordLink", 1))
+	}
+	if s.Logo != nil && len(s.Logo) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Logo", 1))
+	}
+	if s.SupportEmail != nil && len(*s.SupportEmail) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("SupportEmail", 6))
+	}
+	if s.SupportLink != nil && len(*s.SupportLink) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SupportLink", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetForgotPasswordLink sets the ForgotPasswordLink field's value.
+func (s *DefaultImportClientBrandingAttributes) SetForgotPasswordLink(v string) *DefaultImportClientBrandingAttributes {
+	s.ForgotPasswordLink = &v
+	return s
+}
+
+// SetLoginMessage sets the LoginMessage field's value.
+func (s *DefaultImportClientBrandingAttributes) SetLoginMessage(v map[string]*string) *DefaultImportClientBrandingAttributes {
+	s.LoginMessage = v
+	return s
+}
+
+// SetLogo sets the Logo field's value.
+func (s *DefaultImportClientBrandingAttributes) SetLogo(v []byte) *DefaultImportClientBrandingAttributes {
+	s.Logo = v
+	return s
+}
+
+// SetSupportEmail sets the SupportEmail field's value.
+func (s *DefaultImportClientBrandingAttributes) SetSupportEmail(v string) *DefaultImportClientBrandingAttributes {
+	s.SupportEmail = &v
+	return s
+}
+
+// SetSupportLink sets the SupportLink field's value.
+func (s *DefaultImportClientBrandingAttributes) SetSupportLink(v string) *DefaultImportClientBrandingAttributes {
+	s.SupportLink = &v
+	return s
+}
+
 // Describes the default values that are used to create WorkSpaces. For more
 // information, see Update Directory Details for Your WorkSpaces (https://docs.aws.amazon.com/workspaces/latest/adminguide/update-directory-details.html).
 type DefaultWorkspaceCreationProperties struct {
@@ -7335,6 +7822,95 @@ func (s *DefaultWorkspaceCreationProperties) SetEnableWorkDocs(v bool) *DefaultW
 func (s *DefaultWorkspaceCreationProperties) SetUserEnabledAsLocalAdministrator(v bool) *DefaultWorkspaceCreationProperties {
 	s.UserEnabledAsLocalAdministrator = &v
 	return s
+}
+
+type DeleteClientBrandingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The device type for which you want to delete client branding.
+	//
+	// Platforms is a required field
+	Platforms []*string `min:"1" type:"list" required:"true" enum:"ClientDeviceType"`
+
+	// The directory identifier of the WorkSpace for which you want to delete client
+	// branding.
+	//
+	// ResourceId is a required field
+	ResourceId *string `min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteClientBrandingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteClientBrandingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteClientBrandingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteClientBrandingInput"}
+	if s.Platforms == nil {
+		invalidParams.Add(request.NewErrParamRequired("Platforms"))
+	}
+	if s.Platforms != nil && len(s.Platforms) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Platforms", 1))
+	}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPlatforms sets the Platforms field's value.
+func (s *DeleteClientBrandingInput) SetPlatforms(v []*string) *DeleteClientBrandingInput {
+	s.Platforms = v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *DeleteClientBrandingInput) SetResourceId(v string) *DeleteClientBrandingInput {
+	s.ResourceId = &v
+	return s
+}
+
+type DeleteClientBrandingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteClientBrandingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteClientBrandingOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteConnectClientAddInInput struct {
@@ -7996,6 +8572,132 @@ func (s *DescribeAccountOutput) SetDedicatedTenancyManagementCidrRange(v string)
 // SetDedicatedTenancySupport sets the DedicatedTenancySupport field's value.
 func (s *DescribeAccountOutput) SetDedicatedTenancySupport(v string) *DescribeAccountOutput {
 	s.DedicatedTenancySupport = &v
+	return s
+}
+
+type DescribeClientBrandingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The directory identifier of the WorkSpace for which you want to view client
+	// branding information.
+	//
+	// ResourceId is a required field
+	ResourceId *string `min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeClientBrandingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeClientBrandingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeClientBrandingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeClientBrandingInput"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *DescribeClientBrandingInput) SetResourceId(v string) *DescribeClientBrandingInput {
+	s.ResourceId = &v
+	return s
+}
+
+type DescribeClientBrandingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The branding information for Android devices.
+	DeviceTypeAndroid *DefaultClientBrandingAttributes `type:"structure"`
+
+	// The branding information for iOS devices.
+	DeviceTypeIos *IosClientBrandingAttributes `type:"structure"`
+
+	// The branding information for Linux devices.
+	DeviceTypeLinux *DefaultClientBrandingAttributes `type:"structure"`
+
+	// The branding information for macOS devices.
+	DeviceTypeOsx *DefaultClientBrandingAttributes `type:"structure"`
+
+	// The branding information for Web access.
+	DeviceTypeWeb *DefaultClientBrandingAttributes `type:"structure"`
+
+	// The branding information for Windows devices.
+	DeviceTypeWindows *DefaultClientBrandingAttributes `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeClientBrandingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeClientBrandingOutput) GoString() string {
+	return s.String()
+}
+
+// SetDeviceTypeAndroid sets the DeviceTypeAndroid field's value.
+func (s *DescribeClientBrandingOutput) SetDeviceTypeAndroid(v *DefaultClientBrandingAttributes) *DescribeClientBrandingOutput {
+	s.DeviceTypeAndroid = v
+	return s
+}
+
+// SetDeviceTypeIos sets the DeviceTypeIos field's value.
+func (s *DescribeClientBrandingOutput) SetDeviceTypeIos(v *IosClientBrandingAttributes) *DescribeClientBrandingOutput {
+	s.DeviceTypeIos = v
+	return s
+}
+
+// SetDeviceTypeLinux sets the DeviceTypeLinux field's value.
+func (s *DescribeClientBrandingOutput) SetDeviceTypeLinux(v *DefaultClientBrandingAttributes) *DescribeClientBrandingOutput {
+	s.DeviceTypeLinux = v
+	return s
+}
+
+// SetDeviceTypeOsx sets the DeviceTypeOsx field's value.
+func (s *DescribeClientBrandingOutput) SetDeviceTypeOsx(v *DefaultClientBrandingAttributes) *DescribeClientBrandingOutput {
+	s.DeviceTypeOsx = v
+	return s
+}
+
+// SetDeviceTypeWeb sets the DeviceTypeWeb field's value.
+func (s *DescribeClientBrandingOutput) SetDeviceTypeWeb(v *DefaultClientBrandingAttributes) *DescribeClientBrandingOutput {
+	s.DeviceTypeWeb = v
+	return s
+}
+
+// SetDeviceTypeWindows sets the DeviceTypeWindows field's value.
+func (s *DescribeClientBrandingOutput) SetDeviceTypeWindows(v *DefaultClientBrandingAttributes) *DescribeClientBrandingOutput {
+	s.DeviceTypeWindows = v
 	return s
 }
 
@@ -9729,6 +10431,216 @@ func (s *ImagePermission) SetSharedAccountId(v string) *ImagePermission {
 	return s
 }
 
+type ImportClientBrandingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The branding information to import for Android devices.
+	DeviceTypeAndroid *DefaultImportClientBrandingAttributes `type:"structure"`
+
+	// The branding information to import for iOS devices.
+	DeviceTypeIos *IosImportClientBrandingAttributes `type:"structure"`
+
+	// The branding information to import for Linux devices.
+	DeviceTypeLinux *DefaultImportClientBrandingAttributes `type:"structure"`
+
+	// The branding information to import for macOS devices.
+	DeviceTypeOsx *DefaultImportClientBrandingAttributes `type:"structure"`
+
+	// The branding information to import for web access.
+	DeviceTypeWeb *DefaultImportClientBrandingAttributes `type:"structure"`
+
+	// The branding information to import for Windows devices.
+	DeviceTypeWindows *DefaultImportClientBrandingAttributes `type:"structure"`
+
+	// The directory identifier of the WorkSpace for which you want to import client
+	// branding.
+	//
+	// ResourceId is a required field
+	ResourceId *string `min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportClientBrandingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportClientBrandingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportClientBrandingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportClientBrandingInput"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 10))
+	}
+	if s.DeviceTypeAndroid != nil {
+		if err := s.DeviceTypeAndroid.Validate(); err != nil {
+			invalidParams.AddNested("DeviceTypeAndroid", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DeviceTypeIos != nil {
+		if err := s.DeviceTypeIos.Validate(); err != nil {
+			invalidParams.AddNested("DeviceTypeIos", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DeviceTypeLinux != nil {
+		if err := s.DeviceTypeLinux.Validate(); err != nil {
+			invalidParams.AddNested("DeviceTypeLinux", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DeviceTypeOsx != nil {
+		if err := s.DeviceTypeOsx.Validate(); err != nil {
+			invalidParams.AddNested("DeviceTypeOsx", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DeviceTypeWeb != nil {
+		if err := s.DeviceTypeWeb.Validate(); err != nil {
+			invalidParams.AddNested("DeviceTypeWeb", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DeviceTypeWindows != nil {
+		if err := s.DeviceTypeWindows.Validate(); err != nil {
+			invalidParams.AddNested("DeviceTypeWindows", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceTypeAndroid sets the DeviceTypeAndroid field's value.
+func (s *ImportClientBrandingInput) SetDeviceTypeAndroid(v *DefaultImportClientBrandingAttributes) *ImportClientBrandingInput {
+	s.DeviceTypeAndroid = v
+	return s
+}
+
+// SetDeviceTypeIos sets the DeviceTypeIos field's value.
+func (s *ImportClientBrandingInput) SetDeviceTypeIos(v *IosImportClientBrandingAttributes) *ImportClientBrandingInput {
+	s.DeviceTypeIos = v
+	return s
+}
+
+// SetDeviceTypeLinux sets the DeviceTypeLinux field's value.
+func (s *ImportClientBrandingInput) SetDeviceTypeLinux(v *DefaultImportClientBrandingAttributes) *ImportClientBrandingInput {
+	s.DeviceTypeLinux = v
+	return s
+}
+
+// SetDeviceTypeOsx sets the DeviceTypeOsx field's value.
+func (s *ImportClientBrandingInput) SetDeviceTypeOsx(v *DefaultImportClientBrandingAttributes) *ImportClientBrandingInput {
+	s.DeviceTypeOsx = v
+	return s
+}
+
+// SetDeviceTypeWeb sets the DeviceTypeWeb field's value.
+func (s *ImportClientBrandingInput) SetDeviceTypeWeb(v *DefaultImportClientBrandingAttributes) *ImportClientBrandingInput {
+	s.DeviceTypeWeb = v
+	return s
+}
+
+// SetDeviceTypeWindows sets the DeviceTypeWindows field's value.
+func (s *ImportClientBrandingInput) SetDeviceTypeWindows(v *DefaultImportClientBrandingAttributes) *ImportClientBrandingInput {
+	s.DeviceTypeWindows = v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *ImportClientBrandingInput) SetResourceId(v string) *ImportClientBrandingInput {
+	s.ResourceId = &v
+	return s
+}
+
+type ImportClientBrandingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The branding information configured for Android devices.
+	DeviceTypeAndroid *DefaultClientBrandingAttributes `type:"structure"`
+
+	// The branding information configured for iOS devices.
+	DeviceTypeIos *IosClientBrandingAttributes `type:"structure"`
+
+	// The branding information configured for Linux devices.
+	DeviceTypeLinux *DefaultClientBrandingAttributes `type:"structure"`
+
+	// The branding information configured for macOS devices.
+	DeviceTypeOsx *DefaultClientBrandingAttributes `type:"structure"`
+
+	// The branding information configured for web access.
+	DeviceTypeWeb *DefaultClientBrandingAttributes `type:"structure"`
+
+	// The branding information configured for Windows devices.
+	DeviceTypeWindows *DefaultClientBrandingAttributes `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportClientBrandingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportClientBrandingOutput) GoString() string {
+	return s.String()
+}
+
+// SetDeviceTypeAndroid sets the DeviceTypeAndroid field's value.
+func (s *ImportClientBrandingOutput) SetDeviceTypeAndroid(v *DefaultClientBrandingAttributes) *ImportClientBrandingOutput {
+	s.DeviceTypeAndroid = v
+	return s
+}
+
+// SetDeviceTypeIos sets the DeviceTypeIos field's value.
+func (s *ImportClientBrandingOutput) SetDeviceTypeIos(v *IosClientBrandingAttributes) *ImportClientBrandingOutput {
+	s.DeviceTypeIos = v
+	return s
+}
+
+// SetDeviceTypeLinux sets the DeviceTypeLinux field's value.
+func (s *ImportClientBrandingOutput) SetDeviceTypeLinux(v *DefaultClientBrandingAttributes) *ImportClientBrandingOutput {
+	s.DeviceTypeLinux = v
+	return s
+}
+
+// SetDeviceTypeOsx sets the DeviceTypeOsx field's value.
+func (s *ImportClientBrandingOutput) SetDeviceTypeOsx(v *DefaultClientBrandingAttributes) *ImportClientBrandingOutput {
+	s.DeviceTypeOsx = v
+	return s
+}
+
+// SetDeviceTypeWeb sets the DeviceTypeWeb field's value.
+func (s *ImportClientBrandingOutput) SetDeviceTypeWeb(v *DefaultClientBrandingAttributes) *ImportClientBrandingOutput {
+	s.DeviceTypeWeb = v
+	return s
+}
+
+// SetDeviceTypeWindows sets the DeviceTypeWindows field's value.
+func (s *ImportClientBrandingOutput) SetDeviceTypeWindows(v *DefaultClientBrandingAttributes) *ImportClientBrandingOutput {
+	s.DeviceTypeWindows = v
+	return s
+}
+
 type ImportWorkspaceImageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10022,6 +10934,273 @@ func (s *InvalidResourceStateException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidResourceStateException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The client branding attributes for iOS device types. These attributes are
+// displayed on the iOS client login screen only.
+//
+// Client branding attributes are public facing. Ensure you do not include sensitive
+// information.
+type IosClientBrandingAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// The forgotten password link. This is the web address that users can go to
+	// if they forget the password for their WorkSpace.
+	ForgotPasswordLink *string `min:"1" type:"string"`
+
+	// The login message. Specified as a key value pair, in which the key is a locale
+	// and the value is the localized message for that locale. The only key supported
+	// is en_US.
+	LoginMessage map[string]*string `type:"map"`
+
+	// The @2x version of the logo. This is the higher resolution display that offers
+	// a scale factor of 2.0 (or @2x).
+	//
+	// For more information about iOS image size and resolution, see Image Size
+	// and Resolution (https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/image-size-and-resolution/)
+	// in the Apple Human Interface Guidelines.
+	Logo2xUrl *string `min:"1" type:"string"`
+
+	// The @3x version of the logo. This is the higher resolution display that offers
+	// a scale factor of 3.0 (or @3x).
+	//
+	// For more information about iOS image size and resolution, see Image Size
+	// and Resolution (https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/image-size-and-resolution/)
+	// in the Apple Human Interface Guidelines.
+	Logo3xUrl *string `min:"1" type:"string"`
+
+	// The logo. This is the link where users can download the logo image. This
+	// is the standard-resolution display that has a 1:1 pixel density (or @1x),
+	// where one pixel is equal to one point.
+	LogoUrl *string `min:"1" type:"string"`
+
+	// The support email. The company's customer support email address.
+	//
+	//    * In each platform type, the SupportEmail and SupportLink parameters are
+	//    mutually exclusive. You can specify one parameter for each platform type,
+	//    but not both.
+	//
+	//    * The default email is workspaces-feedback@amazon.com.
+	SupportEmail *string `min:"6" type:"string"`
+
+	// The support link. The link for the company's customer support page for their
+	// WorkSpace.
+	//
+	//    * In each platform type, the SupportEmail and SupportLink parameters are
+	//    mutually exclusive. You can specify one parameter for each platform type,
+	//    but not both.
+	//
+	//    * The default support link is workspaces-feedback@amazon.com.
+	SupportLink *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IosClientBrandingAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IosClientBrandingAttributes) GoString() string {
+	return s.String()
+}
+
+// SetForgotPasswordLink sets the ForgotPasswordLink field's value.
+func (s *IosClientBrandingAttributes) SetForgotPasswordLink(v string) *IosClientBrandingAttributes {
+	s.ForgotPasswordLink = &v
+	return s
+}
+
+// SetLoginMessage sets the LoginMessage field's value.
+func (s *IosClientBrandingAttributes) SetLoginMessage(v map[string]*string) *IosClientBrandingAttributes {
+	s.LoginMessage = v
+	return s
+}
+
+// SetLogo2xUrl sets the Logo2xUrl field's value.
+func (s *IosClientBrandingAttributes) SetLogo2xUrl(v string) *IosClientBrandingAttributes {
+	s.Logo2xUrl = &v
+	return s
+}
+
+// SetLogo3xUrl sets the Logo3xUrl field's value.
+func (s *IosClientBrandingAttributes) SetLogo3xUrl(v string) *IosClientBrandingAttributes {
+	s.Logo3xUrl = &v
+	return s
+}
+
+// SetLogoUrl sets the LogoUrl field's value.
+func (s *IosClientBrandingAttributes) SetLogoUrl(v string) *IosClientBrandingAttributes {
+	s.LogoUrl = &v
+	return s
+}
+
+// SetSupportEmail sets the SupportEmail field's value.
+func (s *IosClientBrandingAttributes) SetSupportEmail(v string) *IosClientBrandingAttributes {
+	s.SupportEmail = &v
+	return s
+}
+
+// SetSupportLink sets the SupportLink field's value.
+func (s *IosClientBrandingAttributes) SetSupportLink(v string) *IosClientBrandingAttributes {
+	s.SupportLink = &v
+	return s
+}
+
+// The client branding attributes to import for iOS device types. These attributes
+// are displayed on the iOS client login screen.
+//
+// Client branding attributes are public facing. Ensure you do not include sensitive
+// information.
+type IosImportClientBrandingAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// The forgotten password link. This is the web address that users can go to
+	// if they forget the password for their WorkSpace.
+	ForgotPasswordLink *string `min:"1" type:"string"`
+
+	// The login message. Specified as a key value pair, in which the key is a locale
+	// and the value is the localized message for that locale. The only key supported
+	// is en_US.
+	LoginMessage map[string]*string `type:"map"`
+
+	// The logo. This is the link where users can download the logo image. This
+	// is the standard-resolution display that has a 1:1 pixel density (or @1x),
+	// where one pixel is equal to one point.
+	// Logo is automatically base64 encoded/decoded by the SDK.
+	Logo []byte `min:"1" type:"blob"`
+
+	// The @2x version of the logo. This is the higher resolution display that offers
+	// a scale factor of 2.0 (or @2x).
+	//
+	// For more information about iOS image size and resolution, see Image Size
+	// and Resolution (https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/image-size-and-resolution/)
+	// in the Apple Human Interface Guidelines.
+	// Logo2x is automatically base64 encoded/decoded by the SDK.
+	Logo2x []byte `min:"1" type:"blob"`
+
+	// The @3x version of the logo. This is the higher resolution display that offers
+	// a scale factor of 3.0 (or @3x).
+	//
+	// For more information about iOS image size and resolution, see Image Size
+	// and Resolution (https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/image-size-and-resolution/)
+	// in the Apple Human Interface Guidelines.
+	// Logo3x is automatically base64 encoded/decoded by the SDK.
+	Logo3x []byte `min:"1" type:"blob"`
+
+	// The support email. The company's customer support email address.
+	//
+	//    * In each platform type, the SupportEmail and SupportLink parameters are
+	//    mutually exclusive. You can specify one parameter for each platform type,
+	//    but not both.
+	//
+	//    * The default email is workspaces-feedback@amazon.com.
+	SupportEmail *string `min:"6" type:"string"`
+
+	// The support link. The link for the company's customer support page for their
+	// WorkSpace.
+	//
+	//    * In each platform type, the SupportEmail and SupportLink parameters are
+	//    mutually exclusive. You can specify one parameter for each platform type,
+	//    but not both.
+	//
+	//    * The default support link is workspaces-feedback@amazon.com.
+	SupportLink *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IosImportClientBrandingAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IosImportClientBrandingAttributes) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IosImportClientBrandingAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IosImportClientBrandingAttributes"}
+	if s.ForgotPasswordLink != nil && len(*s.ForgotPasswordLink) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ForgotPasswordLink", 1))
+	}
+	if s.Logo != nil && len(s.Logo) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Logo", 1))
+	}
+	if s.Logo2x != nil && len(s.Logo2x) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Logo2x", 1))
+	}
+	if s.Logo3x != nil && len(s.Logo3x) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Logo3x", 1))
+	}
+	if s.SupportEmail != nil && len(*s.SupportEmail) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("SupportEmail", 6))
+	}
+	if s.SupportLink != nil && len(*s.SupportLink) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SupportLink", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetForgotPasswordLink sets the ForgotPasswordLink field's value.
+func (s *IosImportClientBrandingAttributes) SetForgotPasswordLink(v string) *IosImportClientBrandingAttributes {
+	s.ForgotPasswordLink = &v
+	return s
+}
+
+// SetLoginMessage sets the LoginMessage field's value.
+func (s *IosImportClientBrandingAttributes) SetLoginMessage(v map[string]*string) *IosImportClientBrandingAttributes {
+	s.LoginMessage = v
+	return s
+}
+
+// SetLogo sets the Logo field's value.
+func (s *IosImportClientBrandingAttributes) SetLogo(v []byte) *IosImportClientBrandingAttributes {
+	s.Logo = v
+	return s
+}
+
+// SetLogo2x sets the Logo2x field's value.
+func (s *IosImportClientBrandingAttributes) SetLogo2x(v []byte) *IosImportClientBrandingAttributes {
+	s.Logo2x = v
+	return s
+}
+
+// SetLogo3x sets the Logo3x field's value.
+func (s *IosImportClientBrandingAttributes) SetLogo3x(v []byte) *IosImportClientBrandingAttributes {
+	s.Logo3x = v
+	return s
+}
+
+// SetSupportEmail sets the SupportEmail field's value.
+func (s *IosImportClientBrandingAttributes) SetSupportEmail(v string) *IosImportClientBrandingAttributes {
+	s.SupportEmail = &v
+	return s
+}
+
+// SetSupportLink sets the SupportLink field's value.
+func (s *IosImportClientBrandingAttributes) SetSupportLink(v string) *IosImportClientBrandingAttributes {
+	s.SupportLink = &v
+	return s
 }
 
 // Describes an IP access control group.
@@ -14518,6 +15697,38 @@ func AssociationStatus_Values() []string {
 		AssociationStatusAssociatedWithSharedAccount,
 		AssociationStatusPendingAssociation,
 		AssociationStatusPendingDisassociation,
+	}
+}
+
+const (
+	// ClientDeviceTypeDeviceTypeWindows is a ClientDeviceType enum value
+	ClientDeviceTypeDeviceTypeWindows = "DeviceTypeWindows"
+
+	// ClientDeviceTypeDeviceTypeOsx is a ClientDeviceType enum value
+	ClientDeviceTypeDeviceTypeOsx = "DeviceTypeOsx"
+
+	// ClientDeviceTypeDeviceTypeAndroid is a ClientDeviceType enum value
+	ClientDeviceTypeDeviceTypeAndroid = "DeviceTypeAndroid"
+
+	// ClientDeviceTypeDeviceTypeIos is a ClientDeviceType enum value
+	ClientDeviceTypeDeviceTypeIos = "DeviceTypeIos"
+
+	// ClientDeviceTypeDeviceTypeLinux is a ClientDeviceType enum value
+	ClientDeviceTypeDeviceTypeLinux = "DeviceTypeLinux"
+
+	// ClientDeviceTypeDeviceTypeWeb is a ClientDeviceType enum value
+	ClientDeviceTypeDeviceTypeWeb = "DeviceTypeWeb"
+)
+
+// ClientDeviceType_Values returns all elements of the ClientDeviceType enum
+func ClientDeviceType_Values() []string {
+	return []string{
+		ClientDeviceTypeDeviceTypeWindows,
+		ClientDeviceTypeDeviceTypeOsx,
+		ClientDeviceTypeDeviceTypeAndroid,
+		ClientDeviceTypeDeviceTypeIos,
+		ClientDeviceTypeDeviceTypeLinux,
+		ClientDeviceTypeDeviceTypeWeb,
 	}
 }
 

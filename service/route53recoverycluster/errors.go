@@ -11,7 +11,7 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// You don't have sufficient permissions to query the routing control state.
+	// You don't have sufficient permissions to perform this action.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeConflictException for service response error code
@@ -35,8 +35,15 @@ const (
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// The request references a routing control that was not found.
+	// The request references a routing control or control panel that was not found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
+
+	// ErrCodeServiceLimitExceededException for service response error code
+	// "ServiceLimitExceededException".
+	//
+	// The request can't update that many routing control states at the same time.
+	// Try again with fewer routing control states.
+	ErrCodeServiceLimitExceededException = "ServiceLimitExceededException"
 
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
@@ -57,6 +64,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"EndpointTemporarilyUnavailableException": newErrorEndpointTemporarilyUnavailableException,
 	"InternalServerException":                 newErrorInternalServerException,
 	"ResourceNotFoundException":               newErrorResourceNotFoundException,
+	"ServiceLimitExceededException":           newErrorServiceLimitExceededException,
 	"ThrottlingException":                     newErrorThrottlingException,
 	"ValidationException":                     newErrorValidationException,
 }

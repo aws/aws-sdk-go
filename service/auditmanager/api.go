@@ -1417,6 +1417,37 @@ func (c *AuditManager) DeregisterAccountRequest(input *DeregisterAccountInput) (
 //
 // Deregisters an account in Audit Manager.
 //
+// When you deregister your account from Audit Manager, your data isn’t deleted.
+// If you want to delete your resource data, you must perform that task separately
+// before you deregister your account. Either, you can do this in the Audit
+// Manager console. Or, you can use one of the delete API operations that are
+// provided by Audit Manager.
+//
+// To delete your Audit Manager resource data, see the following instructions:
+//
+//    * DeleteAssessment (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessment.html)
+//    (see also: Deleting an assessment (https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-assessment.html)
+//    in the Audit Manager User Guide)
+//
+//    * DeleteAssessmentFramework (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentFramework.html)
+//    (see also: Deleting a custom framework (https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-custom-framework.html)
+//    in the Audit Manager User Guide)
+//
+//    * DeleteAssessmentFrameworkShare (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentFrameworkShare.html)
+//    (see also: Deleting a share request (https://docs.aws.amazon.com/audit-manager/latest/userguide/deleting-shared-framework-requests.html)
+//    in the Audit Manager User Guide)
+//
+//    * DeleteAssessmentReport (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentReport.html)
+//    (see also: Deleting an assessment report (https://docs.aws.amazon.com/audit-manager/latest/userguide/generate-assessment-report.html#delete-assessment-report-steps)
+//    in the Audit Manager User Guide)
+//
+//    * DeleteControl (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteControl.html)
+//    (see also: Deleting a custom control (https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-controls.html)
+//    in the Audit Manager User Guide)
+//
+// At this time, Audit Manager doesn't provide an option to delete evidence.
+// All available delete operations are listed above.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1506,14 +1537,46 @@ func (c *AuditManager) DeregisterOrganizationAdminAccountRequest(input *Deregist
 
 // DeregisterOrganizationAdminAccount API operation for AWS Audit Manager.
 //
-// Removes the specified member Amazon Web Services account as a delegated administrator
+// Removes the specified Amazon Web Services account as a delegated administrator
 // for Audit Manager.
 //
 // When you remove a delegated administrator from your Audit Manager settings,
 // you continue to have access to the evidence that you previously collected
 // under that account. This is also the case when you deregister a delegated
-// administrator from Audit Manager. However, Audit Manager will stop collecting
+// administrator from Organizations. However, Audit Manager will stop collecting
 // and attaching evidence to that delegated administrator account moving forward.
+//
+// When you deregister a delegated administrator account for Audit Manager,
+// the data for that account isn’t deleted. If you want to delete resource
+// data for a delegated administrator account, you must perform that task separately
+// before you deregister the account. Either, you can do this in the Audit Manager
+// console. Or, you can use one of the delete API operations that are provided
+// by Audit Manager.
+//
+// To delete your Audit Manager resource data, see the following instructions:
+//
+//    * DeleteAssessment (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessment.html)
+//    (see also: Deleting an assessment (https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-assessment.html)
+//    in the Audit Manager User Guide)
+//
+//    * DeleteAssessmentFramework (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentFramework.html)
+//    (see also: Deleting a custom framework (https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-custom-framework.html)
+//    in the Audit Manager User Guide)
+//
+//    * DeleteAssessmentFrameworkShare (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentFrameworkShare.html)
+//    (see also: Deleting a share request (https://docs.aws.amazon.com/audit-manager/latest/userguide/deleting-shared-framework-requests.html)
+//    in the Audit Manager User Guide)
+//
+//    * DeleteAssessmentReport (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentReport.html)
+//    (see also: Deleting an assessment report (https://docs.aws.amazon.com/audit-manager/latest/userguide/generate-assessment-report.html#delete-assessment-report-steps)
+//    in the Audit Manager User Guide)
+//
+//    * DeleteControl (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteControl.html)
+//    (see also: Deleting a custom control (https://docs.aws.amazon.com/audit-manager/latest/userguide/delete-controls.html)
+//    in the Audit Manager User Guide)
+//
+// At this time, Audit Manager doesn't provide an option to delete evidence.
+// All available delete operations are listed above.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
