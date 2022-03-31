@@ -9,7 +9,10 @@
     "DescribeWorkspaceAuthentication": "<p>Displays information about the authentication methods used in one Amazon Managed Grafana workspace.</p>",
     "DisassociateLicense": "<p>Removes the Grafana Enterprise license from a workspace.</p>",
     "ListPermissions": "<p>Lists the users and groups who have the Grafana <code>Admin</code> and <code>Editor</code> roles in this workspace. If you use this operation without specifying <code>userId</code> or <code>groupId</code>, the operation returns the roles of all users and groups. If you specify a <code>userId</code> or a <code>groupId</code>, only the roles for that user or group are returned. If you do this, you can specify only one <code>userId</code> or one <code>groupId</code>.</p>",
+    "ListTagsForResource": "<p>The <code>ListTagsForResource</code> operation returns the tags that are associated with the Amazon Managed Service for Grafana resource specified by the <code>resourceArn</code>. Currently, the only resource that can be tagged is a workspace. </p>",
     "ListWorkspaces": "<p>Returns a list of Amazon Managed Grafana workspaces in the account, with some information about each workspace. For more complete information about one workspace, use <a href=\"https://docs.aws.amazon.com/AAMG/latest/APIReference/API_DescribeWorkspace.html\">DescribeWorkspace</a>.</p>",
+    "TagResource": "<p>The <code>TagResource</code> operation associates tags with an Amazon Managed Grafana resource. Currently, the only resource that can be tagged is workspaces. </p> <p>If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p>",
+    "UntagResource": "<p>The <code>UntagResource</code> operation removes the association of the tag with the Amazon Managed Grafana resource. </p>",
     "UpdatePermissions": "<p>Updates which users in a workspace have the Grafana <code>Admin</code> or <code>Editor</code> roles.</p>",
     "UpdateWorkspace": "<p>Modifies an existing Amazon Managed Grafana workspace. If you use this operation and omit any optional parameters, the existing values of those parameters are not changed.</p> <p>To modify the user authentication methods that the workspace uses, such as SAML or Amazon Web Services SSO, use <a href=\"https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdateWorkspaceAuthentication.html\">UpdateWorkspaceAuthentication</a>.</p> <p>To modify which users in the workspace have the <code>Admin</code> and <code>Editor</code> Grafana roles, use <a href=\"https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdatePermissions.html\">UpdatePermissions</a>.</p>",
     "UpdateWorkspaceAuthentication": "<p>Use this operation to define the identity provider (IdP) that this workspace authenticates users from, using SAML. You can also map SAML assertion attributes to workspace user information and define which groups in the assertion attribute are to have the <code>Admin</code> and <code>Editor</code> roles in the workspace.</p>"
@@ -176,7 +179,7 @@
     "Description": {
       "base": null,
       "refs": {
-        "CreateWorkspaceRequest$workspaceDescription": "<p>A description for the workspace. This is used only to help you identify this workspace.</p>",
+        "CreateWorkspaceRequest$workspaceDescription": "<p>A description for the workspace. This is used only to help you identify this workspace.</p> <p>Pattern: <code>^[\\\\p{L}\\\\p{Z}\\\\p{N}\\\\p{P}]{0,2048}$</code> </p>",
         "UpdateWorkspaceRequest$workspaceDescription": "<p>A description for the workspace. This is used only to help you identify this workspace.</p>",
         "WorkspaceDescription$description": "<p>The user-defined description of the workspace.</p>",
         "WorkspaceSummary$description": "<p>The customer-entered description of the workspace.</p>"
@@ -209,7 +212,7 @@
     "IamRoleArn": {
       "base": null,
       "refs": {
-        "CreateWorkspaceRequest$workspaceRoleArn": "<p>The workspace needs an IAM role that grants permissions to the Amazon Web Services resources that the workspace will view data from. If you already have a role that you want to use, specify it here. If you omit this field and you specify some Amazon Web Services resources in <code>workspaceDataSources</code> or <code>workspaceNotificationDestinations</code>, a new IAM role with the necessary permissions is automatically created.</p>",
+        "CreateWorkspaceRequest$workspaceRoleArn": "<p>The workspace needs an IAM role that grants permissions to the Amazon Web Services resources that the workspace will view data from. If you already have a role that you want to use, specify it here. The permission type should be set to <code>CUSTOMER_MANAGED</code>.</p>",
         "UpdateWorkspaceRequest$workspaceRoleArn": "<p>The workspace needs an IAM role that grants permissions to the Amazon Web Services resources that the workspace will view data from. If you already have a role that you want to use, specify it here. If you omit this field and you specify some Amazon Web Services resources in <code>workspaceDataSources</code> or <code>workspaceNotificationDestinations</code>, a new IAM role with the necessary permissions is automatically created.</p>",
         "WorkspaceDescription$workspaceRoleArn": "<p>The IAM role that grants permissions to the Amazon Web Services resources that the workspace will view data from. This role must already exist.</p>"
       }
@@ -258,6 +261,16 @@
       }
     },
     "ListPermissionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
       "base": null,
       "refs": {
       }
@@ -345,7 +358,7 @@
     "PermissionType": {
       "base": null,
       "refs": {
-        "CreateWorkspaceRequest$permissionType": "<p>If you specify <code>Service Managed</code>, Amazon Managed Grafana automatically creates the IAM roles and provisions the permissions that the workspace needs to use Amazon Web Services data sources and notification channels.</p> <p>If you specify <code>CUSTOMER_MANAGED</code>, you will manage those roles and permissions yourself. If you are creating this workspace in a member account of an organization that is not a delegated administrator account, and you want the workspace to access data sources in other Amazon Web Services accounts in the organization, you must choose <code>CUSTOMER_MANAGED</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/AMG-manage-permissions.html\">Amazon Managed Grafana permissions and policies for Amazon Web Services data sources and notification channels</a> </p>",
+        "CreateWorkspaceRequest$permissionType": "<p>If you specify <code>SERVICE_MANAGED</code> on AWS Grafana console, Amazon Managed Grafana automatically creates the IAM roles and provisions the permissions that the workspace needs to use Amazon Web Services data sources and notification channels. In CLI mode, the permissionType <code>SERVICE_MANAGED</code> will not create the IAM role for you.</p> <p>If you specify <code>CUSTOMER_MANAGED</code>, you will manage those roles and permissions yourself. If you are creating this workspace in a member account of an organization that is not a delegated administrator account, and you want the workspace to access data sources in other Amazon Web Services accounts in the organization, you must choose <code>CUSTOMER_MANAGED</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/AMG-manage-permissions.html\">Amazon Managed Grafana permissions and policies for Amazon Web Services data sources and notification channels</a>.</p>",
         "UpdateWorkspaceRequest$permissionType": "<p>If you specify <code>Service Managed</code>, Amazon Managed Grafana automatically creates the IAM roles and provisions the permissions that the workspace needs to use Amazon Web Services data sources and notification channels.</p> <p>If you specify <code>CUSTOMER_MANAGED</code>, you will manage those roles and permissions yourself. If you are creating this workspace in a member account of an organization and that account is not a delegated administrator account, and you want the workspace to access data sources in other Amazon Web Services accounts in the organization, you must choose <code>CUSTOMER_MANAGED</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/AMG-manage-permissions.html\">Amazon Managed Grafana permissions and policies for Amazon Web Services data sources and notification channels</a> </p>",
         "WorkspaceDescription$permissionType": "<p>If this is <code>Service Managed</code>, Amazon Managed Grafana automatically creates the IAM roles and provisions the permissions that the workspace needs to use Amazon Web Services data sources and notification channels.</p> <p>If this is <code>CUSTOMER_MANAGED</code>, you manage those roles and permissions yourself. If you are creating this workspace in a member account of an organization and that account is not a delegated administrator account, and you want the workspace to access data sources in other Amazon Web Services accounts in the organization, you must choose <code>CUSTOMER_MANAGED</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/AMG-manage-permissions.html\">Amazon Managed Grafana permissions and policies for Amazon Web Services data sources and notification channels</a> </p>"
       }
@@ -417,7 +430,7 @@
       "refs": {
         "ListPermissionsRequest$groupId": "<p>(Optional) Limits the results to only the group that matches this ID.</p>",
         "ListPermissionsRequest$userId": "<p>(Optional) Limits the results to only the user that matches this ID.</p>",
-        "User$id": "<p>The ID of the user or group.</p>"
+        "User$id": "<p>The ID of the user or group.</p> <p>Pattern: <code>^([0-9a-fA-F]{10}-|)[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$</code> </p>"
       }
     },
     "StackSetName": {
@@ -437,6 +450,7 @@
         "ConflictException$resourceType": "<p>The type of the resource that is associated with the error.</p>",
         "IdpMetadata$xml": "<p>The actual full metadata file, in XML format.</p>",
         "InternalServerException$message": "<p>A description of the error.</p>",
+        "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the resource the list of tags are associated with.</p>",
         "ResourceNotFoundException$message": "<p>The value of a parameter in the request caused an error.</p>",
         "ResourceNotFoundException$resourceId": "<p>The ID of the resource that is associated with the error.</p>",
         "ResourceNotFoundException$resourceType": "<p>The type of the resource that is associated with the error.</p>",
@@ -445,13 +459,54 @@
         "ServiceQuotaExceededException$resourceId": "<p>The ID of the resource that is associated with the error.</p>",
         "ServiceQuotaExceededException$resourceType": "<p>The type of the resource that is associated with the error.</p>",
         "ServiceQuotaExceededException$serviceCode": "<p>The value of a parameter in the request caused an error.</p>",
+        "TagResourceRequest$resourceArn": "<p>The ARN of the resource the tag is associated with.</p>",
         "ThrottlingException$message": "<p>A description of the error.</p>",
         "ThrottlingException$quotaCode": "<p>The ID of the service quota that was exceeded.</p>",
         "ThrottlingException$serviceCode": "<p>The ID of the service that is associated with the error.</p>",
+        "UntagResourceRequest$resourceArn": "<p>The ARN of the resource the tag association is removed from. </p>",
         "UpdateError$message": "<p>The message for this error.</p>",
         "ValidationException$message": "<p>A description of the error.</p>",
         "ValidationExceptionField$message": "<p>A message describing why this field couldn't be validated.</p>",
         "ValidationExceptionField$name": "<p>The name of the field that caused the validation error.</p>"
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeys$member": null,
+        "TagMap$key": null
+      }
+    },
+    "TagKeys": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p>The key values of the tag to be removed from the resource.</p>"
+      }
+    },
+    "TagMap": {
+      "base": null,
+      "refs": {
+        "CreateWorkspaceRequest$tags": "<p>The list of tags associated with the workspace.</p>",
+        "ListTagsForResourceResponse$tags": "<p>The list of tags that are associated with the resource.</p>",
+        "TagResourceRequest$tags": "<p>The list of tag keys and values to associate with the resource. You can associate tag keys only, tags (key and values) only or a combination of tag keys and tags.</p>",
+        "WorkspaceDescription$tags": "<p>The list of tags associated with the workspace.</p>",
+        "WorkspaceSummary$tags": "<p>The list of tags associated with the workspace.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "TagMap$value": null
       }
     },
     "ThrottlingException": {
@@ -468,6 +523,16 @@
         "WorkspaceDescription$modified": "<p>The most recent date that the workspace was modified.</p>",
         "WorkspaceSummary$created": "<p>The date that the workspace was created.</p>",
         "WorkspaceSummary$modified": "<p>The most recent date that the workspace was modified.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateAction": {

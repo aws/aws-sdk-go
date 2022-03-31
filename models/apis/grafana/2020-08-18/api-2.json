@@ -135,6 +135,23 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListWorkspaces":{
       "name":"ListWorkspaces",
       "http":{
@@ -149,6 +166,41 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
       ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
     },
     "UpdatePermissions":{
       "name":"UpdatePermissions",
@@ -352,6 +404,7 @@
         "organizationRoleName":{"shape":"OrganizationRoleName"},
         "permissionType":{"shape":"PermissionType"},
         "stackSetName":{"shape":"StackSetName"},
+        "tags":{"shape":"TagMap"},
         "workspaceDataSources":{"shape":"DataSourceTypesList"},
         "workspaceDescription":{"shape":"Description"},
         "workspaceName":{"shape":"WorkspaceName"},
@@ -375,7 +428,9 @@
         "PROMETHEUS",
         "XRAY",
         "TIMESTREAM",
-        "SITEWISE"
+        "SITEWISE",
+        "ATHENA",
+        "REDSHIFT"
       ]
     },
     "DataSourceTypesList":{
@@ -574,6 +629,23 @@
         "permissions":{"shape":"PermissionEntryList"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "tags":{"shape":"TagMap"}
+      }
+    },
     "ListWorkspacesRequest":{
       "type":"structure",
       "members":{
@@ -744,6 +816,47 @@
     },
     "StackSetName":{"type":"string"},
     "String":{"type":"string"},
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeys":{
+      "type":"list",
+      "member":{"shape":"TagKey"}
+    },
+    "TagMap":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"},
+      "max":50,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tags"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "ThrottlingException":{
       "type":"structure",
       "required":["message"],
@@ -765,6 +878,30 @@
       "retryable":{"throttling":false}
     },
     "Timestamp":{"type":"timestamp"},
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tagKeys":{
+          "shape":"TagKeys",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateAction":{
       "type":"string",
       "enum":[
@@ -983,6 +1120,7 @@
         "permissionType":{"shape":"PermissionType"},
         "stackSetName":{"shape":"StackSetName"},
         "status":{"shape":"WorkspaceStatus"},
+        "tags":{"shape":"TagMap"},
         "workspaceRoleArn":{"shape":"IamRoleArn"}
       }
     },
@@ -1036,7 +1174,8 @@
         "modified":{"shape":"Timestamp"},
         "name":{"shape":"WorkspaceName"},
         "notificationDestinations":{"shape":"NotificationDestinationsList"},
-        "status":{"shape":"WorkspaceStatus"}
+        "status":{"shape":"WorkspaceStatus"},
+        "tags":{"shape":"TagMap"}
       }
     }
   }

@@ -191,6 +191,20 @@
         {"shape":"InvalidParameterValuesException"}
       ]
     },
+    "DeleteClientBranding":{
+      "name":"DeleteClientBranding",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteClientBrandingRequest"},
+      "output":{"shape":"DeleteClientBrandingResult"},
+      "errors":[
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "DeleteConnectClientAddIn":{
       "name":"DeleteConnectClientAddIn",
       "http":{
@@ -316,6 +330,20 @@
       "input":{"shape":"DescribeAccountModificationsRequest"},
       "output":{"shape":"DescribeAccountModificationsResult"},
       "errors":[
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DescribeClientBranding":{
+      "name":"DescribeClientBranding",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeClientBrandingRequest"},
+      "output":{"shape":"DescribeClientBrandingResult"},
+      "errors":[
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"}
       ]
     },
@@ -518,6 +546,20 @@
         {"shape":"InvalidParameterValuesException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidResourceStateException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ImportClientBranding":{
+      "name":"ImportClientBranding",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ImportClientBrandingRequest"},
+      "output":{"shape":"ImportClientBrandingResult"},
+      "errors":[
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"ResourceLimitExceededException"},
         {"shape":"AccessDeniedException"}
       ]
     },
@@ -990,6 +1032,41 @@
       "member":{"shape":"WorkspaceBundle"}
     },
     "BundleOwner":{"type":"string"},
+    "ClientDeviceType":{
+      "type":"string",
+      "enum":[
+        "DeviceTypeWindows",
+        "DeviceTypeOsx",
+        "DeviceTypeAndroid",
+        "DeviceTypeIos",
+        "DeviceTypeLinux",
+        "DeviceTypeWeb"
+      ]
+    },
+    "ClientDeviceTypeList":{
+      "type":"list",
+      "member":{"shape":"ClientDeviceType"},
+      "max":6,
+      "min":1
+    },
+    "ClientEmail":{
+      "type":"string",
+      "max":64,
+      "min":6,
+      "pattern":"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$"
+    },
+    "ClientLocale":{
+      "type":"string",
+      "max":5,
+      "min":5,
+      "pattern":"^[a-z]{2}_[A-Z]{2}$"
+    },
+    "ClientLoginMessage":{
+      "type":"string",
+      "max":600,
+      "min":0,
+      "pattern":"^.*$"
+    },
     "ClientProperties":{
       "type":"structure",
       "members":{
@@ -1006,6 +1083,12 @@
         "ResourceId":{"shape":"NonEmptyString"},
         "ClientProperties":{"shape":"ClientProperties"}
       }
+    },
+    "ClientUrl":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^(http|https)\\://\\S+"
     },
     "Compute":{
       "type":"string",
@@ -1299,6 +1382,31 @@
         "DISABLED"
       ]
     },
+    "DefaultClientBrandingAttributes":{
+      "type":"structure",
+      "members":{
+        "LogoUrl":{"shape":"ClientUrl"},
+        "SupportEmail":{"shape":"ClientEmail"},
+        "SupportLink":{"shape":"ClientUrl"},
+        "ForgotPasswordLink":{"shape":"ClientUrl"},
+        "LoginMessage":{"shape":"LoginMessage"}
+      }
+    },
+    "DefaultImportClientBrandingAttributes":{
+      "type":"structure",
+      "members":{
+        "Logo":{"shape":"DefaultLogo"},
+        "SupportEmail":{"shape":"ClientEmail"},
+        "SupportLink":{"shape":"ClientUrl"},
+        "ForgotPasswordLink":{"shape":"ClientUrl"},
+        "LoginMessage":{"shape":"LoginMessage"}
+      }
+    },
+    "DefaultLogo":{
+      "type":"blob",
+      "max":1500000,
+      "min":1
+    },
     "DefaultOu":{"type":"string"},
     "DefaultWorkspaceCreationProperties":{
       "type":"structure",
@@ -1309,6 +1417,22 @@
         "CustomSecurityGroupId":{"shape":"SecurityGroupId"},
         "UserEnabledAsLocalAdministrator":{"shape":"BooleanObject"},
         "EnableMaintenanceMode":{"shape":"BooleanObject"}
+      }
+    },
+    "DeleteClientBrandingRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceId",
+        "Platforms"
+      ],
+      "members":{
+        "ResourceId":{"shape":"DirectoryId"},
+        "Platforms":{"shape":"ClientDeviceTypeList"}
+      }
+    },
+    "DeleteClientBrandingResult":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeleteConnectClientAddInRequest":{
@@ -1425,6 +1549,24 @@
       "members":{
         "DedicatedTenancySupport":{"shape":"DedicatedTenancySupportResultEnum"},
         "DedicatedTenancyManagementCidrRange":{"shape":"DedicatedTenancyManagementCidrRange"}
+      }
+    },
+    "DescribeClientBrandingRequest":{
+      "type":"structure",
+      "required":["ResourceId"],
+      "members":{
+        "ResourceId":{"shape":"DirectoryId"}
+      }
+    },
+    "DescribeClientBrandingResult":{
+      "type":"structure",
+      "members":{
+        "DeviceTypeWindows":{"shape":"DefaultClientBrandingAttributes"},
+        "DeviceTypeOsx":{"shape":"DefaultClientBrandingAttributes"},
+        "DeviceTypeAndroid":{"shape":"DefaultClientBrandingAttributes"},
+        "DeviceTypeIos":{"shape":"IosClientBrandingAttributes"},
+        "DeviceTypeLinux":{"shape":"DefaultClientBrandingAttributes"},
+        "DeviceTypeWeb":{"shape":"DefaultClientBrandingAttributes"}
       }
     },
     "DescribeClientPropertiesRequest":{
@@ -1739,6 +1881,30 @@
         "SHARED"
       ]
     },
+    "ImportClientBrandingRequest":{
+      "type":"structure",
+      "required":["ResourceId"],
+      "members":{
+        "ResourceId":{"shape":"DirectoryId"},
+        "DeviceTypeWindows":{"shape":"DefaultImportClientBrandingAttributes"},
+        "DeviceTypeOsx":{"shape":"DefaultImportClientBrandingAttributes"},
+        "DeviceTypeAndroid":{"shape":"DefaultImportClientBrandingAttributes"},
+        "DeviceTypeIos":{"shape":"IosImportClientBrandingAttributes"},
+        "DeviceTypeLinux":{"shape":"DefaultImportClientBrandingAttributes"},
+        "DeviceTypeWeb":{"shape":"DefaultImportClientBrandingAttributes"}
+      }
+    },
+    "ImportClientBrandingResult":{
+      "type":"structure",
+      "members":{
+        "DeviceTypeWindows":{"shape":"DefaultClientBrandingAttributes"},
+        "DeviceTypeOsx":{"shape":"DefaultClientBrandingAttributes"},
+        "DeviceTypeAndroid":{"shape":"DefaultClientBrandingAttributes"},
+        "DeviceTypeIos":{"shape":"IosClientBrandingAttributes"},
+        "DeviceTypeLinux":{"shape":"DefaultClientBrandingAttributes"},
+        "DeviceTypeWeb":{"shape":"DefaultClientBrandingAttributes"}
+      }
+    },
     "ImportWorkspaceImageRequest":{
       "type":"structure",
       "required":[
@@ -1775,6 +1941,45 @@
         "message":{"shape":"ExceptionMessage"}
       },
       "exception":true
+    },
+    "Ios2XLogo":{
+      "type":"blob",
+      "max":1770000,
+      "min":1
+    },
+    "Ios3XLogo":{
+      "type":"blob",
+      "max":1770000,
+      "min":1
+    },
+    "IosClientBrandingAttributes":{
+      "type":"structure",
+      "members":{
+        "LogoUrl":{"shape":"ClientUrl"},
+        "Logo2xUrl":{"shape":"ClientUrl"},
+        "Logo3xUrl":{"shape":"ClientUrl"},
+        "SupportEmail":{"shape":"ClientEmail"},
+        "SupportLink":{"shape":"ClientUrl"},
+        "ForgotPasswordLink":{"shape":"ClientUrl"},
+        "LoginMessage":{"shape":"LoginMessage"}
+      }
+    },
+    "IosImportClientBrandingAttributes":{
+      "type":"structure",
+      "members":{
+        "Logo":{"shape":"IosLogo"},
+        "Logo2x":{"shape":"Ios2XLogo"},
+        "Logo3x":{"shape":"Ios3XLogo"},
+        "SupportEmail":{"shape":"ClientEmail"},
+        "SupportLink":{"shape":"ClientUrl"},
+        "ForgotPasswordLink":{"shape":"ClientUrl"},
+        "LoginMessage":{"shape":"LoginMessage"}
+      }
+    },
+    "IosLogo":{
+      "type":"blob",
+      "max":447000,
+      "min":1
     },
     "IpAddress":{"type":"string"},
     "IpGroupDesc":{"type":"string"},
@@ -1824,6 +2029,11 @@
         "ManagementCidrRanges":{"shape":"DedicatedTenancyCidrRangeList"},
         "NextToken":{"shape":"PaginationToken"}
       }
+    },
+    "LoginMessage":{
+      "type":"map",
+      "key":{"shape":"ClientLocale"},
+      "value":{"shape":"ClientLoginMessage"}
     },
     "ManagementCidrRangeConstraint":{
       "type":"string",

@@ -1,3 +1,16 @@
+Release v1.43.30 (2022-03-31)
+===
+
+### Service Client Updates
+* `service/auditmanager`: Updates service documentation
+* `service/cloudcontrol`: Updates service API and documentation
+* `service/databrew`: Updates service API and documentation
+* `service/grafana`: Updates service API and documentation
+* `service/pinpoint-sms-voice-v2`: Adds new service
+* `service/route53-recovery-cluster`: Updates service API, documentation, and paginators
+* `service/workspaces`: Updates service API and documentation
+  * Added APIs that allow you to customize the logo, login message, and help links in the WorkSpaces client login page. To learn more, visit https://docs.aws.amazon.com/workspaces/latest/adminguide/customize-branding.html
+
 Release v1.43.29 (2022-03-30)
 ===
 
