@@ -64,6 +64,13 @@ type Route53RecoveryClusterAPI interface {
 	GetRoutingControlStateWithContext(aws.Context, *route53recoverycluster.GetRoutingControlStateInput, ...request.Option) (*route53recoverycluster.GetRoutingControlStateOutput, error)
 	GetRoutingControlStateRequest(*route53recoverycluster.GetRoutingControlStateInput) (*request.Request, *route53recoverycluster.GetRoutingControlStateOutput)
 
+	ListRoutingControls(*route53recoverycluster.ListRoutingControlsInput) (*route53recoverycluster.ListRoutingControlsOutput, error)
+	ListRoutingControlsWithContext(aws.Context, *route53recoverycluster.ListRoutingControlsInput, ...request.Option) (*route53recoverycluster.ListRoutingControlsOutput, error)
+	ListRoutingControlsRequest(*route53recoverycluster.ListRoutingControlsInput) (*request.Request, *route53recoverycluster.ListRoutingControlsOutput)
+
+	ListRoutingControlsPages(*route53recoverycluster.ListRoutingControlsInput, func(*route53recoverycluster.ListRoutingControlsOutput, bool) bool) error
+	ListRoutingControlsPagesWithContext(aws.Context, *route53recoverycluster.ListRoutingControlsInput, func(*route53recoverycluster.ListRoutingControlsOutput, bool) bool, ...request.Option) error
+
 	UpdateRoutingControlState(*route53recoverycluster.UpdateRoutingControlStateInput) (*route53recoverycluster.UpdateRoutingControlStateOutput, error)
 	UpdateRoutingControlStateWithContext(aws.Context, *route53recoverycluster.UpdateRoutingControlStateInput, ...request.Option) (*route53recoverycluster.UpdateRoutingControlStateOutput, error)
 	UpdateRoutingControlStateRequest(*route53recoverycluster.UpdateRoutingControlStateInput) (*request.Request, *route53recoverycluster.UpdateRoutingControlStateOutput)

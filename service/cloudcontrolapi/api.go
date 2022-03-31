@@ -61,7 +61,7 @@ func (c *CloudControlApi) CancelResourceRequestRequest(input *CancelResourceRequ
 // in the Amazon Web Services Cloud Control API User Guide.
 //
 // Only resource operations requests with a status of PENDING or IN_PROGRESS
-// can be cancelled.
+// can be canceled.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -72,7 +72,7 @@ func (c *CloudControlApi) CancelResourceRequestRequest(input *CancelResourceRequ
 //
 // Returned Error Types:
 //   * RequestTokenNotFoundException
-//   A resource operation with the specified request token cannot be found.
+//   A resource operation with the specified request token can't be found.
 //
 //   * ConcurrentModificationException
 //   The resource is currently being modified by another operation.
@@ -165,21 +165,21 @@ func (c *CloudControlApi) CreateResourceRequest(input *CreateResourceInput) (req
 //   * ClientTokenConflictException
 //   The specified client token has already been used in another resource request.
 //
-//   It is best practice for client tokens to be unique for each resource operation
+//   It's best practice for client tokens to be unique for each resource operation
 //   request. However, client token expire after 36 hours.
 //
 //   * UnsupportedActionException
-//   The specified resource does not support this resource operation.
+//   The specified resource doesn't support this resource operation.
 //
 //   * TypeNotFoundException
-//   The specified extension does not exist in the CloudFormation registry.
+//   The specified extension doesn't exist in the CloudFormation registry.
 //
 //   * AlreadyExistsException
 //   The resource with the name requested already exists.
 //
 //   * GeneralServiceException
 //   The resource handler has returned that the downstream service generated an
-//   error that does not map to any other handler error code.
+//   error that doesn't map to any other handler error code.
 //
 //   * HandlerInternalFailureException
 //   The resource handler has returned that an unexpected error occurred within
@@ -194,12 +194,12 @@ func (c *CloudControlApi) CreateResourceRequest(input *CreateResourceInput) (req
 //   a generic exception.
 //
 //   * NetworkFailureException
-//   The resource handler has returned that the request could not be completed
+//   The resource handler has returned that the request couldn't be completed
 //   due to networking issues, such as a failure to receive a response from the
 //   server.
 //
 //   * ResourceNotFoundException
-//   A resource with the specified identifier cannot be found.
+//   A resource with the specified identifier can't be found.
 //
 //   * NotStabilizedException
 //   The resource handler has returned that the downstream resource failed to
@@ -207,11 +207,11 @@ func (c *CloudControlApi) CreateResourceRequest(input *CreateResourceInput) (req
 //
 //   * NotUpdatableException
 //   One or more properties included in this resource operation are defined as
-//   create-only, and therefore cannot be updated.
+//   create-only, and therefore can't be updated.
 //
 //   * ResourceConflictException
 //   The resource is temporarily unavailable to be acted upon. For example, if
-//   the resource is currently undergoing an operation and cannot be acted upon
+//   the resource is currently undergoing an operation and can't be acted upon
 //   until that operation is finished.
 //
 //   * ServiceInternalErrorException
@@ -226,7 +226,7 @@ func (c *CloudControlApi) CreateResourceRequest(input *CreateResourceInput) (req
 //   The request was denied due to request throttling.
 //
 //   * PrivateTypeException
-//   Cloud Control API has not received a valid response from the resource handler,
+//   Cloud Control API hasn't received a valid response from the resource handler,
 //   due to a configuration error. This includes issues such as the resource handler
 //   returning an invalid response, or timing out.
 //
@@ -321,21 +321,21 @@ func (c *CloudControlApi) DeleteResourceRequest(input *DeleteResourceInput) (req
 //   * ClientTokenConflictException
 //   The specified client token has already been used in another resource request.
 //
-//   It is best practice for client tokens to be unique for each resource operation
+//   It's best practice for client tokens to be unique for each resource operation
 //   request. However, client token expire after 36 hours.
 //
 //   * UnsupportedActionException
-//   The specified resource does not support this resource operation.
+//   The specified resource doesn't support this resource operation.
 //
 //   * TypeNotFoundException
-//   The specified extension does not exist in the CloudFormation registry.
+//   The specified extension doesn't exist in the CloudFormation registry.
 //
 //   * AlreadyExistsException
 //   The resource with the name requested already exists.
 //
 //   * GeneralServiceException
 //   The resource handler has returned that the downstream service generated an
-//   error that does not map to any other handler error code.
+//   error that doesn't map to any other handler error code.
 //
 //   * HandlerInternalFailureException
 //   The resource handler has returned that an unexpected error occurred within
@@ -350,12 +350,12 @@ func (c *CloudControlApi) DeleteResourceRequest(input *DeleteResourceInput) (req
 //   a generic exception.
 //
 //   * NetworkFailureException
-//   The resource handler has returned that the request could not be completed
+//   The resource handler has returned that the request couldn't be completed
 //   due to networking issues, such as a failure to receive a response from the
 //   server.
 //
 //   * ResourceNotFoundException
-//   A resource with the specified identifier cannot be found.
+//   A resource with the specified identifier can't be found.
 //
 //   * NotStabilizedException
 //   The resource handler has returned that the downstream resource failed to
@@ -363,11 +363,11 @@ func (c *CloudControlApi) DeleteResourceRequest(input *DeleteResourceInput) (req
 //
 //   * NotUpdatableException
 //   One or more properties included in this resource operation are defined as
-//   create-only, and therefore cannot be updated.
+//   create-only, and therefore can't be updated.
 //
 //   * ResourceConflictException
 //   The resource is temporarily unavailable to be acted upon. For example, if
-//   the resource is currently undergoing an operation and cannot be acted upon
+//   the resource is currently undergoing an operation and can't be acted upon
 //   until that operation is finished.
 //
 //   * ServiceInternalErrorException
@@ -382,7 +382,7 @@ func (c *CloudControlApi) DeleteResourceRequest(input *DeleteResourceInput) (req
 //   The request was denied due to request throttling.
 //
 //   * PrivateTypeException
-//   Cloud Control API has not received a valid response from the resource handler,
+//   Cloud Control API hasn't received a valid response from the resource handler,
 //   due to a configuration error. This includes issues such as the resource handler
 //   returning an invalid response, or timing out.
 //
@@ -460,8 +460,8 @@ func (c *CloudControlApi) GetResourceRequest(input *GetResourceInput) (req *requ
 // details, see Reading a resource's current state (https://docs.aws.amazon.com/cloudcontrolapi/latest/userguide/resource-operations-read.html).
 //
 // You can use this action to return information about an existing resource
-// in your account and Amazon Web Services Region, whether or not those resources
-// were provisioned using Cloud Control API.
+// in your account and Amazon Web Services Region, whether those resources were
+// provisioned using Cloud Control API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -472,17 +472,17 @@ func (c *CloudControlApi) GetResourceRequest(input *GetResourceInput) (req *requ
 //
 // Returned Error Types:
 //   * UnsupportedActionException
-//   The specified resource does not support this resource operation.
+//   The specified resource doesn't support this resource operation.
 //
 //   * TypeNotFoundException
-//   The specified extension does not exist in the CloudFormation registry.
+//   The specified extension doesn't exist in the CloudFormation registry.
 //
 //   * AlreadyExistsException
 //   The resource with the name requested already exists.
 //
 //   * GeneralServiceException
 //   The resource handler has returned that the downstream service generated an
-//   error that does not map to any other handler error code.
+//   error that doesn't map to any other handler error code.
 //
 //   * HandlerInternalFailureException
 //   The resource handler has returned that an unexpected error occurred within
@@ -497,12 +497,12 @@ func (c *CloudControlApi) GetResourceRequest(input *GetResourceInput) (req *requ
 //   a generic exception.
 //
 //   * NetworkFailureException
-//   The resource handler has returned that the request could not be completed
+//   The resource handler has returned that the request couldn't be completed
 //   due to networking issues, such as a failure to receive a response from the
 //   server.
 //
 //   * ResourceNotFoundException
-//   A resource with the specified identifier cannot be found.
+//   A resource with the specified identifier can't be found.
 //
 //   * NotStabilizedException
 //   The resource handler has returned that the downstream resource failed to
@@ -510,11 +510,11 @@ func (c *CloudControlApi) GetResourceRequest(input *GetResourceInput) (req *requ
 //
 //   * NotUpdatableException
 //   One or more properties included in this resource operation are defined as
-//   create-only, and therefore cannot be updated.
+//   create-only, and therefore can't be updated.
 //
 //   * ResourceConflictException
 //   The resource is temporarily unavailable to be acted upon. For example, if
-//   the resource is currently undergoing an operation and cannot be acted upon
+//   the resource is currently undergoing an operation and can't be acted upon
 //   until that operation is finished.
 //
 //   * ServiceInternalErrorException
@@ -529,7 +529,7 @@ func (c *CloudControlApi) GetResourceRequest(input *GetResourceInput) (req *requ
 //   The request was denied due to request throttling.
 //
 //   * PrivateTypeException
-//   Cloud Control API has not received a valid response from the resource handler,
+//   Cloud Control API hasn't received a valid response from the resource handler,
 //   due to a configuration error. This includes issues such as the resource handler
 //   returning an invalid response, or timing out.
 //
@@ -616,7 +616,7 @@ func (c *CloudControlApi) GetResourceRequestStatusRequest(input *GetResourceRequ
 //
 // Returned Error Types:
 //   * RequestTokenNotFoundException
-//   A resource operation with the specified request token cannot be found.
+//   A resource operation with the specified request token can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudcontrol-2021-09-30/GetResourceRequestStatus
 func (c *CloudControlApi) GetResourceRequestStatus(input *GetResourceRequestStatusInput) (*GetResourceRequestStatusOutput, error) {
@@ -695,7 +695,7 @@ func (c *CloudControlApi) ListResourceRequestsRequest(input *ListResourceRequest
 // requests (https://docs.aws.amazon.com/cloudcontrolapi/latest/userguide/resource-operations-manage-requests.html#resource-operations-manage-requests-list)
 // in the Amazon Web Services Cloud Control API User Guide.
 //
-// Resource operation requests expire after seven days.
+// Resource operation requests expire after 7 days.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -828,12 +828,12 @@ func (c *CloudControlApi) ListResourcesRequest(input *ListResourcesInput) (req *
 // ListResources API operation for AWS Cloud Control API.
 //
 // Returns information about the specified resources. For more information,
-// see Discovering resources (cloudcontrolapi/latest/userguide/resource-operations-list.html)
+// see Discovering resources (https://docs.aws.amazon.com/cloudcontrolapi/latest/userguide/resource-operations-list.html)
 // in the Amazon Web Services Cloud Control API User Guide.
 //
 // You can use this action to return information about existing resources in
-// your account and Amazon Web Services Region, whether or not those resources
-// were provisioned using Cloud Control API.
+// your account and Amazon Web Services Region, whether those resources were
+// provisioned using Cloud Control API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -844,17 +844,17 @@ func (c *CloudControlApi) ListResourcesRequest(input *ListResourcesInput) (req *
 //
 // Returned Error Types:
 //   * UnsupportedActionException
-//   The specified resource does not support this resource operation.
+//   The specified resource doesn't support this resource operation.
 //
 //   * TypeNotFoundException
-//   The specified extension does not exist in the CloudFormation registry.
+//   The specified extension doesn't exist in the CloudFormation registry.
 //
 //   * AlreadyExistsException
 //   The resource with the name requested already exists.
 //
 //   * GeneralServiceException
 //   The resource handler has returned that the downstream service generated an
-//   error that does not map to any other handler error code.
+//   error that doesn't map to any other handler error code.
 //
 //   * HandlerInternalFailureException
 //   The resource handler has returned that an unexpected error occurred within
@@ -869,12 +869,12 @@ func (c *CloudControlApi) ListResourcesRequest(input *ListResourcesInput) (req *
 //   a generic exception.
 //
 //   * NetworkFailureException
-//   The resource handler has returned that the request could not be completed
+//   The resource handler has returned that the request couldn't be completed
 //   due to networking issues, such as a failure to receive a response from the
 //   server.
 //
 //   * ResourceNotFoundException
-//   A resource with the specified identifier cannot be found.
+//   A resource with the specified identifier can't be found.
 //
 //   * NotStabilizedException
 //   The resource handler has returned that the downstream resource failed to
@@ -882,11 +882,11 @@ func (c *CloudControlApi) ListResourcesRequest(input *ListResourcesInput) (req *
 //
 //   * NotUpdatableException
 //   One or more properties included in this resource operation are defined as
-//   create-only, and therefore cannot be updated.
+//   create-only, and therefore can't be updated.
 //
 //   * ResourceConflictException
 //   The resource is temporarily unavailable to be acted upon. For example, if
-//   the resource is currently undergoing an operation and cannot be acted upon
+//   the resource is currently undergoing an operation and can't be acted upon
 //   until that operation is finished.
 //
 //   * ServiceInternalErrorException
@@ -901,7 +901,7 @@ func (c *CloudControlApi) ListResourcesRequest(input *ListResourcesInput) (req *
 //   The request was denied due to request throttling.
 //
 //   * PrivateTypeException
-//   Cloud Control API has not received a valid response from the resource handler,
+//   Cloud Control API hasn't received a valid response from the resource handler,
 //   due to a configuration error. This includes issues such as the resource handler
 //   returning an invalid response, or timing out.
 //
@@ -1045,7 +1045,7 @@ func (c *CloudControlApi) UpdateResourceRequest(input *UpdateResourceInput) (req
 // For more information about the properties of a specific resource, refer to
 // the related topic for the resource in the Resource and property types reference
 // (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
-// in the Amazon Web Services CloudFormation Users Guide.
+// in the CloudFormation Users Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1061,21 +1061,21 @@ func (c *CloudControlApi) UpdateResourceRequest(input *UpdateResourceInput) (req
 //   * ClientTokenConflictException
 //   The specified client token has already been used in another resource request.
 //
-//   It is best practice for client tokens to be unique for each resource operation
+//   It's best practice for client tokens to be unique for each resource operation
 //   request. However, client token expire after 36 hours.
 //
 //   * UnsupportedActionException
-//   The specified resource does not support this resource operation.
+//   The specified resource doesn't support this resource operation.
 //
 //   * TypeNotFoundException
-//   The specified extension does not exist in the CloudFormation registry.
+//   The specified extension doesn't exist in the CloudFormation registry.
 //
 //   * AlreadyExistsException
 //   The resource with the name requested already exists.
 //
 //   * GeneralServiceException
 //   The resource handler has returned that the downstream service generated an
-//   error that does not map to any other handler error code.
+//   error that doesn't map to any other handler error code.
 //
 //   * HandlerInternalFailureException
 //   The resource handler has returned that an unexpected error occurred within
@@ -1090,12 +1090,12 @@ func (c *CloudControlApi) UpdateResourceRequest(input *UpdateResourceInput) (req
 //   a generic exception.
 //
 //   * NetworkFailureException
-//   The resource handler has returned that the request could not be completed
+//   The resource handler has returned that the request couldn't be completed
 //   due to networking issues, such as a failure to receive a response from the
 //   server.
 //
 //   * ResourceNotFoundException
-//   A resource with the specified identifier cannot be found.
+//   A resource with the specified identifier can't be found.
 //
 //   * NotStabilizedException
 //   The resource handler has returned that the downstream resource failed to
@@ -1103,11 +1103,11 @@ func (c *CloudControlApi) UpdateResourceRequest(input *UpdateResourceInput) (req
 //
 //   * NotUpdatableException
 //   One or more properties included in this resource operation are defined as
-//   create-only, and therefore cannot be updated.
+//   create-only, and therefore can't be updated.
 //
 //   * ResourceConflictException
 //   The resource is temporarily unavailable to be acted upon. For example, if
-//   the resource is currently undergoing an operation and cannot be acted upon
+//   the resource is currently undergoing an operation and can't be acted upon
 //   until that operation is finished.
 //
 //   * ServiceInternalErrorException
@@ -1122,7 +1122,7 @@ func (c *CloudControlApi) UpdateResourceRequest(input *UpdateResourceInput) (req
 //   The request was denied due to request throttling.
 //
 //   * PrivateTypeException
-//   Cloud Control API has not received a valid response from the resource handler,
+//   Cloud Control API hasn't received a valid response from the resource handler,
 //   due to a configuration error. This includes issues such as the resource handler
 //   returning an invalid response, or timing out.
 //
@@ -1301,7 +1301,7 @@ func (s *CancelResourceRequestOutput) SetProgressEvent(v *ProgressEvent) *Cancel
 
 // The specified client token has already been used in another resource request.
 //
-// It is best practice for client tokens to be unique for each resource operation
+// It's best practice for client tokens to be unique for each resource operation
 // request. However, client token expire after 36 hours.
 type ClientTokenConflictException struct {
 	_            struct{}                  `type:"structure"`
@@ -1531,7 +1531,7 @@ type CreateResourceInput struct {
 	// For more information about the properties of a specific resource, refer to
 	// the related topic for the resource in the Resource and property types reference
 	// (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
-	// in the Amazon Web Services CloudFormation Users Guide.
+	// in the CloudFormation Users Guide.
 	//
 	// DesiredState is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateResourceInput's
@@ -1541,9 +1541,9 @@ type CreateResourceInput struct {
 	DesiredState *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
-	// for Cloud Control API to use when performing this resource operation. The
-	// role specified must have the permissions required for this operation. The
-	// necessary permissions for each event handler are defined in the handlers
+	// role for Cloud Control API to use when performing this resource operation.
+	// The role specified must have the permissions required for this operation.
+	// The necessary permissions for each event handler are defined in the handlers
 	// (https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-schema.html#schema-properties-handlers)
 	// section of the resource type definition schema (https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-schema.html).
 	//
@@ -1718,9 +1718,9 @@ type DeleteResourceInput struct {
 	Identifier *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
-	// for Cloud Control API to use when performing this resource operation. The
-	// role specified must have the permissions required for this operation. The
-	// necessary permissions for each event handler are defined in the handlers
+	// role for Cloud Control API to use when performing this resource operation.
+	// The role specified must have the permissions required for this operation.
+	// The necessary permissions for each event handler are defined in the handlers
 	// (https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-schema.html#schema-properties-handlers)
 	// section of the resource type definition schema (https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-schema.html).
 	//
@@ -1857,7 +1857,7 @@ func (s *DeleteResourceOutput) SetProgressEvent(v *ProgressEvent) *DeleteResourc
 }
 
 // The resource handler has returned that the downstream service generated an
-// error that does not map to any other handler error code.
+// error that doesn't map to any other handler error code.
 type GeneralServiceException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1943,9 +1943,9 @@ type GetResourceInput struct {
 	Identifier *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
-	// for Cloud Control API to use when performing this resource operation. The
-	// role specified must have the permissions required for this operation. The
-	// necessary permissions for each event handler are defined in the handlers
+	// role for Cloud Control API to use when performing this resource operation.
+	// The role specified must have the permissions required for this operation.
+	// The necessary permissions for each event handler are defined in the handlers
 	// (https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-schema.html#schema-properties-handlers)
 	// section of the resource type definition schema (https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-schema.html).
 	//
@@ -2540,12 +2540,7 @@ func (s *ListResourceRequestsOutput) SetResourceRequestStatusSummaries(v []*Prog
 type ListResourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to be returned with a single call. If the number
-	// of available results exceeds this maximum, the response includes a NextToken
-	// value that you can assign to the NextToken request parameter to get the next
-	// set of results.
-	//
-	// The default is 20.
+	// Reserved.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// If the previous paginated request didn't return all of the remaining results,
@@ -2563,9 +2558,9 @@ type ListResourcesInput struct {
 	ResourceModel *string `min:"1" type:"string" sensitive:"true"`
 
 	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
-	// for Cloud Control API to use when performing this resource operation. The
-	// role specified must have the permissions required for this operation. The
-	// necessary permissions for each event handler are defined in the handlers
+	// role for Cloud Control API to use when performing this resource operation.
+	// The role specified must have the permissions required for this operation.
+	// The necessary permissions for each event handler are defined in the handlers
 	// (https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-schema.html#schema-properties-handlers)
 	// section of the resource type definition schema (https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-schema.html).
 	//
@@ -2725,7 +2720,7 @@ func (s *ListResourcesOutput) SetTypeName(v string) *ListResourcesOutput {
 	return s
 }
 
-// The resource handler has returned that the request could not be completed
+// The resource handler has returned that the request couldn't be completed
 // due to networking issues, such as a failure to receive a response from the
 // server.
 type NetworkFailureException struct {
@@ -2857,7 +2852,7 @@ func (s *NotStabilizedException) RequestID() string {
 }
 
 // One or more properties included in this resource operation are defined as
-// create-only, and therefore cannot be updated.
+// create-only, and therefore can't be updated.
 type NotUpdatableException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2921,7 +2916,7 @@ func (s *NotUpdatableException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Cloud Control API has not received a valid response from the resource handler,
+// Cloud Control API hasn't received a valid response from the resource handler,
 // due to a configuration error. This includes issues such as the resource handler
 // returning an invalid response, or timing out.
 type PrivateTypeException struct {
@@ -3013,7 +3008,7 @@ type ProgressEvent struct {
 
 	// The current status of the resource operation request.
 	//
-	//    * PENDING: The resource operation has not yet started.
+	//    * PENDING: The resource operation hasn't yet started.
 	//
 	//    * IN_PROGRESS: The resource operation is currently in progress.
 	//
@@ -3130,7 +3125,7 @@ func (s *ProgressEvent) SetTypeName(v string) *ProgressEvent {
 	return s
 }
 
-// A resource operation with the specified request token cannot be found.
+// A resource operation with the specified request token can't be found.
 type RequestTokenNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3195,7 +3190,7 @@ func (s *RequestTokenNotFoundException) RequestID() string {
 }
 
 // The resource is temporarily unavailable to be acted upon. For example, if
-// the resource is currently undergoing an operation and cannot be acted upon
+// the resource is currently undergoing an operation and can't be acted upon
 // until that operation is finished.
 type ResourceConflictException struct {
 	_            struct{}                  `type:"structure"`
@@ -3308,7 +3303,7 @@ func (s *ResourceDescription) SetProperties(v string) *ResourceDescription {
 	return s
 }
 
-// A resource with the specified identifier cannot be found.
+// A resource with the specified identifier can't be found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3380,14 +3375,13 @@ type ResourceRequestStatusFilter struct {
 	//
 	//    * PENDING: The operation has been requested, but not yet initiated.
 	//
-	//    * IN_PROGRESS: The operation is currently in progress.
+	//    * IN_PROGRESS: The operation is in progress.
 	//
-	//    * SUCCESS: The operation has successfully completed.
+	//    * SUCCESS: The operation completed.
 	//
-	//    * FAILED: The operation has failed.
+	//    * FAILED: The operation failed.
 	//
-	//    * CANCEL_IN_PROGRESS: The operation is currently in the process of being
-	//    canceled.
+	//    * CANCEL_IN_PROGRESS: The operation is in the process of being canceled.
 	//
 	//    * CANCEL_COMPLETE: The operation has been canceled.
 	OperationStatuses []*string `type:"list" enum:"OperationStatus"`
@@ -3620,7 +3614,7 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified extension does not exist in the CloudFormation registry.
+// The specified extension doesn't exist in the CloudFormation registry.
 type TypeNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3684,7 +3678,7 @@ func (s *TypeNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified resource does not support this resource operation.
+// The specified resource doesn't support this resource operation.
 type UnsupportedActionException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3799,9 +3793,9 @@ type UpdateResourceInput struct {
 	PatchDocument *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
-	// for Cloud Control API to use when performing this resource operation. The
-	// role specified must have the permissions required for this operation. The
-	// necessary permissions for each event handler are defined in the handlers
+	// role for Cloud Control API to use when performing this resource operation.
+	// The role specified must have the permissions required for this operation.
+	// The necessary permissions for each event handler are defined in the handlers
 	// (https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-schema.html#schema-properties-handlers)
 	// section of the resource type definition schema (https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-schema.html).
 	//

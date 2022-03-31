@@ -19,7 +19,7 @@ const (
 	//
 	// The specified client token has already been used in another resource request.
 	//
-	// It is best practice for client tokens to be unique for each resource operation
+	// It's best practice for client tokens to be unique for each resource operation
 	// request. However, client token expire after 36 hours.
 	ErrCodeClientTokenConflictException = "ClientTokenConflictException"
 
@@ -39,7 +39,7 @@ const (
 	// "GeneralServiceException".
 	//
 	// The resource handler has returned that the downstream service generated an
-	// error that does not map to any other handler error code.
+	// error that doesn't map to any other handler error code.
 	ErrCodeGeneralServiceException = "GeneralServiceException"
 
 	// ErrCodeHandlerFailureException for service response error code
@@ -73,7 +73,7 @@ const (
 	// ErrCodeNetworkFailureException for service response error code
 	// "NetworkFailureException".
 	//
-	// The resource handler has returned that the request could not be completed
+	// The resource handler has returned that the request couldn't be completed
 	// due to networking issues, such as a failure to receive a response from the
 	// server.
 	ErrCodeNetworkFailureException = "NetworkFailureException"
@@ -89,13 +89,13 @@ const (
 	// "NotUpdatableException".
 	//
 	// One or more properties included in this resource operation are defined as
-	// create-only, and therefore cannot be updated.
+	// create-only, and therefore can't be updated.
 	ErrCodeNotUpdatableException = "NotUpdatableException"
 
 	// ErrCodePrivateTypeException for service response error code
 	// "PrivateTypeException".
 	//
-	// Cloud Control API has not received a valid response from the resource handler,
+	// Cloud Control API hasn't received a valid response from the resource handler,
 	// due to a configuration error. This includes issues such as the resource handler
 	// returning an invalid response, or timing out.
 	ErrCodePrivateTypeException = "PrivateTypeException"
@@ -103,21 +103,21 @@ const (
 	// ErrCodeRequestTokenNotFoundException for service response error code
 	// "RequestTokenNotFoundException".
 	//
-	// A resource operation with the specified request token cannot be found.
+	// A resource operation with the specified request token can't be found.
 	ErrCodeRequestTokenNotFoundException = "RequestTokenNotFoundException"
 
 	// ErrCodeResourceConflictException for service response error code
 	// "ResourceConflictException".
 	//
 	// The resource is temporarily unavailable to be acted upon. For example, if
-	// the resource is currently undergoing an operation and cannot be acted upon
+	// the resource is currently undergoing an operation and can't be acted upon
 	// until that operation is finished.
 	ErrCodeResourceConflictException = "ResourceConflictException"
 
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// A resource with the specified identifier cannot be found.
+	// A resource with the specified identifier can't be found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeServiceInternalErrorException for service response error code
@@ -143,13 +143,13 @@ const (
 	// ErrCodeTypeNotFoundException for service response error code
 	// "TypeNotFoundException".
 	//
-	// The specified extension does not exist in the CloudFormation registry.
+	// The specified extension doesn't exist in the CloudFormation registry.
 	ErrCodeTypeNotFoundException = "TypeNotFoundException"
 
 	// ErrCodeUnsupportedActionException for service response error code
 	// "UnsupportedActionException".
 	//
-	// The specified resource does not support this resource operation.
+	// The specified resource doesn't support this resource operation.
 	ErrCodeUnsupportedActionException = "UnsupportedActionException"
 )
 

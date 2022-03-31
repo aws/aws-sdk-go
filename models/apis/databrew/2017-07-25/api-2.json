@@ -1583,7 +1583,8 @@
         "CSV",
         "JSON",
         "PARQUET",
-        "EXCEL"
+        "EXCEL",
+        "ORC"
       ]
     },
     "InternalServerException":{

@@ -104,6 +104,10 @@ type WorkSpacesAPI interface {
 	CreateWorkspacesWithContext(aws.Context, *workspaces.CreateWorkspacesInput, ...request.Option) (*workspaces.CreateWorkspacesOutput, error)
 	CreateWorkspacesRequest(*workspaces.CreateWorkspacesInput) (*request.Request, *workspaces.CreateWorkspacesOutput)
 
+	DeleteClientBranding(*workspaces.DeleteClientBrandingInput) (*workspaces.DeleteClientBrandingOutput, error)
+	DeleteClientBrandingWithContext(aws.Context, *workspaces.DeleteClientBrandingInput, ...request.Option) (*workspaces.DeleteClientBrandingOutput, error)
+	DeleteClientBrandingRequest(*workspaces.DeleteClientBrandingInput) (*request.Request, *workspaces.DeleteClientBrandingOutput)
+
 	DeleteConnectClientAddIn(*workspaces.DeleteConnectClientAddInInput) (*workspaces.DeleteConnectClientAddInOutput, error)
 	DeleteConnectClientAddInWithContext(aws.Context, *workspaces.DeleteConnectClientAddInInput, ...request.Option) (*workspaces.DeleteConnectClientAddInOutput, error)
 	DeleteConnectClientAddInRequest(*workspaces.DeleteConnectClientAddInInput) (*request.Request, *workspaces.DeleteConnectClientAddInOutput)
@@ -139,6 +143,10 @@ type WorkSpacesAPI interface {
 	DescribeAccountModifications(*workspaces.DescribeAccountModificationsInput) (*workspaces.DescribeAccountModificationsOutput, error)
 	DescribeAccountModificationsWithContext(aws.Context, *workspaces.DescribeAccountModificationsInput, ...request.Option) (*workspaces.DescribeAccountModificationsOutput, error)
 	DescribeAccountModificationsRequest(*workspaces.DescribeAccountModificationsInput) (*request.Request, *workspaces.DescribeAccountModificationsOutput)
+
+	DescribeClientBranding(*workspaces.DescribeClientBrandingInput) (*workspaces.DescribeClientBrandingOutput, error)
+	DescribeClientBrandingWithContext(aws.Context, *workspaces.DescribeClientBrandingInput, ...request.Option) (*workspaces.DescribeClientBrandingOutput, error)
+	DescribeClientBrandingRequest(*workspaces.DescribeClientBrandingInput) (*request.Request, *workspaces.DescribeClientBrandingOutput)
 
 	DescribeClientProperties(*workspaces.DescribeClientPropertiesInput) (*workspaces.DescribeClientPropertiesOutput, error)
 	DescribeClientPropertiesWithContext(aws.Context, *workspaces.DescribeClientPropertiesInput, ...request.Option) (*workspaces.DescribeClientPropertiesOutput, error)
@@ -208,6 +216,10 @@ type WorkSpacesAPI interface {
 	DisassociateIpGroups(*workspaces.DisassociateIpGroupsInput) (*workspaces.DisassociateIpGroupsOutput, error)
 	DisassociateIpGroupsWithContext(aws.Context, *workspaces.DisassociateIpGroupsInput, ...request.Option) (*workspaces.DisassociateIpGroupsOutput, error)
 	DisassociateIpGroupsRequest(*workspaces.DisassociateIpGroupsInput) (*request.Request, *workspaces.DisassociateIpGroupsOutput)
+
+	ImportClientBranding(*workspaces.ImportClientBrandingInput) (*workspaces.ImportClientBrandingOutput, error)
+	ImportClientBrandingWithContext(aws.Context, *workspaces.ImportClientBrandingInput, ...request.Option) (*workspaces.ImportClientBrandingOutput, error)
+	ImportClientBrandingRequest(*workspaces.ImportClientBrandingInput) (*request.Request, *workspaces.ImportClientBrandingOutput)
 
 	ImportWorkspaceImage(*workspaces.ImportWorkspaceImageInput) (*workspaces.ImportWorkspaceImageOutput, error)
 	ImportWorkspaceImageWithContext(aws.Context, *workspaces.ImportWorkspaceImageInput, ...request.Option) (*workspaces.ImportWorkspaceImageOutput, error)
