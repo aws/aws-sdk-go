@@ -1,3 +1,9 @@
+Release v1.43.31 (2022-04-01)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API and documentation
+
 Release v1.43.30 (2022-03-31)
 ===
 

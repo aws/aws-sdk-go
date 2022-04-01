@@ -11030,8 +11030,6 @@ func (c *Connect) StopContactRequest(input *StopContactInput) (req *request.Requ
 // Ends the specified contact. This call does not work for the following initiation
 // methods:
 //
-//    * CALLBACK
-//
 //    * DISCONNECT
 //
 //    * TRANSFER
@@ -37404,6 +37402,9 @@ const (
 
 	// InstanceAttributeTypeEarlyMedia is a InstanceAttributeType enum value
 	InstanceAttributeTypeEarlyMedia = "EARLY_MEDIA"
+
+	// InstanceAttributeTypeMultiPartyConference is a InstanceAttributeType enum value
+	InstanceAttributeTypeMultiPartyConference = "MULTI_PARTY_CONFERENCE"
 )
 
 // InstanceAttributeType_Values returns all elements of the InstanceAttributeType enum
@@ -37416,6 +37417,7 @@ func InstanceAttributeType_Values() []string {
 		InstanceAttributeTypeAutoResolveBestVoices,
 		InstanceAttributeTypeUseCustomTtsVoices,
 		InstanceAttributeTypeEarlyMedia,
+		InstanceAttributeTypeMultiPartyConference,
 	}
 }
 
