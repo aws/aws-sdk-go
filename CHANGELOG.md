@@ -1,3 +1,15 @@
+Release v1.43.32 (2022-04-04)
+===
+
+### Service Client Updates
+* `service/iot`: Updates service API, documentation, and paginators
+  * AWS IoT - AWS IoT Device Defender adds support to list metric datapoints collected for IoT devices through the ListMetricValues API
+* `service/proton`: Updates service API and documentation
+* `service/servicecatalog`: Updates service API and documentation
+  * This release adds ProvisioningArtifictOutputKeys to DescribeProvisioningParameters to reference the outputs of a Provisioned Product and deprecates ProvisioningArtifactOutputs.
+* `service/sms`: Updates service documentation
+  * Revised product update notice for SMS console deprecation.
+
 Release v1.43.31 (2022-04-01)
 ===
 

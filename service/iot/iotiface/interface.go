@@ -752,6 +752,13 @@ type IoTAPI interface {
 	ListManagedJobTemplatesWithContext(aws.Context, *iot.ListManagedJobTemplatesInput, ...request.Option) (*iot.ListManagedJobTemplatesOutput, error)
 	ListManagedJobTemplatesRequest(*iot.ListManagedJobTemplatesInput) (*request.Request, *iot.ListManagedJobTemplatesOutput)
 
+	ListMetricValues(*iot.ListMetricValuesInput) (*iot.ListMetricValuesOutput, error)
+	ListMetricValuesWithContext(aws.Context, *iot.ListMetricValuesInput, ...request.Option) (*iot.ListMetricValuesOutput, error)
+	ListMetricValuesRequest(*iot.ListMetricValuesInput) (*request.Request, *iot.ListMetricValuesOutput)
+
+	ListMetricValuesPages(*iot.ListMetricValuesInput, func(*iot.ListMetricValuesOutput, bool) bool) error
+	ListMetricValuesPagesWithContext(aws.Context, *iot.ListMetricValuesInput, func(*iot.ListMetricValuesOutput, bool) bool, ...request.Option) error
+
 	ListMitigationActions(*iot.ListMitigationActionsInput) (*iot.ListMitigationActionsOutput, error)
 	ListMitigationActionsWithContext(aws.Context, *iot.ListMitigationActionsInput, ...request.Option) (*iot.ListMitigationActionsOutput, error)
 	ListMitigationActionsRequest(*iot.ListMitigationActionsInput) (*request.Request, *iot.ListMitigationActionsOutput)

@@ -2010,7 +2010,12 @@
         "UsageInstructions":{"shape":"UsageInstructions"},
         "TagOptions":{"shape":"TagOptionSummaries"},
         "ProvisioningArtifactPreferences":{"shape":"ProvisioningArtifactPreferences"},
-        "ProvisioningArtifactOutputs":{"shape":"ProvisioningArtifactOutputs"}
+        "ProvisioningArtifactOutputs":{
+          "shape":"ProvisioningArtifactOutputs",
+          "deprecated":true,
+          "deprecatedMessage":"This property is deprecated and returns the Id and Description of the Provisioning Artifact. Use ProvisioningArtifactOutputKeys instead to get the Keys and Descriptions of the outputs."
+        },
+        "ProvisioningArtifactOutputKeys":{"shape":"ProvisioningArtifactOutputs"}
       }
     },
     "DescribeRecordInput":{
