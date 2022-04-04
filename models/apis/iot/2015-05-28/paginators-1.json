@@ -144,6 +144,12 @@
       "output_token": "nextToken",
       "result_key": "jobs"
     },
+    "ListMetricValues": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "metricDatumList"
+    },
     "ListMitigationActions": {
       "input_token": "nextToken",
       "limit_key": "maxResults",

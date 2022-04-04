@@ -15884,6 +15884,151 @@ func (c *IoT) ListManagedJobTemplatesWithContext(ctx aws.Context, input *ListMan
 	return out, req.Send()
 }
 
+const opListMetricValues = "ListMetricValues"
+
+// ListMetricValuesRequest generates a "aws/request.Request" representing the
+// client's request for the ListMetricValues operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMetricValues for more information on using the ListMetricValues
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListMetricValuesRequest method.
+//    req, resp := client.ListMetricValuesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) ListMetricValuesRequest(input *ListMetricValuesInput) (req *request.Request, output *ListMetricValuesOutput) {
+	op := &request.Operation{
+		Name:       opListMetricValues,
+		HTTPMethod: "GET",
+		HTTPPath:   "/metric-values",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMetricValuesInput{}
+	}
+
+	output = &ListMetricValuesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMetricValues API operation for AWS IoT.
+//
+// Lists the values reported for an IoT Device Defender metric (device-side
+// metric, cloud-side metric, or custom metric) by the given thing during the
+// specified time period.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListMetricValues for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+func (c *IoT) ListMetricValues(input *ListMetricValuesInput) (*ListMetricValuesOutput, error) {
+	req, out := c.ListMetricValuesRequest(input)
+	return out, req.Send()
+}
+
+// ListMetricValuesWithContext is the same as ListMetricValues with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMetricValues for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListMetricValuesWithContext(ctx aws.Context, input *ListMetricValuesInput, opts ...request.Option) (*ListMetricValuesOutput, error) {
+	req, out := c.ListMetricValuesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMetricValuesPages iterates over the pages of a ListMetricValues operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMetricValues method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListMetricValues operation.
+//    pageNum := 0
+//    err := client.ListMetricValuesPages(params,
+//        func(page *iot.ListMetricValuesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT) ListMetricValuesPages(input *ListMetricValuesInput, fn func(*ListMetricValuesOutput, bool) bool) error {
+	return c.ListMetricValuesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMetricValuesPagesWithContext same as ListMetricValuesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListMetricValuesPagesWithContext(ctx aws.Context, input *ListMetricValuesInput, fn func(*ListMetricValuesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMetricValuesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMetricValuesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMetricValuesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListMitigationActions = "ListMitigationActions"
 
 // ListMitigationActionsRequest generates a "aws/request.Request" representing the
@@ -35320,21 +35465,13 @@ type CustomCodeSigning struct {
 	// The certificate chain.
 	CertificateChain *CodeSigningCertificateChain `locationName:"certificateChain" type:"structure"`
 
-	// The hash algorithm used to code sign the file. You can use a string as the
-	// algorithm name if the target over-the-air (OTA) update devices are able to
-	// verify the signature that was generated using the same signature algorithm.
-	// For example, FreeRTOS uses SHA256 or SHA1, so you can pass either of them
-	// based on which was used for generating the signature.
+	// The hash algorithm used to code sign the file.
 	HashAlgorithm *string `locationName:"hashAlgorithm" type:"string"`
 
 	// The signature for the file.
 	Signature *CodeSigningSignature `locationName:"signature" type:"structure"`
 
-	// The signature algorithm used to code sign the file. You can use a string
-	// as the algorithm name if the target over-the-air (OTA) update devices are
-	// able to verify the signature that was generated using the same signature
-	// algorithm. For example, FreeRTOS uses ECDSA or RSA, so you can pass either
-	// of them based on which was used for generating the signature.
+	// The signature algorithm used to code sign the file.
 	SignatureAlgorithm *string `locationName:"signatureAlgorithm" type:"string"`
 }
 
@@ -50894,6 +51031,180 @@ func (s *ListManagedJobTemplatesOutput) SetNextToken(v string) *ListManagedJobTe
 	return s
 }
 
+type ListMetricValuesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The dimension name.
+	DimensionName *string `location:"querystring" locationName:"dimensionName" min:"1" type:"string"`
+
+	// The dimension value operator.
+	DimensionValueOperator *string `location:"querystring" locationName:"dimensionValueOperator" type:"string" enum:"DimensionValueOperator"`
+
+	// The end of the time period for which metric values are returned.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `location:"querystring" locationName:"endTime" type:"timestamp" required:"true"`
+
+	// The maximum number of results to return at one time.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The name of the security profile metric for which values are returned.
+	//
+	// MetricName is a required field
+	MetricName *string `location:"querystring" locationName:"metricName" type:"string" required:"true"`
+
+	// The token for the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The start of the time period for which metric values are returned.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `location:"querystring" locationName:"startTime" type:"timestamp" required:"true"`
+
+	// The name of the thing for which security profile metric values are returned.
+	//
+	// ThingName is a required field
+	ThingName *string `location:"querystring" locationName:"thingName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMetricValuesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMetricValuesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMetricValuesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMetricValuesInput"}
+	if s.DimensionName != nil && len(*s.DimensionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DimensionName", 1))
+	}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.MetricName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricName"))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+	if s.ThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingName"))
+	}
+	if s.ThingName != nil && len(*s.ThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDimensionName sets the DimensionName field's value.
+func (s *ListMetricValuesInput) SetDimensionName(v string) *ListMetricValuesInput {
+	s.DimensionName = &v
+	return s
+}
+
+// SetDimensionValueOperator sets the DimensionValueOperator field's value.
+func (s *ListMetricValuesInput) SetDimensionValueOperator(v string) *ListMetricValuesInput {
+	s.DimensionValueOperator = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *ListMetricValuesInput) SetEndTime(v time.Time) *ListMetricValuesInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMetricValuesInput) SetMaxResults(v int64) *ListMetricValuesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *ListMetricValuesInput) SetMetricName(v string) *ListMetricValuesInput {
+	s.MetricName = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMetricValuesInput) SetNextToken(v string) *ListMetricValuesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ListMetricValuesInput) SetStartTime(v time.Time) *ListMetricValuesInput {
+	s.StartTime = &v
+	return s
+}
+
+// SetThingName sets the ThingName field's value.
+func (s *ListMetricValuesInput) SetThingName(v string) *ListMetricValuesInput {
+	s.ThingName = &v
+	return s
+}
+
+type ListMetricValuesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The data the thing reports for the metric during the specified time period.
+	MetricDatumList []*MetricDatum `locationName:"metricDatumList" type:"list"`
+
+	// A token that can be used to retrieve the next set of results, or null if
+	// there are no additional results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMetricValuesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMetricValuesOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetricDatumList sets the MetricDatumList field's value.
+func (s *ListMetricValuesOutput) SetMetricDatumList(v []*MetricDatum) *ListMetricValuesOutput {
+	s.MetricDatumList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMetricValuesOutput) SetNextToken(v string) *ListMetricValuesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListMitigationActionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -54700,6 +55011,47 @@ func (s *ManagedJobTemplateSummary) SetTemplateName(v string) *ManagedJobTemplat
 // SetTemplateVersion sets the TemplateVersion field's value.
 func (s *ManagedJobTemplateSummary) SetTemplateVersion(v string) *ManagedJobTemplateSummary {
 	s.TemplateVersion = &v
+	return s
+}
+
+// A metric.
+type MetricDatum struct {
+	_ struct{} `type:"structure"`
+
+	// The time the metric value was reported.
+	Timestamp *time.Time `locationName:"timestamp" type:"timestamp"`
+
+	// The value reported for the metric.
+	Value *MetricValue `locationName:"value" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricDatum) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricDatum) GoString() string {
+	return s.String()
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *MetricDatum) SetTimestamp(v time.Time) *MetricDatum {
+	s.Timestamp = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *MetricDatum) SetValue(v *MetricValue) *MetricDatum {
+	s.Value = v
 	return s
 }
 

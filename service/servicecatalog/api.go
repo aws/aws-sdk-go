@@ -13624,8 +13624,14 @@ type DescribeProvisioningParametersOutput struct {
 	// Information about the constraints used to provision the product.
 	ConstraintSummaries []*ConstraintSummary `type:"list"`
 
+	// A list of the keys and descriptions of the outputs. These outputs can be
+	// referenced from a provisioned product launched from this provisioning artifact.
+	ProvisioningArtifactOutputKeys []*ProvisioningArtifactOutput `type:"list"`
+
 	// The output of the provisioning artifact.
-	ProvisioningArtifactOutputs []*ProvisioningArtifactOutput `type:"list"`
+	//
+	// Deprecated: This property is deprecated and returns the Id and Description of the Provisioning Artifact. Use ProvisioningArtifactOutputKeys instead to get the Keys and Descriptions of the outputs.
+	ProvisioningArtifactOutputs []*ProvisioningArtifactOutput `deprecated:"true" type:"list"`
 
 	// Information about the parameters used to provision the product.
 	ProvisioningArtifactParameters []*ProvisioningArtifactParameter `type:"list"`
@@ -13663,6 +13669,12 @@ func (s DescribeProvisioningParametersOutput) GoString() string {
 // SetConstraintSummaries sets the ConstraintSummaries field's value.
 func (s *DescribeProvisioningParametersOutput) SetConstraintSummaries(v []*ConstraintSummary) *DescribeProvisioningParametersOutput {
 	s.ConstraintSummaries = v
+	return s
+}
+
+// SetProvisioningArtifactOutputKeys sets the ProvisioningArtifactOutputKeys field's value.
+func (s *DescribeProvisioningParametersOutput) SetProvisioningArtifactOutputKeys(v []*ProvisioningArtifactOutput) *DescribeProvisioningParametersOutput {
+	s.ProvisioningArtifactOutputKeys = v
 	return s
 }
 

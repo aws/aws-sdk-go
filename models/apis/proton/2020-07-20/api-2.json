@@ -1385,7 +1385,8 @@
         "connectionArn":{"shape":"Arn"},
         "encryptionKey":{"shape":"Arn"},
         "name":{"shape":"RepositoryName"},
-        "provider":{"shape":"RepositoryProvider"}
+        "provider":{"shape":"RepositoryProvider"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateRepositoryOutput":{

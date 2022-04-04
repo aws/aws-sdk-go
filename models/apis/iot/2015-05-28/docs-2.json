@@ -157,6 +157,7 @@
     "ListJobTemplates": "<p>Returns a list of job templates.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListJobTemplates</a> action.</p>",
     "ListJobs": "<p>Lists jobs.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListJobs</a> action.</p>",
     "ListManagedJobTemplates": "<p>Returns a list of managed job templates.</p>",
+    "ListMetricValues": "<p>Lists the values reported for an IoT Device Defender metric (device-side metric, cloud-side metric, or custom metric) by the given thing during the specified time period.</p>",
     "ListMitigationActions": "<p>Gets a list of all mitigation actions that match the specified filter criteria.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListMitigationActions</a> action.</p>",
     "ListOTAUpdates": "<p>Lists OTA updates.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListOTAUpdates</a> action.</p>",
     "ListOutgoingCertificates": "<p>Lists certificates that are being transferred but not yet accepted.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListOutgoingCertificates</a> action.</p>",
@@ -1203,6 +1204,7 @@
       "refs": {
         "AdditionalMetricsToRetainList$member": null,
         "Behavior$metric": "<p>What is measured by the behavior.</p>",
+        "ListMetricValuesRequest$metricName": "<p>The name of the security profile metric for which values are returned.</p>",
         "MetricToRetain$metric": "<p>What is measured by the behavior.</p>"
       }
     },
@@ -3000,6 +3002,7 @@
         "DetectMitigationActionExecution$thingName": "<p> The name of the thing. </p>",
         "ListActiveViolationsRequest$thingName": "<p>The name of the thing whose active violations are listed.</p>",
         "ListDetectMitigationActionsExecutionsRequest$thingName": "<p> The name of the thing whose mitigation actions are listed. </p>",
+        "ListMetricValuesRequest$thingName": "<p>The name of the thing for which security profile metric values are returned.</p>",
         "ListViolationEventsRequest$thingName": "<p>A filter to limit results to those alerts caused by the specified thing.</p>",
         "ViolationEvent$thingName": "<p>The name of the thing responsible for the violation event.</p>"
       }
@@ -3021,6 +3024,7 @@
         "DescribeDimensionRequest$name": "<p>The unique identifier for the dimension.</p>",
         "DescribeDimensionResponse$name": "<p>The unique identifier for the dimension.</p>",
         "DimensionNames$member": null,
+        "ListMetricValuesRequest$dimensionName": "<p>The dimension name.</p>",
         "ListSecurityProfilesRequest$dimensionName": "<p>A filter to limit results to the security profiles that use the defined dimension. Cannot be used with <code>metricName</code> </p>",
         "MetricDimension$dimensionName": "<p>A unique identifier for the dimension.</p>",
         "UpdateDimensionRequest$name": "<p>A unique identifier for the dimension. Choose something that describes the type and value to make it easy to remember what it does.</p>",
@@ -3059,6 +3063,7 @@
     "DimensionValueOperator": {
       "base": null,
       "refs": {
+        "ListMetricValuesRequest$dimensionValueOperator": "<p>The dimension value operator.</p>",
         "MetricDimension$operator": "<p>Defines how the <code>dimensionValues</code> of a dimension are interpreted. For example, for dimension type TOPIC_FILTER, the <code>IN</code> operator, a message will be counted only if its topic matches one of the topic filters. With <code>NOT_IN</code> operator, a message will be counted only if it doesn't match any of the topic filters. The operator is optional: if it's not provided (is <code>null</code>), it will be interpreted as <code>IN</code>.</p>"
       }
     },
@@ -3755,7 +3760,7 @@
     "HashAlgorithm": {
       "base": null,
       "refs": {
-        "CustomCodeSigning$hashAlgorithm": "<p>The hash algorithm used to code sign the file. You can use a string as the algorithm name if the target over-the-air (OTA) update devices are able to verify the signature that was generated using the same signature algorithm. For example, FreeRTOS uses <code>SHA256</code> or <code>SHA1</code>, so you can pass either of them based on which was used for generating the signature.</p>"
+        "CustomCodeSigning$hashAlgorithm": "<p>The hash algorithm used to code sign the file.</p>"
       }
     },
     "HashKeyField": {
@@ -4573,6 +4578,16 @@
       "refs": {
       }
     },
+    "ListMetricValuesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMetricValuesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListMitigationActionsRequest": {
       "base": null,
       "refs": {
@@ -5049,6 +5064,7 @@
         "ListDetectMitigationActionsTasksRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
         "ListDimensionsRequest$maxResults": "<p>The maximum number of results to retrieve at one time.</p>",
         "ListFleetMetricsRequest$maxResults": "<p>The maximum number of results to return in this operation.</p>",
+        "ListMetricValuesRequest$maxResults": "<p>The maximum number of results to return at one time.</p>",
         "ListMitigationActionsRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
         "ListOTAUpdatesRequest$maxResults": "<p>The maximum number of results to return at one time.</p>",
         "ListProvisioningTemplateVersionsRequest$maxResults": "<p>The maximum number of results to return at one time.</p>",
@@ -5095,6 +5111,18 @@
         "IotEventsAction$messageId": "<p>The ID of the message. The default <code>messageId</code> is a new UUID value.</p> <p>When <code>batchMode</code> is <code>true</code>, you can't specify a <code>messageId</code>--a new UUID value will be assigned.</p> <p>Assign a value to this property to ensure that only one input (message) with a given <code>messageId</code> will be processed by an IoT Events detector.</p>"
       }
     },
+    "MetricDatum": {
+      "base": "<p>A metric.</p>",
+      "refs": {
+        "MetricDatumList$member": null
+      }
+    },
+    "MetricDatumList": {
+      "base": null,
+      "refs": {
+        "ListMetricValuesResponse$metricDatumList": "<p>The data the thing reports for the metric during the specified time period.</p>"
+      }
+    },
     "MetricDimension": {
       "base": "<p>The dimension of a metric.</p>",
       "refs": {
@@ -5133,6 +5161,7 @@
       "refs": {
         "ActiveViolation$lastViolationValue": "<p>The value of the metric (the measurement) that caused the most recent violation.</p>",
         "BehaviorCriteria$value": "<p>The value to be compared with the <code>metric</code>.</p>",
+        "MetricDatum$value": "<p>The value reported for the metric.</p>",
         "ViolationEvent$metricValue": "<p>The value of the metric (the measurement).</p>"
       }
     },
@@ -5351,6 +5380,8 @@
         "ListJobsResponse$nextToken": "<p>The token for the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListManagedJobTemplatesRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
         "ListManagedJobTemplatesResponse$nextToken": "<p>The token to retrieve the next set of results.</p>",
+        "ListMetricValuesRequest$nextToken": "<p>The token for the next set of results.</p>",
+        "ListMetricValuesResponse$nextToken": "<p>A token that can be used to retrieve the next set of results, or <code>null</code> if there are no additional results.</p>",
         "ListMitigationActionsRequest$nextToken": "<p>The token for the next set of results.</p>",
         "ListMitigationActionsResponse$nextToken": "<p>The token for the next set of results.</p>",
         "ListOTAUpdatesRequest$nextToken": "<p>A token used to retrieve the next set of results.</p>",
@@ -5429,6 +5460,7 @@
     "NullableBoolean": {
       "base": null,
       "refs": {
+        "AddThingsToThingGroupParams$overrideDynamicGroups": "<p>Specifies if this mitigation action can move the things that triggered the mitigation action even if they are part of one or more dynamic thing groups.</p>",
         "StartDetectMitigationActionsTaskRequest$includeOnlyActiveViolations": "<p> Specifies to list only active violations. </p>",
         "StartDetectMitigationActionsTaskRequest$includeSuppressedAlerts": "<p> Specifies to include suppressed alerts. </p>"
       }
@@ -5581,7 +5613,6 @@
       "base": null,
       "refs": {
         "AddThingToThingGroupRequest$overrideDynamicGroups": "<p>Override dynamic thing groups with static thing groups when 10-group limit is reached. If a thing belongs to 10 thing groups, and one or more of those groups are dynamic thing groups, adding a thing to a static group removes the thing from the last dynamic group.</p>",
-        "AddThingsToThingGroupParams$overrideDynamicGroups": "<p>Specifies if this mitigation action can move the things that triggered the mitigation action even if they are part of one or more dynamic thing groups.</p>",
         "UpdateThingGroupsForThingRequest$overrideDynamicGroups": "<p>Override dynamic thing groups with static thing groups when 10-group limit is reached. If a thing belongs to 10 thing groups, and one or more of those groups are dynamic thing groups, adding a thing to a static group removes the thing from the last dynamic group.</p>"
       }
     },
@@ -6864,7 +6895,7 @@
     "SignatureAlgorithm": {
       "base": null,
       "refs": {
-        "CustomCodeSigning$signatureAlgorithm": "<p>The signature algorithm used to code sign the file. You can use a string as the algorithm name if the target over-the-air (OTA) update devices are able to verify the signature that was generated using the same signature algorithm. For example, FreeRTOS uses <code>ECDSA</code> or <code>RSA</code>, so you can pass either of them based on which was used for generating the signature.</p>"
+        "CustomCodeSigning$signatureAlgorithm": "<p>The signature algorithm used to code sign the file.</p>"
       }
     },
     "SigningJobId": {
@@ -7809,8 +7840,11 @@
         "ListDetectMitigationActionsExecutionsRequest$endTime": "<p> The end of the time period for which ML Detect mitigation actions executions are returned. </p>",
         "ListDetectMitigationActionsTasksRequest$startTime": "<p> A filter to limit results to those found after the specified time. You must specify either the startTime and endTime or the taskId, but not both. </p>",
         "ListDetectMitigationActionsTasksRequest$endTime": "<p> The end of the time period for which ML Detect mitigation actions tasks are returned. </p>",
+        "ListMetricValuesRequest$startTime": "<p>The start of the time period for which metric values are returned.</p>",
+        "ListMetricValuesRequest$endTime": "<p>The end of the time period for which metric values are returned.</p>",
         "ListViolationEventsRequest$startTime": "<p>The start time for the alerts to be listed.</p>",
         "ListViolationEventsRequest$endTime": "<p>The end time for the alerts to be listed.</p>",
+        "MetricDatum$timestamp": "<p>The time the metric value was reported.</p>",
         "MitigationActionIdentifier$creationDate": "<p>The date when this mitigation action was created.</p>",
         "UpdateAuditSuppressionRequest$expirationDate": "<p> The expiration date (epoch timestamp in seconds) that you want the suppression to adhere to. </p>",
         "UpdateCustomMetricResponse$creationDate": "<p> The creation date of the custom metric in milliseconds since epoch. </p>",

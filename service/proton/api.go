@@ -494,13 +494,15 @@ func (c *Proton) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req *r
 //
 // You can provision environments using the following methods:
 //
-//    * Standard provisioning: Proton makes direct calls to provision your resources.
+//    * Amazon Web Services-managed provisioning: Proton makes direct calls
+//    to provision your resources.
 //
-//    * Pull request provisioning: Proton makes pull requests on your repository
+//    * Self-managed provisioning: Proton makes pull requests on your repository
 //    to provide compiled infrastructure as code (IaC) files that your IaC engine
 //    uses to provision resources.
 //
-// For more information, see the Environments (https://docs.aws.amazon.com/proton/latest/adminguide/ag-environments.html)
+// For more information, see Environments (https://docs.aws.amazon.com/proton/latest/adminguide/ag-environments.html)
+// and Provisioning methods (https://docs.aws.amazon.com/proton/latest/adminguide/ag-works-prov-methods.html)
 // in the Proton Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -918,9 +920,13 @@ func (c *Proton) CreateRepositoryRequest(input *CreateRepositoryInput) (req *req
 
 // CreateRepository API operation for AWS Proton.
 //
-// Create and register a link to a repository that can be used with pull request
-// provisioning or template sync configurations. For more information, see Template
-// bundles (https://docs.aws.amazon.com/proton/latest/adminguide/ag-template-bundles.html)
+// Create and register a link to a repository that can be used with self-managed
+// provisioning (infrastructure or pipelines) or for template sync configurations.
+// When you create a repository link, Proton creates a service-linked role (https://docs.aws.amazon.com/proton/latest/adminguide/using-service-linked-roles.html)
+// for you.
+//
+// For more information, see Self-managed provisioning (https://docs.aws.amazon.com/proton/latest/adminguide/ag-works-prov-methods.html#ag-works-prov-methods-self),
+// Template bundles (https://docs.aws.amazon.com/proton/latest/adminguide/ag-template-bundles.html),
 // and Template sync configurations (https://docs.aws.amazon.com/proton/latest/adminguide/ag-template-sync-configs.html)
 // in the Proton Administrator Guide.
 //
@@ -1122,7 +1128,7 @@ func (c *Proton) CreateServiceTemplateRequest(input *CreateServiceTemplateInput)
 // CreateServiceTemplate API operation for AWS Proton.
 //
 // Create a service template. The administrator creates a service template to
-// define standardized infrastructure and an optional CICD service pipeline.
+// define standardized infrastructure and an optional CI/CD service pipeline.
 // Developers, in turn, select the service template from Proton. If the selected
 // service template includes a service pipeline definition, they provide a link
 // to their source code repository. Proton then deploys and manages the infrastructure
@@ -1326,10 +1332,10 @@ func (c *Proton) CreateTemplateSyncConfigRequest(input *CreateTemplateSyncConfig
 
 // CreateTemplateSyncConfig API operation for AWS Proton.
 //
-// Set up a template for automated template version creation. When a commit
+// Set up a template to create new template versions automatically. When a commit
 // is pushed to your registered repository (https://docs.aws.amazon.com/proton/latest/APIReference/API_Repository.html),
 // Proton checks for changes to your repository template bundles. If it detects
-// a template bundle change, a new minor or major version of its template is
+// a template bundle change, a new major or minor version of its template is
 // created, if the version doesn’t already exist. For more information, see
 // Template sync configurations (https://docs.aws.amazon.com/proton/latest/adminguide/ag-template-sync-configs.html)
 // in the Proton Administrator Guide.
@@ -2868,7 +2874,16 @@ func (c *Proton) GetRepositorySyncStatusRequest(input *GetRepositorySyncStatusIn
 
 // GetRepositorySyncStatus API operation for AWS Proton.
 //
-// Get the repository sync status.
+// Get the sync status of a repository used for Proton template sync. For more
+// information about template sync, see .
+//
+// A repository sync status isn't tied to the Proton Repository resource (or
+// any other Proton resource). Therefore, tags on an Proton Repository resource
+// have no effect on this action. Specifically, you can't use these tags to
+// control access to this action using Attribute-based access control (ABAC).
+//
+// For more information about ABAC, see ABAC (https://docs.aws.amazon.com/proton/latest/adminguide/security_iam_service-with-iam.html#security_iam_service-with-iam-tags)
+// in the Proton Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3053,7 +3068,7 @@ func (c *Proton) GetServiceInstanceRequest(input *GetServiceInstanceInput) (req 
 // GetServiceInstance API operation for AWS Proton.
 //
 // Get detail data for a service instance. A service instance is an instantiation
-// of service template, which is running in a specific environment.
+// of service template and it runs in a specific environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6054,13 +6069,11 @@ func (c *Proton) NotifyResourceDeploymentStatusChangeRequest(input *NotifyResour
 
 // NotifyResourceDeploymentStatusChange API operation for AWS Proton.
 //
-// Notify Proton of status changes to a provisioned resource when you use pull
-// request provisioning. For more information, see Template bundles (https://docs.aws.amazon.com/proton/latest/adminguide/ag-template-bundles.html).
+// Notify Proton of status changes to a provisioned resource when you use self-managed
+// provisioning.
 //
-// Provisioning by pull request is currently in feature preview and is only
-// usable with Terraform based Proton Templates. To learn more about Amazon
-// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
-// see section 2 on Beta and Previews.
+// For more information, see Self-managed provisioning (https://docs.aws.amazon.com/proton/latest/adminguide/ag-works-prov-methods.html#ag-works-prov-methods-self)
+// in the Proton Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6162,10 +6175,10 @@ func (c *Proton) RejectEnvironmentAccountConnectionRequest(input *RejectEnvironm
 // In a management account, reject an environment account connection from another
 // environment account.
 //
-// After you reject an environment account connection request, you won’t be
-// able to accept or use the rejected environment account connection.
+// After you reject an environment account connection request, you can't accept
+// or use the rejected environment account connection.
 //
-// You can’t reject an environment account connection that is connected to
+// You can’t reject an environment account connection that's connected to
 // an environment.
 //
 // For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
@@ -6265,8 +6278,11 @@ func (c *Proton) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 
 // TagResource API operation for AWS Proton.
 //
-// Tag a resource. For more information, see Proton resources and tagging in
-// the Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
+// Tag a resource. A tag is a key-value pair of metadata that you associate
+// with an Proton resource.
+//
+// For more information, see Proton resources and tagging in the Proton Administrator
+// Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
 // or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6363,8 +6379,11 @@ func (c *Proton) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 
 // UntagResource API operation for AWS Proton.
 //
-// Remove a tag from a resource. For more information, see Proton resources
-// and tagging in the Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
+// Remove a customer tag from a resource. A tag is a key-value pair of metadata
+// associated with an Proton resource.
+//
+// For more information, see Proton resources and tagging in the Proton Administrator
+// Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
 // or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6558,26 +6577,32 @@ func (c *Proton) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *r
 // don't update or include the protonServiceRoleArn and provisioningRepository
 // parameter to update or connect to an environment account connection.
 //
-// You can only update to a new environment account connection if it was created
-// in the same environment account that the current environment account connection
-// was created in and is associated with the current environment.
+// You can only update to a new environment account connection if that connection
+// was created in the same environment account that the current environment
+// account connection was created in. The account connection must also be associated
+// with the current environment.
 //
 // If the environment isn't associated with an environment account connection,
-// don't update or include the environmentAccountConnectionId parameter to update
-// or connect to an environment account connection.
+// don't update or include the environmentAccountConnectionId parameter. You
+// can't update or connect the environment to an environment account connection
+// if it isn't already associated with an environment connection.
 //
 // You can update either the environmentAccountConnectionId or protonServiceRoleArn
 // parameter and value. You can’t update both.
 //
-// If the environment was provisioned with pull request provisioning, include
+// If the environment was configured for Amazon Web Services-managed provisioning,
+// omit the provisioningRepository parameter.
+//
+// If the environment was configured for self-managed provisioning, specify
 // the provisioningRepository parameter and omit the protonServiceRoleArn and
 // environmentAccountConnectionId parameters.
 //
-// If the environment wasn't provisioned with pull request provisioning, omit
-// the provisioningRepository parameter.
+// For more information, see Environments (https://docs.aws.amazon.com/proton/latest/adminguide/ag-environments.html)
+// and Provisioning methods (https://docs.aws.amazon.com/proton/latest/adminguide/ag-works-prov-methods.html)
+// in the Proton Administrator Guide.
 //
-// There are four modes for updating an environment as described in the following.
-// The deploymentType field defines the mode.
+// There are four modes for updating an environment. The deploymentType field
+// defines the mode.
 //
 // NONE
 //
@@ -6602,7 +6627,7 @@ func (c *Proton) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *r
 // In this mode, the environment is deployed and updated with the published,
 // recommended (latest) major and minor version of the current template, by
 // default. You can also specify a different major version that's higher than
-// the major version in use and a minor version (optional).
+// the major version in use and a minor version.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7094,8 +7119,8 @@ func (c *Proton) UpdateServiceInstanceRequest(input *UpdateServiceInstanceInput)
 //
 // Update a service instance.
 //
-// There are four modes for updating a service instance as described in the
-// following. The deploymentType field defines the mode.
+// There are four modes for updating a service instance. The deploymentType
+// field defines the mode.
 //
 // NONE
 //
@@ -7119,8 +7144,8 @@ func (c *Proton) UpdateServiceInstanceRequest(input *UpdateServiceInstanceInput)
 //
 // In this mode, the service instance is deployed and updated with the published,
 // recommended (latest) major and minor version of the current template, by
-// default. You can also specify a different major version that is higher than
-// the major version in use and a minor version (optional).
+// default. You can also specify a different major version that's higher than
+// the major version in use and a minor version.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7217,8 +7242,8 @@ func (c *Proton) UpdateServicePipelineRequest(input *UpdateServicePipelineInput)
 //
 // Update the service pipeline.
 //
-// There are four modes for updating a service pipeline as described in the
-// following. The deploymentType field defines the mode.
+// There are four modes for updating a service pipeline. The deploymentType
+// field defines the mode.
 //
 // NONE
 //
@@ -7229,21 +7254,21 @@ func (c *Proton) UpdateServicePipelineRequest(input *UpdateServicePipelineInput)
 //
 // In this mode, the service pipeline is deployed and updated with the new spec
 // that you provide. Only requested parameters are updated. Don’t include
-// minor or major version parameters when you use this deployment-type.
+// major or minor version parameters when you use this deployment-type.
 //
 // MINOR_VERSION
 //
 // In this mode, the service pipeline is deployed and updated with the published,
 // recommended (latest) minor version of the current major version in use, by
-// default. You can also specify a different minor version of the current major
-// version in use.
+// default. You can specify a different minor version of the current major version
+// in use.
 //
 // MAJOR_VERSION
 //
 // In this mode, the service pipeline is deployed and updated with the published,
 // recommended (latest) major and minor version of the current template by default.
-// You can also specify a different major version that is higher than the major
-// version in use and a minor version (optional).
+// You can specify a different major version that's higher than the major version
+// in use and a minor version.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7726,19 +7751,19 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The Proton pipeline service role and repository data.
+// The Proton pipeline service role and repository data shared across the Amazon
+// Web Services account.
 type AccountSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The repository that you provide with pull request provisioning.
-	//
-	// Provisioning by pull request is currently in feature preview and is only
-	// usable with Terraform based Proton Templates. To learn more about Amazon
-	// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
-	// see section 2 on Beta and Previews.
+	// The repository configured in the Amazon Web Services account for pipeline
+	// provisioning. Required it if you have environments configured for self-managed
+	// provisioning with services that include pipelines.
 	PipelineProvisioningRepository *RepositoryBranch `locationName:"pipelineProvisioningRepository" type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Proton pipeline service role.
+	// The Amazon Resource Name (ARN) of the service role you want to use for provisioning
+	// pipelines. Assumed by Proton for Amazon Web Services-managed provisioning,
+	// and by customer-owned automation for self-managed provisioning.
 	PipelineServiceRoleArn *string `locationName:"pipelineServiceRoleArn" type:"string"`
 }
 
@@ -8229,10 +8254,10 @@ type CreateEnvironmentAccountConnectionInput struct {
 	EnvironmentName *string `locationName:"environmentName" min:"1" type:"string" required:"true"`
 
 	// The ID of the management account that accepts or rejects the environment
-	// account connection. You create an manage the Proton environment in this account.
-	// If the management account accepts the environment account connection, Proton
-	// can use the associated IAM role to provision environment infrastructure resources
-	// in the associated environment account.
+	// account connection. You create and manage the Proton environment in this
+	// account. If the management account accepts the environment account connection,
+	// Proton can use the associated IAM role to provision environment infrastructure
+	// resources in the associated environment account.
 	//
 	// ManagementAccountId is a required field
 	ManagementAccountId *string `locationName:"managementAccountId" type:"string" required:"true"`
@@ -8244,8 +8269,10 @@ type CreateEnvironmentAccountConnectionInput struct {
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
 
-	// Tags for your environment account connection. For more information, see Proton
-	// resources and tagging (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
+	// An optional list of metadata items that you can associate with the Proton
+	// environment account connection. A tag is a key-value pair.
+	//
+	// For more information, see Proton resources and tagging (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
 	// in the Proton Administrator Guide.
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
@@ -8377,11 +8404,13 @@ type CreateEnvironmentInput struct {
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The ID of the environment account connection that you provide if you're provisioning
-	// your environment infrastructure resources to an environment account. You
-	// must include either the environmentAccountConnectionId or protonServiceRoleArn
-	// parameter and value and omit the provisioningRepository parameter and values.
-	// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
+	// your environment infrastructure resources to an environment account. For
+	// more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
 	// in the Proton Administrator guide.
+	//
+	// To use Amazon Web Services-managed provisioning for the environment, specify
+	// either the environmentAccountConnectionId or protonServiceRoleArn parameter
+	// and omit the provisioningRepository parameter.
 	EnvironmentAccountConnectionId *string `locationName:"environmentAccountConnectionId" type:"string"`
 
 	// The name of the environment.
@@ -8390,24 +8419,22 @@ type CreateEnvironmentInput struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the Proton service role that allows Proton
-	// to make calls to other services on your behalf. You must include either the
-	// environmentAccountConnectionId or protonServiceRoleArn parameter and value
-	// and omit the provisioningRepository parameter when you use standard provisioning.
+	// to make calls to other services on your behalf.
+	//
+	// To use Amazon Web Services-managed provisioning for the environment, specify
+	// either the environmentAccountConnectionId or protonServiceRoleArn parameter
+	// and omit the provisioningRepository parameter.
 	ProtonServiceRoleArn *string `locationName:"protonServiceRoleArn" min:"1" type:"string"`
 
-	// The repository that you provide with pull request provisioning. If you provide
-	// this parameter, you must omit the environmentAccountConnectionId and protonServiceRoleArn
-	// parameters.
+	// The infrastructure repository that you use to host your rendered infrastructure
+	// templates for self-managed provisioning.
 	//
-	// Provisioning by pull request is currently in feature preview and is only
-	// usable with Terraform based Proton Templates. To learn more about Amazon
-	// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
-	// see section 2 on Beta and Previews.
+	// To use self-managed provisioning for the environment, specify this parameter
+	// and omit the environmentAccountConnectionId and protonServiceRoleArn parameters.
 	ProvisioningRepository *RepositoryBranchInput_ `locationName:"provisioningRepository" type:"structure"`
 
-	// A link to a YAML formatted spec file that provides inputs as defined in the
-	// environment template bundle schema file. For more information, see Environments
-	// (https://docs.aws.amazon.com/proton/latest/adminguide/ag-environments.html)
+	// A YAML formatted string that provides inputs as defined in the environment
+	// template bundle schema file. For more information, see Environments (https://docs.aws.amazon.com/proton/latest/adminguide/ag-environments.html)
 	// in the Proton Administrator Guide.
 	//
 	// Spec is a sensitive parameter and its value will be
@@ -8417,8 +8444,11 @@ type CreateEnvironmentInput struct {
 	// Spec is a required field
 	Spec *string `locationName:"spec" min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// Create tags for your environment. For more information, see Proton resources
-	// and tagging in the Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
+	// An optional list of metadata items that you can associate with the Proton
+	// environment. A tag is a key-value pair.
+	//
+	// For more information, see Proton resources and tagging in the Proton Administrator
+	// Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
 	// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
 	Tags []*Tag `locationName:"tags" type:"list"`
 
@@ -8633,8 +8663,11 @@ type CreateEnvironmentTemplateInput struct {
 	// and managed infrastructure.
 	Provisioning *string `locationName:"provisioning" type:"string" enum:"Provisioning"`
 
-	// Create tags for your environment template. For more information, see Proton
-	// resources and tagging in the Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
+	// An optional list of metadata items that you can associate with the Proton
+	// environment template. A tag is a key-value pair.
+	//
+	// For more information, see Proton resources and tagging in the Proton Administrator
+	// Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
 	// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
@@ -8772,7 +8805,7 @@ type CreateEnvironmentTemplateVersionInput struct {
 	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
-	// To create a new minor version of the environment template, include a major
+	// To create a new minor version of the environment template, include major
 	// Version.
 	//
 	// To create a new major and minor version of the environment template, exclude
@@ -8785,7 +8818,12 @@ type CreateEnvironmentTemplateVersionInput struct {
 	// Source is a required field
 	Source *TemplateVersionSourceInput `locationName:"source" type:"structure" required:"true"`
 
-	// Create tags for a new version of an environment template.
+	// An optional list of metadata items that you can associate with the Proton
+	// environment template version. A tag is a key-value pair.
+	//
+	// For more information, see Proton resources and tagging in the Proton Administrator
+	// Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
+	// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
 	Tags []*Tag `locationName:"tags" type:"list"`
 
 	// The name of the environment template.
@@ -8922,7 +8960,7 @@ type CreateRepositoryInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of your Amazon Web Services CodeStar connection.
-	// For more information, see Setting up for Proton (https://docs.aws.amazon.com/setting-up-for-service)
+	// For more information, see Setting up for Proton (https://docs.aws.amazon.com/proton/latest/adminguide/setting-up-for-service.html)
 	// in the Proton Administrator Guide.
 	//
 	// ConnectionArn is a required field
@@ -8932,7 +8970,7 @@ type CreateRepositoryInput struct {
 	// Web Services KMS) key.
 	EncryptionKey *string `locationName:"encryptionKey" min:"1" type:"string"`
 
-	// The repository name, for example myrepos/myrepo.
+	// The repository name (for example, myrepos/myrepo).
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -8941,6 +8979,14 @@ type CreateRepositoryInput struct {
 	//
 	// Provider is a required field
 	Provider *string `locationName:"provider" type:"string" required:"true" enum:"RepositoryProvider"`
+
+	// An optional list of metadata items that you can associate with the Proton
+	// repository. A tag is a key-value pair.
+	//
+	// For more information, see Proton resources and tagging in the Proton Administrator
+	// Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
+	// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation.
@@ -8982,6 +9028,16 @@ func (s *CreateRepositoryInput) Validate() error {
 	if s.Provider == nil {
 		invalidParams.Add(request.NewErrParamRequired("Provider"))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9010,6 +9066,12 @@ func (s *CreateRepositoryInput) SetName(v string) *CreateRepositoryInput {
 // SetProvider sets the Provider field's value.
 func (s *CreateRepositoryInput) SetProvider(v string) *CreateRepositoryInput {
 	s.Provider = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateRepositoryInput) SetTags(v []*Tag) *CreateRepositoryInput {
+	s.Tags = v
 	return s
 }
 
@@ -9091,8 +9153,11 @@ type CreateServiceInput struct {
 	// Spec is a required field
 	Spec *string `locationName:"spec" min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// Create tags for your service. For more information, see Proton resources
-	// and tagging in the Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
+	// An optional list of metadata items that you can associate with the Proton
+	// service. A tag is a key-value pair.
+	//
+	// For more information, see Proton resources and tagging in the Proton Administrator
+	// Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
 	// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
 	Tags []*Tag `locationName:"tags" type:"list"`
 
@@ -9302,15 +9367,18 @@ type CreateServiceTemplateInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// Proton includes a service pipeline for your service by default. When included,
-	// this parameter indicates that an Proton service pipeline won't be included
-	// for your service. Once specified, this parameter can't be changed. For more
-	// information, see Service template bundles (https://docs.aws.amazon.com/proton/latest/adminguide/ag-template-bundles.html)
+	// By default, Proton provides a service pipeline for your service. When this
+	// parameter is included, it indicates that an Proton service pipeline isn't
+	// provided for your service. After it's included, it can't be changed. For
+	// more information, see Service template bundles (https://docs.aws.amazon.com/proton/latest/adminguide/ag-template-bundles.html)
 	// in the Proton Administrator Guide.
 	PipelineProvisioning *string `locationName:"pipelineProvisioning" type:"string" enum:"Provisioning"`
 
-	// Create tags for your service template. For more information, see Proton resources
-	// and tagging in the Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
+	// An optional list of metadata items that you can associate with the Proton
+	// service template. A tag is a key-value pair.
+	//
+	// For more information, see Proton resources and tagging in the Proton Administrator
+	// Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
 	// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
@@ -9466,7 +9534,12 @@ type CreateServiceTemplateVersionInput struct {
 	// Source is a required field
 	Source *TemplateVersionSourceInput `locationName:"source" type:"structure" required:"true"`
 
-	// Create tags for a new version of a service template.
+	// An optional list of metadata items that you can associate with the Proton
+	// service template version. A tag is a key-value pair.
+	//
+	// For more information, see Proton resources and tagging in the Proton Administrator
+	// Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
+	// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
 	Tags []*Tag `locationName:"tags" type:"list"`
 
 	// The name of the service template.
@@ -9629,7 +9702,7 @@ type CreateTemplateSyncConfigInput struct {
 	// Branch is a required field
 	Branch *string `locationName:"branch" min:"1" type:"string" required:"true"`
 
-	// The name of your repository, for example myrepos/myrepo.
+	// The name of your repository (for example, myrepos/myrepo).
 	//
 	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
@@ -10654,12 +10727,8 @@ type Environment struct {
 	// and managed infrastructure.
 	Provisioning *string `locationName:"provisioning" type:"string" enum:"Provisioning"`
 
-	// The repository that you provide with pull request provisioning.
-	//
-	// Provisioning by pull request is currently in feature preview and is only
-	// usable with Terraform based Proton Templates. To learn more about Amazon
-	// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
-	// see section 2 on Beta and Previews.
+	// The infrastructure repository that you use to host your rendered infrastructure
+	// templates for self-managed provisioning.
 	ProvisioningRepository *RepositoryBranch `locationName:"provisioningRepository" type:"structure"`
 
 	// The environment spec.
@@ -10669,12 +10738,12 @@ type Environment struct {
 	// String and GoString methods.
 	Spec *string `locationName:"spec" min:"1" type:"string" sensitive:"true"`
 
-	// The ID of the major version of the environment template.
+	// The major version of the environment template.
 	//
 	// TemplateMajorVersion is a required field
 	TemplateMajorVersion *string `locationName:"templateMajorVersion" min:"1" type:"string" required:"true"`
 
-	// The ID of the minor version of the environment template.
+	// The minor version of the environment template.
 	//
 	// TemplateMinorVersion is a required field
 	TemplateMinorVersion *string `locationName:"templateMinorVersion" min:"1" type:"string" required:"true"`
@@ -11743,7 +11812,7 @@ type EnvironmentTemplateVersionSummary struct {
 	// String and GoString methods.
 	StatusMessage *string `locationName:"statusMessage" type:"string" sensitive:"true"`
 
-	// The name of the version of an environment template.
+	// The name of the environment template.
 	//
 	// TemplateName is a required field
 	TemplateName *string `locationName:"templateName" min:"1" type:"string" required:"true"`
@@ -12945,7 +13014,7 @@ type GetTemplateSyncStatusInput struct {
 	// TemplateType is a required field
 	TemplateType *string `locationName:"templateType" type:"string" required:"true" enum:"TemplateType"`
 
-	// The template version.
+	// The template major version.
 	//
 	// TemplateVersion is a required field
 	TemplateVersion *string `locationName:"templateVersion" min:"1" type:"string" required:"true"`
@@ -13138,7 +13207,7 @@ type ListEnvironmentAccountConnectionsInput struct {
 	// The maximum number of environment account connections to list.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token to indicate the location of the next environment account connection
+	// A token that indicates the location of the next environment account connection
 	// in the array of environment account connections, after the list of environment
 	// account connections that was previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -13228,7 +13297,7 @@ type ListEnvironmentAccountConnectionsOutput struct {
 	// EnvironmentAccountConnections is a required field
 	EnvironmentAccountConnections []*EnvironmentAccountConnectionSummary `locationName:"environmentAccountConnections" type:"list" required:"true"`
 
-	// A token to indicate the location of the next environment account connection
+	// A token that indicates the location of the next environment account connection
 	// in the array of environment account connections, after the current requested
 	// list of environment account connections.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -13272,9 +13341,9 @@ type ListEnvironmentOutputsInput struct {
 	// EnvironmentName is a required field
 	EnvironmentName *string `locationName:"environmentName" min:"1" type:"string" required:"true"`
 
-	// A token to indicate the location of the next environment output in the array
-	// of environment outputs, after the list of environment outputs that was previously
-	// requested.
+	// A token that indicates the location of the next environment output in the
+	// array of environment outputs, after the list of environment outputs that
+	// was previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -13327,8 +13396,9 @@ func (s *ListEnvironmentOutputsInput) SetNextToken(v string) *ListEnvironmentOut
 type ListEnvironmentOutputsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next environment output in the array
-	// of environment outputs, after the current requested list of environment outputs.
+	// A token that indicates the location of the next environment output in the
+	// array of environment outputs, after the current requested list of environment
+	// outputs.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// An array of environment outputs with detail data.
@@ -13375,7 +13445,7 @@ type ListEnvironmentProvisionedResourcesInput struct {
 	// EnvironmentName is a required field
 	EnvironmentName *string `locationName:"environmentName" min:"1" type:"string" required:"true"`
 
-	// A token to indicate the location of the next environment provisioned resource
+	// A token that indicates the location of the next environment provisioned resource
 	// in the array of environment provisioned resources, after the list of environment
 	// provisioned resources that was previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -13430,7 +13500,7 @@ func (s *ListEnvironmentProvisionedResourcesInput) SetNextToken(v string) *ListE
 type ListEnvironmentProvisionedResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next environment provisioned resource
+	// A token that indicates the location of the next environment provisioned resource
 	// in the array of provisioned resources, after the current requested list of
 	// environment provisioned resources.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -13485,9 +13555,9 @@ type ListEnvironmentTemplateVersionsInput struct {
 	// to list.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token to indicate the location of the next major or minor version in the
-	// array of major or minor versions of an environment template, after the list
-	// of major or minor versions that was previously requested.
+	// A token that indicates the location of the next major or minor version in
+	// the array of major or minor versions of an environment template, after the
+	// list of major or minor versions that was previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The name of the environment template.
@@ -13563,9 +13633,9 @@ func (s *ListEnvironmentTemplateVersionsInput) SetTemplateName(v string) *ListEn
 type ListEnvironmentTemplateVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next major or minor version in the
-	// array of major or minor versions of an environment template, after the list
-	// of major or minor versions that was previously requested.
+	// A token that indicates the location of the next major or minor version in
+	// the array of major or minor versions of an environment template, after the
+	// list of major or minor versions that was previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// An array of major or minor versions of an environment template detail data.
@@ -13610,7 +13680,7 @@ type ListEnvironmentTemplatesInput struct {
 	// The maximum number of environment templates to list.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token to indicate the location of the next environment template in the
+	// A token that indicates the location of the next environment template in the
 	// array of environment templates, after the list of environment templates that
 	// was previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -13662,7 +13732,7 @@ func (s *ListEnvironmentTemplatesInput) SetNextToken(v string) *ListEnvironmentT
 type ListEnvironmentTemplatesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next environment template in the
+	// A token that indicates the location of the next environment template in the
 	// array of environment templates, after the current requested list of environment
 	// templates.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -13712,8 +13782,8 @@ type ListEnvironmentsInput struct {
 	// The maximum number of environments to list.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token to indicate the location of the next environment in the array of
-	// environments, after the list of environments that was previously requested.
+	// A token that indicates the location of the next environment in the array
+	// of environments, after the list of environments that was previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -13784,8 +13854,8 @@ type ListEnvironmentsOutput struct {
 	// Environments is a required field
 	Environments []*EnvironmentSummary `locationName:"environments" type:"list" required:"true"`
 
-	// A token to indicate the location of the next environment in the array of
-	// environments, after the current requested list of environments.
+	// A token that indicates the location of the next environment in the array
+	// of environments, after the current requested list of environments.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -13825,8 +13895,8 @@ type ListRepositoriesInput struct {
 	// The maximum number of repositories to list.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token to indicate the location of the next repository in the array of repositories,
-	// after the list of repositories previously requested.
+	// A token that indicates the location of the next repository in the array of
+	// repositories, after the list of repositories previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -13876,8 +13946,8 @@ func (s *ListRepositoriesInput) SetNextToken(v string) *ListRepositoriesInput {
 type ListRepositoriesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next repository in the array of repositories,
-	// after the current requested list of repositories.
+	// A token that indicates the location of the next repository in the array of
+	// repositories, after the current requested list of repositories.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// An array of repositories.
@@ -13919,9 +13989,9 @@ func (s *ListRepositoriesOutput) SetRepositories(v []*RepositorySummary) *ListRe
 type ListRepositorySyncDefinitionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next repository sync definition in
-	// the array of repository sync definitions, after the list of repository sync
-	// definitions previously requested.
+	// A token that indicates the location of the next repository sync definition
+	// in the array of repository sync definitions, after the list of repository
+	// sync definitions previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The repository name.
@@ -14007,9 +14077,9 @@ func (s *ListRepositorySyncDefinitionsInput) SetSyncType(v string) *ListReposito
 type ListRepositorySyncDefinitionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next repository sync definition in
-	// the array of repository sync definitions, after the current requested list
-	// of repository sync definitions.
+	// A token that indicates the location of the next repository sync definition
+	// in the array of repository sync definitions, after the current requested
+	// list of repository sync definitions.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// An array of repository sync definitions.
@@ -14051,7 +14121,7 @@ func (s *ListRepositorySyncDefinitionsOutput) SetSyncDefinitions(v []*Repository
 type ListServiceInstanceOutputsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next output in the array of outputs,
+	// A token that indicates the location of the next output in the array of outputs,
 	// after the list of outputs that was previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
@@ -14127,7 +14197,7 @@ func (s *ListServiceInstanceOutputsInput) SetServiceName(v string) *ListServiceI
 type ListServiceInstanceOutputsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next output in the array of outputs,
+	// A token that indicates the location of the next output in the array of outputs,
 	// after the current requested list of outputs.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
@@ -14170,7 +14240,7 @@ func (s *ListServiceInstanceOutputsOutput) SetOutputs(v []*Output_) *ListService
 type ListServiceInstanceProvisionedResourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next provisioned resource in the
+	// A token that indicates the location of the next provisioned resource in the
 	// array of provisioned resources, after the list of provisioned resources that
 	// was previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -14247,7 +14317,7 @@ func (s *ListServiceInstanceProvisionedResourcesInput) SetServiceName(v string) 
 type ListServiceInstanceProvisionedResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next provisioned resource in the
+	// A token that indicates the location of the next provisioned resource in the
 	// array of provisioned resources, after the current requested list of provisioned
 	// resources.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -14294,7 +14364,7 @@ type ListServiceInstancesInput struct {
 	// The maximum number of service instances to list.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token to indicate the location of the next service in the array of service
+	// A token that indicates the location of the next service in the array of service
 	// instances, after the list of service instances that was previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
@@ -14357,7 +14427,7 @@ func (s *ListServiceInstancesInput) SetServiceName(v string) *ListServiceInstanc
 type ListServiceInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next service instance in the array
+	// A token that indicates the location of the next service instance in the array
 	// of service instances, after the current requested list of service instances.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
@@ -14400,7 +14470,7 @@ func (s *ListServiceInstancesOutput) SetServiceInstances(v []*ServiceInstanceSum
 type ListServicePipelineOutputsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next output in the array of outputs,
+	// A token that indicates the location of the next output in the array of outputs,
 	// after the list of outputs that was previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
@@ -14459,7 +14529,7 @@ func (s *ListServicePipelineOutputsInput) SetServiceName(v string) *ListServiceP
 type ListServicePipelineOutputsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next output in the array of outputs,
+	// A token that indicates the location of the next output in the array of outputs,
 	// after the current requested list of outputs.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
@@ -14502,7 +14572,7 @@ func (s *ListServicePipelineOutputsOutput) SetOutputs(v []*Output_) *ListService
 type ListServicePipelineProvisionedResourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next provisioned resource in the
+	// A token that indicates the location of the next provisioned resource in the
 	// array of provisioned resources, after the list of provisioned resources that
 	// was previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -14562,7 +14632,7 @@ func (s *ListServicePipelineProvisionedResourcesInput) SetServiceName(v string) 
 type ListServicePipelineProvisionedResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next provisioned resource in the
+	// A token that indicates the location of the next provisioned resource in the
 	// array of provisioned resources, after the current requested list of provisioned
 	// resources.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -14615,9 +14685,9 @@ type ListServiceTemplateVersionsInput struct {
 	// The maximum number of major or minor versions of a service template to list.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token to indicate the location of the next major or minor version in the
-	// array of major or minor versions of a service template, after the list of
-	// major or minor versions that was previously requested.
+	// A token that indicates the location of the next major or minor version in
+	// the array of major or minor versions of a service template, after the list
+	// of major or minor versions that was previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The name of the service template.
@@ -14693,8 +14763,8 @@ func (s *ListServiceTemplateVersionsInput) SetTemplateName(v string) *ListServic
 type ListServiceTemplateVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next major or minor version in the
-	// array of major or minor versions of a service template, after the current
+	// A token that indicates the location of the next major or minor version in
+	// the array of major or minor versions of a service template, after the current
 	// requested list of service major or minor versions.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
@@ -14740,7 +14810,7 @@ type ListServiceTemplatesInput struct {
 	// The maximum number of service templates to list.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token to indicate the location of the next service template in the array
+	// A token that indicates the location of the next service template in the array
 	// of service templates, after the list of service templates previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
@@ -14791,7 +14861,7 @@ func (s *ListServiceTemplatesInput) SetNextToken(v string) *ListServiceTemplates
 type ListServiceTemplatesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next service template in the array
+	// A token that indicates the location of the next service template in the array
 	// of service templates, after the current requested list of service templates.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
@@ -14837,7 +14907,7 @@ type ListServicesInput struct {
 	// The maximum number of services to list.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token to indicate the location of the next service in the array of services,
+	// A token that indicates the location of the next service in the array of services,
 	// after the list of services that was previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
@@ -14888,7 +14958,7 @@ func (s *ListServicesInput) SetNextToken(v string) *ListServicesInput {
 type ListServicesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next service in the array of services,
+	// A token that indicates the location of the next service in the array of services,
 	// after the current requested list of services.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
@@ -14934,8 +15004,8 @@ type ListTagsForResourceInput struct {
 	// The maximum number of tags to list.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token to indicate the location of the next resource tag in the array of
-	// resource tags, after the list of resource tags that was previously requested.
+	// A token that indicates the location of the next resource tag in the array
+	// of resource tags, after the list of resource tags that was previously requested.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the resource for the listed tags.
@@ -15002,11 +15072,11 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to indicate the location of the next resource tag in the array of
-	// resource tags, after the current requested list of resource tags.
+	// A token that indicates the location of the next resource tag in the array
+	// of resource tags, after the current requested list of resource tags.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// An array of resource tags with detail data.
+	// A list of resource tags with detail data.
 	//
 	// Tags is a required field
 	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
@@ -15235,12 +15305,12 @@ type ProvisionedResource struct {
 	// The provisioned resource name.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The resource provisioning engine.
+	// The resource provisioning engine. At this time, CLOUDFORMATION can be used
+	// for Amazon Web Services-managed provisioning, and TERRAFORM can be used for
+	// self-managed provisioning.
 	//
-	// Provisioning by pull request is currently in feature preview and is only
-	// usable with Terraform based Proton Templates. To learn more about Amazon
-	// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
-	// see section 2 on Beta and Previews.
+	// For more information, see Self-managed provisioning (https://docs.aws.amazon.com/proton/latest/adminguide/ag-works-prov-methods.html#ag-works-prov-methods-self)
+	// in the Proton Administrator Guide.
 	ProvisioningEngine *string `locationName:"provisioningEngine" type:"string" enum:"ProvisionedResourceEngine"`
 }
 
@@ -15437,11 +15507,6 @@ func (s *Repository) SetProvider(v string) *Repository {
 }
 
 // Detail data for a repository branch.
-//
-// Provisioning by pull request is currently in feature preview and is only
-// usable with Terraform based Proton Templates. To learn more about Amazon
-// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
-// see section 2 on Beta and Previews.
 type RepositoryBranch struct {
 	_ struct{} `type:"structure"`
 
@@ -15509,11 +15574,6 @@ func (s *RepositoryBranch) SetProvider(v string) *RepositoryBranch {
 }
 
 // Detail input data for a repository branch.
-//
-// Provisioning by pull request is currently in feature preview and is only
-// usable with Terraform based Proton Templates. To learn more about Amazon
-// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
-// see section 2 on Beta and Previews.
 type RepositoryBranchInput_ struct {
 	_ struct{} `type:"structure"`
 
@@ -17624,13 +17684,13 @@ func (s *Tag) SetValue(v string) *Tag {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource that the resource tag is applied
+	// The Amazon Resource Name (ARN) of the Proton resource to apply customer tags
 	// to.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
-	// An array of resource tags to apply to a resource.
+	// A list of customer tags to apply to the Proton resource.
 	//
 	// Tags is a required field
 	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
@@ -17922,14 +17982,13 @@ func (s *ThrottlingException) RequestID() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource that the tag is to be removed
-	// from.
+	// The Amazon Resource Name (ARN) of the resource to remove customer tags from.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
-	// An array of tag keys indicating the resource tags to be removed from the
-	// resource.
+	// A list of customer tag keys that indicate the customer tags to be removed
+	// from the resource.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `locationName:"tagKeys" type:"list" required:"true"`
@@ -18009,20 +18068,13 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateAccountSettingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The repository that you provide with pull request provisioning.
-	//
-	// Provisioning by pull request is currently in feature preview and is only
-	// usable with Terraform based Proton Templates. To learn more about Amazon
-	// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
-	// see section 2 on Beta and Previews.
+	// A repository for pipeline provisioning. Specify it if you have environments
+	// configured for self-managed provisioning with services that include pipelines.
 	PipelineProvisioningRepository *RepositoryBranchInput_ `locationName:"pipelineProvisioningRepository" type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Proton pipeline service role.
-	//
-	// Provisioning by pull request is currently in feature preview and is only
-	// usable with Terraform based Proton Templates. To learn more about Amazon
-	// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
-	// see section 2 on Beta and Previews.
+	// The Amazon Resource Name (ARN) of the service role you want to use for provisioning
+	// pipelines. Assumed by Proton for Amazon Web Services-managed provisioning,
+	// and by customer-owned automation for self-managed provisioning.
 	PipelineServiceRoleArn *string `locationName:"pipelineServiceRoleArn" type:"string"`
 }
 
@@ -18074,8 +18126,8 @@ func (s *UpdateAccountSettingsInput) SetPipelineServiceRoleArn(v string) *Update
 type UpdateAccountSettingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Proton pipeline service role repository detail data that's returned by
-	// Proton.
+	// The Proton pipeline service role and repository data shared across the Amazon
+	// Web Services account.
 	//
 	// AccountSettings is a required field
 	AccountSettings *AccountSettings `locationName:"accountSettings" type:"structure" required:"true"`
@@ -18113,7 +18165,7 @@ type UpdateEnvironmentAccountConnectionInput struct {
 	// Id is a required field
 	Id *string `locationName:"id" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the IAM service role that is associated
+	// The Amazon Resource Name (ARN) of the IAM service role that's associated
 	// with the environment account connection to update.
 	//
 	// RoleArn is a required field
@@ -18205,8 +18257,8 @@ func (s *UpdateEnvironmentAccountConnectionOutput) SetEnvironmentAccountConnecti
 type UpdateEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
-	// There are four modes for updating an environment as described in the following.
-	// The deploymentType field defines the mode.
+	// There are four modes for updating an environment. The deploymentType field
+	// defines the mode.
 	//
 	// NONE
 	//
@@ -18216,8 +18268,8 @@ type UpdateEnvironmentInput struct {
 	// CURRENT_VERSION
 	//
 	// In this mode, the environment is deployed and updated with the new spec that
-	// you provide. Only requested parameters are updated. Don’t include minor
-	// or major version parameters when you use this deployment-type.
+	// you provide. Only requested parameters are updated. Don’t include major
+	// or minor version parameters when you use this deployment-type.
 	//
 	// MINOR_VERSION
 	//
@@ -18259,12 +18311,8 @@ type UpdateEnvironmentInput struct {
 	// to make API calls to other services your behalf.
 	ProtonServiceRoleArn *string `locationName:"protonServiceRoleArn" min:"1" type:"string"`
 
-	// The repository that you provide with pull request provisioning.
-	//
-	// Provisioning by pull request is currently in feature preview and is only
-	// usable with Terraform based Proton Templates. To learn more about Amazon
-	// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
-	// see section 2 on Beta and Previews.
+	// The infrastructure repository that you use to host your rendered infrastructure
+	// templates for self-managed provisioning.
 	ProvisioningRepository *RepositoryBranchInput_ `locationName:"provisioningRepository" type:"structure"`
 
 	// The formatted specification that defines the update.
@@ -18759,8 +18807,8 @@ type UpdateServiceInstanceInput struct {
 
 	// The deployment type.
 	//
-	// There are four modes for updating a service instance as described in the
-	// following. The deploymentType field defines the mode.
+	// There are four modes for updating a service instance. The deploymentType
+	// field defines the mode.
 	//
 	// NONE
 	//
@@ -18771,7 +18819,7 @@ type UpdateServiceInstanceInput struct {
 	//
 	// In this mode, the service instance is deployed and updated with the new spec
 	// that you provide. Only requested parameters are updated. Don’t include
-	// minor or major version parameters when you use this deployment-type.
+	// major or minor version parameters when you use this deployment-type.
 	//
 	// MINOR_VERSION
 	//
@@ -18784,8 +18832,8 @@ type UpdateServiceInstanceInput struct {
 	//
 	// In this mode, the service instance is deployed and updated with the published,
 	// recommended (latest) major and minor version of the current template, by
-	// default. You can also specify a different major version that is higher than
-	// the major version in use and a minor version (optional).
+	// default. You can specify a different major version that's higher than the
+	// major version in use and a minor version.
 	//
 	// DeploymentType is a required field
 	DeploymentType *string `locationName:"deploymentType" type:"string" required:"true" enum:"DeploymentUpdateType"`
@@ -18905,7 +18953,7 @@ func (s *UpdateServiceInstanceInput) SetTemplateMinorVersion(v string) *UpdateSe
 type UpdateServiceInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The service instance summary data returned by Proton.
+	// The service instance summary data that's returned by Proton.
 	//
 	// ServiceInstance is a required field
 	ServiceInstance *ServiceInstance `locationName:"serviceInstance" type:"structure" required:"true"`
@@ -18973,8 +19021,8 @@ type UpdateServicePipelineInput struct {
 
 	// The deployment type.
 	//
-	// There are four modes for updating a service pipeline as described in the
-	// following. The deploymentType field defines the mode.
+	// There are four modes for updating a service pipeline. The deploymentType
+	// field defines the mode.
 	//
 	// NONE
 	//
@@ -18985,21 +19033,21 @@ type UpdateServicePipelineInput struct {
 	//
 	// In this mode, the service pipeline is deployed and updated with the new spec
 	// that you provide. Only requested parameters are updated. Don’t include
-	// minor or major version parameters when you use this deployment-type.
+	// major or minor version parameters when you use this deployment-type.
 	//
 	// MINOR_VERSION
 	//
 	// In this mode, the service pipeline is deployed and updated with the published,
 	// recommended (latest) minor version of the current major version in use, by
-	// default. You can also specify a different minor version of the current major
-	// version in use.
+	// default. You can specify a different minor version of the current major version
+	// in use.
 	//
 	// MAJOR_VERSION
 	//
 	// In this mode, the service pipeline is deployed and updated with the published,
 	// recommended (latest) major and minor version of the current template, by
-	// default. You can also specify a different major version that is higher than
-	// the major version in use and a minor version (optional).
+	// default. You can specify a different major version that's higher than the
+	// major version in use and a minor version.
 	//
 	// DeploymentType is a required field
 	DeploymentType *string `locationName:"deploymentType" type:"string" required:"true" enum:"DeploymentUpdateType"`
@@ -19109,7 +19157,7 @@ func (s *UpdateServicePipelineInput) SetTemplateMinorVersion(v string) *UpdateSe
 type UpdateServicePipelineOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The pipeline details returned by Proton.
+	// The pipeline details that are returned by Proton.
 	//
 	// Pipeline is a required field
 	Pipeline *ServicePipeline `locationName:"pipeline" type:"structure" required:"true"`
@@ -19149,7 +19197,7 @@ type UpdateServiceTemplateInput struct {
 	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
-	// The name of the service template to update as displayed in the developer
+	// The name of the service template to update that's displayed in the developer
 	// interface.
 	//
 	// DisplayName is a sensitive parameter and its value will be
@@ -19420,7 +19468,7 @@ type UpdateTemplateSyncConfigInput struct {
 	// Branch is a required field
 	Branch *string `locationName:"branch" min:"1" type:"string" required:"true"`
 
-	// The name of the repository, for example myrepos/myrepo.
+	// The name of the repository (for example, myrepos/myrepo).
 	//
 	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
