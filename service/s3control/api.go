@@ -5253,7 +5253,7 @@ func (c *S3Control) PutJobTaggingRequest(input *PutJobTaggingInput) (req *reques
 //
 // Related actions include:
 //
-//    * CreatJob (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html)
+//    * CreateJob (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html)
 //
 //    * GetJobTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetJobTagging.html)
 //
@@ -16908,8 +16908,8 @@ type S3CopyObjectOperation struct {
 	StorageClass *string `type:"string" enum:"S3StorageClass"`
 
 	// Specifies the folder prefix into which you would like the objects to be copied.
-	// For example, to copy objects into a folder named "Folder1" in the destination
-	// bucket, set the TargetKeyPrefix to "Folder1/".
+	// For example, to copy objects into a folder named Folder1 in the destination
+	// bucket, set the TargetKeyPrefix to Folder1.
 	TargetKeyPrefix *string `min:"1" type:"string"`
 
 	// Specifies the destination bucket ARN for the batch copy operation. For example,

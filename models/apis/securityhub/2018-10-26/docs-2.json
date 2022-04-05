@@ -309,6 +309,12 @@
         "ResourceDetails$AwsAutoScalingAutoScalingGroup": "<p>Details for an autoscaling group.</p>"
       }
     },
+    "AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification": {
+      "base": "<p>Details about the launch template to use.</p>",
+      "refs": {
+        "AwsAutoScalingAutoScalingGroupDetails$LaunchTemplate": "<p>The launch template to use.</p>"
+      }
+    },
     "AwsAutoScalingAutoScalingGroupMixedInstancesPolicyDetails": {
       "base": "<p>The mixed instances policy for the automatic scaling group.</p>",
       "refs": {
@@ -328,9 +334,9 @@
       }
     },
     "AwsAutoScalingAutoScalingGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecification": {
-      "base": "<p>Details about the launch template to use.</p>",
+      "base": "<p>Details about the launch template to use for a mixed instances policy.</p>",
       "refs": {
-        "AwsAutoScalingAutoScalingGroupMixedInstancesPolicyLaunchTemplateDetails$LaunchTemplateSpecification": "<p>The launch template to use.</p>"
+        "AwsAutoScalingAutoScalingGroupMixedInstancesPolicyLaunchTemplateDetails$LaunchTemplateSpecification": "<p>The launch template to use for a mixed instances policy.</p>"
       }
     },
     "AwsAutoScalingAutoScalingGroupMixedInstancesPolicyLaunchTemplateOverridesList": {
@@ -559,7 +565,8 @@
     "AwsCodeBuildProjectArtifactsList": {
       "base": null,
       "refs": {
-        "AwsCodeBuildProjectDetails$Artifacts": "<p>Information about the build artifacts for the CodeBuild project.</p>"
+        "AwsCodeBuildProjectDetails$Artifacts": "<p>Information about the build artifacts for the CodeBuild project.</p>",
+        "AwsCodeBuildProjectDetails$SecondaryArtifacts": "<p>Information about the secondary artifacts for the CodeBuild project.</p>"
       }
     },
     "AwsCodeBuildProjectDetails": {
@@ -1644,6 +1651,18 @@
         "AwsElbLoadBalancerAttributes$AccessLog": "<p>Information about the access log configuration for the load balancer.</p> <p>If the access log is enabled, the load balancer captures detailed information about all requests. It delivers the information to a specified S3 bucket.</p>"
       }
     },
+    "AwsElbLoadBalancerAdditionalAttribute": {
+      "base": "<p>Provides information about additional attributes for the load balancer.</p>",
+      "refs": {
+        "AwsElbLoadBalancerAdditionalAttributeList$member": null
+      }
+    },
+    "AwsElbLoadBalancerAdditionalAttributeList": {
+      "base": null,
+      "refs": {
+        "AwsElbLoadBalancerAttributes$AdditionalAttributes": "<p>Any additional attributes for a load balancer.</p>"
+      }
+    },
     "AwsElbLoadBalancerAttributes": {
       "base": "<p>Contains attributes for the load balancer.</p>",
       "refs": {
@@ -2213,6 +2232,36 @@
         "AwsRdsDbSnapshotDetails$ProcessorFeatures": "<p>The number of CPU cores and the number of threads per core for the DB instance class of the DB instance.</p>"
       }
     },
+    "AwsRdsDbSecurityGroupDetails": {
+      "base": "<p>Provides information about an Amazon RDS DB security group.</p>",
+      "refs": {
+        "ResourceDetails$AwsRdsDbSecurityGroup": "<p>Details about an Amazon RDS DB security group.</p>"
+      }
+    },
+    "AwsRdsDbSecurityGroupEc2SecurityGroup": {
+      "base": "<p>EC2 security group information for an RDS DB security group.</p>",
+      "refs": {
+        "AwsRdsDbSecurityGroupEc2SecurityGroups$member": null
+      }
+    },
+    "AwsRdsDbSecurityGroupEc2SecurityGroups": {
+      "base": null,
+      "refs": {
+        "AwsRdsDbSecurityGroupDetails$Ec2SecurityGroups": "<p>Contains a list of EC2 security groups.</p>"
+      }
+    },
+    "AwsRdsDbSecurityGroupIpRange": {
+      "base": "<p>IP range information for an RDS DB security group.</p>",
+      "refs": {
+        "AwsRdsDbSecurityGroupIpRanges$member": null
+      }
+    },
+    "AwsRdsDbSecurityGroupIpRanges": {
+      "base": null,
+      "refs": {
+        "AwsRdsDbSecurityGroupDetails$IpRanges": "<p>Contains a list of IP ranges.</p>"
+      }
+    },
     "AwsRdsDbSnapshotDetails": {
       "base": "<p>Provides details about an Amazon RDS DB cluster snapshot.</p>",
       "refs": {
@@ -2367,6 +2416,12 @@
       "base": null,
       "refs": {
         "AwsRedshiftClusterDetails$IamRoles": "<p>A list of IAM roles that the cluster can use to access other Amazon Web Services services.</p>"
+      }
+    },
+    "AwsRedshiftClusterLoggingStatus": {
+      "base": "<p>Provides information about the logging status of the cluster.</p>",
+      "refs": {
+        "AwsRedshiftClusterDetails$LoggingStatus": "<p>Information about the logging status of the cluster.</p>"
       }
     },
     "AwsRedshiftClusterPendingModifiedValues": {
@@ -2852,6 +2907,7 @@
         "AwsApiGatewayV2RouteSettings$DataTraceEnabled": "<p>Indicates whether data trace logging is enabled. Data trace logging affects the log entries that are pushed to CloudWatch Logs. Supported only for WebSocket APIs.</p>",
         "AwsApiGatewayV2StageDetails$AutoDeploy": "<p>Indicates whether updates to an API automatically trigger a new deployment.</p>",
         "AwsApiGatewayV2StageDetails$ApiGatewayManaged": "<p>Indicates whether the stage is managed by API Gateway.</p>",
+        "AwsAutoScalingAutoScalingGroupDetails$CapacityRebalance": "<p>Indicates whether capacity rebalancing is enabled. </p>",
         "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails$NoDevice": "<p>Whether to suppress the device that is included in the block device mapping of the Amazon Machine Image (AMI).</p> <p>If <code>NoDevice</code> is <code>true</code>, then you cannot specify <code>Ebs</code>.&gt;</p>",
         "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails$DeleteOnTermination": "<p>Whether to delete the volume when the instance is terminated.</p>",
         "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails$Encrypted": "<p>Whether to encrypt the volume.</p>",
@@ -2961,6 +3017,7 @@
         "AwsRedshiftClusterDetails$Encrypted": "<p>Indicates whether the data in the cluster is encrypted at rest.</p>",
         "AwsRedshiftClusterDetails$EnhancedVpcRouting": "<p>Indicates whether to create the cluster with enhanced VPC routing enabled.</p>",
         "AwsRedshiftClusterDetails$PubliclyAccessible": "<p>Whether the cluster can be accessed from a public network.</p>",
+        "AwsRedshiftClusterLoggingStatus$LoggingEnabled": "<p>Indicates whether logging is enabled.</p>",
         "AwsRedshiftClusterPendingModifiedValues$EnhancedVpcRouting": "<p>Indicates whether to create the cluster with enhanced VPC routing enabled.</p>",
         "AwsRedshiftClusterPendingModifiedValues$PubliclyAccessible": "<p>The pending or in-progress change to whether the cluster can be connected to from the public network.</p>",
         "AwsRedshiftClusterResizeInfo$AllowCancelResize": "<p>Indicates whether the resize operation can be canceled.</p>",
@@ -4263,6 +4320,9 @@
         "AwsAutoScalingAutoScalingGroupDetails$LaunchConfigurationName": "<p>The name of the launch configuration.</p>",
         "AwsAutoScalingAutoScalingGroupDetails$HealthCheckType": "<p>The service to use for the health checks.</p>",
         "AwsAutoScalingAutoScalingGroupDetails$CreatedTime": "<p>Indicates when the auto scaling group was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification$LaunchTemplateId": "<p>The identifier of the launch template. You must specify either <code>LaunchTemplateId</code> or <code>LaunchTemplateName</code>.</p>",
+        "AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification$LaunchTemplateName": "<p>The name of the launch template. You must specify either <code>LaunchTemplateId</code> or <code>LaunchTemplateName</code>.</p>",
+        "AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification$Version": "<p>Identifies the version of the launch template. You can specify a version identifier, or use the values <code>$Latest</code> or <code>$Default</code>.</p>",
         "AwsAutoScalingAutoScalingGroupMixedInstancesPolicyInstancesDistributionDetails$OnDemandAllocationStrategy": "<p>How to allocate instance types to fulfill On-Demand capacity.</p>",
         "AwsAutoScalingAutoScalingGroupMixedInstancesPolicyInstancesDistributionDetails$SpotAllocationStrategy": "<p>How to allocate instances across Spot Instance pools.</p>",
         "AwsAutoScalingAutoScalingGroupMixedInstancesPolicyInstancesDistributionDetails$SpotMaxPrice": "<p>The maximum price per unit hour that you are willing to pay for a Spot Instance.</p>",
@@ -4652,6 +4712,8 @@
         "AwsElbLbCookieStickinessPolicy$PolicyName": "<p>The name of the policy. The name must be unique within the set of policies for the load balancer.</p>",
         "AwsElbLoadBalancerAccessLog$S3BucketName": "<p>The name of the S3 bucket where the access logs are stored.</p>",
         "AwsElbLoadBalancerAccessLog$S3BucketPrefix": "<p>The logical hierarchy that was created for the S3 bucket.</p> <p>If a prefix is not provided, the log is placed at the root level of the bucket.</p>",
+        "AwsElbLoadBalancerAdditionalAttribute$Key": "<p>The name of the attribute.</p>",
+        "AwsElbLoadBalancerAdditionalAttribute$Value": "<p>The value of the attribute.</p>",
         "AwsElbLoadBalancerDetails$CanonicalHostedZoneName": "<p>The name of the Amazon Route 53 hosted zone for the load balancer.</p>",
         "AwsElbLoadBalancerDetails$CanonicalHostedZoneNameID": "<p>The ID of the Amazon Route 53 hosted zone for the load balancer.</p>",
         "AwsElbLoadBalancerDetails$CreatedTime": "<p>Indicates when the load balancer was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
@@ -4875,6 +4937,17 @@
         "AwsRdsDbPendingModifiedValues$DbSubnetGroupName": "<p>The name of the new subnet group for the DB instance.</p>",
         "AwsRdsDbProcessorFeature$Name": "<p>The name of the processor feature.</p>",
         "AwsRdsDbProcessorFeature$Value": "<p>The value of the processor feature.</p>",
+        "AwsRdsDbSecurityGroupDetails$DbSecurityGroupArn": "<p>The ARN for the DB security group.</p>",
+        "AwsRdsDbSecurityGroupDetails$DbSecurityGroupDescription": "<p>Provides the description of the DB security group.</p>",
+        "AwsRdsDbSecurityGroupDetails$DbSecurityGroupName": "<p>Specifies the name of the DB security group.</p>",
+        "AwsRdsDbSecurityGroupDetails$OwnerId": "<p>Provides the Amazon Web Services ID of the owner of a specific DB security group.</p>",
+        "AwsRdsDbSecurityGroupDetails$VpcId": "<p>Provides VPC ID associated with the DB security group. </p>",
+        "AwsRdsDbSecurityGroupEc2SecurityGroup$Ec2SecurityGroupId": "<p>Specifies the ID for the EC2 security group.</p>",
+        "AwsRdsDbSecurityGroupEc2SecurityGroup$Ec2SecurityGroupName": "<p>Specifies the name of the EC2 security group.</p>",
+        "AwsRdsDbSecurityGroupEc2SecurityGroup$Ec2SecurityGroupOwnerId": "<p>Provides the Amazon Web Services ID of the owner of the EC2 security group.</p>",
+        "AwsRdsDbSecurityGroupEc2SecurityGroup$Status": "<p>Provides the status of the EC2 security group.</p>",
+        "AwsRdsDbSecurityGroupIpRange$CidrIp": "<p>Specifies the IP range.</p>",
+        "AwsRdsDbSecurityGroupIpRange$Status": "<p>Specifies the status of the IP range.</p>",
         "AwsRdsDbSnapshotDetails$DbSnapshotIdentifier": "<p>The name or ARN of the DB snapshot that is used to restore the DB instance.</p>",
         "AwsRdsDbSnapshotDetails$DbInstanceIdentifier": "<p>A name for the DB instance.</p>",
         "AwsRdsDbSnapshotDetails$SnapshotCreateTime": "<p>When the snapshot was taken in Coordinated Universal Time (UTC).</p>",
@@ -4958,6 +5031,11 @@
         "AwsRedshiftClusterHsmStatus$Status": "<p>Indicates whether the Amazon Redshift cluster has finished applying any HSM settings changes specified in a modify cluster command.</p> <p>Type: String</p> <p>Valid values: <code>active</code> | <code>applying</code> </p>",
         "AwsRedshiftClusterIamRole$ApplyStatus": "<p>The status of the IAM role's association with the cluster.</p> <p>Valid values: <code>in-sync</code> | <code>adding</code> | <code>removing</code> </p>",
         "AwsRedshiftClusterIamRole$IamRoleArn": "<p>The ARN of the IAM role.</p>",
+        "AwsRedshiftClusterLoggingStatus$BucketName": "<p>The name of the S3 bucket where the log files are stored.</p>",
+        "AwsRedshiftClusterLoggingStatus$LastFailureMessage": "<p>The message indicating that the logs failed to be delivered.</p>",
+        "AwsRedshiftClusterLoggingStatus$LastFailureTime": "<p>The last time when logs failed to be delivered.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsRedshiftClusterLoggingStatus$LastSuccessfulDeliveryTime": "<p>The last time that logs were delivered successfully.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsRedshiftClusterLoggingStatus$S3KeyPrefix": "<p>Provides the prefix applied to the log file names.</p>",
         "AwsRedshiftClusterPendingModifiedValues$ClusterIdentifier": "<p>The pending or in-progress change to the identifier for the cluster.</p>",
         "AwsRedshiftClusterPendingModifiedValues$ClusterType": "<p>The pending or in-progress change to the cluster type.</p>",
         "AwsRedshiftClusterPendingModifiedValues$ClusterVersion": "<p>The pending or in-progress change to the service version.</p>",

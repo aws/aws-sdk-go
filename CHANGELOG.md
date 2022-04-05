@@ -1,3 +1,13 @@
+Release v1.43.33 (2022-04-05)
+===
+
+### Service Client Updates
+* `service/datasync`: Updates service API and documentation
+* `service/fsx`: Updates service API and documentation
+* `service/s3control`: Updates service documentation
+  * Documentation-only update for doc bug fixes for the S3 Control API docs.
+* `service/securityhub`: Updates service API and documentation
+
 Release v1.43.32 (2022-04-04)
 ===
 
