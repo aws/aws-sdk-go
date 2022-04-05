@@ -368,6 +368,88 @@ func (c *DataSync) CreateLocationFsxLustreWithContext(ctx aws.Context, input *Cr
 	return out, req.Send()
 }
 
+const opCreateLocationFsxOpenZfs = "CreateLocationFsxOpenZfs"
+
+// CreateLocationFsxOpenZfsRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLocationFsxOpenZfs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLocationFsxOpenZfs for more information on using the CreateLocationFsxOpenZfs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateLocationFsxOpenZfsRequest method.
+//    req, resp := client.CreateLocationFsxOpenZfsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationFsxOpenZfs
+func (c *DataSync) CreateLocationFsxOpenZfsRequest(input *CreateLocationFsxOpenZfsInput) (req *request.Request, output *CreateLocationFsxOpenZfsOutput) {
+	op := &request.Operation{
+		Name:       opCreateLocationFsxOpenZfs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLocationFsxOpenZfsInput{}
+	}
+
+	output = &CreateLocationFsxOpenZfsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLocationFsxOpenZfs API operation for AWS DataSync.
+//
+// Creates an endpoint for an Amazon FSx for OpenZFS file system.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation CreateLocationFsxOpenZfs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * InternalException
+//   This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationFsxOpenZfs
+func (c *DataSync) CreateLocationFsxOpenZfs(input *CreateLocationFsxOpenZfsInput) (*CreateLocationFsxOpenZfsOutput, error) {
+	req, out := c.CreateLocationFsxOpenZfsRequest(input)
+	return out, req.Send()
+}
+
+// CreateLocationFsxOpenZfsWithContext is the same as CreateLocationFsxOpenZfs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLocationFsxOpenZfs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) CreateLocationFsxOpenZfsWithContext(ctx aws.Context, input *CreateLocationFsxOpenZfsInput, opts ...request.Option) (*CreateLocationFsxOpenZfsOutput, error) {
+	req, out := c.CreateLocationFsxOpenZfsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateLocationFsxWindows = "CreateLocationFsxWindows"
 
 // CreateLocationFsxWindowsRequest generates a "aws/request.Request" representing the
@@ -1431,8 +1513,8 @@ func (c *DataSync) DescribeLocationFsxLustreRequest(input *DescribeLocationFsxLu
 
 // DescribeLocationFsxLustre API operation for AWS DataSync.
 //
-// Returns metadata, such as the path information about an Amazon FSx for Lustre
-// location.
+// Returns metadata about an Amazon FSx for Lustre location, such as information
+// about its path.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1465,6 +1547,89 @@ func (c *DataSync) DescribeLocationFsxLustre(input *DescribeLocationFsxLustreInp
 // for more information on using Contexts.
 func (c *DataSync) DescribeLocationFsxLustreWithContext(ctx aws.Context, input *DescribeLocationFsxLustreInput, opts ...request.Option) (*DescribeLocationFsxLustreOutput, error) {
 	req, out := c.DescribeLocationFsxLustreRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeLocationFsxOpenZfs = "DescribeLocationFsxOpenZfs"
+
+// DescribeLocationFsxOpenZfsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeLocationFsxOpenZfs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeLocationFsxOpenZfs for more information on using the DescribeLocationFsxOpenZfs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeLocationFsxOpenZfsRequest method.
+//    req, resp := client.DescribeLocationFsxOpenZfsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationFsxOpenZfs
+func (c *DataSync) DescribeLocationFsxOpenZfsRequest(input *DescribeLocationFsxOpenZfsInput) (req *request.Request, output *DescribeLocationFsxOpenZfsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeLocationFsxOpenZfs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeLocationFsxOpenZfsInput{}
+	}
+
+	output = &DescribeLocationFsxOpenZfsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeLocationFsxOpenZfs API operation for AWS DataSync.
+//
+// Returns metadata about an Amazon FSx for OpenZFS location, such as information
+// about its path.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation DescribeLocationFsxOpenZfs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * InternalException
+//   This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationFsxOpenZfs
+func (c *DataSync) DescribeLocationFsxOpenZfs(input *DescribeLocationFsxOpenZfsInput) (*DescribeLocationFsxOpenZfsOutput, error) {
+	req, out := c.DescribeLocationFsxOpenZfsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeLocationFsxOpenZfsWithContext is the same as DescribeLocationFsxOpenZfs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeLocationFsxOpenZfs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) DescribeLocationFsxOpenZfsWithContext(ctx aws.Context, input *DescribeLocationFsxOpenZfsInput, opts ...request.Option) (*DescribeLocationFsxOpenZfsOutput, error) {
+	req, out := c.DescribeLocationFsxOpenZfsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1514,8 +1679,8 @@ func (c *DataSync) DescribeLocationFsxWindowsRequest(input *DescribeLocationFsxW
 
 // DescribeLocationFsxWindows API operation for AWS DataSync.
 //
-// Returns metadata, such as the path information about an Amazon FSx for Windows
-// File Server location.
+// Returns metadata about an Amazon FSx for Windows File Server location, such
+// as information about its path.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4271,6 +4436,148 @@ func (s *CreateLocationFsxLustreOutput) SetLocationArn(v string) *CreateLocation
 	return s
 }
 
+type CreateLocationFsxOpenZfsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the FSx for OpenZFS file system.
+	//
+	// FsxFilesystemArn is a required field
+	FsxFilesystemArn *string `type:"string" required:"true"`
+
+	// The type of protocol that DataSync uses to access your file system.
+	//
+	// Protocol is a required field
+	Protocol *FsxProtocol `type:"structure" required:"true"`
+
+	// The ARNs of the security groups that are used to configure the FSx for OpenZFS
+	// file system.
+	//
+	// SecurityGroupArns is a required field
+	SecurityGroupArns []*string `min:"1" type:"list" required:"true"`
+
+	// A subdirectory in the location's path that must begin with /fsx. DataSync
+	// uses this subdirectory to read or write data (depending on whether the file
+	// system is a source or destination location).
+	Subdirectory *string `type:"string"`
+
+	// The key-value pair that represents a tag that you want to add to the resource.
+	// The value can be an empty string. This value helps you manage, filter, and
+	// search for your resources. We recommend that you create a name tag for your
+	// location.
+	Tags []*TagListEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxOpenZfsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxOpenZfsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLocationFsxOpenZfsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLocationFsxOpenZfsInput"}
+	if s.FsxFilesystemArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FsxFilesystemArn"))
+	}
+	if s.Protocol == nil {
+		invalidParams.Add(request.NewErrParamRequired("Protocol"))
+	}
+	if s.SecurityGroupArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupArns"))
+	}
+	if s.SecurityGroupArns != nil && len(s.SecurityGroupArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupArns", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFsxFilesystemArn sets the FsxFilesystemArn field's value.
+func (s *CreateLocationFsxOpenZfsInput) SetFsxFilesystemArn(v string) *CreateLocationFsxOpenZfsInput {
+	s.FsxFilesystemArn = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *CreateLocationFsxOpenZfsInput) SetProtocol(v *FsxProtocol) *CreateLocationFsxOpenZfsInput {
+	s.Protocol = v
+	return s
+}
+
+// SetSecurityGroupArns sets the SecurityGroupArns field's value.
+func (s *CreateLocationFsxOpenZfsInput) SetSecurityGroupArns(v []*string) *CreateLocationFsxOpenZfsInput {
+	s.SecurityGroupArns = v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *CreateLocationFsxOpenZfsInput) SetSubdirectory(v string) *CreateLocationFsxOpenZfsInput {
+	s.Subdirectory = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateLocationFsxOpenZfsInput) SetTags(v []*TagListEntry) *CreateLocationFsxOpenZfsInput {
+	s.Tags = v
+	return s
+}
+
+type CreateLocationFsxOpenZfsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the FSx for OpenZFS file system location that you created.
+	LocationArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxOpenZfsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxOpenZfsOutput) GoString() string {
+	return s.String()
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *CreateLocationFsxOpenZfsOutput) SetLocationArn(v string) *CreateLocationFsxOpenZfsOutput {
+	s.LocationArn = &v
+	return s
+}
+
 type CreateLocationFsxWindowsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4293,8 +4600,8 @@ type CreateLocationFsxWindowsInput struct {
 	// Password is a required field
 	Password *string `type:"string" required:"true" sensitive:"true"`
 
-	// The Amazon Resource Names (ARNs) of the security groups that are used to
-	// configure the FSx for Windows File Server file system.
+	// The ARNs of the security groups that are used to configure the FSx for Windows
+	// File Server file system.
 	//
 	// SecurityGroupArns is a required field
 	SecurityGroupArns []*string `min:"1" type:"list" required:"true"`
@@ -4420,7 +4727,7 @@ type CreateLocationFsxWindowsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the FSx for Windows File Server file system
-	// location that is created.
+	// location you created.
 	LocationArn *string `type:"string"`
 }
 
@@ -4732,7 +5039,7 @@ type CreateLocationNfsInput struct {
 
 	// The name of the NFS server. This value is the IP address or Domain Name Service
 	// (DNS) name of the NFS server. An agent that is installed on-premises uses
-	// this host name to mount the NFS server in a network.
+	// this hostname to mount the NFS server in a network.
 	//
 	// If you are copying data to or from your Snowcone device, see NFS Server on
 	// Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
@@ -4926,7 +5233,7 @@ type CreateLocationObjectStorageInput struct {
 
 	// The name of the self-managed object storage server. This value is the IP
 	// address or Domain Name Service (DNS) name of the object storage server. An
-	// agent uses this host name to mount the object storage server in a network.
+	// agent uses this hostname to mount the object storage server in a network.
 	//
 	// ServerHostname is a required field
 	ServerHostname *string `type:"string" required:"true"`
@@ -5103,9 +5410,9 @@ func (s *CreateLocationObjectStorageOutput) SetLocationArn(v string) *CreateLoca
 type CreateLocationS3Input struct {
 	_ struct{} `type:"structure"`
 
-	// If you are using DataSync on an Amazon Web Services Outpost, specify the
-	// Amazon Resource Names (ARNs) of the DataSync agents deployed on your Outpost.
-	// For more information about launching a DataSync agent on an Amazon Web Services
+	// If you're using DataSync on an Amazon Web Services Outpost, specify the Amazon
+	// Resource Names (ARNs) of the DataSync agents deployed on your Outpost. For
+	// more information about launching a DataSync agent on an Amazon Web Services
 	// Outpost, see Deploy your DataSync agent on Outposts (https://docs.aws.amazon.com/datasync/latest/userguide/deploy-agents.html#outposts-agent).
 	AgentArns []*string `min:"1" type:"list"`
 
@@ -5116,7 +5423,7 @@ type CreateLocationS3Input struct {
 	S3BucketArn *string `type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
-	// role that is used to access an Amazon S3 bucket.
+	// role used to access an Amazon S3 bucket.
 	//
 	// For detailed information about using such a role, see Creating a Location
 	// for Amazon S3 in the DataSync User Guide.
@@ -6072,10 +6379,10 @@ type DescribeLocationEfsOutput struct {
 	// The time that the EFS location was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The subnet and the security group that DataSync uses to access target EFS
-	// file system. The subnet must have at least one mount target for that file
-	// system. The security group that you provide needs to be able to communicate
-	// with the security group on the mount target in the subnet specified.
+	// The subnet that DataSync uses to access target EFS file system. The subnet
+	// must have at least one mount target for that file system. The security group
+	// that you provide needs to be able to communicate with the security group
+	// on the mount target in the subnet specified.
 	Ec2Config *Ec2Config `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the EFS location that was described.
@@ -6228,6 +6535,123 @@ func (s *DescribeLocationFsxLustreOutput) SetLocationUri(v string) *DescribeLoca
 
 // SetSecurityGroupArns sets the SecurityGroupArns field's value.
 func (s *DescribeLocationFsxLustreOutput) SetSecurityGroupArns(v []*string) *DescribeLocationFsxLustreOutput {
+	s.SecurityGroupArns = v
+	return s
+}
+
+type DescribeLocationFsxOpenZfsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the FSx for OpenZFS location to describe.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxOpenZfsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxOpenZfsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeLocationFsxOpenZfsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeLocationFsxOpenZfsInput"}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationFsxOpenZfsInput) SetLocationArn(v string) *DescribeLocationFsxOpenZfsInput {
+	s.LocationArn = &v
+	return s
+}
+
+type DescribeLocationFsxOpenZfsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time that the FSx for OpenZFS location was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The ARN of the FSx for OpenZFS location that was described.
+	LocationArn *string `type:"string"`
+
+	// The uniform resource identifier (URI) of the FSx for OpenZFS location that
+	// was described.
+	//
+	// Example: fsxz://us-west-2.fs-1234567890abcdef02/fsx/folderA/folder
+	LocationUri *string `type:"string"`
+
+	// The type of protocol that DataSync uses to access your file system.
+	Protocol *FsxProtocol `type:"structure"`
+
+	// The ARNs of the security groups that are configured for the FSx for OpenZFS
+	// file system.
+	SecurityGroupArns []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxOpenZfsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxOpenZfsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeLocationFsxOpenZfsOutput) SetCreationTime(v time.Time) *DescribeLocationFsxOpenZfsOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationFsxOpenZfsOutput) SetLocationArn(v string) *DescribeLocationFsxOpenZfsOutput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetLocationUri sets the LocationUri field's value.
+func (s *DescribeLocationFsxOpenZfsOutput) SetLocationUri(v string) *DescribeLocationFsxOpenZfsOutput {
+	s.LocationUri = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *DescribeLocationFsxOpenZfsOutput) SetProtocol(v *FsxProtocol) *DescribeLocationFsxOpenZfsOutput {
+	s.Protocol = v
+	return s
+}
+
+// SetSecurityGroupArns sets the SecurityGroupArns field's value.
+func (s *DescribeLocationFsxOpenZfsOutput) SetSecurityGroupArns(v []*string) *DescribeLocationFsxOpenZfsOutput {
 	s.SecurityGroupArns = v
 	return s
 }
@@ -6866,7 +7290,7 @@ type DescribeLocationS3Output struct {
 	LocationUri *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
-	// role that is used to access an Amazon S3 bucket.
+	// role used to access an Amazon S3 bucket.
 	//
 	// For detailed information about using such a role, see Creating a Location
 	// for Amazon S3 in the DataSync User Guide.
@@ -7528,10 +7952,10 @@ func (s *DescribeTaskOutput) SetTaskArn(v string) *DescribeTaskOutput {
 	return s
 }
 
-// The subnet and the security group that DataSync uses to access target EFS
-// file system. The subnet must have at least one mount target for that file
-// system. The security group that you provide needs to be able to communicate
-// with the security group on the mount target in the subnet specified.
+// The subnet that DataSync uses to access target EFS file system. The subnet
+// must have at least one mount target for that file system. The security group
+// that you provide needs to be able to communicate with the security group
+// on the mount target in the subnet specified.
 type Ec2Config struct {
 	_ struct{} `type:"structure"`
 
@@ -7541,8 +7965,7 @@ type Ec2Config struct {
 	// SecurityGroupArns is a required field
 	SecurityGroupArns []*string `min:"1" type:"list" required:"true"`
 
-	// The ARN of the subnet and the security group that DataSync uses to access
-	// the target EFS file system.
+	// The ARN of the subnet that DataSync uses to access the target EFS file system.
 	//
 	// SubnetArn is a required field
 	SubnetArn *string `type:"string" required:"true"`
@@ -7638,6 +8061,74 @@ func (s *FilterRule) SetFilterType(v string) *FilterRule {
 // SetValue sets the Value field's value.
 func (s *FilterRule) SetValue(v string) *FilterRule {
 	s.Value = &v
+	return s
+}
+
+// Represents the protocol that DataSync uses to access your Amazon FSx for
+// OpenZFS file system.
+type FsxProtocol struct {
+	_ struct{} `type:"structure"`
+
+	// Represents the Network File System (NFS) protocol that DataSync uses to access
+	// your FSx for OpenZFS file system.
+	NFS *FsxProtocolNfs `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FsxProtocol) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FsxProtocol) GoString() string {
+	return s.String()
+}
+
+// SetNFS sets the NFS field's value.
+func (s *FsxProtocol) SetNFS(v *FsxProtocolNfs) *FsxProtocol {
+	s.NFS = v
+	return s
+}
+
+// Represents the Network File System (NFS) protocol that DataSync uses to access
+// your Amazon FSx for OpenZFS file system.
+type FsxProtocolNfs struct {
+	_ struct{} `type:"structure"`
+
+	// Represents the mount options that are available for DataSync to access an
+	// NFS location.
+	MountOptions *NfsMountOptions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FsxProtocolNfs) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FsxProtocolNfs) GoString() string {
+	return s.String()
+}
+
+// SetMountOptions sets the MountOptions field's value.
+func (s *FsxProtocolNfs) SetMountOptions(v *NfsMountOptions) *FsxProtocolNfs {
+	s.MountOptions = v
 	return s
 }
 
@@ -8459,12 +8950,12 @@ type LocationListEntry struct {
 	//
 	// Format: TYPE://GLOBAL_ID/SUBDIR.
 	//
-	// TYPE designates the type of location. Valid values: NFS | EFS | S3.
+	// TYPE designates the type of location (for example, nfs or s3).
 	//
 	// GLOBAL_ID is the globally unique identifier of the resource that backs the
 	// location. An example for EFS is us-east-2.fs-abcd1234. An example for Amazon
 	// S3 is the bucket name, such as myBucket. An example for NFS is a valid IPv4
-	// address or a host name compliant with Domain Name Service (DNS).
+	// address or a hostname that is compliant with Domain Name Service (DNS).
 	//
 	// SUBDIR is a valid file system path, delimited by forward slashes as is the
 	// *nix convention. For NFS and Amazon EFS, it's the export path to mount the
@@ -9051,16 +9542,14 @@ func (s *QopConfiguration) SetRpcProtection(v string) *QopConfiguration {
 }
 
 // The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
-// role that is used to access an Amazon S3 bucket.
+// role used to access an Amazon S3 bucket.
 //
 // For detailed information about using such a role, see Creating a Location
 // for Amazon S3 in the DataSync User Guide.
 type S3Config struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon S3 bucket to access. This bucket is used as a parameter in the
-	// CreateLocationS3 (https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateLocationS3.html)
-	// operation.
+	// The ARN of the IAM role for accessing the S3 bucket.
 	//
 	// BucketAccessRoleArn is a required field
 	BucketAccessRoleArn *string `type:"string" required:"true"`
@@ -9942,14 +10431,14 @@ type UpdateLocationHdfsInput struct {
 
 	// The Kerberos key table (keytab) that contains mappings between the defined
 	// Kerberos principal and the encrypted keys. You can load the keytab from a
-	// file by providing the file's address. If you use the AWS CLI, it performs
-	// base64 encoding for you. Otherwise, provide the base64-encoded text.
+	// file by providing the file's address. If you use the CLI, it performs base64
+	// encoding for you. Otherwise, provide the base64-encoded text.
 	// KerberosKeytab is automatically base64 encoded/decoded by the SDK.
 	KerberosKeytab []byte `type:"blob"`
 
 	// The krb5.conf file that contains the Kerberos configuration information.
 	// You can load the krb5.conf file by providing the file's address. If you're
-	// using the AWS CLI, it performs the base64 encoding for you. Otherwise, provide
+	// using the CLI, it performs the base64 encoding for you. Otherwise, provide
 	// the base64-encoded text.
 	// KerberosKrb5Conf is automatically base64 encoded/decoded by the SDK.
 	KerberosKrb5Conf []byte `type:"blob"`

@@ -8216,6 +8216,9 @@ type AwsAutoScalingAutoScalingGroupDetails struct {
 	// The list of Availability Zones for the automatic scaling group.
 	AvailabilityZones []*AwsAutoScalingAutoScalingGroupAvailabilityZonesListDetails `type:"list"`
 
+	// Indicates whether capacity rebalancing is enabled.
+	CapacityRebalance *bool `type:"boolean"`
+
 	// Indicates when the auto scaling group was created.
 	//
 	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
@@ -8232,6 +8235,9 @@ type AwsAutoScalingAutoScalingGroupDetails struct {
 
 	// The name of the launch configuration.
 	LaunchConfigurationName *string `type:"string"`
+
+	// The launch template to use.
+	LaunchTemplate *AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification `type:"structure"`
 
 	// The list of load balancers associated with the group.
 	LoadBalancerNames []*string `type:"list"`
@@ -8264,6 +8270,12 @@ func (s *AwsAutoScalingAutoScalingGroupDetails) SetAvailabilityZones(v []*AwsAut
 	return s
 }
 
+// SetCapacityRebalance sets the CapacityRebalance field's value.
+func (s *AwsAutoScalingAutoScalingGroupDetails) SetCapacityRebalance(v bool) *AwsAutoScalingAutoScalingGroupDetails {
+	s.CapacityRebalance = &v
+	return s
+}
+
 // SetCreatedTime sets the CreatedTime field's value.
 func (s *AwsAutoScalingAutoScalingGroupDetails) SetCreatedTime(v string) *AwsAutoScalingAutoScalingGroupDetails {
 	s.CreatedTime = &v
@@ -8288,6 +8300,12 @@ func (s *AwsAutoScalingAutoScalingGroupDetails) SetLaunchConfigurationName(v str
 	return s
 }
 
+// SetLaunchTemplate sets the LaunchTemplate field's value.
+func (s *AwsAutoScalingAutoScalingGroupDetails) SetLaunchTemplate(v *AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification) *AwsAutoScalingAutoScalingGroupDetails {
+	s.LaunchTemplate = v
+	return s
+}
+
 // SetLoadBalancerNames sets the LoadBalancerNames field's value.
 func (s *AwsAutoScalingAutoScalingGroupDetails) SetLoadBalancerNames(v []*string) *AwsAutoScalingAutoScalingGroupDetails {
 	s.LoadBalancerNames = v
@@ -8297,6 +8315,59 @@ func (s *AwsAutoScalingAutoScalingGroupDetails) SetLoadBalancerNames(v []*string
 // SetMixedInstancesPolicy sets the MixedInstancesPolicy field's value.
 func (s *AwsAutoScalingAutoScalingGroupDetails) SetMixedInstancesPolicy(v *AwsAutoScalingAutoScalingGroupMixedInstancesPolicyDetails) *AwsAutoScalingAutoScalingGroupDetails {
 	s.MixedInstancesPolicy = v
+	return s
+}
+
+// Details about the launch template to use.
+type AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the launch template. You must specify either LaunchTemplateId
+	// or LaunchTemplateName.
+	LaunchTemplateId *string `type:"string"`
+
+	// The name of the launch template. You must specify either LaunchTemplateId
+	// or LaunchTemplateName.
+	LaunchTemplateName *string `type:"string"`
+
+	// Identifies the version of the launch template. You can specify a version
+	// identifier, or use the values $Latest or $Default.
+	Version *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification) GoString() string {
+	return s.String()
+}
+
+// SetLaunchTemplateId sets the LaunchTemplateId field's value.
+func (s *AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification) SetLaunchTemplateId(v string) *AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification {
+	s.LaunchTemplateId = &v
+	return s
+}
+
+// SetLaunchTemplateName sets the LaunchTemplateName field's value.
+func (s *AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification) SetLaunchTemplateName(v string) *AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification {
+	s.LaunchTemplateName = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification) SetVersion(v string) *AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification {
+	s.Version = &v
 	return s
 }
 
@@ -8428,7 +8499,7 @@ func (s *AwsAutoScalingAutoScalingGroupMixedInstancesPolicyInstancesDistribution
 type AwsAutoScalingAutoScalingGroupMixedInstancesPolicyLaunchTemplateDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The launch template to use.
+	// The launch template to use for a mixed instances policy.
 	LaunchTemplateSpecification *AwsAutoScalingAutoScalingGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecification `type:"structure"`
 
 	// Property values to use to override the values in the launch template.
@@ -8465,7 +8536,7 @@ func (s *AwsAutoScalingAutoScalingGroupMixedInstancesPolicyLaunchTemplateDetails
 	return s
 }
 
-// Details about the launch template to use.
+// Details about the launch template to use for a mixed instances policy.
 type AwsAutoScalingAutoScalingGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecification struct {
 	_ struct{} `type:"structure"`
 
@@ -10594,6 +10665,9 @@ type AwsCodeBuildProjectDetails struct {
 	// The name of the build project.
 	Name *string `type:"string"`
 
+	// Information about the secondary artifacts for the CodeBuild project.
+	SecondaryArtifacts []*AwsCodeBuildProjectArtifactsDetails `type:"list"`
+
 	// The ARN of the IAM role that enables CodeBuild to interact with dependent
 	// Amazon Web Services services on behalf of the Amazon Web Services account.
 	ServiceRole *string `type:"string"`
@@ -10650,6 +10724,12 @@ func (s *AwsCodeBuildProjectDetails) SetLogsConfig(v *AwsCodeBuildProjectLogsCon
 // SetName sets the Name field's value.
 func (s *AwsCodeBuildProjectDetails) SetName(v string) *AwsCodeBuildProjectDetails {
 	s.Name = &v
+	return s
+}
+
+// SetSecondaryArtifacts sets the SecondaryArtifacts field's value.
+func (s *AwsCodeBuildProjectDetails) SetSecondaryArtifacts(v []*AwsCodeBuildProjectArtifactsDetails) *AwsCodeBuildProjectDetails {
+	s.SecondaryArtifacts = v
 	return s
 }
 
@@ -18983,6 +19063,47 @@ func (s *AwsElbLoadBalancerAccessLog) SetS3BucketPrefix(v string) *AwsElbLoadBal
 	return s
 }
 
+// Provides information about additional attributes for the load balancer.
+type AwsElbLoadBalancerAdditionalAttribute struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the attribute.
+	Key *string `type:"string"`
+
+	// The value of the attribute.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsElbLoadBalancerAdditionalAttribute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsElbLoadBalancerAdditionalAttribute) GoString() string {
+	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *AwsElbLoadBalancerAdditionalAttribute) SetKey(v string) *AwsElbLoadBalancerAdditionalAttribute {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AwsElbLoadBalancerAdditionalAttribute) SetValue(v string) *AwsElbLoadBalancerAdditionalAttribute {
+	s.Value = &v
+	return s
+}
+
 // Contains attributes for the load balancer.
 type AwsElbLoadBalancerAttributes struct {
 	_ struct{} `type:"structure"`
@@ -18992,6 +19113,9 @@ type AwsElbLoadBalancerAttributes struct {
 	// If the access log is enabled, the load balancer captures detailed information
 	// about all requests. It delivers the information to a specified S3 bucket.
 	AccessLog *AwsElbLoadBalancerAccessLog `type:"structure"`
+
+	// Any additional attributes for a load balancer.
+	AdditionalAttributes []*AwsElbLoadBalancerAdditionalAttribute `type:"list"`
 
 	// Information about the connection draining configuration for the load balancer.
 	//
@@ -19035,6 +19159,12 @@ func (s AwsElbLoadBalancerAttributes) GoString() string {
 // SetAccessLog sets the AccessLog field's value.
 func (s *AwsElbLoadBalancerAttributes) SetAccessLog(v *AwsElbLoadBalancerAccessLog) *AwsElbLoadBalancerAttributes {
 	s.AccessLog = v
+	return s
+}
+
+// SetAdditionalAttributes sets the AdditionalAttributes field's value.
+func (s *AwsElbLoadBalancerAttributes) SetAdditionalAttributes(v []*AwsElbLoadBalancerAdditionalAttribute) *AwsElbLoadBalancerAttributes {
+	s.AdditionalAttributes = v
 	return s
 }
 
@@ -24498,6 +24628,193 @@ func (s *AwsRdsDbProcessorFeature) SetValue(v string) *AwsRdsDbProcessorFeature 
 	return s
 }
 
+// Provides information about an Amazon RDS DB security group.
+type AwsRdsDbSecurityGroupDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN for the DB security group.
+	DbSecurityGroupArn *string `type:"string"`
+
+	// Provides the description of the DB security group.
+	DbSecurityGroupDescription *string `type:"string"`
+
+	// Specifies the name of the DB security group.
+	DbSecurityGroupName *string `type:"string"`
+
+	// Contains a list of EC2 security groups.
+	Ec2SecurityGroups []*AwsRdsDbSecurityGroupEc2SecurityGroup `type:"list"`
+
+	// Contains a list of IP ranges.
+	IpRanges []*AwsRdsDbSecurityGroupIpRange `type:"list"`
+
+	// Provides the Amazon Web Services ID of the owner of a specific DB security
+	// group.
+	OwnerId *string `type:"string"`
+
+	// Provides VPC ID associated with the DB security group.
+	VpcId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRdsDbSecurityGroupDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRdsDbSecurityGroupDetails) GoString() string {
+	return s.String()
+}
+
+// SetDbSecurityGroupArn sets the DbSecurityGroupArn field's value.
+func (s *AwsRdsDbSecurityGroupDetails) SetDbSecurityGroupArn(v string) *AwsRdsDbSecurityGroupDetails {
+	s.DbSecurityGroupArn = &v
+	return s
+}
+
+// SetDbSecurityGroupDescription sets the DbSecurityGroupDescription field's value.
+func (s *AwsRdsDbSecurityGroupDetails) SetDbSecurityGroupDescription(v string) *AwsRdsDbSecurityGroupDetails {
+	s.DbSecurityGroupDescription = &v
+	return s
+}
+
+// SetDbSecurityGroupName sets the DbSecurityGroupName field's value.
+func (s *AwsRdsDbSecurityGroupDetails) SetDbSecurityGroupName(v string) *AwsRdsDbSecurityGroupDetails {
+	s.DbSecurityGroupName = &v
+	return s
+}
+
+// SetEc2SecurityGroups sets the Ec2SecurityGroups field's value.
+func (s *AwsRdsDbSecurityGroupDetails) SetEc2SecurityGroups(v []*AwsRdsDbSecurityGroupEc2SecurityGroup) *AwsRdsDbSecurityGroupDetails {
+	s.Ec2SecurityGroups = v
+	return s
+}
+
+// SetIpRanges sets the IpRanges field's value.
+func (s *AwsRdsDbSecurityGroupDetails) SetIpRanges(v []*AwsRdsDbSecurityGroupIpRange) *AwsRdsDbSecurityGroupDetails {
+	s.IpRanges = v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *AwsRdsDbSecurityGroupDetails) SetOwnerId(v string) *AwsRdsDbSecurityGroupDetails {
+	s.OwnerId = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *AwsRdsDbSecurityGroupDetails) SetVpcId(v string) *AwsRdsDbSecurityGroupDetails {
+	s.VpcId = &v
+	return s
+}
+
+// EC2 security group information for an RDS DB security group.
+type AwsRdsDbSecurityGroupEc2SecurityGroup struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the ID for the EC2 security group.
+	Ec2SecurityGroupId *string `type:"string"`
+
+	// Specifies the name of the EC2 security group.
+	Ec2SecurityGroupName *string `type:"string"`
+
+	// Provides the Amazon Web Services ID of the owner of the EC2 security group.
+	Ec2SecurityGroupOwnerId *string `type:"string"`
+
+	// Provides the status of the EC2 security group.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRdsDbSecurityGroupEc2SecurityGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRdsDbSecurityGroupEc2SecurityGroup) GoString() string {
+	return s.String()
+}
+
+// SetEc2SecurityGroupId sets the Ec2SecurityGroupId field's value.
+func (s *AwsRdsDbSecurityGroupEc2SecurityGroup) SetEc2SecurityGroupId(v string) *AwsRdsDbSecurityGroupEc2SecurityGroup {
+	s.Ec2SecurityGroupId = &v
+	return s
+}
+
+// SetEc2SecurityGroupName sets the Ec2SecurityGroupName field's value.
+func (s *AwsRdsDbSecurityGroupEc2SecurityGroup) SetEc2SecurityGroupName(v string) *AwsRdsDbSecurityGroupEc2SecurityGroup {
+	s.Ec2SecurityGroupName = &v
+	return s
+}
+
+// SetEc2SecurityGroupOwnerId sets the Ec2SecurityGroupOwnerId field's value.
+func (s *AwsRdsDbSecurityGroupEc2SecurityGroup) SetEc2SecurityGroupOwnerId(v string) *AwsRdsDbSecurityGroupEc2SecurityGroup {
+	s.Ec2SecurityGroupOwnerId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsRdsDbSecurityGroupEc2SecurityGroup) SetStatus(v string) *AwsRdsDbSecurityGroupEc2SecurityGroup {
+	s.Status = &v
+	return s
+}
+
+// IP range information for an RDS DB security group.
+type AwsRdsDbSecurityGroupIpRange struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the IP range.
+	CidrIp *string `type:"string"`
+
+	// Specifies the status of the IP range.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRdsDbSecurityGroupIpRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRdsDbSecurityGroupIpRange) GoString() string {
+	return s.String()
+}
+
+// SetCidrIp sets the CidrIp field's value.
+func (s *AwsRdsDbSecurityGroupIpRange) SetCidrIp(v string) *AwsRdsDbSecurityGroupIpRange {
+	s.CidrIp = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsRdsDbSecurityGroupIpRange) SetStatus(v string) *AwsRdsDbSecurityGroupIpRange {
+	s.Status = &v
+	return s
+}
+
 // Provides details about an Amazon RDS DB cluster snapshot.
 type AwsRdsDbSnapshotDetails struct {
 	_ struct{} `type:"structure"`
@@ -25601,6 +25918,9 @@ type AwsRedshiftClusterDetails struct {
 	// the cluster.
 	KmsKeyId *string `type:"string"`
 
+	// Information about the logging status of the cluster.
+	LoggingStatus *AwsRedshiftClusterLoggingStatus `type:"structure"`
+
 	// The name of the maintenance track for the cluster.
 	MaintenanceTrackName *string `type:"string"`
 
@@ -25850,6 +26170,12 @@ func (s *AwsRedshiftClusterDetails) SetIamRoles(v []*AwsRedshiftClusterIamRole) 
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *AwsRedshiftClusterDetails) SetKmsKeyId(v string) *AwsRedshiftClusterDetails {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetLoggingStatus sets the LoggingStatus field's value.
+func (s *AwsRedshiftClusterDetails) SetLoggingStatus(v *AwsRedshiftClusterLoggingStatus) *AwsRedshiftClusterDetails {
+	s.LoggingStatus = v
 	return s
 }
 
@@ -26131,6 +26457,91 @@ func (s *AwsRedshiftClusterIamRole) SetApplyStatus(v string) *AwsRedshiftCluster
 // SetIamRoleArn sets the IamRoleArn field's value.
 func (s *AwsRedshiftClusterIamRole) SetIamRoleArn(v string) *AwsRedshiftClusterIamRole {
 	s.IamRoleArn = &v
+	return s
+}
+
+// Provides information about the logging status of the cluster.
+type AwsRedshiftClusterLoggingStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the S3 bucket where the log files are stored.
+	BucketName *string `type:"string"`
+
+	// The message indicating that the logs failed to be delivered.
+	LastFailureMessage *string `type:"string"`
+
+	// The last time when logs failed to be delivered.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	LastFailureTime *string `type:"string"`
+
+	// The last time that logs were delivered successfully.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	LastSuccessfulDeliveryTime *string `type:"string"`
+
+	// Indicates whether logging is enabled.
+	LoggingEnabled *bool `type:"boolean"`
+
+	// Provides the prefix applied to the log file names.
+	S3KeyPrefix *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRedshiftClusterLoggingStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsRedshiftClusterLoggingStatus) GoString() string {
+	return s.String()
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *AwsRedshiftClusterLoggingStatus) SetBucketName(v string) *AwsRedshiftClusterLoggingStatus {
+	s.BucketName = &v
+	return s
+}
+
+// SetLastFailureMessage sets the LastFailureMessage field's value.
+func (s *AwsRedshiftClusterLoggingStatus) SetLastFailureMessage(v string) *AwsRedshiftClusterLoggingStatus {
+	s.LastFailureMessage = &v
+	return s
+}
+
+// SetLastFailureTime sets the LastFailureTime field's value.
+func (s *AwsRedshiftClusterLoggingStatus) SetLastFailureTime(v string) *AwsRedshiftClusterLoggingStatus {
+	s.LastFailureTime = &v
+	return s
+}
+
+// SetLastSuccessfulDeliveryTime sets the LastSuccessfulDeliveryTime field's value.
+func (s *AwsRedshiftClusterLoggingStatus) SetLastSuccessfulDeliveryTime(v string) *AwsRedshiftClusterLoggingStatus {
+	s.LastSuccessfulDeliveryTime = &v
+	return s
+}
+
+// SetLoggingEnabled sets the LoggingEnabled field's value.
+func (s *AwsRedshiftClusterLoggingStatus) SetLoggingEnabled(v bool) *AwsRedshiftClusterLoggingStatus {
+	s.LoggingEnabled = &v
+	return s
+}
+
+// SetS3KeyPrefix sets the S3KeyPrefix field's value.
+func (s *AwsRedshiftClusterLoggingStatus) SetS3KeyPrefix(v string) *AwsRedshiftClusterLoggingStatus {
+	s.S3KeyPrefix = &v
 	return s
 }
 
@@ -38795,6 +39206,9 @@ type ResourceDetails struct {
 	// Details about an Amazon RDS database instance.
 	AwsRdsDbInstance *AwsRdsDbInstanceDetails `type:"structure"`
 
+	// Details about an Amazon RDS DB security group.
+	AwsRdsDbSecurityGroup *AwsRdsDbSecurityGroupDetails `type:"structure"`
+
 	// Details about an Amazon RDS database snapshot.
 	AwsRdsDbSnapshot *AwsRdsDbSnapshotDetails `type:"structure"`
 
@@ -39160,6 +39574,12 @@ func (s *ResourceDetails) SetAwsRdsDbClusterSnapshot(v *AwsRdsDbClusterSnapshotD
 // SetAwsRdsDbInstance sets the AwsRdsDbInstance field's value.
 func (s *ResourceDetails) SetAwsRdsDbInstance(v *AwsRdsDbInstanceDetails) *ResourceDetails {
 	s.AwsRdsDbInstance = v
+	return s
+}
+
+// SetAwsRdsDbSecurityGroup sets the AwsRdsDbSecurityGroup field's value.
+func (s *ResourceDetails) SetAwsRdsDbSecurityGroup(v *AwsRdsDbSecurityGroupDetails) *ResourceDetails {
+	s.AwsRdsDbSecurityGroup = v
 	return s
 }
 

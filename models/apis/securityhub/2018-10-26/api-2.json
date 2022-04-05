@@ -1211,7 +1211,17 @@
         "HealthCheckGracePeriod":{"shape":"Integer"},
         "CreatedTime":{"shape":"NonEmptyString"},
         "MixedInstancesPolicy":{"shape":"AwsAutoScalingAutoScalingGroupMixedInstancesPolicyDetails"},
-        "AvailabilityZones":{"shape":"AwsAutoScalingAutoScalingGroupAvailabilityZonesList"}
+        "AvailabilityZones":{"shape":"AwsAutoScalingAutoScalingGroupAvailabilityZonesList"},
+        "LaunchTemplate":{"shape":"AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification"},
+        "CapacityRebalance":{"shape":"Boolean"}
+      }
+    },
+    "AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification":{
+      "type":"structure",
+      "members":{
+        "LaunchTemplateId":{"shape":"NonEmptyString"},
+        "LaunchTemplateName":{"shape":"NonEmptyString"},
+        "Version":{"shape":"NonEmptyString"}
       }
     },
     "AwsAutoScalingAutoScalingGroupMixedInstancesPolicyDetails":{
@@ -1573,7 +1583,8 @@
         "Source":{"shape":"AwsCodeBuildProjectSource"},
         "ServiceRole":{"shape":"NonEmptyString"},
         "LogsConfig":{"shape":"AwsCodeBuildProjectLogsConfigDetails"},
-        "VpcConfig":{"shape":"AwsCodeBuildProjectVpcConfig"}
+        "VpcConfig":{"shape":"AwsCodeBuildProjectVpcConfig"},
+        "SecondaryArtifacts":{"shape":"AwsCodeBuildProjectArtifactsList"}
       }
     },
     "AwsCodeBuildProjectEnvironment":{
@@ -2966,13 +2977,25 @@
         "S3BucketPrefix":{"shape":"NonEmptyString"}
       }
     },
+    "AwsElbLoadBalancerAdditionalAttribute":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"NonEmptyString"},
+        "Value":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsElbLoadBalancerAdditionalAttributeList":{
+      "type":"list",
+      "member":{"shape":"AwsElbLoadBalancerAdditionalAttribute"}
+    },
     "AwsElbLoadBalancerAttributes":{
       "type":"structure",
       "members":{
         "AccessLog":{"shape":"AwsElbLoadBalancerAccessLog"},
         "ConnectionDraining":{"shape":"AwsElbLoadBalancerConnectionDraining"},
         "ConnectionSettings":{"shape":"AwsElbLoadBalancerConnectionSettings"},
-        "CrossZoneLoadBalancing":{"shape":"AwsElbLoadBalancerCrossZoneLoadBalancing"}
+        "CrossZoneLoadBalancing":{"shape":"AwsElbLoadBalancerCrossZoneLoadBalancing"},
+        "AdditionalAttributes":{"shape":"AwsElbLoadBalancerAdditionalAttributeList"}
       }
     },
     "AwsElbLoadBalancerBackendServerDescription":{
@@ -3813,6 +3836,42 @@
       "type":"list",
       "member":{"shape":"AwsRdsDbProcessorFeature"}
     },
+    "AwsRdsDbSecurityGroupDetails":{
+      "type":"structure",
+      "members":{
+        "DbSecurityGroupArn":{"shape":"NonEmptyString"},
+        "DbSecurityGroupDescription":{"shape":"NonEmptyString"},
+        "DbSecurityGroupName":{"shape":"NonEmptyString"},
+        "Ec2SecurityGroups":{"shape":"AwsRdsDbSecurityGroupEc2SecurityGroups"},
+        "IpRanges":{"shape":"AwsRdsDbSecurityGroupIpRanges"},
+        "OwnerId":{"shape":"NonEmptyString"},
+        "VpcId":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsRdsDbSecurityGroupEc2SecurityGroup":{
+      "type":"structure",
+      "members":{
+        "Ec2SecurityGroupId":{"shape":"NonEmptyString"},
+        "Ec2SecurityGroupName":{"shape":"NonEmptyString"},
+        "Ec2SecurityGroupOwnerId":{"shape":"NonEmptyString"},
+        "Status":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsRdsDbSecurityGroupEc2SecurityGroups":{
+      "type":"list",
+      "member":{"shape":"AwsRdsDbSecurityGroupEc2SecurityGroup"}
+    },
+    "AwsRdsDbSecurityGroupIpRange":{
+      "type":"structure",
+      "members":{
+        "CidrIp":{"shape":"NonEmptyString"},
+        "Status":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsRdsDbSecurityGroupIpRanges":{
+      "type":"list",
+      "member":{"shape":"AwsRdsDbSecurityGroupIpRange"}
+    },
     "AwsRdsDbSnapshotDetails":{
       "type":"structure",
       "members":{
@@ -4022,7 +4081,8 @@
         "SnapshotScheduleIdentifier":{"shape":"NonEmptyString"},
         "SnapshotScheduleState":{"shape":"NonEmptyString"},
         "VpcId":{"shape":"NonEmptyString"},
-        "VpcSecurityGroups":{"shape":"AwsRedshiftClusterVpcSecurityGroups"}
+        "VpcSecurityGroups":{"shape":"AwsRedshiftClusterVpcSecurityGroups"},
+        "LoggingStatus":{"shape":"AwsRedshiftClusterLoggingStatus"}
       }
     },
     "AwsRedshiftClusterElasticIpStatus":{
@@ -4057,6 +4117,17 @@
     "AwsRedshiftClusterIamRoles":{
       "type":"list",
       "member":{"shape":"AwsRedshiftClusterIamRole"}
+    },
+    "AwsRedshiftClusterLoggingStatus":{
+      "type":"structure",
+      "members":{
+        "BucketName":{"shape":"NonEmptyString"},
+        "LastFailureMessage":{"shape":"NonEmptyString"},
+        "LastFailureTime":{"shape":"NonEmptyString"},
+        "LastSuccessfulDeliveryTime":{"shape":"NonEmptyString"},
+        "LoggingEnabled":{"shape":"Boolean"},
+        "S3KeyPrefix":{"shape":"NonEmptyString"}
+      }
     },
     "AwsRedshiftClusterPendingModifiedValues":{
       "type":"structure",
@@ -6410,7 +6481,8 @@
         "AwsEksCluster":{"shape":"AwsEksClusterDetails"},
         "AwsNetworkFirewallFirewallPolicy":{"shape":"AwsNetworkFirewallFirewallPolicyDetails"},
         "AwsNetworkFirewallFirewall":{"shape":"AwsNetworkFirewallFirewallDetails"},
-        "AwsNetworkFirewallRuleGroup":{"shape":"AwsNetworkFirewallRuleGroupDetails"}
+        "AwsNetworkFirewallRuleGroup":{"shape":"AwsNetworkFirewallRuleGroupDetails"},
+        "AwsRdsDbSecurityGroup":{"shape":"AwsRdsDbSecurityGroupDetails"}
       }
     },
     "ResourceList":{

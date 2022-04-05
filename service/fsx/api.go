@@ -12610,6 +12610,10 @@ type FileSystem struct {
 	//
 	//    * MISCONFIGURED - The file system is in a failed but recoverable state.
 	//
+	//    * MISCONFIGURED_UNAVAILABLE - (Amazon FSx for Windows File Server only)
+	//    The file system is currently unavailable due to a change in your Active
+	//    Directory configuration.
+	//
 	//    * UPDATING - The file system is undergoing a customer-initiated update.
 	Lifecycle *string `type:"string" enum:"FileSystemLifecycle"`
 
@@ -15685,9 +15689,9 @@ type RestoreVolumeFromSnapshotInput struct {
 	//    state and the specified snapshot. If there are intermediate snapshots
 	//    and this option isn't used, RestoreVolumeFromSnapshot fails.
 	//
-	//    * DELETE_CLONED_VOLUMES - Deletes any volumes cloned from this volume.
-	//    If there are any cloned volumes and this option isn't used, RestoreVolumeFromSnapshot
-	//    fails.
+	//    * DELETE_CLONED_VOLUMES - Deletes any dependent clone volumes created
+	//    from intermediate snapshots. If there are any dependent clone volumes
+	//    and this option isn't used, RestoreVolumeFromSnapshot fails.
 	Options []*string `type:"list" enum:"RestoreOpenZFSVolumeOption"`
 
 	// The ID of the source snapshot. Specifies the snapshot that you are restoring
@@ -17829,8 +17833,8 @@ type UpdateFileSystemOntapConfiguration struct {
 	FsxAdminPassword *string `min:"8" type:"string" sensitive:"true"`
 
 	// Specifies the throughput of an FSx for NetApp ONTAP file system, measured
-	// in megabytes per second (MBps). Valid values are 64, 128, 256, 512, 1024,
-	// 2048, 3072, or 4096 MB/s.
+	// in megabytes per second (MBps). Valid values are 128, 256, 512, 1024, or
+	// 2048 MB/s.
 	ThroughputCapacity *int64 `min:"8" type:"integer"`
 
 	// A recurring weekly time, in the format D:HH:MM.
@@ -19983,6 +19987,9 @@ const (
 
 	// FileSystemLifecycleUpdating is a FileSystemLifecycle enum value
 	FileSystemLifecycleUpdating = "UPDATING"
+
+	// FileSystemLifecycleMisconfiguredUnavailable is a FileSystemLifecycle enum value
+	FileSystemLifecycleMisconfiguredUnavailable = "MISCONFIGURED_UNAVAILABLE"
 )
 
 // FileSystemLifecycle_Values returns all elements of the FileSystemLifecycle enum
@@ -19994,6 +20001,7 @@ func FileSystemLifecycle_Values() []string {
 		FileSystemLifecycleDeleting,
 		FileSystemLifecycleMisconfigured,
 		FileSystemLifecycleUpdating,
+		FileSystemLifecycleMisconfiguredUnavailable,
 	}
 }
 

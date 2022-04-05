@@ -66,6 +66,19 @@
         {"shape":"InternalException"}
       ]
     },
+    "CreateLocationFsxOpenZfs":{
+      "name":"CreateLocationFsxOpenZfs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLocationFsxOpenZfsRequest"},
+      "output":{"shape":"CreateLocationFsxOpenZfsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "CreateLocationFsxWindows":{
       "name":"CreateLocationFsxWindows",
       "http":{
@@ -230,6 +243,19 @@
       },
       "input":{"shape":"DescribeLocationFsxLustreRequest"},
       "output":{"shape":"DescribeLocationFsxLustreResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "DescribeLocationFsxOpenZfs":{
+      "name":"DescribeLocationFsxOpenZfs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocationFsxOpenZfsRequest"},
+      "output":{"shape":"DescribeLocationFsxOpenZfsResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalException"}
@@ -650,6 +676,27 @@
         "LocationArn":{"shape":"LocationArn"}
       }
     },
+    "CreateLocationFsxOpenZfsRequest":{
+      "type":"structure",
+      "required":[
+        "FsxFilesystemArn",
+        "Protocol",
+        "SecurityGroupArns"
+      ],
+      "members":{
+        "FsxFilesystemArn":{"shape":"FsxFilesystemArn"},
+        "Protocol":{"shape":"FsxProtocol"},
+        "SecurityGroupArns":{"shape":"Ec2SecurityGroupArnList"},
+        "Subdirectory":{"shape":"FsxOpenZfsSubdirectory"},
+        "Tags":{"shape":"InputTagList"}
+      }
+    },
+    "CreateLocationFsxOpenZfsResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
     "CreateLocationFsxWindowsRequest":{
       "type":"structure",
       "required":[
@@ -907,6 +954,23 @@
         "CreationTime":{"shape":"Time"}
       }
     },
+    "DescribeLocationFsxOpenZfsRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "DescribeLocationFsxOpenZfsResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "LocationUri":{"shape":"LocationUri"},
+        "SecurityGroupArns":{"shape":"Ec2SecurityGroupArnList"},
+        "Protocol":{"shape":"FsxProtocol"},
+        "CreationTime":{"shape":"Time"}
+      }
+    },
     "DescribeLocationFsxWindowsRequest":{
       "type":"structure",
       "required":["LocationArn"],
@@ -1160,7 +1224,7 @@
     },
     "FilterValue":{
       "type":"string",
-      "max":409600,
+      "max":102400,
       "pattern":"^[^\\x00]+$"
     },
     "FilterValues":{
@@ -1176,6 +1240,23 @@
       "type":"string",
       "max":4096,
       "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\$\\p{Zs}]+$"
+    },
+    "FsxOpenZfsSubdirectory":{
+      "type":"string",
+      "max":4096,
+      "pattern":"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,4096}$"
+    },
+    "FsxProtocol":{
+      "type":"structure",
+      "members":{
+        "NFS":{"shape":"FsxProtocolNfs"}
+      }
+    },
+    "FsxProtocolNfs":{
+      "type":"structure",
+      "members":{
+        "MountOptions":{"shape":"NfsMountOptions"}
+      }
     },
     "FsxWindowsSubdirectory":{
       "type":"string",
@@ -1434,7 +1515,7 @@
     "LocationUri":{
       "type":"string",
       "max":4356,
-      "pattern":"^(efs|nfs|s3|smb|fsxw|fsxl)://[a-zA-Z0-9.\\-]+$"
+      "pattern":"^(efs|nfs|s3|smb|hdfs|fsx[a-z0-9]+)://[a-zA-Z0-9.:/\\-]+$"
     },
     "LogGroupArn":{
       "type":"string",

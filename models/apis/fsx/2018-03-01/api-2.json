@@ -2021,7 +2021,8 @@
         "FAILED",
         "DELETING",
         "MISCONFIGURED",
-        "UPDATING"
+        "UPDATING",
+        "MISCONFIGURED_UNAVAILABLE"
       ]
     },
     "FileSystemMaintenanceOperation":{
