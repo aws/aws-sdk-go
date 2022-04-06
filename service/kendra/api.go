@@ -2117,7 +2117,7 @@ func (c *Kendra) DescribeIndexRequest(input *DescribeIndexInput) (req *request.R
 
 // DescribeIndex API operation for AWSKendraFrontendService.
 //
-// Describes an existing Amazon Kendra index
+// Describes an existing Amazon Kendra index.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3896,7 +3896,7 @@ func (c *Kendra) ListIndicesRequest(input *ListIndicesInput) (req *request.Reque
 
 // ListIndices API operation for AWSKendraFrontendService.
 //
-// Lists the Amazon Kendra indexes that you have created.
+// Lists the Amazon Kendra indexes that you created.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6879,8 +6879,281 @@ func (s *BatchPutDocumentResponseFailedDocument) SetId(v string) *BatchPutDocume
 	return s
 }
 
-// Specifies capacity units configured for your enterprise edition index. You
-// can add and remove capacity units to tune an index to your requirements.
+// Provides the configuration information to connect to Box as your data source.
+type BoxConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of Box comments to Amazon Kendra index field names. To create custom
+	// fields, use the UpdateIndex API before you map to Box fields. For more information,
+	// see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Box field names must exist in your Box custom metadata.
+	CommentFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// TRUE to index comments.
+	CrawlComments *bool `type:"boolean"`
+
+	// TRUE to index the contents of tasks.
+	CrawlTasks *bool `type:"boolean"`
+
+	// TRUE to index web links.
+	CrawlWebLinks *bool `type:"boolean"`
+
+	// The identifier of the Box Enterprise platform. You can find the enterprise
+	// ID in the Box Developer Console settings or when you create an app in Box
+	// and download your authentication credentials. For example, 801234567.
+	//
+	// EnterpriseId is a required field
+	EnterpriseId *string `min:"1" type:"string" required:"true"`
+
+	// A list of regular expression patterns to exclude certain files and folders
+	// from your Box platform. Files and folders that match the patterns are excluded
+	// from the index.Files and folders that don't match the patterns are included
+	// in the index. If a file or folder matches both an inclusion and exclusion
+	// pattern, the exclusion pattern takes precedence and the file or folder isn't
+	// included in the index.
+	ExclusionPatterns []*string `type:"list"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of Box files to Amazon Kendra index field names. To create custom fields,
+	// use the UpdateIndex API before you map to Box fields. For more information,
+	// see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Box field names must exist in your Box custom metadata.
+	FileFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// A list of regular expression patterns to include certain files and folders
+	// in your Box platform. Files and folders that match the patterns are included
+	// in the index. Files and folders that don't match the patterns are excluded
+	// from the index. If a file or folder matches both an inclusion and exclusion
+	// pattern, the exclusion pattern takes precedence and the file or folder isn't
+	// included in the index.
+	InclusionPatterns []*string `type:"list"`
+
+	// The Amazon Resource Name (ARN) of an Secrets Manager secret that contains
+	// the key-value pairs required to connect to your Box platform. The secret
+	// must contain a JSON structure with the following keys:
+	//
+	//    * clientID—The identifier of the client OAuth 2.0 authentication application
+	//    created in Box.
+	//
+	//    * clientSecret—A set of characters known only to the OAuth 2.0 authentication
+	//    application created in Box.
+	//
+	//    * publicKeyId—The identifier of the public key contained within an identity
+	//    certificate.
+	//
+	//    * privateKey—A set of characters that make up an encryption key.
+	//
+	//    * passphrase—A set of characters that act like a password.
+	//
+	// You create an application in Box to generate the keys or credentials required
+	// for the secret. For more information, see Authentication for a Box data source
+	// (https://docs.aws.amazon.com/kendra/latest/dg/data-source-box.html#box-authentication).
+	//
+	// SecretArn is a required field
+	SecretArn *string `min:"1" type:"string" required:"true"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of Box tasks to Amazon Kendra index field names. To create custom fields,
+	// use the UpdateIndex API before you map to Box fields. For more information,
+	// see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Box field names must exist in your Box custom metadata.
+	TaskFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// TRUE to use the Slack change log to determine which documents require updating
+	// in the index. Depending on the data source change log's size, it may take
+	// longer for Amazon Kendra to use the change log than to scan all of your documents.
+	UseChangeLog *bool `type:"boolean"`
+
+	// Configuration information for an Amazon VPC to connect to your Box. For more
+	// information, see Configuring a VPC (https://docs.aws.amazon.com/endra/latest/dg/vpc-configuration.html).
+	VpcConfiguration *DataSourceVpcConfiguration `type:"structure"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of Box web links to Amazon Kendra index field names. To create custom
+	// fields, use the UpdateIndex API before you map to Box fields. For more information,
+	// see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Box field names must exist in your Box custom metadata.
+	WebLinkFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BoxConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BoxConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BoxConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BoxConfiguration"}
+	if s.CommentFieldMappings != nil && len(s.CommentFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CommentFieldMappings", 1))
+	}
+	if s.EnterpriseId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnterpriseId"))
+	}
+	if s.EnterpriseId != nil && len(*s.EnterpriseId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EnterpriseId", 1))
+	}
+	if s.FileFieldMappings != nil && len(s.FileFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileFieldMappings", 1))
+	}
+	if s.SecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretArn"))
+	}
+	if s.SecretArn != nil && len(*s.SecretArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretArn", 1))
+	}
+	if s.TaskFieldMappings != nil && len(s.TaskFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskFieldMappings", 1))
+	}
+	if s.WebLinkFieldMappings != nil && len(s.WebLinkFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WebLinkFieldMappings", 1))
+	}
+	if s.CommentFieldMappings != nil {
+		for i, v := range s.CommentFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CommentFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.FileFieldMappings != nil {
+		for i, v := range s.FileFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FileFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TaskFieldMappings != nil {
+		for i, v := range s.TaskFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TaskFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.VpcConfiguration != nil {
+		if err := s.VpcConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.WebLinkFieldMappings != nil {
+		for i, v := range s.WebLinkFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "WebLinkFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCommentFieldMappings sets the CommentFieldMappings field's value.
+func (s *BoxConfiguration) SetCommentFieldMappings(v []*DataSourceToIndexFieldMapping) *BoxConfiguration {
+	s.CommentFieldMappings = v
+	return s
+}
+
+// SetCrawlComments sets the CrawlComments field's value.
+func (s *BoxConfiguration) SetCrawlComments(v bool) *BoxConfiguration {
+	s.CrawlComments = &v
+	return s
+}
+
+// SetCrawlTasks sets the CrawlTasks field's value.
+func (s *BoxConfiguration) SetCrawlTasks(v bool) *BoxConfiguration {
+	s.CrawlTasks = &v
+	return s
+}
+
+// SetCrawlWebLinks sets the CrawlWebLinks field's value.
+func (s *BoxConfiguration) SetCrawlWebLinks(v bool) *BoxConfiguration {
+	s.CrawlWebLinks = &v
+	return s
+}
+
+// SetEnterpriseId sets the EnterpriseId field's value.
+func (s *BoxConfiguration) SetEnterpriseId(v string) *BoxConfiguration {
+	s.EnterpriseId = &v
+	return s
+}
+
+// SetExclusionPatterns sets the ExclusionPatterns field's value.
+func (s *BoxConfiguration) SetExclusionPatterns(v []*string) *BoxConfiguration {
+	s.ExclusionPatterns = v
+	return s
+}
+
+// SetFileFieldMappings sets the FileFieldMappings field's value.
+func (s *BoxConfiguration) SetFileFieldMappings(v []*DataSourceToIndexFieldMapping) *BoxConfiguration {
+	s.FileFieldMappings = v
+	return s
+}
+
+// SetInclusionPatterns sets the InclusionPatterns field's value.
+func (s *BoxConfiguration) SetInclusionPatterns(v []*string) *BoxConfiguration {
+	s.InclusionPatterns = v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *BoxConfiguration) SetSecretArn(v string) *BoxConfiguration {
+	s.SecretArn = &v
+	return s
+}
+
+// SetTaskFieldMappings sets the TaskFieldMappings field's value.
+func (s *BoxConfiguration) SetTaskFieldMappings(v []*DataSourceToIndexFieldMapping) *BoxConfiguration {
+	s.TaskFieldMappings = v
+	return s
+}
+
+// SetUseChangeLog sets the UseChangeLog field's value.
+func (s *BoxConfiguration) SetUseChangeLog(v bool) *BoxConfiguration {
+	s.UseChangeLog = &v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *BoxConfiguration) SetVpcConfiguration(v *DataSourceVpcConfiguration) *BoxConfiguration {
+	s.VpcConfiguration = v
+	return s
+}
+
+// SetWebLinkFieldMappings sets the WebLinkFieldMappings field's value.
+func (s *BoxConfiguration) SetWebLinkFieldMappings(v []*DataSourceToIndexFieldMapping) *BoxConfiguration {
+	s.WebLinkFieldMappings = v
+	return s
+}
+
+// Specifies additional capacity units configured for your Enterprise Edition
+// index. You can add and remove capacity units to fit your usage requirements.
 type CapacityUnitsConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -8955,16 +9228,16 @@ type CreateIndexInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// An Identity and Access Management(IAM) role that gives Amazon Kendra permissions
+	// An Identity and Access Management (IAM) role that gives Amazon Kendra permissions
 	// to access your Amazon CloudWatch logs and metrics. This is also the role
-	// used when you use the BatchPutDocument API to index documents from an Amazon
-	// S3 bucket.
+	// you use when you call the BatchPutDocument API to index documents from an
+	// Amazon S3 bucket.
 	//
 	// RoleArn is a required field
 	RoleArn *string `type:"string" required:"true"`
 
-	// The identifier of the KMScustomer managed key (CMK) to use to encrypt data
-	// indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric CMKs.
+	// The identifier of the KMS customer managed key (CMK) that's used to encrypt
+	// data indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric CMKs.
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `type:"structure"`
 
 	// A list of key-value pairs that identify the index. You can use the tags to
@@ -9629,6 +9902,9 @@ func (s *CustomDocumentEnrichmentConfiguration) SetRoleArn(v string) *CustomDocu
 type DataSourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Provides the configuration information to connect to Box as your data source.
+	BoxConfiguration *BoxConfiguration `type:"structure"`
+
 	// Provides the configuration information to connect to Confluence as your data
 	// source.
 	ConfluenceConfiguration *ConfluenceConfiguration `type:"structure"`
@@ -9697,6 +9973,11 @@ func (s DataSourceConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DataSourceConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DataSourceConfiguration"}
+	if s.BoxConfiguration != nil {
+		if err := s.BoxConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("BoxConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ConfluenceConfiguration != nil {
 		if err := s.ConfluenceConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("ConfluenceConfiguration", err.(request.ErrInvalidParams))
@@ -9762,6 +10043,12 @@ func (s *DataSourceConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBoxConfiguration sets the BoxConfiguration field's value.
+func (s *DataSourceConfiguration) SetBoxConfiguration(v *BoxConfiguration) *DataSourceConfiguration {
+	s.BoxConfiguration = v
+	return s
 }
 
 // SetConfluenceConfiguration sets the ConfluenceConfiguration field's value.
@@ -11791,7 +12078,7 @@ func (s *DescribeFaqOutput) SetUpdatedAt(v time.Time) *DescribeFaqOutput {
 type DescribeIndexInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the index to describe.
+	// The identifier of the index to describe.
 	//
 	// Id is a required field
 	Id *string `min:"36" type:"string" required:"true"`
@@ -11840,16 +12127,17 @@ func (s *DescribeIndexInput) SetId(v string) *DescribeIndexInput {
 type DescribeIndexOutput struct {
 	_ struct{} `type:"structure"`
 
-	// For Enterprise edition indexes, you can choose to use additional capacity
+	// For Enterprise Edition indexes, you can choose to use additional capacity
 	// to meet the needs of your application. This contains the capacity units used
-	// for the index. A 0 for the query capacity or the storage capacity indicates
-	// that the index is using the default capacity for the index.
+	// for the index. A query or document storage capacity of zero indicates that
+	// the index is using the default capacity. For more information on the default
+	// capacity for an index and adjusting this, see Adjusting capacity (https://docs.aws.amazon.com/kendra/latest/dg/adjusting-capacity.html).
 	CapacityUnits *CapacityUnitsConfiguration `type:"structure"`
 
 	// The Unix datetime that the index was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
-	// The description of the index.
+	// The description for the index.
 	Description *string `type:"string"`
 
 	// Configuration settings for any metadata applied to the documents in the index.
@@ -11859,11 +12147,11 @@ type DescribeIndexOutput struct {
 	// you create the index.
 	Edition *string `type:"string" enum:"IndexEdition"`
 
-	// When th eStatus field value is FAILED, the ErrorMessage field contains a
+	// When the Status field value is FAILED, the ErrorMessage field contains a
 	// message that explains why.
 	ErrorMessage *string `min:"1" type:"string"`
 
-	// The name of the index.
+	// The identifier of the index.
 	Id *string `min:"36" type:"string"`
 
 	// Provides information about the number of FAQ questions and answers and the
@@ -11877,8 +12165,8 @@ type DescribeIndexOutput struct {
 	// to write to your Amazon Cloudwatch logs.
 	RoleArn *string `type:"string"`
 
-	// The identifier of the KMScustomer master key (CMK) used to encrypt your data.
-	// Amazon Kendra doesn't support asymmetric CMKs.
+	// The identifier of the KMScustomer master key (CMK) that is used to encrypt
+	// your data. Amazon Kendra doesn't support asymmetric CMKs.
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `type:"structure"`
 
 	// The current status of the index. When the value is ACTIVE, the index is ready
@@ -15660,7 +15948,7 @@ type IndexConfigurationSummary struct {
 	// are using APIs such as Query, DescribeIndex, UpdateIndex, and DeleteIndex.
 	Id *string `min:"36" type:"string"`
 
-	// The name of the index.
+	// The identifier of the index.
 	Name *string `min:"1" type:"string"`
 
 	// The current status of the index. When the status is ACTIVE, the index is
@@ -22996,12 +23284,12 @@ func (s UpdateExperienceOutput) GoString() string {
 type UpdateIndexInput struct {
 	_ struct{} `type:"structure"`
 
-	// Sets the number of additional storage and query capacity units that should
-	// be used by the index. You can change the capacity of the index up to 5 times
-	// per day.
+	// Sets the number of additional document storage and query capacity units that
+	// should be used by the index. You can change the capacity of the index up
+	// to 5 times per day, or make 5 API calls.
 	//
 	// If you are using extra storage units, you can't reduce the storage capacity
-	// below that required to meet the storage needs for your index.
+	// below what is required to meet the storage needs for your index.
 	CapacityUnits *CapacityUnitsConfiguration `type:"structure"`
 
 	// A new description for the index.
@@ -24810,6 +25098,9 @@ const (
 
 	// DataSourceTypeSlack is a DataSourceType enum value
 	DataSourceTypeSlack = "SLACK"
+
+	// DataSourceTypeBox is a DataSourceType enum value
+	DataSourceTypeBox = "BOX"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -24828,6 +25119,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeWorkdocs,
 		DataSourceTypeFsx,
 		DataSourceTypeSlack,
+		DataSourceTypeBox,
 	}
 }
 

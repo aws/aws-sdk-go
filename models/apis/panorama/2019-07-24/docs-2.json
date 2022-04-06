@@ -29,7 +29,7 @@
     "ListPackageImportJobs": "<p>Returns a list of package import jobs.</p>",
     "ListPackages": "<p>Returns a list of packages.</p>",
     "ListTagsForResource": "<p>Returns a list of tags for a resource.</p>",
-    "ProvisionDevice": "<p>Creates a device and returns a configuration archive. The configuration archive is a ZIP file that contains a provisioning certificate that is valid for 5 minutes. Transfer the configuration archive to the device with the included USB storage device within 5 minutes.</p>",
+    "ProvisionDevice": "<p>Creates a device and returns a configuration archive. The configuration archive is a ZIP file that contains a provisioning certificate that is valid for 5 minutes. Name the configuration archive <code>certificates-omni_<i>device-name</i>.zip</code> and transfer it to the device within 5 minutes. Use the included USB storage device and connect it to the USB 3.0 port next to the HDMI output.</p>",
     "RegisterPackageVersion": "<p>Registers a package version.</p>",
     "RemoveApplicationInstance": "<p>Removes an application instance.</p>",
     "TagResource": "<p>Tags a resource.</p>",
@@ -409,6 +409,13 @@
         "DescribeDeviceJobResponse$DeviceArn": "<p>The device's ARN.</p>",
         "DescribeDeviceResponse$Arn": "<p>The device's ARN.</p>",
         "ProvisionDeviceResponse$Arn": "<p>The device's ARN.</p>"
+      }
+    },
+    "DeviceBrand": {
+      "base": null,
+      "refs": {
+        "DescribeDeviceResponse$Brand": "<p>The device's maker.</p>",
+        "Device$Brand": "<p>The device's maker.</p>"
       }
     },
     "DeviceConnectionStatus": {

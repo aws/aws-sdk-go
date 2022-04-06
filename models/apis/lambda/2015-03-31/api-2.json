@@ -117,6 +117,23 @@
         {"shape":"CodeSigningConfigNotFoundException"}
       ]
     },
+    "CreateFunctionUrlConfig":{
+      "name":"CreateFunctionUrlConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2021-10-31/functions/{FunctionName}/url",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateFunctionUrlConfigRequest"},
+      "output":{"shape":"CreateFunctionUrlConfigResponse"},
+      "errors":[
+        {"shape":"ResourceConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "DeleteAlias":{
       "name":"DeleteAlias",
       "http":{
@@ -228,6 +245,21 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"ResourceConflictException"}
+      ]
+    },
+    "DeleteFunctionUrlConfig":{
+      "name":"DeleteFunctionUrlConfig",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2021-10-31/functions/{FunctionName}/url",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteFunctionUrlConfigRequest"},
+      "errors":[
+        {"shape":"ResourceConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "DeleteLayerVersion":{
@@ -397,6 +429,22 @@
         {"shape":"ServiceException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "GetFunctionUrlConfig":{
+      "name":"GetFunctionUrlConfig",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-10-31/functions/{FunctionName}/url",
+        "responseCode":200
+      },
+      "input":{"shape":"GetFunctionUrlConfigRequest"},
+      "output":{"shape":"GetFunctionUrlConfigResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -596,6 +644,22 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"ServiceException"}
+      ]
+    },
+    "ListFunctionUrlConfigs":{
+      "name":"ListFunctionUrlConfigs",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-10-31/functions/{FunctionName}/urls",
+        "responseCode":200
+      },
+      "input":{"shape":"ListFunctionUrlConfigsRequest"},
+      "output":{"shape":"ListFunctionUrlConfigsResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "ListFunctions":{
@@ -985,6 +1049,23 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"ResourceConflictException"}
       ]
+    },
+    "UpdateFunctionUrlConfig":{
+      "name":"UpdateFunctionUrlConfig",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2021-10-31/functions/{FunctionName}/url",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateFunctionUrlConfigRequest"},
+      "output":{"shape":"UpdateFunctionUrlConfigResponse"},
+      "errors":[
+        {"shape":"ResourceConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceException"},
+        {"shape":"TooManyRequestsException"}
+      ]
     }
   },
   "shapes":{
@@ -1073,7 +1154,8 @@
           "locationName":"Qualifier"
         },
         "RevisionId":{"shape":"String"},
-        "PrincipalOrgID":{"shape":"PrincipalOrgID"}
+        "PrincipalOrgID":{"shape":"PrincipalOrgID"},
+        "FunctionUrlAuthType":{"shape":"FunctionUrlAuthType"}
       }
     },
     "AddPermissionResponse":{
@@ -1119,6 +1201,17 @@
       "members":{
         "AdditionalVersionWeights":{"shape":"AdditionalVersionWeights"}
       }
+    },
+    "AllowCredentials":{"type":"boolean"},
+    "AllowMethodsList":{
+      "type":"list",
+      "member":{"shape":"Method"},
+      "max":6
+    },
+    "AllowOriginsList":{
+      "type":"list",
+      "member":{"shape":"Origin"},
+      "max":100
     },
     "AllowedPublishers":{
       "type":"structure",
@@ -1246,6 +1339,17 @@
         "ReservedConcurrentExecutions":{"shape":"ReservedConcurrentExecutions"}
       }
     },
+    "Cors":{
+      "type":"structure",
+      "members":{
+        "AllowCredentials":{"shape":"AllowCredentials"},
+        "AllowHeaders":{"shape":"HeadersList"},
+        "AllowMethods":{"shape":"AllowMethodsList"},
+        "AllowOrigins":{"shape":"AllowOriginsList"},
+        "ExposeHeaders":{"shape":"HeadersList"},
+        "MaxAge":{"shape":"MaxAge"}
+      }
+    },
     "CreateAliasRequest":{
       "type":"structure",
       "required":[
@@ -1336,6 +1440,43 @@
         "CodeSigningConfigArn":{"shape":"CodeSigningConfigArn"},
         "Architectures":{"shape":"ArchitecturesList"},
         "EphemeralStorage":{"shape":"EphemeralStorage"}
+      }
+    },
+    "CreateFunctionUrlConfigRequest":{
+      "type":"structure",
+      "required":[
+        "FunctionName",
+        "AuthType"
+      ],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        },
+        "Qualifier":{
+          "shape":"FunctionUrlQualifier",
+          "location":"querystring",
+          "locationName":"Qualifier"
+        },
+        "AuthType":{"shape":"FunctionUrlAuthType"},
+        "Cors":{"shape":"Cors"}
+      }
+    },
+    "CreateFunctionUrlConfigResponse":{
+      "type":"structure",
+      "required":[
+        "FunctionUrl",
+        "FunctionArn",
+        "AuthType",
+        "CreationTime"
+      ],
+      "members":{
+        "FunctionUrl":{"shape":"FunctionUrl"},
+        "FunctionArn":{"shape":"FunctionArn"},
+        "AuthType":{"shape":"FunctionUrlAuthType"},
+        "Cors":{"shape":"Cors"},
+        "CreationTime":{"shape":"Timestamp"}
       }
     },
     "Date":{"type":"timestamp"},
@@ -1440,6 +1581,22 @@
         },
         "Qualifier":{
           "shape":"Qualifier",
+          "location":"querystring",
+          "locationName":"Qualifier"
+        }
+      }
+    },
+    "DeleteFunctionUrlConfigRequest":{
+      "type":"structure",
+      "required":["FunctionName"],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        },
+        "Qualifier":{
+          "shape":"FunctionUrlQualifier",
           "location":"querystring",
           "locationName":"Qualifier"
         }
@@ -1827,6 +1984,46 @@
       "max":1,
       "min":0
     },
+    "FunctionUrl":{
+      "type":"string",
+      "max":100,
+      "min":40
+    },
+    "FunctionUrlAuthType":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "AWS_IAM"
+      ]
+    },
+    "FunctionUrlConfig":{
+      "type":"structure",
+      "required":[
+        "FunctionUrl",
+        "FunctionArn",
+        "CreationTime",
+        "LastModifiedTime",
+        "AuthType"
+      ],
+      "members":{
+        "FunctionUrl":{"shape":"FunctionUrl"},
+        "FunctionArn":{"shape":"FunctionArn"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "Cors":{"shape":"Cors"},
+        "AuthType":{"shape":"FunctionUrlAuthType"}
+      }
+    },
+    "FunctionUrlConfigList":{
+      "type":"list",
+      "member":{"shape":"FunctionUrlConfig"}
+    },
+    "FunctionUrlQualifier":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"(^\\$LATEST$)|((?!^[0-9]+$)([a-zA-Z0-9-_]+))"
+    },
     "FunctionVersion":{
       "type":"string",
       "enum":["ALL"]
@@ -1987,6 +2184,40 @@
         "Concurrency":{"shape":"Concurrency"}
       }
     },
+    "GetFunctionUrlConfigRequest":{
+      "type":"structure",
+      "required":["FunctionName"],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        },
+        "Qualifier":{
+          "shape":"FunctionUrlQualifier",
+          "location":"querystring",
+          "locationName":"Qualifier"
+        }
+      }
+    },
+    "GetFunctionUrlConfigResponse":{
+      "type":"structure",
+      "required":[
+        "FunctionUrl",
+        "FunctionArn",
+        "AuthType",
+        "CreationTime",
+        "LastModifiedTime"
+      ],
+      "members":{
+        "FunctionUrl":{"shape":"FunctionUrl"},
+        "FunctionArn":{"shape":"FunctionArn"},
+        "AuthType":{"shape":"FunctionUrlAuthType"},
+        "Cors":{"shape":"Cors"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"}
+      }
+    },
     "GetLayerVersionByArnRequest":{
       "type":"structure",
       "required":["Arn"],
@@ -2114,6 +2345,16 @@
       "type":"string",
       "max":128,
       "pattern":"[^\\s]+"
+    },
+    "Header":{
+      "type":"string",
+      "max":1024,
+      "pattern":".*"
+    },
+    "HeadersList":{
+      "type":"list",
+      "member":{"shape":"Header"},
+      "max":100
     },
     "HttpStatus":{"type":"integer"},
     "ImageConfig":{
@@ -2571,6 +2812,35 @@
         "NextMarker":{"shape":"String"}
       }
     },
+    "ListFunctionUrlConfigsRequest":{
+      "type":"structure",
+      "required":["FunctionName"],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        },
+        "Marker":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"Marker"
+        },
+        "MaxItems":{
+          "shape":"MaxItems",
+          "location":"querystring",
+          "locationName":"MaxItems"
+        }
+      }
+    },
+    "ListFunctionUrlConfigsResponse":{
+      "type":"structure",
+      "required":["FunctionUrlConfigs"],
+      "members":{
+        "FunctionUrlConfigs":{"shape":"FunctionUrlConfigList"},
+        "NextMarker":{"shape":"String"}
+      }
+    },
     "ListFunctionsByCodeSigningConfigRequest":{
       "type":"structure",
       "required":["CodeSigningConfigArn"],
@@ -2791,7 +3061,17 @@
       "type":"string",
       "pattern":"ALL|[a-z]{2}(-gov)?-[a-z]+-\\d{1}"
     },
+    "MaxAge":{
+      "type":"integer",
+      "max":86400,
+      "min":0
+    },
     "MaxFunctionEventInvokeConfigListItems":{
+      "type":"integer",
+      "max":50,
+      "min":1
+    },
+    "MaxItems":{
       "type":"integer",
       "max":50,
       "min":1
@@ -2841,6 +3121,11 @@
       "max":10240,
       "min":128
     },
+    "Method":{
+      "type":"string",
+      "max":6,
+      "pattern":".*"
+    },
     "NameSpacedFunctionArn":{
       "type":"string",
       "pattern":"arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}(-gov)?-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9-_\\.]+(:(\\$LATEST|[a-zA-Z0-9-_]+))?"
@@ -2877,6 +3162,12 @@
       "type":"string",
       "max":34,
       "pattern":"o-[a-z0-9]{10,32}"
+    },
+    "Origin":{
+      "type":"string",
+      "max":253,
+      "min":1,
+      "pattern":".*"
     },
     "PackageType":{
       "type":"string",
@@ -3660,6 +3951,42 @@
         "MaximumRetryAttempts":{"shape":"MaximumRetryAttempts"},
         "MaximumEventAgeInSeconds":{"shape":"MaximumEventAgeInSeconds"},
         "DestinationConfig":{"shape":"DestinationConfig"}
+      }
+    },
+    "UpdateFunctionUrlConfigRequest":{
+      "type":"structure",
+      "required":["FunctionName"],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        },
+        "Qualifier":{
+          "shape":"FunctionUrlQualifier",
+          "location":"querystring",
+          "locationName":"Qualifier"
+        },
+        "AuthType":{"shape":"FunctionUrlAuthType"},
+        "Cors":{"shape":"Cors"}
+      }
+    },
+    "UpdateFunctionUrlConfigResponse":{
+      "type":"structure",
+      "required":[
+        "FunctionUrl",
+        "FunctionArn",
+        "AuthType",
+        "CreationTime",
+        "LastModifiedTime"
+      ],
+      "members":{
+        "FunctionUrl":{"shape":"FunctionUrl"},
+        "FunctionArn":{"shape":"FunctionArn"},
+        "AuthType":{"shape":"FunctionUrlAuthType"},
+        "Cors":{"shape":"Cors"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"}
       }
     },
     "Version":{

@@ -1162,6 +1162,28 @@
     },
     "Blob":{"type":"blob"},
     "Boolean":{"type":"boolean"},
+    "BoxConfiguration":{
+      "type":"structure",
+      "required":[
+        "EnterpriseId",
+        "SecretArn"
+      ],
+      "members":{
+        "EnterpriseId":{"shape":"EnterpriseId"},
+        "SecretArn":{"shape":"SecretArn"},
+        "UseChangeLog":{"shape":"Boolean"},
+        "CrawlComments":{"shape":"Boolean"},
+        "CrawlTasks":{"shape":"Boolean"},
+        "CrawlWebLinks":{"shape":"Boolean"},
+        "FileFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "TaskFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "CommentFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "WebLinkFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "InclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "ExclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "VpcConfiguration":{"shape":"DataSourceVpcConfiguration"}
+      }
+    },
     "CapacityUnitsConfiguration":{
       "type":"structure",
       "required":[
@@ -1678,7 +1700,8 @@
         "WebCrawlerConfiguration":{"shape":"WebCrawlerConfiguration"},
         "WorkDocsConfiguration":{"shape":"WorkDocsConfiguration"},
         "FsxConfiguration":{"shape":"FsxConfiguration"},
-        "SlackConfiguration":{"shape":"SlackConfiguration"}
+        "SlackConfiguration":{"shape":"SlackConfiguration"},
+        "BoxConfiguration":{"shape":"BoxConfiguration"}
       }
     },
     "DataSourceDateFieldFormat":{
@@ -1851,7 +1874,8 @@
         "WEBCRAWLER",
         "WORKDOCS",
         "FSX",
-        "SLACK"
+        "SLACK",
+        "BOX"
       ]
     },
     "DataSourceVpcConfiguration":{
@@ -2456,6 +2480,12 @@
     "EndpointType":{
       "type":"string",
       "enum":["HOME"]
+    },
+    "EnterpriseId":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[A-Z0-9]*$"
     },
     "EntityConfiguration":{
       "type":"structure",

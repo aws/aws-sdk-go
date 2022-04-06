@@ -2974,8 +2974,9 @@ func (c *Panorama) ProvisionDeviceRequest(input *ProvisionDeviceInput) (req *req
 //
 // Creates a device and returns a configuration archive. The configuration archive
 // is a ZIP file that contains a provisioning certificate that is valid for
-// 5 minutes. Transfer the configuration archive to the device with the included
-// USB storage device within 5 minutes.
+// 5 minutes. Name the configuration archive certificates-omni_device-name.zip
+// and transfer it to the device within 5 minutes. Use the included USB storage
+// device and connect it to the USB 3.0 port next to the HDMI output.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5353,6 +5354,9 @@ type DescribeDeviceOutput struct {
 	// The device's ARN.
 	Arn *string `min:"1" type:"string"`
 
+	// The device's maker.
+	Brand *string `type:"string" enum:"DeviceBrand"`
+
 	// When the device was created.
 	CreatedTime *time.Time `type:"timestamp"`
 
@@ -5426,6 +5430,12 @@ func (s *DescribeDeviceOutput) SetAlternateSoftwares(v []*AlternateSoftwareMetad
 // SetArn sets the Arn field's value.
 func (s *DescribeDeviceOutput) SetArn(v string) *DescribeDeviceOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetBrand sets the Brand field's value.
+func (s *DescribeDeviceOutput) SetBrand(v string) *DescribeDeviceOutput {
+	s.Brand = &v
 	return s
 }
 
@@ -6512,6 +6522,9 @@ func (s *DescribePackageVersionOutput) SetStatusDescription(v string) *DescribeP
 type Device struct {
 	_ struct{} `type:"structure"`
 
+	// The device's maker.
+	Brand *string `type:"string" enum:"DeviceBrand"`
+
 	// When the device was created.
 	CreatedTime *time.Time `type:"timestamp"`
 
@@ -6547,6 +6560,12 @@ func (s Device) String() string {
 // value will be replaced with "sensitive".
 func (s Device) GoString() string {
 	return s.String()
+}
+
+// SetBrand sets the Brand field's value.
+func (s *Device) SetBrand(v string) *Device {
+	s.Brand = &v
+	return s
 }
 
 // SetCreatedTime sets the CreatedTime field's value.
@@ -10632,6 +10651,9 @@ const (
 
 	// ApplicationInstanceStatusRemovalSucceeded is a ApplicationInstanceStatus enum value
 	ApplicationInstanceStatusRemovalSucceeded = "REMOVAL_SUCCEEDED"
+
+	// ApplicationInstanceStatusDeploymentFailed is a ApplicationInstanceStatus enum value
+	ApplicationInstanceStatusDeploymentFailed = "DEPLOYMENT_FAILED"
 )
 
 // ApplicationInstanceStatus_Values returns all elements of the ApplicationInstanceStatus enum
@@ -10647,6 +10669,7 @@ func ApplicationInstanceStatus_Values() []string {
 		ApplicationInstanceStatusRemovalInProgress,
 		ApplicationInstanceStatusRemovalFailed,
 		ApplicationInstanceStatusRemovalSucceeded,
+		ApplicationInstanceStatusDeploymentFailed,
 	}
 }
 
@@ -10663,6 +10686,22 @@ func ConnectionType_Values() []string {
 	return []string{
 		ConnectionTypeStaticIp,
 		ConnectionTypeDhcp,
+	}
+}
+
+const (
+	// DeviceBrandAwsPanorama is a DeviceBrand enum value
+	DeviceBrandAwsPanorama = "AWS_PANORAMA"
+
+	// DeviceBrandLenovo is a DeviceBrand enum value
+	DeviceBrandLenovo = "LENOVO"
+)
+
+// DeviceBrand_Values returns all elements of the DeviceBrand enum
+func DeviceBrand_Values() []string {
+	return []string{
+		DeviceBrandAwsPanorama,
+		DeviceBrandLenovo,
 	}
 }
 
@@ -10956,6 +10995,9 @@ const (
 
 	// StatusFilterProcessingRemoval is a StatusFilter enum value
 	StatusFilterProcessingRemoval = "PROCESSING_REMOVAL"
+
+	// StatusFilterDeploymentFailed is a StatusFilter enum value
+	StatusFilterDeploymentFailed = "DEPLOYMENT_FAILED"
 )
 
 // StatusFilter_Values returns all elements of the StatusFilter enum
@@ -10967,6 +11009,7 @@ func StatusFilter_Values() []string {
 		StatusFilterRemovalFailed,
 		StatusFilterProcessingDeployment,
 		StatusFilterProcessingRemoval,
+		StatusFilterDeploymentFailed,
 	}
 }
 

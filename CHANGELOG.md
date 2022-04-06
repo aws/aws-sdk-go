@@ -1,3 +1,14 @@
+Release v1.43.34 (2022-04-06)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API and documentation
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now provides a data source connector for Box. For more information, see https://docs.aws.amazon.com/kendra/latest/dg/data-source-box.html
+* `service/lambda`: Updates service API, documentation, and paginators
+  * This release adds new APIs for creating and managing Lambda Function URLs and adds a new FunctionUrlAuthType parameter to the AddPermission API. Customers can use Function URLs to create built-in HTTPS endpoints on their functions.
+* `service/panorama`: Updates service API and documentation
+
 Release v1.43.33 (2022-04-05)
 ===
 
