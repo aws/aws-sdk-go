@@ -623,7 +623,8 @@
         "REMOVAL_REQUESTED",
         "REMOVAL_IN_PROGRESS",
         "REMOVAL_FAILED",
-        "REMOVAL_SUCCEEDED"
+        "REMOVAL_SUCCEEDED",
+        "DEPLOYMENT_FAILED"
       ]
     },
     "ApplicationInstanceStatusDescription":{
@@ -992,6 +993,7 @@
       "members":{
         "AlternateSoftwares":{"shape":"AlternateSoftwares"},
         "Arn":{"shape":"DeviceArn"},
+        "Brand":{"shape":"DeviceBrand"},
         "CreatedTime":{"shape":"CreatedTime"},
         "CurrentNetworkingStatus":{"shape":"NetworkStatus"},
         "CurrentSoftware":{"shape":"CurrentSoftware"},
@@ -1229,6 +1231,7 @@
     "Device":{
       "type":"structure",
       "members":{
+        "Brand":{"shape":"DeviceBrand"},
         "CreatedTime":{"shape":"CreatedTime"},
         "DeviceId":{"shape":"DeviceId"},
         "LastUpdatedTime":{"shape":"LastUpdatedTime"},
@@ -1241,6 +1244,13 @@
       "type":"string",
       "max":255,
       "min":1
+    },
+    "DeviceBrand":{
+      "type":"string",
+      "enum":[
+        "AWS_PANORAMA",
+        "LENOVO"
+      ]
     },
     "DeviceConnectionStatus":{
       "type":"string",
@@ -2331,7 +2341,8 @@
         "REMOVAL_SUCCEEDED",
         "REMOVAL_FAILED",
         "PROCESSING_DEPLOYMENT",
-        "PROCESSING_REMOVAL"
+        "PROCESSING_REMOVAL",
+        "DEPLOYMENT_FAILED"
       ]
     },
     "StorageLocation":{

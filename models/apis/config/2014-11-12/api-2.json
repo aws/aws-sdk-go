@@ -4507,7 +4507,9 @@
         "AWS::CodeDeploy::DeploymentGroup",
         "AWS::EC2::LaunchTemplate",
         "AWS::ECR::PublicRepository",
-        "AWS::GuardDuty::Detector"
+        "AWS::GuardDuty::Detector",
+        "AWS::EMR::SecurityConfiguration",
+        "AWS::SageMaker::CodeRepository"
       ]
     },
     "ResourceTypeList":{

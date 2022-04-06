@@ -24,7 +24,7 @@
     "DescribeDataSource": "<p>Gets information about an Amazon Kendra data source.</p>",
     "DescribeExperience": "<p>Gets information about your Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
     "DescribeFaq": "<p>Gets information about an FAQ list.</p>",
-    "DescribeIndex": "<p>Describes an existing Amazon Kendra index</p>",
+    "DescribeIndex": "<p>Describes an existing Amazon Kendra index.</p>",
     "DescribePrincipalMapping": "<p>Describes the processing of <code>PUT</code> and <code>DELETE</code> actions for mapping users to their groups. This includes information on the status of actions currently processing or yet to be processed, when actions were last updated, when actions were received by Amazon Kendra, the latest action that should process and apply after other actions, and useful error messages if an action could not be processed.</p> <p> <code>DescribePrincipalMapping</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
     "DescribeQuerySuggestionsBlockList": "<p>Describes a block list used for query suggestions for an index.</p> <p>This is used to check the current settings that are applied to a block list.</p> <p> <code>DescribeQuerySuggestionsBlockList</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
     "DescribeQuerySuggestionsConfig": "<p>Describes the settings of query suggestions for an index.</p> <p>This is used to check the current settings applied to query suggestions.</p> <p> <code>DescribeQuerySuggestionsConfig</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
@@ -40,7 +40,7 @@
     "ListExperiences": "<p>Lists one or more Amazon Kendra experiences. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
     "ListFaqs": "<p>Gets a list of FAQ lists associated with an index.</p>",
     "ListGroupsOlderThanOrderingId": "<p>Provides a list of groups that are mapped to users before a given ordering or timestamp identifier.</p> <p> <code>ListGroupsOlderThanOrderingId</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
-    "ListIndices": "<p>Lists the Amazon Kendra indexes that you have created.</p>",
+    "ListIndices": "<p>Lists the Amazon Kendra indexes that you created.</p>",
     "ListQuerySuggestionsBlockLists": "<p>Lists the block lists used for query suggestions for an index.</p> <p>For information on the current quota limits for block lists, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas for Amazon Kendra</a>.</p> <p> <code>ListQuerySuggestionsBlockLists</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
     "ListTagsForResource": "<p>Gets a list of tags associated with a specified resource. Indexes, FAQs, and data sources can have tags associated with them.</p>",
     "ListThesauri": "<p>Lists the Amazon Kendra thesauri associated with an index.</p>",
@@ -248,6 +248,10 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "BoxConfiguration$UseChangeLog": "<p> <code>TRUE</code> to use the Slack change log to determine which documents require updating in the index. Depending on the data source change log's size, it may take longer for Amazon Kendra to use the change log than to scan all of your documents.</p>",
+        "BoxConfiguration$CrawlComments": "<p> <code>TRUE</code> to index comments.</p>",
+        "BoxConfiguration$CrawlTasks": "<p> <code>TRUE</code> to index the contents of tasks.</p>",
+        "BoxConfiguration$CrawlWebLinks": "<p> <code>TRUE</code> to index web links.</p>",
         "ConfluenceAttachmentConfiguration$CrawlAttachments": "<p>Indicates whether Amazon Kendra indexes attachments to the pages and blogs in the Confluence data source. </p>",
         "ConfluenceSpaceConfiguration$CrawlPersonalSpaces": "<p>Specifies whether Amazon Kendra should index personal spaces. Users can add restrictions to items in personal spaces. If personal spaces are indexed, queries without user context information may return restricted items from a personal space in their results. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/user-context-filter.html\">Filtering on user context</a>.</p>",
         "ConfluenceSpaceConfiguration$CrawlArchivedSpaces": "<p>Specifies whether Amazon Kendra should index archived spaces.</p>",
@@ -274,11 +278,17 @@
         "WorkDocsConfiguration$UseChangeLog": "<p> <code>TRUE</code> to use the Amazon WorkDocs change log to determine which documents require updating in the index. Depending on the change log's size, it may take longer for Amazon Kendra to use the change log than to scan all of your documents in Amazon WorkDocs.</p>"
       }
     },
-    "CapacityUnitsConfiguration": {
-      "base": "<p>Specifies capacity units configured for your enterprise edition index. You can add and remove capacity units to tune an index to your requirements.</p>",
+    "BoxConfiguration": {
+      "base": "<p>Provides the configuration information to connect to Box as your data source.</p>",
       "refs": {
-        "DescribeIndexResponse$CapacityUnits": "<p>For Enterprise edition indexes, you can choose to use additional capacity to meet the needs of your application. This contains the capacity units used for the index. A 0 for the query capacity or the storage capacity indicates that the index is using the default capacity for the index.</p>",
-        "UpdateIndexRequest$CapacityUnits": "<p>Sets the number of additional storage and query capacity units that should be used by the index. You can change the capacity of the index up to 5 times per day.</p> <p>If you are using extra storage units, you can't reduce the storage capacity below that required to meet the storage needs for your index.</p>"
+        "DataSourceConfiguration$BoxConfiguration": "<p>Provides the configuration information to connect to Box as your data source.</p>"
+      }
+    },
+    "CapacityUnitsConfiguration": {
+      "base": "<p>Specifies additional capacity units configured for your Enterprise Edition index. You can add and remove capacity units to fit your usage requirements.</p>",
+      "refs": {
+        "DescribeIndexResponse$CapacityUnits": "<p>For Enterprise Edition indexes, you can choose to use additional capacity to meet the needs of your application. This contains the capacity units used for the index. A query or document storage capacity of zero indicates that the index is using the default capacity. For more information on the default capacity for an index and adjusting this, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/adjusting-capacity.html\">Adjusting capacity</a>.</p>",
+        "UpdateIndexRequest$CapacityUnits": "<p>Sets the number of additional document storage and query capacity units that should be used by the index. You can change the capacity of the index up to 5 times per day, or make 5 API calls.</p> <p>If you are using extra storage units, you can't reduce the storage capacity below what is required to meet the storage needs for your index.</p>"
       }
     },
     "ChangeDetectingColumns": {
@@ -657,6 +667,8 @@
     "DataSourceInclusionsExclusionsStrings": {
       "base": null,
       "refs": {
+        "BoxConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain files and folders in your Box platform. Files and folders that match the patterns are included in the index. Files and folders that don't match the patterns are excluded from the index. If a file or folder matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the file or folder isn't included in the index.</p>",
+        "BoxConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain files and folders from your Box platform. Files and folders that match the patterns are excluded from the index.Files and folders that don't match the patterns are included in the index. If a file or folder matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the file or folder isn't included in the index.</p>",
         "ConfluenceConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain blog posts, pages, spaces, or attachments in your Confluence. Content that matches the patterns are included in the index. Content that doesn't match the patterns is excluded from the index. If content matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the content isn't included in the index.</p>",
         "ConfluenceConfiguration$ExclusionPatterns": "<p>&gt;A list of regular expression patterns to exclude certain blog posts, pages, spaces, or attachments in your Confluence. Content that matches the patterns are excluded from the index. Content that doesn't match the patterns is included in the index. If content matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the content isn't included in the index.</p>",
         "FsxConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain files in your Amazon FSx file system. Files that match the patterns are included in the index. Files that don't match the patterns are excluded from the index. If a file matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
@@ -764,6 +776,10 @@
     "DataSourceToIndexFieldMappingList": {
       "base": null,
       "refs": {
+        "BoxConfiguration$FileFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of Box files to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Box fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Box field names must exist in your Box custom metadata.</p>",
+        "BoxConfiguration$TaskFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of Box tasks to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Box fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Box field names must exist in your Box custom metadata.</p>",
+        "BoxConfiguration$CommentFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of Box comments to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Box fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Box field names must exist in your Box custom metadata.</p>",
+        "BoxConfiguration$WebLinkFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of Box web links to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Box fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Box field names must exist in your Box custom metadata.</p>",
         "ColumnConfiguration$FieldMappings": "<p>An array of objects that map database column names to the corresponding fields in an index. You must first create the fields in the index using the <code>UpdateIndex</code> API.</p>",
         "FsxConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Amazon FSx data source attributes or field names to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Amazon FSx fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Amazon FSx data source field names must exist in your Amazon FSx custom metadata.</p>",
         "GoogleDriveConfiguration$FieldMappings": "<p>Maps Google Drive data source attributes or field names to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Google Drive fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Google Drive data source field names must exist in your Google Drive custom metadata.</p>",
@@ -791,6 +807,7 @@
     "DataSourceVpcConfiguration": {
       "base": "<p>Provides the configuration information to connect to an Amazon VPC.</p>",
       "refs": {
+        "BoxConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon VPC to connect to your Box. For more information, see <a href=\"https://docs.aws.amazon.com/endra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "ConfluenceConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Confluence. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "DatabaseConfiguration$VpcConfiguration": null,
         "FsxConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Amazon FSx. Your Amazon FSx instance must reside inside your VPC.</p>",
@@ -960,7 +977,7 @@
         "DescribeDataSourceResponse$Description": "<p>The description of the data source.</p>",
         "DescribeExperienceResponse$Description": "<p>Shows the description for your Amazon Kendra experience.</p>",
         "DescribeFaqResponse$Description": "<p>The description of the FAQ that you provided when it was created.</p>",
-        "DescribeIndexResponse$Description": "<p>The description of the index.</p>",
+        "DescribeIndexResponse$Description": "<p>The description for the index.</p>",
         "DescribeQuerySuggestionsBlockListResponse$Description": "<p>Shows the description for the block list.</p>",
         "DescribeThesaurusResponse$Description": "<p>The thesaurus description.</p>",
         "UpdateDataSourceRequest$Description": "<p>The new description for the data source.</p>",
@@ -1205,6 +1222,12 @@
         "ExperienceEndpoint$EndpointType": "<p>The type of endpoint for your Amazon Kendra experience. The type currently available is <code>HOME</code>, which is a unique and fully hosted URL to the home page of your Amazon Kendra experience.</p>"
       }
     },
+    "EnterpriseId": {
+      "base": null,
+      "refs": {
+        "BoxConfiguration$EnterpriseId": "<p>The identifier of the Box Enterprise platform. You can find the enterprise ID in the Box Developer Console settings or when you create an app in Box and download your authentication credentials. For example, <i>801234567</i>.</p>"
+      }
+    },
     "EntityConfiguration": {
       "base": "<p>Provides the configuration information for users or groups in your Amazon Web Services SSO identity source to grant access your Amazon Kendra experience.</p>",
       "refs": {
@@ -1275,7 +1298,7 @@
         "DescribeDataSourceResponse$ErrorMessage": "<p>When the <code>Status</code> field value is <code>FAILED</code>, the <code>ErrorMessage</code> field contains a description of the error that caused the data source to fail.</p>",
         "DescribeExperienceResponse$ErrorMessage": "<p>The reason your Amazon Kendra experience could not properly process.</p>",
         "DescribeFaqResponse$ErrorMessage": "<p>If the <code>Status</code> field is <code>FAILED</code>, the <code>ErrorMessage</code> field contains the reason why the FAQ failed.</p>",
-        "DescribeIndexResponse$ErrorMessage": "<p>When th e<code>Status</code> field value is <code>FAILED</code>, the <code>ErrorMessage</code> field contains a message that explains why.</p>",
+        "DescribeIndexResponse$ErrorMessage": "<p>When the <code>Status</code> field value is <code>FAILED</code>, the <code>ErrorMessage</code> field contains a message that explains why.</p>",
         "DescribeQuerySuggestionsBlockListResponse$ErrorMessage": "<p>Shows the error message with details when there are issues in processing the block list.</p>",
         "DescribeThesaurusResponse$ErrorMessage": "<p>When the <code>Status</code> field value is <code>FAILED</code>, the <code>ErrorMessage</code> field provides more information. </p>",
         "FailedEntity$ErrorMessage": "<p>The reason the user or group in your Amazon Web Services SSO identity source failed to properly configure with your Amazon Kendra experience.</p>",
@@ -1701,8 +1724,8 @@
         "DescribeExperienceResponse$IndexId": "<p>Shows the identifier of the index for your Amazon Kendra experience.</p>",
         "DescribeFaqRequest$IndexId": "<p>The identifier of the index that contains the FAQ.</p>",
         "DescribeFaqResponse$IndexId": "<p>The identifier of the index that contains the FAQ.</p>",
-        "DescribeIndexRequest$Id": "<p>The name of the index to describe.</p>",
-        "DescribeIndexResponse$Id": "<p>The name of the index.</p>",
+        "DescribeIndexRequest$Id": "<p>The identifier of the index to describe.</p>",
+        "DescribeIndexResponse$Id": "<p>The identifier of the index.</p>",
         "DescribePrincipalMappingRequest$IndexId": "<p>The identifier of the index required to check the processing of <code>PUT</code> and <code>DELETE</code> actions for mapping users to their groups.</p>",
         "DescribePrincipalMappingResponse$IndexId": "<p>Shows the identifier of the index to see information on the processing of <code>PUT</code> and <code>DELETE</code> actions for mapping users to their groups.</p>",
         "DescribeQuerySuggestionsBlockListRequest$IndexId": "<p>The identifier of the index for the block list.</p>",
@@ -1742,7 +1765,7 @@
       "refs": {
         "CreateIndexRequest$Name": "<p>The name for the new index.</p>",
         "DescribeIndexResponse$Name": "<p>The name of the index.</p>",
-        "IndexConfigurationSummary$Name": "<p>The name of the index.</p>",
+        "IndexConfigurationSummary$Name": "<p>The identifier of the index.</p>",
         "UpdateIndexRequest$Name": "<p>The name of the index to update.</p>"
       }
     },
@@ -2491,7 +2514,7 @@
         "CreateDataSourceRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to access the data source. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM Roles for Amazon Kendra</a>.</p> <p>You can't specify the <code>RoleArn</code> parameter when the <code>Type</code> parameter is set to <code>CUSTOM</code>. If you do, you receive a <code>ValidationException</code> exception.</p> <p>The <code>RoleArn</code> parameter is required for all other data sources.</p>",
         "CreateExperienceRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to access <code>Query</code> API, <code>QuerySuggestions</code> API, <code>SubmitFeedback</code> API, and Amazon Web Services SSO that stores your user and group information. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM roles for Amazon Kendra</a>.</p>",
         "CreateFaqRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to access the S3 bucket that contains the FAQs. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM Roles for Amazon Kendra</a>.</p>",
-        "CreateIndexRequest$RoleArn": "<p>An Identity and Access Management(IAM) role that gives Amazon Kendra permissions to access your Amazon CloudWatch logs and metrics. This is also the role used when you use the <code>BatchPutDocument</code> API to index documents from an Amazon S3 bucket.</p>",
+        "CreateIndexRequest$RoleArn": "<p>An Identity and Access Management (IAM) role that gives Amazon Kendra permissions to access your Amazon CloudWatch logs and metrics. This is also the role you use when you call the <code>BatchPutDocument</code> API to index documents from an Amazon S3 bucket.</p>",
         "CreateQuerySuggestionsBlockListRequest$RoleArn": "<p>The IAM (Identity and Access Management) role used by Amazon Kendra to access the block list text file in your S3 bucket.</p> <p>You need permissions to the role ARN (Amazon Web Services Resource Name). The role needs S3 read permissions to your file in S3 and needs to give STS (Security Token Service) assume role permissions to Amazon Kendra.</p>",
         "CreateThesaurusRequest$RoleArn": "<p>An IAM role that gives Amazon Kendra permissions to access thesaurus file specified in <code>SourceS3Path</code>. </p>",
         "CustomDocumentEnrichmentConfiguration$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to run <code>PreExtractionHookConfiguration</code> and <code>PostExtractionHookConfiguration</code> for altering document metadata and content during the document ingestion process. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM roles for Amazon Kendra</a>.</p>",
@@ -2669,6 +2692,7 @@
       "base": null,
       "refs": {
         "BasicAuthenticationConfiguration$Credentials": "<p>Your secret ARN, which you can create in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">Secrets Manager</a> </p> <p>You use a secret if basic authentication credentials are required to connect to a website. The secret stores your credentials of user name and password.</p>",
+        "BoxConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Box platform. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>clientID—The identifier of the client OAuth 2.0 authentication application created in Box.</p> </li> <li> <p>clientSecret—A set of characters known only to the OAuth 2.0 authentication application created in Box.</p> </li> <li> <p>publicKeyId—The identifier of the public key contained within an identity certificate.</p> </li> <li> <p>privateKey—A set of characters that make up an encryption key.</p> </li> <li> <p>passphrase—A set of characters that act like a password.</p> </li> </ul> <p>You create an application in Box to generate the keys or credentials required for the secret. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-box.html#box-authentication\">Authentication for a Box data source</a>.</p>",
         "ConfluenceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Confluence server. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username—The user name or email address of a user with administrative privileges for the Confluence server.</p> </li> <li> <p>password—The password associated with the user logging in to the Confluence server.</p> </li> </ul>",
         "ConnectionConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in Secrets Manager. The credentials should be a user/password pair. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-database.html\">Using a Database Data Source</a>. For more information about Secrets Manager, see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is Secrets Manager</a> in the <i> Secrets Manager </i> user guide.</p>",
         "FsxConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Amazon FSx file system. Windows is currently the only supported type. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username—The Active Directory user name, along with the Domain Name System (DNS) domain name. For example, <i>user@corp.example.com</i>. The Active Directory user account must have read and mounting access to the Amazon FSx file system for Windows.</p> </li> <li> <p>password—The password of the Active Directory user account with read and mounting access to the Amazon FSx Windows file system.</p> </li> </ul>",
@@ -2708,8 +2732,8 @@
     "ServerSideEncryptionConfiguration": {
       "base": "<p>Provides the identifier of the KMScustomer master key (CMK) used to encrypt data indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric CMKs.</p>",
       "refs": {
-        "CreateIndexRequest$ServerSideEncryptionConfiguration": "<p>The identifier of the KMScustomer managed key (CMK) to use to encrypt data indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric CMKs.</p>",
-        "DescribeIndexResponse$ServerSideEncryptionConfiguration": "<p>The identifier of the KMScustomer master key (CMK) used to encrypt your data. Amazon Kendra doesn't support asymmetric CMKs.</p>"
+        "CreateIndexRequest$ServerSideEncryptionConfiguration": "<p>The identifier of the KMS customer managed key (CMK) that's used to encrypt data indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric CMKs.</p>",
+        "DescribeIndexResponse$ServerSideEncryptionConfiguration": "<p>The identifier of the KMScustomer master key (CMK) that is used to encrypt your data. Amazon Kendra doesn't support asymmetric CMKs.</p>"
       }
     },
     "ServiceNowAuthenticationType": {
