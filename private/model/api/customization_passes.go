@@ -75,6 +75,7 @@ func (a *API) customizationPasses() error {
 			"AssumeRoleWithSAML",
 			"AssumeRoleWithWebIdentity",
 		),
+		"eventbridge": eventBridgeCustomizations,
 	}
 
 	for k := range mergeServices {
@@ -145,6 +146,54 @@ func addHTTPChecksumCustomDocumentation(a *API) error {
 	}
 
 	return nil
+}
+
+func eventBridgeCustomizations(a *API) error {
+	// Inject documentation to indicate PutEvents API does not support EndpointId routing to a multi-region endpoint
+	// using SigV4a signing.
+
+	const docAddon = "// This AWS SDK does not support calling multi-region endpoints with SigV4a authentication."
+
+	var sb strings.Builder
+
+	op, ok := a.Operations["PutEvents"]
+	if !ok {
+		return nil
+	}
+
+	op.Documentation = appendDocString(&sb, op.Documentation, docAddon)
+
+	const putEventsInputShape = "PutEventsInput"
+	input, ok := a.Shapes[putEventsInputShape]
+	if !ok {
+		return nil
+	}
+
+	const endpointIdMember = "EndpointId"
+	mref, ok := input.MemberRefs[endpointIdMember]
+	if !ok {
+		return nil
+	}
+
+	mref.Documentation = appendDocString(&sb, mref.Documentation, docAddon)
+
+	return nil
+}
+
+func appendDocString(sb *strings.Builder, doc, content string) string {
+	if len(content) == 0 {
+		return doc
+	}
+	sb.Reset()
+	sb.WriteString(doc)
+	if sb.Len() > 0 {
+		if doc[len(doc)-1] != '\n' {
+			sb.WriteRune('\n')
+		}
+		sb.WriteString("//\n")
+	}
+	sb.WriteString(content)
+	return sb.String()
 }
 
 func supressSmokeTest(a *API) error {
