@@ -1202,7 +1202,9 @@
         "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"},
         "Tags":{"shape":"TagList"},
         "DBClusterIdentifier":{"shape":"String"},
-        "PromotionTier":{"shape":"IntegerOptional"}
+        "PromotionTier":{"shape":"IntegerOptional"},
+        "EnablePerformanceInsights":{"shape":"BooleanOptional"},
+        "PerformanceInsightsKMSKeyId":{"shape":"String"}
       }
     },
     "CreateDBInstanceResult":{
@@ -2556,7 +2558,9 @@
         "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"},
         "NewDBInstanceIdentifier":{"shape":"String"},
         "CACertificateIdentifier":{"shape":"String"},
-        "PromotionTier":{"shape":"IntegerOptional"}
+        "PromotionTier":{"shape":"IntegerOptional"},
+        "EnablePerformanceInsights":{"shape":"BooleanOptional"},
+        "PerformanceInsightsKMSKeyId":{"shape":"String"}
       }
     },
     "ModifyDBInstanceResult":{

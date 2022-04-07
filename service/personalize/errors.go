@@ -43,6 +43,19 @@ const (
 	//
 	// Could not find the specified resource.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
+
+	// ErrCodeTooManyTagKeysException for service response error code
+	// "TooManyTagKeysException".
+	//
+	// The request contains more tag keys than can be associated with a resource
+	// (50 tag keys per resource).
+	ErrCodeTooManyTagKeysException = "TooManyTagKeysException"
+
+	// ErrCodeTooManyTagsException for service response error code
+	// "TooManyTagsException".
+	//
+	// You have exceeded the maximum number of tags you can apply to this resource.
+	ErrCodeTooManyTagsException = "TooManyTagsException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
@@ -52,4 +65,6 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ResourceAlreadyExistsException": newErrorResourceAlreadyExistsException,
 	"ResourceInUseException":         newErrorResourceInUseException,
 	"ResourceNotFoundException":      newErrorResourceNotFoundException,
+	"TooManyTagKeysException":        newErrorTooManyTagKeysException,
+	"TooManyTagsException":           newErrorTooManyTagsException,
 }

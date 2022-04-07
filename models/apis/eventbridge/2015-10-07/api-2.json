@@ -88,6 +88,20 @@
         {"shape":"InternalException"}
       ]
     },
+    "CreateEndpoint":{
+      "name":"CreateEndpoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateEndpointRequest"},
+      "output":{"shape":"CreateEndpointResponse"},
+      "errors":[
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "CreateEventBus":{
       "name":"CreateEventBus",
       "http":{
@@ -193,6 +207,20 @@
         {"shape":"InternalException"}
       ]
     },
+    "DeleteEndpoint":{
+      "name":"DeleteEndpoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteEndpointRequest"},
+      "output":{"shape":"DeleteEndpointResponse"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "DeleteEventBus":{
       "name":"DeleteEventBus",
       "http":{
@@ -267,6 +295,19 @@
       },
       "input":{"shape":"DescribeConnectionRequest"},
       "output":{"shape":"DescribeConnectionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "DescribeEndpoint":{
+      "name":"DescribeEndpoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeEndpointRequest"},
+      "output":{"shape":"DescribeEndpointResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalException"}
@@ -400,6 +441,18 @@
       },
       "input":{"shape":"ListConnectionsRequest"},
       "output":{"shape":"ListConnectionsResponse"},
+      "errors":[
+        {"shape":"InternalException"}
+      ]
+    },
+    "ListEndpoints":{
+      "name":"ListEndpoints",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListEndpointsRequest"},
+      "output":{"shape":"ListEndpointsResponse"},
       "errors":[
         {"shape":"InternalException"}
       ]
@@ -725,6 +778,20 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalException"},
         {"shape":"LimitExceededException"}
+      ]
+    },
+    "UpdateEndpoint":{
+      "name":"UpdateEndpoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateEndpointRequest"},
+      "output":{"shape":"UpdateEndpointResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"InternalException"}
       ]
     }
   },
@@ -1253,6 +1320,34 @@
         "LastModifiedTime":{"shape":"Timestamp"}
       }
     },
+    "CreateEndpointRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "RoutingConfig",
+        "EventBuses"
+      ],
+      "members":{
+        "Name":{"shape":"EndpointName"},
+        "Description":{"shape":"EndpointDescription"},
+        "RoutingConfig":{"shape":"RoutingConfig"},
+        "ReplicationConfig":{"shape":"ReplicationConfig"},
+        "EventBuses":{"shape":"EndpointEventBusList"},
+        "RoleArn":{"shape":"IamRoleArn"}
+      }
+    },
+    "CreateEndpointResponse":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"EndpointName"},
+        "Arn":{"shape":"EndpointArn"},
+        "RoutingConfig":{"shape":"RoutingConfig"},
+        "ReplicationConfig":{"shape":"ReplicationConfig"},
+        "EventBuses":{"shape":"EndpointEventBusList"},
+        "RoleArn":{"shape":"IamRoleArn"},
+        "State":{"shape":"EndpointState"}
+      }
+    },
     "CreateEventBusRequest":{
       "type":"structure",
       "required":["Name"],
@@ -1371,6 +1466,18 @@
         "LastAuthorizedTime":{"shape":"Timestamp"}
       }
     },
+    "DeleteEndpointRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"EndpointName"}
+      }
+    },
+    "DeleteEndpointResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteEventBusRequest":{
       "type":"structure",
       "required":["Name"],
@@ -1464,6 +1571,32 @@
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
         "LastAuthorizedTime":{"shape":"Timestamp"}
+      }
+    },
+    "DescribeEndpointRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"EndpointName"},
+        "HomeRegion":{"shape":"HomeRegion"}
+      }
+    },
+    "DescribeEndpointResponse":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"EndpointName"},
+        "Description":{"shape":"EndpointDescription"},
+        "Arn":{"shape":"EndpointArn"},
+        "RoutingConfig":{"shape":"RoutingConfig"},
+        "ReplicationConfig":{"shape":"ReplicationConfig"},
+        "EventBuses":{"shape":"EndpointEventBusList"},
+        "RoleArn":{"shape":"IamRoleArn"},
+        "EndpointId":{"shape":"EndpointId"},
+        "EndpointUrl":{"shape":"EndpointUrl"},
+        "State":{"shape":"EndpointState"},
+        "StateReason":{"shape":"EndpointStateReason"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"}
       }
     },
     "DescribeEventBusRequest":{
@@ -1595,6 +1728,88 @@
         "EventBusName":{"shape":"EventBusNameOrArn"}
       }
     },
+    "Endpoint":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"EndpointName"},
+        "Description":{"shape":"EndpointDescription"},
+        "Arn":{"shape":"EndpointArn"},
+        "RoutingConfig":{"shape":"RoutingConfig"},
+        "ReplicationConfig":{"shape":"ReplicationConfig"},
+        "EventBuses":{"shape":"EndpointEventBusList"},
+        "RoleArn":{"shape":"IamRoleArn"},
+        "EndpointId":{"shape":"EndpointId"},
+        "EndpointUrl":{"shape":"EndpointUrl"},
+        "State":{"shape":"EndpointState"},
+        "StateReason":{"shape":"EndpointStateReason"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"}
+      }
+    },
+    "EndpointArn":{
+      "type":"string",
+      "max":1600,
+      "min":1,
+      "pattern":"^arn:aws([a-z]|\\-)*:events:([a-z]|\\d|\\-)*:([0-9]{12})?:endpoint\\/[/\\.\\-_A-Za-z0-9]+$"
+    },
+    "EndpointDescription":{
+      "type":"string",
+      "max":512,
+      "pattern":".*"
+    },
+    "EndpointEventBus":{
+      "type":"structure",
+      "required":["EventBusArn"],
+      "members":{
+        "EventBusArn":{"shape":"NonPartnerEventBusArn"}
+      }
+    },
+    "EndpointEventBusList":{
+      "type":"list",
+      "member":{"shape":"EndpointEventBus"},
+      "max":2,
+      "min":2
+    },
+    "EndpointId":{
+      "type":"string",
+      "max":50,
+      "min":1,
+      "pattern":"^[A-Za-z0-9\\-]+[\\.][A-Za-z0-9\\-]+$"
+    },
+    "EndpointList":{
+      "type":"list",
+      "member":{"shape":"Endpoint"}
+    },
+    "EndpointName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[\\.\\-_A-Za-z0-9]+"
+    },
+    "EndpointState":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "CREATING",
+        "UPDATING",
+        "DELETING",
+        "CREATE_FAILED",
+        "UPDATE_FAILED",
+        "DELETE_FAILED"
+      ]
+    },
+    "EndpointStateReason":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":".*"
+    },
+    "EndpointUrl":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^(https://)?[\\.\\-a-z0-9]+$"
+    },
     "ErrorCode":{"type":"string"},
     "ErrorMessage":{"type":"string"},
     "EventBus":{
@@ -1621,9 +1836,18 @@
       "min":1,
       "pattern":"(arn:aws[\\w-]*:events:[a-z]{2}-[a-z]+-[\\w-]+:[0-9]{12}:event-bus\\/)?[/\\.\\-_A-Za-z0-9]+"
     },
-    "EventId":{"type":"string"},
-    "EventPattern":{"type":"string"},
-    "EventResource":{"type":"string"},
+    "EventId":{
+      "type":"string",
+      "max":64
+    },
+    "EventPattern":{
+      "type":"string",
+      "max":4096
+    },
+    "EventResource":{
+      "type":"string",
+      "max":2048
+    },
     "EventResourceList":{
       "type":"list",
       "member":{"shape":"EventResource"}
@@ -1664,6 +1888,17 @@
       ]
     },
     "EventTime":{"type":"timestamp"},
+    "FailoverConfig":{
+      "type":"structure",
+      "required":[
+        "Primary",
+        "Secondary"
+      ],
+      "members":{
+        "Primary":{"shape":"Primary"},
+        "Secondary":{"shape":"Secondary"}
+      }
+    },
     "HeaderKey":{
       "type":"string",
       "max":512,
@@ -1679,6 +1914,18 @@
       "max":512,
       "pattern":"^[ \\t]*[\\x20-\\x7E]+([ \\t]+[\\x20-\\x7E]+)*[ \\t]*$"
     },
+    "HealthCheck":{
+      "type":"string",
+      "max":1600,
+      "min":1,
+      "pattern":"^arn:aws([a-z]|\\-)*:route53:::healthcheck/[\\-a-z0-9]+$"
+    },
+    "HomeRegion":{
+      "type":"string",
+      "max":20,
+      "min":9,
+      "pattern":"^[\\-a-z0-9]+$"
+    },
     "HttpParameters":{
       "type":"structure",
       "members":{
@@ -1692,6 +1939,12 @@
       "max":2048,
       "min":1,
       "pattern":"^((%[0-9A-Fa-f]{2}|[-()_.!~*';/?:@\\x26=+$,A-Za-z0-9])+)([).!';/?:,])?$"
+    },
+    "IamRoleArn":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^arn:aws[a-z-]*:iam::\\d{12}:role\\/[\\w+=,.@/-]+$"
     },
     "IllegalStatusException":{
       "type":"structure",
@@ -1809,6 +2062,22 @@
       "type":"structure",
       "members":{
         "Connections":{"shape":"ConnectionResponseList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListEndpointsRequest":{
+      "type":"structure",
+      "members":{
+        "NamePrefix":{"shape":"EndpointName"},
+        "HomeRegion":{"shape":"HomeRegion"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"LimitMax100"}
+      }
+    },
+    "ListEndpointsResponse":{
+      "type":"structure",
+      "members":{
+        "Endpoints":{"shape":"EndpointList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -1976,7 +2245,10 @@
       "max":185,
       "min":0
     },
-    "MessageGroupId":{"type":"string"},
+    "MessageGroupId":{
+      "type":"string",
+      "max":100
+    },
     "NetworkConfiguration":{
       "type":"structure",
       "members":{
@@ -1987,6 +2259,12 @@
       "type":"string",
       "max":2048,
       "min":1
+    },
+    "NonPartnerEventBusArn":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"^arn:aws[a-z-]*:events:[a-z]{2}-[a-z-]+-\\d+:\\d{12}:event-bus/[\\w.-]+$"
     },
     "NonPartnerEventBusName":{
       "type":"string",
@@ -2097,6 +2375,13 @@
       },
       "exception":true
     },
+    "Primary":{
+      "type":"structure",
+      "required":["HealthCheck"],
+      "members":{
+        "HealthCheck":{"shape":"HealthCheck"}
+      }
+    },
     "Principal":{
       "type":"string",
       "max":12,
@@ -2111,7 +2396,8 @@
       "type":"structure",
       "required":["Entries"],
       "members":{
-        "Entries":{"shape":"PutEventsRequestEntryList"}
+        "Entries":{"shape":"PutEventsRequestEntryList"},
+        "EndpointId":{"shape":"EndpointId"}
       }
     },
     "PutEventsRequestEntry":{
@@ -2398,6 +2684,19 @@
       "max":512,
       "pattern":".*"
     },
+    "ReplicationConfig":{
+      "type":"structure",
+      "members":{
+        "State":{"shape":"ReplicationState"}
+      }
+    },
+    "ReplicationState":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "ResourceAlreadyExistsException":{
       "type":"structure",
       "members":{
@@ -2430,6 +2729,19 @@
       "type":"string",
       "max":1600,
       "min":1
+    },
+    "Route":{
+      "type":"string",
+      "max":20,
+      "min":9,
+      "pattern":"^[\\-a-z0-9]+$"
+    },
+    "RoutingConfig":{
+      "type":"structure",
+      "required":["FailoverConfig"],
+      "members":{
+        "FailoverConfig":{"shape":"FailoverConfig"}
+      }
     },
     "Rule":{
       "type":"structure",
@@ -2552,6 +2864,13 @@
     "ScheduleExpression":{
       "type":"string",
       "max":256
+    },
+    "Secondary":{
+      "type":"structure",
+      "required":["Route"],
+      "members":{
+        "Route":{"shape":"Route"}
+      }
     },
     "SecretsManagerSecretArn":{
       "type":"string",
@@ -2865,6 +3184,32 @@
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
         "LastAuthorizedTime":{"shape":"Timestamp"}
+      }
+    },
+    "UpdateEndpointRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"EndpointName"},
+        "Description":{"shape":"EndpointDescription"},
+        "RoutingConfig":{"shape":"RoutingConfig"},
+        "ReplicationConfig":{"shape":"ReplicationConfig"},
+        "EventBuses":{"shape":"EndpointEventBusList"},
+        "RoleArn":{"shape":"IamRoleArn"}
+      }
+    },
+    "UpdateEndpointResponse":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"EndpointName"},
+        "Arn":{"shape":"EndpointArn"},
+        "RoutingConfig":{"shape":"RoutingConfig"},
+        "ReplicationConfig":{"shape":"ReplicationConfig"},
+        "EventBuses":{"shape":"EndpointEventBusList"},
+        "RoleArn":{"shape":"IamRoleArn"},
+        "EndpointId":{"shape":"EndpointId"},
+        "EndpointUrl":{"shape":"EndpointUrl"},
+        "State":{"shape":"EndpointState"}
       }
     }
   }
