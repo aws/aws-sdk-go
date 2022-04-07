@@ -26,7 +26,8 @@
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ResourceInUseException"}
+        {"shape":"ResourceInUseException"},
+        {"shape":"TooManyTagsException"}
       ]
     },
     "CreateBatchSegmentJob":{
@@ -42,7 +43,8 @@
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ResourceInUseException"}
+        {"shape":"ResourceInUseException"},
+        {"shape":"TooManyTagsException"}
       ]
     },
     "CreateCampaign":{
@@ -58,7 +60,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"LimitExceededException"},
-        {"shape":"ResourceInUseException"}
+        {"shape":"ResourceInUseException"},
+        {"shape":"TooManyTagsException"}
       ],
       "idempotent":true
     },
@@ -75,7 +78,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"LimitExceededException"},
-        {"shape":"ResourceInUseException"}
+        {"shape":"ResourceInUseException"},
+        {"shape":"TooManyTagsException"}
       ],
       "idempotent":true
     },
@@ -92,7 +96,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"LimitExceededException"},
-        {"shape":"ResourceInUseException"}
+        {"shape":"ResourceInUseException"},
+        {"shape":"TooManyTagsException"}
       ],
       "idempotent":true
     },
@@ -107,7 +112,8 @@
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"ResourceAlreadyExistsException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"TooManyTagsException"}
       ]
     },
     "CreateDatasetImportJob":{
@@ -123,7 +129,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"LimitExceededException"},
-        {"shape":"ResourceInUseException"}
+        {"shape":"ResourceInUseException"},
+        {"shape":"TooManyTagsException"}
       ]
     },
     "CreateEventTracker":{
@@ -139,7 +146,8 @@
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"LimitExceededException"},
-        {"shape":"ResourceInUseException"}
+        {"shape":"ResourceInUseException"},
+        {"shape":"TooManyTagsException"}
       ],
       "idempotent":true
     },
@@ -155,7 +163,8 @@
         {"shape":"InvalidInputException"},
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"TooManyTagsException"}
       ]
     },
     "CreateRecommender":{
@@ -170,7 +179,8 @@
         {"shape":"InvalidInputException"},
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"TooManyTagsException"}
       ],
       "idempotent":true
     },
@@ -202,7 +212,8 @@
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"LimitExceededException"},
-        {"shape":"ResourceInUseException"}
+        {"shape":"ResourceInUseException"},
+        {"shape":"TooManyTagsException"}
       ]
     },
     "CreateSolutionVersion":{
@@ -217,7 +228,8 @@
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"LimitExceededException"},
-        {"shape":"ResourceInUseException"}
+        {"shape":"ResourceInUseException"},
+        {"shape":"TooManyTagsException"}
       ]
     },
     "DeleteCampaign":{
@@ -764,6 +776,20 @@
       ],
       "idempotent":true
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
+      ]
+    },
     "StopSolutionVersionCreation":{
       "name":"StopSolutionVersionCreation",
       "http":{
@@ -777,6 +803,37 @@
         {"shape":"ResourceInUseException"}
       ],
       "idempotent":true
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyTagKeysException"},
+        {"shape":"ResourceInUseException"}
+      ]
     },
     "UpdateCampaign":{
       "name":"UpdateCampaign",
@@ -1076,7 +1133,8 @@
         "jobInput":{"shape":"BatchInferenceJobInput"},
         "jobOutput":{"shape":"BatchInferenceJobOutput"},
         "roleArn":{"shape":"RoleArn"},
-        "batchInferenceJobConfig":{"shape":"BatchInferenceJobConfig"}
+        "batchInferenceJobConfig":{"shape":"BatchInferenceJobConfig"},
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateBatchInferenceJobResponse":{
@@ -1101,7 +1159,8 @@
         "numResults":{"shape":"NumBatchResults"},
         "jobInput":{"shape":"BatchSegmentJobInput"},
         "jobOutput":{"shape":"BatchSegmentJobOutput"},
-        "roleArn":{"shape":"RoleArn"}
+        "roleArn":{"shape":"RoleArn"},
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateBatchSegmentJobResponse":{
@@ -1120,7 +1179,8 @@
         "name":{"shape":"Name"},
         "solutionVersionArn":{"shape":"Arn"},
         "minProvisionedTPS":{"shape":"TransactionsPerSecond"},
-        "campaignConfig":{"shape":"CampaignConfig"}
+        "campaignConfig":{"shape":"CampaignConfig"},
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateCampaignResponse":{
@@ -1142,7 +1202,8 @@
         "datasetArn":{"shape":"Arn"},
         "ingestionMode":{"shape":"IngestionMode"},
         "roleArn":{"shape":"RoleArn"},
-        "jobOutput":{"shape":"DatasetExportJobOutput"}
+        "jobOutput":{"shape":"DatasetExportJobOutput"},
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateDatasetExportJobResponse":{
@@ -1158,7 +1219,8 @@
         "name":{"shape":"Name"},
         "roleArn":{"shape":"RoleArn"},
         "kmsKeyArn":{"shape":"KmsKeyArn"},
-        "domain":{"shape":"Domain"}
+        "domain":{"shape":"Domain"},
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateDatasetGroupResponse":{
@@ -1180,7 +1242,8 @@
         "jobName":{"shape":"Name"},
         "datasetArn":{"shape":"Arn"},
         "dataSource":{"shape":"DataSource"},
-        "roleArn":{"shape":"RoleArn"}
+        "roleArn":{"shape":"RoleArn"},
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateDatasetImportJobResponse":{
@@ -1201,7 +1264,8 @@
         "name":{"shape":"Name"},
         "schemaArn":{"shape":"Arn"},
         "datasetGroupArn":{"shape":"Arn"},
-        "datasetType":{"shape":"DatasetType"}
+        "datasetType":{"shape":"DatasetType"},
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateDatasetResponse":{
@@ -1218,7 +1282,8 @@
       ],
       "members":{
         "name":{"shape":"Name"},
-        "datasetGroupArn":{"shape":"Arn"}
+        "datasetGroupArn":{"shape":"Arn"},
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateEventTrackerResponse":{
@@ -1238,7 +1303,8 @@
       "members":{
         "name":{"shape":"Name"},
         "datasetGroupArn":{"shape":"Arn"},
-        "filterExpression":{"shape":"FilterExpression"}
+        "filterExpression":{"shape":"FilterExpression"},
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateFilterResponse":{
@@ -1258,7 +1324,8 @@
         "name":{"shape":"Name"},
         "datasetGroupArn":{"shape":"Arn"},
         "recipeArn":{"shape":"Arn"},
-        "recommenderConfig":{"shape":"RecommenderConfig"}
+        "recommenderConfig":{"shape":"RecommenderConfig"},
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateRecommenderResponse":{
@@ -1298,7 +1365,8 @@
         "recipeArn":{"shape":"Arn"},
         "datasetGroupArn":{"shape":"Arn"},
         "eventType":{"shape":"EventType"},
-        "solutionConfig":{"shape":"SolutionConfig"}
+        "solutionConfig":{"shape":"SolutionConfig"},
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateSolutionResponse":{
@@ -1312,7 +1380,8 @@
       "required":["solutionArn"],
       "members":{
         "solutionArn":{"shape":"Arn"},
-        "trainingMode":{"shape":"TrainingMode"}
+        "trainingMode":{"shape":"TrainingMode"},
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateSolutionVersionResponse":{
@@ -2231,6 +2300,19 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{"shape":"Arn"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "tags":{"shape":"Tags"}
+      }
+    },
     "MaxResults":{
       "type":"integer",
       "max":100,
@@ -2516,6 +2598,71 @@
         "solutionVersionArn":{"shape":"Arn"}
       }
     },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "tagKey",
+        "tagValue"
+      ],
+      "members":{
+        "tagKey":{"shape":"TagKey"},
+        "tagValue":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "TagKeys":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tags"
+      ],
+      "members":{
+        "resourceArn":{"shape":"Arn"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "Tags":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":200,
+      "min":0
+    },
+    "TooManyTagKeysException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "TooManyTagsException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "TrackingId":{
       "type":"string",
       "max":256
@@ -2544,6 +2691,22 @@
       "type":"structure",
       "members":{
         "algorithmHyperParameters":{"shape":"HyperParameters"}
+      }
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceArn":{"shape":"Arn"},
+        "tagKeys":{"shape":"TagKeys"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "UpdateCampaignRequest":{

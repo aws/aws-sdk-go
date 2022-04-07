@@ -310,9 +310,21 @@ type PersonalizeAPI interface {
 	ListSolutionsPages(*personalize.ListSolutionsInput, func(*personalize.ListSolutionsOutput, bool) bool) error
 	ListSolutionsPagesWithContext(aws.Context, *personalize.ListSolutionsInput, func(*personalize.ListSolutionsOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*personalize.ListTagsForResourceInput) (*personalize.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *personalize.ListTagsForResourceInput, ...request.Option) (*personalize.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*personalize.ListTagsForResourceInput) (*request.Request, *personalize.ListTagsForResourceOutput)
+
 	StopSolutionVersionCreation(*personalize.StopSolutionVersionCreationInput) (*personalize.StopSolutionVersionCreationOutput, error)
 	StopSolutionVersionCreationWithContext(aws.Context, *personalize.StopSolutionVersionCreationInput, ...request.Option) (*personalize.StopSolutionVersionCreationOutput, error)
 	StopSolutionVersionCreationRequest(*personalize.StopSolutionVersionCreationInput) (*request.Request, *personalize.StopSolutionVersionCreationOutput)
+
+	TagResource(*personalize.TagResourceInput) (*personalize.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *personalize.TagResourceInput, ...request.Option) (*personalize.TagResourceOutput, error)
+	TagResourceRequest(*personalize.TagResourceInput) (*request.Request, *personalize.TagResourceOutput)
+
+	UntagResource(*personalize.UntagResourceInput) (*personalize.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *personalize.UntagResourceInput, ...request.Option) (*personalize.UntagResourceOutput, error)
+	UntagResourceRequest(*personalize.UntagResourceInput) (*request.Request, *personalize.UntagResourceOutput)
 
 	UpdateCampaign(*personalize.UpdateCampaignInput) (*personalize.UpdateCampaignOutput, error)
 	UpdateCampaignWithContext(aws.Context, *personalize.UpdateCampaignInput, ...request.Option) (*personalize.UpdateCampaignOutput, error)

@@ -59,7 +59,7 @@ func (c *Personalize) CreateBatchInferenceJobRequest(input *CreateBatchInference
 //
 // Creates a batch inference job. The operation can handle up to 50 million
 // records and the input file must be in JSON format. For more information,
-// see recommendations-batch.
+// see Creating a batch inference job (https://docs.aws.amazon.com/personalize/latest/dg/creating-batch-inference-job.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -83,6 +83,9 @@ func (c *Personalize) CreateBatchInferenceJobRequest(input *CreateBatchInference
 //
 //   * ResourceInUseException
 //   The specified resource is in use.
+//
+//   * TooManyTagsException
+//   You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateBatchInferenceJob
 func (c *Personalize) CreateBatchInferenceJob(input *CreateBatchInferenceJobInput) (*CreateBatchInferenceJobOutput, error) {
@@ -151,7 +154,8 @@ func (c *Personalize) CreateBatchSegmentJobRequest(input *CreateBatchSegmentJobI
 // CreateBatchSegmentJob API operation for Amazon Personalize.
 //
 // Creates a batch segment job. The operation can handle up to 50 million records
-// and the input file must be in JSON format. For more information, see recommendations-batch.
+// and the input file must be in JSON format. For more information, see Getting
+// batch recommendations and user segments (https://docs.aws.amazon.com/personalize/latest/dg/recommendations-batch.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -175,6 +179,9 @@ func (c *Personalize) CreateBatchSegmentJobRequest(input *CreateBatchSegmentJobI
 //
 //   * ResourceInUseException
 //   The specified resource is in use.
+//
+//   * TooManyTagsException
+//   You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateBatchSegmentJob
 func (c *Personalize) CreateBatchSegmentJob(input *CreateBatchSegmentJobInput) (*CreateBatchSegmentJobOutput, error) {
@@ -274,20 +281,20 @@ func (c *Personalize) CreateCampaignRequest(input *CreateCampaignInput) (req *re
 //
 //    * DELETE PENDING > DELETE IN_PROGRESS
 //
-// To get the campaign status, call DescribeCampaign.
+// To get the campaign status, call DescribeCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html).
 //
 // Wait until the status of the campaign is ACTIVE before asking the campaign
 // for recommendations.
 //
 // Related APIs
 //
-//    * ListCampaigns
+//    * ListCampaigns (https://docs.aws.amazon.com/personalize/latest/dg/API_ListCampaigns.html)
 //
-//    * DescribeCampaign
+//    * DescribeCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html)
 //
-//    * UpdateCampaign
+//    * UpdateCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_UpdateCampaign.html)
 //
-//    * DeleteCampaign
+//    * DeleteCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteCampaign.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -311,6 +318,9 @@ func (c *Personalize) CreateCampaignRequest(input *CreateCampaignInput) (req *re
 //
 //   * ResourceInUseException
 //   The specified resource is in use.
+//
+//   * TooManyTagsException
+//   You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateCampaign
 func (c *Personalize) CreateCampaign(input *CreateCampaignInput) (*CreateCampaignOutput, error) {
@@ -379,7 +389,8 @@ func (c *Personalize) CreateDatasetRequest(input *CreateDatasetInput) (req *requ
 // CreateDataset API operation for Amazon Personalize.
 //
 // Creates an empty dataset and adds it to the specified dataset group. Use
-// CreateDatasetImportJob to import your training data to a dataset.
+// CreateDatasetImportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetImportJob.html)
+// to import your training data to a dataset.
 //
 // There are three types of datasets:
 //
@@ -399,17 +410,17 @@ func (c *Personalize) CreateDatasetRequest(input *CreateDatasetInput) (req *requ
 //
 //    * DELETE PENDING > DELETE IN_PROGRESS
 //
-// To get the status of the dataset, call DescribeDataset.
+// To get the status of the dataset, call DescribeDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataset.html).
 //
 // Related APIs
 //
-//    * CreateDatasetGroup
+//    * CreateDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetGroup.html)
 //
-//    * ListDatasets
+//    * ListDatasets (https://docs.aws.amazon.com/personalize/latest/dg/API_ListDatasets.html)
 //
-//    * DescribeDataset
+//    * DescribeDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataset.html)
 //
-//    * DeleteDataset
+//    * DeleteDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteDataset.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -433,6 +444,9 @@ func (c *Personalize) CreateDatasetRequest(input *CreateDatasetInput) (req *requ
 //
 //   * ResourceInUseException
 //   The specified resource is in use.
+//
+//   * TooManyTagsException
+//   You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDataset
 func (c *Personalize) CreateDataset(input *CreateDatasetInput) (*CreateDatasetOutput, error) {
@@ -512,11 +526,11 @@ func (c *Personalize) CreateDatasetExportJobRequest(input *CreateDatasetExportJo
 //
 //    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
-// To get the status of the export job, call DescribeDatasetExportJob, and specify
-// the Amazon Resource Name (ARN) of the dataset export job. The dataset export
-// is complete when the status shows as ACTIVE. If the status shows as CREATE
-// FAILED, the response includes a failureReason key, which describes why the
-// job failed.
+// To get the status of the export job, call DescribeDatasetExportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetExportJob.html),
+// and specify the Amazon Resource Name (ARN) of the dataset export job. The
+// dataset export is complete when the status shows as ACTIVE. If the status
+// shows as CREATE FAILED, the response includes a failureReason key, which
+// describes why the job failed.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -540,6 +554,9 @@ func (c *Personalize) CreateDatasetExportJobRequest(input *CreateDatasetExportJo
 //
 //   * ResourceInUseException
 //   The specified resource is in use.
+//
+//   * TooManyTagsException
+//   You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDatasetExportJob
 func (c *Personalize) CreateDatasetExportJob(input *CreateDatasetExportJobInput) (*CreateDatasetExportJobOutput, error) {
@@ -630,9 +647,9 @@ func (c *Personalize) CreateDatasetGroupRequest(input *CreateDatasetGroupInput) 
 //
 //    * DELETE PENDING
 //
-// To get the status of the dataset group, call DescribeDatasetGroup. If the
-// status shows as CREATE FAILED, the response includes a failureReason key,
-// which describes why the creation failed.
+// To get the status of the dataset group, call DescribeDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetGroup.html).
+// If the status shows as CREATE FAILED, the response includes a failureReason
+// key, which describes why the creation failed.
 //
 // You must wait until the status of the dataset group is ACTIVE before adding
 // a dataset to the group.
@@ -643,19 +660,19 @@ func (c *Personalize) CreateDatasetGroupRequest(input *CreateDatasetGroupInput) 
 //
 // APIs that require a dataset group ARN in the request
 //
-//    * CreateDataset
+//    * CreateDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html)
 //
-//    * CreateEventTracker
+//    * CreateEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html)
 //
-//    * CreateSolution
+//    * CreateSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)
 //
 // Related APIs
 //
-//    * ListDatasetGroups
+//    * ListDatasetGroups (https://docs.aws.amazon.com/personalize/latest/dg/API_ListDatasetGroups.html)
 //
-//    * DescribeDatasetGroup
+//    * DescribeDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetGroup.html)
 //
-//    * DeleteDatasetGroup
+//    * DeleteDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteDatasetGroup.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -673,6 +690,9 @@ func (c *Personalize) CreateDatasetGroupRequest(input *CreateDatasetGroupInput) 
 //
 //   * LimitExceededException
 //   The limit on the number of requests per second has been exceeded.
+//
+//   * TooManyTagsException
+//   You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDatasetGroup
 func (c *Personalize) CreateDatasetGroup(input *CreateDatasetGroupInput) (*CreateDatasetGroupOutput, error) {
@@ -757,20 +777,20 @@ func (c *Personalize) CreateDatasetImportJobRequest(input *CreateDatasetImportJo
 //
 //    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
-// To get the status of the import job, call DescribeDatasetImportJob, providing
-// the Amazon Resource Name (ARN) of the dataset import job. The dataset import
-// is complete when the status shows as ACTIVE. If the status shows as CREATE
-// FAILED, the response includes a failureReason key, which describes why the
-// job failed.
+// To get the status of the import job, call DescribeDatasetImportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetImportJob.html),
+// providing the Amazon Resource Name (ARN) of the dataset import job. The dataset
+// import is complete when the status shows as ACTIVE. If the status shows as
+// CREATE FAILED, the response includes a failureReason key, which describes
+// why the job failed.
 //
 // Importing takes time. You must wait until the status shows as ACTIVE before
 // training a model using the dataset.
 //
 // Related APIs
 //
-//    * ListDatasetImportJobs
+//    * ListDatasetImportJobs (https://docs.aws.amazon.com/personalize/latest/dg/API_ListDatasetImportJobs.html)
 //
-//    * DescribeDatasetImportJob
+//    * DescribeDatasetImportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetImportJob.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -794,6 +814,9 @@ func (c *Personalize) CreateDatasetImportJobRequest(input *CreateDatasetImportJo
 //
 //   * ResourceInUseException
 //   The specified resource is in use.
+//
+//   * TooManyTagsException
+//   You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDatasetImportJob
 func (c *Personalize) CreateDatasetImportJob(input *CreateDatasetImportJobInput) (*CreateDatasetImportJobOutput, error) {
@@ -880,17 +903,17 @@ func (c *Personalize) CreateEventTrackerRequest(input *CreateEventTrackerInput) 
 //
 //    * DELETE PENDING > DELETE IN_PROGRESS
 //
-// To get the status of the event tracker, call DescribeEventTracker.
+// To get the status of the event tracker, call DescribeEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeEventTracker.html).
 //
 // The event tracker must be in the ACTIVE state before using the tracking ID.
 //
 // Related APIs
 //
-//    * ListEventTrackers
+//    * ListEventTrackers (https://docs.aws.amazon.com/personalize/latest/dg/API_ListEventTrackers.html)
 //
-//    * DescribeEventTracker
+//    * DescribeEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeEventTracker.html)
 //
-//    * DeleteEventTracker
+//    * DeleteEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteEventTracker.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -914,6 +937,9 @@ func (c *Personalize) CreateEventTrackerRequest(input *CreateEventTrackerInput) 
 //
 //   * ResourceInUseException
 //   The specified resource is in use.
+//
+//   * TooManyTagsException
+//   You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateEventTracker
 func (c *Personalize) CreateEventTracker(input *CreateEventTrackerInput) (*CreateEventTrackerOutput, error) {
@@ -981,7 +1007,8 @@ func (c *Personalize) CreateFilterRequest(input *CreateFilterInput) (req *reques
 
 // CreateFilter API operation for Amazon Personalize.
 //
-// Creates a recommendation filter. For more information, see filter.
+// Creates a recommendation filter. For more information, see Filtering recommendations
+// and user segments (https://docs.aws.amazon.com/personalize/latest/dg/filter.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1002,6 +1029,9 @@ func (c *Personalize) CreateFilterRequest(input *CreateFilterInput) (req *reques
 //
 //   * LimitExceededException
 //   The limit on the number of requests per second has been exceeded.
+//
+//   * TooManyTagsException
+//   You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateFilter
 func (c *Personalize) CreateFilter(input *CreateFilterInput) (*CreateFilterOutput, error) {
@@ -1106,20 +1136,20 @@ func (c *Personalize) CreateRecommenderRequest(input *CreateRecommenderInput) (r
 //
 //    * DELETE PENDING > DELETE IN_PROGRESS
 //
-// To get the recommender status, call DescribeRecommender.
+// To get the recommender status, call DescribeRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecommender.html).
 //
 // Wait until the status of the recommender is ACTIVE before asking the recommender
 // for recommendations.
 //
 // Related APIs
 //
-//    * ListRecommenders
+//    * ListRecommenders (https://docs.aws.amazon.com/personalize/latest/dg/API_ListRecommenders.html)
 //
-//    * DescribeRecommender
+//    * DescribeRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecommender.html)
 //
-//    * UpdateRecommender
+//    * UpdateRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_UpdateRecommender.html)
 //
-//    * DeleteRecommender
+//    * DeleteRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteRecommender.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1140,6 +1170,9 @@ func (c *Personalize) CreateRecommenderRequest(input *CreateRecommenderInput) (r
 //
 //   * LimitExceededException
 //   The limit on the number of requests per second has been exceeded.
+//
+//   * TooManyTagsException
+//   You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateRecommender
 func (c *Personalize) CreateRecommender(input *CreateRecommenderInput) (*CreateRecommenderOutput, error) {
@@ -1214,15 +1247,15 @@ func (c *Personalize) CreateSchemaRequest(input *CreateSchemaInput) (req *reques
 // with a dataset type and has a set of required field and keywords. If you
 // are creating a schema for a dataset in a Domain dataset group, you provide
 // the domain of the Domain dataset group. You specify a schema when you call
-// CreateDataset.
+// CreateDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html).
 //
 // Related APIs
 //
-//    * ListSchemas
+//    * ListSchemas (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSchemas.html)
 //
-//    * DescribeSchema
+//    * DescribeSchema (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSchema.html)
 //
-//    * DeleteSchema
+//    * DeleteSchema (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteSchema.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1309,11 +1342,14 @@ func (c *Personalize) CreateSolutionRequest(input *CreateSolutionInput) (req *re
 //
 // Creates the configuration for training a model. A trained model is known
 // as a solution. After the configuration is created, you train the model (create
-// a solution) by calling the CreateSolutionVersion operation. Every time you
-// call CreateSolutionVersion, a new version of the solution is created.
+// a solution) by calling the CreateSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolutionVersion.html)
+// operation. Every time you call CreateSolutionVersion, a new version of the
+// solution is created.
 //
-// After creating a solution version, you check its accuracy by calling GetSolutionMetrics.
-// When you are satisfied with the version, you deploy it using CreateCampaign.
+// After creating a solution version, you check its accuracy by calling GetSolutionMetrics
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_GetSolutionMetrics.html).
+// When you are satisfied with the version, you deploy it using CreateCampaign
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html).
 // The campaign provides recommendations to a client through the GetRecommendations
 // (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
 // API.
@@ -1337,22 +1373,22 @@ func (c *Personalize) CreateSolutionRequest(input *CreateSolutionInput) (req *re
 //
 //    * DELETE PENDING > DELETE IN_PROGRESS
 //
-// To get the status of the solution, call DescribeSolution. Wait until the
-// status shows as ACTIVE before calling CreateSolutionVersion.
+// To get the status of the solution, call DescribeSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolution.html).
+// Wait until the status shows as ACTIVE before calling CreateSolutionVersion.
 //
 // Related APIs
 //
-//    * ListSolutions
+//    * ListSolutions (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutions.html)
 //
-//    * CreateSolutionVersion
+//    * CreateSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolutionVersion.html)
 //
-//    * DescribeSolution
+//    * DescribeSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolution.html)
 //
-//    * DeleteSolution
+//    * DeleteSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteSolution.html)
 //
-//    * ListSolutionVersions
+//    * ListSolutionVersions (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutionVersions.html)
 //
-//    * DescribeSolutionVersion
+//    * DescribeSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolutionVersion.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1376,6 +1412,9 @@ func (c *Personalize) CreateSolutionRequest(input *CreateSolutionInput) (req *re
 //
 //   * ResourceInUseException
 //   The specified resource is in use.
+//
+//   * TooManyTagsException
+//   You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateSolution
 func (c *Personalize) CreateSolution(input *CreateSolutionInput) (*CreateSolutionOutput, error) {
@@ -1444,9 +1483,9 @@ func (c *Personalize) CreateSolutionVersionRequest(input *CreateSolutionVersionI
 // CreateSolutionVersion API operation for Amazon Personalize.
 //
 // Trains or retrains an active solution in a Custom dataset group. A solution
-// is created using the CreateSolution operation and must be in the ACTIVE state
-// before calling CreateSolutionVersion. A new version of the solution is created
-// every time you call this operation.
+// is created using the CreateSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)
+// operation and must be in the ACTIVE state before calling CreateSolutionVersion.
+// A new version of the solution is created every time you call this operation.
 //
 // Status
 //
@@ -1464,25 +1503,25 @@ func (c *Personalize) CreateSolutionVersionRequest(input *CreateSolutionVersionI
 //
 //    * CREATE STOPPED
 //
-// To get the status of the version, call DescribeSolutionVersion. Wait until
-// the status shows as ACTIVE before calling CreateCampaign.
+// To get the status of the version, call DescribeSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolutionVersion.html).
+// Wait until the status shows as ACTIVE before calling CreateCampaign.
 //
 // If the status shows as CREATE FAILED, the response includes a failureReason
 // key, which describes why the job failed.
 //
 // Related APIs
 //
-//    * ListSolutionVersions
+//    * ListSolutionVersions (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutionVersions.html)
 //
-//    * DescribeSolutionVersion
+//    * DescribeSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolutionVersion.html)
 //
-//    * ListSolutions
+//    * ListSolutions (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutions.html)
 //
-//    * CreateSolution
+//    * CreateSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)
 //
-//    * DescribeSolution
+//    * DescribeSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolution.html)
 //
-//    * DeleteSolution
+//    * DeleteSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteSolution.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1503,6 +1542,9 @@ func (c *Personalize) CreateSolutionVersionRequest(input *CreateSolutionVersionI
 //
 //   * ResourceInUseException
 //   The specified resource is in use.
+//
+//   * TooManyTagsException
+//   You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateSolutionVersion
 func (c *Personalize) CreateSolutionVersion(input *CreateSolutionVersionInput) (*CreateSolutionVersionOutput, error) {
@@ -1574,7 +1616,7 @@ func (c *Personalize) DeleteCampaignRequest(input *DeleteCampaignInput) (req *re
 // Removes a campaign by deleting the solution deployment. The solution that
 // the campaign is based on is not deleted and can be redeployed when needed.
 // A deleted campaign can no longer be specified in a GetRecommendations (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
-// request. For more information on campaigns, see CreateCampaign.
+// request. For information on creating campaigns, see CreateCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1662,7 +1704,7 @@ func (c *Personalize) DeleteDatasetRequest(input *DeleteDatasetInput) (req *requ
 //
 // Deletes a dataset. You can't delete a dataset if an associated DatasetImportJob
 // or SolutionVersion is in the CREATE PENDING or IN PROGRESS state. For more
-// information on datasets, see CreateDataset.
+// information on datasets, see CreateDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1843,7 +1885,7 @@ func (c *Personalize) DeleteEventTrackerRequest(input *DeleteEventTrackerInput) 
 //
 // Deletes the event tracker. Does not delete the event-interactions dataset
 // from the associated dataset group. For more information on event trackers,
-// see CreateEventTracker.
+// see CreateEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2104,7 +2146,8 @@ func (c *Personalize) DeleteSchemaRequest(input *DeleteSchemaInput) (req *reques
 // DeleteSchema API operation for Amazon Personalize.
 //
 // Deletes a schema. Before deleting a schema, you must delete all datasets
-// referencing the schema. For more information on schemas, see CreateSchema.
+// referencing the schema. For more information on schemas, see CreateSchema
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSchema.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2192,10 +2235,10 @@ func (c *Personalize) DeleteSolutionRequest(input *DeleteSolutionInput) (req *re
 //
 // Deletes all versions of a solution and the Solution object itself. Before
 // deleting a solution, you must delete all campaigns based on the solution.
-// To determine what campaigns are using the solution, call ListCampaigns and
-// supply the Amazon Resource Name (ARN) of the solution. You can't delete a
-// solution if an associated SolutionVersion is in the CREATE PENDING or IN
-// PROGRESS state. For more information on solutions, see CreateSolution.
+// To determine what campaigns are using the solution, call ListCampaigns (https://docs.aws.amazon.com/personalize/latest/dg/API_ListCampaigns.html)
+// and supply the Amazon Resource Name (ARN) of the solution. You can't delete
+// a solution if an associated SolutionVersion is in the CREATE PENDING or IN
+// PROGRESS state. For more information on solutions, see CreateSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2541,7 +2584,7 @@ func (c *Personalize) DescribeCampaignRequest(input *DescribeCampaignInput) (req
 // When the status is CREATE FAILED, the response includes the failureReason
 // key, which describes why.
 //
-// For more information on campaigns, see CreateCampaign.
+// For more information on campaigns, see CreateCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2623,7 +2666,8 @@ func (c *Personalize) DescribeDatasetRequest(input *DescribeDatasetInput) (req *
 
 // DescribeDataset API operation for Amazon Personalize.
 //
-// Describes the given dataset. For more information on datasets, see CreateDataset.
+// Describes the given dataset. For more information on datasets, see CreateDataset
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2705,8 +2749,8 @@ func (c *Personalize) DescribeDatasetExportJobRequest(input *DescribeDatasetExpo
 
 // DescribeDatasetExportJob API operation for Amazon Personalize.
 //
-// Describes the dataset export job created by CreateDatasetExportJob, including
-// the export job status.
+// Describes the dataset export job created by CreateDatasetExportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetExportJob.html),
+// including the export job status.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2789,7 +2833,7 @@ func (c *Personalize) DescribeDatasetGroupRequest(input *DescribeDatasetGroupInp
 // DescribeDatasetGroup API operation for Amazon Personalize.
 //
 // Describes the given dataset group. For more information on dataset groups,
-// see CreateDatasetGroup.
+// see CreateDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetGroup.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2871,8 +2915,8 @@ func (c *Personalize) DescribeDatasetImportJobRequest(input *DescribeDatasetImpo
 
 // DescribeDatasetImportJob API operation for Amazon Personalize.
 //
-// Describes the dataset import job created by CreateDatasetImportJob, including
-// the import job status.
+// Describes the dataset import job created by CreateDatasetImportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetImportJob.html),
+// including the import job status.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2955,7 +2999,8 @@ func (c *Personalize) DescribeEventTrackerRequest(input *DescribeEventTrackerInp
 // DescribeEventTracker API operation for Amazon Personalize.
 //
 // Describes an event tracker. The response includes the trackingId and status
-// of the event tracker. For more information on event trackers, see CreateEventTracker.
+// of the event tracker. For more information on event trackers, see CreateEventTracker
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3213,10 +3258,10 @@ func (c *Personalize) DescribeRecipeRequest(input *DescribeRecipeInput) (req *re
 //    training.
 //
 // Amazon Personalize provides a set of predefined recipes. You specify a recipe
-// when you create a solution with the CreateSolution API. CreateSolution trains
-// a model by using the algorithm in the specified recipe and a training dataset.
-// The solution, when deployed as a campaign, can provide recommendations using
-// the GetRecommendations (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
+// when you create a solution with the CreateSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)
+// API. CreateSolution trains a model by using the algorithm in the specified
+// recipe and a training dataset. The solution, when deployed as a campaign,
+// can provide recommendations using the GetRecommendations (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
 // API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3392,7 +3437,7 @@ func (c *Personalize) DescribeSchemaRequest(input *DescribeSchemaInput) (req *re
 
 // DescribeSchema API operation for Amazon Personalize.
 //
-// Describes a schema. For more information on schemas, see CreateSchema.
+// Describes a schema. For more information on schemas, see CreateSchema (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSchema.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3474,7 +3519,8 @@ func (c *Personalize) DescribeSolutionRequest(input *DescribeSolutionInput) (req
 
 // DescribeSolution API operation for Amazon Personalize.
 //
-// Describes a solution. For more information on solutions, see CreateSolution.
+// Describes a solution. For more information on solutions, see CreateSolution
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3557,7 +3603,7 @@ func (c *Personalize) DescribeSolutionVersionRequest(input *DescribeSolutionVers
 // DescribeSolutionVersion API operation for Amazon Personalize.
 //
 // Describes a specific version of a solution. For more information on solutions,
-// see CreateSolution.
+// see CreateSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4015,7 +4061,8 @@ func (c *Personalize) ListCampaignsRequest(input *ListCampaignsInput) (req *requ
 // Returns a list of campaigns that use the given solution. When a solution
 // is not specified, all the campaigns associated with the account are listed.
 // The response provides the properties for each campaign, including the Amazon
-// Resource Name (ARN). For more information on campaigns, see CreateCampaign.
+// Resource Name (ARN). For more information on campaigns, see CreateCampaign
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4159,8 +4206,8 @@ func (c *Personalize) ListDatasetExportJobsRequest(input *ListDatasetExportJobsI
 // dataset is not specified, all the dataset export jobs associated with the
 // account are listed. The response provides the properties for each dataset
 // export job, including the Amazon Resource Name (ARN). For more information
-// on dataset export jobs, see CreateDatasetExportJob. For more information
-// on datasets, see CreateDataset.
+// on dataset export jobs, see CreateDatasetExportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetExportJob.html).
+// For more information on datasets, see CreateDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4302,7 +4349,7 @@ func (c *Personalize) ListDatasetGroupsRequest(input *ListDatasetGroupsInput) (r
 //
 // Returns a list of dataset groups. The response provides the properties for
 // each dataset group, including the Amazon Resource Name (ARN). For more information
-// on dataset groups, see CreateDatasetGroup.
+// on dataset groups, see CreateDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetGroup.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4443,8 +4490,8 @@ func (c *Personalize) ListDatasetImportJobsRequest(input *ListDatasetImportJobsI
 // dataset is not specified, all the dataset import jobs associated with the
 // account are listed. The response provides the properties for each dataset
 // import job, including the Amazon Resource Name (ARN). For more information
-// on dataset import jobs, see CreateDatasetImportJob. For more information
-// on datasets, see CreateDataset.
+// on dataset import jobs, see CreateDatasetImportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetImportJob.html).
+// For more information on datasets, see CreateDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4586,7 +4633,7 @@ func (c *Personalize) ListDatasetsRequest(input *ListDatasetsInput) (req *reques
 //
 // Returns the list of datasets contained in the given dataset group. The response
 // provides the properties for each dataset, including the Amazon Resource Name
-// (ARN). For more information on datasets, see CreateDataset.
+// (ARN). For more information on datasets, see CreateDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4728,7 +4775,8 @@ func (c *Personalize) ListEventTrackersRequest(input *ListEventTrackersInput) (r
 //
 // Returns the list of event trackers associated with the account. The response
 // provides the properties for each event tracker, including the Amazon Resource
-// Name (ARN) and tracking ID. For more information on event trackers, see CreateEventTracker.
+// Name (ARN) and tracking ID. For more information on event trackers, see CreateEventTracker
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5295,7 +5343,7 @@ func (c *Personalize) ListSchemasRequest(input *ListSchemasInput) (req *request.
 //
 // Returns the list of schemas associated with the account. The response provides
 // the properties for each schema, including the Amazon Resource Name (ARN).
-// For more information on schemas, see CreateSchema.
+// For more information on schemas, see CreateSchema (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSchema.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5435,7 +5483,7 @@ func (c *Personalize) ListSolutionVersionsRequest(input *ListSolutionVersionsInp
 // Returns a list of solution versions for the given solution. When a solution
 // is not specified, all the solution versions associated with the account are
 // listed. The response provides the properties for each solution version, including
-// the Amazon Resource Name (ARN). For more information on solutions, see CreateSolution.
+// the Amazon Resource Name (ARN).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5581,7 +5629,8 @@ func (c *Personalize) ListSolutionsRequest(input *ListSolutionsInput) (req *requ
 // Returns a list of solutions that use the given dataset group. When a dataset
 // group is not specified, all the solutions associated with the account are
 // listed. The response provides the properties for each solution, including
-// the Amazon Resource Name (ARN). For more information on solutions, see CreateSolution.
+// the Amazon Resource Name (ARN). For more information on solutions, see CreateSolution
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5669,6 +5718,92 @@ func (c *Personalize) ListSolutionsPagesWithContext(ctx aws.Context, input *List
 	}
 
 	return p.Err()
+}
+
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListTagsForResource
+func (c *Personalize) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Amazon Personalize.
+//
+// Get a list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+// attached to a resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
+//   * ResourceNotFoundException
+//   Could not find the specified resource.
+//
+//   * ResourceInUseException
+//   The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListTagsForResource
+func (c *Personalize) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opStopSolutionVersionCreation = "StopSolutionVersionCreation"
@@ -5769,6 +5904,189 @@ func (c *Personalize) StopSolutionVersionCreationWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/TagResource
+func (c *Personalize) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Amazon Personalize.
+//
+// Add a list of tags to a resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
+//   * ResourceNotFoundException
+//   Could not find the specified resource.
+//
+//   * TooManyTagsException
+//   You have exceeded the maximum number of tags you can apply to this resource.
+//
+//   * ResourceInUseException
+//   The specified resource is in use.
+//
+//   * LimitExceededException
+//   The limit on the number of requests per second has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/TagResource
+func (c *Personalize) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UntagResource
+func (c *Personalize) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Amazon Personalize.
+//
+// Remove tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+// that are attached to a resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
+//   * ResourceNotFoundException
+//   Could not find the specified resource.
+//
+//   * TooManyTagKeysException
+//   The request contains more tag keys than can be associated with a resource
+//   (50 tag keys per resource).
+//
+//   * ResourceInUseException
+//   The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UntagResource
+func (c *Personalize) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateCampaign = "UpdateCampaign"
 
 // UpdateCampaignRequest generates a "aws/request.Request" representing the
@@ -5817,12 +6135,13 @@ func (c *Personalize) UpdateCampaignRequest(input *UpdateCampaignInput) (req *re
 // of the campaign's minProvisionedTPS parameter.
 //
 // To update a campaign, the campaign status must be ACTIVE or CREATE FAILED.
-// Check the campaign status using the DescribeCampaign API.
+// Check the campaign status using the DescribeCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html)
+// operation.
 //
 // You must wait until the status of the updated campaign is ACTIVE before asking
 // the campaign for recommendations.
 //
-// For more information on campaigns, see CreateCampaign.
+// For more information on campaigns, see CreateCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6107,7 +6426,8 @@ func (s *AlgorithmImage) SetName(v string) *AlgorithmImage {
 	return s
 }
 
-// When the solution performs AutoML (performAutoML is true in CreateSolution),
+// When the solution performs AutoML (performAutoML is true in CreateSolution
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)),
 // Amazon Personalize determines which recipe, from the specified list, optimizes
 // the given metric. Amazon Personalize then uses that recipe for the solution.
 type AutoMLConfig struct {
@@ -6150,7 +6470,8 @@ func (s *AutoMLConfig) SetRecipeList(v []*string) *AutoMLConfig {
 	return s
 }
 
-// When the solution performs AutoML (performAutoML is true in CreateSolution),
+// When the solution performs AutoML (performAutoML is true in CreateSolution
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)),
 // specifies the recipe that best optimized the specified metric.
 type AutoMLResult struct {
 	_ struct{} `type:"structure"`
@@ -6479,7 +6800,8 @@ func (s *BatchInferenceJobOutput) SetS3DataDestination(v *S3DataConfig) *BatchIn
 	return s
 }
 
-// A truncated version of the BatchInferenceJob datatype. The ListBatchInferenceJobs
+// A truncated version of the BatchInferenceJob (https://docs.aws.amazon.com/personalize/latest/dg/API_BatchInferenceJob.html).
+// The ListBatchInferenceJobs (https://docs.aws.amazon.com/personalize/latest/dg/API_ListBatchInferenceJobs.html)
 // operation returns a list of batch inference job summaries.
 type BatchInferenceJobSummary struct {
 	_ struct{} `type:"structure"`
@@ -6823,7 +7145,8 @@ func (s *BatchSegmentJobOutput_) SetS3DataDestination(v *S3DataConfig) *BatchSeg
 	return s
 }
 
-// A truncated version of the BatchSegmentJob datatype. The ListBatchSegmentJobs
+// A truncated version of the BatchSegmentJob (https://docs.aws.amazon.com/personalize/latest/dg/API_BatchSegmentJob.html)
+// datatype. ListBatchSegmentJobs (https://docs.aws.amazon.com/personalize/latest/dg/API_ListBatchSegmentJobs.html)
 // operation returns a list of batch segment job summaries.
 type BatchSegmentJobSummary struct {
 	_ struct{} `type:"structure"`
@@ -6920,7 +7243,7 @@ func (s *BatchSegmentJobSummary) SetStatus(v string) *BatchSegmentJobSummary {
 }
 
 // An object that describes the deployment of a solution version. For more information
-// on campaigns, see CreateCampaign.
+// on campaigns, see CreateCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html).
 type Campaign struct {
 	_ struct{} `type:"structure"`
 
@@ -6940,7 +7263,8 @@ type Campaign struct {
 	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
 
 	// Provides a summary of the properties of a campaign update. For a complete
-	// listing, call the DescribeCampaign API.
+	// listing, call the DescribeCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html)
+	// API.
 	LatestCampaignUpdate *CampaignUpdateSummary `locationName:"latestCampaignUpdate" type:"structure"`
 
 	// Specifies the requested minimum provisioned transactions (recommendations)
@@ -7079,7 +7403,8 @@ func (s *CampaignConfig) SetItemExplorationConfig(v map[string]*string) *Campaig
 }
 
 // Provides a summary of the properties of a campaign. For a complete listing,
-// call the DescribeCampaign API.
+// call the DescribeCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html)
+// API.
 type CampaignSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -7163,7 +7488,8 @@ func (s *CampaignSummary) SetStatus(v string) *CampaignSummary {
 }
 
 // Provides a summary of the properties of a campaign update. For a complete
-// listing, call the DescribeCampaign API.
+// listing, call the DescribeCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html)
+// API.
 type CampaignUpdateSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -7370,7 +7696,7 @@ type CreateBatchInferenceJobInput struct {
 	BatchInferenceJobConfig *BatchInferenceJobConfig `locationName:"batchInferenceJobConfig" type:"structure"`
 
 	// The ARN of the filter to apply to the batch inference job. For more information
-	// on using filters, see Filtering Batch Recommendations (https://docs.aws.amazon.com/personalize/latest/dg/filter-batch.html)..
+	// on using filters, see Filtering batch recommendations (https://docs.aws.amazon.com/personalize/latest/dg/filter-batch.html).
 	FilterArn *string `locationName:"filterArn" type:"string"`
 
 	// The Amazon S3 path that leads to the input file to base your recommendations
@@ -7389,7 +7715,7 @@ type CreateBatchInferenceJobInput struct {
 	// JobOutput is a required field
 	JobOutput *BatchInferenceJobOutput `locationName:"jobOutput" type:"structure" required:"true"`
 
-	// The number of recommendations to retreive.
+	// The number of recommendations to retrieve.
 	NumResults *int64 `locationName:"numResults" type:"integer"`
 
 	// The ARN of the Amazon Identity and Access Management role that has permissions
@@ -7403,6 +7729,10 @@ type CreateBatchInferenceJobInput struct {
 	//
 	// SolutionVersionArn is a required field
 	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string" required:"true"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the batch inference job.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation.
@@ -7452,6 +7782,16 @@ func (s *CreateBatchInferenceJobInput) Validate() error {
 	if s.JobOutput != nil {
 		if err := s.JobOutput.Validate(); err != nil {
 			invalidParams.AddNested("JobOutput", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -7509,6 +7849,12 @@ func (s *CreateBatchInferenceJobInput) SetSolutionVersionArn(v string) *CreateBa
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateBatchInferenceJobInput) SetTags(v []*Tag) *CreateBatchInferenceJobInput {
+	s.Tags = v
+	return s
+}
+
 type CreateBatchInferenceJobOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7544,7 +7890,7 @@ type CreateBatchSegmentJobInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the filter to apply to the batch segment job. For more information
-	// on using filters, see filter-batch.
+	// on using filters, see Filtering batch recommendations (https://docs.aws.amazon.com/personalize/latest/dg/filter-batch.html).
 	FilterArn *string `locationName:"filterArn" type:"string"`
 
 	// The Amazon S3 path for the input data used to generate the batch segment
@@ -7578,6 +7924,10 @@ type CreateBatchSegmentJobInput struct {
 	//
 	// SolutionVersionArn is a required field
 	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string" required:"true"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the batch segment job.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation.
@@ -7629,6 +7979,16 @@ func (s *CreateBatchSegmentJobInput) Validate() error {
 			invalidParams.AddNested("JobOutput", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7675,6 +8035,12 @@ func (s *CreateBatchSegmentJobInput) SetRoleArn(v string) *CreateBatchSegmentJob
 // SetSolutionVersionArn sets the SolutionVersionArn field's value.
 func (s *CreateBatchSegmentJobInput) SetSolutionVersionArn(v string) *CreateBatchSegmentJobInput {
 	s.SolutionVersionArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateBatchSegmentJobInput) SetTags(v []*Tag) *CreateBatchSegmentJobInput {
+	s.Tags = v
 	return s
 }
 
@@ -7729,6 +8095,10 @@ type CreateCampaignInput struct {
 	//
 	// SolutionVersionArn is a required field
 	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string" required:"true"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the campaign.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation.
@@ -7764,6 +8134,16 @@ func (s *CreateCampaignInput) Validate() error {
 	if s.SolutionVersionArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("SolutionVersionArn"))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7792,6 +8172,12 @@ func (s *CreateCampaignInput) SetName(v string) *CreateCampaignInput {
 // SetSolutionVersionArn sets the SolutionVersionArn field's value.
 func (s *CreateCampaignInput) SetSolutionVersionArn(v string) *CreateCampaignInput {
 	s.SolutionVersionArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCampaignInput) SetTags(v []*Tag) *CreateCampaignInput {
+	s.Tags = v
 	return s
 }
 
@@ -7855,6 +8241,10 @@ type CreateDatasetExportJobInput struct {
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the dataset export job.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation.
@@ -7898,6 +8288,16 @@ func (s *CreateDatasetExportJobInput) Validate() error {
 			invalidParams.AddNested("JobOutput", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7932,6 +8332,12 @@ func (s *CreateDatasetExportJobInput) SetJobOutput(v *DatasetExportJobOutput) *C
 // SetRoleArn sets the RoleArn field's value.
 func (s *CreateDatasetExportJobInput) SetRoleArn(v string) *CreateDatasetExportJobInput {
 	s.RoleArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDatasetExportJobInput) SetTags(v []*Tag) *CreateDatasetExportJobInput {
+	s.Tags = v
 	return s
 }
 
@@ -7989,6 +8395,10 @@ type CreateDatasetGroupInput struct {
 	// to access the Key Management Service (KMS) key. Supplying an IAM role is
 	// only valid when also specifying a KMS key.
 	RoleArn *string `locationName:"roleArn" type:"string"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the dataset group.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation.
@@ -8018,6 +8428,16 @@ func (s *CreateDatasetGroupInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8046,6 +8466,12 @@ func (s *CreateDatasetGroupInput) SetName(v string) *CreateDatasetGroupInput {
 // SetRoleArn sets the RoleArn field's value.
 func (s *CreateDatasetGroupInput) SetRoleArn(v string) *CreateDatasetGroupInput {
 	s.RoleArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDatasetGroupInput) SetTags(v []*Tag) *CreateDatasetGroupInput {
+	s.Tags = v
 	return s
 }
 
@@ -8112,6 +8538,10 @@ type CreateDatasetImportJobInput struct {
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the dataset import job.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation.
@@ -8150,6 +8580,16 @@ func (s *CreateDatasetImportJobInput) Validate() error {
 	if s.RoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8178,6 +8618,12 @@ func (s *CreateDatasetImportJobInput) SetJobName(v string) *CreateDatasetImportJ
 // SetRoleArn sets the RoleArn field's value.
 func (s *CreateDatasetImportJobInput) SetRoleArn(v string) *CreateDatasetImportJobInput {
 	s.RoleArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDatasetImportJobInput) SetTags(v []*Tag) *CreateDatasetImportJobInput {
+	s.Tags = v
 	return s
 }
 
@@ -8243,6 +8689,10 @@ type CreateDatasetInput struct {
 	//
 	// SchemaArn is a required field
 	SchemaArn *string `locationName:"schemaArn" type:"string" required:"true"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the dataset.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation.
@@ -8281,6 +8731,16 @@ func (s *CreateDatasetInput) Validate() error {
 	if s.SchemaArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("SchemaArn"))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8309,6 +8769,12 @@ func (s *CreateDatasetInput) SetName(v string) *CreateDatasetInput {
 // SetSchemaArn sets the SchemaArn field's value.
 func (s *CreateDatasetInput) SetSchemaArn(v string) *CreateDatasetInput {
 	s.SchemaArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDatasetInput) SetTags(v []*Tag) *CreateDatasetInput {
+	s.Tags = v
 	return s
 }
 
@@ -8356,6 +8822,10 @@ type CreateEventTrackerInput struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the event tracker.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation.
@@ -8388,6 +8858,16 @@ func (s *CreateEventTrackerInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8404,6 +8884,12 @@ func (s *CreateEventTrackerInput) SetDatasetGroupArn(v string) *CreateEventTrack
 // SetName sets the Name field's value.
 func (s *CreateEventTrackerInput) SetName(v string) *CreateEventTrackerInput {
 	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateEventTrackerInput) SetTags(v []*Tag) *CreateEventTrackerInput {
+	s.Tags = v
 	return s
 }
 
@@ -8459,7 +8945,7 @@ type CreateFilterInput struct {
 
 	// The filter expression defines which items are included or excluded from recommendations.
 	// Filter expression must follow specific format rules. For information about
-	// filter expression structure and syntax, see filter-expressions.
+	// filter expression structure and syntax, see Filter expressions (https://docs.aws.amazon.com/personalize/latest/dg/filter-expressions.html).
 	//
 	// FilterExpression is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateFilterInput's
@@ -8472,6 +8958,10 @@ type CreateFilterInput struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the filter.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation.
@@ -8510,6 +9000,16 @@ func (s *CreateFilterInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8532,6 +9032,12 @@ func (s *CreateFilterInput) SetFilterExpression(v string) *CreateFilterInput {
 // SetName sets the Name field's value.
 func (s *CreateFilterInput) SetName(v string) *CreateFilterInput {
 	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateFilterInput) SetTags(v []*Tag) *CreateFilterInput {
+	s.Tags = v
 	return s
 }
 
@@ -8590,6 +9096,10 @@ type CreateRecommenderInput struct {
 
 	// The configuration details of the recommender.
 	RecommenderConfig *RecommenderConfig `locationName:"recommenderConfig" type:"structure"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the recommender.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation.
@@ -8630,6 +9140,16 @@ func (s *CreateRecommenderInput) Validate() error {
 			invalidParams.AddNested("RecommenderConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8658,6 +9178,12 @@ func (s *CreateRecommenderInput) SetRecipeArn(v string) *CreateRecommenderInput 
 // SetRecommenderConfig sets the RecommenderConfig field's value.
 func (s *CreateRecommenderInput) SetRecommenderConfig(v *RecommenderConfig) *CreateRecommenderInput {
 	s.RecommenderConfig = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateRecommenderInput) SetTags(v []*Tag) *CreateRecommenderInput {
+	s.Tags = v
 	return s
 }
 
@@ -8846,6 +9372,10 @@ type CreateSolutionInput struct {
 	//
 	// Amazon Personalize doesn't support configuring the hpoObjective at this time.
 	SolutionConfig *SolutionConfig `locationName:"solutionConfig" type:"structure"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the solution.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation.
@@ -8881,6 +9411,16 @@ func (s *CreateSolutionInput) Validate() error {
 	if s.SolutionConfig != nil {
 		if err := s.SolutionConfig.Validate(); err != nil {
 			invalidParams.AddNested("SolutionConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -8932,6 +9472,12 @@ func (s *CreateSolutionInput) SetSolutionConfig(v *SolutionConfig) *CreateSoluti
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateSolutionInput) SetTags(v []*Tag) *CreateSolutionInput {
+	s.Tags = v
+	return s
+}
+
 type CreateSolutionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8972,6 +9518,10 @@ type CreateSolutionVersionInput struct {
 	// SolutionArn is a required field
 	SolutionArn *string `locationName:"solutionArn" type:"string" required:"true"`
 
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the solution version.
+	Tags []*Tag `locationName:"tags" type:"list"`
+
 	// The scope of training to be performed when creating the solution version.
 	// The FULL option trains the solution version based on the entirety of the
 	// input solution's training data, while the UPDATE option processes only the
@@ -9011,6 +9561,16 @@ func (s *CreateSolutionVersionInput) Validate() error {
 	if s.SolutionArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("SolutionArn"))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9021,6 +9581,12 @@ func (s *CreateSolutionVersionInput) Validate() error {
 // SetSolutionArn sets the SolutionArn field's value.
 func (s *CreateSolutionVersionInput) SetSolutionArn(v string) *CreateSolutionVersionInput {
 	s.SolutionArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateSolutionVersionInput) SetTags(v []*Tag) *CreateSolutionVersionInput {
+	s.Tags = v
 	return s
 }
 
@@ -9204,7 +9770,7 @@ func (s *Dataset) SetStatus(v string) *Dataset {
 }
 
 // Describes a job that exports a dataset to an Amazon S3 bucket. For more information,
-// see CreateDatasetExportJob.
+// see CreateDatasetExportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetExportJob.html).
 //
 // A dataset export job can be in one of the following states:
 //
@@ -9385,7 +9951,8 @@ func (s *DatasetExportJobOutput) SetS3DataDestination(v *S3DataConfig) *DatasetE
 }
 
 // Provides a summary of the properties of a dataset export job. For a complete
-// listing, call the DescribeDatasetExportJob API.
+// listing, call the DescribeDatasetExportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetExportJob.html)
+// API.
 type DatasetExportJobSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -9468,9 +10035,11 @@ func (s *DatasetExportJobSummary) SetStatus(v string) *DatasetExportJobSummary {
 }
 
 // A dataset group is a collection of related datasets (Interactions, User,
-// and Item). You create a dataset group by calling CreateDatasetGroup. You
-// then create a dataset and add it to a dataset group by calling CreateDataset.
-// The dataset group is used to create and train a solution by calling CreateSolution.
+// and Item). You create a dataset group by calling CreateDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetGroup.html).
+// You then create a dataset and add it to a dataset group by calling CreateDataset
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html).
+// The dataset group is used to create and train a solution by calling CreateSolution
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html).
 // A dataset group can contain only one of each type of dataset.
 //
 // You can specify an Key Management Service (KMS) key to encrypt the datasets
@@ -9586,7 +10155,8 @@ func (s *DatasetGroup) SetStatus(v string) *DatasetGroup {
 }
 
 // Provides a summary of the properties of a dataset group. For a complete listing,
-// call the DescribeDatasetGroup API.
+// call the DescribeDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetGroup.html)
+// API.
 type DatasetGroupSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -9679,7 +10249,8 @@ func (s *DatasetGroupSummary) SetStatus(v string) *DatasetGroupSummary {
 }
 
 // Describes a job that imports training data from a data source (Amazon S3
-// bucket) to an Amazon Personalize dataset. For more information, see CreateDatasetImportJob.
+// bucket) to an Amazon Personalize dataset. For more information, see CreateDatasetImportJob
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetImportJob.html).
 //
 // A dataset import job can be in one of the following states:
 //
@@ -9794,7 +10365,8 @@ func (s *DatasetImportJob) SetStatus(v string) *DatasetImportJob {
 }
 
 // Provides a summary of the properties of a dataset import job. For a complete
-// listing, call the DescribeDatasetImportJob API.
+// listing, call the DescribeDatasetImportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetImportJob.html)
+// API.
 type DatasetImportJobSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -9877,7 +10449,7 @@ func (s *DatasetImportJobSummary) SetStatus(v string) *DatasetImportJobSummary {
 }
 
 // Describes the schema for a dataset. For more information on schemas, see
-// CreateSchema.
+// CreateSchema (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSchema.html).
 type DatasetSchema struct {
 	_ struct{} `type:"structure"`
 
@@ -9956,7 +10528,8 @@ func (s *DatasetSchema) SetSchemaArn(v string) *DatasetSchema {
 }
 
 // Provides a summary of the properties of a dataset schema. For a complete
-// listing, call the DescribeSchema API.
+// listing, call the DescribeSchema (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSchema.html)
+// API.
 type DatasetSchemaSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -10026,7 +10599,8 @@ func (s *DatasetSchemaSummary) SetSchemaArn(v string) *DatasetSchemaSummary {
 }
 
 // Provides a summary of the properties of a dataset. For a complete listing,
-// call the DescribeDataset API.
+// call the DescribeDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataset.html)
+// API.
 type DatasetSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -12243,7 +12817,8 @@ func (s *EventTracker) SetTrackingId(v string) *EventTracker {
 }
 
 // Provides a summary of the properties of an event tracker. For a complete
-// listing, call the DescribeEventTracker API.
+// listing, call the DescribeEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeEventTracker.html)
+// API.
 type EventTrackerSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -12418,7 +12993,7 @@ type Filter struct {
 
 	// Specifies the type of item interactions to filter out of recommendation results.
 	// The filter expression must follow specific format rules. For information
-	// about filter expression structure and syntax, see filter-expressions.
+	// about filter expression structure and syntax, see Filter expressions (https://docs.aws.amazon.com/personalize/latest/dg/filter-expressions.html).
 	//
 	// FilterExpression is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Filter's
@@ -13387,8 +13962,8 @@ type ListCampaignsInput struct {
 	// The maximum number of campaigns to return.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token returned from the previous call to ListCampaigns for getting the
-	// next set of campaigns (if they exist).
+	// A token returned from the previous call to ListCampaigns (https://docs.aws.amazon.com/personalize/latest/dg/API_ListCampaigns.html)
+	// for getting the next set of campaigns (if they exist).
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the solution to list the campaigns for.
@@ -14103,7 +14678,7 @@ type ListRecipesInput struct {
 
 	// Filters returned recipes by domain for a Domain dataset group. Only recipes
 	// (Domain dataset group use cases) for this domain are included in the response.
-	// If you don't specify a domain, only non-domain recipes are returned.
+	// If you don't specify a domain, all recipes are returned.
 	Domain *string `locationName:"domain" type:"string" enum:"Domain"`
 
 	// The maximum number of recipes to return.
@@ -14617,6 +15192,83 @@ func (s *ListSolutionsOutput) SetSolutions(v []*SolutionSummary) *ListSolutionsO
 	return s
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource's Amazon Resource Name.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource's tags.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
 // Describes the additional objective for the solution, such as maximizing streaming
 // minutes or increasing revenue. For more information see Optimizing a solution
 // (https://docs.aws.amazon.com/personalize/latest/dg/optimizing-solution-for-objective.html).
@@ -14678,6 +15330,7 @@ func (s *OptimizationObjective) SetObjectiveSensitivity(v string) *OptimizationO
 
 // Provides information about a recipe. Each recipe provides an algorithm that
 // Amazon Personalize uses in model training when you use the CreateSolution
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)
 // operation.
 type Recipe struct {
 	_ struct{} `type:"structure"`
@@ -14790,7 +15443,8 @@ func (s *Recipe) SetStatus(v string) *Recipe {
 }
 
 // Provides a summary of the properties of a recipe. For a complete listing,
-// call the DescribeRecipe API.
+// call the DescribeRecipe (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecipe.html)
+// API.
 type RecipeSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -15153,7 +15807,8 @@ func (s *RecommenderSummary) SetStatus(v string) *RecommenderSummary {
 }
 
 // Provides a summary of the properties of a recommender update. For a complete
-// listing, call the DescribeRecommender API operation.
+// listing, call the DescribeRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecommender.html)
+// API.
 type RecommenderUpdateSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -15638,8 +16293,8 @@ type SolutionConfig struct {
 	// Lists the hyperparameter names and ranges.
 	AlgorithmHyperParameters map[string]*string `locationName:"algorithmHyperParameters" type:"map"`
 
-	// The AutoMLConfig object containing a list of recipes to search when AutoML
-	// is performed.
+	// The AutoMLConfig (https://docs.aws.amazon.com/personalize/latest/dg/API_AutoMLConfig.html)
+	// object containing a list of recipes to search when AutoML is performed.
 	AutoMLConfig *AutoMLConfig `locationName:"autoMLConfig" type:"structure"`
 
 	// Only events with a value greater than or equal to this threshold are used
@@ -15733,7 +16388,8 @@ func (s *SolutionConfig) SetOptimizationObjective(v *OptimizationObjective) *Sol
 }
 
 // Provides a summary of the properties of a solution. For a complete listing,
-// call the DescribeSolution API.
+// call the DescribeSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolution.html)
+// API.
 type SolutionSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -15808,7 +16464,8 @@ func (s *SolutionSummary) SetStatus(v string) *SolutionSummary {
 }
 
 // An object that provides information about a specific version of a Solution
-// in a Custom dataset group.
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_Solution.html) in
+// a Custom dataset group.
 type SolutionVersion struct {
 	_ struct{} `type:"structure"`
 
@@ -16000,7 +16657,8 @@ func (s *SolutionVersion) SetTunedHPOParams(v *TunedHPOParams) *SolutionVersion 
 }
 
 // Provides a summary of the properties of a solution version. For a complete
-// listing, call the DescribeSolutionVersion API.
+// listing, call the DescribeSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolutionVersion.html)
+// API.
 type SolutionVersionSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -16140,6 +16798,297 @@ func (s StopSolutionVersionCreationOutput) GoString() string {
 	return s.String()
 }
 
+// The optional metadata that you apply to resources to help you categorize
+// and organize them. Each tag consists of a key and an optional value, both
+// of which you define. For more information see Tagging Personalize resources
+// (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html).
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// One part of a key-value pair that makes up a tag. A key is a general label
+	// that acts like a category for more specific tag values.
+	//
+	// TagKey is a required field
+	TagKey *string `locationName:"tagKey" min:"1" type:"string" required:"true"`
+
+	// The optional part of a key-value pair that makes up a tag. A value acts as
+	// a descriptor within a tag category (key).
+	//
+	// TagValue is a required field
+	TagValue *string `locationName:"tagValue" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.TagKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKey"))
+	}
+	if s.TagKey != nil && len(*s.TagKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKey", 1))
+	}
+	if s.TagValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagValue"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTagKey sets the TagKey field's value.
+func (s *Tag) SetTagKey(v string) *Tag {
+	s.TagKey = &v
+	return s
+}
+
+// SetTagValue sets the TagValue field's value.
+func (s *Tag) SetTagValue(v string) *Tag {
+	s.TagValue = &v
+	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource's Amazon Resource Name (ARN).
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
+
+	// Tags to apply to the resource. For more information see Tagging Personalize
+	// resources (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html).
+	//
+	// Tags is a required field
+	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
+// The request contains more tag keys than can be associated with a resource
+// (50 tag keys per resource).
+type TooManyTagKeysException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagKeysException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagKeysException) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyTagKeysException(v protocol.ResponseMetadata) error {
+	return &TooManyTagKeysException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TooManyTagKeysException) Code() string {
+	return "TooManyTagKeysException"
+}
+
+// Message returns the exception's message.
+func (s *TooManyTagKeysException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TooManyTagKeysException) OrigErr() error {
+	return nil
+}
+
+func (s *TooManyTagKeysException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TooManyTagKeysException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TooManyTagKeysException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// You have exceeded the maximum number of tags you can apply to this resource.
+type TooManyTagsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagsException) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyTagsException(v protocol.ResponseMetadata) error {
+	return &TooManyTagsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TooManyTagsException) Code() string {
+	return "TooManyTagsException"
+}
+
+// Message returns the exception's message.
+func (s *TooManyTagsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TooManyTagsException) OrigErr() error {
+	return nil
+}
+
+func (s *TooManyTagsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TooManyTagsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TooManyTagsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // If hyperparameter optimization (HPO) was performed, contains the hyperparameter
 // values of the best performing model.
 type TunedHPOParams struct {
@@ -16171,6 +17120,88 @@ func (s TunedHPOParams) GoString() string {
 func (s *TunedHPOParams) SetAlgorithmHyperParameters(v map[string]*string) *TunedHPOParams {
 	s.AlgorithmHyperParameters = v
 	return s
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource's Amazon Resource Name (ARN).
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
+
+	// Keys to remove from the resource's tags.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `locationName:"tagKeys" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateCampaignInput struct {

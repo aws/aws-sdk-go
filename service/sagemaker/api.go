@@ -95322,6 +95322,30 @@ const (
 
 	// InstanceTypeMlR524xlarge is a InstanceType enum value
 	InstanceTypeMlR524xlarge = "ml.r5.24xlarge"
+
+	// InstanceTypeMlG5Xlarge is a InstanceType enum value
+	InstanceTypeMlG5Xlarge = "ml.g5.xlarge"
+
+	// InstanceTypeMlG52xlarge is a InstanceType enum value
+	InstanceTypeMlG52xlarge = "ml.g5.2xlarge"
+
+	// InstanceTypeMlG54xlarge is a InstanceType enum value
+	InstanceTypeMlG54xlarge = "ml.g5.4xlarge"
+
+	// InstanceTypeMlG58xlarge is a InstanceType enum value
+	InstanceTypeMlG58xlarge = "ml.g5.8xlarge"
+
+	// InstanceTypeMlG516xlarge is a InstanceType enum value
+	InstanceTypeMlG516xlarge = "ml.g5.16xlarge"
+
+	// InstanceTypeMlG512xlarge is a InstanceType enum value
+	InstanceTypeMlG512xlarge = "ml.g5.12xlarge"
+
+	// InstanceTypeMlG524xlarge is a InstanceType enum value
+	InstanceTypeMlG524xlarge = "ml.g5.24xlarge"
+
+	// InstanceTypeMlG548xlarge is a InstanceType enum value
+	InstanceTypeMlG548xlarge = "ml.g5.48xlarge"
 )
 
 // InstanceType_Values returns all elements of the InstanceType enum
@@ -95388,6 +95412,14 @@ func InstanceType_Values() []string {
 		InstanceTypeMlR512xlarge,
 		InstanceTypeMlR516xlarge,
 		InstanceTypeMlR524xlarge,
+		InstanceTypeMlG5Xlarge,
+		InstanceTypeMlG52xlarge,
+		InstanceTypeMlG54xlarge,
+		InstanceTypeMlG58xlarge,
+		InstanceTypeMlG516xlarge,
+		InstanceTypeMlG512xlarge,
+		InstanceTypeMlG524xlarge,
+		InstanceTypeMlG548xlarge,
 	}
 }
 

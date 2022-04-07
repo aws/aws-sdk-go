@@ -1,3 +1,17 @@
+Release v1.43.35 (2022-04-07)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service paginators
+  * ApiGateway CLI command get-usage now includes usagePlanId, startDate, and endDate fields in the output to match documentation.
+* `service/docdb`: Updates service API and documentation
+  * Added support to enable/disable performance insights when creating or modifying db instances
+* `service/eventbridge`: Updates service API and documentation
+* `service/personalize`: Updates service API and documentation
+* `service/pi`: Updates service documentation
+* `service/sagemaker`: Updates service API
+  * Amazon Sagemaker Notebook Instances now supports G5 instance types
+
 Release v1.43.34 (2022-04-06)
 ===
 
