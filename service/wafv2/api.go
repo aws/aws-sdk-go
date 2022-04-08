@@ -3123,6 +3123,9 @@ func (c *WAFV2) ListAvailableManagedRuleGroupVersionsRequest(input *ListAvailabl
 //      * Your request references an ARN that is malformed, or corresponds to
 //      a resource with which a web ACL can't be associated.
 //
+//   * WAFNonexistentItemException
+//   WAF couldn’t perform the operation because your resource doesn’t exist.
+//
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
 //
@@ -4557,8 +4560,9 @@ func (c *WAFV2) PutPermissionPolicyRequest(input *PutPermissionPolicyInput) (req
 //
 //      * Effect must specify Allow.
 //
-//      * Action must specify wafv2:CreateWebACL, wafv2:UpdateWebACL, and wafv2:PutFirewallManagerRuleGroups.
-//      WAF rejects any extra actions or wildcard actions in the policy.
+//      * Action must specify wafv2:CreateWebACL, wafv2:UpdateWebACL, and wafv2:PutFirewallManagerRuleGroups
+//      and may optionally specify wafv2:GetRuleGroup. WAF rejects any extra actions
+//      or wildcard actions in the policy.
 //
 //      * The policy must not include a Resource parameter.
 //
@@ -12032,6 +12036,9 @@ func (s *ListAvailableManagedRuleGroupVersionsInput) SetVendorName(v string) *Li
 type ListAvailableManagedRuleGroupVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the version that's currently set as the default.
+	CurrentDefaultVersion *string `min:"1" type:"string"`
+
 	// When you request a list of objects with a Limit setting, if the number of
 	// objects that are still available for retrieval exceeds the limit, WAF returns
 	// a NextMarker value in the response. To retrieve the next batch of objects,
@@ -12059,6 +12066,12 @@ func (s ListAvailableManagedRuleGroupVersionsOutput) String() string {
 // value will be replaced with "sensitive".
 func (s ListAvailableManagedRuleGroupVersionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetCurrentDefaultVersion sets the CurrentDefaultVersion field's value.
+func (s *ListAvailableManagedRuleGroupVersionsOutput) SetCurrentDefaultVersion(v string) *ListAvailableManagedRuleGroupVersionsOutput {
+	s.CurrentDefaultVersion = &v
+	return s
 }
 
 // SetNextMarker sets the NextMarker field's value.
@@ -13530,6 +13543,12 @@ func (s *LoggingFilter) SetFilters(v []*Filter) *LoggingFilter {
 //
 // Use this for the account takeover prevention managed rule group AWSManagedRulesATPRuleSet,
 // to provide information about the sign-in page of your application.
+//
+// You can provide multiple individual ManagedRuleGroupConfig objects for any
+// rule group configuration, for example UsernameField and PasswordField. The
+// configuration that you provide depends on the needs of the managed rule group.
+// For the ATP managed rule group, you provide the following individual configuration
+// objects: LoginPath, PasswordField, PayloadType and UsernameField.
 type ManagedRuleGroupConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -13633,6 +13652,12 @@ type ManagedRuleGroupStatement struct {
 	//
 	// Use this for the account takeover prevention managed rule group AWSManagedRulesATPRuleSet,
 	// to provide information about the sign-in page of your application.
+	//
+	// You can provide multiple individual ManagedRuleGroupConfig objects for any
+	// rule group configuration, for example UsernameField and PasswordField. The
+	// configuration that you provide depends on the needs of the managed rule group.
+	// For the ATP managed rule group, you provide the following individual configuration
+	// objects: LoginPath, PasswordField, PayloadType and UsernameField.
 	ManagedRuleGroupConfigs []*ManagedRuleGroupConfig `min:"1" type:"list"`
 
 	// The name of the managed rule group. You use this, along with the vendor name,
@@ -13788,6 +13813,10 @@ type ManagedRuleGroupSummary struct {
 	// The name of the managed rule group vendor. You use this, along with the rule
 	// group name, to identify the rule group.
 	VendorName *string `min:"1" type:"string"`
+
+	// Indicates whether the managed rule group is versioned. If it is, you can
+	// retrieve the versions list by calling ListAvailableManagedRuleGroupVersions.
+	VersioningSupported *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -13823,6 +13852,12 @@ func (s *ManagedRuleGroupSummary) SetName(v string) *ManagedRuleGroupSummary {
 // SetVendorName sets the VendorName field's value.
 func (s *ManagedRuleGroupSummary) SetVendorName(v string) *ManagedRuleGroupSummary {
 	s.VendorName = &v
+	return s
+}
+
+// SetVersioningSupported sets the VersioningSupported field's value.
+func (s *ManagedRuleGroupSummary) SetVersioningSupported(v bool) *ManagedRuleGroupSummary {
+	s.VersioningSupported = &v
 	return s
 }
 
@@ -14900,8 +14935,9 @@ type PutPermissionPolicyInput struct {
 	//
 	//    * Effect must specify Allow.
 	//
-	//    * Action must specify wafv2:CreateWebACL, wafv2:UpdateWebACL, and wafv2:PutFirewallManagerRuleGroups.
-	//    WAF rejects any extra actions or wildcard actions in the policy.
+	//    * Action must specify wafv2:CreateWebACL, wafv2:UpdateWebACL, and wafv2:PutFirewallManagerRuleGroups
+	//    and may optionally specify wafv2:GetRuleGroup. WAF rejects any extra actions
+	//    or wildcard actions in the policy.
 	//
 	//    * The policy must not include a Resource parameter.
 	//
@@ -19480,8 +19516,9 @@ func (s *WAFInvalidParameterException) RequestID() string {
 //
 //    * Effect must specify Allow.
 //
-//    * Action must specify wafv2:CreateWebACL, wafv2:UpdateWebACL, and wafv2:PutFirewallManagerRuleGroups.
-//    WAF rejects any extra actions or wildcard actions in the policy.
+//    * Action must specify wafv2:CreateWebACL, wafv2:UpdateWebACL, and wafv2:PutFirewallManagerRuleGroups
+//    and may optionally specify wafv2:GetRuleGroup. WAF rejects any extra actions
+//    or wildcard actions in the policy.
 //
 //    * The policy must not include a Resource parameter.
 //

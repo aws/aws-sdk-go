@@ -1008,6 +1008,10 @@
           "locationName": "profile",
           "shape": "Profile"
         },
+        "ScteMarkersSource": {
+          "locationName": "scteMarkersSource",
+          "shape": "ScteMarkersSource"
+        },
         "StreamSelection": {
           "locationName": "streamSelection",
           "shape": "StreamSelection"
@@ -1732,6 +1736,13 @@
       "enum": [
         "NONE",
         "HBBTV_1_5"
+      ],
+      "type": "string"
+    },
+    "ScteMarkersSource": {
+      "enum": [
+        "SEGMENTS",
+        "MANIFEST"
       ],
       "type": "string"
     },

@@ -2589,6 +2589,13 @@
         "EXCLUDE"
       ]
     },
+    "CmfcKlvMetadata": {
+      "type": "string",
+      "enum": [
+        "PASSTHROUGH",
+        "NONE"
+      ]
+    },
     "CmfcScte35Esam": {
       "type": "string",
       "enum": [
@@ -2629,6 +2636,10 @@
         "IFrameOnlyManifest": {
           "shape": "CmfcIFrameOnlyManifest",
           "locationName": "iFrameOnlyManifest"
+        },
+        "KlvMetadata": {
+          "shape": "CmfcKlvMetadata",
+          "locationName": "klvMetadata"
         },
         "Scte35Esam": {
           "shape": "CmfcScte35Esam",
@@ -6916,6 +6927,13 @@
         "DEFAULT"
       ]
     },
+    "M2tsKlvMetadata": {
+      "type": "string",
+      "enum": [
+        "PASSTHROUGH",
+        "NONE"
+      ]
+    },
     "M2tsNielsenId3": {
       "type": "string",
       "enum": [
@@ -7041,6 +7059,10 @@
         "FragmentTime": {
           "shape": "__doubleMin0",
           "locationName": "fragmentTime"
+        },
+        "KlvMetadata": {
+          "shape": "M2tsKlvMetadata",
+          "locationName": "klvMetadata"
         },
         "MaxPcrInterval": {
           "shape": "__integerMin0Max500",
@@ -7493,6 +7515,13 @@
         "FRAGMENTED_MP4"
       ]
     },
+    "MpdKlvMetadata": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "PASSTHROUGH"
+      ]
+    },
     "MpdScte35Esam": {
       "type": "string",
       "enum": [
@@ -7521,6 +7550,10 @@
         "CaptionContainerType": {
           "shape": "MpdCaptionContainerType",
           "locationName": "captionContainerType"
+        },
+        "KlvMetadata": {
+          "shape": "MpdKlvMetadata",
+          "locationName": "klvMetadata"
         },
         "Scte35Esam": {
           "shape": "MpdScte35Esam",
@@ -9956,7 +9989,8 @@
       "type": "string",
       "enum": [
         "ENABLED",
-        "DISABLED"
+        "DISABLED",
+        "STRICT"
       ]
     },
     "Xavc4kIntraCbgProfileClass": {

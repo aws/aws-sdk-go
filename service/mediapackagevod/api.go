@@ -2710,6 +2710,11 @@ type DashManifest struct {
 	// "HBBTV_1_5", HbbTV 1.5 compliant output is enabled.
 	Profile *string `locationName:"profile" type:"string" enum:"Profile"`
 
+	// The source of scte markers used. When set to SEGMENTS, the scte markers are
+	// sourced from the segments of the ingested content. When set to MANIFEST,
+	// the scte markers are sourced from the manifest of the ingested content.
+	ScteMarkersSource *string `locationName:"scteMarkersSource" type:"string" enum:"ScteMarkersSource"`
+
 	// A StreamSelection configuration.
 	StreamSelection *StreamSelection `locationName:"streamSelection" type:"structure"`
 }
@@ -2753,6 +2758,12 @@ func (s *DashManifest) SetMinBufferTimeSeconds(v int64) *DashManifest {
 // SetProfile sets the Profile field's value.
 func (s *DashManifest) SetProfile(v string) *DashManifest {
 	s.Profile = &v
+	return s
+}
+
+// SetScteMarkersSource sets the ScteMarkersSource field's value.
+func (s *DashManifest) SetScteMarkersSource(v string) *DashManifest {
+	s.ScteMarkersSource = &v
 	return s
 }
 
@@ -5388,6 +5399,22 @@ func Profile_Values() []string {
 	return []string{
 		ProfileNone,
 		ProfileHbbtv15,
+	}
+}
+
+const (
+	// ScteMarkersSourceSegments is a ScteMarkersSource enum value
+	ScteMarkersSourceSegments = "SEGMENTS"
+
+	// ScteMarkersSourceManifest is a ScteMarkersSource enum value
+	ScteMarkersSourceManifest = "MANIFEST"
+)
+
+// ScteMarkersSource_Values returns all elements of the ScteMarkersSource enum
+func ScteMarkersSource_Values() []string {
+	return []string{
+		ScteMarkersSourceSegments,
+		ScteMarkersSourceManifest,
 	}
 }
 

@@ -475,6 +475,7 @@
       "errors":[
         {"shape":"WAFInternalErrorException"},
         {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFInvalidOperationException"}
       ]
     },
@@ -1581,7 +1582,8 @@
     },
     "ExcludedRules":{
       "type":"list",
-      "member":{"shape":"ExcludedRule"}
+      "member":{"shape":"ExcludedRule"},
+      "max":100
     },
     "FailureReason":{
       "type":"string",
@@ -2151,7 +2153,8 @@
       "type":"structure",
       "members":{
         "NextMarker":{"shape":"NextMarker"},
-        "Versions":{"shape":"ManagedRuleGroupVersions"}
+        "Versions":{"shape":"ManagedRuleGroupVersions"},
+        "CurrentDefaultVersion":{"shape":"VersionKeyString"}
       }
     },
     "ListAvailableManagedRuleGroupsRequest":{
@@ -2402,6 +2405,7 @@
       "members":{
         "VendorName":{"shape":"VendorName"},
         "Name":{"shape":"EntityName"},
+        "VersioningSupported":{"shape":"Boolean"},
         "Description":{"shape":"EntityDescription"}
       }
     },

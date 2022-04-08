@@ -6743,6 +6743,10 @@ type CmfcSettings struct {
 	// value Exclude (EXCLUDE).
 	IFrameOnlyManifest *string `locationName:"iFrameOnlyManifest" type:"string" enum:"CmfcIFrameOnlyManifest"`
 
+	// Applies to CMAF outputs. Use this setting to specify whether the service
+	// inserts the KLV metadata from the input in this output.
+	KlvMetadata *string `locationName:"klvMetadata" type:"string" enum:"CmfcKlvMetadata"`
+
 	// Use this setting only when you specify SCTE-35 markers from ESAM. Choose
 	// INSERT to put SCTE-35 markers in this output at the insertion points that
 	// you specify in an ESAM XML document. Provide the document in the setting
@@ -6814,6 +6818,12 @@ func (s *CmfcSettings) SetDescriptiveVideoServiceFlag(v string) *CmfcSettings {
 // SetIFrameOnlyManifest sets the IFrameOnlyManifest field's value.
 func (s *CmfcSettings) SetIFrameOnlyManifest(v string) *CmfcSettings {
 	s.IFrameOnlyManifest = &v
+	return s
+}
+
+// SetKlvMetadata sets the KlvMetadata field's value.
+func (s *CmfcSettings) SetKlvMetadata(v string) *CmfcSettings {
+	s.KlvMetadata = &v
 	return s
 }
 
@@ -17183,6 +17193,10 @@ type M2tsSettings struct {
 	// The length, in seconds, of each fragment. Only used with EBP markers.
 	FragmentTime *float64 `locationName:"fragmentTime" type:"double"`
 
+	// Applies to MPEG-TS outputs. Use this setting to specify whether the service
+	// inserts the KLV metadata from the input in this output.
+	KlvMetadata *string `locationName:"klvMetadata" type:"string" enum:"M2tsKlvMetadata"`
+
 	// Specify the maximum time, in milliseconds, between Program Clock References
 	// (PCRs) inserted into the transport stream.
 	MaxPcrInterval *int64 `locationName:"maxPcrInterval" type:"integer"`
@@ -17466,6 +17480,12 @@ func (s *M2tsSettings) SetForceTsVideoEbpOrder(v string) *M2tsSettings {
 // SetFragmentTime sets the FragmentTime field's value.
 func (s *M2tsSettings) SetFragmentTime(v float64) *M2tsSettings {
 	s.FragmentTime = &v
+	return s
+}
+
+// SetKlvMetadata sets the KlvMetadata field's value.
+func (s *M2tsSettings) SetKlvMetadata(v string) *M2tsSettings {
+	s.KlvMetadata = &v
 	return s
 }
 
@@ -18470,6 +18490,10 @@ type MpdSettings struct {
 	// MP4 files is separate from your video and audio fragmented MP4 files.
 	CaptionContainerType *string `locationName:"captionContainerType" type:"string" enum:"MpdCaptionContainerType"`
 
+	// Applies to DASH ISO outputs. Use this setting to specify whether the service
+	// inserts the KLV metadata from the input in this output.
+	KlvMetadata *string `locationName:"klvMetadata" type:"string" enum:"MpdKlvMetadata"`
+
 	// Use this setting only when you specify SCTE-35 markers from ESAM. Choose
 	// INSERT to put SCTE-35 markers in this output at the insertion points that
 	// you specify in an ESAM XML document. Provide the document in the setting
@@ -18523,6 +18547,12 @@ func (s *MpdSettings) SetAudioDuration(v string) *MpdSettings {
 // SetCaptionContainerType sets the CaptionContainerType field's value.
 func (s *MpdSettings) SetCaptionContainerType(v string) *MpdSettings {
 	s.CaptionContainerType = &v
+	return s
+}
+
+// SetKlvMetadata sets the KlvMetadata field's value.
+func (s *MpdSettings) SetKlvMetadata(v string) *MpdSettings {
+	s.KlvMetadata = &v
 	return s
 }
 
@@ -25077,12 +25107,15 @@ type WebvttDestinationSettings struct {
 	// will not add the above attributes.
 	Accessibility *string `locationName:"accessibility" type:"string" enum:"WebvttAccessibilitySubs"`
 
-	// Set Style passthrough (StylePassthrough) to ENABLED to use the available
-	// style, color, and position information from your input captions. MediaConvert
-	// uses default settings for any missing style and position information in your
-	// input captions. Set Style passthrough to DISABLED, or leave blank, to ignore
+	// To use the available style, color, and position information from your input
+	// captions: Set Style passthrough (stylePassthrough) to Enabled (ENABLED).
+	// MediaConvert uses default settings when style and position information is
+	// missing from your input captions. To recreate the input captions exactly:
+	// Set Style passthrough to Strict (STRICT). MediaConvert automatically applies
+	// timing adjustments, including adjustments for frame rate conversion, ad avails,
+	// and input clipping. Your input captions format must be WebVTT. To ignore
 	// the style and position information from your input captions and use simplified
-	// output captions.
+	// output captions: Set Style passthrough to Disabled (DISABLED), or leave blank.
 	StylePassthrough *string `locationName:"stylePassthrough" type:"string" enum:"WebvttStylePassthrough"`
 }
 
@@ -27985,6 +28018,24 @@ func CmfcIFrameOnlyManifest_Values() []string {
 	return []string{
 		CmfcIFrameOnlyManifestInclude,
 		CmfcIFrameOnlyManifestExclude,
+	}
+}
+
+// Applies to CMAF outputs. Use this setting to specify whether the service
+// inserts the KLV metadata from the input in this output.
+const (
+	// CmfcKlvMetadataPassthrough is a CmfcKlvMetadata enum value
+	CmfcKlvMetadataPassthrough = "PASSTHROUGH"
+
+	// CmfcKlvMetadataNone is a CmfcKlvMetadata enum value
+	CmfcKlvMetadataNone = "NONE"
+)
+
+// CmfcKlvMetadata_Values returns all elements of the CmfcKlvMetadata enum
+func CmfcKlvMetadata_Values() []string {
+	return []string{
+		CmfcKlvMetadataPassthrough,
+		CmfcKlvMetadataNone,
 	}
 }
 
@@ -32946,6 +32997,24 @@ func M2tsForceTsVideoEbpOrder_Values() []string {
 	}
 }
 
+// Applies to MPEG-TS outputs. Use this setting to specify whether the service
+// inserts the KLV metadata from the input in this output.
+const (
+	// M2tsKlvMetadataPassthrough is a M2tsKlvMetadata enum value
+	M2tsKlvMetadataPassthrough = "PASSTHROUGH"
+
+	// M2tsKlvMetadataNone is a M2tsKlvMetadata enum value
+	M2tsKlvMetadataNone = "NONE"
+)
+
+// M2tsKlvMetadata_Values returns all elements of the M2tsKlvMetadata enum
+func M2tsKlvMetadata_Values() []string {
+	return []string{
+		M2tsKlvMetadataPassthrough,
+		M2tsKlvMetadataNone,
+	}
+}
+
 // If INSERT, Nielsen inaudible tones for media tracking will be detected in
 // the input audio and an equivalent ID3 tag will be inserted in the output.
 const (
@@ -33475,6 +33544,24 @@ func MpdCaptionContainerType_Values() []string {
 	return []string{
 		MpdCaptionContainerTypeRaw,
 		MpdCaptionContainerTypeFragmentedMp4,
+	}
+}
+
+// Applies to DASH ISO outputs. Use this setting to specify whether the service
+// inserts the KLV metadata from the input in this output.
+const (
+	// MpdKlvMetadataNone is a MpdKlvMetadata enum value
+	MpdKlvMetadataNone = "NONE"
+
+	// MpdKlvMetadataPassthrough is a MpdKlvMetadata enum value
+	MpdKlvMetadataPassthrough = "PASSTHROUGH"
+)
+
+// MpdKlvMetadata_Values returns all elements of the MpdKlvMetadata enum
+func MpdKlvMetadata_Values() []string {
+	return []string{
+		MpdKlvMetadataNone,
+		MpdKlvMetadataPassthrough,
 	}
 }
 
@@ -35784,18 +35871,24 @@ func WebvttAccessibilitySubs_Values() []string {
 	}
 }
 
-// Set Style passthrough (StylePassthrough) to ENABLED to use the available
-// style, color, and position information from your input captions. MediaConvert
-// uses default settings for any missing style and position information in your
-// input captions. Set Style passthrough to DISABLED, or leave blank, to ignore
+// To use the available style, color, and position information from your input
+// captions: Set Style passthrough (stylePassthrough) to Enabled (ENABLED).
+// MediaConvert uses default settings when style and position information is
+// missing from your input captions. To recreate the input captions exactly:
+// Set Style passthrough to Strict (STRICT). MediaConvert automatically applies
+// timing adjustments, including adjustments for frame rate conversion, ad avails,
+// and input clipping. Your input captions format must be WebVTT. To ignore
 // the style and position information from your input captions and use simplified
-// output captions.
+// output captions: Set Style passthrough to Disabled (DISABLED), or leave blank.
 const (
 	// WebvttStylePassthroughEnabled is a WebvttStylePassthrough enum value
 	WebvttStylePassthroughEnabled = "ENABLED"
 
 	// WebvttStylePassthroughDisabled is a WebvttStylePassthrough enum value
 	WebvttStylePassthroughDisabled = "DISABLED"
+
+	// WebvttStylePassthroughStrict is a WebvttStylePassthrough enum value
+	WebvttStylePassthroughStrict = "STRICT"
 )
 
 // WebvttStylePassthrough_Values returns all elements of the WebvttStylePassthrough enum
@@ -35803,6 +35896,7 @@ func WebvttStylePassthrough_Values() []string {
 	return []string{
 		WebvttStylePassthroughEnabled,
 		WebvttStylePassthroughDisabled,
+		WebvttStylePassthroughStrict,
 	}
 }
 
