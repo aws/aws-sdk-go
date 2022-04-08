@@ -1,3 +1,12 @@
+Release v1.43.36 (2022-04-08)
+===
+
+### Service Client Updates
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for the pass-through of WebVTT styling to WebVTT outputs, pass-through of KLV metadata to supported formats, and improved filter support for processing 444/RGB content.
+* `service/mediapackage-vod`: Updates service API and documentation
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.43.35 (2022-04-07)
 ===
 
