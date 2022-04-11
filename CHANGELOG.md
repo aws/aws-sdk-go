@@ -1,3 +1,12 @@
+Release v1.43.37 (2022-04-11)
+===
+
+### Service Client Updates
+* `service/amplifyuibuilder`: Updates service API and documentation
+* `service/apprunner`: Updates service API, documentation, and paginators
+* `service/workspaces`: Updates service API and documentation
+  * Added API support that allows customers to create GPU-enabled WorkSpaces using EC2 G4dn instances.
+
 Release v1.43.36 (2022-04-08)
 ===
 

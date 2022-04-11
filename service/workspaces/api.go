@@ -10648,7 +10648,11 @@ type ImportWorkspaceImageInput struct {
 	// for Windows 10 BYOL images. For more information about subscribing to Office
 	// for BYOL images, see Bring Your Own Windows Desktop Licenses (https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html).
 	//
-	// Although this parameter is an array, only one item is allowed at this time.
+	//    * Although this parameter is an array, only one item is allowed at this
+	//    time
+	//
+	//    * Microsoft Office 2016 application subscription through AWS is currently
+	//    not supported for Graphics.g4dn Bring Your Own License (BYOL) images
 	Applications []*string `min:"1" type:"list" enum:"Application"`
 
 	// The identifier of the EC2 image.
@@ -10671,8 +10675,11 @@ type ImportWorkspaceImageInput struct {
 	// Streaming Protocol (WSP). To use WSP, specify a value that ends in _WSP.
 	// To use PCoIP, specify a value that does not end in _WSP.
 	//
-	// For non-GPU-enabled bundles (bundles other than Graphics or GraphicsPro),
-	// specify BYOL_REGULAR or BYOL_REGULAR_WSP, depending on the protocol.
+	// For non-GPU-enabled images (bundles other than Graphics.g4dn, GraphicsPro.g4dn,
+	// Graphics, or GraphicsPro), specify BYOL_REGULAR or BYOL_REGULAR_WSP, depending
+	// on the protocol.
+	//
+	// Use BYOL_GRAPHICS_G4DN ingestion for both Graphics.g4dn and GraphicsPro.g4dn.
 	//
 	// IngestionProcess is a required field
 	IngestionProcess *string `type:"string" required:"true" enum:"WorkspaceImageIngestionProcess"`
@@ -15753,6 +15760,12 @@ const (
 
 	// ComputeGraphicspro is a Compute enum value
 	ComputeGraphicspro = "GRAPHICSPRO"
+
+	// ComputeGraphicsG4dn is a Compute enum value
+	ComputeGraphicsG4dn = "GRAPHICS_G4DN"
+
+	// ComputeGraphicsproG4dn is a Compute enum value
+	ComputeGraphicsproG4dn = "GRAPHICSPRO_G4DN"
 )
 
 // Compute_Values returns all elements of the Compute enum
@@ -15765,6 +15778,8 @@ func Compute_Values() []string {
 		ComputeGraphics,
 		ComputePowerpro,
 		ComputeGraphicspro,
+		ComputeGraphicsG4dn,
+		ComputeGraphicsproG4dn,
 	}
 }
 
@@ -16042,6 +16057,9 @@ const (
 	// WorkspaceImageIngestionProcessByolGraphicspro is a WorkspaceImageIngestionProcess enum value
 	WorkspaceImageIngestionProcessByolGraphicspro = "BYOL_GRAPHICSPRO"
 
+	// WorkspaceImageIngestionProcessByolGraphicsG4dn is a WorkspaceImageIngestionProcess enum value
+	WorkspaceImageIngestionProcessByolGraphicsG4dn = "BYOL_GRAPHICS_G4DN"
+
 	// WorkspaceImageIngestionProcessByolRegularWsp is a WorkspaceImageIngestionProcess enum value
 	WorkspaceImageIngestionProcessByolRegularWsp = "BYOL_REGULAR_WSP"
 )
@@ -16052,6 +16070,7 @@ func WorkspaceImageIngestionProcess_Values() []string {
 		WorkspaceImageIngestionProcessByolRegular,
 		WorkspaceImageIngestionProcessByolGraphics,
 		WorkspaceImageIngestionProcessByolGraphicspro,
+		WorkspaceImageIngestionProcessByolGraphicsG4dn,
 		WorkspaceImageIngestionProcessByolRegularWsp,
 	}
 }
