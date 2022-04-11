@@ -55,6 +55,20 @@
         {"shape":"ServiceQuotaExceededException"}
       ]
     },
+    "CreateObservabilityConfiguration":{
+      "name":"CreateObservabilityConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateObservabilityConfigurationRequest"},
+      "output":{"shape":"CreateObservabilityConfigurationResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
     "CreateService":{
       "name":"CreateService",
       "http":{
@@ -111,6 +125,20 @@
         {"shape":"InternalServiceErrorException"}
       ]
     },
+    "DeleteObservabilityConfiguration":{
+      "name":"DeleteObservabilityConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteObservabilityConfigurationRequest"},
+      "output":{"shape":"DeleteObservabilityConfigurationResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DeleteService":{
       "name":"DeleteService",
       "http":{
@@ -162,6 +190,20 @@
       },
       "input":{"shape":"DescribeCustomDomainsRequest"},
       "output":{"shape":"DescribeCustomDomainsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DescribeObservabilityConfiguration":{
+      "name":"DescribeObservabilityConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeObservabilityConfigurationRequest"},
+      "output":{"shape":"DescribeObservabilityConfigurationResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalServiceErrorException"},
@@ -232,6 +274,19 @@
       },
       "input":{"shape":"ListConnectionsRequest"},
       "output":{"shape":"ListConnectionsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceErrorException"}
+      ]
+    },
+    "ListObservabilityConfigurations":{
+      "name":"ListObservabilityConfigurations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListObservabilityConfigurationsRequest"},
+      "output":{"shape":"ListObservabilityConfigurationsResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalServiceErrorException"}
@@ -623,6 +678,22 @@
         "Connection":{"shape":"Connection"}
       }
     },
+    "CreateObservabilityConfigurationRequest":{
+      "type":"structure",
+      "required":["ObservabilityConfigurationName"],
+      "members":{
+        "ObservabilityConfigurationName":{"shape":"ObservabilityConfigurationName"},
+        "TraceConfiguration":{"shape":"TraceConfiguration"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateObservabilityConfigurationResponse":{
+      "type":"structure",
+      "required":["ObservabilityConfiguration"],
+      "members":{
+        "ObservabilityConfiguration":{"shape":"ObservabilityConfiguration"}
+      }
+    },
     "CreateServiceRequest":{
       "type":"structure",
       "required":[
@@ -637,7 +708,8 @@
         "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
         "HealthCheckConfiguration":{"shape":"HealthCheckConfiguration"},
         "AutoScalingConfigurationArn":{"shape":"AppRunnerResourceArn"},
-        "NetworkConfiguration":{"shape":"NetworkConfiguration"}
+        "NetworkConfiguration":{"shape":"NetworkConfiguration"},
+        "ObservabilityConfiguration":{"shape":"ServiceObservabilityConfiguration"}
       }
     },
     "CreateServiceResponse":{
@@ -728,6 +800,20 @@
         "Connection":{"shape":"Connection"}
       }
     },
+    "DeleteObservabilityConfigurationRequest":{
+      "type":"structure",
+      "required":["ObservabilityConfigurationArn"],
+      "members":{
+        "ObservabilityConfigurationArn":{"shape":"AppRunnerResourceArn"}
+      }
+    },
+    "DeleteObservabilityConfigurationResponse":{
+      "type":"structure",
+      "required":["ObservabilityConfiguration"],
+      "members":{
+        "ObservabilityConfiguration":{"shape":"ObservabilityConfiguration"}
+      }
+    },
     "DeleteServiceRequest":{
       "type":"structure",
       "required":["ServiceArn"],
@@ -800,6 +886,20 @@
         "ServiceArn":{"shape":"AppRunnerResourceArn"},
         "CustomDomains":{"shape":"CustomDomainList"},
         "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeObservabilityConfigurationRequest":{
+      "type":"structure",
+      "required":["ObservabilityConfigurationArn"],
+      "members":{
+        "ObservabilityConfigurationArn":{"shape":"AppRunnerResourceArn"}
+      }
+    },
+    "DescribeObservabilityConfigurationResponse":{
+      "type":"structure",
+      "required":["ObservabilityConfiguration"],
+      "members":{
+        "ObservabilityConfiguration":{"shape":"ObservabilityConfiguration"}
       }
     },
     "DescribeServiceRequest":{
@@ -1030,6 +1130,23 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListObservabilityConfigurationsRequest":{
+      "type":"structure",
+      "members":{
+        "ObservabilityConfigurationName":{"shape":"ObservabilityConfigurationName"},
+        "LatestOnly":{"shape":"Boolean"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListObservabilityConfigurationsResponse":{
+      "type":"structure",
+      "required":["ObservabilityConfigurationSummaryList"],
+      "members":{
+        "ObservabilityConfigurationSummaryList":{"shape":"ObservabilityConfigurationSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListOperationsMaxResults":{
       "type":"integer",
       "max":20,
@@ -1118,6 +1235,44 @@
       "pattern":".*"
     },
     "NullableBoolean":{"type":"boolean"},
+    "ObservabilityConfiguration":{
+      "type":"structure",
+      "members":{
+        "ObservabilityConfigurationArn":{"shape":"AppRunnerResourceArn"},
+        "ObservabilityConfigurationName":{"shape":"ObservabilityConfigurationName"},
+        "TraceConfiguration":{"shape":"TraceConfiguration"},
+        "ObservabilityConfigurationRevision":{"shape":"Integer"},
+        "Latest":{"shape":"Boolean"},
+        "Status":{"shape":"ObservabilityConfigurationStatus"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "DeletedAt":{"shape":"Timestamp"}
+      }
+    },
+    "ObservabilityConfigurationName":{
+      "type":"string",
+      "max":32,
+      "min":4,
+      "pattern":"[A-Za-z0-9][A-Za-z0-9\\-_]{3,31}"
+    },
+    "ObservabilityConfigurationStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "INACTIVE"
+      ]
+    },
+    "ObservabilityConfigurationSummary":{
+      "type":"structure",
+      "members":{
+        "ObservabilityConfigurationArn":{"shape":"AppRunnerResourceArn"},
+        "ObservabilityConfigurationName":{"shape":"ObservabilityConfigurationName"},
+        "ObservabilityConfigurationRevision":{"shape":"Integer"}
+      }
+    },
+    "ObservabilityConfigurationSummaryList":{
+      "type":"list",
+      "member":{"shape":"ObservabilityConfigurationSummary"}
+    },
     "OperationStatus":{
       "type":"string",
       "enum":[
@@ -1261,7 +1416,8 @@
         "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
         "HealthCheckConfiguration":{"shape":"HealthCheckConfiguration"},
         "AutoScalingConfigurationSummary":{"shape":"AutoScalingConfigurationSummary"},
-        "NetworkConfiguration":{"shape":"NetworkConfiguration"}
+        "NetworkConfiguration":{"shape":"NetworkConfiguration"},
+        "ObservabilityConfiguration":{"shape":"ServiceObservabilityConfiguration"}
       }
     },
     "ServiceId":{
@@ -1280,6 +1436,14 @@
       "max":40,
       "min":4,
       "pattern":"[A-Za-z0-9][A-Za-z0-9-_]{3,39}"
+    },
+    "ServiceObservabilityConfiguration":{
+      "type":"structure",
+      "required":["ObservabilityEnabled"],
+      "members":{
+        "ObservabilityEnabled":{"shape":"Boolean"},
+        "ObservabilityConfigurationArn":{"shape":"AppRunnerResourceArn"}
+      }
     },
     "ServiceQuotaExceededException":{
       "type":"structure",
@@ -1412,6 +1576,17 @@
       "pattern":".*"
     },
     "Timestamp":{"type":"timestamp"},
+    "TraceConfiguration":{
+      "type":"structure",
+      "required":["Vendor"],
+      "members":{
+        "Vendor":{"shape":"TracingVendor"}
+      }
+    },
+    "TracingVendor":{
+      "type":"string",
+      "enum":["AWSXRAY"]
+    },
     "UUID":{
       "type":"string",
       "max":36,
@@ -1443,7 +1618,8 @@
         "InstanceConfiguration":{"shape":"InstanceConfiguration"},
         "AutoScalingConfigurationArn":{"shape":"AppRunnerResourceArn"},
         "HealthCheckConfiguration":{"shape":"HealthCheckConfiguration"},
-        "NetworkConfiguration":{"shape":"NetworkConfiguration"}
+        "NetworkConfiguration":{"shape":"NetworkConfiguration"},
+        "ObservabilityConfiguration":{"shape":"ServiceObservabilityConfiguration"}
       }
     },
     "UpdateServiceResponse":{

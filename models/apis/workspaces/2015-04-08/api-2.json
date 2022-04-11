@@ -1099,7 +1099,9 @@
         "POWER",
         "GRAPHICS",
         "POWERPRO",
-        "GRAPHICSPRO"
+        "GRAPHICSPRO",
+        "GRAPHICS_G4DN",
+        "GRAPHICSPRO_G4DN"
       ]
     },
     "ComputeType":{
@@ -2860,6 +2862,7 @@
         "BYOL_REGULAR",
         "BYOL_GRAPHICS",
         "BYOL_GRAPHICSPRO",
+        "BYOL_GRAPHICS_G4DN",
         "BYOL_REGULAR_WSP"
       ]
     },

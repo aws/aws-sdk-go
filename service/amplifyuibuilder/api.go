@@ -1969,6 +1969,10 @@ type ComponentChild struct {
 	//
 	// Properties is a required field
 	Properties map[string]*ComponentProperty `locationName:"properties" type:"map" required:"true"`
+
+	// The unique ID of the child component in its original source system, such
+	// as Figma.
+	SourceId *string `locationName:"sourceId" type:"string"`
 }
 
 // String returns the string representation.
@@ -2065,6 +2069,12 @@ func (s *ComponentChild) SetName(v string) *ComponentChild {
 // SetProperties sets the Properties field's value.
 func (s *ComponentChild) SetProperties(v map[string]*ComponentProperty) *ComponentChild {
 	s.Properties = v
+	return s
+}
+
+// SetSourceId sets the SourceId field's value.
+func (s *ComponentChild) SetSourceId(v string) *ComponentChild {
+	s.SourceId = &v
 	return s
 }
 
@@ -2271,6 +2281,10 @@ type ComponentEvent struct {
 	// The action to perform when a specific event is raised.
 	Action *string `locationName:"action" type:"string"`
 
+	// Binds an event to an action on a component. When you specify a bindingEvent,
+	// the event is called when the action is performed.
+	BindingEvent *string `locationName:"bindingEvent" type:"string"`
+
 	// Describes information about the action.
 	Parameters *ActionParameters `locationName:"parameters" type:"structure"`
 }
@@ -2311,6 +2325,12 @@ func (s *ComponentEvent) Validate() error {
 // SetAction sets the Action field's value.
 func (s *ComponentEvent) SetAction(v string) *ComponentEvent {
 	s.Action = &v
+	return s
+}
+
+// SetBindingEvent sets the BindingEvent field's value.
+func (s *ComponentEvent) SetBindingEvent(v string) *ComponentEvent {
+	s.BindingEvent = &v
 	return s
 }
 

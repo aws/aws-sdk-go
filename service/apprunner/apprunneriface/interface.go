@@ -72,6 +72,10 @@ type AppRunnerAPI interface {
 	CreateConnectionWithContext(aws.Context, *apprunner.CreateConnectionInput, ...request.Option) (*apprunner.CreateConnectionOutput, error)
 	CreateConnectionRequest(*apprunner.CreateConnectionInput) (*request.Request, *apprunner.CreateConnectionOutput)
 
+	CreateObservabilityConfiguration(*apprunner.CreateObservabilityConfigurationInput) (*apprunner.CreateObservabilityConfigurationOutput, error)
+	CreateObservabilityConfigurationWithContext(aws.Context, *apprunner.CreateObservabilityConfigurationInput, ...request.Option) (*apprunner.CreateObservabilityConfigurationOutput, error)
+	CreateObservabilityConfigurationRequest(*apprunner.CreateObservabilityConfigurationInput) (*request.Request, *apprunner.CreateObservabilityConfigurationOutput)
+
 	CreateService(*apprunner.CreateServiceInput) (*apprunner.CreateServiceOutput, error)
 	CreateServiceWithContext(aws.Context, *apprunner.CreateServiceInput, ...request.Option) (*apprunner.CreateServiceOutput, error)
 	CreateServiceRequest(*apprunner.CreateServiceInput) (*request.Request, *apprunner.CreateServiceOutput)
@@ -87,6 +91,10 @@ type AppRunnerAPI interface {
 	DeleteConnection(*apprunner.DeleteConnectionInput) (*apprunner.DeleteConnectionOutput, error)
 	DeleteConnectionWithContext(aws.Context, *apprunner.DeleteConnectionInput, ...request.Option) (*apprunner.DeleteConnectionOutput, error)
 	DeleteConnectionRequest(*apprunner.DeleteConnectionInput) (*request.Request, *apprunner.DeleteConnectionOutput)
+
+	DeleteObservabilityConfiguration(*apprunner.DeleteObservabilityConfigurationInput) (*apprunner.DeleteObservabilityConfigurationOutput, error)
+	DeleteObservabilityConfigurationWithContext(aws.Context, *apprunner.DeleteObservabilityConfigurationInput, ...request.Option) (*apprunner.DeleteObservabilityConfigurationOutput, error)
+	DeleteObservabilityConfigurationRequest(*apprunner.DeleteObservabilityConfigurationInput) (*request.Request, *apprunner.DeleteObservabilityConfigurationOutput)
 
 	DeleteService(*apprunner.DeleteServiceInput) (*apprunner.DeleteServiceOutput, error)
 	DeleteServiceWithContext(aws.Context, *apprunner.DeleteServiceInput, ...request.Option) (*apprunner.DeleteServiceOutput, error)
@@ -106,6 +114,10 @@ type AppRunnerAPI interface {
 
 	DescribeCustomDomainsPages(*apprunner.DescribeCustomDomainsInput, func(*apprunner.DescribeCustomDomainsOutput, bool) bool) error
 	DescribeCustomDomainsPagesWithContext(aws.Context, *apprunner.DescribeCustomDomainsInput, func(*apprunner.DescribeCustomDomainsOutput, bool) bool, ...request.Option) error
+
+	DescribeObservabilityConfiguration(*apprunner.DescribeObservabilityConfigurationInput) (*apprunner.DescribeObservabilityConfigurationOutput, error)
+	DescribeObservabilityConfigurationWithContext(aws.Context, *apprunner.DescribeObservabilityConfigurationInput, ...request.Option) (*apprunner.DescribeObservabilityConfigurationOutput, error)
+	DescribeObservabilityConfigurationRequest(*apprunner.DescribeObservabilityConfigurationInput) (*request.Request, *apprunner.DescribeObservabilityConfigurationOutput)
 
 	DescribeService(*apprunner.DescribeServiceInput) (*apprunner.DescribeServiceOutput, error)
 	DescribeServiceWithContext(aws.Context, *apprunner.DescribeServiceInput, ...request.Option) (*apprunner.DescribeServiceOutput, error)
@@ -132,6 +144,13 @@ type AppRunnerAPI interface {
 
 	ListConnectionsPages(*apprunner.ListConnectionsInput, func(*apprunner.ListConnectionsOutput, bool) bool) error
 	ListConnectionsPagesWithContext(aws.Context, *apprunner.ListConnectionsInput, func(*apprunner.ListConnectionsOutput, bool) bool, ...request.Option) error
+
+	ListObservabilityConfigurations(*apprunner.ListObservabilityConfigurationsInput) (*apprunner.ListObservabilityConfigurationsOutput, error)
+	ListObservabilityConfigurationsWithContext(aws.Context, *apprunner.ListObservabilityConfigurationsInput, ...request.Option) (*apprunner.ListObservabilityConfigurationsOutput, error)
+	ListObservabilityConfigurationsRequest(*apprunner.ListObservabilityConfigurationsInput) (*request.Request, *apprunner.ListObservabilityConfigurationsOutput)
+
+	ListObservabilityConfigurationsPages(*apprunner.ListObservabilityConfigurationsInput, func(*apprunner.ListObservabilityConfigurationsOutput, bool) bool) error
+	ListObservabilityConfigurationsPagesWithContext(aws.Context, *apprunner.ListObservabilityConfigurationsInput, func(*apprunner.ListObservabilityConfigurationsOutput, bool) bool, ...request.Option) error
 
 	ListOperations(*apprunner.ListOperationsInput) (*apprunner.ListOperationsOutput, error)
 	ListOperationsWithContext(aws.Context, *apprunner.ListOperationsInput, ...request.Option) (*apprunner.ListOperationsOutput, error)

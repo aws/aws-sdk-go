@@ -311,7 +311,8 @@
         "componentType":{"shape":"String"},
         "events":{"shape":"ComponentEvents"},
         "name":{"shape":"String"},
-        "properties":{"shape":"ComponentProperties"}
+        "properties":{"shape":"ComponentProperties"},
+        "sourceId":{"shape":"String"}
       }
     },
     "ComponentChildList":{
@@ -349,6 +350,7 @@
       "type":"structure",
       "members":{
         "action":{"shape":"String"},
+        "bindingEvent":{"shape":"String"},
         "parameters":{"shape":"ActionParameters"}
       }
     },
@@ -636,7 +638,7 @@
         "redirectUri"
       ],
       "members":{
-        "code":{"shape":"SyntheticExchangeCodeForTokenRequestBodyString"},
+        "code":{"shape":"SensitiveString"},
         "redirectUri":{"shape":"String"}
       }
     },
@@ -648,9 +650,9 @@
         "refreshToken"
       ],
       "members":{
-        "accessToken":{"shape":"SyntheticExchangeCodeForTokenResponseString"},
+        "accessToken":{"shape":"SensitiveString"},
         "expiresIn":{"shape":"Integer"},
-        "refreshToken":{"shape":"SyntheticExchangeCodeForTokenResponseString"}
+        "refreshToken":{"shape":"SensitiveString"}
       }
     },
     "ExportComponentsRequest":{
@@ -956,7 +958,7 @@
       "type":"structure",
       "required":["token"],
       "members":{
-        "token":{"shape":"SyntheticRefreshTokenRequestBodyString"}
+        "token":{"shape":"SensitiveString"}
       }
     },
     "RefreshTokenResponse":{
@@ -966,7 +968,7 @@
         "expiresIn"
       ],
       "members":{
-        "accessToken":{"shape":"SyntheticRefreshTokenResponseString"},
+        "accessToken":{"shape":"SensitiveString"},
         "expiresIn":{"shape":"Integer"}
       }
     },
@@ -991,6 +993,10 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "SensitiveString":{
+      "type":"string",
+      "sensitive":true
     },
     "ServiceQuotaExceededException":{
       "type":"structure",
@@ -1026,22 +1032,6 @@
       "member":{"shape":"SortProperty"}
     },
     "String":{"type":"string"},
-    "SyntheticExchangeCodeForTokenRequestBodyString":{
-      "type":"string",
-      "sensitive":true
-    },
-    "SyntheticExchangeCodeForTokenResponseString":{
-      "type":"string",
-      "sensitive":true
-    },
-    "SyntheticRefreshTokenRequestBodyString":{
-      "type":"string",
-      "sensitive":true
-    },
-    "SyntheticRefreshTokenResponseString":{
-      "type":"string",
-      "sensitive":true
-    },
     "SyntheticTimestamp_date_time":{
       "type":"timestamp",
       "timestampFormat":"iso8601"

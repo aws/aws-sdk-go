@@ -431,6 +431,16 @@
       "refs": {
       }
     },
+    "SensitiveString": {
+      "base": null,
+      "refs": {
+        "ExchangeCodeForTokenRequestBody$code": "<p>The access code to send in the request.</p>",
+        "ExchangeCodeForTokenResponse$accessToken": "<p>The access token.</p>",
+        "ExchangeCodeForTokenResponse$refreshToken": "<p>The token to use to refresh a previously issued access token that might have expired.</p>",
+        "RefreshTokenRequestBody$token": "<p>The token to use to refresh a previously issued access token that might have expired.</p>",
+        "RefreshTokenResponse$accessToken": "<p>The access token.</p>"
+      }
+    },
     "ServiceQuotaExceededException": {
       "base": "<p>You exceeded your service quota. Service quotas, also referred to as limits, are the maximum number of service resources or operations for your Amazon Web Services account. </p>",
       "refs": {
@@ -473,6 +483,7 @@
         "ComponentBindingPropertiesValueProperties$userAttribute": "<p>An authenticated user attribute.</p>",
         "ComponentChild$componentType": "<p>The type of the child component. </p>",
         "ComponentChild$name": "<p>The name of the child component.</p>",
+        "ComponentChild$sourceId": "<p>The unique ID of the child component in its original source system, such as Figma.</p>",
         "ComponentCollectionProperties$key": null,
         "ComponentConditionProperty$field": "<p>The name of a field. Specify this when the property is a data model.</p>",
         "ComponentConditionProperty$operand": "<p>The value of the property to evaluate.</p>",
@@ -481,6 +492,7 @@
         "ComponentConditionProperty$property": "<p>The name of the conditional property.</p>",
         "ComponentDataConfiguration$model": "<p>The name of the data model to use to bind data to a component.</p>",
         "ComponentEvent$action": "<p>The action to perform when a specific event is raised.</p>",
+        "ComponentEvent$bindingEvent": "<p>Binds an event to an action on a component. When you specify a <code>bindingEvent</code>, the event is called when the action is performed.</p>",
         "ComponentEvents$key": null,
         "ComponentOverrides$key": null,
         "ComponentOverridesValue$key": null,
@@ -563,31 +575,6 @@
         "UpdateThemeRequest$appId": "<p>The unique ID for the Amplify app.</p>",
         "UpdateThemeRequest$clientToken": "<p>The unique client token.</p>",
         "UpdateThemeRequest$environmentName": "<p>The name of the backend environment that is part of the Amplify app.</p>"
-      }
-    },
-    "SyntheticExchangeCodeForTokenRequestBodyString": {
-      "base": null,
-      "refs": {
-        "ExchangeCodeForTokenRequestBody$code": "<p>The access code to send in the request.</p>"
-      }
-    },
-    "SyntheticExchangeCodeForTokenResponseString": {
-      "base": null,
-      "refs": {
-        "ExchangeCodeForTokenResponse$accessToken": "<p>The access token.</p>",
-        "ExchangeCodeForTokenResponse$refreshToken": "<p>The token to use to refresh a previously issued access token that might have expired.</p>"
-      }
-    },
-    "SyntheticRefreshTokenRequestBodyString": {
-      "base": null,
-      "refs": {
-        "RefreshTokenRequestBody$token": "<p>The token to use to refresh a previously issued access token that might have expired.</p>"
-      }
-    },
-    "SyntheticRefreshTokenResponseString": {
-      "base": null,
-      "refs": {
-        "RefreshTokenResponse$accessToken": "<p>The access token.</p>"
       }
     },
     "SyntheticTimestamp_date_time": {
