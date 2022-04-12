@@ -26,7 +26,8 @@
         {"shape":"IncorrectFileSystemLifeCycleState"},
         {"shape":"InternalServerError"},
         {"shape":"FileSystemNotFound"},
-        {"shape":"AccessPointLimitExceeded"}
+        {"shape":"AccessPointLimitExceeded"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "CreateFileSystem":{
@@ -1719,6 +1720,15 @@
     "Tags":{
       "type":"list",
       "member":{"shape":"Tag"}
+    },
+    "ThrottlingException":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"ErrorCode"},
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":429},
+      "exception":true
     },
     "ThroughputLimitExceeded":{
       "type":"structure",

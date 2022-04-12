@@ -1160,15 +1160,18 @@
     "GetPropertyValueHistoryRequest":{
       "type":"structure",
       "required":[
-        "endDateTime",
         "selectedProperties",
-        "startDateTime",
         "workspaceId"
       ],
       "members":{
         "componentName":{"shape":"Name"},
         "componentTypeId":{"shape":"ComponentTypeId"},
-        "endDateTime":{"shape":"Timestamp"},
+        "endDateTime":{
+          "shape":"Timestamp",
+          "deprecated":true,
+          "deprecatedMessage":"This field is deprecated and will throw an error in the future. Use endTime instead."
+        },
+        "endTime":{"shape":"Time"},
         "entityId":{"shape":"EntityId"},
         "interpolation":{"shape":"InterpolationParameters"},
         "maxResults":{"shape":"MaxResults"},
@@ -1176,7 +1179,12 @@
         "orderByTime":{"shape":"OrderByTime"},
         "propertyFilters":{"shape":"PropertyFilters"},
         "selectedProperties":{"shape":"SelectedPropertyList"},
-        "startDateTime":{"shape":"Timestamp"},
+        "startDateTime":{
+          "shape":"Timestamp",
+          "deprecated":true,
+          "deprecatedMessage":"This field is deprecated and will throw an error in the future. Use startTime instead."
+        },
+        "startTime":{"shape":"Time"},
         "workspaceId":{
           "shape":"Id",
           "location":"uri",
@@ -1385,6 +1393,7 @@
       "type":"structure",
       "members":{
         "componentTypeId":{"shape":"ComponentTypeId"},
+        "externalId":{"shape":"String"},
         "parentEntityId":{"shape":"ParentEntityId"}
       },
       "union":true
@@ -1617,17 +1626,20 @@
       "type":"string",
       "enum":[
         "UPDATE",
-        "DELETE"
+        "DELETE",
+        "CREATE"
       ]
     },
     "PropertyValue":{
       "type":"structure",
-      "required":[
-        "timestamp",
-        "value"
-      ],
+      "required":["value"],
       "members":{
-        "timestamp":{"shape":"Timestamp"},
+        "time":{"shape":"Time"},
+        "timestamp":{
+          "shape":"Timestamp",
+          "deprecated":true,
+          "deprecatedMessage":"This field is deprecated and will throw an error in the future. Use time instead."
+        },
         "value":{"shape":"DataValue"}
       }
     },
@@ -1692,7 +1704,12 @@
       "min":20,
       "pattern":"arn:((aws)|(aws-cn)|(aws-us-gov)):iam::[0-9]{12}:role/.*"
     },
-    "S3Location":{"type":"string"},
+    "S3Location":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":".*(^arn:((aws)|(aws-cn)|(aws-us-gov)):s3:::)([a-zA-Z0-9_-]+$).*"
+    },
     "S3Url":{
       "type":"string",
       "max":256,
@@ -1831,6 +1848,11 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "Time":{
+      "type":"string",
+      "max":35,
+      "min":20
     },
     "Timestamp":{"type":"timestamp"},
     "TooManyTagsException":{
@@ -2022,9 +2044,7 @@
     },
     "Value":{
       "type":"string",
-      "max":256,
-      "min":1,
-      "pattern":"[a-zA-Z_\\-0-9]+"
+      "pattern":".*"
     },
     "Values":{
       "type":"list",

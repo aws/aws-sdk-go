@@ -151,8 +151,6 @@ func (c *IoTTwinMaker) CreateComponentTypeRequest(input *CreateComponentTypeInpu
 //
 // Creates a component type.
 //
-// TwinMaker is in public preview and is subject to change.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4199,7 +4197,8 @@ func (s *CreateWorkspaceOutput) SetCreationDateTime(v time.Time) *CreateWorkspac
 type DataConnector struct {
 	_ struct{} `type:"structure"`
 
-	// A Boolean value that specifies whether the data connector is native to TwinMaker.
+	// A Boolean value that specifies whether the data connector is native to IoT
+	// TwinMaker.
 	IsNative *bool `locationName:"isNative" type:"boolean"`
 
 	// The Lambda function associated with this data connector.
@@ -5669,8 +5668,11 @@ type GetPropertyValueHistoryInput struct {
 
 	// The date and time of the latest property value to return.
 	//
-	// EndDateTime is a required field
-	EndDateTime *time.Time `locationName:"endDateTime" type:"timestamp" required:"true"`
+	// Deprecated: This field is deprecated and will throw an error in the future. Use endTime instead.
+	EndDateTime *time.Time `locationName:"endDateTime" deprecated:"true" type:"timestamp"`
+
+	// Timestamp represented in ISO 8601 format
+	EndTime *string `locationName:"endTime" min:"20" type:"string"`
 
 	// The ID of the entity.
 	EntityId *string `locationName:"entityId" min:"1" type:"string"`
@@ -5698,8 +5700,11 @@ type GetPropertyValueHistoryInput struct {
 
 	// The date and time of the earliest property value to return.
 	//
-	// StartDateTime is a required field
-	StartDateTime *time.Time `locationName:"startDateTime" type:"timestamp" required:"true"`
+	// Deprecated: This field is deprecated and will throw an error in the future. Use startTime instead.
+	StartDateTime *time.Time `locationName:"startDateTime" deprecated:"true" type:"timestamp"`
+
+	// Timestamp represented in ISO 8601 format
+	StartTime *string `locationName:"startTime" min:"20" type:"string"`
 
 	// The ID of the workspace.
 	//
@@ -5734,8 +5739,8 @@ func (s *GetPropertyValueHistoryInput) Validate() error {
 	if s.ComponentTypeId != nil && len(*s.ComponentTypeId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ComponentTypeId", 1))
 	}
-	if s.EndDateTime == nil {
-		invalidParams.Add(request.NewErrParamRequired("EndDateTime"))
+	if s.EndTime != nil && len(*s.EndTime) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("EndTime", 20))
 	}
 	if s.EntityId != nil && len(*s.EntityId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("EntityId", 1))
@@ -5749,8 +5754,8 @@ func (s *GetPropertyValueHistoryInput) Validate() error {
 	if s.SelectedProperties != nil && len(s.SelectedProperties) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SelectedProperties", 1))
 	}
-	if s.StartDateTime == nil {
-		invalidParams.Add(request.NewErrParamRequired("StartDateTime"))
+	if s.StartTime != nil && len(*s.StartTime) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("StartTime", 20))
 	}
 	if s.WorkspaceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
@@ -5790,6 +5795,12 @@ func (s *GetPropertyValueHistoryInput) SetComponentTypeId(v string) *GetProperty
 // SetEndDateTime sets the EndDateTime field's value.
 func (s *GetPropertyValueHistoryInput) SetEndDateTime(v time.Time) *GetPropertyValueHistoryInput {
 	s.EndDateTime = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *GetPropertyValueHistoryInput) SetEndTime(v string) *GetPropertyValueHistoryInput {
+	s.EndTime = &v
 	return s
 }
 
@@ -5838,6 +5849,12 @@ func (s *GetPropertyValueHistoryInput) SetSelectedProperties(v []*string) *GetPr
 // SetStartDateTime sets the StartDateTime field's value.
 func (s *GetPropertyValueHistoryInput) SetStartDateTime(v time.Time) *GetPropertyValueHistoryInput {
 	s.StartDateTime = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *GetPropertyValueHistoryInput) SetStartTime(v string) *GetPropertyValueHistoryInput {
+	s.StartTime = &v
 	return s
 }
 
@@ -6722,6 +6739,10 @@ type ListEntitiesFilter struct {
 	// The ID of the component type in the entities in the list.
 	ComponentTypeId *string `locationName:"componentTypeId" min:"1" type:"string"`
 
+	// The external-Id property of a component. The external-Id property is the
+	// primary key of an external storage system.
+	ExternalId *string `locationName:"externalId" min:"1" type:"string"`
+
 	// The parent of the entities in the list.
 	ParentEntityId *string `locationName:"parentEntityId" min:"1" type:"string"`
 }
@@ -6750,6 +6771,9 @@ func (s *ListEntitiesFilter) Validate() error {
 	if s.ComponentTypeId != nil && len(*s.ComponentTypeId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ComponentTypeId", 1))
 	}
+	if s.ExternalId != nil && len(*s.ExternalId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExternalId", 1))
+	}
 	if s.ParentEntityId != nil && len(*s.ParentEntityId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ParentEntityId", 1))
 	}
@@ -6763,6 +6787,12 @@ func (s *ListEntitiesFilter) Validate() error {
 // SetComponentTypeId sets the ComponentTypeId field's value.
 func (s *ListEntitiesFilter) SetComponentTypeId(v string) *ListEntitiesFilter {
 	s.ComponentTypeId = &v
+	return s
+}
+
+// SetExternalId sets the ExternalId field's value.
+func (s *ListEntitiesFilter) SetExternalId(v string) *ListEntitiesFilter {
+	s.ExternalId = &v
 	return s
 }
 
@@ -7723,10 +7753,13 @@ func (s *PropertyResponse) SetValue(v *DataValue) *PropertyResponse {
 type PropertyValue struct {
 	_ struct{} `type:"structure"`
 
+	// Timestamp represented in ISO 8601 format
+	Time *string `locationName:"time" min:"20" type:"string"`
+
 	// The timestamp of a value for a time series property.
 	//
-	// Timestamp is a required field
-	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" required:"true"`
+	// Deprecated: This field is deprecated and will throw an error in the future. Use time instead.
+	Timestamp *time.Time `locationName:"timestamp" deprecated:"true" type:"timestamp"`
 
 	// An object that specifies a value for a time series property.
 	//
@@ -7755,8 +7788,8 @@ func (s PropertyValue) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *PropertyValue) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PropertyValue"}
-	if s.Timestamp == nil {
-		invalidParams.Add(request.NewErrParamRequired("Timestamp"))
+	if s.Time != nil && len(*s.Time) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("Time", 20))
 	}
 	if s.Value == nil {
 		invalidParams.Add(request.NewErrParamRequired("Value"))
@@ -7771,6 +7804,12 @@ func (s *PropertyValue) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetTime sets the Time field's value.
+func (s *PropertyValue) SetTime(v string) *PropertyValue {
+	s.Time = &v
+	return s
 }
 
 // SetTimestamp sets the Timestamp field's value.
@@ -9393,6 +9432,9 @@ const (
 
 	// PropertyUpdateTypeDelete is a PropertyUpdateType enum value
 	PropertyUpdateTypeDelete = "DELETE"
+
+	// PropertyUpdateTypeCreate is a PropertyUpdateType enum value
+	PropertyUpdateTypeCreate = "CREATE"
 )
 
 // PropertyUpdateType_Values returns all elements of the PropertyUpdateType enum
@@ -9400,6 +9442,7 @@ func PropertyUpdateType_Values() []string {
 	return []string{
 		PropertyUpdateTypeUpdate,
 		PropertyUpdateTypeDelete,
+		PropertyUpdateTypeCreate,
 	}
 }
 

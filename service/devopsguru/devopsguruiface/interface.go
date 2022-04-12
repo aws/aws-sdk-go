@@ -64,6 +64,10 @@ type DevOpsGuruAPI interface {
 	AddNotificationChannelWithContext(aws.Context, *devopsguru.AddNotificationChannelInput, ...request.Option) (*devopsguru.AddNotificationChannelOutput, error)
 	AddNotificationChannelRequest(*devopsguru.AddNotificationChannelInput) (*request.Request, *devopsguru.AddNotificationChannelOutput)
 
+	DeleteInsight(*devopsguru.DeleteInsightInput) (*devopsguru.DeleteInsightOutput, error)
+	DeleteInsightWithContext(aws.Context, *devopsguru.DeleteInsightInput, ...request.Option) (*devopsguru.DeleteInsightOutput, error)
+	DeleteInsightRequest(*devopsguru.DeleteInsightInput) (*request.Request, *devopsguru.DeleteInsightOutput)
+
 	DescribeAccountHealth(*devopsguru.DescribeAccountHealthInput) (*devopsguru.DescribeAccountHealthOutput, error)
 	DescribeAccountHealthWithContext(aws.Context, *devopsguru.DescribeAccountHealthInput, ...request.Option) (*devopsguru.DescribeAccountHealthOutput, error)
 	DescribeAccountHealthRequest(*devopsguru.DescribeAccountHealthInput) (*request.Request, *devopsguru.DescribeAccountHealthOutput)
