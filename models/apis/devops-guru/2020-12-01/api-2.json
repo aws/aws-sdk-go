@@ -31,6 +31,24 @@
         {"shape":"ValidationException"}
       ]
     },
+    "DeleteInsight":{
+      "name":"DeleteInsight",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/insights/{Id}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteInsightRequest"},
+      "output":{"shape":"DeleteInsightResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "DescribeAccountHealth":{
       "name":"DescribeAccountHealth",
       "http":{
@@ -782,6 +800,22 @@
       "members":{
         "StartTime":{"shape":"Timestamp"},
         "EndTime":{"shape":"Timestamp"}
+      }
+    },
+    "DeleteInsightRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"InsightId",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "DeleteInsightResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DescribeAccountHealthRequest":{

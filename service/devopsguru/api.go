@@ -64,8 +64,14 @@ func (c *DevOpsGuru) AddNotificationChannelRequest(input *AddNotificationChannel
 // If you use an Amazon SNS topic in another account, you must attach a policy
 // to it that grants DevOps Guru permission to it notifications. DevOps Guru
 // adds the required policy on your behalf to send notifications using Amazon
+// SNS in your account. DevOps Guru only supports standard SNS topics. For more
+// information, see Permissions for cross account Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
+//
+// If you use an Amazon SNS topic in another account, you must attach a policy
+// to it that grants DevOps Guru permission to it notifications. DevOps Guru
+// adds the required policy on your behalf to send notifications using Amazon
 // SNS in your account. For more information, see Permissions for cross account
-// Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
+// Amazon SNS topics.
 //
 // If you use an Amazon SNS topic that is encrypted by an Amazon Web Services
 // Key Management Service customer-managed key (CMK), then you must add permissions
@@ -123,6 +129,106 @@ func (c *DevOpsGuru) AddNotificationChannel(input *AddNotificationChannelInput) 
 // for more information on using Contexts.
 func (c *DevOpsGuru) AddNotificationChannelWithContext(ctx aws.Context, input *AddNotificationChannelInput, opts ...request.Option) (*AddNotificationChannelOutput, error) {
 	req, out := c.AddNotificationChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteInsight = "DeleteInsight"
+
+// DeleteInsightRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteInsight operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteInsight for more information on using the DeleteInsight
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteInsightRequest method.
+//    req, resp := client.DeleteInsightRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DeleteInsight
+func (c *DevOpsGuru) DeleteInsightRequest(input *DeleteInsightInput) (req *request.Request, output *DeleteInsightOutput) {
+	op := &request.Operation{
+		Name:       opDeleteInsight,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/insights/{Id}",
+	}
+
+	if input == nil {
+		input = &DeleteInsightInput{}
+	}
+
+	output = &DeleteInsightOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteInsight API operation for Amazon DevOps Guru.
+//
+// Deletes the insight along with the associated anomalies, events and recommendations.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation DeleteInsight for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
+//
+//   * InternalServerException
+//   An internal failure in an Amazon service occurred.
+//
+//   * ResourceNotFoundException
+//   A requested resource could not be found
+//
+//   * ConflictException
+//   An exception that is thrown when a conflict occurs.
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DeleteInsight
+func (c *DevOpsGuru) DeleteInsight(input *DeleteInsightInput) (*DeleteInsightOutput, error) {
+	req, out := c.DeleteInsightRequest(input)
+	return out, req.Send()
+}
+
+// DeleteInsightWithContext is the same as DeleteInsight with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteInsight for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) DeleteInsightWithContext(ctx aws.Context, input *DeleteInsightInput, opts ...request.Option) (*DeleteInsightOutput, error) {
+	req, out := c.DeleteInsightRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -459,8 +565,10 @@ func (c *DevOpsGuru) DescribeEventSourcesConfigRequest(input *DescribeEventSourc
 
 // DescribeEventSourcesConfig API operation for Amazon DevOps Guru.
 //
-// This operation lists details about a DevOps Guru event source that is shared
-// with your account.
+// Returns the integration status of services that are integrated with DevOps
+// Guru as Consumer via EventBridge. The one service that can be integrated
+// with DevOps Guru is Amazon CodeGuru Profiler, which can produce proactive
+// recommendations which can be stored and viewed in DevOps Guru.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3201,7 +3309,10 @@ func (c *DevOpsGuru) UpdateEventSourcesConfigRequest(input *UpdateEventSourcesCo
 
 // UpdateEventSourcesConfig API operation for Amazon DevOps Guru.
 //
-// Updates the event source configuration.
+// Enables or disables integration with a service that can be integrated with
+// DevOps Guru. The one service that can be integrated with DevOps Guru is Amazon
+// CodeGuru Profiler, which can produce proactive recommendations which can
+// be stored and viewed in DevOps Guru.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3699,10 +3810,14 @@ func (s *AddNotificationChannelOutput) SetId(v string) *AddNotificationChannelOu
 }
 
 // Information about your account's integration with Amazon CodeGuru Profiler.
+// This returns whether DevOps Guru is configured to consume recommendations
+// generated from Amazon CodeGuru Profiler.
 type AmazonCodeGuruProfilerIntegration struct {
 	_ struct{} `type:"structure"`
 
-	// The status of the CodeGuru Profiler integration.
+	// The status of the CodeGuru Profiler integration. Specifies if DevOps Guru
+	// is enabled to consume recommendations that are generated from Amazon CodeGuru
+	// Profiler.
 	Status *string `type:"string" enum:"EventSourceOptInStatus"`
 }
 
@@ -3863,8 +3978,8 @@ func (s *AnomalySourceDetails) SetPerformanceInsightsMetrics(v []*PerformanceIns
 	return s
 }
 
-// Metadata about an anomaly. The anomaly is detected using analysis of the
-// metric data over a period of time
+// Metadata about the detection source that generates proactive anomalies. The
+// anomaly is detected using analysis of the metric data over a period of time
 type AnomalySourceMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -4516,6 +4631,77 @@ func (s *CostEstimationTimeRange) SetStartTime(v time.Time) *CostEstimationTimeR
 	return s
 }
 
+type DeleteInsightInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the insight.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteInsightInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteInsightInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteInsightInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteInsightInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteInsightInput) SetId(v string) *DeleteInsightInput {
+	s.Id = &v
+	return s
+}
+
+type DeleteInsightOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteInsightOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteInsightOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeAccountHealthInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 }
@@ -4851,7 +5037,7 @@ func (s DescribeEventSourcesConfigInput) GoString() string {
 type DescribeEventSourcesConfigOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the event source.
+	// Lists the event sources in the configuration.
 	EventSources *EventSourcesConfig `type:"structure"`
 }
 
@@ -5889,11 +6075,13 @@ func (s *EventResource) SetType(v string) *EventResource {
 	return s
 }
 
-// Describes the event sources.
+// Information about the integration of DevOps Guru as consumer with another
+// AWS service, such as AWS CodeGuru Profiler via EventBridge.
 type EventSourcesConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Information about your account's integration with Amazon CodeGuru Profiler.
+	// Information about whether DevOps Guru is configured to consume recommendations
+	// which are generated from AWS CodeGuru Profiler.
 	AmazonCodeGuruProfiler *AmazonCodeGuruProfilerIntegration `type:"structure"`
 }
 
@@ -7570,8 +7758,14 @@ func (s *ListRecommendationsOutput) SetRecommendations(v []*Recommendation) *Lis
 // If you use an Amazon SNS topic in another account, you must attach a policy
 // to it that grants DevOps Guru permission to it notifications. DevOps Guru
 // adds the required policy on your behalf to send notifications using Amazon
+// SNS in your account. DevOps Guru only supports standard SNS topics. For more
+// information, see Permissions for cross account Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
+//
+// If you use an Amazon SNS topic in another account, you must attach a policy
+// to it that grants DevOps Guru permission to it notifications. DevOps Guru
+// adds the required policy on your behalf to send notifications using Amazon
 // SNS in your account. For more information, see Permissions for cross account
-// Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
+// Amazon SNS topics.
 //
 // If you use an Amazon SNS topic that is encrypted by an Amazon Web Services
 // Key Management Service customer-managed key (CMK), then you must add permissions
@@ -7630,8 +7824,14 @@ type NotificationChannelConfig struct {
 	// If you use an Amazon SNS topic in another account, you must attach a policy
 	// to it that grants DevOps Guru permission to it notifications. DevOps Guru
 	// adds the required policy on your behalf to send notifications using Amazon
+	// SNS in your account. DevOps Guru only supports standard SNS topics. For more
+	// information, see Permissions for cross account Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
+	//
+	// If you use an Amazon SNS topic in another account, you must attach a policy
+	// to it that grants DevOps Guru permission to it notifications. DevOps Guru
+	// adds the required policy on your behalf to send notifications using Amazon
 	// SNS in your account. For more information, see Permissions for cross account
-	// Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
+	// Amazon SNS topics.
 	//
 	// If you use an Amazon SNS topic that is encrypted by an Amazon Web Services
 	// Key Management Service customer-managed key (CMK), then you must add permissions
@@ -8529,7 +8729,7 @@ type ProactiveAnomalySummary struct {
 	// the anomaly. The one supported source is Amazon CloudWatch metrics.
 	SourceDetails *AnomalySourceDetails `type:"structure"`
 
-	// Returns the metadata of the source.
+	// The metadata of the source which detects proactive anomalies.
 	SourceMetadata *AnomalySourceMetadata `type:"structure"`
 
 	// The status of the anomaly.
@@ -11151,8 +11351,14 @@ func (s *ServiceResourceCost) SetUnitCost(v float64) *ServiceResourceCost {
 // If you use an Amazon SNS topic in another account, you must attach a policy
 // to it that grants DevOps Guru permission to it notifications. DevOps Guru
 // adds the required policy on your behalf to send notifications using Amazon
+// SNS in your account. DevOps Guru only supports standard SNS topics. For more
+// information, see Permissions for cross account Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
+//
+// If you use an Amazon SNS topic in another account, you must attach a policy
+// to it that grants DevOps Guru permission to it notifications. DevOps Guru
+// adds the required policy on your behalf to send notifications using Amazon
 // SNS in your account. For more information, see Permissions for cross account
-// Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
+// Amazon SNS topics.
 //
 // If you use an Amazon SNS topic that is encrypted by an Amazon Web Services
 // Key Management Service customer-managed key (CMK), then you must add permissions
@@ -11816,7 +12022,8 @@ func (s *UpdateCloudFormationCollectionFilter) SetStackNames(v []*string) *Updat
 type UpdateEventSourcesConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the event source.
+	// Configuration information about the integration of DevOps Guru as the Consumer
+	// via EventBridge with another AWS Service.
 	EventSources *EventSourcesConfig `type:"structure"`
 }
 

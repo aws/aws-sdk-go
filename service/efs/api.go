@@ -63,8 +63,8 @@ func (c *EFS) CreateAccessPointRequest(input *CreateAccessPointInput) (req *requ
 // point. The operating system user and group override any identity information
 // provided by the NFS client. The file system path is exposed as the access
 // point's root directory. Applications using the access point can only access
-// data in its own directory and below. To learn more, see Mounting a file system
-// using EFS access points (https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html).
+// data in the application's own directory and any subdirectories. To learn
+// more, see Mounting a file system using EFS access points (https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html).
 //
 // This operation requires permissions for the elasticfilesystem:CreateAccessPoint
 // action.
@@ -82,8 +82,8 @@ func (c *EFS) CreateAccessPointRequest(input *CreateAccessPointInput) (req *requ
 //   parameter value or a missing required parameter.
 //
 //   * AccessPointAlreadyExists
-//   Returned if the access point you are trying to create already exists, with
-//   the creation token you provided in the request.
+//   Returned if the access point that you are trying to create already exists,
+//   with the creation token you provided in the request.
 //
 //   * IncorrectFileSystemLifeCycleState
 //   Returned if the file system's lifecycle state is not "available".
@@ -97,7 +97,13 @@ func (c *EFS) CreateAccessPointRequest(input *CreateAccessPointInput) (req *requ
 //
 //   * AccessPointLimitExceeded
 //   Returned if the Amazon Web Services account has already created the maximum
-//   number of access points allowed per file system.
+//   number of access points allowed per file system. For more informaton, see
+//   https://docs.aws.amazon.com/efs/latest/ug/limits.html#limits-efs-resources-per-account-per-region
+//   (https://docs.aws.amazon.com/efs/latest/ug/limits.html#limits-efs-resources-per-account-per-region).
+//
+//   * ThrottlingException
+//   Returned when the CreateAccessPoint API action is called too quickly and
+//   the number of Access Points in the account is nearing the limit of 120.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateAccessPoint
 func (c *EFS) CreateAccessPoint(input *CreateAccessPointInput) (*CreateAccessPointOutput, error) {
@@ -247,7 +253,8 @@ func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 //   This value might be returned when you try to create a file system in provisioned
 //   throughput mode, when you attempt to increase the provisioned throughput
 //   of an existing file system, or when you attempt to change an existing file
-//   system from bursting to provisioned throughput mode. Try again later.
+//   system from Bursting Throughput to Provisioned Throughput mode. Try again
+//   later.
 //
 //   * ThroughputLimitExceeded
 //   Returned if the throughput mode or amount of provisioned throughput can't
@@ -461,11 +468,11 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 //
 //   * NetworkInterfaceLimitExceeded
 //   The calling account has reached the limit for elastic network interfaces
-//   for the specific Amazon Web Services Region. The client should try to delete
-//   some elastic network interfaces or get the account limit raised. For more
-//   information, see Amazon VPC Limits (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html)
-//   in the Amazon VPC User Guide (see the Network interfaces per VPC entry in
-//   the table).
+//   for the specific Amazon Web Services Region. Either delete some network interfaces
+//   or request that the account quota be raised. For more information, see Amazon
+//   VPC Quotas (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html)
+//   in the Amazon VPC User Guide (see the Network interfaces per Region entry
+//   in the Network interfaces table).
 //
 //   * SecurityGroupLimitExceeded
 //   Returned if the size of SecurityGroups specified in the request is greater
@@ -473,7 +480,7 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 //
 //   * SecurityGroupNotFound
 //   Returned if one of the specified security groups doesn't exist in the subnet's
-//   VPC.
+//   virtual private cloud (VPC).
 //
 //   * UnsupportedAvailabilityZone
 //   Returned if the requested Amazon EFS functionality is not available in the
@@ -481,9 +488,8 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 //
 //   * AvailabilityZonesMismatch
 //   Returned if the Availability Zone that was specified for a mount target is
-//   different from the Availability Zone that was specified for One Zone storage
-//   classes. For more information, see Regional and One Zone storage redundancy
-//   (https://docs.aws.amazon.com/efs/latest/ug/availability-durability.html).
+//   different from the Availability Zone that was specified for One Zone storage.
+//   For more information, see Regional and One Zone storage redundancy (https://docs.aws.amazon.com/efs/latest/ug/availability-durability.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateMountTarget
 func (c *EFS) CreateMountTarget(input *CreateMountTargetInput) (*MountTargetDescription, error) {
@@ -553,53 +559,57 @@ func (c *EFS) CreateReplicationConfigurationRequest(input *CreateReplicationConf
 //
 // Creates a replication configuration that replicates an existing EFS file
 // system to a new, read-only file system. For more information, see Amazon
-// EFS replication (https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html).
-// The replication configuration specifies the following:
+// EFS replication (https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html)
+// in the Amazon EFS User Guide. The replication configuration specifies the
+// following:
 //
-//    * Source file system - an existing EFS file system that you want replicated.
+//    * Source file system - An existing EFS file system that you want replicated.
 //    The source file system cannot be a destination file system in an existing
 //    replication configuration.
 //
-//    * Destination file system configuration - the configuration of the destination
+//    * Destination file system configuration - The configuration of the destination
 //    file system to which the source file system will be replicated. There
 //    can only be one destination file system in a replication configuration.
+//    The destination file system configuration consists of the following properties:
 //    Amazon Web Services Region - The Amazon Web Services Region in which the
-//    destination file system is created. EFS Replication is available in all
-//    Amazon Web Services Region that Amazon EFS is available in, except the
-//    following regions: Asia Pacific (Hong Kong) Europe (Milan), Middle East
-//    (Bahrain), Africa (Cape Town), and Asia Pacific (Jakarta). Availability
-//    zone - If you want the destination file system to use One Zone availability
-//    and durability, you must specify the Availability Zone to create the file
+//    destination file system is created. Amazon EFS replication is available
+//    in all Amazon Web Services Regions that Amazon EFS is available in, except
+//    Africa (Cape Town), Asia Pacific (Hong Kong), Asia Pacific (Jakarta),
+//    Europe (Milan), and Middle East (Bahrain). Availability Zone - If you
+//    want the destination file system to use EFS One Zone availability and
+//    durability, you must specify the Availability Zone to create the file
 //    system in. For more information about EFS storage classes, see Amazon
 //    EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
 //    in the Amazon EFS User Guide. Encryption - All destination file systems
-//    are created with encryption at rest enabled. You can specify the KMS key
-//    that is used to encrypt the destination file system. Your service-managed
-//    KMS key for Amazon EFS is used if you don't specify a KMS key. You cannot
-//    change this after the file system is created.
+//    are created with encryption at rest enabled. You can specify the Key Management
+//    Service (KMS) key that is used to encrypt the destination file system.
+//    If you don't specify a KMS key, your service-managed KMS key for Amazon
+//    EFS is used. After the file system is created, you cannot change the KMS
+//    key.
 //
 // The following properties are set by default:
 //
-//    * Performance mode - The destination file system's performance mode will
-//    match that of the source file system, unless the destination file system
-//    uses One Zone storage. In that case, the General Purpose performance mode
-//    is used. The Performance mode cannot be changed.
+//    * Performance mode - The destination file system's performance mode matches
+//    that of the source file system, unless the destination file system uses
+//    EFS One Zone storage. In that case, the General Purpose performance mode
+//    is used. The performance mode cannot be changed.
 //
-//    * Throughput mode - The destination file system use the Bursting throughput
-//    mode by default. You can modify the throughput mode once the file system
-//    is created.
+//    * Throughput mode - The destination file system uses the Bursting Throughput
+//    mode by default. After the file system is created, you can modify the
+//    throughput mode.
 //
 // The following properties are turned off by default:
 //
-//    * Lifecycle management - EFS lifecycle management and intelligent tiering
-//    are not enabled on the destination file system. You can enable EFS lifecycle
-//    management and intelligent tiering after the destination file system is
-//    created.
+//    * Lifecycle management - EFS lifecycle management and EFS Intelligent-Tiering
+//    are not enabled on the destination file system. After the destination
+//    file system is created, you can enable EFS lifecycle management and EFS
+//    Intelligent-Tiering.
 //
 //    * Automatic backups - Automatic daily backups not enabled on the destination
-//    file system. You can change this setting after the file system is created.
+//    file system. After the file system is created, you can change this setting.
 //
-// For more information, see Amazon EFS replication (https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html).
+// For more information, see Amazon EFS replication (https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html)
+// in the Amazon EFS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -621,7 +631,7 @@ func (c *EFS) CreateReplicationConfigurationRequest(input *CreateReplicationConf
 //   Region in which the request was made.
 //
 //   * ReplicationNotFound
-//   Returned if the specified file system did not have a replication configuration.
+//   Returned if the specified file system does not have a replication configuration.
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
@@ -640,7 +650,8 @@ func (c *EFS) CreateReplicationConfigurationRequest(input *CreateReplicationConf
 //   This value might be returned when you try to create a file system in provisioned
 //   throughput mode, when you attempt to increase the provisioned throughput
 //   of an existing file system, or when you attempt to change an existing file
-//   system from bursting to provisioned throughput mode. Try again later.
+//   system from Bursting Throughput to Provisioned Throughput mode. Try again
+//   later.
 //
 //   * ThroughputLimitExceeded
 //   Returned if the throughput mode or amount of provisioned throughput can't
@@ -722,8 +733,8 @@ func (c *EFS) CreateTagsRequest(input *CreateTagsInput) (req *request.Request, o
 // CreateTags API operation for Amazon Elastic File System.
 //
 //
-// DEPRECATED - CreateTags is deprecated and not maintained. Please use the
-// API action to create tags for EFS resources.
+// DEPRECATED - CreateTags is deprecated and not maintained. To create tags
+// for EFS resources, use the API action.
 //
 // Creates or overwrites tags associated with a file system. Each tag is a key-value
 // pair. If a tag key specified in the request already exists on the file system,
@@ -920,6 +931,13 @@ func (c *EFS) DeleteFileSystemRequest(input *DeleteFileSystemInput) (req *reques
 // Deletes a file system, permanently severing access to its contents. Upon
 // return, the file system no longer exists and you can't access any contents
 // of the deleted file system.
+//
+// You need to manually delete mount targets attached to a file system before
+// you can delete an EFS file system. This step is performed for you when you
+// use the Amazon Web Services console to delete a file system.
+//
+// You cannot delete a file system that is part of an EFS Replication configuration.
+// You need to delete the replication configuration first.
 //
 // You can't delete a file system that is in use. That is, if the file system
 // has any mount targets, you must first delete them. For more information,
@@ -1239,8 +1257,9 @@ func (c *EFS) DeleteReplicationConfigurationRequest(input *DeleteReplicationConf
 // Deletes an existing replication configuration. To delete a replication configuration,
 // you must make the request from the Amazon Web Services Region in which the
 // destination file system is located. Deleting a replication configuration
-// ends the replication process. You can write to the destination file system
-// once it's status becomes Writeable.
+// ends the replication process. After a replication configuration is deleted,
+// the destination file system is no longer read-only. You can write to the
+// destination file system after its status becomes Writeable.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1262,7 +1281,7 @@ func (c *EFS) DeleteReplicationConfigurationRequest(input *DeleteReplicationConf
 //   Amazon Web Services account.
 //
 //   * ReplicationNotFound
-//   Returned if the specified file system did not have a replication configuration.
+//   Returned if the specified file system does not have a replication configuration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteReplicationConfiguration
 func (c *EFS) DeleteReplicationConfiguration(input *DeleteReplicationConfigurationInput) (*DeleteReplicationConfigurationOutput, error) {
@@ -1337,8 +1356,8 @@ func (c *EFS) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Request, o
 // DeleteTags API operation for Amazon Elastic File System.
 //
 //
-// DEPRECATED - DeleteTags is deprecated and not maintained. Please use the
-// API action to remove tags from EFS resources.
+// DEPRECATED - DeleteTags is deprecated and not maintained. To remove tags
+// from EFS resources, use the API action.
 //
 // Deletes the specified tags from a file system. If the DeleteTags request
 // includes a tag key that doesn't exist, Amazon EFS ignores it and doesn't
@@ -2038,7 +2057,7 @@ func (c *EFS) DescribeLifecycleConfigurationRequest(input *DescribeLifecycleConf
 // storage class. For a file system without a LifecycleConfiguration object,
 // the call returns an empty array in the response.
 //
-// When EFS Intelligent Tiering is enabled, TransitionToPrimaryStorageClass
+// When EFS Intelligent-Tiering is enabled, TransitionToPrimaryStorageClass
 // has a value of AFTER_1_ACCESS.
 //
 // This operation requires permissions for the elasticfilesystem:DescribeLifecycleConfiguration
@@ -2330,9 +2349,9 @@ func (c *EFS) DescribeReplicationConfigurationsRequest(input *DescribeReplicatio
 
 // DescribeReplicationConfigurations API operation for Amazon Elastic File System.
 //
-// Retrieves the replication configurations for either a specific file system,
-// or all configurations for the Amazon Web Services account in an Amazon Web
-// Services Region if a file system is not specified.
+// Retrieves the replication configuration for a specific file system. If a
+// file system is not specified, all of the replication configurations for the
+// Amazon Web Services account in an Amazon Web Services Region are retrieved.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2354,7 +2373,7 @@ func (c *EFS) DescribeReplicationConfigurationsRequest(input *DescribeReplicatio
 //   Returned if an error occurred on the server side.
 //
 //   * ReplicationNotFound
-//   Returned if the specified file system did not have a replication configuration.
+//   Returned if the specified file system does not have a replication configuration.
 //
 //   * ValidationException
 //   Returned if the Backup service is not available in the Amazon Web Services
@@ -2438,8 +2457,9 @@ func (c *EFS) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Reques
 // DescribeTags API operation for Amazon Elastic File System.
 //
 //
-// DEPRECATED - The DeleteTags action is deprecated and not maintained. Please
-// use the API action to remove tags from EFS resources.
+// DEPRECATED - The DescribeTags action is deprecated and not maintained. To
+// view tags associated with EFS resources, use the ListTagsForResource API
+// action.
 //
 // Returns the tags associated with a file system. The order of tags returned
 // in the response of one DescribeTags call and the order of tags returned across
@@ -2792,7 +2812,7 @@ func (c *EFS) ModifyMountTargetSecurityGroupsRequest(input *ModifyMountTargetSec
 //
 //   * SecurityGroupNotFound
 //   Returned if one of the specified security groups doesn't exist in the subnet's
-//   VPC.
+//   virtual private cloud (VPC).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups
 func (c *EFS) ModifyMountTargetSecurityGroups(input *ModifyMountTargetSecurityGroupsInput) (*ModifyMountTargetSecurityGroupsOutput, error) {
@@ -2869,8 +2889,8 @@ func (c *EFS) PutAccountPreferencesRequest(input *PutAccountPreferencesInput) (r
 //
 // Starting in October, 2021, you will receive an error if you try to set the
 // account preference to use the short 8 character format resource ID. Contact
-// Amazon Web Services support if you receive an error and need to use short
-// IDs for file system and mount target resources.
+// Amazon Web Services support if you receive an error and must use short IDs
+// for file system and mount target resources.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3082,9 +3102,9 @@ func (c *EFS) PutFileSystemPolicyRequest(input *PutFileSystemPolicyInput) (req *
 //   Amazon Web Services account.
 //
 //   * InvalidPolicyException
-//   Returned if the FileSystemPolicy is is malformed or contains an error such
-//   as an invalid parameter value or a missing required parameter. Returned in
-//   the case of a policy lockout safety check error.
+//   Returned if the FileSystemPolicy is malformed or contains an error such as
+//   a parameter value that is not valid or a missing required parameter. Returned
+//   in the case of a policy lockout safety check error.
 //
 //   * IncorrectFileSystemLifeCycleState
 //   Returned if the file system's lifecycle state is not "available".
@@ -3155,29 +3175,40 @@ func (c *EFS) PutLifecycleConfigurationRequest(input *PutLifecycleConfigurationI
 
 // PutLifecycleConfiguration API operation for Amazon Elastic File System.
 //
-// Enables lifecycle management by creating a new LifecycleConfiguration object.
-// A LifecycleConfiguration object defines when files in an Amazon EFS file
-// system are automatically transitioned to the lower-cost EFS Infrequent Access
-// (IA) storage class. To enable EFS Intelligent Tiering, set the value of TransitionToPrimaryStorageClass
-// to AFTER_1_ACCESS. For more information, see EFS Lifecycle Management (https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html).
+// Use this action to manage EFS lifecycle management and intelligent tiering.
+// A LifecycleConfiguration consists of one or more LifecyclePolicy objects
+// that define the following:
+//
+//    * EFS Lifecycle management - When Amazon EFS automatically transitions
+//    files in a file system into the lower-cost Infrequent Access (IA) storage
+//    class. To enable EFS Lifecycle management, set the value of TransitionToIA
+//    to one of the available options.
+//
+//    * EFS Intelligent tiering - When Amazon EFS automatically transitions
+//    files from IA back into the file system's primary storage class (Standard
+//    or One Zone Standard. To enable EFS Intelligent Tiering, set the value
+//    of TransitionToPrimaryStorageClass to AFTER_1_ACCESS.
+//
+// For more information, see EFS Lifecycle Management (https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html).
 //
 // Each Amazon EFS file system supports one lifecycle configuration, which applies
 // to all files in the file system. If a LifecycleConfiguration object already
 // exists for the specified file system, a PutLifecycleConfiguration call modifies
 // the existing configuration. A PutLifecycleConfiguration call with an empty
 // LifecyclePolicies array in the request body deletes any existing LifecycleConfiguration
-// and turns off lifecycle management for the file system.
+// and turns off lifecycle management and intelligent tiering for the file system.
 //
 // In the request, specify the following:
 //
 //    * The ID for the file system for which you are enabling, disabling, or
-//    modifying lifecycle management.
+//    modifying lifecycle management and intelligent tiering.
 //
 //    * A LifecyclePolicies array of LifecyclePolicy objects that define when
-//    files are moved to the IA storage class. Amazon EFS requires that each
-//    LifecyclePolicy object have only have a single transition, so the LifecyclePolicies
-//    array needs to be structured with separate LifecyclePolicy objects. See
-//    the example requests in the following section for more information.
+//    files are moved into IA storage, and when they are moved back to Standard
+//    storage. Amazon EFS requires that each LifecyclePolicy object have only
+//    have a single transition, so the LifecyclePolicies array needs to be structured
+//    with separate LifecyclePolicy objects. See the example requests in the
+//    following section for more information.
 //
 // This operation requires permissions for the elasticfilesystem:PutLifecycleConfiguration
 // operation.
@@ -3493,7 +3524,8 @@ func (c *EFS) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //   This value might be returned when you try to create a file system in provisioned
 //   throughput mode, when you attempt to increase the provisioned throughput
 //   of an existing file system, or when you attempt to change an existing file
-//   system from bursting to provisioned throughput mode. Try again later.
+//   system from Bursting Throughput to Provisioned Throughput mode. Try again
+//   later.
 //
 //   * InternalServerError
 //   Returned if an error occurred on the server side.
@@ -3503,8 +3535,8 @@ func (c *EFS) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //   be changed because the throughput limit of 1024 MiB/s has been reached.
 //
 //   * TooManyRequests
-//   Returned if you don’t wait at least 24 hours before changing the throughput
-//   mode, or decreasing the Provisioned Throughput value.
+//   Returned if you don’t wait at least 24 hours before either changing the
+//   throughput mode, or decreasing the Provisioned Throughput value.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/UpdateFileSystem
 func (c *EFS) UpdateFileSystem(input *UpdateFileSystemInput) (*UpdateFileSystemOutput, error) {
@@ -3528,8 +3560,8 @@ func (c *EFS) UpdateFileSystemWithContext(ctx aws.Context, input *UpdateFileSyst
 	return out, req.Send()
 }
 
-// Returned if the access point you are trying to create already exists, with
-// the creation token you provided in the request.
+// Returned if the access point that you are trying to create already exists,
+// with the creation token you provided in the request.
 type AccessPointAlreadyExists struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3726,7 +3758,9 @@ func (s *AccessPointDescription) SetTags(v []*Tag) *AccessPointDescription {
 }
 
 // Returned if the Amazon Web Services account has already created the maximum
-// number of access points allowed per file system.
+// number of access points allowed per file system. For more informaton, see
+// https://docs.aws.amazon.com/efs/latest/ug/limits.html#limits-efs-resources-per-account-per-region
+// (https://docs.aws.amazon.com/efs/latest/ug/limits.html#limits-efs-resources-per-account-per-region).
 type AccessPointLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3882,9 +3916,8 @@ func (s *AccessPointNotFound) RequestID() string {
 }
 
 // Returned if the Availability Zone that was specified for a mount target is
-// different from the Availability Zone that was specified for One Zone storage
-// classes. For more information, see Regional and One Zone storage redundancy
-// (https://docs.aws.amazon.com/efs/latest/ug/availability-durability.html).
+// different from the Availability Zone that was specified for One Zone storage.
+// For more information, see Regional and One Zone storage redundancy (https://docs.aws.amazon.com/efs/latest/ug/availability-durability.html).
 type AvailabilityZonesMismatch struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3971,7 +4004,7 @@ type BackupPolicy struct {
 	//
 	//    * ENABLING - EFS is turning on automatic backups for the file system.
 	//
-	//    * DISABLED - automatic back ups are turned off for the file system.
+	//    * DISABLED - Automatic back ups are turned off for the file system.
 	//
 	//    * DISABLING - EFS is turning off automatic backups for the file system.
 	//
@@ -4115,8 +4148,8 @@ type CreateAccessPointInput struct {
 	// access point. The clients using the access point can only access the root
 	// directory and below. If the RootDirectory > Path specified does not exist,
 	// EFS creates it and applies the CreationInfo settings when a client connects
-	// to an access point. When specifying a RootDirectory, you need to provide
-	// the Path, and the CreationInfo.
+	// to an access point. When specifying a RootDirectory, you must provide the
+	// Path, and the CreationInfo.
 	//
 	// Amazon EFS creates a root directory only if you have provided the CreationInfo:
 	// OwnUid, OwnGID, and permissions for the directory. If you do not provide
@@ -4369,7 +4402,7 @@ type CreateFileSystemInput struct {
 	Encrypted *bool `type:"boolean"`
 
 	// The ID of the KMS key that you want to use to protect the encrypted file
-	// system. This parameter is only required if you want to use a non-default
+	// system. This parameter is required only if you want to use a non-default
 	// KMS key. If this parameter is not specified, the default KMS key for Amazon
 	// EFS is used. You can specify a KMS key ID using the following formats:
 	//
@@ -4698,7 +4731,7 @@ type CreateReplicationConfigurationOutput struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
-	// Array of destination objects. Only one destination object is supported.
+	// An array of destination objects. Only one destination object is supported.
 	//
 	// Destinations is a required field
 	Destinations []*Destination `type:"list" required:"true"`
@@ -4709,7 +4742,8 @@ type CreateReplicationConfigurationOutput struct {
 	// OriginalSourceFileSystemArn is a required field
 	OriginalSourceFileSystemArn *string `type:"string" required:"true"`
 
-	// The ARN of the current source file system in the replication configuration.
+	// The Amazon Resource Name (ARN) of the current source file system in the replication
+	// configuration.
 	//
 	// SourceFileSystemArn is a required field
 	SourceFileSystemArn *string `type:"string" required:"true"`
@@ -5767,7 +5801,7 @@ type DescribeBackupPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Describes the file system's backup policy, indicating whether automatic backups
-	// are turned on or off..
+	// are turned on or off.
 	BackupPolicy *BackupPolicy `type:"structure"`
 }
 
@@ -6334,15 +6368,15 @@ func (s *DescribeMountTargetsOutput) SetNextMarker(v string) *DescribeMountTarge
 type DescribeReplicationConfigurationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// You can retrieve replication configurations for a specific file system by
-	// providing a file system ID.
+	// You can retrieve the replication configuration for a specific file system
+	// by providing its file system ID.
 	FileSystemId *string `location:"querystring" locationName:"FileSystemId" type:"string"`
 
-	// (Optional) You can optionally specify the MaxItems parameter to limit the
-	// number of objects returned in a response. The default value is 100.
+	// (Optional) To limit the number of objects returned in a response, you can
+	// specify the MaxItems parameter. The default value is 100.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
 
-	// NextToken is present if the response is paginated. You can use NextMarker
+	// NextToken is present if the response is paginated. You can use NextToken
 	// in a subsequent request to fetch the next page of output.
 	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
 }
@@ -6406,7 +6440,7 @@ type DescribeReplicationConfigurationsOutput struct {
 	// to fetch the additional descriptions.
 	NextToken *string `min:"1" type:"string"`
 
-	// The collection of replication configurations returned.
+	// The collection of replication configurations that is returned.
 	Replications []*ReplicationConfigurationDescription `type:"list"`
 }
 
@@ -6581,10 +6615,10 @@ type Destination struct {
 	// FileSystemId is a required field
 	FileSystemId *string `type:"string" required:"true"`
 
-	// The time when the most recent sync successfully completed on the destination
+	// The time when the most recent sync was successfully completed on the destination
 	// file system. Any changes to data on the source file system that occurred
-	// prior to this time were successfully replicated to the destination file system.
-	// Any changes that occurred after this time might not be fully replicated.
+	// before this time have been successfully replicated to the destination file
+	// system. Any changes that occurred after this time might not be fully replicated.
 	LastReplicatedTimestamp *time.Time `type:"timestamp"`
 
 	// The Amazon Web Services Region in which the destination file system is located.
@@ -6592,7 +6626,10 @@ type Destination struct {
 	// Region is a required field
 	Region *string `min:"1" type:"string" required:"true"`
 
-	// Describes the status of the destination Amazon EFS file system.
+	// Describes the status of the destination Amazon EFS file system. If the status
+	// is ERROR, the destination file system in the replication configuration is
+	// in a failed state and is unrecoverable. To access the file system data, restore
+	// a backup of the failed file system to a new file system.
 	//
 	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"ReplicationStatus"`
@@ -6644,25 +6681,26 @@ func (s *Destination) SetStatus(v string) *Destination {
 type DestinationToCreate struct {
 	_ struct{} `type:"structure"`
 
-	// To create a file system that uses One Zone storage, specify the name of the
-	// Availability Zone in which to create the destination file system.
+	// To create a file system that uses EFS One Zone storage, specify the name
+	// of the Availability Zone in which to create the destination file system.
 	AvailabilityZoneName *string `min:"1" type:"string"`
 
-	// Specifies the KMS key you want to use to encrypt the destination file system.
-	// If you do not specify a KMS key, EFS uses your default KMS key for Amazon
-	// EFS, /aws/elasticfilesystem. This ID can be in one of the following formats:
+	// Specifies the Key Management Service (KMS) key that you want to use to encrypt
+	// the destination file system. If you do not specify a KMS key, Amazon EFS
+	// uses your default KMS key for Amazon EFS, /aws/elasticfilesystem. This ID
+	// can be in one of the following formats:
 	//
-	//    * Key ID - A unique identifier of the key, for example 1234abcd-12ab-34cd-56ef-1234567890ab.
+	//    * Key ID - The unique identifier of the key, for example 1234abcd-12ab-34cd-56ef-1234567890ab.
 	//
-	//    * ARN - An Amazon Resource Name (ARN) for the key, for example arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab.
+	//    * ARN - The Amazon Resource Name (ARN) for the key, for example arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab.
 	//
 	//    * Key alias - A previously created display name for a key, for example
 	//    alias/projectKey1.
 	//
-	//    * Key alias ARN - An ARN for a key alias, for example arn:aws:kms:us-west-2:444455556666:alias/projectKey1.
+	//    * Key alias ARN - The ARN for a key alias, for example arn:aws:kms:us-west-2:444455556666:alias/projectKey1.
 	KmsKeyId *string `type:"string"`
 
-	// To create a file system that uses regional storage, specify the Amazon Web
+	// To create a file system that uses Regional storage, specify the Amazon Web
 	// Services Region in which to create the destination file system.
 	Region *string `min:"1" type:"string"`
 }
@@ -7479,7 +7517,8 @@ func (s *IncorrectMountTargetState) RequestID() string {
 // This value might be returned when you try to create a file system in provisioned
 // throughput mode, when you attempt to increase the provisioned throughput
 // of an existing file system, or when you attempt to change an existing file
-// system from bursting to provisioned throughput mode. Try again later.
+// system from Bursting Throughput to Provisioned Throughput mode. Try again
+// later.
 type InsufficientThroughputCapacity struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7633,9 +7672,9 @@ func (s *InternalServerError) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Returned if the FileSystemPolicy is is malformed or contains an error such
-// as an invalid parameter value or a missing required parameter. Returned in
-// the case of a policy lockout safety check error.
+// Returned if the FileSystemPolicy is malformed or contains an error such as
+// a parameter value that is not valid or a missing required parameter. Returned
+// in the case of a policy lockout safety check error.
 type InvalidPolicyException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7788,7 +7827,7 @@ func (s *IpAddressInUse) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Describes a policy used by EFS lifecycle management and EFS intelligent tiering
+// Describes a policy used by EFS lifecycle management and EFS Intelligent-Tiering
 // that specifies when to transition files into and out of the file system's
 // Infrequent Access (IA) storage class. For more information, see EFS Intelligent‐Tiering
 // and EFS Lifecycle Management (https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html).
@@ -7796,9 +7835,9 @@ func (s *IpAddressInUse) RequestID() string {
 // When using the put-lifecycle-configuration CLI command or the PutLifecycleConfiguration
 // API action, Amazon EFS requires that each LifecyclePolicy object have only
 // a single transition. This means that in a request body, LifecyclePolicies
-// needs to be structured as an array of LifecyclePolicy objects, one object
-// for each transition, TransitionToIA, TransitionToPrimaryStorageClass. For
-// more information, see the request examples in PutLifecycleConfiguration.
+// must be structured as an array of LifecyclePolicy objects, one object for
+// each transition, TransitionToIA, TransitionToPrimaryStorageClass. For more
+// information, see the request examples in PutLifecycleConfiguration.
 type LifecyclePolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -8325,11 +8364,11 @@ func (s *MountTargetNotFound) RequestID() string {
 }
 
 // The calling account has reached the limit for elastic network interfaces
-// for the specific Amazon Web Services Region. The client should try to delete
-// some elastic network interfaces or get the account limit raised. For more
-// information, see Amazon VPC Limits (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html)
-// in the Amazon VPC User Guide (see the Network interfaces per VPC entry in
-// the table).
+// for the specific Amazon Web Services Region. Either delete some network interfaces
+// or request that the account quota be raised. For more information, see Amazon
+// VPC Quotas (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html)
+// in the Amazon VPC User Guide (see the Network interfaces per Region entry
+// in the Network interfaces table).
 type NetworkInterfaceLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8643,7 +8682,7 @@ type PutAccountPreferencesInput struct {
 	//
 	// Starting in October, 2021, you will receive an error when setting the account
 	// preference to SHORT_ID. Contact Amazon Web Services support if you receive
-	// an error and need to use short IDs for file system and mount target resources.
+	// an error and must use short IDs for file system and mount target resources.
 	//
 	// ResourceIdType is a required field
 	ResourceIdType *string `type:"string" required:"true" enum:"ResourceIdType"`
@@ -8790,7 +8829,7 @@ type PutBackupPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Describes the file system's backup policy, indicating whether automatic backups
-	// are turned on or off..
+	// are turned on or off.
 	BackupPolicy *BackupPolicy `type:"structure"`
 }
 
@@ -8821,13 +8860,13 @@ func (s *PutBackupPolicyOutput) SetBackupPolicy(v *BackupPolicy) *PutBackupPolic
 type PutFileSystemPolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// (Optional) A flag to indicate whether to bypass the FileSystemPolicy lockout
-	// safety check. The policy lockout safety check determines whether the policy
-	// in the request will prevent the principal making the request will be locked
-	// out from making future PutFileSystemPolicy requests on the file system. Set
-	// BypassPolicyLockoutSafetyCheck to True only when you intend to prevent the
-	// principal that is making the request from making a subsequent PutFileSystemPolicy
-	// request on the file system. The default value is False.
+	// (Optional) A boolean that specifies whether or not to bypass the FileSystemPolicy
+	// lockout safety check. The lockout safety check determines whether the policy
+	// in the request will lock out, or prevent, the IAM principal that is making
+	// the request from making future PutFileSystemPolicy requests on this file
+	// system. Set BypassPolicyLockoutSafetyCheck to True only when you intend to
+	// prevent the IAM principal that is making the request from making subsequent
+	// PutFileSystemPolicy requests on this file system. The default value is False.
 	BypassPolicyLockoutSafetyCheck *bool `type:"boolean"`
 
 	// The ID of the EFS file system that you want to create or update the FileSystemPolicy
@@ -8954,7 +8993,7 @@ type PutLifecycleConfigurationInput struct {
 
 	// An array of LifecyclePolicy objects that define the file system's LifecycleConfiguration
 	// object. A LifecycleConfiguration object informs EFS lifecycle management
-	// and intelligent tiering of the following:
+	// and EFS Intelligent-Tiering of the following:
 	//
 	//    * When to move files in the file system from primary storage to the IA
 	//    storage class.
@@ -8964,9 +9003,9 @@ type PutLifecycleConfigurationInput struct {
 	// When using the put-lifecycle-configuration CLI command or the PutLifecycleConfiguration
 	// API action, Amazon EFS requires that each LifecyclePolicy object have only
 	// a single transition. This means that in a request body, LifecyclePolicies
-	// needs to be structured as an array of LifecyclePolicy objects, one object
-	// for each transition, TransitionToIA, TransitionToPrimaryStorageClass. See
-	// the example requests in the following section for more information.
+	// must be structured as an array of LifecyclePolicy objects, one object for
+	// each transition, TransitionToIA, TransitionToPrimaryStorageClass. See the
+	// example requests in the following section for more information.
 	//
 	// LifecyclePolicies is a required field
 	LifecyclePolicies []*LifecyclePolicy `type:"list" required:"true"`
@@ -9061,7 +9100,7 @@ type ReplicationConfigurationDescription struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
-	// Array of destination objects. Only one destination object is supported.
+	// An array of destination objects. Only one destination object is supported.
 	//
 	// Destinations is a required field
 	Destinations []*Destination `type:"list" required:"true"`
@@ -9072,7 +9111,8 @@ type ReplicationConfigurationDescription struct {
 	// OriginalSourceFileSystemArn is a required field
 	OriginalSourceFileSystemArn *string `type:"string" required:"true"`
 
-	// The ARN of the current source file system in the replication configuration.
+	// The Amazon Resource Name (ARN) of the current source file system in the replication
+	// configuration.
 	//
 	// SourceFileSystemArn is a required field
 	SourceFileSystemArn *string `type:"string" required:"true"`
@@ -9143,7 +9183,7 @@ func (s *ReplicationConfigurationDescription) SetSourceFileSystemRegion(v string
 	return s
 }
 
-// Returned if the specified file system did not have a replication configuration.
+// Returned if the specified file system does not have a replication configuration.
 type ReplicationNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -9413,7 +9453,7 @@ func (s *SecurityGroupLimitExceeded) RequestID() string {
 }
 
 // Returned if one of the specified security groups doesn't exist in the subnet's
-// VPC.
+// virtual private cloud (VPC).
 type SecurityGroupNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -9728,6 +9768,82 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Returned when the CreateAccessPoint API action is called too quickly and
+// the number of Access Points in the account is nearing the limit of 120.
+type ThrottlingException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	ErrorCode *string `min:"1" type:"string"`
+
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s *ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s *ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ThrottlingException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ThrottlingException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Returned if the throughput mode or amount of provisioned throughput can't
 // be changed because the throughput limit of 1024 MiB/s has been reached.
 type ThroughputLimitExceeded struct {
@@ -9806,8 +9922,8 @@ func (s *ThroughputLimitExceeded) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Returned if you don’t wait at least 24 hours before changing the throughput
-// mode, or decreasing the Provisioned Throughput value.
+// Returned if you don’t wait at least 24 hours before either changing the
+// throughput mode, or decreasing the Provisioned Throughput value.
 type TooManyRequests struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

@@ -1,3 +1,14 @@
+Release v1.43.38 (2022-04-12)
+===
+
+### Service Client Updates
+* `service/devops-guru`: Updates service API and documentation
+* `service/ec2`: Updates service API
+  * X2idn and X2iedn instances are powered by 3rd generation Intel Xeon Scalable processors with an all-core turbo frequency up to 3.5 GHzAmazon EC2. C6a instances are powered by 3rd generation AMD EPYC processors.
+* `service/elasticfilesystem`: Updates service API and documentation
+  * Amazon EFS adds support for a ThrottlingException when using the CreateAccessPoint API if the account is nearing the AccessPoint limit(120).
+* `service/iottwinmaker`: Updates service API and documentation
+
 Release v1.43.37 (2022-04-11)
 ===
 
