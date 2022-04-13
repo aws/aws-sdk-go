@@ -2392,7 +2392,10 @@
     },
     "OntapDeploymentType":{
       "type":"string",
-      "enum":["MULTI_AZ_1"]
+      "enum":[
+        "MULTI_AZ_1",
+        "SINGLE_AZ_1"
+      ]
     },
     "OntapEndpointIpAddresses":{
       "type":"list",

@@ -7458,7 +7458,15 @@ type CreateFileSystemOntapConfiguration struct {
 	DailyAutomaticBackupStartTime *string `min:"5" type:"string"`
 
 	// Specifies the FSx for ONTAP file system deployment type to use in creating
-	// the file system. MULTI_AZ_1 is the supported ONTAP deployment type.
+	// the file system.
+	//
+	//    * MULTI_AZ_1 - (Default) A high availability file system configured for
+	//    Multi-AZ redundancy to tolerate temporary Availability Zone (AZ) unavailability.
+	//
+	//    * SINGLE_AZ_1 - A file system configured for Single-AZ redundancy.
+	//
+	// For information about the use cases for Multi-AZ and Single-AZ deployments,
+	// refer to Choosing Multi-AZ or Single-AZ file system deployment (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/high-availability-multiAZ.html).
 	//
 	// DeploymentType is a required field
 	DeploymentType *string `type:"string" required:"true" enum:"OntapDeploymentType"`
@@ -7466,9 +7474,9 @@ type CreateFileSystemOntapConfiguration struct {
 	// The SSD IOPS configuration for the FSx for ONTAP file system.
 	DiskIopsConfiguration *DiskIopsConfiguration `type:"structure"`
 
-	// Specifies the IP address range in which the endpoints to access your file
-	// system will be created. By default, Amazon FSx selects an unused IP address
-	// range for you from the 198.19.* range.
+	// (Multi-AZ only) Specifies the IP address range in which the endpoints to
+	// access your file system will be created. By default, Amazon FSx selects an
+	// unused IP address range for you from the 198.19.* range.
 	//
 	// The Endpoint IP address range you select for your file system must exist
 	// outside the VPC's CIDR range and must be at least /30 or larger.
@@ -7486,10 +7494,10 @@ type CreateFileSystemOntapConfiguration struct {
 	// in which you want the preferred file server to be located.
 	PreferredSubnetId *string `min:"15" type:"string"`
 
-	// Specifies the virtual private cloud (VPC) route tables in which your file
-	// system's endpoints will be created. You should specify all VPC route tables
-	// associated with the subnets in which your clients are located. By default,
-	// Amazon FSx selects your VPC's default route table.
+	// (Multi-AZ only) Specifies the virtual private cloud (VPC) route tables in
+	// which your file system's endpoints will be created. You should specify all
+	// VPC route tables associated with the subnets in which your clients are located.
+	// By default, Amazon FSx selects your VPC's default route table.
 	RouteTableIds []*string `type:"list"`
 
 	// Sets the throughput capacity for the file system that you're creating. Valid
@@ -14491,15 +14499,24 @@ type OntapFileSystemConfiguration struct {
 	// 05:00 specifies 5 AM daily.
 	DailyAutomaticBackupStartTime *string `min:"5" type:"string"`
 
-	// The ONTAP file system deployment type.
+	// Specifies the FSx for ONTAP file system deployment type in use in the file
+	// system.
+	//
+	//    * MULTI_AZ_1 - (Default) A high availability file system configured for
+	//    Multi-AZ redundancy to tolerate temporary Availability Zone (AZ) unavailability.
+	//
+	//    * SINGLE_AZ_1 - A file system configured for Single-AZ redundancy.
+	//
+	// For information about the use cases for Multi-AZ and Single-AZ deployments,
+	// refer to Choosing Multi-AZ or Single-AZ file system deployment (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/high-availability-multiAZ.html).
 	DeploymentType *string `type:"string" enum:"OntapDeploymentType"`
 
 	// The SSD IOPS configuration for the ONTAP file system, specifying the number
 	// of provisioned IOPS and the provision mode.
 	DiskIopsConfiguration *DiskIopsConfiguration `type:"structure"`
 
-	// The IP address range in which the endpoints to access your file system are
-	// created.
+	// (Multi-AZ only) The IP address range in which the endpoints to access your
+	// file system are created.
 	//
 	// The Endpoint IP address range you select for your file system must exist
 	// outside the VPC's CIDR range and must be at least /30 or larger. If you do
@@ -14517,7 +14534,8 @@ type OntapFileSystemConfiguration struct {
 	// in the Amazon VPC User Guide.
 	PreferredSubnetId *string `min:"15" type:"string"`
 
-	// The VPC route tables in which your file system's endpoints are created.
+	// (Multi-AZ only) The VPC route tables in which your file system's endpoints
+	// are created.
 	RouteTableIds []*string `type:"list"`
 
 	// The sustained throughput of an Amazon FSx file system in Megabytes per second
@@ -20147,12 +20165,16 @@ func LustreDeploymentType_Values() []string {
 const (
 	// OntapDeploymentTypeMultiAz1 is a OntapDeploymentType enum value
 	OntapDeploymentTypeMultiAz1 = "MULTI_AZ_1"
+
+	// OntapDeploymentTypeSingleAz1 is a OntapDeploymentType enum value
+	OntapDeploymentTypeSingleAz1 = "SINGLE_AZ_1"
 )
 
 // OntapDeploymentType_Values returns all elements of the OntapDeploymentType enum
 func OntapDeploymentType_Values() []string {
 	return []string{
 		OntapDeploymentTypeMultiAz1,
+		OntapDeploymentTypeSingleAz1,
 	}
 }
 

@@ -1342,8 +1342,8 @@
     "IpAddressRange": {
       "base": null,
       "refs": {
-        "CreateFileSystemOntapConfiguration$EndpointIpAddressRange": "<p>Specifies the IP address range in which the endpoints to access your file system will be created. By default, Amazon FSx selects an unused IP address range for you from the 198.19.* range.</p> <important> <p>The Endpoint IP address range you select for your file system must exist outside the VPC's CIDR range and must be at least /30 or larger.</p> </important>",
-        "OntapFileSystemConfiguration$EndpointIpAddressRange": "<p>The IP address range in which the endpoints to access your file system are created.</p> <important> <p>The Endpoint IP address range you select for your file system must exist outside the VPC's CIDR range and must be at least /30 or larger. If you do not specify this optional parameter, Amazon FSx will automatically select a CIDR block for you.</p> </important>"
+        "CreateFileSystemOntapConfiguration$EndpointIpAddressRange": "<p>(Multi-AZ only) Specifies the IP address range in which the endpoints to access your file system will be created. By default, Amazon FSx selects an unused IP address range for you from the 198.19.* range.</p> <important> <p>The Endpoint IP address range you select for your file system must exist outside the VPC's CIDR range and must be at least /30 or larger.</p> </important>",
+        "OntapFileSystemConfiguration$EndpointIpAddressRange": "<p>(Multi-AZ only) The IP address range in which the endpoints to access your file system are created.</p> <important> <p>The Endpoint IP address range you select for your file system must exist outside the VPC's CIDR range and must be at least /30 or larger. If you do not specify this optional parameter, Amazon FSx will automatically select a CIDR block for you.</p> </important>"
       }
     },
     "JunctionPath": {
@@ -1537,8 +1537,8 @@
     "OntapDeploymentType": {
       "base": null,
       "refs": {
-        "CreateFileSystemOntapConfiguration$DeploymentType": "<p>Specifies the FSx for ONTAP file system deployment type to use in creating the file system. <code>MULTI_AZ_1</code> is the supported ONTAP deployment type.</p>",
-        "OntapFileSystemConfiguration$DeploymentType": "<p>The ONTAP file system deployment type.</p>"
+        "CreateFileSystemOntapConfiguration$DeploymentType": "<p>Specifies the FSx for ONTAP file system deployment type to use in creating the file system. </p> <ul> <li> <p> <code>MULTI_AZ_1</code> - (Default) A high availability file system configured for Multi-AZ redundancy to tolerate temporary Availability Zone (AZ) unavailability. </p> </li> <li> <p> <code>SINGLE_AZ_1</code> - A file system configured for Single-AZ redundancy.</p> </li> </ul> <p>For information about the use cases for Multi-AZ and Single-AZ deployments, refer to <a href=\"https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/high-availability-multiAZ.html\">Choosing Multi-AZ or Single-AZ file system deployment</a>. </p>",
+        "OntapFileSystemConfiguration$DeploymentType": "<p>Specifies the FSx for ONTAP file system deployment type in use in the file system. </p> <ul> <li> <p> <code>MULTI_AZ_1</code> - (Default) A high availability file system configured for Multi-AZ redundancy to tolerate temporary Availability Zone (AZ) unavailability. </p> </li> <li> <p> <code>SINGLE_AZ_1</code> - A file system configured for Single-AZ redundancy.</p> </li> </ul> <p>For information about the use cases for Multi-AZ and Single-AZ deployments, refer to <a href=\"https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/high-availability-multiAZ.html\">Choosing Multi-AZ or Single-AZ file system deployment</a>. </p>"
       }
     },
     "OntapEndpointIpAddresses": {
@@ -1819,8 +1819,8 @@
     "RouteTableIds": {
       "base": null,
       "refs": {
-        "CreateFileSystemOntapConfiguration$RouteTableIds": "<p>Specifies the virtual private cloud (VPC) route tables in which your file system's endpoints will be created. You should specify all VPC route tables associated with the subnets in which your clients are located. By default, Amazon FSx selects your VPC's default route table.</p>",
-        "OntapFileSystemConfiguration$RouteTableIds": "<p>The VPC route tables in which your file system's endpoints are created.</p>"
+        "CreateFileSystemOntapConfiguration$RouteTableIds": "<p>(Multi-AZ only) Specifies the virtual private cloud (VPC) route tables in which your file system's endpoints will be created. You should specify all VPC route tables associated with the subnets in which your clients are located. By default, Amazon FSx selects your VPC's default route table.</p>",
+        "OntapFileSystemConfiguration$RouteTableIds": "<p>(Multi-AZ only) The VPC route tables in which your file system's endpoints are created.</p>"
       }
     },
     "S3DataRepositoryConfiguration": {

@@ -1289,7 +1289,8 @@
         "State":{"shape":"MetricStreamState"},
         "CreationDate":{"shape":"Timestamp"},
         "LastUpdateDate":{"shape":"Timestamp"},
-        "OutputFormat":{"shape":"MetricStreamOutputFormat"}
+        "OutputFormat":{"shape":"MetricStreamOutputFormat"},
+        "StatisticsConfigurations":{"shape":"MetricStreamStatisticsConfigurations"}
       }
     },
     "GetMetricWidgetImageInput":{
@@ -1843,6 +1844,41 @@
       "min":1
     },
     "MetricStreamState":{"type":"string"},
+    "MetricStreamStatistic":{"type":"string"},
+    "MetricStreamStatisticsAdditionalStatistics":{
+      "type":"list",
+      "member":{"shape":"MetricStreamStatistic"}
+    },
+    "MetricStreamStatisticsConfiguration":{
+      "type":"structure",
+      "required":[
+        "IncludeMetrics",
+        "AdditionalStatistics"
+      ],
+      "members":{
+        "IncludeMetrics":{"shape":"MetricStreamStatisticsIncludeMetrics"},
+        "AdditionalStatistics":{"shape":"MetricStreamStatisticsAdditionalStatistics"}
+      }
+    },
+    "MetricStreamStatisticsConfigurations":{
+      "type":"list",
+      "member":{"shape":"MetricStreamStatisticsConfiguration"}
+    },
+    "MetricStreamStatisticsIncludeMetrics":{
+      "type":"list",
+      "member":{"shape":"MetricStreamStatisticsMetric"}
+    },
+    "MetricStreamStatisticsMetric":{
+      "type":"structure",
+      "required":[
+        "Namespace",
+        "MetricName"
+      ],
+      "members":{
+        "Namespace":{"shape":"Namespace"},
+        "MetricName":{"shape":"MetricName"}
+      }
+    },
     "MetricWidget":{"type":"string"},
     "MetricWidgetImage":{"type":"blob"},
     "Metrics":{
@@ -2026,7 +2062,8 @@
         "FirehoseArn":{"shape":"AmazonResourceName"},
         "RoleArn":{"shape":"AmazonResourceName"},
         "OutputFormat":{"shape":"MetricStreamOutputFormat"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "StatisticsConfigurations":{"shape":"MetricStreamStatisticsConfigurations"}
       }
     },
     "PutMetricStreamOutput":{
