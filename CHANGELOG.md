@@ -1,3 +1,11 @@
+Release v1.43.39 (2022-04-13)
+===
+
+### Service Client Updates
+* `service/fsx`: Updates service API, documentation, and paginators
+* `service/monitoring`: Updates service API and documentation
+  * Adds support for additional statistics in CloudWatch Metric Streams.
+
 Release v1.43.38 (2022-04-12)
 ===
 
