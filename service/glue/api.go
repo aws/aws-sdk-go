@@ -40237,6 +40237,15 @@ type JobRun struct {
 	// The date and time that this job run completed.
 	CompletedOn *time.Time `type:"timestamp"`
 
+	// This field populates only when an Auto Scaling job run completes, and represents
+	// the total time each executor ran during the lifecycle of a job run in seconds,
+	// multiplied by a DPU factor (1 for G.1X and 2 for G.2X workers). This value
+	// may be different than the executionEngineRuntime * MaxCapacity as in the
+	// case of Auto Scaling jobs, as the number of executors running at a given
+	// time may be less than the MaxCapacity. Therefore, it is possible that the
+	// value of DPUSeconds is less than executionEngineRuntime * MaxCapacity.
+	DPUSeconds *float64 `type:"double"`
+
 	// An error message associated with this job run.
 	ErrorMessage *string `type:"string"`
 
@@ -40378,6 +40387,12 @@ func (s *JobRun) SetAttempt(v int64) *JobRun {
 // SetCompletedOn sets the CompletedOn field's value.
 func (s *JobRun) SetCompletedOn(v time.Time) *JobRun {
 	s.CompletedOn = &v
+	return s
+}
+
+// SetDPUSeconds sets the DPUSeconds field's value.
+func (s *JobRun) SetDPUSeconds(v float64) *JobRun {
+	s.DPUSeconds = &v
 	return s
 }
 

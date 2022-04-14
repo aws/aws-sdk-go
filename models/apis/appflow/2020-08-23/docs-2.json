@@ -247,6 +247,8 @@
         "DestinationFieldProperties$isUpdatable": "<p> Specifies whether the field can be updated during an <code>UPDATE</code> or <code>UPSERT</code> write operation. </p>",
         "DestinationFieldProperties$isDefaultedOnCreate": "<p>Specifies whether the field can use the default value during a Create operation.</p>",
         "ErrorHandlingConfig$failOnFirstDestinationError": "<p> Specifies if the flow should fail after the first instance of a failure when attempting to place data in the destination. </p>",
+        "OAuth2CustomParameter$isRequired": "<p>Indicates whether the custom parameter for OAuth 2.0 authentication is required.</p>",
+        "OAuth2CustomParameter$isSensitiveField": "<p>Indicates whether this authentication custom parameter is a sensitive field.</p>",
         "SalesforceConnectorProfileProperties$isSandboxEnvironment": "<p> Indicates whether the connector profile applies to a sandbox or production environment. </p>",
         "SalesforceSourceProperties$enableDynamicFieldUpdate": "<p> The flag that enables dynamic fetching of new (recently added) fields in the Salesforce objects while running a flow. </p>",
         "SalesforceSourceProperties$includeDeletedRecords": "<p> Indicates whether Amazon AppFlow includes deleted files in the flow run. </p>",
@@ -582,7 +584,8 @@
     "ConnectorSuppliedValueList": {
       "base": null,
       "refs": {
-        "AuthParameter$connectorSuppliedValues": "<p>Contains default values for this authentication parameter that are supplied by the connector.</p>"
+        "AuthParameter$connectorSuppliedValues": "<p>Contains default values for this authentication parameter that are supplied by the connector.</p>",
+        "OAuth2CustomParameter$connectorSuppliedValues": "<p>Contains default values for this authentication parameter that are supplied by the connector.</p>"
       }
     },
     "ConnectorSuppliedValueOptionList": {
@@ -729,13 +732,15 @@
     "CustomPropertyKey": {
       "base": null,
       "refs": {
-        "CustomProperties$key": null
+        "CustomProperties$key": null,
+        "TokenUrlCustomProperties$key": null
       }
     },
     "CustomPropertyValue": {
       "base": null,
       "refs": {
-        "CustomProperties$value": null
+        "CustomProperties$value": null,
+        "TokenUrlCustomProperties$value": null
       }
     },
     "CustomerProfilesDestinationProperties": {
@@ -905,6 +910,7 @@
         "AuthParameter$description": "<p>A description about the authentication parameter.</p>",
         "ConnectorEntityField$description": "<p> A description of the connector entity field. </p>",
         "ConnectorRuntimeSetting$description": "<p>A description about the connector runtime setting.</p>",
+        "OAuth2CustomParameter$description": "<p>A description about the custom parameter used for OAuth 2.0 authentication.</p>",
         "RegisterConnectorRequest$description": "<p>A description about the connector that's being registered.</p>"
       }
     },
@@ -1327,7 +1333,8 @@
         "AuthParameter$key": "<p>The authentication key required to authenticate with the connector.</p>",
         "ConnectorRuntimeSetting$key": "<p>Contains value information about the connector runtime setting.</p>",
         "InforNexusConnectorProfileCredentials$secretAccessKey": "<p> The secret key used to sign requests. </p>",
-        "InforNexusConnectorProfileCredentials$datakey": "<p> The encryption keys used to encrypt data. </p>"
+        "InforNexusConnectorProfileCredentials$datakey": "<p> The encryption keys used to encrypt data. </p>",
+        "OAuth2CustomParameter$key": "<p>The key of the custom parameter required for OAuth 2.0 authentication.</p>"
       }
     },
     "Label": {
@@ -1336,7 +1343,8 @@
         "AuthParameter$label": "<p>Label used for authentication parameter.</p>",
         "ConnectorEntity$label": "<p> The label applied to the connector entity. </p>",
         "ConnectorEntityField$label": "<p> The label applied to a connector entity field. </p>",
-        "ConnectorRuntimeSetting$label": "<p>A label used for connector runtime setting.</p>"
+        "ConnectorRuntimeSetting$label": "<p>A label used for connector runtime setting.</p>",
+        "OAuth2CustomParameter$label": "<p>The label of the custom parameter used for OAuth 2.0 authentication.</p>"
       }
     },
     "LambdaConnectorProvisioningConfig": {
@@ -1490,6 +1498,24 @@
       "base": "<p>The OAuth 2.0 credentials required for OAuth 2.0 authentication.</p>",
       "refs": {
         "CustomConnectorProfileCredentials$oauth2": "<p>The OAuth 2.0 credentials required for the authentication of the user.</p>"
+      }
+    },
+    "OAuth2CustomParameter": {
+      "base": "<p>Custom parameter required for OAuth 2.0 authentication.</p>",
+      "refs": {
+        "OAuth2CustomPropertiesList$member": null
+      }
+    },
+    "OAuth2CustomPropType": {
+      "base": null,
+      "refs": {
+        "OAuth2CustomParameter$type": "<p>Indicates whether custom parameter is used with TokenUrl or AuthUrl.</p>"
+      }
+    },
+    "OAuth2CustomPropertiesList": {
+      "base": null,
+      "refs": {
+        "OAuth2Defaults$oauth2CustomProperties": "<p>List of custom parameters required for OAuth 2.0 authentication.</p>"
       }
     },
     "OAuth2Defaults": {
@@ -2232,6 +2258,12 @@
         "OAuth2Properties$tokenUrl": "<p>The token URL required for OAuth 2.0 authentication.</p>",
         "OAuthProperties$tokenUrl": "<p> The token url required to fetch access/refresh tokens using authorization code and also to refresh expired access token using refresh token.</p>",
         "TokenUrlList$member": null
+      }
+    },
+    "TokenUrlCustomProperties": {
+      "base": null,
+      "refs": {
+        "OAuth2Properties$tokenUrlCustomProperties": "<p>Associates your token URL with a map of properties that you define. Use this parameter to provide any additional details that the connector requires to authenticate your request.</p>"
       }
     },
     "TokenUrlList": {

@@ -1,3 +1,19 @@
+Release v1.43.40 (2022-04-14)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/appstream`: Updates service API and documentation
+  * Includes updates for create and update fleet APIs to manage the session scripts locations for Elastic fleets.
+* `service/batch`: Updates service API and documentation
+  * Enables configuration updates for compute environments with BEST_FIT_PROGRESSIVE and SPOT_CAPACITY_OPTIMIZED allocation strategies.
+* `service/ec2`: Updates service documentation
+  * Documentation updates for Amazon EC2.
+* `service/glue`: Updates service API and documentation
+  * Auto Scaling for Glue version 3.0 and later jobs to dynamically scale compute resources. This SDK change provides customers with the auto-scaled DPU usage
+* `service/monitoring`: Updates service documentation
+  * Updates documentation for additional statistics in CloudWatch Metric Streams.
+
 Release v1.43.39 (2022-04-13)
 ===
 

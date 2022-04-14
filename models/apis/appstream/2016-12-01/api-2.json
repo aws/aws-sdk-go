@@ -1361,7 +1361,8 @@
         "StreamView":{"shape":"StreamView"},
         "Platform":{"shape":"PlatformType"},
         "MaxConcurrentSessions":{"shape":"Integer"},
-        "UsbDeviceFilterStrings":{"shape":"UsbDeviceFilterStrings"}
+        "UsbDeviceFilterStrings":{"shape":"UsbDeviceFilterStrings"},
+        "SessionScriptS3Location":{"shape":"S3Location"}
       }
     },
     "CreateFleetResult":{
@@ -2136,7 +2137,8 @@
         "StreamView":{"shape":"StreamView"},
         "Platform":{"shape":"PlatformType"},
         "MaxConcurrentSessions":{"shape":"Integer"},
-        "UsbDeviceFilterStrings":{"shape":"UsbDeviceFilterStrings"}
+        "UsbDeviceFilterStrings":{"shape":"UsbDeviceFilterStrings"},
+        "SessionScriptS3Location":{"shape":"S3Location"}
       }
     },
     "FleetAttribute":{
@@ -2146,7 +2148,8 @@
         "VPC_CONFIGURATION_SECURITY_GROUP_IDS",
         "DOMAIN_JOIN_INFO",
         "IAM_ROLE_ARN",
-        "USB_DEVICE_FILTER_STRINGS"
+        "USB_DEVICE_FILTER_STRINGS",
+        "SESSION_SCRIPT_S3_LOCATION"
       ]
     },
     "FleetAttributes":{
@@ -2985,7 +2988,8 @@
         "StreamView":{"shape":"StreamView"},
         "Platform":{"shape":"PlatformType"},
         "MaxConcurrentSessions":{"shape":"Integer"},
-        "UsbDeviceFilterStrings":{"shape":"UsbDeviceFilterStrings"}
+        "UsbDeviceFilterStrings":{"shape":"UsbDeviceFilterStrings"},
+        "SessionScriptS3Location":{"shape":"S3Location"}
       }
     },
     "UpdateFleetResult":{

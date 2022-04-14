@@ -9551,12 +9551,102 @@ func (s *OAuth2Credentials) SetRefreshToken(v string) *OAuth2Credentials {
 	return s
 }
 
+// Custom parameter required for OAuth 2.0 authentication.
+type OAuth2CustomParameter struct {
+	_ struct{} `type:"structure"`
+
+	// Contains default values for this authentication parameter that are supplied
+	// by the connector.
+	ConnectorSuppliedValues []*string `locationName:"connectorSuppliedValues" type:"list"`
+
+	// A description about the custom parameter used for OAuth 2.0 authentication.
+	Description *string `locationName:"description" type:"string"`
+
+	// Indicates whether the custom parameter for OAuth 2.0 authentication is required.
+	IsRequired *bool `locationName:"isRequired" type:"boolean"`
+
+	// Indicates whether this authentication custom parameter is a sensitive field.
+	IsSensitiveField *bool `locationName:"isSensitiveField" type:"boolean"`
+
+	// The key of the custom parameter required for OAuth 2.0 authentication.
+	Key *string `locationName:"key" type:"string"`
+
+	// The label of the custom parameter used for OAuth 2.0 authentication.
+	Label *string `locationName:"label" type:"string"`
+
+	// Indicates whether custom parameter is used with TokenUrl or AuthUrl.
+	Type *string `locationName:"type" type:"string" enum:"OAuth2CustomPropType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OAuth2CustomParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OAuth2CustomParameter) GoString() string {
+	return s.String()
+}
+
+// SetConnectorSuppliedValues sets the ConnectorSuppliedValues field's value.
+func (s *OAuth2CustomParameter) SetConnectorSuppliedValues(v []*string) *OAuth2CustomParameter {
+	s.ConnectorSuppliedValues = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *OAuth2CustomParameter) SetDescription(v string) *OAuth2CustomParameter {
+	s.Description = &v
+	return s
+}
+
+// SetIsRequired sets the IsRequired field's value.
+func (s *OAuth2CustomParameter) SetIsRequired(v bool) *OAuth2CustomParameter {
+	s.IsRequired = &v
+	return s
+}
+
+// SetIsSensitiveField sets the IsSensitiveField field's value.
+func (s *OAuth2CustomParameter) SetIsSensitiveField(v bool) *OAuth2CustomParameter {
+	s.IsSensitiveField = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *OAuth2CustomParameter) SetKey(v string) *OAuth2CustomParameter {
+	s.Key = &v
+	return s
+}
+
+// SetLabel sets the Label field's value.
+func (s *OAuth2CustomParameter) SetLabel(v string) *OAuth2CustomParameter {
+	s.Label = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *OAuth2CustomParameter) SetType(v string) *OAuth2CustomParameter {
+	s.Type = &v
+	return s
+}
+
 // Contains the default values required for OAuth 2.0 authentication.
 type OAuth2Defaults struct {
 	_ struct{} `type:"structure"`
 
 	// Auth code URLs that can be used for OAuth 2.0 authentication.
 	AuthCodeUrls []*string `locationName:"authCodeUrls" type:"list"`
+
+	// List of custom parameters required for OAuth 2.0 authentication.
+	Oauth2CustomProperties []*OAuth2CustomParameter `locationName:"oauth2CustomProperties" type:"list"`
 
 	// OAuth 2.0 grant types supported by the connector.
 	Oauth2GrantTypesSupported []*string `locationName:"oauth2GrantTypesSupported" type:"list" enum:"OAuth2GrantType"`
@@ -9592,6 +9682,12 @@ func (s *OAuth2Defaults) SetAuthCodeUrls(v []*string) *OAuth2Defaults {
 	return s
 }
 
+// SetOauth2CustomProperties sets the Oauth2CustomProperties field's value.
+func (s *OAuth2Defaults) SetOauth2CustomProperties(v []*OAuth2CustomParameter) *OAuth2Defaults {
+	s.Oauth2CustomProperties = v
+	return s
+}
+
 // SetOauth2GrantTypesSupported sets the Oauth2GrantTypesSupported field's value.
 func (s *OAuth2Defaults) SetOauth2GrantTypesSupported(v []*string) *OAuth2Defaults {
 	s.Oauth2GrantTypesSupported = v
@@ -9623,6 +9719,11 @@ type OAuth2Properties struct {
 	//
 	// TokenUrl is a required field
 	TokenUrl *string `locationName:"tokenUrl" type:"string" required:"true"`
+
+	// Associates your token URL with a map of properties that you define. Use this
+	// parameter to provide any additional details that the connector requires to
+	// authenticate your request.
+	TokenUrlCustomProperties map[string]*string `locationName:"tokenUrlCustomProperties" type:"map"`
 }
 
 // String returns the string representation.
@@ -9668,6 +9769,12 @@ func (s *OAuth2Properties) SetOAuth2GrantType(v string) *OAuth2Properties {
 // SetTokenUrl sets the TokenUrl field's value.
 func (s *OAuth2Properties) SetTokenUrl(v string) *OAuth2Properties {
 	s.TokenUrl = &v
+	return s
+}
+
+// SetTokenUrlCustomProperties sets the TokenUrlCustomProperties field's value.
+func (s *OAuth2Properties) SetTokenUrlCustomProperties(v map[string]*string) *OAuth2Properties {
+	s.TokenUrlCustomProperties = v
 	return s
 }
 
@@ -15354,6 +15461,22 @@ func MarketoConnectorOperator_Values() []string {
 		MarketoConnectorOperatorValidateNonNegative,
 		MarketoConnectorOperatorValidateNumeric,
 		MarketoConnectorOperatorNoOp,
+	}
+}
+
+const (
+	// OAuth2CustomPropTypeTokenUrl is a OAuth2CustomPropType enum value
+	OAuth2CustomPropTypeTokenUrl = "TOKEN_URL"
+
+	// OAuth2CustomPropTypeAuthUrl is a OAuth2CustomPropType enum value
+	OAuth2CustomPropTypeAuthUrl = "AUTH_URL"
+)
+
+// OAuth2CustomPropType_Values returns all elements of the OAuth2CustomPropType enum
+func OAuth2CustomPropType_Values() []string {
+	return []string{
+		OAuth2CustomPropTypeTokenUrl,
+		OAuth2CustomPropTypeAuthUrl,
 	}
 }
 

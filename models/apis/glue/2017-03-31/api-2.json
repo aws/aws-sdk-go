@@ -6570,7 +6570,8 @@
         "SecurityConfiguration":{"shape":"NameString"},
         "LogGroupName":{"shape":"GenericString"},
         "NotificationProperty":{"shape":"NotificationProperty"},
-        "GlueVersion":{"shape":"GlueVersionString"}
+        "GlueVersion":{"shape":"GlueVersionString"},
+        "DPUSeconds":{"shape":"NullableDouble"}
       }
     },
     "JobRunList":{

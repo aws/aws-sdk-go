@@ -1420,8 +1420,11 @@
         "Application$IconS3Location": "<p>The S3 location of the application icon.</p>",
         "CreateAppBlockRequest$SourceS3Location": "<p>The source S3 location of the app block.</p>",
         "CreateApplicationRequest$IconS3Location": "<p>The location in S3 of the application icon.</p>",
+        "CreateFleetRequest$SessionScriptS3Location": "<p>The S3 location of the session scripts configuration zip file. This only applies to Elastic fleets.</p>",
+        "Fleet$SessionScriptS3Location": "<p>The S3 location of the session scripts configuration zip file. This only applies to Elastic fleets.</p>",
         "ScriptDetails$ScriptS3Location": "<p>The S3 object location for the script.</p>",
-        "UpdateApplicationRequest$IconS3Location": "<p>The icon S3 location of the application.</p>"
+        "UpdateApplicationRequest$IconS3Location": "<p>The icon S3 location of the application.</p>",
+        "UpdateFleetRequest$SessionScriptS3Location": "<p>The S3 location of the session scripts configuration zip file. This only applies to Elastic fleets. </p>"
       }
     },
     "ScriptDetails": {
