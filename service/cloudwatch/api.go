@@ -3378,9 +3378,9 @@ func (c *CloudWatch) PutMetricStreamRequest(input *PutMetricStreamInput) (req *r
 //
 // By default, a metric stream always sends the MAX, MIN, SUM, and SAMPLECOUNT
 // statistics for each metric that is streamed. You can use the StatisticsConfigurations
-// parameter to have the metric stream also send extended statistics in the
-// stream. Streaming extended statistics incurs additional costs. For more information,
-// see Amazon CloudWatch Pricing (https://aws.amazon.com/cloudwatch/pricing/).
+// parameter to have the metric stream also send additional statistics in the
+// stream. Streaming additional statistics incurs additional costs. For more
+// information, see Amazon CloudWatch Pricing (https://aws.amazon.com/cloudwatch/pricing/).
 //
 // When you use PutMetricStream to create a new metric stream, the stream is
 // created in the running state. If you use it to update an existing stream,
@@ -7087,8 +7087,8 @@ type GetMetricStreamOutput struct {
 	State *string `type:"string"`
 
 	// Each entry in this array displays information about one or more metrics that
-	// include extended statistics in the metric stream. For more information about
-	// extended statistics, see CloudWatch statistics definitions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html.html).
+	// include additional statistics in the metric stream. For more information
+	// about the additional statistics, see CloudWatch statistics definitions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html.html).
 	StatisticsConfigurations []*MetricStreamStatisticsConfiguration `type:"list"`
 }
 
@@ -9238,33 +9238,33 @@ func (s *MetricStreamFilter) SetNamespace(v string) *MetricStreamFilter {
 
 // By default, a metric stream always sends the MAX, MIN, SUM, and SAMPLECOUNT
 // statistics for each metric that is streamed. This structure contains information
-// for one metric that includes extended statistics in the stream. For more
-// information about extended statistics, see CloudWatch, listed in CloudWatch
-// statistics definitions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html.html).
+// for one metric that includes additional statistics in the stream. For more
+// information about statistics, see CloudWatch, listed in CloudWatch statistics
+// definitions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html.html).
 type MetricStreamStatisticsConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The list of extended statistics that are to be streamed for the metrics listed
-	// in the IncludeMetrics array in this structure. This list can include as many
-	// as 20 statistics.
+	// The list of additional statistics that are to be streamed for the metrics
+	// listed in the IncludeMetrics array in this structure. This list can include
+	// as many as 20 statistics.
 	//
 	// If the OutputFormat for the stream is opentelemetry0.7, the only valid values
 	// are p?? percentile statistics such as p90, p99 and so on.
 	//
-	// If the OutputFormat for the stream is json, the valid values are include
-	// the abbreviations for all of the extended statistics listed in CloudWatch
-	// statistics definitions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html.html).
+	// If the OutputFormat for the stream is json, the valid values include the
+	// abbreviations for all of the statistics listed in CloudWatch statistics definitions
+	// (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html.html).
 	// For example, this includes tm98, wm90, PR(:300), and so on.
 	//
 	// AdditionalStatistics is a required field
 	AdditionalStatistics []*string `type:"list" required:"true"`
 
-	// An array of metric name and namespace pairs that stream the extended statistics
+	// An array of metric name and namespace pairs that stream the additional statistics
 	// listed in the value of the AdditionalStatistics parameter. There can be as
 	// many as 100 pairs in the array.
 	//
 	// All metrics that match the combination of metric name and namespace will
-	// be streamed with the extended statistics, no matter their dimensions.
+	// be streamed with the additional statistics, no matter their dimensions.
 	//
 	// IncludeMetrics is a required field
 	IncludeMetrics []*MetricStreamStatisticsMetric `type:"list" required:"true"`
@@ -9326,8 +9326,8 @@ func (s *MetricStreamStatisticsConfiguration) SetIncludeMetrics(v []*MetricStrea
 	return s
 }
 
-// This object contains the information for one metric that is to streamed with
-// extended statistics.
+// This object contains the information for one metric that is to be streamed
+// with additional statistics.
 type MetricStreamStatisticsMetric struct {
 	_ struct{} `type:"structure"`
 
@@ -9336,7 +9336,7 @@ type MetricStreamStatisticsMetric struct {
 	// MetricName is a required field
 	MetricName *string `min:"1" type:"string" required:"true"`
 
-	// The metric namespace for the metric.
+	// The namespace of the metric.
 	//
 	// Namespace is a required field
 	Namespace *string `min:"1" type:"string" required:"true"`
@@ -10294,6 +10294,11 @@ type PutMetricAlarmInput struct {
 	// see Configuring How CloudWatch Alarms Treats Missing Data (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data).
 	//
 	// Valid Values: breaching | notBreaching | ignore | missing
+	//
+	// Alarms that evaluate metrics in the AWS/DynamoDB namespace always ignore
+	// missing data even if you choose a different option for TreatMissingData.
+	// When an AWS/DynamoDB metric has missing data, alarms that evaluate that metric
+	// remain in their current state.
 	TreatMissingData *string `min:"1" type:"string"`
 
 	// The unit of measure for the statistic. For example, the units for the Amazon
@@ -10718,16 +10723,16 @@ type PutMetricStreamInput struct {
 
 	// By default, a metric stream always sends the MAX, MIN, SUM, and SAMPLECOUNT
 	// statistics for each metric that is streamed. You can use this parameter to
-	// have the metric stream also send extended statistics in the stream. This
+	// have the metric stream also send additional statistics in the stream. This
 	// array can have up to 100 members.
 	//
 	// For each entry in this array, you specify one or more metrics and the list
-	// of extended statistics to stream for those metrics. The extended statistics
+	// of additional statistics to stream for those metrics. The additional statistics
 	// that you can stream depend on the stream's OutputFormat. If the OutputFormat
-	// is json, you can stream any extended statistic that is supported by CloudWatch,
+	// is json, you can stream any additional statistic that is supported by CloudWatch,
 	// listed in CloudWatch statistics definitions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html.html).
 	// If the OutputFormat is opentelemetry0.7, you can stream percentile statistics
-	// (p??).
+	// such as p95, p99.9 and so on.
 	StatisticsConfigurations []*MetricStreamStatisticsConfiguration `type:"list"`
 
 	// A list of key-value pairs to associate with the metric stream. You can associate

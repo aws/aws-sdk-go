@@ -433,6 +433,13 @@
         "FARGATE_SPOT"
       ]
     },
+    "CRUpdateAllocationStrategy":{
+      "type":"string",
+      "enum":[
+        "BEST_FIT_PROGRESSIVE",
+        "SPOT_CAPACITY_OPTIMIZED"
+      ]
+    },
     "CancelJobRequest":{
       "type":"structure",
       "required":[
@@ -461,8 +468,7 @@
       "type":"structure",
       "required":[
         "computeEnvironmentName",
-        "computeEnvironmentArn",
-        "ecsClusterArn"
+        "computeEnvironmentArn"
       ],
       "members":{
         "computeEnvironmentName":{"shape":"String"},
@@ -475,7 +481,8 @@
         "status":{"shape":"CEStatus"},
         "statusReason":{"shape":"String"},
         "computeResources":{"shape":"ComputeResource"},
-        "serviceRole":{"shape":"String"}
+        "serviceRole":{"shape":"String"},
+        "updatePolicy":{"shape":"UpdatePolicy"}
       }
     },
     "ComputeEnvironmentDetailList":{
@@ -535,7 +542,19 @@
         "maxvCpus":{"shape":"Integer"},
         "desiredvCpus":{"shape":"Integer"},
         "subnets":{"shape":"StringList"},
-        "securityGroupIds":{"shape":"StringList"}
+        "securityGroupIds":{"shape":"StringList"},
+        "allocationStrategy":{"shape":"CRUpdateAllocationStrategy"},
+        "instanceTypes":{"shape":"StringList"},
+        "ec2KeyPair":{"shape":"String"},
+        "instanceRole":{"shape":"String"},
+        "tags":{"shape":"TagsMap"},
+        "placementGroup":{"shape":"String"},
+        "bidPercentage":{"shape":"Integer"},
+        "launchTemplate":{"shape":"LaunchTemplateSpecification"},
+        "ec2Configuration":{"shape":"Ec2ConfigurationList"},
+        "updateToLatestImageVersion":{"shape":"Boolean"},
+        "type":{"shape":"CRType"},
+        "imageId":{"shape":"String"}
       }
     },
     "ContainerDetail":{
@@ -1043,6 +1062,11 @@
     "JobDetailList":{
       "type":"list",
       "member":{"shape":"JobDetail"}
+    },
+    "JobExecutionTimeoutMinutes":{
+      "type":"long",
+      "max":360,
+      "min":1
     },
     "JobQueueDetail":{
       "type":"structure",
@@ -1635,7 +1659,8 @@
         "state":{"shape":"CEState"},
         "unmanagedvCpus":{"shape":"Integer"},
         "computeResources":{"shape":"ComputeResourceUpdate"},
-        "serviceRole":{"shape":"String"}
+        "serviceRole":{"shape":"String"},
+        "updatePolicy":{"shape":"UpdatePolicy"}
       }
     },
     "UpdateComputeEnvironmentResponse":{
@@ -1661,6 +1686,13 @@
       "members":{
         "jobQueueName":{"shape":"String"},
         "jobQueueArn":{"shape":"String"}
+      }
+    },
+    "UpdatePolicy":{
+      "type":"structure",
+      "members":{
+        "terminateJobsOnUpdate":{"shape":"Boolean"},
+        "jobExecutionTimeoutMinutes":{"shape":"JobExecutionTimeoutMinutes"}
       }
     },
     "UpdateSchedulingPolicyRequest":{

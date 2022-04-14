@@ -7929,6 +7929,10 @@ type CreateFleetInput struct {
 	// Elastic fleets.
 	Platform *string `type:"string" enum:"PlatformType"`
 
+	// The S3 location of the session scripts configuration zip file. This only
+	// applies to Elastic fleets.
+	SessionScriptS3Location *S3Location `type:"structure"`
+
 	// The AppStream 2.0 view that is displayed to your users when they stream from
 	// the fleet. When APP is specified, only the windows of applications opened
 	// by users display. When DESKTOP is specified, the standard desktop that is
@@ -8002,6 +8006,11 @@ func (s *CreateFleetInput) Validate() error {
 	if s.ComputeCapacity != nil {
 		if err := s.ComputeCapacity.Validate(); err != nil {
 			invalidParams.AddNested("ComputeCapacity", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SessionScriptS3Location != nil {
+		if err := s.SessionScriptS3Location.Validate(); err != nil {
+			invalidParams.AddNested("SessionScriptS3Location", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -8104,6 +8113,12 @@ func (s *CreateFleetInput) SetName(v string) *CreateFleetInput {
 // SetPlatform sets the Platform field's value.
 func (s *CreateFleetInput) SetPlatform(v string) *CreateFleetInput {
 	s.Platform = &v
+	return s
+}
+
+// SetSessionScriptS3Location sets the SessionScriptS3Location field's value.
+func (s *CreateFleetInput) SetSessionScriptS3Location(v *S3Location) *CreateFleetInput {
+	s.SessionScriptS3Location = v
 	return s
 }
 
@@ -12871,6 +12886,10 @@ type Fleet struct {
 	// The platform of the fleet.
 	Platform *string `type:"string" enum:"PlatformType"`
 
+	// The S3 location of the session scripts configuration zip file. This only
+	// applies to Elastic fleets.
+	SessionScriptS3Location *S3Location `type:"structure"`
+
 	// The current state for the fleet.
 	//
 	// State is a required field
@@ -13020,6 +13039,12 @@ func (s *Fleet) SetName(v string) *Fleet {
 // SetPlatform sets the Platform field's value.
 func (s *Fleet) SetPlatform(v string) *Fleet {
 	s.Platform = &v
+	return s
+}
+
+// SetSessionScriptS3Location sets the SessionScriptS3Location field's value.
+func (s *Fleet) SetSessionScriptS3Location(v *S3Location) *Fleet {
+	s.SessionScriptS3Location = v
 	return s
 }
 
@@ -16654,6 +16679,10 @@ type UpdateFleetInput struct {
 	// for Elastic fleets.
 	Platform *string `type:"string" enum:"PlatformType"`
 
+	// The S3 location of the session scripts configuration zip file. This only
+	// applies to Elastic fleets.
+	SessionScriptS3Location *S3Location `type:"structure"`
+
 	// The AppStream 2.0 view that is displayed to your users when they stream from
 	// the fleet. When APP is specified, only the windows of applications opened
 	// by users display. When DESKTOP is specified, the standard desktop that is
@@ -16706,6 +16735,11 @@ func (s *UpdateFleetInput) Validate() error {
 	if s.ComputeCapacity != nil {
 		if err := s.ComputeCapacity.Validate(); err != nil {
 			invalidParams.AddNested("ComputeCapacity", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SessionScriptS3Location != nil {
+		if err := s.SessionScriptS3Location.Validate(); err != nil {
+			invalidParams.AddNested("SessionScriptS3Location", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -16814,6 +16848,12 @@ func (s *UpdateFleetInput) SetName(v string) *UpdateFleetInput {
 // SetPlatform sets the Platform field's value.
 func (s *UpdateFleetInput) SetPlatform(v string) *UpdateFleetInput {
 	s.Platform = &v
+	return s
+}
+
+// SetSessionScriptS3Location sets the SessionScriptS3Location field's value.
+func (s *UpdateFleetInput) SetSessionScriptS3Location(v *S3Location) *UpdateFleetInput {
+	s.SessionScriptS3Location = v
 	return s
 }
 
@@ -17754,6 +17794,9 @@ const (
 
 	// FleetAttributeUsbDeviceFilterStrings is a FleetAttribute enum value
 	FleetAttributeUsbDeviceFilterStrings = "USB_DEVICE_FILTER_STRINGS"
+
+	// FleetAttributeSessionScriptS3Location is a FleetAttribute enum value
+	FleetAttributeSessionScriptS3Location = "SESSION_SCRIPT_S3_LOCATION"
 )
 
 // FleetAttribute_Values returns all elements of the FleetAttribute enum
@@ -17764,6 +17807,7 @@ func FleetAttribute_Values() []string {
 		FleetAttributeDomainJoinInfo,
 		FleetAttributeIamRoleArn,
 		FleetAttributeUsbDeviceFilterStrings,
+		FleetAttributeSessionScriptS3Location,
 	}
 }
 

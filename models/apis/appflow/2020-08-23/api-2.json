@@ -468,7 +468,7 @@
     },
     "AuthCode":{
       "type":"string",
-      "max":512,
+      "max":2048,
       "pattern":"\\S+"
     },
     "AuthCodeUrl":{
@@ -1956,13 +1956,37 @@
         "oAuthRequest":{"shape":"ConnectorOAuthRequest"}
       }
     },
+    "OAuth2CustomParameter":{
+      "type":"structure",
+      "members":{
+        "key":{"shape":"Key"},
+        "isRequired":{"shape":"Boolean"},
+        "label":{"shape":"Label"},
+        "description":{"shape":"Description"},
+        "isSensitiveField":{"shape":"Boolean"},
+        "connectorSuppliedValues":{"shape":"ConnectorSuppliedValueList"},
+        "type":{"shape":"OAuth2CustomPropType"}
+      }
+    },
+    "OAuth2CustomPropType":{
+      "type":"string",
+      "enum":[
+        "TOKEN_URL",
+        "AUTH_URL"
+      ]
+    },
+    "OAuth2CustomPropertiesList":{
+      "type":"list",
+      "member":{"shape":"OAuth2CustomParameter"}
+    },
     "OAuth2Defaults":{
       "type":"structure",
       "members":{
         "oauthScopes":{"shape":"OAuthScopeList"},
         "tokenUrls":{"shape":"TokenUrlList"},
         "authCodeUrls":{"shape":"AuthCodeUrlList"},
-        "oauth2GrantTypesSupported":{"shape":"OAuth2GrantTypeSupportedList"}
+        "oauth2GrantTypesSupported":{"shape":"OAuth2GrantTypeSupportedList"},
+        "oauth2CustomProperties":{"shape":"OAuth2CustomPropertiesList"}
       }
     },
     "OAuth2GrantType":{
@@ -1984,7 +2008,8 @@
       ],
       "members":{
         "tokenUrl":{"shape":"TokenUrl"},
-        "oAuth2GrantType":{"shape":"OAuth2GrantType"}
+        "oAuth2GrantType":{"shape":"OAuth2GrantType"},
+        "tokenUrlCustomProperties":{"shape":"TokenUrlCustomProperties"}
       }
     },
     "OAuthCredentials":{
@@ -2991,6 +3016,13 @@
       "type":"string",
       "max":256,
       "pattern":"^(https?)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]"
+    },
+    "TokenUrlCustomProperties":{
+      "type":"map",
+      "key":{"shape":"CustomPropertyKey"},
+      "value":{"shape":"CustomPropertyValue"},
+      "max":50,
+      "min":0
     },
     "TokenUrlList":{
       "type":"list",
