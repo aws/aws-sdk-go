@@ -1581,9 +1581,9 @@ func (c *Lightsail) CreateContainerServiceDeploymentRequest(input *CreateContain
 // such as the HTTP or HTTPS port to use, and the health check configuration.
 //
 // You can deploy containers to your container service using container images
-// from a public registry like Docker Hub, or from your local machine. For more
-// information, see Creating container images for your Amazon Lightsail container
-// services (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-creating-container-images)
+// from a public registry such as Amazon ECR Public, or from your local machine.
+// For more information, see Creating container images for your Amazon Lightsail
+// container services (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-creating-container-images)
 // in the Amazon Lightsail Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -7281,10 +7281,13 @@ func (c *Lightsail) GetBucketsRequest(input *GetBucketsInput) (req *request.Requ
 
 // GetBuckets API operation for Amazon Lightsail.
 //
-// Returns information about one or more Amazon Lightsail buckets.
+// Returns information about one or more Amazon Lightsail buckets. The information
+// returned includes the synchronization status of the Amazon Simple Storage
+// Service (Amazon S3) account-level block public access feature for your Lightsail
+// buckets.
 //
 // For more information about buckets, see Buckets in Amazon Lightsail (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/buckets-in-amazon-lightsail)
-// in the Amazon Lightsail Developer Guide..
+// in the Amazon Lightsail Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8929,7 +8932,7 @@ func (c *Lightsail) GetDistributionBundlesRequest(input *GetDistributionBundlesI
 // delivery network (CDN) distributions.
 //
 // A distribution bundle specifies the monthly network transfer quota and monthly
-// cost of your dsitribution.
+// cost of your distribution.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15827,7 +15830,7 @@ func (c *Lightsail) UpdateDistributionBundleRequest(input *UpdateDistributionBun
 // distribution.
 //
 // A distribution bundle specifies the monthly network transfer quota and monthly
-// cost of your dsitribution.
+// cost of your distribution.
 //
 // Update your distribution's bundle if your distribution is going over its
 // monthly network transfer quota and is incurring an overage fee.
@@ -16628,6 +16631,129 @@ func (s *AccessRules) SetAllowPublicOverrides(v bool) *AccessRules {
 // SetGetObject sets the GetObject field's value.
 func (s *AccessRules) SetGetObject(v string) *AccessRules {
 	s.GetObject = &v
+	return s
+}
+
+// Describes the synchronization status of the Amazon Simple Storage Service
+// (Amazon S3) account-level block public access (BPA) feature for your Lightsail
+// buckets.
+//
+// The account-level BPA feature of Amazon S3 provides centralized controls
+// to limit public access to all Amazon S3 buckets in an account. BPA can make
+// all Amazon S3 buckets in an Amazon Web Services account private regardless
+// of the individual bucket and object permissions that are configured. Lightsail
+// buckets take into account the Amazon S3 account-level BPA configuration when
+// allowing or denying public access. To do this, Lightsail periodically fetches
+// the account-level BPA configuration from Amazon S3. When the account-level
+// BPA status is InSync, the Amazon S3 account-level BPA configuration is synchronized
+// and it applies to your Lightsail buckets. For more information about Amazon
+// Simple Storage Service account-level BPA and how it affects Lightsail buckets,
+// see Block public access for buckets in Amazon Lightsail (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-block-public-access-for-buckets)
+// in the Amazon Lightsail Developer Guide.
+type AccountLevelBpaSync struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean value that indicates whether account-level block public access
+	// is affecting your Lightsail buckets.
+	BpaImpactsLightsail *bool `locationName:"bpaImpactsLightsail" type:"boolean"`
+
+	// The timestamp of when the account-level BPA configuration was last synchronized.
+	// This value is null when the account-level BPA configuration has not been
+	// synchronized.
+	LastSyncedAt *time.Time `locationName:"lastSyncedAt" type:"timestamp"`
+
+	// A message that provides a reason for a Failed or Defaulted synchronization
+	// status.
+	//
+	// The following messages are possible:
+	//
+	//    * SYNC_ON_HOLD - The synchronization has not yet happened. This status
+	//    message occurs immediately after you create your first Lightsail bucket.
+	//    This status message should change after the first synchronization happens,
+	//    approximately 1 hour after the first bucket is created.
+	//
+	//    * DEFAULTED_FOR_SLR_MISSING - The synchronization failed because the required
+	//    service-linked role is missing from your Amazon Web Services account.
+	//    The account-level BPA configuration for your Lightsail buckets is defaulted
+	//    to active until the synchronization can occur. This means that all your
+	//    buckets are private and not publicly accessible. For more information
+	//    about how to create the required service-linked role to allow synchronization,
+	//    see Using Service-Linked Roles for Amazon Lightsail (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-using-service-linked-roles)
+	//    in the Amazon Lightsail Developer Guide.
+	//
+	//    * DEFAULTED_FOR_SLR_MISSING_ON_HOLD - The synchronization failed because
+	//    the required service-linked role is missing from your Amazon Web Services
+	//    account. Account-level BPA is not yet configured for your Lightsail buckets.
+	//    Therefore, only the bucket access permissions and individual object access
+	//    permissions apply to your Lightsail buckets. For more information about
+	//    how to create the required service-linked role to allow synchronization,
+	//    see Using Service-Linked Roles for Amazon Lightsail (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-using-service-linked-roles)
+	//    in the Amazon Lightsail Developer Guide.
+	//
+	//    * Unknown - The reason that synchronization failed is unknown. Contact
+	//    Amazon Web Services Support for more information.
+	Message *string `locationName:"message" type:"string" enum:"BPAStatusMessage"`
+
+	// The status of the account-level BPA synchronization.
+	//
+	// The following statuses are possible:
+	//
+	//    * InSync - Account-level BPA is synchronized. The Amazon S3 account-level
+	//    BPA configuration applies to your Lightsail buckets.
+	//
+	//    * NeverSynced - Synchronization has not yet happened. The Amazon S3 account-level
+	//    BPA configuration does not apply to your Lightsail buckets.
+	//
+	//    * Failed - Synchronization failed. The Amazon S3 account-level BPA configuration
+	//    does not apply to your Lightsail buckets.
+	//
+	//    * Defaulted - Synchronization failed and account-level BPA for your Lightsail
+	//    buckets is defaulted to active.
+	//
+	// You might need to complete further actions if the status is Failed or Defaulted.
+	// The message parameter provides more information for those statuses.
+	Status *string `locationName:"status" type:"string" enum:"AccountLevelBpaSyncStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountLevelBpaSync) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountLevelBpaSync) GoString() string {
+	return s.String()
+}
+
+// SetBpaImpactsLightsail sets the BpaImpactsLightsail field's value.
+func (s *AccountLevelBpaSync) SetBpaImpactsLightsail(v bool) *AccountLevelBpaSync {
+	s.BpaImpactsLightsail = &v
+	return s
+}
+
+// SetLastSyncedAt sets the LastSyncedAt field's value.
+func (s *AccountLevelBpaSync) SetLastSyncedAt(v time.Time) *AccountLevelBpaSync {
+	s.LastSyncedAt = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *AccountLevelBpaSync) SetMessage(v string) *AccountLevelBpaSync {
+	s.Message = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AccountLevelBpaSync) SetStatus(v string) *AccountLevelBpaSync {
+	s.Status = &v
 	return s
 }
 
@@ -18229,9 +18355,9 @@ func (s *Bucket) SetUrl(v string) *Bucket {
 type BucketAccessLogConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the bucket where the access is saved. The destination can be
-	// a Lightsail bucket in the same account, and in the same AWS Region as the
-	// source bucket.
+	// The name of the bucket where the access logs are saved. The destination can
+	// be a Lightsail bucket in the same account, and in the same AWS Region as
+	// the source bucket.
 	//
 	// This parameter is required when enabling the access log for a bucket, and
 	// should be omitted when disabling the access log.
@@ -28523,6 +28649,13 @@ func (s *GetBucketsInput) SetPageToken(v string) *GetBucketsInput {
 type GetBucketsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// An object that describes the synchronization status of the Amazon S3 account-level
+	// block public access feature for your Lightsail buckets.
+	//
+	// For more information about this feature and how it affects Lightsail buckets,
+	// see Block public access for buckets in Amazon Lightsail (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-block-public-access-for-buckets).
+	AccountLevelBpaSync *AccountLevelBpaSync `locationName:"accountLevelBpaSync" type:"structure"`
+
 	// An array of objects that describe buckets.
 	Buckets []*Bucket `locationName:"buckets" type:"list"`
 
@@ -28551,6 +28684,12 @@ func (s GetBucketsOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetBucketsOutput) GoString() string {
 	return s.String()
+}
+
+// SetAccountLevelBpaSync sets the AccountLevelBpaSync field's value.
+func (s *GetBucketsOutput) SetAccountLevelBpaSync(v *AccountLevelBpaSync) *GetBucketsOutput {
+	s.AccountLevelBpaSync = v
+	return s
 }
 
 // SetBuckets sets the Buckets field's value.
@@ -42309,6 +42448,30 @@ func AccessType_Values() []string {
 }
 
 const (
+	// AccountLevelBpaSyncStatusInSync is a AccountLevelBpaSyncStatus enum value
+	AccountLevelBpaSyncStatusInSync = "InSync"
+
+	// AccountLevelBpaSyncStatusFailed is a AccountLevelBpaSyncStatus enum value
+	AccountLevelBpaSyncStatusFailed = "Failed"
+
+	// AccountLevelBpaSyncStatusNeverSynced is a AccountLevelBpaSyncStatus enum value
+	AccountLevelBpaSyncStatusNeverSynced = "NeverSynced"
+
+	// AccountLevelBpaSyncStatusDefaulted is a AccountLevelBpaSyncStatus enum value
+	AccountLevelBpaSyncStatusDefaulted = "Defaulted"
+)
+
+// AccountLevelBpaSyncStatus_Values returns all elements of the AccountLevelBpaSyncStatus enum
+func AccountLevelBpaSyncStatus_Values() []string {
+	return []string{
+		AccountLevelBpaSyncStatusInSync,
+		AccountLevelBpaSyncStatusFailed,
+		AccountLevelBpaSyncStatusNeverSynced,
+		AccountLevelBpaSyncStatusDefaulted,
+	}
+}
+
+const (
 	// AddOnTypeAutoSnapshot is a AddOnType enum value
 	AddOnTypeAutoSnapshot = "AutoSnapshot"
 )
@@ -42361,6 +42524,30 @@ func AutoSnapshotStatus_Values() []string {
 		AutoSnapshotStatusFailed,
 		AutoSnapshotStatusInProgress,
 		AutoSnapshotStatusNotFound,
+	}
+}
+
+const (
+	// BPAStatusMessageDefaultedForSlrMissing is a BPAStatusMessage enum value
+	BPAStatusMessageDefaultedForSlrMissing = "DEFAULTED_FOR_SLR_MISSING"
+
+	// BPAStatusMessageSyncOnHold is a BPAStatusMessage enum value
+	BPAStatusMessageSyncOnHold = "SYNC_ON_HOLD"
+
+	// BPAStatusMessageDefaultedForSlrMissingOnHold is a BPAStatusMessage enum value
+	BPAStatusMessageDefaultedForSlrMissingOnHold = "DEFAULTED_FOR_SLR_MISSING_ON_HOLD"
+
+	// BPAStatusMessageUnknown is a BPAStatusMessage enum value
+	BPAStatusMessageUnknown = "Unknown"
+)
+
+// BPAStatusMessage_Values returns all elements of the BPAStatusMessage enum
+func BPAStatusMessage_Values() []string {
+	return []string{
+		BPAStatusMessageDefaultedForSlrMissing,
+		BPAStatusMessageSyncOnHold,
+		BPAStatusMessageDefaultedForSlrMissingOnHold,
+		BPAStatusMessageUnknown,
 	}
 }
 
