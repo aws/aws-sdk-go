@@ -502,7 +502,9 @@
       "type":"structure",
       "members":{
         "ErrorCategory":{"shape":"ErrorCategory"},
-        "ErrorType":{"shape":"ErrorType"}
+        "ErrorType":{"shape":"ErrorType"},
+        "Retryable":{"shape":"Boolean"},
+        "ErrorMessage":{"shape":"String"}
       }
     },
     "BatchGetNamedQueryInput":{

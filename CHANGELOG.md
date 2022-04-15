@@ -1,3 +1,14 @@
+Release v1.43.41 (2022-04-15)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * This release adds subfields, ErrorMessage, Retryable, to the AthenaError response object in the GetQueryExecution API when a query fails.
+* `service/lightsail`: Updates service API and documentation
+  * This release adds support to describe the synchronization status of the account-level block public access feature for your Amazon Lightsail buckets.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Removes Amazon RDS on VMware with the deletion of APIs related to Custom Availability Zones and Media installation
+
 Release v1.43.40 (2022-04-14)
 ===
 

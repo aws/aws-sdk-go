@@ -2742,6 +2742,24 @@
         "private"
       ]
     },
+    "AccountLevelBpaSync":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"AccountLevelBpaSyncStatus"},
+        "lastSyncedAt":{"shape":"IsoDate"},
+        "message":{"shape":"BPAStatusMessage"},
+        "bpaImpactsLightsail":{"shape":"boolean"}
+      }
+    },
+    "AccountLevelBpaSyncStatus":{
+      "type":"string",
+      "enum":[
+        "InSync",
+        "Failed",
+        "NeverSynced",
+        "Defaulted"
+      ]
+    },
     "AccountSetupInProgressException":{
       "type":"structure",
       "members":{
@@ -2976,6 +2994,15 @@
     "AvailabilityZoneList":{
       "type":"list",
       "member":{"shape":"AvailabilityZone"}
+    },
+    "BPAStatusMessage":{
+      "type":"string",
+      "enum":[
+        "DEFAULTED_FOR_SLR_MISSING",
+        "SYNC_ON_HOLD",
+        "DEFAULTED_FOR_SLR_MISSING_ON_HOLD",
+        "Unknown"
+      ]
     },
     "Base64":{"type":"string"},
     "BehaviorEnum":{
@@ -4821,7 +4848,8 @@
       "type":"structure",
       "members":{
         "buckets":{"shape":"BucketList"},
-        "nextPageToken":{"shape":"string"}
+        "nextPageToken":{"shape":"string"},
+        "accountLevelBpaSync":{"shape":"AccountLevelBpaSync"}
       }
     },
     "GetBundlesRequest":{

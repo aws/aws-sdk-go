@@ -6,12 +6,6 @@
       "output_token": "Marker",
       "result_key": "Certificates"
     },
-    "DescribeCustomAvailabilityZones": {
-      "input_token": "Marker",
-      "limit_key": "MaxRecords",
-      "output_token": "Marker",
-      "result_key": "CustomAvailabilityZones"
-    },
     "DescribeDBClusterBacktracks": {
       "input_token": "Marker",
       "limit_key": "MaxRecords",
@@ -155,12 +149,6 @@
       "limit_key": "MaxRecords",
       "output_token": "Marker",
       "result_key": "GlobalClusters"
-    },
-    "DescribeInstallationMedia": {
-      "input_token": "Marker",
-      "limit_key": "MaxRecords",
-      "output_token": "Marker",
-      "result_key": "InstallationMedia"
     },
     "DescribeOptionGroupOptions": {
       "input_token": "Marker",
