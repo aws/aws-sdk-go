@@ -391,6 +391,24 @@
         {"shape":"KMSInvalidStateException"}
       ]
     },
+    "GenerateMac":{
+      "name":"GenerateMac",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GenerateMacRequest"},
+      "output":{"shape":"GenerateMacResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"DisabledException"},
+        {"shape":"KeyUnavailableException"},
+        {"shape":"InvalidKeyUsageException"},
+        {"shape":"InvalidGrantTokenException"},
+        {"shape":"KMSInternalException"},
+        {"shape":"KMSInvalidStateException"}
+      ]
+    },
     "GenerateRandom":{
       "name":"GenerateRandom",
       "http":{
@@ -836,6 +854,25 @@
         {"shape":"KMSInvalidStateException"},
         {"shape":"KMSInvalidSignatureException"}
       ]
+    },
+    "VerifyMac":{
+      "name":"VerifyMac",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"VerifyMacRequest"},
+      "output":{"shape":"VerifyMacResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"DisabledException"},
+        {"shape":"KeyUnavailableException"},
+        {"shape":"InvalidKeyUsageException"},
+        {"shape":"InvalidGrantTokenException"},
+        {"shape":"KMSInternalException"},
+        {"shape":"KMSInvalidMacException"},
+        {"shape":"KMSInvalidStateException"}
+      ]
     }
   },
   "shapes":{
@@ -1122,7 +1159,11 @@
         "ECC_NIST_P384",
         "ECC_NIST_P521",
         "ECC_SECG_P256K1",
-        "SYMMETRIC_DEFAULT"
+        "SYMMETRIC_DEFAULT",
+        "HMAC_224",
+        "HMAC_256",
+        "HMAC_384",
+        "HMAC_512"
       ]
     },
     "DataKeyPairSpec":{
@@ -1419,6 +1460,28 @@
         "KeyId":{"shape":"KeyIdType"}
       }
     },
+    "GenerateMacRequest":{
+      "type":"structure",
+      "required":[
+        "Message",
+        "KeyId",
+        "MacAlgorithm"
+      ],
+      "members":{
+        "Message":{"shape":"PlaintextType"},
+        "KeyId":{"shape":"KeyIdType"},
+        "MacAlgorithm":{"shape":"MacAlgorithmSpec"},
+        "GrantTokens":{"shape":"GrantTokenList"}
+      }
+    },
+    "GenerateMacResponse":{
+      "type":"structure",
+      "members":{
+        "Mac":{"shape":"CiphertextType"},
+        "MacAlgorithm":{"shape":"MacAlgorithmSpec"},
+        "KeyId":{"shape":"KeyIdType"}
+      }
+    },
     "GenerateRandomRequest":{
       "type":"structure",
       "members":{
@@ -1560,7 +1623,9 @@
         "RetireGrant",
         "DescribeKey",
         "GenerateDataKeyPair",
-        "GenerateDataKeyPairWithoutPlaintext"
+        "GenerateDataKeyPairWithoutPlaintext",
+        "GenerateMac",
+        "VerifyMac"
       ]
     },
     "GrantOperationList":{
@@ -1683,6 +1748,13 @@
       "exception":true,
       "fault":true
     },
+    "KMSInvalidMacException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessageType"}
+      },
+      "exception":true
+    },
     "KMSInvalidSignatureException":{
       "type":"structure",
       "members":{
@@ -1749,7 +1821,8 @@
         "SigningAlgorithms":{"shape":"SigningAlgorithmSpecList"},
         "MultiRegion":{"shape":"NullableBooleanType"},
         "MultiRegionConfiguration":{"shape":"MultiRegionConfiguration"},
-        "PendingDeletionWindowInDays":{"shape":"PendingWindowInDaysType"}
+        "PendingDeletionWindowInDays":{"shape":"PendingWindowInDaysType"},
+        "MacAlgorithms":{"shape":"MacAlgorithmSpecList"}
       }
     },
     "KeySpec":{
@@ -1762,7 +1835,11 @@
         "ECC_NIST_P384",
         "ECC_NIST_P521",
         "ECC_SECG_P256K1",
-        "SYMMETRIC_DEFAULT"
+        "SYMMETRIC_DEFAULT",
+        "HMAC_224",
+        "HMAC_256",
+        "HMAC_384",
+        "HMAC_512"
       ]
     },
     "KeyState":{
@@ -1796,7 +1873,8 @@
       "type":"string",
       "enum":[
         "SIGN_VERIFY",
-        "ENCRYPT_DECRYPT"
+        "ENCRYPT_DECRYPT",
+        "GENERATE_VERIFY_MAC"
       ]
     },
     "LimitExceededException":{
@@ -1903,6 +1981,19 @@
         "Marker":{"shape":"MarkerType"},
         "RetiringPrincipal":{"shape":"PrincipalIdType"}
       }
+    },
+    "MacAlgorithmSpec":{
+      "type":"string",
+      "enum":[
+        "HMAC_SHA_224",
+        "HMAC_SHA_256",
+        "HMAC_SHA_384",
+        "HMAC_SHA_512"
+      ]
+    },
+    "MacAlgorithmSpecList":{
+      "type":"list",
+      "member":{"shape":"MacAlgorithmSpec"}
     },
     "MalformedPolicyDocumentException":{
       "type":"structure",
@@ -2272,6 +2363,30 @@
       "members":{
         "KeyId":{"shape":"KeyIdType"},
         "PrimaryRegion":{"shape":"RegionType"}
+      }
+    },
+    "VerifyMacRequest":{
+      "type":"structure",
+      "required":[
+        "Message",
+        "KeyId",
+        "MacAlgorithm",
+        "Mac"
+      ],
+      "members":{
+        "Message":{"shape":"PlaintextType"},
+        "KeyId":{"shape":"KeyIdType"},
+        "MacAlgorithm":{"shape":"MacAlgorithmSpec"},
+        "Mac":{"shape":"CiphertextType"},
+        "GrantTokens":{"shape":"GrantTokenList"}
+      }
+    },
+    "VerifyMacResponse":{
+      "type":"structure",
+      "members":{
+        "KeyId":{"shape":"KeyIdType"},
+        "MacValid":{"shape":"BooleanType"},
+        "MacAlgorithm":{"shape":"MacAlgorithmSpec"}
       }
     },
     "VerifyRequest":{

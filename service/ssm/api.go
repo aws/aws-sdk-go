@@ -59,13 +59,13 @@ func (c *SSM) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *requ
 // AddTagsToResource API operation for Amazon Simple Systems Manager (SSM).
 //
 // Adds or overwrites one or more tags for the specified resource. Tags are
-// metadata that you can assign to your documents, managed nodes, maintenance
-// windows, Parameter Store parameters, and patch baselines. Tags enable you
-// to categorize your resources in different ways, for example, by purpose,
-// owner, or environment. Each tag consists of a key and an optional value,
-// both of which you define. For example, you could define a set of tags for
-// your account's managed nodes that helps you track each node's owner and stack
-// level. For example:
+// metadata that you can assign to your automations, documents, managed nodes,
+// maintenance windows, Parameter Store parameters, and patch baselines. Tags
+// enable you to categorize your resources in different ways, for example, by
+// purpose, owner, or environment. Each tag consists of a key and an optional
+// value, both of which you define. For example, you could define a set of tags
+// for your account's managed nodes that helps you track each node's owner and
+// stack level. For example:
 //
 //    * Key=Owner,Value=DbAdmin
 //
@@ -79,7 +79,8 @@ func (c *SSM) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *requ
 //
 //    * Key=Stack,Value=Test
 //
-// Each resource can have a maximum of 50 tags.
+// Most resources can have a maximum of 50 tags. Automations can have a maximum
+// of 5 tags.
 //
 // We recommend that you devise a set of tag keys that meets your needs for
 // each resource type. Using a consistent set of tag keys makes it easier for
@@ -15773,6 +15774,8 @@ type AddTagsToResourceInput struct {
 	//
 	// PatchBaseline: pb-012345abcde
 	//
+	// Automation: example-c160-4567-8519-012345abcde
+	//
 	// OpsMetadata object: ResourceID for tagging is created from the Amazon Resource
 	// Name (ARN) for the object. Specifically, ResourceID is created from the strings
 	// that come after the word opsmetadata in the ARN. For example, an OpsMetadata
@@ -16195,6 +16198,9 @@ type Association struct {
 	// schedule runs in Coordinated Universal Time (UTC).
 	ScheduleExpression *string `min:"1" type:"string"`
 
+	// Number of days to wait after the scheduled day to run an association.
+	ScheduleOffset *int64 `min:"1" type:"integer"`
+
 	// The managed nodes targeted by the request to create an association. You can
 	// target all managed nodes in an Amazon Web Services account by specifying
 	// the InstanceIds key with a value of *.
@@ -16270,6 +16276,12 @@ func (s *Association) SetOverview(v *AssociationOverview) *Association {
 // SetScheduleExpression sets the ScheduleExpression field's value.
 func (s *Association) SetScheduleExpression(v string) *Association {
 	s.ScheduleExpression = &v
+	return s
+}
+
+// SetScheduleOffset sets the ScheduleOffset field's value.
+func (s *Association) SetScheduleOffset(v int64) *Association {
+	s.ScheduleOffset = &v
 	return s
 }
 
@@ -16440,6 +16452,9 @@ type AssociationDescription struct {
 	// A cron expression that specifies a schedule when the association runs.
 	ScheduleExpression *string `min:"1" type:"string"`
 
+	// Number of days to wait after the scheduled day to run an association.
+	ScheduleOffset *int64 `min:"1" type:"integer"`
+
 	// The association status.
 	Status *AssociationStatus `type:"structure"`
 
@@ -16600,6 +16615,12 @@ func (s *AssociationDescription) SetParameters(v map[string][]*string) *Associat
 // SetScheduleExpression sets the ScheduleExpression field's value.
 func (s *AssociationDescription) SetScheduleExpression(v string) *AssociationDescription {
 	s.ScheduleExpression = &v
+	return s
+}
+
+// SetScheduleOffset sets the ScheduleOffset field's value.
+func (s *AssociationDescription) SetScheduleOffset(v int64) *AssociationDescription {
+	s.ScheduleOffset = &v
 	return s
 }
 
@@ -17446,6 +17467,9 @@ type AssociationVersionInfo struct {
 	// version was created.
 	ScheduleExpression *string `min:"1" type:"string"`
 
+	// Number of days to wait after the scheduled day to run an association.
+	ScheduleOffset *int64 `min:"1" type:"integer"`
+
 	// The mode for generating association compliance. You can specify AUTO or MANUAL.
 	// In AUTO mode, the system uses the status of the association execution to
 	// determine the compliance status. If the association execution runs successfully,
@@ -17569,6 +17593,12 @@ func (s *AssociationVersionInfo) SetParameters(v map[string][]*string) *Associat
 // SetScheduleExpression sets the ScheduleExpression field's value.
 func (s *AssociationVersionInfo) SetScheduleExpression(v string) *AssociationVersionInfo {
 	s.ScheduleExpression = &v
+	return s
+}
+
+// SetScheduleOffset sets the ScheduleOffset field's value.
+func (s *AssociationVersionInfo) SetScheduleOffset(v int64) *AssociationVersionInfo {
+	s.ScheduleOffset = &v
 	return s
 }
 
@@ -21005,6 +21035,9 @@ type CreateAssociationBatchRequestEntry struct {
 	// A cron expression that specifies a schedule when the association runs.
 	ScheduleExpression *string `min:"1" type:"string"`
 
+	// Number of days to wait after the scheduled day to run an association.
+	ScheduleOffset *int64 `min:"1" type:"integer"`
+
 	// The mode for generating association compliance. You can specify AUTO or MANUAL.
 	// In AUTO mode, the system uses the status of the association execution to
 	// determine the compliance status. If the association execution runs successfully,
@@ -21062,6 +21095,9 @@ func (s *CreateAssociationBatchRequestEntry) Validate() error {
 	}
 	if s.ScheduleExpression != nil && len(*s.ScheduleExpression) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ScheduleExpression", 1))
+	}
+	if s.ScheduleOffset != nil && *s.ScheduleOffset < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ScheduleOffset", 1))
 	}
 	if s.TargetLocations != nil && len(s.TargetLocations) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TargetLocations", 1))
@@ -21173,6 +21209,12 @@ func (s *CreateAssociationBatchRequestEntry) SetParameters(v map[string][]*strin
 // SetScheduleExpression sets the ScheduleExpression field's value.
 func (s *CreateAssociationBatchRequestEntry) SetScheduleExpression(v string) *CreateAssociationBatchRequestEntry {
 	s.ScheduleExpression = &v
+	return s
+}
+
+// SetScheduleOffset sets the ScheduleOffset field's value.
+func (s *CreateAssociationBatchRequestEntry) SetScheduleOffset(v int64) *CreateAssociationBatchRequestEntry {
+	s.ScheduleOffset = &v
 	return s
 }
 
@@ -21306,6 +21348,18 @@ type CreateAssociationInput struct {
 	// A cron expression when the association will be applied to the target(s).
 	ScheduleExpression *string `min:"1" type:"string"`
 
+	// Number of days to wait after the scheduled day to run an association. For
+	// example, if you specified a cron schedule of cron(0 0 ? * THU#2 *), you could
+	// specify an offset of 3 to run the association each Sunday after the second
+	// Thursday of the month. For more information about cron schedules for associations,
+	// see Reference: Cron and rate expressions for Systems Manager (https://docs.aws.amazon.com/systems-manager/latest/userguide/reference-cron-and-rate-expressions.html)
+	// in the Amazon Web Services Systems Manager User Guide.
+	//
+	// To use offsets, you must specify the ApplyOnlyAtCronInterval parameter. This
+	// option tells the system not to run an association immediately after you create
+	// it.
+	ScheduleOffset *int64 `min:"1" type:"integer"`
+
 	// The mode for generating association compliance. You can specify AUTO or MANUAL.
 	// In AUTO mode, the system uses the status of the association execution to
 	// determine the compliance status. If the association execution runs successfully,
@@ -21370,6 +21424,9 @@ func (s *CreateAssociationInput) Validate() error {
 	}
 	if s.ScheduleExpression != nil && len(*s.ScheduleExpression) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ScheduleExpression", 1))
+	}
+	if s.ScheduleOffset != nil && *s.ScheduleOffset < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ScheduleOffset", 1))
 	}
 	if s.TargetLocations != nil && len(s.TargetLocations) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TargetLocations", 1))
@@ -21481,6 +21538,12 @@ func (s *CreateAssociationInput) SetParameters(v map[string][]*string) *CreateAs
 // SetScheduleExpression sets the ScheduleExpression field's value.
 func (s *CreateAssociationInput) SetScheduleExpression(v string) *CreateAssociationInput {
 	s.ScheduleExpression = &v
+	return s
+}
+
+// SetScheduleOffset sets the ScheduleOffset field's value.
+func (s *CreateAssociationInput) SetScheduleOffset(v int64) *CreateAssociationInput {
+	s.ScheduleOffset = &v
 	return s
 }
 
@@ -49662,6 +49725,8 @@ type RemoveTagsFromResourceInput struct {
 	//
 	// MaintenanceWindow: mw-012345abcde
 	//
+	// Automation: example-c160-4567-8519-012345abcde
+	//
 	// PatchBaseline: pb-012345abcde
 	//
 	// OpsMetadata object: ResourceID for tagging is created from the Amazon Resource
@@ -52677,7 +52742,7 @@ type StartAutomationExecutionInput struct {
 	//
 	//    * Key=OS,Value=Windows
 	//
-	// To add tags to an existing patch baseline, use the AddTagsToResource operation.
+	// To add tags to an existing automation, use the AddTagsToResource operation.
 	Tags []*Tag `type:"list"`
 
 	// A location is a combination of Amazon Web Services Regions and/or Amazon
@@ -55167,6 +55232,18 @@ type UpdateAssociationInput struct {
 	// The cron expression used to schedule the association that you want to update.
 	ScheduleExpression *string `min:"1" type:"string"`
 
+	// Number of days to wait after the scheduled day to run an association. For
+	// example, if you specified a cron schedule of cron(0 0 ? * THU#2 *), you could
+	// specify an offset of 3 to run the association each Sunday after the second
+	// Thursday of the month. For more information about cron schedules for associations,
+	// see Reference: Cron and rate expressions for Systems Manager (https://docs.aws.amazon.com/systems-manager/latest/userguide/reference-cron-and-rate-expressions.html)
+	// in the Amazon Web Services Systems Manager User Guide.
+	//
+	// To use offsets, you must specify the ApplyOnlyAtCronInterval parameter. This
+	// option tells the system not to run an association immediately after you create
+	// it.
+	ScheduleOffset *int64 `min:"1" type:"integer"`
+
 	// The mode for generating association compliance. You can specify AUTO or MANUAL.
 	// In AUTO mode, the system uses the status of the association execution to
 	// determine the compliance status. If the association execution runs successfully,
@@ -55225,6 +55302,9 @@ func (s *UpdateAssociationInput) Validate() error {
 	}
 	if s.ScheduleExpression != nil && len(*s.ScheduleExpression) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ScheduleExpression", 1))
+	}
+	if s.ScheduleOffset != nil && *s.ScheduleOffset < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ScheduleOffset", 1))
 	}
 	if s.TargetLocations != nil && len(s.TargetLocations) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TargetLocations", 1))
@@ -55342,6 +55422,12 @@ func (s *UpdateAssociationInput) SetParameters(v map[string][]*string) *UpdateAs
 // SetScheduleExpression sets the ScheduleExpression field's value.
 func (s *UpdateAssociationInput) SetScheduleExpression(v string) *UpdateAssociationInput {
 	s.ScheduleExpression = &v
+	return s
+}
+
+// SetScheduleOffset sets the ScheduleOffset field's value.
+func (s *UpdateAssociationInput) SetScheduleOffset(v int64) *UpdateAssociationInput {
+	s.ScheduleOffset = &v
 	return s
 }
 

@@ -28,7 +28,9 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "AssociateWebsiteAuthorizationProvider":{
       "name":"AssociateWebsiteAuthorizationProvider",
@@ -45,7 +47,9 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "AssociateWebsiteCertificateAuthority":{
       "name":"AssociateWebsiteCertificateAuthority",
@@ -62,7 +66,9 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "CreateFleet":{
       "name":"CreateFleet",
@@ -79,7 +85,9 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "DeleteFleet":{
       "name":"DeleteFleet",
@@ -95,7 +103,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "DescribeAuditStreamConfiguration":{
       "name":"DescribeAuditStreamConfiguration",
@@ -111,7 +121,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "DescribeCompanyNetworkConfiguration":{
       "name":"DescribeCompanyNetworkConfiguration",
@@ -127,7 +139,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "DescribeDevice":{
       "name":"DescribeDevice",
@@ -143,7 +157,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "DescribeDevicePolicyConfiguration":{
       "name":"DescribeDevicePolicyConfiguration",
@@ -159,7 +175,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "DescribeDomain":{
       "name":"DescribeDomain",
@@ -175,7 +193,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "DescribeFleetMetadata":{
       "name":"DescribeFleetMetadata",
@@ -191,7 +211,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "DescribeIdentityProviderConfiguration":{
       "name":"DescribeIdentityProviderConfiguration",
@@ -207,7 +229,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "DescribeWebsiteCertificateAuthority":{
       "name":"DescribeWebsiteCertificateAuthority",
@@ -223,7 +247,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "DisassociateDomain":{
       "name":"DisassociateDomain",
@@ -239,7 +265,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "DisassociateWebsiteAuthorizationProvider":{
       "name":"DisassociateWebsiteAuthorizationProvider",
@@ -256,7 +284,9 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "DisassociateWebsiteCertificateAuthority":{
       "name":"DisassociateWebsiteCertificateAuthority",
@@ -272,7 +302,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "ListDevices":{
       "name":"ListDevices",
@@ -288,7 +320,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "ListDomains":{
       "name":"ListDomains",
@@ -304,7 +338,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "ListFleets":{
       "name":"ListFleets",
@@ -319,7 +355,9 @@
         {"shape":"InternalServerErrorException"},
         {"shape":"InvalidRequestException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
@@ -331,7 +369,9 @@
       "output":{"shape":"ListTagsForResourceResponse"},
       "errors":[
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "ListWebsiteAuthorizationProviders":{
       "name":"ListWebsiteAuthorizationProviders",
@@ -347,7 +387,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "ListWebsiteCertificateAuthorities":{
       "name":"ListWebsiteCertificateAuthorities",
@@ -362,7 +404,9 @@
         {"shape":"InternalServerErrorException"},
         {"shape":"InvalidRequestException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "RestoreDomainAccess":{
       "name":"RestoreDomainAccess",
@@ -378,7 +422,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "RevokeDomainAccess":{
       "name":"RevokeDomainAccess",
@@ -394,7 +440,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "SignOutUser":{
       "name":"SignOutUser",
@@ -410,7 +458,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "TagResource":{
       "name":"TagResource",
@@ -422,7 +472,9 @@
       "output":{"shape":"TagResourceResponse"},
       "errors":[
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "UntagResource":{
       "name":"UntagResource",
@@ -434,7 +486,9 @@
       "output":{"shape":"UntagResourceResponse"},
       "errors":[
         {"shape":"InvalidRequestException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "UpdateAuditStreamConfiguration":{
       "name":"UpdateAuditStreamConfiguration",
@@ -450,7 +504,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "UpdateCompanyNetworkConfiguration":{
       "name":"UpdateCompanyNetworkConfiguration",
@@ -466,7 +522,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "UpdateDevicePolicyConfiguration":{
       "name":"UpdateDevicePolicyConfiguration",
@@ -482,7 +540,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "UpdateDomainMetadata":{
       "name":"UpdateDomainMetadata",
@@ -498,7 +558,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "UpdateFleetMetadata":{
       "name":"UpdateFleetMetadata",
@@ -514,7 +576,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     },
     "UpdateIdentityProviderConfiguration":{
       "name":"UpdateIdentityProviderConfiguration",
@@ -530,7 +594,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK."
     }
   },
   "shapes":{

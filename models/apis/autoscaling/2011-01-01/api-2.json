@@ -1133,7 +1133,8 @@
         "WarmPoolConfiguration":{"shape":"WarmPoolConfiguration"},
         "WarmPoolSize":{"shape":"WarmPoolSize"},
         "Context":{"shape":"Context"},
-        "DesiredCapacityType":{"shape":"XmlStringMaxLen255"}
+        "DesiredCapacityType":{"shape":"XmlStringMaxLen255"},
+        "DefaultInstanceWarmup":{"shape":"DefaultInstanceWarmup"}
       }
     },
     "AutoScalingGroupDesiredCapacity":{"type":"integer"},
@@ -1409,7 +1410,8 @@
         "ServiceLinkedRoleARN":{"shape":"ResourceName"},
         "MaxInstanceLifetime":{"shape":"MaxInstanceLifetime"},
         "Context":{"shape":"Context"},
-        "DesiredCapacityType":{"shape":"XmlStringMaxLen255"}
+        "DesiredCapacityType":{"shape":"XmlStringMaxLen255"},
+        "DefaultInstanceWarmup":{"shape":"DefaultInstanceWarmup"}
       }
     },
     "CreateLaunchConfigurationType":{
@@ -1459,6 +1461,7 @@
         "Unit":{"shape":"MetricUnit"}
       }
     },
+    "DefaultInstanceWarmup":{"type":"integer"},
     "DeleteAutoScalingGroupType":{
       "type":"structure",
       "required":["AutoScalingGroupName"],
@@ -3251,7 +3254,8 @@
         "MaxInstanceLifetime":{"shape":"MaxInstanceLifetime"},
         "CapacityRebalance":{"shape":"CapacityRebalanceEnabled"},
         "Context":{"shape":"Context"},
-        "DesiredCapacityType":{"shape":"XmlStringMaxLen255"}
+        "DesiredCapacityType":{"shape":"XmlStringMaxLen255"},
+        "DefaultInstanceWarmup":{"shape":"DefaultInstanceWarmup"}
       }
     },
     "VCpuCountRequest":{

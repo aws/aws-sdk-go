@@ -3805,7 +3805,7 @@ type CreateAccessInput struct {
 	//
 	// The following is an Entry and Target pair example for chroot.
 	//
-	// [ { "Entry:": "/", "Target": "/bucket_name/home/mydirectory" } ]
+	// [ { "Entry": "/", "Target": "/bucket_name/home/mydirectory" } ]
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
 	// The type of landing directory (folder) you want your users' home directory
@@ -4409,7 +4409,7 @@ type CreateUserInput struct {
 	//
 	// The following is an Entry and Target pair example for chroot.
 	//
-	// [ { "Entry:": "/", "Target": "/bucket_name/home/mydirectory" } ]
+	// [ { "Entry": "/", "Target": "/bucket_name/home/mydirectory" } ]
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
 	// The type of landing directory (folder) you want your users' home directory
@@ -4682,13 +4682,13 @@ type CreateWorkflowInput struct {
 	// The TYPE specifies which of the following actions is being taken for this
 	// step.
 	//
-	//    * Copy: copy the file to another location
+	//    * COPY: copy the file to another location
 	//
-	//    * Custom: custom step with a lambda target
+	//    * CUSTOM: custom step with a lambda target
 	//
-	//    * Delete: delete the file
+	//    * DELETE: delete the file
 	//
-	//    * Tag: add a tag to the file
+	//    * TAG: add a tag to the file
 	//
 	// Currently, copying and tagging are supported only on S3.
 	//
@@ -7094,13 +7094,13 @@ type ExecutionStepResult struct {
 
 	// One of the available step types.
 	//
-	//    * Copy: copy the file to another location
+	//    * COPY: copy the file to another location
 	//
-	//    * Custom: custom step with a lambda target
+	//    * CUSTOM: custom step with a lambda target
 	//
-	//    * Delete: delete the file
+	//    * DELETE: delete the file
 	//
-	//    * Tag: add a tag to the file
+	//    * TAG: add a tag to the file
 	StepType *string `type:"string" enum:"WorkflowStepType"`
 }
 
@@ -7186,7 +7186,7 @@ func (s *FileLocation) SetS3FileLocation(v *S3FileLocation) *FileLocation {
 //
 // The following is an Entry and Target pair example for chroot.
 //
-// [ { "Entry:": "/", "Target": "/bucket_name/home/mydirectory" } ]
+// [ { "Entry": "/", "Target": "/bucket_name/home/mydirectory" } ]
 type HomeDirectoryMapEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -10594,7 +10594,7 @@ type UpdateAccessInput struct {
 	//
 	// The following is an Entry and Target pair example for chroot.
 	//
-	// [ { "Entry:": "/", "Target": "/bucket_name/home/mydirectory" } ]
+	// [ { "Entry": "/", "Target": "/bucket_name/home/mydirectory" } ]
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
 	// The type of landing directory (folder) you want your users' home directory
@@ -11150,7 +11150,7 @@ type UpdateUserInput struct {
 	//
 	// The following is an Entry and Target pair example for chroot.
 	//
-	// [ { "Entry:": "/", "Target": "/bucket_name/home/mydirectory" } ]
+	// [ { "Entry": "/", "Target": "/bucket_name/home/mydirectory" } ]
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
 	// The type of landing directory (folder) you want your users' home directory
@@ -11589,13 +11589,13 @@ type WorkflowStep struct {
 
 	// Currently, the following step types are supported.
 	//
-	//    * Copy: copy the file to another location
+	//    * COPY: copy the file to another location
 	//
-	//    * Custom: custom step with a lambda target
+	//    * CUSTOM: custom step with a lambda target
 	//
-	//    * Delete: delete the file
+	//    * DELETE: delete the file
 	//
-	//    * Tag: add a tag to the file
+	//    * TAG: add a tag to the file
 	Type *string `type:"string" enum:"WorkflowStepType"`
 }
 

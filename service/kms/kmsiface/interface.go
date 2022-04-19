@@ -148,6 +148,10 @@ type KMSAPI interface {
 	GenerateDataKeyWithoutPlaintextWithContext(aws.Context, *kms.GenerateDataKeyWithoutPlaintextInput, ...request.Option) (*kms.GenerateDataKeyWithoutPlaintextOutput, error)
 	GenerateDataKeyWithoutPlaintextRequest(*kms.GenerateDataKeyWithoutPlaintextInput) (*request.Request, *kms.GenerateDataKeyWithoutPlaintextOutput)
 
+	GenerateMac(*kms.GenerateMacInput) (*kms.GenerateMacOutput, error)
+	GenerateMacWithContext(aws.Context, *kms.GenerateMacInput, ...request.Option) (*kms.GenerateMacOutput, error)
+	GenerateMacRequest(*kms.GenerateMacInput) (*request.Request, *kms.GenerateMacOutput)
+
 	GenerateRandom(*kms.GenerateRandomInput) (*kms.GenerateRandomOutput, error)
 	GenerateRandomWithContext(aws.Context, *kms.GenerateRandomInput, ...request.Option) (*kms.GenerateRandomOutput, error)
 	GenerateRandomRequest(*kms.GenerateRandomInput) (*request.Request, *kms.GenerateRandomOutput)
@@ -263,6 +267,10 @@ type KMSAPI interface {
 	Verify(*kms.VerifyInput) (*kms.VerifyOutput, error)
 	VerifyWithContext(aws.Context, *kms.VerifyInput, ...request.Option) (*kms.VerifyOutput, error)
 	VerifyRequest(*kms.VerifyInput) (*request.Request, *kms.VerifyOutput)
+
+	VerifyMac(*kms.VerifyMacInput) (*kms.VerifyMacOutput, error)
+	VerifyMacWithContext(aws.Context, *kms.VerifyMacInput, ...request.Option) (*kms.VerifyMacOutput, error)
+	VerifyMacRequest(*kms.VerifyMacInput) (*request.Request, *kms.VerifyMacOutput)
 }
 
 var _ KMSAPI = (*kms.KMS)(nil)

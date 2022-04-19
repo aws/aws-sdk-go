@@ -260,6 +260,9 @@
         "Highlight$TopAnswer": "<p>Indicates whether the response is the best response. True if this is the best response; otherwise, false.</p>",
         "InlineCustomDocumentEnrichmentConfiguration$DocumentContentDeletion": "<p> <code>TRUE</code> to delete content if the condition used for the target attribute is met.</p>",
         "OneDriveConfiguration$DisableLocalGroups": "<p>A Boolean value that specifies whether local groups are disabled (<code>True</code>) or enabled (<code>False</code>). </p>",
+        "QuipConfiguration$CrawlFileComments": "<p>Specify whether to crawl file comments in your Quip data source. You can specify one or more of these options.</p>",
+        "QuipConfiguration$CrawlChatRooms": "<p>Specify whether to crawl chat rooms in your Quip data source. You can specify one or more of these options.</p>",
+        "QuipConfiguration$CrawlAttachments": "<p>Specify whether to crawl attachments in your Quip data source. You can specify one or more of these options.</p>",
         "SalesforceConfiguration$CrawlAttachments": "<p>Indicates whether Amazon Kendra should index attachments to Salesforce objects.</p>",
         "Search$Facetable": "<p>Indicates that the field can be used to create search facets, a count of results for each value in the field. The default is <code>false</code> .</p>",
         "Search$Searchable": "<p>Determines whether the field is used in the search. If the <code>Searchable</code> field is <code>true</code>, you can use relevance tuning to manually tune how Amazon Kendra weights the field in the search. The default is <code>true</code> for string fields and <code>false</code> for number and date fields.</p>",
@@ -677,6 +680,8 @@
         "GoogleDriveConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain items in your Google Drive, including shared drives and users' My Drives. Items that match the patterns are excluded from the index. Items that don't match the patterns are included in the index. If an item matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the item isn't included in the index.</p>",
         "OneDriveConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain documents in your OneDrive. Documents that match the patterns are included in the index. Documents that don't match the patterns are excluded from the index. If a document matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the document isn't included in the index.</p> <p>The pattern is applied to the file name.</p>",
         "OneDriveConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain documents in your OneDrive. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the document isn't included in the index.</p> <p>The pattern is applied to the file name.</p>",
+        "QuipConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain files in your Quip file system. Files that match the patterns are included in the index. Files that don't match the patterns are excluded from the index. If a file matches both an inclusion pattern and an exclusion pattern, the exclusion pattern takes precedence, and the file isn't included in the index.</p>",
+        "QuipConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain files in your Quip file system. Files that match the patterns are excluded from the index. Files that don’t match the patterns are included in the index. If a file matches both an inclusion pattern and an exclusion pattern, the exclusion pattern takes precedence, and the file isn't included in the index.</p>",
         "S3DataSourceConfiguration$InclusionPrefixes": "<p>A list of S3 prefixes for the documents that should be included in the index.</p>",
         "S3DataSourceConfiguration$InclusionPatterns": "<p>A list of glob patterns for documents that should be indexed. If a document that matches an inclusion pattern also matches an exclusion pattern, the document is not indexed.</p> <p>Some <a href=\"https://docs.aws.amazon.com/cli/latest/reference/s3/#use-of-exclude-and-include-filters\">examples</a> are:</p> <ul> <li> <p> <i>*.txt</i> will include all text files in a directory (files with the extension .txt).</p> </li> <li> <p> <i>**/*.txt</i> will include all text files in a directory and its subdirectories.</p> </li> <li> <p> <i>*tax*</i> will include all files in a directory that contain 'tax' in the file name, such as 'tax', 'taxes', 'income_tax'.</p> </li> </ul>",
         "S3DataSourceConfiguration$ExclusionPatterns": "<p>A list of glob patterns for documents that should not be indexed. If a document that matches an inclusion prefix or inclusion pattern also matches an exclusion pattern, the document is not indexed.</p> <p>Some <a href=\"https://docs.aws.amazon.com/cli/latest/reference/s3/#use-of-exclude-and-include-filters\">examples</a> are:</p> <ul> <li> <p> <i>*.png , *.jpg</i> will exclude all PNG and JPEG image files in a directory (files with the extensions .png and .jpg).</p> </li> <li> <p> <i>*internal*</i> will exclude all files in a directory that contain 'internal' in the file name, such as 'internal', 'internal_only', 'company_internal'.</p> </li> <li> <p> <i>**/*internal*</i> will exclude all internal-related files in a directory and its subdirectories.</p> </li> </ul>",
@@ -784,6 +789,9 @@
         "FsxConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Amazon FSx data source attributes or field names to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Amazon FSx fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Amazon FSx data source field names must exist in your Amazon FSx custom metadata.</p>",
         "GoogleDriveConfiguration$FieldMappings": "<p>Maps Google Drive data source attributes or field names to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Google Drive fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Google Drive data source field names must exist in your Google Drive custom metadata.</p>",
         "OneDriveConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map OneDrive data source attributes or field names to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to OneDrive fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The OneDrive data source field names must exist in your OneDrive custom metadata.</p>",
+        "QuipConfiguration$ThreadFieldMappings": "<p>A list of field mappings to apply when indexing Quip threads.</p>",
+        "QuipConfiguration$MessageFieldMappings": "<p>A list of field mappings to apply when indexing Quip messages.</p>",
+        "QuipConfiguration$AttachmentFieldMappings": "<p>A list of field mappings to apply when indexing Quip attachments.</p>",
         "SalesforceChatterFeedConfiguration$FieldMappings": "<p>Maps fields from a Salesforce chatter feed into Amazon Kendra index fields.</p>",
         "SalesforceCustomKnowledgeArticleTypeConfiguration$FieldMappings": "<p>Maps attributes or field names of the custom knowledge article to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Salesforce fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Salesforce data source field names must exist in your Salesforce custom metadata.</p>",
         "SalesforceStandardKnowledgeArticleTypeConfiguration$FieldMappings": "<p>Maps attributes or field names of the knowledge article to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Salesforce fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Salesforce data source field names must exist in your Salesforce custom metadata.</p>",
@@ -807,10 +815,11 @@
     "DataSourceVpcConfiguration": {
       "base": "<p>Provides the configuration information to connect to an Amazon VPC.</p>",
       "refs": {
-        "BoxConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon VPC to connect to your Box. For more information, see <a href=\"https://docs.aws.amazon.com/endra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
+        "BoxConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon VPC to connect to your Box. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "ConfluenceConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Confluence. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "DatabaseConfiguration$VpcConfiguration": null,
         "FsxConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Amazon FSx. Your Amazon FSx instance must reside inside your VPC.</p>",
+        "QuipConfiguration$VpcConfiguration": "<p>Configuration information for connecting to an Amazon Virtual Private Cloud (VPC) for your Quip. Your Quip instance must reside inside your VPC.</p>",
         "SharePointConfiguration$VpcConfiguration": null,
         "SlackConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Slack. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>"
       }
@@ -1204,6 +1213,12 @@
         "S3DataSourceConfiguration$DocumentsMetadataConfiguration": null
       }
     },
+    "Domain": {
+      "base": null,
+      "refs": {
+        "QuipConfiguration$Domain": "<p>The configuration information to connect to your Quip data source domain.</p>"
+      }
+    },
     "Duration": {
       "base": null,
       "refs": {
@@ -1522,6 +1537,18 @@
       "base": null,
       "refs": {
         "FsxConfiguration$FileSystemId": "<p>The identifier of the Amazon FSx file system.</p> <p>You can find your file system ID on the file system dashboard in the Amazon FSx console. For information on how to create a file system in Amazon FSx console, using Windows File Server as an example, see <a href=\"https://docs.aws.amazon.com/fsx/latest/WindowsGuide/getting-started-step1.html\">Amazon FSx Getting started guide</a>.</p>"
+      }
+    },
+    "FolderId": {
+      "base": null,
+      "refs": {
+        "FolderIdList$member": null
+      }
+    },
+    "FolderIdList": {
+      "base": null,
+      "refs": {
+        "QuipConfiguration$FolderIds": "<p>The identifier of the Quip folder IDs to index.</p>"
       }
     },
     "FsxConfiguration": {
@@ -2447,6 +2474,12 @@
         "QueryRequest$QueryText": "<p>The text to search for.</p>"
       }
     },
+    "QuipConfiguration": {
+      "base": "<p>Provides the configuration information to connect to Quip as your data source.</p>",
+      "refs": {
+        "DataSourceConfiguration$QuipConfiguration": "<p>Provides the configuration information to connect to Quip as your data source.</p>"
+      }
+    },
     "ReadAccessType": {
       "base": null,
       "refs": {
@@ -2699,6 +2732,7 @@
         "GoogleDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of a Secrets Managersecret that contains the credentials required to connect to Google Drive. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-google-drive.html\">Using a Google Workspace Drive data source</a>.</p>",
         "OneDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Managersecret that contains the user name and password to connect to OneDrive. The user namd should be the application ID for the OneDrive application, and the password is the application key for the OneDrive application.</p>",
         "ProxyConfiguration$Credentials": "<p>Your secret ARN, which you can create in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">Secrets Manager</a> </p> <p>The credentials are optional. You use a secret if web proxy credentials are required to connect to a website host. Amazon Kendra currently support basic authentication to connect to a web proxy server. The secret stores your credentials.</p>",
+        "QuipConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs that are required to connect to your Quip file system. Windows is currently the only supported type. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username—The Active Directory user name, along with the Domain Name System (DNS) domain name. For example, <i>user@corp.example.com</i>. The Active Directory user account must have read and mounting access to the Quip file system for Windows.</p> </li> <li> <p>password—The password of the Active Directory user account with read and mounting access to the Quip Windows file system.</p> </li> </ul>",
         "SalesforceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Managersecret that contains the key/value pairs required to connect to your Salesforce instance. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>authenticationUrl - The OAUTH endpoint that Amazon Kendra connects to get an OAUTH token. </p> </li> <li> <p>consumerKey - The application public key generated when you created your Salesforce application.</p> </li> <li> <p>consumerSecret - The application private key generated when you created your Salesforce application.</p> </li> <li> <p>password - The password associated with the user logging in to the Salesforce instance.</p> </li> <li> <p>securityToken - The token associated with the user account logging in to the Salesforce instance.</p> </li> <li> <p>username - The user name of the user logging in to the Salesforce instance.</p> </li> </ul>",
         "ServiceNowConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of the Secrets Manager secret that contains the user name and password required to connect to the ServiceNow instance.</p>",
         "SharePointConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in Secrets Manager. The credentials should be a user/password pair. If you use SharePoint Server, you also need to provide the sever domain name as part of the credentials. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html\">Using a Microsoft SharePoint Data Source</a>. For more information about Secrets Manager see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is Secrets Manager</a> in the <i>Secrets Manager </i> user guide.</p>",

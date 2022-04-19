@@ -25535,9 +25535,7 @@ type EnableLoggingInput struct {
 	//    * Must be in the same region as the cluster
 	//
 	//    * The cluster must have read bucket and put object permissions
-	//
-	// BucketName is a required field
-	BucketName *string `type:"string" required:"true"`
+	BucketName *string `type:"string"`
 
 	// The identifier of the cluster on which logging is to be started.
 	//
@@ -25545,6 +25543,13 @@ type EnableLoggingInput struct {
 	//
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
+
+	// The log destination type. An enum with possible values of s3 and cloudwatch.
+	LogDestinationType *string `type:"string" enum:"LogDestinationType"`
+
+	// The collection of exported log types. Log types include the connection log,
+	// user log and user activity log.
+	LogExports []*string `type:"list"`
 
 	// The prefix applied to the log file names.
 	//
@@ -25579,9 +25584,6 @@ func (s EnableLoggingInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *EnableLoggingInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "EnableLoggingInput"}
-	if s.BucketName == nil {
-		invalidParams.Add(request.NewErrParamRequired("BucketName"))
-	}
 	if s.ClusterIdentifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
 	}
@@ -25601,6 +25603,18 @@ func (s *EnableLoggingInput) SetBucketName(v string) *EnableLoggingInput {
 // SetClusterIdentifier sets the ClusterIdentifier field's value.
 func (s *EnableLoggingInput) SetClusterIdentifier(v string) *EnableLoggingInput {
 	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetLogDestinationType sets the LogDestinationType field's value.
+func (s *EnableLoggingInput) SetLogDestinationType(v string) *EnableLoggingInput {
+	s.LogDestinationType = &v
+	return s
+}
+
+// SetLogExports sets the LogExports field's value.
+func (s *EnableLoggingInput) SetLogExports(v []*string) *EnableLoggingInput {
+	s.LogExports = v
 	return s
 }
 
@@ -27062,6 +27076,13 @@ type LoggingStatus struct {
 	// The last time that logs were delivered.
 	LastSuccessfulDeliveryTime *time.Time `type:"timestamp"`
 
+	// The log destination type. An enum with possible values of s3 and cloudwatch.
+	LogDestinationType *string `type:"string" enum:"LogDestinationType"`
+
+	// The collection of exported log types. Log types include the connection log,
+	// user log and user activity log.
+	LogExports []*string `type:"list"`
+
 	// true if logging is on, false if logging is off.
 	LoggingEnabled *bool `type:"boolean"`
 
@@ -27108,6 +27129,18 @@ func (s *LoggingStatus) SetLastFailureTime(v time.Time) *LoggingStatus {
 // SetLastSuccessfulDeliveryTime sets the LastSuccessfulDeliveryTime field's value.
 func (s *LoggingStatus) SetLastSuccessfulDeliveryTime(v time.Time) *LoggingStatus {
 	s.LastSuccessfulDeliveryTime = &v
+	return s
+}
+
+// SetLogDestinationType sets the LogDestinationType field's value.
+func (s *LoggingStatus) SetLogDestinationType(v string) *LoggingStatus {
+	s.LogDestinationType = &v
+	return s
+}
+
+// SetLogExports sets the LogExports field's value.
+func (s *LoggingStatus) SetLogExports(v []*string) *LoggingStatus {
+	s.LogExports = v
 	return s
 }
 
@@ -31403,7 +31436,7 @@ type RestoreFromClusterSnapshotInput struct {
 	ElasticIp *string `type:"string"`
 
 	// Enables support for restoring an unencrypted snapshot to a cluster encrypted
-	// with Key Management Service (KMS) and a CMK.
+	// with Key Management Service (KMS) and a customer managed key.
 	Encrypted *bool `type:"boolean"`
 
 	// An option that specifies whether to create the cluster with enhanced VPC
@@ -31434,7 +31467,7 @@ type RestoreFromClusterSnapshotInput struct {
 	// in the Amazon Redshift Cluster Management Guide.
 	IamRoles []*string `locationNameList:"IamRoleArn" type:"list"`
 
-	// The Key Management Service (KMS) key ID of the encryption key to encrypt
+	// The Key Management Service (KMS) key ID of the encryption key that encrypts
 	// data in the cluster restored from a shared snapshot. You can also provide
 	// the key ID when you restore from an unencrypted snapshot to an encrypted
 	// cluster in the same account. Additionally, you can specify a new KMS key
@@ -34514,6 +34547,22 @@ func DataShareStatusForProducer_Values() []string {
 		DataShareStatusForProducerPendingAuthorization,
 		DataShareStatusForProducerDeauthorized,
 		DataShareStatusForProducerRejected,
+	}
+}
+
+const (
+	// LogDestinationTypeS3 is a LogDestinationType enum value
+	LogDestinationTypeS3 = "s3"
+
+	// LogDestinationTypeCloudwatch is a LogDestinationType enum value
+	LogDestinationTypeCloudwatch = "cloudwatch"
+)
+
+// LogDestinationType_Values returns all elements of the LogDestinationType enum
+func LogDestinationType_Values() []string {
+	return []string{
+		LogDestinationTypeS3,
+		LogDestinationTypeCloudwatch,
 	}
 }
 
