@@ -6966,7 +6966,7 @@ type BoxConfiguration struct {
 	UseChangeLog *bool `type:"boolean"`
 
 	// Configuration information for an Amazon VPC to connect to your Box. For more
-	// information, see Configuring a VPC (https://docs.aws.amazon.com/endra/latest/dg/vpc-configuration.html).
+	// information, see Configuring a VPC (https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html).
 	VpcConfiguration *DataSourceVpcConfiguration `type:"structure"`
 
 	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
@@ -9925,6 +9925,9 @@ type DataSourceConfiguration struct {
 	// your data source.
 	OneDriveConfiguration *OneDriveConfiguration `type:"structure"`
 
+	// Provides the configuration information to connect to Quip as your data source.
+	QuipConfiguration *QuipConfiguration `type:"structure"`
+
 	// Provides the configuration information to connect to an Amazon S3 bucket
 	// as your data source.
 	S3Configuration *S3DataSourceConfiguration `type:"structure"`
@@ -10003,6 +10006,11 @@ func (s *DataSourceConfiguration) Validate() error {
 			invalidParams.AddNested("OneDriveConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.QuipConfiguration != nil {
+		if err := s.QuipConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("QuipConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.S3Configuration != nil {
 		if err := s.S3Configuration.Validate(); err != nil {
 			invalidParams.AddNested("S3Configuration", err.(request.ErrInvalidParams))
@@ -10078,6 +10086,12 @@ func (s *DataSourceConfiguration) SetGoogleDriveConfiguration(v *GoogleDriveConf
 // SetOneDriveConfiguration sets the OneDriveConfiguration field's value.
 func (s *DataSourceConfiguration) SetOneDriveConfiguration(v *OneDriveConfiguration) *DataSourceConfiguration {
 	s.OneDriveConfiguration = v
+	return s
+}
+
+// SetQuipConfiguration sets the QuipConfiguration field's value.
+func (s *DataSourceConfiguration) SetQuipConfiguration(v *QuipConfiguration) *DataSourceConfiguration {
+	s.QuipConfiguration = v
 	return s
 }
 
@@ -19071,6 +19085,230 @@ func (s *QuerySuggestionsBlockListSummary) SetUpdatedAt(v time.Time) *QuerySugge
 	return s
 }
 
+// Provides the configuration information to connect to Quip as your data source.
+type QuipConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A list of field mappings to apply when indexing Quip attachments.
+	AttachmentFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// Specify whether to crawl attachments in your Quip data source. You can specify
+	// one or more of these options.
+	CrawlAttachments *bool `type:"boolean"`
+
+	// Specify whether to crawl chat rooms in your Quip data source. You can specify
+	// one or more of these options.
+	CrawlChatRooms *bool `type:"boolean"`
+
+	// Specify whether to crawl file comments in your Quip data source. You can
+	// specify one or more of these options.
+	CrawlFileComments *bool `type:"boolean"`
+
+	// The configuration information to connect to your Quip data source domain.
+	//
+	// Domain is a required field
+	Domain *string `min:"1" type:"string" required:"true"`
+
+	// A list of regular expression patterns to exclude certain files in your Quip
+	// file system. Files that match the patterns are excluded from the index. Files
+	// that don’t match the patterns are included in the index. If a file matches
+	// both an inclusion pattern and an exclusion pattern, the exclusion pattern
+	// takes precedence, and the file isn't included in the index.
+	ExclusionPatterns []*string `type:"list"`
+
+	// The identifier of the Quip folder IDs to index.
+	FolderIds []*string `type:"list"`
+
+	// A list of regular expression patterns to include certain files in your Quip
+	// file system. Files that match the patterns are included in the index. Files
+	// that don't match the patterns are excluded from the index. If a file matches
+	// both an inclusion pattern and an exclusion pattern, the exclusion pattern
+	// takes precedence, and the file isn't included in the index.
+	InclusionPatterns []*string `type:"list"`
+
+	// A list of field mappings to apply when indexing Quip messages.
+	MessageFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// The Amazon Resource Name (ARN) of an Secrets Manager secret that contains
+	// the key-value pairs that are required to connect to your Quip file system.
+	// Windows is currently the only supported type. The secret must contain a JSON
+	// structure with the following keys:
+	//
+	//    * username—The Active Directory user name, along with the Domain Name
+	//    System (DNS) domain name. For example, user@corp.example.com. The Active
+	//    Directory user account must have read and mounting access to the Quip
+	//    file system for Windows.
+	//
+	//    * password—The password of the Active Directory user account with read
+	//    and mounting access to the Quip Windows file system.
+	//
+	// SecretArn is a required field
+	SecretArn *string `min:"1" type:"string" required:"true"`
+
+	// A list of field mappings to apply when indexing Quip threads.
+	ThreadFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// Configuration information for connecting to an Amazon Virtual Private Cloud
+	// (VPC) for your Quip. Your Quip instance must reside inside your VPC.
+	VpcConfiguration *DataSourceVpcConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QuipConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QuipConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *QuipConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "QuipConfiguration"}
+	if s.AttachmentFieldMappings != nil && len(s.AttachmentFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttachmentFieldMappings", 1))
+	}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.MessageFieldMappings != nil && len(s.MessageFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MessageFieldMappings", 1))
+	}
+	if s.SecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretArn"))
+	}
+	if s.SecretArn != nil && len(*s.SecretArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretArn", 1))
+	}
+	if s.ThreadFieldMappings != nil && len(s.ThreadFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThreadFieldMappings", 1))
+	}
+	if s.AttachmentFieldMappings != nil {
+		for i, v := range s.AttachmentFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AttachmentFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.MessageFieldMappings != nil {
+		for i, v := range s.MessageFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MessageFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ThreadFieldMappings != nil {
+		for i, v := range s.ThreadFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ThreadFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.VpcConfiguration != nil {
+		if err := s.VpcConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttachmentFieldMappings sets the AttachmentFieldMappings field's value.
+func (s *QuipConfiguration) SetAttachmentFieldMappings(v []*DataSourceToIndexFieldMapping) *QuipConfiguration {
+	s.AttachmentFieldMappings = v
+	return s
+}
+
+// SetCrawlAttachments sets the CrawlAttachments field's value.
+func (s *QuipConfiguration) SetCrawlAttachments(v bool) *QuipConfiguration {
+	s.CrawlAttachments = &v
+	return s
+}
+
+// SetCrawlChatRooms sets the CrawlChatRooms field's value.
+func (s *QuipConfiguration) SetCrawlChatRooms(v bool) *QuipConfiguration {
+	s.CrawlChatRooms = &v
+	return s
+}
+
+// SetCrawlFileComments sets the CrawlFileComments field's value.
+func (s *QuipConfiguration) SetCrawlFileComments(v bool) *QuipConfiguration {
+	s.CrawlFileComments = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *QuipConfiguration) SetDomain(v string) *QuipConfiguration {
+	s.Domain = &v
+	return s
+}
+
+// SetExclusionPatterns sets the ExclusionPatterns field's value.
+func (s *QuipConfiguration) SetExclusionPatterns(v []*string) *QuipConfiguration {
+	s.ExclusionPatterns = v
+	return s
+}
+
+// SetFolderIds sets the FolderIds field's value.
+func (s *QuipConfiguration) SetFolderIds(v []*string) *QuipConfiguration {
+	s.FolderIds = v
+	return s
+}
+
+// SetInclusionPatterns sets the InclusionPatterns field's value.
+func (s *QuipConfiguration) SetInclusionPatterns(v []*string) *QuipConfiguration {
+	s.InclusionPatterns = v
+	return s
+}
+
+// SetMessageFieldMappings sets the MessageFieldMappings field's value.
+func (s *QuipConfiguration) SetMessageFieldMappings(v []*DataSourceToIndexFieldMapping) *QuipConfiguration {
+	s.MessageFieldMappings = v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *QuipConfiguration) SetSecretArn(v string) *QuipConfiguration {
+	s.SecretArn = &v
+	return s
+}
+
+// SetThreadFieldMappings sets the ThreadFieldMappings field's value.
+func (s *QuipConfiguration) SetThreadFieldMappings(v []*DataSourceToIndexFieldMapping) *QuipConfiguration {
+	s.ThreadFieldMappings = v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *QuipConfiguration) SetVpcConfiguration(v *DataSourceVpcConfiguration) *QuipConfiguration {
+	s.VpcConfiguration = v
+	return s
+}
+
 // Provides information for manually tuning the relevance of a field in a search.
 // When a query includes terms that match the field, the results are given a
 // boost in the response based on these tuning parameters.
@@ -25101,6 +25339,9 @@ const (
 
 	// DataSourceTypeBox is a DataSourceType enum value
 	DataSourceTypeBox = "BOX"
+
+	// DataSourceTypeQuip is a DataSourceType enum value
+	DataSourceTypeQuip = "QUIP"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -25120,6 +25361,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeFsx,
 		DataSourceTypeSlack,
 		DataSourceTypeBox,
+		DataSourceTypeQuip,
 	}
 }
 

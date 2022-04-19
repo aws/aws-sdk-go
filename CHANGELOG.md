@@ -1,3 +1,25 @@
+Release v1.43.42 (2022-04-19)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * EC2 Auto Scaling now adds default instance warm-up times for all scaling activities, health check replacements, and other replacement events in the Auto Scaling instance lifecycle.
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now provides a data source connector for Quip. For more information, see https://docs.aws.amazon.com/kendra/latest/dg/data-source-quip.html
+* `service/kms`: Updates service API, documentation, and examples
+  * Adds support for KMS keys and APIs that generate and verify HMAC codes
+* `service/personalize`: Updates service API and documentation
+* `service/polly`: Updates service API
+  * Amazon Polly adds new Austrian German voice - Hannah. Hannah is available as Neural voice only.
+* `service/redshift`: Updates service API and documentation
+  * Introduces new fields for LogDestinationType and LogExports on EnableLogging requests and Enable/Disable/DescribeLogging responses. Customers can now select CloudWatch Logs as a destination for their Audit Logs.
+* `service/ssm`: Updates service API and documentation
+  * Added offset support for specifying the number of days to wait after the date and time specified by a CRON expression when creating SSM association.
+* `service/textract`: Updates service API and documentation
+* `service/transfer`: Updates service documentation
+  * This release contains corrected HomeDirectoryMappings examples for several API functions: CreateAccess, UpdateAccess, CreateUser, and UpdateUser,.
+* `service/worklink`: Updates service API
+
 Release v1.43.41 (2022-04-15)
 ===
 

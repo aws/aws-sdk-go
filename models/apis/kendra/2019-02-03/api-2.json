@@ -1701,7 +1701,8 @@
         "WorkDocsConfiguration":{"shape":"WorkDocsConfiguration"},
         "FsxConfiguration":{"shape":"FsxConfiguration"},
         "SlackConfiguration":{"shape":"SlackConfiguration"},
-        "BoxConfiguration":{"shape":"BoxConfiguration"}
+        "BoxConfiguration":{"shape":"BoxConfiguration"},
+        "QuipConfiguration":{"shape":"QuipConfiguration"}
       }
     },
     "DataSourceDateFieldFormat":{
@@ -1875,7 +1876,8 @@
         "WORKDOCS",
         "FSX",
         "SLACK",
-        "BOX"
+        "BOX",
+        "QUIP"
       ]
     },
     "DataSourceVpcConfiguration":{
@@ -2465,6 +2467,12 @@
         "S3Prefix":{"shape":"S3ObjectKey"}
       }
     },
+    "Domain":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"^(?!-)[A-Za-z0-9-].*(?<!-)$"
+    },
     "Duration":{
       "type":"string",
       "max":10,
@@ -2753,6 +2761,15 @@
       "max":21,
       "min":11,
       "pattern":"^(fs-[0-9a-f]{8,})$"
+    },
+    "FolderId":{
+      "type":"string",
+      "max":500,
+      "min":1
+    },
+    "FolderIdList":{
+      "type":"list",
+      "member":{"shape":"FolderId"}
     },
     "FsxConfiguration":{
       "type":"structure",
@@ -3741,6 +3758,27 @@
       "type":"string",
       "max":1000,
       "min":1
+    },
+    "QuipConfiguration":{
+      "type":"structure",
+      "required":[
+        "Domain",
+        "SecretArn"
+      ],
+      "members":{
+        "Domain":{"shape":"Domain"},
+        "SecretArn":{"shape":"SecretArn"},
+        "CrawlFileComments":{"shape":"Boolean"},
+        "CrawlChatRooms":{"shape":"Boolean"},
+        "CrawlAttachments":{"shape":"Boolean"},
+        "FolderIds":{"shape":"FolderIdList"},
+        "ThreadFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "MessageFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "AttachmentFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "InclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "ExclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "VpcConfiguration":{"shape":"DataSourceVpcConfiguration"}
+      }
     },
     "ReadAccessType":{
       "type":"string",

@@ -5806,6 +5806,178 @@ func (c *Personalize) ListTagsForResourceWithContext(ctx aws.Context, input *Lis
 	return out, req.Send()
 }
 
+const opStartRecommender = "StartRecommender"
+
+// StartRecommenderRequest generates a "aws/request.Request" representing the
+// client's request for the StartRecommender operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartRecommender for more information on using the StartRecommender
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartRecommenderRequest method.
+//    req, resp := client.StartRecommenderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/StartRecommender
+func (c *Personalize) StartRecommenderRequest(input *StartRecommenderInput) (req *request.Request, output *StartRecommenderOutput) {
+	op := &request.Operation{
+		Name:       opStartRecommender,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartRecommenderInput{}
+	}
+
+	output = &StartRecommenderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartRecommender API operation for Amazon Personalize.
+//
+// Starts a recommender that is INACTIVE. Starting a recommender does not create
+// any new models, but resumes billing and automatic retraining for the recommender.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation StartRecommender for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
+//   * ResourceNotFoundException
+//   Could not find the specified resource.
+//
+//   * ResourceInUseException
+//   The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/StartRecommender
+func (c *Personalize) StartRecommender(input *StartRecommenderInput) (*StartRecommenderOutput, error) {
+	req, out := c.StartRecommenderRequest(input)
+	return out, req.Send()
+}
+
+// StartRecommenderWithContext is the same as StartRecommender with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartRecommender for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) StartRecommenderWithContext(ctx aws.Context, input *StartRecommenderInput, opts ...request.Option) (*StartRecommenderOutput, error) {
+	req, out := c.StartRecommenderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopRecommender = "StopRecommender"
+
+// StopRecommenderRequest generates a "aws/request.Request" representing the
+// client's request for the StopRecommender operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopRecommender for more information on using the StopRecommender
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopRecommenderRequest method.
+//    req, resp := client.StopRecommenderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/StopRecommender
+func (c *Personalize) StopRecommenderRequest(input *StopRecommenderInput) (req *request.Request, output *StopRecommenderOutput) {
+	op := &request.Operation{
+		Name:       opStopRecommender,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopRecommenderInput{}
+	}
+
+	output = &StopRecommenderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopRecommender API operation for Amazon Personalize.
+//
+// Stops a recommender that is ACTIVE. Stopping a recommender halts billing
+// and automatic retraining for the recommender.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation StopRecommender for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
+//   * ResourceNotFoundException
+//   Could not find the specified resource.
+//
+//   * ResourceInUseException
+//   The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/StopRecommender
+func (c *Personalize) StopRecommender(input *StopRecommenderInput) (*StopRecommenderOutput, error) {
+	req, out := c.StopRecommenderRequest(input)
+	return out, req.Send()
+}
+
+// StopRecommenderWithContext is the same as StopRecommender with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopRecommender for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) StopRecommenderWithContext(ctx aws.Context, input *StopRecommenderInput, opts ...request.Option) (*StopRecommenderOutput, error) {
+	req, out := c.StopRecommenderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStopSolutionVersionCreation = "StopSolutionVersionCreation"
 
 // StopSolutionVersionCreationRequest generates a "aws/request.Request" representing the
@@ -6138,8 +6310,9 @@ func (c *Personalize) UpdateCampaignRequest(input *UpdateCampaignInput) (req *re
 // Check the campaign status using the DescribeCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html)
 // operation.
 //
-// You must wait until the status of the updated campaign is ACTIVE before asking
-// the campaign for recommendations.
+// You can still get recommendations from a campaign while an update is in progress.
+// The campaign will use the previous solution version and campaign configuration
+// to generate recommendations until the latest campaign update status is Active.
 //
 // For more information on campaigns, see CreateCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html).
 //
@@ -16727,6 +16900,160 @@ func (s *SolutionVersionSummary) SetSolutionVersionArn(v string) *SolutionVersio
 // SetStatus sets the Status field's value.
 func (s *SolutionVersionSummary) SetStatus(v string) *SolutionVersionSummary {
 	s.Status = &v
+	return s
+}
+
+type StartRecommenderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the recommender to start.
+	//
+	// RecommenderArn is a required field
+	RecommenderArn *string `locationName:"recommenderArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartRecommenderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartRecommenderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartRecommenderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartRecommenderInput"}
+	if s.RecommenderArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecommenderArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *StartRecommenderInput) SetRecommenderArn(v string) *StartRecommenderInput {
+	s.RecommenderArn = &v
+	return s
+}
+
+type StartRecommenderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the recommender you started.
+	RecommenderArn *string `locationName:"recommenderArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartRecommenderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartRecommenderOutput) GoString() string {
+	return s.String()
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *StartRecommenderOutput) SetRecommenderArn(v string) *StartRecommenderOutput {
+	s.RecommenderArn = &v
+	return s
+}
+
+type StopRecommenderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the recommender to stop.
+	//
+	// RecommenderArn is a required field
+	RecommenderArn *string `locationName:"recommenderArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopRecommenderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopRecommenderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopRecommenderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopRecommenderInput"}
+	if s.RecommenderArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecommenderArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *StopRecommenderInput) SetRecommenderArn(v string) *StopRecommenderInput {
+	s.RecommenderArn = &v
+	return s
+}
+
+type StopRecommenderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the recommender you stopped.
+	RecommenderArn *string `locationName:"recommenderArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopRecommenderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopRecommenderOutput) GoString() string {
+	return s.String()
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *StopRecommenderOutput) SetRecommenderArn(v string) *StopRecommenderOutput {
+	s.RecommenderArn = &v
 	return s
 }
 

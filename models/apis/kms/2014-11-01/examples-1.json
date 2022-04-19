@@ -349,6 +349,44 @@
         "description": "This example creates a KMS key in the specified custom key store. The operation creates the KMS key and its metadata in AWS KMS and the key material in the AWS CloudHSM cluster associated with the custom key store. This example requires the Origin and CustomKeyStoreId parameters.",
         "id": "to-create-a-kms-key-in-a-custom-key-store-1630604382908",
         "title": "To create a KMS key in a custom key store"
+      },
+      {
+        "input": {
+          "KeySpec": "HMAC_384",
+          "KeyUsage": "GENERATE_VERIFY_MAC"
+        },
+        "output": {
+          "KeyMetadata": {
+            "AWSAccountId": "111122223333",
+            "Arn": "arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+            "CreationDate": "2022-04-05T14:04:55-07:00",
+            "CustomerMasterKeySpec": "HMAC_384",
+            "Description": "",
+            "Enabled": true,
+            "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab",
+            "KeyManager": "CUSTOMER",
+            "KeySpec": "HMAC_384",
+            "KeyState": "Enabled",
+            "KeyUsage": "GENERATE_VERIFY_MAC",
+            "MacAlgorithms": [
+              "HMAC_SHA_384"
+            ],
+            "MultiRegion": false,
+            "Origin": "AWS_KMS"
+          }
+        },
+        "comments": {
+          "input": {
+            "KeySpec": "Describes the type of key material in the KMS key.",
+            "KeyUsage": "The cryptographic operations for which you can use the KMS key."
+          },
+          "output": {
+            "KeyMetadata": "Detailed information about the KMS key that this operation creates."
+          }
+        },
+        "description": "This example creates a 384-bit symmetric HMAC KMS key. The GENERATE_VERIFY_MAC key usage value is required even though it's the only valid value for HMAC KMS keys. The key spec and key usage can't be changed after the key is created. ",
+        "id": "to-create-an-hmac-kms-key-1630628752841",
+        "title": "To create an HMAC KMS key"
       }
     ],
     "Decrypt": [
@@ -501,15 +539,147 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the KMS key that you want information about. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
+            "KeyId": "An identifier for the KMS key. You can use the key ID, key ARN, alias name, alias ARN of the KMS key."
           },
           "output": {
             "KeyMetadata": "An object that contains information about the specified KMS key."
           }
         },
-        "description": "The following example gets metadata about a symmetric KMS key.",
+        "description": "The following example gets metadata for a symmetric encryption KMS key.",
         "id": "get-key-details-1478565820907",
         "title": "To get details about a KMS key"
+      },
+      {
+        "input": {
+          "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab"
+        },
+        "output": {
+          "KeyMetadata": {
+            "AWSAccountId": "111122223333",
+            "Arn": "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+            "CreationDate": 1571767572.317,
+            "CustomerMasterKeySpec": "RSA_2048",
+            "Description": "",
+            "Enabled": false,
+            "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab",
+            "KeyManager": "CUSTOMER",
+            "KeySpec": "RSA_2048",
+            "KeyState": "Disabled",
+            "KeyUsage": "SIGN_VERIFY",
+            "MultiRegion": false,
+            "Origin": "AWS_KMS",
+            "SigningAlgorithms": [
+              "RSASSA_PKCS1_V1_5_SHA_256",
+              "RSASSA_PKCS1_V1_5_SHA_384",
+              "RSASSA_PKCS1_V1_5_SHA_512",
+              "RSASSA_PSS_SHA_256",
+              "RSASSA_PSS_SHA_384",
+              "RSASSA_PSS_SHA_512"
+            ]
+          }
+        },
+        "comments": {
+          "input": {
+            "KeyId": "An identifier for the KMS key. You can use the key ID, key ARN, alias name, alias ARN of the KMS key."
+          },
+          "output": {
+            "KeyMetadata": "An object that contains information about the specified KMS key."
+          }
+        },
+        "description": "The following example gets metadata for an asymmetric RSA KMS key used for signing and verification.",
+        "id": "to-get-details-about-an-rsa-asymmetric-kms-key-1637971611761",
+        "title": "To get details about an RSA asymmetric KMS key"
+      },
+      {
+        "input": {
+          "KeyId": "arn:aws:kms:ap-northeast-1:111122223333:key/mrk-1234abcd12ab34cd56ef1234567890ab"
+        },
+        "output": {
+          "KeyMetadata": {
+            "AWSAccountId": "111122223333",
+            "Arn": "arn:aws:kms:ap-northeast-1:111122223333:key/mrk-1234abcd12ab34cd56ef1234567890ab",
+            "CreationDate": 1586329200.918,
+            "CustomerMasterKeySpec": "SYMMETRIC_DEFAULT",
+            "Description": "",
+            "Enabled": true,
+            "EncryptionAlgorithms": [
+              "SYMMETRIC_DEFAULT"
+            ],
+            "KeyId": "mrk-1234abcd12ab34cd56ef1234567890ab",
+            "KeyManager": "CUSTOMER",
+            "KeyState": "Enabled",
+            "KeyUsage": "ENCRYPT_DECRYPT",
+            "MultiRegion": true,
+            "MultiRegionConfiguration": {
+              "MultiRegionKeyType": "PRIMARY",
+              "PrimaryKey": {
+                "Arn": "arn:aws:kms:us-west-2:111122223333:key/mrk-1234abcd12ab34cd56ef1234567890ab",
+                "Region": "us-west-2"
+              },
+              "ReplicaKeys": [
+                {
+                  "Arn": "arn:aws:kms:eu-west-1:111122223333:key/mrk-1234abcd12ab34cd56ef1234567890ab",
+                  "Region": "eu-west-1"
+                },
+                {
+                  "Arn": "arn:aws:kms:ap-northeast-1:111122223333:key/mrk-1234abcd12ab34cd56ef1234567890ab",
+                  "Region": "ap-northeast-1"
+                },
+                {
+                  "Arn": "arn:aws:kms:sa-east-1:111122223333:key/mrk-1234abcd12ab34cd56ef1234567890ab",
+                  "Region": "sa-east-1"
+                }
+              ]
+            },
+            "Origin": "AWS_KMS"
+          }
+        },
+        "comments": {
+          "input": {
+            "KeyId": "An identifier for the KMS key. You can use the key ID, key ARN, alias name, alias ARN of the KMS key."
+          },
+          "output": {
+            "KeyMetadata": "An object that contains information about the specified KMS key."
+          }
+        },
+        "description": "The following example gets metadata for a multi-Region replica key. This multi-Region key is a symmetric encryption key. DescribeKey returns information about the primary key and all of its replicas.",
+        "id": "to-get-details-about-a-multi-region-key-1637969624239",
+        "title": "To get details about a multi-Region key"
+      },
+      {
+        "input": {
+          "KeyId": "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+        },
+        "output": {
+          "KeyMetadata": {
+            "AWSAccountId": "123456789012",
+            "Arn": "arn:aws:kms:us-west-2:123456789012:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+            "CreationDate": 1566160362.664,
+            "CustomerMasterKeySpec": "HMAC_256",
+            "Description": "Development test key",
+            "Enabled": true,
+            "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab",
+            "KeyManager": "CUSTOMER",
+            "KeyState": "Enabled",
+            "KeyUsage": "GENERATE_VERIFY_MAC",
+            "MacAlgorithms": [
+              "HMAC_SHA_256"
+            ],
+            "MultiRegion": false,
+            "Origin": "AWS_KMS"
+          }
+        },
+        "comments": {
+          "input": {
+            "KeyId": "An identifier for the KMS key. You can use the key ID, key ARN, alias name, alias ARN of the KMS key."
+          },
+          "output": {
+            "KeyMetadata": "An object that contains information about the specified KMS key."
+          }
+        },
+        "description": "The following example gets the metadata of an HMAC KMS key. ",
+        "id": "to-get-details-about-an-hmac-kms-key-1637970472619",
+        "title": "To get details about an HMAC KMS key"
       }
     ],
     "DisableKey": [
@@ -658,18 +828,18 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The key ID of the symmetric KMS key that encrypts the private RSA key in the data key pair.",
+            "KeyId": "The key ID of the symmetric encryption KMS key that encrypts the private RSA key in the data key pair.",
             "KeyPairSpec": "The requested key spec of the RSA data key pair."
           },
           "output": {
-            "KeyId": "The key ARN of the symmetric KMS key that was used to encrypt the private key.",
+            "KeyId": "The key ARN of the symmetric encryption KMS key that was used to encrypt the private key.",
             "KeyPairSpec": "The actual key spec of the RSA data key pair.",
             "PrivateKeyCiphertextBlob": "The encrypted private key of the RSA data key pair.",
             "PrivateKeyPlaintext": "The plaintext private key of the RSA data key pair.",
             "PublicKey": "The public key (plaintext) of the RSA data key pair."
           }
         },
-        "description": "This example generates an RSA data key pair for encryption and decryption. The operation returns a plaintext public key and private key, and a copy of the private key that is encrypted under a symmetric KMS key that you specify.",
+        "description": "This example generates an RSA data key pair for encryption and decryption. The operation returns a plaintext public key and private key, and a copy of the private key that is encrypted under a symmetric encryption KMS key that you specify.",
         "id": "to-generate-an-rsa-key-pair-for-encryption-and-decryption-1628619376878",
         "title": "To generate an RSA key pair for encryption and decryption"
       }
@@ -688,17 +858,17 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The symmetric KMS key that encrypts the private key of the ECC data key pair.",
+            "KeyId": "The symmetric encryption KMS key that encrypts the private key of the ECC data key pair.",
             "KeyPairSpec": "The requested key spec of the ECC asymmetric data key pair."
           },
           "output": {
-            "KeyId": "The key ARN of the symmetric KMS key that encrypted the private key in the ECC asymmetric data key pair.",
+            "KeyId": "The key ARN of the symmetric encryption KMS key that encrypted the private key in the ECC asymmetric data key pair.",
             "KeyPairSpec": "The actual key spec of the ECC asymmetric data key pair.",
             "PrivateKeyCiphertextBlob": "The encrypted private key of the asymmetric ECC data key pair.",
             "PublicKey": "The public key (plaintext)."
           }
         },
-        "description": "This example returns an asymmetric elliptic curve (ECC) data key pair. The private key is encrypted under the symmetric KMS key that you specify. This operation doesn't return a plaintext (unencrypted) private key.",
+        "description": "This example returns an asymmetric elliptic curve (ECC) data key pair. The private key is encrypted under the symmetric encryption KMS key that you specify. This operation doesn't return a plaintext (unencrypted) private key.",
         "id": "to-generate-an-asymmetric-data-key-pair-without-a-plaintext-key-1628620971564",
         "title": "To generate an asymmetric data key pair without a plaintext key"
       }
@@ -726,6 +896,35 @@
         "description": "The following example generates an encrypted copy of a 256-bit symmetric data encryption key (data key). The data key is encrypted with the specified KMS key.",
         "id": "to-generate-an-encrypted-data-key-1478914121134",
         "title": "To generate an encrypted data key"
+      }
+    ],
+    "GenerateMac": [
+      {
+        "input": {
+          "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab",
+          "MacAlgorithm": "HMAC_SHA_384",
+          "Message": "Hello World"
+        },
+        "output": {
+          "KeyId": "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+          "Mac": "<HMAC_TAG>",
+          "MacAlgorithm": "HMAC_SHA_384"
+        },
+        "comments": {
+          "input": {
+            "KeyId": "The HMAC KMS key input to the HMAC algorithm.",
+            "MacAlgorithm": "The HMAC algorithm requested for the operation.",
+            "Message": "The message input to the HMAC algorithm."
+          },
+          "output": {
+            "KeyId": "The key ARN of the HMAC KMS key used in the operation.",
+            "Mac": "The HMAC tag that results from this operation.",
+            "MacAlgorithm": "The HMAC algorithm used in the operation."
+          }
+        },
+        "description": "This example generates an HMAC for a message, an HMAC KMS key, and a MAC algorithm. The algorithm must be supported by the specified HMAC KMS key.",
+        "id": "to-generate-an-hmac-for-a-message-1631570135665",
+        "title": "To generate an HMAC for a message"
       }
     ],
     "GenerateRandom": [
@@ -1507,13 +1706,44 @@
           },
           "output": {
             "KeyId": "The key ARN of the asymmetric KMS key that was used to verify the digital signature.",
-            "SignatureValid": "Indicates whether the signature was verified (true) or failed verification (false).",
+            "SignatureValid": "A value of 'true' Indicates that the signature was verified. If verification fails, the call to Verify fails.",
             "SigningAlgorithm": "The signing algorithm that was used to verify the signature."
           }
         },
         "description": "This operation uses the public key in an elliptic curve (ECC) asymmetric key to verify a digital signature within AWS KMS. ",
         "id": "to-use-an-asymmetric-kms-key-to-verify-a-digital-signature-1628633365663",
         "title": "To use an asymmetric KMS key to verify a digital signature"
+      }
+    ],
+    "VerifyMac": [
+      {
+        "input": {
+          "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab",
+          "Mac": "<HMAC_TAG>",
+          "MacAlgorithm": "HMAC_SHA_384",
+          "Message": "Hello World"
+        },
+        "output": {
+          "KeyId": "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+          "MacAlgorithm": "HMAC_SHA_384",
+          "MacValid": true
+        },
+        "comments": {
+          "input": {
+            "KeyId": "The HMAC KMS key input to the HMAC algorithm.",
+            "Mac": "The HMAC to be verified.",
+            "MacAlgorithm": "The HMAC algorithm requested for the operation.",
+            "Message": "The message input to the HMAC algorithm."
+          },
+          "output": {
+            "KeyId": "The key ARN of the HMAC key used in the operation.",
+            "MacAlgorithm": "The HMAC algorithm used in the operation.",
+            "MacValid": "A value of 'true' indicates that verification succeeded. If verification fails, the call to VerifyMac fails."
+          }
+        },
+        "description": "This example verifies an HMAC for a particular message, HMAC KMS keys, and MAC algorithm. A value of 'true' in the MacValid value in the response indicates that the HMAC is valid.",
+        "id": "to-verify-an-hmac-1631570863401",
+        "title": "To verify an HMAC"
       }
     ]
   }

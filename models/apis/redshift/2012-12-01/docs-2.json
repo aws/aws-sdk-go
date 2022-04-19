@@ -431,7 +431,7 @@
         "RestoreFromClusterSnapshotMessage$PubliclyAccessible": "<p>If <code>true</code>, the cluster can be accessed from a public network. </p>",
         "RestoreFromClusterSnapshotMessage$EnhancedVpcRouting": "<p>An option that specifies whether to create the cluster with enhanced VPC routing enabled. To create a cluster that uses enhanced VPC routing, the cluster must be in a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/enhanced-vpc-routing.html\">Enhanced VPC Routing</a> in the Amazon Redshift Cluster Management Guide.</p> <p>If this option is <code>true</code>, enhanced VPC routing is enabled. </p> <p>Default: false</p>",
         "RestoreFromClusterSnapshotMessage$AvailabilityZoneRelocation": "<p>The option to enable relocation for an Amazon Redshift cluster between Availability Zones after the cluster is restored.</p>",
-        "RestoreFromClusterSnapshotMessage$Encrypted": "<p>Enables support for restoring an unencrypted snapshot to a cluster encrypted with Key Management Service (KMS) and a CMK.</p>",
+        "RestoreFromClusterSnapshotMessage$Encrypted": "<p>Enables support for restoring an unencrypted snapshot to a cluster encrypted with Key Management Service (KMS) and a customer managed key.</p>",
         "RestoreTableFromClusterSnapshotMessage$EnableCaseSensitiveIdentifier": "<p>Indicates whether name identifiers for database, schema, and table are case sensitive. If <code>true</code>, the names are case sensitive. If <code>false</code> (default), the names are not case sensitive.</p>"
       }
     },
@@ -1934,6 +1934,20 @@
       "refs": {
       }
     },
+    "LogDestinationType": {
+      "base": null,
+      "refs": {
+        "EnableLoggingMessage$LogDestinationType": "<p>The log destination type. An enum with possible values of <code>s3</code> and <code>cloudwatch</code>.</p>",
+        "LoggingStatus$LogDestinationType": "<p>The log destination type. An enum with possible values of <code>s3</code> and <code>cloudwatch</code>.</p>"
+      }
+    },
+    "LogTypeList": {
+      "base": null,
+      "refs": {
+        "EnableLoggingMessage$LogExports": "<p>The collection of exported log types. Log types include the connection log, user log and user activity log.</p>",
+        "LoggingStatus$LogExports": "<p>The collection of exported log types. Log types include the connection log, user log and user activity log.</p>"
+      }
+    },
     "LoggingStatus": {
       "base": "<p>Describes the status of logging for a cluster.</p>",
       "refs": {
@@ -3220,6 +3234,7 @@
         "ImportTablesCompleted$member": null,
         "ImportTablesInProgress$member": null,
         "ImportTablesNotStarted$member": null,
+        "LogTypeList$member": null,
         "LoggingStatus$BucketName": "<p>The name of the S3 bucket where the log files are stored.</p>",
         "LoggingStatus$S3KeyPrefix": "<p>The prefix applied to the log file names.</p>",
         "LoggingStatus$LastFailureMessage": "<p>The message indicating that logs failed to be delivered.</p>",
@@ -3338,7 +3353,7 @@
         "RestoreFromClusterSnapshotMessage$ElasticIp": "<p>The elastic IP (EIP) address for the cluster.</p>",
         "RestoreFromClusterSnapshotMessage$ClusterParameterGroupName": "<p>The name of the parameter group to be associated with this cluster.</p> <p>Default: The default Amazon Redshift cluster parameter group. For information about the default parameter group, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html\">Working with Amazon Redshift Parameter Groups</a>.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 alphanumeric characters or hyphens.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> </ul>",
         "RestoreFromClusterSnapshotMessage$PreferredMaintenanceWindow": "<p>The weekly time range (in UTC) during which automated cluster maintenance can occur.</p> <p> Format: <code>ddd:hh24:mi-ddd:hh24:mi</code> </p> <p> Default: The value selected for the cluster from which the snapshot was taken. For more information about the time blocks for each region, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-maintenance-windows\">Maintenance Windows</a> in Amazon Redshift Cluster Management Guide. </p> <p>Valid Days: Mon | Tue | Wed | Thu | Fri | Sat | Sun</p> <p>Constraints: Minimum 30-minute window.</p>",
-        "RestoreFromClusterSnapshotMessage$KmsKeyId": "<p>The Key Management Service (KMS) key ID of the encryption key to encrypt data in the cluster restored from a shared snapshot. You can also provide the key ID when you restore from an unencrypted snapshot to an encrypted cluster in the same account. Additionally, you can specify a new KMS key ID when you restore from an encrypted snapshot in the same account in order to change it. In that case, the restored cluster is encrypted with the new KMS key ID.</p>",
+        "RestoreFromClusterSnapshotMessage$KmsKeyId": "<p>The Key Management Service (KMS) key ID of the encryption key that encrypts data in the cluster restored from a shared snapshot. You can also provide the key ID when you restore from an unencrypted snapshot to an encrypted cluster in the same account. Additionally, you can specify a new KMS key ID when you restore from an encrypted snapshot in the same account in order to change it. In that case, the restored cluster is encrypted with the new KMS key ID.</p>",
         "RestoreFromClusterSnapshotMessage$NodeType": "<p>The node type that the restored cluster will be provisioned with.</p> <p>Default: The node type of the cluster from which the snapshot was taken. You can modify this if you are using any DS node type. In that case, you can choose to restore into another DS node type of the same size. For example, you can restore ds1.8xlarge into ds2.8xlarge, or ds1.xlarge into ds2.xlarge. If you have a DC instance type, you must restore into that same instance type and size. In other words, you can only restore a dc1.large instance type into another dc1.large instance type or dc2.large instance type. You can't restore dc1.8xlarge to dc2.8xlarge. First restore to a dc1.8xlarge cluster, then resize to a dc2.8large cluster. For more information about node types, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes\"> About Clusters and Nodes</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>",
         "RestoreFromClusterSnapshotMessage$AdditionalInfo": "<p>Reserved.</p>",
         "RestoreFromClusterSnapshotMessage$MaintenanceTrackName": "<p>The name of the maintenance track for the restored cluster. When you take a snapshot, the snapshot inherits the <code>MaintenanceTrack</code> value from the cluster. The snapshot might be on a different track than the cluster that was the source for the snapshot. For example, suppose that you take a snapshot of a cluster that is on the current track and then change the cluster to be on the trailing track. In this case, the snapshot and the source cluster are on different tracks.</p>",

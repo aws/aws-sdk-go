@@ -236,7 +236,8 @@
       "members":{
         "Document":{"shape":"Document"},
         "FeatureTypes":{"shape":"FeatureTypes"},
-        "HumanLoopConfig":{"shape":"HumanLoopConfig"}
+        "HumanLoopConfig":{"shape":"HumanLoopConfig"},
+        "QueriesConfig":{"shape":"QueriesConfig"}
       }
     },
     "AnalyzeDocumentResponse":{
@@ -308,7 +309,8 @@
         "Relationships":{"shape":"RelationshipList"},
         "EntityTypes":{"shape":"EntityTypes"},
         "SelectionStatus":{"shape":"SelectionStatus"},
-        "Page":{"shape":"UInteger"}
+        "Page":{"shape":"UInteger"},
+        "Query":{"shape":"Query"}
       }
     },
     "BlockList":{
@@ -326,7 +328,9 @@
         "CELL",
         "SELECTION_ELEMENT",
         "MERGED_CELL",
-        "TITLE"
+        "TITLE",
+        "QUERY",
+        "QUERY_RESULT"
       ]
     },
     "BoundingBox":{
@@ -459,7 +463,8 @@
       "type":"string",
       "enum":[
         "TABLES",
-        "FORMS"
+        "FORMS",
+        "QUERIES"
       ]
     },
     "FeatureTypes":{
@@ -787,6 +792,44 @@
       },
       "exception":true
     },
+    "Queries":{
+      "type":"list",
+      "member":{"shape":"Query"},
+      "min":1
+    },
+    "QueriesConfig":{
+      "type":"structure",
+      "required":["Queries"],
+      "members":{
+        "Queries":{"shape":"Queries"}
+      }
+    },
+    "Query":{
+      "type":"structure",
+      "required":["Text"],
+      "members":{
+        "Text":{"shape":"QueryInput"},
+        "Alias":{"shape":"QueryInput"},
+        "Pages":{"shape":"QueryPages"}
+      }
+    },
+    "QueryInput":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9\\s!\"\\#\\$%'&\\(\\)\\*\\+\\,\\-\\./:;=\\?@\\[\\\\\\]\\^_`\\{\\|\\}~><]+$"
+    },
+    "QueryPage":{
+      "type":"string",
+      "max":9,
+      "min":1,
+      "pattern":"^[0-9\\*\\-]+$"
+    },
+    "QueryPages":{
+      "type":"list",
+      "member":{"shape":"QueryPage"},
+      "min":1
+    },
     "Relationship":{
       "type":"structure",
       "members":{
@@ -805,7 +848,8 @@
         "CHILD",
         "COMPLEX_FEATURES",
         "MERGED_CELL",
-        "TITLE"
+        "TITLE",
+        "ANSWER"
       ]
     },
     "RoleArn":{
@@ -866,7 +910,8 @@
         "JobTag":{"shape":"JobTag"},
         "NotificationChannel":{"shape":"NotificationChannel"},
         "OutputConfig":{"shape":"OutputConfig"},
-        "KMSKeyId":{"shape":"KMSKeyId"}
+        "KMSKeyId":{"shape":"KMSKeyId"},
+        "QueriesConfig":{"shape":"QueriesConfig"}
       }
     },
     "StartDocumentAnalysisResponse":{

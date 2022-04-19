@@ -314,6 +314,14 @@ type PersonalizeAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *personalize.ListTagsForResourceInput, ...request.Option) (*personalize.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*personalize.ListTagsForResourceInput) (*request.Request, *personalize.ListTagsForResourceOutput)
 
+	StartRecommender(*personalize.StartRecommenderInput) (*personalize.StartRecommenderOutput, error)
+	StartRecommenderWithContext(aws.Context, *personalize.StartRecommenderInput, ...request.Option) (*personalize.StartRecommenderOutput, error)
+	StartRecommenderRequest(*personalize.StartRecommenderInput) (*request.Request, *personalize.StartRecommenderOutput)
+
+	StopRecommender(*personalize.StopRecommenderInput) (*personalize.StopRecommenderOutput, error)
+	StopRecommenderWithContext(aws.Context, *personalize.StopRecommenderInput, ...request.Option) (*personalize.StopRecommenderOutput, error)
+	StopRecommenderRequest(*personalize.StopRecommenderInput) (*request.Request, *personalize.StopRecommenderOutput)
+
 	StopSolutionVersionCreation(*personalize.StopSolutionVersionCreationInput) (*personalize.StopSolutionVersionCreationOutput, error)
 	StopSolutionVersionCreationWithContext(aws.Context, *personalize.StopSolutionVersionCreationInput, ...request.Option) (*personalize.StopSolutionVersionCreationOutput, error)
 	StopSolutionVersionCreationRequest(*personalize.StopSolutionVersionCreationInput) (*request.Request, *personalize.StopSolutionVersionCreationOutput)

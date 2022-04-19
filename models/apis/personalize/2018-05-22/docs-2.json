@@ -55,10 +55,12 @@
     "ListSolutionVersions": "<p>Returns a list of solution versions for the given solution. When a solution is not specified, all the solution versions associated with the account are listed. The response provides the properties for each solution version, including the Amazon Resource Name (ARN).</p>",
     "ListSolutions": "<p>Returns a list of solutions that use the given dataset group. When a dataset group is not specified, all the solutions associated with the account are listed. The response provides the properties for each solution, including the Amazon Resource Name (ARN). For more information on solutions, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html\">CreateSolution</a>.</p>",
     "ListTagsForResource": "<p>Get a list of <a href=\"https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html\">tags</a> attached to a resource.</p>",
+    "StartRecommender": "<p>Starts a recommender that is INACTIVE. Starting a recommender does not create any new models, but resumes billing and automatic retraining for the recommender.</p>",
+    "StopRecommender": "<p>Stops a recommender that is ACTIVE. Stopping a recommender halts billing and automatic retraining for the recommender.</p>",
     "StopSolutionVersionCreation": "<p>Stops creating a solution version that is in a state of CREATE_PENDING or CREATE IN_PROGRESS. </p> <p>Depending on the current state of the solution version, the solution version state changes as follows:</p> <ul> <li> <p>CREATE_PENDING &gt; CREATE_STOPPED</p> <p>or</p> </li> <li> <p>CREATE_IN_PROGRESS &gt; CREATE_STOPPING &gt; CREATE_STOPPED</p> </li> </ul> <p>You are billed for all of the training completed up until you stop the solution version creation. You cannot resume creating a solution version once it has been stopped.</p>",
     "TagResource": "<p>Add a list of tags to a resource.</p>",
     "UntagResource": "<p>Remove <a href=\"https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html\">tags</a> that are attached to a resource.</p>",
-    "UpdateCampaign": "<p>Updates a campaign by either deploying a new solution or changing the value of the campaign's <code>minProvisionedTPS</code> parameter.</p> <p>To update a campaign, the campaign status must be ACTIVE or CREATE FAILED. Check the campaign status using the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html\">DescribeCampaign</a> operation.</p> <note> <p>You must wait until the <code>status</code> of the updated campaign is <code>ACTIVE</code> before asking the campaign for recommendations.</p> </note> <p>For more information on campaigns, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html\">CreateCampaign</a>.</p>",
+    "UpdateCampaign": "<p>Updates a campaign by either deploying a new solution or changing the value of the campaign's <code>minProvisionedTPS</code> parameter.</p> <p>To update a campaign, the campaign status must be ACTIVE or CREATE FAILED. Check the campaign status using the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html\">DescribeCampaign</a> operation.</p> <note> <p>You can still get recommendations from a campaign while an update is in progress. The campaign will use the previous solution version and campaign configuration to generate recommendations until the latest campaign update status is <code>Active</code>. </p> </note> <p>For more information on campaigns, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html\">CreateCampaign</a>.</p>",
     "UpdateRecommender": "<p>Updates the recommender to modify the recommender configuration.</p>"
   },
   "shapes": {
@@ -211,6 +213,10 @@
         "SolutionVersion$recipeArn": "<p>The ARN of the recipe used in the solution.</p>",
         "SolutionVersion$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group providing the training data.</p>",
         "SolutionVersionSummary$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the solution version.</p>",
+        "StartRecommenderRequest$recommenderArn": "<p>The Amazon Resource Name (ARN) of the recommender to start.</p>",
+        "StartRecommenderResponse$recommenderArn": "<p>The Amazon Resource Name (ARN) of the recommender you started.</p>",
+        "StopRecommenderRequest$recommenderArn": "<p>The Amazon Resource Name (ARN) of the recommender to stop.</p>",
+        "StopRecommenderResponse$recommenderArn": "<p>The Amazon Resource Name (ARN) of the recommender you stopped.</p>",
         "StopSolutionVersionCreationRequest$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the solution version you want to stop creating.</p>",
         "TagResourceRequest$resourceArn": "<p>The resource's Amazon Resource Name (ARN).</p>",
         "UntagResourceRequest$resourceArn": "<p>The resource's Amazon Resource Name (ARN).</p>",
@@ -1712,6 +1718,16 @@
         "ListSolutionsResponse$solutions": "<p>A list of the current solutions.</p>"
       }
     },
+    "StartRecommenderRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartRecommenderResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Status": {
       "base": null,
       "refs": {
@@ -1744,6 +1760,16 @@
         "SolutionSummary$status": "<p>The status of the solution.</p> <p>A solution can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",
         "SolutionVersion$status": "<p>The status of the solution version.</p> <p>A solution version can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING</p> </li> <li> <p>CREATE IN_PROGRESS</p> </li> <li> <p>ACTIVE</p> </li> <li> <p>CREATE FAILED</p> </li> <li> <p>CREATE STOPPING</p> </li> <li> <p>CREATE STOPPED</p> </li> </ul>",
         "SolutionVersionSummary$status": "<p>The status of the solution version.</p> <p>A solution version can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul>"
+      }
+    },
+    "StopRecommenderRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopRecommenderResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "StopSolutionVersionCreationRequest": {

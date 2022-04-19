@@ -790,6 +790,36 @@
         {"shape":"ResourceInUseException"}
       ]
     },
+    "StartRecommender":{
+      "name":"StartRecommender",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartRecommenderRequest"},
+      "output":{"shape":"StartRecommenderResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
+      ],
+      "idempotent":true
+    },
+    "StopRecommender":{
+      "name":"StopRecommender",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopRecommenderRequest"},
+      "output":{"shape":"StopRecommenderResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
+      ],
+      "idempotent":true
+    },
     "StopSolutionVersionCreation":{
       "name":"StopSolutionVersionCreation",
       "http":{
@@ -2587,9 +2617,35 @@
       "member":{"shape":"SolutionSummary"},
       "max":100
     },
+    "StartRecommenderRequest":{
+      "type":"structure",
+      "required":["recommenderArn"],
+      "members":{
+        "recommenderArn":{"shape":"Arn"}
+      }
+    },
+    "StartRecommenderResponse":{
+      "type":"structure",
+      "members":{
+        "recommenderArn":{"shape":"Arn"}
+      }
+    },
     "Status":{
       "type":"string",
       "max":256
+    },
+    "StopRecommenderRequest":{
+      "type":"structure",
+      "required":["recommenderArn"],
+      "members":{
+        "recommenderArn":{"shape":"Arn"}
+      }
+    },
+    "StopRecommenderResponse":{
+      "type":"structure",
+      "members":{
+        "recommenderArn":{"shape":"Arn"}
+      }
     },
     "StopSolutionVersionCreationRequest":{
       "type":"structure",

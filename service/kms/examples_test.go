@@ -531,6 +531,56 @@ func ExampleKMS_CreateKey_shared05() {
 	fmt.Println(result)
 }
 
+// To create an HMAC KMS key
+//
+// This example creates a 384-bit symmetric HMAC KMS key. The GENERATE_VERIFY_MAC key
+// usage value is required even though it's the only valid value for HMAC KMS keys.
+// The key spec and key usage can't be changed after the key is created.
+func ExampleKMS_CreateKey_shared06() {
+	svc := kms.New(session.New())
+	input := &kms.CreateKeyInput{
+		KeySpec:  aws.String("HMAC_384"),
+		KeyUsage: aws.String("GENERATE_VERIFY_MAC"),
+	}
+
+	result, err := svc.CreateKey(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeMalformedPolicyDocumentException:
+				fmt.Println(kms.ErrCodeMalformedPolicyDocumentException, aerr.Error())
+			case kms.ErrCodeDependencyTimeoutException:
+				fmt.Println(kms.ErrCodeDependencyTimeoutException, aerr.Error())
+			case kms.ErrCodeInvalidArnException:
+				fmt.Println(kms.ErrCodeInvalidArnException, aerr.Error())
+			case kms.ErrCodeUnsupportedOperationException:
+				fmt.Println(kms.ErrCodeUnsupportedOperationException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			case kms.ErrCodeLimitExceededException:
+				fmt.Println(kms.ErrCodeLimitExceededException, aerr.Error())
+			case kms.ErrCodeTagException:
+				fmt.Println(kms.ErrCodeTagException, aerr.Error())
+			case kms.ErrCodeCustomKeyStoreNotFoundException:
+				fmt.Println(kms.ErrCodeCustomKeyStoreNotFoundException, aerr.Error())
+			case kms.ErrCodeCustomKeyStoreInvalidStateException:
+				fmt.Println(kms.ErrCodeCustomKeyStoreInvalidStateException, aerr.Error())
+			case kms.ErrCodeCloudHsmClusterInvalidConfigurationException:
+				fmt.Println(kms.ErrCodeCloudHsmClusterInvalidConfigurationException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To decrypt data
 //
 // The following example decrypts data that was encrypted with a KMS key.
@@ -761,11 +811,119 @@ func ExampleKMS_DescribeCustomKeyStores_shared01() {
 
 // To get details about a KMS key
 //
-// The following example gets metadata about a symmetric KMS key.
+// The following example gets metadata for a symmetric encryption KMS key.
 func ExampleKMS_DescribeKey_shared00() {
 	svc := kms.New(session.New())
 	input := &kms.DescribeKeyInput{
 		KeyId: aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
+	}
+
+	result, err := svc.DescribeKey(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeNotFoundException:
+				fmt.Println(kms.ErrCodeNotFoundException, aerr.Error())
+			case kms.ErrCodeInvalidArnException:
+				fmt.Println(kms.ErrCodeInvalidArnException, aerr.Error())
+			case kms.ErrCodeDependencyTimeoutException:
+				fmt.Println(kms.ErrCodeDependencyTimeoutException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To get details about an RSA asymmetric KMS key
+//
+// The following example gets metadata for an asymmetric RSA KMS key used for signing
+// and verification.
+func ExampleKMS_DescribeKey_shared01() {
+	svc := kms.New(session.New())
+	input := &kms.DescribeKeyInput{
+		KeyId: aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
+	}
+
+	result, err := svc.DescribeKey(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeNotFoundException:
+				fmt.Println(kms.ErrCodeNotFoundException, aerr.Error())
+			case kms.ErrCodeInvalidArnException:
+				fmt.Println(kms.ErrCodeInvalidArnException, aerr.Error())
+			case kms.ErrCodeDependencyTimeoutException:
+				fmt.Println(kms.ErrCodeDependencyTimeoutException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To get details about a multi-Region key
+//
+// The following example gets metadata for a multi-Region replica key. This multi-Region
+// key is a symmetric encryption key. DescribeKey returns information about the primary
+// key and all of its replicas.
+func ExampleKMS_DescribeKey_shared02() {
+	svc := kms.New(session.New())
+	input := &kms.DescribeKeyInput{
+		KeyId: aws.String("arn:aws:kms:ap-northeast-1:111122223333:key/mrk-1234abcd12ab34cd56ef1234567890ab"),
+	}
+
+	result, err := svc.DescribeKey(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeNotFoundException:
+				fmt.Println(kms.ErrCodeNotFoundException, aerr.Error())
+			case kms.ErrCodeInvalidArnException:
+				fmt.Println(kms.ErrCodeInvalidArnException, aerr.Error())
+			case kms.ErrCodeDependencyTimeoutException:
+				fmt.Println(kms.ErrCodeDependencyTimeoutException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To get details about an HMAC KMS key
+//
+// The following example gets the metadata of an HMAC KMS key.
+func ExampleKMS_DescribeKey_shared03() {
+	svc := kms.New(session.New())
+	input := &kms.DescribeKeyInput{
+		KeyId: aws.String("arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"),
 	}
 
 	result, err := svc.DescribeKey(input)
@@ -1083,7 +1241,7 @@ func ExampleKMS_GenerateDataKey_shared00() {
 //
 // This example generates an RSA data key pair for encryption and decryption. The operation
 // returns a plaintext public key and private key, and a copy of the private key that
-// is encrypted under a symmetric KMS key that you specify.
+// is encrypted under a symmetric encryption KMS key that you specify.
 func ExampleKMS_GenerateDataKeyPair_shared00() {
 	svc := kms.New(session.New())
 	input := &kms.GenerateDataKeyPairInput{
@@ -1130,8 +1288,8 @@ func ExampleKMS_GenerateDataKeyPair_shared00() {
 // To generate an asymmetric data key pair without a plaintext key
 //
 // This example returns an asymmetric elliptic curve (ECC) data key pair. The private
-// key is encrypted under the symmetric KMS key that you specify. This operation doesn't
-// return a plaintext (unencrypted) private key.
+// key is encrypted under the symmetric encryption KMS key that you specify. This operation
+// doesn't return a plaintext (unencrypted) private key.
 func ExampleKMS_GenerateDataKeyPairWithoutPlaintext_shared00() {
 	svc := kms.New(session.New())
 	input := &kms.GenerateDataKeyPairWithoutPlaintextInput{
@@ -1198,6 +1356,50 @@ func ExampleKMS_GenerateDataKeyWithoutPlaintext_shared00() {
 				fmt.Println(kms.ErrCodeKeyUnavailableException, aerr.Error())
 			case kms.ErrCodeDependencyTimeoutException:
 				fmt.Println(kms.ErrCodeDependencyTimeoutException, aerr.Error())
+			case kms.ErrCodeInvalidKeyUsageException:
+				fmt.Println(kms.ErrCodeInvalidKeyUsageException, aerr.Error())
+			case kms.ErrCodeInvalidGrantTokenException:
+				fmt.Println(kms.ErrCodeInvalidGrantTokenException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			case kms.ErrCodeInvalidStateException:
+				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To generate an HMAC for a message
+//
+// This example generates an HMAC for a message, an HMAC KMS key, and a MAC algorithm.
+// The algorithm must be supported by the specified HMAC KMS key.
+func ExampleKMS_GenerateMac_shared00() {
+	svc := kms.New(session.New())
+	input := &kms.GenerateMacInput{
+		KeyId:        aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
+		MacAlgorithm: aws.String("HMAC_SHA_384"),
+		Message:      []byte("Hello World"),
+	}
+
+	result, err := svc.GenerateMac(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeNotFoundException:
+				fmt.Println(kms.ErrCodeNotFoundException, aerr.Error())
+			case kms.ErrCodeDisabledException:
+				fmt.Println(kms.ErrCodeDisabledException, aerr.Error())
+			case kms.ErrCodeKeyUnavailableException:
+				fmt.Println(kms.ErrCodeKeyUnavailableException, aerr.Error())
 			case kms.ErrCodeInvalidKeyUsageException:
 				fmt.Println(kms.ErrCodeInvalidKeyUsageException, aerr.Error())
 			case kms.ErrCodeInvalidGrantTokenException:
@@ -2337,6 +2539,54 @@ func ExampleKMS_Verify_shared00() {
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
 			case kms.ErrCodeKMSInvalidSignatureException:
 				fmt.Println(kms.ErrCodeKMSInvalidSignatureException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To verify an HMAC
+//
+// This example verifies an HMAC for a particular message, HMAC KMS keys, and MAC algorithm.
+// A value of 'true' in the MacValid value in the response indicates that the HMAC is
+// valid.
+func ExampleKMS_VerifyMac_shared00() {
+	svc := kms.New(session.New())
+	input := &kms.VerifyMacInput{
+		KeyId:        aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
+		Mac:          []byte("<HMAC_TAG>"),
+		MacAlgorithm: aws.String("HMAC_SHA_384"),
+		Message:      []byte("Hello World"),
+	}
+
+	result, err := svc.VerifyMac(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeNotFoundException:
+				fmt.Println(kms.ErrCodeNotFoundException, aerr.Error())
+			case kms.ErrCodeDisabledException:
+				fmt.Println(kms.ErrCodeDisabledException, aerr.Error())
+			case kms.ErrCodeKeyUnavailableException:
+				fmt.Println(kms.ErrCodeKeyUnavailableException, aerr.Error())
+			case kms.ErrCodeInvalidKeyUsageException:
+				fmt.Println(kms.ErrCodeInvalidKeyUsageException, aerr.Error())
+			case kms.ErrCodeInvalidGrantTokenException:
+				fmt.Println(kms.ErrCodeInvalidGrantTokenException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			case kms.ErrCodeKMSInvalidMacException:
+				fmt.Println(kms.ErrCodeKMSInvalidMacException, aerr.Error())
+			case kms.ErrCodeInvalidStateException:
+				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
