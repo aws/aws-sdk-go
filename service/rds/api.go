@@ -18892,6 +18892,12 @@ type CreateDBClusterInput struct {
 	// Valid for: Aurora DB clusters only
 	ScalingConfiguration *ScalingConfiguration `type:"structure"`
 
+	// Contains the scaling configuration of an Aurora Serverless v2 DB cluster.
+	//
+	// For more information, see Using Amazon Aurora Serverless v2 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html)
+	// in the Amazon Aurora User Guide.
+	ServerlessV2ScalingConfiguration *ServerlessV2ScalingConfiguration `type:"structure"`
+
 	// SourceRegion is the source region where the resource exists. This is not
 	// sent over the wire and is only used for presigning. This value should always
 	// have the same region as the source ARN.
@@ -19203,6 +19209,12 @@ func (s *CreateDBClusterInput) SetReplicationSourceIdentifier(v string) *CreateD
 // SetScalingConfiguration sets the ScalingConfiguration field's value.
 func (s *CreateDBClusterInput) SetScalingConfiguration(v *ScalingConfiguration) *CreateDBClusterInput {
 	s.ScalingConfiguration = v
+	return s
+}
+
+// SetServerlessV2ScalingConfiguration sets the ServerlessV2ScalingConfiguration field's value.
+func (s *CreateDBClusterInput) SetServerlessV2ScalingConfiguration(v *ServerlessV2ScalingConfiguration) *CreateDBClusterInput {
+	s.ServerlessV2ScalingConfiguration = v
 	return s
 }
 
@@ -23216,6 +23228,12 @@ type DBCluster struct {
 	// in the Amazon Aurora User Guide.
 	ScalingConfigurationInfo *ScalingConfigurationInfo `type:"structure"`
 
+	// Shows the scaling configuration for an Aurora Serverless v2 DB cluster.
+	//
+	// For more information, see Using Amazon Aurora Serverless v2 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html)
+	// in the Amazon Aurora User Guide.
+	ServerlessV2ScalingConfiguration *ServerlessV2ScalingConfigurationInfo `type:"structure"`
+
 	// Specifies the current state of this DB cluster.
 	Status *string `type:"string"`
 
@@ -23622,6 +23640,12 @@ func (s *DBCluster) SetReplicationSourceIdentifier(v string) *DBCluster {
 // SetScalingConfigurationInfo sets the ScalingConfigurationInfo field's value.
 func (s *DBCluster) SetScalingConfigurationInfo(v *ScalingConfigurationInfo) *DBCluster {
 	s.ScalingConfigurationInfo = v
+	return s
+}
+
+// SetServerlessV2ScalingConfiguration sets the ServerlessV2ScalingConfiguration field's value.
+func (s *DBCluster) SetServerlessV2ScalingConfiguration(v *ServerlessV2ScalingConfigurationInfo) *DBCluster {
+	s.ServerlessV2ScalingConfiguration = v
 	return s
 }
 
@@ -37895,6 +37919,12 @@ type ModifyDBClusterInput struct {
 	// Valid for: Aurora DB clusters only
 	ScalingConfiguration *ScalingConfiguration `type:"structure"`
 
+	// Contains the scaling configuration of an Aurora Serverless v2 DB cluster.
+	//
+	// For more information, see Using Amazon Aurora Serverless v2 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html)
+	// in the Amazon Aurora User Guide.
+	ServerlessV2ScalingConfiguration *ServerlessV2ScalingConfiguration `type:"structure"`
+
 	// Specifies the storage type to be associated with the DB cluster.
 	//
 	// Valid values: io1
@@ -38132,6 +38162,12 @@ func (s *ModifyDBClusterInput) SetPreferredMaintenanceWindow(v string) *ModifyDB
 // SetScalingConfiguration sets the ScalingConfiguration field's value.
 func (s *ModifyDBClusterInput) SetScalingConfiguration(v *ScalingConfiguration) *ModifyDBClusterInput {
 	s.ScalingConfiguration = v
+	return s
+}
+
+// SetServerlessV2ScalingConfiguration sets the ServerlessV2ScalingConfiguration field's value.
+func (s *ModifyDBClusterInput) SetServerlessV2ScalingConfiguration(v *ServerlessV2ScalingConfiguration) *ModifyDBClusterInput {
+	s.ServerlessV2ScalingConfiguration = v
 	return s
 }
 
@@ -44219,6 +44255,12 @@ type RestoreDBClusterFromS3Input struct {
 	// the Amazon S3 bucket.
 	S3Prefix *string `type:"string"`
 
+	// Contains the scaling configuration of an Aurora Serverless v2 DB cluster.
+	//
+	// For more information, see Using Amazon Aurora Serverless v2 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html)
+	// in the Amazon Aurora User Guide.
+	ServerlessV2ScalingConfiguration *ServerlessV2ScalingConfiguration `type:"structure"`
+
 	// The identifier for the database engine that was backed up to create the files
 	// stored in the Amazon S3 bucket.
 	//
@@ -44452,6 +44494,12 @@ func (s *RestoreDBClusterFromS3Input) SetS3IngestionRoleArn(v string) *RestoreDB
 // SetS3Prefix sets the S3Prefix field's value.
 func (s *RestoreDBClusterFromS3Input) SetS3Prefix(v string) *RestoreDBClusterFromS3Input {
 	s.S3Prefix = &v
+	return s
+}
+
+// SetServerlessV2ScalingConfiguration sets the ServerlessV2ScalingConfiguration field's value.
+func (s *RestoreDBClusterFromS3Input) SetServerlessV2ScalingConfiguration(v *ServerlessV2ScalingConfiguration) *RestoreDBClusterFromS3Input {
+	s.ServerlessV2ScalingConfiguration = v
 	return s
 }
 
@@ -44846,6 +44894,12 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// Valid for: Aurora DB clusters only
 	ScalingConfiguration *ScalingConfiguration `type:"structure"`
 
+	// Contains the scaling configuration of an Aurora Serverless v2 DB cluster.
+	//
+	// For more information, see Using Amazon Aurora Serverless v2 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html)
+	// in the Amazon Aurora User Guide.
+	ServerlessV2ScalingConfiguration *ServerlessV2ScalingConfiguration `type:"structure"`
+
 	// The identifier for the DB snapshot or DB cluster snapshot to restore from.
 	//
 	// You can use either the name or the Amazon Resource Name (ARN) to specify
@@ -45050,6 +45104,12 @@ func (s *RestoreDBClusterFromSnapshotInput) SetPubliclyAccessible(v bool) *Resto
 // SetScalingConfiguration sets the ScalingConfiguration field's value.
 func (s *RestoreDBClusterFromSnapshotInput) SetScalingConfiguration(v *ScalingConfiguration) *RestoreDBClusterFromSnapshotInput {
 	s.ScalingConfiguration = v
+	return s
+}
+
+// SetServerlessV2ScalingConfiguration sets the ServerlessV2ScalingConfiguration field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetServerlessV2ScalingConfiguration(v *ServerlessV2ScalingConfiguration) *RestoreDBClusterFromSnapshotInput {
+	s.ServerlessV2ScalingConfiguration = v
 	return s
 }
 
@@ -45407,6 +45467,12 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// Valid for: Aurora DB clusters only
 	ScalingConfiguration *ScalingConfiguration `type:"structure"`
 
+	// Contains the scaling configuration of an Aurora Serverless v2 DB cluster.
+	//
+	// For more information, see Using Amazon Aurora Serverless v2 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html)
+	// in the Amazon Aurora User Guide.
+	ServerlessV2ScalingConfiguration *ServerlessV2ScalingConfiguration `type:"structure"`
+
 	// The identifier of the source DB cluster from which to restore.
 	//
 	// Constraints:
@@ -45600,6 +45666,12 @@ func (s *RestoreDBClusterToPointInTimeInput) SetRestoreType(v string) *RestoreDB
 // SetScalingConfiguration sets the ScalingConfiguration field's value.
 func (s *RestoreDBClusterToPointInTimeInput) SetScalingConfiguration(v *ScalingConfiguration) *RestoreDBClusterToPointInTimeInput {
 	s.ScalingConfiguration = v
+	return s
+}
+
+// SetServerlessV2ScalingConfiguration sets the ServerlessV2ScalingConfiguration field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetServerlessV2ScalingConfiguration(v *ServerlessV2ScalingConfiguration) *RestoreDBClusterToPointInTimeInput {
+	s.ServerlessV2ScalingConfiguration = v
 	return s
 }
 
@@ -47963,6 +48035,102 @@ func (s *ScalingConfigurationInfo) SetSecondsUntilAutoPause(v int64) *ScalingCon
 // SetTimeoutAction sets the TimeoutAction field's value.
 func (s *ScalingConfigurationInfo) SetTimeoutAction(v string) *ScalingConfigurationInfo {
 	s.TimeoutAction = &v
+	return s
+}
+
+// Contains the scaling configuration of an Aurora Serverless v2 DB cluster.
+//
+// For more information, see Using Amazon Aurora Serverless v2 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html)
+// in the Amazon Aurora User Guide.
+type ServerlessV2ScalingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of Aurora capacity units (ACUs) for a DB instance in an
+	// Aurora Serverless v2 cluster. You can specify ACU values in half-step increments,
+	// such as 40, 40.5, 41, and so on. The largest value that you can use is 128.
+	MaxCapacity *float64 `type:"double"`
+
+	// The minimum number of Aurora capacity units (ACUs) for a DB instance in an
+	// Aurora Serverless v2 cluster. You can specify ACU values in half-step increments,
+	// such as 8, 8.5, 9, and so on. The smallest value that you can use is 0.5.
+	MinCapacity *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerlessV2ScalingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerlessV2ScalingConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetMaxCapacity sets the MaxCapacity field's value.
+func (s *ServerlessV2ScalingConfiguration) SetMaxCapacity(v float64) *ServerlessV2ScalingConfiguration {
+	s.MaxCapacity = &v
+	return s
+}
+
+// SetMinCapacity sets the MinCapacity field's value.
+func (s *ServerlessV2ScalingConfiguration) SetMinCapacity(v float64) *ServerlessV2ScalingConfiguration {
+	s.MinCapacity = &v
+	return s
+}
+
+// Shows the scaling configuration for an Aurora Serverless v2 DB cluster.
+//
+// For more information, see Using Amazon Aurora Serverless v2 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html)
+// in the Amazon Aurora User Guide.
+type ServerlessV2ScalingConfigurationInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of Aurora capacity units (ACUs) for a DB instance in an
+	// Aurora Serverless v2 cluster. You can specify ACU values in half-step increments,
+	// such as 40, 40.5, 41, and so on. The largest value that you can use is 128.
+	MaxCapacity *float64 `type:"double"`
+
+	// The minimum number of Aurora capacity units (ACUs) for a DB instance in an
+	// Aurora Serverless v2 cluster. You can specify ACU values in half-step increments,
+	// such as 8, 8.5, 9, and so on. The smallest value that you can use is 0.5.
+	MinCapacity *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerlessV2ScalingConfigurationInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerlessV2ScalingConfigurationInfo) GoString() string {
+	return s.String()
+}
+
+// SetMaxCapacity sets the MaxCapacity field's value.
+func (s *ServerlessV2ScalingConfigurationInfo) SetMaxCapacity(v float64) *ServerlessV2ScalingConfigurationInfo {
+	s.MaxCapacity = &v
+	return s
+}
+
+// SetMinCapacity sets the MinCapacity field's value.
+func (s *ServerlessV2ScalingConfigurationInfo) SetMinCapacity(v float64) *ServerlessV2ScalingConfigurationInfo {
+	s.MinCapacity = &v
 	return s
 }
 

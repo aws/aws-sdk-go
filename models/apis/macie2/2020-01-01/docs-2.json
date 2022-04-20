@@ -250,7 +250,7 @@
       }
     },
     "ClassificationDetails" : {
-      "base" : "<p>Provides information about a sensitive data finding, including the classification job that produced the finding.</p>",
+      "base" : "<p>Provides information about a sensitive data finding and the details of the finding.</p>",
       "refs" : {
         "Finding$ClassificationDetails" : "<p>The details of a sensitive data finding. This value is null for a policy finding.</p>"
       }
@@ -710,7 +710,7 @@
       }
     },
     "JobComparator" : {
-      "base" : "<p>The operator to use in a condition. Valid values are:</p>",
+      "base" : "<p>The operator to use in a condition. Depending on the type of condition, possible values are:</p>",
       "refs" : {
         "ListJobsFilterTerm$Comparator" : "<p>The operator to use to filter the results.</p>",
         "SimpleCriterionForJob$Comparator" : "<p>The operator to use in the condition. Valid values are EQ (equals) and NE (not equals).</p>",
@@ -959,6 +959,12 @@
         "UsageStatisticsSortBy$OrderBy" : "<p>The sort order to apply to the results, based on the value for the field specified by the key property. Valid values are: ASC, sort the results in ascending order; and, DESC, sort the results in descending order.</p>"
       }
     },
+    "OriginType" : {
+      "base" : "<p>Specifies how Amazon Macie found the sensitive data that produced a finding. The only possible value is:</p>",
+      "refs" : {
+        "ClassificationDetails$OriginType" : "<p>Specifies how Amazon Macie found the sensitive data that produced the finding: SENSITIVE_DATA_DISCOVERY_JOB, for a classification job.</p>"
+      }
+    },
     "Page" : {
       "base" : "<p>Specifies the location of an occurrence of sensitive data in an Adobe Portable Document Format file.</p>",
       "refs" : {
@@ -998,7 +1004,7 @@
       }
     },
     "Ranges" : {
-      "base" : null,
+      "base" : "<p>Specifies the locations of occurrences of sensitive data in a non-binary text file.</p>",
       "refs" : {
         "Occurrences$LineRanges" : "<p>An array of objects, one for each occurrence of sensitive data in a non-binary text file, such as an HTML, TXT, or XML file. Each Range object specifies a line or inclusive range of lines that contains the sensitive data, and the position of the data on the specified line or lines.</p> <p>This value is often null for file types that are supported by Cell, Page, or Record objects. Exceptions are the location of sensitive data in: unstructured sections of an otherwise structured file, such as a comment in a file; a malformed file that Amazon Macie analyzes as plain text; and, a CSV or TSV file that has any column names that contain sensitive data.</p>",
         "Occurrences$OffsetRanges" : " <p>Reserved for future use.</p>"
@@ -1011,7 +1017,7 @@
       }
     },
     "Records" : {
-      "base" : null,
+      "base" : "<p>Specifies the locations of occurrences of sensitive data in an Apache Avro object container or a structured data file.</p>",
       "refs" : {
         "Occurrences$Records" : "<p>An array of objects, one for each occurrence of sensitive data in an Apache Avro object container, Apache Parquet file, JSON file, or JSON Lines file. This value is null for all other types of files.</p> <p>For an Avro object container or Parquet file, each Record object specifies a record index and the path to a field in a record that contains the sensitive data. For a JSON or JSON Lines file, each Record object specifies the path to a field or array that contains the sensitive data. For a JSON Lines file, it also specifies the index of the line that contains the data.</p>"
       }
@@ -1757,7 +1763,7 @@
         "DescribeClassificationJobResponse$ManagedDataIdentifierIds" : "<p>An array of unique identifiers, one for each managed data identifier that the job is explicitly configured to include (use) or exclude (not use) when it analyzes data. Inclusion or exclusion depends on the managed data identifier selection type specified for the job (managedDataIdentifierSelector). This value is null if the job's managed data identifier selection type is ALL or the job uses only custom data identifiers (customDataIdentifierIds) to analyze data.</p>",
         "GetCustomDataIdentifierResponse$IgnoreWords" : "<p>An array that lists specific character sequences (<i>ignore words</i>) to exclude from the results. If the text matched by the regular expression contains any string in this array, Amazon Macie ignores it. Ignore words are case sensitive.</p>",
         "GetCustomDataIdentifierResponse$Keywords" : "<p>An array that lists specific character sequences (<i>keywords</i>), one of which must be within proximity (maximumMatchDistance) of the regular expression to match. Keywords aren't case sensitive.</p>",
-        "GetFindingsRequest$FindingIds" : "<p>An array of strings that lists the unique identifiers for the findings to retrieve.</p>",
+        "GetFindingsRequest$FindingIds" : "<p>An array of strings that lists the unique identifiers for the findings to retrieve. You can specify as many as 50 unique identifiers in this array.</p>",
         "ListFindingsResponse$FindingIds" : "<p>An array of strings, where each string is the unique identifier for a finding that meets the filter criteria specified in the request.</p>",
         "ListJobsFilterTerm$Values" : "<p>An array that lists one or more values to use to filter the results.</p>",
         "ReplicationDetails$ReplicationAccounts" : "<p>An array of Amazon Web Services account IDs, one for each Amazon Web Services account that the bucket is configured to replicate one or more objects to.</p>",

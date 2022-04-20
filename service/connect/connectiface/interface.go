@@ -84,6 +84,10 @@ type ConnectAPI interface {
 	AssociateLexBotWithContext(aws.Context, *connect.AssociateLexBotInput, ...request.Option) (*connect.AssociateLexBotOutput, error)
 	AssociateLexBotRequest(*connect.AssociateLexBotInput) (*request.Request, *connect.AssociateLexBotOutput)
 
+	AssociatePhoneNumberContactFlow(*connect.AssociatePhoneNumberContactFlowInput) (*connect.AssociatePhoneNumberContactFlowOutput, error)
+	AssociatePhoneNumberContactFlowWithContext(aws.Context, *connect.AssociatePhoneNumberContactFlowInput, ...request.Option) (*connect.AssociatePhoneNumberContactFlowOutput, error)
+	AssociatePhoneNumberContactFlowRequest(*connect.AssociatePhoneNumberContactFlowInput) (*request.Request, *connect.AssociatePhoneNumberContactFlowOutput)
+
 	AssociateQueueQuickConnects(*connect.AssociateQueueQuickConnectsInput) (*connect.AssociateQueueQuickConnectsOutput, error)
 	AssociateQueueQuickConnectsWithContext(aws.Context, *connect.AssociateQueueQuickConnectsInput, ...request.Option) (*connect.AssociateQueueQuickConnectsOutput, error)
 	AssociateQueueQuickConnectsRequest(*connect.AssociateQueueQuickConnectsInput) (*request.Request, *connect.AssociateQueueQuickConnectsOutput)
@@ -95,6 +99,10 @@ type ConnectAPI interface {
 	AssociateSecurityKey(*connect.AssociateSecurityKeyInput) (*connect.AssociateSecurityKeyOutput, error)
 	AssociateSecurityKeyWithContext(aws.Context, *connect.AssociateSecurityKeyInput, ...request.Option) (*connect.AssociateSecurityKeyOutput, error)
 	AssociateSecurityKeyRequest(*connect.AssociateSecurityKeyInput) (*request.Request, *connect.AssociateSecurityKeyOutput)
+
+	ClaimPhoneNumber(*connect.ClaimPhoneNumberInput) (*connect.ClaimPhoneNumberOutput, error)
+	ClaimPhoneNumberWithContext(aws.Context, *connect.ClaimPhoneNumberInput, ...request.Option) (*connect.ClaimPhoneNumberOutput, error)
+	ClaimPhoneNumberRequest(*connect.ClaimPhoneNumberInput) (*request.Request, *connect.ClaimPhoneNumberOutput)
 
 	CreateAgentStatus(*connect.CreateAgentStatusInput) (*connect.CreateAgentStatusOutput, error)
 	CreateAgentStatusWithContext(aws.Context, *connect.CreateAgentStatusInput, ...request.Option) (*connect.CreateAgentStatusOutput, error)
@@ -228,6 +236,10 @@ type ConnectAPI interface {
 	DescribeInstanceStorageConfigWithContext(aws.Context, *connect.DescribeInstanceStorageConfigInput, ...request.Option) (*connect.DescribeInstanceStorageConfigOutput, error)
 	DescribeInstanceStorageConfigRequest(*connect.DescribeInstanceStorageConfigInput) (*request.Request, *connect.DescribeInstanceStorageConfigOutput)
 
+	DescribePhoneNumber(*connect.DescribePhoneNumberInput) (*connect.DescribePhoneNumberOutput, error)
+	DescribePhoneNumberWithContext(aws.Context, *connect.DescribePhoneNumberInput, ...request.Option) (*connect.DescribePhoneNumberOutput, error)
+	DescribePhoneNumberRequest(*connect.DescribePhoneNumberInput) (*request.Request, *connect.DescribePhoneNumberOutput)
+
 	DescribeQueue(*connect.DescribeQueueInput) (*connect.DescribeQueueOutput, error)
 	DescribeQueueWithContext(aws.Context, *connect.DescribeQueueInput, ...request.Option) (*connect.DescribeQueueOutput, error)
 	DescribeQueueRequest(*connect.DescribeQueueInput) (*request.Request, *connect.DescribeQueueOutput)
@@ -279,6 +291,10 @@ type ConnectAPI interface {
 	DisassociateLexBot(*connect.DisassociateLexBotInput) (*connect.DisassociateLexBotOutput, error)
 	DisassociateLexBotWithContext(aws.Context, *connect.DisassociateLexBotInput, ...request.Option) (*connect.DisassociateLexBotOutput, error)
 	DisassociateLexBotRequest(*connect.DisassociateLexBotInput) (*request.Request, *connect.DisassociateLexBotOutput)
+
+	DisassociatePhoneNumberContactFlow(*connect.DisassociatePhoneNumberContactFlowInput) (*connect.DisassociatePhoneNumberContactFlowOutput, error)
+	DisassociatePhoneNumberContactFlowWithContext(aws.Context, *connect.DisassociatePhoneNumberContactFlowInput, ...request.Option) (*connect.DisassociatePhoneNumberContactFlowOutput, error)
+	DisassociatePhoneNumberContactFlowRequest(*connect.DisassociatePhoneNumberContactFlowInput) (*request.Request, *connect.DisassociatePhoneNumberContactFlowOutput)
 
 	DisassociateQueueQuickConnects(*connect.DisassociateQueueQuickConnectsInput) (*connect.DisassociateQueueQuickConnectsOutput, error)
 	DisassociateQueueQuickConnectsWithContext(aws.Context, *connect.DisassociateQueueQuickConnectsInput, ...request.Option) (*connect.DisassociateQueueQuickConnectsOutput, error)
@@ -419,6 +435,13 @@ type ConnectAPI interface {
 	ListPhoneNumbersPages(*connect.ListPhoneNumbersInput, func(*connect.ListPhoneNumbersOutput, bool) bool) error
 	ListPhoneNumbersPagesWithContext(aws.Context, *connect.ListPhoneNumbersInput, func(*connect.ListPhoneNumbersOutput, bool) bool, ...request.Option) error
 
+	ListPhoneNumbersV2(*connect.ListPhoneNumbersV2Input) (*connect.ListPhoneNumbersV2Output, error)
+	ListPhoneNumbersV2WithContext(aws.Context, *connect.ListPhoneNumbersV2Input, ...request.Option) (*connect.ListPhoneNumbersV2Output, error)
+	ListPhoneNumbersV2Request(*connect.ListPhoneNumbersV2Input) (*request.Request, *connect.ListPhoneNumbersV2Output)
+
+	ListPhoneNumbersV2Pages(*connect.ListPhoneNumbersV2Input, func(*connect.ListPhoneNumbersV2Output, bool) bool) error
+	ListPhoneNumbersV2PagesWithContext(aws.Context, *connect.ListPhoneNumbersV2Input, func(*connect.ListPhoneNumbersV2Output, bool) bool, ...request.Option) error
+
 	ListPrompts(*connect.ListPromptsInput) (*connect.ListPromptsOutput, error)
 	ListPromptsWithContext(aws.Context, *connect.ListPromptsInput, ...request.Option) (*connect.ListPromptsOutput, error)
 	ListPromptsRequest(*connect.ListPromptsInput) (*request.Request, *connect.ListPromptsOutput)
@@ -507,9 +530,20 @@ type ConnectAPI interface {
 	ListUsersPages(*connect.ListUsersInput, func(*connect.ListUsersOutput, bool) bool) error
 	ListUsersPagesWithContext(aws.Context, *connect.ListUsersInput, func(*connect.ListUsersOutput, bool) bool, ...request.Option) error
 
+	ReleasePhoneNumber(*connect.ReleasePhoneNumberInput) (*connect.ReleasePhoneNumberOutput, error)
+	ReleasePhoneNumberWithContext(aws.Context, *connect.ReleasePhoneNumberInput, ...request.Option) (*connect.ReleasePhoneNumberOutput, error)
+	ReleasePhoneNumberRequest(*connect.ReleasePhoneNumberInput) (*request.Request, *connect.ReleasePhoneNumberOutput)
+
 	ResumeContactRecording(*connect.ResumeContactRecordingInput) (*connect.ResumeContactRecordingOutput, error)
 	ResumeContactRecordingWithContext(aws.Context, *connect.ResumeContactRecordingInput, ...request.Option) (*connect.ResumeContactRecordingOutput, error)
 	ResumeContactRecordingRequest(*connect.ResumeContactRecordingInput) (*request.Request, *connect.ResumeContactRecordingOutput)
+
+	SearchAvailablePhoneNumbers(*connect.SearchAvailablePhoneNumbersInput) (*connect.SearchAvailablePhoneNumbersOutput, error)
+	SearchAvailablePhoneNumbersWithContext(aws.Context, *connect.SearchAvailablePhoneNumbersInput, ...request.Option) (*connect.SearchAvailablePhoneNumbersOutput, error)
+	SearchAvailablePhoneNumbersRequest(*connect.SearchAvailablePhoneNumbersInput) (*request.Request, *connect.SearchAvailablePhoneNumbersOutput)
+
+	SearchAvailablePhoneNumbersPages(*connect.SearchAvailablePhoneNumbersInput, func(*connect.SearchAvailablePhoneNumbersOutput, bool) bool) error
+	SearchAvailablePhoneNumbersPagesWithContext(aws.Context, *connect.SearchAvailablePhoneNumbersInput, func(*connect.SearchAvailablePhoneNumbersOutput, bool) bool, ...request.Option) error
 
 	SearchVocabularies(*connect.SearchVocabulariesInput) (*connect.SearchVocabulariesOutput, error)
 	SearchVocabulariesWithContext(aws.Context, *connect.SearchVocabulariesInput, ...request.Option) (*connect.SearchVocabulariesOutput, error)
@@ -609,6 +643,10 @@ type ConnectAPI interface {
 	UpdateInstanceStorageConfig(*connect.UpdateInstanceStorageConfigInput) (*connect.UpdateInstanceStorageConfigOutput, error)
 	UpdateInstanceStorageConfigWithContext(aws.Context, *connect.UpdateInstanceStorageConfigInput, ...request.Option) (*connect.UpdateInstanceStorageConfigOutput, error)
 	UpdateInstanceStorageConfigRequest(*connect.UpdateInstanceStorageConfigInput) (*request.Request, *connect.UpdateInstanceStorageConfigOutput)
+
+	UpdatePhoneNumber(*connect.UpdatePhoneNumberInput) (*connect.UpdatePhoneNumberOutput, error)
+	UpdatePhoneNumberWithContext(aws.Context, *connect.UpdatePhoneNumberInput, ...request.Option) (*connect.UpdatePhoneNumberOutput, error)
+	UpdatePhoneNumberRequest(*connect.UpdatePhoneNumberInput) (*request.Request, *connect.UpdatePhoneNumberOutput)
 
 	UpdateQueueHoursOfOperation(*connect.UpdateQueueHoursOfOperationInput) (*connect.UpdateQueueHoursOfOperationOutput, error)
 	UpdateQueueHoursOfOperationWithContext(aws.Context, *connect.UpdateQueueHoursOfOperationInput, ...request.Option) (*connect.UpdateQueueHoursOfOperationOutput, error)

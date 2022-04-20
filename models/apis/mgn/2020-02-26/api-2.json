@@ -760,7 +760,6 @@
     },
     "DescribeJobsRequest":{
       "type":"structure",
-      "required":["filters"],
       "members":{
         "filters":{"shape":"DescribeJobsRequestFilters"},
         "maxResults":{"shape":"StrictlyPositiveInteger"},
@@ -790,7 +789,6 @@
     },
     "DescribeReplicationConfigurationTemplatesRequest":{
       "type":"structure",
-      "required":["replicationConfigurationTemplateIDs"],
       "members":{
         "maxResults":{"shape":"StrictlyPositiveInteger"},
         "nextToken":{"shape":"PaginationToken"},
@@ -806,7 +804,6 @@
     },
     "DescribeSourceServersRequest":{
       "type":"structure",
-      "required":["filters"],
       "members":{
         "filters":{"shape":"DescribeSourceServersRequestFilters"},
         "maxResults":{"shape":"StrictlyPositiveInteger"},
@@ -1414,6 +1411,7 @@
         "code":{"shape":"LargeBoundedString"},
         "message":{"shape":"LargeBoundedString"},
         "quotaCode":{"shape":"LargeBoundedString"},
+        "quotaValue":{"shape":"StrictlyPositiveInteger"},
         "resourceId":{"shape":"LargeBoundedString"},
         "resourceType":{"shape":"LargeBoundedString"},
         "serviceCode":{"shape":"LargeBoundedString"}

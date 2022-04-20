@@ -8,9 +8,11 @@
     "AssociateInstanceStorageConfig": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Associates a storage resource type for the first time. You can only associate one type of storage configuration in a single call. This means, for example, that you can't define an instance with multiple S3 buckets for storing chat transcripts.</p> <p>This API does not create a resource that doesn't exist. It only associates it to the instance. Ensure that the resource being specified in the storage configuration, like an S3 bucket, exists when being used for association.</p>",
     "AssociateLambdaFunction": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Allows the specified Amazon Connect instance to access the specified Lambda function.</p>",
     "AssociateLexBot": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Allows the specified Amazon Connect instance to access the specified Amazon Lex bot.</p>",
+    "AssociatePhoneNumberContactFlow": "<p>Associates a contact flow with a phone number claimed to your Amazon Connect instance.</p>",
     "AssociateQueueQuickConnects": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Associates a set of quick connects with a queue.</p>",
     "AssociateRoutingProfileQueues": "<p>Associates a set of queues with a routing profile.</p>",
     "AssociateSecurityKey": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Associates a security key to the instance.</p>",
+    "ClaimPhoneNumber": "<p>Claims an available phone number to your Amazon Connect instance.</p>",
     "CreateAgentStatus": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates an agent status for the specified Amazon Connect instance.</p>",
     "CreateContactFlow": "<p>Creates a contact flow for the specified Amazon Connect instance.</p> <p>You can also create and update contact flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p>",
     "CreateContactFlowModule": "<p>Creates a contact flow module for the specified Amazon Connect instance. </p>",
@@ -44,6 +46,7 @@
     "DescribeInstance": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns the current state of the specified instance identifier. It tracks the instance while it is being created and returns an error status, if applicable. </p> <p>If an instance is not created successfully, the instance status reason field returns details relevant to the reason. The instance in a failed state is returned only for 24 hours after the CreateInstance API was invoked.</p>",
     "DescribeInstanceAttribute": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes the specified instance attribute.</p>",
     "DescribeInstanceStorageConfig": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Retrieves the current storage configurations for the specified resource type, association ID, and instance ID.</p>",
+    "DescribePhoneNumber": "<p>Gets details and status of a phone number that’s claimed to your Amazon Connect instance</p>",
     "DescribeQueue": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes the specified queue.</p>",
     "DescribeQuickConnect": "<p>Describes the quick connect.</p>",
     "DescribeRoutingProfile": "<p>Describes the specified routing profile.</p>",
@@ -57,6 +60,7 @@
     "DisassociateInstanceStorageConfig": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Removes the storage type configurations for the specified resource type and association ID.</p>",
     "DisassociateLambdaFunction": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Remove the Lambda function from the dropdown options available in the relevant contact flow blocks.</p>",
     "DisassociateLexBot": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Revokes authorization from the specified instance to access the specified Amazon Lex bot.</p>",
+    "DisassociatePhoneNumberContactFlow": "<p>Removes the contact flow association from a phone number claimed to your Amazon Connect instance, if a contact flow association exists.</p>",
     "DisassociateQueueQuickConnects": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Disassociates a set of quick connects from a queue.</p>",
     "DisassociateRoutingProfileQueues": "<p>Disassociates a set of queues from a routing profile.</p>",
     "DisassociateSecurityKey": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Deletes the specified security key.</p>",
@@ -79,6 +83,7 @@
     "ListLambdaFunctions": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of all Lambda functions that display in the dropdown options in the relevant contact flow blocks.</p>",
     "ListLexBots": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of all the Amazon Lex bots currently associated with the instance.</p>",
     "ListPhoneNumbers": "<p>Provides information about the phone numbers for the specified Amazon Connect instance. </p> <p>For more information about phone numbers, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html\">Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
+    "ListPhoneNumbersV2": "<p>Lists phone numbers claimed to your Amazon Connect instance. </p> <p>For more information about phone numbers, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html\">Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListPrompts": "<p>Provides information about the prompts for the specified Amazon Connect instance.</p>",
     "ListQueueQuickConnects": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Lists the quick connects associated with a queue.</p>",
     "ListQueues": "<p>Provides information about the queues for the specified Amazon Connect instance.</p> <p>If you do not specify a <code>QueueTypes</code> parameter, both standard and agent queues are returned. This might cause an unexpected truncation of results if you have more than 1000 agents and you limit the number of results of the API call in code.</p> <p>For more information about queues, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-queues-standard-and-agent.html\">Queues: Standard and Agent</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
@@ -92,7 +97,9 @@
     "ListUseCases": "<p>Lists the use cases for the integration association. </p>",
     "ListUserHierarchyGroups": "<p>Provides summary information about the hierarchy groups for the specified Amazon Connect instance.</p> <p>For more information about agent hierarchies, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/agent-hierarchy.html\">Set Up Agent Hierarchies</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListUsers": "<p>Provides summary information about the users for the specified Amazon Connect instance.</p>",
+    "ReleasePhoneNumber": "<p>Releases a phone number previously claimed to an Amazon Connect instance.</p>",
     "ResumeContactRecording": "<p>When a contact is being recorded, and the recording has been suspended using SuspendContactRecording, this API resumes recording the call.</p> <p>Only voice recordings are supported at this time.</p>",
+    "SearchAvailablePhoneNumbers": "<p>Searches for available phone numbers that you can claim to your Amazon Connect instance.</p>",
     "SearchVocabularies": "<p>Searches for vocabularies within a specific Amazon Connect instance using <code>State</code>, <code>NameStartsWith</code>, and <code>LanguageCode</code>.</p>",
     "StartChatContact": "<p>Initiates a contact flow to start a new chat for the customer. Response of this API provides a token required to obtain credentials from the <a href=\"https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html\">CreateParticipantConnection</a> API in the Amazon Connect Participant Service.</p> <p>When a new chat contact is successfully created, clients must subscribe to the participant’s connection for the created chat within 5 minutes. This is achieved by invoking <a href=\"https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html\">CreateParticipantConnection</a> with WEBSOCKET and CONNECTION_CREDENTIALS. </p> <p>A 429 error occurs in the following situations:</p> <ul> <li> <p>API rate limit is exceeded. API TPS throttling returns a <code>TooManyRequests</code> exception.</p> </li> <li> <p>The <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html\">quota for concurrent active chats</a> is exceeded. Active chat throttling returns a <code>LimitExceededException</code>.</p> </li> </ul> <p>If you use the <code>ChatDurationInMinutes</code> parameter and receive a 400 error, your account may not support the ability to configure custom chat durations. For more information, contact Amazon Web Services Support. </p> <p>For more information about chat, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/chat.html\">Chat</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "StartContactRecording": "<p>Starts recording the contact: </p> <ul> <li> <p>If the API is called <i>before</i> the agent joins the call, recording starts when the agent joins the call.</p> </li> <li> <p>If the API is called <i>after</i> the agent joins the call, recording starts at the time of the API call.</p> </li> </ul> <p>StartContactRecording is a one-time action. For example, if you use StopContactRecording to stop recording an ongoing call, you can't use StartContactRecording to restart it. For scenarios where the recording has started and you want to suspend and resume it, such as when collecting sensitive information (for example, a credit card number), use SuspendContactRecording and ResumeContactRecording.</p> <p>You can use this API to override the recording behavior configured in the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/set-recording-behavior.html\">Set recording behavior</a> block.</p> <p>Only voice recordings are supported at this time.</p>",
@@ -103,7 +110,7 @@
     "StopContactRecording": "<p>Stops recording a call when a contact is being recorded. StopContactRecording is a one-time action. If you use StopContactRecording to stop recording an ongoing call, you can't use StartContactRecording to restart it. For scenarios where the recording has started and you want to suspend it for sensitive information (for example, to collect a credit card number), and then restart it, use SuspendContactRecording and ResumeContactRecording.</p> <p>Only voice recordings are supported at this time.</p>",
     "StopContactStreaming": "<p> Ends message streaming on a specified contact. To restart message streaming on that contact, call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_StartContactStreaming.html\">StartContactStreaming</a> API. </p>",
     "SuspendContactRecording": "<p>When a contact is being recorded, this API suspends recording the call. For example, you might suspend the call recording while collecting sensitive information, such as a credit card number. Then use ResumeContactRecording to restart recording. </p> <p>The period of time that the recording is suspended is filled with silence in the final recording. </p> <p>Only voice recordings are supported at this time.</p>",
-    "TagResource": "<p>Adds the specified tags to the specified resource.</p> <p>The supported resource types are users, routing profiles, queues, quick connects, contact flows, agent status, and hours of operation.</p> <p>For sample policies that use tags, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html\">Amazon Connect Identity-Based Policy Examples</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
+    "TagResource": "<p>Adds the specified tags to the specified resource.</p> <p>The supported resource types are users, routing profiles, queues, quick connects, contact flows, agent status, hours of operation, and phone number.</p> <p>For sample policies that use tags, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html\">Amazon Connect Identity-Based Policy Examples</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "UntagResource": "<p>Removes the specified tags from the specified resource.</p>",
     "UpdateAgentStatus": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates agent status.</p>",
     "UpdateContact": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Adds or updates user-defined contact information associated with the specified contact. At least one field to be updated must be present in the request.</p> <important> <p>You can add or update user-defined contact information for both ongoing and completed contacts.</p> </important>",
@@ -117,6 +124,7 @@
     "UpdateHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the hours of operation.</p>",
     "UpdateInstanceAttribute": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the value for the specified attribute type.</p>",
     "UpdateInstanceStorageConfig": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates an existing configuration for a resource type. This API is idempotent.</p>",
+    "UpdatePhoneNumber": "<p>Updates your claimed phone number from its current Amazon Connect instance to another Amazon Connect instance in the same Region.</p>",
     "UpdateQueueHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the hours of operation for the specified queue.</p>",
     "UpdateQueueMaxContacts": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the maximum number of contacts allowed in a queue before it is considered full.</p>",
     "UpdateQueueName": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the name and description of a queue. At least <code>Name</code> or <code>Description</code> must be provided.</p>",
@@ -143,6 +151,10 @@
       "refs": {
         "AgentStatus$AgentStatusARN": "<p>The Amazon Resource Name (ARN) of the agent status.</p>",
         "AgentStatusSummary$Arn": "<p>The Amazon Resource Name (ARN) for the agent status.</p>",
+        "ClaimPhoneNumberRequest$TargetArn": "<p>The Amazon Resource Name (ARN) for Amazon Connect instances that phone numbers are claimed to.</p>",
+        "ClaimPhoneNumberResponse$PhoneNumberArn": "<p>The Amazon Resource Name (ARN) of the phone number.</p>",
+        "ClaimedPhoneNumberSummary$PhoneNumberArn": "<p>The Amazon Resource Name (ARN) of the phone number.</p>",
+        "ClaimedPhoneNumberSummary$TargetArn": "<p>The Amazon Resource Name (ARN) for Amazon Connect instances that phone numbers are claimed to.</p>",
         "Contact$Arn": "<p>The Amazon Resource Name (ARN) for the contact.</p>",
         "ContactFlow$Arn": "<p>The Amazon Resource Name (ARN) of the contact flow.</p>",
         "ContactFlowModule$Arn": "<p>The Amazon Resource Name (ARN).</p>",
@@ -177,6 +189,9 @@
         "IntegrationAssociationSummary$IntegrationArn": "<p>The Amazon Resource Name (ARN) for the AppIntegration.</p>",
         "KinesisFirehoseConfig$FirehoseArn": "<p>The Amazon Resource Name (ARN) of the delivery stream.</p>",
         "KinesisStreamConfig$StreamArn": "<p>The Amazon Resource Name (ARN) of the data stream.</p>",
+        "ListPhoneNumbersSummary$PhoneNumberArn": "<p>The Amazon Resource Name (ARN) of the phone number.</p>",
+        "ListPhoneNumbersSummary$TargetArn": "<p>The Amazon Resource Name (ARN) for Amazon Connect instances that phone numbers are claimed to.</p>",
+        "ListPhoneNumbersV2Request$TargetArn": "<p>The Amazon Resource Name (ARN) for Amazon Connect instances that phone numbers are claimed to. If <code>TargetArn</code> input is not provided, this API lists numbers claimed to all the Amazon Connect instances belonging to your account.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "PhoneNumberSummary$Arn": "<p>The Amazon Resource Name (ARN) of the phone number.</p>",
         "PromptSummary$Arn": "<p>The Amazon Resource Name (ARN) of the prompt.</p>",
@@ -189,10 +204,13 @@
         "RoutingProfile$RoutingProfileArn": "<p>The Amazon Resource Name (ARN) of the routing profile.</p>",
         "RoutingProfileQueueConfigSummary$QueueArn": "<p>The Amazon Resource Name (ARN) of the queue.</p>",
         "RoutingProfileSummary$Arn": "<p>The Amazon Resource Name (ARN) of the routing profile.</p>",
+        "SearchAvailablePhoneNumbersRequest$TargetArn": "<p>The Amazon Resource Name (ARN) for Amazon Connect instances that phone numbers are claimed to.</p>",
         "SecurityProfile$Arn": "<p>The Amazon Resource Name (ARN) for the secruity profile.</p>",
         "SecurityProfileSummary$Arn": "<p>The Amazon Resource Name (ARN) of the security profile.</p>",
         "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "UpdatePhoneNumberRequest$TargetArn": "<p>The Amazon Resource Name (ARN) for Amazon Connect instances that phone numbers are claimed to.</p>",
+        "UpdatePhoneNumberResponse$PhoneNumberArn": "<p>The Amazon Resource Name (ARN) of the phone number.</p>",
         "UseCase$UseCaseArn": "<p>The Amazon Resource Name (ARN) for the use case.</p>",
         "User$Arn": "<p>The Amazon Resource Name (ARN) of the user account.</p>",
         "UserSummary$Arn": "<p>The Amazon Resource Name (ARN) of the user account.</p>",
@@ -369,6 +387,11 @@
       "refs": {
       }
     },
+    "AssociatePhoneNumberContactFlowRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "AssociateQueueQuickConnectsRequest": {
       "base": null,
       "refs": {
@@ -447,6 +470,18 @@
       "base": null,
       "refs": {
         "UserPhoneConfig$AutoAccept": "<p>The Auto accept setting.</p>"
+      }
+    },
+    "AvailableNumberSummary": {
+      "base": "<p>Information about available phone numbers.</p>",
+      "refs": {
+        "AvailableNumbersList$member": null
+      }
+    },
+    "AvailableNumbersList": {
+      "base": null,
+      "refs": {
+        "SearchAvailablePhoneNumbersResponse$AvailableNumbersList": "<p>A list of available phone numbers that you can claim for your Amazon Connect instance.</p>"
       }
     },
     "Boolean": {
@@ -529,16 +564,35 @@
         "ChatStreamingConfiguration$StreamingEndpointArn": "<p>The Amazon Resource Name (ARN) of the standard Amazon SNS topic. The Amazon Resource Name (ARN) of the streaming endpoint that is used to publish real-time message streaming for chat conversations.</p>"
       }
     },
+    "ClaimPhoneNumberRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ClaimPhoneNumberResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ClaimedPhoneNumberSummary": {
+      "base": "<p>Information about a phone number that has been claimed to your Amazon Connect instance.</p>",
+      "refs": {
+        "DescribePhoneNumberResponse$ClaimedPhoneNumberSummary": "<p>Information about a phone number that's been claimed to your Amazon Connect instance. </p>"
+      }
+    },
     "ClientToken": {
       "base": null,
       "refs": {
+        "ClaimPhoneNumberRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "CreateContactFlowModuleRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "CreateInstanceRequest$ClientToken": "<p>The idempotency token.</p>",
         "CreateVocabularyRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If a create request is received more than once with same client token, subsequent requests return the previous response without creating a vocabulary again.</p>",
+        "ReleasePhoneNumberRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "StartChatContactRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "StartContactStreamingRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "StartOutboundVoiceContactRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. The token is valid for 7 days after creation. If a contact is already started, the contact ID is returned. </p>",
-        "StartTaskContactRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>"
+        "StartTaskContactRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "UpdatePhoneNumberRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>"
       }
     },
     "CommonNameLength127": {
@@ -596,6 +650,7 @@
     "ContactFlowId": {
       "base": null,
       "refs": {
+        "AssociatePhoneNumberContactFlowRequest$ContactFlowId": "<p>The identifier of the contact flow.</p>",
         "ContactFlow$Id": "<p>The identifier of the contact flow.</p>",
         "ContactFlowSummary$Id": "<p>The identifier of the contact flow.</p>",
         "CreateContactFlowResponse$ContactFlowId": "<p>The identifier of the contact flow.</p>",
@@ -1132,6 +1187,16 @@
       "refs": {
       }
     },
+    "DescribePhoneNumberRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribePhoneNumberResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeQueueRequest": {
       "base": null,
       "refs": {
@@ -1282,6 +1347,11 @@
       }
     },
     "DisassociateLexBotRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociatePhoneNumberContactFlowRequest": {
       "base": null,
       "refs": {
       }
@@ -1674,6 +1744,7 @@
         "AssociateInstanceStorageConfigRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "AssociateLambdaFunctionRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "AssociateLexBotRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "AssociatePhoneNumberContactFlowRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "AssociateQueueQuickConnectsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "AssociateRoutingProfileQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "AssociateSecurityKeyRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
@@ -1724,6 +1795,7 @@
         "DisassociateInstanceStorageConfigRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DisassociateLambdaFunctionRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance..</p>",
         "DisassociateLexBotRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "DisassociatePhoneNumberContactFlowRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DisassociateQueueQuickConnectsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DisassociateRoutingProfileQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DisassociateSecurityKeyRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
@@ -1936,6 +2008,15 @@
         "InstanceStorageConfig$KinesisVideoStreamConfig": "<p>The configuration of the Kinesis video stream.</p>"
       }
     },
+    "LargeNextToken": {
+      "base": null,
+      "refs": {
+        "ListPhoneNumbersV2Request$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListPhoneNumbersV2Response$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "SearchAvailablePhoneNumbersRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "SearchAvailablePhoneNumbersResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>"
+      }
+    },
     "LexBot": {
       "base": "<p>Configuration information of an Amazon Lex bot.</p>",
       "refs": {
@@ -2140,6 +2221,28 @@
       "refs": {
       }
     },
+    "ListPhoneNumbersSummary": {
+      "base": "<p>Information about phone numbers that have been claimed to your Amazon Connect instance.</p>",
+      "refs": {
+        "ListPhoneNumbersSummaryList$member": null
+      }
+    },
+    "ListPhoneNumbersSummaryList": {
+      "base": null,
+      "refs": {
+        "ListPhoneNumbersV2Response$ListPhoneNumbersSummaryList": "<p>Information about phone numbers that have been claimed to your Amazon Connect instances.</p>"
+      }
+    },
+    "ListPhoneNumbersV2Request": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPhoneNumbersV2Response": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListPromptsRequest": {
       "base": null,
       "refs": {
@@ -2274,7 +2377,8 @@
       "base": null,
       "refs": {
         "ListInstanceStorageConfigsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
-        "ListInstancesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>"
+        "ListInstancesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
+        "SearchAvailablePhoneNumbersRequest$MaxResults": "<p>The maximum number of results to return per page.</p>"
       }
     },
     "MaxResult100": {
@@ -2298,6 +2402,7 @@
         "ListContactFlowsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListHoursOfOperationsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListPhoneNumbersRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
+        "ListPhoneNumbersV2Request$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListPromptsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListQueuesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListQuickConnectsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
@@ -2523,6 +2628,10 @@
     "PhoneNumber": {
       "base": null,
       "refs": {
+        "AvailableNumberSummary$PhoneNumber": "<p>The phone number. Phone numbers are formatted <code>[+] [country code] [subscriber number including area code]</code>.</p>",
+        "ClaimPhoneNumberRequest$PhoneNumber": "<p>The phone number you want to claim. Phone numbers are formatted <code>[+] [country code] [subscriber number including area code]</code>.</p>",
+        "ClaimedPhoneNumberSummary$PhoneNumber": "<p>The phone number. Phone numbers are formatted <code>[+] [country code] [subscriber number including area code]</code>.</p>",
+        "ListPhoneNumbersSummary$PhoneNumber": "<p>The phone number. Phone numbers are formatted <code>[+] [country code] [subscriber number including area code]</code>.</p>",
         "PhoneNumberQuickConnectConfig$PhoneNumber": "<p>The phone number in E.164 format.</p>",
         "PhoneNumberSummary$PhoneNumber": "<p>The phone number.</p>",
         "StartOutboundVoiceContactRequest$DestinationPhoneNumber": "<p>The phone number of the customer, in E.164 format.</p>",
@@ -2533,27 +2642,61 @@
     "PhoneNumberCountryCode": {
       "base": null,
       "refs": {
+        "AvailableNumberSummary$PhoneNumberCountryCode": "<p>The ISO country code.</p>",
+        "ClaimedPhoneNumberSummary$PhoneNumberCountryCode": "<p>The ISO country code.</p>",
+        "ListPhoneNumbersSummary$PhoneNumberCountryCode": "<p>The ISO country code.</p>",
         "PhoneNumberCountryCodes$member": null,
-        "PhoneNumberSummary$PhoneNumberCountryCode": "<p>The ISO country code.</p>"
+        "PhoneNumberSummary$PhoneNumberCountryCode": "<p>The ISO country code.</p>",
+        "SearchAvailablePhoneNumbersRequest$PhoneNumberCountryCode": "<p>The ISO country code.</p>"
       }
     },
     "PhoneNumberCountryCodes": {
       "base": null,
       "refs": {
-        "ListPhoneNumbersRequest$PhoneNumberCountryCodes": "<p>The ISO country code.</p>"
+        "ListPhoneNumbersRequest$PhoneNumberCountryCodes": "<p>The ISO country code.</p>",
+        "ListPhoneNumbersV2Request$PhoneNumberCountryCodes": "<p>The ISO country code.</p>"
+      }
+    },
+    "PhoneNumberDescription": {
+      "base": null,
+      "refs": {
+        "ClaimPhoneNumberRequest$PhoneNumberDescription": "<p>The description of the phone number.</p>",
+        "ClaimedPhoneNumberSummary$PhoneNumberDescription": "<p>The description of the phone number.</p>"
       }
     },
     "PhoneNumberId": {
       "base": null,
       "refs": {
+        "AssociatePhoneNumberContactFlowRequest$PhoneNumberId": "<p>A unique identifier for the phone number.</p>",
+        "ClaimPhoneNumberResponse$PhoneNumberId": "<p>The identifier of the phone number.</p>",
+        "ClaimedPhoneNumberSummary$PhoneNumberId": "<p>The identifier of the phone number.</p>",
+        "DescribePhoneNumberRequest$PhoneNumberId": "<p>The identifier of the phone number.</p>",
+        "DisassociatePhoneNumberContactFlowRequest$PhoneNumberId": "<p>The identifier of the phone number.</p>",
+        "ListPhoneNumbersSummary$PhoneNumberId": "<p>The identifier of the phone number.</p>",
         "OutboundCallerConfig$OutboundCallerIdNumberId": "<p>The caller ID number.</p>",
-        "PhoneNumberSummary$Id": "<p>The identifier of the phone number.</p>"
+        "PhoneNumberSummary$Id": "<p>The identifier of the phone number.</p>",
+        "ReleasePhoneNumberRequest$PhoneNumberId": "<p>The identifier of the phone number.</p>",
+        "UpdatePhoneNumberRequest$PhoneNumberId": "<p>The identifier of the phone number.</p>",
+        "UpdatePhoneNumberResponse$PhoneNumberId": "<p>The identifier of the phone number.</p>"
+      }
+    },
+    "PhoneNumberPrefix": {
+      "base": null,
+      "refs": {
+        "ListPhoneNumbersV2Request$PhoneNumberPrefix": "<p>The prefix of the phone number. If provided, it must contain <code>+</code> as part of the country code.</p>",
+        "SearchAvailablePhoneNumbersRequest$PhoneNumberPrefix": "<p>The prefix of the phone number. If provided, it must contain <code>+</code> as part of the country code.</p>"
       }
     },
     "PhoneNumberQuickConnectConfig": {
       "base": "<p>Contains information about a phone number for a quick connect.</p>",
       "refs": {
         "QuickConnectConfig$PhoneConfig": "<p>The phone configuration. This is required only if QuickConnectType is PHONE_NUMBER.</p>"
+      }
+    },
+    "PhoneNumberStatus": {
+      "base": "<p>The status of the phone number.</p>",
+      "refs": {
+        "ClaimedPhoneNumberSummary$PhoneNumberStatus": "<p>The status of the phone number.</p>"
       }
     },
     "PhoneNumberSummary": {
@@ -2571,14 +2714,31 @@
     "PhoneNumberType": {
       "base": null,
       "refs": {
+        "AvailableNumberSummary$PhoneNumberType": "<p>The type of phone number.</p>",
+        "ClaimedPhoneNumberSummary$PhoneNumberType": "<p>The type of phone number.</p>",
+        "ListPhoneNumbersSummary$PhoneNumberType": "<p>The type of phone number.</p>",
         "PhoneNumberSummary$PhoneNumberType": "<p>The type of phone number.</p>",
-        "PhoneNumberTypes$member": null
+        "PhoneNumberTypes$member": null,
+        "SearchAvailablePhoneNumbersRequest$PhoneNumberType": "<p>The type of phone number.</p>"
       }
     },
     "PhoneNumberTypes": {
       "base": null,
       "refs": {
-        "ListPhoneNumbersRequest$PhoneNumberTypes": "<p>The type of phone number.</p>"
+        "ListPhoneNumbersRequest$PhoneNumberTypes": "<p>The type of phone number.</p>",
+        "ListPhoneNumbersV2Request$PhoneNumberTypes": "<p>The type of phone number.</p>"
+      }
+    },
+    "PhoneNumberWorkflowMessage": {
+      "base": null,
+      "refs": {
+        "PhoneNumberStatus$Message": "<p>The status message.</p>"
+      }
+    },
+    "PhoneNumberWorkflowStatus": {
+      "base": null,
+      "refs": {
+        "PhoneNumberStatus$Status": "<p>The status.</p>"
       }
     },
     "PhoneType": {
@@ -2887,6 +3047,11 @@
         "UrlReference$Value": "<p>A valid URL.</p>"
       }
     },
+    "ReleasePhoneNumberRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ResourceConflictException": {
       "base": "<p>A resource already has that name.</p>",
       "refs": {
@@ -3015,6 +3180,16 @@
       "base": "<p>Information about the Amazon Simple Storage Service (Amazon S3) storage type.</p>",
       "refs": {
         "InstanceStorageConfig$S3Config": "<p>The S3 bucket configuration.</p>"
+      }
+    },
+    "SearchAvailablePhoneNumbersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchAvailablePhoneNumbersResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "SearchVocabulariesRequest": {
@@ -3270,6 +3445,8 @@
       "base": null,
       "refs": {
         "AgentStatus$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "ClaimPhoneNumberRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "ClaimedPhoneNumberSummary$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "ContactFlow$Tags": "<p>One or more tags.</p>",
         "ContactFlowModule$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "CreateAgentStatusRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
@@ -3460,6 +3637,16 @@
       }
     },
     "UpdateInstanceStorageConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdatePhoneNumberRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdatePhoneNumberResponse": {
       "base": null,
       "refs": {
       }

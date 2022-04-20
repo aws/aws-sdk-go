@@ -1,3 +1,13 @@
+Release v1.43.43 (2022-04-20)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/macie2`: Updates service API and documentation
+* `service/mgn`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Added a new cluster-level attribute to set the capacity range for Aurora Serverless v2 instances.
+
 Release v1.43.42 (2022-04-19)
 ===
 

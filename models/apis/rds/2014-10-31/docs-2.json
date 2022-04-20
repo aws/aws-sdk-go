@@ -2018,7 +2018,11 @@
       "base": null,
       "refs": {
         "OrderableDBInstanceOption$MinIopsPerGib": "<p>Minimum provisioned IOPS per GiB for a DB instance.</p>",
-        "OrderableDBInstanceOption$MaxIopsPerGib": "<p>Maximum provisioned IOPS per GiB for a DB instance.</p>"
+        "OrderableDBInstanceOption$MaxIopsPerGib": "<p>Maximum provisioned IOPS per GiB for a DB instance.</p>",
+        "ServerlessV2ScalingConfiguration$MinCapacity": "<p>The minimum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 8, 8.5, 9, and so on. The smallest value that you can use is 0.5.</p>",
+        "ServerlessV2ScalingConfiguration$MaxCapacity": "<p>The maximum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 40, 40.5, 41, and so on. The largest value that you can use is 128.</p>",
+        "ServerlessV2ScalingConfigurationInfo$MinCapacity": "<p>The minimum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 8, 8.5, 9, and so on. The smallest value that you can use is 0.5.</p>",
+        "ServerlessV2ScalingConfigurationInfo$MaxCapacity": "<p>The maximum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 40, 40.5, 41, and so on. The largest value that you can use is 128.</p>"
       }
     },
     "DoubleRange": {
@@ -3505,6 +3509,22 @@
       "base": "<p>Shows the scaling configuration for an Aurora DB cluster in <code>serverless</code> DB engine mode.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html\">Using Amazon Aurora Serverless v1</a> in the <i>Amazon Aurora User Guide</i>.</p>",
       "refs": {
         "DBCluster$ScalingConfigurationInfo": null
+      }
+    },
+    "ServerlessV2ScalingConfiguration": {
+      "base": "<p>Contains the scaling configuration of an Aurora Serverless v2 DB cluster.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html\">Using Amazon Aurora Serverless v2</a> in the <i>Amazon Aurora User Guide</i>.</p>",
+      "refs": {
+        "CreateDBClusterMessage$ServerlessV2ScalingConfiguration": null,
+        "ModifyDBClusterMessage$ServerlessV2ScalingConfiguration": null,
+        "RestoreDBClusterFromS3Message$ServerlessV2ScalingConfiguration": null,
+        "RestoreDBClusterFromSnapshotMessage$ServerlessV2ScalingConfiguration": null,
+        "RestoreDBClusterToPointInTimeMessage$ServerlessV2ScalingConfiguration": null
+      }
+    },
+    "ServerlessV2ScalingConfigurationInfo": {
+      "base": "<p>Shows the scaling configuration for an Aurora Serverless v2 DB cluster.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html\">Using Amazon Aurora Serverless v2</a> in the <i>Amazon Aurora User Guide</i>.</p>",
+      "refs": {
+        "DBCluster$ServerlessV2ScalingConfiguration": null
       }
     },
     "SharedSnapshotQuotaExceededFault": {

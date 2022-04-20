@@ -4354,9 +4354,7 @@ type DescribeJobsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Request to describe Job log filters.
-	//
-	// Filters is a required field
-	Filters *DescribeJobsRequestFilters `locationName:"filters" type:"structure" required:"true"`
+	Filters *DescribeJobsRequestFilters `locationName:"filters" type:"structure"`
 
 	// Request to describe job log items by max results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
@@ -4386,9 +4384,6 @@ func (s DescribeJobsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeJobsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeJobsInput"}
-	if s.Filters == nil {
-		invalidParams.Add(request.NewErrParamRequired("Filters"))
-	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -4538,9 +4533,7 @@ type DescribeReplicationConfigurationTemplatesInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Request to describe Replication Configuration template by template IDs.
-	//
-	// ReplicationConfigurationTemplateIDs is a required field
-	ReplicationConfigurationTemplateIDs []*string `locationName:"replicationConfigurationTemplateIDs" type:"list" required:"true"`
+	ReplicationConfigurationTemplateIDs []*string `locationName:"replicationConfigurationTemplateIDs" type:"list"`
 }
 
 // String returns the string representation.
@@ -4566,9 +4559,6 @@ func (s *DescribeReplicationConfigurationTemplatesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeReplicationConfigurationTemplatesInput"}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
-	}
-	if s.ReplicationConfigurationTemplateIDs == nil {
-		invalidParams.Add(request.NewErrParamRequired("ReplicationConfigurationTemplateIDs"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4639,9 +4629,7 @@ type DescribeSourceServersInput struct {
 	_ struct{} `type:"structure"`
 
 	// Request to filter Source Servers list.
-	//
-	// Filters is a required field
-	Filters *DescribeSourceServersRequestFilters `locationName:"filters" type:"structure" required:"true"`
+	Filters *DescribeSourceServersRequestFilters `locationName:"filters" type:"structure"`
 
 	// Request to filter Source Servers list by maximum results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
@@ -4671,9 +4659,6 @@ func (s DescribeSourceServersInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeSourceServersInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeSourceServersInput"}
-	if s.Filters == nil {
-		invalidParams.Add(request.NewErrParamRequired("Filters"))
-	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -7361,6 +7346,9 @@ type ServiceQuotaExceededException struct {
 
 	// Exceeded the service quota code.
 	QuotaCode *string `locationName:"quotaCode" type:"string"`
+
+	// Exceeded the service quota value.
+	QuotaValue *int64 `locationName:"quotaValue" min:"1" type:"integer"`
 
 	// Exceeded the service quota resource ID.
 	ResourceId *string `locationName:"resourceId" type:"string"`

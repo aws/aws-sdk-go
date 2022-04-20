@@ -8050,8 +8050,8 @@ func (s *Cell) SetRow(v int64) *Cell {
 	return s
 }
 
-// Provides information about a sensitive data finding, including the classification
-// job that produced the finding.
+// Provides information about a sensitive data finding and the details of the
+// finding.
 type ClassificationDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -8060,6 +8060,10 @@ type ClassificationDetails struct {
 	JobArn *string `locationName:"jobArn" type:"string"`
 
 	JobId *string `locationName:"jobId" type:"string"`
+
+	// Specifies how Amazon Macie found the sensitive data that produced a finding.
+	// The only possible value is:
+	OriginType *string `locationName:"originType" type:"string" enum:"OriginType"`
 
 	// Provides the details of a sensitive data finding, including the types, number
 	// of occurrences, and locations of the sensitive data that was detected.
@@ -8099,6 +8103,12 @@ func (s *ClassificationDetails) SetJobArn(v string) *ClassificationDetails {
 // SetJobId sets the JobId field's value.
 func (s *ClassificationDetails) SetJobId(v string) *ClassificationDetails {
 	s.JobId = &v
+	return s
+}
+
+// SetOriginType sets the OriginType field's value.
+func (s *ClassificationDetails) SetOriginType(v string) *ClassificationDetails {
+	s.OriginType = &v
 	return s
 }
 
@@ -10830,8 +10840,8 @@ type Finding struct {
 	// The category of the finding. Valid values are:
 	Category *string `locationName:"category" type:"string" enum:"FindingCategory"`
 
-	// Provides information about a sensitive data finding, including the classification
-	// job that produced the finding.
+	// Provides information about a sensitive data finding and the details of the
+	// finding.
 	ClassificationDetails *ClassificationDetails `locationName:"classificationDetails" type:"structure"`
 
 	Count *int64 `locationName:"count" type:"long"`
@@ -13986,7 +13996,8 @@ func (s *ListJobsFilterCriteria) SetIncludes(v []*ListJobsFilterTerm) *ListJobsF
 type ListJobsFilterTerm struct {
 	_ struct{} `type:"structure"`
 
-	// The operator to use in a condition. Valid values are:
+	// The operator to use in a condition. Depending on the type of condition, possible
+	// values are:
 	Comparator *string `locationName:"comparator" type:"string" enum:"JobComparator"`
 
 	// The property to use to filter the results. Valid values are:
@@ -14910,14 +14921,20 @@ type Occurrences struct {
 	// workbook, CSV file, or TSV file.
 	Cells []*Cell `locationName:"cells" type:"list"`
 
+	// Specifies the locations of occurrences of sensitive data in a non-binary
+	// text file.
 	LineRanges []*Range `locationName:"lineRanges" type:"list"`
 
+	// Specifies the locations of occurrences of sensitive data in a non-binary
+	// text file.
 	OffsetRanges []*Range `locationName:"offsetRanges" type:"list"`
 
 	// Specifies the location of occurrences of sensitive data in an Adobe Portable
 	// Document Format file.
 	Pages []*Page `locationName:"pages" type:"list"`
 
+	// Specifies the locations of occurrences of sensitive data in an Apache Avro
+	// object container or a structured data file.
 	Records []*Record `locationName:"records" type:"list"`
 }
 
@@ -16960,7 +16977,8 @@ func (s *SeverityLevel) SetSeverity(v string) *SeverityLevel {
 type SimpleCriterionForJob struct {
 	_ struct{} `type:"structure"`
 
-	// The operator to use in a condition. Valid values are:
+	// The operator to use in a condition. Depending on the type of condition, possible
+	// values are:
 	Comparator *string `locationName:"comparator" type:"string" enum:"JobComparator"`
 
 	// The property to use in a condition that determines whether an S3 bucket is
@@ -17011,7 +17029,8 @@ func (s *SimpleCriterionForJob) SetValues(v []*string) *SimpleCriterionForJob {
 type SimpleScopeTerm struct {
 	_ struct{} `type:"structure"`
 
-	// The operator to use in a condition. Valid values are:
+	// The operator to use in a condition. Depending on the type of condition, possible
+	// values are:
 	Comparator *string `locationName:"comparator" type:"string" enum:"JobComparator"`
 
 	// The property to use in a condition that determines whether an S3 object is
@@ -17140,7 +17159,8 @@ func (s *Statistics) SetNumberOfRuns(v float64) *Statistics {
 type TagCriterionForJob struct {
 	_ struct{} `type:"structure"`
 
-	// The operator to use in a condition. Valid values are:
+	// The operator to use in a condition. Depending on the type of condition, possible
+	// values are:
 	Comparator *string `locationName:"comparator" type:"string" enum:"JobComparator"`
 
 	TagValues []*TagCriterionPairForJob `locationName:"tagValues" type:"list"`
@@ -17312,7 +17332,8 @@ func (s TagResourceOutput) GoString() string {
 type TagScopeTerm struct {
 	_ struct{} `type:"structure"`
 
-	// The operator to use in a condition. Valid values are:
+	// The operator to use in a condition. Depending on the type of condition, possible
+	// values are:
 	Comparator *string `locationName:"comparator" type:"string" enum:"JobComparator"`
 
 	Key *string `locationName:"key" type:"string"`
@@ -19108,7 +19129,8 @@ func IsMonitoredByJob_Values() []string {
 	}
 }
 
-// The operator to use in a condition. Valid values are:
+// The operator to use in a condition. Depending on the type of condition, possible
+// values are:
 const (
 	// JobComparatorEq is a JobComparator enum value
 	JobComparatorEq = "EQ"
@@ -19324,6 +19346,20 @@ func OrderBy_Values() []string {
 	return []string{
 		OrderByAsc,
 		OrderByDesc,
+	}
+}
+
+// Specifies how Amazon Macie found the sensitive data that produced a finding.
+// The only possible value is:
+const (
+	// OriginTypeSensitiveDataDiscoveryJob is a OriginType enum value
+	OriginTypeSensitiveDataDiscoveryJob = "SENSITIVE_DATA_DISCOVERY_JOB"
+)
+
+// OriginType_Values returns all elements of the OriginType enum
+func OriginType_Values() []string {
+	return []string{
+		OriginTypeSensitiveDataDiscoveryJob,
 	}
 }
 
