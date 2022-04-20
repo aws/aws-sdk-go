@@ -2631,6 +2631,10 @@
           "shape": "__string",
           "locationName": "jobId"
         },
+        "originType": {
+          "shape": "OriginType",
+          "locationName": "originType"
+        },
         "result": {
           "shape": "ClassificationResult",
           "locationName": "result"
@@ -5072,6 +5076,12 @@
       "enum": [
         "ASC",
         "DESC"
+      ]
+    },
+    "OriginType": {
+      "type": "string",
+      "enum": [
+        "SENSITIVE_DATA_DISCOVERY_JOB"
       ]
     },
     "Page": {

@@ -99,6 +99,12 @@
       "output_token": "NextToken",
       "result_key": "PhoneNumberSummaryList"
     },
+    "ListPhoneNumbersV2": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ListPhoneNumbersSummaryList"
+    },
     "ListPrompts": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -170,6 +176,12 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "UserSummaryList"
+    },
+    "SearchAvailablePhoneNumbers": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "AvailableNumbersList"
     },
     "SearchVocabularies": {
       "input_token": "NextToken",

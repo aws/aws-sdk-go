@@ -942,7 +942,8 @@
         "DescribeJobsRequest$maxResults": "<p>Request to describe job log items by max results.</p>",
         "DescribeReplicationConfigurationTemplatesRequest$maxResults": "<p>Request to describe Replication Configuration template by max results.</p>",
         "DescribeSourceServersRequest$maxResults": "<p>Request to filter Source Servers list by maximum results.</p>",
-        "DescribeVcenterClientsRequest$maxResults": "<p>Maximum results to be returned in DescribeVcenterClients.</p>"
+        "DescribeVcenterClientsRequest$maxResults": "<p>Maximum results to be returned in DescribeVcenterClients.</p>",
+        "ServiceQuotaExceededException$quotaValue": "<p>Exceeded the service quota value.</p>"
       }
     },
     "SubnetID": {

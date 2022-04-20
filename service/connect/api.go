@@ -613,6 +613,99 @@ func (c *Connect) AssociateLexBotWithContext(ctx aws.Context, input *AssociateLe
 	return out, req.Send()
 }
 
+const opAssociatePhoneNumberContactFlow = "AssociatePhoneNumberContactFlow"
+
+// AssociatePhoneNumberContactFlowRequest generates a "aws/request.Request" representing the
+// client's request for the AssociatePhoneNumberContactFlow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociatePhoneNumberContactFlow for more information on using the AssociatePhoneNumberContactFlow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociatePhoneNumberContactFlowRequest method.
+//    req, resp := client.AssociatePhoneNumberContactFlowRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociatePhoneNumberContactFlow
+func (c *Connect) AssociatePhoneNumberContactFlowRequest(input *AssociatePhoneNumberContactFlowInput) (req *request.Request, output *AssociatePhoneNumberContactFlowOutput) {
+	op := &request.Operation{
+		Name:       opAssociatePhoneNumberContactFlow,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/phone-number/{PhoneNumberId}/contact-flow",
+	}
+
+	if input == nil {
+		input = &AssociatePhoneNumberContactFlowInput{}
+	}
+
+	output = &AssociatePhoneNumberContactFlowOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociatePhoneNumberContactFlow API operation for Amazon Connect Service.
+//
+// Associates a contact flow with a phone number claimed to your Amazon Connect
+// instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation AssociatePhoneNumberContactFlow for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociatePhoneNumberContactFlow
+func (c *Connect) AssociatePhoneNumberContactFlow(input *AssociatePhoneNumberContactFlowInput) (*AssociatePhoneNumberContactFlowOutput, error) {
+	req, out := c.AssociatePhoneNumberContactFlowRequest(input)
+	return out, req.Send()
+}
+
+// AssociatePhoneNumberContactFlowWithContext is the same as AssociatePhoneNumberContactFlow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociatePhoneNumberContactFlow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) AssociatePhoneNumberContactFlowWithContext(ctx aws.Context, input *AssociatePhoneNumberContactFlowInput, opts ...request.Option) (*AssociatePhoneNumberContactFlowOutput, error) {
+	req, out := c.AssociatePhoneNumberContactFlowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAssociateQueueQuickConnects = "AssociateQueueQuickConnects"
 
 // AssociateQueueQuickConnectsRequest generates a "aws/request.Request" representing the
@@ -896,6 +989,100 @@ func (c *Connect) AssociateSecurityKey(input *AssociateSecurityKeyInput) (*Assoc
 // for more information on using Contexts.
 func (c *Connect) AssociateSecurityKeyWithContext(ctx aws.Context, input *AssociateSecurityKeyInput, opts ...request.Option) (*AssociateSecurityKeyOutput, error) {
 	req, out := c.AssociateSecurityKeyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opClaimPhoneNumber = "ClaimPhoneNumber"
+
+// ClaimPhoneNumberRequest generates a "aws/request.Request" representing the
+// client's request for the ClaimPhoneNumber operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ClaimPhoneNumber for more information on using the ClaimPhoneNumber
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ClaimPhoneNumberRequest method.
+//    req, resp := client.ClaimPhoneNumberRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ClaimPhoneNumber
+func (c *Connect) ClaimPhoneNumberRequest(input *ClaimPhoneNumberInput) (req *request.Request, output *ClaimPhoneNumberOutput) {
+	op := &request.Operation{
+		Name:       opClaimPhoneNumber,
+		HTTPMethod: "POST",
+		HTTPPath:   "/phone-number/claim",
+	}
+
+	if input == nil {
+		input = &ClaimPhoneNumberInput{}
+	}
+
+	output = &ClaimPhoneNumberOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ClaimPhoneNumber API operation for Amazon Connect Service.
+//
+// Claims an available phone number to your Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ClaimPhoneNumber for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * IdempotencyException
+//   An entity with the same name already exists.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ClaimPhoneNumber
+func (c *Connect) ClaimPhoneNumber(input *ClaimPhoneNumberInput) (*ClaimPhoneNumberOutput, error) {
+	req, out := c.ClaimPhoneNumberRequest(input)
+	return out, req.Send()
+}
+
+// ClaimPhoneNumberWithContext is the same as ClaimPhoneNumber with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ClaimPhoneNumber for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ClaimPhoneNumberWithContext(ctx aws.Context, input *ClaimPhoneNumberInput, opts ...request.Option) (*ClaimPhoneNumberOutput, error) {
+	req, out := c.ClaimPhoneNumberRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4070,6 +4257,98 @@ func (c *Connect) DescribeInstanceStorageConfigWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opDescribePhoneNumber = "DescribePhoneNumber"
+
+// DescribePhoneNumberRequest generates a "aws/request.Request" representing the
+// client's request for the DescribePhoneNumber operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribePhoneNumber for more information on using the DescribePhoneNumber
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribePhoneNumberRequest method.
+//    req, resp := client.DescribePhoneNumberRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribePhoneNumber
+func (c *Connect) DescribePhoneNumberRequest(input *DescribePhoneNumberInput) (req *request.Request, output *DescribePhoneNumberOutput) {
+	op := &request.Operation{
+		Name:       opDescribePhoneNumber,
+		HTTPMethod: "GET",
+		HTTPPath:   "/phone-number/{PhoneNumberId}",
+	}
+
+	if input == nil {
+		input = &DescribePhoneNumberInput{}
+	}
+
+	output = &DescribePhoneNumberOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribePhoneNumber API operation for Amazon Connect Service.
+//
+// Gets details and status of a phone number that’s claimed to your Amazon
+// Connect instance
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribePhoneNumber for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribePhoneNumber
+func (c *Connect) DescribePhoneNumber(input *DescribePhoneNumberInput) (*DescribePhoneNumberOutput, error) {
+	req, out := c.DescribePhoneNumberRequest(input)
+	return out, req.Send()
+}
+
+// DescribePhoneNumberWithContext is the same as DescribePhoneNumber with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribePhoneNumber for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribePhoneNumberWithContext(ctx aws.Context, input *DescribePhoneNumberInput, opts ...request.Option) (*DescribePhoneNumberOutput, error) {
+	req, out := c.DescribePhoneNumberRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeQueue = "DescribeQueue"
 
 // DescribeQueueRequest generates a "aws/request.Request" representing the
@@ -5270,6 +5549,99 @@ func (c *Connect) DisassociateLexBot(input *DisassociateLexBotInput) (*Disassoci
 // for more information on using Contexts.
 func (c *Connect) DisassociateLexBotWithContext(ctx aws.Context, input *DisassociateLexBotInput, opts ...request.Option) (*DisassociateLexBotOutput, error) {
 	req, out := c.DisassociateLexBotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDisassociatePhoneNumberContactFlow = "DisassociatePhoneNumberContactFlow"
+
+// DisassociatePhoneNumberContactFlowRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociatePhoneNumberContactFlow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociatePhoneNumberContactFlow for more information on using the DisassociatePhoneNumberContactFlow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociatePhoneNumberContactFlowRequest method.
+//    req, resp := client.DisassociatePhoneNumberContactFlowRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociatePhoneNumberContactFlow
+func (c *Connect) DisassociatePhoneNumberContactFlowRequest(input *DisassociatePhoneNumberContactFlowInput) (req *request.Request, output *DisassociatePhoneNumberContactFlowOutput) {
+	op := &request.Operation{
+		Name:       opDisassociatePhoneNumberContactFlow,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/phone-number/{PhoneNumberId}/contact-flow",
+	}
+
+	if input == nil {
+		input = &DisassociatePhoneNumberContactFlowInput{}
+	}
+
+	output = &DisassociatePhoneNumberContactFlowOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociatePhoneNumberContactFlow API operation for Amazon Connect Service.
+//
+// Removes the contact flow association from a phone number claimed to your
+// Amazon Connect instance, if a contact flow association exists.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DisassociatePhoneNumberContactFlow for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociatePhoneNumberContactFlow
+func (c *Connect) DisassociatePhoneNumberContactFlow(input *DisassociatePhoneNumberContactFlowInput) (*DisassociatePhoneNumberContactFlowOutput, error) {
+	req, out := c.DisassociatePhoneNumberContactFlowRequest(input)
+	return out, req.Send()
+}
+
+// DisassociatePhoneNumberContactFlowWithContext is the same as DisassociatePhoneNumberContactFlow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociatePhoneNumberContactFlow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DisassociatePhoneNumberContactFlowWithContext(ctx aws.Context, input *DisassociatePhoneNumberContactFlowInput, opts ...request.Option) (*DisassociatePhoneNumberContactFlowOutput, error) {
+	req, out := c.DisassociatePhoneNumberContactFlowRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8310,6 +8682,159 @@ func (c *Connect) ListPhoneNumbersPagesWithContext(ctx aws.Context, input *ListP
 	return p.Err()
 }
 
+const opListPhoneNumbersV2 = "ListPhoneNumbersV2"
+
+// ListPhoneNumbersV2Request generates a "aws/request.Request" representing the
+// client's request for the ListPhoneNumbersV2 operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPhoneNumbersV2 for more information on using the ListPhoneNumbersV2
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListPhoneNumbersV2Request method.
+//    req, resp := client.ListPhoneNumbersV2Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListPhoneNumbersV2
+func (c *Connect) ListPhoneNumbersV2Request(input *ListPhoneNumbersV2Input) (req *request.Request, output *ListPhoneNumbersV2Output) {
+	op := &request.Operation{
+		Name:       opListPhoneNumbersV2,
+		HTTPMethod: "POST",
+		HTTPPath:   "/phone-number/list",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListPhoneNumbersV2Input{}
+	}
+
+	output = &ListPhoneNumbersV2Output{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPhoneNumbersV2 API operation for Amazon Connect Service.
+//
+// Lists phone numbers claimed to your Amazon Connect instance.
+//
+// For more information about phone numbers, see Set Up Phone Numbers for Your
+// Contact Center (https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html)
+// in the Amazon Connect Administrator Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListPhoneNumbersV2 for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListPhoneNumbersV2
+func (c *Connect) ListPhoneNumbersV2(input *ListPhoneNumbersV2Input) (*ListPhoneNumbersV2Output, error) {
+	req, out := c.ListPhoneNumbersV2Request(input)
+	return out, req.Send()
+}
+
+// ListPhoneNumbersV2WithContext is the same as ListPhoneNumbersV2 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPhoneNumbersV2 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListPhoneNumbersV2WithContext(ctx aws.Context, input *ListPhoneNumbersV2Input, opts ...request.Option) (*ListPhoneNumbersV2Output, error) {
+	req, out := c.ListPhoneNumbersV2Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListPhoneNumbersV2Pages iterates over the pages of a ListPhoneNumbersV2 operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPhoneNumbersV2 method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListPhoneNumbersV2 operation.
+//    pageNum := 0
+//    err := client.ListPhoneNumbersV2Pages(params,
+//        func(page *connect.ListPhoneNumbersV2Output, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListPhoneNumbersV2Pages(input *ListPhoneNumbersV2Input, fn func(*ListPhoneNumbersV2Output, bool) bool) error {
+	return c.ListPhoneNumbersV2PagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPhoneNumbersV2PagesWithContext same as ListPhoneNumbersV2Pages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListPhoneNumbersV2PagesWithContext(ctx aws.Context, input *ListPhoneNumbersV2Input, fn func(*ListPhoneNumbersV2Output, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPhoneNumbersV2Input
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPhoneNumbersV2Request(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPhoneNumbersV2Output), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListPrompts = "ListPrompts"
 
 // ListPromptsRequest generates a "aws/request.Request" representing the
@@ -10220,6 +10745,104 @@ func (c *Connect) ListUsersPagesWithContext(ctx aws.Context, input *ListUsersInp
 	return p.Err()
 }
 
+const opReleasePhoneNumber = "ReleasePhoneNumber"
+
+// ReleasePhoneNumberRequest generates a "aws/request.Request" representing the
+// client's request for the ReleasePhoneNumber operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ReleasePhoneNumber for more information on using the ReleasePhoneNumber
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ReleasePhoneNumberRequest method.
+//    req, resp := client.ReleasePhoneNumberRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ReleasePhoneNumber
+func (c *Connect) ReleasePhoneNumberRequest(input *ReleasePhoneNumberInput) (req *request.Request, output *ReleasePhoneNumberOutput) {
+	op := &request.Operation{
+		Name:       opReleasePhoneNumber,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/phone-number/{PhoneNumberId}",
+	}
+
+	if input == nil {
+		input = &ReleasePhoneNumberInput{}
+	}
+
+	output = &ReleasePhoneNumberOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// ReleasePhoneNumber API operation for Amazon Connect Service.
+//
+// Releases a phone number previously claimed to an Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ReleasePhoneNumber for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ResourceInUseException
+//   That resource is already in use. Please try another.
+//
+//   * IdempotencyException
+//   An entity with the same name already exists.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ReleasePhoneNumber
+func (c *Connect) ReleasePhoneNumber(input *ReleasePhoneNumberInput) (*ReleasePhoneNumberOutput, error) {
+	req, out := c.ReleasePhoneNumberRequest(input)
+	return out, req.Send()
+}
+
+// ReleasePhoneNumberWithContext is the same as ReleasePhoneNumber with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ReleasePhoneNumber for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ReleasePhoneNumberWithContext(ctx aws.Context, input *ReleasePhoneNumberInput, opts ...request.Option) (*ReleasePhoneNumberOutput, error) {
+	req, out := c.ReleasePhoneNumberRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opResumeContactRecording = "ResumeContactRecording"
 
 // ResumeContactRecordingRequest generates a "aws/request.Request" representing the
@@ -10307,6 +10930,153 @@ func (c *Connect) ResumeContactRecordingWithContext(ctx aws.Context, input *Resu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opSearchAvailablePhoneNumbers = "SearchAvailablePhoneNumbers"
+
+// SearchAvailablePhoneNumbersRequest generates a "aws/request.Request" representing the
+// client's request for the SearchAvailablePhoneNumbers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchAvailablePhoneNumbers for more information on using the SearchAvailablePhoneNumbers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SearchAvailablePhoneNumbersRequest method.
+//    req, resp := client.SearchAvailablePhoneNumbersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchAvailablePhoneNumbers
+func (c *Connect) SearchAvailablePhoneNumbersRequest(input *SearchAvailablePhoneNumbersInput) (req *request.Request, output *SearchAvailablePhoneNumbersOutput) {
+	op := &request.Operation{
+		Name:       opSearchAvailablePhoneNumbers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/phone-number/search-available",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchAvailablePhoneNumbersInput{}
+	}
+
+	output = &SearchAvailablePhoneNumbersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchAvailablePhoneNumbers API operation for Amazon Connect Service.
+//
+// Searches for available phone numbers that you can claim to your Amazon Connect
+// instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation SearchAvailablePhoneNumbers for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchAvailablePhoneNumbers
+func (c *Connect) SearchAvailablePhoneNumbers(input *SearchAvailablePhoneNumbersInput) (*SearchAvailablePhoneNumbersOutput, error) {
+	req, out := c.SearchAvailablePhoneNumbersRequest(input)
+	return out, req.Send()
+}
+
+// SearchAvailablePhoneNumbersWithContext is the same as SearchAvailablePhoneNumbers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchAvailablePhoneNumbers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchAvailablePhoneNumbersWithContext(ctx aws.Context, input *SearchAvailablePhoneNumbersInput, opts ...request.Option) (*SearchAvailablePhoneNumbersOutput, error) {
+	req, out := c.SearchAvailablePhoneNumbersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchAvailablePhoneNumbersPages iterates over the pages of a SearchAvailablePhoneNumbers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchAvailablePhoneNumbers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a SearchAvailablePhoneNumbers operation.
+//    pageNum := 0
+//    err := client.SearchAvailablePhoneNumbersPages(params,
+//        func(page *connect.SearchAvailablePhoneNumbersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) SearchAvailablePhoneNumbersPages(input *SearchAvailablePhoneNumbersInput, fn func(*SearchAvailablePhoneNumbersOutput, bool) bool) error {
+	return c.SearchAvailablePhoneNumbersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchAvailablePhoneNumbersPagesWithContext same as SearchAvailablePhoneNumbersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchAvailablePhoneNumbersPagesWithContext(ctx aws.Context, input *SearchAvailablePhoneNumbersInput, fn func(*SearchAvailablePhoneNumbersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchAvailablePhoneNumbersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchAvailablePhoneNumbersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchAvailablePhoneNumbersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opSearchVocabularies = "SearchVocabularies"
@@ -11407,7 +12177,7 @@ func (c *Connect) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 // Adds the specified tags to the specified resource.
 //
 // The supported resource types are users, routing profiles, queues, quick connects,
-// contact flows, agent status, and hours of operation.
+// contact flows, agent status, hours of operation, and phone number.
 //
 // For sample policies that use tags, see Amazon Connect Identity-Based Policy
 // Examples (https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html)
@@ -12719,6 +13489,104 @@ func (c *Connect) UpdateInstanceStorageConfig(input *UpdateInstanceStorageConfig
 // for more information on using Contexts.
 func (c *Connect) UpdateInstanceStorageConfigWithContext(ctx aws.Context, input *UpdateInstanceStorageConfigInput, opts ...request.Option) (*UpdateInstanceStorageConfigOutput, error) {
 	req, out := c.UpdateInstanceStorageConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdatePhoneNumber = "UpdatePhoneNumber"
+
+// UpdatePhoneNumberRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePhoneNumber operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePhoneNumber for more information on using the UpdatePhoneNumber
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdatePhoneNumberRequest method.
+//    req, resp := client.UpdatePhoneNumberRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdatePhoneNumber
+func (c *Connect) UpdatePhoneNumberRequest(input *UpdatePhoneNumberInput) (req *request.Request, output *UpdatePhoneNumberOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePhoneNumber,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/phone-number/{PhoneNumberId}",
+	}
+
+	if input == nil {
+		input = &UpdatePhoneNumberInput{}
+	}
+
+	output = &UpdatePhoneNumberOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdatePhoneNumber API operation for Amazon Connect Service.
+//
+// Updates your claimed phone number from its current Amazon Connect instance
+// to another Amazon Connect instance in the same Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdatePhoneNumber for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ResourceInUseException
+//   That resource is already in use. Please try another.
+//
+//   * IdempotencyException
+//   An entity with the same name already exists.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdatePhoneNumber
+func (c *Connect) UpdatePhoneNumber(input *UpdatePhoneNumberInput) (*UpdatePhoneNumberOutput, error) {
+	req, out := c.UpdatePhoneNumberRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePhoneNumberWithContext is the same as UpdatePhoneNumber with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePhoneNumber for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdatePhoneNumberWithContext(ctx aws.Context, input *UpdatePhoneNumberInput, opts ...request.Option) (*UpdatePhoneNumberOutput, error) {
+	req, out := c.UpdatePhoneNumberRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -15387,6 +16255,109 @@ func (s AssociateLexBotOutput) GoString() string {
 	return s.String()
 }
 
+type AssociatePhoneNumberContactFlowInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact flow.
+	//
+	// ContactFlowId is a required field
+	ContactFlowId *string `type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// A unique identifier for the phone number.
+	//
+	// PhoneNumberId is a required field
+	PhoneNumberId *string `location:"uri" locationName:"PhoneNumberId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociatePhoneNumberContactFlowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociatePhoneNumberContactFlowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociatePhoneNumberContactFlowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociatePhoneNumberContactFlowInput"}
+	if s.ContactFlowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowId"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.PhoneNumberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PhoneNumberId"))
+	}
+	if s.PhoneNumberId != nil && len(*s.PhoneNumberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PhoneNumberId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowId sets the ContactFlowId field's value.
+func (s *AssociatePhoneNumberContactFlowInput) SetContactFlowId(v string) *AssociatePhoneNumberContactFlowInput {
+	s.ContactFlowId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *AssociatePhoneNumberContactFlowInput) SetInstanceId(v string) *AssociatePhoneNumberContactFlowInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetPhoneNumberId sets the PhoneNumberId field's value.
+func (s *AssociatePhoneNumberContactFlowInput) SetPhoneNumberId(v string) *AssociatePhoneNumberContactFlowInput {
+	s.PhoneNumberId = &v
+	return s
+}
+
+type AssociatePhoneNumberContactFlowOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociatePhoneNumberContactFlowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociatePhoneNumberContactFlowOutput) GoString() string {
+	return s.String()
+}
+
 type AssociateQueueQuickConnectsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15800,6 +16771,57 @@ func (s *Attribute) SetValue(v string) *Attribute {
 	return s
 }
 
+// Information about available phone numbers.
+type AvailableNumberSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The phone number. Phone numbers are formatted [+] [country code] [subscriber
+	// number including area code].
+	PhoneNumber *string `type:"string"`
+
+	// The ISO country code.
+	PhoneNumberCountryCode *string `type:"string" enum:"PhoneNumberCountryCode"`
+
+	// The type of phone number.
+	PhoneNumberType *string `type:"string" enum:"PhoneNumberType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AvailableNumberSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AvailableNumberSummary) GoString() string {
+	return s.String()
+}
+
+// SetPhoneNumber sets the PhoneNumber field's value.
+func (s *AvailableNumberSummary) SetPhoneNumber(v string) *AvailableNumberSummary {
+	s.PhoneNumber = &v
+	return s
+}
+
+// SetPhoneNumberCountryCode sets the PhoneNumberCountryCode field's value.
+func (s *AvailableNumberSummary) SetPhoneNumberCountryCode(v string) *AvailableNumberSummary {
+	s.PhoneNumberCountryCode = &v
+	return s
+}
+
+// SetPhoneNumberType sets the PhoneNumberType field's value.
+func (s *AvailableNumberSummary) SetPhoneNumberType(v string) *AvailableNumberSummary {
+	s.PhoneNumberType = &v
+	return s
+}
+
 // A chat message.
 type ChatMessage struct {
 	_ struct{} `type:"structure"`
@@ -15916,6 +16938,246 @@ func (s *ChatStreamingConfiguration) Validate() error {
 // SetStreamingEndpointArn sets the StreamingEndpointArn field's value.
 func (s *ChatStreamingConfiguration) SetStreamingEndpointArn(v string) *ChatStreamingConfiguration {
 	s.StreamingEndpointArn = &v
+	return s
+}
+
+type ClaimPhoneNumberInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// The phone number you want to claim. Phone numbers are formatted [+] [country
+	// code] [subscriber number including area code].
+	//
+	// PhoneNumber is a required field
+	PhoneNumber *string `type:"string" required:"true"`
+
+	// The description of the phone number.
+	PhoneNumberDescription *string `type:"string"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+
+	// The Amazon Resource Name (ARN) for Amazon Connect instances that phone numbers
+	// are claimed to.
+	//
+	// TargetArn is a required field
+	TargetArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClaimPhoneNumberInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClaimPhoneNumberInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ClaimPhoneNumberInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ClaimPhoneNumberInput"}
+	if s.PhoneNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("PhoneNumber"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.TargetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *ClaimPhoneNumberInput) SetClientToken(v string) *ClaimPhoneNumberInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetPhoneNumber sets the PhoneNumber field's value.
+func (s *ClaimPhoneNumberInput) SetPhoneNumber(v string) *ClaimPhoneNumberInput {
+	s.PhoneNumber = &v
+	return s
+}
+
+// SetPhoneNumberDescription sets the PhoneNumberDescription field's value.
+func (s *ClaimPhoneNumberInput) SetPhoneNumberDescription(v string) *ClaimPhoneNumberInput {
+	s.PhoneNumberDescription = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ClaimPhoneNumberInput) SetTags(v map[string]*string) *ClaimPhoneNumberInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetArn sets the TargetArn field's value.
+func (s *ClaimPhoneNumberInput) SetTargetArn(v string) *ClaimPhoneNumberInput {
+	s.TargetArn = &v
+	return s
+}
+
+type ClaimPhoneNumberOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the phone number.
+	PhoneNumberArn *string `type:"string"`
+
+	// The identifier of the phone number.
+	PhoneNumberId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClaimPhoneNumberOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClaimPhoneNumberOutput) GoString() string {
+	return s.String()
+}
+
+// SetPhoneNumberArn sets the PhoneNumberArn field's value.
+func (s *ClaimPhoneNumberOutput) SetPhoneNumberArn(v string) *ClaimPhoneNumberOutput {
+	s.PhoneNumberArn = &v
+	return s
+}
+
+// SetPhoneNumberId sets the PhoneNumberId field's value.
+func (s *ClaimPhoneNumberOutput) SetPhoneNumberId(v string) *ClaimPhoneNumberOutput {
+	s.PhoneNumberId = &v
+	return s
+}
+
+// Information about a phone number that has been claimed to your Amazon Connect
+// instance.
+type ClaimedPhoneNumberSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The phone number. Phone numbers are formatted [+] [country code] [subscriber
+	// number including area code].
+	PhoneNumber *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the phone number.
+	PhoneNumberArn *string `type:"string"`
+
+	// The ISO country code.
+	PhoneNumberCountryCode *string `type:"string" enum:"PhoneNumberCountryCode"`
+
+	// The description of the phone number.
+	PhoneNumberDescription *string `type:"string"`
+
+	// The identifier of the phone number.
+	PhoneNumberId *string `type:"string"`
+
+	// The status of the phone number.
+	PhoneNumberStatus *PhoneNumberStatus `type:"structure"`
+
+	// The type of phone number.
+	PhoneNumberType *string `type:"string" enum:"PhoneNumberType"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+
+	// The Amazon Resource Name (ARN) for Amazon Connect instances that phone numbers
+	// are claimed to.
+	TargetArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClaimedPhoneNumberSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClaimedPhoneNumberSummary) GoString() string {
+	return s.String()
+}
+
+// SetPhoneNumber sets the PhoneNumber field's value.
+func (s *ClaimedPhoneNumberSummary) SetPhoneNumber(v string) *ClaimedPhoneNumberSummary {
+	s.PhoneNumber = &v
+	return s
+}
+
+// SetPhoneNumberArn sets the PhoneNumberArn field's value.
+func (s *ClaimedPhoneNumberSummary) SetPhoneNumberArn(v string) *ClaimedPhoneNumberSummary {
+	s.PhoneNumberArn = &v
+	return s
+}
+
+// SetPhoneNumberCountryCode sets the PhoneNumberCountryCode field's value.
+func (s *ClaimedPhoneNumberSummary) SetPhoneNumberCountryCode(v string) *ClaimedPhoneNumberSummary {
+	s.PhoneNumberCountryCode = &v
+	return s
+}
+
+// SetPhoneNumberDescription sets the PhoneNumberDescription field's value.
+func (s *ClaimedPhoneNumberSummary) SetPhoneNumberDescription(v string) *ClaimedPhoneNumberSummary {
+	s.PhoneNumberDescription = &v
+	return s
+}
+
+// SetPhoneNumberId sets the PhoneNumberId field's value.
+func (s *ClaimedPhoneNumberSummary) SetPhoneNumberId(v string) *ClaimedPhoneNumberSummary {
+	s.PhoneNumberId = &v
+	return s
+}
+
+// SetPhoneNumberStatus sets the PhoneNumberStatus field's value.
+func (s *ClaimedPhoneNumberSummary) SetPhoneNumberStatus(v *PhoneNumberStatus) *ClaimedPhoneNumberSummary {
+	s.PhoneNumberStatus = v
+	return s
+}
+
+// SetPhoneNumberType sets the PhoneNumberType field's value.
+func (s *ClaimedPhoneNumberSummary) SetPhoneNumberType(v string) *ClaimedPhoneNumberSummary {
+	s.PhoneNumberType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ClaimedPhoneNumberSummary) SetTags(v map[string]*string) *ClaimedPhoneNumberSummary {
+	s.Tags = v
+	return s
+}
+
+// SetTargetArn sets the TargetArn field's value.
+func (s *ClaimedPhoneNumberSummary) SetTargetArn(v string) *ClaimedPhoneNumberSummary {
+	s.TargetArn = &v
 	return s
 }
 
@@ -20866,6 +22128,87 @@ func (s *DescribeInstanceStorageConfigOutput) SetStorageConfig(v *InstanceStorag
 	return s
 }
 
+type DescribePhoneNumberInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the phone number.
+	//
+	// PhoneNumberId is a required field
+	PhoneNumberId *string `location:"uri" locationName:"PhoneNumberId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePhoneNumberInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePhoneNumberInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribePhoneNumberInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribePhoneNumberInput"}
+	if s.PhoneNumberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PhoneNumberId"))
+	}
+	if s.PhoneNumberId != nil && len(*s.PhoneNumberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PhoneNumberId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPhoneNumberId sets the PhoneNumberId field's value.
+func (s *DescribePhoneNumberInput) SetPhoneNumberId(v string) *DescribePhoneNumberInput {
+	s.PhoneNumberId = &v
+	return s
+}
+
+type DescribePhoneNumberOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about a phone number that's been claimed to your Amazon Connect
+	// instance.
+	ClaimedPhoneNumberSummary *ClaimedPhoneNumberSummary `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePhoneNumberOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePhoneNumberOutput) GoString() string {
+	return s.String()
+}
+
+// SetClaimedPhoneNumberSummary sets the ClaimedPhoneNumberSummary field's value.
+func (s *DescribePhoneNumberOutput) SetClaimedPhoneNumberSummary(v *ClaimedPhoneNumberSummary) *DescribePhoneNumberOutput {
+	s.ClaimedPhoneNumberSummary = v
+	return s
+}
+
 type DescribeQueueInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -22214,6 +23557,95 @@ func (s DisassociateLexBotOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DisassociateLexBotOutput) GoString() string {
+	return s.String()
+}
+
+type DisassociatePhoneNumberContactFlowInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"querystring" locationName:"instanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the phone number.
+	//
+	// PhoneNumberId is a required field
+	PhoneNumberId *string `location:"uri" locationName:"PhoneNumberId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociatePhoneNumberContactFlowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociatePhoneNumberContactFlowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociatePhoneNumberContactFlowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociatePhoneNumberContactFlowInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.PhoneNumberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PhoneNumberId"))
+	}
+	if s.PhoneNumberId != nil && len(*s.PhoneNumberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PhoneNumberId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DisassociatePhoneNumberContactFlowInput) SetInstanceId(v string) *DisassociatePhoneNumberContactFlowInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetPhoneNumberId sets the PhoneNumberId field's value.
+func (s *DisassociatePhoneNumberContactFlowInput) SetPhoneNumberId(v string) *DisassociatePhoneNumberContactFlowInput {
+	s.PhoneNumberId = &v
+	return s
+}
+
+type DisassociatePhoneNumberContactFlowOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociatePhoneNumberContactFlowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociatePhoneNumberContactFlowOutput) GoString() string {
 	return s.String()
 }
 
@@ -27436,6 +28868,223 @@ func (s *ListPhoneNumbersOutput) SetPhoneNumberSummaryList(v []*PhoneNumberSumma
 	return s
 }
 
+// Information about phone numbers that have been claimed to your Amazon Connect
+// instance.
+type ListPhoneNumbersSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The phone number. Phone numbers are formatted [+] [country code] [subscriber
+	// number including area code].
+	PhoneNumber *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the phone number.
+	PhoneNumberArn *string `type:"string"`
+
+	// The ISO country code.
+	PhoneNumberCountryCode *string `type:"string" enum:"PhoneNumberCountryCode"`
+
+	// The identifier of the phone number.
+	PhoneNumberId *string `type:"string"`
+
+	// The type of phone number.
+	PhoneNumberType *string `type:"string" enum:"PhoneNumberType"`
+
+	// The Amazon Resource Name (ARN) for Amazon Connect instances that phone numbers
+	// are claimed to.
+	TargetArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPhoneNumbersSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPhoneNumbersSummary) GoString() string {
+	return s.String()
+}
+
+// SetPhoneNumber sets the PhoneNumber field's value.
+func (s *ListPhoneNumbersSummary) SetPhoneNumber(v string) *ListPhoneNumbersSummary {
+	s.PhoneNumber = &v
+	return s
+}
+
+// SetPhoneNumberArn sets the PhoneNumberArn field's value.
+func (s *ListPhoneNumbersSummary) SetPhoneNumberArn(v string) *ListPhoneNumbersSummary {
+	s.PhoneNumberArn = &v
+	return s
+}
+
+// SetPhoneNumberCountryCode sets the PhoneNumberCountryCode field's value.
+func (s *ListPhoneNumbersSummary) SetPhoneNumberCountryCode(v string) *ListPhoneNumbersSummary {
+	s.PhoneNumberCountryCode = &v
+	return s
+}
+
+// SetPhoneNumberId sets the PhoneNumberId field's value.
+func (s *ListPhoneNumbersSummary) SetPhoneNumberId(v string) *ListPhoneNumbersSummary {
+	s.PhoneNumberId = &v
+	return s
+}
+
+// SetPhoneNumberType sets the PhoneNumberType field's value.
+func (s *ListPhoneNumbersSummary) SetPhoneNumberType(v string) *ListPhoneNumbersSummary {
+	s.PhoneNumberType = &v
+	return s
+}
+
+// SetTargetArn sets the TargetArn field's value.
+func (s *ListPhoneNumbersSummary) SetTargetArn(v string) *ListPhoneNumbersSummary {
+	s.TargetArn = &v
+	return s
+}
+
+type ListPhoneNumbersV2Input struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The ISO country code.
+	PhoneNumberCountryCodes []*string `type:"list" enum:"PhoneNumberCountryCode"`
+
+	// The prefix of the phone number. If provided, it must contain + as part of
+	// the country code.
+	PhoneNumberPrefix *string `type:"string"`
+
+	// The type of phone number.
+	PhoneNumberTypes []*string `type:"list" enum:"PhoneNumberType"`
+
+	// The Amazon Resource Name (ARN) for Amazon Connect instances that phone numbers
+	// are claimed to. If TargetArn input is not provided, this API lists numbers
+	// claimed to all the Amazon Connect instances belonging to your account.
+	TargetArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPhoneNumbersV2Input) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPhoneNumbersV2Input) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPhoneNumbersV2Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPhoneNumbersV2Input"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPhoneNumbersV2Input) SetMaxResults(v int64) *ListPhoneNumbersV2Input {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPhoneNumbersV2Input) SetNextToken(v string) *ListPhoneNumbersV2Input {
+	s.NextToken = &v
+	return s
+}
+
+// SetPhoneNumberCountryCodes sets the PhoneNumberCountryCodes field's value.
+func (s *ListPhoneNumbersV2Input) SetPhoneNumberCountryCodes(v []*string) *ListPhoneNumbersV2Input {
+	s.PhoneNumberCountryCodes = v
+	return s
+}
+
+// SetPhoneNumberPrefix sets the PhoneNumberPrefix field's value.
+func (s *ListPhoneNumbersV2Input) SetPhoneNumberPrefix(v string) *ListPhoneNumbersV2Input {
+	s.PhoneNumberPrefix = &v
+	return s
+}
+
+// SetPhoneNumberTypes sets the PhoneNumberTypes field's value.
+func (s *ListPhoneNumbersV2Input) SetPhoneNumberTypes(v []*string) *ListPhoneNumbersV2Input {
+	s.PhoneNumberTypes = v
+	return s
+}
+
+// SetTargetArn sets the TargetArn field's value.
+func (s *ListPhoneNumbersV2Input) SetTargetArn(v string) *ListPhoneNumbersV2Input {
+	s.TargetArn = &v
+	return s
+}
+
+type ListPhoneNumbersV2Output struct {
+	_ struct{} `type:"structure"`
+
+	// Information about phone numbers that have been claimed to your Amazon Connect
+	// instances.
+	ListPhoneNumbersSummaryList []*ListPhoneNumbersSummary `type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPhoneNumbersV2Output) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPhoneNumbersV2Output) GoString() string {
+	return s.String()
+}
+
+// SetListPhoneNumbersSummaryList sets the ListPhoneNumbersSummaryList field's value.
+func (s *ListPhoneNumbersV2Output) SetListPhoneNumbersSummaryList(v []*ListPhoneNumbersSummary) *ListPhoneNumbersV2Output {
+	s.ListPhoneNumbersSummaryList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPhoneNumbersV2Output) SetNextToken(v string) *ListPhoneNumbersV2Output {
+	s.NextToken = &v
+	return s
+}
+
 type ListPromptsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -29245,6 +30894,47 @@ func (s *PhoneNumberQuickConnectConfig) SetPhoneNumber(v string) *PhoneNumberQui
 	return s
 }
 
+// The status of the phone number.
+type PhoneNumberStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The status message.
+	Message *string `type:"string"`
+
+	// The status.
+	Status *string `type:"string" enum:"PhoneNumberWorkflowStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PhoneNumberStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PhoneNumberStatus) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *PhoneNumberStatus) SetMessage(v string) *PhoneNumberStatus {
+	s.Message = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *PhoneNumberStatus) SetStatus(v string) *PhoneNumberStatus {
+	s.Status = &v
+	return s
+}
+
 // Contains summary information about a phone number for a contact center.
 type PhoneNumberSummary struct {
 	_ struct{} `type:"structure"`
@@ -30040,6 +31730,87 @@ func (s *ReferenceSummary) SetUrl(v *UrlReference) *ReferenceSummary {
 	return s
 }
 
+type ReleasePhoneNumberInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `location:"querystring" locationName:"clientToken" type:"string" idempotencyToken:"true"`
+
+	// The identifier of the phone number.
+	//
+	// PhoneNumberId is a required field
+	PhoneNumberId *string `location:"uri" locationName:"PhoneNumberId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReleasePhoneNumberInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReleasePhoneNumberInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReleasePhoneNumberInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReleasePhoneNumberInput"}
+	if s.PhoneNumberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PhoneNumberId"))
+	}
+	if s.PhoneNumberId != nil && len(*s.PhoneNumberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PhoneNumberId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *ReleasePhoneNumberInput) SetClientToken(v string) *ReleasePhoneNumberInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetPhoneNumberId sets the PhoneNumberId field's value.
+func (s *ReleasePhoneNumberInput) SetPhoneNumberId(v string) *ReleasePhoneNumberInput {
+	s.PhoneNumberId = &v
+	return s
+}
+
+type ReleasePhoneNumberOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReleasePhoneNumberOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReleasePhoneNumberOutput) GoString() string {
+	return s.String()
+}
+
 // A resource already has that name.
 type ResourceConflictException struct {
 	_            struct{}                  `type:"structure"`
@@ -30814,6 +32585,157 @@ func (s *S3Config) SetBucketPrefix(v string) *S3Config {
 // SetEncryptionConfig sets the EncryptionConfig field's value.
 func (s *S3Config) SetEncryptionConfig(v *EncryptionConfig) *S3Config {
 	s.EncryptionConfig = v
+	return s
+}
+
+type SearchAvailablePhoneNumbersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The ISO country code.
+	//
+	// PhoneNumberCountryCode is a required field
+	PhoneNumberCountryCode *string `type:"string" required:"true" enum:"PhoneNumberCountryCode"`
+
+	// The prefix of the phone number. If provided, it must contain + as part of
+	// the country code.
+	PhoneNumberPrefix *string `type:"string"`
+
+	// The type of phone number.
+	//
+	// PhoneNumberType is a required field
+	PhoneNumberType *string `type:"string" required:"true" enum:"PhoneNumberType"`
+
+	// The Amazon Resource Name (ARN) for Amazon Connect instances that phone numbers
+	// are claimed to.
+	//
+	// TargetArn is a required field
+	TargetArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchAvailablePhoneNumbersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchAvailablePhoneNumbersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchAvailablePhoneNumbersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchAvailablePhoneNumbersInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.PhoneNumberCountryCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("PhoneNumberCountryCode"))
+	}
+	if s.PhoneNumberType == nil {
+		invalidParams.Add(request.NewErrParamRequired("PhoneNumberType"))
+	}
+	if s.TargetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchAvailablePhoneNumbersInput) SetMaxResults(v int64) *SearchAvailablePhoneNumbersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchAvailablePhoneNumbersInput) SetNextToken(v string) *SearchAvailablePhoneNumbersInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPhoneNumberCountryCode sets the PhoneNumberCountryCode field's value.
+func (s *SearchAvailablePhoneNumbersInput) SetPhoneNumberCountryCode(v string) *SearchAvailablePhoneNumbersInput {
+	s.PhoneNumberCountryCode = &v
+	return s
+}
+
+// SetPhoneNumberPrefix sets the PhoneNumberPrefix field's value.
+func (s *SearchAvailablePhoneNumbersInput) SetPhoneNumberPrefix(v string) *SearchAvailablePhoneNumbersInput {
+	s.PhoneNumberPrefix = &v
+	return s
+}
+
+// SetPhoneNumberType sets the PhoneNumberType field's value.
+func (s *SearchAvailablePhoneNumbersInput) SetPhoneNumberType(v string) *SearchAvailablePhoneNumbersInput {
+	s.PhoneNumberType = &v
+	return s
+}
+
+// SetTargetArn sets the TargetArn field's value.
+func (s *SearchAvailablePhoneNumbersInput) SetTargetArn(v string) *SearchAvailablePhoneNumbersInput {
+	s.TargetArn = &v
+	return s
+}
+
+type SearchAvailablePhoneNumbersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of available phone numbers that you can claim for your Amazon Connect
+	// instance.
+	AvailableNumbersList []*AvailableNumberSummary `type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchAvailablePhoneNumbersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchAvailablePhoneNumbersOutput) GoString() string {
+	return s.String()
+}
+
+// SetAvailableNumbersList sets the AvailableNumbersList field's value.
+func (s *SearchAvailablePhoneNumbersOutput) SetAvailableNumbersList(v []*AvailableNumberSummary) *SearchAvailablePhoneNumbersOutput {
+	s.AvailableNumbersList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchAvailablePhoneNumbersOutput) SetNextToken(v string) *SearchAvailablePhoneNumbersOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -34143,6 +36065,120 @@ func (s UpdateInstanceStorageConfigOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateInstanceStorageConfigOutput) GoString() string {
 	return s.String()
+}
+
+type UpdatePhoneNumberInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// The identifier of the phone number.
+	//
+	// PhoneNumberId is a required field
+	PhoneNumberId *string `location:"uri" locationName:"PhoneNumberId" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) for Amazon Connect instances that phone numbers
+	// are claimed to.
+	//
+	// TargetArn is a required field
+	TargetArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePhoneNumberInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePhoneNumberInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePhoneNumberInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePhoneNumberInput"}
+	if s.PhoneNumberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PhoneNumberId"))
+	}
+	if s.PhoneNumberId != nil && len(*s.PhoneNumberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PhoneNumberId", 1))
+	}
+	if s.TargetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdatePhoneNumberInput) SetClientToken(v string) *UpdatePhoneNumberInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetPhoneNumberId sets the PhoneNumberId field's value.
+func (s *UpdatePhoneNumberInput) SetPhoneNumberId(v string) *UpdatePhoneNumberInput {
+	s.PhoneNumberId = &v
+	return s
+}
+
+// SetTargetArn sets the TargetArn field's value.
+func (s *UpdatePhoneNumberInput) SetTargetArn(v string) *UpdatePhoneNumberInput {
+	s.TargetArn = &v
+	return s
+}
+
+type UpdatePhoneNumberOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the phone number.
+	PhoneNumberArn *string `type:"string"`
+
+	// The identifier of the phone number.
+	PhoneNumberId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePhoneNumberOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePhoneNumberOutput) GoString() string {
+	return s.String()
+}
+
+// SetPhoneNumberArn sets the PhoneNumberArn field's value.
+func (s *UpdatePhoneNumberOutput) SetPhoneNumberArn(v string) *UpdatePhoneNumberOutput {
+	s.PhoneNumberArn = &v
+	return s
+}
+
+// SetPhoneNumberId sets the PhoneNumberId field's value.
+func (s *UpdatePhoneNumberOutput) SetPhoneNumberId(v string) *UpdatePhoneNumberOutput {
+	s.PhoneNumberId = &v
+	return s
 }
 
 type UpdateQueueHoursOfOperationInput struct {
@@ -38490,6 +40526,26 @@ func PhoneNumberType_Values() []string {
 	return []string{
 		PhoneNumberTypeTollFree,
 		PhoneNumberTypeDid,
+	}
+}
+
+const (
+	// PhoneNumberWorkflowStatusClaimed is a PhoneNumberWorkflowStatus enum value
+	PhoneNumberWorkflowStatusClaimed = "CLAIMED"
+
+	// PhoneNumberWorkflowStatusInProgress is a PhoneNumberWorkflowStatus enum value
+	PhoneNumberWorkflowStatusInProgress = "IN_PROGRESS"
+
+	// PhoneNumberWorkflowStatusFailed is a PhoneNumberWorkflowStatus enum value
+	PhoneNumberWorkflowStatusFailed = "FAILED"
+)
+
+// PhoneNumberWorkflowStatus_Values returns all elements of the PhoneNumberWorkflowStatus enum
+func PhoneNumberWorkflowStatus_Values() []string {
+	return []string{
+		PhoneNumberWorkflowStatusClaimed,
+		PhoneNumberWorkflowStatusInProgress,
+		PhoneNumberWorkflowStatusFailed,
 	}
 }
 
