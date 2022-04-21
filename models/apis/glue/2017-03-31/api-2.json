@@ -117,6 +117,20 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "BatchGetCustomEntityTypes":{
+      "name":"BatchGetCustomEntityTypes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetCustomEntityTypesRequest"},
+      "output":{"shape":"BatchGetCustomEntityTypesResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"}
+      ]
+    },
     "BatchGetDevEndpoints":{
       "name":"BatchGetDevEndpoints",
       "http":{
@@ -324,6 +338,24 @@
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"AlreadyExistsException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"ResourceNumberLimitExceededException"}
+      ]
+    },
+    "CreateCustomEntityType":{
+      "name":"CreateCustomEntityType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateCustomEntityTypeRequest"},
+      "output":{"shape":"CreateCustomEntityTypeResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"AlreadyExistsException"},
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidInputException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"ResourceNumberLimitExceededException"}
       ]
@@ -679,6 +711,22 @@
         {"shape":"EntityNotFoundException"},
         {"shape":"CrawlerRunningException"},
         {"shape":"SchedulerTransitioningException"},
+        {"shape":"OperationTimeoutException"}
+      ]
+    },
+    "DeleteCustomEntityType":{
+      "name":"DeleteCustomEntityType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteCustomEntityTypeRequest"},
+      "output":{"shape":"DeleteCustomEntityTypeResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidInputException"},
         {"shape":"OperationTimeoutException"}
       ]
     },
@@ -1122,6 +1170,22 @@
       "input":{"shape":"GetCrawlersRequest"},
       "output":{"shape":"GetCrawlersResponse"},
       "errors":[
+        {"shape":"OperationTimeoutException"}
+      ]
+    },
+    "GetCustomEntityType":{
+      "name":"GetCustomEntityType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCustomEntityTypeRequest"},
+      "output":{"shape":"GetCustomEntityTypeResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidInputException"},
         {"shape":"OperationTimeoutException"}
       ]
     },
@@ -1887,6 +1951,20 @@
       "output":{"shape":"ListCrawlersResponse"},
       "errors":[
         {"shape":"OperationTimeoutException"}
+      ]
+    },
+    "ListCustomEntityTypes":{
+      "name":"ListCustomEntityTypes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListCustomEntityTypesRequest"},
+      "output":{"shape":"ListCustomEntityTypesResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "ListDevEndpoints":{
@@ -3008,6 +3086,20 @@
         "CrawlersNotFound":{"shape":"CrawlerNameList"}
       }
     },
+    "BatchGetCustomEntityTypesRequest":{
+      "type":"structure",
+      "required":["Names"],
+      "members":{
+        "Names":{"shape":"CustomEntityTypeNames"}
+      }
+    },
+    "BatchGetCustomEntityTypesResponse":{
+      "type":"structure",
+      "members":{
+        "CustomEntityTypes":{"shape":"CustomEntityTypes"},
+        "CustomEntityTypesNotFound":{"shape":"CustomEntityTypeNames"}
+      }
+    },
     "BatchGetDevEndpointsRequest":{
       "type":"structure",
       "required":["DevEndpointNames"],
@@ -3818,6 +3910,12 @@
         "Connections":{"shape":"OrchestrationStringList"}
       }
     },
+    "ContextWords":{
+      "type":"list",
+      "member":{"shape":"NameString"},
+      "max":20,
+      "min":1
+    },
     "Crawl":{
       "type":"structure",
       "members":{
@@ -4042,6 +4140,24 @@
         "Header":{"shape":"CsvHeader"},
         "DisableValueTrimming":{"shape":"NullableBoolean"},
         "AllowSingleColumn":{"shape":"NullableBoolean"}
+      }
+    },
+    "CreateCustomEntityTypeRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "RegexString"
+      ],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "RegexString":{"shape":"NameString"},
+        "ContextWords":{"shape":"ContextWords"}
+      }
+    },
+    "CreateCustomEntityTypeResponse":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NameString"}
       }
     },
     "CreateDatabaseRequest":{
@@ -4487,6 +4603,28 @@
       "min":1,
       "pattern":"[^\\r\\n]"
     },
+    "CustomEntityType":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "RegexString"
+      ],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "RegexString":{"shape":"NameString"},
+        "ContextWords":{"shape":"ContextWords"}
+      }
+    },
+    "CustomEntityTypeNames":{
+      "type":"list",
+      "member":{"shape":"NameString"},
+      "max":50,
+      "min":1
+    },
+    "CustomEntityTypes":{
+      "type":"list",
+      "member":{"shape":"CustomEntityType"}
+    },
     "CustomPatterns":{
       "type":"string",
       "max":16000,
@@ -4704,6 +4842,19 @@
     "DeleteCrawlerResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DeleteCustomEntityTypeRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"NameString"}
+      }
+    },
+    "DeleteCustomEntityTypeResponse":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NameString"}
       }
     },
     "DeleteDatabaseRequest":{
@@ -5436,6 +5587,21 @@
       "members":{
         "Crawlers":{"shape":"CrawlerList"},
         "NextToken":{"shape":"Token"}
+      }
+    },
+    "GetCustomEntityTypeRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"NameString"}
+      }
+    },
+    "GetCustomEntityTypeResponse":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NameString"},
+        "RegexString":{"shape":"NameString"},
+        "ContextWords":{"shape":"ContextWords"}
       }
     },
     "GetDataCatalogEncryptionSettingsRequest":{
@@ -6748,6 +6914,20 @@
       "members":{
         "CrawlerNames":{"shape":"CrawlerNameList"},
         "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListCustomEntityTypesRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"PaginationToken"},
+        "MaxResults":{"shape":"PageSize"}
+      }
+    },
+    "ListCustomEntityTypesResponse":{
+      "type":"structure",
+      "members":{
+        "CustomEntityTypes":{"shape":"CustomEntityTypes"},
+        "NextToken":{"shape":"PaginationToken"}
       }
     },
     "ListDevEndpointsRequest":{

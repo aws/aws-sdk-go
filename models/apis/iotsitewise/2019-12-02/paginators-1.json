@@ -1,5 +1,19 @@
 {
   "pagination": {
+    "BatchGetAssetPropertyAggregates": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "BatchGetAssetPropertyValue": {
+      "input_token": "nextToken",
+      "output_token": "nextToken"
+    },
+    "BatchGetAssetPropertyValueHistory": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
     "GetAssetPropertyAggregates": {
       "input_token": "nextToken",
       "output_token": "nextToken",

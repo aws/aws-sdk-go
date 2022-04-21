@@ -111,6 +111,10 @@ type LookoutMetricsAPI interface {
 	DescribeMetricSetWithContext(aws.Context, *lookoutmetrics.DescribeMetricSetInput, ...request.Option) (*lookoutmetrics.DescribeMetricSetOutput, error)
 	DescribeMetricSetRequest(*lookoutmetrics.DescribeMetricSetInput) (*request.Request, *lookoutmetrics.DescribeMetricSetOutput)
 
+	DetectMetricSetConfig(*lookoutmetrics.DetectMetricSetConfigInput) (*lookoutmetrics.DetectMetricSetConfigOutput, error)
+	DetectMetricSetConfigWithContext(aws.Context, *lookoutmetrics.DetectMetricSetConfigInput, ...request.Option) (*lookoutmetrics.DetectMetricSetConfigOutput, error)
+	DetectMetricSetConfigRequest(*lookoutmetrics.DetectMetricSetConfigInput) (*request.Request, *lookoutmetrics.DetectMetricSetConfigOutput)
+
 	GetAnomalyGroup(*lookoutmetrics.GetAnomalyGroupInput) (*lookoutmetrics.GetAnomalyGroupOutput, error)
 	GetAnomalyGroupWithContext(aws.Context, *lookoutmetrics.GetAnomalyGroupInput, ...request.Option) (*lookoutmetrics.GetAnomalyGroupOutput, error)
 	GetAnomalyGroupRequest(*lookoutmetrics.GetAnomalyGroupInput) (*request.Request, *lookoutmetrics.GetAnomalyGroupOutput)

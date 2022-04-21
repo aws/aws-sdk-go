@@ -5671,7 +5671,10 @@ type GetPropertyValueHistoryInput struct {
 	// Deprecated: This field is deprecated and will throw an error in the future. Use endTime instead.
 	EndDateTime *time.Time `locationName:"endDateTime" deprecated:"true" type:"timestamp"`
 
-	// Timestamp represented in ISO 8601 format
+	// The ISO8601 DateTime of the latest property value to return.
+	//
+	// For more information about the ISO8601 DateTime format, see the data type
+	// PropertyValue (https://docs.aws.amazon.com/roci/latest/roci-api/API_PropertyValue.html).
 	EndTime *string `locationName:"endTime" min:"20" type:"string"`
 
 	// The ID of the entity.
@@ -5703,7 +5706,10 @@ type GetPropertyValueHistoryInput struct {
 	// Deprecated: This field is deprecated and will throw an error in the future. Use startTime instead.
 	StartDateTime *time.Time `locationName:"startDateTime" deprecated:"true" type:"timestamp"`
 
-	// Timestamp represented in ISO 8601 format
+	// The ISO8601 DateTime of the earliest property value to return.
+	//
+	// For more information about the ISO8601 DateTime format, see the data type
+	// PropertyValue (https://docs.aws.amazon.com/roci/latest/roci-api/API_PropertyValue.html).
 	StartTime *string `locationName:"startTime" min:"20" type:"string"`
 
 	// The ID of the workspace.
@@ -6518,6 +6524,8 @@ func (s *LambdaFunction) SetArn(v string) *LambdaFunction {
 }
 
 // An object that filters items in a list of component types.
+//
+// Only one object is accepted as a valid input.
 type ListComponentTypesFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -6806,6 +6814,8 @@ type ListEntitiesInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of objects that filter the request.
+	//
+	// Only one object is accepted as a valid input.
 	Filters []*ListEntitiesFilter `locationName:"filters" type:"list"`
 
 	// The maximum number of results to display.
@@ -7753,7 +7763,30 @@ func (s *PropertyResponse) SetValue(v *DataValue) *PropertyResponse {
 type PropertyValue struct {
 	_ struct{} `type:"structure"`
 
-	// Timestamp represented in ISO 8601 format
+	// ISO8601 DateTime of a value for a time series property.
+	//
+	// The time for when the property value was recorded in ISO 8601 format: YYYY-MM-DDThh:mm:ss[.SSSSSSSSS][Z/±HH:mm].
+	//
+	//    * [YYYY]: year
+	//
+	//    * [MM]: month
+	//
+	//    * [DD]: day
+	//
+	//    * [hh]: hour
+	//
+	//    * [mm]: minute
+	//
+	//    * [ss]: seconds
+	//
+	//    * [.SSSSSSSSS]: additional precision, where precedence is maintained.
+	//    For example: [.573123] is equal to 573123000 nanoseconds.
+	//
+	//    * Z: default timezone UTC
+	//
+	//    * ± HH:mm: time zone offset in Hours and Minutes.
+	//
+	// Required sub-fields: YYYY-MM-DDThh:mm:ss and [Z/±HH:mm]
 	Time *string `locationName:"time" min:"20" type:"string"`
 
 	// The timestamp of a value for a time series property.
@@ -7824,7 +7857,9 @@ func (s *PropertyValue) SetValue(v *DataValue) *PropertyValue {
 	return s
 }
 
-// An object that specifies information about time series property values.
+// An object that specifies information about time series property values. This
+// object is used and consumed by the BatchPutPropertyValues (https://docs.aws.amazon.com/iot-twinmaker/latest/apireference/API_BatchPutPropertyValues.html)
+// action.
 type PropertyValueEntry struct {
 	_ struct{} `type:"structure"`
 

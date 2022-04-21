@@ -2,18 +2,21 @@
   "operations": {
     "ConfigureLogsForPlaybackConfiguration": "<p>Configures Amazon CloudWatch log settings for a playback configuration.</p>",
     "CreateChannel": "<p>Creates a channel.</p>",
+    "CreateLiveSource": "<p>Creates name for a specific live source in a source location.</p>",
     "CreatePrefetchSchedule": "<p>Creates a new prefetch schedule for the specified playback configuration.</p>",
     "CreateProgram": "<p>Creates a program.</p>",
     "CreateSourceLocation": "<p>Creates a source location on a specific channel.</p>",
     "CreateVodSource": "<p>Creates name for a specific VOD source in a source location.</p>",
     "DeleteChannel": "<p>Deletes a channel. You must stop the channel before it can be deleted.</p>",
     "DeleteChannelPolicy": "<p>Deletes a channel's IAM policy.</p>",
+    "DeleteLiveSource": "<p>Deletes a specific live source in a specific source location.</p>",
     "DeletePlaybackConfiguration": "<p>Deletes the playback configuration for the specified name.</p>  ",
     "DeletePrefetchSchedule": "<p>Deletes a prefetch schedule for a specific playback configuration. If you call DeletePrefetchSchedule on an expired prefetch schedule, MediaTailor returns an HTTP 404 status code.</p>",
     "DeleteProgram": "<p>Deletes a specific program on a specific channel.</p>",
     "DeleteSourceLocation": "<p>Deletes a source location on a specific channel.</p>",
     "DeleteVodSource": "<p>Deletes a specific VOD source in a specific source location.</p>",
     "DescribeChannel": "<p>Describes the properties of a specific channel.</p>",
+    "DescribeLiveSource": "<p>Provides details about a specific live source in a specific source location.</p>",
     "DescribeProgram": "<p>Retrieves the properties of the requested program.</p>",
     "DescribeSourceLocation": "<p>Retrieves the properties of the requested source location.</p>",
     "DescribeVodSource": "<p>Provides details about a specific VOD source in a specific source location.</p>",
@@ -23,6 +26,7 @@
     "GetPrefetchSchedule": "<p>Returns information about the prefetch schedule for a specific playback configuration. If you call GetPrefetchSchedule on an expired prefetch schedule, MediaTailor returns an HTTP 404 status code.</p>",
     "ListAlerts": "<p>Returns a list of alerts for the given resource.</p>",
     "ListChannels": "<p>Retrieves a list of channels that are associated with this account.</p>",
+    "ListLiveSources": "<p>lists all the live sources in a source location.</p>",
     "ListPlaybackConfigurations": "<p>Returns a list of the playback configurations defined in AWS Elemental MediaTailor. You can specify a maximum number of configurations to return at a time. The default maximum is 50. Results are returned in pagefuls. If MediaTailor has more configurations than the specified maximum, it provides parameters in the response that you can use to retrieve the next pageful.</p>  ",
     "ListPrefetchSchedules": "<p>Creates a new prefetch schedule.</p>",
     "ListSourceLocations": "<p>Retrieves a list of source locations.</p>",
@@ -35,6 +39,7 @@
     "TagResource": "<p>Adds tags to the specified playback configuration resource. You can specify one or more tags to add.</p>  ",
     "UntagResource": "<p>Removes tags from the specified playback configuration resource. You can specify one or more tags to remove.</p>  ",
     "UpdateChannel": "<p>Updates an existing channel.</p>",
+    "UpdateLiveSource": "<p>Updates a specific live source in a specific source location.</p>",
     "UpdateSourceLocation": "<p>Updates a source location on a specific channel.</p>",
     "UpdateVodSource": "<p>Updates a specific VOD source in a specific source location.</p>"
   },
@@ -144,6 +149,10 @@
       "base": "<p>The configuration for this channel.</p>",
       "refs": {}
     },
+    "CreateLiveSourceRequest": {
+      "base": "<p>The live source configuration parameters.</p>",
+      "refs": {}
+    },
     "CreatePrefetchScheduleRequest": {
       "base": "<p>A complex type that contains configuration settings for retrieval, consumption, and an optional stream ID.</p>",
       "refs": {}
@@ -201,6 +210,10 @@
       "base": "<p>This response includes only the \"type\" : \"object\" property.</p>",
       "refs": {}
     },
+    "DeleteLiveSourceResponse": {
+      "base": "<p>This response includes only the \"type\" : \"object\" property.</p>",
+      "refs": {}
+    },
     "DeletePlaybackConfigurationResponse": {
       "base": null,
       "refs": {}
@@ -223,6 +236,10 @@
     },
     "DescribeChannelResponse": {
       "base": "<p>Returns a channel's properties.</p>",
+      "refs": {}
+    },
+    "DescribeLiveSourceResponse": {
+      "base": "<p>This response includes only the \"type\" : \"object\" property.</p>",
       "refs": {}
     },
     "DescribeProgramResponse": {
@@ -281,9 +298,13 @@
     "HttpPackageConfigurations": {
       "base": "<p>The VOD source's HTTP package configuration settings.</p>",
       "refs": {
-        "CreateVodSourceRequest$HttpPackageConfigurations": "<p>An array of HTTP package configuration parameters for this VOD source.</p>",
+        "CreateLiveSourceRequest$HttpPackageConfigurations": "<p>A list of HTTP package configuration parameters for this live source.</p>",
+        "CreateVodSourceRequest$HttpPackageConfigurations": "<p>A list of HTTP package configuration parameters for this VOD source.</p>",
+        "DescribeLiveSourceResponse$HttpPackageConfigurations": "<p>The HTTP package configurations.</p>",
         "DescribeVodSourceResponse$HttpPackageConfigurations": "<p>The HTTP package configurations.</p>",
-        "UpdateVodSourceRequest$HttpPackageConfigurations": "<p>An array of HTTP package configurations for the VOD source on this account.</p>",
+        "LiveSource$HttpPackageConfigurations": "<p>The HTTP package configurations for the live source.</p>",
+        "UpdateLiveSourceRequest$HttpPackageConfigurations": "<p>A list of HTTP package configurations for the live source on this account.</p>",
+        "UpdateVodSourceRequest$HttpPackageConfigurations": "<p>A list of HTTP package configurations for the VOD source on this account.</p>",
         "VodSource$HttpPackageConfigurations": "<p>The HTTP package configurations for the VOD source.</p>"
       }
     },
@@ -293,6 +314,10 @@
     },
     "ListChannelsResponse": {
       "base": "<p>Returns a list of channels.</p>",
+      "refs": {}
+    },
+    "ListLiveSourcesResponse": {
+      "base": "<p>A list of your live sources.</p>",
       "refs": {}
     },
     "ListPlaybackConfigurationsResponse": {
@@ -312,7 +337,7 @@
       "refs": {}
     },
     "ListVodSourcesResponse": {
-      "base": "<p>An array of VOD sources.</p>",
+      "base": "<p>A list of VOD sources.</p>",
       "refs": {}
     },
     "LivePreRollConfiguration": {
@@ -321,6 +346,12 @@
         "GetPlaybackConfigurationResponse$LivePreRollConfiguration": "<p>The configuration for pre-roll ad insertion.</p>",
         "PlaybackConfiguration$LivePreRollConfiguration": "<p>The configuration for pre-roll ad insertion.</p>",
         "PutPlaybackConfigurationRequest$LivePreRollConfiguration": "<p>The configuration for pre-roll ad insertion.</p>"
+      }
+    },
+    "LiveSource": {
+      "base": "<p>Live source configuration parameters.</p>",
+      "refs": {
+        "__listOfLiveSource$member": null
       }
     },
     "LogConfiguration": {
@@ -470,7 +501,7 @@
       }
     },
     "SegmentDeliveryConfiguration": {
-      "base": null,
+      "base": "<p>The base URL of the host or path of the segment delivery server that you're using to serve segments. This is typically a content delivery network (CDN). The URL can be absolute or relative. To use an absolute URL include the protocol, such as https://example.com/some/path. To use a relative URL specify the relative path, such as /some/path*.</p>",
       "refs": {
         "__listOfSegmentDeliveryConfiguration$member": null
       }
@@ -501,6 +532,12 @@
       "base": "<p>A set of tags assigned to a resource.</p>",
       "refs": {}
     },
+    "Tier": {
+      "base": null,
+      "refs": {
+        "CreateChannelRequest$Tier": "<p>The tier of the channel.</p>"
+      }
+    },
     "Transition": {
       "base": "<p>Program transition configuration.</p>",
       "refs": {
@@ -515,6 +552,10 @@
     },
     "UpdateChannelRequest": {
       "base": "<p>Updates a channel's Outputs.</p>",
+      "refs": {}
+    },
+    "UpdateLiveSourceRequest": {
+      "base": "<p>Updates a live source's configuration.</p>",
       "refs": {}
     },
     "UpdateSourceLocationRequest": {
@@ -579,7 +620,7 @@
     "__listOfAlert": {
       "base": null,
       "refs": {
-        "ListAlertsResponse$Items": "<p>An array of alerts that are associated with this resource.</p>"
+        "ListAlertsResponse$Items": "<p>A list of alerts that are associated with this resource.</p>"
       }
     },
     "__listOfAvailMatchingCriteria": {
@@ -591,7 +632,13 @@
     "__listOfChannel": {
       "base": null,
       "refs": {
-        "ListChannelsResponse$Items": "<p>An array of channels that are associated with this account.</p>"
+        "ListChannelsResponse$Items": "<p>A list of channels that are associated with this account.</p>"
+      }
+    },
+    "__listOfLiveSource": {
+      "base": null,
+      "refs": {
+        "ListLiveSourcesResponse$Items": "<p>Lists the live sources.</p>"
       }
     },
     "__listOfPlaybackConfiguration": {
@@ -615,22 +662,22 @@
     "__listOfScheduleEntry": {
       "base": null,
       "refs": {
-        "GetChannelScheduleResponse$Items": "<p>An array of schedule entries for the channel.</p>"
+        "GetChannelScheduleResponse$Items": "<p>A list of schedule entries for the channel.</p>"
       }
     },
     "__listOfSegmentDeliveryConfiguration": {
       "base": null,
       "refs": {
-        "CreateSourceLocationRequest$SegmentDeliveryConfigurations": "<p>An array of segment delivery configurations for this source location.</p>",
-        "DescribeSourceLocationResponse$SegmentDeliveryConfigurations": "<p>An array of segment delivery configurations for this source location.</p>",
-        "SourceLocation$SegmentDeliveryConfigurations": "<p>An array of segment delivery configurations for this source location.</p>",
-        "UpdateSourceLocationRequest$SegmentDeliveryConfigurations": "<p>An array of segment delivery configurations for this source location.</p>"
+        "CreateSourceLocationRequest$SegmentDeliveryConfigurations": "<p>A list of the segment delivery configurations associated with this resource.</p>",
+        "DescribeSourceLocationResponse$SegmentDeliveryConfigurations": "<p>A list of the segment delivery configurations associated with this resource.</p>",
+        "SourceLocation$SegmentDeliveryConfigurations": "<p>The segment delivery configurations for the source location.</p>",
+        "UpdateSourceLocationRequest$SegmentDeliveryConfigurations": "<p>A list of the segment delivery configurations associated with this resource.</p>"
       }
     },
     "__listOfSourceLocation": {
       "base": null,
       "refs": {
-        "ListSourceLocationsResponse$Items": "<p>An array of source locations.</p>"
+        "ListSourceLocationsResponse$Items": "<p>A list of source locations.</p>"
       }
     },
     "__listOfVodSource": {
@@ -651,6 +698,7 @@
         "AdBreak$OffsetMillis": "<p>How long (in milliseconds) after the beginning of the program that an ad starts. This value must fall within 100ms of a segment boundary, otherwise the ad break will be skipped.</p>",
         "ScheduleAdBreak$ApproximateDurationSeconds": "<p>The approximate duration of the ad break, in seconds.</p>",
         "ScheduleEntry$ApproximateDurationSeconds": "<p>The approximate duration of this program, in seconds.</p>",
+        "Transition$DurationMillis": "<p>The duration of the live program in seconds.</p>",
         "Transition$ScheduledStartTimeMillis": "<p>The date and time that the program is scheduled to start, in epoch milliseconds.</p>"
       }
     },
@@ -661,12 +709,15 @@
         "ConfigurationAliasesRequest$member": "<p>Map of aliases to the value to be used at request time.</p>",
         "ConfigurationAliasesResponse$member": "<p>Map of aliases to the value to be used at request time.</p>",
         "CreateChannelRequest$Tags": "<p>The tags to assign to the channel.</p>",
+        "CreateLiveSourceRequest$Tags": "<p>The tags to assign to the live source.</p>",
         "CreateSourceLocationRequest$Tags": "<p>The tags to assign to the source location.</p>",
         "CreateVodSourceRequest$Tags": "<p>The tags to assign to the VOD source.</p>",
         "DescribeChannelResponse$Tags": "<p>The tags assigned to the channel.</p>",
+        "DescribeLiveSourceResponse$Tags": "<p>The tags assigned to the live source.</p>",
         "DescribeSourceLocationResponse$Tags": "<p>The tags assigned to the source location.</p>",
         "DescribeVodSourceResponse$Tags": "<p>The tags assigned to the VOD source.</p>",
         "GetPlaybackConfigurationResponse$Tags": "<p>The tags assigned to the playback configuration.</p>",
+        "LiveSource$Tags": "<p>The tags assigned to the live source.</p>",
         "PlaybackConfiguration$Tags": "<p>The tags to assign to the playback configuration.</p>",
         "PrefetchRetrieval$DynamicVariables": "<p>The dynamic variables to use for substitution during prefetch requests to the ad decision server (ADS).</p> <p>You intially configure <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/variables.html\">dynamic variables</a> for the ADS URL when you set up your playback configuration. When you specify DynamicVariables for prefetch retrieval, MediaTailor includes the dynamic variables in the request to the ADS.</p>",
         "PutPlaybackConfigurationRequest$Tags": "<p>The tags to assign to the playback configuration.</p>",
@@ -686,15 +737,17 @@
         "BadRequestException$Message": "<p>Constructs a new BadRequestException with the specified error message.</p>",
         "Bumper$EndUrl": "<p>The URL for the end bumper asset.</p>",
         "Bumper$StartUrl": "<p>The URL for the start bumper asset.</p>",
-        "CdnConfiguration$AdSegmentUrlPrefix": "<p>A non-default content delivery network (CDN) to serve ad segments. By default, AWS Elemental MediaTailor uses Amazon CloudFront with default cache settings as its CDN for ad segments. To set up an alternate CDN, create a rule in your CDN for the origin ads.mediatailor.&amp;lt;region&gt;.amazonaws.com. Then specify the rule's name in this AdSegmentUrlPrefix. When AWS Elemental MediaTailor serves a manifest, it reports your CDN as the source for ad segments.</p>",
+        "CdnConfiguration$AdSegmentUrlPrefix": "<p>A non-default content delivery network (CDN) to serve ad segments. By default, AWS Elemental MediaTailor uses Amazon CloudFront with default cache settings as its CDN for ad segments. To set up an alternate CDN, create a rule in your CDN for the origin ads.mediatailor.&amp;lt;region>.amazonaws.com. Then specify the rule's name in this AdSegmentUrlPrefix. When AWS Elemental MediaTailor serves a manifest, it reports your CDN as the source for ad segments.</p>",
         "CdnConfiguration$ContentSegmentUrlPrefix": "<p>A content delivery network (CDN) to cache content segments, so that content requests don’t always have to go to the origin server. First, create a rule in your CDN for the content segment origin server. Then specify the rule's name in this ContentSegmentUrlPrefix. When AWS Elemental MediaTailor serves a manifest, it reports your CDN as the source for content segments.</p>",
         "Channel$Arn": "<p>The ARN of the channel.</p>",
         "Channel$ChannelName": "<p>The name of the channel.</p>",
         "Channel$ChannelState": "<p>Returns the state whether the channel is running or not.</p>",
         "Channel$PlaybackMode": "<p>The type of playback mode for this channel.</p> <p>LINEAR - Programs play back-to-back only once.</p> <p>LOOP - Programs play back-to-back in an endless loop. When the last program in the schedule plays, playback loops back to the first program in the schedule.</p>",
+        "Channel$Tier": "<p>The tier for this channel. STANDARD tier channels can contain live programs.</p>",
         "ConfigureLogsForPlaybackConfigurationRequest$PlaybackConfigurationName": "<p>The name of the playback configuration.</p>",
         "ConfigureLogsForPlaybackConfigurationResponse$PlaybackConfigurationName": "<p>The name of the playback configuration.</p>",
         "CreatePrefetchScheduleRequest$StreamId": "<p>An optional stream identifier that MediaTailor uses to prefetch ads for multiple streams that use the same playback configuration. If StreamId is specified, MediaTailor returns all of the prefetch schedules with an exact match on StreamId. If not specified, MediaTailor returns all of the prefetch schedules for the playback configuration, regardless of StreamId.</p>",
+        "CreateProgramRequest$LiveSourceName": "<p>The name of the LiveSource for this Program.</p>",
         "CreateProgramRequest$SourceLocationName": "<p>The name of the source location.</p>",
         "CreateProgramRequest$VodSourceName": "<p>The name that's used to refer to a VOD source.</p>",
         "DashConfiguration$ManifestEndpointPrefix": "<p>The URL generated by MediaTailor to initiate a playback session. The session uses server-side reporting. This setting is ignored in PUT operations.</p>",
@@ -704,8 +757,13 @@
         "DescribeChannelResponse$Arn": "<p>The ARN of the channel.</p>",
         "DescribeChannelResponse$ChannelName": "<p>The name of the channel.</p>",
         "DescribeChannelResponse$PlaybackMode": "<p>The channel's playback mode.</p>",
+        "DescribeChannelResponse$Tier": "<p>The channel's tier.</p>",
+        "DescribeLiveSourceResponse$Arn": "<p>The ARN of the live source.</p>",
+        "DescribeLiveSourceResponse$LiveSourceName": "<p>The name of the live source.</p>",
+        "DescribeLiveSourceResponse$SourceLocationName": "<p>The name of the source location associated with the VOD source.</p>",
         "DescribeProgramResponse$Arn": "<p>The ARN of the program.</p>",
         "DescribeProgramResponse$ChannelName": "<p>The name of the channel that the program belongs to.</p>",
+        "DescribeProgramResponse$LiveSourceName": "<p>The name of the LiveSource for this Program.</p>",
         "DescribeProgramResponse$ProgramName": "<p>The name of the program.</p>",
         "DescribeProgramResponse$SourceLocationName": "<p>The source location name.</p>",
         "DescribeProgramResponse$VodSourceName": "<p>The name that's used to refer to a VOD source.</p>",
@@ -730,6 +788,7 @@
         "HttpPackageConfiguration$SourceGroup": "<p>The name of the source group. This has to match one of the Channel::Outputs::SourceGroup.</p>",
         "ListAlertsResponse$NextToken": "<p>Pagination token from the list request. Use the token to fetch the next page of results.</p>",
         "ListChannelsResponse$NextToken": "<p>Pagination token returned by the list request when results exceed the maximum allowed. Use the token to fetch the next page of results.</p>",
+        "ListLiveSourcesResponse$NextToken": "<p>Pagination token from the list request. Use the token to fetch the next page of results.</p>",
         "ListPlaybackConfigurationsResponse$NextToken": "<p>Pagination token returned by the GET list request when results exceed the maximum allowed. Use the token to fetch the next page of results.</p>",
         "ListPrefetchSchedulesRequest$NextToken": "<p>(Optional) If the playback configuration has more than MaxResults prefetch schedules, use NextToken to get the second and subsequent pages of results.</p> <p>For the first ListPrefetchSchedulesRequest request, omit this value.</p> <p>For the second and subsequent requests, get the value of NextToken from the previous response and specify that value for NextToken in the request.</p> <p>If the previous response didn't include a NextToken element, there are no more prefetch schedules to get.</p>",
         "ListPrefetchSchedulesRequest$StreamId": "<p>An optional filtering parameter whereby MediaTailor filters the prefetch schedules to include only specific streams.</p>",
@@ -737,6 +796,9 @@
         "ListSourceLocationsResponse$NextToken": "<p>Pagination token from the list request. Use the token to fetch the next page of results.</p>",
         "ListVodSourcesResponse$NextToken": "<p>Pagination token from the list request. Use the token to fetch the next page of results.</p>",
         "LivePreRollConfiguration$AdDecisionServerUrl": "<p>The URL for the ad decision server (ADS) for pre-roll ads. This includes the specification of static parameters and placeholders for dynamic parameters. AWS Elemental MediaTailor substitutes player-specific and session-specific parameters as needed when calling the ADS. Alternately, for testing, you can provide a static VAST URL. The maximum length is 25,000 characters.</p>",
+        "LiveSource$Arn": "<p>The ARN for the live source.</p>",
+        "LiveSource$LiveSourceName": "<p>The name that's used to refer to a live source.</p>",
+        "LiveSource$SourceLocationName": "<p>The name of the source location.</p>",
         "PlaybackConfiguration$AdDecisionServerUrl": "<p>The URL for the ad decision server (ADS). This includes the specification of static parameters and placeholders for dynamic parameters. AWS Elemental MediaTailor substitutes player-specific and session-specific parameters as needed when calling the ADS. Alternately, for testing you can provide a static VAST URL. The maximum length is 25,000 characters.</p>",
         "PlaybackConfiguration$Name": "<p>The identifier for the playback configuration.</p>",
         "PlaybackConfiguration$PlaybackConfigurationArn": "<p>The Amazon Resource Name (ARN) for the playback configuration.</p>",
@@ -764,13 +826,14 @@
         "ScheduleAdBreak$VodSourceName": "<p>The name of the VOD source used for the ad break.</p>",
         "ScheduleEntry$Arn": "<p>The ARN of the program.</p>",
         "ScheduleEntry$ChannelName": "<p>The name of the channel that uses this schedule.</p>",
+        "ScheduleEntry$LiveSourceName": "<p>The name of the live source used for the program.</p>",
         "ScheduleEntry$ProgramName": "<p>The name of the program.</p>",
         "ScheduleEntry$SourceLocationName": "<p>The name of the source location.</p>",
         "ScheduleEntry$VodSourceName": "<p>The name of the VOD source.</p>",
         "SecretsManagerAccessTokenConfiguration$HeaderName": "<p>The name of the HTTP header used to supply the access token in requests to the source location.</p>",
         "SecretsManagerAccessTokenConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of the AWS Secrets Manager secret that contains the access token.</p>",
         "SecretsManagerAccessTokenConfiguration$SecretStringKey": "<p>The AWS Secrets Manager <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_CreateSecret.html#SecretsManager-CreateSecret-request-SecretString.html\">SecretString</a> key associated with the access token. MediaTailor uses the key to look up SecretString key and value pair containing the access token.</p>",
-        "SegmentDeliveryConfiguration$BaseUrl": "<p>The base URL of the host or path of the segment delivery server that you're using to serve segments. This is typically a content delivery network (CDN). The URL can be absolute or relative. To use an absolute URL include the protocol, such as https://example.com/some/path. To use a relative URL specify the relative path, such as /some/path.</p>",
+        "SegmentDeliveryConfiguration$BaseUrl": "<p>The base URL of the host or path of the segment delivery server that you're using to serve segments. This is typically a content delivery network (CDN). The URL can be absolute or relative. To use an absolute URL include the protocol, such as https://example.com/some/path. To use a relative URL specify the relative path, such as /some/path*.</p>",
         "SegmentDeliveryConfiguration$Name": "<p>A unique identifier used to distinguish between multiple segment delivery configurations in a source location.</p>",
         "SlateSource$SourceLocationName": "<p>The name of the source location where the slate VOD source is stored.</p>",
         "SlateSource$VodSourceName": "<p>The slate VOD source name. The VOD source must already exist in a source location before it can be used for slate.</p>",
@@ -793,12 +856,16 @@
         "Channel$LastModifiedTime": "<p>The timestamp of when the channel was last modified.</p>",
         "DescribeChannelResponse$CreationTime": "<p>The timestamp of when the channel was created.</p>",
         "DescribeChannelResponse$LastModifiedTime": "<p>The timestamp of when the channel was last modified.</p>",
+        "DescribeLiveSourceResponse$CreationTime": "<p>The timestamp that indicates when the live source was created.</p>",
+        "DescribeLiveSourceResponse$LastModifiedTime": "<p>The timestamp that indicates when the live source was modified.</p>",
         "DescribeProgramResponse$CreationTime": "<p>The timestamp of when the program was created.</p>",
         "DescribeProgramResponse$ScheduledStartTime": "<p>The date and time that the program is scheduled to start in ISO 8601 format and Coordinated Universal Time (UTC). For example, the value 2021-03-27T17:48:16.751Z represents March 27, 2021 at 17:48:16.751 UTC.</p>",
         "DescribeSourceLocationResponse$CreationTime": "<p>The timestamp that indicates when the source location was created.</p>",
         "DescribeSourceLocationResponse$LastModifiedTime": "<p>The timestamp that indicates when the source location was last modified.</p>",
         "DescribeVodSourceResponse$CreationTime": "<p>The timestamp that indicates when the VOD source was created.</p>",
-        "DescribeVodSourceResponse$LastModifiedTime": "<p>The ARN for the VOD source.</p>",
+        "DescribeVodSourceResponse$LastModifiedTime": "<p>The last modified time of the VOD source.</p>",
+        "LiveSource$CreationTime": "<p>The timestamp that indicates when the live source was created.</p>",
+        "LiveSource$LastModifiedTime": "<p>The timestamp that indicates when the live source was last modified.</p>",
         "PrefetchConsumption$EndTime": "<p>The time when MediaTailor no longer considers the prefetched ads for use in an ad break. MediaTailor automatically deletes prefetch schedules no less than seven days after the end time. If you'd like to manually delete the prefetch schedule, you can call DeletePrefetchSchedule.</p>",
         "PrefetchConsumption$StartTime": "<p>The time when prefetched ads are considered for use in an ad break. If you don't specify StartTime, the prefetched ads are available after MediaTailor retrives them from the ad decision server.</p>",
         "PrefetchRetrieval$EndTime": "<p>The time when prefetch retrieval ends for the ad break. Prefetching will be attempted for manifest requests that occur at or before this time.</p>",

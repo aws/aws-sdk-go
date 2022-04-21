@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>All Amazon Connect Wisdom functionality is accessible using the API. For example, you can create an assistant and a knowledge base.</p> <pre><code> &lt;p&gt;Some more advanced features are only accessible using the Wisdom API. For example, you can manually manage content by uploading custom files and control their lifecycle. &lt;/p&gt; </code></pre>",
+  "service": "<p>Amazon Connect Wisdom delivers agents the information they need to solve customer issues as they're actively speaking with customers. Agents can search across connected repositories from within their agent desktop to find answers quickly. Use the Amazon Connect Wisdom APIs to create an assistant and a knowledge base, for example, or manage content by uploading custom files.</p>",
   "operations": {
     "CreateAssistant": "<p>Creates an Amazon Connect Wisdom assistant.</p>",
     "CreateAssistantAssociation": "<p>Creates an association between an Amazon Connect Wisdom assistant and another resource. Currently, the only supported association is with a knowledge base. An assistant can have only a single association.</p>",
@@ -49,12 +49,12 @@
     "Arn": {
       "base": null,
       "refs": {
-        "AssistantAssociationData$assistantArn": "<p>The Amazon Resource Name (ARN) of the Wisdom assistant</p>",
+        "AssistantAssociationData$assistantArn": "<p>The Amazon Resource Name (ARN) of the Wisdom assistant.</p>",
         "AssistantAssociationData$assistantAssociationArn": "<p>The Amazon Resource Name (ARN) of the assistant association.</p>",
-        "AssistantAssociationSummary$assistantArn": "<p>The Amazon Resource Name (ARN) of the Wisdom assistant</p>",
+        "AssistantAssociationSummary$assistantArn": "<p>The Amazon Resource Name (ARN) of the Wisdom assistant.</p>",
         "AssistantAssociationSummary$assistantAssociationArn": "<p>The Amazon Resource Name (ARN) of the assistant association.</p>",
-        "AssistantData$assistantArn": "<p>The Amazon Resource Name (ARN) of the Wisdom assistant</p>",
-        "AssistantSummary$assistantArn": "<p>The Amazon Resource Name (ARN) of the Wisdom assistant</p>",
+        "AssistantData$assistantArn": "<p>The Amazon Resource Name (ARN) of the Wisdom assistant.</p>",
+        "AssistantSummary$assistantArn": "<p>The Amazon Resource Name (ARN) of the Wisdom assistant.</p>",
         "ContentData$contentArn": "<p>The Amazon Resource Name (ARN) of the content.</p>",
         "ContentData$knowledgeBaseArn": "<p>The Amazon Resource Name (ARN) of the knowledge base.</p>",
         "ContentReference$contentArn": "<p>The Amazon Resource Name (ARN) of the content.</p>",
@@ -66,7 +66,7 @@
         "KnowledgeBaseSummary$knowledgeBaseArn": "<p>The Amazon Resource Name (ARN) of the knowledge base.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "SessionData$sessionArn": "<p>The Amazon Resource Name (ARN) of the session.</p>",
-        "SessionSummary$assistantArn": "<p>The Amazon Resource Name (ARN) of the Wisdom assistant</p>",
+        "SessionSummary$assistantArn": "<p>The Amazon Resource Name (ARN) of the Wisdom assistant.</p>",
         "SessionSummary$sessionArn": "<p>The Amazon Resource Name (ARN) of the session.</p>",
         "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>"
@@ -621,7 +621,7 @@
         "ListKnowledgeBasesRequest$nextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListKnowledgeBasesResponse$nextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ObjectFieldsList$member": null,
-        "ServerSideEncryptionConfiguration$kmsKeyId": "<p>The KMS key. For information about valid ID values, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id\">Key identifiers (KeyId)</a> in the <i>AWS Key Management Service Developer Guide</i>. </p>",
+        "ServerSideEncryptionConfiguration$kmsKeyId": "<p>The KMS key. For information about valid ID values, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id\">Key identifiers (KeyId)</a>.</p>",
         "StartContentUploadResponse$uploadId": "<p>The identifier of the upload.</p>",
         "UpdateContentRequest$revisionId": "<p>The <code>revisionId</code> of the content resource to update, taken from an earlier call to <code>GetContent</code>, <code>GetContentSummary</code>, <code>SearchContent</code>, or <code>ListContents</code>. If included, this argument acts as an optimistic lock to ensure content was not modified since it was last read. If it has been modified, this API throws a <code>PreconditionFailedException</code>.</p>",
         "UpdateContentRequest$uploadId": "<p>A pointer to the uploaded asset. This value is returned by <a href=\"https://docs.aws.amazon.com/wisdom/latest/APIReference/API_StartContentUpload.html\">StartContentUpload</a>. </p>"
@@ -658,7 +658,7 @@
     "ObjectFieldsList": {
       "base": null,
       "refs": {
-        "AppIntegrationsConfiguration$objectFields": "<p>The fields from the source that are made available to your agents in Wisdom. </p> <ul> <li> <p> For <a href=\"https://developer.salesforce.com/docs/atlas.en-us.knowledge_dev.meta/knowledge_dev/sforce_api_objects_knowledge__kav.htm\"> Salesforce</a>, you must include at least <code>Id</code>, <code>ArticleNumber</code>, <code>VersionNumber</code>, <code>Title</code>, <code>PublishStatus</code>, and <code>IsDeleted</code>. </p> </li> <li> <p>For <a href=\"https://developer.servicenow.com/dev.do#!/reference/api/rome/rest/knowledge-management-api\"> ServiceNow</a>, you must include at least <code>number</code>, <code>short_description</code>, <code>sys_mod_count</code>, <code>workflow_state</code>, and <code>active</code>. </p> </li> </ul> <p>Make sure to include additional field(s); these are indexed and used to source recommendations. </p>"
+        "AppIntegrationsConfiguration$objectFields": "<p>The fields from the source that are made available to your agents in Wisdom. </p> <ul> <li> <p> For <a href=\"https://developer.salesforce.com/docs/atlas.en-us.knowledge_dev.meta/knowledge_dev/sforce_api_objects_knowledge__kav.htm\"> Salesforce</a>, you must include at least <code>Id</code>, <code>ArticleNumber</code>, <code>VersionNumber</code>, <code>Title</code>, <code>PublishStatus</code>, and <code>IsDeleted</code>. </p> </li> <li> <p>For <a href=\"https://developer.servicenow.com/dev.do#!/reference/api/rome/rest/knowledge-management-api\"> ServiceNow</a>, you must include at least <code>number</code>, <code>short_description</code>, <code>sys_mod_count</code>, <code>workflow_state</code>, and <code>active</code>. </p> </li> </ul> <p>Make sure to include additional fields. These fields are indexed and used to source recommendations. </p>"
       }
     },
     "PreconditionFailedException": {
@@ -676,6 +676,12 @@
       "refs": {
       }
     },
+    "QueryRecommendationTriggerData": {
+      "base": "<p>Data associated with the QUERY RecommendationTriggerType.</p>",
+      "refs": {
+        "RecommendationTriggerData$query": "<p>Data associated with the QUERY RecommendationTriggerType.</p>"
+      }
+    },
     "QueryResultsList": {
       "base": null,
       "refs": {
@@ -685,7 +691,8 @@
     "QueryText": {
       "base": null,
       "refs": {
-        "QueryAssistantRequest$queryText": "<p>The text to search for.</p>"
+        "QueryAssistantRequest$queryText": "<p>The text to search for.</p>",
+        "QueryRecommendationTriggerData$text": "<p>The text associated with the recommendation trigger.</p>"
       }
     },
     "RecommendationData": {
@@ -698,13 +705,50 @@
       "base": null,
       "refs": {
         "NotifyRecommendationsReceivedRequest$recommendationIds": "<p>The identifiers of the recommendations.</p>",
-        "NotifyRecommendationsReceivedResponse$recommendationIds": "<p>The identifiers of the recommendations.</p>"
+        "NotifyRecommendationsReceivedResponse$recommendationIds": "<p>The identifiers of the recommendations.</p>",
+        "RecommendationTrigger$recommendationIds": "<p>The identifiers of the recommendations.</p>"
       }
     },
     "RecommendationList": {
       "base": null,
       "refs": {
         "GetRecommendationsResponse$recommendations": "<p>The recommendations.</p>"
+      }
+    },
+    "RecommendationSourceType": {
+      "base": null,
+      "refs": {
+        "RecommendationTrigger$source": "<p>The source of the recommendation trigger.</p> <ul> <li> <p>ISSUE_DETECTION: The corresponding recommendations were triggered by a Contact Lens issue.</p> </li> <li> <p>RULE_EVALUATION: The corresponding recommendations were triggered by a Contact Lens rule.</p> </li> </ul>"
+      }
+    },
+    "RecommendationTrigger": {
+      "base": "<p>A recommendation trigger provides context on the event that produced the referenced recommendations. Recommendations are only referenced in <code>recommendationIds</code> by a single RecommendationTrigger.</p>",
+      "refs": {
+        "RecommendationTriggerList$member": null
+      }
+    },
+    "RecommendationTriggerData": {
+      "base": "<p>A union type containing information related to the trigger.</p>",
+      "refs": {
+        "RecommendationTrigger$data": "<p>A union type containing information related to the trigger.</p>"
+      }
+    },
+    "RecommendationTriggerList": {
+      "base": null,
+      "refs": {
+        "GetRecommendationsResponse$triggers": "<p>The triggers corresponding to recommendations.</p>"
+      }
+    },
+    "RecommendationTriggerType": {
+      "base": null,
+      "refs": {
+        "RecommendationTrigger$type": "<p>The type of recommendation trigger.</p>"
+      }
+    },
+    "RecommendationType": {
+      "base": null,
+      "refs": {
+        "RecommendationData$type": "<p>The type of recommendation.</p>"
       }
     },
     "RelevanceLevel": {
@@ -776,6 +820,12 @@
       "refs": {
       }
     },
+    "SensitiveString": {
+      "base": null,
+      "refs": {
+        "DocumentText$text": "<p>Text in the document.</p>"
+      }
+    },
     "ServerSideEncryptionConfiguration": {
       "base": "<p>The KMS key used for encryption.</p>",
       "refs": {
@@ -816,7 +866,7 @@
       "refs": {
         "CreateKnowledgeBaseRequest$sourceConfiguration": "<p>The source of the knowledge base content. Only set this argument for EXTERNAL knowledge bases.</p>",
         "KnowledgeBaseData$sourceConfiguration": "<p>Source configuration information about the knowledge base.</p>",
-        "KnowledgeBaseSummary$sourceConfiguration": "<p>[KEVIN]</p>"
+        "KnowledgeBaseSummary$sourceConfiguration": "<p>Configuration information about the external data source.</p>"
       }
     },
     "StartContentUploadRequest": {
@@ -844,24 +894,6 @@
         "TooManyTagsException$message": null,
         "TooManyTagsException$resourceName": "<p>The specified resource name.</p>",
         "ValidationException$message": null
-      }
-    },
-    "SyntheticContentDataUrl": {
-      "base": null,
-      "refs": {
-        "ContentData$url": "<p>The URL of the content.</p>"
-      }
-    },
-    "SyntheticDocumentTextString": {
-      "base": null,
-      "refs": {
-        "DocumentText$text": "<p>Text in the document.</p>"
-      }
-    },
-    "SyntheticStartContentUploadResponseUrl": {
-      "base": null,
-      "refs": {
-        "StartContentUploadResponse$url": "<p>The URL of the upload.</p>"
       }
     },
     "SyntheticTimestamp_epoch_seconds": {
@@ -967,25 +999,33 @@
         "UpdateKnowledgeBaseTemplateUriRequest$templateUri": "<p>The template URI to update.</p>"
       }
     },
+    "Url": {
+      "base": null,
+      "refs": {
+        "ContentData$url": "<p>The URL of the content.</p>",
+        "StartContentUploadResponse$url": "<p>The URL of the upload.</p>"
+      }
+    },
     "Uuid": {
       "base": null,
       "refs": {
         "AssistantAssociationData$assistantAssociationId": "<p>The identifier of the assistant association.</p>",
         "AssistantAssociationData$assistantId": "<p>The identifier of the Wisdom assistant.</p>",
-        "AssistantAssociationInputData$knowledgeBaseId": "<p>The the identifier of the knowledge base.</p>",
+        "AssistantAssociationInputData$knowledgeBaseId": "<p>The identifier of the knowledge base.</p>",
         "AssistantAssociationSummary$assistantAssociationId": "<p>The identifier of the assistant association.</p>",
         "AssistantAssociationSummary$assistantId": "<p>The identifier of the Wisdom assistant.</p>",
         "AssistantData$assistantId": "<p>The identifier of the Wisdom assistant.</p>",
         "AssistantSummary$assistantId": "<p>The identifier of the Wisdom assistant.</p>",
         "ContentData$contentId": "<p>The identifier of the content.</p>",
-        "ContentData$knowledgeBaseId": "<p>The the identifier of the knowledge base.</p>",
+        "ContentData$knowledgeBaseId": "<p>The identifier of the knowledge base.</p>",
         "ContentReference$contentId": "<p>The identifier of the content.</p>",
-        "ContentReference$knowledgeBaseId": "<p>The the identifier of the knowledge base.</p>",
+        "ContentReference$knowledgeBaseId": "<p>The identifier of the knowledge base.</p>",
         "ContentSummary$contentId": "<p>The identifier of the content.</p>",
-        "ContentSummary$knowledgeBaseId": "<p>The the identifier of the knowledge base.</p>",
-        "KnowledgeBaseAssociationData$knowledgeBaseId": "<p>The the identifier of the knowledge base.</p>",
-        "KnowledgeBaseData$knowledgeBaseId": "<p>The the identifier of the knowledge base.</p>",
-        "KnowledgeBaseSummary$knowledgeBaseId": "<p>The the identifier of the knowledge base.</p>",
+        "ContentSummary$knowledgeBaseId": "<p>The identifier of the knowledge base.</p>",
+        "KnowledgeBaseAssociationData$knowledgeBaseId": "<p>The identifier of the knowledge base.</p>",
+        "KnowledgeBaseData$knowledgeBaseId": "<p>The identifier of the knowledge base.</p>",
+        "KnowledgeBaseSummary$knowledgeBaseId": "<p>The identifier of the knowledge base.</p>",
+        "RecommendationTrigger$id": "<p>The identifier of the recommendation trigger.</p>",
         "ResultData$resultId": "<p>The identifier of the result data.</p>",
         "SessionData$sessionId": "<p>The identifier of the session.</p>",
         "SessionSummary$assistantId": "<p>The identifier of the Wisdom assistant.</p>",
@@ -996,42 +1036,42 @@
       "base": null,
       "refs": {
         "CreateAssistantAssociationRequest$assistantId": "<p>The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
-        "CreateContentRequest$knowledgeBaseId": "<p>The the identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
+        "CreateContentRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "CreateSessionRequest$assistantId": "<p>The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "DeleteAssistantAssociationRequest$assistantAssociationId": "<p>The identifier of the assistant association. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "DeleteAssistantAssociationRequest$assistantId": "<p>The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "DeleteAssistantRequest$assistantId": "<p>The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "DeleteContentRequest$contentId": "<p>The identifier of the content. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
-        "DeleteContentRequest$knowledgeBaseId": "<p>The the identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
+        "DeleteContentRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "DeleteKnowledgeBaseRequest$knowledgeBaseId": "<p>The knowledge base to delete content from. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "GetAssistantAssociationRequest$assistantAssociationId": "<p>The identifier of the assistant association. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "GetAssistantAssociationRequest$assistantId": "<p>The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "GetAssistantRequest$assistantId": "<p>The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "GetContentRequest$contentId": "<p>The identifier of the content. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
-        "GetContentRequest$knowledgeBaseId": "<p>The the identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
+        "GetContentRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "GetContentSummaryRequest$contentId": "<p>The identifier of the content. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
-        "GetContentSummaryRequest$knowledgeBaseId": "<p>The the identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
-        "GetKnowledgeBaseRequest$knowledgeBaseId": "<p>The the identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
+        "GetContentSummaryRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
+        "GetKnowledgeBaseRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "GetRecommendationsRequest$assistantId": "<p>The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "GetRecommendationsRequest$sessionId": "<p>The identifier of the session. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "GetSessionRequest$assistantId": "<p>The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "GetSessionRequest$sessionId": "<p>The identifier of the session. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "ListAssistantAssociationsRequest$assistantId": "<p>The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
-        "ListContentsRequest$knowledgeBaseId": "<p>The the identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
+        "ListContentsRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "NotifyRecommendationsReceivedRequest$assistantId": "<p>The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "NotifyRecommendationsReceivedRequest$sessionId": "<p>The identifier of the session. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "QueryAssistantRequest$assistantId": "<p>The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
-        "RemoveKnowledgeBaseTemplateUriRequest$knowledgeBaseId": "<p>The the identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
-        "SearchContentRequest$knowledgeBaseId": "<p>The the identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
+        "RemoveKnowledgeBaseTemplateUriRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
+        "SearchContentRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "SearchSessionsRequest$assistantId": "<p>The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
-        "StartContentUploadRequest$knowledgeBaseId": "<p>The the identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
+        "StartContentUploadRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "UpdateContentRequest$contentId": "<p>The identifier of the content. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
-        "UpdateContentRequest$knowledgeBaseId": "<p>The the identifier of the knowledge base. Can be either the ID or the ARN</p>",
-        "UpdateKnowledgeBaseTemplateUriRequest$knowledgeBaseId": "<p>The the identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>"
+        "UpdateContentRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. Can be either the ID or the ARN</p>",
+        "UpdateKnowledgeBaseTemplateUriRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>"
       }
     },
     "ValidationException": {
-      "base": "<p>The input fails to satisfy the constraints specified by an AWS service.</p>",
+      "base": "<p>The input fails to satisfy the constraints specified by a service.</p>",
       "refs": {
       }
     },

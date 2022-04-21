@@ -76,6 +76,27 @@ type IoTSiteWiseAPI interface {
 	BatchDisassociateProjectAssetsWithContext(aws.Context, *iotsitewise.BatchDisassociateProjectAssetsInput, ...request.Option) (*iotsitewise.BatchDisassociateProjectAssetsOutput, error)
 	BatchDisassociateProjectAssetsRequest(*iotsitewise.BatchDisassociateProjectAssetsInput) (*request.Request, *iotsitewise.BatchDisassociateProjectAssetsOutput)
 
+	BatchGetAssetPropertyAggregates(*iotsitewise.BatchGetAssetPropertyAggregatesInput) (*iotsitewise.BatchGetAssetPropertyAggregatesOutput, error)
+	BatchGetAssetPropertyAggregatesWithContext(aws.Context, *iotsitewise.BatchGetAssetPropertyAggregatesInput, ...request.Option) (*iotsitewise.BatchGetAssetPropertyAggregatesOutput, error)
+	BatchGetAssetPropertyAggregatesRequest(*iotsitewise.BatchGetAssetPropertyAggregatesInput) (*request.Request, *iotsitewise.BatchGetAssetPropertyAggregatesOutput)
+
+	BatchGetAssetPropertyAggregatesPages(*iotsitewise.BatchGetAssetPropertyAggregatesInput, func(*iotsitewise.BatchGetAssetPropertyAggregatesOutput, bool) bool) error
+	BatchGetAssetPropertyAggregatesPagesWithContext(aws.Context, *iotsitewise.BatchGetAssetPropertyAggregatesInput, func(*iotsitewise.BatchGetAssetPropertyAggregatesOutput, bool) bool, ...request.Option) error
+
+	BatchGetAssetPropertyValue(*iotsitewise.BatchGetAssetPropertyValueInput) (*iotsitewise.BatchGetAssetPropertyValueOutput, error)
+	BatchGetAssetPropertyValueWithContext(aws.Context, *iotsitewise.BatchGetAssetPropertyValueInput, ...request.Option) (*iotsitewise.BatchGetAssetPropertyValueOutput, error)
+	BatchGetAssetPropertyValueRequest(*iotsitewise.BatchGetAssetPropertyValueInput) (*request.Request, *iotsitewise.BatchGetAssetPropertyValueOutput)
+
+	BatchGetAssetPropertyValuePages(*iotsitewise.BatchGetAssetPropertyValueInput, func(*iotsitewise.BatchGetAssetPropertyValueOutput, bool) bool) error
+	BatchGetAssetPropertyValuePagesWithContext(aws.Context, *iotsitewise.BatchGetAssetPropertyValueInput, func(*iotsitewise.BatchGetAssetPropertyValueOutput, bool) bool, ...request.Option) error
+
+	BatchGetAssetPropertyValueHistory(*iotsitewise.BatchGetAssetPropertyValueHistoryInput) (*iotsitewise.BatchGetAssetPropertyValueHistoryOutput, error)
+	BatchGetAssetPropertyValueHistoryWithContext(aws.Context, *iotsitewise.BatchGetAssetPropertyValueHistoryInput, ...request.Option) (*iotsitewise.BatchGetAssetPropertyValueHistoryOutput, error)
+	BatchGetAssetPropertyValueHistoryRequest(*iotsitewise.BatchGetAssetPropertyValueHistoryInput) (*request.Request, *iotsitewise.BatchGetAssetPropertyValueHistoryOutput)
+
+	BatchGetAssetPropertyValueHistoryPages(*iotsitewise.BatchGetAssetPropertyValueHistoryInput, func(*iotsitewise.BatchGetAssetPropertyValueHistoryOutput, bool) bool) error
+	BatchGetAssetPropertyValueHistoryPagesWithContext(aws.Context, *iotsitewise.BatchGetAssetPropertyValueHistoryInput, func(*iotsitewise.BatchGetAssetPropertyValueHistoryOutput, bool) bool, ...request.Option) error
+
 	BatchPutAssetPropertyValue(*iotsitewise.BatchPutAssetPropertyValueInput) (*iotsitewise.BatchPutAssetPropertyValueOutput, error)
 	BatchPutAssetPropertyValueWithContext(aws.Context, *iotsitewise.BatchPutAssetPropertyValueInput, ...request.Option) (*iotsitewise.BatchPutAssetPropertyValueOutput, error)
 	BatchPutAssetPropertyValueRequest(*iotsitewise.BatchPutAssetPropertyValueInput) (*request.Request, *iotsitewise.BatchPutAssetPropertyValueOutput)
