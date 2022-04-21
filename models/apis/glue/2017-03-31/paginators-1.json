@@ -117,6 +117,11 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
+    "ListCustomEntityTypes": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "ListDevEndpoints": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

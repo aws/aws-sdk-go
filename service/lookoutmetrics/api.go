@@ -1258,6 +1258,101 @@ func (c *LookoutMetrics) DescribeMetricSetWithContext(ctx aws.Context, input *De
 	return out, req.Send()
 }
 
+const opDetectMetricSetConfig = "DetectMetricSetConfig"
+
+// DetectMetricSetConfigRequest generates a "aws/request.Request" representing the
+// client's request for the DetectMetricSetConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DetectMetricSetConfig for more information on using the DetectMetricSetConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DetectMetricSetConfigRequest method.
+//    req, resp := client.DetectMetricSetConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutmetrics-2017-07-25/DetectMetricSetConfig
+func (c *LookoutMetrics) DetectMetricSetConfigRequest(input *DetectMetricSetConfigInput) (req *request.Request, output *DetectMetricSetConfigOutput) {
+	op := &request.Operation{
+		Name:       opDetectMetricSetConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DetectMetricSetConfig",
+	}
+
+	if input == nil {
+		input = &DetectMetricSetConfigInput{}
+	}
+
+	output = &DetectMetricSetConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DetectMetricSetConfig API operation for Amazon Lookout for Metrics.
+//
+// Detects an Amazon S3 dataset's file format, interval, and offset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Metrics's
+// API operation DetectMetricSetConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource cannot be found. Check the ARN of the resource and
+//   try again.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by the AWS service.
+//   Check your input values and try again.
+//
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception,
+//   or failure.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * TooManyRequestsException
+//   The request was denied due to too many requests being submitted at the same
+//   time.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutmetrics-2017-07-25/DetectMetricSetConfig
+func (c *LookoutMetrics) DetectMetricSetConfig(input *DetectMetricSetConfigInput) (*DetectMetricSetConfigOutput, error) {
+	req, out := c.DetectMetricSetConfigRequest(input)
+	return out, req.Send()
+}
+
+// DetectMetricSetConfigWithContext is the same as DetectMetricSetConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DetectMetricSetConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutMetrics) DetectMetricSetConfigWithContext(ctx aws.Context, input *DetectMetricSetConfigInput, opts ...request.Option) (*DetectMetricSetConfigOutput, error) {
+	req, out := c.DetectMetricSetConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAnomalyGroup = "GetAnomalyGroup"
 
 // GetAnomalyGroupRequest generates a "aws/request.Request" representing the
@@ -4020,6 +4115,187 @@ func (s *AppFlowConfig) SetRoleArn(v string) *AppFlowConfig {
 	return s
 }
 
+// An attribute value.
+type AttributeValue struct {
+	_ struct{} `type:"structure"`
+
+	// A binary value.
+	B *string `type:"string"`
+
+	// A list of binary values.
+	BS []*string `type:"list"`
+
+	// A number.
+	N *string `type:"string"`
+
+	// A list of numbers.
+	NS []*string `type:"list"`
+
+	// A string.
+	S *string `type:"string"`
+
+	// A list of strings.
+	SS []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeValue) GoString() string {
+	return s.String()
+}
+
+// SetB sets the B field's value.
+func (s *AttributeValue) SetB(v string) *AttributeValue {
+	s.B = &v
+	return s
+}
+
+// SetBS sets the BS field's value.
+func (s *AttributeValue) SetBS(v []*string) *AttributeValue {
+	s.BS = v
+	return s
+}
+
+// SetN sets the N field's value.
+func (s *AttributeValue) SetN(v string) *AttributeValue {
+	s.N = &v
+	return s
+}
+
+// SetNS sets the NS field's value.
+func (s *AttributeValue) SetNS(v []*string) *AttributeValue {
+	s.NS = v
+	return s
+}
+
+// SetS sets the S field's value.
+func (s *AttributeValue) SetS(v string) *AttributeValue {
+	s.S = &v
+	return s
+}
+
+// SetSS sets the SS field's value.
+func (s *AttributeValue) SetSS(v []*string) *AttributeValue {
+	s.SS = v
+	return s
+}
+
+// An auto detection metric source.
+type AutoDetectionMetricSource struct {
+	_ struct{} `type:"structure"`
+
+	// The source's source config.
+	S3SourceConfig *AutoDetectionS3SourceConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoDetectionMetricSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoDetectionMetricSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutoDetectionMetricSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutoDetectionMetricSource"}
+	if s.S3SourceConfig != nil {
+		if err := s.S3SourceConfig.Validate(); err != nil {
+			invalidParams.AddNested("S3SourceConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3SourceConfig sets the S3SourceConfig field's value.
+func (s *AutoDetectionMetricSource) SetS3SourceConfig(v *AutoDetectionS3SourceConfig) *AutoDetectionMetricSource {
+	s.S3SourceConfig = v
+	return s
+}
+
+// An auto detection source config.
+type AutoDetectionS3SourceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The config's historical data path list.
+	HistoricalDataPathList []*string `min:"1" type:"list"`
+
+	// The config's templated path list.
+	TemplatedPathList []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoDetectionS3SourceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoDetectionS3SourceConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutoDetectionS3SourceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutoDetectionS3SourceConfig"}
+	if s.HistoricalDataPathList != nil && len(s.HistoricalDataPathList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("HistoricalDataPathList", 1))
+	}
+	if s.TemplatedPathList != nil && len(s.TemplatedPathList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TemplatedPathList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHistoricalDataPathList sets the HistoricalDataPathList field's value.
+func (s *AutoDetectionS3SourceConfig) SetHistoricalDataPathList(v []*string) *AutoDetectionS3SourceConfig {
+	s.HistoricalDataPathList = v
+	return s
+}
+
+// SetTemplatedPathList sets the TemplatedPathList field's value.
+func (s *AutoDetectionS3SourceConfig) SetTemplatedPathList(v []*string) *AutoDetectionS3SourceConfig {
+	s.TemplatedPathList = v
+	return s
+}
+
 type BackTestAnomalyDetectorInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5542,6 +5818,425 @@ func (s *DescribeMetricSetOutput) SetTimestampColumn(v *TimestampColumn) *Descri
 // SetTimezone sets the Timezone field's value.
 func (s *DescribeMetricSetOutput) SetTimezone(v string) *DescribeMetricSetOutput {
 	s.Timezone = &v
+	return s
+}
+
+type DetectMetricSetConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// An anomaly detector ARN.
+	//
+	// AnomalyDetectorArn is a required field
+	AnomalyDetectorArn *string `type:"string" required:"true"`
+
+	// A data source.
+	//
+	// AutoDetectionMetricSource is a required field
+	AutoDetectionMetricSource *AutoDetectionMetricSource `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectMetricSetConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectMetricSetConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DetectMetricSetConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DetectMetricSetConfigInput"}
+	if s.AnomalyDetectorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnomalyDetectorArn"))
+	}
+	if s.AutoDetectionMetricSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("AutoDetectionMetricSource"))
+	}
+	if s.AutoDetectionMetricSource != nil {
+		if err := s.AutoDetectionMetricSource.Validate(); err != nil {
+			invalidParams.AddNested("AutoDetectionMetricSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnomalyDetectorArn sets the AnomalyDetectorArn field's value.
+func (s *DetectMetricSetConfigInput) SetAnomalyDetectorArn(v string) *DetectMetricSetConfigInput {
+	s.AnomalyDetectorArn = &v
+	return s
+}
+
+// SetAutoDetectionMetricSource sets the AutoDetectionMetricSource field's value.
+func (s *DetectMetricSetConfigInput) SetAutoDetectionMetricSource(v *AutoDetectionMetricSource) *DetectMetricSetConfigInput {
+	s.AutoDetectionMetricSource = v
+	return s
+}
+
+type DetectMetricSetConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The inferred dataset configuration for the datasource.
+	DetectedMetricSetConfig *DetectedMetricSetConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectMetricSetConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectMetricSetConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetDetectedMetricSetConfig sets the DetectedMetricSetConfig field's value.
+func (s *DetectMetricSetConfigOutput) SetDetectedMetricSetConfig(v *DetectedMetricSetConfig) *DetectMetricSetConfigOutput {
+	s.DetectedMetricSetConfig = v
+	return s
+}
+
+// Properties of an inferred CSV format.
+type DetectedCsvFormatDescriptor struct {
+	_ struct{} `type:"structure"`
+
+	// The format's charset.
+	Charset *DetectedField `type:"structure"`
+
+	// Whether the format includes a header.
+	ContainsHeader *DetectedField `type:"structure"`
+
+	// The format's delimiter.
+	Delimiter *DetectedField `type:"structure"`
+
+	// The format's file compression.
+	FileCompression *DetectedField `type:"structure"`
+
+	// The format's header list.
+	HeaderList *DetectedField `type:"structure"`
+
+	// The format's quote symbol.
+	QuoteSymbol *DetectedField `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectedCsvFormatDescriptor) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectedCsvFormatDescriptor) GoString() string {
+	return s.String()
+}
+
+// SetCharset sets the Charset field's value.
+func (s *DetectedCsvFormatDescriptor) SetCharset(v *DetectedField) *DetectedCsvFormatDescriptor {
+	s.Charset = v
+	return s
+}
+
+// SetContainsHeader sets the ContainsHeader field's value.
+func (s *DetectedCsvFormatDescriptor) SetContainsHeader(v *DetectedField) *DetectedCsvFormatDescriptor {
+	s.ContainsHeader = v
+	return s
+}
+
+// SetDelimiter sets the Delimiter field's value.
+func (s *DetectedCsvFormatDescriptor) SetDelimiter(v *DetectedField) *DetectedCsvFormatDescriptor {
+	s.Delimiter = v
+	return s
+}
+
+// SetFileCompression sets the FileCompression field's value.
+func (s *DetectedCsvFormatDescriptor) SetFileCompression(v *DetectedField) *DetectedCsvFormatDescriptor {
+	s.FileCompression = v
+	return s
+}
+
+// SetHeaderList sets the HeaderList field's value.
+func (s *DetectedCsvFormatDescriptor) SetHeaderList(v *DetectedField) *DetectedCsvFormatDescriptor {
+	s.HeaderList = v
+	return s
+}
+
+// SetQuoteSymbol sets the QuoteSymbol field's value.
+func (s *DetectedCsvFormatDescriptor) SetQuoteSymbol(v *DetectedField) *DetectedCsvFormatDescriptor {
+	s.QuoteSymbol = v
+	return s
+}
+
+// An inferred field.
+type DetectedField struct {
+	_ struct{} `type:"structure"`
+
+	// The field's confidence.
+	Confidence *string `type:"string" enum:"Confidence"`
+
+	// The field's message.
+	Message *string `type:"string"`
+
+	// The field's value.
+	Value *AttributeValue `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectedField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectedField) GoString() string {
+	return s.String()
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *DetectedField) SetConfidence(v string) *DetectedField {
+	s.Confidence = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *DetectedField) SetMessage(v string) *DetectedField {
+	s.Message = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *DetectedField) SetValue(v *AttributeValue) *DetectedField {
+	s.Value = v
+	return s
+}
+
+// Properties of an inferred data format.
+type DetectedFileFormatDescriptor struct {
+	_ struct{} `type:"structure"`
+
+	// Details about a CSV format.
+	CsvFormatDescriptor *DetectedCsvFormatDescriptor `type:"structure"`
+
+	// Details about a JSON format.
+	JsonFormatDescriptor *DetectedJsonFormatDescriptor `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectedFileFormatDescriptor) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectedFileFormatDescriptor) GoString() string {
+	return s.String()
+}
+
+// SetCsvFormatDescriptor sets the CsvFormatDescriptor field's value.
+func (s *DetectedFileFormatDescriptor) SetCsvFormatDescriptor(v *DetectedCsvFormatDescriptor) *DetectedFileFormatDescriptor {
+	s.CsvFormatDescriptor = v
+	return s
+}
+
+// SetJsonFormatDescriptor sets the JsonFormatDescriptor field's value.
+func (s *DetectedFileFormatDescriptor) SetJsonFormatDescriptor(v *DetectedJsonFormatDescriptor) *DetectedFileFormatDescriptor {
+	s.JsonFormatDescriptor = v
+	return s
+}
+
+// A detected JSON format descriptor.
+type DetectedJsonFormatDescriptor struct {
+	_ struct{} `type:"structure"`
+
+	// The format's character set.
+	Charset *DetectedField `type:"structure"`
+
+	// The format's file compression.
+	FileCompression *DetectedField `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectedJsonFormatDescriptor) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectedJsonFormatDescriptor) GoString() string {
+	return s.String()
+}
+
+// SetCharset sets the Charset field's value.
+func (s *DetectedJsonFormatDescriptor) SetCharset(v *DetectedField) *DetectedJsonFormatDescriptor {
+	s.Charset = v
+	return s
+}
+
+// SetFileCompression sets the FileCompression field's value.
+func (s *DetectedJsonFormatDescriptor) SetFileCompression(v *DetectedField) *DetectedJsonFormatDescriptor {
+	s.FileCompression = v
+	return s
+}
+
+// An inferred dataset configuration.
+type DetectedMetricSetConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The dataset's interval.
+	MetricSetFrequency *DetectedField `type:"structure"`
+
+	// The dataset's data source.
+	MetricSource *DetectedMetricSource `type:"structure"`
+
+	// The dataset's offset.
+	Offset *DetectedField `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectedMetricSetConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectedMetricSetConfig) GoString() string {
+	return s.String()
+}
+
+// SetMetricSetFrequency sets the MetricSetFrequency field's value.
+func (s *DetectedMetricSetConfig) SetMetricSetFrequency(v *DetectedField) *DetectedMetricSetConfig {
+	s.MetricSetFrequency = v
+	return s
+}
+
+// SetMetricSource sets the MetricSource field's value.
+func (s *DetectedMetricSetConfig) SetMetricSource(v *DetectedMetricSource) *DetectedMetricSetConfig {
+	s.MetricSource = v
+	return s
+}
+
+// SetOffset sets the Offset field's value.
+func (s *DetectedMetricSetConfig) SetOffset(v *DetectedField) *DetectedMetricSetConfig {
+	s.Offset = v
+	return s
+}
+
+// An inferred data source.
+type DetectedMetricSource struct {
+	_ struct{} `type:"structure"`
+
+	// The data source's source configuration.
+	S3SourceConfig *DetectedS3SourceConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectedMetricSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectedMetricSource) GoString() string {
+	return s.String()
+}
+
+// SetS3SourceConfig sets the S3SourceConfig field's value.
+func (s *DetectedMetricSource) SetS3SourceConfig(v *DetectedS3SourceConfig) *DetectedMetricSource {
+	s.S3SourceConfig = v
+	return s
+}
+
+// An inferred source configuration.
+type DetectedS3SourceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The source's file format descriptor.
+	FileFormatDescriptor *DetectedFileFormatDescriptor `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectedS3SourceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectedS3SourceConfig) GoString() string {
+	return s.String()
+}
+
+// SetFileFormatDescriptor sets the FileFormatDescriptor field's value.
+func (s *DetectedS3SourceConfig) SetFileFormatDescriptor(v *DetectedFileFormatDescriptor) *DetectedS3SourceConfig {
+	s.FileFormatDescriptor = v
 	return s
 }
 
@@ -9209,6 +9904,26 @@ func CSVFileCompression_Values() []string {
 	return []string{
 		CSVFileCompressionNone,
 		CSVFileCompressionGzip,
+	}
+}
+
+const (
+	// ConfidenceHigh is a Confidence enum value
+	ConfidenceHigh = "HIGH"
+
+	// ConfidenceLow is a Confidence enum value
+	ConfidenceLow = "LOW"
+
+	// ConfidenceNone is a Confidence enum value
+	ConfidenceNone = "NONE"
+)
+
+// Confidence_Values returns all elements of the Confidence enum
+func Confidence_Values() []string {
+	return []string{
+		ConfidenceHigh,
+		ConfidenceLow,
+		ConfidenceNone,
 	}
 }
 

@@ -42,6 +42,21 @@
         "shape": "CreateChannelResponse"
       }
     },
+    "CreateLiveSource": {
+      "errors": [],
+      "http": {
+        "method": "POST",
+        "requestUri": "/sourceLocation/{sourceLocationName}/liveSource/{liveSourceName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "CreateLiveSourceRequest"
+      },
+      "name": "CreateLiveSource",
+      "output": {
+        "shape": "CreateLiveSourceResponse"
+      }
+    },
     "CreatePrefetchSchedule": {
       "errors": [],
       "http": {
@@ -132,6 +147,21 @@
         "shape": "DeleteChannelPolicyResponse"
       }
     },
+    "DeleteLiveSource": {
+      "errors": [],
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/sourceLocation/{sourceLocationName}/liveSource/{liveSourceName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DeleteLiveSourceRequest"
+      },
+      "name": "DeleteLiveSource",
+      "output": {
+        "shape": "DeleteLiveSourceResponse"
+      }
+    },
     "DeletePlaybackConfiguration": {
       "errors": [],
       "http": {
@@ -220,6 +250,21 @@
       "name": "DescribeChannel",
       "output": {
         "shape": "DescribeChannelResponse"
+      }
+    },
+    "DescribeLiveSource": {
+      "errors": [],
+      "http": {
+        "method": "GET",
+        "requestUri": "/sourceLocation/{sourceLocationName}/liveSource/{liveSourceName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DescribeLiveSourceRequest"
+      },
+      "name": "DescribeLiveSource",
+      "output": {
+        "shape": "DescribeLiveSourceResponse"
       }
     },
     "DescribeProgram": {
@@ -355,6 +400,21 @@
       "name": "ListChannels",
       "output": {
         "shape": "ListChannelsResponse"
+      }
+    },
+    "ListLiveSources": {
+      "errors": [],
+      "http": {
+        "method": "GET",
+        "requestUri": "/sourceLocation/{sourceLocationName}/liveSources",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListLiveSourcesRequest"
+      },
+      "name": "ListLiveSources",
+      "output": {
+        "shape": "ListLiveSourcesResponse"
       }
     },
     "ListPlaybackConfigurations": {
@@ -541,6 +601,21 @@
       "name": "UpdateChannel",
       "output": {
         "shape": "UpdateChannelResponse"
+      }
+    },
+    "UpdateLiveSource": {
+      "errors": [],
+      "http": {
+        "method": "PUT",
+        "requestUri": "/sourceLocation/{sourceLocationName}/liveSource/{liveSourceName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateLiveSourceRequest"
+      },
+      "name": "UpdateLiveSource",
+      "output": {
+        "shape": "UpdateLiveSourceResponse"
       }
     },
     "UpdateSourceLocation": {
@@ -734,11 +809,15 @@
         "Tags": {
           "locationName": "tags",
           "shape": "__mapOf__string"
+        },
+        "Tier": {
+          "shape": "__string"
         }
       },
       "required": [
         "ChannelState",
         "ChannelName",
+        "Tier",
         "Outputs",
         "Arn",
         "PlaybackMode"
@@ -815,6 +894,9 @@
         "Tags": {
           "locationName": "tags",
           "shape": "__mapOf__string"
+        },
+        "Tier": {
+          "shape": "Tier"
         }
       },
       "required": [
@@ -848,6 +930,63 @@
           "shape": "ResponseOutputs"
         },
         "PlaybackMode": {
+          "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "__mapOf__string"
+        },
+        "Tier": {
+          "shape": "__string"
+        }
+      },
+      "type": "structure"
+    },
+    "CreateLiveSourceRequest": {
+      "members": {
+        "HttpPackageConfigurations": {
+          "shape": "HttpPackageConfigurations"
+        },
+        "LiveSourceName": {
+          "location": "uri",
+          "locationName": "liveSourceName",
+          "shape": "__string"
+        },
+        "SourceLocationName": {
+          "location": "uri",
+          "locationName": "sourceLocationName",
+          "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "__mapOf__string"
+        }
+      },
+      "required": [
+        "SourceLocationName",
+        "LiveSourceName",
+        "HttpPackageConfigurations"
+      ],
+      "type": "structure"
+    },
+    "CreateLiveSourceResponse": {
+      "members": {
+        "Arn": {
+          "shape": "__string"
+        },
+        "CreationTime": {
+          "shape": "__timestampUnix"
+        },
+        "HttpPackageConfigurations": {
+          "shape": "HttpPackageConfigurations"
+        },
+        "LastModifiedTime": {
+          "shape": "__timestampUnix"
+        },
+        "LiveSourceName": {
+          "shape": "__string"
+        },
+        "SourceLocationName": {
           "shape": "__string"
         },
         "Tags": {
@@ -920,6 +1059,9 @@
           "locationName": "channelName",
           "shape": "__string"
         },
+        "LiveSourceName": {
+          "shape": "__string"
+        },
         "ProgramName": {
           "location": "uri",
           "locationName": "programName",
@@ -938,7 +1080,6 @@
       "required": [
         "ChannelName",
         "ProgramName",
-        "VodSourceName",
         "SourceLocationName",
         "ScheduleConfiguration"
       ],
@@ -957,6 +1098,9 @@
         },
         "CreationTime": {
           "shape": "__timestampUnix"
+        },
+        "LiveSourceName": {
+          "shape": "__string"
         },
         "ProgramName": {
           "shape": "__string"
@@ -1174,6 +1318,29 @@
       "members": {},
       "type": "structure"
     },
+    "DeleteLiveSourceRequest": {
+      "members": {
+        "LiveSourceName": {
+          "location": "uri",
+          "locationName": "liveSourceName",
+          "shape": "__string"
+        },
+        "SourceLocationName": {
+          "location": "uri",
+          "locationName": "sourceLocationName",
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "SourceLocationName",
+        "LiveSourceName"
+      ],
+      "type": "structure"
+    },
+    "DeleteLiveSourceResponse": {
+      "members": {},
+      "type": "structure"
+    },
     "DeletePlaybackConfigurationRequest": {
       "members": {
         "Name": {
@@ -1319,6 +1486,55 @@
         "Tags": {
           "locationName": "tags",
           "shape": "__mapOf__string"
+        },
+        "Tier": {
+          "shape": "__string"
+        }
+      },
+      "type": "structure"
+    },
+    "DescribeLiveSourceRequest": {
+      "members": {
+        "LiveSourceName": {
+          "location": "uri",
+          "locationName": "liveSourceName",
+          "shape": "__string"
+        },
+        "SourceLocationName": {
+          "location": "uri",
+          "locationName": "sourceLocationName",
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "SourceLocationName",
+        "LiveSourceName"
+      ],
+      "type": "structure"
+    },
+    "DescribeLiveSourceResponse": {
+      "members": {
+        "Arn": {
+          "shape": "__string"
+        },
+        "CreationTime": {
+          "shape": "__timestampUnix"
+        },
+        "HttpPackageConfigurations": {
+          "shape": "HttpPackageConfigurations"
+        },
+        "LastModifiedTime": {
+          "shape": "__timestampUnix"
+        },
+        "LiveSourceName": {
+          "shape": "__string"
+        },
+        "SourceLocationName": {
+          "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "__mapOf__string"
         }
       },
       "type": "structure"
@@ -1355,6 +1571,9 @@
         },
         "CreationTime": {
           "shape": "__timestampUnix"
+        },
+        "LiveSourceName": {
+          "shape": "__string"
         },
         "ProgramName": {
           "shape": "__string"
@@ -1753,6 +1972,40 @@
       },
       "type": "structure"
     },
+    "ListLiveSourcesRequest": {
+      "members": {
+        "MaxResults": {
+          "location": "querystring",
+          "locationName": "maxResults",
+          "shape": "MaxResults"
+        },
+        "NextToken": {
+          "location": "querystring",
+          "locationName": "nextToken",
+          "shape": "__string"
+        },
+        "SourceLocationName": {
+          "location": "uri",
+          "locationName": "sourceLocationName",
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "SourceLocationName"
+      ],
+      "type": "structure"
+    },
+    "ListLiveSourcesResponse": {
+      "members": {
+        "Items": {
+          "shape": "__listOfLiveSource"
+        },
+        "NextToken": {
+          "shape": "__string"
+        }
+      },
+      "type": "structure"
+    },
     "ListPlaybackConfigurationsRequest": {
       "members": {
         "MaxResults": {
@@ -1903,6 +2156,39 @@
           "shape": "__integer"
         }
       },
+      "type": "structure"
+    },
+    "LiveSource": {
+      "members": {
+        "Arn": {
+          "shape": "__string"
+        },
+        "CreationTime": {
+          "shape": "__timestampUnix"
+        },
+        "HttpPackageConfigurations": {
+          "shape": "HttpPackageConfigurations"
+        },
+        "LastModifiedTime": {
+          "shape": "__timestampUnix"
+        },
+        "LiveSourceName": {
+          "shape": "__string"
+        },
+        "SourceLocationName": {
+          "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "__mapOf__string"
+        }
+      },
+      "required": [
+        "SourceLocationName",
+        "LiveSourceName",
+        "HttpPackageConfigurations",
+        "Arn"
+      ],
       "type": "structure"
     },
     "LogConfiguration": {
@@ -2328,6 +2614,9 @@
         "ChannelName": {
           "shape": "__string"
         },
+        "LiveSourceName": {
+          "shape": "__string"
+        },
         "ProgramName": {
           "shape": "__string"
         },
@@ -2345,7 +2634,6 @@
         }
       },
       "required": [
-        "VodSourceName",
         "SourceLocationName",
         "ChannelName",
         "Arn",
@@ -2503,8 +2791,18 @@
       ],
       "type": "structure"
     },
+    "Tier": {
+      "enum": [
+        "BASIC",
+        "STANDARD"
+      ],
+      "type": "string"
+    },
     "Transition": {
       "members": {
+        "DurationMillis": {
+          "shape": "__long"
+        },
         "RelativePosition": {
           "shape": "RelativePosition"
         },
@@ -2594,6 +2892,59 @@
           "shape": "ResponseOutputs"
         },
         "PlaybackMode": {
+          "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "__mapOf__string"
+        },
+        "Tier": {
+          "shape": "__string"
+        }
+      },
+      "type": "structure"
+    },
+    "UpdateLiveSourceRequest": {
+      "members": {
+        "HttpPackageConfigurations": {
+          "shape": "HttpPackageConfigurations"
+        },
+        "LiveSourceName": {
+          "location": "uri",
+          "locationName": "liveSourceName",
+          "shape": "__string"
+        },
+        "SourceLocationName": {
+          "location": "uri",
+          "locationName": "sourceLocationName",
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "SourceLocationName",
+        "LiveSourceName",
+        "HttpPackageConfigurations"
+      ],
+      "type": "structure"
+    },
+    "UpdateLiveSourceResponse": {
+      "members": {
+        "Arn": {
+          "shape": "__string"
+        },
+        "CreationTime": {
+          "shape": "__timestampUnix"
+        },
+        "HttpPackageConfigurations": {
+          "shape": "HttpPackageConfigurations"
+        },
+        "LastModifiedTime": {
+          "shape": "__timestampUnix"
+        },
+        "LiveSourceName": {
+          "shape": "__string"
+        },
+        "SourceLocationName": {
           "shape": "__string"
         },
         "Tags": {
@@ -2781,6 +3132,12 @@
     "__listOfChannel": {
       "member": {
         "shape": "Channel"
+      },
+      "type": "list"
+    },
+    "__listOfLiveSource": {
+      "member": {
+        "shape": "LiveSource"
       },
       "type": "list"
     },

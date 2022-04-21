@@ -426,6 +426,474 @@ func (c *IoTSiteWise) BatchDisassociateProjectAssetsWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
+const opBatchGetAssetPropertyAggregates = "BatchGetAssetPropertyAggregates"
+
+// BatchGetAssetPropertyAggregatesRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetAssetPropertyAggregates operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetAssetPropertyAggregates for more information on using the BatchGetAssetPropertyAggregates
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchGetAssetPropertyAggregatesRequest method.
+//    req, resp := client.BatchGetAssetPropertyAggregatesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/BatchGetAssetPropertyAggregates
+func (c *IoTSiteWise) BatchGetAssetPropertyAggregatesRequest(input *BatchGetAssetPropertyAggregatesInput) (req *request.Request, output *BatchGetAssetPropertyAggregatesOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetAssetPropertyAggregates,
+		HTTPMethod: "POST",
+		HTTPPath:   "/properties/batch/aggregates",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &BatchGetAssetPropertyAggregatesInput{}
+	}
+
+	output = &BatchGetAssetPropertyAggregatesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("data.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// BatchGetAssetPropertyAggregates API operation for AWS IoT SiteWise.
+//
+// Gets aggregated values (for example, average, minimum, and maximum) for one
+// or more asset properties. For more information, see Querying aggregates (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#aggregates)
+// in the IoT SiteWise User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation BatchGetAssetPropertyAggregates for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters. Check your request and try again.
+//
+//   * InternalFailureException
+//   IoT SiteWise can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a rate limit. For example, you might have exceeded
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the IoT SiteWise User Guide.
+//
+//   * ServiceUnavailableException
+//   The requested service is unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/BatchGetAssetPropertyAggregates
+func (c *IoTSiteWise) BatchGetAssetPropertyAggregates(input *BatchGetAssetPropertyAggregatesInput) (*BatchGetAssetPropertyAggregatesOutput, error) {
+	req, out := c.BatchGetAssetPropertyAggregatesRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetAssetPropertyAggregatesWithContext is the same as BatchGetAssetPropertyAggregates with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetAssetPropertyAggregates for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) BatchGetAssetPropertyAggregatesWithContext(ctx aws.Context, input *BatchGetAssetPropertyAggregatesInput, opts ...request.Option) (*BatchGetAssetPropertyAggregatesOutput, error) {
+	req, out := c.BatchGetAssetPropertyAggregatesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// BatchGetAssetPropertyAggregatesPages iterates over the pages of a BatchGetAssetPropertyAggregates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See BatchGetAssetPropertyAggregates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a BatchGetAssetPropertyAggregates operation.
+//    pageNum := 0
+//    err := client.BatchGetAssetPropertyAggregatesPages(params,
+//        func(page *iotsitewise.BatchGetAssetPropertyAggregatesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoTSiteWise) BatchGetAssetPropertyAggregatesPages(input *BatchGetAssetPropertyAggregatesInput, fn func(*BatchGetAssetPropertyAggregatesOutput, bool) bool) error {
+	return c.BatchGetAssetPropertyAggregatesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// BatchGetAssetPropertyAggregatesPagesWithContext same as BatchGetAssetPropertyAggregatesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) BatchGetAssetPropertyAggregatesPagesWithContext(ctx aws.Context, input *BatchGetAssetPropertyAggregatesInput, fn func(*BatchGetAssetPropertyAggregatesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *BatchGetAssetPropertyAggregatesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.BatchGetAssetPropertyAggregatesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*BatchGetAssetPropertyAggregatesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opBatchGetAssetPropertyValue = "BatchGetAssetPropertyValue"
+
+// BatchGetAssetPropertyValueRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetAssetPropertyValue operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetAssetPropertyValue for more information on using the BatchGetAssetPropertyValue
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchGetAssetPropertyValueRequest method.
+//    req, resp := client.BatchGetAssetPropertyValueRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/BatchGetAssetPropertyValue
+func (c *IoTSiteWise) BatchGetAssetPropertyValueRequest(input *BatchGetAssetPropertyValueInput) (req *request.Request, output *BatchGetAssetPropertyValueOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetAssetPropertyValue,
+		HTTPMethod: "POST",
+		HTTPPath:   "/properties/batch/latest",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &BatchGetAssetPropertyValueInput{}
+	}
+
+	output = &BatchGetAssetPropertyValueOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("data.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// BatchGetAssetPropertyValue API operation for AWS IoT SiteWise.
+//
+// Gets the current value for one or more asset properties. For more information,
+// see Querying current values (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#current-values)
+// in the IoT SiteWise User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation BatchGetAssetPropertyValue for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters. Check your request and try again.
+//
+//   * InternalFailureException
+//   IoT SiteWise can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a rate limit. For example, you might have exceeded
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the IoT SiteWise User Guide.
+//
+//   * ServiceUnavailableException
+//   The requested service is unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/BatchGetAssetPropertyValue
+func (c *IoTSiteWise) BatchGetAssetPropertyValue(input *BatchGetAssetPropertyValueInput) (*BatchGetAssetPropertyValueOutput, error) {
+	req, out := c.BatchGetAssetPropertyValueRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetAssetPropertyValueWithContext is the same as BatchGetAssetPropertyValue with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetAssetPropertyValue for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) BatchGetAssetPropertyValueWithContext(ctx aws.Context, input *BatchGetAssetPropertyValueInput, opts ...request.Option) (*BatchGetAssetPropertyValueOutput, error) {
+	req, out := c.BatchGetAssetPropertyValueRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// BatchGetAssetPropertyValuePages iterates over the pages of a BatchGetAssetPropertyValue operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See BatchGetAssetPropertyValue method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a BatchGetAssetPropertyValue operation.
+//    pageNum := 0
+//    err := client.BatchGetAssetPropertyValuePages(params,
+//        func(page *iotsitewise.BatchGetAssetPropertyValueOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoTSiteWise) BatchGetAssetPropertyValuePages(input *BatchGetAssetPropertyValueInput, fn func(*BatchGetAssetPropertyValueOutput, bool) bool) error {
+	return c.BatchGetAssetPropertyValuePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// BatchGetAssetPropertyValuePagesWithContext same as BatchGetAssetPropertyValuePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) BatchGetAssetPropertyValuePagesWithContext(ctx aws.Context, input *BatchGetAssetPropertyValueInput, fn func(*BatchGetAssetPropertyValueOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *BatchGetAssetPropertyValueInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.BatchGetAssetPropertyValueRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*BatchGetAssetPropertyValueOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opBatchGetAssetPropertyValueHistory = "BatchGetAssetPropertyValueHistory"
+
+// BatchGetAssetPropertyValueHistoryRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetAssetPropertyValueHistory operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetAssetPropertyValueHistory for more information on using the BatchGetAssetPropertyValueHistory
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchGetAssetPropertyValueHistoryRequest method.
+//    req, resp := client.BatchGetAssetPropertyValueHistoryRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/BatchGetAssetPropertyValueHistory
+func (c *IoTSiteWise) BatchGetAssetPropertyValueHistoryRequest(input *BatchGetAssetPropertyValueHistoryInput) (req *request.Request, output *BatchGetAssetPropertyValueHistoryOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetAssetPropertyValueHistory,
+		HTTPMethod: "POST",
+		HTTPPath:   "/properties/batch/history",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &BatchGetAssetPropertyValueHistoryInput{}
+	}
+
+	output = &BatchGetAssetPropertyValueHistoryOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("data.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// BatchGetAssetPropertyValueHistory API operation for AWS IoT SiteWise.
+//
+// Gets the historical values for one or more asset properties. For more information,
+// see Querying historical values (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#historical-values)
+// in the IoT SiteWise User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation BatchGetAssetPropertyValueHistory for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters. Check your request and try again.
+//
+//   * InternalFailureException
+//   IoT SiteWise can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a rate limit. For example, you might have exceeded
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the IoT SiteWise User Guide.
+//
+//   * ServiceUnavailableException
+//   The requested service is unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/BatchGetAssetPropertyValueHistory
+func (c *IoTSiteWise) BatchGetAssetPropertyValueHistory(input *BatchGetAssetPropertyValueHistoryInput) (*BatchGetAssetPropertyValueHistoryOutput, error) {
+	req, out := c.BatchGetAssetPropertyValueHistoryRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetAssetPropertyValueHistoryWithContext is the same as BatchGetAssetPropertyValueHistory with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetAssetPropertyValueHistory for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) BatchGetAssetPropertyValueHistoryWithContext(ctx aws.Context, input *BatchGetAssetPropertyValueHistoryInput, opts ...request.Option) (*BatchGetAssetPropertyValueHistoryOutput, error) {
+	req, out := c.BatchGetAssetPropertyValueHistoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// BatchGetAssetPropertyValueHistoryPages iterates over the pages of a BatchGetAssetPropertyValueHistory operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See BatchGetAssetPropertyValueHistory method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a BatchGetAssetPropertyValueHistory operation.
+//    pageNum := 0
+//    err := client.BatchGetAssetPropertyValueHistoryPages(params,
+//        func(page *iotsitewise.BatchGetAssetPropertyValueHistoryOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoTSiteWise) BatchGetAssetPropertyValueHistoryPages(input *BatchGetAssetPropertyValueHistoryInput, fn func(*BatchGetAssetPropertyValueHistoryOutput, bool) bool) error {
+	return c.BatchGetAssetPropertyValueHistoryPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// BatchGetAssetPropertyValueHistoryPagesWithContext same as BatchGetAssetPropertyValueHistoryPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) BatchGetAssetPropertyValueHistoryPagesWithContext(ctx aws.Context, input *BatchGetAssetPropertyValueHistoryInput, fn func(*BatchGetAssetPropertyValueHistoryOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *BatchGetAssetPropertyValueHistoryInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.BatchGetAssetPropertyValueHistoryRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*BatchGetAssetPropertyValueHistoryOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opBatchPutAssetPropertyValue = "BatchPutAssetPropertyValue"
 
 // BatchPutAssetPropertyValueRequest generates a "aws/request.Request" representing the
@@ -9782,6 +10250,1507 @@ func (s BatchDisassociateProjectAssetsOutput) GoString() string {
 // SetErrors sets the Errors field's value.
 func (s *BatchDisassociateProjectAssetsOutput) SetErrors(v []*AssetErrorDetails) *BatchDisassociateProjectAssetsOutput {
 	s.Errors = v
+	return s
+}
+
+// Contains information for an asset property aggregate entry that is associated
+// with the BatchGetAssetPropertyAggregates (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_BatchGetAssetPropertyAggregates.html)
+// API.
+//
+// To identify an asset property, you must specify one of the following:
+//
+//    * The assetId and propertyId of an asset property.
+//
+//    * A propertyAlias, which is a data stream alias (for example, /company/windfarm/3/turbine/7/temperature).
+//    To define an asset property's alias, see UpdateAssetProperty (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetProperty.html).
+type BatchGetAssetPropertyAggregatesEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The data aggregating function.
+	//
+	// AggregateTypes is a required field
+	AggregateTypes []*string `locationName:"aggregateTypes" min:"1" type:"list" required:"true" enum:"AggregateType"`
+
+	// The ID of the asset in which the asset property was created.
+	AssetId *string `locationName:"assetId" min:"36" type:"string"`
+
+	// The inclusive end of the range from which to query historical data, expressed
+	// in seconds in Unix epoch time.
+	//
+	// EndDate is a required field
+	EndDate *time.Time `locationName:"endDate" type:"timestamp" required:"true"`
+
+	// The ID of the entry.
+	//
+	// EntryId is a required field
+	EntryId *string `locationName:"entryId" min:"1" type:"string" required:"true"`
+
+	// The alias that identifies the property, such as an OPC-UA server data stream
+	// path (for example, /company/windfarm/3/turbine/7/temperature). For more information,
+	// see Mapping industrial data streams to asset properties (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
+	// in the IoT SiteWise User Guide.
+	PropertyAlias *string `locationName:"propertyAlias" min:"1" type:"string"`
+
+	// The ID of the asset property.
+	PropertyId *string `locationName:"propertyId" min:"36" type:"string"`
+
+	// The quality by which to filter asset data.
+	Qualities []*string `locationName:"qualities" min:"1" type:"list" enum:"Quality"`
+
+	// The time interval over which to aggregate data.
+	//
+	// Resolution is a required field
+	Resolution *string `locationName:"resolution" min:"2" type:"string" required:"true"`
+
+	// The exclusive start of the range from which to query historical data, expressed
+	// in seconds in Unix epoch time.
+	//
+	// StartDate is a required field
+	StartDate *time.Time `locationName:"startDate" type:"timestamp" required:"true"`
+
+	// The chronological sorting order of the requested information.
+	//
+	// Default: ASCENDING
+	TimeOrdering *string `locationName:"timeOrdering" type:"string" enum:"TimeOrdering"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyAggregatesEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyAggregatesEntry) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetAssetPropertyAggregatesEntry) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetAssetPropertyAggregatesEntry"}
+	if s.AggregateTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("AggregateTypes"))
+	}
+	if s.AggregateTypes != nil && len(s.AggregateTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AggregateTypes", 1))
+	}
+	if s.AssetId != nil && len(*s.AssetId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetId", 36))
+	}
+	if s.EndDate == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndDate"))
+	}
+	if s.EntryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntryId"))
+	}
+	if s.EntryId != nil && len(*s.EntryId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntryId", 1))
+	}
+	if s.PropertyAlias != nil && len(*s.PropertyAlias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PropertyAlias", 1))
+	}
+	if s.PropertyId != nil && len(*s.PropertyId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("PropertyId", 36))
+	}
+	if s.Qualities != nil && len(s.Qualities) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Qualities", 1))
+	}
+	if s.Resolution == nil {
+		invalidParams.Add(request.NewErrParamRequired("Resolution"))
+	}
+	if s.Resolution != nil && len(*s.Resolution) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Resolution", 2))
+	}
+	if s.StartDate == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartDate"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAggregateTypes sets the AggregateTypes field's value.
+func (s *BatchGetAssetPropertyAggregatesEntry) SetAggregateTypes(v []*string) *BatchGetAssetPropertyAggregatesEntry {
+	s.AggregateTypes = v
+	return s
+}
+
+// SetAssetId sets the AssetId field's value.
+func (s *BatchGetAssetPropertyAggregatesEntry) SetAssetId(v string) *BatchGetAssetPropertyAggregatesEntry {
+	s.AssetId = &v
+	return s
+}
+
+// SetEndDate sets the EndDate field's value.
+func (s *BatchGetAssetPropertyAggregatesEntry) SetEndDate(v time.Time) *BatchGetAssetPropertyAggregatesEntry {
+	s.EndDate = &v
+	return s
+}
+
+// SetEntryId sets the EntryId field's value.
+func (s *BatchGetAssetPropertyAggregatesEntry) SetEntryId(v string) *BatchGetAssetPropertyAggregatesEntry {
+	s.EntryId = &v
+	return s
+}
+
+// SetPropertyAlias sets the PropertyAlias field's value.
+func (s *BatchGetAssetPropertyAggregatesEntry) SetPropertyAlias(v string) *BatchGetAssetPropertyAggregatesEntry {
+	s.PropertyAlias = &v
+	return s
+}
+
+// SetPropertyId sets the PropertyId field's value.
+func (s *BatchGetAssetPropertyAggregatesEntry) SetPropertyId(v string) *BatchGetAssetPropertyAggregatesEntry {
+	s.PropertyId = &v
+	return s
+}
+
+// SetQualities sets the Qualities field's value.
+func (s *BatchGetAssetPropertyAggregatesEntry) SetQualities(v []*string) *BatchGetAssetPropertyAggregatesEntry {
+	s.Qualities = v
+	return s
+}
+
+// SetResolution sets the Resolution field's value.
+func (s *BatchGetAssetPropertyAggregatesEntry) SetResolution(v string) *BatchGetAssetPropertyAggregatesEntry {
+	s.Resolution = &v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *BatchGetAssetPropertyAggregatesEntry) SetStartDate(v time.Time) *BatchGetAssetPropertyAggregatesEntry {
+	s.StartDate = &v
+	return s
+}
+
+// SetTimeOrdering sets the TimeOrdering field's value.
+func (s *BatchGetAssetPropertyAggregatesEntry) SetTimeOrdering(v string) *BatchGetAssetPropertyAggregatesEntry {
+	s.TimeOrdering = &v
+	return s
+}
+
+// Contains error information for an asset property aggregate entry that is
+// associated with the BatchGetAssetPropertyAggregates (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_BatchGetAssetPropertyAggregates.html)
+// API.
+type BatchGetAssetPropertyAggregatesErrorEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the entry.
+	//
+	// EntryId is a required field
+	EntryId *string `locationName:"entryId" min:"1" type:"string" required:"true"`
+
+	// The error code.
+	//
+	// ErrorCode is a required field
+	ErrorCode *string `locationName:"errorCode" type:"string" required:"true" enum:"BatchGetAssetPropertyAggregatesErrorCode"`
+
+	// The associated error message.
+	//
+	// ErrorMessage is a required field
+	ErrorMessage *string `locationName:"errorMessage" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyAggregatesErrorEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyAggregatesErrorEntry) GoString() string {
+	return s.String()
+}
+
+// SetEntryId sets the EntryId field's value.
+func (s *BatchGetAssetPropertyAggregatesErrorEntry) SetEntryId(v string) *BatchGetAssetPropertyAggregatesErrorEntry {
+	s.EntryId = &v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *BatchGetAssetPropertyAggregatesErrorEntry) SetErrorCode(v string) *BatchGetAssetPropertyAggregatesErrorEntry {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *BatchGetAssetPropertyAggregatesErrorEntry) SetErrorMessage(v string) *BatchGetAssetPropertyAggregatesErrorEntry {
+	s.ErrorMessage = &v
+	return s
+}
+
+// Contains the error code and the timestamp for an asset property aggregate
+// entry that is associated with the BatchGetAssetPropertyAggregates (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_BatchGetAssetPropertyAggregates.html)
+// API.
+type BatchGetAssetPropertyAggregatesErrorInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The error code.
+	//
+	// ErrorCode is a required field
+	ErrorCode *string `locationName:"errorCode" type:"string" required:"true" enum:"BatchGetAssetPropertyAggregatesErrorCode"`
+
+	// The date the error occurred, in Unix epoch time.
+	//
+	// ErrorTimestamp is a required field
+	ErrorTimestamp *time.Time `locationName:"errorTimestamp" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyAggregatesErrorInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyAggregatesErrorInfo) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *BatchGetAssetPropertyAggregatesErrorInfo) SetErrorCode(v string) *BatchGetAssetPropertyAggregatesErrorInfo {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorTimestamp sets the ErrorTimestamp field's value.
+func (s *BatchGetAssetPropertyAggregatesErrorInfo) SetErrorTimestamp(v time.Time) *BatchGetAssetPropertyAggregatesErrorInfo {
+	s.ErrorTimestamp = &v
+	return s
+}
+
+type BatchGetAssetPropertyAggregatesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of asset property aggregate entries for the batch get request. You
+	// can specify up to 16 entries per request.
+	//
+	// Entries is a required field
+	Entries []*BatchGetAssetPropertyAggregatesEntry `locationName:"entries" type:"list" required:"true"`
+
+	// The maximum number of results to return for each paginated request. A result
+	// set is returned in the two cases, whichever occurs first.
+	//
+	//    * The size of the result set is less than 1 MB.
+	//
+	//    * The number of data points in the result set is less than the value of
+	//    maxResults. The maximum value of maxResults is 4000.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token to be used for the next set of paginated results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyAggregatesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyAggregatesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetAssetPropertyAggregatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetAssetPropertyAggregatesInput"}
+	if s.Entries == nil {
+		invalidParams.Add(request.NewErrParamRequired("Entries"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Entries != nil {
+		for i, v := range s.Entries {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Entries", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntries sets the Entries field's value.
+func (s *BatchGetAssetPropertyAggregatesInput) SetEntries(v []*BatchGetAssetPropertyAggregatesEntry) *BatchGetAssetPropertyAggregatesInput {
+	s.Entries = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *BatchGetAssetPropertyAggregatesInput) SetMaxResults(v int64) *BatchGetAssetPropertyAggregatesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *BatchGetAssetPropertyAggregatesInput) SetNextToken(v string) *BatchGetAssetPropertyAggregatesInput {
+	s.NextToken = &v
+	return s
+}
+
+type BatchGetAssetPropertyAggregatesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the errors (if any) associated with the batch request. Each error
+	// entry contains the entryId of the entry that failed.
+	//
+	// ErrorEntries is a required field
+	ErrorEntries []*BatchGetAssetPropertyAggregatesErrorEntry `locationName:"errorEntries" type:"list" required:"true"`
+
+	// The token for the next set of results, or null if there are no additional
+	// results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// A list of entries that were not processed by this batch request. because
+	// these entries had been completely processed by previous paginated requests.
+	// Each skipped entry contains the entryId of the entry that skipped.
+	//
+	// SkippedEntries is a required field
+	SkippedEntries []*BatchGetAssetPropertyAggregatesSkippedEntry `locationName:"skippedEntries" type:"list" required:"true"`
+
+	// A list of entries that were processed successfully by this batch request.
+	// Each success entry contains the entryId of the entry that succeeded and the
+	// latest query result.
+	//
+	// SuccessEntries is a required field
+	SuccessEntries []*BatchGetAssetPropertyAggregatesSuccessEntry `locationName:"successEntries" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyAggregatesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyAggregatesOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrorEntries sets the ErrorEntries field's value.
+func (s *BatchGetAssetPropertyAggregatesOutput) SetErrorEntries(v []*BatchGetAssetPropertyAggregatesErrorEntry) *BatchGetAssetPropertyAggregatesOutput {
+	s.ErrorEntries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *BatchGetAssetPropertyAggregatesOutput) SetNextToken(v string) *BatchGetAssetPropertyAggregatesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSkippedEntries sets the SkippedEntries field's value.
+func (s *BatchGetAssetPropertyAggregatesOutput) SetSkippedEntries(v []*BatchGetAssetPropertyAggregatesSkippedEntry) *BatchGetAssetPropertyAggregatesOutput {
+	s.SkippedEntries = v
+	return s
+}
+
+// SetSuccessEntries sets the SuccessEntries field's value.
+func (s *BatchGetAssetPropertyAggregatesOutput) SetSuccessEntries(v []*BatchGetAssetPropertyAggregatesSuccessEntry) *BatchGetAssetPropertyAggregatesOutput {
+	s.SuccessEntries = v
+	return s
+}
+
+// Contains information for an entry that has been processed by the previous
+// BatchGetAssetPropertyAggregates (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_BatchGetAssetPropertyAggregates.html)
+// request.
+type BatchGetAssetPropertyAggregatesSkippedEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The completion status of each entry that is associated with the BatchGetAssetPropertyAggregates
+	// (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_BatchGetAssetPropertyAggregates.html)
+	// API.
+	//
+	// CompletionStatus is a required field
+	CompletionStatus *string `locationName:"completionStatus" type:"string" required:"true" enum:"BatchEntryCompletionStatus"`
+
+	// The ID of the entry.
+	//
+	// EntryId is a required field
+	EntryId *string `locationName:"entryId" min:"1" type:"string" required:"true"`
+
+	// The error information, such as the error code and the timestamp.
+	ErrorInfo *BatchGetAssetPropertyAggregatesErrorInfo `locationName:"errorInfo" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyAggregatesSkippedEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyAggregatesSkippedEntry) GoString() string {
+	return s.String()
+}
+
+// SetCompletionStatus sets the CompletionStatus field's value.
+func (s *BatchGetAssetPropertyAggregatesSkippedEntry) SetCompletionStatus(v string) *BatchGetAssetPropertyAggregatesSkippedEntry {
+	s.CompletionStatus = &v
+	return s
+}
+
+// SetEntryId sets the EntryId field's value.
+func (s *BatchGetAssetPropertyAggregatesSkippedEntry) SetEntryId(v string) *BatchGetAssetPropertyAggregatesSkippedEntry {
+	s.EntryId = &v
+	return s
+}
+
+// SetErrorInfo sets the ErrorInfo field's value.
+func (s *BatchGetAssetPropertyAggregatesSkippedEntry) SetErrorInfo(v *BatchGetAssetPropertyAggregatesErrorInfo) *BatchGetAssetPropertyAggregatesSkippedEntry {
+	s.ErrorInfo = v
+	return s
+}
+
+// Contains success information for an entry that is associated with the BatchGetAssetPropertyAggregates
+// (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_BatchGetAssetPropertyAggregates.html)
+// API.
+type BatchGetAssetPropertyAggregatesSuccessEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The requested aggregated asset property values (for example, average, minimum,
+	// and maximum).
+	//
+	// AggregatedValues is a required field
+	AggregatedValues []*AggregatedValue `locationName:"aggregatedValues" type:"list" required:"true"`
+
+	// The ID of the entry.
+	//
+	// EntryId is a required field
+	EntryId *string `locationName:"entryId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyAggregatesSuccessEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyAggregatesSuccessEntry) GoString() string {
+	return s.String()
+}
+
+// SetAggregatedValues sets the AggregatedValues field's value.
+func (s *BatchGetAssetPropertyAggregatesSuccessEntry) SetAggregatedValues(v []*AggregatedValue) *BatchGetAssetPropertyAggregatesSuccessEntry {
+	s.AggregatedValues = v
+	return s
+}
+
+// SetEntryId sets the EntryId field's value.
+func (s *BatchGetAssetPropertyAggregatesSuccessEntry) SetEntryId(v string) *BatchGetAssetPropertyAggregatesSuccessEntry {
+	s.EntryId = &v
+	return s
+}
+
+// Contains information for an asset property value entry that is associated
+// with the BatchGetAssetPropertyValue (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_BatchGetAssetPropertyValue.html)
+// API.
+//
+// To identify an asset property, you must specify one of the following:
+//
+//    * The assetId and propertyId of an asset property.
+//
+//    * A propertyAlias, which is a data stream alias (for example, /company/windfarm/3/turbine/7/temperature).
+//    To define an asset property's alias, see UpdateAssetProperty (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetProperty.html).
+type BatchGetAssetPropertyValueEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the asset in which the asset property was created.
+	AssetId *string `locationName:"assetId" min:"36" type:"string"`
+
+	// The ID of the entry.
+	//
+	// EntryId is a required field
+	EntryId *string `locationName:"entryId" min:"1" type:"string" required:"true"`
+
+	// The alias that identifies the property, such as an OPC-UA server data stream
+	// path (for example, /company/windfarm/3/turbine/7/temperature). For more information,
+	// see Mapping industrial data streams to asset properties (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
+	// in the IoT SiteWise User Guide.
+	PropertyAlias *string `locationName:"propertyAlias" min:"1" type:"string"`
+
+	// The ID of the asset property.
+	PropertyId *string `locationName:"propertyId" min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueEntry) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetAssetPropertyValueEntry) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetAssetPropertyValueEntry"}
+	if s.AssetId != nil && len(*s.AssetId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetId", 36))
+	}
+	if s.EntryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntryId"))
+	}
+	if s.EntryId != nil && len(*s.EntryId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntryId", 1))
+	}
+	if s.PropertyAlias != nil && len(*s.PropertyAlias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PropertyAlias", 1))
+	}
+	if s.PropertyId != nil && len(*s.PropertyId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("PropertyId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssetId sets the AssetId field's value.
+func (s *BatchGetAssetPropertyValueEntry) SetAssetId(v string) *BatchGetAssetPropertyValueEntry {
+	s.AssetId = &v
+	return s
+}
+
+// SetEntryId sets the EntryId field's value.
+func (s *BatchGetAssetPropertyValueEntry) SetEntryId(v string) *BatchGetAssetPropertyValueEntry {
+	s.EntryId = &v
+	return s
+}
+
+// SetPropertyAlias sets the PropertyAlias field's value.
+func (s *BatchGetAssetPropertyValueEntry) SetPropertyAlias(v string) *BatchGetAssetPropertyValueEntry {
+	s.PropertyAlias = &v
+	return s
+}
+
+// SetPropertyId sets the PropertyId field's value.
+func (s *BatchGetAssetPropertyValueEntry) SetPropertyId(v string) *BatchGetAssetPropertyValueEntry {
+	s.PropertyId = &v
+	return s
+}
+
+// Contains error information for an asset property value entry that is associated
+// with the BatchGetAssetPropertyValue (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_BatchGetAssetPropertyValue.html)
+// API.
+type BatchGetAssetPropertyValueErrorEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the entry.
+	//
+	// EntryId is a required field
+	EntryId *string `locationName:"entryId" min:"1" type:"string" required:"true"`
+
+	// The error code.
+	//
+	// ErrorCode is a required field
+	ErrorCode *string `locationName:"errorCode" type:"string" required:"true" enum:"BatchGetAssetPropertyValueErrorCode"`
+
+	// The associated error message.
+	//
+	// ErrorMessage is a required field
+	ErrorMessage *string `locationName:"errorMessage" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueErrorEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueErrorEntry) GoString() string {
+	return s.String()
+}
+
+// SetEntryId sets the EntryId field's value.
+func (s *BatchGetAssetPropertyValueErrorEntry) SetEntryId(v string) *BatchGetAssetPropertyValueErrorEntry {
+	s.EntryId = &v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *BatchGetAssetPropertyValueErrorEntry) SetErrorCode(v string) *BatchGetAssetPropertyValueErrorEntry {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *BatchGetAssetPropertyValueErrorEntry) SetErrorMessage(v string) *BatchGetAssetPropertyValueErrorEntry {
+	s.ErrorMessage = &v
+	return s
+}
+
+// The error information, such as the error code and the timestamp.
+type BatchGetAssetPropertyValueErrorInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The error code.
+	//
+	// ErrorCode is a required field
+	ErrorCode *string `locationName:"errorCode" type:"string" required:"true" enum:"BatchGetAssetPropertyValueErrorCode"`
+
+	// The date the error occurred, in Unix epoch time.
+	//
+	// ErrorTimestamp is a required field
+	ErrorTimestamp *time.Time `locationName:"errorTimestamp" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueErrorInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueErrorInfo) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *BatchGetAssetPropertyValueErrorInfo) SetErrorCode(v string) *BatchGetAssetPropertyValueErrorInfo {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorTimestamp sets the ErrorTimestamp field's value.
+func (s *BatchGetAssetPropertyValueErrorInfo) SetErrorTimestamp(v time.Time) *BatchGetAssetPropertyValueErrorInfo {
+	s.ErrorTimestamp = &v
+	return s
+}
+
+// Contains information for an asset property historical value entry that is
+// associated with the BatchGetAssetPropertyValueHistory (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_BatchGetAssetPropertyValue.html)
+// API.
+//
+// To identify an asset property, you must specify one of the following:
+//
+//    * The assetId and propertyId of an asset property.
+//
+//    * A propertyAlias, which is a data stream alias (for example, /company/windfarm/3/turbine/7/temperature).
+//    To define an asset property's alias, see UpdateAssetProperty (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetProperty.html).
+type BatchGetAssetPropertyValueHistoryEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the asset in which the asset property was created.
+	AssetId *string `locationName:"assetId" min:"36" type:"string"`
+
+	// The inclusive end of the range from which to query historical data, expressed
+	// in seconds in Unix epoch time.
+	EndDate *time.Time `locationName:"endDate" type:"timestamp"`
+
+	// The ID of the entry.
+	//
+	// EntryId is a required field
+	EntryId *string `locationName:"entryId" min:"1" type:"string" required:"true"`
+
+	// The alias that identifies the property, such as an OPC-UA server data stream
+	// path (for example, /company/windfarm/3/turbine/7/temperature). For more information,
+	// see Mapping industrial data streams to asset properties (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
+	// in the IoT SiteWise User Guide.
+	PropertyAlias *string `locationName:"propertyAlias" min:"1" type:"string"`
+
+	// The ID of the asset property.
+	PropertyId *string `locationName:"propertyId" min:"36" type:"string"`
+
+	// The quality by which to filter asset data.
+	Qualities []*string `locationName:"qualities" min:"1" type:"list" enum:"Quality"`
+
+	// The exclusive start of the range from which to query historical data, expressed
+	// in seconds in Unix epoch time.
+	StartDate *time.Time `locationName:"startDate" type:"timestamp"`
+
+	// The chronological sorting order of the requested information.
+	//
+	// Default: ASCENDING
+	TimeOrdering *string `locationName:"timeOrdering" type:"string" enum:"TimeOrdering"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueHistoryEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueHistoryEntry) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetAssetPropertyValueHistoryEntry) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetAssetPropertyValueHistoryEntry"}
+	if s.AssetId != nil && len(*s.AssetId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetId", 36))
+	}
+	if s.EntryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntryId"))
+	}
+	if s.EntryId != nil && len(*s.EntryId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntryId", 1))
+	}
+	if s.PropertyAlias != nil && len(*s.PropertyAlias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PropertyAlias", 1))
+	}
+	if s.PropertyId != nil && len(*s.PropertyId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("PropertyId", 36))
+	}
+	if s.Qualities != nil && len(s.Qualities) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Qualities", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssetId sets the AssetId field's value.
+func (s *BatchGetAssetPropertyValueHistoryEntry) SetAssetId(v string) *BatchGetAssetPropertyValueHistoryEntry {
+	s.AssetId = &v
+	return s
+}
+
+// SetEndDate sets the EndDate field's value.
+func (s *BatchGetAssetPropertyValueHistoryEntry) SetEndDate(v time.Time) *BatchGetAssetPropertyValueHistoryEntry {
+	s.EndDate = &v
+	return s
+}
+
+// SetEntryId sets the EntryId field's value.
+func (s *BatchGetAssetPropertyValueHistoryEntry) SetEntryId(v string) *BatchGetAssetPropertyValueHistoryEntry {
+	s.EntryId = &v
+	return s
+}
+
+// SetPropertyAlias sets the PropertyAlias field's value.
+func (s *BatchGetAssetPropertyValueHistoryEntry) SetPropertyAlias(v string) *BatchGetAssetPropertyValueHistoryEntry {
+	s.PropertyAlias = &v
+	return s
+}
+
+// SetPropertyId sets the PropertyId field's value.
+func (s *BatchGetAssetPropertyValueHistoryEntry) SetPropertyId(v string) *BatchGetAssetPropertyValueHistoryEntry {
+	s.PropertyId = &v
+	return s
+}
+
+// SetQualities sets the Qualities field's value.
+func (s *BatchGetAssetPropertyValueHistoryEntry) SetQualities(v []*string) *BatchGetAssetPropertyValueHistoryEntry {
+	s.Qualities = v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *BatchGetAssetPropertyValueHistoryEntry) SetStartDate(v time.Time) *BatchGetAssetPropertyValueHistoryEntry {
+	s.StartDate = &v
+	return s
+}
+
+// SetTimeOrdering sets the TimeOrdering field's value.
+func (s *BatchGetAssetPropertyValueHistoryEntry) SetTimeOrdering(v string) *BatchGetAssetPropertyValueHistoryEntry {
+	s.TimeOrdering = &v
+	return s
+}
+
+// A list of the errors (if any) associated with the batch request. Each error
+// entry contains the entryId of the entry that failed.
+type BatchGetAssetPropertyValueHistoryErrorEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the entry.
+	//
+	// EntryId is a required field
+	EntryId *string `locationName:"entryId" min:"1" type:"string" required:"true"`
+
+	// The error code.
+	//
+	// ErrorCode is a required field
+	ErrorCode *string `locationName:"errorCode" type:"string" required:"true" enum:"BatchGetAssetPropertyValueHistoryErrorCode"`
+
+	// The associated error message.
+	//
+	// ErrorMessage is a required field
+	ErrorMessage *string `locationName:"errorMessage" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueHistoryErrorEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueHistoryErrorEntry) GoString() string {
+	return s.String()
+}
+
+// SetEntryId sets the EntryId field's value.
+func (s *BatchGetAssetPropertyValueHistoryErrorEntry) SetEntryId(v string) *BatchGetAssetPropertyValueHistoryErrorEntry {
+	s.EntryId = &v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *BatchGetAssetPropertyValueHistoryErrorEntry) SetErrorCode(v string) *BatchGetAssetPropertyValueHistoryErrorEntry {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *BatchGetAssetPropertyValueHistoryErrorEntry) SetErrorMessage(v string) *BatchGetAssetPropertyValueHistoryErrorEntry {
+	s.ErrorMessage = &v
+	return s
+}
+
+// The error information, such as the error code and the timestamp.
+type BatchGetAssetPropertyValueHistoryErrorInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The error code.
+	//
+	// ErrorCode is a required field
+	ErrorCode *string `locationName:"errorCode" type:"string" required:"true" enum:"BatchGetAssetPropertyValueHistoryErrorCode"`
+
+	// The date the error occurred, in Unix epoch time.
+	//
+	// ErrorTimestamp is a required field
+	ErrorTimestamp *time.Time `locationName:"errorTimestamp" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueHistoryErrorInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueHistoryErrorInfo) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *BatchGetAssetPropertyValueHistoryErrorInfo) SetErrorCode(v string) *BatchGetAssetPropertyValueHistoryErrorInfo {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorTimestamp sets the ErrorTimestamp field's value.
+func (s *BatchGetAssetPropertyValueHistoryErrorInfo) SetErrorTimestamp(v time.Time) *BatchGetAssetPropertyValueHistoryErrorInfo {
+	s.ErrorTimestamp = &v
+	return s
+}
+
+type BatchGetAssetPropertyValueHistoryInput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of asset property historical value entries for the batch get request.
+	// You can specify up to 16 entries per request.
+	//
+	// Entries is a required field
+	Entries []*BatchGetAssetPropertyValueHistoryEntry `locationName:"entries" type:"list" required:"true"`
+
+	// The maximum number of results to return for each paginated request. A result
+	// set is returned in the two cases, whichever occurs first.
+	//
+	//    * The size of the result set is less than 1 MB.
+	//
+	//    * The number of data points in the result set is less than the value of
+	//    maxResults. The maximum value of maxResults is 4000.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token to be used for the next set of paginated results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueHistoryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueHistoryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetAssetPropertyValueHistoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetAssetPropertyValueHistoryInput"}
+	if s.Entries == nil {
+		invalidParams.Add(request.NewErrParamRequired("Entries"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Entries != nil {
+		for i, v := range s.Entries {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Entries", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntries sets the Entries field's value.
+func (s *BatchGetAssetPropertyValueHistoryInput) SetEntries(v []*BatchGetAssetPropertyValueHistoryEntry) *BatchGetAssetPropertyValueHistoryInput {
+	s.Entries = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *BatchGetAssetPropertyValueHistoryInput) SetMaxResults(v int64) *BatchGetAssetPropertyValueHistoryInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *BatchGetAssetPropertyValueHistoryInput) SetNextToken(v string) *BatchGetAssetPropertyValueHistoryInput {
+	s.NextToken = &v
+	return s
+}
+
+type BatchGetAssetPropertyValueHistoryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the errors (if any) associated with the batch request. Each error
+	// entry contains the entryId of the entry that failed.
+	//
+	// ErrorEntries is a required field
+	ErrorEntries []*BatchGetAssetPropertyValueHistoryErrorEntry `locationName:"errorEntries" type:"list" required:"true"`
+
+	// The token for the next set of results, or null if there are no additional
+	// results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// A list of entries that were not processed by this batch request. because
+	// these entries had been completely processed by previous paginated requests.
+	// Each skipped entry contains the entryId of the entry that skipped.
+	//
+	// SkippedEntries is a required field
+	SkippedEntries []*BatchGetAssetPropertyValueHistorySkippedEntry `locationName:"skippedEntries" type:"list" required:"true"`
+
+	// A list of entries that were processed successfully by this batch request.
+	// Each success entry contains the entryId of the entry that succeeded and the
+	// latest query result.
+	//
+	// SuccessEntries is a required field
+	SuccessEntries []*BatchGetAssetPropertyValueHistorySuccessEntry `locationName:"successEntries" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueHistoryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueHistoryOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrorEntries sets the ErrorEntries field's value.
+func (s *BatchGetAssetPropertyValueHistoryOutput) SetErrorEntries(v []*BatchGetAssetPropertyValueHistoryErrorEntry) *BatchGetAssetPropertyValueHistoryOutput {
+	s.ErrorEntries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *BatchGetAssetPropertyValueHistoryOutput) SetNextToken(v string) *BatchGetAssetPropertyValueHistoryOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSkippedEntries sets the SkippedEntries field's value.
+func (s *BatchGetAssetPropertyValueHistoryOutput) SetSkippedEntries(v []*BatchGetAssetPropertyValueHistorySkippedEntry) *BatchGetAssetPropertyValueHistoryOutput {
+	s.SkippedEntries = v
+	return s
+}
+
+// SetSuccessEntries sets the SuccessEntries field's value.
+func (s *BatchGetAssetPropertyValueHistoryOutput) SetSuccessEntries(v []*BatchGetAssetPropertyValueHistorySuccessEntry) *BatchGetAssetPropertyValueHistoryOutput {
+	s.SuccessEntries = v
+	return s
+}
+
+// Contains information for an entry that has been processed by the previous
+// BatchGetAssetPropertyValueHistory (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_BatchGetAssetPropertyValue.html)
+// request.
+type BatchGetAssetPropertyValueHistorySkippedEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The completion status of each entry that is associated with the BatchGetAssetPropertyValueHistory
+	// (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_BatchGetAssetPropertyValueHistory.html)
+	// API.
+	//
+	// CompletionStatus is a required field
+	CompletionStatus *string `locationName:"completionStatus" type:"string" required:"true" enum:"BatchEntryCompletionStatus"`
+
+	// The ID of the entry.
+	//
+	// EntryId is a required field
+	EntryId *string `locationName:"entryId" min:"1" type:"string" required:"true"`
+
+	// The error information, such as the error code and the timestamp.
+	ErrorInfo *BatchGetAssetPropertyValueHistoryErrorInfo `locationName:"errorInfo" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueHistorySkippedEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueHistorySkippedEntry) GoString() string {
+	return s.String()
+}
+
+// SetCompletionStatus sets the CompletionStatus field's value.
+func (s *BatchGetAssetPropertyValueHistorySkippedEntry) SetCompletionStatus(v string) *BatchGetAssetPropertyValueHistorySkippedEntry {
+	s.CompletionStatus = &v
+	return s
+}
+
+// SetEntryId sets the EntryId field's value.
+func (s *BatchGetAssetPropertyValueHistorySkippedEntry) SetEntryId(v string) *BatchGetAssetPropertyValueHistorySkippedEntry {
+	s.EntryId = &v
+	return s
+}
+
+// SetErrorInfo sets the ErrorInfo field's value.
+func (s *BatchGetAssetPropertyValueHistorySkippedEntry) SetErrorInfo(v *BatchGetAssetPropertyValueHistoryErrorInfo) *BatchGetAssetPropertyValueHistorySkippedEntry {
+	s.ErrorInfo = v
+	return s
+}
+
+// Contains success information for an entry that is associated with the BatchGetAssetPropertyValueHistory
+// (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_BatchGetAssetPropertyValue.html)
+// API.
+type BatchGetAssetPropertyValueHistorySuccessEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The requested historical values for the specified asset property.
+	//
+	// AssetPropertyValueHistory is a required field
+	AssetPropertyValueHistory []*AssetPropertyValue `locationName:"assetPropertyValueHistory" type:"list" required:"true"`
+
+	// The ID of the entry.
+	//
+	// EntryId is a required field
+	EntryId *string `locationName:"entryId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueHistorySuccessEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueHistorySuccessEntry) GoString() string {
+	return s.String()
+}
+
+// SetAssetPropertyValueHistory sets the AssetPropertyValueHistory field's value.
+func (s *BatchGetAssetPropertyValueHistorySuccessEntry) SetAssetPropertyValueHistory(v []*AssetPropertyValue) *BatchGetAssetPropertyValueHistorySuccessEntry {
+	s.AssetPropertyValueHistory = v
+	return s
+}
+
+// SetEntryId sets the EntryId field's value.
+func (s *BatchGetAssetPropertyValueHistorySuccessEntry) SetEntryId(v string) *BatchGetAssetPropertyValueHistorySuccessEntry {
+	s.EntryId = &v
+	return s
+}
+
+type BatchGetAssetPropertyValueInput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of asset property value entries for the batch get request. You can
+	// specify up to 16 entries per request.
+	//
+	// Entries is a required field
+	Entries []*BatchGetAssetPropertyValueEntry `locationName:"entries" type:"list" required:"true"`
+
+	// The token to be used for the next set of paginated results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetAssetPropertyValueInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetAssetPropertyValueInput"}
+	if s.Entries == nil {
+		invalidParams.Add(request.NewErrParamRequired("Entries"))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Entries != nil {
+		for i, v := range s.Entries {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Entries", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntries sets the Entries field's value.
+func (s *BatchGetAssetPropertyValueInput) SetEntries(v []*BatchGetAssetPropertyValueEntry) *BatchGetAssetPropertyValueInput {
+	s.Entries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *BatchGetAssetPropertyValueInput) SetNextToken(v string) *BatchGetAssetPropertyValueInput {
+	s.NextToken = &v
+	return s
+}
+
+type BatchGetAssetPropertyValueOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the errors (if any) associated with the batch request. Each error
+	// entry contains the entryId of the entry that failed.
+	//
+	// ErrorEntries is a required field
+	ErrorEntries []*BatchGetAssetPropertyValueErrorEntry `locationName:"errorEntries" type:"list" required:"true"`
+
+	// The token for the next set of results, or null if there are no additional
+	// results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// A list of entries that were not processed by this batch request. because
+	// these entries had been completely processed by previous paginated requests.
+	// Each skipped entry contains the entryId of the entry that skipped.
+	//
+	// SkippedEntries is a required field
+	SkippedEntries []*BatchGetAssetPropertyValueSkippedEntry `locationName:"skippedEntries" type:"list" required:"true"`
+
+	// A list of entries that were processed successfully by this batch request.
+	// Each success entry contains the entryId of the entry that succeeded and the
+	// latest query result.
+	//
+	// SuccessEntries is a required field
+	SuccessEntries []*BatchGetAssetPropertyValueSuccessEntry `locationName:"successEntries" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrorEntries sets the ErrorEntries field's value.
+func (s *BatchGetAssetPropertyValueOutput) SetErrorEntries(v []*BatchGetAssetPropertyValueErrorEntry) *BatchGetAssetPropertyValueOutput {
+	s.ErrorEntries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *BatchGetAssetPropertyValueOutput) SetNextToken(v string) *BatchGetAssetPropertyValueOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSkippedEntries sets the SkippedEntries field's value.
+func (s *BatchGetAssetPropertyValueOutput) SetSkippedEntries(v []*BatchGetAssetPropertyValueSkippedEntry) *BatchGetAssetPropertyValueOutput {
+	s.SkippedEntries = v
+	return s
+}
+
+// SetSuccessEntries sets the SuccessEntries field's value.
+func (s *BatchGetAssetPropertyValueOutput) SetSuccessEntries(v []*BatchGetAssetPropertyValueSuccessEntry) *BatchGetAssetPropertyValueOutput {
+	s.SuccessEntries = v
+	return s
+}
+
+// Contains information for an entry that has been processed by the previous
+// BatchGetAssetPropertyValue (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_BatchGetAssetPropertyValue.html)
+// request.
+type BatchGetAssetPropertyValueSkippedEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The completion status of each entry that is associated with the BatchGetAssetPropertyValue
+	// (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_BatchGetAssetPropertyValue.html)
+	// request.
+	//
+	// CompletionStatus is a required field
+	CompletionStatus *string `locationName:"completionStatus" type:"string" required:"true" enum:"BatchEntryCompletionStatus"`
+
+	// The ID of the entry.
+	//
+	// EntryId is a required field
+	EntryId *string `locationName:"entryId" min:"1" type:"string" required:"true"`
+
+	// The error information, such as the error code and the timestamp.
+	ErrorInfo *BatchGetAssetPropertyValueErrorInfo `locationName:"errorInfo" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueSkippedEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueSkippedEntry) GoString() string {
+	return s.String()
+}
+
+// SetCompletionStatus sets the CompletionStatus field's value.
+func (s *BatchGetAssetPropertyValueSkippedEntry) SetCompletionStatus(v string) *BatchGetAssetPropertyValueSkippedEntry {
+	s.CompletionStatus = &v
+	return s
+}
+
+// SetEntryId sets the EntryId field's value.
+func (s *BatchGetAssetPropertyValueSkippedEntry) SetEntryId(v string) *BatchGetAssetPropertyValueSkippedEntry {
+	s.EntryId = &v
+	return s
+}
+
+// SetErrorInfo sets the ErrorInfo field's value.
+func (s *BatchGetAssetPropertyValueSkippedEntry) SetErrorInfo(v *BatchGetAssetPropertyValueErrorInfo) *BatchGetAssetPropertyValueSkippedEntry {
+	s.ErrorInfo = v
+	return s
+}
+
+// Contains success information for an entry that is associated with the BatchGetAssetPropertyValue
+// (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_BatchGetAssetPropertyValue.html)
+// API.
+type BatchGetAssetPropertyValueSuccessEntry struct {
+	_ struct{} `type:"structure"`
+
+	// Contains asset property value information.
+	AssetPropertyValue *AssetPropertyValue `locationName:"assetPropertyValue" type:"structure"`
+
+	// The ID of the entry.
+	//
+	// EntryId is a required field
+	EntryId *string `locationName:"entryId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueSuccessEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAssetPropertyValueSuccessEntry) GoString() string {
+	return s.String()
+}
+
+// SetAssetPropertyValue sets the AssetPropertyValue field's value.
+func (s *BatchGetAssetPropertyValueSuccessEntry) SetAssetPropertyValue(v *AssetPropertyValue) *BatchGetAssetPropertyValueSuccessEntry {
+	s.AssetPropertyValue = v
+	return s
+}
+
+// SetEntryId sets the EntryId field's value.
+func (s *BatchGetAssetPropertyValueSuccessEntry) SetEntryId(v string) *BatchGetAssetPropertyValueSuccessEntry {
+	s.EntryId = &v
 	return s
 }
 
@@ -22263,6 +24232,82 @@ func AuthMode_Values() []string {
 	return []string{
 		AuthModeIam,
 		AuthModeSso,
+	}
+}
+
+const (
+	// BatchEntryCompletionStatusSuccess is a BatchEntryCompletionStatus enum value
+	BatchEntryCompletionStatusSuccess = "SUCCESS"
+
+	// BatchEntryCompletionStatusError is a BatchEntryCompletionStatus enum value
+	BatchEntryCompletionStatusError = "ERROR"
+)
+
+// BatchEntryCompletionStatus_Values returns all elements of the BatchEntryCompletionStatus enum
+func BatchEntryCompletionStatus_Values() []string {
+	return []string{
+		BatchEntryCompletionStatusSuccess,
+		BatchEntryCompletionStatusError,
+	}
+}
+
+const (
+	// BatchGetAssetPropertyAggregatesErrorCodeResourceNotFoundException is a BatchGetAssetPropertyAggregatesErrorCode enum value
+	BatchGetAssetPropertyAggregatesErrorCodeResourceNotFoundException = "ResourceNotFoundException"
+
+	// BatchGetAssetPropertyAggregatesErrorCodeInvalidRequestException is a BatchGetAssetPropertyAggregatesErrorCode enum value
+	BatchGetAssetPropertyAggregatesErrorCodeInvalidRequestException = "InvalidRequestException"
+
+	// BatchGetAssetPropertyAggregatesErrorCodeAccessDeniedException is a BatchGetAssetPropertyAggregatesErrorCode enum value
+	BatchGetAssetPropertyAggregatesErrorCodeAccessDeniedException = "AccessDeniedException"
+)
+
+// BatchGetAssetPropertyAggregatesErrorCode_Values returns all elements of the BatchGetAssetPropertyAggregatesErrorCode enum
+func BatchGetAssetPropertyAggregatesErrorCode_Values() []string {
+	return []string{
+		BatchGetAssetPropertyAggregatesErrorCodeResourceNotFoundException,
+		BatchGetAssetPropertyAggregatesErrorCodeInvalidRequestException,
+		BatchGetAssetPropertyAggregatesErrorCodeAccessDeniedException,
+	}
+}
+
+const (
+	// BatchGetAssetPropertyValueErrorCodeResourceNotFoundException is a BatchGetAssetPropertyValueErrorCode enum value
+	BatchGetAssetPropertyValueErrorCodeResourceNotFoundException = "ResourceNotFoundException"
+
+	// BatchGetAssetPropertyValueErrorCodeInvalidRequestException is a BatchGetAssetPropertyValueErrorCode enum value
+	BatchGetAssetPropertyValueErrorCodeInvalidRequestException = "InvalidRequestException"
+
+	// BatchGetAssetPropertyValueErrorCodeAccessDeniedException is a BatchGetAssetPropertyValueErrorCode enum value
+	BatchGetAssetPropertyValueErrorCodeAccessDeniedException = "AccessDeniedException"
+)
+
+// BatchGetAssetPropertyValueErrorCode_Values returns all elements of the BatchGetAssetPropertyValueErrorCode enum
+func BatchGetAssetPropertyValueErrorCode_Values() []string {
+	return []string{
+		BatchGetAssetPropertyValueErrorCodeResourceNotFoundException,
+		BatchGetAssetPropertyValueErrorCodeInvalidRequestException,
+		BatchGetAssetPropertyValueErrorCodeAccessDeniedException,
+	}
+}
+
+const (
+	// BatchGetAssetPropertyValueHistoryErrorCodeResourceNotFoundException is a BatchGetAssetPropertyValueHistoryErrorCode enum value
+	BatchGetAssetPropertyValueHistoryErrorCodeResourceNotFoundException = "ResourceNotFoundException"
+
+	// BatchGetAssetPropertyValueHistoryErrorCodeInvalidRequestException is a BatchGetAssetPropertyValueHistoryErrorCode enum value
+	BatchGetAssetPropertyValueHistoryErrorCodeInvalidRequestException = "InvalidRequestException"
+
+	// BatchGetAssetPropertyValueHistoryErrorCodeAccessDeniedException is a BatchGetAssetPropertyValueHistoryErrorCode enum value
+	BatchGetAssetPropertyValueHistoryErrorCodeAccessDeniedException = "AccessDeniedException"
+)
+
+// BatchGetAssetPropertyValueHistoryErrorCode_Values returns all elements of the BatchGetAssetPropertyValueHistoryErrorCode enum
+func BatchGetAssetPropertyValueHistoryErrorCode_Values() []string {
+	return []string{
+		BatchGetAssetPropertyValueHistoryErrorCodeResourceNotFoundException,
+		BatchGetAssetPropertyValueHistoryErrorCodeInvalidRequestException,
+		BatchGetAssetPropertyValueHistoryErrorCodeAccessDeniedException,
 	}
 }
 

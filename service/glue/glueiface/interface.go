@@ -88,6 +88,10 @@ type GlueAPI interface {
 	BatchGetCrawlersWithContext(aws.Context, *glue.BatchGetCrawlersInput, ...request.Option) (*glue.BatchGetCrawlersOutput, error)
 	BatchGetCrawlersRequest(*glue.BatchGetCrawlersInput) (*request.Request, *glue.BatchGetCrawlersOutput)
 
+	BatchGetCustomEntityTypes(*glue.BatchGetCustomEntityTypesInput) (*glue.BatchGetCustomEntityTypesOutput, error)
+	BatchGetCustomEntityTypesWithContext(aws.Context, *glue.BatchGetCustomEntityTypesInput, ...request.Option) (*glue.BatchGetCustomEntityTypesOutput, error)
+	BatchGetCustomEntityTypesRequest(*glue.BatchGetCustomEntityTypesInput) (*request.Request, *glue.BatchGetCustomEntityTypesOutput)
+
 	BatchGetDevEndpoints(*glue.BatchGetDevEndpointsInput) (*glue.BatchGetDevEndpointsOutput, error)
 	BatchGetDevEndpointsWithContext(aws.Context, *glue.BatchGetDevEndpointsInput, ...request.Option) (*glue.BatchGetDevEndpointsOutput, error)
 	BatchGetDevEndpointsRequest(*glue.BatchGetDevEndpointsInput) (*request.Request, *glue.BatchGetDevEndpointsOutput)
@@ -143,6 +147,10 @@ type GlueAPI interface {
 	CreateCrawler(*glue.CreateCrawlerInput) (*glue.CreateCrawlerOutput, error)
 	CreateCrawlerWithContext(aws.Context, *glue.CreateCrawlerInput, ...request.Option) (*glue.CreateCrawlerOutput, error)
 	CreateCrawlerRequest(*glue.CreateCrawlerInput) (*request.Request, *glue.CreateCrawlerOutput)
+
+	CreateCustomEntityType(*glue.CreateCustomEntityTypeInput) (*glue.CreateCustomEntityTypeOutput, error)
+	CreateCustomEntityTypeWithContext(aws.Context, *glue.CreateCustomEntityTypeInput, ...request.Option) (*glue.CreateCustomEntityTypeOutput, error)
+	CreateCustomEntityTypeRequest(*glue.CreateCustomEntityTypeInput) (*request.Request, *glue.CreateCustomEntityTypeOutput)
 
 	CreateDatabase(*glue.CreateDatabaseInput) (*glue.CreateDatabaseOutput, error)
 	CreateDatabaseWithContext(aws.Context, *glue.CreateDatabaseInput, ...request.Option) (*glue.CreateDatabaseOutput, error)
@@ -227,6 +235,10 @@ type GlueAPI interface {
 	DeleteCrawler(*glue.DeleteCrawlerInput) (*glue.DeleteCrawlerOutput, error)
 	DeleteCrawlerWithContext(aws.Context, *glue.DeleteCrawlerInput, ...request.Option) (*glue.DeleteCrawlerOutput, error)
 	DeleteCrawlerRequest(*glue.DeleteCrawlerInput) (*request.Request, *glue.DeleteCrawlerOutput)
+
+	DeleteCustomEntityType(*glue.DeleteCustomEntityTypeInput) (*glue.DeleteCustomEntityTypeOutput, error)
+	DeleteCustomEntityTypeWithContext(aws.Context, *glue.DeleteCustomEntityTypeInput, ...request.Option) (*glue.DeleteCustomEntityTypeOutput, error)
+	DeleteCustomEntityTypeRequest(*glue.DeleteCustomEntityTypeInput) (*request.Request, *glue.DeleteCustomEntityTypeOutput)
 
 	DeleteDatabase(*glue.DeleteDatabaseInput) (*glue.DeleteDatabaseOutput, error)
 	DeleteDatabaseWithContext(aws.Context, *glue.DeleteDatabaseInput, ...request.Option) (*glue.DeleteDatabaseOutput, error)
@@ -362,6 +374,10 @@ type GlueAPI interface {
 
 	GetCrawlersPages(*glue.GetCrawlersInput, func(*glue.GetCrawlersOutput, bool) bool) error
 	GetCrawlersPagesWithContext(aws.Context, *glue.GetCrawlersInput, func(*glue.GetCrawlersOutput, bool) bool, ...request.Option) error
+
+	GetCustomEntityType(*glue.GetCustomEntityTypeInput) (*glue.GetCustomEntityTypeOutput, error)
+	GetCustomEntityTypeWithContext(aws.Context, *glue.GetCustomEntityTypeInput, ...request.Option) (*glue.GetCustomEntityTypeOutput, error)
+	GetCustomEntityTypeRequest(*glue.GetCustomEntityTypeInput) (*request.Request, *glue.GetCustomEntityTypeOutput)
 
 	GetDataCatalogEncryptionSettings(*glue.GetDataCatalogEncryptionSettingsInput) (*glue.GetDataCatalogEncryptionSettingsOutput, error)
 	GetDataCatalogEncryptionSettingsWithContext(aws.Context, *glue.GetDataCatalogEncryptionSettingsInput, ...request.Option) (*glue.GetDataCatalogEncryptionSettingsOutput, error)
@@ -616,6 +632,13 @@ type GlueAPI interface {
 
 	ListCrawlersPages(*glue.ListCrawlersInput, func(*glue.ListCrawlersOutput, bool) bool) error
 	ListCrawlersPagesWithContext(aws.Context, *glue.ListCrawlersInput, func(*glue.ListCrawlersOutput, bool) bool, ...request.Option) error
+
+	ListCustomEntityTypes(*glue.ListCustomEntityTypesInput) (*glue.ListCustomEntityTypesOutput, error)
+	ListCustomEntityTypesWithContext(aws.Context, *glue.ListCustomEntityTypesInput, ...request.Option) (*glue.ListCustomEntityTypesOutput, error)
+	ListCustomEntityTypesRequest(*glue.ListCustomEntityTypesInput) (*request.Request, *glue.ListCustomEntityTypesOutput)
+
+	ListCustomEntityTypesPages(*glue.ListCustomEntityTypesInput, func(*glue.ListCustomEntityTypesOutput, bool) bool) error
+	ListCustomEntityTypesPagesWithContext(aws.Context, *glue.ListCustomEntityTypesInput, func(*glue.ListCustomEntityTypesOutput, bool) bool, ...request.Option) error
 
 	ListDevEndpoints(*glue.ListDevEndpointsInput) (*glue.ListDevEndpointsOutput, error)
 	ListDevEndpointsWithContext(aws.Context, *glue.ListDevEndpointsInput, ...request.Option) (*glue.ListDevEndpointsOutput, error)

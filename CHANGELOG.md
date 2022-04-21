@@ -1,3 +1,21 @@
+Release v1.43.44 (2022-04-21)
+===
+
+### Service Client Updates
+* `service/elasticache`: Updates service documentation
+  * Doc only update for ElastiCache
+* `service/glue`: Updates service API, documentation, and paginators
+  * This release adds APIs to create, read, delete, list, and batch read of Glue custom entity types
+* `service/iotsitewise`: Updates service API, documentation, and paginators
+* `service/iottwinmaker`: Updates service API and documentation
+* `service/lookoutmetrics`: Updates service API and documentation
+* `service/mediatailor`: Updates service API, documentation, and paginators
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for Secrets Manager
+* `service/storagegateway`: Updates service API and documentation
+  * This release adds support for minimum of 5 character length virtual tape barcodes.
+* `service/wisdom`: Updates service API and documentation
+
 Release v1.43.43 (2022-04-20)
 ===
 

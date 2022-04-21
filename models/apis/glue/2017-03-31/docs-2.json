@@ -9,6 +9,7 @@
     "BatchDeleteTableVersion": "<p>Deletes a specified batch of versions of a table.</p>",
     "BatchGetBlueprints": "<p>Retrieves information about a list of blueprints.</p>",
     "BatchGetCrawlers": "<p>Returns a list of resource metadata for a given list of crawler names. After calling the <code>ListCrawlers</code> operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags.</p>",
+    "BatchGetCustomEntityTypes": null,
     "BatchGetDevEndpoints": "<p>Returns a list of resource metadata for a given list of development endpoint names. After calling the <code>ListDevEndpoints</code> operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags.</p>",
     "BatchGetJobs": "<p>Returns a list of resource metadata for a given list of job names. After calling the <code>ListJobs</code> operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags. </p>",
     "BatchGetPartition": "<p>Retrieves partitions in a batch request.</p>",
@@ -23,6 +24,7 @@
     "CreateClassifier": "<p>Creates a classifier in the user's account. This can be a <code>GrokClassifier</code>, an <code>XMLClassifier</code>, a <code>JsonClassifier</code>, or a <code>CsvClassifier</code>, depending on which field of the request is present.</p>",
     "CreateConnection": "<p>Creates a connection definition in the Data Catalog.</p>",
     "CreateCrawler": "<p>Creates a new crawler with specified targets, role, configuration, and optional schedule. At least one crawl target must be specified, in the <code>s3Targets</code> field, the <code>jdbcTargets</code> field, or the <code>DynamoDBTargets</code> field.</p>",
+    "CreateCustomEntityType": null,
     "CreateDatabase": "<p>Creates a new database in a Data Catalog.</p>",
     "CreateDevEndpoint": "<p>Creates a new development endpoint.</p>",
     "CreateJob": "<p>Creates a new job definition.</p>",
@@ -44,6 +46,7 @@
     "DeleteColumnStatisticsForTable": "<p>Retrieves table statistics of columns.</p> <p>The Identity and Access Management (IAM) permission required for this operation is <code>DeleteTable</code>.</p>",
     "DeleteConnection": "<p>Deletes a connection from the Data Catalog.</p>",
     "DeleteCrawler": "<p>Removes a specified crawler from the Glue Data Catalog, unless the crawler state is <code>RUNNING</code>.</p>",
+    "DeleteCustomEntityType": null,
     "DeleteDatabase": "<p>Removes a specified database from a Data Catalog.</p> <note> <p>After completing this operation, you no longer have access to the tables (and all table versions and partitions that might belong to the tables) and the user-defined functions in the deleted database. Glue deletes these \"orphaned\" resources asynchronously in a timely manner, at the discretion of the service.</p> <p>To ensure the immediate deletion of all related resources, before calling <code>DeleteDatabase</code>, use <code>DeleteTableVersion</code> or <code>BatchDeleteTableVersion</code>, <code>DeletePartition</code> or <code>BatchDeletePartition</code>, <code>DeleteUserDefinedFunction</code>, and <code>DeleteTable</code> or <code>BatchDeleteTable</code>, to delete any resources that belong to the database.</p> </note>",
     "DeleteDevEndpoint": "<p>Deletes a specified development endpoint.</p>",
     "DeleteJob": "<p>Deletes a specified job definition. If the job definition is not found, no exception is thrown.</p>",
@@ -74,6 +77,7 @@
     "GetCrawler": "<p>Retrieves metadata for a specified crawler.</p>",
     "GetCrawlerMetrics": "<p>Retrieves metrics about specified crawlers.</p>",
     "GetCrawlers": "<p>Retrieves metadata for all crawlers defined in the customer account.</p>",
+    "GetCustomEntityType": null,
     "GetDataCatalogEncryptionSettings": "<p>Retrieves the security configuration for a specified catalog.</p>",
     "GetDatabase": "<p>Retrieves the definition of a specified database.</p>",
     "GetDatabases": "<p>Retrieves all databases defined in a given Data Catalog.</p>",
@@ -124,6 +128,7 @@
     "ImportCatalogToGlue": "<p>Imports an existing Amazon Athena Data Catalog to Glue.</p>",
     "ListBlueprints": "<p>Lists all the blueprint names in an account.</p>",
     "ListCrawlers": "<p>Retrieves the names of all crawler resources in this Amazon Web Services account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
+    "ListCustomEntityTypes": null,
     "ListDevEndpoints": "<p>Retrieves the names of all <code>DevEndpoint</code> resources in this Amazon Web Services account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
     "ListJobs": "<p>Retrieves the names of all job resources in this Amazon Web Services account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
     "ListMLTransforms": "<p> Retrieves a sortable, filterable list of existing Glue machine learning transforms in this Amazon Web Services account, or the resources with the specified tag. This operation takes the optional <code>Tags</code> field, which you can use as a filter of the responses so that tagged resources can be retrieved as a group. If you choose to use tag filtering, only resources with the tags are retrieved. </p>",
@@ -358,6 +363,16 @@
       }
     },
     "BatchGetCrawlersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetCustomEntityTypesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetCustomEntityTypesResponse": {
       "base": null,
       "refs": {
       }
@@ -1120,6 +1135,14 @@
         "Session$Connections": "<p>The number of connections used for the session.</p>"
       }
     },
+    "ContextWords": {
+      "base": null,
+      "refs": {
+        "CreateCustomEntityTypeRequest$ContextWords": null,
+        "CustomEntityType$ContextWords": null,
+        "GetCustomEntityTypeResponse$ContextWords": null
+      }
+    },
     "Crawl": {
       "base": "<p>The details of a crawl in the workflow.</p>",
       "refs": {
@@ -1275,6 +1298,16 @@
       "base": "<p>Specifies a custom CSV classifier for <code>CreateClassifier</code> to create.</p>",
       "refs": {
         "CreateClassifierRequest$CsvClassifier": "<p>A <code>CsvClassifier</code> object specifying the classifier to create.</p>"
+      }
+    },
+    "CreateCustomEntityTypeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCustomEntityTypeResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "CreateDatabaseRequest": {
@@ -1506,6 +1539,26 @@
         "UpdateCsvClassifierRequest$QuoteSymbol": "<p>A custom symbol to denote what combines content into a single column value. It must be different from the column delimiter.</p>"
       }
     },
+    "CustomEntityType": {
+      "base": null,
+      "refs": {
+        "CustomEntityTypes$member": null
+      }
+    },
+    "CustomEntityTypeNames": {
+      "base": null,
+      "refs": {
+        "BatchGetCustomEntityTypesRequest$Names": null,
+        "BatchGetCustomEntityTypesResponse$CustomEntityTypesNotFound": null
+      }
+    },
+    "CustomEntityTypes": {
+      "base": null,
+      "refs": {
+        "BatchGetCustomEntityTypesResponse$CustomEntityTypes": null,
+        "ListCustomEntityTypesResponse$CustomEntityTypes": null
+      }
+    },
     "CustomPatterns": {
       "base": null,
       "refs": {
@@ -1680,6 +1733,16 @@
       }
     },
     "DeleteCrawlerResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteCustomEntityTypeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteCustomEntityTypeResponse": {
       "base": null,
       "refs": {
       }
@@ -2412,6 +2475,16 @@
       }
     },
     "GetCrawlersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCustomEntityTypeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCustomEntityTypeResponse": {
       "base": null,
       "refs": {
       }
@@ -3391,6 +3464,16 @@
       "refs": {
       }
     },
+    "ListCustomEntityTypesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCustomEntityTypesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListDevEndpointsRequest": {
       "base": null,
       "refs": {
@@ -3783,12 +3866,16 @@
         "Connection$LastUpdatedBy": "<p>The user, group, or role that last updated this connection definition.</p>",
         "ConnectionInput$Name": "<p>The name of the connection.</p>",
         "ConnectionPasswordEncryption$AwsKmsKeyId": "<p>An KMS key that is used to encrypt the connection password. </p> <p>If connection password protection is enabled, the caller of <code>CreateConnection</code> and <code>UpdateConnection</code> needs at least <code>kms:Encrypt</code> permission on the specified KMS key, to encrypt passwords before storing them in the Data Catalog. </p> <p>You can set the decrypt permission to enable or restrict access on the password key according to your security requirements.</p>",
+        "ContextWords$member": null,
         "Crawler$Name": "<p>The name of the crawler.</p>",
         "CrawlerMetrics$CrawlerName": "<p>The name of the crawler.</p>",
         "CrawlerNameList$member": null,
         "CreateBlueprintResponse$Name": "<p>Returns the name of the blueprint that was registered.</p>",
         "CreateCrawlerRequest$Name": "<p>Name of the new crawler.</p>",
         "CreateCsvClassifierRequest$Name": "<p>The name of the classifier.</p>",
+        "CreateCustomEntityTypeRequest$Name": null,
+        "CreateCustomEntityTypeRequest$RegexString": null,
+        "CreateCustomEntityTypeResponse$Name": null,
         "CreateDevEndpointRequest$SecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure to be used with this <code>DevEndpoint</code>.</p>",
         "CreateDevEndpointResponse$SecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure being used with this <code>DevEndpoint</code>.</p>",
         "CreateGrokClassifierRequest$Name": "<p>The name of the new classifier.</p>",
@@ -3815,6 +3902,9 @@
         "CreateXMLClassifierRequest$Name": "<p>The name of the classifier.</p>",
         "CsvClassifier$Name": "<p>The name of the classifier.</p>",
         "CsvHeader$member": null,
+        "CustomEntityType$Name": null,
+        "CustomEntityType$RegexString": null,
+        "CustomEntityTypeNames$member": null,
         "Database$Name": "<p>The name of the database. For Hive compatibility, this is folded to lowercase when it is stored.</p>",
         "DatabaseIdentifier$DatabaseName": "<p>The name of the catalog database.</p>",
         "DatabaseInput$Name": "<p>The name of the database. For Hive compatibility, this is folded to lowercase when it is stored.</p>",
@@ -3830,6 +3920,8 @@
         "DeleteConnectionNameList$member": null,
         "DeleteConnectionRequest$ConnectionName": "<p>The name of the connection to delete.</p>",
         "DeleteCrawlerRequest$Name": "<p>The name of the crawler to remove.</p>",
+        "DeleteCustomEntityTypeRequest$Name": null,
+        "DeleteCustomEntityTypeResponse$Name": null,
         "DeleteDatabaseRequest$Name": "<p>The name of the database to delete. For Hive compatibility, this must be all lowercase.</p>",
         "DeleteJobRequest$JobName": "<p>The name of the job definition to delete.</p>",
         "DeleteJobResponse$JobName": "<p>The name of the job definition that was deleted.</p>",
@@ -3869,6 +3961,9 @@
         "GetColumnStatisticsForTableRequest$TableName": "<p>The name of the partitions' table.</p>",
         "GetConnectionRequest$Name": "<p>The name of the connection definition to retrieve.</p>",
         "GetCrawlerRequest$Name": "<p>The name of the crawler to retrieve metadata for.</p>",
+        "GetCustomEntityTypeRequest$Name": null,
+        "GetCustomEntityTypeResponse$Name": null,
+        "GetCustomEntityTypeResponse$RegexString": null,
         "GetDatabaseRequest$Name": "<p>The name of the database to retrieve. For Hive compatibility, this should be all lowercase.</p>",
         "GetJobRequest$JobName": "<p>The name of the job definition to retrieve.</p>",
         "GetJobRunRequest$JobName": "<p>Name of the job definition being run.</p>",
@@ -4317,6 +4412,7 @@
         "GetWorkflowRunsRequest$MaxResults": "<p>The maximum number of workflow runs to be included in the response.</p>",
         "ListBlueprintsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListCrawlersRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
+        "ListCustomEntityTypesRequest$MaxResults": null,
         "ListDevEndpointsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListJobsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListMLTransformsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
@@ -4333,6 +4429,8 @@
         "GetMLTaskRunsResponse$NextToken": "<p>A pagination token, if more results are available.</p>",
         "GetMLTransformsRequest$NextToken": "<p>A paginated token to offset the results.</p>",
         "GetMLTransformsResponse$NextToken": "<p>A pagination token, if more results are available.</p>",
+        "ListCustomEntityTypesRequest$NextToken": null,
+        "ListCustomEntityTypesResponse$NextToken": null,
         "ListMLTransformsRequest$NextToken": "<p>A continuation token, if this is a continuation request.</p>",
         "ListMLTransformsResponse$NextToken": "<p>A continuation token, if the returned list does not contain the last metric available.</p>"
       }

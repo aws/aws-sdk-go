@@ -3538,7 +3538,7 @@
       "type":"string",
       "max":500,
       "min":50,
-      "pattern":"^arn:(aws|aws-cn|aws-us-gov):storagegateway:[a-z\\-0-9]+:[0-9]+:tape\\/[0-9A-Z]{7,16}$"
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov):storagegateway:[a-z\\-0-9]+:[0-9]+:tape\\/[0-9A-Z]{5,16}$"
     },
     "TapeARNs":{
       "type":"list",
@@ -3570,7 +3570,7 @@
     "TapeBarcode":{
       "type":"string",
       "max":16,
-      "min":7,
+      "min":5,
       "pattern":"^[A-Z0-9]*$"
     },
     "TapeBarcodePrefix":{

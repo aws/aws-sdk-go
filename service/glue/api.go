@@ -641,6 +641,89 @@ func (c *Glue) BatchGetCrawlersWithContext(ctx aws.Context, input *BatchGetCrawl
 	return out, req.Send()
 }
 
+const opBatchGetCustomEntityTypes = "BatchGetCustomEntityTypes"
+
+// BatchGetCustomEntityTypesRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetCustomEntityTypes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetCustomEntityTypes for more information on using the BatchGetCustomEntityTypes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchGetCustomEntityTypesRequest method.
+//    req, resp := client.BatchGetCustomEntityTypesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/BatchGetCustomEntityTypes
+func (c *Glue) BatchGetCustomEntityTypesRequest(input *BatchGetCustomEntityTypesInput) (req *request.Request, output *BatchGetCustomEntityTypesOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetCustomEntityTypes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchGetCustomEntityTypesInput{}
+	}
+
+	output = &BatchGetCustomEntityTypesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetCustomEntityTypes API operation for AWS Glue.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation BatchGetCustomEntityTypes for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/BatchGetCustomEntityTypes
+func (c *Glue) BatchGetCustomEntityTypes(input *BatchGetCustomEntityTypesInput) (*BatchGetCustomEntityTypesOutput, error) {
+	req, out := c.BatchGetCustomEntityTypesRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetCustomEntityTypesWithContext is the same as BatchGetCustomEntityTypes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetCustomEntityTypes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) BatchGetCustomEntityTypesWithContext(ctx aws.Context, input *BatchGetCustomEntityTypesInput, opts ...request.Option) (*BatchGetCustomEntityTypesOutput, error) {
+	req, out := c.BatchGetCustomEntityTypesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchGetDevEndpoints = "BatchGetDevEndpoints"
 
 // BatchGetDevEndpointsRequest generates a "aws/request.Request" representing the
@@ -1896,6 +1979,101 @@ func (c *Glue) CreateCrawler(input *CreateCrawlerInput) (*CreateCrawlerOutput, e
 // for more information on using Contexts.
 func (c *Glue) CreateCrawlerWithContext(ctx aws.Context, input *CreateCrawlerInput, opts ...request.Option) (*CreateCrawlerOutput, error) {
 	req, out := c.CreateCrawlerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateCustomEntityType = "CreateCustomEntityType"
+
+// CreateCustomEntityTypeRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCustomEntityType operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateCustomEntityType for more information on using the CreateCustomEntityType
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateCustomEntityTypeRequest method.
+//    req, resp := client.CreateCustomEntityTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CreateCustomEntityType
+func (c *Glue) CreateCustomEntityTypeRequest(input *CreateCustomEntityTypeInput) (req *request.Request, output *CreateCustomEntityTypeOutput) {
+	op := &request.Operation{
+		Name:       opCreateCustomEntityType,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateCustomEntityTypeInput{}
+	}
+
+	output = &CreateCustomEntityTypeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateCustomEntityType API operation for AWS Glue.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation CreateCustomEntityType for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * AlreadyExistsException
+//   A resource to be created or added already exists.
+//
+//   * IdempotentParameterMismatchException
+//   The same unique identifier was associated with two different records.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * ResourceNumberLimitExceededException
+//   A resource numerical limit was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CreateCustomEntityType
+func (c *Glue) CreateCustomEntityType(input *CreateCustomEntityTypeInput) (*CreateCustomEntityTypeOutput, error) {
+	req, out := c.CreateCustomEntityTypeRequest(input)
+	return out, req.Send()
+}
+
+// CreateCustomEntityTypeWithContext is the same as CreateCustomEntityType with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCustomEntityType for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) CreateCustomEntityTypeWithContext(ctx aws.Context, input *CreateCustomEntityTypeInput, opts ...request.Option) (*CreateCustomEntityTypeOutput, error) {
+	req, out := c.CreateCustomEntityTypeRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3905,6 +4083,95 @@ func (c *Glue) DeleteCrawler(input *DeleteCrawlerInput) (*DeleteCrawlerOutput, e
 // for more information on using Contexts.
 func (c *Glue) DeleteCrawlerWithContext(ctx aws.Context, input *DeleteCrawlerInput, opts ...request.Option) (*DeleteCrawlerOutput, error) {
 	req, out := c.DeleteCrawlerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteCustomEntityType = "DeleteCustomEntityType"
+
+// DeleteCustomEntityTypeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCustomEntityType operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCustomEntityType for more information on using the DeleteCustomEntityType
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteCustomEntityTypeRequest method.
+//    req, resp := client.DeleteCustomEntityTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/DeleteCustomEntityType
+func (c *Glue) DeleteCustomEntityTypeRequest(input *DeleteCustomEntityTypeInput) (req *request.Request, output *DeleteCustomEntityTypeOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCustomEntityType,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteCustomEntityTypeInput{}
+	}
+
+	output = &DeleteCustomEntityTypeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteCustomEntityType API operation for AWS Glue.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation DeleteCustomEntityType for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/DeleteCustomEntityType
+func (c *Glue) DeleteCustomEntityType(input *DeleteCustomEntityTypeInput) (*DeleteCustomEntityTypeOutput, error) {
+	req, out := c.DeleteCustomEntityTypeRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCustomEntityTypeWithContext is the same as DeleteCustomEntityType with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCustomEntityType for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) DeleteCustomEntityTypeWithContext(ctx aws.Context, input *DeleteCustomEntityTypeInput, opts ...request.Option) (*DeleteCustomEntityTypeOutput, error) {
+	req, out := c.DeleteCustomEntityTypeRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6881,6 +7148,95 @@ func (c *Glue) GetCrawlersPagesWithContext(ctx aws.Context, input *GetCrawlersIn
 	}
 
 	return p.Err()
+}
+
+const opGetCustomEntityType = "GetCustomEntityType"
+
+// GetCustomEntityTypeRequest generates a "aws/request.Request" representing the
+// client's request for the GetCustomEntityType operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCustomEntityType for more information on using the GetCustomEntityType
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetCustomEntityTypeRequest method.
+//    req, resp := client.GetCustomEntityTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetCustomEntityType
+func (c *Glue) GetCustomEntityTypeRequest(input *GetCustomEntityTypeInput) (req *request.Request, output *GetCustomEntityTypeOutput) {
+	op := &request.Operation{
+		Name:       opGetCustomEntityType,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetCustomEntityTypeInput{}
+	}
+
+	output = &GetCustomEntityTypeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCustomEntityType API operation for AWS Glue.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation GetCustomEntityType for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetCustomEntityType
+func (c *Glue) GetCustomEntityType(input *GetCustomEntityTypeInput) (*GetCustomEntityTypeOutput, error) {
+	req, out := c.GetCustomEntityTypeRequest(input)
+	return out, req.Send()
+}
+
+// GetCustomEntityTypeWithContext is the same as GetCustomEntityType with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCustomEntityType for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetCustomEntityTypeWithContext(ctx aws.Context, input *GetCustomEntityTypeInput, opts ...request.Option) (*GetCustomEntityTypeOutput, error) {
+	req, out := c.GetCustomEntityTypeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetDataCatalogEncryptionSettings = "GetDataCatalogEncryptionSettings"
@@ -12406,6 +12762,147 @@ func (c *Glue) ListCrawlersPagesWithContext(ctx aws.Context, input *ListCrawlers
 
 	for p.Next() {
 		if !fn(p.Page().(*ListCrawlersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCustomEntityTypes = "ListCustomEntityTypes"
+
+// ListCustomEntityTypesRequest generates a "aws/request.Request" representing the
+// client's request for the ListCustomEntityTypes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCustomEntityTypes for more information on using the ListCustomEntityTypes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListCustomEntityTypesRequest method.
+//    req, resp := client.ListCustomEntityTypesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListCustomEntityTypes
+func (c *Glue) ListCustomEntityTypesRequest(input *ListCustomEntityTypesInput) (req *request.Request, output *ListCustomEntityTypesOutput) {
+	op := &request.Operation{
+		Name:       opListCustomEntityTypes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCustomEntityTypesInput{}
+	}
+
+	output = &ListCustomEntityTypesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCustomEntityTypes API operation for AWS Glue.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation ListCustomEntityTypes for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListCustomEntityTypes
+func (c *Glue) ListCustomEntityTypes(input *ListCustomEntityTypesInput) (*ListCustomEntityTypesOutput, error) {
+	req, out := c.ListCustomEntityTypesRequest(input)
+	return out, req.Send()
+}
+
+// ListCustomEntityTypesWithContext is the same as ListCustomEntityTypes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCustomEntityTypes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListCustomEntityTypesWithContext(ctx aws.Context, input *ListCustomEntityTypesInput, opts ...request.Option) (*ListCustomEntityTypesOutput, error) {
+	req, out := c.ListCustomEntityTypesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCustomEntityTypesPages iterates over the pages of a ListCustomEntityTypes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCustomEntityTypes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCustomEntityTypes operation.
+//    pageNum := 0
+//    err := client.ListCustomEntityTypesPages(params,
+//        func(page *glue.ListCustomEntityTypesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Glue) ListCustomEntityTypesPages(input *ListCustomEntityTypesInput, fn func(*ListCustomEntityTypesOutput, bool) bool) error {
+	return c.ListCustomEntityTypesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCustomEntityTypesPagesWithContext same as ListCustomEntityTypesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListCustomEntityTypesPagesWithContext(ctx aws.Context, input *ListCustomEntityTypesInput, fn func(*ListCustomEntityTypesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCustomEntityTypesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCustomEntityTypesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCustomEntityTypesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -19393,6 +19890,91 @@ func (s *BatchGetCrawlersOutput) SetCrawlersNotFound(v []*string) *BatchGetCrawl
 	return s
 }
 
+type BatchGetCustomEntityTypesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Names is a required field
+	Names []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetCustomEntityTypesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetCustomEntityTypesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetCustomEntityTypesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetCustomEntityTypesInput"}
+	if s.Names == nil {
+		invalidParams.Add(request.NewErrParamRequired("Names"))
+	}
+	if s.Names != nil && len(s.Names) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Names", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNames sets the Names field's value.
+func (s *BatchGetCustomEntityTypesInput) SetNames(v []*string) *BatchGetCustomEntityTypesInput {
+	s.Names = v
+	return s
+}
+
+type BatchGetCustomEntityTypesOutput struct {
+	_ struct{} `type:"structure"`
+
+	CustomEntityTypes []*CustomEntityType `type:"list"`
+
+	CustomEntityTypesNotFound []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetCustomEntityTypesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetCustomEntityTypesOutput) GoString() string {
+	return s.String()
+}
+
+// SetCustomEntityTypes sets the CustomEntityTypes field's value.
+func (s *BatchGetCustomEntityTypesOutput) SetCustomEntityTypes(v []*CustomEntityType) *BatchGetCustomEntityTypesOutput {
+	s.CustomEntityTypes = v
+	return s
+}
+
+// SetCustomEntityTypesNotFound sets the CustomEntityTypesNotFound field's value.
+func (s *BatchGetCustomEntityTypesOutput) SetCustomEntityTypesNotFound(v []*string) *BatchGetCustomEntityTypesOutput {
+	s.CustomEntityTypesNotFound = v
+	return s
+}
+
 type BatchGetDevEndpointsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -24359,6 +24941,109 @@ func (s *CreateCsvClassifierRequest) SetQuoteSymbol(v string) *CreateCsvClassifi
 	return s
 }
 
+type CreateCustomEntityTypeInput struct {
+	_ struct{} `type:"structure"`
+
+	ContextWords []*string `min:"1" type:"list"`
+
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// RegexString is a required field
+	RegexString *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCustomEntityTypeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCustomEntityTypeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCustomEntityTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCustomEntityTypeInput"}
+	if s.ContextWords != nil && len(s.ContextWords) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContextWords", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RegexString == nil {
+		invalidParams.Add(request.NewErrParamRequired("RegexString"))
+	}
+	if s.RegexString != nil && len(*s.RegexString) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RegexString", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContextWords sets the ContextWords field's value.
+func (s *CreateCustomEntityTypeInput) SetContextWords(v []*string) *CreateCustomEntityTypeInput {
+	s.ContextWords = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateCustomEntityTypeInput) SetName(v string) *CreateCustomEntityTypeInput {
+	s.Name = &v
+	return s
+}
+
+// SetRegexString sets the RegexString field's value.
+func (s *CreateCustomEntityTypeInput) SetRegexString(v string) *CreateCustomEntityTypeInput {
+	s.RegexString = &v
+	return s
+}
+
+type CreateCustomEntityTypeOutput struct {
+	_ struct{} `type:"structure"`
+
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCustomEntityTypeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCustomEntityTypeOutput) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *CreateCustomEntityTypeOutput) SetName(v string) *CreateCustomEntityTypeOutput {
+	s.Name = &v
+	return s
+}
+
 type CreateDatabaseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -27588,6 +28273,54 @@ func (s *CsvClassifier) SetVersion(v int64) *CsvClassifier {
 	return s
 }
 
+type CustomEntityType struct {
+	_ struct{} `type:"structure"`
+
+	ContextWords []*string `min:"1" type:"list"`
+
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// RegexString is a required field
+	RegexString *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomEntityType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomEntityType) GoString() string {
+	return s.String()
+}
+
+// SetContextWords sets the ContextWords field's value.
+func (s *CustomEntityType) SetContextWords(v []*string) *CustomEntityType {
+	s.ContextWords = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CustomEntityType) SetName(v string) *CustomEntityType {
+	s.Name = &v
+	return s
+}
+
+// SetRegexString sets the RegexString field's value.
+func (s *CustomEntityType) SetRegexString(v string) *CustomEntityType {
+	s.RegexString = &v
+	return s
+}
+
 // Contains configuration information for maintaining Data Catalog security.
 type DataCatalogEncryptionSettings struct {
 	_ struct{} `type:"structure"`
@@ -28755,6 +29488,83 @@ func (s DeleteCrawlerOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DeleteCrawlerOutput) GoString() string {
 	return s.String()
+}
+
+type DeleteCustomEntityTypeInput struct {
+	_ struct{} `type:"structure"`
+
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCustomEntityTypeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCustomEntityTypeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCustomEntityTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCustomEntityTypeInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteCustomEntityTypeInput) SetName(v string) *DeleteCustomEntityTypeInput {
+	s.Name = &v
+	return s
+}
+
+type DeleteCustomEntityTypeOutput struct {
+	_ struct{} `type:"structure"`
+
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCustomEntityTypeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCustomEntityTypeOutput) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteCustomEntityTypeOutput) SetName(v string) *DeleteCustomEntityTypeOutput {
+	s.Name = &v
+	return s
 }
 
 type DeleteDatabaseInput struct {
@@ -33085,6 +33895,99 @@ func (s *GetCrawlersOutput) SetCrawlers(v []*Crawler) *GetCrawlersOutput {
 // SetNextToken sets the NextToken field's value.
 func (s *GetCrawlersOutput) SetNextToken(v string) *GetCrawlersOutput {
 	s.NextToken = &v
+	return s
+}
+
+type GetCustomEntityTypeInput struct {
+	_ struct{} `type:"structure"`
+
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCustomEntityTypeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCustomEntityTypeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCustomEntityTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCustomEntityTypeInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *GetCustomEntityTypeInput) SetName(v string) *GetCustomEntityTypeInput {
+	s.Name = &v
+	return s
+}
+
+type GetCustomEntityTypeOutput struct {
+	_ struct{} `type:"structure"`
+
+	ContextWords []*string `min:"1" type:"list"`
+
+	Name *string `min:"1" type:"string"`
+
+	RegexString *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCustomEntityTypeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCustomEntityTypeOutput) GoString() string {
+	return s.String()
+}
+
+// SetContextWords sets the ContextWords field's value.
+func (s *GetCustomEntityTypeOutput) SetContextWords(v []*string) *GetCustomEntityTypeOutput {
+	s.ContextWords = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetCustomEntityTypeOutput) SetName(v string) *GetCustomEntityTypeOutput {
+	s.Name = &v
+	return s
+}
+
+// SetRegexString sets the RegexString field's value.
+func (s *GetCustomEntityTypeOutput) SetRegexString(v string) *GetCustomEntityTypeOutput {
+	s.RegexString = &v
 	return s
 }
 
@@ -41346,6 +42249,95 @@ func (s *ListCrawlersOutput) SetCrawlerNames(v []*string) *ListCrawlersOutput {
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListCrawlersOutput) SetNextToken(v string) *ListCrawlersOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCustomEntityTypesInput struct {
+	_ struct{} `type:"structure"`
+
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCustomEntityTypesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCustomEntityTypesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCustomEntityTypesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCustomEntityTypesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCustomEntityTypesInput) SetMaxResults(v int64) *ListCustomEntityTypesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCustomEntityTypesInput) SetNextToken(v string) *ListCustomEntityTypesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCustomEntityTypesOutput struct {
+	_ struct{} `type:"structure"`
+
+	CustomEntityTypes []*CustomEntityType `type:"list"`
+
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCustomEntityTypesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCustomEntityTypesOutput) GoString() string {
+	return s.String()
+}
+
+// SetCustomEntityTypes sets the CustomEntityTypes field's value.
+func (s *ListCustomEntityTypesOutput) SetCustomEntityTypes(v []*CustomEntityType) *ListCustomEntityTypesOutput {
+	s.CustomEntityTypes = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCustomEntityTypesOutput) SetNextToken(v string) *ListCustomEntityTypesOutput {
 	s.NextToken = &v
 	return s
 }

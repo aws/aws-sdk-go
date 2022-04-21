@@ -14,6 +14,7 @@
     "DescribeAnomalyDetectionExecutions": "<p>Returns information about the status of the specified anomaly detection jobs.</p>",
     "DescribeAnomalyDetector": "<p>Describes a detector.</p> <p>Amazon Lookout for Metrics API actions are eventually consistent. If you do a read operation on a resource immediately after creating or modifying it, use retries to allow time for the write operation to complete.</p>",
     "DescribeMetricSet": "<p>Describes a dataset.</p> <p>Amazon Lookout for Metrics API actions are eventually consistent. If you do a read operation on a resource immediately after creating or modifying it, use retries to allow time for the write operation to complete.</p>",
+    "DetectMetricSetConfig": "<p>Detects an Amazon S3 dataset's file format, interval, and offset.</p>",
     "GetAnomalyGroup": "<p>Returns details about a group of anomalous metrics.</p>",
     "GetFeedback": "<p>Get feedback for an anomaly group.</p>",
     "GetSampleData": "<p>Returns a selection of sample records from an Amazon S3 datasource.</p>",
@@ -242,6 +243,7 @@
         "DescribeMetricSetRequest$MetricSetArn": "<p>The ARN of the dataset.</p>",
         "DescribeMetricSetResponse$MetricSetArn": "<p>The ARN of the dataset.</p>",
         "DescribeMetricSetResponse$AnomalyDetectorArn": "<p>The ARN of the detector that contains the dataset.</p>",
+        "DetectMetricSetConfigRequest$AnomalyDetectorArn": "<p>An anomaly detector ARN.</p>",
         "GetAnomalyGroupRequest$AnomalyDetectorArn": "<p>The Amazon Resource Name (ARN) of the anomaly detector.</p>",
         "GetFeedbackRequest$AnomalyDetectorArn": "<p>The Amazon Resource Name (ARN) of the anomaly detector.</p>",
         "LambdaConfiguration$RoleArn": "<p>The ARN of an IAM role that has permission to invoke the Lambda function.</p>",
@@ -269,6 +271,24 @@
         "UpdateMetricSetResponse$MetricSetArn": "<p>The ARN of the dataset.</p>"
       }
     },
+    "AttributeValue": {
+      "base": "<p>An attribute value.</p>",
+      "refs": {
+        "DetectedField$Value": "<p>The field's value.</p>"
+      }
+    },
+    "AutoDetectionMetricSource": {
+      "base": "<p>An auto detection metric source.</p>",
+      "refs": {
+        "DetectMetricSetConfigRequest$AutoDetectionMetricSource": "<p>A data source.</p>"
+      }
+    },
+    "AutoDetectionS3SourceConfig": {
+      "base": "<p>An auto detection source config.</p>",
+      "refs": {
+        "AutoDetectionMetricSource$S3SourceConfig": "<p>The source's source config.</p>"
+      }
+    },
     "BackTestAnomalyDetectorRequest": {
       "base": null,
       "refs": {
@@ -277,6 +297,19 @@
     "BackTestAnomalyDetectorResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "BinaryAttributeValue": {
+      "base": null,
+      "refs": {
+        "AttributeValue$B": "<p>A binary value.</p>",
+        "BinaryListAttributeValue$member": null
+      }
+    },
+    "BinaryListAttributeValue": {
+      "base": null,
+      "refs": {
+        "AttributeValue$BS": "<p>A list of binary values.</p>"
       }
     },
     "Boolean": {
@@ -316,6 +349,12 @@
         "ItemizedMetricStats$MetricName": "<p>The name of the measure.</p>",
         "Metric$MetricName": "<p>The name of the metric.</p>",
         "TimestampColumn$ColumnName": "<p>The name of the timestamp column.</p>"
+      }
+    },
+    "Confidence": {
+      "base": null,
+      "refs": {
+        "DetectedField$Confidence": "<p>The field's confidence.</p>"
       }
     },
     "ConflictException": {
@@ -465,6 +504,67 @@
     "DescribeMetricSetResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "DetectMetricSetConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DetectMetricSetConfigResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DetectedCsvFormatDescriptor": {
+      "base": "<p>Properties of an inferred CSV format.</p>",
+      "refs": {
+        "DetectedFileFormatDescriptor$CsvFormatDescriptor": "<p>Details about a CSV format.</p>"
+      }
+    },
+    "DetectedField": {
+      "base": "<p>An inferred field.</p>",
+      "refs": {
+        "DetectedCsvFormatDescriptor$FileCompression": "<p>The format's file compression.</p>",
+        "DetectedCsvFormatDescriptor$Charset": "<p>The format's charset.</p>",
+        "DetectedCsvFormatDescriptor$ContainsHeader": "<p>Whether the format includes a header.</p>",
+        "DetectedCsvFormatDescriptor$Delimiter": "<p>The format's delimiter.</p>",
+        "DetectedCsvFormatDescriptor$HeaderList": "<p>The format's header list.</p>",
+        "DetectedCsvFormatDescriptor$QuoteSymbol": "<p>The format's quote symbol.</p>",
+        "DetectedJsonFormatDescriptor$FileCompression": "<p>The format's file compression.</p>",
+        "DetectedJsonFormatDescriptor$Charset": "<p>The format's character set.</p>",
+        "DetectedMetricSetConfig$Offset": "<p>The dataset's offset.</p>",
+        "DetectedMetricSetConfig$MetricSetFrequency": "<p>The dataset's interval.</p>"
+      }
+    },
+    "DetectedFileFormatDescriptor": {
+      "base": "<p>Properties of an inferred data format.</p>",
+      "refs": {
+        "DetectedS3SourceConfig$FileFormatDescriptor": "<p>The source's file format descriptor.</p>"
+      }
+    },
+    "DetectedJsonFormatDescriptor": {
+      "base": "<p>A detected JSON format descriptor.</p>",
+      "refs": {
+        "DetectedFileFormatDescriptor$JsonFormatDescriptor": "<p>Details about a JSON format.</p>"
+      }
+    },
+    "DetectedMetricSetConfig": {
+      "base": "<p>An inferred dataset configuration.</p>",
+      "refs": {
+        "DetectMetricSetConfigResponse$DetectedMetricSetConfig": "<p>The inferred dataset configuration for the datasource.</p>"
+      }
+    },
+    "DetectedMetricSource": {
+      "base": "<p>An inferred data source.</p>",
+      "refs": {
+        "DetectedMetricSetConfig$MetricSource": "<p>The dataset's data source.</p>"
+      }
+    },
+    "DetectedS3SourceConfig": {
+      "base": "<p>An inferred source configuration.</p>",
+      "refs": {
+        "DetectedMetricSource$S3SourceConfig": "<p>The data source's source configuration.</p>"
       }
     },
     "DimensionContribution": {
@@ -622,6 +722,7 @@
     "HistoricalDataPathList": {
       "base": null,
       "refs": {
+        "AutoDetectionS3SourceConfig$HistoricalDataPathList": "<p>The config's historical data path list.</p>",
         "S3SourceConfig$HistoricalDataPathList": "<p>A list of paths to the historical data files.</p>",
         "SampleDataS3SourceConfig$HistoricalDataPathList": "<p>An array of strings containing the historical set of data paths.</p>"
       }
@@ -777,6 +878,7 @@
       "refs": {
         "AccessDeniedException$Message": null,
         "ConflictException$Message": null,
+        "DetectedField$Message": "<p>The field's message.</p>",
         "InternalServerException$Message": null,
         "ResourceNotFoundException$Message": null,
         "ServiceQuotaExceededException$Message": null,
@@ -902,6 +1004,19 @@
         "ListAnomalyGroupTimeSeriesResponse$NextToken": "<p>The pagination token that's included if more results are available.</p>",
         "ListMetricSetsRequest$NextToken": "<p>If the result of the previous request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.</p>",
         "ListMetricSetsResponse$NextToken": "<p>If the response is truncated, the list call returns this token. To retrieve the next set of results, use the token in the next list request. </p>"
+      }
+    },
+    "NumberAttributeValue": {
+      "base": null,
+      "refs": {
+        "AttributeValue$N": "<p>A number.</p>",
+        "NumberListAttributeValue$member": null
+      }
+    },
+    "NumberListAttributeValue": {
+      "base": null,
+      "refs": {
+        "AttributeValue$NS": "<p>A list of numbers.</p>"
       }
     },
     "Offset": {
@@ -1075,6 +1190,19 @@
       "refs": {
       }
     },
+    "StringAttributeValue": {
+      "base": null,
+      "refs": {
+        "AttributeValue$S": "<p>A string.</p>",
+        "StringListAttributeValue$member": null
+      }
+    },
+    "StringListAttributeValue": {
+      "base": null,
+      "refs": {
+        "AttributeValue$SS": "<p>A list of strings.</p>"
+      }
+    },
     "SubnetId": {
       "base": null,
       "refs": {
@@ -1145,6 +1273,7 @@
     "TemplatedPathList": {
       "base": null,
       "refs": {
+        "AutoDetectionS3SourceConfig$TemplatedPathList": "<p>The config's templated path list.</p>",
         "S3SourceConfig$TemplatedPathList": "<p>A list of templated paths to the source files.</p>",
         "SampleDataS3SourceConfig$TemplatedPathList": "<p>An array of strings containing the list of templated paths.</p>"
       }

@@ -214,6 +214,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DetectMetricSetConfig":{
+      "name":"DetectMetricSetConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/DetectMetricSetConfig"
+      },
+      "input":{"shape":"DetectMetricSetConfigRequest"},
+      "output":{"shape":"DetectMetricSetConfigResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "GetAnomalyGroup":{
       "name":"GetAnomalyGroup",
       "http":{
@@ -694,6 +710,30 @@
       "max":256,
       "pattern":"arn:([a-z\\d-]+):.*:.*:.*:.+"
     },
+    "AttributeValue":{
+      "type":"structure",
+      "members":{
+        "S":{"shape":"StringAttributeValue"},
+        "N":{"shape":"NumberAttributeValue"},
+        "B":{"shape":"BinaryAttributeValue"},
+        "SS":{"shape":"StringListAttributeValue"},
+        "NS":{"shape":"NumberListAttributeValue"},
+        "BS":{"shape":"BinaryListAttributeValue"}
+      }
+    },
+    "AutoDetectionMetricSource":{
+      "type":"structure",
+      "members":{
+        "S3SourceConfig":{"shape":"AutoDetectionS3SourceConfig"}
+      }
+    },
+    "AutoDetectionS3SourceConfig":{
+      "type":"structure",
+      "members":{
+        "TemplatedPathList":{"shape":"TemplatedPathList"},
+        "HistoricalDataPathList":{"shape":"HistoricalDataPathList"}
+      }
+    },
     "BackTestAnomalyDetectorRequest":{
       "type":"structure",
       "required":["AnomalyDetectorArn"],
@@ -705,6 +745,11 @@
       "type":"structure",
       "members":{
       }
+    },
+    "BinaryAttributeValue":{"type":"string"},
+    "BinaryListAttributeValue":{
+      "type":"list",
+      "member":{"shape":"BinaryAttributeValue"}
     },
     "Boolean":{"type":"boolean"},
     "CSVFileCompression":{
@@ -730,6 +775,14 @@
       "max":63,
       "min":1,
       "pattern":"^[a-zA-Z0-9][a-zA-Z0-9\\-_]*"
+    },
+    "Confidence":{
+      "type":"string",
+      "enum":[
+        "HIGH",
+        "LOW",
+        "NONE"
+      ]
     },
     "ConflictException":{
       "type":"structure",
@@ -972,6 +1025,76 @@
         "MetricSetFrequency":{"shape":"Frequency"},
         "Timezone":{"shape":"Timezone"},
         "MetricSource":{"shape":"MetricSource"}
+      }
+    },
+    "DetectMetricSetConfigRequest":{
+      "type":"structure",
+      "required":[
+        "AnomalyDetectorArn",
+        "AutoDetectionMetricSource"
+      ],
+      "members":{
+        "AnomalyDetectorArn":{"shape":"Arn"},
+        "AutoDetectionMetricSource":{"shape":"AutoDetectionMetricSource"}
+      }
+    },
+    "DetectMetricSetConfigResponse":{
+      "type":"structure",
+      "members":{
+        "DetectedMetricSetConfig":{"shape":"DetectedMetricSetConfig"}
+      }
+    },
+    "DetectedCsvFormatDescriptor":{
+      "type":"structure",
+      "members":{
+        "FileCompression":{"shape":"DetectedField"},
+        "Charset":{"shape":"DetectedField"},
+        "ContainsHeader":{"shape":"DetectedField"},
+        "Delimiter":{"shape":"DetectedField"},
+        "HeaderList":{"shape":"DetectedField"},
+        "QuoteSymbol":{"shape":"DetectedField"}
+      }
+    },
+    "DetectedField":{
+      "type":"structure",
+      "members":{
+        "Value":{"shape":"AttributeValue"},
+        "Confidence":{"shape":"Confidence"},
+        "Message":{"shape":"Message"}
+      }
+    },
+    "DetectedFileFormatDescriptor":{
+      "type":"structure",
+      "members":{
+        "CsvFormatDescriptor":{"shape":"DetectedCsvFormatDescriptor"},
+        "JsonFormatDescriptor":{"shape":"DetectedJsonFormatDescriptor"}
+      }
+    },
+    "DetectedJsonFormatDescriptor":{
+      "type":"structure",
+      "members":{
+        "FileCompression":{"shape":"DetectedField"},
+        "Charset":{"shape":"DetectedField"}
+      }
+    },
+    "DetectedMetricSetConfig":{
+      "type":"structure",
+      "members":{
+        "Offset":{"shape":"DetectedField"},
+        "MetricSetFrequency":{"shape":"DetectedField"},
+        "MetricSource":{"shape":"DetectedMetricSource"}
+      }
+    },
+    "DetectedMetricSource":{
+      "type":"structure",
+      "members":{
+        "S3SourceConfig":{"shape":"DetectedS3SourceConfig"}
+      }
+    },
+    "DetectedS3SourceConfig":{
+      "type":"structure",
+      "members":{
+        "FileFormatDescriptor":{"shape":"DetectedFileFormatDescriptor"}
       }
     },
     "DimensionContribution":{
@@ -1443,6 +1566,11 @@
       "min":1,
       "pattern":".*\\S.*"
     },
+    "NumberAttributeValue":{"type":"string"},
+    "NumberListAttributeValue":{
+      "type":"list",
+      "member":{"shape":"NumberAttributeValue"}
+    },
     "Offset":{
       "type":"integer",
       "max":432000,
@@ -1625,6 +1753,11 @@
       },
       "error":{"httpStatusCode":402},
       "exception":true
+    },
+    "StringAttributeValue":{"type":"string"},
+    "StringListAttributeValue":{
+      "type":"list",
+      "member":{"shape":"StringAttributeValue"}
     },
     "SubnetId":{
       "type":"string",

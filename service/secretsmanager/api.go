@@ -70,7 +70,7 @@ func (c *SecretsManager) CancelRotateSecretRequest(input *CancelRotateSecretInpu
 // deleted. You can delete a version by removing all staging labels from it.
 //
 // Required permissions: secretsmanager:CancelRotateSecret. For more information,
-// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -167,12 +167,13 @@ func (c *SecretsManager) CreateSecretRequest(input *CreateSecretInput) (req *req
 
 // CreateSecret API operation for AWS Secrets Manager.
 //
-// Creates a new secret. A secret is a set of credentials, such as a user name
-// and password, that you store in an encrypted form in Secrets Manager. The
-// secret also includes the connection information to access a database or other
-// service, which Secrets Manager doesn't encrypt. A secret in Secrets Manager
-// consists of both the protected secret data and the important information
-// needed to manage the secret.
+// Creates a new secret. A secret can be a password, a set of credentials such
+// as a user name and password, an OAuth token, or other secret information
+// that you store in an encrypted form in Secrets Manager. The secret also includes
+// the connection information to access a database or other service, which Secrets
+// Manager doesn't encrypt. A secret in Secrets Manager consists of both the
+// protected secret data and the important information needed to manage the
+// secret.
 //
 // For information about creating a secret in the console, see Create a secret
 // (https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_create-basic-secret.html).
@@ -182,6 +183,10 @@ func (c *SecretsManager) CreateSecretRequest(input *CreateSecretInput) (req *req
 // you include SecretString or SecretBinary then Secrets Manager creates an
 // initial secret version and automatically attaches the staging label AWSCURRENT
 // to it.
+//
+// For database credentials you want to rotate, for Secrets Manager to be able
+// to rotate the secret, you must make sure the JSON you store in the SecretString
+// matches the JSON structure of a database secret (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_secret_json_structure.html).
 //
 // If you don't specify an KMS encryption key, Secrets Manager uses the Amazon
 // Web Services managed key aws/secretsmanager. If this key doesn't already
@@ -194,9 +199,13 @@ func (c *SecretsManager) CreateSecretRequest(input *CreateSecretInput) (req *req
 // calling the API, then you can't use aws/secretsmanager to encrypt the secret,
 // and you must create and use a customer managed KMS key.
 //
-// Required permissions: secretsmanager:CreateSecret. For more information,
-// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// Required permissions: secretsmanager:CreateSecret. If you include tags in
+// the secret, you also need secretsmanager:TagResource. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+//
+// To encrypt the secret with a KMS key other than aws/secretsmanager, you need
+// kms:GenerateDataKey and kms:Decrypt permission to the key.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -317,7 +326,7 @@ func (c *SecretsManager) DeleteResourcePolicyRequest(input *DeleteResourcePolicy
 // a policy to a secret, use PutResourcePolicy.
 //
 // Required permissions: secretsmanager:DeleteResourcePolicy. For more information,
-// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -436,7 +445,7 @@ func (c *SecretsManager) DeleteSecretRequest(input *DeleteSecretInput) (req *req
 // and then retrieve the information.
 //
 // Required permissions: secretsmanager:DeleteSecret. For more information,
-// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -537,7 +546,7 @@ func (c *SecretsManager) DescribeSecretRequest(input *DescribeSecretInput) (req 
 // value. Secrets Manager only returns fields that have a value in the response.
 //
 // Required permissions: secretsmanager:DescribeSecret. For more information,
-// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -628,7 +637,7 @@ func (c *SecretsManager) GetRandomPasswordRequest(input *GetRandomPasswordInput)
 // for can support.
 //
 // Required permissions: secretsmanager:GetRandomPassword. For more information,
-// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -727,7 +736,7 @@ func (c *SecretsManager) GetResourcePolicyRequest(input *GetResourcePolicyInput)
 // secret, see Permissions policies attached to a secret (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-policies.html).
 //
 // Required permissions: secretsmanager:GetResourcePolicy. For more information,
-// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -834,7 +843,7 @@ func (c *SecretsManager) GetSecretValueRequest(input *GetSecretValueInput) (req 
 // Required permissions: secretsmanager:GetSecretValue. If the secret is encrypted
 // using a customer-managed key instead of the Amazon Web Services managed key
 // aws/secretsmanager, then you also need kms:Decrypt permissions for that key.
-// For more information, see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// For more information, see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -948,7 +957,7 @@ func (c *SecretsManager) ListSecretVersionIdsRequest(input *ListSecretVersionIds
 // To get the secret value from SecretString or SecretBinary, call GetSecretValue.
 //
 // Required permissions: secretsmanager:ListSecretVersionIds. For more information,
-// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1107,7 +1116,7 @@ func (c *SecretsManager) ListSecretsRequest(input *ListSecretsInput) (req *reque
 // capabilities for secrets in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_search-secret.html).
 //
 // Required permissions: secretsmanager:ListSecrets. For more information, see
-// IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1253,7 +1262,7 @@ func (c *SecretsManager) PutResourcePolicyRequest(input *PutResourcePolicyInput)
 // policy to a secret (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html).
 //
 // Required permissions: secretsmanager:PutResourcePolicy. For more information,
-// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1386,7 +1395,7 @@ func (c *SecretsManager) PutSecretValueRequest(input *PutSecretValueInput) (req 
 // modify an existing version; you can only create new ones.
 //
 // Required permissions: secretsmanager:PutSecretValue. For more information,
-// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1502,7 +1511,7 @@ func (c *SecretsManager) RemoveRegionsFromReplicationRequest(input *RemoveRegion
 // from the Regions you specify.
 //
 // Required permissions: secretsmanager:RemoveRegionsFromReplication. For more
-// information, see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// information, see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1602,7 +1611,7 @@ func (c *SecretsManager) ReplicateSecretToRegionsRequest(input *ReplicateSecretT
 // Replicates the secret to a new Regions. See Multi-Region secrets (https://docs.aws.amazon.com/secretsmanager/latest/userguide/create-manage-multi-region-secrets.html).
 //
 // Required permissions: secretsmanager:ReplicateSecretToRegions. For more information,
-// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1703,7 +1712,7 @@ func (c *SecretsManager) RestoreSecretRequest(input *RestoreSecretInput) (req *r
 // stamp. You can access a secret again after it has been restored.
 //
 // Required permissions: secretsmanager:RestoreSecret. For more information,
-// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1800,15 +1809,21 @@ func (c *SecretsManager) RotateSecretRequest(input *RotateSecretInput) (req *req
 
 // RotateSecret API operation for AWS Secrets Manager.
 //
-// Configures and starts the asynchronous process of rotating the secret.
+// Configures and starts the asynchronous process of rotating the secret. For
+// more information about rotation, see Rotate secrets (https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html).
 //
 // If you include the configuration parameters, the operation sets the values
 // for the secret and then immediately starts a rotation. If you don't include
 // the configuration parameters, the operation starts a rotation with the values
-// already stored in the secret. For more information about rotation, see Rotate
-// secrets (https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html).
+// already stored in the secret.
 //
-// To configure rotation, you include the ARN of an Amazon Web Services Lambda
+// For database credentials you want to rotate, for Secrets Manager to be able
+// to rotate the secret, you must make sure the secret value is in the JSON
+// structure of a database secret (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_secret_json_structure.html).
+// In particular, if you want to use the alternating users strategy (https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets_strategies.html#rotating-secrets-two-users),
+// your secret must contain the ARN of a superuser secret.
+//
+// To configure rotation, you also need the ARN of an Amazon Web Services Lambda
 // function and the schedule for the rotation. The Lambda rotation function
 // creates a new version of the secret and creates or updates the credentials
 // on the database or service to match. After testing the new credentials, the
@@ -1816,16 +1831,20 @@ func (c *SecretsManager) RotateSecretRequest(input *RotateSecretInput) (req *req
 // Then anyone who retrieves the secret gets the new version. For more information,
 // see How rotation works (https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_how.html).
 //
+// You can create the Lambda rotation function based on the rotation function
+// templates (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_available-rotation-templates.html)
+// that Secrets Manager provides. Choose a template that matches your Rotation
+// strategy (https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets_strategies.html).
+//
 // When rotation is successful, the AWSPENDING staging label might be attached
 // to the same version as the AWSCURRENT version, or it might not be attached
-// to any version.
-//
-// If the AWSPENDING staging label is present but not attached to the same version
-// as AWSCURRENT, then any later invocation of RotateSecret assumes that a previous
-// rotation request is still in progress and returns an error.
+// to any version. If the AWSPENDING staging label is present but not attached
+// to the same version as AWSCURRENT, then any later invocation of RotateSecret
+// assumes that a previous rotation request is still in progress and returns
+// an error.
 //
 // Required permissions: secretsmanager:RotateSecret. For more information,
-// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 // You also need lambda:InvokeFunction permissions on the rotation function.
 // For more information, see Permissions for rotation (https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets-required-permissions-function.html).
@@ -1931,7 +1950,7 @@ func (c *SecretsManager) StopReplicationToReplicaRequest(input *StopReplicationT
 // the replica to a primary secret.
 //
 // Required permissions: secretsmanager:StopReplicationToReplica. For more information,
-// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2059,7 +2078,7 @@ func (c *SecretsManager) TagResourceRequest(input *TagResourceInput) (req *reque
 // is blocked and returns an Access Denied error.
 //
 // Required permissions: secretsmanager:TagResource. For more information, see
-// IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2168,7 +2187,7 @@ func (c *SecretsManager) UntagResourceRequest(input *UntagResourceInput) (req *r
 // and returns an Access Denied error.
 //
 // Required permissions: secretsmanager:UntagResource. For more information,
-// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2299,7 +2318,7 @@ func (c *SecretsManager) UpdateSecretRequest(input *UpdateSecretInput) (req *req
 // and you must create and use a customer managed key.
 //
 // Required permissions: secretsmanager:UpdateSecret. For more information,
-// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 // If you use a customer managed key, you must also have kms:GenerateDataKey
 // and kms:Decrypt permissions on the key. For more information, see Secret
@@ -2442,7 +2461,7 @@ func (c *SecretsManager) UpdateSecretVersionStageRequest(input *UpdateSecretVers
 // Manager.
 //
 // Required permissions: secretsmanager:UpdateSecretVersionStage. For more information,
-// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2557,7 +2576,7 @@ func (c *SecretsManager) ValidateResourcePolicyRequest(input *ValidateResourcePo
 //    * Verifies the policy does not lock out a caller.
 //
 // Required permissions: secretsmanager:ValidateResourcePolicy. For more information,
-// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssecretsmanager.html#awssecretsmanager-actions-as-permissions)
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2619,7 +2638,7 @@ type CancelRotateSecretInput struct {
 	// The ARN or name of the secret.
 	//
 	// For an ARN, we recommend that you specify a complete ARN rather than a partial
-	// ARN.
+	// ARN. See Finding a secret from a partial ARN (https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen).
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -3117,7 +3136,7 @@ type DeleteResourcePolicyInput struct {
 	// for.
 	//
 	// For an ARN, we recommend that you specify a complete ARN rather than a partial
-	// ARN.
+	// ARN. See Finding a secret from a partial ARN (https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen).
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -3231,7 +3250,7 @@ type DeleteSecretInput struct {
 	// The ARN or name of the secret to delete.
 	//
 	// For an ARN, we recommend that you specify a complete ARN rather than a partial
-	// ARN.
+	// ARN. See Finding a secret from a partial ARN (https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen).
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -3346,7 +3365,7 @@ type DescribeSecretInput struct {
 	// The ARN or name of the secret.
 	//
 	// For an ARN, we recommend that you specify a complete ARN rather than a partial
-	// ARN.
+	// ARN. See Finding a secret from a partial ARN (https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen).
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -3908,7 +3927,7 @@ type GetResourcePolicyInput struct {
 	// for.
 	//
 	// For an ARN, we recommend that you specify a complete ARN rather than a partial
-	// ARN.
+	// ARN. See Finding a secret from a partial ARN (https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen).
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -4011,7 +4030,7 @@ type GetSecretValueInput struct {
 	// The ARN or name of the secret to retrieve.
 	//
 	// For an ARN, we recommend that you specify a complete ARN rather than a partial
-	// ARN.
+	// ARN. See Finding a secret from a partial ARN (https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen).
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -4553,7 +4572,7 @@ type ListSecretVersionIdsInput struct {
 	// The ARN or name of the secret whose versions you want to list.
 	//
 	// For an ARN, we recommend that you specify a complete ARN rather than a partial
-	// ARN.
+	// ARN. See Finding a secret from a partial ARN (https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen).
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -5028,7 +5047,7 @@ type PutResourcePolicyInput struct {
 	// The ARN or name of the secret to attach the resource-based policy.
 	//
 	// For an ARN, we recommend that you specify a complete ARN rather than a partial
-	// ARN.
+	// ARN. See Finding a secret from a partial ARN (https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen).
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -5183,7 +5202,7 @@ type PutSecretValueInput struct {
 	// The ARN or name of the secret to add a new version to.
 	//
 	// For an ARN, we recommend that you specify a complete ARN rather than a partial
-	// ARN.
+	// ARN. See Finding a secret from a partial ARN (https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen).
 	//
 	// If the secret doesn't already exist, use CreateSecret instead.
 	//
@@ -5838,7 +5857,7 @@ type RestoreSecretInput struct {
 	// The ARN or name of the secret to restore.
 	//
 	// For an ARN, we recommend that you specify a complete ARN rather than a partial
-	// ARN.
+	// ARN. See Finding a secret from a partial ARN (https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen).
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -5967,7 +5986,7 @@ type RotateSecretInput struct {
 	// The ARN or name of the secret to rotate.
 	//
 	// For an ARN, we recommend that you specify a complete ARN rather than a partial
-	// ARN.
+	// ARN. See Finding a secret from a partial ARN (https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen).
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -6592,7 +6611,7 @@ type TagResourceInput struct {
 	// Amazon Resource Name (ARN) or the friendly name of the secret.
 	//
 	// For an ARN, we recommend that you specify a complete ARN rather than a partial
-	// ARN.
+	// ARN. See Finding a secret from a partial ARN (https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen).
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -6696,7 +6715,7 @@ type UntagResourceInput struct {
 	// The ARN or name of the secret.
 	//
 	// For an ARN, we recommend that you specify a complete ARN rather than a partial
-	// ARN.
+	// ARN. See Finding a secret from a partial ARN (https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen).
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -6838,7 +6857,7 @@ type UpdateSecretInput struct {
 	// The ARN or name of the secret.
 	//
 	// For an ARN, we recommend that you specify a complete ARN rather than a partial
-	// ARN.
+	// ARN. See Finding a secret from a partial ARN (https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen).
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -6998,7 +7017,7 @@ type UpdateSecretVersionStageInput struct {
 	// The ARN or the name of the secret with the version and staging labelsto modify.
 	//
 	// For an ARN, we recommend that you specify a complete ARN rather than a partial
-	// ARN.
+	// ARN. See Finding a secret from a partial ARN (https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen).
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
