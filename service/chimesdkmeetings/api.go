@@ -71,20 +71,30 @@ func (c *ChimeSDKMeetings) BatchCreateAttendeeRequest(input *BatchCreateAttendee
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * UnauthorizedException
-//   The user isn't authorized to request a resource.
-//
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
 //
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ForbiddenException
-//   The client is permanently forbidden from making the request.
+//   * UnauthorizedException
+//   The user isn't authorized to request a resource.
+//
+//   * UnprocessableEntityException
+//   The request was well-formed but was unable to be followed due to semantic
+//   errors.
 //
 //   * LimitExceededException
 //   The request exceeds the resource limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+//   * ThrottlingException
+//   The number of customer requests exceeds the request rate limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/BatchCreateAttendee
 func (c *ChimeSDKMeetings) BatchCreateAttendee(input *BatchCreateAttendeeInput) (*BatchCreateAttendeeOutput, error) {
@@ -170,6 +180,9 @@ func (c *ChimeSDKMeetings) CreateAttendeeRequest(input *CreateAttendeeInput) (re
 //   * ForbiddenException
 //   The client is permanently forbidden from making the request.
 //
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
 //   * UnauthorizedException
 //   The user isn't authorized to request a resource.
 //
@@ -177,14 +190,17 @@ func (c *ChimeSDKMeetings) CreateAttendeeRequest(input *CreateAttendeeInput) (re
 //   The request was well-formed but was unable to be followed due to semantic
 //   errors.
 //
+//   * LimitExceededException
+//   The request exceeds the resource limit.
+//
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * NotFoundException
-//   One or more of the resources in the request does not exist in the system.
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
 //
-//   * LimitExceededException
-//   The request exceeds the resource limit.
+//   * ThrottlingException
+//   The number of customer requests exceeds the request rate limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/CreateAttendee
 func (c *ChimeSDKMeetings) CreateAttendee(input *CreateAttendeeInput) (*CreateAttendeeOutput, error) {
@@ -270,11 +286,20 @@ func (c *ChimeSDKMeetings) CreateMeetingRequest(input *CreateMeetingInput) (req 
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
 //
 //   * UnauthorizedException
 //   The user isn't authorized to request a resource.
+//
+//   * ThrottlingException
+//   The number of customer requests exceeds the request rate limit.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
 //
 //   * LimitExceededException
 //   The request exceeds the resource limit.
@@ -363,11 +388,20 @@ func (c *ChimeSDKMeetings) CreateMeetingWithAttendeesRequest(input *CreateMeetin
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ServiceUnavailableException
-//   The service is currently unavailable.
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
 //
 //   * UnauthorizedException
 //   The user isn't authorized to request a resource.
+//
+//   * ThrottlingException
+//   The number of customer requests exceeds the request rate limit.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
 //
 //   * LimitExceededException
 //   The request exceeds the resource limit.
@@ -453,11 +487,26 @@ func (c *ChimeSDKMeetings) DeleteAttendeeRequest(input *DeleteAttendeeInput) (re
 // API operation DeleteAttendee for usage and error information.
 //
 // Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
 //   * ForbiddenException
 //   The client is permanently forbidden from making the request.
 //
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
+//
+//   * UnauthorizedException
+//   The user isn't authorized to request a resource.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+//   * ThrottlingException
+//   The number of customer requests exceeds the request rate limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/DeleteAttendee
 func (c *ChimeSDKMeetings) DeleteAttendee(input *DeleteAttendeeInput) (*DeleteAttendeeOutput, error) {
@@ -546,6 +595,21 @@ func (c *ChimeSDKMeetings) DeleteMeetingRequest(input *DeleteMeetingInput) (req 
 //   * ForbiddenException
 //   The client is permanently forbidden from making the request.
 //
+//   * UnauthorizedException
+//   The user isn't authorized to request a resource.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+//   * ThrottlingException
+//   The number of customer requests exceeds the request rate limit.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/DeleteMeeting
 func (c *ChimeSDKMeetings) DeleteMeeting(input *DeleteMeetingInput) (*DeleteMeetingOutput, error) {
 	req, out := c.DeleteMeetingRequest(input)
@@ -628,11 +692,23 @@ func (c *ChimeSDKMeetings) GetAttendeeRequest(input *GetAttendeeInput) (req *req
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ForbiddenException
-//   The client is permanently forbidden from making the request.
+//   * UnauthorizedException
+//   The user isn't authorized to request a resource.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+//   * ThrottlingException
+//   The number of customer requests exceeds the request rate limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/GetAttendee
 func (c *ChimeSDKMeetings) GetAttendee(input *GetAttendeeInput) (*GetAttendeeOutput, error) {
@@ -722,6 +798,18 @@ func (c *ChimeSDKMeetings) GetMeetingRequest(input *GetMeetingInput) (req *reque
 //   * ForbiddenException
 //   The client is permanently forbidden from making the request.
 //
+//   * UnauthorizedException
+//   The user isn't authorized to request a resource.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+//   * ThrottlingException
+//   The number of customer requests exceeds the request rate limit.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/GetMeeting
 func (c *ChimeSDKMeetings) GetMeeting(input *GetMeetingInput) (*GetMeetingOutput, error) {
 	req, out := c.GetMeetingRequest(input)
@@ -809,11 +897,23 @@ func (c *ChimeSDKMeetings) ListAttendeesRequest(input *ListAttendeesInput) (req 
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ForbiddenException
-//   The client is permanently forbidden from making the request.
+//   * UnauthorizedException
+//   The user isn't authorized to request a resource.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+//   * ThrottlingException
+//   The number of customer requests exceeds the request rate limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/ListAttendees
 func (c *ChimeSDKMeetings) ListAttendees(input *ListAttendeesInput) (*ListAttendeesOutput, error) {
@@ -963,8 +1063,14 @@ func (c *ChimeSDKMeetings) StartMeetingTranscriptionRequest(input *StartMeetingT
 //   The request was well-formed but was unable to be followed due to semantic
 //   errors.
 //
+//   * ThrottlingException
+//   The number of customer requests exceeds the request rate limit.
+//
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/StartMeetingTranscription
 func (c *ChimeSDKMeetings) StartMeetingTranscription(input *StartMeetingTranscriptionInput) (*StartMeetingTranscriptionOutput, error) {
@@ -1059,8 +1165,14 @@ func (c *ChimeSDKMeetings) StopMeetingTranscriptionRequest(input *StopMeetingTra
 //   The request was well-formed but was unable to be followed due to semantic
 //   errors.
 //
+//   * ThrottlingException
+//   The number of customer requests exceeds the request rate limit.
+//
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/StopMeetingTranscription
 func (c *ChimeSDKMeetings) StopMeetingTranscription(input *StopMeetingTranscriptionInput) (*StopMeetingTranscriptionOutput, error) {
@@ -3239,6 +3351,74 @@ func (s *NotificationsConfiguration) SetSqsQueueArn(v string) *NotificationsConf
 	return s
 }
 
+// The service encountered an unexpected error.
+type ServiceFailureException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	RequestId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceFailureException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceFailureException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceFailureException(v protocol.ResponseMetadata) error {
+	return &ServiceFailureException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceFailureException) Code() string {
+	return "ServiceFailureException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceFailureException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceFailureException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceFailureException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceFailureException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceFailureException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The service is currently unavailable.
 type ServiceUnavailableException struct {
 	_            struct{}                  `type:"structure"`
@@ -3471,6 +3651,74 @@ func (s StopMeetingTranscriptionOutput) String() string {
 // value will be replaced with "sensitive".
 func (s StopMeetingTranscriptionOutput) GoString() string {
 	return s.String()
+}
+
+// The number of customer requests exceeds the request rate limit.
+type ThrottlingException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	RequestId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s *ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s *ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ThrottlingException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ThrottlingException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // The configuration for the current transcription operation. Must contain EngineTranscribeSettings

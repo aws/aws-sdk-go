@@ -1,3 +1,11 @@
+Release v1.43.45 (2022-04-22)
+===
+
+### Service Client Updates
+* `service/chime-sdk-meetings`: Updates service API and documentation
+* `service/ec2`: Updates service API, documentation, and waiters
+  * Adds support for waiters that automatically poll for a deleted NAT Gateway until it reaches the deleted state.
+
 Release v1.43.44 (2022-04-21)
 ===
 

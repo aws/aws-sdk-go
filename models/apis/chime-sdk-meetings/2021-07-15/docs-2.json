@@ -310,6 +310,11 @@
         "ServiceUnavailableException$RetryAfterSeconds": "<p>The number of seconds the caller should wait before retrying.</p>"
       }
     },
+    "ServiceFailureException": {
+      "base": "<p>The service encountered an unexpected error.</p>",
+      "refs": {
+      }
+    },
     "ServiceUnavailableException": {
       "base": "<p>The service is currently unavailable.</p>",
       "refs": {
@@ -355,15 +360,26 @@
         "NotFoundException$Code": null,
         "NotFoundException$Message": null,
         "NotFoundException$RequestId": "<p>The request id associated with the call responsible for the exception.</p>",
+        "ServiceFailureException$Code": null,
+        "ServiceFailureException$Message": null,
+        "ServiceFailureException$RequestId": null,
         "ServiceUnavailableException$Code": null,
         "ServiceUnavailableException$Message": null,
         "ServiceUnavailableException$RequestId": "<p>The request id associated with the call responsible for the exception.</p>",
+        "ThrottlingException$Code": null,
+        "ThrottlingException$Message": null,
+        "ThrottlingException$RequestId": null,
         "UnauthorizedException$Code": null,
         "UnauthorizedException$Message": null,
         "UnauthorizedException$RequestId": "<p>The request id associated with the call responsible for the exception.</p>",
         "UnprocessableEntityException$Code": null,
         "UnprocessableEntityException$Message": null,
         "UnprocessableEntityException$RequestId": "<p>The request id associated with the call responsible for the exception.</p>"
+      }
+    },
+    "ThrottlingException": {
+      "base": "<p>The number of customer requests exceeds the request rate limit.</p>",
+      "refs": {
       }
     },
     "TranscribeContentIdentificationType": {
