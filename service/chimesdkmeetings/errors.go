@@ -32,11 +32,23 @@ const (
 	// One or more of the resources in the request does not exist in the system.
 	ErrCodeNotFoundException = "NotFoundException"
 
+	// ErrCodeServiceFailureException for service response error code
+	// "ServiceFailureException".
+	//
+	// The service encountered an unexpected error.
+	ErrCodeServiceFailureException = "ServiceFailureException"
+
 	// ErrCodeServiceUnavailableException for service response error code
 	// "ServiceUnavailableException".
 	//
 	// The service is currently unavailable.
 	ErrCodeServiceUnavailableException = "ServiceUnavailableException"
+
+	// ErrCodeThrottlingException for service response error code
+	// "ThrottlingException".
+	//
+	// The number of customer requests exceeds the request rate limit.
+	ErrCodeThrottlingException = "ThrottlingException"
 
 	// ErrCodeUnauthorizedException for service response error code
 	// "UnauthorizedException".
@@ -57,7 +69,9 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ForbiddenException":           newErrorForbiddenException,
 	"LimitExceededException":       newErrorLimitExceededException,
 	"NotFoundException":            newErrorNotFoundException,
+	"ServiceFailureException":      newErrorServiceFailureException,
 	"ServiceUnavailableException":  newErrorServiceUnavailableException,
+	"ThrottlingException":          newErrorThrottlingException,
 	"UnauthorizedException":        newErrorUnauthorizedException,
 	"UnprocessableEntityException": newErrorUnprocessableEntityException,
 }

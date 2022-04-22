@@ -33530,7 +33530,7 @@
           "locationName":"SecurityGroup"
         },
         "SubnetId":{"shape":"SubnetId"},
-        "UserData":{"shape":"String"},
+        "UserData":{"shape":"RunInstancesUserData"},
         "AdditionalInfo":{
           "shape":"String",
           "locationName":"additionalInfo"
@@ -33592,6 +33592,10 @@
         "PrivateDnsNameOptions":{"shape":"PrivateDnsNameOptionsRequest"},
         "MaintenanceOptions":{"shape":"InstanceMaintenanceOptionsRequest"}
       }
+    },
+    "RunInstancesUserData":{
+      "type":"string",
+      "sensitive":true
     },
     "RunScheduledInstancesRequest":{
       "type":"structure",
