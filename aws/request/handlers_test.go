@@ -1,6 +1,7 @@
 package request_test
 
 import (
+	"net/http"
 	"reflect"
 	"testing"
 
@@ -194,6 +195,39 @@ func TestStopHandlers(t *testing.T) {
 
 	if e, a := 2, called; e != a {
 		t.Errorf("expect %d handlers called, got %d", e, a)
+	}
+}
+
+func TestWithSetRequestHeaders(t *testing.T) {
+	fn := request.WithSetRequestHeaders(map[string]string{
+		"x-foo-bar": "abc123",
+		"X-Bar-foo": "efg456",
+	})
+
+	req := &request.Request{HTTPRequest: &http.Request{Header: http.Header{}}}
+	fn(req)
+
+	expect := map[string][]string{
+		"X-Foo-Bar": {"abc123"},
+		"X-Bar-Foo": {"efg456"},
+	}
+
+	if e, a := len(req.HTTPRequest.Header), len(expect); e != a {
+		t.Fatalf("expect %v headers, got %v", e, a)
+	}
+	for k, expectVs := range expect {
+		actualVs, ok := req.HTTPRequest.Header[k]
+		if !ok {
+			t.Errorf("expect %v header", k)
+		}
+		if e, a := len(expectVs), len(actualVs); e != a {
+			t.Fatalf("expect %v values for %v, got %v", e, k, a)
+		}
+		for i, expectV := range expectVs {
+			if e, a := expectV, actualVs[i]; e != a {
+				t.Errorf("expect %v[%d] to be %v, got %v", k, i, e, a)
+			}
+		}
 	}
 }
 
