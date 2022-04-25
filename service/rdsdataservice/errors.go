@@ -8,6 +8,12 @@ import (
 
 const (
 
+	// ErrCodeAccessDeniedException for service response error code
+	// "AccessDeniedException".
+	//
+	// You do not have sufficient access to perform this action.
+	ErrCodeAccessDeniedException = "AccessDeniedException"
+
 	// ErrCodeBadRequestException for service response error code
 	// "BadRequestException".
 	//
@@ -46,6 +52,7 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessDeniedException":        newErrorAccessDeniedException,
 	"BadRequestException":          newErrorBadRequestException,
 	"ForbiddenException":           newErrorForbiddenException,
 	"InternalServerErrorException": newErrorInternalServerErrorException,

@@ -26,6 +26,12 @@
     "UpdateUser" : "<p>Updates the information for an ActiveMQ user.</p>"
   },
   "shapes" : {
+    "ActionRequired" : {
+      "base" : "<p>The action required to resolve a broker issue when the broker is in a CRITICAL_ACTION_REQUIRED state.</p>",
+      "refs" : {
+        "__listOfActionRequired$member" : null
+      }
+    },
     "AuthenticationStrategy" : {
       "base" : "<p>Optional. The authentication strategy used to secure the broker. The default is SIMPLE.</p>",
       "refs" : {
@@ -393,6 +399,12 @@
         "ListUsersOutput$MaxResults" : "<p>Required. The maximum number of ActiveMQ users that can be returned per page (20 by default). This value must be an integer from 5 to 100.</p>"
       }
     },
+    "__listOfActionRequired" : {
+      "base" : null,
+      "refs" : {
+        "DescribeBrokerOutput$ActionsRequired" : "<p>A list of actions required for a broker.</p>"
+      }
+    },
     "__listOfAvailabilityZone" : {
       "base" : null,
       "refs" : {
@@ -506,6 +518,8 @@
     "__string" : {
       "base" : null,
       "refs" : {
+        "ActionRequired$ActionRequiredCode" : "<p>The code you can use to resolve your broker issue when the broker is in a CRITICAL_ACTION_REQUIRED state. You can find instructions by choosing the link for your code from the list of action required codes in <a href=\"https://docs.aws.amazon.com//latest/developer-guide/troubleshooting-action-required-codes.html\">Amazon MQ action required codes</a>. Each code references a topic with detailed information, instructions, and recommendations for how to resolve the issue and prevent future occurrences.</p>",
+        "ActionRequired$ActionRequiredInfo" : "<p>Information about the action required to resolve your broker issue when the broker is in a CRITICAL_ACTION_REQUIRED state.</p>",
         "AvailabilityZone$Name" : "<p>Id for the availability zone.</p>",
         "BrokerEngineTypeOutput$NextToken" : "<p>The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.</p>",
         "BrokerInstance$ConsoleURL" : "<p>The brokers web console URL.</p>",

@@ -22,6 +22,7 @@
       "input":{"shape":"BatchExecuteStatementRequest"},
       "output":{"shape":"BatchExecuteStatementResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"BadRequestException"},
         {"shape":"StatementTimeoutException"},
         {"shape":"InternalServerErrorException"},
@@ -39,6 +40,7 @@
       "input":{"shape":"BeginTransactionRequest"},
       "output":{"shape":"BeginTransactionResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"BadRequestException"},
         {"shape":"StatementTimeoutException"},
         {"shape":"InternalServerErrorException"},
@@ -56,6 +58,7 @@
       "input":{"shape":"CommitTransactionRequest"},
       "output":{"shape":"CommitTransactionResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"BadRequestException"},
         {"shape":"StatementTimeoutException"},
         {"shape":"InternalServerErrorException"},
@@ -74,6 +77,7 @@
       "input":{"shape":"ExecuteSqlRequest"},
       "output":{"shape":"ExecuteSqlResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"},
         {"shape":"ForbiddenException"},
@@ -92,6 +96,7 @@
       "input":{"shape":"ExecuteStatementRequest"},
       "output":{"shape":"ExecuteStatementResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"BadRequestException"},
         {"shape":"StatementTimeoutException"},
         {"shape":"InternalServerErrorException"},
@@ -109,6 +114,7 @@
       "input":{"shape":"RollbackTransactionRequest"},
       "output":{"shape":"RollbackTransactionResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"BadRequestException"},
         {"shape":"StatementTimeoutException"},
         {"shape":"InternalServerErrorException"},
@@ -119,6 +125,17 @@
     }
   },
   "shapes":{
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{
+        "httpStatusCode":403,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "Arn":{
       "type":"string",
       "max":100,
@@ -308,6 +325,7 @@
       "members":{
         "continueAfterTimeout":{"shape":"Boolean"},
         "database":{"shape":"DbName"},
+        "formatRecordsAs":{"shape":"RecordsFormatType"},
         "includeResultMetadata":{"shape":"Boolean"},
         "parameters":{"shape":"SqlParametersList"},
         "resourceArn":{"shape":"Arn"},
@@ -322,6 +340,7 @@
       "type":"structure",
       "members":{
         "columnMetadata":{"shape":"Metadata"},
+        "formattedRecords":{"shape":"FormattedSqlRecords"},
         "generatedFields":{"shape":"FieldList"},
         "numberOfRecordsUpdated":{"shape":"RecordsUpdated"},
         "records":{"shape":"SqlRecords"}
@@ -355,6 +374,7 @@
       },
       "exception":true
     },
+    "FormattedSqlRecords":{"type":"string"},
     "Id":{
       "type":"string",
       "max":192,
@@ -373,6 +393,13 @@
     "LongArray":{
       "type":"list",
       "member":{"shape":"BoxedLong"}
+    },
+    "LongReturnType":{
+      "type":"string",
+      "enum":[
+        "STRING",
+        "LONG"
+      ]
     },
     "Metadata":{
       "type":"list",
@@ -400,6 +427,13 @@
       "type":"list",
       "member":{"shape":"Record"}
     },
+    "RecordsFormatType":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "JSON"
+      ]
+    },
     "RecordsUpdated":{"type":"long"},
     "ResultFrame":{
       "type":"structure",
@@ -418,7 +452,8 @@
     "ResultSetOptions":{
       "type":"structure",
       "members":{
-        "decimalReturnType":{"shape":"DecimalReturnType"}
+        "decimalReturnType":{"shape":"DecimalReturnType"},
+        "longReturnType":{"shape":"LongReturnType"}
       }
     },
     "RollbackTransactionRequest":{

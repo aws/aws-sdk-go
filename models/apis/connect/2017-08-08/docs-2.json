@@ -100,6 +100,7 @@
     "ReleasePhoneNumber": "<p>Releases a phone number previously claimed to an Amazon Connect instance.</p>",
     "ResumeContactRecording": "<p>When a contact is being recorded, and the recording has been suspended using SuspendContactRecording, this API resumes recording the call.</p> <p>Only voice recordings are supported at this time.</p>",
     "SearchAvailablePhoneNumbers": "<p>Searches for available phone numbers that you can claim to your Amazon Connect instance.</p>",
+    "SearchUsers": "<p>Searches users in an Amazon Connect instance, with optional filtering.</p>",
     "SearchVocabularies": "<p>Searches for vocabularies within a specific Amazon Connect instance using <code>State</code>, <code>NameStartsWith</code>, and <code>LanguageCode</code>.</p>",
     "StartChatContact": "<p>Initiates a contact flow to start a new chat for the customer. Response of this API provides a token required to obtain credentials from the <a href=\"https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html\">CreateParticipantConnection</a> API in the Amazon Connect Participant Service.</p> <p>When a new chat contact is successfully created, clients must subscribe to the participant’s connection for the created chat within 5 minutes. This is achieved by invoking <a href=\"https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html\">CreateParticipantConnection</a> with WEBSOCKET and CONNECTION_CREDENTIALS. </p> <p>A 429 error occurs in the following situations:</p> <ul> <li> <p>API rate limit is exceeded. API TPS throttling returns a <code>TooManyRequests</code> exception.</p> </li> <li> <p>The <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html\">quota for concurrent active chats</a> is exceeded. Active chat throttling returns a <code>LimitExceededException</code>.</p> </li> </ul> <p>If you use the <code>ChatDurationInMinutes</code> parameter and receive a 400 error, your account may not support the ability to configure custom chat durations. For more information, contact Amazon Web Services Support. </p> <p>For more information about chat, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/chat.html\">Chat</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "StartContactRecording": "<p>Starts recording the contact: </p> <ul> <li> <p>If the API is called <i>before</i> the agent joins the call, recording starts when the agent joins the call.</p> </li> <li> <p>If the API is called <i>after</i> the agent joins the call, recording starts at the time of the API call.</p> </li> </ul> <p>StartContactRecording is a one-time action. For example, if you use StopContactRecording to stop recording an ongoing call, you can't use StartContactRecording to restart it. For scenarios where the recording has started and you want to suspend and resume it, such as when collecting sensitive information (for example, a credit card number), use SuspendContactRecording and ResumeContactRecording.</p> <p>You can use this API to override the recording behavior configured in the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/set-recording-behavior.html\">Set recording behavior</a> block.</p> <p>Only voice recordings are supported at this time.</p>",
@@ -213,6 +214,7 @@
         "UpdatePhoneNumberResponse$PhoneNumberArn": "<p>The Amazon Resource Name (ARN) of the phone number.</p>",
         "UseCase$UseCaseArn": "<p>The Amazon Resource Name (ARN) for the use case.</p>",
         "User$Arn": "<p>The Amazon Resource Name (ARN) of the user account.</p>",
+        "UserSearchSummary$Arn": "<p>The Amazon Resource Name (ARN) of the user.</p>",
         "UserSummary$Arn": "<p>The Amazon Resource Name (ARN) of the user account.</p>",
         "Vocabulary$Arn": "<p>The Amazon Resource Name (ARN) of the custom vocabulary.</p>",
         "VocabularySummary$Arn": "<p>The Amazon Resource Name (ARN) of the custom vocabulary.</p>"
@@ -232,7 +234,8 @@
     "AgentFirstName": {
       "base": null,
       "refs": {
-        "UserIdentityInfo$FirstName": "<p>The first name. This is required if you are using Amazon Connect or SAML for identity management.</p>"
+        "UserIdentityInfo$FirstName": "<p>The first name. This is required if you are using Amazon Connect or SAML for identity management.</p>",
+        "UserIdentityInfoLite$FirstName": "<p>The user's first name.</p>"
       }
     },
     "AgentInfo": {
@@ -244,7 +247,8 @@
     "AgentLastName": {
       "base": null,
       "refs": {
-        "UserIdentityInfo$LastName": "<p>The last name. This is required if you are using Amazon Connect or SAML for identity management.</p>"
+        "UserIdentityInfo$LastName": "<p>The last name. This is required if you are using Amazon Connect or SAML for identity management.</p>",
+        "UserIdentityInfoLite$LastName": "<p>The user's last name.</p>"
       }
     },
     "AgentResourceId": {
@@ -332,6 +336,7 @@
       "refs": {
         "CreateUserRequest$Username": "<p>The user name for the account. For instances not using SAML for identity management, the user name can include up to 20 characters. If you are using SAML for identity management, the user name can include up to 64 characters from [a-zA-Z0-9_-.\\@]+.</p>",
         "User$Username": "<p>The user name assigned to the user account.</p>",
+        "UserSearchSummary$Username": "<p>The name of the user.</p>",
         "UserSummary$Username": "<p>The Amazon Connect user name of the user account.</p>"
       }
     },
@@ -345,6 +350,12 @@
       "base": "<p>Configuration of the answering machine detection.</p>",
       "refs": {
         "StartOutboundVoiceContactRequest$AnswerMachineDetectionConfig": "<p>Configuration of the answering machine detection for this outbound call. </p>"
+      }
+    },
+    "ApproximateTotalCount": {
+      "base": null,
+      "refs": {
+        "SearchUsersResponse$ApproximateTotalCount": "<p>The total number of users who matched your search query.</p>"
       }
     },
     "AssociateApprovedOriginRequest": {
@@ -577,7 +588,7 @@
     "ClaimedPhoneNumberSummary": {
       "base": "<p>Information about a phone number that has been claimed to your Amazon Connect instance.</p>",
       "refs": {
-        "DescribePhoneNumberResponse$ClaimedPhoneNumberSummary": "<p>Information about a phone number that's been claimed to your Amazon Connect instance. </p>"
+        "DescribePhoneNumberResponse$ClaimedPhoneNumberSummary": "<p>Information about a phone number that's been claimed to your Amazon Connect instance.</p>"
       }
     },
     "ClientToken": {
@@ -832,6 +843,12 @@
       "refs": {
         "StartTaskContactRequest$References": "<p>A formatted URL that is shown to an agent in the Contact Control Panel (CCP).</p>",
         "UpdateContactRequest$References": "<p>A formatted URL that is shown to an agent in the Contact Control Panel (CCP).</p>"
+      }
+    },
+    "ControlPlaneTagFilter": {
+      "base": "<p>An object that can be used to specify Tag conditions inside the <code>SearchFilter</code>. This accepts an <code>OR</code> of <code>AND</code> (List of List) input where: </p> <ul> <li> <p>Top level list specifies conditions that need to be applied with <code>OR</code> operator</p> </li> <li> <p>Inner list specifies conditions that need to be applied with <code>AND</code> operator.</p> </li> </ul>",
+      "refs": {
+        "UserSearchFilter$TagFilter": null
       }
     },
     "CreateAgentStatusRequest": {
@@ -1323,7 +1340,8 @@
       "base": null,
       "refs": {
         "CreateUserRequest$DirectoryUserId": "<p>The identifier of the user account in the directory used for identity management. If Amazon Connect cannot access the directory, you can specify this identifier to authenticate users. If you include the identifier, we assume that Amazon Connect cannot access the directory. Otherwise, the identity information is used to authenticate users from your directory.</p> <p>This parameter is required if you are using an existing directory for identity management in Amazon Connect when Amazon Connect cannot access your directory to authenticate users. If you are using SAML for identity management and include this parameter, an error is returned.</p>",
-        "User$DirectoryUserId": "<p>The identifier of the user account in the directory used for identity management.</p>"
+        "User$DirectoryUserId": "<p>The identifier of the user account in the directory used for identity management.</p>",
+        "UserSearchSummary$DirectoryUserId": "<p>The directory identifier of the user.</p>"
       }
     },
     "DisassociateApprovedOriginRequest": {
@@ -1481,6 +1499,12 @@
         "DescribeUserHierarchyGroupResponse$HierarchyGroup": "<p>Information about the hierarchy group.</p>"
       }
     },
+    "HierarchyGroupCondition": {
+      "base": "<p>A leaf node condition which can be used to specify a hierarchy group condition.</p>",
+      "refs": {
+        "UserSearchCriteria$HierarchyGroupCondition": "<p>A leaf node condition which can be used to specify a hierarchy group condition.</p>"
+      }
+    },
     "HierarchyGroupId": {
       "base": null,
       "refs": {
@@ -1493,7 +1517,14 @@
         "HierarchyGroupSummary$Id": "<p>The identifier of the hierarchy group.</p>",
         "UpdateUserHierarchyGroupNameRequest$HierarchyGroupId": "<p>The identifier of the hierarchy group.</p>",
         "UpdateUserHierarchyRequest$HierarchyGroupId": "<p>The identifier of the hierarchy group.</p>",
-        "User$HierarchyGroupId": "<p>The identifier of the hierarchy group for the user.</p>"
+        "User$HierarchyGroupId": "<p>The identifier of the hierarchy group for the user.</p>",
+        "UserSearchSummary$HierarchyGroupId": "<p>The identifier of the user's hierarchy group.</p>"
+      }
+    },
+    "HierarchyGroupMatchType": {
+      "base": null,
+      "refs": {
+        "HierarchyGroupCondition$HierarchyGroupMatchType": "<p>The type of hierarchy group match.</p>"
       }
     },
     "HierarchyGroupName": {
@@ -1834,6 +1865,7 @@
         "ListUsersRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "ResumeContactRecordingRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "RoutingProfile$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "SearchUsersRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "SearchVocabulariesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "SecurityProfile$OrganizationResourceId": "<p>The organization resource identifier for the security profile.</p>",
         "StartChatContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
@@ -2391,6 +2423,7 @@
         "ListQueueQuickConnectsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListRoutingProfileQueuesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListUseCasesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
+        "SearchUsersRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "SearchVocabulariesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>"
       }
     },
@@ -2545,6 +2578,13 @@
         "ListUsersResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>"
       }
     },
+    "NextToken2500": {
+      "base": null,
+      "refs": {
+        "SearchUsersRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "SearchUsersResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>"
+      }
+    },
     "Origin": {
       "base": null,
       "refs": {
@@ -2668,16 +2708,16 @@
       "base": null,
       "refs": {
         "AssociatePhoneNumberContactFlowRequest$PhoneNumberId": "<p>A unique identifier for the phone number.</p>",
-        "ClaimPhoneNumberResponse$PhoneNumberId": "<p>The identifier of the phone number.</p>",
-        "ClaimedPhoneNumberSummary$PhoneNumberId": "<p>The identifier of the phone number.</p>",
-        "DescribePhoneNumberRequest$PhoneNumberId": "<p>The identifier of the phone number.</p>",
-        "DisassociatePhoneNumberContactFlowRequest$PhoneNumberId": "<p>The identifier of the phone number.</p>",
-        "ListPhoneNumbersSummary$PhoneNumberId": "<p>The identifier of the phone number.</p>",
+        "ClaimPhoneNumberResponse$PhoneNumberId": "<p>A unique identifier for the phone number.</p>",
+        "ClaimedPhoneNumberSummary$PhoneNumberId": "<p>A unique identifier for the phone number.</p>",
+        "DescribePhoneNumberRequest$PhoneNumberId": "<p>A unique identifier for the phone number.</p>",
+        "DisassociatePhoneNumberContactFlowRequest$PhoneNumberId": "<p>A unique identifier for the phone number.</p>",
+        "ListPhoneNumbersSummary$PhoneNumberId": "<p>A unique identifier for the phone number.</p>",
         "OutboundCallerConfig$OutboundCallerIdNumberId": "<p>The caller ID number.</p>",
         "PhoneNumberSummary$Id": "<p>The identifier of the phone number.</p>",
-        "ReleasePhoneNumberRequest$PhoneNumberId": "<p>The identifier of the phone number.</p>",
-        "UpdatePhoneNumberRequest$PhoneNumberId": "<p>The identifier of the phone number.</p>",
-        "UpdatePhoneNumberResponse$PhoneNumberId": "<p>The identifier of the phone number.</p>"
+        "ReleasePhoneNumberRequest$PhoneNumberId": "<p>A unique identifier for the phone number.</p>",
+        "UpdatePhoneNumberRequest$PhoneNumberId": "<p>A unique identifier for the phone number.</p>",
+        "UpdatePhoneNumberResponse$PhoneNumberId": "<p>A unique identifier for the phone number.</p>"
       }
     },
     "PhoneNumberPrefix": {
@@ -3113,7 +3153,8 @@
         "UpdateRoutingProfileNameRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
         "UpdateRoutingProfileQueuesRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
         "UpdateUserRoutingProfileRequest$RoutingProfileId": "<p>The identifier of the routing profile for the user.</p>",
-        "User$RoutingProfileId": "<p>The identifier of the routing profile for the user.</p>"
+        "User$RoutingProfileId": "<p>The identifier of the routing profile for the user.</p>",
+        "UserSearchSummary$RoutingProfileId": "<p>The identifier of the user's routing profile.</p>"
       }
     },
     "RoutingProfileName": {
@@ -3192,6 +3233,16 @@
       "refs": {
       }
     },
+    "SearchUsersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchUsersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "SearchVocabulariesRequest": {
       "base": null,
       "refs": {
@@ -3246,7 +3297,8 @@
       "refs": {
         "CreateUserRequest$SecurityProfileIds": "<p>The identifier of the security profile for the user.</p>",
         "UpdateUserSecurityProfilesRequest$SecurityProfileIds": "<p>The identifiers of the security profiles for the user.</p>",
-        "User$SecurityProfileIds": "<p>The identifiers of the security profiles for the user.</p>"
+        "User$SecurityProfileIds": "<p>The identifiers of the security profiles for the user.</p>",
+        "UserSearchSummary$SecurityProfileIds": "<p>The identifiers of the user's security profiles.</p>"
       }
     },
     "SecurityProfileName": {
@@ -3403,7 +3455,24 @@
     "String": {
       "base": null,
       "refs": {
-        "InstanceStatusReason$Message": "<p>The message.</p>"
+        "HierarchyGroupCondition$Value": "<p>The value in the hierarchy group condition.</p>",
+        "InstanceStatusReason$Message": "<p>The message.</p>",
+        "StringCondition$FieldName": "<p>The name of the field in the string condition.</p>",
+        "StringCondition$Value": "<p>The value of the string.</p>",
+        "TagCondition$TagKey": "<p>The tag key in the tag condition.</p>",
+        "TagCondition$TagValue": "<p>The tag value in the tag condition.</p>"
+      }
+    },
+    "StringComparisonType": {
+      "base": null,
+      "refs": {
+        "StringCondition$ComparisonType": "<p>The type of comparison to be made when evaluating the string condition.</p>"
+      }
+    },
+    "StringCondition": {
+      "base": "<p>A leaf node condition which can be used to specify a string condition, for example, <code>username = 'abc'</code>. </p>",
+      "refs": {
+        "UserSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p>"
       }
     },
     "SupportedMessagingContentType": {
@@ -3426,6 +3495,20 @@
     "SuspendContactRecordingResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "TagAndConditionList": {
+      "base": null,
+      "refs": {
+        "ControlPlaneTagFilter$AndConditions": "<p>A list of conditions which would be applied together with an <code>AND</code> condition.</p>",
+        "TagOrConditionList$member": null
+      }
+    },
+    "TagCondition": {
+      "base": "<p>A leaf node condition which can be used to specify a tag condition, for example, <code>HAVE BPO = 123</code>. </p>",
+      "refs": {
+        "ControlPlaneTagFilter$TagCondition": "<p>A leaf node condition which can be used to specify a tag condition. </p>",
+        "TagAndConditionList$member": null
       }
     },
     "TagKey": {
@@ -3471,7 +3554,14 @@
         "SecurityProfile$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "TagResourceRequest$tags": "<p>One or more tags. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
         "User$Tags": "<p>The tags.</p>",
+        "UserSearchSummary$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "Vocabulary$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>"
+      }
+    },
+    "TagOrConditionList": {
+      "base": null,
+      "refs": {
+        "ControlPlaneTagFilter$OrConditions": "<p>A list of conditions which would be applied together with an <code>OR</code> condition. </p>"
       }
     },
     "TagResourceRequest": {
@@ -3804,6 +3894,7 @@
         "UpdateUserSecurityProfilesRequest$UserId": "<p>The identifier of the user account.</p>",
         "User$Id": "<p>The identifier of the user account.</p>",
         "UserQuickConnectConfig$UserId": "<p>The identifier of the user.</p>",
+        "UserSearchSummary$Id": "<p>The identifier of the user's summary.</p>",
         "UserSummary$Id": "<p>The identifier of the user account.</p>"
       }
     },
@@ -3813,6 +3904,12 @@
         "CreateUserRequest$IdentityInfo": "<p>The information about the identity of the user.</p>",
         "UpdateUserIdentityInfoRequest$IdentityInfo": "<p>The identity information for the user.</p>",
         "User$IdentityInfo": "<p>Information about the user identity.</p>"
+      }
+    },
+    "UserIdentityInfoLite": {
+      "base": "<p>The user's first name and last name.</p>",
+      "refs": {
+        "UserSearchSummary$IdentityInfo": "<p>The user's first name and last name.</p>"
       }
     },
     "UserNotFoundException": {
@@ -3825,13 +3922,46 @@
       "refs": {
         "CreateUserRequest$PhoneConfig": "<p>The phone settings for the user.</p>",
         "UpdateUserPhoneConfigRequest$PhoneConfig": "<p>Information about phone configuration settings for the user.</p>",
-        "User$PhoneConfig": "<p>Information about the phone configuration for the user.</p>"
+        "User$PhoneConfig": "<p>Information about the phone configuration for the user.</p>",
+        "UserSearchSummary$PhoneConfig": null
       }
     },
     "UserQuickConnectConfig": {
       "base": "<p>Contains information about the quick connect configuration settings for a user. The contact flow must be of type Transfer to Agent.</p>",
       "refs": {
         "QuickConnectConfig$UserConfig": "<p>The user configuration. This is required only if QuickConnectType is USER.</p>"
+      }
+    },
+    "UserSearchConditionList": {
+      "base": null,
+      "refs": {
+        "UserSearchCriteria$OrConditions": "<p>A list of conditions which would be applied together with an <code>OR</code> condition.</p>",
+        "UserSearchCriteria$AndConditions": "<p>A list of conditions which would be applied together with an <code>AND</code> condition. </p>"
+      }
+    },
+    "UserSearchCriteria": {
+      "base": "<p>The search criteria to be used to return users.</p>",
+      "refs": {
+        "SearchUsersRequest$SearchCriteria": null,
+        "UserSearchConditionList$member": null
+      }
+    },
+    "UserSearchFilter": {
+      "base": "<p>Filters to be applied to search results.</p>",
+      "refs": {
+        "SearchUsersRequest$SearchFilter": "<p>Filters to be applied to search results.</p>"
+      }
+    },
+    "UserSearchSummary": {
+      "base": "<p>Information about the returned users.</p>",
+      "refs": {
+        "UserSearchSummaryList$member": null
+      }
+    },
+    "UserSearchSummaryList": {
+      "base": null,
+      "refs": {
+        "SearchUsersResponse$Users": "<p>Information about the users.</p>"
       }
     },
     "UserSummary": {

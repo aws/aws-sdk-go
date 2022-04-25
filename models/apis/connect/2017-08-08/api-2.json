@@ -1587,6 +1587,22 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "SearchUsers":{
+      "name":"SearchUsers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/search-users"
+      },
+      "input":{"shape":"SearchUsersRequest"},
+      "output":{"shape":"SearchUsersResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "SearchVocabularies":{
       "name":"SearchVocabularies",
       "http":{
@@ -2390,6 +2406,7 @@
         "AwaitAnswerMachinePrompt":{"shape":"Boolean"}
       }
     },
+    "ApproximateTotalCount":{"type":"long"},
     "AssociateApprovedOriginRequest":{
       "type":"structure",
       "required":[
@@ -2930,6 +2947,14 @@
       "type":"map",
       "key":{"shape":"ReferenceKey"},
       "value":{"shape":"Reference"}
+    },
+    "ControlPlaneTagFilter":{
+      "type":"structure",
+      "members":{
+        "OrConditions":{"shape":"TagOrConditionList"},
+        "AndConditions":{"shape":"TagAndConditionList"},
+        "TagCondition":{"shape":"TagCondition"}
+      }
     },
     "CreateAgentStatusRequest":{
       "type":"structure",
@@ -4452,7 +4477,21 @@
         "Tags":{"shape":"TagMap"}
       }
     },
+    "HierarchyGroupCondition":{
+      "type":"structure",
+      "members":{
+        "Value":{"shape":"String"},
+        "HierarchyGroupMatchType":{"shape":"HierarchyGroupMatchType"}
+      }
+    },
     "HierarchyGroupId":{"type":"string"},
+    "HierarchyGroupMatchType":{
+      "type":"string",
+      "enum":[
+        "EXACT",
+        "WITH_CHILD_GROUPS"
+      ]
+    },
     "HierarchyGroupName":{"type":"string"},
     "HierarchyGroupSummary":{
       "type":"structure",
@@ -5908,6 +5947,11 @@
       "min":0
     },
     "NextToken":{"type":"string"},
+    "NextToken2500":{
+      "type":"string",
+      "max":2500,
+      "min":1
+    },
     "Origin":{
       "type":"string",
       "max":267
@@ -6762,6 +6806,27 @@
         "AvailableNumbersList":{"shape":"AvailableNumbersList"}
       }
     },
+    "SearchUsersRequest":{
+      "type":"structure",
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "NextToken":{"shape":"NextToken2500"},
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true
+        },
+        "SearchFilter":{"shape":"UserSearchFilter"},
+        "SearchCriteria":{"shape":"UserSearchCriteria"}
+      }
+    },
+    "SearchUsersResponse":{
+      "type":"structure",
+      "members":{
+        "Users":{"shape":"UserSearchSummaryList"},
+        "NextToken":{"shape":"NextToken2500"},
+        "ApproximateTotalCount":{"shape":"ApproximateTotalCount"}
+      }
+    },
     "SearchVocabulariesRequest":{
       "type":"structure",
       "required":["InstanceId"],
@@ -7068,6 +7133,22 @@
       "min":1
     },
     "String":{"type":"string"},
+    "StringComparisonType":{
+      "type":"string",
+      "enum":[
+        "STARTS_WITH",
+        "CONTAINS",
+        "EXACT"
+      ]
+    },
+    "StringCondition":{
+      "type":"structure",
+      "members":{
+        "FieldName":{"shape":"String"},
+        "Value":{"shape":"String"},
+        "ComparisonType":{"shape":"StringComparisonType"}
+      }
+    },
     "SupportedMessagingContentType":{
       "type":"string",
       "max":100,
@@ -7095,6 +7176,17 @@
       "members":{
       }
     },
+    "TagAndConditionList":{
+      "type":"list",
+      "member":{"shape":"TagCondition"}
+    },
+    "TagCondition":{
+      "type":"structure",
+      "members":{
+        "TagKey":{"shape":"String"},
+        "TagValue":{"shape":"String"}
+      }
+    },
     "TagKey":{
       "type":"string",
       "max":128,
@@ -7113,6 +7205,10 @@
       "value":{"shape":"TagValue"},
       "max":50,
       "min":1
+    },
+    "TagOrConditionList":{
+      "type":"list",
+      "member":{"shape":"TagAndConditionList"}
     },
     "TagResourceRequest":{
       "type":"structure",
@@ -7961,6 +8057,13 @@
         "Email":{"shape":"Email"}
       }
     },
+    "UserIdentityInfoLite":{
+      "type":"structure",
+      "members":{
+        "FirstName":{"shape":"AgentFirstName"},
+        "LastName":{"shape":"AgentLastName"}
+      }
+    },
     "UserNotFoundException":{
       "type":"structure",
       "members":{
@@ -7989,6 +8092,44 @@
         "UserId":{"shape":"UserId"},
         "ContactFlowId":{"shape":"ContactFlowId"}
       }
+    },
+    "UserSearchConditionList":{
+      "type":"list",
+      "member":{"shape":"UserSearchCriteria"}
+    },
+    "UserSearchCriteria":{
+      "type":"structure",
+      "members":{
+        "OrConditions":{"shape":"UserSearchConditionList"},
+        "AndConditions":{"shape":"UserSearchConditionList"},
+        "StringCondition":{"shape":"StringCondition"},
+        "HierarchyGroupCondition":{"shape":"HierarchyGroupCondition"}
+      }
+    },
+    "UserSearchFilter":{
+      "type":"structure",
+      "members":{
+        "TagFilter":{"shape":"ControlPlaneTagFilter"}
+      }
+    },
+    "UserSearchSummary":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"ARN"},
+        "DirectoryUserId":{"shape":"DirectoryUserId"},
+        "HierarchyGroupId":{"shape":"HierarchyGroupId"},
+        "Id":{"shape":"UserId"},
+        "IdentityInfo":{"shape":"UserIdentityInfoLite"},
+        "PhoneConfig":{"shape":"UserPhoneConfig"},
+        "RoutingProfileId":{"shape":"RoutingProfileId"},
+        "SecurityProfileIds":{"shape":"SecurityProfileIds"},
+        "Tags":{"shape":"TagMap"},
+        "Username":{"shape":"AgentUsername"}
+      }
+    },
+    "UserSearchSummaryList":{
+      "type":"list",
+      "member":{"shape":"UserSearchSummary"}
     },
     "UserSummary":{
       "type":"structure",

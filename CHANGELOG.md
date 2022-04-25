@@ -1,3 +1,19 @@
+Release v1.44.0 (2022-04-25)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/gamelift`: Updates service documentation
+  * Documentation updates for Amazon GameLift.
+* `service/mq`: Updates service API and documentation
+  * This release adds the CRITICAL_ACTION_REQUIRED broker state and the ActionRequired API property. CRITICAL_ACTION_REQUIRED informs you when your broker is degraded. ActionRequired provides you with a code which you can use to find instructions in the Developer Guide on how to resolve the issue.
+* `service/rds-data`: Updates service API and documentation
+* `service/securityhub`: Updates service API and documentation
+
+### SDK Features
+* `aws/request`: Fixes bug in WithSetRequestHeaders where the header key was added to the header map directly
+  * Addresses an issue where the header keys being added were being added directly to the header map, and did not have the canonical header casing applied. This introduced bugs where instead of overwriting existing header key, it added another map entry.
+
 Release v1.43.45 (2022-04-22)
 ===
 
