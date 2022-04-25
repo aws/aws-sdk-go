@@ -1041,6 +1041,13 @@
       "type":"list",
       "member":{"shape":"NonEmptyString"}
     },
+    "AutoEnableStandards":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "DEFAULT"
+      ]
+    },
     "AvailabilityZone":{
       "type":"structure",
       "members":{
@@ -5266,7 +5273,8 @@
       "type":"structure",
       "members":{
         "AutoEnable":{"shape":"Boolean"},
-        "MemberAccountLimitReached":{"shape":"Boolean"}
+        "MemberAccountLimitReached":{"shape":"Boolean"},
+        "AutoEnableStandards":{"shape":"AutoEnableStandards"}
       }
     },
     "DescribeProductsRequest":{
@@ -7145,7 +7153,8 @@
       "type":"structure",
       "required":["AutoEnable"],
       "members":{
-        "AutoEnable":{"shape":"Boolean"}
+        "AutoEnable":{"shape":"Boolean"},
+        "AutoEnableStandards":{"shape":"AutoEnableStandards"}
       }
     },
     "UpdateOrganizationConfigurationResponse":{

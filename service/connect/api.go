@@ -11079,6 +11079,155 @@ func (c *Connect) SearchAvailablePhoneNumbersPagesWithContext(ctx aws.Context, i
 	return p.Err()
 }
 
+const opSearchUsers = "SearchUsers"
+
+// SearchUsersRequest generates a "aws/request.Request" representing the
+// client's request for the SearchUsers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchUsers for more information on using the SearchUsers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SearchUsersRequest method.
+//    req, resp := client.SearchUsersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchUsers
+func (c *Connect) SearchUsersRequest(input *SearchUsersInput) (req *request.Request, output *SearchUsersOutput) {
+	op := &request.Operation{
+		Name:       opSearchUsers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/search-users",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchUsersInput{}
+	}
+
+	output = &SearchUsersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchUsers API operation for Amazon Connect Service.
+//
+// Searches users in an Amazon Connect instance, with optional filtering.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation SearchUsers for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchUsers
+func (c *Connect) SearchUsers(input *SearchUsersInput) (*SearchUsersOutput, error) {
+	req, out := c.SearchUsersRequest(input)
+	return out, req.Send()
+}
+
+// SearchUsersWithContext is the same as SearchUsers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchUsers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchUsersWithContext(ctx aws.Context, input *SearchUsersInput, opts ...request.Option) (*SearchUsersOutput, error) {
+	req, out := c.SearchUsersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchUsersPages iterates over the pages of a SearchUsers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchUsers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a SearchUsers operation.
+//    pageNum := 0
+//    err := client.SearchUsersPages(params,
+//        func(page *connect.SearchUsersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) SearchUsersPages(input *SearchUsersInput, fn func(*SearchUsersOutput, bool) bool) error {
+	return c.SearchUsersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchUsersPagesWithContext same as SearchUsersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchUsersPagesWithContext(ctx aws.Context, input *SearchUsersInput, fn func(*SearchUsersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchUsersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchUsersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchUsersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opSearchVocabularies = "SearchVocabularies"
 
 // SearchVocabulariesRequest generates a "aws/request.Request" representing the
@@ -17040,7 +17189,7 @@ type ClaimPhoneNumberOutput struct {
 	// The Amazon Resource Name (ARN) of the phone number.
 	PhoneNumberArn *string `type:"string"`
 
-	// The identifier of the phone number.
+	// A unique identifier for the phone number.
 	PhoneNumberId *string `type:"string"`
 }
 
@@ -17092,7 +17241,7 @@ type ClaimedPhoneNumberSummary struct {
 	// The description of the phone number.
 	PhoneNumberDescription *string `type:"string"`
 
-	// The identifier of the phone number.
+	// A unique identifier for the phone number.
 	PhoneNumberId *string `type:"string"`
 
 	// The status of the phone number.
@@ -17786,6 +17935,62 @@ func (s *ContactNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ContactNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// An object that can be used to specify Tag conditions inside the SearchFilter.
+// This accepts an OR of AND (List of List) input where:
+//
+//    * Top level list specifies conditions that need to be applied with OR
+//    operator
+//
+//    * Inner list specifies conditions that need to be applied with AND operator.
+type ControlPlaneTagFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A list of conditions which would be applied together with an AND condition.
+	AndConditions []*TagCondition `type:"list"`
+
+	// A list of conditions which would be applied together with an OR condition.
+	OrConditions [][]*TagCondition `type:"list"`
+
+	// A leaf node condition which can be used to specify a tag condition.
+	TagCondition *TagCondition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ControlPlaneTagFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ControlPlaneTagFilter) GoString() string {
+	return s.String()
+}
+
+// SetAndConditions sets the AndConditions field's value.
+func (s *ControlPlaneTagFilter) SetAndConditions(v []*TagCondition) *ControlPlaneTagFilter {
+	s.AndConditions = v
+	return s
+}
+
+// SetOrConditions sets the OrConditions field's value.
+func (s *ControlPlaneTagFilter) SetOrConditions(v [][]*TagCondition) *ControlPlaneTagFilter {
+	s.OrConditions = v
+	return s
+}
+
+// SetTagCondition sets the TagCondition field's value.
+func (s *ControlPlaneTagFilter) SetTagCondition(v *TagCondition) *ControlPlaneTagFilter {
+	s.TagCondition = v
+	return s
 }
 
 type CreateAgentStatusInput struct {
@@ -22131,7 +22336,7 @@ func (s *DescribeInstanceStorageConfigOutput) SetStorageConfig(v *InstanceStorag
 type DescribePhoneNumberInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the phone number.
+	// A unique identifier for the phone number.
 	//
 	// PhoneNumberId is a required field
 	PhoneNumberId *string `location:"uri" locationName:"PhoneNumberId" type:"string" required:"true"`
@@ -23569,7 +23774,7 @@ type DisassociatePhoneNumberContactFlowInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"querystring" locationName:"instanceId" min:"1" type:"string" required:"true"`
 
-	// The identifier of the phone number.
+	// A unique identifier for the phone number.
 	//
 	// PhoneNumberId is a required field
 	PhoneNumberId *string `location:"uri" locationName:"PhoneNumberId" type:"string" required:"true"`
@@ -25034,6 +25239,47 @@ func (s *HierarchyGroup) SetName(v string) *HierarchyGroup {
 // SetTags sets the Tags field's value.
 func (s *HierarchyGroup) SetTags(v map[string]*string) *HierarchyGroup {
 	s.Tags = v
+	return s
+}
+
+// A leaf node condition which can be used to specify a hierarchy group condition.
+type HierarchyGroupCondition struct {
+	_ struct{} `type:"structure"`
+
+	// The type of hierarchy group match.
+	HierarchyGroupMatchType *string `type:"string" enum:"HierarchyGroupMatchType"`
+
+	// The value in the hierarchy group condition.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HierarchyGroupCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HierarchyGroupCondition) GoString() string {
+	return s.String()
+}
+
+// SetHierarchyGroupMatchType sets the HierarchyGroupMatchType field's value.
+func (s *HierarchyGroupCondition) SetHierarchyGroupMatchType(v string) *HierarchyGroupCondition {
+	s.HierarchyGroupMatchType = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *HierarchyGroupCondition) SetValue(v string) *HierarchyGroupCondition {
+	s.Value = &v
 	return s
 }
 
@@ -28883,7 +29129,7 @@ type ListPhoneNumbersSummary struct {
 	// The ISO country code.
 	PhoneNumberCountryCode *string `type:"string" enum:"PhoneNumberCountryCode"`
 
-	// The identifier of the phone number.
+	// A unique identifier for the phone number.
 	PhoneNumberId *string `type:"string"`
 
 	// The type of phone number.
@@ -31737,7 +31983,7 @@ type ReleasePhoneNumberInput struct {
 	// of the request.
 	ClientToken *string `location:"querystring" locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// The identifier of the phone number.
+	// A unique identifier for the phone number.
 	//
 	// PhoneNumberId is a required field
 	PhoneNumberId *string `location:"uri" locationName:"PhoneNumberId" type:"string" required:"true"`
@@ -32736,6 +32982,143 @@ func (s *SearchAvailablePhoneNumbersOutput) SetAvailableNumbersList(v []*Availab
 // SetNextToken sets the NextToken field's value.
 func (s *SearchAvailablePhoneNumbersOutput) SetNextToken(v string) *SearchAvailablePhoneNumbersOutput {
 	s.NextToken = &v
+	return s
+}
+
+type SearchUsersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	InstanceId *string `min:"1" type:"string"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The search criteria to be used to return users.
+	SearchCriteria *UserSearchCriteria `type:"structure"`
+
+	// Filters to be applied to search results.
+	SearchFilter *UserSearchFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchUsersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchUsersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchUsersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchUsersInput"}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SearchUsersInput) SetInstanceId(v string) *SearchUsersInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchUsersInput) SetMaxResults(v int64) *SearchUsersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchUsersInput) SetNextToken(v string) *SearchUsersInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSearchCriteria sets the SearchCriteria field's value.
+func (s *SearchUsersInput) SetSearchCriteria(v *UserSearchCriteria) *SearchUsersInput {
+	s.SearchCriteria = v
+	return s
+}
+
+// SetSearchFilter sets the SearchFilter field's value.
+func (s *SearchUsersInput) SetSearchFilter(v *UserSearchFilter) *SearchUsersInput {
+	s.SearchFilter = v
+	return s
+}
+
+type SearchUsersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of users who matched your search query.
+	ApproximateTotalCount *int64 `type:"long"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// Information about the users.
+	Users []*UserSearchSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchUsersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchUsersOutput) GoString() string {
+	return s.String()
+}
+
+// SetApproximateTotalCount sets the ApproximateTotalCount field's value.
+func (s *SearchUsersOutput) SetApproximateTotalCount(v int64) *SearchUsersOutput {
+	s.ApproximateTotalCount = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchUsersOutput) SetNextToken(v string) *SearchUsersOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUsers sets the Users field's value.
+func (s *SearchUsersOutput) SetUsers(v []*UserSearchSummary) *SearchUsersOutput {
+	s.Users = v
 	return s
 }
 
@@ -34271,6 +34654,57 @@ func (s StopContactStreamingOutput) GoString() string {
 	return s.String()
 }
 
+// A leaf node condition which can be used to specify a string condition, for
+// example, username = 'abc'.
+type StringCondition struct {
+	_ struct{} `type:"structure"`
+
+	// The type of comparison to be made when evaluating the string condition.
+	ComparisonType *string `type:"string" enum:"StringComparisonType"`
+
+	// The name of the field in the string condition.
+	FieldName *string `type:"string"`
+
+	// The value of the string.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StringCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StringCondition) GoString() string {
+	return s.String()
+}
+
+// SetComparisonType sets the ComparisonType field's value.
+func (s *StringCondition) SetComparisonType(v string) *StringCondition {
+	s.ComparisonType = &v
+	return s
+}
+
+// SetFieldName sets the FieldName field's value.
+func (s *StringCondition) SetFieldName(v string) *StringCondition {
+	s.FieldName = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *StringCondition) SetValue(v string) *StringCondition {
+	s.Value = &v
+	return s
+}
+
 type SuspendContactRecordingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -34376,6 +34810,48 @@ func (s SuspendContactRecordingOutput) String() string {
 // value will be replaced with "sensitive".
 func (s SuspendContactRecordingOutput) GoString() string {
 	return s.String()
+}
+
+// A leaf node condition which can be used to specify a tag condition, for example,
+// HAVE BPO = 123.
+type TagCondition struct {
+	_ struct{} `type:"structure"`
+
+	// The tag key in the tag condition.
+	TagKey *string `type:"string"`
+
+	// The tag value in the tag condition.
+	TagValue *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagCondition) GoString() string {
+	return s.String()
+}
+
+// SetTagKey sets the TagKey field's value.
+func (s *TagCondition) SetTagKey(v string) *TagCondition {
+	s.TagKey = &v
+	return s
+}
+
+// SetTagValue sets the TagValue field's value.
+func (s *TagCondition) SetTagValue(v string) *TagCondition {
+	s.TagValue = &v
+	return s
 }
 
 type TagResourceInput struct {
@@ -36074,7 +36550,7 @@ type UpdatePhoneNumberInput struct {
 	// of the request.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
-	// The identifier of the phone number.
+	// A unique identifier for the phone number.
 	//
 	// PhoneNumberId is a required field
 	PhoneNumberId *string `location:"uri" locationName:"PhoneNumberId" type:"string" required:"true"`
@@ -36147,7 +36623,7 @@ type UpdatePhoneNumberOutput struct {
 	// The Amazon Resource Name (ARN) of the phone number.
 	PhoneNumberArn *string `type:"string"`
 
-	// The identifier of the phone number.
+	// A unique identifier for the phone number.
 	PhoneNumberId *string `type:"string"`
 }
 
@@ -38469,6 +38945,47 @@ func (s *UserIdentityInfo) SetLastName(v string) *UserIdentityInfo {
 	return s
 }
 
+// The user's first name and last name.
+type UserIdentityInfoLite struct {
+	_ struct{} `type:"structure"`
+
+	// The user's first name.
+	FirstName *string `min:"1" type:"string"`
+
+	// The user's last name.
+	LastName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserIdentityInfoLite) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserIdentityInfoLite) GoString() string {
+	return s.String()
+}
+
+// SetFirstName sets the FirstName field's value.
+func (s *UserIdentityInfoLite) SetFirstName(v string) *UserIdentityInfoLite {
+	s.FirstName = &v
+	return s
+}
+
+// SetLastName sets the LastName field's value.
+func (s *UserIdentityInfoLite) SetLastName(v string) *UserIdentityInfoLite {
+	s.LastName = &v
+	return s
+}
+
 // No user with the specified credentials was found in the Amazon Connect instance.
 type UserNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -38666,6 +39183,216 @@ func (s *UserQuickConnectConfig) SetContactFlowId(v string) *UserQuickConnectCon
 // SetUserId sets the UserId field's value.
 func (s *UserQuickConnectConfig) SetUserId(v string) *UserQuickConnectConfig {
 	s.UserId = &v
+	return s
+}
+
+// The search criteria to be used to return users.
+type UserSearchCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// A list of conditions which would be applied together with an AND condition.
+	AndConditions []*UserSearchCriteria `type:"list"`
+
+	// A leaf node condition which can be used to specify a hierarchy group condition.
+	HierarchyGroupCondition *HierarchyGroupCondition `type:"structure"`
+
+	// A list of conditions which would be applied together with an OR condition.
+	OrConditions []*UserSearchCriteria `type:"list"`
+
+	// A leaf node condition which can be used to specify a string condition.
+	StringCondition *StringCondition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserSearchCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserSearchCriteria) GoString() string {
+	return s.String()
+}
+
+// SetAndConditions sets the AndConditions field's value.
+func (s *UserSearchCriteria) SetAndConditions(v []*UserSearchCriteria) *UserSearchCriteria {
+	s.AndConditions = v
+	return s
+}
+
+// SetHierarchyGroupCondition sets the HierarchyGroupCondition field's value.
+func (s *UserSearchCriteria) SetHierarchyGroupCondition(v *HierarchyGroupCondition) *UserSearchCriteria {
+	s.HierarchyGroupCondition = v
+	return s
+}
+
+// SetOrConditions sets the OrConditions field's value.
+func (s *UserSearchCriteria) SetOrConditions(v []*UserSearchCriteria) *UserSearchCriteria {
+	s.OrConditions = v
+	return s
+}
+
+// SetStringCondition sets the StringCondition field's value.
+func (s *UserSearchCriteria) SetStringCondition(v *StringCondition) *UserSearchCriteria {
+	s.StringCondition = v
+	return s
+}
+
+// Filters to be applied to search results.
+type UserSearchFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An object that can be used to specify Tag conditions inside the SearchFilter.
+	// This accepts an OR of AND (List of List) input where:
+	//
+	//    * Top level list specifies conditions that need to be applied with OR
+	//    operator
+	//
+	//    * Inner list specifies conditions that need to be applied with AND operator.
+	TagFilter *ControlPlaneTagFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserSearchFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserSearchFilter) GoString() string {
+	return s.String()
+}
+
+// SetTagFilter sets the TagFilter field's value.
+func (s *UserSearchFilter) SetTagFilter(v *ControlPlaneTagFilter) *UserSearchFilter {
+	s.TagFilter = v
+	return s
+}
+
+// Information about the returned users.
+type UserSearchSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the user.
+	Arn *string `type:"string"`
+
+	// The directory identifier of the user.
+	DirectoryUserId *string `type:"string"`
+
+	// The identifier of the user's hierarchy group.
+	HierarchyGroupId *string `type:"string"`
+
+	// The identifier of the user's summary.
+	Id *string `type:"string"`
+
+	// The user's first name and last name.
+	IdentityInfo *UserIdentityInfoLite `type:"structure"`
+
+	// Contains information about the phone configuration settings for a user.
+	PhoneConfig *UserPhoneConfig `type:"structure"`
+
+	// The identifier of the user's routing profile.
+	RoutingProfileId *string `type:"string"`
+
+	// The identifiers of the user's security profiles.
+	SecurityProfileIds []*string `min:"1" type:"list"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+
+	// The name of the user.
+	Username *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserSearchSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserSearchSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UserSearchSummary) SetArn(v string) *UserSearchSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetDirectoryUserId sets the DirectoryUserId field's value.
+func (s *UserSearchSummary) SetDirectoryUserId(v string) *UserSearchSummary {
+	s.DirectoryUserId = &v
+	return s
+}
+
+// SetHierarchyGroupId sets the HierarchyGroupId field's value.
+func (s *UserSearchSummary) SetHierarchyGroupId(v string) *UserSearchSummary {
+	s.HierarchyGroupId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UserSearchSummary) SetId(v string) *UserSearchSummary {
+	s.Id = &v
+	return s
+}
+
+// SetIdentityInfo sets the IdentityInfo field's value.
+func (s *UserSearchSummary) SetIdentityInfo(v *UserIdentityInfoLite) *UserSearchSummary {
+	s.IdentityInfo = v
+	return s
+}
+
+// SetPhoneConfig sets the PhoneConfig field's value.
+func (s *UserSearchSummary) SetPhoneConfig(v *UserPhoneConfig) *UserSearchSummary {
+	s.PhoneConfig = v
+	return s
+}
+
+// SetRoutingProfileId sets the RoutingProfileId field's value.
+func (s *UserSearchSummary) SetRoutingProfileId(v string) *UserSearchSummary {
+	s.RoutingProfileId = &v
+	return s
+}
+
+// SetSecurityProfileIds sets the SecurityProfileIds field's value.
+func (s *UserSearchSummary) SetSecurityProfileIds(v []*string) *UserSearchSummary {
+	s.SecurityProfileIds = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UserSearchSummary) SetTags(v map[string]*string) *UserSearchSummary {
+	s.Tags = v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *UserSearchSummary) SetUsername(v string) *UserSearchSummary {
+	s.Username = &v
 	return s
 }
 
@@ -39269,6 +39996,22 @@ func Grouping_Values() []string {
 	return []string{
 		GroupingQueue,
 		GroupingChannel,
+	}
+}
+
+const (
+	// HierarchyGroupMatchTypeExact is a HierarchyGroupMatchType enum value
+	HierarchyGroupMatchTypeExact = "EXACT"
+
+	// HierarchyGroupMatchTypeWithChildGroups is a HierarchyGroupMatchType enum value
+	HierarchyGroupMatchTypeWithChildGroups = "WITH_CHILD_GROUPS"
+)
+
+// HierarchyGroupMatchType_Values returns all elements of the HierarchyGroupMatchType enum
+func HierarchyGroupMatchType_Values() []string {
+	return []string{
+		HierarchyGroupMatchTypeExact,
+		HierarchyGroupMatchTypeWithChildGroups,
 	}
 }
 
@@ -40742,6 +41485,26 @@ func StorageType_Values() []string {
 		StorageTypeKinesisVideoStream,
 		StorageTypeKinesisStream,
 		StorageTypeKinesisFirehose,
+	}
+}
+
+const (
+	// StringComparisonTypeStartsWith is a StringComparisonType enum value
+	StringComparisonTypeStartsWith = "STARTS_WITH"
+
+	// StringComparisonTypeContains is a StringComparisonType enum value
+	StringComparisonTypeContains = "CONTAINS"
+
+	// StringComparisonTypeExact is a StringComparisonType enum value
+	StringComparisonTypeExact = "EXACT"
+)
+
+// StringComparisonType_Values returns all elements of the StringComparisonType enum
+func StringComparisonType_Values() []string {
+	return []string{
+		StringComparisonTypeStartsWith,
+		StringComparisonTypeContains,
+		StringComparisonTypeExact,
 	}
 }
 

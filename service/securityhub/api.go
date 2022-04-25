@@ -839,8 +839,8 @@ func (c *SecurityHub) CreateFindingAggregatorRequest(input *CreateFindingAggrega
 // Used to enable finding aggregation. Must be called from the aggregation Region.
 //
 // For more details about cross-Region replication, see Configuring finding
-// aggregation (securityhub/latest/userguide/finding-aggregation.html) in the
-// Security Hub User Guide.
+// aggregation (https://docs.aws.amazon.com/securityhub/latest/userguide/finding-aggregation.html)
+// in the Security Hub User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -28455,16 +28455,11 @@ type AwsSecurityFinding struct {
 	// The name of the company for the product that generated the finding.
 	//
 	// Security Hub populates this attribute automatically for each finding. You
-	// cannot be updated using BatchImportFindings or BatchUpdateFindings. The exception
-	// to this is when you use a custom integration.
+	// cannot update this attribute with BatchImportFindings or BatchUpdateFindings.
+	// The exception to this is a custom integration.
 	//
-	// When you use the Security Hub console to filter findings by company name,
-	// you use this attribute.
-	//
-	// When you use the Security Hub API to filter findings by company name, you
-	// use the aws/securityhub/CompanyName attribute under ProductFields.
-	//
-	// Security Hub does not synchronize those two attributes.
+	// When you use the Security Hub console or API to filter findings by company
+	// name, you use this attribute.
 	CompanyName *string `type:"string"`
 
 	// This data type is exclusive to findings that are generated as the result
@@ -28573,16 +28568,11 @@ type AwsSecurityFinding struct {
 	// The name of the product that generated the finding.
 	//
 	// Security Hub populates this attribute automatically for each finding. You
-	// cannot update it using BatchImportFindings or BatchUpdateFindings. The exception
-	// to this is when you use a custom integration.
+	// cannot update this attribute with BatchImportFindings or BatchUpdateFindings.
+	// The exception to this is a custom integration.
 	//
-	// When you use the Security Hub console to filter findings by product name,
-	// you use this attribute.
-	//
-	// When you use the Security Hub API to filter findings by product name, you
-	// use the aws/securityhub/ProductName attribute under ProductFields.
-	//
-	// Security Hub does not synchronize those two attributes.
+	// When you use the Security Hub console or API to filter findings by product
+	// name, you use this attribute.
 	ProductName *string `type:"string"`
 
 	// The record state of a finding.
@@ -29036,9 +29026,6 @@ type AwsSecurityFindingFilters struct {
 
 	// The name of the findings provider (company) that owns the solution (product)
 	// that generates findings.
-	//
-	// Note that this is a filter against the aws/securityhub/CompanyName field
-	// in ProductFields. It is not a filter for the top-level CompanyName field.
 	CompanyName []*StringFilter `type:"list"`
 
 	// Exclusive to findings that are generated as the result of a check run against
@@ -29207,9 +29194,6 @@ type AwsSecurityFindingFilters struct {
 	ProductFields []*MapFilter `type:"list"`
 
 	// The name of the solution (product) that generates findings.
-	//
-	// Note that this is a filter against the aws/securityhub/ProductName field
-	// in ProductFields. It is not a filter for the top-level ProductName field.
 	ProductName []*StringFilter `type:"list"`
 
 	// The recommendation of what to do about the issue described in a finding.
@@ -33491,6 +33475,16 @@ type DescribeOrganizationConfigurationOutput struct {
 	// false, then new accounts are not added automatically.
 	AutoEnable *bool `type:"boolean"`
 
+	// Whether to automatically enable Security Hub default standards (https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-enable-disable.html)
+	// for new member accounts in the organization.
+	//
+	// The default value of this parameter is equal to DEFAULT.
+	//
+	// If equal to DEFAULT, then Security Hub default standards are automatically
+	// enabled for new member accounts. If equal to NONE, then default standards
+	// are not automatically enabled for new member accounts.
+	AutoEnableStandards *string `type:"string" enum:"AutoEnableStandards"`
+
 	// Whether the maximum number of allowed member accounts are already associated
 	// with the Security Hub administrator account.
 	MemberAccountLimitReached *bool `type:"boolean"`
@@ -33517,6 +33511,12 @@ func (s DescribeOrganizationConfigurationOutput) GoString() string {
 // SetAutoEnable sets the AutoEnable field's value.
 func (s *DescribeOrganizationConfigurationOutput) SetAutoEnable(v bool) *DescribeOrganizationConfigurationOutput {
 	s.AutoEnable = &v
+	return s
+}
+
+// SetAutoEnableStandards sets the AutoEnableStandards field's value.
+func (s *DescribeOrganizationConfigurationOutput) SetAutoEnableStandards(v string) *DescribeOrganizationConfigurationOutput {
+	s.AutoEnableStandards = &v
 	return s
 }
 
@@ -42399,6 +42399,16 @@ type UpdateOrganizationConfigurationInput struct {
 	//
 	// AutoEnable is a required field
 	AutoEnable *bool `type:"boolean" required:"true"`
+
+	// Whether to automatically enable Security Hub default standards (https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-enable-disable.html)
+	// for new member accounts in the organization.
+	//
+	// By default, this parameter is equal to DEFAULT, and new member accounts are
+	// automatically enabled with default Security Hub standards.
+	//
+	// To opt out of enabling default standards for new member accounts, set this
+	// parameter equal to NONE.
+	AutoEnableStandards *string `type:"string" enum:"AutoEnableStandards"`
 }
 
 // String returns the string representation.
@@ -42435,6 +42445,12 @@ func (s *UpdateOrganizationConfigurationInput) Validate() error {
 // SetAutoEnable sets the AutoEnable field's value.
 func (s *UpdateOrganizationConfigurationInput) SetAutoEnable(v bool) *UpdateOrganizationConfigurationInput {
 	s.AutoEnable = &v
+	return s
+}
+
+// SetAutoEnableStandards sets the AutoEnableStandards field's value.
+func (s *UpdateOrganizationConfigurationInput) SetAutoEnableStandards(v string) *UpdateOrganizationConfigurationInput {
+	s.AutoEnableStandards = &v
 	return s
 }
 
@@ -43023,6 +43039,22 @@ func AdminStatus_Values() []string {
 	return []string{
 		AdminStatusEnabled,
 		AdminStatusDisableInProgress,
+	}
+}
+
+const (
+	// AutoEnableStandardsNone is a AutoEnableStandards enum value
+	AutoEnableStandardsNone = "NONE"
+
+	// AutoEnableStandardsDefault is a AutoEnableStandards enum value
+	AutoEnableStandardsDefault = "DEFAULT"
+)
+
+// AutoEnableStandards_Values returns all elements of the AutoEnableStandards enum
+func AutoEnableStandards_Values() []string {
+	return []string{
+		AutoEnableStandardsNone,
+		AutoEnableStandardsDefault,
 	}
 }
 

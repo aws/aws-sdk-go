@@ -515,6 +515,19 @@
     }
   },
   "shapes" : {
+    "ActionRequired" : {
+      "type" : "structure",
+      "members" : {
+        "ActionRequiredCode" : {
+          "shape" : "__string",
+          "locationName" : "actionRequiredCode"
+        },
+        "ActionRequiredInfo" : {
+          "shape" : "__string",
+          "locationName" : "actionRequiredInfo"
+        }
+      }
+    },
     "AuthenticationStrategy" : {
       "type" : "string",
       "enum" : [ "SIMPLE", "LDAP" ]
@@ -642,7 +655,7 @@
     },
     "BrokerState" : {
       "type" : "string",
-      "enum" : [ "CREATION_IN_PROGRESS", "CREATION_FAILED", "DELETION_IN_PROGRESS", "RUNNING", "REBOOT_IN_PROGRESS" ]
+      "enum" : [ "CREATION_IN_PROGRESS", "CREATION_FAILED", "DELETION_IN_PROGRESS", "RUNNING", "REBOOT_IN_PROGRESS", "CRITICAL_ACTION_REQUIRED" ]
     },
     "BrokerStorageType" : {
       "type" : "string",
@@ -1330,6 +1343,10 @@
     "DescribeBrokerOutput" : {
       "type" : "structure",
       "members" : {
+        "ActionsRequired" : {
+          "shape" : "__listOfActionRequired",
+          "locationName" : "actionsRequired"
+        },
         "AuthenticationStrategy" : {
           "shape" : "AuthenticationStrategy",
           "locationName" : "authenticationStrategy"
@@ -1459,6 +1476,10 @@
     "DescribeBrokerResponse" : {
       "type" : "structure",
       "members" : {
+        "ActionsRequired" : {
+          "shape" : "__listOfActionRequired",
+          "locationName" : "actionsRequired"
+        },
         "AuthenticationStrategy" : {
           "shape" : "AuthenticationStrategy",
           "locationName" : "authenticationStrategy"
@@ -2704,6 +2725,12 @@
       "type" : "integer",
       "min" : 5,
       "max" : 100
+    },
+    "__listOfActionRequired" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "ActionRequired"
+      }
     },
     "__listOfAvailabilityZone" : {
       "type" : "list",

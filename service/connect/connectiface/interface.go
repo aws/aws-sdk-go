@@ -545,6 +545,13 @@ type ConnectAPI interface {
 	SearchAvailablePhoneNumbersPages(*connect.SearchAvailablePhoneNumbersInput, func(*connect.SearchAvailablePhoneNumbersOutput, bool) bool) error
 	SearchAvailablePhoneNumbersPagesWithContext(aws.Context, *connect.SearchAvailablePhoneNumbersInput, func(*connect.SearchAvailablePhoneNumbersOutput, bool) bool, ...request.Option) error
 
+	SearchUsers(*connect.SearchUsersInput) (*connect.SearchUsersOutput, error)
+	SearchUsersWithContext(aws.Context, *connect.SearchUsersInput, ...request.Option) (*connect.SearchUsersOutput, error)
+	SearchUsersRequest(*connect.SearchUsersInput) (*request.Request, *connect.SearchUsersOutput)
+
+	SearchUsersPages(*connect.SearchUsersInput, func(*connect.SearchUsersOutput, bool) bool) error
+	SearchUsersPagesWithContext(aws.Context, *connect.SearchUsersInput, func(*connect.SearchUsersOutput, bool) bool, ...request.Option) error
+
 	SearchVocabularies(*connect.SearchVocabulariesInput) (*connect.SearchVocabulariesOutput, error)
 	SearchVocabulariesWithContext(aws.Context, *connect.SearchVocabulariesInput, ...request.Option) (*connect.SearchVocabulariesOutput, error)
 	SearchVocabulariesRequest(*connect.SearchVocabulariesInput) (*request.Request, *connect.SearchVocabulariesOutput)

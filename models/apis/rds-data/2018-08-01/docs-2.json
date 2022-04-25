@@ -1,15 +1,20 @@
 {
   "version": "2.0",
-  "service": "<p><fullname>Amazon RDS Data Service</fullname> <p>Amazon RDS provides an HTTP endpoint to run SQL statements on an Amazon Aurora Serverless DB cluster. To run these statements, you work with the Data Service API.</p> <p>For more information about the Data Service API, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html\">Using the Data API for Aurora Serverless</a> in the <i>Amazon Aurora User Guide</i>.</p></p>",
+  "service": "<p><fullname>Amazon RDS Data Service</fullname> <p>Amazon RDS provides an HTTP endpoint to run SQL statements on an Amazon Aurora Serverless DB cluster. To run these statements, you work with the Data Service API.</p> <p>For more information about the Data Service API, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html\">Using the Data API</a> in the <i>Amazon Aurora User Guide</i>.</p></p>",
   "operations": {
     "BatchExecuteStatement": "<p>Runs a batch SQL statement over an array of data.</p> <p>You can run bulk update and insert operations for multiple records using a DML statement with different parameter sets. Bulk operations can provide a significant performance improvement over individual insert and update operations.</p> <important> <p>If a call isn't part of a transaction because it doesn't include the <code>transactionID</code> parameter, changes that result from the call are committed automatically.</p> </important>",
     "BeginTransaction": "<p>Starts a SQL transaction.</p> <pre><code> &lt;important&gt; &lt;p&gt;A transaction can run for a maximum of 24 hours. A transaction is terminated and rolled back automatically after 24 hours.&lt;/p&gt; &lt;p&gt;A transaction times out if no calls use its transaction ID in three minutes. If a transaction times out before it's committed, it's rolled back automatically.&lt;/p&gt; &lt;p&gt;DDL statements inside a transaction cause an implicit commit. We recommend that you run each DDL statement in a separate &lt;code&gt;ExecuteStatement&lt;/code&gt; call with &lt;code&gt;continueAfterTimeout&lt;/code&gt; enabled.&lt;/p&gt; &lt;/important&gt; </code></pre>",
     "CommitTransaction": "<p>Ends a SQL transaction started with the <code>BeginTransaction</code> operation and commits the changes.</p>",
     "ExecuteSql": "<p>Runs one or more SQL statements.</p> <important> <p>This operation is deprecated. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code> operation.</p> </important>",
-    "ExecuteStatement": "<p>Runs a SQL statement against a database.</p> <important> <p>If a call isn't part of a transaction because it doesn't include the <code>transactionID</code> parameter, changes that result from the call are committed automatically.</p> </important> <p>The response size limit is 1 MB. If the call returns more than 1 MB of response data, the call is terminated.</p>",
+    "ExecuteStatement": "<p>Runs a SQL statement against a database.</p> <important> <p>If a call isn't part of a transaction because it doesn't include the <code>transactionID</code> parameter, changes that result from the call are committed automatically.</p> </important> <p>If the binary response data from the database is more than 1 MB, the call is terminated.</p>",
     "RollbackTransaction": "<p>Performs a rollback of a transaction. Rolling back a transaction cancels its changes.</p>"
   },
   "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>You do not have sufficient access to perform this action.</p>",
+      "refs": {
+      }
+    },
     "Arn": {
       "base": null,
       "refs": {
@@ -170,14 +175,15 @@
       }
     },
     "DoubleArray": {
-      "base": "<p>An array of floating point numbers.</p> <note> <p>Some array entries can be null.</p> </note>",
+      "base": "<p>An array of floating-point numbers.</p> <note> <p>Some array entries can be null.</p> </note>",
       "refs": {
-        "ArrayValue$doubleValues": "<p>An array of integers.</p>"
+        "ArrayValue$doubleValues": "<p>An array of floating-point numbers.</p>"
       }
     },
     "ErrorMessage": {
       "base": null,
       "refs": {
+        "AccessDeniedException$message": null,
         "BadRequestException$message": "<p>The error message returned by this <code>BadRequestException</code> error.</p>",
         "ForbiddenException$message": "<p>The error message returned by this <code>ForbiddenException</code> error.</p>",
         "NotFoundException$message": "<p>The error message returned by this <code>NotFoundException</code> error.</p>",
@@ -214,7 +220,7 @@
     "FieldList": {
       "base": null,
       "refs": {
-        "ExecuteStatementResponse$generatedFields": "<p>Values for fields generated during the request.</p> <pre><code> &lt;note&gt; &lt;p&gt;The &lt;code&gt;generatedFields&lt;/code&gt; data isn't supported by Aurora PostgreSQL. To get the values of generated fields, use the &lt;code&gt;RETURNING&lt;/code&gt; clause. For more information, see &lt;a href=&quot;https://www.postgresql.org/docs/10/dml-returning.html&quot;&gt;Returning Data From Modified Rows&lt;/a&gt; in the PostgreSQL documentation.&lt;/p&gt; &lt;/note&gt; </code></pre>",
+        "ExecuteStatementResponse$generatedFields": "<p>Values for fields generated during a DML request.</p> <pre><code> &lt;note&gt; &lt;p&gt;The &lt;code&gt;generatedFields&lt;/code&gt; data isn't supported by Aurora PostgreSQL. To get the values of generated fields, use the &lt;code&gt;RETURNING&lt;/code&gt; clause. For more information, see &lt;a href=&quot;https://www.postgresql.org/docs/10/dml-returning.html&quot;&gt;Returning Data From Modified Rows&lt;/a&gt; in the PostgreSQL documentation.&lt;/p&gt; &lt;/note&gt; </code></pre>",
         "SqlRecords$member": null,
         "UpdateResult$generatedFields": "<p>Values for fields generated during the request.</p>"
       }
@@ -222,6 +228,12 @@
     "ForbiddenException": {
       "base": "<p>There are insufficient privileges to make the call.</p>",
       "refs": {
+      }
+    },
+    "FormattedSqlRecords": {
+      "base": null,
+      "refs": {
+        "ExecuteStatementResponse$formattedRecords": "<p>A string value that represents the result set of a <code>SELECT</code> statement in JSON format. This value is only present when the <code>formatRecordsAs</code> parameter is set to <code>JSON</code>.</p> <p>The size limit for this field is currently 10 MB. If the JSON-formatted string representing the result set requires more than 10 MB, the call returns an error.</p>"
       }
     },
     "Id": {
@@ -259,13 +271,19 @@
     "LongArray": {
       "base": "<p>An array of integers.</p> <note> <p>Some array entries can be null.</p> </note>",
       "refs": {
-        "ArrayValue$longValues": "<p>An array of floating point numbers.</p>"
+        "ArrayValue$longValues": "<p>An array of integers.</p>"
+      }
+    },
+    "LongReturnType": {
+      "base": null,
+      "refs": {
+        "ResultSetOptions$longReturnType": "<p>A value that indicates how a field of <code>LONG</code> type is represented. Allowed values are <code>LONG</code> and <code>STRING</code>. The default is <code>LONG</code>. Specify <code>STRING</code> if the length or precision of numeric values might cause truncation or rounding errors. </p>"
       }
     },
     "Metadata": {
       "base": null,
       "refs": {
-        "ExecuteStatementResponse$columnMetadata": "<p>Metadata for the columns included in the results.</p>",
+        "ExecuteStatementResponse$columnMetadata": "<p>Metadata for the columns included in the results. This field is blank if the <code>formatRecordsAs</code> parameter is set to <code>JSON</code>.</p>",
         "ResultSetMetadata$columnMetadata": "<p>The metadata of the columns in the result set.</p>"
       }
     },
@@ -281,7 +299,7 @@
       }
     },
     "Record": {
-      "base": "<p>A record returned by a call.</p>",
+      "base": "<p>A record returned by a call.</p> <important> <p>This data structure is only used with the deprecated <code>ExecuteSql</code> operation. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code> operation instead.</p> </important>",
       "refs": {
         "Records$member": null
       }
@@ -292,6 +310,12 @@
         "ResultFrame$records": "<p>The records in the result set.</p>"
       }
     },
+    "RecordsFormatType": {
+      "base": null,
+      "refs": {
+        "ExecuteStatementRequest$formatRecordsAs": "<p>A value that indicates whether to format the result set as a single JSON string. This parameter only applies to <code>SELECT</code> statements and is ignored for other types of statements. Allowed values are <code>NONE</code> and <code>JSON</code>. The default value is <code>NONE</code>. The result is returned in the <code>formattedRecords</code> field.</p> <p>For usage information about the JSON format for result sets, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html\">Using the Data API</a> in the <i>Amazon Aurora User Guide</i>.</p>"
+      }
+    },
     "RecordsUpdated": {
       "base": null,
       "refs": {
@@ -300,7 +324,7 @@
       }
     },
     "ResultFrame": {
-      "base": "<p>The result set returned by a SQL statement.</p>",
+      "base": "<p>The result set returned by a SQL statement.</p> <important> <p>This data structure is only used with the deprecated <code>ExecuteSql</code> operation. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code> operation instead.</p> </important>",
       "refs": {
         "SqlStatementResult$resultFrame": "<p>The result set of the SQL statement.</p>"
       }
@@ -360,7 +384,7 @@
     "SqlRecords": {
       "base": null,
       "refs": {
-        "ExecuteStatementResponse$records": "<p>The records returned by the SQL statement.</p>"
+        "ExecuteStatementResponse$records": "<p>The records returned by the SQL statement. This field is blank if the <code>formatRecordsAs</code> parameter is set to <code>JSON</code>.</p>"
       }
     },
     "SqlStatement": {
@@ -372,7 +396,7 @@
       }
     },
     "SqlStatementResult": {
-      "base": "<p>The result of a SQL statement.</p> <pre><code> &lt;important&gt; &lt;p&gt;This data type is deprecated.&lt;/p&gt; &lt;/important&gt; </code></pre>",
+      "base": "<p>The result of a SQL statement.</p> <pre><code> &lt;important&gt; &lt;p&gt;This data structure is only used with the deprecated &lt;code&gt;ExecuteSql&lt;/code&gt; operation. Use the &lt;code&gt;BatchExecuteStatement&lt;/code&gt; or &lt;code&gt;ExecuteStatement&lt;/code&gt; operation instead.&lt;/p&gt; &lt;/important&gt; </code></pre>",
       "refs": {
         "SqlStatementResults$member": null
       }
@@ -408,7 +432,7 @@
       }
     },
     "StructValue": {
-      "base": "<p>A structure value returned by a call.</p>",
+      "base": "<p>A structure value returned by a call.</p> <important> <p>This data structure is only used with the deprecated <code>ExecuteSql</code> operation. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code> operation instead.</p> </important>",
       "refs": {
         "Value$structValue": "<p>A value for a column of STRUCT data type.</p>"
       }
@@ -439,7 +463,7 @@
       }
     },
     "Value": {
-      "base": "<p>Contains the value of a column.</p> <pre><code> &lt;important&gt; &lt;p&gt;This data type is deprecated.&lt;/p&gt; &lt;/important&gt; </code></pre>",
+      "base": "<p>Contains the value of a column.</p> <pre><code> &lt;important&gt; &lt;p&gt;This data structure is only used with the deprecated &lt;code&gt;ExecuteSql&lt;/code&gt; operation. Use the &lt;code&gt;BatchExecuteStatement&lt;/code&gt; or &lt;code&gt;ExecuteStatement&lt;/code&gt; operation instead.&lt;/p&gt; &lt;/important&gt; </code></pre>",
       "refs": {
         "ArrayValueList$member": null,
         "Row$member": null

@@ -7,8 +7,7 @@
 // Serverless DB cluster. To run these statements, you work with the Data Service
 // API.
 //
-// For more information about the Data Service API, see Using the Data API for
-// Aurora Serverless (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
+// For more information about the Data Service API, see Using the Data API (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
 // in the Amazon Aurora User Guide.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01 for more information on this service.
