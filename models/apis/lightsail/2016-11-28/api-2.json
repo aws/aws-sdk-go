@@ -1799,6 +1799,22 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "GetLoadBalancerTlsPolicies":{
+      "name":"GetLoadBalancerTlsPolicies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetLoadBalancerTlsPoliciesRequest"},
+      "output":{"shape":"GetLoadBalancerTlsPoliciesResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"},
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "GetLoadBalancers":{
       "name":"GetLoadBalancers",
       "http":{
@@ -3953,7 +3969,8 @@
         "certificateDomainName":{"shape":"DomainName"},
         "certificateAlternativeNames":{"shape":"DomainNameList"},
         "tags":{"shape":"TagList"},
-        "ipAddressType":{"shape":"IpAddressType"}
+        "ipAddressType":{"shape":"IpAddressType"},
+        "tlsPolicyName":{"shape":"string"}
       }
     },
     "CreateLoadBalancerResult":{
@@ -5365,6 +5382,19 @@
         "tlsCertificates":{"shape":"LoadBalancerTlsCertificateList"}
       }
     },
+    "GetLoadBalancerTlsPoliciesRequest":{
+      "type":"structure",
+      "members":{
+        "pageToken":{"shape":"string"}
+      }
+    },
+    "GetLoadBalancerTlsPoliciesResult":{
+      "type":"structure",
+      "members":{
+        "tlsPolicies":{"shape":"LoadBalancerTlsPolicyList"},
+        "nextPageToken":{"shape":"string"}
+      }
+    },
     "GetLoadBalancersRequest":{
       "type":"structure",
       "members":{
@@ -6068,7 +6098,9 @@
         "instanceHealthSummary":{"shape":"InstanceHealthSummaryList"},
         "tlsCertificateSummaries":{"shape":"LoadBalancerTlsCertificateSummaryList"},
         "configurationOptions":{"shape":"LoadBalancerConfigurationOptions"},
-        "ipAddressType":{"shape":"IpAddressType"}
+        "ipAddressType":{"shape":"IpAddressType"},
+        "httpsRedirectionEnabled":{"shape":"boolean"},
+        "tlsPolicyName":{"shape":"ResourceName"}
       }
     },
     "LoadBalancerAttributeName":{
@@ -6076,7 +6108,9 @@
       "enum":[
         "HealthCheckPath",
         "SessionStickinessEnabled",
-        "SessionStickiness_LB_CookieDurationSeconds"
+        "SessionStickiness_LB_CookieDurationSeconds",
+        "HttpsRedirectionEnabled",
+        "TlsPolicyName"
       ]
     },
     "LoadBalancerConfigurationOptions":{
@@ -6253,6 +6287,20 @@
     "LoadBalancerTlsCertificateSummaryList":{
       "type":"list",
       "member":{"shape":"LoadBalancerTlsCertificateSummary"}
+    },
+    "LoadBalancerTlsPolicy":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ResourceName"},
+        "isDefault":{"shape":"boolean"},
+        "description":{"shape":"string"},
+        "protocols":{"shape":"StringList"},
+        "ciphers":{"shape":"StringList"}
+      }
+    },
+    "LoadBalancerTlsPolicyList":{
+      "type":"list",
+      "member":{"shape":"LoadBalancerTlsPolicy"}
     },
     "LogEvent":{
       "type":"structure",

@@ -168,9 +168,9 @@ func (c *NetworkFirewall) AssociateSubnetsRequest(input *AssociateSubnetsInput) 
 // Associates the specified subnets in the Amazon VPC to the firewall. You can
 // specify one subnet for each of the Availability Zones that the VPC spans.
 //
-// This request creates an AWS Network Firewall firewall endpoint in each of
-// the subnets. To enable the firewall's protections, you must also modify the
-// VPC's route tables for each subnet's Availability Zone, to redirect the traffic
+// This request creates an Network Firewall firewall endpoint in each of the
+// subnets. To enable the firewall's protections, you must also modify the VPC's
+// route tables for each subnet's Availability Zone, to redirect the traffic
 // that's coming into and going out of the zone through the firewall endpoint.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -210,8 +210,8 @@ func (c *NetworkFirewall) AssociateSubnetsRequest(input *AssociateSubnetsInput) 
 //   tried to delete a rule group or firewall policy that's in use.
 //
 //   * InsufficientCapacityException
-//   AWS doesn't currently have enough available capacity to fulfill your request.
-//   Try your request later.
+//   Amazon Web Services doesn't currently have enough available capacity to fulfill
+//   your request. Try your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/AssociateSubnets
 func (c *NetworkFirewall) AssociateSubnets(input *AssociateSubnetsInput) (*AssociateSubnetsOutput, error) {
@@ -279,13 +279,13 @@ func (c *NetworkFirewall) CreateFirewallRequest(input *CreateFirewallInput) (req
 
 // CreateFirewall API operation for AWS Network Firewall.
 //
-// Creates an AWS Network Firewall Firewall and accompanying FirewallStatus
-// for a VPC.
+// Creates an Network Firewall Firewall and accompanying FirewallStatus for
+// a VPC.
 //
-// The firewall defines the configuration settings for an AWS Network Firewall
-// firewall. The settings that you can define at creation include the firewall
-// policy, the subnets in your VPC to use for the firewall endpoints, and any
-// tags that are attached to the firewall AWS resource.
+// The firewall defines the configuration settings for an Network Firewall firewall.
+// The settings that you can define at creation include the firewall policy,
+// the subnets in your VPC to use for the firewall endpoints, and any tags that
+// are attached to the firewall Amazon Web Services resource.
 //
 // After you create a firewall, you can provide additional settings, like the
 // logging configuration.
@@ -294,8 +294,8 @@ func (c *NetworkFirewall) CreateFirewallRequest(input *CreateFirewallInput) (req
 // to the settings themselves, for example UpdateLoggingConfiguration, AssociateSubnets,
 // and UpdateFirewallDeleteProtection.
 //
-// To manage a firewall's tags, use the standard AWS resource tagging operations,
-// ListTagsForResource, TagResource, and UntagResource.
+// To manage a firewall's tags, use the standard Amazon Web Services resource
+// tagging operations, ListTagsForResource, TagResource, and UntagResource.
 //
 // To retrieve information about firewalls, use ListFirewalls and DescribeFirewall.
 //
@@ -329,8 +329,8 @@ func (c *NetworkFirewall) CreateFirewallRequest(input *CreateFirewallInput) (req
 //   Unable to process the request due to throttling limitations.
 //
 //   * InsufficientCapacityException
-//   AWS doesn't currently have enough available capacity to fulfill your request.
-//   Try your request later.
+//   Amazon Web Services doesn't currently have enough available capacity to fulfill
+//   your request. Try your request later.
 //
 //   * InvalidOperationException
 //   The operation failed because it's not valid. For example, you might have
@@ -404,9 +404,9 @@ func (c *NetworkFirewall) CreateFirewallPolicyRequest(input *CreateFirewallPolic
 //
 // Creates the firewall policy for the firewall according to the specifications.
 //
-// An AWS Network Firewall firewall policy defines the behavior of a firewall,
-// in a collection of stateless and stateful rule groups and other settings.
-// You can use one firewall policy for multiple firewalls.
+// An Network Firewall firewall policy defines the behavior of a firewall, in
+// a collection of stateless and stateful rule groups and other settings. You
+// can use one firewall policy for multiple firewalls.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -438,8 +438,8 @@ func (c *NetworkFirewall) CreateFirewallPolicyRequest(input *CreateFirewallPolic
 //   because of a system problem. Retry your request.
 //
 //   * InsufficientCapacityException
-//   AWS doesn't currently have enough available capacity to fulfill your request.
-//   Try your request later.
+//   Amazon Web Services doesn't currently have enough available capacity to fulfill
+//   your request. Try your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/CreateFirewallPolicy
 func (c *NetworkFirewall) CreateFirewallPolicy(input *CreateFirewallPolicyInput) (*CreateFirewallPolicyOutput, error) {
@@ -543,8 +543,8 @@ func (c *NetworkFirewall) CreateRuleGroupRequest(input *CreateRuleGroupInput) (r
 //   because of a system problem. Retry your request.
 //
 //   * InsufficientCapacityException
-//   AWS doesn't currently have enough available capacity to fulfill your request.
-//   Try your request later.
+//   Amazon Web Services doesn't currently have enough available capacity to fulfill
+//   your request. Try your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/CreateRuleGroup
 func (c *NetworkFirewall) CreateRuleGroup(input *CreateRuleGroupInput) (*CreateRuleGroupOutput, error) {
@@ -2202,10 +2202,10 @@ func (c *NetworkFirewall) ListTagsForResourceRequest(input *ListTagsForResourceI
 // pairs that you can use to categorize and manage your resources, for purposes
 // like billing. For example, you might set the tag key to "customer" and the
 // value to the customer name or ID. You can specify one or more tags to add
-// to each AWS resource, up to 50 tags for a resource.
+// to each Amazon Web Services resource, up to 50 tags for a resource.
 //
-// You can tag the AWS resources that you manage through AWS Network Firewall:
-// firewalls, firewall policies, and rule groups.
+// You can tag the Amazon Web Services resources that you manage through Network
+// Firewall: firewalls, firewall policies, and rule groups.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2355,11 +2355,10 @@ func (c *NetworkFirewall) PutResourcePolicyRequest(input *PutResourcePolicyInput
 
 // PutResourcePolicy API operation for AWS Network Firewall.
 //
-// Creates or updates an AWS Identity and Access Management policy for your
-// rule group or firewall policy. Use this to share rule groups and firewall
-// policies between accounts. This operation works in conjunction with the AWS
-// Resource Access Manager (RAM) service to manage resource sharing for Network
-// Firewall.
+// Creates or updates an IAM policy for your rule group or firewall policy.
+// Use this to share rule groups and firewall policies between accounts. This
+// operation works in conjunction with the Amazon Web Services Resource Access
+// Manager (RAM) service to manage resource sharing for Network Firewall.
 //
 // Use this operation to create or update a resource policy for your rule group
 // or firewall policy. In the policy, you specify the accounts that you want
@@ -2376,7 +2375,7 @@ func (c *NetworkFirewall) PutResourcePolicyRequest(input *PutResourcePolicyInput
 //    * AcceptResourceShareInvitation (https://docs.aws.amazon.com/ram/latest/APIReference/API_AcceptResourceShareInvitation.html)
 //    - Accepts the share invitation for a specified resource share.
 //
-// For additional information about resource sharing using RAM, see AWS Resource
+// For additional information about resource sharing using RAM, see Resource
 // Access Manager User Guide (https://docs.aws.amazon.com/ram/latest/userguide/what-is.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2482,10 +2481,10 @@ func (c *NetworkFirewall) TagResourceRequest(input *TagResourceInput) (req *requ
 // that you can use to categorize and manage your resources, for purposes like
 // billing. For example, you might set the tag key to "customer" and the value
 // to the customer name or ID. You can specify one or more tags to add to each
-// AWS resource, up to 50 tags for a resource.
+// Amazon Web Services resource, up to 50 tags for a resource.
 //
-// You can tag the AWS resources that you manage through AWS Network Firewall:
-// firewalls, firewall policies, and rule groups.
+// You can tag the Amazon Web Services resources that you manage through Network
+// Firewall: firewalls, firewall policies, and rule groups.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2587,10 +2586,10 @@ func (c *NetworkFirewall) UntagResourceRequest(input *UntagResourceInput) (req *
 // are key:value pairs that you can use to categorize and manage your resources,
 // for purposes like billing. For example, you might set the tag key to "customer"
 // and the value to the customer name or ID. You can specify one or more tags
-// to add to each AWS resource, up to 50 tags for a resource.
+// to add to each Amazon Web Services resource, up to 50 tags for a resource.
 //
-// You can manage tags for the AWS resources that you manage through AWS Network
-// Firewall: firewalls, firewall policies, and rule groups.
+// You can manage tags for the Amazon Web Services resources that you manage
+// through Network Firewall: firewalls, firewall policies, and rule groups.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2845,6 +2844,109 @@ func (c *NetworkFirewall) UpdateFirewallDescription(input *UpdateFirewallDescrip
 // for more information on using Contexts.
 func (c *NetworkFirewall) UpdateFirewallDescriptionWithContext(ctx aws.Context, input *UpdateFirewallDescriptionInput, opts ...request.Option) (*UpdateFirewallDescriptionOutput, error) {
 	req, out := c.UpdateFirewallDescriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateFirewallEncryptionConfiguration = "UpdateFirewallEncryptionConfiguration"
+
+// UpdateFirewallEncryptionConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFirewallEncryptionConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFirewallEncryptionConfiguration for more information on using the UpdateFirewallEncryptionConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFirewallEncryptionConfigurationRequest method.
+//    req, resp := client.UpdateFirewallEncryptionConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/UpdateFirewallEncryptionConfiguration
+func (c *NetworkFirewall) UpdateFirewallEncryptionConfigurationRequest(input *UpdateFirewallEncryptionConfigurationInput) (req *request.Request, output *UpdateFirewallEncryptionConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFirewallEncryptionConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateFirewallEncryptionConfigurationInput{}
+	}
+
+	output = &UpdateFirewallEncryptionConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFirewallEncryptionConfiguration API operation for AWS Network Firewall.
+//
+// A complex type that contains settings for encryption of your firewall resources.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Network Firewall's
+// API operation UpdateFirewallEncryptionConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The operation failed because of a problem with your request. Examples include:
+//
+//      * You specified an unsupported parameter name or value.
+//
+//      * You tried to update a property with a value that isn't among the available
+//      types.
+//
+//      * Your request references an ARN that is malformed, or corresponds to
+//      a resource that isn't valid in the context of the request.
+//
+//   * InternalServerError
+//   Your request is valid, but Network Firewall couldn’t perform the operation
+//   because of a system problem. Retry your request.
+//
+//   * ResourceNotFoundException
+//   Unable to locate a resource using the parameters that you provided.
+//
+//   * ThrottlingException
+//   Unable to process the request due to throttling limitations.
+//
+//   * InvalidTokenException
+//   The token you provided is stale or isn't valid for the operation.
+//
+//   * ResourceOwnerCheckException
+//   Unable to change the resource because your account doesn't own it.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/UpdateFirewallEncryptionConfiguration
+func (c *NetworkFirewall) UpdateFirewallEncryptionConfiguration(input *UpdateFirewallEncryptionConfigurationInput) (*UpdateFirewallEncryptionConfigurationOutput, error) {
+	req, out := c.UpdateFirewallEncryptionConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFirewallEncryptionConfigurationWithContext is the same as UpdateFirewallEncryptionConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFirewallEncryptionConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkFirewall) UpdateFirewallEncryptionConfigurationWithContext(ctx aws.Context, input *UpdateFirewallEncryptionConfigurationInput, opts ...request.Option) (*UpdateFirewallEncryptionConfigurationOutput, error) {
+	req, out := c.UpdateFirewallEncryptionConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3865,7 +3967,7 @@ func (s *AssociateSubnetsOutput) SetUpdateToken(v string) *AssociateSubnetsOutpu
 }
 
 // The configuration and status for a single subnet that you've specified for
-// use by the AWS Network Firewall firewall. This is part of the FirewallStatus.
+// use by the Network Firewall firewall. This is part of the FirewallStatus.
 type Attachment struct {
 	_ struct{} `type:"structure"`
 
@@ -3934,6 +4036,9 @@ type CreateFirewallInput struct {
 
 	// A description of the firewall.
 	Description *string `type:"string"`
+
+	// A complex type that contains settings for encryption of your firewall resources.
+	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
 
 	// The descriptive name of the firewall. You can't change the name of a firewall
 	// after you create it.
@@ -4023,6 +4128,11 @@ func (s *CreateFirewallInput) Validate() error {
 	if s.VpcId != nil && len(*s.VpcId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VpcId", 1))
 	}
+	if s.EncryptionConfiguration != nil {
+		if err := s.EncryptionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SubnetMappings != nil {
 		for i, v := range s.SubnetMappings {
 			if v == nil {
@@ -4059,6 +4169,12 @@ func (s *CreateFirewallInput) SetDeleteProtection(v bool) *CreateFirewallInput {
 // SetDescription sets the Description field's value.
 func (s *CreateFirewallInput) SetDescription(v string) *CreateFirewallInput {
 	s.Description = &v
+	return s
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *CreateFirewallInput) SetEncryptionConfiguration(v *EncryptionConfiguration) *CreateFirewallInput {
+	s.EncryptionConfiguration = v
 	return s
 }
 
@@ -4166,6 +4282,10 @@ type CreateFirewallPolicyInput struct {
 	// If set to FALSE, Network Firewall makes the requested changes to your resources.
 	DryRun *bool `type:"boolean"`
 
+	// A complex type that contains settings for encryption of your firewall policy
+	// resources.
+	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
+
 	// The rule groups and policy actions to use in the firewall policy.
 	//
 	// FirewallPolicy is a required field
@@ -4214,6 +4334,11 @@ func (s *CreateFirewallPolicyInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.EncryptionConfiguration != nil {
+		if err := s.EncryptionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.FirewallPolicy != nil {
 		if err := s.FirewallPolicy.Validate(); err != nil {
 			invalidParams.AddNested("FirewallPolicy", err.(request.ErrInvalidParams))
@@ -4245,6 +4370,12 @@ func (s *CreateFirewallPolicyInput) SetDescription(v string) *CreateFirewallPoli
 // SetDryRun sets the DryRun field's value.
 func (s *CreateFirewallPolicyInput) SetDryRun(v bool) *CreateFirewallPolicyInput {
 	s.DryRun = &v
+	return s
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *CreateFirewallPolicyInput) SetEncryptionConfiguration(v *EncryptionConfiguration) *CreateFirewallPolicyInput {
+	s.EncryptionConfiguration = v
 	return s
 }
 
@@ -4384,6 +4515,9 @@ type CreateRuleGroupInput struct {
 	// If set to FALSE, Network Firewall makes the requested changes to your resources.
 	DryRun *bool `type:"boolean"`
 
+	// A complex type that contains settings for encryption of your rule group resources.
+	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
+
 	// An object that defines the rule group rules.
 	//
 	// You must provide either this rule group setting or a Rules setting, but not
@@ -4456,6 +4590,11 @@ func (s *CreateRuleGroupInput) Validate() error {
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
+	if s.EncryptionConfiguration != nil {
+		if err := s.EncryptionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RuleGroup != nil {
 		if err := s.RuleGroup.Validate(); err != nil {
 			invalidParams.AddNested("RuleGroup", err.(request.ErrInvalidParams))
@@ -4493,6 +4632,12 @@ func (s *CreateRuleGroupInput) SetDescription(v string) *CreateRuleGroupInput {
 // SetDryRun sets the DryRun field's value.
 func (s *CreateRuleGroupInput) SetDryRun(v bool) *CreateRuleGroupInput {
 	s.DryRun = &v
+	return s
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *CreateRuleGroupInput) SetEncryptionConfiguration(v *EncryptionConfiguration) *CreateRuleGroupInput {
+	s.EncryptionConfiguration = v
 	return s
 }
 
@@ -4732,10 +4877,10 @@ func (s *DeleteFirewallInput) SetFirewallName(v string) *DeleteFirewallInput {
 type DeleteFirewallOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The firewall defines the configuration settings for an AWS Network Firewall
-	// firewall. These settings include the firewall policy, the subnets in your
-	// VPC to use for the firewall endpoints, and any tags that are attached to
-	// the firewall AWS resource.
+	// The firewall defines the configuration settings for an Network Firewall firewall.
+	// These settings include the firewall policy, the subnets in your VPC to use
+	// for the firewall endpoints, and any tags that are attached to the firewall
+	// Amazon Web Services resource.
 	//
 	// The status of the firewall, for example whether it's ready to filter network
 	// traffic, is provided in the corresponding FirewallStatus. You can retrieve
@@ -5372,7 +5517,7 @@ type DescribeLoggingConfigurationOutput struct {
 	// The Amazon Resource Name (ARN) of the firewall.
 	FirewallArn *string `min:"1" type:"string"`
 
-	// Defines how AWS Network Firewall performs logging for a Firewall.
+	// Defines how Network Firewall performs logging for a Firewall.
 	LoggingConfiguration *LoggingConfiguration `type:"structure"`
 }
 
@@ -5459,7 +5604,7 @@ func (s *DescribeResourcePolicyInput) SetResourceArn(v string) *DescribeResource
 type DescribeResourcePolicyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Identity and Access Management policy for the resource.
+	// The IAM policy for the resource.
 	Policy *string `min:"1" type:"string"`
 }
 
@@ -5740,7 +5885,7 @@ type DescribeRuleGroupOutput struct {
 	// define the rule group. You can retrieve all objects for a rule group by calling
 	// DescribeRuleGroup.
 	//
-	// AWS Network Firewall uses a rule group to inspect and control network traffic.
+	// Network Firewall uses a rule group to inspect and control network traffic.
 	// You define stateless rule groups to inspect individual packets and you define
 	// stateful rule groups to inspect packets in the context of their traffic flow.
 	//
@@ -5812,7 +5957,7 @@ func (s *DescribeRuleGroupOutput) SetUpdateToken(v string) *DescribeRuleGroupOut
 // used in the PublishMetrics CustomAction. A CloudWatch custom metric dimension
 // is a name/value pair that's part of the identity of a metric.
 //
-// AWS Network Firewall sets the dimension name to CustomAction and you provide
+// Network Firewall sets the dimension name to CustomAction and you provide
 // the dimension value.
 //
 // For more information about CloudWatch custom metric dimensions, see Publishing
@@ -6039,10 +6184,77 @@ func (s *DisassociateSubnetsOutput) SetUpdateToken(v string) *DisassociateSubnet
 	return s
 }
 
-// The firewall defines the configuration settings for an AWS Network Firewall
-// firewall. These settings include the firewall policy, the subnets in your
-// VPC to use for the firewall endpoints, and any tags that are attached to
-// the firewall AWS resource.
+// A complex type that contains optional Amazon Web Services Key Management
+// Service (KMS) encryption settings for your Network Firewall resources. Your
+// data is encrypted by default with an Amazon Web Services owned key that Amazon
+// Web Services owns and manages for you. You can use either the Amazon Web
+// Services owned key, or provide your own customer managed key. To learn more
+// about KMS encryption of your Network Firewall resources, see Encryption at
+// rest with Amazon Web Services Key Managment Service (https://docs.aws.amazon.com/kms/latest/developerguide/kms-encryption-at-rest.html)
+// in the Network Firewall Developer Guide.
+type EncryptionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services Key Management Service (KMS) customer managed
+	// key. You can use any of the key identifiers that KMS supports, unless you're
+	// using a key that's managed by another account. If you're using a key managed
+	// by another account, then specify the key ARN. For more information, see Key
+	// ID (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id)
+	// in the Amazon Web Services KMS Developer Guide.
+	KeyId *string `min:"1" type:"string"`
+
+	// The type of Amazon Web Services KMS key to use for encryption of your Network
+	// Firewall resources.
+	Type *string `type:"string" enum:"EncryptionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EncryptionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EncryptionConfiguration"}
+	if s.KeyId != nil && len(*s.KeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KeyId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKeyId sets the KeyId field's value.
+func (s *EncryptionConfiguration) SetKeyId(v string) *EncryptionConfiguration {
+	s.KeyId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *EncryptionConfiguration) SetType(v string) *EncryptionConfiguration {
+	s.Type = &v
+	return s
+}
+
+// The firewall defines the configuration settings for an Network Firewall firewall.
+// These settings include the firewall policy, the subnets in your VPC to use
+// for the firewall endpoints, and any tags that are attached to the firewall
+// Amazon Web Services resource.
 //
 // The status of the firewall, for example whether it's ready to filter network
 // traffic, is provided in the corresponding FirewallStatus. You can retrieve
@@ -6058,6 +6270,10 @@ type Firewall struct {
 
 	// A description of the firewall.
 	Description *string `type:"string"`
+
+	// A complex type that contains the Amazon Web Services KMS encryption configuration
+	// settings for your firewall.
+	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the firewall.
 	FirewallArn *string `min:"1" type:"string"`
@@ -6133,6 +6349,12 @@ func (s *Firewall) SetDeleteProtection(v bool) *Firewall {
 // SetDescription sets the Description field's value.
 func (s *Firewall) SetDescription(v string) *Firewall {
 	s.Description = &v
+	return s
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *Firewall) SetEncryptionConfiguration(v *EncryptionConfiguration) *Firewall {
+	s.EncryptionConfiguration = v
 	return s
 }
 
@@ -6257,8 +6479,8 @@ type FirewallPolicy struct {
 	//
 	//    * aws:alert_established
 	//
-	// For more information, see Strict evaluation order (https://docs.aws.amazon.com/network-firewall/latest/developerguide/suricata-strict-rule-evaluation-order.html)
-	// in the AWS Network Firewall Developer Guide.
+	// For more information, see Strict evaluation order (https://docs.aws.amazon.com/network-firewall/latest/developerguide/suricata-rule-evaluation-order.html#suricata-strict-rule-evaluation-order.html)
+	// in the Network Firewall Developer Guide.
 	StatefulDefaultActions []*string `type:"list"`
 
 	// Additional options governing how Network Firewall handles stateful rules.
@@ -6480,6 +6702,10 @@ type FirewallPolicyResponse struct {
 	// A description of the firewall policy.
 	Description *string `type:"string"`
 
+	// A complex type that contains the Amazon Web Services KMS encryption configuration
+	// settings for your firewall policy.
+	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the firewall policy.
 	//
 	// If this response is for a create request that had DryRun set to TRUE, then
@@ -6544,6 +6770,12 @@ func (s *FirewallPolicyResponse) SetConsumedStatelessRuleCapacity(v int64) *Fire
 // SetDescription sets the Description field's value.
 func (s *FirewallPolicyResponse) SetDescription(v string) *FirewallPolicyResponse {
 	s.Description = &v
+	return s
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *FirewallPolicyResponse) SetEncryptionConfiguration(v *EncryptionConfiguration) *FirewallPolicyResponse {
+	s.EncryptionConfiguration = v
 	return s
 }
 
@@ -6657,9 +6889,9 @@ func (s *FirewallStatus) SetSyncStates(v map[string]*SyncState) *FirewallStatus 
 	return s
 }
 
-// The basic rule criteria for AWS Network Firewall to use to inspect packet
-// headers in stateful traffic flow inspection. Traffic flows that match the
-// criteria are a match for the corresponding StatefulRule.
+// The basic rule criteria for Network Firewall to use to inspect packet headers
+// in stateful traffic flow inspection. Traffic flows that match the criteria
+// are a match for the corresponding StatefulRule.
 type Header struct {
 	_ struct{} `type:"structure"`
 
@@ -6700,7 +6932,7 @@ type Header struct {
 	Direction *string `type:"string" required:"true" enum:"StatefulRuleDirection"`
 
 	// The protocol to inspect for. To specify all, you can use IP, because all
-	// traffic on AWS and on the internet is IP.
+	// traffic on Amazon Web Services and on the internet is IP.
 	//
 	// Protocol is a required field
 	Protocol *string `type:"string" required:"true" enum:"StatefulRuleProtocol"`
@@ -6876,8 +7108,8 @@ func (s *IPSet) SetDefinition(v []*string) *IPSet {
 	return s
 }
 
-// AWS doesn't currently have enough available capacity to fulfill your request.
-// Try your request later.
+// Amazon Web Services doesn't currently have enough available capacity to fulfill
+// your request. Try your request later.
 type InsufficientCapacityException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7805,10 +8037,10 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
-// Defines where AWS Network Firewall sends logs for the firewall for one log
-// type. This is used in LoggingConfiguration. You can send each type of log
-// to an Amazon S3 bucket, a CloudWatch log group, or a Kinesis Data Firehose
-// delivery stream.
+// Defines where Network Firewall sends logs for the firewall for one log type.
+// This is used in LoggingConfiguration. You can send each type of log to an
+// Amazon S3 bucket, a CloudWatch log group, or a Kinesis Data Firehose delivery
+// stream.
 //
 // Network Firewall generates logs for stateful rule groups. You can save alert
 // and flow log types. The stateful rules engine records flow logs for all network
@@ -7975,7 +8207,7 @@ func (s *LogDestinationPermissionException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Defines how AWS Network Firewall performs logging for a Firewall.
+// Defines how Network Firewall performs logging for a Firewall.
 type LoggingConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -8392,9 +8624,9 @@ func (s *PublishMetricAction) SetDimensions(v []*Dimension) *PublishMetricAction
 type PutResourcePolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Identity and Access Management policy statement that lists the accounts
-	// that you want to share your rule group or firewall policy with and the operations
-	// that you want the accounts to be able to perform.
+	// The IAM policy statement that lists the accounts that you want to share your
+	// rule group or firewall policy with and the operations that you want the accounts
+	// to be able to perform.
 	//
 	// For a rule group resource, you can specify the following operations in the
 	// Actions section of the statement:
@@ -8632,10 +8864,9 @@ func (s *ResourceOwnerCheckException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The inspection criteria and action for a single stateless rule. AWS Network
-// Firewall inspects each packet for the specified matching criteria. When a
-// packet matches the criteria, Network Firewall performs the rule's actions
-// on the packet.
+// The inspection criteria and action for a single stateless rule. Network Firewall
+// inspects each packet for the specified matching criteria. When a packet matches
+// the criteria, Network Firewall performs the rule's actions on the packet.
 type RuleDefinition struct {
 	_ struct{} `type:"structure"`
 
@@ -8734,7 +8965,7 @@ func (s *RuleDefinition) SetMatchAttributes(v *MatchAttributes) *RuleDefinition 
 // define the rule group. You can retrieve all objects for a rule group by calling
 // DescribeRuleGroup.
 //
-// AWS Network Firewall uses a rule group to inspect and control network traffic.
+// Network Firewall uses a rule group to inspect and control network traffic.
 // You define stateless rule groups to inspect individual packets and you define
 // stateful rule groups to inspect packets in the context of their traffic flow.
 //
@@ -8884,6 +9115,10 @@ type RuleGroupResponse struct {
 	// A description of the rule group.
 	Description *string `type:"string"`
 
+	// A complex type that contains the Amazon Web Services KMS encryption configuration
+	// settings for your rule group.
+	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
+
 	// The number of firewall policies that use this rule group.
 	NumberOfAssociations *int64 `type:"integer"`
 
@@ -8951,6 +9186,12 @@ func (s *RuleGroupResponse) SetConsumedCapacity(v int64) *RuleGroupResponse {
 // SetDescription sets the Description field's value.
 func (s *RuleGroupResponse) SetDescription(v string) *RuleGroupResponse {
 	s.Description = &v
+	return s
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *RuleGroupResponse) SetEncryptionConfiguration(v *EncryptionConfiguration) *RuleGroupResponse {
+	s.EncryptionConfiguration = v
 	return s
 }
 
@@ -9225,7 +9466,7 @@ func (s *RulesSource) SetStatelessRulesAndCustomActions(v *StatelessRulesAndCust
 // IP addresses outside of the deployment VPC, you set the HOME_NET rule variable
 // to include the CIDR range of the deployment VPC plus the other CIDR ranges.
 // For more information, see RuleVariables in this guide and Stateful domain
-// list rule groups in AWS Network Firewall (https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html)
+// list rule groups in Network Firewall (https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html)
 // in the Network Firewall Developer Guide.
 type RulesSourceList struct {
 	_ struct{} `type:"structure"`
@@ -9320,7 +9561,7 @@ type StatefulEngineOptions struct {
 	// to the rule engine as Suricata compatible strings, and Suricata evaluates
 	// them based on certain settings. For more information, see Evaluation order
 	// for stateful rules (https://docs.aws.amazon.com/network-firewall/latest/developerguide/suricata-rule-evaluation-order.html)
-	// in the AWS Network Firewall Developer Guide.
+	// in the Network Firewall Developer Guide.
 	RuleOrder *string `type:"string" enum:"RuleOrder"`
 }
 
@@ -9586,7 +9827,7 @@ type StatefulRuleOptions struct {
 	// to the rule engine as Suricata compatible strings, and Suricata evaluates
 	// them based on certain settings. For more information, see Evaluation order
 	// for stateful rules (https://docs.aws.amazon.com/network-firewall/latest/developerguide/suricata-rule-evaluation-order.html)
-	// in the AWS Network Firewall Developer Guide.
+	// in the Network Firewall Developer Guide.
 	RuleOrder *string `type:"string" enum:"RuleOrder"`
 }
 
@@ -9850,9 +10091,9 @@ func (s *StatelessRulesAndCustomActions) SetStatelessRules(v []*StatelessRule) *
 }
 
 // The ID for a subnet that you want to associate with the firewall. This is
-// used with CreateFirewall and AssociateSubnets. AWS Network Firewall creates
-// an instance of the associated firewall in each subnet that you specify, to
-// filter traffic in the subnet's Availability Zone.
+// used with CreateFirewall and AssociateSubnets. Network Firewall creates an
+// instance of the associated firewall in each subnet that you specify, to filter
+// traffic in the subnet's Availability Zone.
 type SubnetMapping struct {
 	_ struct{} `type:"structure"`
 
@@ -9902,7 +10143,7 @@ func (s *SubnetMapping) SetSubnetId(v string) *SubnetMapping {
 // The status of the firewall endpoint and firewall policy configuration for
 // a single VPC subnet.
 //
-// For each VPC subnet that you associate with a firewall, AWS Network Firewall
+// For each VPC subnet that you associate with a firewall, Network Firewall
 // does the following:
 //
 //    * Instantiates a firewall endpoint in the subnet, ready to take traffic.
@@ -10028,11 +10269,11 @@ func (s *TCPFlagField) SetMasks(v []*string) *TCPFlagField {
 	return s
 }
 
-// A key:value pair associated with an AWS resource. The key:value pair can
-// be anything you define. Typically, the tag key represents a category (such
-// as "environment") and the tag value represents a specific value within that
-// category (such as "test," "development," or "production"). You can add up
-// to 50 tags to each AWS resource.
+// A key:value pair associated with an Amazon Web Services resource. The key:value
+// pair can be anything you define. Typically, the tag key represents a category
+// (such as "environment") and the tag value represents a specific value within
+// that category (such as "test," "development," or "production"). You can add
+// up to 50 tags to each Amazon Web Services resource.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -10755,6 +10996,188 @@ func (s *UpdateFirewallDescriptionOutput) SetUpdateToken(v string) *UpdateFirewa
 	return s
 }
 
+type UpdateFirewallEncryptionConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A complex type that contains optional Amazon Web Services Key Management
+	// Service (KMS) encryption settings for your Network Firewall resources. Your
+	// data is encrypted by default with an Amazon Web Services owned key that Amazon
+	// Web Services owns and manages for you. You can use either the Amazon Web
+	// Services owned key, or provide your own customer managed key. To learn more
+	// about KMS encryption of your Network Firewall resources, see Encryption at
+	// rest with Amazon Web Services Key Managment Service (https://docs.aws.amazon.com/kms/latest/developerguide/kms-encryption-at-rest.html)
+	// in the Network Firewall Developer Guide.
+	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the firewall.
+	FirewallArn *string `min:"1" type:"string"`
+
+	// The descriptive name of the firewall. You can't change the name of a firewall
+	// after you create it.
+	FirewallName *string `min:"1" type:"string"`
+
+	// An optional token that you can use for optimistic locking. Network Firewall
+	// returns a token to your requests that access the firewall. The token marks
+	// the state of the firewall resource at the time of the request.
+	//
+	// To make an unconditional change to the firewall, omit the token in your update
+	// request. Without the token, Network Firewall performs your updates regardless
+	// of whether the firewall has changed since you last retrieved it.
+	//
+	// To make a conditional change to the firewall, provide the token in your update
+	// request. Network Firewall uses the token to ensure that the firewall hasn't
+	// changed since you last retrieved it. If it has changed, the operation fails
+	// with an InvalidTokenException. If this happens, retrieve the firewall again
+	// to get a current copy of it with a new token. Reapply your changes as needed,
+	// then try the operation again using the new token.
+	UpdateToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFirewallEncryptionConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFirewallEncryptionConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFirewallEncryptionConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFirewallEncryptionConfigurationInput"}
+	if s.FirewallArn != nil && len(*s.FirewallArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallArn", 1))
+	}
+	if s.FirewallName != nil && len(*s.FirewallName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallName", 1))
+	}
+	if s.UpdateToken != nil && len(*s.UpdateToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UpdateToken", 1))
+	}
+	if s.EncryptionConfiguration != nil {
+		if err := s.EncryptionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *UpdateFirewallEncryptionConfigurationInput) SetEncryptionConfiguration(v *EncryptionConfiguration) *UpdateFirewallEncryptionConfigurationInput {
+	s.EncryptionConfiguration = v
+	return s
+}
+
+// SetFirewallArn sets the FirewallArn field's value.
+func (s *UpdateFirewallEncryptionConfigurationInput) SetFirewallArn(v string) *UpdateFirewallEncryptionConfigurationInput {
+	s.FirewallArn = &v
+	return s
+}
+
+// SetFirewallName sets the FirewallName field's value.
+func (s *UpdateFirewallEncryptionConfigurationInput) SetFirewallName(v string) *UpdateFirewallEncryptionConfigurationInput {
+	s.FirewallName = &v
+	return s
+}
+
+// SetUpdateToken sets the UpdateToken field's value.
+func (s *UpdateFirewallEncryptionConfigurationInput) SetUpdateToken(v string) *UpdateFirewallEncryptionConfigurationInput {
+	s.UpdateToken = &v
+	return s
+}
+
+type UpdateFirewallEncryptionConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A complex type that contains optional Amazon Web Services Key Management
+	// Service (KMS) encryption settings for your Network Firewall resources. Your
+	// data is encrypted by default with an Amazon Web Services owned key that Amazon
+	// Web Services owns and manages for you. You can use either the Amazon Web
+	// Services owned key, or provide your own customer managed key. To learn more
+	// about KMS encryption of your Network Firewall resources, see Encryption at
+	// rest with Amazon Web Services Key Managment Service (https://docs.aws.amazon.com/kms/latest/developerguide/kms-encryption-at-rest.html)
+	// in the Network Firewall Developer Guide.
+	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the firewall.
+	FirewallArn *string `min:"1" type:"string"`
+
+	// The descriptive name of the firewall. You can't change the name of a firewall
+	// after you create it.
+	FirewallName *string `min:"1" type:"string"`
+
+	// An optional token that you can use for optimistic locking. Network Firewall
+	// returns a token to your requests that access the firewall. The token marks
+	// the state of the firewall resource at the time of the request.
+	//
+	// To make an unconditional change to the firewall, omit the token in your update
+	// request. Without the token, Network Firewall performs your updates regardless
+	// of whether the firewall has changed since you last retrieved it.
+	//
+	// To make a conditional change to the firewall, provide the token in your update
+	// request. Network Firewall uses the token to ensure that the firewall hasn't
+	// changed since you last retrieved it. If it has changed, the operation fails
+	// with an InvalidTokenException. If this happens, retrieve the firewall again
+	// to get a current copy of it with a new token. Reapply your changes as needed,
+	// then try the operation again using the new token.
+	UpdateToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFirewallEncryptionConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFirewallEncryptionConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *UpdateFirewallEncryptionConfigurationOutput) SetEncryptionConfiguration(v *EncryptionConfiguration) *UpdateFirewallEncryptionConfigurationOutput {
+	s.EncryptionConfiguration = v
+	return s
+}
+
+// SetFirewallArn sets the FirewallArn field's value.
+func (s *UpdateFirewallEncryptionConfigurationOutput) SetFirewallArn(v string) *UpdateFirewallEncryptionConfigurationOutput {
+	s.FirewallArn = &v
+	return s
+}
+
+// SetFirewallName sets the FirewallName field's value.
+func (s *UpdateFirewallEncryptionConfigurationOutput) SetFirewallName(v string) *UpdateFirewallEncryptionConfigurationOutput {
+	s.FirewallName = &v
+	return s
+}
+
+// SetUpdateToken sets the UpdateToken field's value.
+func (s *UpdateFirewallEncryptionConfigurationOutput) SetUpdateToken(v string) *UpdateFirewallEncryptionConfigurationOutput {
+	s.UpdateToken = &v
+	return s
+}
+
 type UpdateFirewallPolicyChangeProtectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10952,6 +11375,10 @@ type UpdateFirewallPolicyInput struct {
 	// If set to FALSE, Network Firewall makes the requested changes to your resources.
 	DryRun *bool `type:"boolean"`
 
+	// A complex type that contains settings for encryption of your firewall policy
+	// resources.
+	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
+
 	// The updated firewall policy to use for the firewall.
 	//
 	// FirewallPolicy is a required field
@@ -11019,6 +11446,11 @@ func (s *UpdateFirewallPolicyInput) Validate() error {
 	if s.UpdateToken != nil && len(*s.UpdateToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UpdateToken", 1))
 	}
+	if s.EncryptionConfiguration != nil {
+		if err := s.EncryptionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.FirewallPolicy != nil {
 		if err := s.FirewallPolicy.Validate(); err != nil {
 			invalidParams.AddNested("FirewallPolicy", err.(request.ErrInvalidParams))
@@ -11040,6 +11472,12 @@ func (s *UpdateFirewallPolicyInput) SetDescription(v string) *UpdateFirewallPoli
 // SetDryRun sets the DryRun field's value.
 func (s *UpdateFirewallPolicyInput) SetDryRun(v bool) *UpdateFirewallPolicyInput {
 	s.DryRun = &v
+	return s
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *UpdateFirewallPolicyInput) SetEncryptionConfiguration(v *EncryptionConfiguration) *UpdateFirewallPolicyInput {
+	s.EncryptionConfiguration = v
 	return s
 }
 
@@ -11208,7 +11646,7 @@ type UpdateLoggingConfigurationOutput struct {
 	// after you create it.
 	FirewallName *string `min:"1" type:"string"`
 
-	// Defines how AWS Network Firewall performs logging for a Firewall.
+	// Defines how Network Firewall performs logging for a Firewall.
 	LoggingConfiguration *LoggingConfiguration `type:"structure"`
 }
 
@@ -11266,6 +11704,9 @@ type UpdateRuleGroupInput struct {
 	//
 	// If set to FALSE, Network Firewall makes the requested changes to your resources.
 	DryRun *bool `type:"boolean"`
+
+	// A complex type that contains settings for encryption of your rule group resources.
+	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
 
 	// An object that defines the rule group rules.
 	//
@@ -11352,6 +11793,11 @@ func (s *UpdateRuleGroupInput) Validate() error {
 	if s.UpdateToken != nil && len(*s.UpdateToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UpdateToken", 1))
 	}
+	if s.EncryptionConfiguration != nil {
+		if err := s.EncryptionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RuleGroup != nil {
 		if err := s.RuleGroup.Validate(); err != nil {
 			invalidParams.AddNested("RuleGroup", err.(request.ErrInvalidParams))
@@ -11373,6 +11819,12 @@ func (s *UpdateRuleGroupInput) SetDescription(v string) *UpdateRuleGroupInput {
 // SetDryRun sets the DryRun field's value.
 func (s *UpdateRuleGroupInput) SetDryRun(v bool) *UpdateRuleGroupInput {
 	s.DryRun = &v
+	return s
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *UpdateRuleGroupInput) SetEncryptionConfiguration(v *EncryptionConfiguration) *UpdateRuleGroupInput {
+	s.EncryptionConfiguration = v
 	return s
 }
 
@@ -11682,6 +12134,22 @@ func ConfigurationSyncState_Values() []string {
 	return []string{
 		ConfigurationSyncStatePending,
 		ConfigurationSyncStateInSync,
+	}
+}
+
+const (
+	// EncryptionTypeCustomerKms is a EncryptionType enum value
+	EncryptionTypeCustomerKms = "CUSTOMER_KMS"
+
+	// EncryptionTypeAwsOwnedKmsKey is a EncryptionType enum value
+	EncryptionTypeAwsOwnedKmsKey = "AWS_OWNED_KMS_KEY"
+)
+
+// EncryptionType_Values returns all elements of the EncryptionType enum
+func EncryptionType_Values() []string {
+	return []string{
+		EncryptionTypeCustomerKms,
+		EncryptionTypeAwsOwnedKmsKey,
 	}
 }
 

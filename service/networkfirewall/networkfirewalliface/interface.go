@@ -172,6 +172,10 @@ type NetworkFirewallAPI interface {
 	UpdateFirewallDescriptionWithContext(aws.Context, *networkfirewall.UpdateFirewallDescriptionInput, ...request.Option) (*networkfirewall.UpdateFirewallDescriptionOutput, error)
 	UpdateFirewallDescriptionRequest(*networkfirewall.UpdateFirewallDescriptionInput) (*request.Request, *networkfirewall.UpdateFirewallDescriptionOutput)
 
+	UpdateFirewallEncryptionConfiguration(*networkfirewall.UpdateFirewallEncryptionConfigurationInput) (*networkfirewall.UpdateFirewallEncryptionConfigurationOutput, error)
+	UpdateFirewallEncryptionConfigurationWithContext(aws.Context, *networkfirewall.UpdateFirewallEncryptionConfigurationInput, ...request.Option) (*networkfirewall.UpdateFirewallEncryptionConfigurationOutput, error)
+	UpdateFirewallEncryptionConfigurationRequest(*networkfirewall.UpdateFirewallEncryptionConfigurationInput) (*request.Request, *networkfirewall.UpdateFirewallEncryptionConfigurationOutput)
+
 	UpdateFirewallPolicy(*networkfirewall.UpdateFirewallPolicyInput) (*networkfirewall.UpdateFirewallPolicyOutput, error)
 	UpdateFirewallPolicyWithContext(aws.Context, *networkfirewall.UpdateFirewallPolicyInput, ...request.Option) (*networkfirewall.UpdateFirewallPolicyOutput, error)
 	UpdateFirewallPolicyRequest(*networkfirewall.UpdateFirewallPolicyInput) (*request.Request, *networkfirewall.UpdateFirewallPolicyOutput)

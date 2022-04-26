@@ -26329,6 +26329,10 @@ type ResponseHeadersPolicyConfig struct {
 
 	// A configuration for a set of security-related HTTP response headers.
 	SecurityHeadersConfig *ResponseHeadersPolicySecurityHeadersConfig `type:"structure"`
+
+	// A configuration for enabling the Server-Timing header in HTTP responses sent
+	// from CloudFront.
+	ServerTimingHeadersConfig *ResponseHeadersPolicyServerTimingHeadersConfig `type:"structure"`
 }
 
 // String returns the string representation.
@@ -26370,6 +26374,11 @@ func (s *ResponseHeadersPolicyConfig) Validate() error {
 			invalidParams.AddNested("SecurityHeadersConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ServerTimingHeadersConfig != nil {
+		if err := s.ServerTimingHeadersConfig.Validate(); err != nil {
+			invalidParams.AddNested("ServerTimingHeadersConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -26404,6 +26413,12 @@ func (s *ResponseHeadersPolicyConfig) SetName(v string) *ResponseHeadersPolicyCo
 // SetSecurityHeadersConfig sets the SecurityHeadersConfig field's value.
 func (s *ResponseHeadersPolicyConfig) SetSecurityHeadersConfig(v *ResponseHeadersPolicySecurityHeadersConfig) *ResponseHeadersPolicyConfig {
 	s.SecurityHeadersConfig = v
+	return s
+}
+
+// SetServerTimingHeadersConfig sets the ServerTimingHeadersConfig field's value.
+func (s *ResponseHeadersPolicyConfig) SetServerTimingHeadersConfig(v *ResponseHeadersPolicyServerTimingHeadersConfig) *ResponseHeadersPolicyConfig {
+	s.ServerTimingHeadersConfig = v
 	return s
 }
 
@@ -27226,6 +27241,82 @@ func (s *ResponseHeadersPolicySecurityHeadersConfig) SetStrictTransportSecurity(
 // SetXSSProtection sets the XSSProtection field's value.
 func (s *ResponseHeadersPolicySecurityHeadersConfig) SetXSSProtection(v *ResponseHeadersPolicyXSSProtection) *ResponseHeadersPolicySecurityHeadersConfig {
 	s.XSSProtection = v
+	return s
+}
+
+// A configuration for enabling the Server-Timing header in HTTP responses sent
+// from CloudFront. CloudFront adds this header to HTTP responses that it sends
+// in response to requests that match a cache behavior that's associated with
+// this response headers policy.
+//
+// You can use the Server-Timing header to view metrics that can help you gain
+// insights about the behavior and performance of CloudFront. For example, you
+// can see which cache layer served a cache hit, or the first byte latency from
+// the origin when there was a cache miss. You can use the metrics in the Server-Timing
+// header to troubleshoot issues or test the efficiency of your CloudFront configuration.
+// For more information, see Server-Timing header (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/understanding-response-headers-policies.html#server-timing-header)
+// in the Amazon CloudFront Developer Guide.
+type ResponseHeadersPolicyServerTimingHeadersConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean that determines whether CloudFront adds the Server-Timing header
+	// to HTTP responses that it sends in response to requests that match a cache
+	// behavior that's associated with this response headers policy.
+	//
+	// Enabled is a required field
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// A number 0–100 (inclusive) that specifies the percentage of responses that
+	// you want CloudFront to add the Server-Timing header to. When you set the
+	// sampling rate to 100, CloudFront adds the Server-Timing header to the HTTP
+	// response for every request that matches the cache behavior that this response
+	// headers policy is attached to. When you set it to 50, CloudFront adds the
+	// header to 50% of the responses for requests that match the cache behavior.
+	// You can set the sampling rate to any number 0–100 with up to four decimal
+	// places.
+	SamplingRate *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyServerTimingHeadersConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyServerTimingHeadersConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResponseHeadersPolicyServerTimingHeadersConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResponseHeadersPolicyServerTimingHeadersConfig"}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *ResponseHeadersPolicyServerTimingHeadersConfig) SetEnabled(v bool) *ResponseHeadersPolicyServerTimingHeadersConfig {
+	s.Enabled = &v
+	return s
+}
+
+// SetSamplingRate sets the SamplingRate field's value.
+func (s *ResponseHeadersPolicyServerTimingHeadersConfig) SetSamplingRate(v float64) *ResponseHeadersPolicyServerTimingHeadersConfig {
+	s.SamplingRate = &v
 	return s
 }
 

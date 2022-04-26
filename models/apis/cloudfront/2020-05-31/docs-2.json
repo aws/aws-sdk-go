@@ -2473,6 +2473,12 @@
         "ResponseHeadersPolicyConfig$SecurityHeadersConfig": "<p>A configuration for a set of security-related HTTP response headers.</p>"
       }
     },
+    "ResponseHeadersPolicyServerTimingHeadersConfig": {
+      "base": "<p>A configuration for enabling the <code>Server-Timing</code> header in HTTP responses sent from CloudFront. CloudFront adds this header to HTTP responses that it sends in response to requests that match a cache behavior that's associated with this response headers policy.</p> <p>You can use the <code>Server-Timing</code> header to view metrics that can help you gain insights about the behavior and performance of CloudFront. For example, you can see which cache layer served a cache hit, or the first byte latency from the origin when there was a cache miss. You can use the metrics in the <code>Server-Timing</code> header to troubleshoot issues or test the efficiency of your CloudFront configuration. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/understanding-response-headers-policies.html#server-timing-header\">Server-Timing header</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "refs": {
+        "ResponseHeadersPolicyConfig$ServerTimingHeadersConfig": "<p>A configuration for enabling the <code>Server-Timing</code> header in HTTP responses sent from CloudFront.</p>"
+      }
+    },
     "ResponseHeadersPolicyStrictTransportSecurity": {
       "base": "<p>Determines whether CloudFront includes the <code>Strict-Transport-Security</code> HTTP response header and the header’s value.</p> <p>For more information about the <code>Strict-Transport-Security</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\">Strict-Transport-Security</a> in the MDN Web Docs.</p>",
       "refs": {
@@ -2528,6 +2534,12 @@
       "base": null,
       "refs": {
         "ViewerCertificate$SSLSupportMethod": "<p>If the distribution uses <code>Aliases</code> (alternate domain names or CNAMEs), specify which viewers the distribution accepts HTTPS connections from.</p> <ul> <li> <p> <code>sni-only</code> – The distribution accepts HTTPS connections from only viewers that support <a href=\"https://en.wikipedia.org/wiki/Server_Name_Indication\">server name indication (SNI)</a>. This is recommended. Most browsers and clients support SNI.</p> </li> <li> <p> <code>vip</code> – The distribution accepts HTTPS connections from all viewers including those that don’t support SNI. This is not recommended, and results in additional monthly charges from CloudFront.</p> </li> <li> <p> <code>static-ip</code> - Do not specify this value unless your distribution has been enabled for this feature by the CloudFront team. If you have a use case that requires static IP addresses for a distribution, contact CloudFront through the <a href=\"https://console.aws.amazon.com/support/home\">Amazon Web Services Support Center</a>.</p> </li> </ul> <p>If the distribution uses the CloudFront domain name such as <code>d111111abcdef8.cloudfront.net</code>, don’t set a value for this field.</p>"
+      }
+    },
+    "SamplingRate": {
+      "base": null,
+      "refs": {
+        "ResponseHeadersPolicyServerTimingHeadersConfig$SamplingRate": "<p>A number 0–100 (inclusive) that specifies the percentage of responses that you want CloudFront to add the <code>Server-Timing</code> header to. When you set the sampling rate to 100, CloudFront adds the <code>Server-Timing</code> header to the HTTP response for every request that matches the cache behavior that this response headers policy is attached to. When you set it to 50, CloudFront adds the header to 50% of the responses for requests that match the cache behavior. You can set the sampling rate to any number 0–100 with up to four decimal places.</p>"
       }
     },
     "Signer": {
@@ -3148,6 +3160,7 @@
         "ResponseHeadersPolicyCustomHeader$Override": "<p>A Boolean that determines whether CloudFront overrides a response header with the same name received from the origin with the header specified here.</p>",
         "ResponseHeadersPolicyFrameOptions$Override": "<p>A Boolean that determines whether CloudFront overrides the <code>X-Frame-Options</code> HTTP response header received from the origin with the one specified in this response headers policy.</p>",
         "ResponseHeadersPolicyReferrerPolicy$Override": "<p>A Boolean that determines whether CloudFront overrides the <code>Referrer-Policy</code> HTTP response header received from the origin with the one specified in this response headers policy.</p>",
+        "ResponseHeadersPolicyServerTimingHeadersConfig$Enabled": "<p>A Boolean that determines whether CloudFront adds the <code>Server-Timing</code> header to HTTP responses that it sends in response to requests that match a cache behavior that's associated with this response headers policy.</p>",
         "ResponseHeadersPolicyStrictTransportSecurity$Override": "<p>A Boolean that determines whether CloudFront overrides the <code>Strict-Transport-Security</code> HTTP response header received from the origin with the one specified in this response headers policy.</p>",
         "ResponseHeadersPolicyStrictTransportSecurity$IncludeSubdomains": "<p>A Boolean that determines whether CloudFront includes the <code>includeSubDomains</code> directive in the <code>Strict-Transport-Security</code> HTTP response header.</p>",
         "ResponseHeadersPolicyStrictTransportSecurity$Preload": "<p>A Boolean that determines whether CloudFront includes the <code>preload</code> directive in the <code>Strict-Transport-Security</code> HTTP response header.</p>",

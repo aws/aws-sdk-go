@@ -34040,6 +34040,10 @@ type CreateInferenceRecommendationsJobInput struct {
 	// JobType is a required field
 	JobType *string `type:"string" required:"true" enum:"RecommendationJobType"`
 
+	// Provides information about the output artifacts and the KMS key to use for
+	// Amazon S3 server-side encryption.
+	OutputConfig *RecommendationJobOutputConfig `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker
 	// to perform tasks on your behalf.
 	//
@@ -34145,6 +34149,12 @@ func (s *CreateInferenceRecommendationsJobInput) SetJobName(v string) *CreateInf
 // SetJobType sets the JobType field's value.
 func (s *CreateInferenceRecommendationsJobInput) SetJobType(v string) *CreateInferenceRecommendationsJobInput {
 	s.JobType = &v
+	return s
+}
+
+// SetOutputConfig sets the OutputConfig field's value.
+func (s *CreateInferenceRecommendationsJobInput) SetOutputConfig(v *RecommendationJobOutputConfig) *CreateInferenceRecommendationsJobInput {
+	s.OutputConfig = v
 	return s
 }
 
@@ -81163,6 +81173,39 @@ func (s *RStudioServerProDomainSettingsForUpdate) SetDomainExecutionRoleArn(v st
 	return s
 }
 
+// Provides information about the output configuration for the compiled model.
+type RecommendationJobCompiledOutputConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Identifies the Amazon S3 bucket where you want SageMaker to store the compiled
+	// model artifacts.
+	S3OutputUri *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationJobCompiledOutputConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationJobCompiledOutputConfig) GoString() string {
+	return s.String()
+}
+
+// SetS3OutputUri sets the S3OutputUri field's value.
+func (s *RecommendationJobCompiledOutputConfig) SetS3OutputUri(v string) *RecommendationJobCompiledOutputConfig {
+	s.S3OutputUri = &v
+	return s
+}
+
 // The input configuration of the recommendation job.
 type RecommendationJobInputConfig struct {
 	_ struct{} `type:"structure"`
@@ -81183,6 +81226,32 @@ type RecommendationJobInputConfig struct {
 
 	// Specifies the traffic pattern of the job.
 	TrafficPattern *TrafficPattern `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service
+	// (Amazon Web Services KMS) key that Amazon SageMaker uses to encrypt data
+	// on the storage volume attached to the ML compute instance that hosts the
+	// endpoint. This key will be passed to SageMaker Hosting for endpoint creation.
+	//
+	// The SageMaker execution role must have kms:CreateGrant permission in order
+	// to encrypt data on the storage volume of the endpoints created for inference
+	// recommendation. The inference recommendation job will fail asynchronously
+	// during endpoint configuration creation if the role passed does not have kms:CreateGrant
+	// permission.
+	//
+	// The KmsKeyId can be any of the following formats:
+	//
+	//    * // KMS Key ID "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * // Amazon Resource Name (ARN) of a KMS Key "arn:aws:kms:<region>:<account>:key/<key-id-12ab-34cd-56ef-1234567890ab>"
+	//
+	//    * // KMS Key Alias "alias/ExampleAlias"
+	//
+	//    * // Amazon Resource Name (ARN) of a KMS Key Alias "arn:aws:kms:<region>:<account>:alias/<ExampleAlias>"
+	//
+	// For more information about key identifiers, see Key identifiers (KeyID) (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-id)
+	// in the Amazon Web Services Key Management Service (Amazon Web Services KMS)
+	// documentation.
+	VolumeKmsKeyId *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -81272,6 +81341,70 @@ func (s *RecommendationJobInputConfig) SetResourceLimit(v *RecommendationJobReso
 // SetTrafficPattern sets the TrafficPattern field's value.
 func (s *RecommendationJobInputConfig) SetTrafficPattern(v *TrafficPattern) *RecommendationJobInputConfig {
 	s.TrafficPattern = v
+	return s
+}
+
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *RecommendationJobInputConfig) SetVolumeKmsKeyId(v string) *RecommendationJobInputConfig {
+	s.VolumeKmsKeyId = &v
+	return s
+}
+
+// Provides information about the output configuration for the compiled model.
+type RecommendationJobOutputConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Provides information about the output configuration for the compiled model.
+	CompiledOutputConfig *RecommendationJobCompiledOutputConfig `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service
+	// (Amazon Web Services KMS) key that Amazon SageMaker uses to encrypt your
+	// output artifacts with Amazon S3 server-side encryption. The SageMaker execution
+	// role must have kms:GenerateDataKey permission.
+	//
+	// The KmsKeyId can be any of the following formats:
+	//
+	//    * // KMS Key ID "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * // Amazon Resource Name (ARN) of a KMS Key "arn:aws:kms:<region>:<account>:key/<key-id-12ab-34cd-56ef-1234567890ab>"
+	//
+	//    * // KMS Key Alias "alias/ExampleAlias"
+	//
+	//    * // Amazon Resource Name (ARN) of a KMS Key Alias "arn:aws:kms:<region>:<account>:alias/<ExampleAlias>"
+	//
+	// For more information about key identifiers, see Key identifiers (KeyID) (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-id)
+	// in the Amazon Web Services Key Management Service (Amazon Web Services KMS)
+	// documentation.
+	KmsKeyId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationJobOutputConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationJobOutputConfig) GoString() string {
+	return s.String()
+}
+
+// SetCompiledOutputConfig sets the CompiledOutputConfig field's value.
+func (s *RecommendationJobOutputConfig) SetCompiledOutputConfig(v *RecommendationJobCompiledOutputConfig) *RecommendationJobOutputConfig {
+	s.CompiledOutputConfig = v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *RecommendationJobOutputConfig) SetKmsKeyId(v string) *RecommendationJobOutputConfig {
+	s.KmsKeyId = &v
 	return s
 }
 
