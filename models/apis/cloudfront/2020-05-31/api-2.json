@@ -5914,7 +5914,8 @@
         "Name":{"shape":"string"},
         "CorsConfig":{"shape":"ResponseHeadersPolicyCorsConfig"},
         "SecurityHeadersConfig":{"shape":"ResponseHeadersPolicySecurityHeadersConfig"},
-        "CustomHeadersConfig":{"shape":"ResponseHeadersPolicyCustomHeadersConfig"}
+        "CustomHeadersConfig":{"shape":"ResponseHeadersPolicyCustomHeadersConfig"},
+        "ServerTimingHeadersConfig":{"shape":"ResponseHeadersPolicyServerTimingHeadersConfig"}
       }
     },
     "ResponseHeadersPolicyContentSecurityPolicy":{
@@ -6036,6 +6037,14 @@
         "StrictTransportSecurity":{"shape":"ResponseHeadersPolicyStrictTransportSecurity"}
       }
     },
+    "ResponseHeadersPolicyServerTimingHeadersConfig":{
+      "type":"structure",
+      "required":["Enabled"],
+      "members":{
+        "Enabled":{"shape":"boolean"},
+        "SamplingRate":{"shape":"SamplingRate"}
+      }
+    },
     "ResponseHeadersPolicyStrictTransportSecurity":{
       "type":"structure",
       "required":[
@@ -6119,6 +6128,11 @@
         "vip",
         "static-ip"
       ]
+    },
+    "SamplingRate":{
+      "type":"double",
+      "max":100.0,
+      "min":0.0
     },
     "Signer":{
       "type":"structure",

@@ -1,3 +1,19 @@
+Release v1.44.1 (2022-04-26)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service API and documentation
+  * CloudFront now supports the Server-Timing header in HTTP responses sent from CloudFront. You can use this header to view metrics that help you gain insights about the behavior and performance of CloudFront. To use this header, enable it in a response headers policy.
+* `service/glue`: Updates service documentation
+  * This release adds documentation for the APIs to create, read, delete, list, and batch read of AWS Glue custom patterns, and for Lake Formation configuration settings in the AWS Glue crawler.
+* `service/ivschat`: Updates service API, documentation, paginators, and examples
+* `service/lightsail`: Updates service API and documentation
+  * This release adds support for Lightsail load balancer HTTP to HTTPS redirect and TLS policy configuration.
+* `service/network-firewall`: Updates service API and documentation
+* `service/pricing`: Updates service documentation
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker Inference Recommender now accepts customer KMS key ID for encryption of endpoints and compilation outputs created during inference recommendation.
+
 Release v1.44.0 (2022-04-25)
 ===
 

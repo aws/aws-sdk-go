@@ -685,6 +685,8 @@ func (c *Glue) BatchGetCustomEntityTypesRequest(input *BatchGetCustomEntityTypes
 
 // BatchGetCustomEntityTypes API operation for AWS Glue.
 //
+// Retrieves the details for the custom patterns specified by a list of names.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2027,6 +2029,13 @@ func (c *Glue) CreateCustomEntityTypeRequest(input *CreateCustomEntityTypeInput)
 }
 
 // CreateCustomEntityType API operation for AWS Glue.
+//
+// Creates a custom pattern that is used to detect sensitive data across the
+// columns and rows of your structured data.
+//
+// Each custom pattern you create specifies a regular expression and an optional
+// list of context words. If no context words are passed only a regular expression
+// is checked.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4131,6 +4140,8 @@ func (c *Glue) DeleteCustomEntityTypeRequest(input *DeleteCustomEntityTypeInput)
 }
 
 // DeleteCustomEntityType API operation for AWS Glue.
+//
+// Deletes a custom pattern by specifying its name.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7193,6 +7204,8 @@ func (c *Glue) GetCustomEntityTypeRequest(input *GetCustomEntityTypeInput) (req 
 }
 
 // GetCustomEntityType API operation for AWS Glue.
+//
+// Retrieves the details of a custom pattern by specifying its name.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12818,6 +12831,8 @@ func (c *Glue) ListCustomEntityTypesRequest(input *ListCustomEntityTypesInput) (
 }
 
 // ListCustomEntityTypes API operation for AWS Glue.
+//
+// Lists all the custom patterns that have been created.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -19893,6 +19908,8 @@ func (s *BatchGetCrawlersOutput) SetCrawlersNotFound(v []*string) *BatchGetCrawl
 type BatchGetCustomEntityTypesInput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of names of the custom patterns that you want to retrieve.
+	//
 	// Names is a required field
 	Names []*string `min:"1" type:"list" required:"true"`
 }
@@ -19940,8 +19957,11 @@ func (s *BatchGetCustomEntityTypesInput) SetNames(v []*string) *BatchGetCustomEn
 type BatchGetCustomEntityTypesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of CustomEntityType objects representing the custom patterns that
+	// have been created.
 	CustomEntityTypes []*CustomEntityType `type:"list"`
 
+	// A list of the names of custom patterns that were not found.
 	CustomEntityTypesNotFound []*string `min:"1" type:"list"`
 }
 
@@ -23683,6 +23703,8 @@ type Crawler struct {
 	// A description of the crawler.
 	Description *string `type:"string"`
 
+	// Specifies whether the crawler should use AWS Lake Formation credentials for
+	// the crawler instead of the IAM role credentials.
 	LakeFormationConfiguration *LakeFormationConfiguration `type:"structure"`
 
 	// The status of the last crawl, and potentially error information if an error
@@ -24628,6 +24650,7 @@ type CreateCrawlerInput struct {
 	// A description of the new crawler.
 	Description *string `type:"string"`
 
+	// Specifies AWS Lake Formation configuration settings for the crawler.
 	LakeFormationConfiguration *LakeFormationConfiguration `type:"structure"`
 
 	// Specifies data lineage configuration settings for the crawler.
@@ -24944,11 +24967,22 @@ func (s *CreateCsvClassifierRequest) SetQuoteSymbol(v string) *CreateCsvClassifi
 type CreateCustomEntityTypeInput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of context words. If none of these context words are found within
+	// the vicinity of the regular expression the data will not be detected as sensitive
+	// data.
+	//
+	// If no context words are passed only a regular expression is checked.
 	ContextWords []*string `min:"1" type:"list"`
 
+	// A name for the custom pattern that allows it to be retrieved or deleted later.
+	// This name must be unique per Amazon Web Services account.
+	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// A regular expression string that is used for detecting sensitive data in
+	// a custom pattern.
+	//
 	// RegexString is a required field
 	RegexString *string `min:"1" type:"string" required:"true"`
 }
@@ -25017,6 +25051,7 @@ func (s *CreateCustomEntityTypeInput) SetRegexString(v string) *CreateCustomEnti
 type CreateCustomEntityTypeOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the custom pattern you created.
 	Name *string `min:"1" type:"string"`
 }
 
@@ -28273,14 +28308,27 @@ func (s *CsvClassifier) SetVersion(v int64) *CsvClassifier {
 	return s
 }
 
+// An object representing a custom pattern for detecting sensitive data across
+// the columns and rows of your structured data.
 type CustomEntityType struct {
 	_ struct{} `type:"structure"`
 
+	// A list of context words. If none of these context words are found within
+	// the vicinity of the regular expression the data will not be detected as sensitive
+	// data.
+	//
+	// If no context words are passed only a regular expression is checked.
 	ContextWords []*string `min:"1" type:"list"`
 
+	// A name for the custom pattern that allows it to be retrieved or deleted later.
+	// This name must be unique per Amazon Web Services account.
+	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// A regular expression string that is used for detecting sensitive data in
+	// a custom pattern.
+	//
 	// RegexString is a required field
 	RegexString *string `min:"1" type:"string" required:"true"`
 }
@@ -29493,6 +29541,8 @@ func (s DeleteCrawlerOutput) GoString() string {
 type DeleteCustomEntityTypeInput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the custom pattern that you want to delete.
+	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
@@ -29540,6 +29590,7 @@ func (s *DeleteCustomEntityTypeInput) SetName(v string) *DeleteCustomEntityTypeI
 type DeleteCustomEntityTypeOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the custom pattern you deleted.
 	Name *string `min:"1" type:"string"`
 }
 
@@ -33901,6 +33952,8 @@ func (s *GetCrawlersOutput) SetNextToken(v string) *GetCrawlersOutput {
 type GetCustomEntityTypeInput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the custom pattern that you want to retrieve.
+	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
@@ -33948,10 +34001,16 @@ func (s *GetCustomEntityTypeInput) SetName(v string) *GetCustomEntityTypeInput {
 type GetCustomEntityTypeOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of context words if specified when you created the custom pattern.
+	// If none of these context words are found within the vicinity of the regular
+	// expression the data will not be detected as sensitive data.
 	ContextWords []*string `min:"1" type:"list"`
 
+	// The name of the custom pattern that you retrieved.
 	Name *string `min:"1" type:"string"`
 
+	// A regular expression string that is used for detecting sensitive data in
+	// a custom pattern.
 	RegexString *string `min:"1" type:"string"`
 }
 
@@ -41824,11 +41883,16 @@ func (s *LabelingSetGenerationTaskRunProperties) SetOutputS3Path(v string) *Labe
 	return s
 }
 
+// Specifies AWS Lake Formation configuration settings for the crawler.
 type LakeFormationConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Required for cross account crawls. For same account crawls as the target
+	// data, this can be left as null.
 	AccountId *string `type:"string"`
 
+	// Specifies whether to use AWS Lake Formation credentials for the crawler instead
+	// of the IAM role credentials.
 	UseLakeFormationCredentials *bool `type:"boolean"`
 }
 
@@ -42256,8 +42320,10 @@ func (s *ListCrawlersOutput) SetNextToken(v string) *ListCrawlersOutput {
 type ListCustomEntityTypesInput struct {
 	_ struct{} `type:"structure"`
 
+	// The maximum number of results to return.
 	MaxResults *int64 `min:"1" type:"integer"`
 
+	// A paginated token to offset the results.
 	NextToken *string `type:"string"`
 }
 
@@ -42307,8 +42373,10 @@ func (s *ListCustomEntityTypesInput) SetNextToken(v string) *ListCustomEntityTyp
 type ListCustomEntityTypesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of CustomEntityType objects representing custom patterns.
 	CustomEntityTypes []*CustomEntityType `type:"list"`
 
+	// A pagination token, if more results are available.
 	NextToken *string `type:"string"`
 }
 
@@ -52926,6 +52994,7 @@ type UpdateCrawlerInput struct {
 	// A description of the new crawler.
 	Description *string `type:"string"`
 
+	// Specifies AWS Lake Formation configuration settings for the crawler.
 	LakeFormationConfiguration *LakeFormationConfiguration `type:"structure"`
 
 	// Specifies data lineage configuration settings for the crawler.

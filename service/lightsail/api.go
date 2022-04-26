@@ -75,8 +75,8 @@ func (c *Lightsail) AllocateStaticIpRequest(input *AllocateStaticIpInput) (req *
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -170,10 +170,11 @@ func (c *Lightsail) AttachCertificateToDistributionRequest(input *AttachCertific
 // Use the CreateCertificate action to create a certificate that you can attach
 // to your distribution.
 //
-// Only certificates created in the us-east-1 AWS Region can be attached to
-// Lightsail distributions. Lightsail distributions are global resources that
-// can reference an origin in any AWS Region, and distribute its content globally.
-// However, all distributions are located in the us-east-1 Region.
+// Only certificates created in the us-east-1 Amazon Web Services Region can
+// be attached to Lightsail distributions. Lightsail distributions are global
+// resources that can reference an origin in any Amazon Web Services Region,
+// and distribute its content globally. However, all distributions are located
+// in the us-east-1 Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -191,8 +192,8 @@ func (c *Lightsail) AttachCertificateToDistributionRequest(input *AttachCertific
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -296,8 +297,8 @@ func (c *Lightsail) AttachDiskRequest(input *AttachDiskInput) (req *request.Requ
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -407,8 +408,8 @@ func (c *Lightsail) AttachInstancesToLoadBalancerRequest(input *AttachInstancesT
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -522,8 +523,8 @@ func (c *Lightsail) AttachLoadBalancerTlsCertificateRequest(input *AttachLoadBal
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -626,8 +627,8 @@ func (c *Lightsail) AttachStaticIpRequest(input *AttachStaticIpInput) (req *requ
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -734,8 +735,8 @@ func (c *Lightsail) CloseInstancePublicPortsRequest(input *CloseInstancePublicPo
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -823,7 +824,8 @@ func (c *Lightsail) CopySnapshotRequest(input *CopySnapshotInput) (req *request.
 // Copies a manual snapshot of an instance or disk as another manual snapshot,
 // or copies an automatic snapshot of an instance or disk as a manual snapshot.
 // This operation can also be used to copy a manual or automatic snapshot of
-// an instance or a disk from one AWS Region to another in Amazon Lightsail.
+// an instance or a disk from one Amazon Web Services Region to another in Amazon
+// Lightsail.
 //
 // When copying a manual snapshot, be sure to define the source region, source
 // snapshot name, and target snapshot name parameters.
@@ -848,8 +850,8 @@ func (c *Lightsail) CopySnapshotRequest(input *CopySnapshotInput) (req *request.
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -958,8 +960,8 @@ func (c *Lightsail) CreateBucketRequest(input *CreateBucketInput) (req *request.
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * ServiceException
 //   A general service exception.
@@ -1069,8 +1071,8 @@ func (c *Lightsail) CreateBucketAccessKeyRequest(input *CreateBucketAccessKeyInp
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * ServiceException
 //   A general service exception.
@@ -1152,10 +1154,11 @@ func (c *Lightsail) CreateCertificateRequest(input *CreateCertificateInput) (req
 // UpdateContainerService action to use the certificate and its domains with
 // your container service.
 //
-// Only certificates created in the us-east-1 AWS Region can be attached to
-// Lightsail distributions. Lightsail distributions are global resources that
-// can reference an origin in any AWS Region, and distribute its content globally.
-// However, all distributions are located in the us-east-1 Region.
+// Only certificates created in the us-east-1 Amazon Web Services Region can
+// be attached to Lightsail distributions. Lightsail distributions are global
+// resources that can reference an origin in any Amazon Web Services Region,
+// and distribute its content globally. However, all distributions are located
+// in the us-east-1 Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1173,8 +1176,8 @@ func (c *Lightsail) CreateCertificateRequest(input *CreateCertificateInput) (req
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -1278,8 +1281,8 @@ func (c *Lightsail) CreateCloudFormationStackRequest(input *CreateCloudFormation
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -1368,9 +1371,10 @@ func (c *Lightsail) CreateContactMethodRequest(input *CreateContactMethodInput) 
 //
 // A contact method is used to send you notifications about your Amazon Lightsail
 // resources. You can add one email address and one mobile phone number contact
-// method in each AWS Region. However, SMS text messaging is not supported in
-// some AWS Regions, and SMS text messages cannot be sent to some countries/regions.
-// For more information, see Notifications in Amazon Lightsail (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-notifications).
+// method in each Amazon Web Services Region. However, SMS text messaging is
+// not supported in some Amazon Web Services Regions, and SMS text messages
+// cannot be sent to some countries/regions. For more information, see Notifications
+// in Amazon Lightsail (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-notifications).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1388,8 +1392,8 @@ func (c *Lightsail) CreateContactMethodRequest(input *CreateContactMethodInput) 
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -1493,8 +1497,8 @@ func (c *Lightsail) CreateContainerServiceRequest(input *CreateContainerServiceI
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -1602,8 +1606,8 @@ func (c *Lightsail) CreateContainerServiceDeploymentRequest(input *CreateContain
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -1719,8 +1723,8 @@ func (c *Lightsail) CreateContainerServiceRegistryLoginRequest(input *CreateCont
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -1820,8 +1824,8 @@ func (c *Lightsail) CreateDiskRequest(input *CreateDiskInput) (req *request.Requ
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -1931,8 +1935,8 @@ func (c *Lightsail) CreateDiskFromSnapshotRequest(input *CreateDiskFromSnapshotI
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -2062,8 +2066,8 @@ func (c *Lightsail) CreateDiskSnapshotRequest(input *CreateDiskSnapshotInput) (r
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -2171,8 +2175,8 @@ func (c *Lightsail) CreateDistributionRequest(input *CreateDistributionInput) (r
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -2274,8 +2278,8 @@ func (c *Lightsail) CreateDomainRequest(input *CreateDomainInput) (req *request.
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -2384,8 +2388,8 @@ func (c *Lightsail) CreateDomainEntryRequest(input *CreateDomainEntryInput) (req
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -2493,8 +2497,8 @@ func (c *Lightsail) CreateInstanceSnapshotRequest(input *CreateInstanceSnapshotI
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -2600,8 +2604,8 @@ func (c *Lightsail) CreateInstancesRequest(input *CreateInstancesInput) (req *re
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -2710,8 +2714,8 @@ func (c *Lightsail) CreateInstancesFromSnapshotRequest(input *CreateInstancesFro
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -2821,8 +2825,8 @@ func (c *Lightsail) CreateKeyPairRequest(input *CreateKeyPairInput) (req *reques
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -2936,8 +2940,8 @@ func (c *Lightsail) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (r
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -3046,8 +3050,8 @@ func (c *Lightsail) CreateLoadBalancerTlsCertificateRequest(input *CreateLoadBal
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -3154,8 +3158,8 @@ func (c *Lightsail) CreateRelationalDatabaseRequest(input *CreateRelationalDatab
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -3267,8 +3271,8 @@ func (c *Lightsail) CreateRelationalDatabaseFromSnapshotRequest(input *CreateRel
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -3377,8 +3381,8 @@ func (c *Lightsail) CreateRelationalDatabaseSnapshotRequest(input *CreateRelatio
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -3486,8 +3490,8 @@ func (c *Lightsail) DeleteAlarmRequest(input *DeleteAlarmInput) (req *request.Re
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * OperationFailureException
 //   Lightsail throws this exception when an operation fails to execute.
@@ -3587,8 +3591,8 @@ func (c *Lightsail) DeleteAutoSnapshotRequest(input *DeleteAutoSnapshotInput) (r
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -3672,7 +3676,7 @@ func (c *Lightsail) DeleteBucketRequest(input *DeleteBucketInput) (req *request.
 // Deletes a Amazon Lightsail bucket.
 //
 // When you delete your bucket, the bucket name is released and can be reused
-// for a new bucket in your account or another AWS account.
+// for a new bucket in your account or another Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3691,8 +3695,8 @@ func (c *Lightsail) DeleteBucketRequest(input *DeleteBucketInput) (req *request.
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -3794,8 +3798,8 @@ func (c *Lightsail) DeleteBucketAccessKeyRequest(input *DeleteBucketAccessKeyInp
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -3895,8 +3899,8 @@ func (c *Lightsail) DeleteCertificateRequest(input *DeleteCertificateInput) (req
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * AccessDeniedException
 //   Lightsail throws this exception when the user cannot be authenticated or
@@ -3978,9 +3982,10 @@ func (c *Lightsail) DeleteContactMethodRequest(input *DeleteContactMethodInput) 
 //
 // A contact method is used to send you notifications about your Amazon Lightsail
 // resources. You can add one email address and one mobile phone number contact
-// method in each AWS Region. However, SMS text messaging is not supported in
-// some AWS Regions, and SMS text messages cannot be sent to some countries/regions.
-// For more information, see Notifications in Amazon Lightsail (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-notifications).
+// method in each Amazon Web Services Region. However, SMS text messaging is
+// not supported in some Amazon Web Services Regions, and SMS text messages
+// cannot be sent to some countries/regions. For more information, see Notifications
+// in Amazon Lightsail (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-notifications).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3998,8 +4003,8 @@ func (c *Lightsail) DeleteContactMethodRequest(input *DeleteContactMethodInput) 
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * OperationFailureException
 //   Lightsail throws this exception when an operation fails to execute.
@@ -4100,8 +4105,8 @@ func (c *Lightsail) DeleteContainerImageRequest(input *DeleteContainerImageInput
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -4198,8 +4203,8 @@ func (c *Lightsail) DeleteContainerServiceRequest(input *DeleteContainerServiceI
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -4302,8 +4307,8 @@ func (c *Lightsail) DeleteDiskRequest(input *DeleteDiskInput) (req *request.Requ
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -4417,8 +4422,8 @@ func (c *Lightsail) DeleteDiskSnapshotRequest(input *DeleteDiskSnapshotInput) (r
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -4521,8 +4526,8 @@ func (c *Lightsail) DeleteDistributionRequest(input *DeleteDistributionInput) (r
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -4625,8 +4630,8 @@ func (c *Lightsail) DeleteDomainRequest(input *DeleteDomainInput) (req *request.
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -4733,8 +4738,8 @@ func (c *Lightsail) DeleteDomainEntryRequest(input *DeleteDomainEntryInput) (req
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -4841,8 +4846,8 @@ func (c *Lightsail) DeleteInstanceRequest(input *DeleteInstanceInput) (req *requ
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -4949,8 +4954,8 @@ func (c *Lightsail) DeleteInstanceSnapshotRequest(input *DeleteInstanceSnapshotI
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -5064,8 +5069,8 @@ func (c *Lightsail) DeleteKeyPairRequest(input *DeleteKeyPairInput) (req *reques
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -5176,8 +5181,8 @@ func (c *Lightsail) DeleteKnownHostKeysRequest(input *DeleteKnownHostKeysInput) 
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -5286,8 +5291,8 @@ func (c *Lightsail) DeleteLoadBalancerRequest(input *DeleteLoadBalancerInput) (r
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -5394,8 +5399,8 @@ func (c *Lightsail) DeleteLoadBalancerTlsCertificateRequest(input *DeleteLoadBal
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -5502,8 +5507,8 @@ func (c *Lightsail) DeleteRelationalDatabaseRequest(input *DeleteRelationalDatab
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -5610,8 +5615,8 @@ func (c *Lightsail) DeleteRelationalDatabaseSnapshotRequest(input *DeleteRelatio
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -5718,8 +5723,8 @@ func (c *Lightsail) DetachCertificateFromDistributionRequest(input *DetachCertif
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -5824,8 +5829,8 @@ func (c *Lightsail) DetachDiskRequest(input *DetachDiskInput) (req *request.Requ
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -5935,8 +5940,8 @@ func (c *Lightsail) DetachInstancesFromLoadBalancerRequest(input *DetachInstance
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -6039,8 +6044,8 @@ func (c *Lightsail) DetachStaticIpRequest(input *DetachStaticIpInput) (req *requ
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -6144,8 +6149,8 @@ func (c *Lightsail) DisableAddOnRequest(input *DisableAddOnInput) (req *request.
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -6247,8 +6252,8 @@ func (c *Lightsail) DownloadDefaultKeyPairRequest(input *DownloadDefaultKeyPairI
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -6352,8 +6357,8 @@ func (c *Lightsail) EnableAddOnRequest(input *EnableAddOnInput) (req *request.Re
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -6468,8 +6473,8 @@ func (c *Lightsail) ExportSnapshotRequest(input *ExportSnapshotInput) (req *requ
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -6572,8 +6577,8 @@ func (c *Lightsail) GetActiveNamesRequest(input *GetActiveNamesInput) (req *requ
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -6683,8 +6688,8 @@ func (c *Lightsail) GetAlarmsRequest(input *GetAlarmsInput) (req *request.Reques
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * OperationFailureException
 //   Lightsail throws this exception when an operation fails to execute.
@@ -6784,8 +6789,8 @@ func (c *Lightsail) GetAutoSnapshotsRequest(input *GetAutoSnapshotsInput) (req *
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -6892,8 +6897,8 @@ func (c *Lightsail) GetBlueprintsRequest(input *GetBlueprintsInput) (req *reques
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -7002,8 +7007,8 @@ func (c *Lightsail) GetBucketAccessKeysRequest(input *GetBucketAccessKeysInput) 
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -7105,8 +7110,8 @@ func (c *Lightsail) GetBucketBundlesRequest(input *GetBucketBundlesInput) (req *
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * ServiceException
 //   A general service exception.
@@ -7203,8 +7208,8 @@ func (c *Lightsail) GetBucketMetricDataRequest(input *GetBucketMetricDataInput) 
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -7306,8 +7311,8 @@ func (c *Lightsail) GetBucketsRequest(input *GetBucketsInput) (req *request.Requ
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -7403,8 +7408,8 @@ func (c *Lightsail) GetBundlesRequest(input *GetBundlesInput) (req *request.Requ
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -7511,8 +7516,8 @@ func (c *Lightsail) GetCertificatesRequest(input *GetCertificatesInput) (req *re
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -7612,8 +7617,8 @@ func (c *Lightsail) GetCloudFormationStackRecordsRequest(input *GetCloudFormatio
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -7703,9 +7708,10 @@ func (c *Lightsail) GetContactMethodsRequest(input *GetContactMethodsInput) (req
 //
 // A contact method is used to send you notifications about your Amazon Lightsail
 // resources. You can add one email address and one mobile phone number contact
-// method in each AWS Region. However, SMS text messaging is not supported in
-// some AWS Regions, and SMS text messages cannot be sent to some countries/regions.
-// For more information, see Notifications in Amazon Lightsail (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-notifications).
+// method in each Amazon Web Services Region. However, SMS text messaging is
+// not supported in some Amazon Web Services Regions, and SMS text messages
+// cannot be sent to some countries/regions. For more information, see Notifications
+// in Amazon Lightsail (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-notifications).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7723,8 +7729,8 @@ func (c *Lightsail) GetContactMethodsRequest(input *GetContactMethodsInput) (req
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -7916,8 +7922,8 @@ func (c *Lightsail) GetContainerImagesRequest(input *GetContainerImagesInput) (r
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -8022,8 +8028,8 @@ func (c *Lightsail) GetContainerLogRequest(input *GetContainerLogInput) (req *re
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -8130,8 +8136,8 @@ func (c *Lightsail) GetContainerServiceDeploymentsRequest(input *GetContainerSer
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -8232,8 +8238,8 @@ func (c *Lightsail) GetContainerServiceMetricDataRequest(input *GetContainerServ
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -8333,8 +8339,8 @@ func (c *Lightsail) GetContainerServicePowersRequest(input *GetContainerServiceP
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -8431,8 +8437,8 @@ func (c *Lightsail) GetContainerServicesRequest(input *GetContainerServicesInput
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -8528,8 +8534,8 @@ func (c *Lightsail) GetDiskRequest(input *GetDiskInput) (req *request.Request, o
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -8632,8 +8638,8 @@ func (c *Lightsail) GetDiskSnapshotRequest(input *GetDiskSnapshotInput) (req *re
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -8737,8 +8743,8 @@ func (c *Lightsail) GetDiskSnapshotsRequest(input *GetDiskSnapshotsInput) (req *
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -8842,8 +8848,8 @@ func (c *Lightsail) GetDisksRequest(input *GetDisksInput) (req *request.Request,
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -8950,8 +8956,8 @@ func (c *Lightsail) GetDistributionBundlesRequest(input *GetDistributionBundlesI
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -9051,8 +9057,8 @@ func (c *Lightsail) GetDistributionLatestCacheResetRequest(input *GetDistributio
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -9156,8 +9162,8 @@ func (c *Lightsail) GetDistributionMetricDataRequest(input *GetDistributionMetri
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -9257,8 +9263,8 @@ func (c *Lightsail) GetDistributionsRequest(input *GetDistributionsInput) (req *
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -9357,8 +9363,8 @@ func (c *Lightsail) GetDomainRequest(input *GetDomainInput) (req *request.Reques
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -9461,8 +9467,8 @@ func (c *Lightsail) GetDomainsRequest(input *GetDomainsInput) (req *request.Requ
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -9570,8 +9576,8 @@ func (c *Lightsail) GetExportSnapshotRecordsRequest(input *GetExportSnapshotReco
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -9675,8 +9681,8 @@ func (c *Lightsail) GetInstanceRequest(input *GetInstanceInput) (req *request.Re
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -9784,8 +9790,8 @@ func (c *Lightsail) GetInstanceAccessDetailsRequest(input *GetInstanceAccessDeta
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -9893,8 +9899,8 @@ func (c *Lightsail) GetInstanceMetricDataRequest(input *GetInstanceMetricDataInp
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -9999,8 +10005,8 @@ func (c *Lightsail) GetInstancePortStatesRequest(input *GetInstancePortStatesInp
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -10103,8 +10109,8 @@ func (c *Lightsail) GetInstanceSnapshotRequest(input *GetInstanceSnapshotInput) 
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -10207,8 +10213,8 @@ func (c *Lightsail) GetInstanceSnapshotsRequest(input *GetInstanceSnapshotsInput
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -10311,8 +10317,8 @@ func (c *Lightsail) GetInstanceStateRequest(input *GetInstanceStateInput) (req *
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -10416,8 +10422,8 @@ func (c *Lightsail) GetInstancesRequest(input *GetInstancesInput) (req *request.
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -10520,8 +10526,8 @@ func (c *Lightsail) GetKeyPairRequest(input *GetKeyPairInput) (req *request.Requ
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -10624,8 +10630,8 @@ func (c *Lightsail) GetKeyPairsRequest(input *GetKeyPairsInput) (req *request.Re
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -10728,8 +10734,8 @@ func (c *Lightsail) GetLoadBalancerRequest(input *GetLoadBalancerInput) (req *re
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -10836,8 +10842,8 @@ func (c *Lightsail) GetLoadBalancerMetricDataRequest(input *GetLoadBalancerMetri
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -10946,8 +10952,8 @@ func (c *Lightsail) GetLoadBalancerTlsCertificatesRequest(input *GetLoadBalancer
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -10983,6 +10989,109 @@ func (c *Lightsail) GetLoadBalancerTlsCertificates(input *GetLoadBalancerTlsCert
 // for more information on using Contexts.
 func (c *Lightsail) GetLoadBalancerTlsCertificatesWithContext(ctx aws.Context, input *GetLoadBalancerTlsCertificatesInput, opts ...request.Option) (*GetLoadBalancerTlsCertificatesOutput, error) {
 	req, out := c.GetLoadBalancerTlsCertificatesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetLoadBalancerTlsPolicies = "GetLoadBalancerTlsPolicies"
+
+// GetLoadBalancerTlsPoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the GetLoadBalancerTlsPolicies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetLoadBalancerTlsPolicies for more information on using the GetLoadBalancerTlsPolicies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetLoadBalancerTlsPoliciesRequest method.
+//    req, resp := client.GetLoadBalancerTlsPoliciesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetLoadBalancerTlsPolicies
+func (c *Lightsail) GetLoadBalancerTlsPoliciesRequest(input *GetLoadBalancerTlsPoliciesInput) (req *request.Request, output *GetLoadBalancerTlsPoliciesOutput) {
+	op := &request.Operation{
+		Name:       opGetLoadBalancerTlsPolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetLoadBalancerTlsPoliciesInput{}
+	}
+
+	output = &GetLoadBalancerTlsPoliciesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetLoadBalancerTlsPolicies API operation for Amazon Lightsail.
+//
+// Returns a list of TLS security policies that you can apply to Lightsail load
+// balancers.
+//
+// For more information about load balancer TLS security policies, see Load
+// balancer TLS security policies (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configure-load-balancer-tls-security-policy)
+// in the Amazon Lightsail Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lightsail's
+// API operation GetLoadBalancerTlsPolicies for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   A general service exception.
+//
+//   * AccessDeniedException
+//   Lightsail throws this exception when the user cannot be authenticated or
+//   uses invalid credentials to access a resource.
+//
+//   * AccountSetupInProgressException
+//   Lightsail throws this exception when an account is still in the setup in
+//   progress state.
+//
+//   * UnauthenticatedException
+//   Lightsail throws this exception when the user has not been authenticated.
+//
+//   * InvalidInputException
+//   Lightsail throws this exception when user input does not conform to the validation
+//   rules of an input field.
+//
+//   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetLoadBalancerTlsPolicies
+func (c *Lightsail) GetLoadBalancerTlsPolicies(input *GetLoadBalancerTlsPoliciesInput) (*GetLoadBalancerTlsPoliciesOutput, error) {
+	req, out := c.GetLoadBalancerTlsPoliciesRequest(input)
+	return out, req.Send()
+}
+
+// GetLoadBalancerTlsPoliciesWithContext is the same as GetLoadBalancerTlsPolicies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetLoadBalancerTlsPolicies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lightsail) GetLoadBalancerTlsPoliciesWithContext(ctx aws.Context, input *GetLoadBalancerTlsPoliciesInput, opts ...request.Option) (*GetLoadBalancerTlsPoliciesOutput, error) {
+	req, out := c.GetLoadBalancerTlsPoliciesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -11050,8 +11159,8 @@ func (c *Lightsail) GetLoadBalancersRequest(input *GetLoadBalancersInput) (req *
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -11156,8 +11265,8 @@ func (c *Lightsail) GetOperationRequest(input *GetOperationInput) (req *request.
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -11264,8 +11373,8 @@ func (c *Lightsail) GetOperationsRequest(input *GetOperationsInput) (req *reques
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -11368,8 +11477,8 @@ func (c *Lightsail) GetOperationsForResourceRequest(input *GetOperationsForResou
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -11473,8 +11582,8 @@ func (c *Lightsail) GetRegionsRequest(input *GetRegionsInput) (req *request.Requ
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -11577,8 +11686,8 @@ func (c *Lightsail) GetRelationalDatabaseRequest(input *GetRelationalDatabaseInp
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -11685,8 +11794,8 @@ func (c *Lightsail) GetRelationalDatabaseBlueprintsRequest(input *GetRelationalD
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -11793,8 +11902,8 @@ func (c *Lightsail) GetRelationalDatabaseBundlesRequest(input *GetRelationalData
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -11897,8 +12006,8 @@ func (c *Lightsail) GetRelationalDatabaseEventsRequest(input *GetRelationalDatab
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -12001,8 +12110,8 @@ func (c *Lightsail) GetRelationalDatabaseLogEventsRequest(input *GetRelationalDa
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -12106,8 +12215,8 @@ func (c *Lightsail) GetRelationalDatabaseLogStreamsRequest(input *GetRelationalD
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -12214,8 +12323,8 @@ func (c *Lightsail) GetRelationalDatabaseMasterUserPasswordRequest(input *GetRel
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -12323,8 +12432,8 @@ func (c *Lightsail) GetRelationalDatabaseMetricDataRequest(input *GetRelationalD
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -12433,8 +12542,8 @@ func (c *Lightsail) GetRelationalDatabaseParametersRequest(input *GetRelationalD
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -12537,8 +12646,8 @@ func (c *Lightsail) GetRelationalDatabaseSnapshotRequest(input *GetRelationalDat
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -12641,8 +12750,8 @@ func (c *Lightsail) GetRelationalDatabaseSnapshotsRequest(input *GetRelationalDa
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -12745,8 +12854,8 @@ func (c *Lightsail) GetRelationalDatabasesRequest(input *GetRelationalDatabasesI
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -12849,8 +12958,8 @@ func (c *Lightsail) GetStaticIpRequest(input *GetStaticIpInput) (req *request.Re
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -12953,8 +13062,8 @@ func (c *Lightsail) GetStaticIpsRequest(input *GetStaticIpsInput) (req *request.
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -13057,8 +13166,8 @@ func (c *Lightsail) ImportKeyPairRequest(input *ImportKeyPairInput) (req *reques
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -13161,8 +13270,8 @@ func (c *Lightsail) IsVpcPeeredRequest(input *IsVpcPeeredInput) (req *request.Re
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -13270,8 +13379,8 @@ func (c *Lightsail) OpenInstancePublicPortsRequest(input *OpenInstancePublicPort
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -13374,8 +13483,8 @@ func (c *Lightsail) PeerVpcRequest(input *PeerVpcInput) (req *request.Request, o
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -13491,8 +13600,8 @@ func (c *Lightsail) PutAlarmRequest(input *PutAlarmInput) (req *request.Request,
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * OperationFailureException
 //   Lightsail throws this exception when an operation fails to execute.
@@ -13600,8 +13709,8 @@ func (c *Lightsail) PutInstancePublicPortsRequest(input *PutInstancePublicPortsI
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -13708,8 +13817,8 @@ func (c *Lightsail) RebootInstanceRequest(input *RebootInstanceInput) (req *requ
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -13816,8 +13925,8 @@ func (c *Lightsail) RebootRelationalDatabaseRequest(input *RebootRelationalDatab
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -13926,8 +14035,8 @@ func (c *Lightsail) RegisterContainerImageRequest(input *RegisterContainerImageI
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -14023,8 +14132,8 @@ func (c *Lightsail) ReleaseStaticIpRequest(input *ReleaseStaticIpInput) (req *re
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -14131,8 +14240,8 @@ func (c *Lightsail) ResetDistributionCacheRequest(input *ResetDistributionCacheI
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -14218,9 +14327,10 @@ func (c *Lightsail) SendContactMethodVerificationRequest(input *SendContactMetho
 //
 // A contact method is used to send you notifications about your Amazon Lightsail
 // resources. You can add one email address and one mobile phone number contact
-// method in each AWS Region. However, SMS text messaging is not supported in
-// some AWS Regions, and SMS text messages cannot be sent to some countries/regions.
-// For more information, see Notifications in Amazon Lightsail (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-notifications).
+// method in each Amazon Web Services Region. However, SMS text messaging is
+// not supported in some Amazon Web Services Regions, and SMS text messages
+// cannot be sent to some countries/regions. For more information, see Notifications
+// in Amazon Lightsail (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-notifications).
 //
 // A verification request is sent to the contact method when you initially create
 // it. Use this action to send another verification request if a previous verification
@@ -14245,8 +14355,8 @@ func (c *Lightsail) SendContactMethodVerificationRequest(input *SendContactMetho
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * OperationFailureException
 //   Lightsail throws this exception when an operation fails to execute.
@@ -14349,8 +14459,8 @@ func (c *Lightsail) SetIpAddressTypeRequest(input *SetIpAddressTypeInput) (req *
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -14439,7 +14549,7 @@ func (c *Lightsail) SetResourceAccessForBucketRequest(input *SetResourceAccessFo
 // bucket.
 //
 // Lightsail buckets currently support setting access for Lightsail instances
-// in the same AWS Region.
+// in the same Amazon Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14458,8 +14568,8 @@ func (c *Lightsail) SetResourceAccessForBucketRequest(input *SetResourceAccessFo
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -14564,8 +14674,8 @@ func (c *Lightsail) StartInstanceRequest(input *StartInstanceInput) (req *reques
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -14673,8 +14783,8 @@ func (c *Lightsail) StartRelationalDatabaseRequest(input *StartRelationalDatabas
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -14786,8 +14896,8 @@ func (c *Lightsail) StopInstanceRequest(input *StopInstanceInput) (req *request.
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -14894,8 +15004,8 @@ func (c *Lightsail) StopRelationalDatabaseRequest(input *StopRelationalDatabaseI
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -15005,8 +15115,8 @@ func (c *Lightsail) TagResourceRequest(input *TagResourceInput) (req *request.Re
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -15117,8 +15227,8 @@ func (c *Lightsail) TestAlarmRequest(input *TestAlarmInput) (req *request.Reques
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * OperationFailureException
 //   Lightsail throws this exception when an operation fails to execute.
@@ -15217,8 +15327,8 @@ func (c *Lightsail) UnpeerVpcRequest(input *UnpeerVpcInput) (req *request.Reques
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -15326,8 +15436,8 @@ func (c *Lightsail) UntagResourceRequest(input *UntagResourceInput) (req *reques
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -15415,8 +15525,8 @@ func (c *Lightsail) UpdateBucketRequest(input *UpdateBucketInput) (req *request.
 // Updates an existing Amazon Lightsail bucket.
 //
 // Use this action to update the configuration of an existing bucket, such as
-// versioning, public accessibility, and the AWS accounts that can access the
-// bucket.
+// versioning, public accessibility, and the Amazon Web Services accounts that
+// can access the bucket.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15435,8 +15545,8 @@ func (c *Lightsail) UpdateBucketRequest(input *UpdateBucketInput) (req *request.
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -15548,8 +15658,8 @@ func (c *Lightsail) UpdateBucketBundleRequest(input *UpdateBucketBundleInput) (r
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -15645,8 +15755,8 @@ func (c *Lightsail) UpdateContainerServiceRequest(input *UpdateContainerServiceI
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -15744,8 +15854,8 @@ func (c *Lightsail) UpdateDistributionRequest(input *UpdateDistributionInput) (r
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -15857,8 +15967,8 @@ func (c *Lightsail) UpdateDistributionBundleRequest(input *UpdateDistributionBun
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -15961,8 +16071,8 @@ func (c *Lightsail) UpdateDomainEntryRequest(input *UpdateDomainEntryInput) (req
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -16070,8 +16180,8 @@ func (c *Lightsail) UpdateLoadBalancerAttributeRequest(input *UpdateLoadBalancer
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -16181,8 +16291,8 @@ func (c *Lightsail) UpdateRelationalDatabaseRequest(input *UpdateRelationalDatab
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -16296,8 +16406,8 @@ func (c *Lightsail) UpdateRelationalDatabaseParametersRequest(input *UpdateRelat
 //   rules of an input field.
 //
 //   Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-//   AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-//   view, or edit these resources.
+//   Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+//   to us-east-1 to create, view, or edit these resources.
 //
 //   * NotFoundException
 //   Lightsail throws this exception when it cannot find a resource.
@@ -18155,8 +18265,8 @@ type Bucket struct {
 	// Indicates whether the bundle that is currently applied to a bucket can be
 	// changed to another bundle.
 	//
-	// You can update a bucket's bundle only one time within a monthly AWS billing
-	// cycle.
+	// You can update a bucket's bundle only one time within a monthly Amazon Web
+	// Services billing cycle.
 	//
 	// Use the UpdateBucketBundle (https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_UpdateBucketBundle.html)
 	// action to change a bucket's bundle.
@@ -18183,7 +18293,8 @@ type Bucket struct {
 	// The timestamp when the distribution was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
-	// Describes the resource location.
+	// An object that describes the location of the bucket, such as the Amazon Web
+	// Services Region and Availability Zone.
 	Location *ResourceLocation `locationName:"location" type:"structure"`
 
 	// The name of the bucket.
@@ -18201,8 +18312,8 @@ type Bucket struct {
 	//    * NeverEnabled - Object versioning has never been enabled.
 	ObjectVersioning *string `locationName:"objectVersioning" type:"string"`
 
-	// An array of strings that specify the AWS account IDs that have read-only
-	// access to the bucket.
+	// An array of strings that specify the Amazon Web Services account IDs that
+	// have read-only access to the bucket.
 	ReadonlyAccessAccounts []*string `locationName:"readonlyAccessAccounts" type:"list"`
 
 	// The Lightsail resource type of the bucket (for example, Bucket).
@@ -18356,8 +18467,8 @@ type BucketAccessLogConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the bucket where the access logs are saved. The destination can
-	// be a Lightsail bucket in the same account, and in the same AWS Region as
-	// the source bucket.
+	// be a Lightsail bucket in the same account, and in the same Amazon Web Services
+	// Region as the source bucket.
 	//
 	// This parameter is required when enabling the access log for a bucket, and
 	// should be omitted when disabling the access log.
@@ -19408,8 +19519,8 @@ type CloudFormationStackRecord struct {
 	// and the Amazon Resource Name (ARN) of the AWS CloudFormation stack.
 	DestinationInfo *DestinationInfo `locationName:"destinationInfo" type:"structure"`
 
-	// A list of objects describing the Availability Zone and AWS Region of the
-	// CloudFormation stack record.
+	// A list of objects describing the Availability Zone and Amazon Web Services
+	// Region of the CloudFormation stack record.
 	Location *ResourceLocation `locationName:"location" type:"structure"`
 
 	// The name of the CloudFormation stack record. It starts with CloudFormationStackRecord
@@ -19560,7 +19671,8 @@ type ContactMethod struct {
 	// The timestamp when the contact method was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
-	// Describes the resource location.
+	// An object that describes the location of the contact method, such as the
+	// Amazon Web Services Region and Availability Zone.
 	Location *ResourceLocation `locationName:"location" type:"structure"`
 
 	// The name of the contact method.
@@ -19808,7 +19920,7 @@ type ContainerService struct {
 	IsDisabled *bool `locationName:"isDisabled" type:"boolean"`
 
 	// An object that describes the location of the container service, such as the
-	// AWS Region and Availability Zone.
+	// Amazon Web Services Region and Availability Zone.
 	Location *ResourceLocation `locationName:"location" type:"structure"`
 
 	// An object that describes the next deployment of the container service.
@@ -19828,9 +19940,9 @@ type ContainerService struct {
 	// The principal ARN of the container service.
 	//
 	// The principal ARN can be used to create a trust relationship between your
-	// standard AWS account and your Lightsail container service. This allows you
-	// to give your service permission to access resources in your standard AWS
-	// account.
+	// standard Amazon Web Services account and your Lightsail container service.
+	// This allows you to give your service permission to access resources in your
+	// standard Amazon Web Services account.
 	PrincipalArn *string `locationName:"principalArn" type:"string"`
 
 	// The private domain name of the container service.
@@ -20638,7 +20750,8 @@ type CopySnapshotInput struct {
 	//    (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-keeping-automatic-snapshots).
 	RestoreDate *string `locationName:"restoreDate" type:"string"`
 
-	// The AWS Region where the source manual or automatic snapshot is located.
+	// The Amazon Web Services Region where the source manual or automatic snapshot
+	// is located.
 	//
 	// SourceRegion is a required field
 	SourceRegion *string `locationName:"sourceRegion" type:"string" required:"true" enum:"RegionName"`
@@ -21258,7 +21371,7 @@ type CreateContactMethodInput struct {
 
 	// The protocol of the contact method, such as Email or SMS (text messaging).
 	//
-	// The SMS protocol is supported only in the following AWS Regions.
+	// The SMS protocol is supported only in the following Amazon Web Services Regions.
 	//
 	//    * US East (N. Virginia) (us-east-1)
 	//
@@ -21273,8 +21386,8 @@ type CreateContactMethodInput struct {
 	//    * Asia Pacific (Sydney) (ap-southeast-2)
 	//
 	// For a list of countries/regions where SMS text messages can be sent, and
-	// the latest AWS Regions where SMS text messaging is supported, see Supported
-	// Regions and Countries (https://docs.aws.amazon.com/sns/latest/dg/sns-supported-regions-countries.html)
+	// the latest Amazon Web Services Regions where SMS text messaging is supported,
+	// see Supported Regions and Countries (https://docs.aws.amazon.com/sns/latest/dg/sns-supported-regions-countries.html)
 	// in the Amazon SNS Developer Guide.
 	//
 	// For more information about notifications in Amazon Lightsail, see Notifications
@@ -21537,7 +21650,8 @@ type CreateContainerServiceInput struct {
 	//
 	// The following are the requirements for container service names:
 	//
-	//    * Must be unique within each AWS Region in your Lightsail account.
+	//    * Must be unique within each Amazon Web Services Region in your Lightsail
+	//    account.
 	//
 	//    * Must contain 1 to 63 characters.
 	//
@@ -23330,6 +23444,16 @@ type CreateLoadBalancerInput struct {
 	//
 	// Use the TagResource action to tag a resource after it's created.
 	Tags []*Tag `locationName:"tags" type:"list"`
+
+	// The name of the TLS policy to apply to the load balancer.
+	//
+	// Use the GetLoadBalancerTlsPolicies (https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetLoadBalancerTlsPolicies.html)
+	// action to get a list of TLS policy names that you can specify.
+	//
+	// For more information about load balancer TLS policies, see Load balancer
+	// TLS security policies (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configure-load-balancer-tls-security-policy)
+	// in the Amazon Lightsail Developer Guide.
+	TlsPolicyName *string `locationName:"tlsPolicyName" type:"string"`
 }
 
 // String returns the string representation.
@@ -23414,6 +23538,12 @@ func (s *CreateLoadBalancerInput) SetLoadBalancerName(v string) *CreateLoadBalan
 // SetTags sets the Tags field's value.
 func (s *CreateLoadBalancerInput) SetTags(v []*Tag) *CreateLoadBalancerInput {
 	s.Tags = v
+	return s
+}
+
+// SetTlsPolicyName sets the TlsPolicyName field's value.
+func (s *CreateLoadBalancerInput) SetTlsPolicyName(v string) *CreateLoadBalancerInput {
+	s.TlsPolicyName = &v
 	return s
 }
 
@@ -28580,8 +28710,8 @@ type GetBucketsInput struct {
 
 	// The name of the bucket for which to return information.
 	//
-	// When omitted, the response includes all of your buckets in the AWS Region
-	// where the request is made.
+	// When omitted, the response includes all of your buckets in the Amazon Web
+	// Services Region where the request is made.
 	BucketName *string `locationName:"bucketName" min:"3" type:"string"`
 
 	// A Boolean value that indicates whether to include Lightsail instances that
@@ -28800,16 +28930,17 @@ type GetCertificatesInput struct {
 
 	// The name for the certificate for which to return information.
 	//
-	// When omitted, the response includes all of your certificates in the AWS Region
-	// where the request is made.
+	// When omitted, the response includes all of your certificates in the Amazon
+	// Web Services Region where the request is made.
 	CertificateName *string `locationName:"certificateName" type:"string"`
 
 	// The status of the certificates for which to return information.
 	//
 	// For example, specify ISSUED to return only certificates with an ISSUED status.
 	//
-	// When omitted, the response includes all of your certificates in the AWS Region
-	// where the request is made, regardless of their current status.
+	// When omitted, the response includes all of your certificates in the Amazon
+	// Web Services Region where the request is made, regardless of their current
+	// status.
 	CertificateStatuses []*string `locationName:"certificateStatuses" type:"list" enum:"CertificateStatus"`
 
 	// Indicates whether to include detailed information about the certificates
@@ -29695,7 +29826,7 @@ type GetContainerServicesInput struct {
 	// The name of the container service for which to return information.
 	//
 	// When omitted, the response includes all of your container services in the
-	// AWS Region where the request is made.
+	// Amazon Web Services Region where the request is made.
 	ServiceName *string `locationName:"serviceName" min:"1" type:"string"`
 }
 
@@ -30471,8 +30602,8 @@ type GetDistributionsInput struct {
 
 	// The name of the distribution for which to return information.
 	//
-	// When omitted, the response includes all of your distributions in the AWS
-	// Region where the request is made.
+	// When omitted, the response includes all of your distributions in the Amazon
+	// Web Services Region where the request is made.
 	DistributionName *string `locationName:"distributionName" type:"string"`
 
 	// The token to advance to the next page of results from your request.
@@ -32203,6 +32334,86 @@ func (s GetLoadBalancerTlsCertificatesOutput) GoString() string {
 // SetTlsCertificates sets the TlsCertificates field's value.
 func (s *GetLoadBalancerTlsCertificatesOutput) SetTlsCertificates(v []*LoadBalancerTlsCertificate) *GetLoadBalancerTlsCertificatesOutput {
 	s.TlsCertificates = v
+	return s
+}
+
+type GetLoadBalancerTlsPoliciesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to advance to the next page of results from your request.
+	//
+	// To get a page token, perform an initial GetLoadBalancerTlsPolicies request.
+	// If your results are paginated, the response will return a next page token
+	// that you can specify as the page token in a subsequent request.
+	PageToken *string `locationName:"pageToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLoadBalancerTlsPoliciesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLoadBalancerTlsPoliciesInput) GoString() string {
+	return s.String()
+}
+
+// SetPageToken sets the PageToken field's value.
+func (s *GetLoadBalancerTlsPoliciesInput) SetPageToken(v string) *GetLoadBalancerTlsPoliciesInput {
+	s.PageToken = &v
+	return s
+}
+
+type GetLoadBalancerTlsPoliciesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to advance to the next page of results from your request.
+	//
+	// A next page token is not returned if there are no more results to display.
+	//
+	// To get the next page of results, perform another GetLoadBalancerTlsPolicies
+	// request and specify the next page token using the pageToken parameter.
+	NextPageToken *string `locationName:"nextPageToken" type:"string"`
+
+	// An array of objects that describe the TLS security policies that are available.
+	TlsPolicies []*LoadBalancerTlsPolicy `locationName:"tlsPolicies" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLoadBalancerTlsPoliciesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLoadBalancerTlsPoliciesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextPageToken sets the NextPageToken field's value.
+func (s *GetLoadBalancerTlsPoliciesOutput) SetNextPageToken(v string) *GetLoadBalancerTlsPoliciesOutput {
+	s.NextPageToken = &v
+	return s
+}
+
+// SetTlsPolicies sets the TlsPolicies field's value.
+func (s *GetLoadBalancerTlsPoliciesOutput) SetTlsPolicies(v []*LoadBalancerTlsPolicy) *GetLoadBalancerTlsPoliciesOutput {
+	s.TlsPolicies = v
 	return s
 }
 
@@ -35714,8 +35925,8 @@ func (s *InstanceState) SetName(v string) *InstanceState {
 // rules of an input field.
 //
 // Domain and distribution APIs are only available in the N. Virginia (us-east-1)
-// AWS Region. Please set your AWS Region configuration to us-east-1 to create,
-// view, or edit these resources.
+// Amazon Web Services Region. Please set your Amazon Web Services Region configuration
+// to us-east-1 to create, view, or edit these resources.
 type InvalidInputException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -35982,12 +36193,12 @@ type LightsailDistribution struct {
 	// Indicates whether the distribution is enabled.
 	IsEnabled *bool `locationName:"isEnabled" type:"boolean"`
 
-	// An object that describes the location of the distribution, such as the AWS
-	// Region and Availability Zone.
+	// An object that describes the location of the distribution, such as the Amazon
+	// Web Services Region and Availability Zone.
 	//
 	// Lightsail distributions are global resources that can reference an origin
-	// in any AWS Region, and distribute its content globally. However, all distributions
-	// are located in the us-east-1 Region.
+	// in any Amazon Web Services Region, and distribute its content globally. However,
+	// all distributions are located in the us-east-1 Region.
 	Location *ResourceLocation `locationName:"location" type:"structure"`
 
 	// The name of the distribution.
@@ -36177,6 +36388,10 @@ type LoadBalancer struct {
 	// the load balancer tries to make a request to the default (root) page.
 	HealthCheckPath *string `locationName:"healthCheckPath" type:"string"`
 
+	// A Boolean value that indicates whether HTTPS redirection is enabled for the
+	// load balancer.
+	HttpsRedirectionEnabled *bool `locationName:"httpsRedirectionEnabled" type:"boolean"`
+
 	// An array of InstanceHealthSummary objects describing the health of the load
 	// balancer.
 	InstanceHealthSummary []*InstanceHealthSummary `locationName:"instanceHealthSummary" type:"list"`
@@ -36225,6 +36440,15 @@ type LoadBalancer struct {
 	// information about the SSL/TLS certificates. For example, if true, the certificate
 	// is attached to the load balancer.
 	TlsCertificateSummaries []*LoadBalancerTlsCertificateSummary `locationName:"tlsCertificateSummaries" type:"list"`
+
+	// The name of the TLS security policy for the load balancer.
+	//
+	// The following TLS security policy names are possible:
+	//
+	//    * TLS-2016-08
+	//
+	//    * TLS-FS-Res-1-2-2019-08
+	TlsPolicyName *string `locationName:"tlsPolicyName" type:"string"`
 }
 
 // String returns the string representation.
@@ -36272,6 +36496,12 @@ func (s *LoadBalancer) SetDnsName(v string) *LoadBalancer {
 // SetHealthCheckPath sets the HealthCheckPath field's value.
 func (s *LoadBalancer) SetHealthCheckPath(v string) *LoadBalancer {
 	s.HealthCheckPath = &v
+	return s
+}
+
+// SetHttpsRedirectionEnabled sets the HttpsRedirectionEnabled field's value.
+func (s *LoadBalancer) SetHttpsRedirectionEnabled(v bool) *LoadBalancer {
+	s.HttpsRedirectionEnabled = &v
 	return s
 }
 
@@ -36344,6 +36574,12 @@ func (s *LoadBalancer) SetTags(v []*Tag) *LoadBalancer {
 // SetTlsCertificateSummaries sets the TlsCertificateSummaries field's value.
 func (s *LoadBalancer) SetTlsCertificateSummaries(v []*LoadBalancerTlsCertificateSummary) *LoadBalancer {
 	s.TlsCertificateSummaries = v
+	return s
+}
+
+// SetTlsPolicyName sets the TlsPolicyName field's value.
+func (s *LoadBalancer) SetTlsPolicyName(v string) *LoadBalancer {
+	s.TlsPolicyName = &v
 	return s
 }
 
@@ -36901,6 +37137,101 @@ func (s *LoadBalancerTlsCertificateSummary) SetName(v string) *LoadBalancerTlsCe
 	return s
 }
 
+// Describes the TLS security policies that are available for Lightsail load
+// balancers.
+//
+// For more information about load balancer TLS security policies, see Load
+// balancer TLS security policies (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configure-load-balancer-tls-security-policy)
+// in the Amazon Lightsail Developer Guide.
+type LoadBalancerTlsPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The ciphers used by the TLS security policy.
+	//
+	// The ciphers are listed in order of preference.
+	Ciphers []*string `locationName:"ciphers" type:"list"`
+
+	// The description of the TLS security policy.
+	Description *string `locationName:"description" type:"string"`
+
+	// A Boolean value that indicates whether the TLS security policy is the default.
+	IsDefault *bool `locationName:"isDefault" type:"boolean"`
+
+	// The name of the TLS security policy.
+	//
+	// The following TLS security policy names are possible:
+	//
+	//    * TLS-2016-08
+	//
+	//    * TLS-FS-Res-1-2-2019-08
+	//
+	// You can specify either of these values for the tlsSecurityPolicyName request
+	// parameter in the CreateLoadBalancer (https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_CreateLoadBalancer.html)
+	// action, and the attributeValue request parameter in the UpdateLoadBalancerAttribute
+	// (https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_UpdateLoadBalancerAttribute.html)
+	// action.
+	Name *string `locationName:"name" type:"string"`
+
+	// The protocols used in a given TLS security policy.
+	//
+	// The following protocols are possible:
+	//
+	//    * Protocol-TLSv1
+	//
+	//    * Protocol-TLSv1.1
+	//
+	//    * Protocol-TLSv1.2
+	Protocols []*string `locationName:"protocols" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoadBalancerTlsPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoadBalancerTlsPolicy) GoString() string {
+	return s.String()
+}
+
+// SetCiphers sets the Ciphers field's value.
+func (s *LoadBalancerTlsPolicy) SetCiphers(v []*string) *LoadBalancerTlsPolicy {
+	s.Ciphers = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *LoadBalancerTlsPolicy) SetDescription(v string) *LoadBalancerTlsPolicy {
+	s.Description = &v
+	return s
+}
+
+// SetIsDefault sets the IsDefault field's value.
+func (s *LoadBalancerTlsPolicy) SetIsDefault(v bool) *LoadBalancerTlsPolicy {
+	s.IsDefault = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *LoadBalancerTlsPolicy) SetName(v string) *LoadBalancerTlsPolicy {
+	s.Name = &v
+	return s
+}
+
+// SetProtocols sets the Protocols field's value.
+func (s *LoadBalancerTlsPolicy) SetProtocols(v []*string) *LoadBalancerTlsPolicy {
+	s.Protocols = v
+	return s
+}
+
 // Describes a database log event.
 type LogEvent struct {
 	_ struct{} `type:"structure"`
@@ -37304,7 +37635,7 @@ type Operation struct {
 	// A Boolean value indicating whether the operation is terminal.
 	IsTerminal *bool `locationName:"isTerminal" type:"boolean"`
 
-	// The AWS Region and Availability Zone.
+	// The Amazon Web Services Region and Availability Zone.
 	Location *ResourceLocation `locationName:"location" type:"structure"`
 
 	// Details about the operation (e.g., Debian-1GB-Ohio-1).
@@ -37962,11 +38293,12 @@ type PutAlarmInput struct {
 	// are enabled for the alarm, and when the alarm is triggered.
 	//
 	// A notification is not sent if a contact protocol is not specified, if the
-	// specified contact protocol is not configured in the AWS Region, or if notifications
-	// are not enabled for the alarm using the notificationEnabled paramater.
+	// specified contact protocol is not configured in the Amazon Web Services Region,
+	// or if notifications are not enabled for the alarm using the notificationEnabled
+	// paramater.
 	//
 	// Use the CreateContactMethod action to configure a contact protocol in an
-	// AWS Region.
+	// Amazon Web Services Region.
 	ContactProtocols []*string `locationName:"contactProtocols" type:"list" enum:"ContactProtocol"`
 
 	// The number of data points that must be not within the specified threshold
@@ -38718,8 +39050,8 @@ func (s *RegisterContainerImageInput) SetServiceName(v string) *RegisterContaine
 type RegisterContainerImageOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Describes a container image that is registered to an Amazon Lightsail container
-	// service.
+	// An object that describes a container image that is registered to a Lightsail
+	// container service
 	ContainerImage *ContainerImage `locationName:"containerImage" type:"structure"`
 }
 
@@ -40157,8 +40489,8 @@ type SetIpAddressTypeInput struct {
 	// The possible values are Distribution, Instance, and LoadBalancer.
 	//
 	// Distribution-related APIs are available only in the N. Virginia (us-east-1)
-	// AWS Region. Set your AWS Region configuration to us-east-1 to create, view,
-	// or edit distributions.
+	// Amazon Web Services Region. Set your Amazon Web Services Region configuration
+	// to us-east-1 to create, view, or edit distributions.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
@@ -41414,9 +41746,10 @@ type UpdateBucketInput struct {
 	// BucketName is a required field
 	BucketName *string `locationName:"bucketName" min:"3" type:"string" required:"true"`
 
-	// An array of strings to specify the AWS account IDs that can access the bucket.
+	// An array of strings to specify the Amazon Web Services account IDs that can
+	// access the bucket.
 	//
-	// You can give a maximum of 10 AWS accounts access to a bucket.
+	// You can give a maximum of 10 Amazon Web Services accounts access to a bucket.
 	ReadonlyAccessAccounts []*string `locationName:"readonlyAccessAccounts" type:"list"`
 
 	// Specifies whether to enable or suspend versioning of objects in the bucket.
@@ -41739,7 +42072,9 @@ func (s *UpdateDistributionBundleInput) SetDistributionName(v string) *UpdateDis
 type UpdateDistributionBundleOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Describes the API operation.
+	// An object that describes the result of the action, such as the status of
+	// the request, the timestamp of the request, and the resources affected by
+	// the request.
 	Operation *Operation `locationName:"operation" type:"structure"`
 }
 
@@ -41996,12 +42331,33 @@ func (s *UpdateDomainEntryOutput) SetOperations(v []*Operation) *UpdateDomainEnt
 type UpdateLoadBalancerAttributeInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the attribute you want to update. Valid values are below.
+	// The name of the attribute you want to update.
 	//
 	// AttributeName is a required field
 	AttributeName *string `locationName:"attributeName" type:"string" required:"true" enum:"LoadBalancerAttributeName"`
 
 	// The value that you want to specify for the attribute name.
+	//
+	// The following values are supported depending on what you specify for the
+	// attributeName request parameter:
+	//
+	//    * If you specify HealthCheckPath for the attributeName request parameter,
+	//    then the attributeValue request parameter must be the path to ping on
+	//    the target (for example, /weather/us/wa/seattle).
+	//
+	//    * If you specify SessionStickinessEnabled for the attributeName request
+	//    parameter, then the attributeValue request parameter must be true or false.
+	//
+	//    * If you specify SessionStickiness_LB_CookieDurationSeconds for the attributeName
+	//    request parameter, then the attributeValue request parameter must be an
+	//    interger that represents the cookie duration in seconds.
+	//
+	//    * If you specify HttpsRedirectionEnabled for the attributeName request
+	//    parameter, then the attributeValue request parameter must be true or false.
+	//
+	//    * If you specify TlsPolicyName for the attributeName request parameter,
+	//    then the attributeValue request parameter must be TLS version 1.0, 1.1,
+	//    and 1.2 or TLS version 1.2.
 	//
 	// AttributeValue is a required field
 	AttributeValue *string `locationName:"attributeValue" min:"1" type:"string" required:"true"`
@@ -43284,6 +43640,12 @@ const (
 
 	// LoadBalancerAttributeNameSessionStickinessLbCookieDurationSeconds is a LoadBalancerAttributeName enum value
 	LoadBalancerAttributeNameSessionStickinessLbCookieDurationSeconds = "SessionStickiness_LB_CookieDurationSeconds"
+
+	// LoadBalancerAttributeNameHttpsRedirectionEnabled is a LoadBalancerAttributeName enum value
+	LoadBalancerAttributeNameHttpsRedirectionEnabled = "HttpsRedirectionEnabled"
+
+	// LoadBalancerAttributeNameTlsPolicyName is a LoadBalancerAttributeName enum value
+	LoadBalancerAttributeNameTlsPolicyName = "TlsPolicyName"
 )
 
 // LoadBalancerAttributeName_Values returns all elements of the LoadBalancerAttributeName enum
@@ -43292,6 +43654,8 @@ func LoadBalancerAttributeName_Values() []string {
 		LoadBalancerAttributeNameHealthCheckPath,
 		LoadBalancerAttributeNameSessionStickinessEnabled,
 		LoadBalancerAttributeNameSessionStickinessLbCookieDurationSeconds,
+		LoadBalancerAttributeNameHttpsRedirectionEnabled,
+		LoadBalancerAttributeNameTlsPolicyName,
 	}
 }
 

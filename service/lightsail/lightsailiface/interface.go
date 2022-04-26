@@ -472,6 +472,10 @@ type LightsailAPI interface {
 	GetLoadBalancerTlsCertificatesWithContext(aws.Context, *lightsail.GetLoadBalancerTlsCertificatesInput, ...request.Option) (*lightsail.GetLoadBalancerTlsCertificatesOutput, error)
 	GetLoadBalancerTlsCertificatesRequest(*lightsail.GetLoadBalancerTlsCertificatesInput) (*request.Request, *lightsail.GetLoadBalancerTlsCertificatesOutput)
 
+	GetLoadBalancerTlsPolicies(*lightsail.GetLoadBalancerTlsPoliciesInput) (*lightsail.GetLoadBalancerTlsPoliciesOutput, error)
+	GetLoadBalancerTlsPoliciesWithContext(aws.Context, *lightsail.GetLoadBalancerTlsPoliciesInput, ...request.Option) (*lightsail.GetLoadBalancerTlsPoliciesOutput, error)
+	GetLoadBalancerTlsPoliciesRequest(*lightsail.GetLoadBalancerTlsPoliciesInput) (*request.Request, *lightsail.GetLoadBalancerTlsPoliciesOutput)
+
 	GetLoadBalancers(*lightsail.GetLoadBalancersInput) (*lightsail.GetLoadBalancersOutput, error)
 	GetLoadBalancersWithContext(aws.Context, *lightsail.GetLoadBalancersInput, ...request.Option) (*lightsail.GetLoadBalancersOutput, error)
 	GetLoadBalancersRequest(*lightsail.GetLoadBalancersInput) (*request.Request, *lightsail.GetLoadBalancersOutput)

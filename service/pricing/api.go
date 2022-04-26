@@ -216,7 +216,7 @@ func (c *Pricing) GetAttributeValuesRequest(input *GetAttributeValuesInput) (req
 
 // GetAttributeValues API operation for AWS Price List Service.
 //
-// Returns a list of attribute values. Attibutes are similar to the details
+// Returns a list of attribute values. Attributes are similar to the details
 // in a Price List API offer file. For a list of available attributes, see Offer
 // File Definitions (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/reading-an-offer.html#pps-defs)
 // in the Amazon Web Services Billing and Cost Management User Guide (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-what-is.html).
@@ -584,7 +584,7 @@ type DescribeServicesOutput struct {
 	// The format version of the response. For example, aws_v1.
 	FormatVersion *string `type:"string"`
 
-	// The pagination token for the next set of retreivable results.
+	// The pagination token for the next set of retrievable results.
 	NextToken *string `type:"string"`
 
 	// The service metadata for the service or services in the response.

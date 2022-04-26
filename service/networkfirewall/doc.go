@@ -3,18 +3,19 @@
 // Package networkfirewall provides the client and types for making API
 // requests to AWS Network Firewall.
 //
-// This is the API Reference for AWS Network Firewall. This guide is for developers
+// This is the API Reference for Network Firewall. This guide is for developers
 // who need detailed information about the Network Firewall API actions, data
 // types, and errors.
 //
 //    * The REST API requires you to handle connection details, such as calculating
 //    signatures, handling request retries, and error handling. For general
-//    information about using the AWS REST APIs, see AWS APIs (https://docs.aws.amazon.com/general/latest/gr/aws-apis.html).
+//    information about using the Amazon Web Services REST APIs, see Amazon
+//    Web Services APIs (https://docs.aws.amazon.com/general/latest/gr/aws-apis.html).
 //    To access Network Firewall using the REST API endpoint: https://network-firewall.<region>.amazonaws.com
 //
-//    * Alternatively, you can use one of the AWS SDKs to access an API that's
-//    tailored to the programming language or platform that you're using. For
-//    more information, see AWS SDKs (http://aws.amazon.com/tools/#SDKs).
+//    * Alternatively, you can use one of the Amazon Web Services SDKs to access
+//    an API that's tailored to the programming language or platform that you're
+//    using. For more information, see Amazon Web Services SDKs (http://aws.amazon.com/tools/#SDKs).
 //
 //    * For descriptions of Network Firewall features, including and step-by-step
 //    instructions on how to use them through the Network Firewall console,
@@ -24,16 +25,16 @@
 // and prevention service for Amazon Virtual Private Cloud (Amazon VPC). With
 // Network Firewall, you can filter traffic at the perimeter of your VPC. This
 // includes filtering traffic going to and coming from an internet gateway,
-// NAT gateway, or over VPN or AWS Direct Connect. Network Firewall uses rules
-// that are compatible with Suricata, a free, open source intrusion detection
-// system (IDS) engine. AWS Network Firewall supports Suricata version 5.0.2.
-// For information about Suricata, see the Suricata website (https://suricata-ids.org/).
+// NAT gateway, or over VPN or Direct Connect. Network Firewall uses rules that
+// are compatible with Suricata, a free, open source intrusion detection system
+// (IDS) engine. Network Firewall supports Suricata version 5.0.2. For information
+// about Suricata, see the Suricata website (https://suricata-ids.org/).
 //
 // You can use Network Firewall to monitor and protect your VPC traffic in a
 // number of ways. The following are just a few examples:
 //
-//    * Allow domains or IP addresses for known AWS service endpoints, such
-//    as Amazon S3, and block all other forms of traffic.
+//    * Allow domains or IP addresses for known Amazon Web Services service
+//    endpoints, such as Amazon S3, and block all other forms of traffic.
 //
 //    * Use custom lists of known bad domains to limit the types of domain names
 //    that your applications can access.
