@@ -74,8 +74,8 @@ func (c *SageMaker) AddAssociationRequest(input *AddAssociationInput) (req *requ
 //   Resource being access is not found.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/AddAssociation
 func (c *SageMaker) AddAssociation(input *AddAssociationInput) (*AddAssociationOutput, error) {
@@ -143,7 +143,7 @@ func (c *SageMaker) AddTagsRequest(input *AddTagsInput) (req *request.Request, o
 
 // AddTags API operation for Amazon SageMaker Service.
 //
-// Adds or overwrites one or more tags for the specified Amazon SageMaker resource.
+// Adds or overwrites one or more tags for the specified SageMaker resource.
 // You can add tags to notebook instances, training jobs, hyperparameter tuning
 // jobs, batch transform jobs, models, labeling jobs, work teams, endpoint configurations,
 // and endpoints.
@@ -257,8 +257,8 @@ func (c *SageMaker) AssociateTrialComponentRequest(input *AssociateTrialComponen
 //   Resource being access is not found.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/AssociateTrialComponent
 func (c *SageMaker) AssociateTrialComponent(input *AssociateTrialComponentInput) (*AssociateTrialComponentOutput, error) {
@@ -414,8 +414,8 @@ func (c *SageMaker) CreateActionRequest(input *CreateActionInput) (req *request.
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateAction
 func (c *SageMaker) CreateAction(input *CreateActionInput) (*CreateActionOutput, error) {
@@ -483,8 +483,8 @@ func (c *SageMaker) CreateAlgorithmRequest(input *CreateAlgorithmInput) (req *re
 
 // CreateAlgorithm API operation for Amazon SageMaker Service.
 //
-// Create a machine learning algorithm that you can use in Amazon SageMaker
-// and list in the Amazon Web Services Marketplace.
+// Create a machine learning algorithm that you can use in SageMaker and list
+// in the Amazon Web Services Marketplace.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -572,8 +572,8 @@ func (c *SageMaker) CreateAppRequest(input *CreateAppInput) (req *request.Reques
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 //   * ResourceInUse
 //   Resource being accessed is in use.
@@ -739,8 +739,8 @@ func (c *SageMaker) CreateArtifactRequest(input *CreateArtifactInput) (req *requ
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateArtifact
 func (c *SageMaker) CreateArtifact(input *CreateArtifactInput) (*CreateArtifactOutput, error) {
@@ -827,8 +827,8 @@ func (c *SageMaker) CreateAutoMLJobRequest(input *CreateAutoMLJobInput) (req *re
 //   Resource being accessed is in use.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateAutoMLJob
 func (c *SageMaker) CreateAutoMLJob(input *CreateAutoMLJobInput) (*CreateAutoMLJobOutput, error) {
@@ -896,12 +896,12 @@ func (c *SageMaker) CreateCodeRepositoryRequest(input *CreateCodeRepositoryInput
 
 // CreateCodeRepository API operation for Amazon SageMaker Service.
 //
-// Creates a Git repository as a resource in your Amazon SageMaker account.
-// You can associate the repository with notebook instances so that you can
-// use Git source control for the notebooks you create. The Git repository is
-// a resource in your Amazon SageMaker account, so it can be associated with
-// more than one notebook instance, and it persists independently from the lifecycle
-// of any notebook instances it is associated with.
+// Creates a Git repository as a resource in your SageMaker account. You can
+// associate the repository with notebook instances so that you can use Git
+// source control for the notebooks you create. The Git repository is a resource
+// in your SageMaker account, so it can be associated with more than one notebook
+// instance, and it persists independently from the lifecycle of any notebook
+// instances it is associated with.
 //
 // The repository can be hosted either in Amazon Web Services CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
 // or in any other Git repository.
@@ -1019,8 +1019,8 @@ func (c *SageMaker) CreateCompilationJobRequest(input *CreateCompilationJobInput
 //   Resource being accessed is in use.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateCompilationJob
 func (c *SageMaker) CreateCompilationJob(input *CreateCompilationJobInput) (*CreateCompilationJobOutput, error) {
@@ -1102,8 +1102,8 @@ func (c *SageMaker) CreateContextRequest(input *CreateContextInput) (req *reques
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateContext
 func (c *SageMaker) CreateContext(input *CreateContextInput) (*CreateContextOutput, error) {
@@ -1183,8 +1183,8 @@ func (c *SageMaker) CreateDataQualityJobDefinitionRequest(input *CreateDataQuali
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 //   * ResourceInUse
 //   Resource being accessed is in use.
@@ -1270,8 +1270,8 @@ func (c *SageMaker) CreateDeviceFleetRequest(input *CreateDeviceFleetInput) (req
 //   Resource being accessed is in use.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateDeviceFleet
 func (c *SageMaker) CreateDeviceFleet(input *CreateDeviceFleetInput) (*CreateDeviceFleetOutput, error) {
@@ -1391,8 +1391,8 @@ func (c *SageMaker) CreateDomainRequest(input *CreateDomainInput) (req *request.
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 //   * ResourceInUse
 //   Resource being accessed is in use.
@@ -1478,8 +1478,8 @@ func (c *SageMaker) CreateEdgePackagingJobRequest(input *CreateEdgePackagingJobI
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateEdgePackagingJob
 func (c *SageMaker) CreateEdgePackagingJob(input *CreateEdgePackagingJobInput) (*CreateEdgePackagingJobOutput, error) {
@@ -1548,12 +1548,12 @@ func (c *SageMaker) CreateEndpointRequest(input *CreateEndpointInput) (req *requ
 // CreateEndpoint API operation for Amazon SageMaker Service.
 //
 // Creates an endpoint using the endpoint configuration specified in the request.
-// Amazon SageMaker uses the endpoint to provision resources and deploy models.
-// You create the endpoint configuration with the CreateEndpointConfig API.
+// SageMaker uses the endpoint to provision resources and deploy models. You
+// create the endpoint configuration with the CreateEndpointConfig API.
 //
-// Use this API to deploy models using Amazon SageMaker hosting services.
+// Use this API to deploy models using SageMaker hosting services.
 //
-// For an example that calls this method when deploying a model to Amazon SageMaker
+// For an example that calls this method when deploying a model to SageMaker
 // hosting services, see the Create Endpoint example notebook. (https://github.com/aws/amazon-sagemaker-examples/blob/master/sagemaker-fundamentals/create-endpoint/create_endpoint.ipynb)
 //
 // You must not delete an EndpointConfig that is in use by an endpoint that
@@ -1563,8 +1563,8 @@ func (c *SageMaker) CreateEndpointRequest(input *CreateEndpointInput) (req *requ
 // The endpoint name must be unique within an Amazon Web Services Region in
 // your Amazon Web Services account.
 //
-// When it receives the request, Amazon SageMaker creates the endpoint, launches
-// the resources (ML compute instances), and deploys the model(s) on them.
+// When it receives the request, SageMaker creates the endpoint, launches the
+// resources (ML compute instances), and deploys the model(s) on them.
 //
 // When you call CreateEndpoint, a load call is made to DynamoDB to verify that
 // your endpoint configuration exists. When you read data from a DynamoDB table
@@ -1577,14 +1577,14 @@ func (c *SageMaker) CreateEndpointRequest(input *CreateEndpointInput) (req *requ
 // that customers call DescribeEndpointConfig before calling CreateEndpoint
 // to minimize the potential impact of a DynamoDB eventually consistent read.
 //
-// When Amazon SageMaker receives the request, it sets the endpoint status to
-// Creating. After it creates the endpoint, it sets the status to InService.
-// Amazon SageMaker can then process incoming requests for inferences. To check
-// the status of an endpoint, use the DescribeEndpoint API.
+// When SageMaker receives the request, it sets the endpoint status to Creating.
+// After it creates the endpoint, it sets the status to InService. SageMaker
+// can then process incoming requests for inferences. To check the status of
+// an endpoint, use the DescribeEndpoint API.
 //
 // If any of the models hosted at this endpoint get model data from an Amazon
-// S3 location, Amazon SageMaker uses Amazon Web Services Security Token Service
-// to download model artifacts from the S3 path you provided. Amazon Web Services
+// S3 location, SageMaker uses Amazon Web Services Security Token Service to
+// download model artifacts from the S3 path you provided. Amazon Web Services
 // STS is activated in your IAM user account by default. If you previously deactivated
 // Amazon Web Services STS for a region, you need to reactivate Amazon Web Services
 // STS for that region. For more information, see Activating and Deactivating
@@ -1616,8 +1616,8 @@ func (c *SageMaker) CreateEndpointRequest(input *CreateEndpointInput) (req *requ
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateEndpoint
 func (c *SageMaker) CreateEndpoint(input *CreateEndpointInput) (*CreateEndpointOutput, error) {
@@ -1685,24 +1685,24 @@ func (c *SageMaker) CreateEndpointConfigRequest(input *CreateEndpointConfigInput
 
 // CreateEndpointConfig API operation for Amazon SageMaker Service.
 //
-// Creates an endpoint configuration that Amazon SageMaker hosting services
-// uses to deploy models. In the configuration, you identify one or more models,
-// created using the CreateModel API, to deploy and the resources that you want
-// Amazon SageMaker to provision. Then you call the CreateEndpoint API.
+// Creates an endpoint configuration that SageMaker hosting services uses to
+// deploy models. In the configuration, you identify one or more models, created
+// using the CreateModel API, to deploy and the resources that you want SageMaker
+// to provision. Then you call the CreateEndpoint API.
 //
-// Use this API if you want to use Amazon SageMaker hosting services to deploy
-// models into production.
+// Use this API if you want to use SageMaker hosting services to deploy models
+// into production.
 //
 // In the request, you define a ProductionVariant, for each model that you want
 // to deploy. Each ProductionVariant parameter also describes the resources
-// that you want Amazon SageMaker to provision. This includes the number and
-// type of ML compute instances to deploy.
+// that you want SageMaker to provision. This includes the number and type of
+// ML compute instances to deploy.
 //
 // If you are hosting multiple models, you also assign a VariantWeight to specify
 // how much traffic you want to allocate to each model. For example, suppose
 // that you want to host two models, A and B, and you assign traffic weight
-// 2 for model A and 1 for model B. Amazon SageMaker distributes two-thirds
-// of the traffic to Model A, and one-third to model B.
+// 2 for model A and 1 for model B. SageMaker distributes two-thirds of the
+// traffic to Model A, and one-third to model B.
 //
 // When you call CreateEndpoint, a load call is made to DynamoDB to verify that
 // your endpoint configuration exists. When you read data from a DynamoDB table
@@ -1724,8 +1724,8 @@ func (c *SageMaker) CreateEndpointConfigRequest(input *CreateEndpointConfigInput
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateEndpointConfig
 func (c *SageMaker) CreateEndpointConfig(input *CreateEndpointConfigInput) (*CreateEndpointConfigOutput, error) {
@@ -1828,8 +1828,8 @@ func (c *SageMaker) CreateExperimentRequest(input *CreateExperimentInput) (req *
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateExperiment
 func (c *SageMaker) CreateExperiment(input *CreateExperimentInput) (*CreateExperimentOutput, error) {
@@ -1921,8 +1921,8 @@ func (c *SageMaker) CreateFeatureGroupRequest(input *CreateFeatureGroupInput) (r
 //   Resource being accessed is in use.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateFeatureGroup
 func (c *SageMaker) CreateFeatureGroup(input *CreateFeatureGroupInput) (*CreateFeatureGroupOutput, error) {
@@ -2001,8 +2001,8 @@ func (c *SageMaker) CreateFlowDefinitionRequest(input *CreateFlowDefinitionInput
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 //   * ResourceInUse
 //   Resource being accessed is in use.
@@ -2086,8 +2086,8 @@ func (c *SageMaker) CreateHumanTaskUiRequest(input *CreateHumanTaskUiInput) (req
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 //   * ResourceInUse
 //   Resource being accessed is in use.
@@ -2176,8 +2176,8 @@ func (c *SageMaker) CreateHyperParameterTuningJobRequest(input *CreateHyperParam
 //   Resource being accessed is in use.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateHyperParameterTuningJob
 func (c *SageMaker) CreateHyperParameterTuningJob(input *CreateHyperParameterTuningJobInput) (*CreateHyperParameterTuningJobOutput, error) {
@@ -2246,9 +2246,9 @@ func (c *SageMaker) CreateImageRequest(input *CreateImageInput) (req *request.Re
 // CreateImage API operation for Amazon SageMaker Service.
 //
 // Creates a custom SageMaker image. A SageMaker image is a set of image versions.
-// Each image version represents a container image stored in Amazon Container
-// Registry (ECR). For more information, see Bring your own SageMaker image
-// (https://docs.aws.amazon.com/sagemaker/latest/dg/studio-byoi.html).
+// Each image version represents a container image stored in Amazon Elastic
+// Container Registry (ECR). For more information, see Bring your own SageMaker
+// image (https://docs.aws.amazon.com/sagemaker/latest/dg/studio-byoi.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2262,8 +2262,8 @@ func (c *SageMaker) CreateImageRequest(input *CreateImageInput) (req *request.Re
 //   Resource being accessed is in use.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateImage
 func (c *SageMaker) CreateImage(input *CreateImageInput) (*CreateImageOutput, error) {
@@ -2332,7 +2332,7 @@ func (c *SageMaker) CreateImageVersionRequest(input *CreateImageVersionInput) (r
 // CreateImageVersion API operation for Amazon SageMaker Service.
 //
 // Creates a version of the SageMaker image specified by ImageName. The version
-// represents the Amazon Container Registry (ECR) container image specified
+// represents the Amazon Elastic Container Registry (ECR) container image specified
 // by BaseImage.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2347,8 +2347,8 @@ func (c *SageMaker) CreateImageVersionRequest(input *CreateImageVersionInput) (r
 //   Resource being accessed is in use.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 //   * ResourceNotFound
 //   Resource being access is not found.
@@ -2434,8 +2434,8 @@ func (c *SageMaker) CreateInferenceRecommendationsJobRequest(input *CreateInfere
 //   Resource being accessed is in use.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateInferenceRecommendationsJob
 func (c *SageMaker) CreateInferenceRecommendationsJob(input *CreateInferenceRecommendationsJobInput) (*CreateInferenceRecommendationsJobOutput, error) {
@@ -2554,8 +2554,8 @@ func (c *SageMaker) CreateLabelingJobRequest(input *CreateLabelingJobInput) (req
 //   Resource being accessed is in use.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateLabelingJob
 func (c *SageMaker) CreateLabelingJob(input *CreateLabelingJobInput) (*CreateLabelingJobOutput, error) {
@@ -2623,33 +2623,30 @@ func (c *SageMaker) CreateModelRequest(input *CreateModelInput) (req *request.Re
 
 // CreateModel API operation for Amazon SageMaker Service.
 //
-// Creates a model in Amazon SageMaker. In the request, you name the model and
-// describe a primary container. For the primary container, you specify the
-// Docker image that contains inference code, artifacts (from prior training),
-// and a custom environment map that the inference code uses when you deploy
-// the model for predictions.
+// Creates a model in SageMaker. In the request, you name the model and describe
+// a primary container. For the primary container, you specify the Docker image
+// that contains inference code, artifacts (from prior training), and a custom
+// environment map that the inference code uses when you deploy the model for
+// predictions.
 //
-// Use this API to create a model if you want to use Amazon SageMaker hosting
-// services or run a batch transform job.
+// Use this API to create a model if you want to use SageMaker hosting services
+// or run a batch transform job.
 //
 // To host your model, you create an endpoint configuration with the CreateEndpointConfig
-// API, and then create an endpoint with the CreateEndpoint API. Amazon SageMaker
-// then deploys all of the containers that you defined for the model in the
-// hosting environment.
+// API, and then create an endpoint with the CreateEndpoint API. SageMaker then
+// deploys all of the containers that you defined for the model in the hosting
+// environment.
 //
-// For an example that calls this method when deploying a model to Amazon SageMaker
+// For an example that calls this method when deploying a model to SageMaker
 // hosting services, see Deploy the Model to Amazon SageMaker Hosting Services
 // (Amazon Web Services SDK for Python (Boto 3)). (https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html#ex1-deploy-model-boto)
 //
 // To run a batch transform using your model, you start a job with the CreateTransformJob
-// API. Amazon SageMaker uses your model and your dataset to get inferences
-// which are then saved to a specified S3 location.
+// API. SageMaker uses your model and your dataset to get inferences which are
+// then saved to a specified S3 location.
 //
-// In the CreateModel request, you must define a container with the PrimaryContainer
-// parameter.
-//
-// In the request, you also provide an IAM role that Amazon SageMaker can assume
-// to access model artifacts and docker image for deployment on ML compute hosting
+// In the request, you also provide an IAM role that SageMaker can assume to
+// access model artifacts and docker image for deployment on ML compute hosting
 // instances or for batch transform jobs. In addition, you also use the IAM
 // role to manage permissions the inference code needs. For example, if the
 // inference code access any other Amazon Web Services resources, you grant
@@ -2664,8 +2661,8 @@ func (c *SageMaker) CreateModelRequest(input *CreateModelInput) (req *request.Re
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModel
 func (c *SageMaker) CreateModel(input *CreateModelInput) (*CreateModelOutput, error) {
@@ -2744,8 +2741,8 @@ func (c *SageMaker) CreateModelBiasJobDefinitionRequest(input *CreateModelBiasJo
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 //   * ResourceInUse
 //   Resource being accessed is in use.
@@ -2827,8 +2824,8 @@ func (c *SageMaker) CreateModelExplainabilityJobDefinitionRequest(input *CreateM
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 //   * ResourceInUse
 //   Resource being accessed is in use.
@@ -2899,10 +2896,10 @@ func (c *SageMaker) CreateModelPackageRequest(input *CreateModelPackageInput) (r
 
 // CreateModelPackage API operation for Amazon SageMaker Service.
 //
-// Creates a model package that you can use to create Amazon SageMaker models
-// or list on Amazon Web Services Marketplace, or a versioned model that is
-// part of a model group. Buyers can subscribe to model packages listed on Amazon
-// Web Services Marketplace to create models in Amazon SageMaker.
+// Creates a model package that you can use to create SageMaker models or list
+// on Amazon Web Services Marketplace, or a versioned model that is part of
+// a model group. Buyers can subscribe to model packages listed on Amazon Web
+// Services Marketplace to create models in SageMaker.
 //
 // To create a model package by specifying a Docker container that contains
 // your inference code and the Amazon S3 location of your model artifacts, provide
@@ -2929,8 +2926,8 @@ func (c *SageMaker) CreateModelPackageRequest(input *CreateModelPackageInput) (r
 //   as an Experiment or Artifact.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModelPackage
 func (c *SageMaker) CreateModelPackage(input *CreateModelPackageInput) (*CreateModelPackageOutput, error) {
@@ -3009,8 +3006,8 @@ func (c *SageMaker) CreateModelPackageGroupRequest(input *CreateModelPackageGrou
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModelPackageGroup
 func (c *SageMaker) CreateModelPackageGroup(input *CreateModelPackageGroupInput) (*CreateModelPackageGroupOutput, error) {
@@ -3090,8 +3087,8 @@ func (c *SageMaker) CreateModelQualityJobDefinitionRequest(input *CreateModelQua
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 //   * ResourceInUse
 //   Resource being accessed is in use.
@@ -3174,8 +3171,8 @@ func (c *SageMaker) CreateMonitoringScheduleRequest(input *CreateMonitoringSched
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 //   * ResourceInUse
 //   Resource being accessed is in use.
@@ -3246,42 +3243,42 @@ func (c *SageMaker) CreateNotebookInstanceRequest(input *CreateNotebookInstanceI
 
 // CreateNotebookInstance API operation for Amazon SageMaker Service.
 //
-// Creates an Amazon SageMaker notebook instance. A notebook instance is a machine
+// Creates an SageMaker notebook instance. A notebook instance is a machine
 // learning (ML) compute instance running on a Jupyter notebook.
 //
 // In a CreateNotebookInstance request, specify the type of ML compute instance
-// that you want to run. Amazon SageMaker launches the instance, installs common
-// libraries that you can use to explore datasets for model training, and attaches
-// an ML storage volume to the notebook instance.
+// that you want to run. SageMaker launches the instance, installs common libraries
+// that you can use to explore datasets for model training, and attaches an
+// ML storage volume to the notebook instance.
 //
-// Amazon SageMaker also provides a set of example notebooks. Each notebook
-// demonstrates how to use Amazon SageMaker with a specific algorithm or with
-// a machine learning framework.
+// SageMaker also provides a set of example notebooks. Each notebook demonstrates
+// how to use SageMaker with a specific algorithm or with a machine learning
+// framework.
 //
-// After receiving the request, Amazon SageMaker does the following:
+// After receiving the request, SageMaker does the following:
 //
-// Creates a network interface in the Amazon SageMaker VPC.
+// Creates a network interface in the SageMaker VPC.
 //
-// (Option) If you specified SubnetId, Amazon SageMaker creates a network interface
+// (Option) If you specified SubnetId, SageMaker creates a network interface
 // in your own VPC, which is inferred from the subnet ID that you provide in
-// the input. When creating this network interface, Amazon SageMaker attaches
-// the security group that you specified in the request to the network interface
-// that it creates in your VPC.
+// the input. When creating this network interface, SageMaker attaches the security
+// group that you specified in the request to the network interface that it
+// creates in your VPC.
 //
-// Launches an EC2 instance of the type specified in the request in the Amazon
-// SageMaker VPC. If you specified SubnetId of your VPC, Amazon SageMaker specifies
-// both network interfaces when launching this instance. This enables inbound
-// traffic from your own VPC to the notebook instance, assuming that the security
-// groups allow it.
+// Launches an EC2 instance of the type specified in the request in the SageMaker
+// VPC. If you specified SubnetId of your VPC, SageMaker specifies both network
+// interfaces when launching this instance. This enables inbound traffic from
+// your own VPC to the notebook instance, assuming that the security groups
+// allow it.
 //
-// After creating the notebook instance, Amazon SageMaker returns its Amazon
-// Resource Name (ARN). You can't change the name of a notebook instance after
-// you create it.
+// After creating the notebook instance, SageMaker returns its Amazon Resource
+// Name (ARN). You can't change the name of a notebook instance after you create
+// it.
 //
-// After Amazon SageMaker creates the notebook instance, you can connect to
-// the Jupyter server and work in Jupyter notebooks. For example, you can write
-// code to explore a dataset that you can use for model training, train a model,
-// host models by creating Amazon SageMaker endpoints, and validate hosted models.
+// After SageMaker creates the notebook instance, you can connect to the Jupyter
+// server and work in Jupyter notebooks. For example, you can write code to
+// explore a dataset that you can use for model training, train a model, host
+// models by creating SageMaker endpoints, and validate hosted models.
 //
 // For more information, see How It Works (https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works.html).
 //
@@ -3294,8 +3291,8 @@ func (c *SageMaker) CreateNotebookInstanceRequest(input *CreateNotebookInstanceI
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateNotebookInstance
 func (c *SageMaker) CreateNotebookInstance(input *CreateNotebookInstanceInput) (*CreateNotebookInstanceOutput, error) {
@@ -3391,8 +3388,8 @@ func (c *SageMaker) CreateNotebookInstanceLifecycleConfigRequest(input *CreateNo
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateNotebookInstanceLifecycleConfig
 func (c *SageMaker) CreateNotebookInstanceLifecycleConfig(input *CreateNotebookInstanceLifecycleConfigInput) (*CreateNotebookInstanceLifecycleConfigOutput, error) {
@@ -3474,8 +3471,8 @@ func (c *SageMaker) CreatePipelineRequest(input *CreatePipelineInput) (req *requ
 //   Resource being access is not found.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreatePipeline
 func (c *SageMaker) CreatePipeline(input *CreatePipelineInput) (*CreatePipelineOutput, error) {
@@ -3643,10 +3640,10 @@ func (c *SageMaker) CreatePresignedNotebookInstanceUrlRequest(input *CreatePresi
 // CreatePresignedNotebookInstanceUrl API operation for Amazon SageMaker Service.
 //
 // Returns a URL that you can use to connect to the Jupyter server from a notebook
-// instance. In the Amazon SageMaker console, when you choose Open next to a
-// notebook instance, Amazon SageMaker opens a new tab showing the Jupyter server
-// home page from the notebook instance. The console uses this API to get the
-// URL and show the page.
+// instance. In the SageMaker console, when you choose Open next to a notebook
+// instance, SageMaker opens a new tab showing the Jupyter server home page
+// from the notebook instance. The console uses this API to get the URL and
+// show the page.
 //
 // The IAM role or user used to call this API defines the permissions to access
 // the notebook instance. Once the presigned URL is created, no additional permission
@@ -3750,8 +3747,8 @@ func (c *SageMaker) CreateProcessingJobRequest(input *CreateProcessingJobInput) 
 //   Resource being accessed is in use.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 //   * ResourceNotFound
 //   Resource being access is not found.
@@ -3834,8 +3831,8 @@ func (c *SageMaker) CreateProjectRequest(input *CreateProjectInput) (req *reques
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateProject
 func (c *SageMaker) CreateProject(input *CreateProjectInput) (*CreateProjectOutput, error) {
@@ -3982,13 +3979,13 @@ func (c *SageMaker) CreateTrainingJobRequest(input *CreateTrainingJobInput) (req
 
 // CreateTrainingJob API operation for Amazon SageMaker Service.
 //
-// Starts a model training job. After training completes, Amazon SageMaker saves
-// the resulting model artifacts to an Amazon S3 location that you specify.
+// Starts a model training job. After training completes, SageMaker saves the
+// resulting model artifacts to an Amazon S3 location that you specify.
 //
-// If you choose to host your model using Amazon SageMaker hosting services,
-// you can use the resulting model artifacts as part of the model. You can also
-// use the artifacts in a machine learning service other than Amazon SageMaker,
-// provided that you know how to use them for inference.
+// If you choose to host your model using SageMaker hosting services, you can
+// use the resulting model artifacts as part of the model. You can also use
+// the artifacts in a machine learning service other than SageMaker, provided
+// that you know how to use them for inference.
 //
 // In the request body, you provide the following:
 //
@@ -3997,14 +3994,13 @@ func (c *SageMaker) CreateTrainingJobRequest(input *CreateTrainingJobInput) (req
 //    * HyperParameters - Specify these algorithm-specific parameters to enable
 //    the estimation of model parameters during training. Hyperparameters can
 //    be tuned to optimize this learning process. For a list of hyperparameters
-//    for each training algorithm provided by Amazon SageMaker, see Algorithms
-//    (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).
+//    for each training algorithm provided by SageMaker, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).
 //
 //    * InputDataConfig - Describes the training dataset and the Amazon S3,
 //    EFS, or FSx location where it is stored.
 //
-//    * OutputDataConfig - Identifies the Amazon S3 bucket where you want Amazon
-//    SageMaker to save the results of model training.
+//    * OutputDataConfig - Identifies the Amazon S3 bucket where you want SageMaker
+//    to save the results of model training.
 //
 //    * ResourceConfig - Identifies the resources, ML compute instances, and
 //    ML storage volumes to deploy for model training. In distributed training,
@@ -4014,10 +4010,10 @@ func (c *SageMaker) CreateTrainingJobRequest(input *CreateTrainingJobInput) (req
 //    models by up to 80% by using Amazon EC2 Spot instances. For more information,
 //    see Managed Spot Training (https://docs.aws.amazon.com/sagemaker/latest/dg/model-managed-spot-training.html).
 //
-//    * RoleArn - The Amazon Resource Name (ARN) that Amazon SageMaker assumes
-//    to perform tasks on your behalf during model training. You must grant
-//    this role the necessary permissions so that Amazon SageMaker can successfully
-//    complete model training.
+//    * RoleArn - The Amazon Resource Name (ARN) that SageMaker assumes to perform
+//    tasks on your behalf during model training. You must grant this role the
+//    necessary permissions so that SageMaker can successfully complete model
+//    training.
 //
 //    * StoppingCondition - To help cap training costs, use MaxRuntimeInSeconds
 //    to set a time limit for training. Use MaxWaitTimeInSeconds to specify
@@ -4028,7 +4024,7 @@ func (c *SageMaker) CreateTrainingJobRequest(input *CreateTrainingJobInput) (req
 //    * RetryStrategy - The number of times to retry the job when the job fails
 //    due to an InternalServerError.
 //
-// For more information about Amazon SageMaker, see How It Works (https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works.html).
+// For more information about SageMaker, see How It Works (https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4042,8 +4038,8 @@ func (c *SageMaker) CreateTrainingJobRequest(input *CreateTrainingJobInput) (req
 //   Resource being accessed is in use.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 //   * ResourceNotFound
 //   Resource being access is not found.
@@ -4154,8 +4150,8 @@ func (c *SageMaker) CreateTransformJobRequest(input *CreateTransformJobInput) (r
 //   Resource being accessed is in use.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 //   * ResourceNotFound
 //   Resource being access is not found.
@@ -4254,8 +4250,8 @@ func (c *SageMaker) CreateTrialRequest(input *CreateTrialInput) (req *request.Re
 //   Resource being access is not found.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateTrial
 func (c *SageMaker) CreateTrial(input *CreateTrialInput) (*CreateTrialOutput, error) {
@@ -4347,8 +4343,8 @@ func (c *SageMaker) CreateTrialComponentRequest(input *CreateTrialComponentInput
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateTrialComponent
 func (c *SageMaker) CreateTrialComponent(input *CreateTrialComponentInput) (*CreateTrialComponentOutput, error) {
@@ -4434,8 +4430,8 @@ func (c *SageMaker) CreateUserProfileRequest(input *CreateUserProfileInput) (req
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 //   * ResourceInUse
 //   Resource being accessed is in use.
@@ -4615,8 +4611,8 @@ func (c *SageMaker) CreateWorkteamRequest(input *CreateWorkteamInput) (req *requ
 //   Resource being accessed is in use.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateWorkteam
 func (c *SageMaker) CreateWorkteam(input *CreateWorkteamInput) (*CreateWorkteamOutput, error) {
@@ -5560,12 +5556,18 @@ func (c *SageMaker) DeleteEndpointRequest(input *DeleteEndpointInput) (req *requ
 
 // DeleteEndpoint API operation for Amazon SageMaker Service.
 //
-// Deletes an endpoint. Amazon SageMaker frees up all of the resources that
-// were deployed when the endpoint was created.
+// Deletes an endpoint. SageMaker frees up all of the resources that were deployed
+// when the endpoint was created.
 //
-// Amazon SageMaker retires any custom KMS key grants associated with the endpoint,
+// SageMaker retires any custom KMS key grants associated with the endpoint,
 // meaning you don't need to use the RevokeGrant (http://docs.aws.amazon.com/kms/latest/APIReference/API_RevokeGrant.html)
 // API call.
+//
+// When you delete your endpoint, SageMaker asynchronously deletes associated
+// endpoint resources such as KMS key grants. You might still see these resources
+// in your account for a few minutes after deleting your endpoint. Do not delete
+// or revoke the permissions for your ExecutionRoleArn (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html#sagemaker-CreateModel-request-ExecutionRoleArn)
+// , otherwise SageMaker cannot delete these resources.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6227,9 +6229,9 @@ func (c *SageMaker) DeleteModelRequest(input *DeleteModelInput) (req *request.Re
 // DeleteModel API operation for Amazon SageMaker Service.
 //
 // Deletes a model. The DeleteModel API deletes only the model entry that was
-// created in Amazon SageMaker when you called the CreateModel API. It does
-// not delete model artifacts, inference code, or the IAM role that you specified
-// when creating the model.
+// created in SageMaker when you called the CreateModel API. It does not delete
+// model artifacts, inference code, or the IAM role that you specified when
+// creating the model.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6466,9 +6468,9 @@ func (c *SageMaker) DeleteModelPackageRequest(input *DeleteModelPackageInput) (r
 //
 // Deletes a model package.
 //
-// A model package is used to create Amazon SageMaker models or list on Amazon
-// Web Services Marketplace. Buyers can subscribe to model packages listed on
-// Amazon Web Services Marketplace to create models in Amazon SageMaker.
+// A model package is used to create SageMaker models or list on Amazon Web
+// Services Marketplace. Buyers can subscribe to model packages listed on Amazon
+// Web Services Marketplace to create models in SageMaker.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6867,10 +6869,10 @@ func (c *SageMaker) DeleteNotebookInstanceRequest(input *DeleteNotebookInstanceI
 
 // DeleteNotebookInstance API operation for Amazon SageMaker Service.
 //
-// Deletes an Amazon SageMaker notebook instance. Before you can delete a notebook
+// Deletes an SageMaker notebook instance. Before you can delete a notebook
 // instance, you must call the StopNotebookInstance API.
 //
-// When you delete a notebook instance, you lose all of your data. Amazon SageMaker
+// When you delete a notebook instance, you lose all of your data. SageMaker
 // removes the ML compute instance, and deletes the ML storage volume and the
 // network interface associated with the notebook instance.
 //
@@ -7271,7 +7273,7 @@ func (c *SageMaker) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Requ
 
 // DeleteTags API operation for Amazon SageMaker Service.
 //
-// Deletes the specified tags from an Amazon SageMaker resource.
+// Deletes the specified tags from an SageMaker resource.
 //
 // To list a resource's tags, use the ListTags API.
 //
@@ -7696,8 +7698,8 @@ func (c *SageMaker) DeleteWorkteamRequest(input *DeleteWorkteamInput) (req *requ
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteWorkteam
 func (c *SageMaker) DeleteWorkteam(input *DeleteWorkteamInput) (*DeleteWorkteamOutput, error) {
@@ -17502,8 +17504,8 @@ func (c *SageMaker) ListNotebookInstancesRequest(input *ListNotebookInstancesInp
 
 // ListNotebookInstances API operation for Amazon SageMaker Service.
 //
-// Returns a list of the Amazon SageMaker notebook instances in the requester's
-// account in an Amazon Web Services Region.
+// Returns a list of the SageMaker notebook instances in the requester's account
+// in an Amazon Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -18713,7 +18715,7 @@ func (c *SageMaker) ListTagsRequest(input *ListTagsInput) (req *request.Request,
 
 // ListTags API operation for Amazon SageMaker Service.
 //
-// Returns the tags for the specified Amazon SageMaker resource.
+// Returns the tags for the specified SageMaker resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20174,8 +20176,8 @@ func (c *SageMaker) RegisterDevicesRequest(input *RegisterDevicesInput) (req *re
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/RegisterDevices
 func (c *SageMaker) RegisterDevices(input *RegisterDevicesInput) (*RegisterDevicesOutput, error) {
@@ -20336,8 +20338,8 @@ func (c *SageMaker) RetryPipelineExecutionRequest(input *RetryPipelineExecutionI
 //   Resource being access is not found.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 //   * ConflictException
 //   There was a conflict when you attempted to modify a SageMaker entity such
@@ -20564,8 +20566,8 @@ func (c *SageMaker) SendPipelineExecutionStepFailureRequest(input *SendPipelineE
 //   Resource being access is not found.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/SendPipelineExecutionStepFailure
 func (c *SageMaker) SendPipelineExecutionStepFailure(input *SendPipelineExecutionStepFailureInput) (*SendPipelineExecutionStepFailureOutput, error) {
@@ -20650,8 +20652,8 @@ func (c *SageMaker) SendPipelineExecutionStepSuccessRequest(input *SendPipelineE
 //   Resource being access is not found.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/SendPipelineExecutionStepSuccess
 func (c *SageMaker) SendPipelineExecutionStepSuccess(input *SendPipelineExecutionStepSuccessInput) (*SendPipelineExecutionStepSuccessOutput, error) {
@@ -20805,9 +20807,8 @@ func (c *SageMaker) StartNotebookInstanceRequest(input *StartNotebookInstanceInp
 //
 // Launches an ML compute instance with the latest version of the libraries
 // and attaches your ML storage volume. After configuring the notebook instance,
-// Amazon SageMaker sets the notebook instance status to InService. A notebook
-// instance's status must be InService before you can connect to your Jupyter
-// notebook.
+// SageMaker sets the notebook instance status to InService. A notebook instance's
+// status must be InService before you can connect to your Jupyter notebook.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20818,8 +20819,8 @@ func (c *SageMaker) StartNotebookInstanceRequest(input *StartNotebookInstanceInp
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StartNotebookInstance
 func (c *SageMaker) StartNotebookInstance(input *StartNotebookInstanceInput) (*StartNotebookInstanceOutput, error) {
@@ -20901,8 +20902,8 @@ func (c *SageMaker) StartPipelineExecutionRequest(input *StartPipelineExecutionI
 //   Resource being access is not found.
 //
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StartPipelineExecution
 func (c *SageMaker) StartPipelineExecution(input *StartPipelineExecutionInput) (*StartPipelineExecutionOutput, error) {
@@ -21543,10 +21544,10 @@ func (c *SageMaker) StopNotebookInstanceRequest(input *StopNotebookInstanceInput
 
 // StopNotebookInstance API operation for Amazon SageMaker Service.
 //
-// Terminates the ML compute instance. Before terminating the instance, Amazon
-// SageMaker disconnects the ML storage volume from it. Amazon SageMaker preserves
-// the ML storage volume. Amazon SageMaker stops charging you for the ML compute
-// instance when you call StopNotebookInstance.
+// Terminates the ML compute instance. Before terminating the instance, SageMaker
+// disconnects the ML storage volume from it. SageMaker preserves the ML storage
+// volume. SageMaker stops charging you for the ML compute instance when you
+// call StopNotebookInstance.
 //
 // To access data on the ML storage volume for a notebook instance that has
 // been terminated, call the StartNotebookInstance API. StartNotebookInstance
@@ -21810,14 +21811,14 @@ func (c *SageMaker) StopTrainingJobRequest(input *StopTrainingJobInput) (req *re
 
 // StopTrainingJob API operation for Amazon SageMaker Service.
 //
-// Stops a training job. To stop a job, Amazon SageMaker sends the algorithm
-// the SIGTERM signal, which delays job termination for 120 seconds. Algorithms
-// might use this 120-second window to save the model artifacts, so the results
-// of the training is not lost.
+// Stops a training job. To stop a job, SageMaker sends the algorithm the SIGTERM
+// signal, which delays job termination for 120 seconds. Algorithms might use
+// this 120-second window to save the model artifacts, so the results of the
+// training is not lost.
 //
-// When it receives a StopTrainingJob request, Amazon SageMaker changes the
-// status of the job to Stopping. After Amazon SageMaker stops the job, it sets
-// the status to Stopped.
+// When it receives a StopTrainingJob request, SageMaker changes the status
+// of the job to Stopping. After SageMaker stops the job, it sets the status
+// to Stopped.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -22549,8 +22550,8 @@ func (c *SageMaker) UpdateDomainRequest(input *UpdateDomainInput) (req *request.
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 //   * ResourceInUse
 //   Resource being accessed is in use.
@@ -22628,9 +22629,9 @@ func (c *SageMaker) UpdateEndpointRequest(input *UpdateEndpointInput) (req *requ
 // newly created endpoint, and then deletes resources provisioned for the endpoint
 // using the previous EndpointConfig (there is no availability loss).
 //
-// When Amazon SageMaker receives the request, it sets the endpoint status to
-// Updating. After updating the endpoint, it sets the status to InService. To
-// check the status of an endpoint, use the DescribeEndpoint API.
+// When SageMaker receives the request, it sets the endpoint status to Updating.
+// After updating the endpoint, it sets the status to InService. To check the
+// status of an endpoint, use the DescribeEndpoint API.
 //
 // You must not delete an EndpointConfig in use by an endpoint that is live
 // or while the UpdateEndpoint or CreateEndpoint operations are being performed
@@ -22649,8 +22650,8 @@ func (c *SageMaker) UpdateEndpointRequest(input *UpdateEndpointInput) (req *requ
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateEndpoint
 func (c *SageMaker) UpdateEndpoint(input *UpdateEndpointInput) (*UpdateEndpointOutput, error) {
@@ -22720,9 +22721,9 @@ func (c *SageMaker) UpdateEndpointWeightsAndCapacitiesRequest(input *UpdateEndpo
 //
 // Updates variant weight of one or more variants associated with an existing
 // endpoint, or capacity of one variant associated with an existing endpoint.
-// When it receives the request, Amazon SageMaker sets the endpoint status to
-// Updating. After updating the endpoint, it sets the status to InService. To
-// check the status of an endpoint, use the DescribeEndpoint API.
+// When it receives the request, SageMaker sets the endpoint status to Updating.
+// After updating the endpoint, it sets the status to InService. To check the
+// status of an endpoint, use the DescribeEndpoint API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -22733,8 +22734,8 @@ func (c *SageMaker) UpdateEndpointWeightsAndCapacitiesRequest(input *UpdateEndpo
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateEndpointWeightsAndCapacities
 func (c *SageMaker) UpdateEndpointWeightsAndCapacities(input *UpdateEndpointWeightsAndCapacitiesInput) (*UpdateEndpointWeightsAndCapacitiesOutput, error) {
@@ -23054,8 +23055,8 @@ func (c *SageMaker) UpdateMonitoringScheduleRequest(input *UpdateMonitoringSched
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 //   * ResourceNotFound
 //   Resource being access is not found.
@@ -23140,8 +23141,8 @@ func (c *SageMaker) UpdateNotebookInstanceRequest(input *UpdateNotebookInstanceI
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateNotebookInstance
 func (c *SageMaker) UpdateNotebookInstance(input *UpdateNotebookInstanceInput) (*UpdateNotebookInstanceOutput, error) {
@@ -23222,8 +23223,8 @@ func (c *SageMaker) UpdateNotebookInstanceLifecycleConfigRequest(input *UpdateNo
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateNotebookInstanceLifecycleConfig
 func (c *SageMaker) UpdateNotebookInstanceLifecycleConfig(input *UpdateNotebookInstanceLifecycleConfigInput) (*UpdateNotebookInstanceLifecycleConfigOutput, error) {
@@ -23784,8 +23785,8 @@ func (c *SageMaker) UpdateUserProfileRequest(input *UpdateUserProfileInput) (req
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 //   * ResourceInUse
 //   Resource being accessed is in use.
@@ -23966,8 +23967,8 @@ func (c *SageMaker) UpdateWorkteamRequest(input *UpdateWorkteamInput) (req *requ
 //
 // Returned Error Types:
 //   * ResourceLimitExceeded
-//   You have exceeded an Amazon SageMaker resource limit. For example, you might
-//   have too many training jobs created.
+//   You have exceeded an SageMaker resource limit. For example, you might have
+//   too many training jobs created.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateWorkteam
 func (c *SageMaker) UpdateWorkteam(input *UpdateWorkteamInput) (*UpdateWorkteamOutput, error) {
@@ -24344,7 +24345,7 @@ func (s *AddTagsInput) SetTags(v []*Tag) *AddTagsInput {
 type AddTagsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of tags associated with the Amazon SageMaker resource.
+	// A list of tags associated with the SageMaker resource.
 	Tags []*Tag `type:"list"`
 }
 
@@ -24595,7 +24596,7 @@ func (s *Alarm) SetAlarmName(v string) *Alarm {
 
 // Specifies the training algorithm to use in a CreateTrainingJob request.
 //
-// For more information about algorithms provided by Amazon SageMaker, see Algorithms
+// For more information about algorithms provided by SageMaker, see Algorithms
 // (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html). For information
 // about using your own algorithms, see Using Your Own Algorithms with Amazon
 // SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html).
@@ -24612,10 +24613,9 @@ type AlgorithmSpecification struct {
 	// default is false and time-series metrics aren't generated except in the following
 	// cases:
 	//
-	//    * You use one of the Amazon SageMaker built-in algorithms
+	//    * You use one of the SageMaker built-in algorithms
 	//
-	//    * You use one of the following Prebuilt Amazon SageMaker Docker Images
-	//    (https://docs.aws.amazon.com/sagemaker/latest/dg/pre-built-containers-frameworks-deep-learning.html):
+	//    * You use one of the following Prebuilt SageMaker Docker Images (https://docs.aws.amazon.com/sagemaker/latest/dg/pre-built-containers-frameworks-deep-learning.html):
 	//    Tensorflow (version >= 1.15) MXNet (version >= 1.6) PyTorch (version >=
 	//    1.3)
 	//
@@ -24623,14 +24623,14 @@ type AlgorithmSpecification struct {
 	EnableSageMakerMetricsTimeSeries *bool `type:"boolean"`
 
 	// A list of metric definition objects. Each object specifies the metric name
-	// and regular expressions used to parse algorithm logs. Amazon SageMaker publishes
+	// and regular expressions used to parse algorithm logs. SageMaker publishes
 	// each metric to Amazon CloudWatch.
 	MetricDefinitions []*MetricDefinition `type:"list"`
 
 	// The registry path of the Docker image that contains the training algorithm.
 	// For information about docker registry paths for built-in algorithms, see
 	// Algorithms Provided by Amazon SageMaker: Common Parameters (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html).
-	// Amazon SageMaker supports both registry/repository[:tag] and registry/repository[@digest]
+	// SageMaker supports both registry/repository[:tag] and registry/repository[@digest]
 	// image path formats. For more information, see Using Your Own Algorithms with
 	// Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html).
 	TrainingImage *string `type:"string"`
@@ -24921,8 +24921,8 @@ func (s *AlgorithmSummary) SetCreationTime(v time.Time) *AlgorithmSummary {
 	return s
 }
 
-// Defines a training job and a batch transform job that Amazon SageMaker runs
-// to validate your algorithm.
+// Defines a training job and a batch transform job that SageMaker runs to validate
+// your algorithm.
 //
 // The data provided in the validation profile is made available to your buyers
 // on Amazon Web Services Marketplace.
@@ -24935,14 +24935,14 @@ type AlgorithmValidationProfile struct {
 	// ProfileName is a required field
 	ProfileName *string `min:"1" type:"string" required:"true"`
 
-	// The TrainingJobDefinition object that describes the training job that Amazon
-	// SageMaker runs to validate your algorithm.
+	// The TrainingJobDefinition object that describes the training job that SageMaker
+	// runs to validate your algorithm.
 	//
 	// TrainingJobDefinition is a required field
 	TrainingJobDefinition *TrainingJobDefinition `type:"structure" required:"true"`
 
-	// The TransformJobDefinition object that describes the transform job that Amazon
-	// SageMaker runs to validate your algorithm.
+	// The TransformJobDefinition object that describes the transform job that SageMaker
+	// runs to validate your algorithm.
 	TransformJobDefinition *TransformJobDefinition `type:"structure"`
 }
 
@@ -25011,19 +25011,19 @@ func (s *AlgorithmValidationProfile) SetTransformJobDefinition(v *TransformJobDe
 	return s
 }
 
-// Specifies configurations for one or more training jobs that Amazon SageMaker
-// runs to test the algorithm.
+// Specifies configurations for one or more training jobs that SageMaker runs
+// to test the algorithm.
 type AlgorithmValidationSpecification struct {
 	_ struct{} `type:"structure"`
 
 	// An array of AlgorithmValidationProfile objects, each of which specifies a
-	// training job and batch transform job that Amazon SageMaker runs to validate
-	// your algorithm.
+	// training job and batch transform job that SageMaker runs to validate your
+	// algorithm.
 	//
 	// ValidationProfiles is a required field
 	ValidationProfiles []*AlgorithmValidationProfile `min:"1" type:"list" required:"true"`
 
-	// The IAM roles that Amazon SageMaker uses to run the training jobs.
+	// The IAM roles that SageMaker uses to run the training jobs.
 	//
 	// ValidationRole is a required field
 	ValidationRole *string `min:"20" type:"string" required:"true"`
@@ -26404,14 +26404,14 @@ func (s *AssociationSummary) SetSourceType(v string) *AssociationSummary {
 	return s
 }
 
-// Configures the behavior of the client used by Amazon SageMaker to interact
-// with the model container during asynchronous inference.
+// Configures the behavior of the client used by SageMaker to interact with
+// the model container during asynchronous inference.
 type AsyncInferenceClientConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of concurrent requests sent by the SageMaker client to
-	// the model container. If no value is provided, Amazon SageMaker will choose
-	// an optimal value for you.
+	// the model container. If no value is provided, SageMaker chooses an optimal
+	// value.
 	MaxConcurrentInvocationsPerInstance *int64 `min:"1" type:"integer"`
 }
 
@@ -26456,8 +26456,8 @@ func (s *AsyncInferenceClientConfig) SetMaxConcurrentInvocationsPerInstance(v in
 type AsyncInferenceConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Configures the behavior of the client used by Amazon SageMaker to interact
-	// with the model container during asynchronous inference.
+	// Configures the behavior of the client used by SageMaker to interact with
+	// the model container during asynchronous inference.
 	ClientConfig *AsyncInferenceClientConfig `type:"structure"`
 
 	// Specifies the configuration for asynchronous inference invocation outputs.
@@ -26568,8 +26568,8 @@ type AsyncInferenceOutputConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Web Services Key Management Service (Amazon Web Services KMS)
-	// key that Amazon SageMaker uses to encrypt the asynchronous inference output
-	// in Amazon S3.
+	// key that SageMaker uses to encrypt the asynchronous inference output in Amazon
+	// S3.
 	KmsKeyId *string `type:"string"`
 
 	// Specifies the configuration for notifications of inference results for asynchronous
@@ -26966,10 +26966,18 @@ func (s *AutoMLCandidateStep) SetCandidateStepType(v string) *AutoMLCandidateSte
 	return s
 }
 
-// A channel is a named input source that training algorithms can consume. For
-// more information, see .
+// A channel is a named input source that training algorithms can consume. The
+// validation dataset size is limited to less than 2 GB. The training dataset
+// size must be less than 100 GB. For more information, see .
+//
+// A validation dataset must contain the same headers as the training dataset.
 type AutoMLChannel struct {
 	_ struct{} `type:"structure"`
+
+	// The channel type (optional) is an enum string. The default value is training.
+	// Channels for training and validation must share the same ContentType and
+	// TargetAttributeName.
+	ChannelType *string `type:"string" enum:"AutoMLChannelType"`
 
 	// You can use Gzip or None. The default value is None.
 	CompressionType *string `type:"string" enum:"CompressionType"`
@@ -27030,6 +27038,12 @@ func (s *AutoMLChannel) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetChannelType sets the ChannelType field's value.
+func (s *AutoMLChannel) SetChannelType(v string) *AutoMLChannel {
+	s.ChannelType = &v
+	return s
 }
 
 // SetCompressionType sets the CompressionType field's value.
@@ -27167,6 +27181,43 @@ func (s *AutoMLDataSource) SetS3DataSource(v *AutoMLS3DataSource) *AutoMLDataSou
 	return s
 }
 
+// This structure specifies how to split the data into train and test datasets.
+// The validation and training datasets must contain the same headers. The validation
+// dataset must be less than 2 GB in size.
+type AutoMLDataSplitConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The validation fraction (optional) is a float that specifies the portion
+	// of the training dataset to be used for validation. The default value is 0.2,
+	// and values can range from 0 to 1. We recommend setting this value to be less
+	// than 0.5.
+	ValidationFraction *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoMLDataSplitConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoMLDataSplitConfig) GoString() string {
+	return s.String()
+}
+
+// SetValidationFraction sets the ValidationFraction field's value.
+func (s *AutoMLDataSplitConfig) SetValidationFraction(v float64) *AutoMLDataSplitConfig {
+	s.ValidationFraction = &v
+	return s
+}
+
 // The artifacts that are generated during an AutoML job.
 type AutoMLJobArtifacts struct {
 	_ struct{} `type:"structure"`
@@ -27294,6 +27345,11 @@ type AutoMLJobConfig struct {
 	// allowed to generate.
 	CompletionCriteria *AutoMLJobCompletionCriteria `type:"structure"`
 
+	// The configuration for splitting the input training dataset.
+	//
+	// Type: AutoMLDataSplitConfig
+	DataSplitConfig *AutoMLDataSplitConfig `type:"structure"`
+
 	// The security configuration for traffic encryption or Amazon VPC settings.
 	SecurityConfig *AutoMLSecurityConfig `type:"structure"`
 }
@@ -27339,6 +27395,12 @@ func (s *AutoMLJobConfig) Validate() error {
 // SetCompletionCriteria sets the CompletionCriteria field's value.
 func (s *AutoMLJobConfig) SetCompletionCriteria(v *AutoMLJobCompletionCriteria) *AutoMLJobConfig {
 	s.CompletionCriteria = v
+	return s
+}
+
+// SetDataSplitConfig sets the DataSplitConfig field's value.
+func (s *AutoMLJobConfig) SetDataSplitConfig(v *AutoMLDataSplitConfig) *AutoMLJobConfig {
+	s.DataSplitConfig = v
 	return s
 }
 
@@ -28778,11 +28840,11 @@ type Channel struct {
 	DataSource *DataSource `type:"structure" required:"true"`
 
 	// (Optional) The input mode to use for the data channel in a training job.
-	// If you don't set a value for InputMode, Amazon SageMaker uses the value set
-	// for TrainingInputMode. Use this parameter to override the TrainingInputMode
-	// setting in a AlgorithmSpecification request when you have a channel that
-	// needs a different input mode from the training job's general setting. To
-	// download the data from Amazon Simple Storage Service (Amazon S3) to the provisioned
+	// If you don't set a value for InputMode, SageMaker uses the value set for
+	// TrainingInputMode. Use this parameter to override the TrainingInputMode setting
+	// in a AlgorithmSpecification request when you have a channel that needs a
+	// different input mode from the training job's general setting. To download
+	// the data from Amazon Simple Storage Service (Amazon S3) to the provisioned
 	// ML storage volume, and mount the directory to a Docker volume, use File input
 	// mode. To stream data directly from Amazon S3 to the container, choose Pipe
 	// input mode.
@@ -28791,9 +28853,9 @@ type Channel struct {
 	InputMode *string `type:"string" enum:"TrainingInputMode"`
 
 	// Specify RecordIO as the value when input data is in raw format but the training
-	// algorithm requires the RecordIO format. In this case, Amazon SageMaker wraps
-	// each individual S3 object in a RecordIO record. If the input data is already
-	// in RecordIO format, you don't need to set this attribute. For more information,
+	// algorithm requires the RecordIO format. In this case, SageMaker wraps each
+	// individual S3 object in a RecordIO record. If the input data is already in
+	// RecordIO format, you don't need to set this attribute. For more information,
 	// see Create a Dataset Using RecordIO (https://mxnet.apache.org/api/architecture/note_data_loading#data-format).
 	//
 	// In File mode, leave this field unset or set it to None.
@@ -29029,8 +29091,8 @@ type CheckpointConfig struct {
 	// directory is /opt/ml/checkpoints/.
 	LocalPath *string `type:"string"`
 
-	// Identifies the S3 path where you want Amazon SageMaker to store checkpoints.
-	// For example, s3://bucket-name/key-name-prefix.
+	// Identifies the S3 path where you want SageMaker to store checkpoints. For
+	// example, s3://bucket-name/key-name-prefix.
 	//
 	// S3Uri is a required field
 	S3Uri *string `type:"string" required:"true"`
@@ -29733,11 +29795,10 @@ type ContainerDefinition struct {
 	// The path where inference code is stored. This can be either in Amazon EC2
 	// Container Registry or in a Docker registry that is accessible from the same
 	// VPC that you configure for your endpoint. If you are using your own custom
-	// algorithm instead of an algorithm provided by Amazon SageMaker, the inference
-	// code must meet Amazon SageMaker requirements. Amazon SageMaker supports both
-	// registry/repository[:tag] and registry/repository[@digest] image path formats.
-	// For more information, see Using Your Own Algorithms with Amazon SageMaker
-	// (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html)
+	// algorithm instead of an algorithm provided by SageMaker, the inference code
+	// must meet SageMaker requirements. SageMaker supports both registry/repository[:tag]
+	// and registry/repository[@digest] image path formats. For more information,
+	// see Using Your Own Algorithms with Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html)
 	Image *string `type:"string"`
 
 	// Specifies whether the model container is in Amazon ECR or a private Docker
@@ -29754,24 +29815,24 @@ type ContainerDefinition struct {
 
 	// The S3 path where the model artifacts, which result from model training,
 	// are stored. This path must point to a single gzip compressed tar archive
-	// (.tar.gz suffix). The S3 path is required for Amazon SageMaker built-in algorithms,
+	// (.tar.gz suffix). The S3 path is required for SageMaker built-in algorithms,
 	// but not if you use your own algorithms. For more information on built-in
 	// algorithms, see Common Parameters (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html).
 	//
 	// The model artifacts must be in an S3 bucket that is in the same region as
 	// the model or endpoint you are creating.
 	//
-	// If you provide a value for this parameter, Amazon SageMaker uses Amazon Web
-	// Services Security Token Service to download model artifacts from the S3 path
-	// you provide. Amazon Web Services STS is activated in your IAM user account
-	// by default. If you previously deactivated Amazon Web Services STS for a region,
-	// you need to reactivate Amazon Web Services STS for that region. For more
-	// information, see Activating and Deactivating Amazon Web Services STS in an
-	// Amazon Web Services Region (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html)
+	// If you provide a value for this parameter, SageMaker uses Amazon Web Services
+	// Security Token Service to download model artifacts from the S3 path you provide.
+	// Amazon Web Services STS is activated in your IAM user account by default.
+	// If you previously deactivated Amazon Web Services STS for a region, you need
+	// to reactivate Amazon Web Services STS for that region. For more information,
+	// see Activating and Deactivating Amazon Web Services STS in an Amazon Web
+	// Services Region (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html)
 	// in the Amazon Web Services Identity and Access Management User Guide.
 	//
-	// If you use a built-in algorithm to create a model, Amazon SageMaker requires
-	// that you provide a S3 path to the model artifacts in ModelDataUrl.
+	// If you use a built-in algorithm to create a model, SageMaker requires that
+	// you provide a S3 path to the model artifacts in ModelDataUrl.
 	ModelDataUrl *string `type:"string"`
 
 	// The name or Amazon Resource Name (ARN) of the model package to use to create
@@ -30046,7 +30107,7 @@ type ContinuousParameterRange struct {
 	//
 	// Auto
 	//
-	// Amazon SageMaker hyperparameter tuning chooses the best scale for the hyperparameter.
+	// SageMaker hyperparameter tuning chooses the best scale for the hyperparameter.
 	//
 	// Linear
 	//
@@ -30418,10 +30479,9 @@ type CreateAlgorithmInput struct {
 	// TrainingSpecification is a required field
 	TrainingSpecification *TrainingSpecification `type:"structure" required:"true"`
 
-	// Specifies configurations for one or more training jobs and that Amazon SageMaker
+	// Specifies configurations for one or more training jobs and that SageMaker
 	// runs to test the algorithm's training code and, optionally, one or more batch
-	// transform jobs that Amazon SageMaker runs to test the algorithm's inference
-	// code.
+	// transform jobs that SageMaker runs to test the algorithm's inference code.
 	ValidationSpecification *AlgorithmValidationSpecification `type:"structure"`
 }
 
@@ -32539,8 +32599,8 @@ type CreateEndpointConfigInput struct {
 	EndpointConfigName *string `type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service
-	// key that Amazon SageMaker uses to encrypt data on the storage volume attached
-	// to the ML compute instance that hosts the endpoint.
+	// key that SageMaker uses to encrypt data on the storage volume attached to
+	// the ML compute instance that hosts the endpoint.
 	//
 	// The KmsKeyId can be any of the following formats:
 	//
@@ -33727,8 +33787,8 @@ func (s *CreateHyperParameterTuningJobInput) SetWarmStartConfig(v *HyperParamete
 type CreateHyperParameterTuningJobOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the tuning job. Amazon SageMaker assigns
-	// an ARN to a hyperparameter tuning job when you create it.
+	// The Amazon Resource Name (ARN) of the tuning job. SageMaker assigns an ARN
+	// to a hyperparameter tuning job when you create it.
 	//
 	// HyperParameterTuningJobArn is a required field
 	HyperParameterTuningJobArn *string `type:"string" required:"true"`
@@ -33903,8 +33963,8 @@ type CreateImageVersionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The registry path of the container image to use as the starting point for
-	// this version. The path is an Amazon Container Registry (ECR) URI in the following
-	// format:
+	// this version. The path is an Amazon Elastic Container Registry (ECR) URI
+	// in the following format:
 	//
 	// <acct-id>.dkr.ecr.<region>.amazonaws.com/<repo-name[:tag] or [@digest]>
 	//
@@ -35025,14 +35085,13 @@ type CreateModelInput struct {
 	// made to or from the model container.
 	EnableNetworkIsolation *bool `type:"boolean"`
 
-	// The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker can
-	// assume to access model artifacts and docker image for deployment on ML compute
-	// instances or for batch transform jobs. Deploying on ML compute instances
-	// is part of model hosting. For more information, see Amazon SageMaker Roles
-	// (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).
+	// The Amazon Resource Name (ARN) of the IAM role that SageMaker can assume
+	// to access model artifacts and docker image for deployment on ML compute instances
+	// or for batch transform jobs. Deploying on ML compute instances is part of
+	// model hosting. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).
 	//
-	// To be able to pass this role to Amazon SageMaker, the caller of this API
-	// must have the iam:PassRole permission.
+	// To be able to pass this role to SageMaker, the caller of this API must have
+	// the iam:PassRole permission.
 	//
 	// ExecutionRoleArn is a required field
 	ExecutionRoleArn *string `min:"20" type:"string" required:"true"`
@@ -35188,7 +35247,7 @@ func (s *CreateModelInput) SetVpcConfig(v *VpcConfig) *CreateModelInput {
 type CreateModelOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the model created in Amazon SageMaker.
+	// The ARN of the model created in SageMaker.
 	//
 	// ModelArn is a required field
 	ModelArn *string `min:"20" type:"string" required:"true"`
@@ -35423,8 +35482,8 @@ type CreateModelPackageInput struct {
 	// learning tasks include object detection and image classification.
 	Task *string `type:"string"`
 
-	// Specifies configurations for one or more transform jobs that Amazon SageMaker
-	// runs to test the model package.
+	// Specifies configurations for one or more transform jobs that SageMaker runs
+	// to test the model package.
 	ValidationSpecification *ModelPackageValidationSpecification `type:"structure"`
 }
 
@@ -36035,8 +36094,7 @@ type CreateNotebookInstanceInput struct {
 	// (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or
 	// in any other Git repository. These repositories are cloned at the same level
 	// as the default repository of your notebook instance. For more information,
-	// see Associating Git Repositories with Amazon SageMaker Notebook Instances
-	// (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
+	// see Associating Git Repositories with SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	AdditionalCodeRepositories []*string `type:"list"`
 
 	// A Git repository to associate with the notebook instance as its default code
@@ -36045,13 +36103,13 @@ type CreateNotebookInstanceInput struct {
 	// (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or
 	// in any other Git repository. When you open a notebook instance, it opens
 	// in the directory that contains this repository. For more information, see
-	// Associating Git Repositories with Amazon SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
+	// Associating Git Repositories with SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	DefaultCodeRepository *string `min:"1" type:"string"`
 
-	// Sets whether Amazon SageMaker provides internet access to the notebook instance.
+	// Sets whether SageMaker provides internet access to the notebook instance.
 	// If you set this to Disabled this notebook instance is able to access resources
-	// only in your VPC, and is not be able to connect to Amazon SageMaker training
-	// and endpoint services unless you configure a NAT Gateway in your VPC.
+	// only in your VPC, and is not be able to connect to SageMaker training and
+	// endpoint services unless you configure a NAT Gateway in your VPC.
 	//
 	// For more information, see Notebook Instances Are Internet-Enabled by Default
 	// (https://docs.aws.amazon.com/sagemaker/latest/dg/appendix-additional-considerations.html#appendix-notebook-and-internet-access).
@@ -36065,8 +36123,8 @@ type CreateNotebookInstanceInput struct {
 	InstanceType *string `type:"string" required:"true" enum:"InstanceType"`
 
 	// The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service
-	// key that Amazon SageMaker uses to encrypt data on the storage volume attached
-	// to your notebook instance. The KMS key you provide must be enabled. For information,
+	// key that SageMaker uses to encrypt data on the storage volume attached to
+	// your notebook instance. The KMS key you provide must be enabled. For information,
 	// see Enabling and Disabling Keys (https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html)
 	// in the Amazon Web Services Key Management Service Developer Guide.
 	KmsKeyId *string `type:"string"`
@@ -36085,14 +36143,14 @@ type CreateNotebookInstanceInput struct {
 	PlatformIdentifier *string `type:"string"`
 
 	// When you send any requests to Amazon Web Services resources from the notebook
-	// instance, Amazon SageMaker assumes this role to perform tasks on your behalf.
-	// You must grant this role necessary permissions so Amazon SageMaker can perform
-	// these tasks. The policy must allow the Amazon SageMaker service principal
-	// (sagemaker.amazonaws.com) permissions to assume this role. For more information,
-	// see Amazon SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).
+	// instance, SageMaker assumes this role to perform tasks on your behalf. You
+	// must grant this role necessary permissions so SageMaker can perform these
+	// tasks. The policy must allow the SageMaker service principal (sagemaker.amazonaws.com)
+	// permissions to assume this role. For more information, see SageMaker Roles
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).
 	//
-	// To be able to pass this role to Amazon SageMaker, the caller of this API
-	// must have the iam:PassRole permission.
+	// To be able to pass this role to SageMaker, the caller of this API must have
+	// the iam:PassRole permission.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -37355,7 +37413,7 @@ type CreateTrainingJobInput struct {
 
 	// The registry path of the Docker image that contains the training algorithm
 	// and algorithm-specific metadata, including the input mode. For more information
-	// about algorithms provided by Amazon SageMaker, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).
+	// about algorithms provided by SageMaker, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).
 	// For information about providing your own algorithms, see Using Your Own Algorithms
 	// with Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html).
 	//
@@ -37399,9 +37457,9 @@ type CreateTrainingJobInput struct {
 	// Isolates the training container. No inbound or outbound network calls can
 	// be made, except for calls between peers within a training cluster for distributed
 	// training. If you enable network isolation for training jobs that are configured
-	// to use a VPC, Amazon SageMaker downloads and uploads customer data and model
-	// artifacts through the specified VPC, but the training container does not
-	// have network access.
+	// to use a VPC, SageMaker downloads and uploads customer data and model artifacts
+	// through the specified VPC, but the training container does not have network
+	// access.
 	EnableNetworkIsolation *bool `type:"boolean"`
 
 	// The environment variables to set in the Docker container.
@@ -37419,8 +37477,8 @@ type CreateTrainingJobInput struct {
 
 	// Algorithm-specific parameters that influence the quality of the model. You
 	// set hyperparameters before you start the learning process. For a list of
-	// hyperparameters for each training algorithm provided by Amazon SageMaker,
-	// see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).
+	// hyperparameters for each training algorithm provided by SageMaker, see Algorithms
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).
 	//
 	// You can specify a maximum of 100 hyperparameters. Each hyperparameter is
 	// a key-value pair. Each key and value is limited to 256 characters, as specified
@@ -37437,15 +37495,15 @@ type CreateTrainingJobInput struct {
 	// data: the MIME type, compression method, and whether the data is wrapped
 	// in RecordIO format.
 	//
-	// Depending on the input mode that the algorithm supports, Amazon SageMaker
-	// either copies input data files from an S3 bucket to a local directory in
-	// the Docker container, or makes it available as input streams. For example,
-	// if you specify an EFS location, input data files will be made available as
-	// input streams. They do not need to be downloaded.
+	// Depending on the input mode that the algorithm supports, SageMaker either
+	// copies input data files from an S3 bucket to a local directory in the Docker
+	// container, or makes it available as input streams. For example, if you specify
+	// an EFS location, input data files are available as input streams. They do
+	// not need to be downloaded.
 	InputDataConfig []*Channel `min:"1" type:"list"`
 
 	// Specifies the path to the S3 location where you want to store model artifacts.
-	// Amazon SageMaker creates subfolders for the artifacts.
+	// SageMaker creates subfolders for the artifacts.
 	//
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
@@ -37463,9 +37521,9 @@ type CreateTrainingJobInput struct {
 	//
 	// ML storage volumes store model artifacts and incremental states. Training
 	// algorithms might also use ML storage volumes for scratch space. If you want
-	// Amazon SageMaker to use the ML storage volume to store the training data,
-	// choose File as the TrainingInputMode in the algorithm specification. For
-	// distributed training algorithms, specify an instance count greater than 1.
+	// SageMaker to use the ML storage volume to store the training data, choose
+	// File as the TrainingInputMode in the algorithm specification. For distributed
+	// training algorithms, specify an instance count greater than 1.
 	//
 	// ResourceConfig is a required field
 	ResourceConfig *ResourceConfig `type:"structure" required:"true"`
@@ -37473,30 +37531,29 @@ type CreateTrainingJobInput struct {
 	// The number of times to retry the job when the job fails due to an InternalServerError.
 	RetryStrategy *RetryStrategy `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume
-	// to perform tasks on your behalf.
+	// The Amazon Resource Name (ARN) of an IAM role that SageMaker can assume to
+	// perform tasks on your behalf.
 	//
-	// During model training, Amazon SageMaker needs your permission to read input
-	// data from an S3 bucket, download a Docker image that contains training code,
-	// write model artifacts to an S3 bucket, write logs to Amazon CloudWatch Logs,
-	// and publish metrics to Amazon CloudWatch. You grant permissions for all of
-	// these tasks to an IAM role. For more information, see Amazon SageMaker Roles
-	// (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).
+	// During model training, SageMaker needs your permission to read input data
+	// from an S3 bucket, download a Docker image that contains training code, write
+	// model artifacts to an S3 bucket, write logs to Amazon CloudWatch Logs, and
+	// publish metrics to Amazon CloudWatch. You grant permissions for all of these
+	// tasks to an IAM role. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).
 	//
-	// To be able to pass this role to Amazon SageMaker, the caller of this API
-	// must have the iam:PassRole permission.
+	// To be able to pass this role to SageMaker, the caller of this API must have
+	// the iam:PassRole permission.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
 
 	// Specifies a limit to how long a model training job can run. It also specifies
 	// how long a managed Spot training job has to complete. When the job reaches
-	// the time limit, Amazon SageMaker ends the training job. Use this API to cap
-	// model training costs.
+	// the time limit, SageMaker ends the training job. Use this API to cap model
+	// training costs.
 	//
-	// To stop a job, Amazon SageMaker sends the algorithm the SIGTERM signal, which
-	// delays job termination for 120 seconds. Algorithms can use this 120-second
-	// window to save the model artifacts, so the results of training are not lost.
+	// To stop a job, SageMaker sends the algorithm the SIGTERM signal, which delays
+	// job termination for 120 seconds. Algorithms can use this 120-second window
+	// to save the model artifacts, so the results of training are not lost.
 	//
 	// StoppingCondition is a required field
 	StoppingCondition *StoppingCondition `type:"structure" required:"true"`
@@ -37893,6 +37950,10 @@ type CreateTransformJobInput struct {
 	// record in MB, divide the size of your dataset by the number of records. To
 	// ensure that the records fit within the maximum payload size, we recommend
 	// using a slightly larger value. The default value is 6 MB.
+	//
+	// The value of MaxPayloadInMB cannot be greater than 100 MB. If you specify
+	// the MaxConcurrentTransforms parameter, the value of (MaxConcurrentTransforms
+	// * MaxPayloadInMB) also cannot exceed 100 MB.
 	//
 	// For cases where the payload might be arbitrarily large and is transmitted
 	// using HTTP chunked encoding, set the value to 0. This feature works only
@@ -39317,8 +39378,8 @@ type DataProcessing struct {
 	// A JSONPath (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html#data-processing-operators)
 	// expression used to select a portion of the input data to pass to the algorithm.
 	// Use the InputFilter parameter to exclude fields, such as an ID column, from
-	// the input. If you want Amazon SageMaker to pass the entire input dataset
-	// to the algorithm, accept the default value $.
+	// the input. If you want SageMaker to pass the entire input dataset to the
+	// algorithm, accept the default value $.
 	//
 	// Examples: "$", "$[1:]", "$.features"
 	InputFilter *string `type:"string"`
@@ -39348,10 +39409,10 @@ type DataProcessing struct {
 
 	// A JSONPath (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html#data-processing-operators)
 	// expression used to select a portion of the joined dataset to save in the
-	// output file for a batch transform job. If you want Amazon SageMaker to store
-	// the entire input dataset in the output file, leave the default value, $.
-	// If you specify indexes that aren't within the dimension size of the joined
-	// dataset, you get an error.
+	// output file for a batch transform job. If you want SageMaker to store the
+	// entire input dataset in the output file, leave the default value, $. If you
+	// specify indexes that aren't within the dimension size of the joined dataset,
+	// you get an error.
 	//
 	// Examples: "$", "$[0,5:]", "$['id','SageMakerOutput']"
 	OutputFilter *string `type:"string"`
@@ -42089,7 +42150,7 @@ func (s DeleteMonitoringScheduleOutput) GoString() string {
 type DeleteNotebookInstanceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Amazon SageMaker notebook instance to delete.
+	// The name of the SageMaker notebook instance to delete.
 	//
 	// NotebookInstanceName is a required field
 	NotebookInstanceName *string `type:"string" required:"true"`
@@ -43435,7 +43496,7 @@ type DescribeAlgorithmOutput struct {
 	// TrainingSpecification is a required field
 	TrainingSpecification *TrainingSpecification `type:"structure" required:"true"`
 
-	// Details about configurations for one or more training jobs that Amazon SageMaker
+	// Details about configurations for one or more training jobs that SageMaker
 	// runs to test the algorithm.
 	ValidationSpecification *AlgorithmValidationSpecification `type:"structure"`
 }
@@ -45958,7 +46019,7 @@ type DescribeEndpointConfigOutput struct {
 	// EndpointConfigArn is a required field
 	EndpointConfigArn *string `min:"20" type:"string" required:"true"`
 
-	// Name of the Amazon SageMaker endpoint configuration.
+	// Name of the SageMaker endpoint configuration.
 	//
 	// EndpointConfigName is a required field
 	EndpointConfigName *string `type:"string" required:"true"`
@@ -47863,8 +47924,8 @@ type DescribeLabelingJobOutput struct {
 	// OutputConfig is a required field
 	OutputConfig *LabelingJobOutputConfig `type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) that Amazon SageMaker assumes to perform tasks
-	// on your behalf during data labeling.
+	// The Amazon Resource Name (ARN) that SageMaker assumes to perform tasks on
+	// your behalf during data labeling.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -48607,7 +48668,7 @@ type DescribeModelOutput struct {
 	// ModelArn is a required field
 	ModelArn *string `min:"20" type:"string" required:"true"`
 
-	// Name of the Amazon SageMaker model.
+	// Name of the SageMaker model.
 	//
 	// ModelName is a required field
 	ModelName *string `type:"string" required:"true"`
@@ -48697,7 +48758,7 @@ func (s *DescribeModelOutput) SetVpcConfig(v *VpcConfig) *DescribeModelOutput {
 type DescribeModelPackageGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the model group to describe.
+	// The name of gthe model group to describe.
 	//
 	// ModelPackageGroupName is a required field
 	ModelPackageGroupName *string `min:"1" type:"string" required:"true"`
@@ -48928,7 +48989,7 @@ type DescribeModelPackageOutput struct {
 	// trial component, lineage group, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
-	// The last time the model package was modified.
+	// The last time that the model package was modified.
 	LastModifiedTime *time.Time `type:"timestamp"`
 
 	// Metadata properties of the tracking entity, trial, or trial component.
@@ -49713,8 +49774,7 @@ type DescribeNotebookInstanceOutput struct {
 	// (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or
 	// in any other Git repository. These repositories are cloned at the same level
 	// as the default repository of your notebook instance. For more information,
-	// see Associating Git Repositories with Amazon SageMaker Notebook Instances
-	// (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
+	// see Associating Git Repositories with SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	AdditionalCodeRepositories []*string `type:"list"`
 
 	// A timestamp. Use this parameter to return the time when the notebook instance
@@ -49727,13 +49787,12 @@ type DescribeNotebookInstanceOutput struct {
 	// (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or
 	// in any other Git repository. When you open a notebook instance, it opens
 	// in the directory that contains this repository. For more information, see
-	// Associating Git Repositories with Amazon SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
+	// Associating Git Repositories with SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	DefaultCodeRepository *string `min:"1" type:"string"`
 
-	// Describes whether Amazon SageMaker provides internet access to the notebook
-	// instance. If this value is set to Disabled, the notebook instance does not
-	// have internet access, and cannot connect to Amazon SageMaker training and
-	// endpoint services.
+	// Describes whether SageMaker provides internet access to the notebook instance.
+	// If this value is set to Disabled, the notebook instance does not have internet
+	// access, and cannot connect to SageMaker training and endpoint services.
 	//
 	// For more information, see Notebook Instances Are Internet-Enabled by Default
 	// (https://docs.aws.amazon.com/sagemaker/latest/dg/appendix-additional-considerations.html#appendix-notebook-and-internet-access).
@@ -49745,15 +49804,15 @@ type DescribeNotebookInstanceOutput struct {
 	// The type of ML compute instance running on the notebook instance.
 	InstanceType *string `type:"string" enum:"InstanceType"`
 
-	// The Amazon Web Services KMS key ID Amazon SageMaker uses to encrypt data
-	// when storing it on the ML storage volume attached to the instance.
+	// The Amazon Web Services KMS key ID SageMaker uses to encrypt data when storing
+	// it on the ML storage volume attached to the instance.
 	KmsKeyId *string `type:"string"`
 
 	// A timestamp. Use this parameter to retrieve the time when the notebook instance
 	// was last modified.
 	LastModifiedTime *time.Time `type:"timestamp"`
 
-	// The network interface IDs that Amazon SageMaker created at the time of creating
+	// The network interface IDs that SageMaker created at the time of creating
 	// the instance.
 	NetworkInterfaceId *string `type:"string"`
 
@@ -49766,7 +49825,7 @@ type DescribeNotebookInstanceOutput struct {
 	// 2.1: (Optional) Customize a Notebook Instance (https://docs.aws.amazon.com/sagemaker/latest/dg/notebook-lifecycle-config.html)
 	NotebookInstanceLifecycleConfigName *string `type:"string"`
 
-	// The name of the Amazon SageMaker notebook instance.
+	// The name of the SageMaker notebook instance.
 	NotebookInstanceName *string `type:"string"`
 
 	// The status of the notebook instance.
@@ -51129,8 +51188,8 @@ type DescribeTrainingJobOutput struct {
 	// time.
 	//
 	// Multiply BillableTimeInSeconds by the number of instances (InstanceCount)
-	// in your training cluster to get the total compute time SageMaker will bill
-	// you if you run distributed training. The formula is as follows: BillableTimeInSeconds
+	// in your training cluster to get the total compute time SageMaker bills you
+	// if you run distributed training. The formula is as follows: BillableTimeInSeconds
 	// * InstanceCount .
 	//
 	// You can calculate the savings from using managed spot training using the
@@ -51174,9 +51233,9 @@ type DescribeTrainingJobOutput struct {
 	// If you want to allow inbound or outbound network calls, except for calls
 	// between peers within a training cluster for distributed training, choose
 	// True. If you enable network isolation for training jobs that are configured
-	// to use a VPC, Amazon SageMaker downloads and uploads customer data and model
-	// artifacts through the specified VPC, but the training container does not
-	// have network access.
+	// to use a VPC, SageMaker downloads and uploads customer data and model artifacts
+	// through the specified VPC, but the training container does not have network
+	// access.
 	EnableNetworkIsolation *bool `type:"boolean"`
 
 	// The environment variables to set in the Docker container.
@@ -51205,8 +51264,8 @@ type DescribeTrainingJobOutput struct {
 	// An array of Channel objects that describes each data input channel.
 	InputDataConfig []*Channel `min:"1" type:"list"`
 
-	// The Amazon Resource Name (ARN) of the Amazon SageMaker Ground Truth labeling
-	// job that created the transform or training job.
+	// The Amazon Resource Name (ARN) of the SageMaker Ground Truth labeling job
+	// that created the transform or training job.
 	LabelingJobArn *string `type:"string"`
 
 	// A timestamp that indicates when the status of the training job was last modified.
@@ -51219,7 +51278,7 @@ type DescribeTrainingJobOutput struct {
 	ModelArtifacts *ModelArtifacts `type:"structure" required:"true"`
 
 	// The S3 path where model artifacts that you configured when creating the job
-	// are stored. Amazon SageMaker creates subfolders for model artifacts.
+	// are stored. SageMaker creates subfolders for model artifacts.
 	OutputDataConfig *OutputDataConfig `type:"structure"`
 
 	// Configuration information for Debugger system monitoring, framework profiling,
@@ -51253,8 +51312,8 @@ type DescribeTrainingJobOutput struct {
 	// information on the secondary status of the training job, see StatusMessage
 	// under SecondaryStatusTransition.
 	//
-	// Amazon SageMaker provides primary statuses and secondary statuses that apply
-	// to each of them:
+	// SageMaker provides primary statuses and secondary statuses that apply to
+	// each of them:
 	//
 	// InProgress
 	//
@@ -51314,12 +51373,12 @@ type DescribeTrainingJobOutput struct {
 
 	// Specifies a limit to how long a model training job can run. It also specifies
 	// how long a managed Spot training job has to complete. When the job reaches
-	// the time limit, Amazon SageMaker ends the training job. Use this API to cap
-	// model training costs.
+	// the time limit, SageMaker ends the training job. Use this API to cap model
+	// training costs.
 	//
-	// To stop a job, Amazon SageMaker sends the algorithm the SIGTERM signal, which
-	// delays job termination for 120 seconds. Algorithms can use this 120-second
-	// window to save the model artifacts, so the results of training are not lost.
+	// To stop a job, SageMaker sends the algorithm the SIGTERM signal, which delays
+	// job termination for 120 seconds. Algorithms can use this 120-second window
+	// to save the model artifacts, so the results of training are not lost.
 	//
 	// StoppingCondition is a required field
 	StoppingCondition *StoppingCondition `type:"structure" required:"true"`
@@ -51330,7 +51389,7 @@ type DescribeTrainingJobOutput struct {
 	// Indicates the time when the training job ends on training instances. You
 	// are billed for the time interval between the value of TrainingStartTime and
 	// this time. For successful jobs and stopped jobs, this is the time after model
-	// artifacts are uploaded. For failed jobs, this is the time when Amazon SageMaker
+	// artifacts are uploaded. For failed jobs, this is the time when SageMaker
 	// detects a job failure.
 	TrainingEndTime *time.Time `type:"timestamp"`
 
@@ -51346,7 +51405,7 @@ type DescribeTrainingJobOutput struct {
 
 	// The status of the training job.
 	//
-	// Amazon SageMaker provides the following training job statuses:
+	// SageMaker provides the following training job statuses:
 	//
 	//    * InProgress - The training is in progress.
 	//
@@ -58469,7 +58528,7 @@ type HyperParameterAlgorithmSpecification struct {
 	// The registry path of the Docker image that contains the training algorithm.
 	// For information about Docker registry paths for built-in algorithms, see
 	// Algorithms Provided by Amazon SageMaker: Common Parameters (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html).
-	// Amazon SageMaker supports both registry/repository[:tag] and registry/repository[@digest]
+	// SageMaker supports both registry/repository[:tag] and registry/repository[@digest]
 	// image path formats. For more information, see Using Your Own Algorithms with
 	// Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html).
 	TrainingImage *string `type:"string"`
@@ -58728,9 +58787,9 @@ type HyperParameterTrainingJobDefinition struct {
 	// Isolates the training container. No inbound or outbound network calls can
 	// be made, except for calls between peers within a training cluster for distributed
 	// training. If network isolation is used for training jobs that are configured
-	// to use a VPC, Amazon SageMaker downloads and uploads customer data and model
-	// artifacts through the specified VPC, but the training container does not
-	// have network access.
+	// to use a VPC, SageMaker downloads and uploads customer data and model artifacts
+	// through the specified VPC, but the training container does not have network
+	// access.
 	EnableNetworkIsolation *bool `type:"boolean"`
 
 	// Specifies ranges of integer, continuous, and categorical hyperparameters
@@ -58759,10 +58818,10 @@ type HyperParameterTrainingJobDefinition struct {
 	// for the training jobs that the tuning job launches.
 	//
 	// Storage volumes store model artifacts and incremental states. Training algorithms
-	// might also use storage volumes for scratch space. If you want Amazon SageMaker
-	// to use the storage volume to store the training data, choose File as the
-	// TrainingInputMode in the algorithm specification. For distributed training
-	// algorithms, specify an instance count greater than 1.
+	// might also use storage volumes for scratch space. If you want SageMaker to
+	// use the storage volume to store the training data, choose File as the TrainingInputMode
+	// in the algorithm specification. For distributed training algorithms, specify
+	// an instance count greater than 1.
 	//
 	// ResourceConfig is a required field
 	ResourceConfig *ResourceConfig `type:"structure" required:"true"`
@@ -58782,8 +58841,8 @@ type HyperParameterTrainingJobDefinition struct {
 
 	// Specifies a limit to how long a model hyperparameter training job can run.
 	// It also specifies how long a managed spot training job has to complete. When
-	// the job reaches the time limit, Amazon SageMaker ends the training job. Use
-	// this API to cap model training costs.
+	// the job reaches the time limit, SageMaker ends the training job. Use this
+	// API to cap model training costs.
 	//
 	// StoppingCondition is a required field
 	StoppingCondition *StoppingCondition `type:"structure" required:"true"`
@@ -59004,7 +59063,7 @@ func (s *HyperParameterTrainingJobDefinition) SetVpcConfig(v *VpcConfig) *HyperP
 	return s
 }
 
-// Specifies summary information about a training job.
+// The container for the summary information about a training job.
 type HyperParameterTrainingJobSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -59038,7 +59097,7 @@ type HyperParameterTrainingJobSummary struct {
 	// Specifies the time when the training job ends on training instances. You
 	// are billed for the time interval between the value of TrainingStartTime and
 	// this time. For successful jobs and stopped jobs, this is the time after model
-	// artifacts are uploaded. For failed jobs, this is the time when Amazon SageMaker
+	// artifacts are uploaded. For failed jobs, this is the time when SageMaker
 	// detects a job failure.
 	TrainingEndTime *time.Time `type:"timestamp"`
 
@@ -59200,9 +59259,9 @@ type HyperParameterTuningJobConfig struct {
 	//
 	// AUTO
 	//
-	// Amazon SageMaker stops training jobs launched by the hyperparameter tuning
-	// job when they are unlikely to perform better than previously completed training
-	// jobs. For more information, see Stop Training Jobs Early (https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-early-stopping.html).
+	// SageMaker stops training jobs launched by the hyperparameter tuning job when
+	// they are unlikely to perform better than previously completed training jobs.
+	// For more information, see Stop Training Jobs Early (https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-early-stopping.html).
 	TrainingJobEarlyStoppingType *string `type:"string" enum:"TrainingJobEarlyStoppingType"`
 
 	// The tuning job's completion criteria.
@@ -60477,7 +60536,7 @@ type IntegerParameterRange struct {
 	//
 	// Auto
 	//
-	// Amazon SageMaker hyperparameter tuning chooses the best scale for the hyperparameter.
+	// SageMaker hyperparameter tuning chooses the best scale for the hyperparameter.
 	//
 	// Linear
 	//
@@ -60621,11 +60680,16 @@ type JupyterServerAppSettings struct {
 	_ struct{} `type:"structure"`
 
 	// The default instance type and the Amazon Resource Name (ARN) of the default
-	// SageMaker image used by the JupyterServer app.
+	// SageMaker image used by the JupyterServer app. If you use the LifecycleConfigArns
+	// parameter, then this parameter is also required.
 	DefaultResourceSpec *ResourceSpec `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the Lifecycle Configurations attached to
-	// the JupyterServerApp.
+	// the JupyterServerApp. If you use this parameter, the DefaultResourceSpec
+	// parameter is also required.
+	//
+	// To remove a Lifecycle Config, you must set LifecycleConfigArns to an empty
+	// list.
 	LifecycleConfigArns []*string `type:"list"`
 }
 
@@ -60669,10 +60733,18 @@ type KernelGatewayAppSettings struct {
 
 	// The default instance type and the Amazon Resource Name (ARN) of the default
 	// SageMaker image used by the KernelGateway app.
+	//
+	// The Amazon SageMaker Studio UI does not use the default instance type value
+	// set here. The default instance type set here is used when Apps are created
+	// using the Amazon Web Services Command Line Interface or Amazon Web Services
+	// CloudFormation and the instance type parameter value is not passed.
 	DefaultResourceSpec *ResourceSpec `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the Lifecycle Configurations attached to
 	// the the user profile or domain.
+	//
+	// To remove a Lifecycle Config, you must set LifecycleConfigArns to an empty
+	// list.
 	LifecycleConfigArns []*string `type:"list"`
 }
 
@@ -61064,8 +61136,8 @@ type LabelingJobDataAttributes struct {
 	_ struct{} `type:"structure"`
 
 	// Declares that your content is free of personally identifiable information
-	// or adult content. Amazon SageMaker may restrict the Amazon Mechanical Turk
-	// workers that can view your task based on this information.
+	// or adult content. SageMaker may restrict the Amazon Mechanical Turk workers
+	// that can view your task based on this information.
 	ContentClassifiers []*string `type:"list" enum:"ContentClassifier"`
 }
 
@@ -61315,8 +61387,8 @@ func (s *LabelingJobInputConfig) SetDataSource(v *LabelingJobDataSource) *Labeli
 type LabelingJobOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) for the most recent Amazon SageMaker model
-	// trained as part of automated data labeling.
+	// The Amazon Resource Name (ARN) for the most recent SageMaker model trained
+	// as part of automated data labeling.
 	FinalActiveLearningModelArn *string `min:"20" type:"string"`
 
 	// The Amazon S3 bucket location of the manifest file for labeled data.
@@ -62186,8 +62258,8 @@ type ListAlgorithmsOutput struct {
 	// AlgorithmSummaryList is a required field
 	AlgorithmSummaryList []*AlgorithmSummary `type:"list" required:"true"`
 
-	// If the response is truncated, Amazon SageMaker returns this token. To retrieve
-	// the next set of algorithms, use it in the subsequent request.
+	// If the response is truncated, SageMaker returns this token. To retrieve the
+	// next set of algorithms, use it in the subsequent request.
 	NextToken *string `type:"string"`
 }
 
@@ -64475,8 +64547,8 @@ type ListEndpointConfigsOutput struct {
 	// EndpointConfigs is a required field
 	EndpointConfigs []*EndpointConfigSummary `type:"list" required:"true"`
 
-	// If the response is truncated, Amazon SageMaker returns this token. To retrieve
-	// the next set of endpoint configurations, use it in the subsequent request
+	// If the response is truncated, SageMaker returns this token. To retrieve the
+	// next set of endpoint configurations, use it in the subsequent request
 	NextToken *string `type:"string"`
 }
 
@@ -64651,8 +64723,8 @@ type ListEndpointsOutput struct {
 	// Endpoints is a required field
 	Endpoints []*EndpointSummary `type:"list" required:"true"`
 
-	// If the response is truncated, Amazon SageMaker returns this token. To retrieve
-	// the next set of training jobs, use it in the subsequent request.
+	// If the response is truncated, SageMaker returns this token. To retrieve the
+	// next set of training jobs, use it in the subsequent request.
 	NextToken *string `type:"string"`
 }
 
@@ -66041,8 +66113,8 @@ type ListLabelingJobsForWorkteamOutput struct {
 	// LabelingJobSummaryList is a required field
 	LabelingJobSummaryList []*LabelingJobForWorkteamSummary `type:"list" required:"true"`
 
-	// If the response is truncated, Amazon SageMaker returns this token. To retrieve
-	// the next set of labeling jobs, use it in the subsequent request.
+	// If the response is truncated, SageMaker returns this token. To retrieve the
+	// next set of labeling jobs, use it in the subsequent request.
 	NextToken *string `type:"string"`
 }
 
@@ -66214,8 +66286,8 @@ type ListLabelingJobsOutput struct {
 	// An array of LabelingJobSummary objects, each describing a labeling job.
 	LabelingJobSummaryList []*LabelingJobSummary `type:"list"`
 
-	// If the response is truncated, Amazon SageMaker returns this token. To retrieve
-	// the next set of labeling jobs, use it in the subsequent request.
+	// If the response is truncated, SageMaker returns this token. To retrieve the
+	// next set of labeling jobs, use it in the subsequent request.
 	NextToken *string `type:"string"`
 }
 
@@ -67103,8 +67175,8 @@ type ListModelPackagesOutput struct {
 	// ModelPackageSummaryList is a required field
 	ModelPackageSummaryList []*ModelPackageSummary `type:"list" required:"true"`
 
-	// If the response is truncated, Amazon SageMaker returns this token. To retrieve
-	// the next set of model packages, use it in the subsequent request.
+	// If the response is truncated, SageMaker returns this token. To retrieve the
+	// next set of model packages, use it in the subsequent request.
 	NextToken *string `type:"string"`
 }
 
@@ -67405,8 +67477,8 @@ type ListModelsOutput struct {
 	// Models is a required field
 	Models []*ModelSummary `type:"list" required:"true"`
 
-	// If the response is truncated, Amazon SageMaker returns this token. To retrieve
-	// the next set of models, use it in the subsequent request.
+	// If the response is truncated, SageMaker returns this token. To retrieve the
+	// next set of models, use it in the subsequent request.
 	NextToken *string `type:"string"`
 }
 
@@ -67999,8 +68071,8 @@ func (s *ListNotebookInstanceLifecycleConfigsInput) SetSortOrder(v string) *List
 type ListNotebookInstanceLifecycleConfigsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// If the response is truncated, Amazon SageMaker returns this token. To get
-	// the next set of lifecycle configurations, use it in the next request.
+	// If the response is truncated, SageMaker returns this token. To get the next
+	// set of lifecycle configurations, use it in the next request.
 	NextToken *string `type:"string"`
 
 	// An array of NotebookInstanceLifecycleConfiguration objects, each listing
@@ -68214,8 +68286,8 @@ type ListNotebookInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// If the response to the previous ListNotebookInstances request was truncated,
-	// Amazon SageMaker returns this token. To retrieve the next set of notebook
-	// instances, use the token in the next request.
+	// SageMaker returns this token. To retrieve the next set of notebook instances,
+	// use the token in the next request.
 	NextToken *string `type:"string"`
 
 	// An array of NotebookInstanceSummary objects, one for each notebook instance.
@@ -69395,7 +69467,7 @@ type ListTagsInput struct {
 	// Maximum number of tags to return.
 	MaxResults *int64 `min:"50" type:"integer"`
 
-	// If the response to the previous ListTags request is truncated, Amazon SageMaker
+	// If the response to the previous ListTags request is truncated, SageMaker
 	// returns this token. To retrieve the next set of tags, use it in the subsequent
 	// request.
 	NextToken *string `type:"string"`
@@ -69461,8 +69533,8 @@ func (s *ListTagsInput) SetResourceArn(v string) *ListTagsInput {
 type ListTagsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// If response is truncated, Amazon SageMaker includes a token in the response.
-	// You can use this token in your subsequent request to fetch next set of tokens.
+	// If response is truncated, SageMaker includes a token in the response. You
+	// can use this token in your subsequent request to fetch next set of tokens.
 	NextToken *string `type:"string"`
 
 	// An array of Tag objects, each with a tag key and a value.
@@ -69781,8 +69853,8 @@ func (s *ListTrainingJobsInput) SetStatusEquals(v string) *ListTrainingJobsInput
 type ListTrainingJobsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// If the response is truncated, Amazon SageMaker returns this token. To retrieve
-	// the next set of training jobs, use it in the subsequent request.
+	// If the response is truncated, SageMaker returns this token. To retrieve the
+	// next set of training jobs, use it in the subsequent request.
 	NextToken *string `type:"string"`
 
 	// An array of TrainingJobSummary objects, each listing a training job.
@@ -70930,7 +71002,7 @@ func (s *MetricDatum) SetValue(v float64) *MetricDatum {
 }
 
 // Specifies a metric that the training algorithm writes to stderr or stdout.
-// Amazon SageMakerhyperparameter tuning captures all defined metrics. You specify
+// SageMakerhyperparameter tuning captures all defined metrics. You specify
 // one metric that a hyperparameter tuning job uses as its objective metric
 // to choose the best training job.
 type MetricDefinition struct {
@@ -71301,10 +71373,12 @@ func (s *ModelBiasJobInput) SetGroundTruthS3Input(v *MonitoringGroundTruthS3Inpu
 type ModelClientConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of retries when invocation requests are failing.
+	// The maximum number of retries when invocation requests are failing. The default
+	// value is 3.
 	InvocationsMaxRetries *int64 `type:"integer"`
 
-	// The timeout value in seconds for an invocation request.
+	// The timeout value in seconds for an invocation request. The default value
+	// is 600.
 	InvocationsTimeoutInSeconds *int64 `min:"1" type:"integer"`
 }
 
@@ -72232,8 +72306,8 @@ type ModelPackage struct {
 	// learning tasks include object detection and image classification.
 	Task *string `type:"string"`
 
-	// Specifies batch transform jobs that Amazon SageMaker runs to validate your
-	// model package.
+	// Specifies batch transform jobs that SageMaker runs to validate your model
+	// package.
 	ValidationSpecification *ModelPackageValidationSpecification `type:"structure"`
 }
 
@@ -72433,8 +72507,8 @@ type ModelPackageContainerDefinition struct {
 	// is stored.
 	//
 	// If you are using your own custom algorithm instead of an algorithm provided
-	// by Amazon SageMaker, the inference code must meet Amazon SageMaker requirements.
-	// Amazon SageMaker supports both registry/repository[:tag] and registry/repository[@digest]
+	// by SageMaker, the inference code must meet SageMaker requirements. SageMaker
+	// supports both registry/repository[:tag] and registry/repository[@digest]
 	// image path formats. For more information, see Using Your Own Algorithms with
 	// Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html).
 	//
@@ -73022,13 +73096,13 @@ func (s *ModelPackageValidationProfile) SetTransformJobDefinition(v *TransformJo
 	return s
 }
 
-// Specifies batch transform jobs that Amazon SageMaker runs to validate your
-// model package.
+// Specifies batch transform jobs that SageMaker runs to validate your model
+// package.
 type ModelPackageValidationSpecification struct {
 	_ struct{} `type:"structure"`
 
 	// An array of ModelPackageValidationProfile objects, each of which specifies
-	// a batch transform job that Amazon SageMaker runs to validate your model package.
+	// a batch transform job that SageMaker runs to validate your model package.
 	//
 	// ValidationProfiles is a required field
 	ValidationProfiles []*ModelPackageValidationProfile `min:"1" type:"list" required:"true"`
@@ -75364,7 +75438,7 @@ func (s *NotebookInstanceLifecycleHook) SetContent(v string) *NotebookInstanceLi
 	return s
 }
 
-// Provides summary information for an Amazon SageMaker notebook instance.
+// Provides summary information for an SageMaker notebook instance.
 type NotebookInstanceSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -75374,8 +75448,7 @@ type NotebookInstanceSummary struct {
 	// (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or
 	// in any other Git repository. These repositories are cloned at the same level
 	// as the default repository of your notebook instance. For more information,
-	// see Associating Git Repositories with Amazon SageMaker Notebook Instances
-	// (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
+	// see Associating Git Repositories with SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	AdditionalCodeRepositories []*string `type:"list"`
 
 	// A timestamp that shows when the notebook instance was created.
@@ -75387,7 +75460,7 @@ type NotebookInstanceSummary struct {
 	// (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or
 	// in any other Git repository. When you open a notebook instance, it opens
 	// in the directory that contains this repository. For more information, see
-	// Associating Git Repositories with Amazon SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
+	// Associating Git Repositories with SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	DefaultCodeRepository *string `min:"1" type:"string"`
 
 	// The type of ML compute instance that the notebook instance is running on.
@@ -75416,7 +75489,7 @@ type NotebookInstanceSummary struct {
 	// The status of the notebook instance.
 	NotebookInstanceStatus *string `type:"string" enum:"NotebookInstanceStatus"`
 
-	// The URL that you use to connect to the Jupyter instance running in your notebook
+	// The URL that you use to connect to the Jupyter notebook running in your notebook
 	// instance.
 	Url *string `type:"string"`
 }
@@ -76318,9 +76391,8 @@ type OutputDataConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Web Services Key Management Service (Amazon Web Services KMS)
-	// key that Amazon SageMaker uses to encrypt the model artifacts at rest using
-	// Amazon S3 server-side encryption. The KmsKeyId can be any of the following
-	// formats:
+	// key that SageMaker uses to encrypt the model artifacts at rest using Amazon
+	// S3 server-side encryption. The KmsKeyId can be any of the following formats:
 	//
 	//    * // KMS Key ID "1234abcd-12ab-34cd-56ef-1234567890ab"
 	//
@@ -76330,14 +76402,14 @@ type OutputDataConfig struct {
 	//
 	//    * // Amazon Resource Name (ARN) of a KMS Key Alias "arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias"
 	//
-	// If you use a KMS key ID or an alias of your KMS key, the Amazon SageMaker
-	// execution role must include permissions to call kms:Encrypt. If you don't
-	// provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon
-	// S3 for your role's account. Amazon SageMaker uses server-side encryption
-	// with KMS-managed keys for OutputDataConfig. If you use a bucket policy with
-	// an s3:PutObject permission that only allows objects with server-side encryption,
-	// set the condition key of s3:x-amz-server-side-encryption to "aws:kms". For
-	// more information, see KMS-Managed Encryption Keys (https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html)
+	// If you use a KMS key ID or an alias of your KMS key, the SageMaker execution
+	// role must include permissions to call kms:Encrypt. If you don't provide a
+	// KMS key ID, SageMaker uses the default KMS key for Amazon S3 for your role's
+	// account. SageMaker uses server-side encryption with KMS-managed keys for
+	// OutputDataConfig. If you use a bucket policy with an s3:PutObject permission
+	// that only allows objects with server-side encryption, set the condition key
+	// of s3:x-amz-server-side-encryption to "aws:kms". For more information, see
+	// KMS-Managed Encryption Keys (https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// The KMS key policy must grant permission to the IAM role that you specify
@@ -76347,8 +76419,8 @@ type OutputDataConfig struct {
 	// in the Amazon Web Services Key Management Service Developer Guide.
 	KmsKeyId *string `type:"string"`
 
-	// Identifies the S3 path where you want Amazon SageMaker to store the model
-	// artifacts. For example, s3://bucket-name/key-name-prefix.
+	// Identifies the S3 path where you want SageMaker to store the model artifacts.
+	// For example, s3://bucket-name/key-name-prefix.
 	//
 	// S3OutputPath is a required field
 	S3OutputPath *string `type:"string" required:"true"`
@@ -76915,9 +76987,6 @@ type PendingProductionVariantSummary struct {
 	CurrentInstanceCount *int64 `type:"integer"`
 
 	// The serverless configuration for the endpoint.
-	//
-	// Serverless Inference is in preview release for Amazon SageMaker and is subject
-	// to change. We do not recommend using this feature in production environments.
 	CurrentServerlessConfig *ProductionVariantServerlessConfig `type:"structure"`
 
 	// The weight associated with the variant.
@@ -76934,9 +77003,6 @@ type PendingProductionVariantSummary struct {
 
 	// The serverless configuration requested for this deployment, as specified
 	// in the endpoint configuration for the endpoint.
-	//
-	// Serverless Inference is in preview release for Amazon SageMaker and is subject
-	// to change. We do not recommend using this feature in production environments.
 	DesiredServerlessConfig *ProductionVariantServerlessConfig `type:"structure"`
 
 	// The requested weight for the variant in this deployment, as specified in
@@ -79080,8 +79146,8 @@ func (s *ProcessingStoppingCondition) SetMaxRuntimeInSeconds(v int64) *Processin
 }
 
 // Identifies a model that you want to host and the resources chosen to deploy
-// for hosting it. If you are deploying multiple models, tell Amazon SageMaker
-// how to distribute traffic among the models by specifying variant weights.
+// for hosting it. If you are deploying multiple models, tell SageMaker how
+// to distribute traffic among the models by specifying variant weights.
 type ProductionVariant struct {
 	_ struct{} `type:"structure"`
 
@@ -79114,9 +79180,6 @@ type ProductionVariant struct {
 
 	// The serverless configuration for an endpoint. Specifies a serverless endpoint
 	// configuration instead of an instance-based endpoint configuration.
-	//
-	// Serverless Inference is in preview release for Amazon SageMaker and is subject
-	// to change. We do not recommend using this feature in production environments.
 	ServerlessConfig *ProductionVariantServerlessConfig `type:"structure"`
 
 	// The name of the production variant.
@@ -79231,9 +79294,8 @@ type ProductionVariantCoreDumpConfig struct {
 	DestinationS3Uri *string `type:"string" required:"true"`
 
 	// The Amazon Web Services Key Management Service (Amazon Web Services KMS)
-	// key that Amazon SageMaker uses to encrypt the core dump data at rest using
-	// Amazon S3 server-side encryption. The KmsKeyId can be any of the following
-	// formats:
+	// key that SageMaker uses to encrypt the core dump data at rest using Amazon
+	// S3 server-side encryption. The KmsKeyId can be any of the following formats:
 	//
 	//    * // KMS Key ID "1234abcd-12ab-34cd-56ef-1234567890ab"
 	//
@@ -79243,14 +79305,14 @@ type ProductionVariantCoreDumpConfig struct {
 	//
 	//    * // Amazon Resource Name (ARN) of a KMS Key Alias "arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias"
 	//
-	// If you use a KMS key ID or an alias of your KMS key, the Amazon SageMaker
-	// execution role must include permissions to call kms:Encrypt. If you don't
-	// provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon
-	// S3 for your role's account. Amazon SageMaker uses server-side encryption
-	// with KMS-managed keys for OutputDataConfig. If you use a bucket policy with
-	// an s3:PutObject permission that only allows objects with server-side encryption,
-	// set the condition key of s3:x-amz-server-side-encryption to "aws:kms". For
-	// more information, see KMS-Managed Encryption Keys (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html)
+	// If you use a KMS key ID or an alias of your KMS key, the SageMaker execution
+	// role must include permissions to call kms:Encrypt. If you don't provide a
+	// KMS key ID, SageMaker uses the default KMS key for Amazon S3 for your role's
+	// account. SageMaker uses server-side encryption with KMS-managed keys for
+	// OutputDataConfig. If you use a bucket policy with an s3:PutObject permission
+	// that only allows objects with server-side encryption, set the condition key
+	// of s3:x-amz-server-side-encryption to "aws:kms". For more information, see
+	// KMS-Managed Encryption Keys (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// The KMS key policy must grant permission to the IAM role that you specify
@@ -79303,10 +79365,6 @@ func (s *ProductionVariantCoreDumpConfig) SetKmsKeyId(v string) *ProductionVaria
 	return s
 }
 
-//
-// Serverless Inference is in preview release for Amazon SageMaker and is subject
-// to change. We do not recommend using this feature in production environments.
-//
 // Specifies the serverless configuration for an endpoint variant.
 type ProductionVariantServerlessConfig struct {
 	_ struct{} `type:"structure"`
@@ -79451,9 +79509,6 @@ type ProductionVariantSummary struct {
 	CurrentInstanceCount *int64 `type:"integer"`
 
 	// The serverless configuration for the endpoint.
-	//
-	// Serverless Inference is in preview release for Amazon SageMaker and is subject
-	// to change. We do not recommend using this feature in production environments.
 	CurrentServerlessConfig *ProductionVariantServerlessConfig `type:"structure"`
 
 	// The weight associated with the variant.
@@ -79468,9 +79523,6 @@ type ProductionVariantSummary struct {
 	DesiredInstanceCount *int64 `type:"integer"`
 
 	// The serverless configuration requested for the endpoint update.
-	//
-	// Serverless Inference is in preview release for Amazon SageMaker and is subject
-	// to change. We do not recommend using this feature in production environments.
 	DesiredServerlessConfig *ProductionVariantServerlessConfig `type:"structure"`
 
 	// The requested weight, as specified in the UpdateEndpointWeightsAndCapacities
@@ -80722,8 +80774,8 @@ type QueryFilters struct {
 	ModifiedBefore *time.Time `type:"timestamp"`
 
 	// Filter the lineage entities connected to the StartArn(s) by a set if property
-	// key value pairs. If multiple pairs are provided, an entity will be included
-	// in the results if it matches any of the provided pairs.
+	// key value pairs. If multiple pairs are provided, an entity is included in
+	// the results if it matches any of the provided pairs.
 	Properties map[string]*string `type:"map"`
 
 	// Filter the lineage entities connected to the StartArn by type. For example:
@@ -80794,8 +80846,8 @@ func (s *QueryFilters) SetTypes(v []*string) *QueryFilters {
 type QueryLineageInput struct {
 	_ struct{} `type:"structure"`
 
-	// Associations between lineage entities are directed. This parameter determines
-	// the direction from the StartArn(s) the query will look.
+	// Associations between lineage entities have a direction. This parameter determines
+	// the direction from the StartArn(s) that the query traverses.
 	Direction *string `type:"string" enum:"Direction"`
 
 	// A set of filtering parameters that allow you to specify which entities should
@@ -80813,15 +80865,15 @@ type QueryLineageInput struct {
 	//    * ModifiedAfter - Filter entities modified after this date.
 	Filters *QueryFilters `type:"structure"`
 
-	// Setting this value to True will retrieve not only the entities of interest
-	// but also the Associations (https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking-entities.html)
+	// Setting this value to True retrieves not only the entities of interest but
+	// also the Associations (https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking-entities.html)
 	// and lineage entities on the path. Set to False to only return lineage entities
 	// that match your query.
 	IncludeEdges *bool `type:"boolean"`
 
-	// The maximum depth in lineage relationships from the StartArns that will be
-	// traversed. Depth is a measure of the number of Associations from the StartArn
-	// entity to the matched results.
+	// The maximum depth in lineage relationships from the StartArns that are traversed.
+	// Depth is a measure of the number of Associations from the StartArn entity
+	// to the matched results.
 	MaxDepth *int64 `type:"integer"`
 
 	// Limits the number of vertices in the results. Use the NextToken in a response
@@ -82267,9 +82319,9 @@ type ResourceConfig struct {
 	// InstanceType is a required field
 	InstanceType *string `type:"string" required:"true" enum:"TrainingInstanceType"`
 
-	// The Amazon Web Services KMS key that Amazon SageMaker uses to encrypt data
-	// on the storage volume attached to the ML compute instance(s) that run the
-	// training job.
+	// The Amazon Web Services KMS key that SageMaker uses to encrypt data on the
+	// storage volume attached to the ML compute instance(s) that run the training
+	// job.
 	//
 	// Certain Nitro-based instances include local storage, dependent on the instance
 	// type. Local storage volumes are encrypted using a hardware module on the
@@ -82298,14 +82350,13 @@ type ResourceConfig struct {
 	//
 	// You must specify sufficient ML storage for your scenario.
 	//
-	// Amazon SageMaker supports only the General Purpose SSD (gp2) ML storage volume
-	// type.
+	// SageMaker supports only the General Purpose SSD (gp2) ML storage volume type.
 	//
 	// Certain Nitro-based instances include local storage with a fixed total size,
 	// dependent on the instance type. When using these instances for training,
-	// Amazon SageMaker mounts the local instance storage instead of Amazon EBS
-	// gp2 storage. You can't request a VolumeSizeInGB greater than the total size
-	// of the local instance storage.
+	// SageMaker mounts the local instance storage instead of Amazon EBS gp2 storage.
+	// You can't request a VolumeSizeInGB greater than the total size of the local
+	// instance storage.
 	//
 	// For a list of instance types that support local instance storage, including
 	// the total size per instance type, see Instance Store Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes).
@@ -82445,8 +82496,8 @@ func (s *ResourceInUse) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// You have exceeded an Amazon SageMaker resource limit. For example, you might
-// have too many training jobs created.
+// You have exceeded an SageMaker resource limit. For example, you might have
+// too many training jobs created.
 type ResourceLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -82650,6 +82701,10 @@ type ResourceSpec struct {
 	_ struct{} `type:"structure"`
 
 	// The instance type that the image version runs on.
+	//
+	// JupyterServer Apps only support the system value. KernelGateway Apps do not
+	// support the system value, but support all other values for available instance
+	// types.
 	InstanceType *string `type:"string" enum:"AppInstanceType"`
 
 	// The Amazon Resource Name (ARN) of the Lifecycle Configuration attached to
@@ -82908,14 +82963,14 @@ type S3DataSource struct {
 	// augmented manifest file.
 	AttributeNames []*string `type:"list"`
 
-	// If you want Amazon SageMaker to replicate the entire dataset on each ML compute
+	// If you want SageMaker to replicate the entire dataset on each ML compute
 	// instance that is launched for model training, specify FullyReplicated.
 	//
-	// If you want Amazon SageMaker to replicate a subset of data on each ML compute
-	// instance that is launched for model training, specify ShardedByS3Key. If
-	// there are n ML compute instances launched for a training job, each instance
-	// gets approximately 1/n of the number of S3 objects. In this case, model training
-	// on each machine uses only the subset of training data.
+	// If you want SageMaker to replicate a subset of data on each ML compute instance
+	// that is launched for model training, specify ShardedByS3Key. If there are
+	// n ML compute instances launched for a training job, each instance gets approximately
+	// 1/n of the number of S3 objects. In this case, model training on each machine
+	// uses only the subset of training data.
 	//
 	// Don't choose more ML compute instances for training than available S3 objects.
 	// If you do, some nodes won't get any data and you will pay for nodes that
@@ -82928,12 +82983,12 @@ type S3DataSource struct {
 	// copies 1/n of the number of objects.
 	S3DataDistributionType *string `type:"string" enum:"S3DataDistribution"`
 
-	// If you choose S3Prefix, S3Uri identifies a key name prefix. Amazon SageMaker
-	// uses all objects that match the specified key name prefix for model training.
+	// If you choose S3Prefix, S3Uri identifies a key name prefix. SageMaker uses
+	// all objects that match the specified key name prefix for model training.
 	//
 	// If you choose ManifestFile, S3Uri identifies an object that is a manifest
-	// file containing a list of object keys that you want Amazon SageMaker to use
-	// for model training.
+	// file containing a list of object keys that you want SageMaker to use for
+	// model training.
 	//
 	// If you choose AugmentedManifestFile, S3Uri identifies an object that is an
 	// augmented manifest file in JSON lines format. This file contains the data
@@ -82961,7 +83016,7 @@ type S3DataSource struct {
 	//    s3://customer_bucket/some/prefix/relative/path/custdata-2 ... s3://customer_bucket/some/prefix/relative/path/custdata-N
 	//    The complete set of S3Uri in this manifest is the input data for the channel
 	//    for this data source. The object that each S3Uri points to must be readable
-	//    by the IAM role that Amazon SageMaker uses to perform tasks on your behalf.
+	//    by the IAM role that SageMaker uses to perform tasks on your behalf.
 	//
 	// S3Uri is a required field
 	S3Uri *string `type:"string" required:"true"`
@@ -83589,7 +83644,7 @@ func (s *SearchRecord) SetTrialComponent(v *TrialComponent) *SearchRecord {
 // It provides additional details about a status that the training job has transitioned
 // through. A training job can be in one of several states, for example, starting,
 // downloading, training, or uploading. Within each state, there are a number
-// of intermediate states. For example, within the starting state, Amazon SageMaker
+// of intermediate states. For example, within the starting state, SageMaker
 // could be starting the training job or launching the ML instances. These transitional
 // states are referred to as the job's secondary status.
 type SecondaryStatusTransition struct {
@@ -83656,8 +83711,8 @@ type SecondaryStatusTransition struct {
 
 	// A detailed description of the progress within a secondary status.
 	//
-	// Amazon SageMaker provides secondary statuses and status messages that apply
-	// to each of them:
+	// SageMaker provides secondary statuses and status messages that apply to each
+	// of them:
 	//
 	// Starting
 	//
@@ -84289,14 +84344,14 @@ func (s *ShuffleConfig) SetSeed(v int64) *ShuffleConfig {
 }
 
 // Specifies an algorithm that was used to create the model package. The algorithm
-// must be either an algorithm resource in your Amazon SageMaker account or
-// an algorithm in Amazon Web Services Marketplace that you are subscribed to.
+// must be either an algorithm resource in your SageMaker account or an algorithm
+// in Amazon Web Services Marketplace that you are subscribed to.
 type SourceAlgorithm struct {
 	_ struct{} `type:"structure"`
 
 	// The name of an algorithm that was used to create the model package. The algorithm
-	// must be either an algorithm resource in your Amazon SageMaker account or
-	// an algorithm in Amazon Web Services Marketplace that you are subscribed to.
+	// must be either an algorithm resource in your SageMaker account or an algorithm
+	// in Amazon Web Services Marketplace that you are subscribed to.
 	//
 	// AlgorithmName is a required field
 	AlgorithmName *string `min:"1" type:"string" required:"true"`
@@ -85629,20 +85684,19 @@ func (s StopTransformJobOutput) GoString() string {
 
 // Specifies a limit to how long a model training job or model compilation job
 // can run. It also specifies how long a managed spot training job has to complete.
-// When the job reaches the time limit, Amazon SageMaker ends the training or
-// compilation job. Use this API to cap model training costs.
+// When the job reaches the time limit, SageMaker ends the training or compilation
+// job. Use this API to cap model training costs.
 //
-// To stop a training job, Amazon SageMaker sends the algorithm the SIGTERM
-// signal, which delays job termination for 120 seconds. Algorithms can use
-// this 120-second window to save the model artifacts, so the results of training
-// are not lost.
+// To stop a training job, SageMaker sends the algorithm the SIGTERM signal,
+// which delays job termination for 120 seconds. Algorithms can use this 120-second
+// window to save the model artifacts, so the results of training are not lost.
 //
-// The training algorithms provided by Amazon SageMaker automatically save the
-// intermediate results of a model training job when possible. This attempt
-// to save artifacts is only a best effort case as model might not be in a state
-// from which it can be saved. For example, if training has just started, the
-// model might not be ready to save. When saved, this intermediate data is a
-// valid model artifact. You can use it to create a model with CreateModel.
+// The training algorithms provided by SageMaker automatically save the intermediate
+// results of a model training job when possible. This attempt to save artifacts
+// is only a best effort case as model might not be in a state from which it
+// can be saved. For example, if training has just started, the model might
+// not be ready to save. When saved, this intermediate data is a valid model
+// artifact. You can use it to create a model with CreateModel.
 //
 // The Neural Topic Model (NTM) currently does not support saving intermediate
 // model artifacts. When training NTMs, make sure that the maximum runtime is
@@ -85653,22 +85707,21 @@ type StoppingCondition struct {
 	// The maximum length of time, in seconds, that a training or compilation job
 	// can run.
 	//
-	// For compilation jobs, if the job does not complete during this time, you
-	// will receive a TimeOut error. We recommend starting with 900 seconds and
-	// increase as necessary based on your model.
+	// For compilation jobs, if the job does not complete during this time, a TimeOut
+	// error is generated. We recommend starting with 900 seconds and increasing
+	// as necessary based on your model.
 	//
-	// For all other jobs, if the job does not complete during this time, Amazon
-	// SageMaker ends the job. When RetryStrategy is specified in the job request,
-	// MaxRuntimeInSeconds specifies the maximum time for all of the attempts in
-	// total, not each individual attempt. The default value is 1 day. The maximum
-	// value is 28 days.
+	// For all other jobs, if the job does not complete during this time, SageMaker
+	// ends the job. When RetryStrategy is specified in the job request, MaxRuntimeInSeconds
+	// specifies the maximum time for all of the attempts in total, not each individual
+	// attempt. The default value is 1 day. The maximum value is 28 days.
 	MaxRuntimeInSeconds *int64 `min:"1" type:"integer"`
 
 	// The maximum length of time, in seconds, that a managed Spot training job
 	// has to complete. It is the amount of time spent waiting for Spot capacity
 	// plus the amount of time the job can run. It must be equal to or greater than
-	// MaxRuntimeInSeconds. If the job does not complete during this time, Amazon
-	// SageMaker ends the job.
+	// MaxRuntimeInSeconds. If the job does not complete during this time, SageMaker
+	// ends the job.
 	//
 	// When RetryStrategy is specified in the job request, MaxWaitTimeInSeconds
 	// specifies the maximum time for all of the attempts in total, not each individual
@@ -86422,7 +86475,7 @@ type TrainingJob struct {
 	ModelArtifacts *ModelArtifacts `type:"structure"`
 
 	// The S3 path where model artifacts that you configured when creating the job
-	// are stored. Amazon SageMaker creates subfolders for model artifacts.
+	// are stored. SageMaker creates subfolders for model artifacts.
 	OutputDataConfig *OutputDataConfig `type:"structure"`
 
 	// Resources, including ML compute instances and ML storage volumes, that are
@@ -86440,8 +86493,8 @@ type TrainingJob struct {
 	// information about the secondary status of the training job, see StatusMessage
 	// under SecondaryStatusTransition.
 	//
-	// Amazon SageMaker provides primary statuses and secondary statuses that apply
-	// to each of them:
+	// SageMaker provides primary statuses and secondary statuses that apply to
+	// each of them:
 	//
 	// InProgress
 	//
@@ -86493,12 +86546,12 @@ type TrainingJob struct {
 
 	// Specifies a limit to how long a model training job can run. It also specifies
 	// how long a managed Spot training job has to complete. When the job reaches
-	// the time limit, Amazon SageMaker ends the training job. Use this API to cap
-	// model training costs.
+	// the time limit, SageMaker ends the training job. Use this API to cap model
+	// training costs.
 	//
-	// To stop a job, Amazon SageMaker sends the algorithm the SIGTERM signal, which
-	// delays job termination for 120 seconds. Algorithms can use this 120-second
-	// window to save the model artifacts, so the results of training are not lost.
+	// To stop a job, SageMaker sends the algorithm the SIGTERM signal, which delays
+	// job termination for 120 seconds. Algorithms can use this 120-second window
+	// to save the model artifacts, so the results of training are not lost.
 	StoppingCondition *StoppingCondition `type:"structure"`
 
 	// An array of key-value pairs. You can use tags to categorize your Amazon Web
@@ -86513,7 +86566,7 @@ type TrainingJob struct {
 	// Indicates the time when the training job ends on training instances. You
 	// are billed for the time interval between the value of TrainingStartTime and
 	// this time. For successful jobs and stopped jobs, this is the time after model
-	// artifacts are uploaded. For failed jobs, this is the time when Amazon SageMaker
+	// artifacts are uploaded. For failed jobs, this is the time when SageMaker
 	// detects a job failure.
 	TrainingEndTime *time.Time `type:"timestamp"`
 
@@ -86814,8 +86867,8 @@ type TrainingJobDefinition struct {
 	// InputDataConfig is a required field
 	InputDataConfig []*Channel `min:"1" type:"list" required:"true"`
 
-	// the path to the S3 bucket where you want to store model artifacts. Amazon
-	// SageMaker creates subfolders for the artifacts.
+	// the path to the S3 bucket where you want to store model artifacts. SageMaker
+	// creates subfolders for the artifacts.
 	//
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
@@ -86828,12 +86881,12 @@ type TrainingJobDefinition struct {
 
 	// Specifies a limit to how long a model training job can run. It also specifies
 	// how long a managed Spot training job has to complete. When the job reaches
-	// the time limit, Amazon SageMaker ends the training job. Use this API to cap
-	// model training costs.
+	// the time limit, SageMaker ends the training job. Use this API to cap model
+	// training costs.
 	//
-	// To stop a job, Amazon SageMaker sends the algorithm the SIGTERM signal, which
-	// delays job termination for 120 seconds. Algorithms can use this 120-second
-	// window to save the model artifacts.
+	// To stop a job, SageMaker sends the algorithm the SIGTERM signal, which delays
+	// job termination for 120 seconds. Algorithms can use this 120-second window
+	// to save the model artifacts.
 	//
 	// StoppingCondition is a required field
 	StoppingCondition *StoppingCondition `type:"structure" required:"true"`
@@ -90694,7 +90747,7 @@ type UpdateEndpointWeightsAndCapacitiesInput struct {
 	// DesiredWeightsAndCapacities is a required field
 	DesiredWeightsAndCapacities []*DesiredWeightAndCapacity `min:"1" type:"list" required:"true"`
 
-	// The name of an existing Amazon SageMaker endpoint.
+	// The name of an existing SageMaker endpoint.
 	//
 	// EndpointName is a required field
 	EndpointName *string `type:"string" required:"true"`
@@ -91286,8 +91339,7 @@ type UpdateNotebookInstanceInput struct {
 	// (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or
 	// in any other Git repository. These repositories are cloned at the same level
 	// as the default repository of your notebook instance. For more information,
-	// see Associating Git Repositories with Amazon SageMaker Notebook Instances
-	// (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
+	// see Associating Git Repositories with SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	AdditionalCodeRepositories []*string `type:"list"`
 
 	// The Git repository to associate with the notebook instance as its default
@@ -91296,7 +91348,7 @@ type UpdateNotebookInstanceInput struct {
 	// Services CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
 	// or in any other Git repository. When you open a notebook instance, it opens
 	// in the directory that contains this repository. For more information, see
-	// Associating Git Repositories with Amazon SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
+	// Associating Git Repositories with SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	DefaultCodeRepository *string `min:"1" type:"string"`
 
 	// A list of the Elastic Inference (EI) instance types to remove from this notebook
@@ -91336,12 +91388,12 @@ type UpdateNotebookInstanceInput struct {
 	// NotebookInstanceName is a required field
 	NotebookInstanceName *string `type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker can
-	// assume to access the notebook instance. For more information, see Amazon
-	// SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).
+	// The Amazon Resource Name (ARN) of the IAM role that SageMaker can assume
+	// to access the notebook instance. For more information, see SageMaker Roles
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).
 	//
-	// To be able to pass this role to Amazon SageMaker, the caller of this API
-	// must have the iam:PassRole permission.
+	// To be able to pass this role to SageMaker, the caller of this API must have
+	// the iam:PassRole permission.
 	RoleArn *string `min:"20" type:"string"`
 
 	// Whether root access is enabled or disabled for users of the notebook instance.
@@ -91352,7 +91404,7 @@ type UpdateNotebookInstanceInput struct {
 	RootAccess *string `type:"string" enum:"RootAccess"`
 
 	// The size, in GB, of the ML storage volume to attach to the notebook instance.
-	// The default value is 5 GB. ML storage volumes are encrypted, so Amazon SageMaker
+	// The default value is 5 GB. ML storage volumes are encrypted, so SageMaker
 	// can't determine the amount of available free space on the volume. Because
 	// of this, you can increase the volume size when you update a notebook instance,
 	// but you can't decrease the volume size. If you want to decrease the size
@@ -93971,6 +94023,22 @@ func AuthMode_Values() []string {
 	return []string{
 		AuthModeSso,
 		AuthModeIam,
+	}
+}
+
+const (
+	// AutoMLChannelTypeTraining is a AutoMLChannelType enum value
+	AutoMLChannelTypeTraining = "training"
+
+	// AutoMLChannelTypeValidation is a AutoMLChannelType enum value
+	AutoMLChannelTypeValidation = "validation"
+)
+
+// AutoMLChannelType_Values returns all elements of the AutoMLChannelType enum
+func AutoMLChannelType_Values() []string {
+	return []string{
+		AutoMLChannelTypeTraining,
+		AutoMLChannelTypeValidation,
 	}
 }
 

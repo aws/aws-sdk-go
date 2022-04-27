@@ -224,6 +224,24 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "CreateNetworkAnalyzerConfiguration":{
+      "name":"CreateNetworkAnalyzerConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/network-analyzer-configurations",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateNetworkAnalyzerConfigurationRequest"},
+      "output":{"shape":"CreateNetworkAnalyzerConfigurationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "CreateServiceProfile":{
       "name":"CreateServiceProfile",
       "http":{
@@ -380,6 +398,24 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "DeleteNetworkAnalyzerConfiguration":{
+      "name":"DeleteNetworkAnalyzerConfiguration",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/network-analyzer-configurations/{ConfigurationName}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteNetworkAnalyzerConfigurationRequest"},
+      "output":{"shape":"DeleteNetworkAnalyzerConfigurationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"},
         {"shape":"ThrottlingException"}
       ]
     },
@@ -637,6 +673,20 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "GetEventConfigurationByResourceTypes":{
+      "name":"GetEventConfigurationByResourceTypes",
+      "http":{
+        "method":"GET",
+        "requestUri":"/event-configurations-resource-types"
+      },
+      "input":{"shape":"GetEventConfigurationByResourceTypesRequest"},
+      "output":{"shape":"GetEventConfigurationByResourceTypesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "GetFuotaTask":{
@@ -960,6 +1010,21 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "ListEventConfigurations":{
+      "name":"ListEventConfigurations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/event-configurations"
+      },
+      "input":{"shape":"ListEventConfigurationsRequest"},
+      "output":{"shape":"ListEventConfigurationsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListFuotaTasks":{
       "name":"ListFuotaTasks",
       "http":{
@@ -1003,6 +1068,21 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "ListNetworkAnalyzerConfigurations":{
+      "name":"ListNetworkAnalyzerConfigurations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/network-analyzer-configurations"
+      },
+      "input":{"shape":"ListNetworkAnalyzerConfigurationsRequest"},
+      "output":{"shape":"ListNetworkAnalyzerConfigurationsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"}
       ]
     },
@@ -1336,6 +1416,22 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "UpdateEventConfigurationByResourceTypes":{
+      "name":"UpdateEventConfigurationByResourceTypes",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/event-configurations-resource-types",
+        "responseCode":204
+      },
+      "input":{"shape":"UpdateEventConfigurationByResourceTypesRequest"},
+      "output":{"shape":"UpdateEventConfigurationByResourceTypesResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "UpdateFuotaTask":{
       "name":"UpdateFuotaTask",
       "http":{
@@ -1481,14 +1577,16 @@
       "type":"structure",
       "members":{
         "DevAddr":{"shape":"DevAddr"},
-        "SessionKeys":{"shape":"SessionKeysAbpV1_0_x"}
+        "SessionKeys":{"shape":"SessionKeysAbpV1_0_x"},
+        "FCntStart":{"shape":"FCntStart"}
       }
     },
     "AbpV1_1":{
       "type":"structure",
       "members":{
         "DevAddr":{"shape":"DevAddr"},
-        "SessionKeys":{"shape":"SessionKeysAbpV1_1"}
+        "SessionKeys":{"shape":"SessionKeysAbpV1_1"},
+        "FCntStart":{"shape":"FCntStart"}
       }
     },
     "AccessDeniedException":{
@@ -1753,6 +1851,19 @@
         "Disconnected"
       ]
     },
+    "ConnectionStatusEventConfiguration":{
+      "type":"structure",
+      "members":{
+        "LoRaWAN":{"shape":"LoRaWANConnectionStatusEventNotificationConfigurations"},
+        "WirelessGatewayIdEventTopic":{"shape":"EventNotificationTopicStatus"}
+      }
+    },
+    "ConnectionStatusResourceTypeEventConfiguration":{
+      "type":"structure",
+      "members":{
+        "LoRaWAN":{"shape":"LoRaWANConnectionStatusResourceTypeEventConfiguration"}
+      }
+    },
     "Crc":{
       "type":"long",
       "max":4294967295,
@@ -1850,6 +1961,29 @@
       "members":{
         "Arn":{"shape":"MulticastGroupArn"},
         "Id":{"shape":"MulticastGroupId"}
+      }
+    },
+    "CreateNetworkAnalyzerConfigurationRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"NetworkAnalyzerConfigurationName"},
+        "TraceContent":{"shape":"TraceContent"},
+        "WirelessDevices":{"shape":"WirelessDeviceList"},
+        "WirelessGateways":{"shape":"WirelessGatewayList"},
+        "Description":{"shape":"Description"},
+        "Tags":{"shape":"TagList"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateNetworkAnalyzerConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"NetworkAnalyzerConfigurationArn"},
+        "Name":{"shape":"NetworkAnalyzerConfigurationName"}
       }
     },
     "CreateServiceProfileRequest":{
@@ -2022,6 +2156,22 @@
       }
     },
     "DeleteMulticastGroupResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteNetworkAnalyzerConfigurationRequest":{
+      "type":"structure",
+      "required":["ConfigurationName"],
+      "members":{
+        "ConfigurationName":{
+          "shape":"NetworkAnalyzerConfigurationName",
+          "location":"uri",
+          "locationName":"ConfigurationName"
+        }
+      }
+    },
+    "DeleteNetworkAnalyzerConfigurationResponse":{
       "type":"structure",
       "members":{
       }
@@ -2201,7 +2351,14 @@
     "DeviceRegistrationStateEventConfiguration":{
       "type":"structure",
       "members":{
-        "Sidewalk":{"shape":"SidewalkEventNotificationConfigurations"}
+        "Sidewalk":{"shape":"SidewalkEventNotificationConfigurations"},
+        "WirelessDeviceIdEventTopic":{"shape":"EventNotificationTopicStatus"}
+      }
+    },
+    "DeviceRegistrationStateResourceTypeEventConfiguration":{
+      "type":"structure",
+      "members":{
+        "Sidewalk":{"shape":"SidewalkResourceTypeEventConfiguration"}
       }
     },
     "DeviceState":{
@@ -2428,9 +2585,39 @@
         "passthrough"
       ]
     },
+    "EventConfigurationItem":{
+      "type":"structure",
+      "members":{
+        "Identifier":{"shape":"Identifier"},
+        "IdentifierType":{"shape":"IdentifierType"},
+        "PartnerType":{"shape":"EventNotificationPartnerType"},
+        "Events":{"shape":"EventNotificationItemConfigurations"}
+      }
+    },
+    "EventConfigurationsList":{
+      "type":"list",
+      "member":{"shape":"EventConfigurationItem"}
+    },
+    "EventNotificationItemConfigurations":{
+      "type":"structure",
+      "members":{
+        "DeviceRegistrationState":{"shape":"DeviceRegistrationStateEventConfiguration"},
+        "Proximity":{"shape":"ProximityEventConfiguration"},
+        "Join":{"shape":"JoinEventConfiguration"},
+        "ConnectionStatus":{"shape":"ConnectionStatusEventConfiguration"}
+      }
+    },
     "EventNotificationPartnerType":{
       "type":"string",
       "enum":["Sidewalk"]
+    },
+    "EventNotificationResourceType":{
+      "type":"string",
+      "enum":[
+        "SidewalkAccount",
+        "WirelessDevice",
+        "WirelessGateway"
+      ]
     },
     "EventNotificationTopicStatus":{
       "type":"string",
@@ -2449,6 +2636,11 @@
         "RuleName",
         "MqttTopic"
       ]
+    },
+    "FCntStart":{
+      "type":"integer",
+      "max":65535,
+      "min":0
     },
     "FNwkSIntKey":{
       "type":"string",
@@ -2590,6 +2782,20 @@
         "LoRaWAN":{"shape":"LoRaWANDeviceProfile"}
       }
     },
+    "GetEventConfigurationByResourceTypesRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetEventConfigurationByResourceTypesResponse":{
+      "type":"structure",
+      "members":{
+        "DeviceRegistrationState":{"shape":"DeviceRegistrationStateResourceTypeEventConfiguration"},
+        "Proximity":{"shape":"ProximityResourceTypeEventConfiguration"},
+        "Join":{"shape":"JoinResourceTypeEventConfiguration"},
+        "ConnectionStatus":{"shape":"ConnectionStatusResourceTypeEventConfiguration"}
+      }
+    },
     "GetFuotaTaskRequest":{
       "type":"structure",
       "required":["Id"],
@@ -2684,7 +2890,10 @@
       "members":{
         "TraceContent":{"shape":"TraceContent"},
         "WirelessDevices":{"shape":"WirelessDeviceList"},
-        "WirelessGateways":{"shape":"WirelessGatewayList"}
+        "WirelessGateways":{"shape":"WirelessGatewayList"},
+        "Description":{"shape":"Description"},
+        "Arn":{"shape":"NetworkAnalyzerConfigurationArn"},
+        "Name":{"shape":"NetworkAnalyzerConfigurationName"}
       }
     },
     "GetPartnerAccountRequest":{
@@ -2741,7 +2950,9 @@
       "type":"structure",
       "members":{
         "DeviceRegistrationState":{"shape":"DeviceRegistrationStateEventConfiguration"},
-        "Proximity":{"shape":"ProximityEventConfiguration"}
+        "Proximity":{"shape":"ProximityEventConfiguration"},
+        "Join":{"shape":"JoinEventConfiguration"},
+        "ConnectionStatus":{"shape":"ConnectionStatusEventConfiguration"}
       }
     },
     "GetResourceLogLevelRequest":{
@@ -2998,7 +3209,13 @@
     },
     "IdentifierType":{
       "type":"string",
-      "enum":["PartnerAccountId"]
+      "enum":[
+        "PartnerAccountId",
+        "DevEui",
+        "GatewayEui",
+        "WirelessDeviceId",
+        "WirelessGatewayId"
+      ]
     },
     "Integer":{"type":"integer"},
     "InternalServerException":{
@@ -3029,6 +3246,19 @@
       "member":{"shape":"JoinEui"},
       "max":2,
       "min":2
+    },
+    "JoinEventConfiguration":{
+      "type":"structure",
+      "members":{
+        "LoRaWAN":{"shape":"LoRaWANJoinEventNotificationConfigurations"},
+        "WirelessDeviceIdEventTopic":{"shape":"EventNotificationTopicStatus"}
+      }
+    },
+    "JoinResourceTypeEventConfiguration":{
+      "type":"structure",
+      "members":{
+        "LoRaWAN":{"shape":"LoRaWANJoinResourceTypeEventConfiguration"}
+      }
     },
     "ListDestinationsRequest":{
       "type":"structure",
@@ -3072,6 +3302,34 @@
       "members":{
         "NextToken":{"shape":"NextToken"},
         "DeviceProfileList":{"shape":"DeviceProfileList"}
+      }
+    },
+    "ListEventConfigurationsRequest":{
+      "type":"structure",
+      "required":["ResourceType"],
+      "members":{
+        "ResourceType":{
+          "shape":"EventNotificationResourceType",
+          "location":"querystring",
+          "locationName":"resourceType"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListEventConfigurationsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "EventConfigurationsList":{"shape":"EventConfigurationsList"}
       }
     },
     "ListFuotaTasksRequest":{
@@ -3144,6 +3402,28 @@
       "members":{
         "NextToken":{"shape":"NextToken"},
         "MulticastGroupList":{"shape":"MulticastGroupList"}
+      }
+    },
+    "ListNetworkAnalyzerConfigurationsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListNetworkAnalyzerConfigurationsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "NetworkAnalyzerConfigurationList":{"shape":"NetworkAnalyzerConfigurationList"}
       }
     },
     "ListPartnerAccountsRequest":{
@@ -3341,6 +3621,18 @@
         "WirelessGatewayList":{"shape":"WirelessGatewayStatisticsList"}
       }
     },
+    "LoRaWANConnectionStatusEventNotificationConfigurations":{
+      "type":"structure",
+      "members":{
+        "GatewayEuiEventTopic":{"shape":"EventNotificationTopicStatus"}
+      }
+    },
+    "LoRaWANConnectionStatusResourceTypeEventConfiguration":{
+      "type":"structure",
+      "members":{
+        "WirelessGatewayEventTopic":{"shape":"EventNotificationTopicStatus"}
+      }
+    },
     "LoRaWANDevice":{
       "type":"structure",
       "members":{
@@ -3462,6 +3754,18 @@
         "MinGwDiversity":{"shape":"MinGwDiversity"}
       }
     },
+    "LoRaWANJoinEventNotificationConfigurations":{
+      "type":"structure",
+      "members":{
+        "DevEuiEventTopic":{"shape":"EventNotificationTopicStatus"}
+      }
+    },
+    "LoRaWANJoinResourceTypeEventConfiguration":{
+      "type":"structure",
+      "members":{
+        "WirelessDeviceEventTopic":{"shape":"EventNotificationTopicStatus"}
+      }
+    },
     "LoRaWANListDevice":{
       "type":"structure",
       "members":{
@@ -3521,7 +3825,9 @@
       "type":"structure",
       "members":{
         "DeviceProfileId":{"shape":"DeviceProfileId"},
-        "ServiceProfileId":{"shape":"ServiceProfileId"}
+        "ServiceProfileId":{"shape":"ServiceProfileId"},
+        "AbpV1_1":{"shape":"UpdateAbpV1_1"},
+        "AbpV1_0_x":{"shape":"UpdateAbpV1_0_x"}
       }
     },
     "LoRaWANUpdateGatewayTaskCreate":{
@@ -3658,11 +3964,26 @@
       "max":10,
       "min":0
     },
+    "NetworkAnalyzerConfigurationArn":{
+      "type":"string",
+      "max":1124
+    },
+    "NetworkAnalyzerConfigurationList":{
+      "type":"list",
+      "member":{"shape":"NetworkAnalyzerConfigurations"}
+    },
     "NetworkAnalyzerConfigurationName":{
       "type":"string",
       "max":1024,
       "min":1,
-      "pattern":"NetworkAnalyzerConfig_Default"
+      "pattern":"[a-zA-Z0-9-_]+"
+    },
+    "NetworkAnalyzerConfigurations":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"NetworkAnalyzerConfigurationArn"},
+        "Name":{"shape":"NetworkAnalyzerConfigurationName"}
+      }
     },
     "NextToken":{
       "type":"string",
@@ -3742,7 +4063,14 @@
     "ProximityEventConfiguration":{
       "type":"structure",
       "members":{
-        "Sidewalk":{"shape":"SidewalkEventNotificationConfigurations"}
+        "Sidewalk":{"shape":"SidewalkEventNotificationConfigurations"},
+        "WirelessDeviceIdEventTopic":{"shape":"EventNotificationTopicStatus"}
+      }
+    },
+    "ProximityResourceTypeEventConfiguration":{
+      "type":"structure",
+      "members":{
+        "Sidewalk":{"shape":"SidewalkResourceTypeEventConfiguration"}
       }
     },
     "PutResourceLogLevelRequest":{
@@ -4027,6 +4355,12 @@
       "type":"string",
       "max":64
     },
+    "SidewalkResourceTypeEventConfiguration":{
+      "type":"structure",
+      "members":{
+        "WirelessDeviceEventTopic":{"shape":"EventNotificationTopicStatus"}
+      }
+    },
     "SidewalkSendDataToDevice":{
       "type":"structure",
       "members":{
@@ -4297,6 +4631,18 @@
       "members":{
       }
     },
+    "UpdateAbpV1_0_x":{
+      "type":"structure",
+      "members":{
+        "FCntStart":{"shape":"FCntStart"}
+      }
+    },
+    "UpdateAbpV1_1":{
+      "type":"structure",
+      "members":{
+        "FCntStart":{"shape":"FCntStart"}
+      }
+    },
     "UpdateDataSource":{
       "type":"string",
       "max":4096,
@@ -4318,6 +4664,20 @@
       }
     },
     "UpdateDestinationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateEventConfigurationByResourceTypesRequest":{
+      "type":"structure",
+      "members":{
+        "DeviceRegistrationState":{"shape":"DeviceRegistrationStateResourceTypeEventConfiguration"},
+        "Proximity":{"shape":"ProximityResourceTypeEventConfiguration"},
+        "Join":{"shape":"JoinResourceTypeEventConfiguration"},
+        "ConnectionStatus":{"shape":"ConnectionStatusResourceTypeEventConfiguration"}
+      }
+    },
+    "UpdateEventConfigurationByResourceTypesResponse":{
       "type":"structure",
       "members":{
       }
@@ -4388,7 +4748,8 @@
         "WirelessDevicesToAdd":{"shape":"WirelessDeviceList"},
         "WirelessDevicesToRemove":{"shape":"WirelessDeviceList"},
         "WirelessGatewaysToAdd":{"shape":"WirelessGatewayList"},
-        "WirelessGatewaysToRemove":{"shape":"WirelessGatewayList"}
+        "WirelessGatewaysToRemove":{"shape":"WirelessGatewayList"},
+        "Description":{"shape":"Description"}
       }
     },
     "UpdateNetworkAnalyzerConfigurationResponse":{
@@ -4445,7 +4806,9 @@
           "locationName":"partnerType"
         },
         "DeviceRegistrationState":{"shape":"DeviceRegistrationStateEventConfiguration"},
-        "Proximity":{"shape":"ProximityEventConfiguration"}
+        "Proximity":{"shape":"ProximityEventConfiguration"},
+        "Join":{"shape":"JoinEventConfiguration"},
+        "ConnectionStatus":{"shape":"ConnectionStatusEventConfiguration"}
       }
     },
     "UpdateResourceEventConfigurationResponse":{

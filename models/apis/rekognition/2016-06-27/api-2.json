@@ -1099,6 +1099,23 @@
         {"shape":"ResourceInUseException"},
         {"shape":"ResourceNotFoundException"}
       ]
+    },
+    "UpdateStreamProcessor":{
+      "name":"UpdateStreamProcessor",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateStreamProcessorRequest"},
+      "output":{"shape":"UpdateStreamProcessorResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ProvisionedThroughputExceededException"}
+      ]
     }
   },
   "shapes":{
@@ -1318,6 +1335,28 @@
         "Confidence":{"shape":"Percent"}
       }
     },
+    "ConnectedHomeLabel":{"type":"string"},
+    "ConnectedHomeLabels":{
+      "type":"list",
+      "member":{"shape":"ConnectedHomeLabel"},
+      "max":128,
+      "min":1
+    },
+    "ConnectedHomeSettings":{
+      "type":"structure",
+      "required":["Labels"],
+      "members":{
+        "Labels":{"shape":"ConnectedHomeLabels"},
+        "MinConfidence":{"shape":"Percent"}
+      }
+    },
+    "ConnectedHomeSettingsForUpdate":{
+      "type":"structure",
+      "members":{
+        "Labels":{"shape":"ConnectedHomeLabels"},
+        "MinConfidence":{"shape":"Percent"}
+      }
+    },
     "ContentClassifier":{
       "type":"string",
       "enum":[
@@ -1440,7 +1479,11 @@
         "Name":{"shape":"StreamProcessorName"},
         "Settings":{"shape":"StreamProcessorSettings"},
         "RoleArn":{"shape":"RoleArn"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "NotificationChannel":{"shape":"StreamProcessorNotificationChannel"},
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "RegionsOfInterest":{"shape":"RegionsOfInterest"},
+        "DataSharingPreference":{"shape":"StreamProcessorDataSharingPreference"}
       }
     },
     "CreateStreamProcessorResponse":{
@@ -1749,7 +1792,11 @@
         "Input":{"shape":"StreamProcessorInput"},
         "Output":{"shape":"StreamProcessorOutput"},
         "RoleArn":{"shape":"RoleArn"},
-        "Settings":{"shape":"StreamProcessorSettings"}
+        "Settings":{"shape":"StreamProcessorSettings"},
+        "NotificationChannel":{"shape":"StreamProcessorNotificationChannel"},
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "RegionsOfInterest":{"shape":"RegionsOfInterest"},
+        "DataSharingPreference":{"shape":"StreamProcessorDataSharingPreference"}
       }
     },
     "DetectCustomLabelsRequest":{
@@ -2482,6 +2529,19 @@
         "Arn":{"shape":"KinesisVideoArn"}
       }
     },
+    "KinesisVideoStreamFragmentNumber":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[0-9]+$"
+    },
+    "KinesisVideoStreamStartSelector":{
+      "type":"structure",
+      "members":{
+        "ProducerTimestamp":{"shape":"ULong"},
+        "FragmentNumber":{"shape":"KinesisVideoStreamFragmentNumber"}
+      }
+    },
     "KmsKeyId":{
       "type":"string",
       "max":2048,
@@ -2691,6 +2751,11 @@
       "members":{
         "Tags":{"shape":"TagMap"}
       }
+    },
+    "MaxDurationInSecondsULong":{
+      "type":"long",
+      "max":120,
+      "min":1
     },
     "MaxFaces":{
       "type":"integer",
@@ -3053,7 +3118,8 @@
     "RegionOfInterest":{
       "type":"structure",
       "members":{
-        "BoundingBox":{"shape":"BoundingBox"}
+        "BoundingBox":{"shape":"BoundingBox"},
+        "Polygon":{"shape":"Polygon"}
       }
     },
     "RegionsOfInterest":{
@@ -3104,6 +3170,13 @@
       "max":255,
       "min":3,
       "pattern":"[0-9A-Za-z\\.\\-_]*"
+    },
+    "S3Destination":{
+      "type":"structure",
+      "members":{
+        "Bucket":{"shape":"S3Bucket"},
+        "KeyPrefix":{"shape":"S3KeyPrefix"}
+      }
     },
     "S3KeyPrefix":{
       "type":"string",
@@ -3403,14 +3476,18 @@
       "type":"structure",
       "required":["Name"],
       "members":{
-        "Name":{"shape":"StreamProcessorName"}
+        "Name":{"shape":"StreamProcessorName"},
+        "StartSelector":{"shape":"StreamProcessingStartSelector"},
+        "StopSelector":{"shape":"StreamProcessingStopSelector"}
       }
     },
     "StartStreamProcessorResponse":{
       "type":"structure",
       "members":{
+        "SessionId":{"shape":"StartStreamProcessorSessionId"}
       }
     },
+    "StartStreamProcessorSessionId":{"type":"string"},
     "StartTechnicalCueDetectionFilter":{
       "type":"structure",
       "members":{
@@ -3468,6 +3545,18 @@
       "members":{
       }
     },
+    "StreamProcessingStartSelector":{
+      "type":"structure",
+      "members":{
+        "KVSStreamStartSelector":{"shape":"KinesisVideoStreamStartSelector"}
+      }
+    },
+    "StreamProcessingStopSelector":{
+      "type":"structure",
+      "members":{
+        "MaxDurationInSeconds":{"shape":"MaxDurationInSecondsULong"}
+      }
+    },
     "StreamProcessor":{
       "type":"structure",
       "members":{
@@ -3478,6 +3567,13 @@
     "StreamProcessorArn":{
       "type":"string",
       "pattern":"(^arn:[a-z\\d-]+:rekognition:[a-z\\d-]+:\\d{12}:streamprocessor\\/.+$)"
+    },
+    "StreamProcessorDataSharingPreference":{
+      "type":"structure",
+      "required":["OptIn"],
+      "members":{
+        "OptIn":{"shape":"Boolean"}
+      }
     },
     "StreamProcessorInput":{
       "type":"structure",
@@ -3495,16 +3591,42 @@
       "min":1,
       "pattern":"[a-zA-Z0-9_.\\-]+"
     },
+    "StreamProcessorNotificationChannel":{
+      "type":"structure",
+      "required":["SNSTopicArn"],
+      "members":{
+        "SNSTopicArn":{"shape":"SNSTopicArn"}
+      }
+    },
     "StreamProcessorOutput":{
       "type":"structure",
       "members":{
-        "KinesisDataStream":{"shape":"KinesisDataStream"}
+        "KinesisDataStream":{"shape":"KinesisDataStream"},
+        "S3Destination":{"shape":"S3Destination"}
       }
+    },
+    "StreamProcessorParameterToDelete":{
+      "type":"string",
+      "enum":[
+        "ConnectedHomeMinConfidence",
+        "RegionsOfInterest"
+      ]
+    },
+    "StreamProcessorParametersToDelete":{
+      "type":"list",
+      "member":{"shape":"StreamProcessorParameterToDelete"}
     },
     "StreamProcessorSettings":{
       "type":"structure",
       "members":{
-        "FaceSearch":{"shape":"FaceSearchSettings"}
+        "FaceSearch":{"shape":"FaceSearchSettings"},
+        "ConnectedHome":{"shape":"ConnectedHomeSettings"}
+      }
+    },
+    "StreamProcessorSettingsForUpdate":{
+      "type":"structure",
+      "members":{
+        "ConnectedHomeForUpdate":{"shape":"ConnectedHomeSettingsForUpdate"}
       }
     },
     "StreamProcessorStatus":{
@@ -3514,7 +3636,8 @@
         "STARTING",
         "RUNNING",
         "FAILED",
-        "STOPPING"
+        "STOPPING",
+        "UPDATING"
       ]
     },
     "String":{"type":"string"},
@@ -3709,6 +3832,22 @@
       }
     },
     "UpdateDatasetEntriesResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateStreamProcessorRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"StreamProcessorName"},
+        "SettingsForUpdate":{"shape":"StreamProcessorSettingsForUpdate"},
+        "RegionsOfInterestForUpdate":{"shape":"RegionsOfInterest"},
+        "DataSharingPreferenceForUpdate":{"shape":"StreamProcessorDataSharingPreference"},
+        "ParametersToDelete":{"shape":"StreamProcessorParametersToDelete"}
+      }
+    },
+    "UpdateStreamProcessorResponse":{
       "type":"structure",
       "members":{
       }

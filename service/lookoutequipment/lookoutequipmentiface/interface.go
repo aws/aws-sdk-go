@@ -135,6 +135,13 @@ type LookoutEquipmentAPI interface {
 	ListModelsPages(*lookoutequipment.ListModelsInput, func(*lookoutequipment.ListModelsOutput, bool) bool) error
 	ListModelsPagesWithContext(aws.Context, *lookoutequipment.ListModelsInput, func(*lookoutequipment.ListModelsOutput, bool) bool, ...request.Option) error
 
+	ListSensorStatistics(*lookoutequipment.ListSensorStatisticsInput) (*lookoutequipment.ListSensorStatisticsOutput, error)
+	ListSensorStatisticsWithContext(aws.Context, *lookoutequipment.ListSensorStatisticsInput, ...request.Option) (*lookoutequipment.ListSensorStatisticsOutput, error)
+	ListSensorStatisticsRequest(*lookoutequipment.ListSensorStatisticsInput) (*request.Request, *lookoutequipment.ListSensorStatisticsOutput)
+
+	ListSensorStatisticsPages(*lookoutequipment.ListSensorStatisticsInput, func(*lookoutequipment.ListSensorStatisticsOutput, bool) bool) error
+	ListSensorStatisticsPagesWithContext(aws.Context, *lookoutequipment.ListSensorStatisticsInput, func(*lookoutequipment.ListSensorStatisticsOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*lookoutequipment.ListTagsForResourceInput) (*lookoutequipment.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *lookoutequipment.ListTagsForResourceInput, ...request.Option) (*lookoutequipment.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*lookoutequipment.ListTagsForResourceInput) (*request.Request, *lookoutequipment.ListTagsForResourceOutput)

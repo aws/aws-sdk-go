@@ -108,6 +108,10 @@ type IoTWirelessAPI interface {
 	CreateMulticastGroupWithContext(aws.Context, *iotwireless.CreateMulticastGroupInput, ...request.Option) (*iotwireless.CreateMulticastGroupOutput, error)
 	CreateMulticastGroupRequest(*iotwireless.CreateMulticastGroupInput) (*request.Request, *iotwireless.CreateMulticastGroupOutput)
 
+	CreateNetworkAnalyzerConfiguration(*iotwireless.CreateNetworkAnalyzerConfigurationInput) (*iotwireless.CreateNetworkAnalyzerConfigurationOutput, error)
+	CreateNetworkAnalyzerConfigurationWithContext(aws.Context, *iotwireless.CreateNetworkAnalyzerConfigurationInput, ...request.Option) (*iotwireless.CreateNetworkAnalyzerConfigurationOutput, error)
+	CreateNetworkAnalyzerConfigurationRequest(*iotwireless.CreateNetworkAnalyzerConfigurationInput) (*request.Request, *iotwireless.CreateNetworkAnalyzerConfigurationOutput)
+
 	CreateServiceProfile(*iotwireless.CreateServiceProfileInput) (*iotwireless.CreateServiceProfileOutput, error)
 	CreateServiceProfileWithContext(aws.Context, *iotwireless.CreateServiceProfileInput, ...request.Option) (*iotwireless.CreateServiceProfileOutput, error)
 	CreateServiceProfileRequest(*iotwireless.CreateServiceProfileInput) (*request.Request, *iotwireless.CreateServiceProfileOutput)
@@ -143,6 +147,10 @@ type IoTWirelessAPI interface {
 	DeleteMulticastGroup(*iotwireless.DeleteMulticastGroupInput) (*iotwireless.DeleteMulticastGroupOutput, error)
 	DeleteMulticastGroupWithContext(aws.Context, *iotwireless.DeleteMulticastGroupInput, ...request.Option) (*iotwireless.DeleteMulticastGroupOutput, error)
 	DeleteMulticastGroupRequest(*iotwireless.DeleteMulticastGroupInput) (*request.Request, *iotwireless.DeleteMulticastGroupOutput)
+
+	DeleteNetworkAnalyzerConfiguration(*iotwireless.DeleteNetworkAnalyzerConfigurationInput) (*iotwireless.DeleteNetworkAnalyzerConfigurationOutput, error)
+	DeleteNetworkAnalyzerConfigurationWithContext(aws.Context, *iotwireless.DeleteNetworkAnalyzerConfigurationInput, ...request.Option) (*iotwireless.DeleteNetworkAnalyzerConfigurationOutput, error)
+	DeleteNetworkAnalyzerConfigurationRequest(*iotwireless.DeleteNetworkAnalyzerConfigurationInput) (*request.Request, *iotwireless.DeleteNetworkAnalyzerConfigurationOutput)
 
 	DeleteQueuedMessages(*iotwireless.DeleteQueuedMessagesInput) (*iotwireless.DeleteQueuedMessagesOutput, error)
 	DeleteQueuedMessagesWithContext(aws.Context, *iotwireless.DeleteQueuedMessagesInput, ...request.Option) (*iotwireless.DeleteQueuedMessagesOutput, error)
@@ -203,6 +211,10 @@ type IoTWirelessAPI interface {
 	GetDeviceProfile(*iotwireless.GetDeviceProfileInput) (*iotwireless.GetDeviceProfileOutput, error)
 	GetDeviceProfileWithContext(aws.Context, *iotwireless.GetDeviceProfileInput, ...request.Option) (*iotwireless.GetDeviceProfileOutput, error)
 	GetDeviceProfileRequest(*iotwireless.GetDeviceProfileInput) (*request.Request, *iotwireless.GetDeviceProfileOutput)
+
+	GetEventConfigurationByResourceTypes(*iotwireless.GetEventConfigurationByResourceTypesInput) (*iotwireless.GetEventConfigurationByResourceTypesOutput, error)
+	GetEventConfigurationByResourceTypesWithContext(aws.Context, *iotwireless.GetEventConfigurationByResourceTypesInput, ...request.Option) (*iotwireless.GetEventConfigurationByResourceTypesOutput, error)
+	GetEventConfigurationByResourceTypesRequest(*iotwireless.GetEventConfigurationByResourceTypesInput) (*request.Request, *iotwireless.GetEventConfigurationByResourceTypesOutput)
 
 	GetFuotaTask(*iotwireless.GetFuotaTaskInput) (*iotwireless.GetFuotaTaskOutput, error)
 	GetFuotaTaskWithContext(aws.Context, *iotwireless.GetFuotaTaskInput, ...request.Option) (*iotwireless.GetFuotaTaskOutput, error)
@@ -290,6 +302,10 @@ type IoTWirelessAPI interface {
 	ListDeviceProfilesPages(*iotwireless.ListDeviceProfilesInput, func(*iotwireless.ListDeviceProfilesOutput, bool) bool) error
 	ListDeviceProfilesPagesWithContext(aws.Context, *iotwireless.ListDeviceProfilesInput, func(*iotwireless.ListDeviceProfilesOutput, bool) bool, ...request.Option) error
 
+	ListEventConfigurations(*iotwireless.ListEventConfigurationsInput) (*iotwireless.ListEventConfigurationsOutput, error)
+	ListEventConfigurationsWithContext(aws.Context, *iotwireless.ListEventConfigurationsInput, ...request.Option) (*iotwireless.ListEventConfigurationsOutput, error)
+	ListEventConfigurationsRequest(*iotwireless.ListEventConfigurationsInput) (*request.Request, *iotwireless.ListEventConfigurationsOutput)
+
 	ListFuotaTasks(*iotwireless.ListFuotaTasksInput) (*iotwireless.ListFuotaTasksOutput, error)
 	ListFuotaTasksWithContext(aws.Context, *iotwireless.ListFuotaTasksInput, ...request.Option) (*iotwireless.ListFuotaTasksOutput, error)
 	ListFuotaTasksRequest(*iotwireless.ListFuotaTasksInput) (*request.Request, *iotwireless.ListFuotaTasksOutput)
@@ -310,6 +326,13 @@ type IoTWirelessAPI interface {
 
 	ListMulticastGroupsByFuotaTaskPages(*iotwireless.ListMulticastGroupsByFuotaTaskInput, func(*iotwireless.ListMulticastGroupsByFuotaTaskOutput, bool) bool) error
 	ListMulticastGroupsByFuotaTaskPagesWithContext(aws.Context, *iotwireless.ListMulticastGroupsByFuotaTaskInput, func(*iotwireless.ListMulticastGroupsByFuotaTaskOutput, bool) bool, ...request.Option) error
+
+	ListNetworkAnalyzerConfigurations(*iotwireless.ListNetworkAnalyzerConfigurationsInput) (*iotwireless.ListNetworkAnalyzerConfigurationsOutput, error)
+	ListNetworkAnalyzerConfigurationsWithContext(aws.Context, *iotwireless.ListNetworkAnalyzerConfigurationsInput, ...request.Option) (*iotwireless.ListNetworkAnalyzerConfigurationsOutput, error)
+	ListNetworkAnalyzerConfigurationsRequest(*iotwireless.ListNetworkAnalyzerConfigurationsInput) (*request.Request, *iotwireless.ListNetworkAnalyzerConfigurationsOutput)
+
+	ListNetworkAnalyzerConfigurationsPages(*iotwireless.ListNetworkAnalyzerConfigurationsInput, func(*iotwireless.ListNetworkAnalyzerConfigurationsOutput, bool) bool) error
+	ListNetworkAnalyzerConfigurationsPagesWithContext(aws.Context, *iotwireless.ListNetworkAnalyzerConfigurationsInput, func(*iotwireless.ListNetworkAnalyzerConfigurationsOutput, bool) bool, ...request.Option) error
 
 	ListPartnerAccounts(*iotwireless.ListPartnerAccountsInput) (*iotwireless.ListPartnerAccountsOutput, error)
 	ListPartnerAccountsWithContext(aws.Context, *iotwireless.ListPartnerAccountsInput, ...request.Option) (*iotwireless.ListPartnerAccountsOutput, error)
@@ -402,6 +425,10 @@ type IoTWirelessAPI interface {
 	UpdateDestination(*iotwireless.UpdateDestinationInput) (*iotwireless.UpdateDestinationOutput, error)
 	UpdateDestinationWithContext(aws.Context, *iotwireless.UpdateDestinationInput, ...request.Option) (*iotwireless.UpdateDestinationOutput, error)
 	UpdateDestinationRequest(*iotwireless.UpdateDestinationInput) (*request.Request, *iotwireless.UpdateDestinationOutput)
+
+	UpdateEventConfigurationByResourceTypes(*iotwireless.UpdateEventConfigurationByResourceTypesInput) (*iotwireless.UpdateEventConfigurationByResourceTypesOutput, error)
+	UpdateEventConfigurationByResourceTypesWithContext(aws.Context, *iotwireless.UpdateEventConfigurationByResourceTypesInput, ...request.Option) (*iotwireless.UpdateEventConfigurationByResourceTypesOutput, error)
+	UpdateEventConfigurationByResourceTypesRequest(*iotwireless.UpdateEventConfigurationByResourceTypesInput) (*request.Request, *iotwireless.UpdateEventConfigurationByResourceTypesOutput)
 
 	UpdateFuotaTask(*iotwireless.UpdateFuotaTaskInput) (*iotwireless.UpdateFuotaTaskOutput, error)
 	UpdateFuotaTaskWithContext(aws.Context, *iotwireless.UpdateFuotaTaskInput, ...request.Option) (*iotwireless.UpdateFuotaTaskOutput, error)
