@@ -679,7 +679,7 @@ func (c *LookoutEquipment) DescribeDataIngestionJobRequest(input *DescribeDataIn
 // DescribeDataIngestionJob API operation for Amazon Lookout for Equipment.
 //
 // Provides information on a specific data ingestion job such as creation time,
-// dataset ARN, status, and so on.
+// dataset ARN, and status.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -774,8 +774,8 @@ func (c *LookoutEquipment) DescribeDatasetRequest(input *DescribeDatasetInput) (
 
 // DescribeDataset API operation for Amazon Lookout for Equipment.
 //
-// Provides a JSON description of the data that is in each time series dataset,
-// including names, column names, and data types.
+// Provides a JSON description of the data in each time series dataset, including
+// names, column names, and data types.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1773,6 +1773,161 @@ func (c *LookoutEquipment) ListModelsPagesWithContext(ctx aws.Context, input *Li
 	return p.Err()
 }
 
+const opListSensorStatistics = "ListSensorStatistics"
+
+// ListSensorStatisticsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSensorStatistics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSensorStatistics for more information on using the ListSensorStatistics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListSensorStatisticsRequest method.
+//    req, resp := client.ListSensorStatisticsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/ListSensorStatistics
+func (c *LookoutEquipment) ListSensorStatisticsRequest(input *ListSensorStatisticsInput) (req *request.Request, output *ListSensorStatisticsOutput) {
+	op := &request.Operation{
+		Name:       opListSensorStatistics,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSensorStatisticsInput{}
+	}
+
+	output = &ListSensorStatisticsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSensorStatistics API operation for Amazon Lookout for Equipment.
+//
+// Lists statistics about the data collected for each of the sensors that have
+// been successfully ingested in the particular dataset. Can also be used to
+// retreive Sensor Statistics for a previous ingestion job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Equipment's
+// API operation ListSensorStatistics for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//   or a related AWS service that's being utilized.
+//
+//   * ResourceNotFoundException
+//   The resource requested could not be found. Verify the resource ID and retry
+//   your request.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   The request could not be completed because you do not have access to the
+//   resource.
+//
+//   * InternalServerException
+//   Processing of the request has failed because of an unknown error, exception
+//   or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/ListSensorStatistics
+func (c *LookoutEquipment) ListSensorStatistics(input *ListSensorStatisticsInput) (*ListSensorStatisticsOutput, error) {
+	req, out := c.ListSensorStatisticsRequest(input)
+	return out, req.Send()
+}
+
+// ListSensorStatisticsWithContext is the same as ListSensorStatistics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSensorStatistics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) ListSensorStatisticsWithContext(ctx aws.Context, input *ListSensorStatisticsInput, opts ...request.Option) (*ListSensorStatisticsOutput, error) {
+	req, out := c.ListSensorStatisticsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSensorStatisticsPages iterates over the pages of a ListSensorStatistics operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSensorStatistics method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListSensorStatistics operation.
+//    pageNum := 0
+//    err := client.ListSensorStatisticsPages(params,
+//        func(page *lookoutequipment.ListSensorStatisticsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *LookoutEquipment) ListSensorStatisticsPages(input *ListSensorStatisticsInput, fn func(*ListSensorStatisticsOutput, bool) bool) error {
+	return c.ListSensorStatisticsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSensorStatisticsPagesWithContext same as ListSensorStatisticsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutEquipment) ListSensorStatisticsPagesWithContext(ctx aws.Context, input *ListSensorStatisticsInput, fn func(*ListSensorStatisticsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSensorStatisticsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSensorStatisticsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSensorStatisticsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -2534,6 +2689,50 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Entity that comprises information on categorical values in data.
+type CategoricalValues struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the number of categories in the data.
+	NumberOfCategory *int64 `type:"integer"`
+
+	// Indicates whether there is a potential data issue related to categorical
+	// values.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"StatisticalIssueStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CategoricalValues) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CategoricalValues) GoString() string {
+	return s.String()
+}
+
+// SetNumberOfCategory sets the NumberOfCategory field's value.
+func (s *CategoricalValues) SetNumberOfCategory(v int64) *CategoricalValues {
+	s.NumberOfCategory = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CategoricalValues) SetStatus(v string) *CategoricalValues {
+	s.Status = &v
+	return s
+}
+
 // The request could not be completed due to a conflict with the current state
 // of the target resource.
 type ConflictException struct {
@@ -2599,6 +2798,51 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Entity that comprises information of count and percentage.
+type CountPercent struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the count of occurences of the given statistic.
+	//
+	// Count is a required field
+	Count *int64 `type:"integer" required:"true"`
+
+	// Indicates the percentage of occurances of the given statistic.
+	//
+	// Percentage is a required field
+	Percentage *float64 `type:"float" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CountPercent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CountPercent) GoString() string {
+	return s.String()
+}
+
+// SetCount sets the Count field's value.
+func (s *CountPercent) SetCount(v int64) *CountPercent {
+	s.Count = &v
+	return s
+}
+
+// SetPercentage sets the Percentage field's value.
+func (s *CountPercent) SetPercentage(v float64) *CountPercent {
+	s.Percentage = &v
+	return s
+}
+
 type CreateDatasetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2613,9 +2857,7 @@ type CreateDatasetInput struct {
 
 	// A JSON description of the data that is in each time series dataset, including
 	// names, column names, and data types.
-	//
-	// DatasetSchema is a required field
-	DatasetSchema *DatasetSchema `type:"structure" required:"true"`
+	DatasetSchema *DatasetSchema `type:"structure"`
 
 	// Provides the identifier of the KMS key used to encrypt dataset data by Amazon
 	// Lookout for Equipment.
@@ -2654,9 +2896,6 @@ func (s *CreateDatasetInput) Validate() error {
 	}
 	if s.DatasetName != nil && len(*s.DatasetName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatasetName", 1))
-	}
-	if s.DatasetSchema == nil {
-		invalidParams.Add(request.NewErrParamRequired("DatasetSchema"))
 	}
 	if s.ServerSideKmsKeyId != nil && len(*s.ServerSideKmsKeyId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ServerSideKmsKeyId", 1))
@@ -3284,7 +3523,7 @@ type DataIngestionJobSummary struct {
 	DatasetName *string `min:"1" type:"string"`
 
 	// Specifies information for the input data for the data inference job, including
-	// data S3 location parameters.
+	// data Amazon S3 location parameters.
 	IngestionInputConfiguration *IngestionInputConfiguration `type:"structure"`
 
 	// Indicates the job ID of the data ingestion job.
@@ -3388,6 +3627,93 @@ func (s DataPreProcessingConfiguration) GoString() string {
 // SetTargetSamplingRate sets the TargetSamplingRate field's value.
 func (s *DataPreProcessingConfiguration) SetTargetSamplingRate(v string) *DataPreProcessingConfiguration {
 	s.TargetSamplingRate = &v
+	return s
+}
+
+// DataQualitySummary gives aggregated statistics over all the sensors about
+// a completed ingestion job. It primarily gives more information about statistics
+// over different incorrect data like MissingCompleteSensorData, MissingSensorData,
+// UnsupportedDateFormats, InsufficientSensorData, DuplicateTimeStamps.
+type DataQualitySummary struct {
+	_ struct{} `type:"structure"`
+
+	// Parameter that gives information about duplicate timestamps in the input
+	// data.
+	//
+	// DuplicateTimestamps is a required field
+	DuplicateTimestamps *DuplicateTimestamps `type:"structure" required:"true"`
+
+	// Parameter that gives information about insufficient data for sensors in the
+	// dataset. This includes information about those sensors that have complete
+	// data missing and those with a short date range.
+	//
+	// InsufficientSensorData is a required field
+	InsufficientSensorData *InsufficientSensorData `type:"structure" required:"true"`
+
+	// Parameter that gives information about data that is invalid over all the
+	// sensors in the input data.
+	//
+	// InvalidSensorData is a required field
+	InvalidSensorData *InvalidSensorData `type:"structure" required:"true"`
+
+	// Parameter that gives information about data that is missing over all the
+	// sensors in the input data.
+	//
+	// MissingSensorData is a required field
+	MissingSensorData *MissingSensorData `type:"structure" required:"true"`
+
+	// Parameter that gives information about unsupported timestamps in the input
+	// data.
+	//
+	// UnsupportedTimestamps is a required field
+	UnsupportedTimestamps *UnsupportedTimestamps `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualitySummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualitySummary) GoString() string {
+	return s.String()
+}
+
+// SetDuplicateTimestamps sets the DuplicateTimestamps field's value.
+func (s *DataQualitySummary) SetDuplicateTimestamps(v *DuplicateTimestamps) *DataQualitySummary {
+	s.DuplicateTimestamps = v
+	return s
+}
+
+// SetInsufficientSensorData sets the InsufficientSensorData field's value.
+func (s *DataQualitySummary) SetInsufficientSensorData(v *InsufficientSensorData) *DataQualitySummary {
+	s.InsufficientSensorData = v
+	return s
+}
+
+// SetInvalidSensorData sets the InvalidSensorData field's value.
+func (s *DataQualitySummary) SetInvalidSensorData(v *InvalidSensorData) *DataQualitySummary {
+	s.InvalidSensorData = v
+	return s
+}
+
+// SetMissingSensorData sets the MissingSensorData field's value.
+func (s *DataQualitySummary) SetMissingSensorData(v *MissingSensorData) *DataQualitySummary {
+	s.MissingSensorData = v
+	return s
+}
+
+// SetUnsupportedTimestamps sets the UnsupportedTimestamps field's value.
+func (s *DataQualitySummary) SetUnsupportedTimestamps(v *UnsupportedTimestamps) *DataQualitySummary {
+	s.UnsupportedTimestamps = v
 	return s
 }
 
@@ -3747,12 +4073,32 @@ type DescribeDataIngestionJobOutput struct {
 	// The time at which the data ingestion job was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
+	// Indicates the latest timestamp corresponding to data that was successfully
+	// ingested during this specific ingestion job.
+	DataEndTime *time.Time `type:"timestamp"`
+
+	// Gives statistics about a completed ingestion job. These statistics primarily
+	// relate to quantifying incorrect data such as MissingCompleteSensorData, MissingSensorData,
+	// UnsupportedDateFormats, InsufficientSensorData, and DuplicateTimeStamps.
+	DataQualitySummary *DataQualitySummary `type:"structure"`
+
+	// Indicates the earliest timestamp corresponding to data that was successfully
+	// ingested during this specific ingestion job.
+	DataStartTime *time.Time `type:"timestamp"`
+
 	// The Amazon Resource Name (ARN) of the dataset being used in the data ingestion
 	// job.
 	DatasetArn *string `min:"20" type:"string"`
 
 	// Specifies the reason for failure when a data ingestion job has failed.
 	FailedReason *string `min:"1" type:"string"`
+
+	// Indicates the size of the ingested dataset.
+	IngestedDataSize *int64 `type:"long"`
+
+	// Gives statistics about how many files have been ingested, and which files
+	// have not been ingested, for a particular ingestion job.
+	IngestedFilesSummary *IngestedFilesSummary `type:"structure"`
 
 	// Specifies the S3 location configuration for the data input for the data ingestion
 	// job.
@@ -3767,6 +4113,9 @@ type DescribeDataIngestionJobOutput struct {
 
 	// Indicates the status of the DataIngestionJob operation.
 	Status *string `type:"string" enum:"IngestionJobStatus"`
+
+	// Provides details about status of the ingestion job that is currently in progress.
+	StatusDetail *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -3793,6 +4142,24 @@ func (s *DescribeDataIngestionJobOutput) SetCreatedAt(v time.Time) *DescribeData
 	return s
 }
 
+// SetDataEndTime sets the DataEndTime field's value.
+func (s *DescribeDataIngestionJobOutput) SetDataEndTime(v time.Time) *DescribeDataIngestionJobOutput {
+	s.DataEndTime = &v
+	return s
+}
+
+// SetDataQualitySummary sets the DataQualitySummary field's value.
+func (s *DescribeDataIngestionJobOutput) SetDataQualitySummary(v *DataQualitySummary) *DescribeDataIngestionJobOutput {
+	s.DataQualitySummary = v
+	return s
+}
+
+// SetDataStartTime sets the DataStartTime field's value.
+func (s *DescribeDataIngestionJobOutput) SetDataStartTime(v time.Time) *DescribeDataIngestionJobOutput {
+	s.DataStartTime = &v
+	return s
+}
+
 // SetDatasetArn sets the DatasetArn field's value.
 func (s *DescribeDataIngestionJobOutput) SetDatasetArn(v string) *DescribeDataIngestionJobOutput {
 	s.DatasetArn = &v
@@ -3802,6 +4169,18 @@ func (s *DescribeDataIngestionJobOutput) SetDatasetArn(v string) *DescribeDataIn
 // SetFailedReason sets the FailedReason field's value.
 func (s *DescribeDataIngestionJobOutput) SetFailedReason(v string) *DescribeDataIngestionJobOutput {
 	s.FailedReason = &v
+	return s
+}
+
+// SetIngestedDataSize sets the IngestedDataSize field's value.
+func (s *DescribeDataIngestionJobOutput) SetIngestedDataSize(v int64) *DescribeDataIngestionJobOutput {
+	s.IngestedDataSize = &v
+	return s
+}
+
+// SetIngestedFilesSummary sets the IngestedFilesSummary field's value.
+func (s *DescribeDataIngestionJobOutput) SetIngestedFilesSummary(v *IngestedFilesSummary) *DescribeDataIngestionJobOutput {
+	s.IngestedFilesSummary = v
 	return s
 }
 
@@ -3826,6 +4205,12 @@ func (s *DescribeDataIngestionJobOutput) SetRoleArn(v string) *DescribeDataInges
 // SetStatus sets the Status field's value.
 func (s *DescribeDataIngestionJobOutput) SetStatus(v string) *DescribeDataIngestionJobOutput {
 	s.Status = &v
+	return s
+}
+
+// SetStatusDetail sets the StatusDetail field's value.
+func (s *DescribeDataIngestionJobOutput) SetStatusDetail(v string) *DescribeDataIngestionJobOutput {
+	s.StatusDetail = &v
 	return s
 }
 
@@ -3884,11 +4269,29 @@ type DescribeDatasetOutput struct {
 	// Specifies the time the dataset was created in Amazon Lookout for Equipment.
 	CreatedAt *time.Time `type:"timestamp"`
 
+	// Indicates the latest timestamp corresponding to data that was successfully
+	// ingested during the most recent ingestion of this particular dataset.
+	DataEndTime *time.Time `type:"timestamp"`
+
+	// Gives statistics associated with the given dataset for the latest successful
+	// associated ingestion job id. These statistics primarily relate to quantifying
+	// incorrect data such as MissingCompleteSensorData, MissingSensorData, UnsupportedDateFormats,
+	// InsufficientSensorData, and DuplicateTimeStamps.
+	DataQualitySummary *DataQualitySummary `type:"structure"`
+
+	// Indicates the earliest timestamp corresponding to data that was successfully
+	// ingested during the most recent ingestion of this particular dataset.
+	DataStartTime *time.Time `type:"timestamp"`
+
 	// The Amazon Resource Name (ARN) of the dataset being described.
 	DatasetArn *string `min:"20" type:"string"`
 
 	// The name of the dataset being described.
 	DatasetName *string `min:"1" type:"string"`
+
+	// IngestedFilesSummary associated with the given dataset for the latest successful
+	// associated ingestion job id.
+	IngestedFilesSummary *IngestedFilesSummary `type:"structure"`
 
 	// Specifies the S3 location configuration for the data input for the data ingestion
 	// job.
@@ -3896,6 +4299,10 @@ type DescribeDatasetOutput struct {
 
 	// Specifies the time the dataset was last updated, if it was.
 	LastUpdatedAt *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the IAM role that you are using for this
+	// the data ingestion job.
+	RoleArn *string `min:"20" type:"string"`
 
 	// A JSON description of the data that is in each time series dataset, including
 	// names, column names, and data types.
@@ -3933,6 +4340,24 @@ func (s *DescribeDatasetOutput) SetCreatedAt(v time.Time) *DescribeDatasetOutput
 	return s
 }
 
+// SetDataEndTime sets the DataEndTime field's value.
+func (s *DescribeDatasetOutput) SetDataEndTime(v time.Time) *DescribeDatasetOutput {
+	s.DataEndTime = &v
+	return s
+}
+
+// SetDataQualitySummary sets the DataQualitySummary field's value.
+func (s *DescribeDatasetOutput) SetDataQualitySummary(v *DataQualitySummary) *DescribeDatasetOutput {
+	s.DataQualitySummary = v
+	return s
+}
+
+// SetDataStartTime sets the DataStartTime field's value.
+func (s *DescribeDatasetOutput) SetDataStartTime(v time.Time) *DescribeDatasetOutput {
+	s.DataStartTime = &v
+	return s
+}
+
 // SetDatasetArn sets the DatasetArn field's value.
 func (s *DescribeDatasetOutput) SetDatasetArn(v string) *DescribeDatasetOutput {
 	s.DatasetArn = &v
@@ -3945,6 +4370,12 @@ func (s *DescribeDatasetOutput) SetDatasetName(v string) *DescribeDatasetOutput 
 	return s
 }
 
+// SetIngestedFilesSummary sets the IngestedFilesSummary field's value.
+func (s *DescribeDatasetOutput) SetIngestedFilesSummary(v *IngestedFilesSummary) *DescribeDatasetOutput {
+	s.IngestedFilesSummary = v
+	return s
+}
+
 // SetIngestionInputConfiguration sets the IngestionInputConfiguration field's value.
 func (s *DescribeDatasetOutput) SetIngestionInputConfiguration(v *IngestionInputConfiguration) *DescribeDatasetOutput {
 	s.IngestionInputConfiguration = v
@@ -3954,6 +4385,12 @@ func (s *DescribeDatasetOutput) SetIngestionInputConfiguration(v *IngestionInput
 // SetLastUpdatedAt sets the LastUpdatedAt field's value.
 func (s *DescribeDatasetOutput) SetLastUpdatedAt(v time.Time) *DescribeDatasetOutput {
 	s.LastUpdatedAt = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DescribeDatasetOutput) SetRoleArn(v string) *DescribeDatasetOutput {
+	s.RoleArn = &v
 	return s
 }
 
@@ -4466,6 +4903,40 @@ func (s *DescribeModelOutput) SetTrainingExecutionStartTime(v time.Time) *Descri
 	return s
 }
 
+// Entity that comprises information abount duplicate timestamps in the dataset.
+type DuplicateTimestamps struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the total number of duplicate timestamps.
+	//
+	// TotalNumberOfDuplicateTimestamps is a required field
+	TotalNumberOfDuplicateTimestamps *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DuplicateTimestamps) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DuplicateTimestamps) GoString() string {
+	return s.String()
+}
+
+// SetTotalNumberOfDuplicateTimestamps sets the TotalNumberOfDuplicateTimestamps field's value.
+func (s *DuplicateTimestamps) SetTotalNumberOfDuplicateTimestamps(v int64) *DuplicateTimestamps {
+	s.TotalNumberOfDuplicateTimestamps = &v
+	return s
+}
+
 // Contains information about the specific inference execution, including input
 // and output data configuration, inference scheduling information, status,
 // and so on.
@@ -4484,7 +4955,7 @@ type InferenceExecutionSummary struct {
 	DataInputConfiguration *InferenceInputConfiguration `type:"structure"`
 
 	// Specifies configuration information for the output results from for the inference
-	// execution, including the output S3 location.
+	// execution, including the output Amazon S3 location.
 	DataOutputConfiguration *InferenceOutputConfiguration `type:"structure"`
 
 	// Indicates the time reference in the dataset at which the inference execution
@@ -4606,7 +5077,7 @@ func (s *InferenceExecutionSummary) SetStatus(v string) *InferenceExecutionSumma
 }
 
 // Specifies configuration information for the input data for the inference,
-// including S3 location of input data..
+// including Amazon S3 location of input data..
 type InferenceInputConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -4614,11 +5085,12 @@ type InferenceInputConfiguration struct {
 	// including timestamp format and delimiter.
 	InferenceInputNameConfiguration *InferenceInputNameConfiguration `type:"structure"`
 
-	// Indicates the difference between your time zone and Greenwich Mean Time (GMT).
+	// Indicates the difference between your time zone and Coordinated Universal
+	// Time (UTC).
 	InputTimeZoneOffset *string `type:"string"`
 
 	// Specifies configuration information for the input data for the inference,
-	// including S3 location of input data..
+	// including Amazon S3 location of input data.
 	S3InputConfiguration *InferenceS3InputConfiguration `type:"structure"`
 }
 
@@ -5001,6 +5473,62 @@ func (s *InferenceSchedulerSummary) SetStatus(v string) *InferenceSchedulerSumma
 	return s
 }
 
+// Gives statistics about how many files have been ingested, and which files
+// have not been ingested, for a particular ingestion job.
+type IngestedFilesSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the number of files that were discarded. A file could be discarded
+	// because its format is invalid (for example, a jpg or pdf) or not readable.
+	DiscardedFiles []*S3Object `type:"list"`
+
+	// Indicates the number of files that were successfully ingested.
+	//
+	// IngestedNumberOfFiles is a required field
+	IngestedNumberOfFiles *int64 `type:"integer" required:"true"`
+
+	// Indicates the total number of files that were submitted for ingestion.
+	//
+	// TotalNumberOfFiles is a required field
+	TotalNumberOfFiles *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IngestedFilesSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IngestedFilesSummary) GoString() string {
+	return s.String()
+}
+
+// SetDiscardedFiles sets the DiscardedFiles field's value.
+func (s *IngestedFilesSummary) SetDiscardedFiles(v []*S3Object) *IngestedFilesSummary {
+	s.DiscardedFiles = v
+	return s
+}
+
+// SetIngestedNumberOfFiles sets the IngestedNumberOfFiles field's value.
+func (s *IngestedFilesSummary) SetIngestedNumberOfFiles(v int64) *IngestedFilesSummary {
+	s.IngestedNumberOfFiles = &v
+	return s
+}
+
+// SetTotalNumberOfFiles sets the TotalNumberOfFiles field's value.
+func (s *IngestedFilesSummary) SetTotalNumberOfFiles(v int64) *IngestedFilesSummary {
+	s.TotalNumberOfFiles = &v
+	return s
+}
+
 // Specifies configuration information for the input data for the data ingestion
 // job, including input data S3 location.
 type IngestionInputConfiguration struct {
@@ -5065,6 +5593,11 @@ type IngestionS3InputConfiguration struct {
 	// Bucket is a required field
 	Bucket *string `min:"3" type:"string" required:"true"`
 
+	// Pattern for matching the Amazon S3 files which will be used for ingestion.
+	// If no KeyPattern is provided, we will use the default hierarchy file structure,
+	// which is same as KeyPattern {prefix}/{component_name}/*
+	KeyPattern *string `min:"1" type:"string"`
+
 	// The prefix for the S3 location being used for the input data for the data
 	// ingestion.
 	Prefix *string `type:"string"`
@@ -5097,6 +5630,9 @@ func (s *IngestionS3InputConfiguration) Validate() error {
 	if s.Bucket != nil && len(*s.Bucket) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
 	}
+	if s.KeyPattern != nil && len(*s.KeyPattern) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KeyPattern", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5110,9 +5646,63 @@ func (s *IngestionS3InputConfiguration) SetBucket(v string) *IngestionS3InputCon
 	return s
 }
 
+// SetKeyPattern sets the KeyPattern field's value.
+func (s *IngestionS3InputConfiguration) SetKeyPattern(v string) *IngestionS3InputConfiguration {
+	s.KeyPattern = &v
+	return s
+}
+
 // SetPrefix sets the Prefix field's value.
 func (s *IngestionS3InputConfiguration) SetPrefix(v string) *IngestionS3InputConfiguration {
 	s.Prefix = &v
+	return s
+}
+
+// Entity that comprises aggregated information on sensors having insufficient
+// data.
+type InsufficientSensorData struct {
+	_ struct{} `type:"structure"`
+
+	// Parameter that describes the total number of sensors that have data completely
+	// missing for it.
+	//
+	// MissingCompleteSensorData is a required field
+	MissingCompleteSensorData *MissingCompleteSensorData `type:"structure" required:"true"`
+
+	// Parameter that describes the total number of sensors that have a short date
+	// range of less than 90 days of data overall.
+	//
+	// SensorsWithShortDateRange is a required field
+	SensorsWithShortDateRange *SensorsWithShortDateRange `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InsufficientSensorData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InsufficientSensorData) GoString() string {
+	return s.String()
+}
+
+// SetMissingCompleteSensorData sets the MissingCompleteSensorData field's value.
+func (s *InsufficientSensorData) SetMissingCompleteSensorData(v *MissingCompleteSensorData) *InsufficientSensorData {
+	s.MissingCompleteSensorData = v
+	return s
+}
+
+// SetSensorsWithShortDateRange sets the SensorsWithShortDateRange field's value.
+func (s *InsufficientSensorData) SetSensorsWithShortDateRange(v *SensorsWithShortDateRange) *InsufficientSensorData {
+	s.SensorsWithShortDateRange = v
 	return s
 }
 
@@ -5179,6 +5769,52 @@ func (s *InternalServerException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Entity that comprises aggregated information on sensors having insufficient
+// data.
+type InvalidSensorData struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the number of sensors that have at least some invalid values.
+	//
+	// AffectedSensorCount is a required field
+	AffectedSensorCount *int64 `type:"integer" required:"true"`
+
+	// Indicates the total number of invalid values across all the sensors.
+	//
+	// TotalNumberOfInvalidValues is a required field
+	TotalNumberOfInvalidValues *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidSensorData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidSensorData) GoString() string {
+	return s.String()
+}
+
+// SetAffectedSensorCount sets the AffectedSensorCount field's value.
+func (s *InvalidSensorData) SetAffectedSensorCount(v int64) *InvalidSensorData {
+	s.AffectedSensorCount = &v
+	return s
+}
+
+// SetTotalNumberOfInvalidValues sets the TotalNumberOfInvalidValues field's value.
+func (s *InvalidSensorData) SetTotalNumberOfInvalidValues(v int64) *InvalidSensorData {
+	s.TotalNumberOfInvalidValues = &v
+	return s
 }
 
 // Contains the configuration information for the S3 location being used to
@@ -5291,6 +5927,60 @@ func (s *LabelsS3InputConfiguration) SetBucket(v string) *LabelsS3InputConfigura
 // SetPrefix sets the Prefix field's value.
 func (s *LabelsS3InputConfiguration) SetPrefix(v string) *LabelsS3InputConfiguration {
 	s.Prefix = &v
+	return s
+}
+
+// Entity that comprises information on large gaps between consecutive timestamps
+// in data.
+type LargeTimestampGaps struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the size of the largest timestamp gap, in days.
+	MaxTimestampGapInDays *int64 `type:"integer"`
+
+	// Indicates the number of large timestamp gaps, if there are any.
+	NumberOfLargeTimestampGaps *int64 `type:"integer"`
+
+	// Indicates whether there is a potential data issue related to large gaps in
+	// timestamps.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"StatisticalIssueStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LargeTimestampGaps) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LargeTimestampGaps) GoString() string {
+	return s.String()
+}
+
+// SetMaxTimestampGapInDays sets the MaxTimestampGapInDays field's value.
+func (s *LargeTimestampGaps) SetMaxTimestampGapInDays(v int64) *LargeTimestampGaps {
+	s.MaxTimestampGapInDays = &v
+	return s
+}
+
+// SetNumberOfLargeTimestampGaps sets the NumberOfLargeTimestampGaps field's value.
+func (s *LargeTimestampGaps) SetNumberOfLargeTimestampGaps(v int64) *LargeTimestampGaps {
+	s.NumberOfLargeTimestampGaps = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *LargeTimestampGaps) SetStatus(v string) *LargeTimestampGaps {
+	s.Status = &v
 	return s
 }
 
@@ -5909,6 +6599,132 @@ func (s *ListModelsOutput) SetNextToken(v string) *ListModelsOutput {
 	return s
 }
 
+type ListSensorStatisticsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the dataset associated with the list of Sensor Statistics.
+	//
+	// DatasetName is a required field
+	DatasetName *string `min:"1" type:"string" required:"true"`
+
+	// The ingestion job id associated with the list of Sensor Statistics. To get
+	// sensor statistics for a particular ingestion job id, both dataset name and
+	// ingestion job id must be submitted as inputs.
+	IngestionJobId *string `type:"string"`
+
+	// Specifies the maximum number of sensors for which to retrieve statistics.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// An opaque pagination token indicating where to continue the listing of sensor
+	// statistics.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSensorStatisticsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSensorStatisticsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSensorStatisticsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSensorStatisticsInput"}
+	if s.DatasetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetName"))
+	}
+	if s.DatasetName != nil && len(*s.DatasetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetName sets the DatasetName field's value.
+func (s *ListSensorStatisticsInput) SetDatasetName(v string) *ListSensorStatisticsInput {
+	s.DatasetName = &v
+	return s
+}
+
+// SetIngestionJobId sets the IngestionJobId field's value.
+func (s *ListSensorStatisticsInput) SetIngestionJobId(v string) *ListSensorStatisticsInput {
+	s.IngestionJobId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSensorStatisticsInput) SetMaxResults(v int64) *ListSensorStatisticsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSensorStatisticsInput) SetNextToken(v string) *ListSensorStatisticsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListSensorStatisticsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An opaque pagination token indicating where to continue the listing of sensor
+	// statistics.
+	NextToken *string `type:"string"`
+
+	// Provides ingestion-based statistics regarding the specified sensor with respect
+	// to various validation types, such as whether data exists, the number and
+	// percentage of missing values, and the number and percentage of duplicate
+	// timestamps.
+	SensorStatisticsSummaries []*SensorStatisticsSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSensorStatisticsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSensorStatisticsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSensorStatisticsOutput) SetNextToken(v string) *ListSensorStatisticsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSensorStatisticsSummaries sets the SensorStatisticsSummaries field's value.
+func (s *ListSensorStatisticsOutput) SetSensorStatisticsSummaries(v []*SensorStatisticsSummary) *ListSensorStatisticsOutput {
+	s.SensorStatisticsSummaries = v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5990,6 +6806,86 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
+// Entity that comprises information on sensors that have sensor data completely
+// missing.
+type MissingCompleteSensorData struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the number of sensors that have data missing completely.
+	//
+	// AffectedSensorCount is a required field
+	AffectedSensorCount *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MissingCompleteSensorData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MissingCompleteSensorData) GoString() string {
+	return s.String()
+}
+
+// SetAffectedSensorCount sets the AffectedSensorCount field's value.
+func (s *MissingCompleteSensorData) SetAffectedSensorCount(v int64) *MissingCompleteSensorData {
+	s.AffectedSensorCount = &v
+	return s
+}
+
+// Entity that comprises aggregated information on sensors having missing data.
+type MissingSensorData struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the number of sensors that have atleast some data missing.
+	//
+	// AffectedSensorCount is a required field
+	AffectedSensorCount *int64 `type:"integer" required:"true"`
+
+	// Indicates the total number of missing values across all the sensors.
+	//
+	// TotalNumberOfMissingValues is a required field
+	TotalNumberOfMissingValues *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MissingSensorData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MissingSensorData) GoString() string {
+	return s.String()
+}
+
+// SetAffectedSensorCount sets the AffectedSensorCount field's value.
+func (s *MissingSensorData) SetAffectedSensorCount(v int64) *MissingSensorData {
+	s.AffectedSensorCount = &v
+	return s
+}
+
+// SetTotalNumberOfMissingValues sets the TotalNumberOfMissingValues field's value.
+func (s *MissingSensorData) SetTotalNumberOfMissingValues(v int64) *MissingSensorData {
+	s.TotalNumberOfMissingValues = &v
+	return s
+}
+
 // Provides information about the specified ML model, including dataset and
 // model names and ARNs, as well as status.
 type ModelSummary struct {
@@ -6064,6 +6960,85 @@ func (s *ModelSummary) SetModelName(v string) *ModelSummary {
 
 // SetStatus sets the Status field's value.
 func (s *ModelSummary) SetStatus(v string) *ModelSummary {
+	s.Status = &v
+	return s
+}
+
+// Entity that comprises information on monotonic values in the data.
+type MonotonicValues struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the monotonicity of values. Can be INCREASING, DECREASING, or STATIC.
+	Monotonicity *string `type:"string" enum:"Monotonicity"`
+
+	// Indicates whether there is a potential data issue related to having monotonic
+	// values.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"StatisticalIssueStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonotonicValues) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonotonicValues) GoString() string {
+	return s.String()
+}
+
+// SetMonotonicity sets the Monotonicity field's value.
+func (s *MonotonicValues) SetMonotonicity(v string) *MonotonicValues {
+	s.Monotonicity = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *MonotonicValues) SetStatus(v string) *MonotonicValues {
+	s.Status = &v
+	return s
+}
+
+// Entity that comprises information on operating modes in data.
+type MultipleOperatingModes struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether there is a potential data issue related to having multiple
+	// operating modes.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"StatisticalIssueStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultipleOperatingModes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultipleOperatingModes) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *MultipleOperatingModes) SetStatus(v string) *MultipleOperatingModes {
 	s.Status = &v
 	return s
 }
@@ -6176,6 +7151,193 @@ func (s *S3Object) SetBucket(v string) *S3Object {
 // SetKey sets the Key field's value.
 func (s *S3Object) SetKey(v string) *S3Object {
 	s.Key = &v
+	return s
+}
+
+// Summary of ingestion statistics like whether data exists, number of missing
+// values, number of invalid values and so on related to the particular sensor.
+type SensorStatisticsSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Parameter that describes potential risk about whether data associated with
+	// the sensor is categorical.
+	CategoricalValues *CategoricalValues `type:"structure"`
+
+	// Name of the component to which the particular sensor belongs for which the
+	// statistics belong to.
+	ComponentName *string `min:"1" type:"string"`
+
+	// Indicates the time reference to indicate the end of valid data associated
+	// with the sensor that the statistics belong to.
+	DataEndTime *time.Time `type:"timestamp"`
+
+	// Parameter that indicates whether data exists for the sensor that the statistics
+	// belong to.
+	DataExists *bool `type:"boolean"`
+
+	// Indicates the time reference to indicate the beginning of valid data associated
+	// with the sensor that the statistics belong to.
+	DataStartTime *time.Time `type:"timestamp"`
+
+	// Parameter that describes the total number of duplicate timestamp records
+	// associated with the sensor that the statistics belong to.
+	DuplicateTimestamps *CountPercent `type:"structure"`
+
+	// Parameter that describes the total number of invalid date entries associated
+	// with the sensor that the statistics belong to.
+	InvalidDateEntries *CountPercent `type:"structure"`
+
+	// Parameter that describes the total number of, and percentage of, values that
+	// are invalid for the sensor that the statistics belong to.
+	InvalidValues *CountPercent `type:"structure"`
+
+	// Parameter that describes potential risk about whether data associated with
+	// the sensor contains one or more large gaps between consecutive timestamps.
+	LargeTimestampGaps *LargeTimestampGaps `type:"structure"`
+
+	// Parameter that describes the total number of, and percentage of, values that
+	// are missing for the sensor that the statistics belong to.
+	MissingValues *CountPercent `type:"structure"`
+
+	// Parameter that describes potential risk about whether data associated with
+	// the sensor is mostly monotonic.
+	MonotonicValues *MonotonicValues `type:"structure"`
+
+	// Parameter that describes potential risk about whether data associated with
+	// the sensor has more than one operating mode.
+	MultipleOperatingModes *MultipleOperatingModes `type:"structure"`
+
+	// Name of the sensor that the statistics belong to.
+	SensorName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SensorStatisticsSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SensorStatisticsSummary) GoString() string {
+	return s.String()
+}
+
+// SetCategoricalValues sets the CategoricalValues field's value.
+func (s *SensorStatisticsSummary) SetCategoricalValues(v *CategoricalValues) *SensorStatisticsSummary {
+	s.CategoricalValues = v
+	return s
+}
+
+// SetComponentName sets the ComponentName field's value.
+func (s *SensorStatisticsSummary) SetComponentName(v string) *SensorStatisticsSummary {
+	s.ComponentName = &v
+	return s
+}
+
+// SetDataEndTime sets the DataEndTime field's value.
+func (s *SensorStatisticsSummary) SetDataEndTime(v time.Time) *SensorStatisticsSummary {
+	s.DataEndTime = &v
+	return s
+}
+
+// SetDataExists sets the DataExists field's value.
+func (s *SensorStatisticsSummary) SetDataExists(v bool) *SensorStatisticsSummary {
+	s.DataExists = &v
+	return s
+}
+
+// SetDataStartTime sets the DataStartTime field's value.
+func (s *SensorStatisticsSummary) SetDataStartTime(v time.Time) *SensorStatisticsSummary {
+	s.DataStartTime = &v
+	return s
+}
+
+// SetDuplicateTimestamps sets the DuplicateTimestamps field's value.
+func (s *SensorStatisticsSummary) SetDuplicateTimestamps(v *CountPercent) *SensorStatisticsSummary {
+	s.DuplicateTimestamps = v
+	return s
+}
+
+// SetInvalidDateEntries sets the InvalidDateEntries field's value.
+func (s *SensorStatisticsSummary) SetInvalidDateEntries(v *CountPercent) *SensorStatisticsSummary {
+	s.InvalidDateEntries = v
+	return s
+}
+
+// SetInvalidValues sets the InvalidValues field's value.
+func (s *SensorStatisticsSummary) SetInvalidValues(v *CountPercent) *SensorStatisticsSummary {
+	s.InvalidValues = v
+	return s
+}
+
+// SetLargeTimestampGaps sets the LargeTimestampGaps field's value.
+func (s *SensorStatisticsSummary) SetLargeTimestampGaps(v *LargeTimestampGaps) *SensorStatisticsSummary {
+	s.LargeTimestampGaps = v
+	return s
+}
+
+// SetMissingValues sets the MissingValues field's value.
+func (s *SensorStatisticsSummary) SetMissingValues(v *CountPercent) *SensorStatisticsSummary {
+	s.MissingValues = v
+	return s
+}
+
+// SetMonotonicValues sets the MonotonicValues field's value.
+func (s *SensorStatisticsSummary) SetMonotonicValues(v *MonotonicValues) *SensorStatisticsSummary {
+	s.MonotonicValues = v
+	return s
+}
+
+// SetMultipleOperatingModes sets the MultipleOperatingModes field's value.
+func (s *SensorStatisticsSummary) SetMultipleOperatingModes(v *MultipleOperatingModes) *SensorStatisticsSummary {
+	s.MultipleOperatingModes = v
+	return s
+}
+
+// SetSensorName sets the SensorName field's value.
+func (s *SensorStatisticsSummary) SetSensorName(v string) *SensorStatisticsSummary {
+	s.SensorName = &v
+	return s
+}
+
+// Entity that comprises information on sensors that have shorter date range.
+type SensorsWithShortDateRange struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the number of sensors that have less than 90 days of data.
+	//
+	// AffectedSensorCount is a required field
+	AffectedSensorCount *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SensorsWithShortDateRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SensorsWithShortDateRange) GoString() string {
+	return s.String()
+}
+
+// SetAffectedSensorCount sets the AffectedSensorCount field's value.
+func (s *SensorsWithShortDateRange) SetAffectedSensorCount(v int64) *SensorsWithShortDateRange {
+	s.AffectedSensorCount = &v
 	return s
 }
 
@@ -6842,6 +8004,41 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Entity that comprises information abount unsupported timestamps in the dataset.
+type UnsupportedTimestamps struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the total number of unsupported timestamps across the ingested
+	// data.
+	//
+	// TotalNumberOfUnsupportedTimestamps is a required field
+	TotalNumberOfUnsupportedTimestamps *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnsupportedTimestamps) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnsupportedTimestamps) GoString() string {
+	return s.String()
+}
+
+// SetTotalNumberOfUnsupportedTimestamps sets the TotalNumberOfUnsupportedTimestamps field's value.
+func (s *UnsupportedTimestamps) SetTotalNumberOfUnsupportedTimestamps(v int64) *UnsupportedTimestamps {
+	s.TotalNumberOfUnsupportedTimestamps = &v
+	return s
+}
+
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7266,6 +8463,42 @@ func ModelStatus_Values() []string {
 		ModelStatusInProgress,
 		ModelStatusSuccess,
 		ModelStatusFailed,
+	}
+}
+
+const (
+	// MonotonicityDecreasing is a Monotonicity enum value
+	MonotonicityDecreasing = "DECREASING"
+
+	// MonotonicityIncreasing is a Monotonicity enum value
+	MonotonicityIncreasing = "INCREASING"
+
+	// MonotonicityStatic is a Monotonicity enum value
+	MonotonicityStatic = "STATIC"
+)
+
+// Monotonicity_Values returns all elements of the Monotonicity enum
+func Monotonicity_Values() []string {
+	return []string{
+		MonotonicityDecreasing,
+		MonotonicityIncreasing,
+		MonotonicityStatic,
+	}
+}
+
+const (
+	// StatisticalIssueStatusPotentialIssueDetected is a StatisticalIssueStatus enum value
+	StatisticalIssueStatusPotentialIssueDetected = "POTENTIAL_ISSUE_DETECTED"
+
+	// StatisticalIssueStatusNoIssueDetected is a StatisticalIssueStatus enum value
+	StatisticalIssueStatusNoIssueDetected = "NO_ISSUE_DETECTED"
+)
+
+// StatisticalIssueStatus_Values returns all elements of the StatisticalIssueStatus enum
+func StatisticalIssueStatus_Values() []string {
+	return []string{
+		StatisticalIssueStatusPotentialIssueDetected,
+		StatisticalIssueStatusNoIssueDetected,
 	}
 }
 

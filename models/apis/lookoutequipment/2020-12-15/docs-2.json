@@ -8,8 +8,8 @@
     "DeleteDataset": "<p> Deletes a dataset and associated artifacts. The operation will check to see if any inference scheduler or data ingestion job is currently using the dataset, and if there isn't, the dataset, its metadata, and any associated data stored in S3 will be deleted. This does not affect any models that used this dataset for training and evaluation, but does prevent it from being used in the future. </p>",
     "DeleteInferenceScheduler": "<p>Deletes an inference scheduler that has been set up. Already processed output results are not affected. </p>",
     "DeleteModel": "<p>Deletes an ML model currently available for Amazon Lookout for Equipment. This will prevent it from being used with an inference scheduler, even one that is already set up. </p>",
-    "DescribeDataIngestionJob": "<p>Provides information on a specific data ingestion job such as creation time, dataset ARN, status, and so on. </p>",
-    "DescribeDataset": "<p>Provides a JSON description of the data that is in each time series dataset, including names, column names, and data types.</p>",
+    "DescribeDataIngestionJob": "<p>Provides information on a specific data ingestion job such as creation time, dataset ARN, and status.</p>",
+    "DescribeDataset": "<p>Provides a JSON description of the data in each time series dataset, including names, column names, and data types.</p>",
     "DescribeInferenceScheduler": "<p> Specifies information about the inference scheduler being used, including name, model, status, and associated metadata </p>",
     "DescribeModel": "<p>Provides a JSON containing the overall information about a specific ML model, including model name and ARN, dataset, training and evaluation information, status, and so on. </p>",
     "ListDataIngestionJobs": "<p>Provides a list of all data ingestion jobs, including dataset name and ARN, S3 location of the input data, status, and so on. </p>",
@@ -17,6 +17,7 @@
     "ListInferenceExecutions": "<p> Lists all inference executions that have been performed by the specified inference scheduler. </p>",
     "ListInferenceSchedulers": "<p>Retrieves a list of all inference schedulers currently available for your account. </p>",
     "ListModels": "<p>Generates a list of all models in the account, including model name and ARN, dataset, and status. </p>",
+    "ListSensorStatistics": "<p> Lists statistics about the data collected for each of the sensors that have been successfully ingested in the particular dataset. Can also be used to retreive Sensor Statistics for a previous ingestion job. </p>",
     "ListTagsForResource": "<p>Lists all the tags for a specified resource, including key and value. </p>",
     "StartDataIngestionJob": "<p>Starts a data ingestion job. Amazon Lookout for Equipment returns the job status. </p>",
     "StartInferenceScheduler": "<p>Starts an inference scheduler. </p>",
@@ -39,12 +40,19 @@
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource to which the tag is currently associated. </p>"
       }
     },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "SensorStatisticsSummary$DataExists": "<p> Parameter that indicates whether data exists for the sensor that the statistics belong to. </p>"
+      }
+    },
     "BoundedLengthString": {
       "base": null,
       "refs": {
         "AccessDeniedException$Message": null,
         "ConflictException$Message": null,
         "DescribeDataIngestionJobResponse$FailedReason": "<p>Specifies the reason for failure when a data ingestion job has failed. </p>",
+        "DescribeDataIngestionJobResponse$StatusDetail": "<p> Provides details about status of the ingestion job that is currently in progress. </p>",
         "DescribeModelResponse$FailedReason": "<p>If the training of the ML model failed, this indicates the reason for that failure. </p>",
         "InferenceExecutionSummary$FailedReason": "<p> Specifies the reason for failure when an inference execution has failed. </p>",
         "InternalServerException$Message": null,
@@ -52,6 +60,18 @@
         "ServiceQuotaExceededException$Message": null,
         "ThrottlingException$Message": null,
         "ValidationException$Message": null
+      }
+    },
+    "CategoricalValues": {
+      "base": "<p> Entity that comprises information on categorical values in data. </p>",
+      "refs": {
+        "SensorStatisticsSummary$CategoricalValues": "<p> Parameter that describes potential risk about whether data associated with the sensor is categorical. </p>"
+      }
+    },
+    "ComponentName": {
+      "base": null,
+      "refs": {
+        "SensorStatisticsSummary$ComponentName": "<p> Name of the component to which the particular sensor belongs for which the statistics belong to. </p>"
       }
     },
     "ComponentTimestampDelimiter": {
@@ -63,6 +83,15 @@
     "ConflictException": {
       "base": "<p> The request could not be completed due to a conflict with the current state of the target resource. </p>",
       "refs": {
+      }
+    },
+    "CountPercent": {
+      "base": "<p> Entity that comprises information of count and percentage. </p>",
+      "refs": {
+        "SensorStatisticsSummary$MissingValues": "<p> Parameter that describes the total number of, and percentage of, values that are missing for the sensor that the statistics belong to. </p>",
+        "SensorStatisticsSummary$InvalidValues": "<p> Parameter that describes the total number of, and percentage of, values that are invalid for the sensor that the statistics belong to. </p>",
+        "SensorStatisticsSummary$InvalidDateEntries": "<p> Parameter that describes the total number of invalid date entries associated with the sensor that the statistics belong to. </p>",
+        "SensorStatisticsSummary$DuplicateTimestamps": "<p> Parameter that describes the total number of duplicate timestamp records associated with the sensor that the statistics belong to. </p>"
       }
     },
     "CreateDatasetRequest": {
@@ -123,6 +152,19 @@
         "DescribeModelResponse$DataPreProcessingConfiguration": "<p>The configuration is the <code>TargetSamplingRate</code>, which is the sampling rate of the data after post processing by Amazon Lookout for Equipment. For example, if you provide data that has been collected at a 1 second level and you want the system to resample the data at a 1 minute rate before training, the <code>TargetSamplingRate</code> is 1 minute.</p> <p>When providing a value for the <code>TargetSamplingRate</code>, you must attach the prefix \"PT\" to the rate you want. The value for a 1 second rate is therefore <i>PT1S</i>, the value for a 15 minute rate is <i>PT15M</i>, and the value for a 1 hour rate is <i>PT1H</i> </p>"
       }
     },
+    "DataQualitySummary": {
+      "base": "<p> DataQualitySummary gives aggregated statistics over all the sensors about a completed ingestion job. It primarily gives more information about statistics over different incorrect data like MissingCompleteSensorData, MissingSensorData, UnsupportedDateFormats, InsufficientSensorData, DuplicateTimeStamps. </p>",
+      "refs": {
+        "DescribeDataIngestionJobResponse$DataQualitySummary": "<p> Gives statistics about a completed ingestion job. These statistics primarily relate to quantifying incorrect data such as MissingCompleteSensorData, MissingSensorData, UnsupportedDateFormats, InsufficientSensorData, and DuplicateTimeStamps. </p>",
+        "DescribeDatasetResponse$DataQualitySummary": "<p> Gives statistics associated with the given dataset for the latest successful associated ingestion job id. These statistics primarily relate to quantifying incorrect data such as MissingCompleteSensorData, MissingSensorData, UnsupportedDateFormats, InsufficientSensorData, and DuplicateTimeStamps. </p>"
+      }
+    },
+    "DataSizeInBytes": {
+      "base": null,
+      "refs": {
+        "DescribeDataIngestionJobResponse$IngestedDataSize": "<p> Indicates the size of the ingested dataset. </p>"
+      }
+    },
     "DataUploadFrequency": {
       "base": null,
       "refs": {
@@ -165,6 +207,7 @@
         "ListDataIngestionJobsRequest$DatasetName": "<p>The name of the dataset being used for the data ingestion job. </p>",
         "ListDatasetsRequest$DatasetNameBeginsWith": "<p>The beginning of the name of the datasets to be listed. </p>",
         "ListModelsRequest$DatasetNameBeginsWith": "<p>The beginning of the name of the dataset of the ML models to be listed. </p>",
+        "ListSensorStatisticsRequest$DatasetName": "<p> The name of the dataset associated with the list of Sensor Statistics. </p>",
         "ModelSummary$DatasetName": "<p>The name of the dataset being used for the ML model. </p>"
       }
     },
@@ -250,10 +293,22 @@
       "refs": {
       }
     },
+    "DuplicateTimestamps": {
+      "base": "<p> Entity that comprises information abount duplicate timestamps in the dataset. </p>",
+      "refs": {
+        "DataQualitySummary$DuplicateTimestamps": "<p> Parameter that gives information about duplicate timestamps in the input data. </p>"
+      }
+    },
     "FileNameTimestampFormat": {
       "base": null,
       "refs": {
         "InferenceInputNameConfiguration$TimestampFormat": "<p>The format of the timestamp, whether Epoch time, or standard, with or without hyphens (-). </p>"
+      }
+    },
+    "Float": {
+      "base": null,
+      "refs": {
+        "CountPercent$Percentage": "<p> Indicates the percentage of occurances of the given statistic. </p>"
       }
     },
     "IamRoleArn": {
@@ -262,6 +317,7 @@
         "CreateInferenceSchedulerRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to access the data source being used for the inference. </p>",
         "CreateModelRequest$RoleArn": "<p> The Amazon Resource Name (ARN) of a role with permission to access the data source being used to create the ML model. </p>",
         "DescribeDataIngestionJobResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role with permission to access the data source being ingested. </p>",
+        "DescribeDatasetResponse$RoleArn": "<p> The Amazon Resource Name (ARN) of the IAM role that you are using for this the data ingestion job. </p>",
         "DescribeInferenceSchedulerResponse$RoleArn": "<p> The Amazon Resource Name (ARN) of a role with permission to access the data source for the inference scheduler being described. </p>",
         "DescribeModelResponse$RoleArn": "<p> The Amazon Resource Name (ARN) of a role with permission to access the data source for the ML model being described. </p>",
         "StartDataIngestionJobRequest$RoleArn": "<p> The Amazon Resource Name (ARN) of a role with permission to access the data source for the data ingestion job. </p>",
@@ -297,7 +353,7 @@
       }
     },
     "InferenceInputConfiguration": {
-      "base": "<p>Specifies configuration information for the input data for the inference, including S3 location of input data.. </p>",
+      "base": "<p>Specifies configuration information for the input data for the inference, including Amazon S3 location of input data.. </p>",
       "refs": {
         "CreateInferenceSchedulerRequest$DataInputConfiguration": "<p>Specifies configuration information for the input data for the inference scheduler, including delimiter, format, and dataset location. </p>",
         "DescribeInferenceSchedulerResponse$DataInputConfiguration": "<p> Specifies configuration information for the input data for the inference scheduler, including delimiter, format, and dataset location. </p>",
@@ -316,14 +372,14 @@
       "refs": {
         "CreateInferenceSchedulerRequest$DataOutputConfiguration": "<p>Specifies configuration information for the output results for the inference scheduler, including the S3 location for the output. </p>",
         "DescribeInferenceSchedulerResponse$DataOutputConfiguration": "<p> Specifies information for the output results for the inference scheduler, including the output S3 location. </p>",
-        "InferenceExecutionSummary$DataOutputConfiguration": "<p> Specifies configuration information for the output results from for the inference execution, including the output S3 location. </p>",
+        "InferenceExecutionSummary$DataOutputConfiguration": "<p> Specifies configuration information for the output results from for the inference execution, including the output Amazon S3 location. </p>",
         "UpdateInferenceSchedulerRequest$DataOutputConfiguration": "<p> Specifies information for the output results from the inference scheduler, including the output S3 location. </p>"
       }
     },
     "InferenceS3InputConfiguration": {
       "base": "<p> Specifies configuration information for the input data for the inference, including input data S3 location. </p>",
       "refs": {
-        "InferenceInputConfiguration$S3InputConfiguration": "<p> Specifies configuration information for the input data for the inference, including S3 location of input data.. </p>"
+        "InferenceInputConfiguration$S3InputConfiguration": "<p> Specifies configuration information for the input data for the inference, including Amazon S3 location of input data.</p>"
       }
     },
     "InferenceS3OutputConfiguration": {
@@ -389,10 +445,17 @@
         "InferenceSchedulerSummaries$member": null
       }
     },
+    "IngestedFilesSummary": {
+      "base": "<p>Gives statistics about how many files have been ingested, and which files have not been ingested, for a particular ingestion job.</p>",
+      "refs": {
+        "DescribeDataIngestionJobResponse$IngestedFilesSummary": null,
+        "DescribeDatasetResponse$IngestedFilesSummary": "<p> IngestedFilesSummary associated with the given dataset for the latest successful associated ingestion job id. </p>"
+      }
+    },
     "IngestionInputConfiguration": {
       "base": "<p> Specifies configuration information for the input data for the data ingestion job, including input data S3 location. </p>",
       "refs": {
-        "DataIngestionJobSummary$IngestionInputConfiguration": "<p> Specifies information for the input data for the data inference job, including data S3 location parameters. </p>",
+        "DataIngestionJobSummary$IngestionInputConfiguration": "<p> Specifies information for the input data for the data inference job, including data Amazon S3 location parameters. </p>",
         "DescribeDataIngestionJobResponse$IngestionInputConfiguration": "<p>Specifies the S3 location configuration for the data input for the data ingestion job. </p>",
         "DescribeDatasetResponse$IngestionInputConfiguration": "<p>Specifies the S3 location configuration for the data input for the data ingestion job. </p>",
         "StartDataIngestionJobRequest$IngestionInputConfiguration": "<p> Specifies information for the input data for the data ingestion job, including dataset S3 location. </p>"
@@ -404,6 +467,7 @@
         "DataIngestionJobSummary$JobId": "<p>Indicates the job ID of the data ingestion job. </p>",
         "DescribeDataIngestionJobRequest$JobId": "<p>The job ID of the data ingestion job. </p>",
         "DescribeDataIngestionJobResponse$JobId": "<p>Indicates the job ID of the data ingestion job. </p>",
+        "ListSensorStatisticsRequest$IngestionJobId": "<p> The ingestion job id associated with the list of Sensor Statistics. To get sensor statistics for a particular ingestion job id, both dataset name and ingestion job id must be submitted as inputs. </p>",
         "StartDataIngestionJobResponse$JobId": "<p>Indicates the job ID of the data ingestion job. </p>"
       }
     },
@@ -430,9 +494,46 @@
         "DescribeModelResponse$Schema": "<p>A JSON description of the data that is in each time series dataset, including names, column names, and data types. </p>"
       }
     },
+    "InsufficientSensorData": {
+      "base": "<p> Entity that comprises aggregated information on sensors having insufficient data. </p>",
+      "refs": {
+        "DataQualitySummary$InsufficientSensorData": "<p> Parameter that gives information about insufficient data for sensors in the dataset. This includes information about those sensors that have complete data missing and those with a short date range. </p>"
+      }
+    },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "CategoricalValues$NumberOfCategory": "<p> Indicates the number of categories in the data. </p>",
+        "CountPercent$Count": "<p> Indicates the count of occurences of the given statistic. </p>",
+        "DuplicateTimestamps$TotalNumberOfDuplicateTimestamps": "<p> Indicates the total number of duplicate timestamps. </p>",
+        "IngestedFilesSummary$TotalNumberOfFiles": "<p>Indicates the total number of files that were submitted for ingestion.</p>",
+        "IngestedFilesSummary$IngestedNumberOfFiles": "<p>Indicates the number of files that were successfully ingested.</p>",
+        "InvalidSensorData$AffectedSensorCount": "<p> Indicates the number of sensors that have at least some invalid values. </p>",
+        "InvalidSensorData$TotalNumberOfInvalidValues": "<p> Indicates the total number of invalid values across all the sensors. </p>",
+        "LargeTimestampGaps$NumberOfLargeTimestampGaps": "<p> Indicates the number of large timestamp gaps, if there are any. </p>",
+        "LargeTimestampGaps$MaxTimestampGapInDays": "<p> Indicates the size of the largest timestamp gap, in days. </p>",
+        "MissingCompleteSensorData$AffectedSensorCount": "<p> Indicates the number of sensors that have data missing completely. </p>",
+        "MissingSensorData$AffectedSensorCount": "<p> Indicates the number of sensors that have atleast some data missing. </p>",
+        "MissingSensorData$TotalNumberOfMissingValues": "<p> Indicates the total number of missing values across all the sensors. </p>",
+        "SensorsWithShortDateRange$AffectedSensorCount": "<p> Indicates the number of sensors that have less than 90 days of data. </p>",
+        "UnsupportedTimestamps$TotalNumberOfUnsupportedTimestamps": "<p> Indicates the total number of unsupported timestamps across the ingested data. </p>"
+      }
+    },
     "InternalServerException": {
       "base": "<p> Processing of the request has failed because of an unknown error, exception or failure. </p>",
       "refs": {
+      }
+    },
+    "InvalidSensorData": {
+      "base": "<p> Entity that comprises aggregated information on sensors having insufficient data. </p>",
+      "refs": {
+        "DataQualitySummary$InvalidSensorData": "<p> Parameter that gives information about data that is invalid over all the sensors in the input data. </p>"
+      }
+    },
+    "KeyPattern": {
+      "base": null,
+      "refs": {
+        "IngestionS3InputConfiguration$KeyPattern": "<p> Pattern for matching the Amazon S3 files which will be used for ingestion. If no KeyPattern is provided, we will use the default hierarchy file structure, which is same as KeyPattern {prefix}/{component_name}/* </p>"
       }
     },
     "KmsKeyArn": {
@@ -454,6 +555,12 @@
       "base": "<p>The location information (prefix and bucket name) for the s3 location being used for label data. </p>",
       "refs": {
         "LabelsInputConfiguration$S3InputConfiguration": "<p>Contains location information for the S3 location being used for label data. </p>"
+      }
+    },
+    "LargeTimestampGaps": {
+      "base": "<p> Entity that comprises information on large gaps between consecutive timestamps in data. </p>",
+      "refs": {
+        "SensorStatisticsSummary$LargeTimestampGaps": "<p> Parameter that describes potential risk about whether data associated with the sensor contains one or more large gaps between consecutive timestamps. </p>"
       }
     },
     "ListDataIngestionJobsRequest": {
@@ -506,6 +613,22 @@
       "refs": {
       }
     },
+    "ListOfDiscardedFiles": {
+      "base": null,
+      "refs": {
+        "IngestedFilesSummary$DiscardedFiles": "<p>Indicates the number of files that were discarded. A file could be discarded because its format is invalid (for example, a jpg or pdf) or not readable.</p>"
+      }
+    },
+    "ListSensorStatisticsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSensorStatisticsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTagsForResourceRequest": {
       "base": null,
       "refs": {
@@ -523,7 +646,20 @@
         "ListDatasetsRequest$MaxResults": "<p> Specifies the maximum number of datasets to list. </p>",
         "ListInferenceExecutionsRequest$MaxResults": "<p>Specifies the maximum number of inference executions to list. </p>",
         "ListInferenceSchedulersRequest$MaxResults": "<p> Specifies the maximum number of inference schedulers to list. </p>",
-        "ListModelsRequest$MaxResults": "<p> Specifies the maximum number of ML models to list. </p>"
+        "ListModelsRequest$MaxResults": "<p> Specifies the maximum number of ML models to list. </p>",
+        "ListSensorStatisticsRequest$MaxResults": "<p> Specifies the maximum number of sensors for which to retrieve statistics. </p>"
+      }
+    },
+    "MissingCompleteSensorData": {
+      "base": "<p> Entity that comprises information on sensors that have sensor data completely missing. </p>",
+      "refs": {
+        "InsufficientSensorData$MissingCompleteSensorData": "<p> Parameter that describes the total number of sensors that have data completely missing for it. </p>"
+      }
+    },
+    "MissingSensorData": {
+      "base": "<p> Entity that comprises aggregated information on sensors having missing data. </p>",
+      "refs": {
+        "DataQualitySummary$MissingSensorData": "<p> Parameter that gives information about data that is missing over all the sensors in the input data. </p>"
       }
     },
     "ModelArn": {
@@ -584,6 +720,24 @@
         "ModelSummaries$member": null
       }
     },
+    "MonotonicValues": {
+      "base": "<p> Entity that comprises information on monotonic values in the data. </p>",
+      "refs": {
+        "SensorStatisticsSummary$MonotonicValues": "<p> Parameter that describes potential risk about whether data associated with the sensor is mostly monotonic. </p>"
+      }
+    },
+    "Monotonicity": {
+      "base": null,
+      "refs": {
+        "MonotonicValues$Monotonicity": "<p> Indicates the monotonicity of values. Can be INCREASING, DECREASING, or STATIC. </p>"
+      }
+    },
+    "MultipleOperatingModes": {
+      "base": "<p> Entity that comprises information on operating modes in data. </p>",
+      "refs": {
+        "SensorStatisticsSummary$MultipleOperatingModes": "<p> Parameter that describes potential risk about whether data associated with the sensor has more than one operating mode. </p>"
+      }
+    },
     "NameOrArn": {
       "base": null,
       "refs": {
@@ -605,7 +759,9 @@
         "ListInferenceSchedulersRequest$NextToken": "<p> An opaque pagination token indicating where to continue the listing of inference schedulers. </p>",
         "ListInferenceSchedulersResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of inference schedulers. </p>",
         "ListModelsRequest$NextToken": "<p> An opaque pagination token indicating where to continue the listing of ML models. </p>",
-        "ListModelsResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of ML models. </p>"
+        "ListModelsResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of ML models. </p>",
+        "ListSensorStatisticsRequest$NextToken": "<p> An opaque pagination token indicating where to continue the listing of sensor statistics. </p>",
+        "ListSensorStatisticsResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of sensor statistics. </p>"
       }
     },
     "OffCondition": {
@@ -639,7 +795,8 @@
     "S3Object": {
       "base": "<p>Contains information about an S3 bucket. </p>",
       "refs": {
-        "InferenceExecutionSummary$CustomerResultObject": "<p> </p>"
+        "InferenceExecutionSummary$CustomerResultObject": "<p> </p>",
+        "ListOfDiscardedFiles$member": null
       }
     },
     "S3Prefix": {
@@ -649,6 +806,30 @@
         "InferenceS3OutputConfiguration$Prefix": "<p> The prefix for the S3 bucket used for the output results from the inference. </p>",
         "IngestionS3InputConfiguration$Prefix": "<p>The prefix for the S3 location being used for the input data for the data ingestion. </p>",
         "LabelsS3InputConfiguration$Prefix": "<p> The prefix for the S3 bucket used for the label data. </p>"
+      }
+    },
+    "SensorName": {
+      "base": null,
+      "refs": {
+        "SensorStatisticsSummary$SensorName": "<p> Name of the sensor that the statistics belong to. </p>"
+      }
+    },
+    "SensorStatisticsSummaries": {
+      "base": null,
+      "refs": {
+        "ListSensorStatisticsResponse$SensorStatisticsSummaries": "<p> Provides ingestion-based statistics regarding the specified sensor with respect to various validation types, such as whether data exists, the number and percentage of missing values, and the number and percentage of duplicate timestamps. </p>"
+      }
+    },
+    "SensorStatisticsSummary": {
+      "base": "<p> Summary of ingestion statistics like whether data exists, number of missing values, number of invalid values and so on related to the particular sensor. </p>",
+      "refs": {
+        "SensorStatisticsSummaries$member": null
+      }
+    },
+    "SensorsWithShortDateRange": {
+      "base": "<p> Entity that comprises information on sensors that have shorter date range. </p>",
+      "refs": {
+        "InsufficientSensorData$SensorsWithShortDateRange": "<p> Parameter that describes the total number of sensors that have a short date range of less than 90 days of data overall. </p>"
       }
     },
     "ServiceQuotaExceededException": {
@@ -674,6 +855,15 @@
     "StartInferenceSchedulerResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "StatisticalIssueStatus": {
+      "base": null,
+      "refs": {
+        "CategoricalValues$Status": "<p> Indicates whether there is a potential data issue related to categorical values. </p>",
+        "LargeTimestampGaps$Status": "<p> Indicates whether there is a potential data issue related to large gaps in timestamps. </p>",
+        "MonotonicValues$Status": "<p> Indicates whether there is a potential data issue related to having monotonic values. </p>",
+        "MultipleOperatingModes$Status": "<p> Indicates whether there is a potential data issue related to having multiple operating modes. </p>"
       }
     },
     "StopInferenceSchedulerRequest": {
@@ -745,7 +935,7 @@
     "TimeZoneOffset": {
       "base": null,
       "refs": {
-        "InferenceInputConfiguration$InputTimeZoneOffset": "<p>Indicates the difference between your time zone and Greenwich Mean Time (GMT). </p>"
+        "InferenceInputConfiguration$InputTimeZoneOffset": "<p>Indicates the difference between your time zone and Coordinated Universal Time (UTC).</p>"
       }
     },
     "Timestamp": {
@@ -757,8 +947,12 @@
         "CreateModelRequest$EvaluationDataEndTime": "<p> Indicates the time reference in the dataset that should be used to end the subset of evaluation data for the ML model. </p>",
         "DatasetSummary$CreatedAt": "<p>The time at which the dataset was created in Amazon Lookout for Equipment. </p>",
         "DescribeDataIngestionJobResponse$CreatedAt": "<p>The time at which the data ingestion job was created. </p>",
+        "DescribeDataIngestionJobResponse$DataStartTime": "<p> Indicates the earliest timestamp corresponding to data that was successfully ingested during this specific ingestion job. </p>",
+        "DescribeDataIngestionJobResponse$DataEndTime": "<p> Indicates the latest timestamp corresponding to data that was successfully ingested during this specific ingestion job. </p>",
         "DescribeDatasetResponse$CreatedAt": "<p>Specifies the time the dataset was created in Amazon Lookout for Equipment. </p>",
         "DescribeDatasetResponse$LastUpdatedAt": "<p>Specifies the time the dataset was last updated, if it was. </p>",
+        "DescribeDatasetResponse$DataStartTime": "<p> Indicates the earliest timestamp corresponding to data that was successfully ingested during the most recent ingestion of this particular dataset. </p>",
+        "DescribeDatasetResponse$DataEndTime": "<p> Indicates the latest timestamp corresponding to data that was successfully ingested during the most recent ingestion of this particular dataset. </p>",
         "DescribeInferenceSchedulerResponse$CreatedAt": "<p>Specifies the time at which the inference scheduler was created. </p>",
         "DescribeInferenceSchedulerResponse$UpdatedAt": "<p>Specifies the time at which the inference scheduler was last updated, if it was. </p>",
         "DescribeModelResponse$TrainingDataStartTime": "<p> Indicates the time reference in the dataset that was used to begin the subset of training data for the ML model. </p>",
@@ -774,7 +968,15 @@
         "InferenceExecutionSummary$DataEndTime": "<p>Indicates the time reference in the dataset at which the inference execution stopped. </p>",
         "ListInferenceExecutionsRequest$DataStartTimeAfter": "<p>The time reference in the inferenced dataset after which Amazon Lookout for Equipment started the inference execution. </p>",
         "ListInferenceExecutionsRequest$DataEndTimeBefore": "<p>The time reference in the inferenced dataset before which Amazon Lookout for Equipment stopped the inference execution. </p>",
-        "ModelSummary$CreatedAt": "<p>The time at which the specific model was created. </p>"
+        "ModelSummary$CreatedAt": "<p>The time at which the specific model was created. </p>",
+        "SensorStatisticsSummary$DataStartTime": "<p> Indicates the time reference to indicate the beginning of valid data associated with the sensor that the statistics belong to. </p>",
+        "SensorStatisticsSummary$DataEndTime": "<p> Indicates the time reference to indicate the end of valid data associated with the sensor that the statistics belong to. </p>"
+      }
+    },
+    "UnsupportedTimestamps": {
+      "base": "<p> Entity that comprises information abount unsupported timestamps in the dataset. </p>",
+      "refs": {
+        "DataQualitySummary$UnsupportedTimestamps": "<p> Parameter that gives information about unsupported timestamps in the input data. </p>"
       }
     },
     "UntagResourceRequest": {

@@ -337,6 +337,10 @@ type RekognitionAPI interface {
 	UpdateDatasetEntriesWithContext(aws.Context, *rekognition.UpdateDatasetEntriesInput, ...request.Option) (*rekognition.UpdateDatasetEntriesOutput, error)
 	UpdateDatasetEntriesRequest(*rekognition.UpdateDatasetEntriesInput) (*request.Request, *rekognition.UpdateDatasetEntriesOutput)
 
+	UpdateStreamProcessor(*rekognition.UpdateStreamProcessorInput) (*rekognition.UpdateStreamProcessorOutput, error)
+	UpdateStreamProcessorWithContext(aws.Context, *rekognition.UpdateStreamProcessorInput, ...request.Option) (*rekognition.UpdateStreamProcessorOutput, error)
+	UpdateStreamProcessorRequest(*rekognition.UpdateStreamProcessorInput) (*request.Request, *rekognition.UpdateStreamProcessorOutput)
+
 	WaitUntilProjectVersionRunning(*rekognition.DescribeProjectVersionsInput) error
 	WaitUntilProjectVersionRunningWithContext(aws.Context, *rekognition.DescribeProjectVersionsInput, ...request.WaiterOption) error
 

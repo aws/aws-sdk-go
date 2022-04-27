@@ -3,7 +3,130 @@
 // Package rekognition provides the client and types for making API
 // requests to Amazon Rekognition.
 //
-// This is the Amazon Rekognition API reference.
+// This is the API Reference for Amazon Rekognition Image (https://docs.aws.amazon.com/rekognition/latest/dg/images.html),
+// Amazon Rekognition Custom Labels (https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/what-is.html),
+// Amazon Rekognition Stored Video (https://docs.aws.amazon.com/rekognition/latest/dg/video.html),
+// Amazon Rekognition Streaming Video (https://docs.aws.amazon.com/rekognition/latest/dg/streaming-video.html).
+// It provides descriptions of actions, data types, common parameters, and common
+// errors.
+//
+// Amazon Rekognition Image
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+// Amazon Rekognition Custom Labels
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+// Amazon Rekognition Video Stored Video
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+// Amazon Rekognition Video Streaming Video
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
+//
+//    *
 //
 // See rekognition package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/rekognition/

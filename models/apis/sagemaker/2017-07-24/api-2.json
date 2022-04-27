@@ -3487,8 +3487,16 @@
         "DataSource":{"shape":"AutoMLDataSource"},
         "CompressionType":{"shape":"CompressionType"},
         "TargetAttributeName":{"shape":"TargetAttributeName"},
-        "ContentType":{"shape":"ContentType"}
+        "ContentType":{"shape":"ContentType"},
+        "ChannelType":{"shape":"AutoMLChannelType"}
       }
+    },
+    "AutoMLChannelType":{
+      "type":"string",
+      "enum":[
+        "training",
+        "validation"
+      ]
     },
     "AutoMLContainerDefinition":{
       "type":"structure",
@@ -3512,6 +3520,12 @@
       "required":["S3DataSource"],
       "members":{
         "S3DataSource":{"shape":"AutoMLS3DataSource"}
+      }
+    },
+    "AutoMLDataSplitConfig":{
+      "type":"structure",
+      "members":{
+        "ValidationFraction":{"shape":"ValidationFraction"}
       }
     },
     "AutoMLFailureReason":{
@@ -3549,7 +3563,8 @@
       "type":"structure",
       "members":{
         "CompletionCriteria":{"shape":"AutoMLJobCompletionCriteria"},
-        "SecurityConfig":{"shape":"AutoMLSecurityConfig"}
+        "SecurityConfig":{"shape":"AutoMLSecurityConfig"},
+        "DataSplitConfig":{"shape":"AutoMLDataSplitConfig"}
       }
     },
     "AutoMLJobName":{
@@ -16520,6 +16535,11 @@
         "RStudioServerProAppSettings":{"shape":"RStudioServerProAppSettings"},
         "RSessionAppSettings":{"shape":"RSessionAppSettings"}
       }
+    },
+    "ValidationFraction":{
+      "type":"float",
+      "max":1,
+      "min":0
     },
     "VariantName":{
       "type":"string",

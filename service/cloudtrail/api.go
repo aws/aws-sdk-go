@@ -58,13 +58,14 @@ func (c *CloudTrail) AddTagsRequest(input *AddTagsInput) (req *request.Request, 
 
 // AddTags API operation for AWS CloudTrail.
 //
-// Adds one or more tags to a trail, up to a limit of 50. Overwrites an existing
-// tag's value when a new value is specified for an existing tag key. Tag key
-// names must be unique for a trail; you cannot have two keys with the same
-// name but different values. If you specify a key without a value, the tag
-// will be created with the specified key and a value of null. You can tag a
-// trail that applies to all Amazon Web Services Regions only from the Region
-// in which the trail was created (also known as its home region).
+// Adds one or more tags to a trail or event data store, up to a limit of 50.
+// Overwrites an existing tag's value when a new value is specified for an existing
+// tag key. Tag key names must be unique for a trail; you cannot have two keys
+// with the same name but different values. If you specify a key without a value,
+// the tag will be created with the specified key and a value of null. You can
+// tag a trail or event data store that applies to all Amazon Web Services Regions
+// only from the Region in which the trail or event data store was created (also
+// known as its home region).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -112,7 +113,7 @@ func (c *CloudTrail) AddTagsRequest(input *AddTagsInput) (req *request.Request, 
 //   It can also occur if there are duplicate tags or too many tags on the resource.
 //
 //   * InactiveEventDataStoreException
-//   The event data store against which you ran your query is inactive.
+//   The event data store is inactive.
 //
 //   * EventDataStoreNotFoundException
 //   The specified event data store was not found.
@@ -125,15 +126,16 @@ func (c *CloudTrail) AddTagsRequest(input *AddTagsInput) (req *request.Request, 
 //
 //   * NotOrganizationMasterAccountException
 //   This exception is thrown when the Amazon Web Services account making the
-//   request to create or update an organization trail is not the management account
-//   for an organization in Organizations. For more information, see Prepare For
-//   Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   request to create or update an organization trail or event data store is
+//   not the management account for an organization in Organizations. For more
+//   information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
+//   or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 //
 //   * ConflictException
 //   This exception is thrown when the specified resource is not ready for an
-//   operation. This can occur when you try to run an operation on a trail before
-//   CloudTrail has time to fully load the trail. If this exception occurs, wait
-//   a few minutes, and then try the operation again.
+//   operation. This can occur when you try to run an operation on a resource
+//   before CloudTrail has time to fully load the resource. If this exception
+//   occurs, wait a few minutes, and then try the operation again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/AddTags
 func (c *CloudTrail) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
@@ -223,7 +225,7 @@ func (c *CloudTrail) CancelQueryRequest(input *CancelQueryInput) (req *request.R
 //   The specified event data store was not found.
 //
 //   * InactiveEventDataStoreException
-//   The event data store against which you ran your query is inactive.
+//   The event data store is inactive.
 //
 //   * InactiveQueryException
 //   The specified query cannot be canceled because it is in the FINISHED, FAILED,
@@ -243,9 +245,9 @@ func (c *CloudTrail) CancelQueryRequest(input *CancelQueryInput) (req *request.R
 //
 //   * ConflictException
 //   This exception is thrown when the specified resource is not ready for an
-//   operation. This can occur when you try to run an operation on a trail before
-//   CloudTrail has time to fully load the trail. If this exception occurs, wait
-//   a few minutes, and then try the operation again.
+//   operation. This can occur when you try to run an operation on a resource
+//   before CloudTrail has time to fully load the resource. If this exception
+//   occurs, wait a few minutes, and then try the operation again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/CancelQuery
 func (c *CloudTrail) CancelQuery(input *CancelQueryInput) (*CancelQueryOutput, error) {
@@ -344,9 +346,9 @@ func (c *CloudTrail) CreateEventDataStoreRequest(input *CreateEventDataStoreInpu
 //
 //   * ConflictException
 //   This exception is thrown when the specified resource is not ready for an
-//   operation. This can occur when you try to run an operation on a trail before
-//   CloudTrail has time to fully load the trail. If this exception occurs, wait
-//   a few minutes, and then try the operation again.
+//   operation. This can occur when you try to run an operation on a resource
+//   before CloudTrail has time to fully load the resource. If this exception
+//   occurs, wait a few minutes, and then try the operation again.
 //
 //   * AccessNotEnabledException
 //   This exception is thrown when trusted access has not been enabled between
@@ -356,15 +358,15 @@ func (c *CloudTrail) CreateEventDataStoreRequest(input *CreateEventDataStoreInpu
 //
 //   * InsufficientDependencyServiceAccessPermissionException
 //   This exception is thrown when the IAM user or role that is used to create
-//   the organization trail is lacking one or more required permissions for creating
-//   an organization trail in a required service. For more information, see Prepare
-//   For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   the organization resource lacks one or more required permissions for creating
+//   an organization resource in a required service.
 //
 //   * NotOrganizationMasterAccountException
 //   This exception is thrown when the Amazon Web Services account making the
-//   request to create or update an organization trail is not the management account
-//   for an organization in Organizations. For more information, see Prepare For
-//   Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   request to create or update an organization trail or event data store is
+//   not the management account for an organization in Organizations. For more
+//   information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
+//   or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 //
 //   * OrganizationsNotInUseException
 //   This exception is thrown when the request is made from an Amazon Web Services
@@ -374,8 +376,7 @@ func (c *CloudTrail) CreateEventDataStoreRequest(input *CreateEventDataStoreInpu
 //   * OrganizationNotInAllFeaturesModeException
 //   This exception is thrown when Organizations is not configured to support
 //   all features. All features must be enabled in Organizations to support creating
-//   an organization trail. For more information, see Prepare For Creating a Trail
-//   For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   an organization trail or event data store.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/CreateEventDataStore
 func (c *CloudTrail) CreateEventDataStore(input *CreateEventDataStoreInput) (*CreateEventDataStoreOutput, error) {
@@ -548,15 +549,15 @@ func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *request.R
 //
 //   * InsufficientDependencyServiceAccessPermissionException
 //   This exception is thrown when the IAM user or role that is used to create
-//   the organization trail is lacking one or more required permissions for creating
-//   an organization trail in a required service. For more information, see Prepare
-//   For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   the organization resource lacks one or more required permissions for creating
+//   an organization resource in a required service.
 //
 //   * NotOrganizationMasterAccountException
 //   This exception is thrown when the Amazon Web Services account making the
-//   request to create or update an organization trail is not the management account
-//   for an organization in Organizations. For more information, see Prepare For
-//   Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   request to create or update an organization trail or event data store is
+//   not the management account for an organization in Organizations. For more
+//   information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
+//   or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 //
 //   * OrganizationsNotInUseException
 //   This exception is thrown when the request is made from an Amazon Web Services
@@ -566,8 +567,7 @@ func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *request.R
 //   * OrganizationNotInAllFeaturesModeException
 //   This exception is thrown when Organizations is not configured to support
 //   all features. All features must be enabled in Organizations to support creating
-//   an organization trail. For more information, see Prepare For Creating a Trail
-//   For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   an organization trail or event data store.
 //
 //   * CloudTrailInvalidClientTokenIdException
 //   This exception is thrown when a call results in the InvalidClientTokenId
@@ -577,9 +577,9 @@ func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *request.R
 //
 //   * ConflictException
 //   This exception is thrown when the specified resource is not ready for an
-//   operation. This can occur when you try to run an operation on a trail before
-//   CloudTrail has time to fully load the trail. If this exception occurs, wait
-//   a few minutes, and then try the operation again.
+//   operation. This can occur when you try to run an operation on a resource
+//   before CloudTrail has time to fully load the resource. If this exception
+//   occurs, wait a few minutes, and then try the operation again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/CreateTrail
 func (c *CloudTrail) CreateTrail(input *CreateTrailInput) (*CreateTrailOutput, error) {
@@ -690,15 +690,15 @@ func (c *CloudTrail) DeleteEventDataStoreRequest(input *DeleteEventDataStoreInpu
 //
 //   * NotOrganizationMasterAccountException
 //   This exception is thrown when the Amazon Web Services account making the
-//   request to create or update an organization trail is not the management account
-//   for an organization in Organizations. For more information, see Prepare For
-//   Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   request to create or update an organization trail or event data store is
+//   not the management account for an organization in Organizations. For more
+//   information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
+//   or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 //
 //   * InsufficientDependencyServiceAccessPermissionException
 //   This exception is thrown when the IAM user or role that is used to create
-//   the organization trail is lacking one or more required permissions for creating
-//   an organization trail in a required service. For more information, see Prepare
-//   For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   the organization resource lacks one or more required permissions for creating
+//   an organization resource in a required service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/DeleteEventDataStore
 func (c *CloudTrail) DeleteEventDataStore(input *DeleteEventDataStoreInput) (*DeleteEventDataStoreOutput, error) {
@@ -810,21 +810,21 @@ func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *request.R
 //
 //   * NotOrganizationMasterAccountException
 //   This exception is thrown when the Amazon Web Services account making the
-//   request to create or update an organization trail is not the management account
-//   for an organization in Organizations. For more information, see Prepare For
-//   Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   request to create or update an organization trail or event data store is
+//   not the management account for an organization in Organizations. For more
+//   information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
+//   or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 //
 //   * InsufficientDependencyServiceAccessPermissionException
 //   This exception is thrown when the IAM user or role that is used to create
-//   the organization trail is lacking one or more required permissions for creating
-//   an organization trail in a required service. For more information, see Prepare
-//   For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   the organization resource lacks one or more required permissions for creating
+//   an organization resource in a required service.
 //
 //   * ConflictException
 //   This exception is thrown when the specified resource is not ready for an
-//   operation. This can occur when you try to run an operation on a trail before
-//   CloudTrail has time to fully load the trail. If this exception occurs, wait
-//   a few minutes, and then try the operation again.
+//   operation. This can occur when you try to run an operation on a resource
+//   before CloudTrail has time to fully load the resource. If this exception
+//   occurs, wait a few minutes, and then try the operation again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/DeleteTrail
 func (c *CloudTrail) DeleteTrail(input *DeleteTrailInput) (*DeleteTrailOutput, error) {
@@ -912,7 +912,7 @@ func (c *CloudTrail) DescribeQueryRequest(input *DescribeQueryInput) (req *reque
 //   The specified event data store was not found.
 //
 //   * InactiveEventDataStoreException
-//   The event data store against which you ran your query is inactive.
+//   The event data store is inactive.
 //
 //   * InvalidParameterException
 //   The request includes a parameter that is not valid.
@@ -1434,7 +1434,7 @@ func (c *CloudTrail) GetQueryResultsRequest(input *GetQueryResultsInput) (req *r
 //   The specified event data store was not found.
 //
 //   * InactiveEventDataStoreException
-//   The event data store against which you ran your query is inactive.
+//   The event data store is inactive.
 //
 //   * InvalidMaxResultsException
 //   This exception is thrown if the limit specified is not valid.
@@ -2110,10 +2110,11 @@ func (c *CloudTrail) ListQueriesRequest(input *ListQueriesInput) (req *request.R
 //   The specified event data store was not found.
 //
 //   * InactiveEventDataStoreException
-//   The event data store against which you ran your query is inactive.
+//   The event data store is inactive.
 //
 //   * InvalidDateRangeException
-//   A date range for the query was specified that is not valid. For more information
+//   A date range for the query was specified that is not valid. Be sure that
+//   the start time is chronologically before the end time. For more information
 //   about writing a query, see Create or edit a query (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-create-edit-query.html)
 //   in the CloudTrail User Guide.
 //
@@ -2260,7 +2261,7 @@ func (c *CloudTrail) ListTagsRequest(input *ListTagsInput) (req *request.Request
 
 // ListTags API operation for AWS CloudTrail.
 //
-// Lists the tags for the trail in the current region.
+// Lists the tags for the trail or event data store in the current region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2300,7 +2301,7 @@ func (c *CloudTrail) ListTagsRequest(input *ListTagsInput) (req *request.Request
 //      * Not be in IP address format (for example, 192.168.5.4)
 //
 //   * InactiveEventDataStoreException
-//   The event data store against which you ran your query is inactive.
+//   The event data store is inactive.
 //
 //   * EventDataStoreNotFoundException
 //   The specified event data store was not found.
@@ -2873,15 +2874,15 @@ func (c *CloudTrail) PutEventSelectorsRequest(input *PutEventSelectorsInput) (re
 //
 //   * NotOrganizationMasterAccountException
 //   This exception is thrown when the Amazon Web Services account making the
-//   request to create or update an organization trail is not the management account
-//   for an organization in Organizations. For more information, see Prepare For
-//   Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   request to create or update an organization trail or event data store is
+//   not the management account for an organization in Organizations. For more
+//   information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
+//   or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 //
 //   * InsufficientDependencyServiceAccessPermissionException
 //   This exception is thrown when the IAM user or role that is used to create
-//   the organization trail is lacking one or more required permissions for creating
-//   an organization trail in a required service. For more information, see Prepare
-//   For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   the organization resource lacks one or more required permissions for creating
+//   an organization resource in a required service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/PutEventSelectors
 func (c *CloudTrail) PutEventSelectors(input *PutEventSelectorsInput) (*PutEventSelectorsOutput, error) {
@@ -3013,9 +3014,10 @@ func (c *CloudTrail) PutInsightSelectorsRequest(input *PutInsightSelectorsInput)
 //
 //   * NotOrganizationMasterAccountException
 //   This exception is thrown when the Amazon Web Services account making the
-//   request to create or update an organization trail is not the management account
-//   for an organization in Organizations. For more information, see Prepare For
-//   Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   request to create or update an organization trail or event data store is
+//   not the management account for an organization in Organizations. For more
+//   information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
+//   or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/PutInsightSelectors
 func (c *CloudTrail) PutInsightSelectors(input *PutInsightSelectorsInput) (*PutInsightSelectorsOutput, error) {
@@ -3084,7 +3086,7 @@ func (c *CloudTrail) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Req
 
 // RemoveTags API operation for AWS CloudTrail.
 //
-// Removes the specified tags from a trail.
+// Removes the specified tags from a trail or event data store.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3128,7 +3130,7 @@ func (c *CloudTrail) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Req
 //   It can also occur if there are duplicate tags or too many tags on the resource.
 //
 //   * InactiveEventDataStoreException
-//   The event data store against which you ran your query is inactive.
+//   The event data store is inactive.
 //
 //   * EventDataStoreNotFoundException
 //   The specified event data store was not found.
@@ -3141,9 +3143,10 @@ func (c *CloudTrail) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Req
 //
 //   * NotOrganizationMasterAccountException
 //   This exception is thrown when the Amazon Web Services account making the
-//   request to create or update an organization trail is not the management account
-//   for an organization in Organizations. For more information, see Prepare For
-//   Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   request to create or update an organization trail or event data store is
+//   not the management account for an organization in Organizations. For more
+//   information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
+//   or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/RemoveTags
 func (c *CloudTrail) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, error) {
@@ -3254,9 +3257,8 @@ func (c *CloudTrail) RestoreEventDataStoreRequest(input *RestoreEventDataStoreIn
 //
 //   * InsufficientDependencyServiceAccessPermissionException
 //   This exception is thrown when the IAM user or role that is used to create
-//   the organization trail is lacking one or more required permissions for creating
-//   an organization trail in a required service. For more information, see Prepare
-//   For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   the organization resource lacks one or more required permissions for creating
+//   an organization resource in a required service.
 //
 //   * OrganizationsNotInUseException
 //   This exception is thrown when the request is made from an Amazon Web Services
@@ -3265,15 +3267,15 @@ func (c *CloudTrail) RestoreEventDataStoreRequest(input *RestoreEventDataStoreIn
 //
 //   * NotOrganizationMasterAccountException
 //   This exception is thrown when the Amazon Web Services account making the
-//   request to create or update an organization trail is not the management account
-//   for an organization in Organizations. For more information, see Prepare For
-//   Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   request to create or update an organization trail or event data store is
+//   not the management account for an organization in Organizations. For more
+//   information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
+//   or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 //
 //   * OrganizationNotInAllFeaturesModeException
 //   This exception is thrown when Organizations is not configured to support
 //   all features. All features must be enabled in Organizations to support creating
-//   an organization trail. For more information, see Prepare For Creating a Trail
-//   For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   an organization trail or event data store.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/RestoreEventDataStore
 func (c *CloudTrail) RestoreEventDataStore(input *RestoreEventDataStoreInput) (*RestoreEventDataStoreOutput, error) {
@@ -3387,15 +3389,15 @@ func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *request
 //
 //   * NotOrganizationMasterAccountException
 //   This exception is thrown when the Amazon Web Services account making the
-//   request to create or update an organization trail is not the management account
-//   for an organization in Organizations. For more information, see Prepare For
-//   Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   request to create or update an organization trail or event data store is
+//   not the management account for an organization in Organizations. For more
+//   information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
+//   or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 //
 //   * InsufficientDependencyServiceAccessPermissionException
 //   This exception is thrown when the IAM user or role that is used to create
-//   the organization trail is lacking one or more required permissions for creating
-//   an organization trail in a required service. For more information, see Prepare
-//   For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   the organization resource lacks one or more required permissions for creating
+//   an organization resource in a required service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/StartLogging
 func (c *CloudTrail) StartLogging(input *StartLoggingInput) (*StartLoggingOutput, error) {
@@ -3482,7 +3484,7 @@ func (c *CloudTrail) StartQueryRequest(input *StartQueryInput) (req *request.Req
 //   The specified event data store was not found.
 //
 //   * InactiveEventDataStoreException
-//   The event data store against which you ran your query is inactive.
+//   The event data store is inactive.
 //
 //   * InvalidParameterException
 //   The request includes a parameter that is not valid.
@@ -3618,15 +3620,15 @@ func (c *CloudTrail) StopLoggingRequest(input *StopLoggingInput) (req *request.R
 //
 //   * NotOrganizationMasterAccountException
 //   This exception is thrown when the Amazon Web Services account making the
-//   request to create or update an organization trail is not the management account
-//   for an organization in Organizations. For more information, see Prepare For
-//   Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   request to create or update an organization trail or event data store is
+//   not the management account for an organization in Organizations. For more
+//   information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
+//   or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 //
 //   * InsufficientDependencyServiceAccessPermissionException
 //   This exception is thrown when the IAM user or role that is used to create
-//   the organization trail is lacking one or more required permissions for creating
-//   an organization trail in a required service. For more information, see Prepare
-//   For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   the organization resource lacks one or more required permissions for creating
+//   an organization resource in a required service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/StopLogging
 func (c *CloudTrail) StopLogging(input *StopLoggingInput) (*StopLoggingOutput, error) {
@@ -3718,7 +3720,7 @@ func (c *CloudTrail) UpdateEventDataStoreRequest(input *UpdateEventDataStoreInpu
 //   The specified event data store was not found.
 //
 //   * InactiveEventDataStoreException
-//   The event data store against which you ran your query is inactive.
+//   The event data store is inactive.
 //
 //   * InvalidParameterException
 //   The request includes a parameter that is not valid.
@@ -3737,9 +3739,8 @@ func (c *CloudTrail) UpdateEventDataStoreRequest(input *UpdateEventDataStoreInpu
 //
 //   * InsufficientDependencyServiceAccessPermissionException
 //   This exception is thrown when the IAM user or role that is used to create
-//   the organization trail is lacking one or more required permissions for creating
-//   an organization trail in a required service. For more information, see Prepare
-//   For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   the organization resource lacks one or more required permissions for creating
+//   an organization resource in a required service.
 //
 //   * OrganizationsNotInUseException
 //   This exception is thrown when the request is made from an Amazon Web Services
@@ -3748,15 +3749,15 @@ func (c *CloudTrail) UpdateEventDataStoreRequest(input *UpdateEventDataStoreInpu
 //
 //   * NotOrganizationMasterAccountException
 //   This exception is thrown when the Amazon Web Services account making the
-//   request to create or update an organization trail is not the management account
-//   for an organization in Organizations. For more information, see Prepare For
-//   Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   request to create or update an organization trail or event data store is
+//   not the management account for an organization in Organizations. For more
+//   information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
+//   or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 //
 //   * OrganizationNotInAllFeaturesModeException
 //   This exception is thrown when Organizations is not configured to support
 //   all features. All features must be enabled in Organizations to support creating
-//   an organization trail. For more information, see Prepare For Creating a Trail
-//   For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   an organization trail or event data store.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/UpdateEventDataStore
 func (c *CloudTrail) UpdateEventDataStore(input *UpdateEventDataStoreInput) (*UpdateEventDataStoreOutput, error) {
@@ -3957,9 +3958,8 @@ func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *request.R
 //
 //   * InsufficientDependencyServiceAccessPermissionException
 //   This exception is thrown when the IAM user or role that is used to create
-//   the organization trail is lacking one or more required permissions for creating
-//   an organization trail in a required service. For more information, see Prepare
-//   For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   the organization resource lacks one or more required permissions for creating
+//   an organization resource in a required service.
 //
 //   * OrganizationsNotInUseException
 //   This exception is thrown when the request is made from an Amazon Web Services
@@ -3968,15 +3968,15 @@ func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *request.R
 //
 //   * NotOrganizationMasterAccountException
 //   This exception is thrown when the Amazon Web Services account making the
-//   request to create or update an organization trail is not the management account
-//   for an organization in Organizations. For more information, see Prepare For
-//   Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   request to create or update an organization trail or event data store is
+//   not the management account for an organization in Organizations. For more
+//   information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
+//   or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 //
 //   * OrganizationNotInAllFeaturesModeException
 //   This exception is thrown when Organizations is not configured to support
 //   all features. All features must be enabled in Organizations to support creating
-//   an organization trail. For more information, see Prepare For Creating a Trail
-//   For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//   an organization trail or event data store.
 //
 //   * CloudTrailInvalidClientTokenIdException
 //   This exception is thrown when a call results in the InvalidClientTokenId
@@ -4140,12 +4140,12 @@ func (s *AccessNotEnabledException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Specifies the tags to add to a trail.
+// Specifies the tags to add to a trail or event data store.
 type AddTagsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the ARN of the trail to which one or more tags will be added. The
-	// format of a trail ARN is:
+	// Specifies the ARN of the trail or event data store to which one or more tags
+	// will be added. The format of a trail ARN is:
 	//
 	// arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail
 	//
@@ -4759,9 +4759,9 @@ func (s *CloudWatchLogsDeliveryUnavailableException) RequestID() string {
 }
 
 // This exception is thrown when the specified resource is not ready for an
-// operation. This can occur when you try to run an operation on a trail before
-// CloudTrail has time to fully load the trail. If this exception occurs, wait
-// a few minutes, and then try the operation again.
+// operation. This can occur when you try to run an operation on a resource
+// before CloudTrail has time to fully load the resource. If this exception
+// occurs, wait a few minutes, and then try the operation again.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6099,39 +6099,58 @@ func (s *Event) SetUsername(v string) *Event {
 type EventDataStore struct {
 	_ struct{} `type:"structure"`
 
-	// The advanced event selectors that were used to select events for the data
-	// store.
-	AdvancedEventSelectors []*AdvancedEventSelector `type:"list"`
+	// This field is being deprecated. The advanced event selectors that were used
+	// to select events for the data store.
+	//
+	// Deprecated: AdvancedEventSelectors is no longer returned by ListEventDataStores
+	AdvancedEventSelectors []*AdvancedEventSelector `deprecated:"true" type:"list"`
 
-	// The timestamp of the event data store's creation.
-	CreatedTimestamp *time.Time `type:"timestamp"`
+	// This field is being deprecated. The timestamp of the event data store's creation.
+	//
+	// Deprecated: CreatedTimestamp is no longer returned by ListEventDataStores
+	CreatedTimestamp *time.Time `deprecated:"true" type:"timestamp"`
 
 	// The ARN of the event data store.
 	EventDataStoreArn *string `min:"3" type:"string"`
 
-	// Indicates whether the event data store includes events from all regions,
-	// or only from the region in which it was created.
-	MultiRegionEnabled *bool `type:"boolean"`
+	// This field is being deprecated. Indicates whether the event data store includes
+	// events from all regions, or only from the region in which it was created.
+	//
+	// Deprecated: MultiRegionEnabled is no longer returned by ListEventDataStores
+	MultiRegionEnabled *bool `deprecated:"true" type:"boolean"`
 
 	// The name of the event data store.
 	Name *string `min:"3" type:"string"`
 
-	// Indicates that an event data store is collecting logged events for an organization.
-	OrganizationEnabled *bool `type:"boolean"`
+	// This field is being deprecated. Indicates that an event data store is collecting
+	// logged events for an organization.
+	//
+	// Deprecated: OrganizationEnabled is no longer returned by ListEventDataStores
+	OrganizationEnabled *bool `deprecated:"true" type:"boolean"`
 
-	// The retention period, in days.
-	RetentionPeriod *int64 `min:"7" type:"integer"`
+	// This field is being deprecated. The retention period, in days.
+	//
+	// Deprecated: RetentionPeriod is no longer returned by ListEventDataStores
+	RetentionPeriod *int64 `min:"7" deprecated:"true" type:"integer"`
 
-	// The status of an event data store. Values are ENABLED and PENDING_DELETION.
-	Status *string `type:"string" enum:"EventDataStoreStatus"`
+	// This field is being deprecated. The status of an event data store. Values
+	// are ENABLED and PENDING_DELETION.
+	//
+	// Deprecated: Status is no longer returned by ListEventDataStores
+	Status *string `deprecated:"true" type:"string" enum:"EventDataStoreStatus"`
 
-	// Indicates whether the event data store is protected from termination.
-	TerminationProtectionEnabled *bool `type:"boolean"`
+	// This field is being deprecated. Indicates whether the event data store is
+	// protected from termination.
+	//
+	// Deprecated: TerminationProtectionEnabled is no longer returned by ListEventDataStores
+	TerminationProtectionEnabled *bool `deprecated:"true" type:"boolean"`
 
-	// The timestamp showing when an event data store was updated, if applicable.
-	// UpdatedTimestamp is always either the same or newer than the time shown in
-	// CreatedTimestamp.
-	UpdatedTimestamp *time.Time `type:"timestamp"`
+	// This field is being deprecated. The timestamp showing when an event data
+	// store was updated, if applicable. UpdatedTimestamp is always either the same
+	// or newer than the time shown in CreatedTimestamp.
+	//
+	// Deprecated: UpdatedTimestamp is no longer returned by ListEventDataStores
+	UpdatedTimestamp *time.Time `deprecated:"true" type:"timestamp"`
 }
 
 // String returns the string representation.
@@ -7507,7 +7526,7 @@ func (s *GetTrailStatusOutput) SetTimeLoggingStopped(v string) *GetTrailStatusOu
 	return s
 }
 
-// The event data store against which you ran your query is inactive.
+// The event data store is inactive.
 type InactiveEventDataStoreException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7736,9 +7755,8 @@ func (s *InsightSelector) SetInsightType(v string) *InsightSelector {
 }
 
 // This exception is thrown when the IAM user or role that is used to create
-// the organization trail is lacking one or more required permissions for creating
-// an organization trail in a required service. For more information, see Prepare
-// For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+// the organization resource lacks one or more required permissions for creating
+// an organization resource in a required service.
 type InsufficientDependencyServiceAccessPermissionException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8124,7 +8142,8 @@ func (s *InvalidCloudWatchLogsRoleArnException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A date range for the query was specified that is not valid. For more information
+// A date range for the query was specified that is not valid. Be sure that
+// the start time is chronologically before the end time. For more information
 // about writing a query, see Create or edit a query (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-create-edit-query.html)
 // in the CloudTrail User Guide.
 type InvalidDateRangeException struct {
@@ -10053,17 +10072,15 @@ func (s *ListQueriesOutput) SetQueries(v []*Query) *ListQueriesOutput {
 	return s
 }
 
-// Specifies a list of trail tags to return.
+// Specifies a list of tags to return.
 type ListTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Reserved for future use.
 	NextToken *string `type:"string"`
 
-	// Specifies a list of trail ARNs whose tags will be listed. The list has a
-	// limit of 20 ARNs. The following is the format of a trail ARN.
-	//
-	// arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail
+	// Specifies a list of trail and event data store ARNs whose tags will be listed.
+	// The list has a limit of 20 ARNs.
 	//
 	// ResourceIdList is a required field
 	ResourceIdList []*string `type:"list" required:"true"`
@@ -10584,9 +10601,10 @@ func (s *MaximumNumberOfTrailsExceededException) RequestID() string {
 }
 
 // This exception is thrown when the Amazon Web Services account making the
-// request to create or update an organization trail is not the management account
-// for an organization in Organizations. For more information, see Prepare For
-// Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+// request to create or update an organization trail or event data store is
+// not the management account for an organization in Organizations. For more
+// information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
+// or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 type NotOrganizationMasterAccountException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -10716,8 +10734,7 @@ func (s *OperationNotPermittedException) RequestID() string {
 
 // This exception is thrown when Organizations is not configured to support
 // all features. All features must be enabled in Organizations to support creating
-// an organization trail. For more information, see Prepare For Creating a Trail
-// For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+// an organization trail or event data store.
 type OrganizationNotInAllFeaturesModeException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -11405,14 +11422,16 @@ func (s *QueryStatisticsForDescribeQuery) SetExecutionTimeInMillis(v int64) *Que
 	return s
 }
 
-// Specifies the tags to remove from a trail.
+// Specifies the tags to remove from a trail or event data store.
 type RemoveTagsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the ARN of the trail from which tags should be removed. The format
-	// of a trail ARN is:
+	// Specifies the ARN of the trail or event data store from which tags should
+	// be removed.
 	//
-	// arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail
+	// Example trail ARN format: arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail
+	//
+	// Example event data store ARN format: arn:aws:cloudtrail:us-east-2:12345678910:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE
 	//
 	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`

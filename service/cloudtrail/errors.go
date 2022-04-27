@@ -45,9 +45,9 @@ const (
 	// "ConflictException".
 	//
 	// This exception is thrown when the specified resource is not ready for an
-	// operation. This can occur when you try to run an operation on a trail before
-	// CloudTrail has time to fully load the trail. If this exception occurs, wait
-	// a few minutes, and then try the operation again.
+	// operation. This can occur when you try to run an operation on a resource
+	// before CloudTrail has time to fully load the resource. If this exception
+	// occurs, wait a few minutes, and then try the operation again.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeEventDataStoreARNInvalidException for service response error code
@@ -85,7 +85,7 @@ const (
 	// ErrCodeInactiveEventDataStoreException for service response error code
 	// "InactiveEventDataStoreException".
 	//
-	// The event data store against which you ran your query is inactive.
+	// The event data store is inactive.
 	ErrCodeInactiveEventDataStoreException = "InactiveEventDataStoreException"
 
 	// ErrCodeInactiveQueryException for service response error code
@@ -106,9 +106,8 @@ const (
 	// "InsufficientDependencyServiceAccessPermissionException".
 	//
 	// This exception is thrown when the IAM user or role that is used to create
-	// the organization trail is lacking one or more required permissions for creating
-	// an organization trail in a required service. For more information, see Prepare
-	// For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+	// the organization resource lacks one or more required permissions for creating
+	// an organization resource in a required service.
 	ErrCodeInsufficientDependencyServiceAccessPermissionException = "InsufficientDependencyServiceAccessPermissionException"
 
 	// ErrCodeInsufficientEncryptionPolicyException for service response error code
@@ -146,7 +145,8 @@ const (
 	// ErrCodeInvalidDateRangeException for service response error code
 	// "InvalidDateRangeException".
 	//
-	// A date range for the query was specified that is not valid. For more information
+	// A date range for the query was specified that is not valid. Be sure that
+	// the start time is chronologically before the end time. For more information
 	// about writing a query, see Create or edit a query (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-create-edit-query.html)
 	// in the CloudTrail User Guide.
 	ErrCodeInvalidDateRangeException = "InvalidDateRangeException"
@@ -356,9 +356,10 @@ const (
 	// "NotOrganizationMasterAccountException".
 	//
 	// This exception is thrown when the Amazon Web Services account making the
-	// request to create or update an organization trail is not the management account
-	// for an organization in Organizations. For more information, see Prepare For
-	// Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+	// request to create or update an organization trail or event data store is
+	// not the management account for an organization in Organizations. For more
+	// information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
+	// or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 	ErrCodeNotOrganizationMasterAccountException = "NotOrganizationMasterAccountException"
 
 	// ErrCodeOperationNotPermittedException for service response error code
@@ -372,8 +373,7 @@ const (
 	//
 	// This exception is thrown when Organizations is not configured to support
 	// all features. All features must be enabled in Organizations to support creating
-	// an organization trail. For more information, see Prepare For Creating a Trail
-	// For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+	// an organization trail or event data store.
 	ErrCodeOrganizationNotInAllFeaturesModeException = "OrganizationNotInAllFeaturesModeException"
 
 	// ErrCodeOrganizationsNotInUseException for service response error code

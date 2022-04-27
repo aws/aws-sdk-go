@@ -132,7 +132,8 @@ func (c *Rekognition) CompareFacesRequest(input *CompareFacesInput) (req *reques
 //   * ImageTooLargeException
 //   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
 //   the image size or resolution exceeds the allowed limit. For more information,
-//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//   Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -262,7 +263,8 @@ func (c *Rekognition) CreateCollectionRequest(input *CreateCollectionInput) (req
 //
 //   * ServiceQuotaExceededException
 //   The size of the collection exceeds the allowed limit. For more information,
-//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//   Developer Guide.
 //
 func (c *Rekognition) CreateCollection(input *CreateCollectionInput) (*CreateCollectionOutput, error) {
 	req, out := c.CreateCollectionRequest(input)
@@ -643,7 +645,8 @@ func (c *Rekognition) CreateProjectVersionRequest(input *CreateProjectVersionInp
 //
 //   * ServiceQuotaExceededException
 //   The size of the collection exceeds the allowed limit. For more information,
-//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//   Developer Guide.
 //
 func (c *Rekognition) CreateProjectVersion(input *CreateProjectVersionInput) (*CreateProjectVersionOutput, error) {
 	req, out := c.CreateProjectVersionRequest(input)
@@ -709,21 +712,33 @@ func (c *Rekognition) CreateStreamProcessorRequest(input *CreateStreamProcessorI
 // CreateStreamProcessor API operation for Amazon Rekognition.
 //
 // Creates an Amazon Rekognition stream processor that you can use to detect
-// and recognize faces in a streaming video.
+// and recognize faces or to detect labels in a streaming video.
 //
 // Amazon Rekognition Video is a consumer of live video from Amazon Kinesis
-// Video Streams. Amazon Rekognition Video sends analysis results to Amazon
-// Kinesis Data Streams.
+// Video Streams. There are two different settings for stream processors in
+// Amazon Rekognition: detecting faces and detecting labels.
 //
-// You provide as input a Kinesis video stream (Input) and a Kinesis data stream
-// (Output) stream. You also specify the face recognition criteria in Settings.
-// For example, the collection containing faces that you want to recognize.
+//    * If you are creating a stream processor for detecting faces, you provide
+//    as input a Kinesis video stream (Input) and a Kinesis data stream (Output)
+//    stream. You also specify the face recognition criteria in Settings. For
+//    example, the collection containing faces that you want to recognize. After
+//    you have finished analyzing a streaming video, use StopStreamProcessor
+//    to stop processing.
+//
+//    * If you are creating a stream processor to detect labels, you provide
+//    as input a Kinesis video stream (Input), Amazon S3 bucket information
+//    (Output), and an Amazon SNS topic ARN (NotificationChannel). You can also
+//    provide a KMS key ID to encrypt the data sent to your Amazon S3 bucket.
+//    You specify what you want to detect in ConnectedHomeSettings, such as
+//    people, packages and people, or pets, people, and packages. You can also
+//    specify where in the frame you want Amazon Rekognition to monitor with
+//    RegionsOfInterest. When you run the StartStreamProcessor operation on
+//    a label detection stream processor, you input start and stop information
+//    to determine the length of the processing time.
+//
 // Use Name to assign an identifier for the stream processor. You use Name to
 // manage the stream processor. For example, you can start processing the source
 // video by calling StartStreamProcessor with the Name field.
-//
-// After you have finished analyzing a streaming video, use StopStreamProcessor
-// to stop processing. You can delete the stream processor by calling DeleteStreamProcessor.
 //
 // This operation requires permissions to perform the rekognition:CreateStreamProcessor
 // action. If you want to tag your stream processor, you also require permission
@@ -767,7 +782,8 @@ func (c *Rekognition) CreateStreamProcessorRequest(input *CreateStreamProcessorI
 //
 //   * ServiceQuotaExceededException
 //   The size of the collection exceeds the allowed limit. For more information,
-//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//   Developer Guide.
 //
 func (c *Rekognition) CreateStreamProcessor(input *CreateStreamProcessorInput) (*CreateStreamProcessorOutput, error) {
 	req, out := c.CreateStreamProcessorRequest(input)
@@ -833,7 +849,7 @@ func (c *Rekognition) DeleteCollectionRequest(input *DeleteCollectionInput) (req
 // DeleteCollection API operation for Amazon Rekognition.
 //
 // Deletes the specified collection. Note that this operation removes all faces
-// in the collection. For an example, see delete-collection-procedure.
+// in the collection. For an example, see Deleting a collection (https://docs.aws.amazon.com/rekognition/latest/dg/delete-collection-procedure.html).
 //
 // This operation requires permissions to perform the rekognition:DeleteCollection
 // action.
@@ -2132,7 +2148,8 @@ func (c *Rekognition) DetectCustomLabelsRequest(input *DetectCustomLabelsInput) 
 //   * ImageTooLargeException
 //   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
 //   the image size or resolution exceeds the allowed limit. For more information,
-//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//   Developer Guide.
 //
 //   * LimitExceededException
 //   An Amazon Rekognition service limit was exceeded. For example, if you start
@@ -2262,7 +2279,8 @@ func (c *Rekognition) DetectFacesRequest(input *DetectFacesInput) (req *request.
 //   * ImageTooLargeException
 //   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
 //   the image size or resolution exceeds the allowed limit. For more information,
-//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//   Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -2349,7 +2367,7 @@ func (c *Rekognition) DetectLabelsRequest(input *DetectLabelsInput) (req *reques
 // wedding, graduation, and birthday party; and concepts like landscape, evening,
 // and nature.
 //
-// For an example, see Analyzing Images Stored in an Amazon S3 Bucket in the
+// For an example, see Analyzing images stored in an Amazon S3 bucket in the
 // Amazon Rekognition Developer Guide.
 //
 // DetectLabels does not support the detection of activities. However, activity
@@ -2432,7 +2450,8 @@ func (c *Rekognition) DetectLabelsRequest(input *DetectLabelsInput) (req *reques
 //   * ImageTooLargeException
 //   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
 //   the image size or resolution exceeds the allowed limit. For more information,
-//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//   Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -2548,7 +2567,8 @@ func (c *Rekognition) DetectModerationLabelsRequest(input *DetectModerationLabel
 //   * ImageTooLargeException
 //   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
 //   the image size or resolution exceeds the allowed limit. For more information,
-//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//   Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -2690,7 +2710,8 @@ func (c *Rekognition) DetectProtectiveEquipmentRequest(input *DetectProtectiveEq
 //   * ImageTooLargeException
 //   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
 //   the image size or resolution exceeds the allowed limit. For more information,
-//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//   Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -2802,7 +2823,7 @@ func (c *Rekognition) DetectTextRequest(input *DetectTextInput) (req *request.Re
 // To be detected, text must be within +/- 90 degrees orientation of the horizontal
 // axis.
 //
-// For more information, see DetectText in the Amazon Rekognition Developer
+// For more information, see Detecting text in the Amazon Rekognition Developer
 // Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2823,7 +2844,8 @@ func (c *Rekognition) DetectTextRequest(input *DetectTextInput) (req *request.Re
 //   * ImageTooLargeException
 //   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
 //   the image size or resolution exceeds the allowed limit. For more information,
-//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//   Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -3025,7 +3047,7 @@ func (c *Rekognition) GetCelebrityInfoRequest(input *GetCelebrityInfoInput) (req
 // of URLs. If there is no additional information about the celebrity, this
 // list is empty.
 //
-// For more information, see Recognizing Celebrities in an Image in the Amazon
+// For more information, see Getting information about a celebrity in the Amazon
 // Rekognition Developer Guide.
 //
 // This operation requires permissions to perform the rekognition:GetCelebrityInfo
@@ -3363,7 +3385,7 @@ func (c *Rekognition) GetContentModerationRequest(input *GetContentModerationInp
 // and populate the NextToken request parameter with the value of NextToken
 // returned from the previous call to GetContentModeration.
 //
-// For more information, see Content moderation in the Amazon Rekognition Developer
+// For more information, see moderating content in the Amazon Rekognition Developer
 // Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4280,7 +4302,7 @@ func (c *Rekognition) GetSegmentDetectionRequest(input *GetSegmentDetectionInput
 // and populate the NextToken request parameter with the token value returned
 // from the previous call to GetSegmentDetection.
 //
-// For more information, see Detecting Video Segments in Stored Video in the
+// For more information, see Detecting video segments in stored video in the
 // Amazon Rekognition Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4619,7 +4641,7 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 // when it performs face match and search operations using the SearchFaces and
 // SearchFacesByImage operations.
 //
-// For more information, see Adding Faces to a Collection in the Amazon Rekognition
+// For more information, see Adding faces to a collection in the Amazon Rekognition
 // Developer Guide.
 //
 // To get the number of faces in a collection, call DescribeCollection.
@@ -4694,9 +4716,9 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 // If you request all facial attributes (by using the detectionAttributes parameter),
 // Amazon Rekognition returns detailed facial attributes, such as facial landmarks
 // (for example, location of eye and mouth) and other facial attributes. If
-// you provide the same image, specify the same collection, use the same external
-// ID, and use the same model version in the IndexFaces operation, Amazon Rekognition
-// doesn't save duplicate face metadata.
+// you provide the same image, specify the same collection, and use the same
+// external ID in the IndexFaces operation, Amazon Rekognition doesn't save
+// duplicate face metadata.
 //
 // The input image is passed either as base64-encoded image bytes, or as a reference
 // to an image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon
@@ -4724,7 +4746,8 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 //   * ImageTooLargeException
 //   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
 //   the image size or resolution exceeds the allowed limit. For more information,
-//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//   Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -4748,7 +4771,8 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 //
 //   * ServiceQuotaExceededException
 //   The size of the collection exceeds the allowed limit. For more information,
-//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//   Developer Guide.
 //
 func (c *Rekognition) IndexFaces(input *IndexFacesInput) (*IndexFacesOutput, error) {
 	req, out := c.IndexFacesRequest(input)
@@ -4823,7 +4847,7 @@ func (c *Rekognition) ListCollectionsRequest(input *ListCollectionsInput) (req *
 // the response also provides a NextToken that you can use in the subsequent
 // request to fetch the next set of collection IDs.
 //
-// For an example, see Listing Collections in the Amazon Rekognition Developer
+// For an example, see Listing collections in the Amazon Rekognition Developer
 // Guide.
 //
 // This operation requires permissions to perform the rekognition:ListCollections
@@ -5732,7 +5756,7 @@ func (c *Rekognition) RecognizeCelebritiesRequest(input *RecognizeCelebritiesInp
 // RecognizeCelebrities API operation for Amazon Rekognition.
 //
 // Returns an array of celebrities recognized in the input image. For more information,
-// see Recognizing Celebrities in the Amazon Rekognition Developer Guide.
+// see Recognizing celebrities in the Amazon Rekognition Developer Guide.
 //
 // RecognizeCelebrities returns the 64 largest faces in the image. It lists
 // the recognized celebrities in the CelebrityFaces array and any unrecognized
@@ -5756,7 +5780,7 @@ func (c *Rekognition) RecognizeCelebritiesRequest(input *RecognizeCelebritiesInp
 // Rekognition operations, passing image bytes is not supported. The image must
 // be either a PNG or JPEG formatted file.
 //
-// For an example, see Recognizing Celebrities in an Image in the Amazon Rekognition
+// For an example, see Recognizing celebrities in an image in the Amazon Rekognition
 // Developer Guide.
 //
 // This operation requires permissions to perform the rekognition:RecognizeCelebrities
@@ -5783,7 +5807,8 @@ func (c *Rekognition) RecognizeCelebritiesRequest(input *RecognizeCelebritiesInp
 //   * ImageTooLargeException
 //   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
 //   the image size or resolution exceeds the allowed limit. For more information,
-//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//   Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -5879,7 +5904,7 @@ func (c *Rekognition) SearchFacesRequest(input *SearchFacesInput) (req *request.
 // response also includes a confidence value for each face match, indicating
 // the confidence that the specific face matches the input face.
 //
-// For an example, see Searching for a Face Using Its Face ID in the Amazon
+// For an example, see Searching for a face using its face ID in the Amazon
 // Rekognition Developer Guide.
 //
 // This operation requires permissions to perform the rekognition:SearchFaces
@@ -6039,7 +6064,8 @@ func (c *Rekognition) SearchFacesByImageRequest(input *SearchFacesByImageInput) 
 //   * ImageTooLargeException
 //   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
 //   the image size or resolution exceeds the allowed limit. For more information,
-//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//   Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -6137,7 +6163,7 @@ func (c *Rekognition) StartCelebrityRecognitionRequest(input *StartCelebrityReco
 // GetCelebrityRecognition and pass the job identifier (JobId) from the initial
 // call to StartCelebrityRecognition.
 //
-// For more information, see Recognizing Celebrities in the Amazon Rekognition
+// For more information, see Recognizing celebrities in the Amazon Rekognition
 // Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6263,7 +6289,7 @@ func (c *Rekognition) StartContentModerationRequest(input *StartContentModeratio
 // published to the Amazon SNS topic is SUCCEEDED. If so, call GetContentModeration
 // and pass the job identifier (JobId) from the initial call to StartContentModeration.
 //
-// For more information, see Content moderation in the Amazon Rekognition Developer
+// For more information, see Moderating content in the Amazon Rekognition Developer
 // Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6386,7 +6412,7 @@ func (c *Rekognition) StartFaceDetectionRequest(input *StartFaceDetectionInput) 
 // the Amazon SNS topic is SUCCEEDED. If so, call GetFaceDetection and pass
 // the job identifier (JobId) from the initial call to StartFaceDetection.
 //
-// For more information, see Detecting Faces in a Stored Video in the Amazon
+// For more information, see Detecting faces in a stored video in the Amazon
 // Rekognition Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6508,7 +6534,8 @@ func (c *Rekognition) StartFaceSearchRequest(input *StartFaceSearchInput) (req *
 // you specify in NotificationChannel. To get the search results, first check
 // that the status value published to the Amazon SNS topic is SUCCEEDED. If
 // so, call GetFaceSearch and pass the job identifier (JobId) from the initial
-// call to StartFaceSearch. For more information, see procedure-person-search-videos.
+// call to StartFaceSearch. For more information, see Searching stored videos
+// for faces (https://docs.aws.amazon.com/rekognition/latest/dg/procedure-person-search-videos.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7005,7 +7032,7 @@ func (c *Rekognition) StartSegmentDetectionRequest(input *StartSegmentDetectionI
 // GetSegmentDetection and pass the job identifier (JobId) from the initial
 // call to StartSegmentDetection.
 //
-// For more information, see Detecting Video Segments in Stored Video in the
+// For more information, see Detecting video segments in stored video in the
 // Amazon Rekognition Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -7111,7 +7138,6 @@ func (c *Rekognition) StartStreamProcessorRequest(input *StartStreamProcessorInp
 
 	output = &StartStreamProcessorOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -7120,6 +7146,10 @@ func (c *Rekognition) StartStreamProcessorRequest(input *StartStreamProcessorInp
 // Starts processing a stream processor. You create a stream processor by calling
 // CreateStreamProcessor. To tell StartStreamProcessor which stream processor
 // to start, use the value of the Name field specified in the call to CreateStreamProcessor.
+//
+// If you are using a label detection stream processor to detect labels, you
+// need to provide a Start selector and a Stop selector to determine the length
+// of the stream processing time.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7559,7 +7589,8 @@ func (c *Rekognition) TagResourceRequest(input *TagResourceInput) (req *request.
 //
 //   * ServiceQuotaExceededException
 //   The size of the collection exceeds the allowed limit. For more information,
-//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+//   Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -7821,6 +7852,102 @@ func (c *Rekognition) UpdateDatasetEntries(input *UpdateDatasetEntriesInput) (*U
 // for more information on using Contexts.
 func (c *Rekognition) UpdateDatasetEntriesWithContext(ctx aws.Context, input *UpdateDatasetEntriesInput, opts ...request.Option) (*UpdateDatasetEntriesOutput, error) {
 	req, out := c.UpdateDatasetEntriesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateStreamProcessor = "UpdateStreamProcessor"
+
+// UpdateStreamProcessorRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateStreamProcessor operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateStreamProcessor for more information on using the UpdateStreamProcessor
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateStreamProcessorRequest method.
+//    req, resp := client.UpdateStreamProcessorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) UpdateStreamProcessorRequest(input *UpdateStreamProcessorInput) (req *request.Request, output *UpdateStreamProcessorOutput) {
+	op := &request.Operation{
+		Name:       opUpdateStreamProcessor,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateStreamProcessorInput{}
+	}
+
+	output = &UpdateStreamProcessorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateStreamProcessor API operation for Amazon Rekognition.
+//
+// Allows you to update a stream processor. You can change some settings and
+// regions of interest and delete certain parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation UpdateStreamProcessor for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * InternalServerError
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * ThrottlingException
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+//   * InvalidParameterException
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request cannot be found.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+func (c *Rekognition) UpdateStreamProcessor(input *UpdateStreamProcessorInput) (*UpdateStreamProcessorOutput, error) {
+	req, out := c.UpdateStreamProcessorRequest(input)
+	return out, req.Send()
+}
+
+// UpdateStreamProcessorWithContext is the same as UpdateStreamProcessor with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateStreamProcessor for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) UpdateStreamProcessorWithContext(ctx aws.Context, input *UpdateStreamProcessorInput, opts ...request.Option) (*UpdateStreamProcessorOutput, error) {
+	req, out := c.UpdateStreamProcessorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8150,10 +8277,10 @@ func (s *BlackFrame) SetMinCoveragePercentage(v float64) *BlackFrame {
 	return s
 }
 
-// Identifies the bounding box around the label, face, text or personal protective
-// equipment. The left (x-coordinate) and top (y-coordinate) are coordinates
-// representing the top and left sides of the bounding box. Note that the upper-left
-// corner of the image is the origin (0,0).
+// Identifies the bounding box around the label, face, text, object of interest,
+// or personal protective equipment. The left (x-coordinate) and top (y-coordinate)
+// are coordinates representing the top and left sides of the bounding box.
+// Note that the upper-left corner of the image is the origin (0,0).
 //
 // The top and left values returned are ratios of the overall image size. For
 // example, if the input image is 700x200 pixels, and the top-left coordinate
@@ -8827,6 +8954,133 @@ func (s *ComparedSourceImageFace) SetConfidence(v float64) *ComparedSourceImageF
 	return s
 }
 
+// Label detection settings to use on a streaming video. Defining the settings
+// is required in the request parameter for CreateStreamProcessor. Including
+// this setting in the CreateStreamProcessor request enables you to use the
+// stream processor for label detection. You can then select what you want the
+// stream processor to detect, such as people or pets. When the stream processor
+// has started, one notification is sent for each object class specified. For
+// example, if packages and pets are selected, one SNS notification is published
+// the first time a package is detected and one SNS notification is published
+// the first time a pet is detected, as well as an end-of-session summary.
+type ConnectedHomeSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies what you want to detect in the video, such as people, packages,
+	// or pets. The current valid labels you can include in this list are: "PERSON",
+	// "PET", "PACKAGE", and "ALL".
+	//
+	// Labels is a required field
+	Labels []*string `min:"1" type:"list" required:"true"`
+
+	// The minimum confidence required to label an object in the video.
+	MinConfidence *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectedHomeSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectedHomeSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConnectedHomeSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConnectedHomeSettings"}
+	if s.Labels == nil {
+		invalidParams.Add(request.NewErrParamRequired("Labels"))
+	}
+	if s.Labels != nil && len(s.Labels) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Labels", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLabels sets the Labels field's value.
+func (s *ConnectedHomeSettings) SetLabels(v []*string) *ConnectedHomeSettings {
+	s.Labels = v
+	return s
+}
+
+// SetMinConfidence sets the MinConfidence field's value.
+func (s *ConnectedHomeSettings) SetMinConfidence(v float64) *ConnectedHomeSettings {
+	s.MinConfidence = &v
+	return s
+}
+
+// The label detection settings you want to use in your stream processor. This
+// includes the labels you want the stream processor to detect and the minimum
+// confidence level allowed to label objects.
+type ConnectedHomeSettingsForUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies what you want to detect in the video, such as people, packages,
+	// or pets. The current valid labels you can include in this list are: "PERSON",
+	// "PET", "PACKAGE", and "ALL".
+	Labels []*string `min:"1" type:"list"`
+
+	// The minimum confidence required to label an object in the video.
+	MinConfidence *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectedHomeSettingsForUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectedHomeSettingsForUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConnectedHomeSettingsForUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConnectedHomeSettingsForUpdate"}
+	if s.Labels != nil && len(s.Labels) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Labels", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLabels sets the Labels field's value.
+func (s *ConnectedHomeSettingsForUpdate) SetLabels(v []*string) *ConnectedHomeSettingsForUpdate {
+	s.Labels = v
+	return s
+}
+
+// SetMinConfidence sets the MinConfidence field's value.
+func (s *ConnectedHomeSettingsForUpdate) SetMinConfidence(v float64) *ConnectedHomeSettingsForUpdate {
+	s.MinConfidence = &v
+	return s
+}
+
 // Information about an inappropriate, unwanted, or offensive content label
 // detection in a stored video.
 type ContentModerationDetection struct {
@@ -8977,8 +9231,8 @@ type CreateCollectionOutput struct {
 	// permissions on your resources.
 	CollectionArn *string `type:"string"`
 
-	// Latest face model being used with the collection. For more information, see
-	// Model versioning (https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html).
+	// Version number of the face detection model associated with the collection
+	// you are creating.
 	FaceModelVersion *string `type:"string"`
 
 	// HTTP status code indicating the result of the operation.
@@ -9410,32 +9664,78 @@ func (s *CreateProjectVersionOutput) SetProjectVersionArn(v string) *CreateProje
 type CreateStreamProcessorInput struct {
 	_ struct{} `type:"structure"`
 
+	// Shows whether you are sharing data with Rekognition to improve model performance.
+	// You can choose this option at the account level or on a per-stream basis.
+	// Note that if you opt out at the account level this setting is ignored on
+	// individual streams.
+	DataSharingPreference *StreamProcessorDataSharingPreference `type:"structure"`
+
 	// Kinesis video stream stream that provides the source streaming video. If
-	// you are using the AWS CLI, the parameter name is StreamProcessorInput.
+	// you are using the AWS CLI, the parameter name is StreamProcessorInput. This
+	// is required for both face search and label detection stream processors.
 	//
 	// Input is a required field
 	Input *StreamProcessorInput `type:"structure" required:"true"`
 
+	// The identifier for your AWS Key Management Service key (AWS KMS key). This
+	// is an optional parameter for label detection stream processors and should
+	// not be used to create a face search stream processor. You can supply the
+	// Amazon Resource Name (ARN) of your KMS key, the ID of your KMS key, an alias
+	// for your KMS key, or an alias ARN. The key is used to encrypt results and
+	// data published to your Amazon S3 bucket, which includes image frames and
+	// hero images. Your source images are unaffected.
+	KmsKeyId *string `min:"1" type:"string"`
+
 	// An identifier you assign to the stream processor. You can use Name to manage
 	// the stream processor. For example, you can get the current status of the
 	// stream processor by calling DescribeStreamProcessor. Name is idempotent.
+	// This is required for both face search and label detection stream processors.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// Kinesis data stream stream to which Amazon Rekognition Video puts the analysis
-	// results. If you are using the AWS CLI, the parameter name is StreamProcessorOutput.
+	// The Amazon Simple Notification Service topic to which Amazon Rekognition
+	// publishes the object detection results and completion status of a video analysis
+	// operation.
+	//
+	// Amazon Rekognition publishes a notification the first time an object of interest
+	// or a person is detected in the video stream. For example, if Amazon Rekognition
+	// detects a person at second 2, a pet at second 4, and a person again at second
+	// 5, Amazon Rekognition sends 2 object class detected notifications, one for
+	// a person at second 2 and one for a pet at second 4.
+	//
+	// Amazon Rekognition also publishes an an end-of-session notification with
+	// a summary when the stream processing session is complete.
+	NotificationChannel *StreamProcessorNotificationChannel `type:"structure"`
+
+	// Kinesis data stream stream or Amazon S3 bucket location to which Amazon Rekognition
+	// Video puts the analysis results. If you are using the AWS CLI, the parameter
+	// name is StreamProcessorOutput. This must be a S3Destination of an Amazon
+	// S3 bucket that you own for a label detection stream processor or a Kinesis
+	// data stream ARN for a face search stream processor.
 	//
 	// Output is a required field
 	Output *StreamProcessorOutput `type:"structure" required:"true"`
 
-	// ARN of the IAM role that allows access to the stream processor.
+	// Specifies locations in the frames where Amazon Rekognition checks for objects
+	// or people. You can specify up to 10 regions of interest. This is an optional
+	// parameter for label detection stream processors and should not be used to
+	// create a face search stream processor.
+	RegionsOfInterest []*RegionOfInterest `type:"list"`
+
+	// The Amazon Resource Number (ARN) of the IAM role that allows access to the
+	// stream processor. The IAM role provides Rekognition read permissions for
+	// a Kinesis stream. It also provides write permissions to an Amazon S3 bucket
+	// and Amazon Simple Notification Service topic for a label detection stream
+	// processor. This is required for both face search and label detection stream
+	// processors.
 	//
 	// RoleArn is a required field
 	RoleArn *string `type:"string" required:"true"`
 
-	// Face recognition input parameters to be used by the stream processor. Includes
-	// the collection to use for face recognition and the face attributes to detect.
+	// Input parameters used in a streaming video analyzed by a stream processor.
+	// You can use FaceSearch to recognize faces in a streaming video, or you can
+	// use ConnectedHome to detect labels.
 	//
 	// Settings is a required field
 	Settings *StreamProcessorSettings `type:"structure" required:"true"`
@@ -9468,6 +9768,9 @@ func (s *CreateStreamProcessorInput) Validate() error {
 	if s.Input == nil {
 		invalidParams.Add(request.NewErrParamRequired("Input"))
 	}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -9483,6 +9786,21 @@ func (s *CreateStreamProcessorInput) Validate() error {
 	if s.Settings == nil {
 		invalidParams.Add(request.NewErrParamRequired("Settings"))
 	}
+	if s.DataSharingPreference != nil {
+		if err := s.DataSharingPreference.Validate(); err != nil {
+			invalidParams.AddNested("DataSharingPreference", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.NotificationChannel != nil {
+		if err := s.NotificationChannel.Validate(); err != nil {
+			invalidParams.AddNested("NotificationChannel", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Output != nil {
+		if err := s.Output.Validate(); err != nil {
+			invalidParams.AddNested("Output", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Settings != nil {
 		if err := s.Settings.Validate(); err != nil {
 			invalidParams.AddNested("Settings", err.(request.ErrInvalidParams))
@@ -9495,9 +9813,21 @@ func (s *CreateStreamProcessorInput) Validate() error {
 	return nil
 }
 
+// SetDataSharingPreference sets the DataSharingPreference field's value.
+func (s *CreateStreamProcessorInput) SetDataSharingPreference(v *StreamProcessorDataSharingPreference) *CreateStreamProcessorInput {
+	s.DataSharingPreference = v
+	return s
+}
+
 // SetInput sets the Input field's value.
 func (s *CreateStreamProcessorInput) SetInput(v *StreamProcessorInput) *CreateStreamProcessorInput {
 	s.Input = v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateStreamProcessorInput) SetKmsKeyId(v string) *CreateStreamProcessorInput {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -9507,9 +9837,21 @@ func (s *CreateStreamProcessorInput) SetName(v string) *CreateStreamProcessorInp
 	return s
 }
 
+// SetNotificationChannel sets the NotificationChannel field's value.
+func (s *CreateStreamProcessorInput) SetNotificationChannel(v *StreamProcessorNotificationChannel) *CreateStreamProcessorInput {
+	s.NotificationChannel = v
+	return s
+}
+
 // SetOutput sets the Output field's value.
 func (s *CreateStreamProcessorInput) SetOutput(v *StreamProcessorOutput) *CreateStreamProcessorInput {
 	s.Output = v
+	return s
+}
+
+// SetRegionsOfInterest sets the RegionsOfInterest field's value.
+func (s *CreateStreamProcessorInput) SetRegionsOfInterest(v []*RegionOfInterest) *CreateStreamProcessorInput {
+	s.RegionsOfInterest = v
 	return s
 }
 
@@ -9534,7 +9876,7 @@ func (s *CreateStreamProcessorInput) SetTags(v map[string]*string) *CreateStream
 type CreateStreamProcessorOutput struct {
 	_ struct{} `type:"structure"`
 
-	// ARN for the newly create stream processor.
+	// Amazon Resource Number for the newly created stream processor.
 	StreamProcessorArn *string `type:"string"`
 }
 
@@ -10597,7 +10939,7 @@ type DescribeCollectionOutput struct {
 
 	// The version of the face model that's used by the collection for face detection.
 	//
-	// For more information, see Model Versioning in the Amazon Rekognition Developer
+	// For more information, see Model versioning in the Amazon Rekognition Developer
 	// Guide.
 	FaceModelVersion *string `type:"string"`
 }
@@ -11031,8 +11373,18 @@ type DescribeStreamProcessorOutput struct {
 	// Date and time the stream processor was created
 	CreationTimestamp *time.Time `type:"timestamp"`
 
+	// Shows whether you are sharing data with Rekognition to improve model performance.
+	// You can choose this option at the account level or on a per-stream basis.
+	// Note that if you opt out at the account level this setting is ignored on
+	// individual streams.
+	DataSharingPreference *StreamProcessorDataSharingPreference `type:"structure"`
+
 	// Kinesis video stream that provides the source streaming video.
 	Input *StreamProcessorInput `type:"structure"`
+
+	// The identifier for your AWS Key Management Service key (AWS KMS key). This
+	// is an optional parameter for label detection stream processors.
+	KmsKeyId *string `min:"1" type:"string"`
 
 	// The time, in Unix format, the stream processor was last updated. For example,
 	// when the stream processor moves from a running state to a failed state, or
@@ -11042,15 +11394,33 @@ type DescribeStreamProcessorOutput struct {
 	// Name of the stream processor.
 	Name *string `min:"1" type:"string"`
 
+	// The Amazon Simple Notification Service topic to which Amazon Rekognition
+	// publishes the object detection results and completion status of a video analysis
+	// operation.
+	//
+	// Amazon Rekognition publishes a notification the first time an object of interest
+	// or a person is detected in the video stream. For example, if Amazon Rekognition
+	// detects a person at second 2, a pet at second 4, and a person again at second
+	// 5, Amazon Rekognition sends 2 object class detected notifications, one for
+	// a person at second 2 and one for a pet at second 4.
+	//
+	// Amazon Rekognition also publishes an an end-of-session notification with
+	// a summary when the stream processing session is complete.
+	NotificationChannel *StreamProcessorNotificationChannel `type:"structure"`
+
 	// Kinesis data stream to which Amazon Rekognition Video puts the analysis results.
 	Output *StreamProcessorOutput `type:"structure"`
+
+	// Specifies locations in the frames where Amazon Rekognition checks for objects
+	// or people. This is an optional parameter for label detection stream processors.
+	RegionsOfInterest []*RegionOfInterest `type:"list"`
 
 	// ARN of the IAM role that allows access to the stream processor.
 	RoleArn *string `type:"string"`
 
-	// Face recognition input parameters that are being used by the stream processor.
-	// Includes the collection to use for face recognition and the face attributes
-	// to detect.
+	// Input parameters used in a streaming video analyzed by a stream processor.
+	// You can use FaceSearch to recognize faces in a streaming video, or you can
+	// use ConnectedHome to detect labels.
 	Settings *StreamProcessorSettings `type:"structure"`
 
 	// Current status of the stream processor.
@@ -11087,9 +11457,21 @@ func (s *DescribeStreamProcessorOutput) SetCreationTimestamp(v time.Time) *Descr
 	return s
 }
 
+// SetDataSharingPreference sets the DataSharingPreference field's value.
+func (s *DescribeStreamProcessorOutput) SetDataSharingPreference(v *StreamProcessorDataSharingPreference) *DescribeStreamProcessorOutput {
+	s.DataSharingPreference = v
+	return s
+}
+
 // SetInput sets the Input field's value.
 func (s *DescribeStreamProcessorOutput) SetInput(v *StreamProcessorInput) *DescribeStreamProcessorOutput {
 	s.Input = v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *DescribeStreamProcessorOutput) SetKmsKeyId(v string) *DescribeStreamProcessorOutput {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -11105,9 +11487,21 @@ func (s *DescribeStreamProcessorOutput) SetName(v string) *DescribeStreamProcess
 	return s
 }
 
+// SetNotificationChannel sets the NotificationChannel field's value.
+func (s *DescribeStreamProcessorOutput) SetNotificationChannel(v *StreamProcessorNotificationChannel) *DescribeStreamProcessorOutput {
+	s.NotificationChannel = v
+	return s
+}
+
 // SetOutput sets the Output field's value.
 func (s *DescribeStreamProcessorOutput) SetOutput(v *StreamProcessorOutput) *DescribeStreamProcessorOutput {
 	s.Output = v
+	return s
+}
+
+// SetRegionsOfInterest sets the RegionsOfInterest field's value.
+func (s *DescribeStreamProcessorOutput) SetRegionsOfInterest(v []*RegionOfInterest) *DescribeStreamProcessorOutput {
+	s.RegionsOfInterest = v
 	return s
 }
 
@@ -11168,8 +11562,8 @@ type DetectCustomLabelsInput struct {
 	// property.
 	//
 	// For Amazon Rekognition to process an S3 object, the user must have permission
-	// to access the S3 object. For more information, see Resource Based Policies
-	// in the Amazon Rekognition Developer Guide.
+	// to access the S3 object. For more information, see How Amazon Rekognition
+	// works with IAM in the Amazon Rekognition Developer Guide.
 	//
 	// Image is a required field
 	Image *Image `type:"structure" required:"true"`
@@ -11980,8 +12374,8 @@ type DetectionFilter struct {
 	MinBoundingBoxWidth *float64 `type:"float"`
 
 	// Sets the confidence of word detection. Words with detection confidence below
-	// this will be excluded from the result. Values should be between 50 and 100
-	// as Text in Video will not return any result below 50.
+	// this will be excluded from the result. Values should be between 0 and 100.
+	// The default MinConfidence is 80.
 	MinConfidence *float64 `type:"float"`
 }
 
@@ -12791,7 +13185,9 @@ func (s *FaceRecord) SetFaceDetail(v *FaceDetail) *FaceRecord {
 }
 
 // Input face recognition parameters for an Amazon Rekognition stream processor.
-// FaceRecognitionSettings is a request parameter for CreateStreamProcessor.
+// Includes the collection to use for face recognition and the face attributes
+// to detect. Defining the settings is required in the request parameter for
+// CreateStreamProcessor.
 type FaceSearchSettings struct {
 	_ struct{} `type:"structure"`
 
@@ -14341,8 +14737,8 @@ type GroundTruthManifest struct {
 	// you use for Amazon Rekognition operations.
 	//
 	// For Amazon Rekognition to process an S3 object, the user must have permission
-	// to access the S3 object. For more information, see Resource-Based Policies
-	// in the Amazon Rekognition Developer Guide.
+	// to access the S3 object. For more information, see How Amazon Rekognition
+	// works with IAM in the Amazon Rekognition Developer Guide.
 	S3Object *S3Object `type:"structure"`
 }
 
@@ -14711,8 +15107,8 @@ func (s *IdempotentParameterMismatchException) RequestID() string {
 // property.
 //
 // For Amazon Rekognition to process an S3 object, the user must have permission
-// to access the S3 object. For more information, see Resource Based Policies
-// in the Amazon Rekognition Developer Guide.
+// to access the S3 object. For more information, see How Amazon Rekognition
+// works with IAM in the Amazon Rekognition Developer Guide.
 type Image struct {
 	_ struct{} `type:"structure"`
 
@@ -14817,7 +15213,8 @@ func (s *ImageQuality) SetSharpness(v float64) *ImageQuality {
 
 // The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
 // the image size or resolution exceeds the allowed limit. For more information,
-// see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+// see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+// Developer Guide.
 type ImageTooLargeException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -15034,8 +15431,8 @@ func (s *IndexFacesInput) SetQualityFilter(v string) *IndexFacesInput {
 type IndexFacesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Latest face model being used with the collection. For more information, see
-	// Model versioning (https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html).
+	// The version number of the face detection model that's associated with the
+	// input collection (CollectionId).
 	FaceModelVersion *string `type:"string"`
 
 	// An array of faces detected and added to the collection. For more information,
@@ -15548,6 +15945,63 @@ func (s *KinesisVideoStream) SetArn(v string) *KinesisVideoStream {
 	return s
 }
 
+// Specifies the starting point in a Kinesis stream to start processing. You
+// can use the producer timestamp or the fragment number. For more information,
+// see Fragment (https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_Fragment.html).
+type KinesisVideoStreamStartSelector struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the fragment. This value monotonically increases
+	// based on the ingestion order.
+	FragmentNumber *string `min:"1" type:"string"`
+
+	// The timestamp from the producer corresponding to the fragment.
+	ProducerTimestamp *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KinesisVideoStreamStartSelector) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KinesisVideoStreamStartSelector) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KinesisVideoStreamStartSelector) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KinesisVideoStreamStartSelector"}
+	if s.FragmentNumber != nil && len(*s.FragmentNumber) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FragmentNumber", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFragmentNumber sets the FragmentNumber field's value.
+func (s *KinesisVideoStreamStartSelector) SetFragmentNumber(v string) *KinesisVideoStreamStartSelector {
+	s.FragmentNumber = &v
+	return s
+}
+
+// SetProducerTimestamp sets the ProducerTimestamp field's value.
+func (s *KinesisVideoStreamStartSelector) SetProducerTimestamp(v int64) *KinesisVideoStreamStartSelector {
+	s.ProducerTimestamp = &v
+	return s
+}
+
 // The known gender identity for the celebrity that matches the provided ID.
 // The known gender identity can be Male, Female, Nonbinary, or Unlisted.
 type KnownGender struct {
@@ -15855,10 +16309,10 @@ type ListCollectionsOutput struct {
 	// An array of collection IDs.
 	CollectionIds []*string `type:"list"`
 
-	// Latest face models being used with the corresponding collections in the array.
-	// For more information, see Model versioning (https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html).
-	// For example, the value of FaceModelVersions[2] is the version number for
-	// the face detection model used by the collection in CollectionId[2].
+	// Version numbers of the face detection models associated with the collections
+	// in the array CollectionIds. For example, the value of FaceModelVersions[2]
+	// is the version number for the face detection model used by the collection
+	// in CollectionId[2].
 	FaceModelVersions []*string `type:"list"`
 
 	// If the result is truncated, the response provides a NextToken that you can
@@ -16261,8 +16715,8 @@ func (s *ListFacesInput) SetNextToken(v string) *ListFacesInput {
 type ListFacesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Latest face model being used with the collection. For more information, see
-	// Model versioning (https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html).
+	// Version number of the face detection model associated with the input collection
+	// (CollectionId).
 	FaceModelVersion *string `type:"string"`
 
 	// An array of Face objects.
@@ -16634,10 +17088,11 @@ func (s *Mustache) SetValue(v bool) *Mustache {
 
 // The Amazon Simple Notification Service topic to which Amazon Rekognition
 // publishes the completion status of a video analysis operation. For more information,
-// see api-video. Note that the Amazon SNS topic must have a topic name that
-// begins with AmazonRekognition if you are using the AmazonRekognitionServiceRole
-// permissions policy to access the topic. For more information, see Giving
-// access to multiple Amazon SNS topics (https://docs.aws.amazon.com/rekognition/latest/dg/api-video-roles.html#api-video-roles-all-topics).
+// see Calling Amazon Rekognition Video operations (https://docs.aws.amazon.com/rekognition/latest/dg/api-video.html).
+// Note that the Amazon SNS topic must have a topic name that begins with AmazonRekognition
+// if you are using the AmazonRekognitionServiceRole permissions policy to access
+// the topic. For more information, see Giving access to multiple Amazon SNS
+// topics (https://docs.aws.amazon.com/rekognition/latest/dg/api-video-roles.html#api-video-roles-all-topics).
 type NotificationChannel struct {
 	_ struct{} `type:"structure"`
 
@@ -16647,8 +17102,7 @@ type NotificationChannel struct {
 	// RoleArn is a required field
 	RoleArn *string `type:"string" required:"true"`
 
-	// The Amazon SNS topic to which Amazon Rekognition to posts the completion
-	// status.
+	// The Amazon SNS topic to which Amazon Rekognition posts the completion status.
 	//
 	// SNSTopicArn is a required field
 	SNSTopicArn *string `type:"string" required:"true"`
@@ -16942,14 +17396,15 @@ func (s *PersonMatch) SetTimestamp(v int64) *PersonMatch {
 	return s
 }
 
-// The X and Y coordinates of a point on an image. The X and Y values returned
-// are ratios of the overall image size. For example, if the input image is
-// 700x200 and the operation returns X=0.5 and Y=0.25, then the point is at
-// the (350,50) pixel coordinate on the image.
+// The X and Y coordinates of a point on an image or video frame. The X and
+// Y values are ratios of the overall image size or video resolution. For example,
+// if an input image is 700x200 and the values are X=0.5 and Y=0.25, then the
+// point is at the (350,50) pixel coordinate on the image.
 //
-// An array of Point objects, Polygon, is returned by DetectText and by DetectCustomLabels.
-// Polygon represents a fine-grained polygon around a detected item. For more
-// information, see Geometry in the Amazon Rekognition Developer Guide.
+// An array of Point objects makes up a Polygon. A Polygon is returned by DetectText
+// and by DetectCustomLabels Polygon represents a fine-grained polygon around
+// a detected item. For more information, see Geometry in the Amazon Rekognition
+// Developer Guide.
 type Point struct {
 	_ struct{} `type:"structure"`
 
@@ -17698,17 +18153,23 @@ func (s *RecognizeCelebritiesOutput) SetUnrecognizedFaces(v []*ComparedFace) *Re
 	return s
 }
 
-// Specifies a location within the frame that Rekognition checks for text. Uses
-// a BoundingBox object to set a region of the screen.
+// Specifies a location within the frame that Rekognition checks for objects
+// of interest such as text, labels, or faces. It uses a BoundingBox or object
+// or Polygon to set a region of the screen.
 //
-// A word is included in the region if the word is more than half in that region.
-// If there is more than one region, the word will be compared with all regions
-// of the screen. Any word more than half in a region is kept in the results.
+// A word, face, or label is included in the region if it is more than half
+// in that region. If there is more than one region, the word, face, or label
+// is compared with all regions of the screen. Any object of interest that is
+// more than half in a region is kept in the results.
 type RegionOfInterest struct {
 	_ struct{} `type:"structure"`
 
 	// The box representing a region of interest on screen.
 	BoundingBox *BoundingBox `type:"structure"`
+
+	// Specifies a shape made up of up to 10 Point objects to define a region of
+	// interest.
+	Polygon []*Point `type:"list"`
 }
 
 // String returns the string representation.
@@ -17732,6 +18193,12 @@ func (s RegionOfInterest) GoString() string {
 // SetBoundingBox sets the BoundingBox field's value.
 func (s *RegionOfInterest) SetBoundingBox(v *BoundingBox) *RegionOfInterest {
 	s.BoundingBox = v
+	return s
+}
+
+// SetPolygon sets the Polygon field's value.
+func (s *RegionOfInterest) SetPolygon(v []*Point) *RegionOfInterest {
+	s.Polygon = v
 	return s
 }
 
@@ -17992,14 +18459,73 @@ func (s *ResourceNotReadyException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The Amazon S3 bucket location to which Amazon Rekognition publishes the detailed
+// inference results of a video analysis operation. These results include the
+// name of the stream processor resource, the session ID of the stream processing
+// session, and labeled timestamps and bounding boxes for detected labels.
+type S3Destination struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon S3 bucket you want to associate with the streaming
+	// video project. You must be the owner of the Amazon S3 bucket.
+	Bucket *string `min:"3" type:"string"`
+
+	// The prefix value of the location within the bucket that you want the information
+	// to be published to. For more information, see Using prefixes (https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html).
+	KeyPrefix *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Destination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Destination) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3Destination) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3Destination"}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *S3Destination) SetBucket(v string) *S3Destination {
+	s.Bucket = &v
+	return s
+}
+
+// SetKeyPrefix sets the KeyPrefix field's value.
+func (s *S3Destination) SetKeyPrefix(v string) *S3Destination {
+	s.KeyPrefix = &v
+	return s
+}
+
 // Provides the S3 bucket name and object name.
 //
 // The region for the S3 bucket containing the S3 object must match the region
 // you use for Amazon Rekognition operations.
 //
 // For Amazon Rekognition to process an S3 object, the user must have permission
-// to access the S3 object. For more information, see Resource-Based Policies
-// in the Amazon Rekognition Developer Guide.
+// to access the S3 object. For more information, see How Amazon Rekognition
+// works with IAM in the Amazon Rekognition Developer Guide.
 type S3Object struct {
 	_ struct{} `type:"structure"`
 
@@ -18193,8 +18719,8 @@ type SearchFacesByImageOutput struct {
 	// the match.
 	FaceMatches []*FaceMatch `type:"list"`
 
-	// Latest face model being used with the collection. For more information, see
-	// Model versioning (https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html).
+	// Version number of the face detection model associated with the input collection
+	// (CollectionId).
 	FaceModelVersion *string `type:"string"`
 
 	// The bounding box around the face in the input image that Amazon Rekognition
@@ -18341,8 +18867,8 @@ type SearchFacesOutput struct {
 	// in the match.
 	FaceMatches []*FaceMatch `type:"list"`
 
-	// Latest face model being used with the collection. For more information, see
-	// Model versioning (https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html).
+	// Version number of the face detection model associated with the input collection
+	// (CollectionId).
 	FaceModelVersion *string `type:"string"`
 
 	// ID of the face that was searched for matches in a collection.
@@ -18572,7 +19098,8 @@ func (s *SegmentTypeInfo) SetType(v string) *SegmentTypeInfo {
 }
 
 // The size of the collection exceeds the allowed limit. For more information,
-// see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+// see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
+// Developer Guide.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -19966,6 +20493,21 @@ type StartStreamProcessorInput struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// Specifies the starting point in the Kinesis stream to start processing. You
+	// can use the producer timestamp or the fragment number. For more information,
+	// see Fragment (https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_Fragment.html).
+	//
+	// This is a required parameter for label detection stream processors and should
+	// not be used to start a face search stream processor.
+	StartSelector *StreamProcessingStartSelector `type:"structure"`
+
+	// Specifies when to stop processing the stream. You can specify a maximum amount
+	// of time to process the video.
+	//
+	// This is a required parameter for label detection stream processors and should
+	// not be used to start a face search stream processor.
+	StopSelector *StreamProcessingStopSelector `type:"structure"`
 }
 
 // String returns the string representation.
@@ -19995,6 +20537,16 @@ func (s *StartStreamProcessorInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.StartSelector != nil {
+		if err := s.StartSelector.Validate(); err != nil {
+			invalidParams.AddNested("StartSelector", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StopSelector != nil {
+		if err := s.StopSelector.Validate(); err != nil {
+			invalidParams.AddNested("StopSelector", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -20008,8 +20560,23 @@ func (s *StartStreamProcessorInput) SetName(v string) *StartStreamProcessorInput
 	return s
 }
 
+// SetStartSelector sets the StartSelector field's value.
+func (s *StartStreamProcessorInput) SetStartSelector(v *StreamProcessingStartSelector) *StartStreamProcessorInput {
+	s.StartSelector = v
+	return s
+}
+
+// SetStopSelector sets the StopSelector field's value.
+func (s *StartStreamProcessorInput) SetStopSelector(v *StreamProcessingStopSelector) *StartStreamProcessorInput {
+	s.StopSelector = v
+	return s
+}
+
 type StartStreamProcessorOutput struct {
 	_ struct{} `type:"structure"`
+
+	// A unique identifier for the stream processing session.
+	SessionId *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -20028,6 +20595,12 @@ func (s StartStreamProcessorOutput) String() string {
 // value will be replaced with "sensitive".
 func (s StartStreamProcessorOutput) GoString() string {
 	return s.String()
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *StartStreamProcessorOutput) SetSessionId(v string) *StartStreamProcessorOutput {
+	s.SessionId = &v
+	return s
 }
 
 // Filters for the technical segments returned by GetSegmentDetection. For more
@@ -20160,10 +20733,11 @@ type StartTextDetectionInput struct {
 
 	// The Amazon Simple Notification Service topic to which Amazon Rekognition
 	// publishes the completion status of a video analysis operation. For more information,
-	// see api-video. Note that the Amazon SNS topic must have a topic name that
-	// begins with AmazonRekognition if you are using the AmazonRekognitionServiceRole
-	// permissions policy to access the topic. For more information, see Giving
-	// access to multiple Amazon SNS topics (https://docs.aws.amazon.com/rekognition/latest/dg/api-video-roles.html#api-video-roles-all-topics).
+	// see Calling Amazon Rekognition Video operations (https://docs.aws.amazon.com/rekognition/latest/dg/api-video.html).
+	// Note that the Amazon SNS topic must have a topic name that begins with AmazonRekognition
+	// if you are using the AmazonRekognitionServiceRole permissions policy to access
+	// the topic. For more information, see Giving access to multiple Amazon SNS
+	// topics (https://docs.aws.amazon.com/rekognition/latest/dg/api-video-roles.html#api-video-roles-all-topics).
 	NotificationChannel *NotificationChannel `type:"structure"`
 
 	// Video file stored in an Amazon S3 bucket. Amazon Rekognition video start
@@ -20437,11 +21011,106 @@ func (s StopStreamProcessorOutput) GoString() string {
 	return s.String()
 }
 
-// An object that recognizes faces in a streaming video. An Amazon Rekognition
-// stream processor is created by a call to CreateStreamProcessor. The request
-// parameters for CreateStreamProcessor describe the Kinesis video stream source
-// for the streaming video, face recognition parameters, and where to stream
-// the analysis resullts.
+type StreamProcessingStartSelector struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the starting point in the stream to start processing. This can
+	// be done with a timestamp or a fragment number in a Kinesis stream.
+	KVSStreamStartSelector *KinesisVideoStreamStartSelector `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamProcessingStartSelector) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamProcessingStartSelector) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StreamProcessingStartSelector) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StreamProcessingStartSelector"}
+	if s.KVSStreamStartSelector != nil {
+		if err := s.KVSStreamStartSelector.Validate(); err != nil {
+			invalidParams.AddNested("KVSStreamStartSelector", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKVSStreamStartSelector sets the KVSStreamStartSelector field's value.
+func (s *StreamProcessingStartSelector) SetKVSStreamStartSelector(v *KinesisVideoStreamStartSelector) *StreamProcessingStartSelector {
+	s.KVSStreamStartSelector = v
+	return s
+}
+
+// Specifies when to stop processing the stream. You can specify a maximum amount
+// of time to process the video.
+type StreamProcessingStopSelector struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the maximum amount of time in seconds that you want the stream
+	// to be processed. The largest amount of time is 2 minutes. The default is
+	// 10 seconds.
+	MaxDurationInSeconds *int64 `min:"1" type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamProcessingStopSelector) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamProcessingStopSelector) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StreamProcessingStopSelector) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StreamProcessingStopSelector"}
+	if s.MaxDurationInSeconds != nil && *s.MaxDurationInSeconds < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxDurationInSeconds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxDurationInSeconds sets the MaxDurationInSeconds field's value.
+func (s *StreamProcessingStopSelector) SetMaxDurationInSeconds(v int64) *StreamProcessingStopSelector {
+	s.MaxDurationInSeconds = &v
+	return s
+}
+
+// An object that recognizes faces or labels in a streaming video. An Amazon
+// Rekognition stream processor is created by a call to CreateStreamProcessor.
+// The request parameters for CreateStreamProcessor describe the Kinesis video
+// stream source for the streaming video, face recognition parameters, and where
+// to stream the analysis resullts.
 type StreamProcessor struct {
 	_ struct{} `type:"structure"`
 
@@ -20482,6 +21151,57 @@ func (s *StreamProcessor) SetStatus(v string) *StreamProcessor {
 	return s
 }
 
+// Allows you to opt in or opt out to share data with Rekognition to improve
+// model performance. You can choose this option at the account level or on
+// a per-stream basis. Note that if you opt out at the account level this setting
+// is ignored on individual streams.
+type StreamProcessorDataSharingPreference struct {
+	_ struct{} `type:"structure"`
+
+	// If this option is set to true, you choose to share data with Rekognition
+	// to improve model performance.
+	//
+	// OptIn is a required field
+	OptIn *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamProcessorDataSharingPreference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamProcessorDataSharingPreference) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StreamProcessorDataSharingPreference) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StreamProcessorDataSharingPreference"}
+	if s.OptIn == nil {
+		invalidParams.Add(request.NewErrParamRequired("OptIn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOptIn sets the OptIn field's value.
+func (s *StreamProcessorDataSharingPreference) SetOptIn(v bool) *StreamProcessorDataSharingPreference {
+	s.OptIn = &v
+	return s
+}
+
 // Information about the source streaming video.
 type StreamProcessorInput struct {
 	_ struct{} `type:"structure"`
@@ -20514,6 +21234,65 @@ func (s *StreamProcessorInput) SetKinesisVideoStream(v *KinesisVideoStream) *Str
 	return s
 }
 
+// The Amazon Simple Notification Service topic to which Amazon Rekognition
+// publishes the object detection results and completion status of a video analysis
+// operation.
+//
+// Amazon Rekognition publishes a notification the first time an object of interest
+// or a person is detected in the video stream. For example, if Amazon Rekognition
+// detects a person at second 2, a pet at second 4, and a person again at second
+// 5, Amazon Rekognition sends 2 object class detected notifications, one for
+// a person at second 2 and one for a pet at second 4.
+//
+// Amazon Rekognition also publishes an an end-of-session notification with
+// a summary when the stream processing session is complete.
+type StreamProcessorNotificationChannel struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the Amazon Amazon Simple Notification
+	// Service topic to which Amazon Rekognition posts the completion status.
+	//
+	// SNSTopicArn is a required field
+	SNSTopicArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamProcessorNotificationChannel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamProcessorNotificationChannel) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StreamProcessorNotificationChannel) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StreamProcessorNotificationChannel"}
+	if s.SNSTopicArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SNSTopicArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSNSTopicArn sets the SNSTopicArn field's value.
+func (s *StreamProcessorNotificationChannel) SetSNSTopicArn(v string) *StreamProcessorNotificationChannel {
+	s.SNSTopicArn = &v
+	return s
+}
+
 // Information about the Amazon Kinesis Data Streams stream to which a Amazon
 // Rekognition Video stream processor streams the results of a video analysis.
 // For more information, see CreateStreamProcessor in the Amazon Rekognition
@@ -20524,6 +21303,10 @@ type StreamProcessorOutput struct {
 	// The Amazon Kinesis Data Streams stream to which the Amazon Rekognition stream
 	// processor streams the analysis results.
 	KinesisDataStream *KinesisDataStream `type:"structure"`
+
+	// The Amazon S3 bucket location to which Amazon Rekognition publishes the detailed
+	// inference results of a video analysis operation.
+	S3Destination *S3Destination `type:"structure"`
 }
 
 // String returns the string representation.
@@ -20544,16 +21327,49 @@ func (s StreamProcessorOutput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StreamProcessorOutput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StreamProcessorOutput"}
+	if s.S3Destination != nil {
+		if err := s.S3Destination.Validate(); err != nil {
+			invalidParams.AddNested("S3Destination", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetKinesisDataStream sets the KinesisDataStream field's value.
 func (s *StreamProcessorOutput) SetKinesisDataStream(v *KinesisDataStream) *StreamProcessorOutput {
 	s.KinesisDataStream = v
 	return s
 }
 
-// Input parameters used to recognize faces in a streaming video analyzed by
-// a Amazon Rekognition stream processor.
+// SetS3Destination sets the S3Destination field's value.
+func (s *StreamProcessorOutput) SetS3Destination(v *S3Destination) *StreamProcessorOutput {
+	s.S3Destination = v
+	return s
+}
+
+// Input parameters used in a streaming video analyzed by a Amazon Rekognition
+// stream processor. You can use FaceSearch to recognize faces in a streaming
+// video, or you can use ConnectedHome to detect labels.
 type StreamProcessorSettings struct {
 	_ struct{} `type:"structure"`
+
+	// Label detection settings to use on a streaming video. Defining the settings
+	// is required in the request parameter for CreateStreamProcessor. Including
+	// this setting in the CreateStreamProcessor request enables you to use the
+	// stream processor for label detection. You can then select what you want the
+	// stream processor to detect, such as people or pets. When the stream processor
+	// has started, one notification is sent for each object class specified. For
+	// example, if packages and pets are selected, one SNS notification is published
+	// the first time a package is detected and one SNS notification is published
+	// the first time a pet is detected, as well as an end-of-session summary.
+	ConnectedHome *ConnectedHomeSettings `type:"structure"`
 
 	// Face search settings to use on a streaming video.
 	FaceSearch *FaceSearchSettings `type:"structure"`
@@ -20580,6 +21396,11 @@ func (s StreamProcessorSettings) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StreamProcessorSettings) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StreamProcessorSettings"}
+	if s.ConnectedHome != nil {
+		if err := s.ConnectedHome.Validate(); err != nil {
+			invalidParams.AddNested("ConnectedHome", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.FaceSearch != nil {
 		if err := s.FaceSearch.Validate(); err != nil {
 			invalidParams.AddNested("FaceSearch", err.(request.ErrInvalidParams))
@@ -20592,9 +21413,63 @@ func (s *StreamProcessorSettings) Validate() error {
 	return nil
 }
 
+// SetConnectedHome sets the ConnectedHome field's value.
+func (s *StreamProcessorSettings) SetConnectedHome(v *ConnectedHomeSettings) *StreamProcessorSettings {
+	s.ConnectedHome = v
+	return s
+}
+
 // SetFaceSearch sets the FaceSearch field's value.
 func (s *StreamProcessorSettings) SetFaceSearch(v *FaceSearchSettings) *StreamProcessorSettings {
 	s.FaceSearch = v
+	return s
+}
+
+// The stream processor settings that you want to update. ConnectedHome settings
+// can be updated to detect different labels with a different minimum confidence.
+type StreamProcessorSettingsForUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// The label detection settings you want to use for your stream processor.
+	ConnectedHomeForUpdate *ConnectedHomeSettingsForUpdate `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamProcessorSettingsForUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamProcessorSettingsForUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StreamProcessorSettingsForUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StreamProcessorSettingsForUpdate"}
+	if s.ConnectedHomeForUpdate != nil {
+		if err := s.ConnectedHomeForUpdate.Validate(); err != nil {
+			invalidParams.AddNested("ConnectedHomeForUpdate", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectedHomeForUpdate sets the ConnectedHomeForUpdate field's value.
+func (s *StreamProcessorSettingsForUpdate) SetConnectedHomeForUpdate(v *ConnectedHomeSettingsForUpdate) *StreamProcessorSettingsForUpdate {
+	s.ConnectedHomeForUpdate = v
 	return s
 }
 
@@ -20612,8 +21487,8 @@ type Summary struct {
 	// you use for Amazon Rekognition operations.
 	//
 	// For Amazon Rekognition to process an S3 object, the user must have permission
-	// to access the S3 object. For more information, see Resource-Based Policies
-	// in the Amazon Rekognition Developer Guide.
+	// to access the S3 object. For more information, see How Amazon Rekognition
+	// works with IAM in the Amazon Rekognition Developer Guide.
 	S3Object *S3Object `type:"structure"`
 }
 
@@ -20940,7 +21815,7 @@ func (s *TestingDataResult) SetValidation(v *ValidationData) *TestingDataResult 
 // the word appears. The word Id is also an index for the word within a line
 // of words.
 //
-// For more information, see Detecting Text in the Amazon Rekognition Developer
+// For more information, see Detecting text in the Amazon Rekognition Developer
 // Guide.
 type TextDetection struct {
 	_ struct{} `type:"structure"`
@@ -21467,6 +22342,128 @@ func (s UpdateDatasetEntriesOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s UpdateDatasetEntriesOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateStreamProcessorInput struct {
+	_ struct{} `type:"structure"`
+
+	// Shows whether you are sharing data with Rekognition to improve model performance.
+	// You can choose this option at the account level or on a per-stream basis.
+	// Note that if you opt out at the account level this setting is ignored on
+	// individual streams.
+	DataSharingPreferenceForUpdate *StreamProcessorDataSharingPreference `type:"structure"`
+
+	// Name of the stream processor that you want to update.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// A list of parameters you want to delete from the stream processor.
+	ParametersToDelete []*string `type:"list" enum:"StreamProcessorParameterToDelete"`
+
+	// Specifies locations in the frames where Amazon Rekognition checks for objects
+	// or people. This is an optional parameter for label detection stream processors.
+	RegionsOfInterestForUpdate []*RegionOfInterest `type:"list"`
+
+	// The stream processor settings that you want to update. Label detection settings
+	// can be updated to detect different labels with a different minimum confidence.
+	SettingsForUpdate *StreamProcessorSettingsForUpdate `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStreamProcessorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStreamProcessorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateStreamProcessorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateStreamProcessorInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.DataSharingPreferenceForUpdate != nil {
+		if err := s.DataSharingPreferenceForUpdate.Validate(); err != nil {
+			invalidParams.AddNested("DataSharingPreferenceForUpdate", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SettingsForUpdate != nil {
+		if err := s.SettingsForUpdate.Validate(); err != nil {
+			invalidParams.AddNested("SettingsForUpdate", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSharingPreferenceForUpdate sets the DataSharingPreferenceForUpdate field's value.
+func (s *UpdateStreamProcessorInput) SetDataSharingPreferenceForUpdate(v *StreamProcessorDataSharingPreference) *UpdateStreamProcessorInput {
+	s.DataSharingPreferenceForUpdate = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateStreamProcessorInput) SetName(v string) *UpdateStreamProcessorInput {
+	s.Name = &v
+	return s
+}
+
+// SetParametersToDelete sets the ParametersToDelete field's value.
+func (s *UpdateStreamProcessorInput) SetParametersToDelete(v []*string) *UpdateStreamProcessorInput {
+	s.ParametersToDelete = v
+	return s
+}
+
+// SetRegionsOfInterestForUpdate sets the RegionsOfInterestForUpdate field's value.
+func (s *UpdateStreamProcessorInput) SetRegionsOfInterestForUpdate(v []*RegionOfInterest) *UpdateStreamProcessorInput {
+	s.RegionsOfInterestForUpdate = v
+	return s
+}
+
+// SetSettingsForUpdate sets the SettingsForUpdate field's value.
+func (s *UpdateStreamProcessorInput) SetSettingsForUpdate(v *StreamProcessorSettingsForUpdate) *UpdateStreamProcessorInput {
+	s.SettingsForUpdate = v
+	return s
+}
+
+type UpdateStreamProcessorOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStreamProcessorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStreamProcessorOutput) GoString() string {
 	return s.String()
 }
 
@@ -22343,6 +23340,22 @@ func SegmentType_Values() []string {
 }
 
 const (
+	// StreamProcessorParameterToDeleteConnectedHomeMinConfidence is a StreamProcessorParameterToDelete enum value
+	StreamProcessorParameterToDeleteConnectedHomeMinConfidence = "ConnectedHomeMinConfidence"
+
+	// StreamProcessorParameterToDeleteRegionsOfInterest is a StreamProcessorParameterToDelete enum value
+	StreamProcessorParameterToDeleteRegionsOfInterest = "RegionsOfInterest"
+)
+
+// StreamProcessorParameterToDelete_Values returns all elements of the StreamProcessorParameterToDelete enum
+func StreamProcessorParameterToDelete_Values() []string {
+	return []string{
+		StreamProcessorParameterToDeleteConnectedHomeMinConfidence,
+		StreamProcessorParameterToDeleteRegionsOfInterest,
+	}
+}
+
+const (
 	// StreamProcessorStatusStopped is a StreamProcessorStatus enum value
 	StreamProcessorStatusStopped = "STOPPED"
 
@@ -22357,6 +23370,9 @@ const (
 
 	// StreamProcessorStatusStopping is a StreamProcessorStatus enum value
 	StreamProcessorStatusStopping = "STOPPING"
+
+	// StreamProcessorStatusUpdating is a StreamProcessorStatus enum value
+	StreamProcessorStatusUpdating = "UPDATING"
 )
 
 // StreamProcessorStatus_Values returns all elements of the StreamProcessorStatus enum
@@ -22367,6 +23383,7 @@ func StreamProcessorStatus_Values() []string {
 		StreamProcessorStatusRunning,
 		StreamProcessorStatusFailed,
 		StreamProcessorStatusStopping,
+		StreamProcessorStatusUpdating,
 	}
 }
 

@@ -14,6 +14,7 @@
     "CreateDeviceProfile": "<p>Creates a new device profile.</p>",
     "CreateFuotaTask": "<p>Creates a FUOTA task.</p>",
     "CreateMulticastGroup": "<p>Creates a multicast group.</p>",
+    "CreateNetworkAnalyzerConfiguration": "<p>Creates a new network analyzer configuration.</p>",
     "CreateServiceProfile": "<p>Creates a new service profile.</p>",
     "CreateWirelessDevice": "<p>Provisions a wireless device.</p>",
     "CreateWirelessGateway": "<p>Provisions a wireless gateway.</p>",
@@ -23,7 +24,8 @@
     "DeleteDeviceProfile": "<p>Deletes a device profile.</p>",
     "DeleteFuotaTask": "<p>Deletes a FUOTA task.</p>",
     "DeleteMulticastGroup": "<p>Deletes a multicast group if it is not in use by a fuota task.</p>",
-    "DeleteQueuedMessages": "<p> The operation to delete queued messages. </p>",
+    "DeleteNetworkAnalyzerConfiguration": "<p>Deletes a network analyzer configuration.</p>",
+    "DeleteQueuedMessages": "<p>Remove queued messages from the downlink queue.</p>",
     "DeleteServiceProfile": "<p>Deletes a service profile.</p>",
     "DeleteWirelessDevice": "<p>Deletes a wireless device.</p>",
     "DeleteWirelessGateway": "<p>Deletes a wireless gateway.</p>",
@@ -38,11 +40,12 @@
     "DisassociateWirelessGatewayFromThing": "<p>Disassociates a wireless gateway from its currently associated thing.</p>",
     "GetDestination": "<p>Gets information about a destination.</p>",
     "GetDeviceProfile": "<p>Gets information about a device profile.</p>",
+    "GetEventConfigurationByResourceTypes": "<p>Get the event configuration by resource types.</p>",
     "GetFuotaTask": "<p>Gets information about a FUOTA task.</p>",
     "GetLogLevelsByResourceTypes": "<p>Returns current default log levels or log levels by resource types. Based on resource types, log levels can be for wireless device log options or wireless gateway log options.</p>",
     "GetMulticastGroup": "<p>Gets information about a multicast group.</p>",
     "GetMulticastGroupSession": "<p>Gets information about a multicast group session.</p>",
-    "GetNetworkAnalyzerConfiguration": "<p>Get NetworkAnalyzer configuration.</p>",
+    "GetNetworkAnalyzerConfiguration": "<p>Get network analyzer configuration.</p>",
     "GetPartnerAccount": "<p>Gets information about a partner account. If <code>PartnerAccountId</code> and <code>PartnerType</code> are <code>null</code>, returns all partner accounts.</p>",
     "GetResourceEventConfiguration": "<p>Get the event configuration for a particular resource identifier.</p>",
     "GetResourceLogLevel": "<p>Fetches the log-level override, if any, for a given resource-ID and resource-type. It can be used for a wireless device or a wireless gateway.</p>",
@@ -58,11 +61,13 @@
     "GetWirelessGatewayTaskDefinition": "<p>Gets information about a wireless gateway task definition.</p>",
     "ListDestinations": "<p>Lists the destinations registered to your AWS account.</p>",
     "ListDeviceProfiles": "<p>Lists the device profiles registered to your AWS account.</p>",
+    "ListEventConfigurations": "<p>List event configurations where at least one event topic has been enabled.</p>",
     "ListFuotaTasks": "<p>Lists the FUOTA tasks registered to your AWS account.</p>",
     "ListMulticastGroups": "<p>Lists the multicast groups registered to your AWS account.</p>",
     "ListMulticastGroupsByFuotaTask": "<p>List all multicast groups associated with a fuota task.</p>",
+    "ListNetworkAnalyzerConfigurations": "<p>Lists the network analyzer configurations.</p>",
     "ListPartnerAccounts": "<p>Lists the partner accounts associated with your AWS account.</p>",
-    "ListQueuedMessages": "<p>The operation to list queued messages. </p>",
+    "ListQueuedMessages": "<p>List queued messages in the downlink queue.</p>",
     "ListServiceProfiles": "<p>Lists the service profiles registered to your AWS account.</p>",
     "ListTagsForResource": "<p>Lists the tags (metadata) you have assigned to the resource.</p>",
     "ListWirelessDevices": "<p>Lists the wireless devices registered to your AWS account.</p>",
@@ -81,10 +86,11 @@
     "TestWirelessDevice": "<p>Simulates a provisioned device by sending an uplink data payload of <code>Hello</code>.</p>",
     "UntagResource": "<p>Removes one or more tags from a resource.</p>",
     "UpdateDestination": "<p>Updates properties of a destination.</p>",
+    "UpdateEventConfigurationByResourceTypes": "<p>Update the event configuration by resource types.</p>",
     "UpdateFuotaTask": "<p>Updates properties of a FUOTA task.</p>",
     "UpdateLogLevelsByResourceTypes": "<p>Set default log level, or log levels by resource types. This can be for wireless device log options or wireless gateways log options and is used to control the log messages that'll be displayed in CloudWatch.</p>",
     "UpdateMulticastGroup": "<p>Updates properties of a multicast group session.</p>",
-    "UpdateNetworkAnalyzerConfiguration": "<p>Update NetworkAnalyzer configuration.</p>",
+    "UpdateNetworkAnalyzerConfiguration": "<p>Update network analyzer configuration.</p>",
     "UpdatePartnerAccount": "<p>Updates properties of a partner account.</p>",
     "UpdateResourceEventConfiguration": "<p>Update the event configuration for a particular resource identifier.</p>",
     "UpdateWirelessDevice": "<p>Updates properties of a wireless device.</p>",
@@ -303,6 +309,7 @@
         "CreateDeviceProfileRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. If you try to create a new resource with the same token as a resource that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>",
         "CreateFuotaTaskRequest$ClientRequestToken": null,
         "CreateMulticastGroupRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. If you try to create a new resource with the same token as a resource that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>",
+        "CreateNetworkAnalyzerConfigurationRequest$ClientRequestToken": null,
         "CreateServiceProfileRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. If you try to create a new resource with the same token as a resource that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>",
         "CreateWirelessDeviceRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. If you try to create a new resource with the same token as a resource that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>",
         "CreateWirelessGatewayRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. If you try to create a new resource with the same token as a resource that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>",
@@ -318,6 +325,21 @@
       "base": null,
       "refs": {
         "GetWirelessGatewayStatisticsResponse$ConnectionStatus": "<p>The connection status of the wireless gateway.</p>"
+      }
+    },
+    "ConnectionStatusEventConfiguration": {
+      "base": "<p>Connection status event configuration object for enabling or disabling topic.</p>",
+      "refs": {
+        "EventNotificationItemConfigurations$ConnectionStatus": "<p>Connection status event configuration for an event configuration item.</p>",
+        "GetResourceEventConfigurationResponse$ConnectionStatus": "<p>Event configuration for the connection status event.</p>",
+        "UpdateResourceEventConfigurationRequest$ConnectionStatus": "<p>Event configuration for the connection status event</p>"
+      }
+    },
+    "ConnectionStatusResourceTypeEventConfiguration": {
+      "base": "<p>Connection status resource type event configuration object for enabling or disabling topic.</p>",
+      "refs": {
+        "GetEventConfigurationByResourceTypesResponse$ConnectionStatus": "<p>Resource type event configuration for the connection status event</p>",
+        "UpdateEventConfigurationByResourceTypesRequest$ConnectionStatus": "<p>Connection status resource type event configuration object for enabling and disabling wireless gateway topic.</p>"
       }
     },
     "Crc": {
@@ -362,6 +384,16 @@
       }
     },
     "CreateMulticastGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateNetworkAnalyzerConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateNetworkAnalyzerConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -463,6 +495,16 @@
       "refs": {
       }
     },
+    "DeleteNetworkAnalyzerConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteNetworkAnalyzerConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteQueuedMessagesRequest": {
       "base": null,
       "refs": {
@@ -529,17 +571,20 @@
         "CreateDestinationRequest$Description": "<p>The description of the new resource.</p>",
         "CreateFuotaTaskRequest$Description": null,
         "CreateMulticastGroupRequest$Description": "<p>The description of the multicast group.</p>",
+        "CreateNetworkAnalyzerConfigurationRequest$Description": null,
         "CreateWirelessDeviceRequest$Description": "<p>The description of the new resource.</p>",
         "CreateWirelessGatewayRequest$Description": "<p>The description of the new resource.</p>",
         "Destinations$Description": "<p>The description of the resource.</p>",
         "GetDestinationResponse$Description": "<p>The description of the resource.</p>",
         "GetFuotaTaskResponse$Description": null,
         "GetMulticastGroupResponse$Description": null,
+        "GetNetworkAnalyzerConfigurationResponse$Description": null,
         "GetWirelessDeviceResponse$Description": "<p>The description of the resource.</p>",
         "GetWirelessGatewayResponse$Description": "<p>The description of the resource.</p>",
         "UpdateDestinationRequest$Description": "<p>A new description of the resource.</p>",
         "UpdateFuotaTaskRequest$Description": null,
         "UpdateMulticastGroupRequest$Description": null,
+        "UpdateNetworkAnalyzerConfigurationRequest$Description": null,
         "UpdateWirelessDeviceRequest$Description": "<p>A new description of the resource.</p>",
         "UpdateWirelessGatewayRequest$Description": "<p>A new description of the resource.</p>",
         "WirelessGatewayStatistics$Description": "<p>The description of the resource.</p>"
@@ -654,8 +699,16 @@
     "DeviceRegistrationStateEventConfiguration": {
       "base": "<p>Device registration state event configuration object for enabling and disabling relevant topics.</p>",
       "refs": {
+        "EventNotificationItemConfigurations$DeviceRegistrationState": "<p>Device registration state event configuration for an event configuration item.</p>",
         "GetResourceEventConfigurationResponse$DeviceRegistrationState": "<p>Event configuration for the device registration state event</p>",
         "UpdateResourceEventConfigurationRequest$DeviceRegistrationState": "<p>Event configuration for the device registration state event</p>"
+      }
+    },
+    "DeviceRegistrationStateResourceTypeEventConfiguration": {
+      "base": "<p>Device registration state resource type event configuration object for enabling or disabling topic.</p>",
+      "refs": {
+        "GetEventConfigurationByResourceTypesResponse$DeviceRegistrationState": "<p>Resource type event configuration for the device registration state event</p>",
+        "UpdateEventConfigurationByResourceTypesRequest$DeviceRegistrationState": "<p>Device registration state resource type event configuration object for enabling and disabling wireless gateway topic.</p>"
       }
     },
     "DeviceState": {
@@ -779,7 +832,7 @@
       }
     },
     "DownlinkQueueMessage": {
-      "base": "<p>The message in downlink queue.</p>",
+      "base": "<p>The message in the downlink queue.</p>",
       "refs": {
         "DownlinkQueueMessagesList$member": null
       }
@@ -787,7 +840,7 @@
     "DownlinkQueueMessagesList": {
       "base": null,
       "refs": {
-        "ListQueuedMessagesResponse$DownlinkQueueMessagesList": "<p>The messages in downlink queue.</p>"
+        "ListQueuedMessagesResponse$DownlinkQueueMessagesList": "<p>The messages in the downlink queue.</p>"
       }
     },
     "DrMax": {
@@ -814,17 +867,51 @@
         "SidewalkDeviceMetadata$Event": "<p>Sidewalk device status notification.</p>"
       }
     },
+    "EventConfigurationItem": {
+      "base": "<p>Event configuration object for a single resource.</p>",
+      "refs": {
+        "EventConfigurationsList$member": null
+      }
+    },
+    "EventConfigurationsList": {
+      "base": null,
+      "refs": {
+        "ListEventConfigurationsResponse$EventConfigurationsList": "<p>Event configurations of all events for a single resource.</p>"
+      }
+    },
+    "EventNotificationItemConfigurations": {
+      "base": "<p>Object of all event configurations and the status of the event topics.</p>",
+      "refs": {
+        "EventConfigurationItem$Events": null
+      }
+    },
     "EventNotificationPartnerType": {
       "base": null,
       "refs": {
+        "EventConfigurationItem$PartnerType": "<p>Partner type of the resource if the identifier type is PartnerAccountId.</p>",
         "GetResourceEventConfigurationRequest$PartnerType": "<p>Partner type of the resource if the identifier type is PartnerAccountId.</p>",
         "UpdateResourceEventConfigurationRequest$PartnerType": "<p>Partner type of the resource if the identifier type is PartnerAccountId</p>"
+      }
+    },
+    "EventNotificationResourceType": {
+      "base": null,
+      "refs": {
+        "ListEventConfigurationsRequest$ResourceType": "<p>Resource type to filter event configurations.</p>"
       }
     },
     "EventNotificationTopicStatus": {
       "base": null,
       "refs": {
-        "SidewalkEventNotificationConfigurations$AmazonIdEventTopic": "<p>Enum to denote whether amazon id event topic is enabled or disabled.</p>"
+        "ConnectionStatusEventConfiguration$WirelessGatewayIdEventTopic": "<p>Enum to denote whether the wireless gateway id connection status event topic is enabled or disabled .</p>",
+        "DeviceRegistrationStateEventConfiguration$WirelessDeviceIdEventTopic": "<p>Enum to denote whether the wireless device id device registration state event topic is enabled or disabled.</p>",
+        "JoinEventConfiguration$WirelessDeviceIdEventTopic": "<p>Enum to denote whether the wireless device id join event topic is enabled or disabled.</p>",
+        "LoRaWANConnectionStatusEventNotificationConfigurations$GatewayEuiEventTopic": "<p>Enum to denote whether the gateway eui connection status event topic is enabled or disabled.</p>",
+        "LoRaWANConnectionStatusResourceTypeEventConfiguration$WirelessGatewayEventTopic": "<p>Enum to denote whether the wireless gateway connection status event topic is enabled or disabled.</p>",
+        "LoRaWANJoinEventNotificationConfigurations$DevEuiEventTopic": "<p>Enum to denote whether the dev eui join event topic is enabled or disabled.</p>",
+        "LoRaWANJoinResourceTypeEventConfiguration$WirelessDeviceEventTopic": "<p>Enum to denote whether the wireless device join event topic is enabled or disabled.</p>",
+        "ProximityEventConfiguration$WirelessDeviceIdEventTopic": "<p>Enum to denote whether the wireless device id proximity event topic is enabled or disabled.</p>",
+        "SidewalkEventNotificationConfigurations$AmazonIdEventTopic": "<p>Enum to denote whether amazon id event topic is enabled or disabled.</p>",
+        "SidewalkResourceTypeEventConfiguration$WirelessDeviceEventTopic": "<p>Enum to denote whether the wireless device join event topic is enabled or disabled.</p>"
       }
     },
     "Expression": {
@@ -843,6 +930,15 @@
         "Destinations$ExpressionType": "<p>The type of value in <code>Expression</code>.</p>",
         "GetDestinationResponse$ExpressionType": "<p>The type of value in <code>Expression</code>.</p>",
         "UpdateDestinationRequest$ExpressionType": "<p>The type of value in <code>Expression</code>.</p>"
+      }
+    },
+    "FCntStart": {
+      "base": "<p>The FCnt init value.</p>",
+      "refs": {
+        "AbpV1_0_x$FCntStart": "<p>The FCnt init value.</p>",
+        "AbpV1_1$FCntStart": "<p>The FCnt init value.</p>",
+        "UpdateAbpV1_0_x$FCntStart": "<p>The FCnt init value.</p>",
+        "UpdateAbpV1_1$FCntStart": "<p>The FCnt init value.</p>"
       }
     },
     "FNwkSIntKey": {
@@ -983,6 +1079,16 @@
       }
     },
     "GetDeviceProfileResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEventConfigurationByResourceTypesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEventConfigurationByResourceTypesResponse": {
       "base": null,
       "refs": {
       }
@@ -1176,7 +1282,7 @@
     "ISODateTimeString": {
       "base": null,
       "refs": {
-        "DownlinkQueueMessage$ReceivedAt": "<p>The timestamp that Iot Wireless received the message.</p>",
+        "DownlinkQueueMessage$ReceivedAt": "<p>The time at which Iot Wireless received the downlink message.</p>",
         "GetWirelessDeviceStatisticsResponse$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p>",
         "GetWirelessGatewayStatisticsResponse$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p>",
         "GetWirelessGatewayTaskResponse$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p>",
@@ -1189,6 +1295,7 @@
     "Identifier": {
       "base": null,
       "refs": {
+        "EventConfigurationItem$Identifier": "<p>Resource identifier opted in for event messaging.</p>",
         "GetResourceEventConfigurationRequest$Identifier": "<p>Resource identifier to opt in for event messaging.</p>",
         "GetWirelessDeviceRequest$Identifier": "<p>The identifier of the wireless device to get.</p>",
         "GetWirelessGatewayRequest$Identifier": "<p>The identifier of the wireless gateway to get.</p>",
@@ -1198,6 +1305,7 @@
     "IdentifierType": {
       "base": null,
       "refs": {
+        "EventConfigurationItem$IdentifierType": "<p>Identifier type of the particular resource identifier for event configuration.</p>",
         "GetResourceEventConfigurationRequest$IdentifierType": "<p>Identifier type of the particular resource identifier for event configuration.</p>",
         "UpdateResourceEventConfigurationRequest$IdentifierType": "<p>Identifier type of the particular resource identifier for event configuration.</p>"
       }
@@ -1245,6 +1353,21 @@
         "JoinEuiFilters$member": null
       }
     },
+    "JoinEventConfiguration": {
+      "base": "<p>Join event configuration object for enabling or disabling topic.</p>",
+      "refs": {
+        "EventNotificationItemConfigurations$Join": "<p>Join event configuration for an event configuration item.</p>",
+        "GetResourceEventConfigurationResponse$Join": "<p>Event configuration for the join event.</p>",
+        "UpdateResourceEventConfigurationRequest$Join": "<p>Event configuration for the join event</p>"
+      }
+    },
+    "JoinResourceTypeEventConfiguration": {
+      "base": "<p>Join resource type event configuration object for enabling or disabling topic.</p>",
+      "refs": {
+        "GetEventConfigurationByResourceTypesResponse$Join": "<p>Resource type event configuration for the join event</p>",
+        "UpdateEventConfigurationByResourceTypesRequest$Join": "<p>Join resource type event configuration object for enabling and disabling wireless device topic.</p>"
+      }
+    },
     "ListDestinationsRequest": {
       "base": null,
       "refs": {
@@ -1261,6 +1384,16 @@
       }
     },
     "ListDeviceProfilesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEventConfigurationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEventConfigurationsResponse": {
       "base": null,
       "refs": {
       }
@@ -1291,6 +1424,16 @@
       }
     },
     "ListMulticastGroupsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListNetworkAnalyzerConfigurationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListNetworkAnalyzerConfigurationsResponse": {
       "base": null,
       "refs": {
       }
@@ -1363,6 +1506,18 @@
     "ListWirelessGatewaysResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "LoRaWANConnectionStatusEventNotificationConfigurations": {
+      "base": "<p>Object for LoRaWAN connection status resource type event configuration.</p>",
+      "refs": {
+        "ConnectionStatusEventConfiguration$LoRaWAN": "<p>Connection status event configuration object for enabling or disabling LoRaWAN related event topics.</p>"
+      }
+    },
+    "LoRaWANConnectionStatusResourceTypeEventConfiguration": {
+      "base": "<p>Object for LoRaWAN connection status resource type event configuration.</p>",
+      "refs": {
+        "ConnectionStatusResourceTypeEventConfiguration$LoRaWAN": "<p>Connection status resource type event configuration object for enabling or disabling LoRaWAN related event topics.</p>"
       }
     },
     "LoRaWANDevice": {
@@ -1440,6 +1595,18 @@
         "GetServiceProfileResponse$LoRaWAN": "<p>Information about the service profile.</p>"
       }
     },
+    "LoRaWANJoinEventNotificationConfigurations": {
+      "base": "<p>Object for LoRaWAN join resource type event configuration.</p>",
+      "refs": {
+        "JoinEventConfiguration$LoRaWAN": "<p>Join event configuration object for enabling or disabling LoRaWAN related event topics.</p>"
+      }
+    },
+    "LoRaWANJoinResourceTypeEventConfiguration": {
+      "base": "<p>Object for LoRaWAN join resource type event configuration.</p>",
+      "refs": {
+        "JoinResourceTypeEventConfiguration$LoRaWAN": "<p>Join resource type event configuration object for enabling or disabling LoRaWAN related event topics.</p>"
+      }
+    },
     "LoRaWANListDevice": {
       "base": "<p>LoRaWAN object for list functions.</p>",
       "refs": {
@@ -1510,7 +1677,7 @@
       }
     },
     "LogLevel": {
-      "base": "<p>The log level for a log message.</p>",
+      "base": "<p>The log level for a log message. The log levels can be disabled, or set to <code>ERROR</code> to display less verbose logs containing only error information, or to <code>INFO</code> for more detailed logs.</p>",
       "refs": {
         "GetLogLevelsByResourceTypesResponse$DefaultLogLevel": null,
         "GetResourceLogLevelResponse$LogLevel": null,
@@ -1546,9 +1713,11 @@
       "refs": {
         "ListDestinationsRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
         "ListDeviceProfilesRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
+        "ListEventConfigurationsRequest$MaxResults": null,
         "ListFuotaTasksRequest$MaxResults": null,
         "ListMulticastGroupsByFuotaTaskRequest$MaxResults": null,
         "ListMulticastGroupsRequest$MaxResults": null,
+        "ListNetworkAnalyzerConfigurationsRequest$MaxResults": null,
         "ListPartnerAccountsRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
         "ListQueuedMessagesRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
         "ListServiceProfilesRequest$MaxResults": "<p>The maximum number of results to return in this operation.</p>",
@@ -1578,8 +1747,8 @@
     "MessageId": {
       "base": null,
       "refs": {
-        "DeleteQueuedMessagesRequest$MessageId": "<p>if messageID==\"*\", the queue for a particular wireless deviceId will be purged, otherwise, the specific message with messageId will be deleted </p>",
-        "DownlinkQueueMessage$MessageId": "<p> The messageId allocated by IoT Wireless for tracing purpose</p>",
+        "DeleteQueuedMessagesRequest$MessageId": "<p>If message ID is <code>\"*\"</code>, it cleares the entire downlink queue for a given device, specified by the wireless device ID. Otherwise, the downlink message with the specified message ID will be deleted.</p>",
+        "DownlinkQueueMessage$MessageId": "<p> The message ID assigned by IoT Wireless to each downlink message, which helps identify the message.</p>",
         "SendDataToWirelessDeviceResponse$MessageId": "<p>The ID of the message sent to the wireless device.</p>"
       }
     },
@@ -1702,11 +1871,36 @@
         "UpdateWirelessGatewayRequest$NetIdFilters": null
       }
     },
-    "NetworkAnalyzerConfigurationName": {
-      "base": "<p>NetworkAnalyzer configuration name.</p>",
+    "NetworkAnalyzerConfigurationArn": {
+      "base": null,
       "refs": {
+        "CreateNetworkAnalyzerConfigurationResponse$Arn": "<p>The Amazon Resource Name of the new resource.</p>",
+        "GetNetworkAnalyzerConfigurationResponse$Arn": "<p>The Amazon Resource Name of the new resource.</p>",
+        "NetworkAnalyzerConfigurations$Arn": "<p>The Amazon Resource Name of the new resource.</p>"
+      }
+    },
+    "NetworkAnalyzerConfigurationList": {
+      "base": null,
+      "refs": {
+        "ListNetworkAnalyzerConfigurationsResponse$NetworkAnalyzerConfigurationList": "<p>The list of network analyzer configurations.</p>"
+      }
+    },
+    "NetworkAnalyzerConfigurationName": {
+      "base": "<p>Name of the network analyzer configuration.</p>",
+      "refs": {
+        "CreateNetworkAnalyzerConfigurationRequest$Name": null,
+        "CreateNetworkAnalyzerConfigurationResponse$Name": null,
+        "DeleteNetworkAnalyzerConfigurationRequest$ConfigurationName": null,
         "GetNetworkAnalyzerConfigurationRequest$ConfigurationName": null,
+        "GetNetworkAnalyzerConfigurationResponse$Name": null,
+        "NetworkAnalyzerConfigurations$Name": null,
         "UpdateNetworkAnalyzerConfigurationRequest$ConfigurationName": null
+      }
+    },
+    "NetworkAnalyzerConfigurations": {
+      "base": "<p>Network analyzer configurations.</p>",
+      "refs": {
+        "NetworkAnalyzerConfigurationList$member": null
       }
     },
     "NextToken": {
@@ -1716,12 +1910,16 @@
         "ListDestinationsResponse$NextToken": "<p>The token to use to get the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListDeviceProfilesRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListDeviceProfilesResponse$NextToken": "<p>The token to use to get the next set of results, or <b>null</b> if there are no additional results.</p>",
+        "ListEventConfigurationsRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
+        "ListEventConfigurationsResponse$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListFuotaTasksRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListFuotaTasksResponse$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListMulticastGroupsByFuotaTaskRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListMulticastGroupsByFuotaTaskResponse$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListMulticastGroupsRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListMulticastGroupsResponse$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
+        "ListNetworkAnalyzerConfigurationsRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
+        "ListNetworkAnalyzerConfigurationsResponse$NextToken": "<p>The token to use to get the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListPartnerAccountsRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
         "ListPartnerAccountsResponse$NextToken": "<p>The token to use to get the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListQueuedMessagesRequest$NextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>",
@@ -1853,8 +2051,16 @@
     "ProximityEventConfiguration": {
       "base": "<p>Proximity event configuration object for enabling and disabling relevant topics.</p>",
       "refs": {
+        "EventNotificationItemConfigurations$Proximity": "<p>Proximity event configuration for an event configuration item.</p>",
         "GetResourceEventConfigurationResponse$Proximity": "<p>Event configuration for the Proximity event</p>",
         "UpdateResourceEventConfigurationRequest$Proximity": "<p>Event configuration for the Proximity event</p>"
+      }
+    },
+    "ProximityResourceTypeEventConfiguration": {
+      "base": "<p>Proximity resource type event configuration object for enabling or disabling topic.</p>",
+      "refs": {
+        "GetEventConfigurationByResourceTypesResponse$Proximity": "<p>Resource type event configuration for the proximity event</p>",
+        "UpdateEventConfigurationByResourceTypesRequest$Proximity": "<p>Proximity resource type event configuration object for enabling and disabling wireless gateway topic.</p>"
       }
     },
     "PutResourceLogLevelRequest": {
@@ -2151,6 +2357,13 @@
         "SidewalkListDevice$SidewalkManufacturingSn": "<p>The Sidewalk manufacturing series number.</p>"
       }
     },
+    "SidewalkResourceTypeEventConfiguration": {
+      "base": "<p>Sidewalk resource type event configuration object for enabling or disabling topic.</p>",
+      "refs": {
+        "DeviceRegistrationStateResourceTypeEventConfiguration$Sidewalk": "<p>Device registration resource type state event configuration object for enabling or disabling Sidewalk related event topics.</p>",
+        "ProximityResourceTypeEventConfiguration$Sidewalk": "<p>Proximity resource type event configuration object for enabling and disabling wireless device topic.</p>"
+      }
+    },
     "SidewalkSendDataToDevice": {
       "base": "<p>Information about a Sidewalk router.</p>",
       "refs": {
@@ -2293,6 +2506,7 @@
         "CreateDeviceProfileRequest$Tags": "<p>The tags to attach to the new device profile. Tags are metadata that you can use to manage a resource.</p>",
         "CreateFuotaTaskRequest$Tags": null,
         "CreateMulticastGroupRequest$Tags": null,
+        "CreateNetworkAnalyzerConfigurationRequest$Tags": null,
         "CreateServiceProfileRequest$Tags": "<p>The tags to attach to the new service profile. Tags are metadata that you can use to manage a resource.</p>",
         "CreateWirelessDeviceRequest$Tags": "<p>The tags to attach to the new wireless device. Tags are metadata that you can use to manage a resource.</p>",
         "CreateWirelessGatewayRequest$Tags": "<p>The tags to attach to the new wireless gateway. Tags are metadata that you can use to manage a resource.</p>",
@@ -2362,8 +2576,9 @@
       }
     },
     "TraceContent": {
-      "base": "<p>Trace Content for resources.</p>",
+      "base": "<p>Trace content for your wireless gateway and wireless device resources.</p>",
       "refs": {
+        "CreateNetworkAnalyzerConfigurationRequest$TraceContent": null,
         "GetNetworkAnalyzerConfigurationResponse$TraceContent": null,
         "UpdateNetworkAnalyzerConfigurationRequest$TraceContent": null
       }
@@ -2371,7 +2586,7 @@
     "TransmitMode": {
       "base": null,
       "refs": {
-        "DownlinkQueueMessage$TransmitMode": "<p>The transmit mode to use to send data to the wireless device. Can be: <code>0</code> for UM (unacknowledge mode) or <code>1</code> for AM (acknowledge mode).</p>",
+        "DownlinkQueueMessage$TransmitMode": "<p>The transmit mode to use for sending data to the wireless device. This can be <code>0</code> for UM (unacknowledge mode) or <code>1</code> for AM (acknowledge mode).</p>",
         "SendDataToWirelessDeviceRequest$TransmitMode": "<p>The transmit mode to use to send data to the wireless device. Can be: <code>0</code> for UM (unacknowledge mode) or <code>1</code> for AM (acknowledge mode).</p>"
       }
     },
@@ -2403,6 +2618,18 @@
       "refs": {
       }
     },
+    "UpdateAbpV1_0_x": {
+      "base": "<p>ABP device object for LoRaWAN specification v1.0.x</p>",
+      "refs": {
+        "LoRaWANUpdateDevice$AbpV1_0_x": "<p>ABP device object for update APIs for v1.0.x</p>"
+      }
+    },
+    "UpdateAbpV1_1": {
+      "base": "<p>ABP device object for LoRaWAN specification v1.1</p>",
+      "refs": {
+        "LoRaWANUpdateDevice$AbpV1_1": "<p>ABP device object for update APIs for v1.1</p>"
+      }
+    },
     "UpdateDataSource": {
       "base": null,
       "refs": {
@@ -2416,6 +2643,16 @@
       }
     },
     "UpdateDestinationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateEventConfigurationByResourceTypesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateEventConfigurationByResourceTypesResponse": {
       "base": null,
       "refs": {
       }
@@ -2551,7 +2788,7 @@
       }
     },
     "WirelessDeviceFrameInfo": {
-      "base": "<p>WirelessDevice FrameInfo for trace content.</p>",
+      "base": "<p>FrameInfo of your wireless device resources for the trace content. Use FrameInfo to debug the communication between your LoRaWAN end devices and the network server.</p>",
       "refs": {
         "TraceContent$WirelessDeviceFrameInfo": null
       }
@@ -2564,7 +2801,7 @@
         "AssociateWirelessDeviceWithThingRequest$Id": "<p>The ID of the resource to update.</p>",
         "CreateWirelessDeviceResponse$Id": "<p>The ID of the new wireless device.</p>",
         "CreateWirelessGatewayResponse$Id": "<p>The ID of the new wireless gateway.</p>",
-        "DeleteQueuedMessagesRequest$Id": "<p>Id of a given wireless device which messages will be deleted </p>",
+        "DeleteQueuedMessagesRequest$Id": "<p>The ID of a given wireless device for which downlink messages will be deleted.</p>",
         "DeleteWirelessDeviceRequest$Id": "<p>The ID of the resource to delete.</p>",
         "DisassociateWirelessDeviceFromFuotaTaskRequest$WirelessDeviceId": null,
         "DisassociateWirelessDeviceFromMulticastGroupRequest$WirelessDeviceId": null,
@@ -2572,7 +2809,7 @@
         "GetWirelessDeviceResponse$Id": "<p>The ID of the wireless device.</p>",
         "GetWirelessDeviceStatisticsRequest$WirelessDeviceId": "<p>The ID of the wireless device for which to get the data.</p>",
         "GetWirelessDeviceStatisticsResponse$WirelessDeviceId": "<p>The ID of the wireless device.</p>",
-        "ListQueuedMessagesRequest$Id": "<p>Id of a given wireless device which the downlink packets are targeted </p>",
+        "ListQueuedMessagesRequest$Id": "<p>The ID of a given wireless device which the downlink message packets are being sent.</p>",
         "SendDataToWirelessDeviceRequest$Id": "<p>The ID of the wireless device to receive the data.</p>",
         "TestWirelessDeviceRequest$Id": "<p>The ID of the wireless device to test.</p>",
         "UpdateWirelessDeviceRequest$Id": "<p>The ID of the resource to update.</p>",
@@ -2589,9 +2826,10 @@
     "WirelessDeviceList": {
       "base": null,
       "refs": {
-        "GetNetworkAnalyzerConfigurationResponse$WirelessDevices": "<p>List of WirelessDevices in the NetworkAnalyzerConfiguration.</p>",
-        "UpdateNetworkAnalyzerConfigurationRequest$WirelessDevicesToAdd": "<p>WirelessDevices to add into NetworkAnalyzerConfiguration.</p>",
-        "UpdateNetworkAnalyzerConfigurationRequest$WirelessDevicesToRemove": "<p>WirelessDevices to remove from NetworkAnalyzerConfiguration.</p>"
+        "CreateNetworkAnalyzerConfigurationRequest$WirelessDevices": "<p>Wireless device resources to add to the network analyzer configuration. Provide the <code>WirelessDeviceId</code> of the resource to add in the input array.</p>",
+        "GetNetworkAnalyzerConfigurationResponse$WirelessDevices": "<p>List of wireless gateway resources that have been added to the network analyzer configuration.</p>",
+        "UpdateNetworkAnalyzerConfigurationRequest$WirelessDevicesToAdd": "<p>Wireless device resources to add to the network analyzer configuration. Provide the <code>WirelessDeviceId</code> of the resource to add in the input array.</p>",
+        "UpdateNetworkAnalyzerConfigurationRequest$WirelessDevicesToRemove": "<p>Wireless device resources to remove from the network analyzer configuration. Provide the <code>WirelessDeviceId</code> of the resources to remove in the input array.</p>"
       }
     },
     "WirelessDeviceLogOption": {
@@ -2632,9 +2870,9 @@
       "base": null,
       "refs": {
         "CreateWirelessDeviceRequest$Type": "<p>The wireless device type.</p>",
-        "DeleteQueuedMessagesRequest$WirelessDeviceType": "<p>The wireless device type, it is either Sidewalk or LoRaWAN. </p>",
+        "DeleteQueuedMessagesRequest$WirelessDeviceType": "<p>The wireless device type, which can be either Sidewalk or LoRaWAN.</p>",
         "GetWirelessDeviceResponse$Type": "<p>The wireless device type.</p>",
-        "ListQueuedMessagesRequest$WirelessDeviceType": "<p>The wireless device type, it is either Sidewalk or LoRaWAN.</p>",
+        "ListQueuedMessagesRequest$WirelessDeviceType": "<p>The wireless device type, whic can be either Sidewalk or LoRaWAN.</p>",
         "ListWirelessDevicesRequest$WirelessDeviceType": "<p>A filter to list only the wireless devices that use this wireless device type.</p>",
         "WirelessDeviceLogOption$Type": "<p>The wireless device type.</p>",
         "WirelessDeviceStatistics$Type": "<p>The wireless device type.</p>"
@@ -2697,9 +2935,10 @@
     "WirelessGatewayList": {
       "base": null,
       "refs": {
-        "GetNetworkAnalyzerConfigurationResponse$WirelessGateways": "<p>List of WirelessGateways in the NetworkAnalyzerConfiguration.</p>",
-        "UpdateNetworkAnalyzerConfigurationRequest$WirelessGatewaysToAdd": "<p>WirelessGateways to add into NetworkAnalyzerConfiguration.</p>",
-        "UpdateNetworkAnalyzerConfigurationRequest$WirelessGatewaysToRemove": "<p>WirelessGateways to remove from NetworkAnalyzerConfiguration.</p>"
+        "CreateNetworkAnalyzerConfigurationRequest$WirelessGateways": "<p>Wireless gateway resources to add to the network analyzer configuration. Provide the <code>WirelessGatewayId</code> of the resource to add in the input array.</p>",
+        "GetNetworkAnalyzerConfigurationResponse$WirelessGateways": "<p>List of wireless gateway resources that have been added to the network analyzer configuration.</p>",
+        "UpdateNetworkAnalyzerConfigurationRequest$WirelessGatewaysToAdd": "<p>Wireless gateway resources to add to the network analyzer configuration. Provide the <code>WirelessGatewayId</code> of the resource to add in the input array.</p>",
+        "UpdateNetworkAnalyzerConfigurationRequest$WirelessGatewaysToRemove": "<p>Wireless gateway resources to remove from the network analyzer configuration. Provide the <code>WirelessGatewayId</code> of the resources to remove in the input array.</p>"
       }
     },
     "WirelessGatewayLogOption": {
@@ -2727,7 +2966,7 @@
     "WirelessGatewayServiceType": {
       "base": null,
       "refs": {
-        "GetServiceEndpointRequest$ServiceType": "<p>The service type for which to get endpoint information about. Can be <code>CUPS</code> for the Configuration and Update Server endpoint, or <code>LNS</code> for the LoRaWAN Network Server endpoint.</p>",
+        "GetServiceEndpointRequest$ServiceType": "<p>The service type for which to get endpoint information about. Can be <code>CUPS</code> for the Configuration and Update Server endpoint, or <code>LNS</code> for the LoRaWAN Network Server endpoint or <code>CLAIM</code> for the global endpoint.</p>",
         "GetServiceEndpointResponse$ServiceType": "<p>The endpoint's service type.</p>"
       }
     },

@@ -24,8 +24,8 @@ const (
 	// ErrCodeResourceLimitExceeded for service response error code
 	// "ResourceLimitExceeded".
 	//
-	// You have exceeded an Amazon SageMaker resource limit. For example, you might
-	// have too many training jobs created.
+	// You have exceeded an SageMaker resource limit. For example, you might have
+	// too many training jobs created.
 	ErrCodeResourceLimitExceeded = "ResourceLimitExceeded"
 
 	// ErrCodeResourceNotFound for service response error code

@@ -25,6 +25,11 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults"
     },
+    "ListNetworkAnalyzerConfigurations": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "ListQueuedMessages": {
       "input_token": "NextToken",
       "output_token": "NextToken",

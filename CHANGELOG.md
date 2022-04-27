@@ -1,3 +1,18 @@
+Release v1.44.2 (2022-04-27)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service documentation
+* `service/chime-sdk-media-pipelines`: Adds new service
+* `service/cloudtrail`: Updates service API and documentation
+  * Increases the retention period maximum to 2557 days. Deprecates unused fields of the ListEventDataStores API response. Updates documentation.
+* `service/iotwireless`: Updates service API, documentation, and paginators
+* `service/lookoutequipment`: Updates service API, documentation, and paginators
+* `service/rekognition`: Updates service API and documentation
+  * This release adds support to configure stream-processor resources for label detections on streaming-videos. UpateStreamProcessor API is also launched with this release, which could be used to update an existing stream-processor.
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Autopilot adds support for custom validation dataset and validation ratio through the CreateAutoMLJob and DescribeAutoMLJob APIs.
+
 Release v1.44.1 (2022-04-26)
 ===
 

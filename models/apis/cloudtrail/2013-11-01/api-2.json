@@ -890,14 +890,46 @@
       "members":{
         "EventDataStoreArn":{"shape":"EventDataStoreArn"},
         "Name":{"shape":"EventDataStoreName"},
-        "TerminationProtectionEnabled":{"shape":"TerminationProtectionEnabled"},
-        "Status":{"shape":"EventDataStoreStatus"},
-        "AdvancedEventSelectors":{"shape":"AdvancedEventSelectors"},
-        "MultiRegionEnabled":{"shape":"Boolean"},
-        "OrganizationEnabled":{"shape":"Boolean"},
-        "RetentionPeriod":{"shape":"RetentionPeriod"},
-        "CreatedTimestamp":{"shape":"Date"},
-        "UpdatedTimestamp":{"shape":"Date"}
+        "TerminationProtectionEnabled":{
+          "shape":"TerminationProtectionEnabled",
+          "deprecated":true,
+          "deprecatedMessage":"TerminationProtectionEnabled is no longer returned by ListEventDataStores"
+        },
+        "Status":{
+          "shape":"EventDataStoreStatus",
+          "deprecated":true,
+          "deprecatedMessage":"Status is no longer returned by ListEventDataStores"
+        },
+        "AdvancedEventSelectors":{
+          "shape":"AdvancedEventSelectors",
+          "deprecated":true,
+          "deprecatedMessage":"AdvancedEventSelectors is no longer returned by ListEventDataStores"
+        },
+        "MultiRegionEnabled":{
+          "shape":"Boolean",
+          "deprecated":true,
+          "deprecatedMessage":"MultiRegionEnabled is no longer returned by ListEventDataStores"
+        },
+        "OrganizationEnabled":{
+          "shape":"Boolean",
+          "deprecated":true,
+          "deprecatedMessage":"OrganizationEnabled is no longer returned by ListEventDataStores"
+        },
+        "RetentionPeriod":{
+          "shape":"RetentionPeriod",
+          "deprecated":true,
+          "deprecatedMessage":"RetentionPeriod is no longer returned by ListEventDataStores"
+        },
+        "CreatedTimestamp":{
+          "shape":"Date",
+          "deprecated":true,
+          "deprecatedMessage":"CreatedTimestamp is no longer returned by ListEventDataStores"
+        },
+        "UpdatedTimestamp":{
+          "shape":"Date",
+          "deprecated":true,
+          "deprecatedMessage":"UpdatedTimestamp is no longer returned by ListEventDataStores"
+        }
       }
     },
     "EventDataStoreARNInvalidException":{
@@ -1707,7 +1739,7 @@
     },
     "RetentionPeriod":{
       "type":"integer",
-      "max":2555,
+      "max":2557,
       "min":7
     },
     "S3BucketDoesNotExistException":{
