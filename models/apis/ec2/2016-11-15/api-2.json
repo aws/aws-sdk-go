@@ -9354,7 +9354,8 @@
         "TagSpecifications":{
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
-        }
+        },
+        "KeyFormat":{"shape":"KeyFormat"}
       }
     },
     "CreateLaunchTemplateRequest":{
@@ -14155,7 +14156,8 @@
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
-        }
+        },
+        "IncludePublicKey":{"shape":"Boolean"}
       }
     },
     "DescribeKeyPairsResult":{
@@ -25328,6 +25330,13 @@
       ]
     },
     "KernelId":{"type":"string"},
+    "KeyFormat":{
+      "type":"string",
+      "enum":[
+        "pem",
+        "ppk"
+      ]
+    },
     "KeyNameStringList":{
       "type":"list",
       "member":{
@@ -25390,6 +25399,14 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "PublicKey":{
+          "shape":"String",
+          "locationName":"publicKey"
+        },
+        "CreateTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"createTime"
         }
       }
     },

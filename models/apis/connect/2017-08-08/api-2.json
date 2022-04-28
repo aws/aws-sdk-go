@@ -1541,6 +1541,23 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "PutUserStatus":{
+      "name":"PutUserStatus",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/users/{InstanceId}/{UserId}/status"
+      },
+      "input":{"shape":"PutUserStatusRequest"},
+      "output":{"shape":"PutUserStatusResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "ReleasePhoneNumber":{
       "name":"ReleasePhoneNumber",
       "http":{
@@ -6384,6 +6401,32 @@
     "PromptSummaryList":{
       "type":"list",
       "member":{"shape":"PromptSummary"}
+    },
+    "PutUserStatusRequest":{
+      "type":"structure",
+      "required":[
+        "UserId",
+        "InstanceId",
+        "AgentStatusId"
+      ],
+      "members":{
+        "UserId":{
+          "shape":"UserId",
+          "location":"uri",
+          "locationName":"UserId"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "AgentStatusId":{"shape":"AgentStatusId"}
+      }
+    },
+    "PutUserStatusResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "Queue":{
       "type":"structure",

@@ -1826,7 +1826,10 @@ func (c *GuardDuty) DisassociateMembersRequest(input *DisassociateMembersInput) 
 // DisassociateMembers API operation for Amazon GuardDuty.
 //
 // Disassociates GuardDuty member accounts (to the current GuardDuty administrator
-// account) specified by the account IDs.
+// account) specified by the account IDs. Member accounts added through Invitation
+// (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_invitations.html)
+// get deleted from the current GuardDuty administrator account after 30 days
+// of disassociation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5964,6 +5967,7 @@ type AwsApiCallAction struct {
 	// The Amazon Web Services service name whose API was invoked.
 	ServiceName *string `locationName:"serviceName" type:"string"`
 
+	// The agent through which the API request was made.
 	UserAgent *string `locationName:"userAgent" type:"string"`
 }
 
@@ -6804,6 +6808,8 @@ type CreateFilterInput struct {
 	//    * service.action.awsApiCallAction.callerType
 	//
 	//    * service.action.awsApiCallAction.errorCode
+	//
+	//    * service.action.awsApiCallAction.userAgent
 	//
 	//    * service.action.awsApiCallAction.remoteIpDetails.city.cityName
 	//

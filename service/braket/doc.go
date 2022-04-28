@@ -6,6 +6,10 @@
 // The Amazon Braket API Reference provides information about the operations
 // and structures supported in Amazon Braket.
 //
+// Additional Resources:
+//
+//    * Amazon Braket Developer Guide (https://docs.aws.amazon.com/braket/latest/developerguide/what-is-braket.html)
+//
 // See https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01 for more information on this service.
 //
 // See braket package documentation for more information.

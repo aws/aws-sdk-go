@@ -445,6 +445,15 @@ func (c *Braket) GetDeviceRequest(input *GetDeviceInput) (req *request.Request, 
 //
 // Retrieves the devices available in Amazon Braket.
 //
+// For backwards compatibility with older versions of BraketSchemas, OpenQASM
+// information is omitted from GetDevice API calls. To get this information
+// the user-agent needs to present a recent version of the BraketSchemas (1.8.0
+// or later). The Braket SDK automatically reports this for you. If you do not
+// see OpenQASM results in the GetDevice response when using a Braket SDK, you
+// may need to set AWS_EXECUTION_ENV environment variable to configure user-agent.
+// See the code examples provided below for how to do this for the AWS CLI,
+// Boto3, and the Go, Java, and JavaScript/TypeScript SDKs.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3263,6 +3272,10 @@ func (s *InputFileConfig) SetDataSource(v *DataSource) *InputFileConfig {
 type InstanceConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Configures the number of resource instances to use while running an Amazon
+	// Braket job on Amazon Braket. The default value is 1.
+	InstanceCount *int64 `locationName:"instanceCount" min:"1" type:"integer"`
+
 	// Configures the type resource instances to use while running an Amazon Braket
 	// hybrid job.
 	//
@@ -3296,6 +3309,9 @@ func (s InstanceConfig) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *InstanceConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "InstanceConfig"}
+	if s.InstanceCount != nil && *s.InstanceCount < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("InstanceCount", 1))
+	}
 	if s.InstanceType == nil {
 		invalidParams.Add(request.NewErrParamRequired("InstanceType"))
 	}
@@ -3310,6 +3326,12 @@ func (s *InstanceConfig) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *InstanceConfig) SetInstanceCount(v int64) *InstanceConfig {
+	s.InstanceCount = &v
+	return s
 }
 
 // SetInstanceType sets the InstanceType field's value.
