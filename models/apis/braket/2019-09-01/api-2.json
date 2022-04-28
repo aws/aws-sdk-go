@@ -685,9 +685,15 @@
         "volumeSizeInGb"
       ],
       "members":{
+        "instanceCount":{"shape":"InstanceConfigInstanceCountInteger"},
         "instanceType":{"shape":"InstanceType"},
         "volumeSizeInGb":{"shape":"InstanceConfigVolumeSizeInGbInteger"}
       }
+    },
+    "InstanceConfigInstanceCountInteger":{
+      "type":"integer",
+      "box":true,
+      "min":1
     },
     "InstanceConfigVolumeSizeInGbInteger":{
       "type":"integer",

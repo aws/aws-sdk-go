@@ -684,7 +684,8 @@
         "Capacity":{"shape":"RuleCapacity"},
         "Tags":{"shape":"TagList"},
         "DryRun":{"shape":"Boolean"},
-        "EncryptionConfiguration":{"shape":"EncryptionConfiguration"}
+        "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
+        "SourceMetadata":{"shape":"SourceMetadata"}
       }
     },
     "CreateRuleGroupResponse":{
@@ -849,7 +850,8 @@
         "Description":{"shape":"Description"},
         "Type":{"shape":"RuleGroupType"},
         "Capacity":{"shape":"RuleCapacity"},
-        "StatefulRuleOptions":{"shape":"StatefulRuleOptions"}
+        "StatefulRuleOptions":{"shape":"StatefulRuleOptions"},
+        "LastModifiedTime":{"shape":"LastUpdateTime"}
       }
     },
     "DescribeRuleGroupRequest":{
@@ -923,6 +925,7 @@
     },
     "EncryptionConfiguration":{
       "type":"structure",
+      "required":["Type"],
       "members":{
         "KeyId":{"shape":"KeyId"},
         "Type":{"shape":"EncryptionType"}
@@ -1011,7 +1014,8 @@
         "ConsumedStatelessRuleCapacity":{"shape":"RuleCapacity"},
         "ConsumedStatefulRuleCapacity":{"shape":"RuleCapacity"},
         "NumberOfAssociations":{"shape":"NumberOfAssociations"},
-        "EncryptionConfiguration":{"shape":"EncryptionConfiguration"}
+        "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
+        "LastModifiedTime":{"shape":"LastUpdateTime"}
       }
     },
     "FirewallStatus":{
@@ -1148,6 +1152,7 @@
       "min":1,
       "pattern":".*"
     },
+    "LastUpdateTime":{"type":"timestamp"},
     "LimitExceededException":{
       "type":"structure",
       "members":{
@@ -1189,7 +1194,9 @@
       "members":{
         "NextToken":{"shape":"PaginationToken"},
         "MaxResults":{"shape":"PaginationMaxResults"},
-        "Scope":{"shape":"ResourceManagedStatus"}
+        "Scope":{"shape":"ResourceManagedStatus"},
+        "ManagedType":{"shape":"ResourceManagedType"},
+        "Type":{"shape":"RuleGroupType"}
       }
     },
     "ListRuleGroupsResponse":{
@@ -1409,6 +1416,13 @@
         "ACCOUNT"
       ]
     },
+    "ResourceManagedType":{
+      "type":"string",
+      "enum":[
+        "AWS_MANAGED_THREAT_SIGNATURES",
+        "AWS_MANAGED_DOMAIN_LISTS"
+      ]
+    },
     "ResourceName":{
       "type":"string",
       "max":128,
@@ -1482,7 +1496,10 @@
         "Tags":{"shape":"TagList"},
         "ConsumedCapacity":{"shape":"RuleCapacity"},
         "NumberOfAssociations":{"shape":"NumberOfAssociations"},
-        "EncryptionConfiguration":{"shape":"EncryptionConfiguration"}
+        "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
+        "SourceMetadata":{"shape":"SourceMetadata"},
+        "SnsTopic":{"shape":"ResourceArn"},
+        "LastModifiedTime":{"shape":"LastUpdateTime"}
       }
     },
     "RuleGroupType":{
@@ -1574,6 +1591,13 @@
       "max":1024,
       "min":1,
       "pattern":"^.*$"
+    },
+    "SourceMetadata":{
+      "type":"structure",
+      "members":{
+        "SourceArn":{"shape":"ResourceArn"},
+        "SourceUpdateToken":{"shape":"UpdateToken"}
+      }
     },
     "StatefulAction":{
       "type":"string",
@@ -1990,7 +2014,8 @@
         "Type":{"shape":"RuleGroupType"},
         "Description":{"shape":"Description"},
         "DryRun":{"shape":"Boolean"},
-        "EncryptionConfiguration":{"shape":"EncryptionConfiguration"}
+        "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
+        "SourceMetadata":{"shape":"SourceMetadata"}
       }
     },
     "UpdateRuleGroupResponse":{

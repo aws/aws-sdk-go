@@ -4,6 +4,7 @@ package networkfirewall
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -4543,6 +4544,11 @@ type CreateRuleGroupInput struct {
 	// string.
 	Rules *string `type:"string"`
 
+	// A complex type that contains metadata about the rule group that your own
+	// rule group is copied from. You can use the metadata to keep track of updates
+	// made to the originating rule group.
+	SourceMetadata *SourceMetadata `type:"structure"`
+
 	// The key:value pairs to associate with the resource.
 	Tags []*Tag `min:"1" type:"list"`
 
@@ -4598,6 +4604,11 @@ func (s *CreateRuleGroupInput) Validate() error {
 	if s.RuleGroup != nil {
 		if err := s.RuleGroup.Validate(); err != nil {
 			invalidParams.AddNested("RuleGroup", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SourceMetadata != nil {
+		if err := s.SourceMetadata.Validate(); err != nil {
+			invalidParams.AddNested("SourceMetadata", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Tags != nil {
@@ -4656,6 +4667,12 @@ func (s *CreateRuleGroupInput) SetRuleGroupName(v string) *CreateRuleGroupInput 
 // SetRules sets the Rules field's value.
 func (s *CreateRuleGroupInput) SetRules(v string) *CreateRuleGroupInput {
 	s.Rules = &v
+	return s
+}
+
+// SetSourceMetadata sets the SourceMetadata field's value.
+func (s *CreateRuleGroupInput) SetSourceMetadata(v *SourceMetadata) *CreateRuleGroupInput {
+	s.SourceMetadata = v
 	return s
 }
 
@@ -5796,6 +5813,9 @@ type DescribeRuleGroupMetadataOutput struct {
 	// Returns the metadata objects for the specified rule group.
 	Description *string `type:"string"`
 
+	// The last time that the rule group was changed.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The descriptive name of the rule group. You can't change the name of a rule
 	// group after you create it.
 	//
@@ -5851,6 +5871,12 @@ func (s *DescribeRuleGroupMetadataOutput) SetCapacity(v int64) *DescribeRuleGrou
 // SetDescription sets the Description field's value.
 func (s *DescribeRuleGroupMetadataOutput) SetDescription(v string) *DescribeRuleGroupMetadataOutput {
 	s.Description = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DescribeRuleGroupMetadataOutput) SetLastModifiedTime(v time.Time) *DescribeRuleGroupMetadataOutput {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -6205,7 +6231,9 @@ type EncryptionConfiguration struct {
 
 	// The type of Amazon Web Services KMS key to use for encryption of your Network
 	// Firewall resources.
-	Type *string `type:"string" enum:"EncryptionType"`
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"EncryptionType"`
 }
 
 // String returns the string representation.
@@ -6231,6 +6259,9 @@ func (s *EncryptionConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "EncryptionConfiguration"}
 	if s.KeyId != nil && len(*s.KeyId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("KeyId", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6730,6 +6761,9 @@ type FirewallPolicyResponse struct {
 	// name or ARN.
 	FirewallPolicyStatus *string `type:"string" enum:"ResourceStatus"`
 
+	// The last time that the firewall policy was changed.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The number of firewalls that are associated with this firewall policy.
 	NumberOfAssociations *int64 `type:"integer"`
 
@@ -6800,6 +6834,12 @@ func (s *FirewallPolicyResponse) SetFirewallPolicyName(v string) *FirewallPolicy
 // SetFirewallPolicyStatus sets the FirewallPolicyStatus field's value.
 func (s *FirewallPolicyResponse) SetFirewallPolicyStatus(v string) *FirewallPolicyResponse {
 	s.FirewallPolicyStatus = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *FirewallPolicyResponse) SetLastModifiedTime(v time.Time) *FirewallPolicyResponse {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -7799,6 +7839,9 @@ func (s *ListFirewallsOutput) SetNextToken(v string) *ListFirewallsOutput {
 type ListRuleGroupsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates the general category of the Amazon Web Services managed rule group.
+	ManagedType *string `type:"string" enum:"ResourceManagedType"`
+
 	// The maximum number of objects that you want Network Firewall to return for
 	// this request. If more objects are available, in the response, Network Firewall
 	// provides a NextToken value that you can use in a subsequent call to get the
@@ -7816,6 +7859,11 @@ type ListRuleGroupsInput struct {
 	// NULL returns all of the rule groups in your account. A setting of MANAGED
 	// returns all available managed rule groups.
 	Scope *string `type:"string" enum:"ResourceManagedStatus"`
+
+	// Indicates whether the rule group is stateless or stateful. If the rule group
+	// is stateless, it contains stateless rules. If it is stateful, it contains
+	// stateful rules.
+	Type *string `type:"string" enum:"RuleGroupType"`
 }
 
 // String returns the string representation.
@@ -7852,6 +7900,12 @@ func (s *ListRuleGroupsInput) Validate() error {
 	return nil
 }
 
+// SetManagedType sets the ManagedType field's value.
+func (s *ListRuleGroupsInput) SetManagedType(v string) *ListRuleGroupsInput {
+	s.ManagedType = &v
+	return s
+}
+
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListRuleGroupsInput) SetMaxResults(v int64) *ListRuleGroupsInput {
 	s.MaxResults = &v
@@ -7867,6 +7921,12 @@ func (s *ListRuleGroupsInput) SetNextToken(v string) *ListRuleGroupsInput {
 // SetScope sets the Scope field's value.
 func (s *ListRuleGroupsInput) SetScope(v string) *ListRuleGroupsInput {
 	s.Scope = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ListRuleGroupsInput) SetType(v string) *ListRuleGroupsInput {
+	s.Type = &v
 	return s
 }
 
@@ -9119,6 +9179,9 @@ type RuleGroupResponse struct {
 	// settings for your rule group.
 	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
 
+	// The last time that the rule group was changed.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The number of firewall policies that use this rule group.
 	NumberOfAssociations *int64 `type:"integer"`
 
@@ -9143,6 +9206,19 @@ type RuleGroupResponse struct {
 
 	// Detailed information about the current status of a rule group.
 	RuleGroupStatus *string `type:"string" enum:"ResourceStatus"`
+
+	// The Amazon resource name (ARN) of the Amazon Simple Notification Service
+	// SNS topic that's used to record changes to the managed rule group. You can
+	// subscribe to the SNS topic to receive notifications when the managed rule
+	// group is modified, such as for new versions and for version expiration. For
+	// more information, see the Amazon Simple Notification Service Developer Guide.
+	// (https://docs.aws.amazon.com/sns/latest/dg/welcome.html).
+	SnsTopic *string `min:"1" type:"string"`
+
+	// A complex type that contains metadata about the rule group that your own
+	// rule group is copied from. You can use the metadata to track the version
+	// updates made to the originating rule group.
+	SourceMetadata *SourceMetadata `type:"structure"`
 
 	// The key:value pairs to associate with the resource.
 	Tags []*Tag `min:"1" type:"list"`
@@ -9195,6 +9271,12 @@ func (s *RuleGroupResponse) SetEncryptionConfiguration(v *EncryptionConfiguratio
 	return s
 }
 
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *RuleGroupResponse) SetLastModifiedTime(v time.Time) *RuleGroupResponse {
+	s.LastModifiedTime = &v
+	return s
+}
+
 // SetNumberOfAssociations sets the NumberOfAssociations field's value.
 func (s *RuleGroupResponse) SetNumberOfAssociations(v int64) *RuleGroupResponse {
 	s.NumberOfAssociations = &v
@@ -9222,6 +9304,18 @@ func (s *RuleGroupResponse) SetRuleGroupName(v string) *RuleGroupResponse {
 // SetRuleGroupStatus sets the RuleGroupStatus field's value.
 func (s *RuleGroupResponse) SetRuleGroupStatus(v string) *RuleGroupResponse {
 	s.RuleGroupStatus = &v
+	return s
+}
+
+// SetSnsTopic sets the SnsTopic field's value.
+func (s *RuleGroupResponse) SetSnsTopic(v string) *RuleGroupResponse {
+	s.SnsTopic = &v
+	return s
+}
+
+// SetSourceMetadata sets the SourceMetadata field's value.
+func (s *RuleGroupResponse) SetSourceMetadata(v *SourceMetadata) *RuleGroupResponse {
+	s.SourceMetadata = v
 	return s
 }
 
@@ -9548,6 +9642,69 @@ func (s *RulesSourceList) SetTargetTypes(v []*string) *RulesSourceList {
 // SetTargets sets the Targets field's value.
 func (s *RulesSourceList) SetTargets(v []*string) *RulesSourceList {
 	s.Targets = v
+	return s
+}
+
+// High-level information about the managed rule group that your own rule group
+// is copied from. You can use the the metadata to track version updates made
+// to the originating rule group. You can retrieve all objects for a rule group
+// by calling DescribeRuleGroup (https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_DescribeRuleGroup.html).
+type SourceMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the rule group that your own rule group
+	// is copied from.
+	SourceArn *string `min:"1" type:"string"`
+
+	// The update token of the Amazon Web Services managed rule group that your
+	// own rule group is copied from. To determine the update token for the managed
+	// rule group, call DescribeRuleGroup (https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_DescribeRuleGroup.html#networkfirewall-DescribeRuleGroup-response-UpdateToken).
+	SourceUpdateToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceMetadata) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SourceMetadata) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SourceMetadata"}
+	if s.SourceArn != nil && len(*s.SourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceArn", 1))
+	}
+	if s.SourceUpdateToken != nil && len(*s.SourceUpdateToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceUpdateToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceArn sets the SourceArn field's value.
+func (s *SourceMetadata) SetSourceArn(v string) *SourceMetadata {
+	s.SourceArn = &v
+	return s
+}
+
+// SetSourceUpdateToken sets the SourceUpdateToken field's value.
+func (s *SourceMetadata) SetSourceUpdateToken(v string) *SourceMetadata {
+	s.SourceUpdateToken = &v
 	return s
 }
 
@@ -11738,6 +11895,11 @@ type UpdateRuleGroupInput struct {
 	// string.
 	Rules *string `type:"string"`
 
+	// A complex type that contains metadata about the rule group that your own
+	// rule group is copied from. You can use the metadata to keep track of updates
+	// made to the originating rule group.
+	SourceMetadata *SourceMetadata `type:"structure"`
+
 	// Indicates whether the rule group is stateless or stateful. If the rule group
 	// is stateless, it contains stateless rules. If it is stateful, it contains
 	// stateful rules.
@@ -11803,6 +11965,11 @@ func (s *UpdateRuleGroupInput) Validate() error {
 			invalidParams.AddNested("RuleGroup", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.SourceMetadata != nil {
+		if err := s.SourceMetadata.Validate(); err != nil {
+			invalidParams.AddNested("SourceMetadata", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -11849,6 +12016,12 @@ func (s *UpdateRuleGroupInput) SetRuleGroupName(v string) *UpdateRuleGroupInput 
 // SetRules sets the Rules field's value.
 func (s *UpdateRuleGroupInput) SetRules(v string) *UpdateRuleGroupInput {
 	s.Rules = &v
+	return s
+}
+
+// SetSourceMetadata sets the SourceMetadata field's value.
+func (s *UpdateRuleGroupInput) SetSourceMetadata(v *SourceMetadata) *UpdateRuleGroupInput {
+	s.SourceMetadata = v
 	return s
 }
 
@@ -12266,6 +12439,22 @@ func ResourceManagedStatus_Values() []string {
 	return []string{
 		ResourceManagedStatusManaged,
 		ResourceManagedStatusAccount,
+	}
+}
+
+const (
+	// ResourceManagedTypeAwsManagedThreatSignatures is a ResourceManagedType enum value
+	ResourceManagedTypeAwsManagedThreatSignatures = "AWS_MANAGED_THREAT_SIGNATURES"
+
+	// ResourceManagedTypeAwsManagedDomainLists is a ResourceManagedType enum value
+	ResourceManagedTypeAwsManagedDomainLists = "AWS_MANAGED_DOMAIN_LISTS"
+)
+
+// ResourceManagedType_Values returns all elements of the ResourceManagedType enum
+func ResourceManagedType_Values() []string {
+	return []string{
+		ResourceManagedTypeAwsManagedThreatSignatures,
+		ResourceManagedTypeAwsManagedDomainLists,
 	}
 }
 

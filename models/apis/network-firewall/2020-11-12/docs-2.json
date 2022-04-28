@@ -538,6 +538,14 @@
         "RuleOption$Keyword": "<p/>"
       }
     },
+    "LastUpdateTime": {
+      "base": null,
+      "refs": {
+        "DescribeRuleGroupMetadataResponse$LastModifiedTime": "<p>The last time that the rule group was changed.</p>",
+        "FirewallPolicyResponse$LastModifiedTime": "<p>The last time that the firewall policy was changed.</p>",
+        "RuleGroupResponse$LastModifiedTime": "<p>The last time that the rule group was changed.</p>"
+      }
+    },
     "LimitExceededException": {
       "base": "<p>Unable to perform the operation because doing so would violate a limit setting. </p>",
       "refs": {
@@ -793,6 +801,8 @@
         "PutResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the account that you want to share rule groups and firewall policies with.</p>",
         "RuleGroupMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the rule group.</p>",
         "RuleGroupResponse$RuleGroupArn": "<p>The Amazon Resource Name (ARN) of the rule group.</p> <note> <p>If this response is for a create request that had <code>DryRun</code> set to <code>TRUE</code>, then this ARN is a placeholder that isn't attached to a valid resource.</p> </note>",
+        "RuleGroupResponse$SnsTopic": "<p>The Amazon resource name (ARN) of the Amazon Simple Notification Service SNS topic that's used to record changes to the managed rule group. You can subscribe to the SNS topic to receive notifications when the managed rule group is modified, such as for new versions and for version expiration. For more information, see the <a href=\"https://docs.aws.amazon.com/sns/latest/dg/welcome.html\">Amazon Simple Notification Service Developer Guide.</a>.</p>",
+        "SourceMetadata$SourceArn": "<p>The Amazon Resource Name (ARN) of the rule group that your own rule group is copied from.</p>",
         "StatefulRuleGroupReference$ResourceArn": "<p>The Amazon Resource Name (ARN) of the stateful rule group.</p>",
         "StatelessRuleGroupReference$ResourceArn": "<p>The Amazon Resource Name (ARN) of the stateless rule group.</p>",
         "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
@@ -825,6 +835,12 @@
       "base": null,
       "refs": {
         "ListRuleGroupsRequest$Scope": "<p>The scope of the request. The default setting of <code>ACCOUNT</code> or a setting of <code>NULL</code> returns all of the rule groups in your account. A setting of <code>MANAGED</code> returns all available managed rule groups.</p>"
+      }
+    },
+    "ResourceManagedType": {
+      "base": null,
+      "refs": {
+        "ListRuleGroupsRequest$ManagedType": "<p>Indicates the general category of the Amazon Web Services managed rule group.</p>"
       }
     },
     "ResourceName": {
@@ -936,6 +952,7 @@
         "DescribeRuleGroupMetadataRequest$Type": "<p>Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains stateless rules. If it is stateful, it contains stateful rules. </p> <note> <p>This setting is required for requests that do not include the <code>RuleGroupARN</code>.</p> </note>",
         "DescribeRuleGroupMetadataResponse$Type": "<p>Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains stateless rules. If it is stateful, it contains stateful rules. </p> <note> <p>This setting is required for requests that do not include the <code>RuleGroupARN</code>.</p> </note>",
         "DescribeRuleGroupRequest$Type": "<p>Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains stateless rules. If it is stateful, it contains stateful rules. </p> <note> <p>This setting is required for requests that do not include the <code>RuleGroupARN</code>.</p> </note>",
+        "ListRuleGroupsRequest$Type": "<p>Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains stateless rules. If it is stateful, it contains stateful rules.</p>",
         "RuleGroupResponse$Type": "<p>Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains stateless rules. If it is stateful, it contains stateful rules. </p>",
         "UpdateRuleGroupRequest$Type": "<p>Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains stateless rules. If it is stateful, it contains stateful rules. </p> <note> <p>This setting is required for requests that do not include the <code>RuleGroupARN</code>.</p> </note>"
       }
@@ -1020,6 +1037,14 @@
       "base": null,
       "refs": {
         "Header$Source": "<p>The source IP address or address range to inspect for, in CIDR notation. To match with any address, specify <code>ANY</code>. </p> <p>Specify an IP address or a block of IP addresses in Classless Inter-Domain Routing (CIDR) notation. Network Firewall supports all address ranges for IPv4. </p> <p>Examples: </p> <ul> <li> <p>To configure Network Firewall to inspect for the IP address 192.0.2.44, specify <code>192.0.2.44/32</code>.</p> </li> <li> <p>To configure Network Firewall to inspect for IP addresses from 192.0.2.0 to 192.0.2.255, specify <code>192.0.2.0/24</code>.</p> </li> </ul> <p>For more information about CIDR notation, see the Wikipedia entry <a href=\"https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing\">Classless Inter-Domain Routing</a>.</p>"
+      }
+    },
+    "SourceMetadata": {
+      "base": "<p>High-level information about the managed rule group that your own rule group is copied from. You can use the the metadata to track version updates made to the originating rule group. You can retrieve all objects for a rule group by calling <a href=\"https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_DescribeRuleGroup.html\">DescribeRuleGroup</a>.</p>",
+      "refs": {
+        "CreateRuleGroupRequest$SourceMetadata": "<p>A complex type that contains metadata about the rule group that your own rule group is copied from. You can use the metadata to keep track of updates made to the originating rule group.</p>",
+        "RuleGroupResponse$SourceMetadata": "<p>A complex type that contains metadata about the rule group that your own rule group is copied from. You can use the metadata to track the version updates made to the originating rule group.</p>",
+        "UpdateRuleGroupRequest$SourceMetadata": "<p>A complex type that contains metadata about the rule group that your own rule group is copied from. You can use the metadata to keep track of updates made to the originating rule group.</p>"
       }
     },
     "StatefulAction": {
@@ -1360,6 +1385,7 @@
         "DisassociateSubnetsRequest$UpdateToken": "<p>An optional token that you can use for optimistic locking. Network Firewall returns a token to your requests that access the firewall. The token marks the state of the firewall resource at the time of the request. </p> <p>To make an unconditional change to the firewall, omit the token in your update request. Without the token, Network Firewall performs your updates regardless of whether the firewall has changed since you last retrieved it.</p> <p>To make a conditional change to the firewall, provide the token in your update request. Network Firewall uses the token to ensure that the firewall hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the firewall again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token. </p>",
         "DisassociateSubnetsResponse$UpdateToken": "<p>An optional token that you can use for optimistic locking. Network Firewall returns a token to your requests that access the firewall. The token marks the state of the firewall resource at the time of the request. </p> <p>To make an unconditional change to the firewall, omit the token in your update request. Without the token, Network Firewall performs your updates regardless of whether the firewall has changed since you last retrieved it.</p> <p>To make a conditional change to the firewall, provide the token in your update request. Network Firewall uses the token to ensure that the firewall hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the firewall again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token. </p>",
         "PerObjectStatus$UpdateToken": "<p>The current version of the object that is either in sync or pending synchronization. </p>",
+        "SourceMetadata$SourceUpdateToken": "<p>The update token of the Amazon Web Services managed rule group that your own rule group is copied from. To determine the update token for the managed rule group, call <a href=\"https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_DescribeRuleGroup.html#networkfirewall-DescribeRuleGroup-response-UpdateToken\">DescribeRuleGroup</a>.</p>",
         "UpdateFirewallDeleteProtectionRequest$UpdateToken": "<p>An optional token that you can use for optimistic locking. Network Firewall returns a token to your requests that access the firewall. The token marks the state of the firewall resource at the time of the request. </p> <p>To make an unconditional change to the firewall, omit the token in your update request. Without the token, Network Firewall performs your updates regardless of whether the firewall has changed since you last retrieved it.</p> <p>To make a conditional change to the firewall, provide the token in your update request. Network Firewall uses the token to ensure that the firewall hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the firewall again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token. </p>",
         "UpdateFirewallDeleteProtectionResponse$UpdateToken": "<p>An optional token that you can use for optimistic locking. Network Firewall returns a token to your requests that access the firewall. The token marks the state of the firewall resource at the time of the request. </p> <p>To make an unconditional change to the firewall, omit the token in your update request. Without the token, Network Firewall performs your updates regardless of whether the firewall has changed since you last retrieved it.</p> <p>To make a conditional change to the firewall, provide the token in your update request. Network Firewall uses the token to ensure that the firewall hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the firewall again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token. </p>",
         "UpdateFirewallDescriptionRequest$UpdateToken": "<p>An optional token that you can use for optimistic locking. Network Firewall returns a token to your requests that access the firewall. The token marks the state of the firewall resource at the time of the request. </p> <p>To make an unconditional change to the firewall, omit the token in your update request. Without the token, Network Firewall performs your updates regardless of whether the firewall has changed since you last retrieved it.</p> <p>To make a conditional change to the firewall, provide the token in your update request. Network Firewall uses the token to ensure that the firewall hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the firewall again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token. </p>",

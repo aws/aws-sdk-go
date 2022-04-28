@@ -1234,7 +1234,29 @@ func (c *AuditManager) DeleteAssessmentReportRequest(input *DeleteAssessmentRepo
 
 // DeleteAssessmentReport API operation for AWS Audit Manager.
 //
-// Deletes an assessment report from an assessment in Audit Manager.
+// Deletes an assessment report in Audit Manager.
+//
+// When you run the DeleteAssessmentReport operation, Audit Manager attempts
+// to delete the following data:
+//
+// The specified assessment report that’s stored in your S3 bucket
+//
+// The associated metadata that’s stored in Audit Manager
+//
+// If Audit Manager can’t access the assessment report in your S3 bucket,
+// the report isn’t deleted. In this event, the DeleteAssessmentReport operation
+// doesn’t fail. Instead, it proceeds to delete the associated metadata only.
+// You must then delete the assessment report from the S3 bucket yourself.
+//
+// This scenario happens when Audit Manager receives a 403 (Forbidden) or 404
+// (Not Found) error from Amazon S3. To avoid this, make sure that your S3 bucket
+// is available, and that you configured the correct permissions for Audit Manager
+// to delete resources in your S3 bucket. For an example permissions policy
+// that you can use, see Assessment report destination permissions (https://docs.aws.amazon.com/audit-manager/latest/userguide/security_iam_id-based-policy-examples.html#full-administrator-access-assessment-report-destination)
+// in the Audit Manager User Guide. For information about the issues that could
+// cause a 403 (Forbidden) or 404 (Not Found) error from Amazon S3, see List
+// of Error Codes (https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#ErrorCodeList)
+// in the Amazon Simple Storage Service API Reference.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15626,12 +15648,35 @@ func (s *Settings) SetSnsTopic(v string) *Settings {
 type SourceKeyword struct {
 	_ struct{} `type:"structure"`
 
-	// The method of input for the keyword.
+	// The input method for the keyword.
 	KeywordInputType *string `locationName:"keywordInputType" type:"string" enum:"KeywordInputType"`
 
-	// The value of the keyword that's used to search CloudTrail logs, Config rules,
-	// Security Hub checks, and Amazon Web Services API names when mapping a control
-	// data source.
+	// The value of the keyword that's used when mapping a control data source.
+	// For example, this can be a CloudTrail event name, a rule name for Config,
+	// a Security Hub control, or the name of an Amazon Web Services API call.
+	//
+	// If you’re mapping a data source to a rule in Config, the keywordValue that
+	// you specify depends on the type of rule:
+	//
+	//    * For managed rules (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html),
+	//    you can use the rule identifier as the keywordValue. You can find the
+	//    rule identifier from the list of Config managed rules (https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html).
+	//    Managed rule name: s3-bucket-acl-prohibited (https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-acl-prohibited.html)
+	//    keywordValue: S3_BUCKET_ACL_PROHIBITED
+	//
+	//    * For custom rules (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_develop-rules.html),
+	//    you form the keywordValue by adding the Custom_ prefix to the rule name.
+	//    This prefix distinguishes the rule from a managed rule. Custom rule name:
+	//    my-custom-config-rule keywordValue: Custom_my-custom-config-rule
+	//
+	//    * For service-linked rules (https://docs.aws.amazon.com/config/latest/developerguide/service-linked-awsconfig-rules.html),
+	//    you form the keywordValue by adding the Custom_ prefix to the rule name.
+	//    In addition, you remove the suffix ID that appears at the end of the rule
+	//    name. Service-linked rule name: CustomRuleForAccount-conformance-pack-szsm1uv0w
+	//    keywordValue: Custom_CustomRuleForAccount-conformance-pack Service-linked
+	//    rule name: securityhub-api-gw-cache-encrypted-101104e1 keywordValue: Custom_securityhub-api-gw-cache-encrypted
+	//    Service-linked rule name: OrgConfigRule-s3-bucket-versioning-enabled-dbgzf8ba
+	//    keywordValue: Custom_OrgConfigRule-s3-bucket-versioning-enabled
 	KeywordValue *string `locationName:"keywordValue" min:"1" type:"string"`
 }
 

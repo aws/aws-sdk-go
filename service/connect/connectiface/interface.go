@@ -530,6 +530,10 @@ type ConnectAPI interface {
 	ListUsersPages(*connect.ListUsersInput, func(*connect.ListUsersOutput, bool) bool) error
 	ListUsersPagesWithContext(aws.Context, *connect.ListUsersInput, func(*connect.ListUsersOutput, bool) bool, ...request.Option) error
 
+	PutUserStatus(*connect.PutUserStatusInput) (*connect.PutUserStatusOutput, error)
+	PutUserStatusWithContext(aws.Context, *connect.PutUserStatusInput, ...request.Option) (*connect.PutUserStatusOutput, error)
+	PutUserStatusRequest(*connect.PutUserStatusInput) (*request.Request, *connect.PutUserStatusOutput)
+
 	ReleasePhoneNumber(*connect.ReleasePhoneNumberInput) (*connect.ReleasePhoneNumberOutput, error)
 	ReleasePhoneNumberWithContext(aws.Context, *connect.ReleasePhoneNumberInput, ...request.Option) (*connect.ReleasePhoneNumberOutput, error)
 	ReleasePhoneNumberRequest(*connect.ReleasePhoneNumberInput) (*request.Request, *connect.ReleasePhoneNumberOutput)

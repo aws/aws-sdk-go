@@ -10745,6 +10745,106 @@ func (c *Connect) ListUsersPagesWithContext(ctx aws.Context, input *ListUsersInp
 	return p.Err()
 }
 
+const opPutUserStatus = "PutUserStatus"
+
+// PutUserStatusRequest generates a "aws/request.Request" representing the
+// client's request for the PutUserStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutUserStatus for more information on using the PutUserStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutUserStatusRequest method.
+//    req, resp := client.PutUserStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/PutUserStatus
+func (c *Connect) PutUserStatusRequest(input *PutUserStatusInput) (req *request.Request, output *PutUserStatusOutput) {
+	op := &request.Operation{
+		Name:       opPutUserStatus,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/users/{InstanceId}/{UserId}/status",
+	}
+
+	if input == nil {
+		input = &PutUserStatusInput{}
+	}
+
+	output = &PutUserStatusOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutUserStatus API operation for Amazon Connect Service.
+//
+// Changes the current status of a user or agent in Amazon Connect. If the agent
+// is currently handling a contact, this sets the agent's next status.
+//
+// For more information, see Agent status (https://docs.aws.amazon.com/connect/latest/adminguide/metrics-agent-status.html)
+// and Set your next status (https://docs.aws.amazon.com/connect/latest/adminguide/set-next-status.html)
+// in the Amazon Connect Administrator Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation PutUserStatus for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/PutUserStatus
+func (c *Connect) PutUserStatus(input *PutUserStatusInput) (*PutUserStatusOutput, error) {
+	req, out := c.PutUserStatusRequest(input)
+	return out, req.Send()
+}
+
+// PutUserStatusWithContext is the same as PutUserStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutUserStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) PutUserStatusWithContext(ctx aws.Context, input *PutUserStatusInput, opts ...request.Option) (*PutUserStatusOutput, error) {
+	req, out := c.PutUserStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opReleasePhoneNumber = "ReleasePhoneNumber"
 
 // ReleasePhoneNumberRequest generates a "aws/request.Request" representing the
@@ -31329,6 +31429,109 @@ func (s *PromptSummary) SetId(v string) *PromptSummary {
 func (s *PromptSummary) SetName(v string) *PromptSummary {
 	s.Name = &v
 	return s
+}
+
+type PutUserStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the agent status.
+	//
+	// AgentStatusId is a required field
+	AgentStatusId *string `type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the user.
+	//
+	// UserId is a required field
+	UserId *string `location:"uri" locationName:"UserId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutUserStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutUserStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutUserStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutUserStatusInput"}
+	if s.AgentStatusId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgentStatusId"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentStatusId sets the AgentStatusId field's value.
+func (s *PutUserStatusInput) SetAgentStatusId(v string) *PutUserStatusInput {
+	s.AgentStatusId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *PutUserStatusInput) SetInstanceId(v string) *PutUserStatusInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *PutUserStatusInput) SetUserId(v string) *PutUserStatusInput {
+	s.UserId = &v
+	return s
+}
+
+type PutUserStatusOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutUserStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutUserStatusOutput) GoString() string {
+	return s.String()
 }
 
 // Contains information about a queue.

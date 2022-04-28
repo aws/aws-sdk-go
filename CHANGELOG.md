@@ -1,3 +1,16 @@
+Release v1.44.3 (2022-04-28)
+===
+
+### Service Client Updates
+* `service/auditmanager`: Updates service documentation
+* `service/braket`: Updates service API and documentation
+* `service/connect`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release adds support to query the public key and creation date of EC2 Key Pairs. Additionally, the format (pem or ppk) of a key pair can be specified when creating a new key pair.
+* `service/guardduty`: Updates service documentation
+  * Documentation update for API description.
+* `service/network-firewall`: Updates service API and documentation
+
 Release v1.44.2 (2022-04-27)
 ===
 
