@@ -30751,18 +30751,16 @@ type GetCommandInvocationInput struct {
 	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 
-	// The name of the plugin for which you want detailed results. If the document
-	// contains only one plugin, you can omit the name and details for that plugin.
-	// If the document contains more than one plugin, you must specify the name
-	// of the plugin for which you want to view details.
-	//
-	// Plugin names are also referred to as step names in Systems Manager documents
-	// (SSM documents). For example, aws:RunShellScript is a plugin.
+	// The name of the step for which you want detailed results. If the document
+	// contains only one step, you can omit the name and details for that step.
+	// If the document contains more than one step, you must specify the name of
+	// the step for which you want to view details. Be sure to specify the name
+	// of the step, not the name of a plugin like aws:RunShellScript.
 	//
 	// To find the PluginName, check the document content and find the name of the
-	// plugin. Alternatively, use ListCommandInvocations with the CommandId and
-	// Details parameters. The PluginName is the Name attribute of the CommandPlugin
-	// object in the CommandPlugins list.
+	// step you want details for. Alternatively, use ListCommandInvocations with
+	// the CommandId and Details parameters. The PluginName is the Name attribute
+	// of the CommandPlugin object in the CommandPlugins list.
 	PluginName *string `min:"4" type:"string"`
 }
 
@@ -51400,6 +51398,10 @@ type Runbook struct {
 	// accounts targeted by the current Runbook operation.
 	TargetLocations []*TargetLocation `min:"1" type:"list"`
 
+	// A key-value mapping of runbook parameters to target resources. Both Targets
+	// and TargetMaps can't be specified together.
+	TargetMaps []map[string][]*string `type:"list"`
+
 	// The name of the parameter used as the target resource for the rate-controlled
 	// runbook workflow. Required if you specify Targets.
 	TargetParameterName *string `min:"1" type:"string"`
@@ -51508,6 +51510,12 @@ func (s *Runbook) SetParameters(v map[string][]*string) *Runbook {
 // SetTargetLocations sets the TargetLocations field's value.
 func (s *Runbook) SetTargetLocations(v []*TargetLocation) *Runbook {
 	s.TargetLocations = v
+	return s
+}
+
+// SetTargetMaps sets the TargetMaps field's value.
+func (s *Runbook) SetTargetMaps(v []map[string][]*string) *Runbook {
+	s.TargetMaps = v
 	return s
 }
 

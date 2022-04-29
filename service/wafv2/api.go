@@ -67,6 +67,19 @@ func (c *WAFV2) AssociateWebACLRequest(input *AssociateWebACLInput) (req *reques
 // UpdateDistribution, set the web ACL ID to the Amazon Resource Name (ARN)
 // of the web ACL. For information, see UpdateDistribution (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html).
 //
+// When you make changes to web ACLs or web ACL components, like rules and rule
+// groups, WAF propagates the changes everywhere that the web ACL and its components
+// are stored and used. Your changes are applied within seconds, but there might
+// be a brief period of inconsistency when the changes have arrived in some
+// places and not in others. So, for example, if you change a rule action setting,
+// the action might be the old action in one area and the new action in another
+// area. Or if you add an IP address to an IP set used in a blocking rule, the
+// new address might briefly be blocked in one area while still allowed in another.
+// This temporary inconsistency can occur when you first associate a web ACL
+// with an Amazon Web Services resource and when you change a web ACL that is
+// already associated with a resource. Generally, any inconsistencies of this
+// type last only a few seconds.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -98,7 +111,9 @@ func (c *WAFV2) AssociateWebACLRequest(input *AssociateWebACLInput) (req *reques
 //   WAF couldn’t perform the operation because your resource doesn’t exist.
 //
 //   * WAFUnavailableEntityException
-//   WAF couldn’t retrieve the resource that you requested. Retry your request.
+//   WAF couldn’t retrieve a resource that you specified for this operation.
+//   Verify the resources that you are specifying in your request parameters and
+//   then retry the operation.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -222,7 +237,9 @@ func (c *WAFV2) CheckCapacityRequest(input *CheckCapacityInput) (req *request.Re
 //   isn’t valid. Check the resource, and try again.
 //
 //   * WAFUnavailableEntityException
-//   WAF couldn’t retrieve the resource that you requested. Retry your request.
+//   WAF couldn’t retrieve a resource that you specified for this operation.
+//   Verify the resources that you are specifying in your request parameters and
+//   then retry the operation.
 //
 //   * WAFSubscriptionNotFoundException
 //   You tried to use a managed rule group that's available by subscription, but
@@ -351,7 +368,7 @@ func (c *WAFV2) CreateIPSetRequest(input *CreateIPSetInput) (req *request.Reques
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry your request.
+//   Retry ybjectNoteWebRequestComponentour request.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -472,7 +489,7 @@ func (c *WAFV2) CreateRegexPatternSetRequest(input *CreateRegexPatternSetInput) 
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry your request.
+//   Retry ybjectNoteWebRequestComponentour request.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -594,14 +611,16 @@ func (c *WAFV2) CreateRuleGroupRequest(input *CreateRuleGroupInput) (req *reques
 //   in the WAF Developer Guide.
 //
 //   * WAFUnavailableEntityException
-//   WAF couldn’t retrieve the resource that you requested. Retry your request.
+//   WAF couldn’t retrieve a resource that you specified for this operation.
+//   Verify the resources that you are specifying in your request parameters and
+//   then retry the operation.
 //
 //   * WAFTagOperationException
 //   An error occurred during the tagging operation. Retry your request.
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry your request.
+//   Retry ybjectNoteWebRequestComponentour request.
 //
 //   * WAFSubscriptionNotFoundException
 //   You tried to use a managed rule group that's available by subscription, but
@@ -738,7 +757,9 @@ func (c *WAFV2) CreateWebACLRequest(input *CreateWebACLInput) (req *request.Requ
 //   isn’t valid. Check the resource, and try again.
 //
 //   * WAFUnavailableEntityException
-//   WAF couldn’t retrieve the resource that you requested. Retry your request.
+//   WAF couldn’t retrieve a resource that you specified for this operation.
+//   Verify the resources that you are specifying in your request parameters and
+//   then retry the operation.
 //
 //   * WAFNonexistentItemException
 //   WAF couldn’t perform the operation because your resource doesn’t exist.
@@ -748,7 +769,7 @@ func (c *WAFV2) CreateWebACLRequest(input *CreateWebACLInput) (req *request.Requ
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry your request.
+//   Retry ybjectNoteWebRequestComponentour request.
 //
 //   * WAFSubscriptionNotFoundException
 //   You tried to use a managed rule group that's available by subscription, but
@@ -756,6 +777,20 @@ func (c *WAFV2) CreateWebACLRequest(input *CreateWebACLInput) (req *request.Requ
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
+//
+//   * WAFConfigurationWarningException
+//   The operation failed because you are inspecting the web request body, headers,
+//   or cookies without specifying how to handle oversize components. Rules that
+//   inspect the body must either provide an OversizeHandling configuration or
+//   they must be preceded by a SizeConstraintStatement that blocks the body content
+//   from being too large. Rules that inspect the headers or cookies must provide
+//   an OversizeHandling configuration.
+//
+//   Provide the handling configuration and retry your operation.
+//
+//   Alternately, you can suppress this warning by adding the following tag to
+//   the resource that you provide to this operation: Tag (key:WAF:OversizeFieldsHandlingConstraintOptOut,
+//   value:true).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/CreateWebACL
 func (c *WAFV2) CreateWebACL(input *CreateWebACLInput) (*CreateWebACLOutput, error) {
@@ -975,12 +1010,16 @@ func (c *WAFV2) DeleteIPSetRequest(input *DeleteIPSetInput) (req *request.Reques
 //   WAF couldn’t perform the operation because your resource is being used
 //   by another resource or it’s associated with another resource.
 //
+//   For DeleteWebACL, you will only get this exception if the web ACL is still
+//   associated with a regional resource. Deleting a web ACL that is still associated
+//   with an Amazon CloudFront distribution won't get this exception.
+//
 //   * WAFTagOperationException
 //   An error occurred during the tagging operation. Retry your request.
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry your request.
+//   Retry ybjectNoteWebRequestComponentour request.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -1301,12 +1340,16 @@ func (c *WAFV2) DeleteRegexPatternSetRequest(input *DeleteRegexPatternSetInput) 
 //   WAF couldn’t perform the operation because your resource is being used
 //   by another resource or it’s associated with another resource.
 //
+//   For DeleteWebACL, you will only get this exception if the web ACL is still
+//   associated with a regional resource. Deleting a web ACL that is still associated
+//   with an Amazon CloudFront distribution won't get this exception.
+//
 //   * WAFTagOperationException
 //   An error occurred during the tagging operation. Retry your request.
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry your request.
+//   Retry ybjectNoteWebRequestComponentour request.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -1419,12 +1462,16 @@ func (c *WAFV2) DeleteRuleGroupRequest(input *DeleteRuleGroupInput) (req *reques
 //   WAF couldn’t perform the operation because your resource is being used
 //   by another resource or it’s associated with another resource.
 //
+//   For DeleteWebACL, you will only get this exception if the web ACL is still
+//   associated with a regional resource. Deleting a web ACL that is still associated
+//   with an Amazon CloudFront distribution won't get this exception.
+//
 //   * WAFTagOperationException
 //   An error occurred during the tagging operation. Retry your request.
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry your request.
+//   Retry ybjectNoteWebRequestComponentour request.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -1501,6 +1548,18 @@ func (c *WAFV2) DeleteWebACLRequest(input *DeleteWebACLInput) (req *request.Requ
 // You can only use this if ManagedByFirewallManager is false in the specified
 // WebACL.
 //
+// Before deleting any web ACL, first disassociate it from all resources.
+//
+//    * To retrieve a list of the resources that are associated with a web ACL,
+//    use the following calls: For regional resources, call ListResourcesForWebACL.
+//    For Amazon CloudFront distributions, use the CloudFront call ListDistributionsByWebACLId.
+//    For information, see ListDistributionsByWebACLId (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListDistributionsByWebACLId.html).
+//
+//    * To disassociate a resource from a web ACL, use the following calls:
+//    For regional resources, call DisassociateWebACL. For Amazon CloudFront
+//    distributions, provide an empty web ACL ID in the CloudFront call UpdateDistribution.
+//    For information, see UpdateDistribution (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1540,12 +1599,16 @@ func (c *WAFV2) DeleteWebACLRequest(input *DeleteWebACLInput) (req *request.Requ
 //   WAF couldn’t perform the operation because your resource is being used
 //   by another resource or it’s associated with another resource.
 //
+//   For DeleteWebACL, you will only get this exception if the web ACL is still
+//   associated with a regional resource. Deleting a web ACL that is still associated
+//   with an Amazon CloudFront distribution won't get this exception.
+//
 //   * WAFTagOperationException
 //   An error occurred during the tagging operation. Retry your request.
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry your request.
+//   Retry ybjectNoteWebRequestComponentour request.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -1728,9 +1791,10 @@ func (c *WAFV2) DisassociateWebACLRequest(input *DisassociateWebACLInput) (req *
 
 // DisassociateWebACL API operation for AWS WAFV2.
 //
-// Disassociates a web ACL from a regional application resource. A regional
-// application can be an Application Load Balancer (ALB), an Amazon API Gateway
-// REST API, or an AppSync GraphQL API.
+// Disassociates the specified regional application resource from any existing
+// web ACL association. A resource can have at most one web ACL association.
+// A regional application can be an Application Load Balancer (ALB), an Amazon
+// API Gateway REST API, or an AppSync GraphQL API.
 //
 // For Amazon CloudFront, don't use this call. Instead, use your CloudFront
 // distribution configuration. To disassociate a web ACL, provide an empty web
@@ -3023,7 +3087,9 @@ func (c *WAFV2) GetWebACLForResourceRequest(input *GetWebACLForResourceInput) (r
 //      a resource with which a web ACL can't be associated.
 //
 //   * WAFUnavailableEntityException
-//   WAF couldn’t retrieve the resource that you requested. Retry your request.
+//   WAF couldn’t retrieve a resource that you specified for this operation.
+//   Verify the resources that you are specifying in your request parameters and
+//   then retry the operation.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -4049,7 +4115,7 @@ func (c *WAFV2) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry your request.
+//   Retry ybjectNoteWebRequestComponentour request.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -4686,7 +4752,7 @@ func (c *WAFV2) TagResourceRequest(input *TagResourceInput) (req *request.Reques
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry your request.
+//   Retry ybjectNoteWebRequestComponentour request.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -4799,7 +4865,7 @@ func (c *WAFV2) UntagResourceRequest(input *UntagResourceInput) (req *request.Re
 //
 //   * WAFTagOperationInternalErrorException
 //   WAF couldn’t perform your tagging operation because of an internal error.
-//   Retry your request.
+//   Retry ybjectNoteWebRequestComponentour request.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -4876,6 +4942,19 @@ func (c *WAFV2) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Reques
 // have for the IP set with the ones that you provide to this call. To modify
 // the IP set, retrieve it by calling GetIPSet, update the settings as needed,
 // and then provide the complete IP set specification to this call.
+//
+// When you make changes to web ACLs or web ACL components, like rules and rule
+// groups, WAF propagates the changes everywhere that the web ACL and its components
+// are stored and used. Your changes are applied within seconds, but there might
+// be a brief period of inconsistency when the changes have arrived in some
+// places and not in others. So, for example, if you change a rule action setting,
+// the action might be the old action in one area and the new action in another
+// area. Or if you add an IP address to an IP set used in a blocking rule, the
+// new address might briefly be blocked in one area while still allowed in another.
+// This temporary inconsistency can occur when you first associate a web ACL
+// with an Amazon Web Services resource and when you change a web ACL that is
+// already associated with a resource. Generally, any inconsistencies of this
+// type last only a few seconds.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5116,6 +5195,19 @@ func (c *WAFV2) UpdateRegexPatternSetRequest(input *UpdateRegexPatternSetInput) 
 // update the settings as needed, and then provide the complete regex pattern
 // set specification to this call.
 //
+// When you make changes to web ACLs or web ACL components, like rules and rule
+// groups, WAF propagates the changes everywhere that the web ACL and its components
+// are stored and used. Your changes are applied within seconds, but there might
+// be a brief period of inconsistency when the changes have arrived in some
+// places and not in others. So, for example, if you change a rule action setting,
+// the action might be the old action in one area and the new action in another
+// area. Or if you add an IP address to an IP set used in a blocking rule, the
+// new address might briefly be blocked in one area while still allowed in another.
+// This temporary inconsistency can occur when you first associate a web ACL
+// with an Amazon Web Services resource and when you change a web ACL that is
+// already associated with a resource. Generally, any inconsistencies of this
+// type last only a few seconds.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5238,6 +5330,19 @@ func (c *WAFV2) UpdateRuleGroupRequest(input *UpdateRuleGroupInput) (req *reques
 // as needed, and then provide the complete rule group specification to this
 // call.
 //
+// When you make changes to web ACLs or web ACL components, like rules and rule
+// groups, WAF propagates the changes everywhere that the web ACL and its components
+// are stored and used. Your changes are applied within seconds, but there might
+// be a brief period of inconsistency when the changes have arrived in some
+// places and not in others. So, for example, if you change a rule action setting,
+// the action might be the old action in one area and the new action in another
+// area. Or if you add an IP address to an IP set used in a blocking rule, the
+// new address might briefly be blocked in one area while still allowed in another.
+// This temporary inconsistency can occur when you first associate a web ACL
+// with an Amazon Web Services resource and when you change a web ACL that is
+// already associated with a resource. Generally, any inconsistencies of this
+// type last only a few seconds.
+//
 // A rule group defines a collection of rules to inspect and control web requests
 // that you can use in a WebACL. When you create a rule group, you define an
 // immutable capacity limit. If you update a rule group, you must stay within
@@ -5290,7 +5395,9 @@ func (c *WAFV2) UpdateRuleGroupRequest(input *UpdateRuleGroupInput) (req *reques
 //   in the WAF Developer Guide.
 //
 //   * WAFUnavailableEntityException
-//   WAF couldn’t retrieve the resource that you requested. Retry your request.
+//   WAF couldn’t retrieve a resource that you specified for this operation.
+//   Verify the resources that you are specifying in your request parameters and
+//   then retry the operation.
 //
 //   * WAFSubscriptionNotFoundException
 //   You tried to use a managed rule group that's available by subscription, but
@@ -5298,6 +5405,20 @@ func (c *WAFV2) UpdateRuleGroupRequest(input *UpdateRuleGroupInput) (req *reques
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
+//
+//   * WAFConfigurationWarningException
+//   The operation failed because you are inspecting the web request body, headers,
+//   or cookies without specifying how to handle oversize components. Rules that
+//   inspect the body must either provide an OversizeHandling configuration or
+//   they must be preceded by a SizeConstraintStatement that blocks the body content
+//   from being too large. Rules that inspect the headers or cookies must provide
+//   an OversizeHandling configuration.
+//
+//   Provide the handling configuration and retry your operation.
+//
+//   Alternately, you can suppress this warning by adding the following tag to
+//   the resource that you provide to this operation: Tag (key:WAF:OversizeFieldsHandlingConstraintOptOut,
+//   value:true).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/UpdateRuleGroup
 func (c *WAFV2) UpdateRuleGroup(input *UpdateRuleGroupInput) (*UpdateRuleGroupOutput, error) {
@@ -5365,7 +5486,21 @@ func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Requ
 
 // UpdateWebACL API operation for AWS WAFV2.
 //
-// Updates the specified WebACL.
+// Updates the specified WebACL. While updating a web ACL, WAF provides continous
+// coverage to the resources that you have associated with the web ACL.
+//
+// When you make changes to web ACLs or web ACL components, like rules and rule
+// groups, WAF propagates the changes everywhere that the web ACL and its components
+// are stored and used. Your changes are applied within seconds, but there might
+// be a brief period of inconsistency when the changes have arrived in some
+// places and not in others. So, for example, if you change a rule action setting,
+// the action might be the old action in one area and the new action in another
+// area. Or if you add an IP address to an IP set used in a blocking rule, the
+// new address might briefly be blocked in one area while still allowed in another.
+// This temporary inconsistency can occur when you first associate a web ACL
+// with an Amazon Web Services resource and when you change a web ACL that is
+// already associated with a resource. Generally, any inconsistencies of this
+// type last only a few seconds.
 //
 // This operation completely replaces the mutable specifications that you already
 // have for the web ACL with the ones that you provide to this call. To modify
@@ -5432,7 +5567,9 @@ func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Requ
 //   isn’t valid. Check the resource, and try again.
 //
 //   * WAFUnavailableEntityException
-//   WAF couldn’t retrieve the resource that you requested. Retry your request.
+//   WAF couldn’t retrieve a resource that you specified for this operation.
+//   Verify the resources that you are specifying in your request parameters and
+//   then retry the operation.
 //
 //   * WAFSubscriptionNotFoundException
 //   You tried to use a managed rule group that's available by subscription, but
@@ -5445,6 +5582,20 @@ func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Requ
 //   The operation failed because the specified version for the managed rule group
 //   has expired. You can retrieve the available versions for the managed rule
 //   group by calling ListAvailableManagedRuleGroupVersions.
+//
+//   * WAFConfigurationWarningException
+//   The operation failed because you are inspecting the web request body, headers,
+//   or cookies without specifying how to handle oversize components. Rules that
+//   inspect the body must either provide an OversizeHandling configuration or
+//   they must be preceded by a SizeConstraintStatement that blocks the body content
+//   from being too large. Rules that inspect the headers or cookies must provide
+//   an OversizeHandling configuration.
+//
+//   Provide the handling configuration and retry your operation.
+//
+//   Alternately, you can suppress this warning by adding the following tag to
+//   the resource that you provide to this operation: Tag (key:WAF:OversizeFieldsHandlingConstraintOptOut,
+//   value:true).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/UpdateWebACL
 func (c *WAFV2) UpdateWebACL(input *UpdateWebACLInput) (*UpdateWebACLOutput, error) {
@@ -5516,11 +5667,10 @@ func (s *ActionCondition) SetAction(v string) *ActionCondition {
 }
 
 // Inspect all of the elements that WAF has parsed and extracted from the web
-// request JSON body that are within the JsonBody MatchScope. This is used with
-// the FieldToMatch option JsonBody.
+// request component that you've identified in your FieldToMatch specifications.
 //
-// This is used only to indicate the web request component for WAF to inspect,
-// in the FieldToMatch specification.
+// This is used only in the FieldToMatch specification for some web request
+// component types.
 //
 // JSON specification: "All": {}
 type All struct {
@@ -5545,10 +5695,10 @@ func (s All) GoString() string {
 	return s.String()
 }
 
-// All query arguments of a web request.
+// Inspect all query arguments of the web request.
 //
-// This is used only to indicate the web request component for WAF to inspect,
-// in the FieldToMatch specification.
+// This is used only in the FieldToMatch specification for some web request
+// component types.
 //
 // JSON specification: "AllQueryArguments": {}
 type AllQueryArguments struct {
@@ -5830,14 +5980,35 @@ func (s *BlockAction) SetCustomResponse(v *CustomResponse) *BlockAction {
 	return s
 }
 
-// The body of a web request. This immediately follows the request headers.
+// Inspect the body of the web request. The body immediately follows the request
+// headers.
 //
-// This is used only to indicate the web request component for WAF to inspect,
-// in the FieldToMatch specification.
-//
-// JSON specification: "Body": {}
+// This is used to indicate the web request component for WAF to inspect, in
+// the FieldToMatch specification.
 type Body struct {
 	_ struct{} `type:"structure"`
+
+	// What WAF should do if the body is larger than WAF can inspect. WAF does not
+	// support inspecting the entire contents of the body of a web request when
+	// the body exceeds 8 KB (8192 bytes). Only the first 8 KB of the request body
+	// are forwarded to WAF by the underlying host service.
+	//
+	// The options for oversize handling are the following:
+	//
+	//    * CONTINUE - Inspect the body normally, according to the rule inspection
+	//    criteria.
+	//
+	//    * MATCH - Treat the web request as matching the rule statement. WAF applies
+	//    the rule action to the request.
+	//
+	//    * NO_MATCH - Treat the web request as not matching the rule statement.
+	//
+	// You can combine the MATCH or NO_MATCH settings for oversize handling with
+	// your rule and web ACL action settings, so that you block any request whose
+	// body is over 8 KB.
+	//
+	// Default: CONTINUE
+	OversizeHandling *string `type:"string" enum:"OversizeHandling"`
 }
 
 // String returns the string representation.
@@ -5858,6 +6029,12 @@ func (s Body) GoString() string {
 	return s.String()
 }
 
+// SetOversizeHandling sets the OversizeHandling field's value.
+func (s *Body) SetOversizeHandling(v string) *Body {
+	s.OversizeHandling = &v
+	return s
+}
+
 // A rule statement that defines a string match search for WAF to apply to web
 // requests. The byte match statement provides the bytes to search for, the
 // location in requests that you want WAF to search, and other settings. The
@@ -5867,13 +6044,13 @@ func (s Body) GoString() string {
 type ByteMatchStatement struct {
 	_ struct{} `type:"structure"`
 
-	// The part of a web request that you want WAF to inspect. For more information,
+	// The part of the web request that you want WAF to inspect. For more information,
 	// see FieldToMatch.
 	//
 	// FieldToMatch is a required field
 	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
 
-	// The area within the portion of a web request that you want WAF to search
+	// The area within the portion of the web request that you want WAF to search
 	// for SearchString. Valid values include the following:
 	//
 	// CONTAINS
@@ -6382,6 +6559,187 @@ func (s *Condition) SetActionCondition(v *ActionCondition) *Condition {
 // SetLabelNameCondition sets the LabelNameCondition field's value.
 func (s *Condition) SetLabelNameCondition(v *LabelNameCondition) *Condition {
 	s.LabelNameCondition = v
+	return s
+}
+
+// The filter to use to identify the subset of cookies to inspect in a web request.
+//
+// You must specify exactly one setting: either All, IncludedCookies, or ExcludedCookies.
+//
+// Example JSON: "CookieMatchPattern": { "IncludedCookies": {"KeyToInclude1",
+// "KeyToInclude2", "KeyToInclude3"} }
+type CookieMatchPattern struct {
+	_ struct{} `type:"structure"`
+
+	// Inspect all cookies.
+	All *All `type:"structure"`
+
+	// Inspect only the cookies whose keys don't match any of the strings specified
+	// here.
+	ExcludedCookies []*string `min:"1" type:"list"`
+
+	// Inspect only the cookies that have a key that matches one of the strings
+	// specified here.
+	IncludedCookies []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CookieMatchPattern) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CookieMatchPattern) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CookieMatchPattern) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CookieMatchPattern"}
+	if s.ExcludedCookies != nil && len(s.ExcludedCookies) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExcludedCookies", 1))
+	}
+	if s.IncludedCookies != nil && len(s.IncludedCookies) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IncludedCookies", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAll sets the All field's value.
+func (s *CookieMatchPattern) SetAll(v *All) *CookieMatchPattern {
+	s.All = v
+	return s
+}
+
+// SetExcludedCookies sets the ExcludedCookies field's value.
+func (s *CookieMatchPattern) SetExcludedCookies(v []*string) *CookieMatchPattern {
+	s.ExcludedCookies = v
+	return s
+}
+
+// SetIncludedCookies sets the IncludedCookies field's value.
+func (s *CookieMatchPattern) SetIncludedCookies(v []*string) *CookieMatchPattern {
+	s.IncludedCookies = v
+	return s
+}
+
+// Inspect the cookies in the web request. You can specify the parts of the
+// cookies to inspect and you can narrow the set of cookies to inspect by including
+// or excluding specific keys.
+//
+// This is used to indicate the web request component for WAF to inspect, in
+// the FieldToMatch specification.
+//
+// Example JSON: "Cookies": { "MatchPattern": { "All": {} }, "MatchScope": "KEY",
+// "OversizeHandling": "MATCH" }
+type Cookies struct {
+	_ struct{} `type:"structure"`
+
+	// The filter to use to identify the subset of cookies to inspect in a web request.
+	//
+	// You must specify exactly one setting: either All, IncludedCookies, or ExcludedCookies.
+	//
+	// Example JSON: "CookieMatchPattern": { "IncludedCookies": {"KeyToInclude1",
+	// "KeyToInclude2", "KeyToInclude3"} }
+	//
+	// MatchPattern is a required field
+	MatchPattern *CookieMatchPattern `type:"structure" required:"true"`
+
+	// The parts of the cookies to inspect with the rule inspection criteria. If
+	// you specify All, WAF inspects both keys and values.
+	//
+	// MatchScope is a required field
+	MatchScope *string `type:"string" required:"true" enum:"MapMatchScope"`
+
+	// What WAF should do if the cookies of the request are larger than WAF can
+	// inspect. WAF does not support inspecting the entire contents of request cookies
+	// when they exceed 8 KB (8192 bytes) or 200 total cookies. The underlying host
+	// service forwards a maximum of 200 cookies and at most 8 KB of cookie contents
+	// to WAF.
+	//
+	// The options for oversize handling are the following:
+	//
+	//    * CONTINUE - Inspect the cookies normally, according to the rule inspection
+	//    criteria.
+	//
+	//    * MATCH - Treat the web request as matching the rule statement. WAF applies
+	//    the rule action to the request.
+	//
+	//    * NO_MATCH - Treat the web request as not matching the rule statement.
+	//
+	// OversizeHandling is a required field
+	OversizeHandling *string `type:"string" required:"true" enum:"OversizeHandling"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Cookies) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Cookies) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Cookies) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Cookies"}
+	if s.MatchPattern == nil {
+		invalidParams.Add(request.NewErrParamRequired("MatchPattern"))
+	}
+	if s.MatchScope == nil {
+		invalidParams.Add(request.NewErrParamRequired("MatchScope"))
+	}
+	if s.OversizeHandling == nil {
+		invalidParams.Add(request.NewErrParamRequired("OversizeHandling"))
+	}
+	if s.MatchPattern != nil {
+		if err := s.MatchPattern.Validate(); err != nil {
+			invalidParams.AddNested("MatchPattern", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMatchPattern sets the MatchPattern field's value.
+func (s *Cookies) SetMatchPattern(v *CookieMatchPattern) *Cookies {
+	s.MatchPattern = v
+	return s
+}
+
+// SetMatchScope sets the MatchScope field's value.
+func (s *Cookies) SetMatchScope(v string) *Cookies {
+	s.MatchScope = &v
+	return s
+}
+
+// SetOversizeHandling sets the OversizeHandling field's value.
+func (s *Cookies) SetOversizeHandling(v string) *Cookies {
+	s.OversizeHandling = &v
 	return s
 }
 
@@ -8838,14 +9196,14 @@ func (s *ExcludedRule) SetName(v string) *ExcludedRule {
 	return s
 }
 
-// The part of a web request that you want WAF to inspect. Include the single
+// The part of the web request that you want WAF to inspect. Include the single
 // FieldToMatch type that you want to inspect, with additional specifications
 // as needed, according to the type. You specify a single request component
 // in FieldToMatch for each rule statement that requires it. To inspect more
-// than one component of a web request, create a separate rule statement for
+// than one component of the web request, create a separate rule statement for
 // each component.
 //
-// JSON specification for a QueryString field to match:
+// Example JSON for a QueryString field to match:
 //
 // "FieldToMatch": { "QueryString": {} }
 //
@@ -8863,29 +9221,41 @@ type FieldToMatch struct {
 	// data that you want to send to your web server as the HTTP request body, such
 	// as data from a form.
 	//
-	// Note that only the first 8 KB (8192 bytes) of the request body are forwarded
-	// to WAF for inspection by the underlying host service. If you don't need to
-	// inspect more than 8 KB, you can guarantee that you don't allow additional
-	// bytes in by combining a statement that inspects the body of the web request,
-	// such as ByteMatchStatement or RegexPatternSetReferenceStatement, with a SizeConstraintStatement
-	// that enforces an 8 KB size limit on the body of the request. WAF doesn't
-	// support inspecting the entire contents of web requests whose bodies exceed
-	// the 8 KB limit.
+	// Only the first 8 KB (8192 bytes) of the request body are forwarded to WAF
+	// for inspection by the underlying host service. For information about how
+	// to handle oversized request bodies, see the Body object configuration.
 	Body *Body `type:"structure"`
+
+	// Inspect the request cookies. You must configure scope and pattern matching
+	// filters in the Cookies object, to define the set of cookies and the parts
+	// of the cookies that WAF inspects.
+	//
+	// Only the first 8 KB (8192 bytes) of a request's cookies and only the first
+	// 200 cookies are forwarded to WAF for inspection by the underlying host service.
+	// You must configure how to handle any oversize cookie content in the Cookies
+	// object. WAF applies the pattern matching filters to the cookies that it receives
+	// from the underlying host service.
+	Cookies *Cookies `type:"structure"`
+
+	// Inspect the request headers. You must configure scope and pattern matching
+	// filters in the Headers object, to define the set of headers to and the parts
+	// of the headers that WAF inspects.
+	//
+	// Only the first 8 KB (8192 bytes) of a request's headers and only the first
+	// 200 headers are forwarded to WAF for inspection by the underlying host service.
+	// You must configure how to handle any oversize header content in the Headers
+	// object. WAF applies the pattern matching filters to the headers that it receives
+	// from the underlying host service.
+	Headers *Headers `type:"structure"`
 
 	// Inspect the request body as JSON. The request body immediately follows the
 	// request headers. This is the part of a request that contains any additional
 	// data that you want to send to your web server as the HTTP request body, such
 	// as data from a form.
 	//
-	// Note that only the first 8 KB (8192 bytes) of the request body are forwarded
-	// to WAF for inspection by the underlying host service. If you don't need to
-	// inspect more than 8 KB, you can guarantee that you don't allow additional
-	// bytes in by combining a statement that inspects the body of the web request,
-	// such as ByteMatchStatement or RegexPatternSetReferenceStatement, with a SizeConstraintStatement
-	// that enforces an 8 KB size limit on the body of the request. WAF doesn't
-	// support inspecting the entire contents of web requests whose bodies exceed
-	// the 8 KB limit.
+	// Only the first 8 KB (8192 bytes) of the request body are forwarded to WAF
+	// for inspection by the underlying host service. For information about how
+	// to handle oversized request bodies, see the JsonBody object configuration.
 	JsonBody *JsonBody `type:"structure"`
 
 	// Inspect the HTTP method. The method indicates the type of operation that
@@ -8900,19 +9270,19 @@ type FieldToMatch struct {
 	// User-Agent or Referer. This setting isn't case sensitive.
 	//
 	// Example JSON: "SingleHeader": { "Name": "haystack" }
+	//
+	// Alternately, you can filter and inspect all headers with the Headers FieldToMatch
+	// setting.
 	SingleHeader *SingleHeader `type:"structure"`
 
 	// Inspect a single query argument. Provide the name of the query argument to
 	// inspect, such as UserName or SalesRegion. The name can be up to 30 characters
 	// long and isn't case sensitive.
 	//
-	// This is used only to indicate the web request component for WAF to inspect,
-	// in the FieldToMatch specification.
-	//
 	// Example JSON: "SingleQueryArgument": { "Name": "myArgument" }
 	SingleQueryArgument *SingleQueryArgument `type:"structure"`
 
-	// Inspect the request URI path. This is the part of a web request that identifies
+	// Inspect the request URI path. This is the part of the web request that identifies
 	// a resource, for example, /images/daily-ad.jpg.
 	UriPath *UriPath `type:"structure"`
 }
@@ -8938,6 +9308,16 @@ func (s FieldToMatch) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *FieldToMatch) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "FieldToMatch"}
+	if s.Cookies != nil {
+		if err := s.Cookies.Validate(); err != nil {
+			invalidParams.AddNested("Cookies", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Headers != nil {
+		if err := s.Headers.Validate(); err != nil {
+			invalidParams.AddNested("Headers", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.JsonBody != nil {
 		if err := s.JsonBody.Validate(); err != nil {
 			invalidParams.AddNested("JsonBody", err.(request.ErrInvalidParams))
@@ -8969,6 +9349,18 @@ func (s *FieldToMatch) SetAllQueryArguments(v *AllQueryArguments) *FieldToMatch 
 // SetBody sets the Body field's value.
 func (s *FieldToMatch) SetBody(v *Body) *FieldToMatch {
 	s.Body = v
+	return s
+}
+
+// SetCookies sets the Cookies field's value.
+func (s *FieldToMatch) SetCookies(v *Cookies) *FieldToMatch {
+	s.Cookies = v
+	return s
+}
+
+// SetHeaders sets the Headers field's value.
+func (s *FieldToMatch) SetHeaders(v *Headers) *FieldToMatch {
+	s.Headers = v
 	return s
 }
 
@@ -11049,6 +11441,190 @@ func (s *HTTPRequest) SetURI(v string) *HTTPRequest {
 	return s
 }
 
+// The filter to use to identify the subset of headers to inspect in a web request.
+//
+// You must specify exactly one setting: either All, IncludedHeaders, or ExcludedHeaders.
+//
+// Example JSON: "HeaderMatchPattern": { "ExcludedHeaders": {"KeyToExclude1",
+// "KeyToExclude2"} }
+type HeaderMatchPattern struct {
+	_ struct{} `type:"structure"`
+
+	// Inspect all headers.
+	All *All `type:"structure"`
+
+	// Inspect only the headers whose keys don't match any of the strings specified
+	// here.
+	ExcludedHeaders []*string `min:"1" type:"list"`
+
+	// Inspect only the headers that have a key that matches one of the strings
+	// specified here.
+	IncludedHeaders []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HeaderMatchPattern) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HeaderMatchPattern) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HeaderMatchPattern) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HeaderMatchPattern"}
+	if s.ExcludedHeaders != nil && len(s.ExcludedHeaders) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExcludedHeaders", 1))
+	}
+	if s.IncludedHeaders != nil && len(s.IncludedHeaders) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IncludedHeaders", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAll sets the All field's value.
+func (s *HeaderMatchPattern) SetAll(v *All) *HeaderMatchPattern {
+	s.All = v
+	return s
+}
+
+// SetExcludedHeaders sets the ExcludedHeaders field's value.
+func (s *HeaderMatchPattern) SetExcludedHeaders(v []*string) *HeaderMatchPattern {
+	s.ExcludedHeaders = v
+	return s
+}
+
+// SetIncludedHeaders sets the IncludedHeaders field's value.
+func (s *HeaderMatchPattern) SetIncludedHeaders(v []*string) *HeaderMatchPattern {
+	s.IncludedHeaders = v
+	return s
+}
+
+// Inspect the headers in the web request. You can specify the parts of the
+// headers to inspect and you can narrow the set of headers to inspect by including
+// or excluding specific keys.
+//
+// This is used to indicate the web request component for WAF to inspect, in
+// the FieldToMatch specification.
+//
+// Alternately, you can use the SingleHeader FieldToMatch setting to inspect
+// the value of a single header, identified by its key.
+//
+// Example JSON: "Headers": { "MatchPattern": { "All": {} }, "MatchScope": "KEY",
+// "OversizeHandling": "MATCH" }
+type Headers struct {
+	_ struct{} `type:"structure"`
+
+	// The filter to use to identify the subset of headers to inspect in a web request.
+	//
+	// You must specify exactly one setting: either All, IncludedHeaders, or ExcludedHeaders.
+	//
+	// Example JSON: "HeaderMatchPattern": { "ExcludedHeaders": {"KeyToExclude1",
+	// "KeyToExclude2"} }
+	//
+	// MatchPattern is a required field
+	MatchPattern *HeaderMatchPattern `type:"structure" required:"true"`
+
+	// The parts of the headers to match with the rule inspection criteria. If you
+	// specify All, WAF inspects both keys and values.
+	//
+	// MatchScope is a required field
+	MatchScope *string `type:"string" required:"true" enum:"MapMatchScope"`
+
+	// What WAF should do if the headers of the request are larger than WAF can
+	// inspect. WAF does not support inspecting the entire contents of request headers
+	// when they exceed 8 KB (8192 bytes) or 200 total headers. The underlying host
+	// service forwards a maximum of 200 headers and at most 8 KB of header contents
+	// to WAF.
+	//
+	// The options for oversize handling are the following:
+	//
+	//    * CONTINUE - Inspect the headers normally, according to the rule inspection
+	//    criteria.
+	//
+	//    * MATCH - Treat the web request as matching the rule statement. WAF applies
+	//    the rule action to the request.
+	//
+	//    * NO_MATCH - Treat the web request as not matching the rule statement.
+	//
+	// OversizeHandling is a required field
+	OversizeHandling *string `type:"string" required:"true" enum:"OversizeHandling"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Headers) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Headers) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Headers) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Headers"}
+	if s.MatchPattern == nil {
+		invalidParams.Add(request.NewErrParamRequired("MatchPattern"))
+	}
+	if s.MatchScope == nil {
+		invalidParams.Add(request.NewErrParamRequired("MatchScope"))
+	}
+	if s.OversizeHandling == nil {
+		invalidParams.Add(request.NewErrParamRequired("OversizeHandling"))
+	}
+	if s.MatchPattern != nil {
+		if err := s.MatchPattern.Validate(); err != nil {
+			invalidParams.AddNested("MatchPattern", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMatchPattern sets the MatchPattern field's value.
+func (s *Headers) SetMatchPattern(v *HeaderMatchPattern) *Headers {
+	s.MatchPattern = v
+	return s
+}
+
+// SetMatchScope sets the MatchScope field's value.
+func (s *Headers) SetMatchScope(v string) *Headers {
+	s.MatchScope = &v
+	return s
+}
+
+// SetOversizeHandling sets the OversizeHandling field's value.
+func (s *Headers) SetOversizeHandling(v string) *Headers {
+	s.OversizeHandling = &v
+	return s
+}
+
 // Contains zero or more IP addresses or blocks of IP addresses specified in
 // Classless Inter-Domain Routing (CIDR) notation. WAF supports all IPv4 and
 // IPv6 CIDR ranges except for /0. For information about CIDR notation, see
@@ -11502,8 +12078,11 @@ func (s *ImmunityTimeProperty) SetImmunityTime(v int64) *ImmunityTimeProperty {
 	return s
 }
 
-// The body of a web request, inspected as JSON. The body immediately follows
-// the request headers. This is used in the FieldToMatch specification.
+// Inspect the body of the web request as JSON. The body immediately follows
+// the request headers.
+//
+// This is used to indicate the web request component for WAF to inspect, in
+// the FieldToMatch specification.
 //
 // Use the specifications in this object to indicate which parts of the JSON
 // body to inspect using the rule's inspection criteria. WAF inspects only the
@@ -11553,6 +12132,28 @@ type JsonBody struct {
 	//
 	// MatchScope is a required field
 	MatchScope *string `type:"string" required:"true" enum:"JsonMatchScope"`
+
+	// What WAF should do if the body is larger than WAF can inspect. WAF does not
+	// support inspecting the entire contents of the body of a web request when
+	// the body exceeds 8 KB (8192 bytes). Only the first 8 KB of the request body
+	// are forwarded to WAF by the underlying host service.
+	//
+	// The options for oversize handling are the following:
+	//
+	//    * CONTINUE - Inspect the body normally, according to the rule inspection
+	//    criteria.
+	//
+	//    * MATCH - Treat the web request as matching the rule statement. WAF applies
+	//    the rule action to the request.
+	//
+	//    * NO_MATCH - Treat the web request as not matching the rule statement.
+	//
+	// You can combine the MATCH or NO_MATCH settings for oversize handling with
+	// your rule and web ACL action settings, so that you block any request whose
+	// body is over 8 KB.
+	//
+	// Default: CONTINUE
+	OversizeHandling *string `type:"string" enum:"OversizeHandling"`
 }
 
 // String returns the string representation.
@@ -11609,6 +12210,12 @@ func (s *JsonBody) SetMatchPattern(v *JsonMatchPattern) *JsonBody {
 // SetMatchScope sets the MatchScope field's value.
 func (s *JsonBody) SetMatchScope(v string) *JsonBody {
 	s.MatchScope = &v
+	return s
+}
+
+// SetOversizeHandling sets the OversizeHandling field's value.
+func (s *JsonBody) SetOversizeHandling(v string) *JsonBody {
+	s.OversizeHandling = &v
 	return s
 }
 
@@ -14233,11 +14840,11 @@ func (s *ManagedRuleSetVersion) SetPublishTimestamp(v time.Time) *ManagedRuleSet
 	return s
 }
 
-// The HTTP method of a web request. The method indicates the type of operation
-// that the request is asking the origin to perform.
+// Inspect the HTTP method of the web request. The method indicates the type
+// of operation that the request is asking the origin to perform.
 //
-// This is used only to indicate the web request component for WAF to inspect,
-// in the FieldToMatch specification.
+// This is used only in the FieldToMatch specification for some web request
+// component types.
 //
 // JSON specification: "Method": {}
 type Method struct {
@@ -15027,11 +15634,11 @@ func (s PutPermissionPolicyOutput) GoString() string {
 	return s.String()
 }
 
-// The query string of a web request. This is the part of a URL that appears
-// after a ? character, if any.
+// Inspect the query string of the web request. This is the part of a URL that
+// appears after a ? character, if any.
 //
-// This is used only to indicate the web request component for WAF to inspect,
-// in the FieldToMatch specification.
+// This is used only in the FieldToMatch specification for some web request
+// component types.
 //
 // JSON specification: "QueryString": {}
 type QueryString struct {
@@ -15297,7 +15904,7 @@ func (s *Regex) SetRegexString(v string) *Regex {
 type RegexMatchStatement struct {
 	_ struct{} `type:"structure"`
 
-	// The part of a web request that you want WAF to inspect. For more information,
+	// The part of the web request that you want WAF to inspect. For more information,
 	// see FieldToMatch.
 	//
 	// FieldToMatch is a required field
@@ -15486,7 +16093,7 @@ type RegexPatternSetReferenceStatement struct {
 	// ARN is a required field
 	ARN *string `min:"20" type:"string" required:"true"`
 
-	// The part of a web request that you want WAF to inspect. For more information,
+	// The part of the web request that you want WAF to inspect. For more information,
 	// see FieldToMatch.
 	//
 	// FieldToMatch is a required field
@@ -16513,11 +17120,13 @@ func (s *SampledHTTPRequest) SetWeight(v int64) *SampledHTTPRequest {
 	return s
 }
 
-// One of the headers in a web request, identified by name, for example, User-Agent
-// or Referer. This setting isn't case sensitive.
+// Inspect one of the headers in the web request, identified by name, for example,
+// User-Agent or Referer. The name isn't case sensitive.
 //
-// This is used only to indicate the web request component for WAF to inspect,
-// in the FieldToMatch specification.
+// You can filter and inspect all headers with the FieldToMatch setting Headers.
+//
+// This is used to indicate the web request component for WAF to inspect, in
+// the FieldToMatch specification.
 //
 // Example JSON: "SingleHeader": { "Name": "haystack" }
 type SingleHeader struct {
@@ -16569,8 +17178,11 @@ func (s *SingleHeader) SetName(v string) *SingleHeader {
 	return s
 }
 
-// One query argument in a web request, identified by name, for example UserName
-// or SalesRegion. The name can be up to 30 characters long and isn't case sensitive.
+// Inspect one query argument in the web request, identified by name, for example
+// UserName or SalesRegion. The name isn't case sensitive.
+//
+// This is used to indicate the web request component for WAF to inspect, in
+// the FieldToMatch specification.
 //
 // Example JSON: "SingleQueryArgument": { "Name": "myArgument" }
 type SingleQueryArgument struct {
@@ -16643,7 +17255,7 @@ type SizeConstraintStatement struct {
 	// ComparisonOperator is a required field
 	ComparisonOperator *string `type:"string" required:"true" enum:"ComparisonOperator"`
 
-	// The part of a web request that you want WAF to inspect. For more information,
+	// The part of the web request that you want WAF to inspect. For more information,
 	// see FieldToMatch.
 	//
 	// FieldToMatch is a required field
@@ -16756,7 +17368,7 @@ func (s *SizeConstraintStatement) SetTextTransformations(v []*TextTransformation
 type SqliMatchStatement struct {
 	_ struct{} `type:"structure"`
 
-	// The part of a web request that you want WAF to inspect. For more information,
+	// The part of the web request that you want WAF to inspect. For more information,
 	// see FieldToMatch.
 	//
 	// FieldToMatch is a required field
@@ -18865,11 +19477,11 @@ func (s *UpdateWebACLOutput) SetNextLockToken(v string) *UpdateWebACLOutput {
 	return s
 }
 
-// The path component of the URI of a web request. This is the part of a web
-// request that identifies a resource. For example, /images/daily-ad.jpg.
+// Inspect the path component of the URI of the web request. This is the part
+// of the web request that identifies a resource. For example, /images/daily-ad.jpg.
 //
-// This is used only to indicate the web request component for WAF to inspect,
-// in the FieldToMatch specification.
+// This is used only in the FieldToMatch specification for some web request
+// component types.
 //
 // JSON specification: "UriPath": {}
 type UriPath struct {
@@ -19097,6 +19709,10 @@ func (s *VisibilityConfig) SetSampledRequestsEnabled(v bool) *VisibilityConfig {
 
 // WAF couldn’t perform the operation because your resource is being used
 // by another resource or it’s associated with another resource.
+//
+// For DeleteWebACL, you will only get this exception if the web ACL is still
+// associated with a regional resource. Deleting a web ACL that is still associated
+// with an Amazon CloudFront distribution won't get this exception.
 type WAFAssociatedItemException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -19157,6 +19773,81 @@ func (s *WAFAssociatedItemException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *WAFAssociatedItemException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The operation failed because you are inspecting the web request body, headers,
+// or cookies without specifying how to handle oversize components. Rules that
+// inspect the body must either provide an OversizeHandling configuration or
+// they must be preceded by a SizeConstraintStatement that blocks the body content
+// from being too large. Rules that inspect the headers or cookies must provide
+// an OversizeHandling configuration.
+//
+// Provide the handling configuration and retry your operation.
+//
+// Alternately, you can suppress this warning by adding the following tag to
+// the resource that you provide to this operation: Tag (key:WAF:OversizeFieldsHandlingConstraintOptOut,
+// value:true).
+type WAFConfigurationWarningException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WAFConfigurationWarningException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WAFConfigurationWarningException) GoString() string {
+	return s.String()
+}
+
+func newErrorWAFConfigurationWarningException(v protocol.ResponseMetadata) error {
+	return &WAFConfigurationWarningException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *WAFConfigurationWarningException) Code() string {
+	return "WAFConfigurationWarningException"
+}
+
+// Message returns the exception's message.
+func (s *WAFConfigurationWarningException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *WAFConfigurationWarningException) OrigErr() error {
+	return nil
+}
+
+func (s *WAFConfigurationWarningException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *WAFConfigurationWarningException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *WAFConfigurationWarningException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -20116,7 +20807,7 @@ func (s *WAFTagOperationException) RequestID() string {
 }
 
 // WAF couldn’t perform your tagging operation because of an internal error.
-// Retry your request.
+// Retry ybjectNoteWebRequestComponentour request.
 type WAFTagOperationInternalErrorException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -20180,7 +20871,9 @@ func (s *WAFTagOperationInternalErrorException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// WAF couldn’t retrieve the resource that you requested. Retry your request.
+// WAF couldn’t retrieve a resource that you specified for this operation.
+// Verify the resources that you are specifying in your request parameters and
+// then retry the operation.
 type WAFUnavailableEntityException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -20557,7 +21250,7 @@ func (s *WebACLSummary) SetName(v string) *WebACLSummary {
 type XssMatchStatement struct {
 	_ struct{} `type:"structure"`
 
-	// The part of a web request that you want WAF to inspect. For more information,
+	// The part of the web request that you want WAF to inspect. For more information,
 	// see FieldToMatch.
 	//
 	// FieldToMatch is a required field
@@ -21464,6 +22157,9 @@ const (
 
 	// CountryCodeZw is a CountryCode enum value
 	CountryCodeZw = "ZW"
+
+	// CountryCodeXk is a CountryCode enum value
+	CountryCodeXk = "XK"
 )
 
 // CountryCode_Values returns all elements of the CountryCode enum
@@ -21718,6 +22414,7 @@ func CountryCode_Values() []string {
 		CountryCodeYe,
 		CountryCodeZm,
 		CountryCodeZw,
+		CountryCodeXk,
 	}
 }
 
@@ -21854,6 +22551,46 @@ func LabelMatchScope_Values() []string {
 	return []string{
 		LabelMatchScopeLabel,
 		LabelMatchScopeNamespace,
+	}
+}
+
+const (
+	// MapMatchScopeAll is a MapMatchScope enum value
+	MapMatchScopeAll = "ALL"
+
+	// MapMatchScopeKey is a MapMatchScope enum value
+	MapMatchScopeKey = "KEY"
+
+	// MapMatchScopeValue is a MapMatchScope enum value
+	MapMatchScopeValue = "VALUE"
+)
+
+// MapMatchScope_Values returns all elements of the MapMatchScope enum
+func MapMatchScope_Values() []string {
+	return []string{
+		MapMatchScopeAll,
+		MapMatchScopeKey,
+		MapMatchScopeValue,
+	}
+}
+
+const (
+	// OversizeHandlingContinue is a OversizeHandling enum value
+	OversizeHandlingContinue = "CONTINUE"
+
+	// OversizeHandlingMatch is a OversizeHandling enum value
+	OversizeHandlingMatch = "MATCH"
+
+	// OversizeHandlingNoMatch is a OversizeHandling enum value
+	OversizeHandlingNoMatch = "NO_MATCH"
+)
+
+// OversizeHandling_Values returns all elements of the OversizeHandling enum
+func OversizeHandling_Values() []string {
+	return []string{
+		OversizeHandlingContinue,
+		OversizeHandlingMatch,
+		OversizeHandlingNoMatch,
 	}
 }
 
@@ -22034,6 +22771,18 @@ const (
 
 	// ParameterExceptionFieldPayloadType is a ParameterExceptionField enum value
 	ParameterExceptionFieldPayloadType = "PAYLOAD_TYPE"
+
+	// ParameterExceptionFieldHeaderMatchPattern is a ParameterExceptionField enum value
+	ParameterExceptionFieldHeaderMatchPattern = "HEADER_MATCH_PATTERN"
+
+	// ParameterExceptionFieldCookieMatchPattern is a ParameterExceptionField enum value
+	ParameterExceptionFieldCookieMatchPattern = "COOKIE_MATCH_PATTERN"
+
+	// ParameterExceptionFieldMapMatchScope is a ParameterExceptionField enum value
+	ParameterExceptionFieldMapMatchScope = "MAP_MATCH_SCOPE"
+
+	// ParameterExceptionFieldOversizeHandling is a ParameterExceptionField enum value
+	ParameterExceptionFieldOversizeHandling = "OVERSIZE_HANDLING"
 )
 
 // ParameterExceptionField_Values returns all elements of the ParameterExceptionField enum
@@ -22098,6 +22847,10 @@ func ParameterExceptionField_Values() []string {
 		ParameterExceptionFieldLogDestination,
 		ParameterExceptionFieldManagedRuleGroupConfig,
 		ParameterExceptionFieldPayloadType,
+		ParameterExceptionFieldHeaderMatchPattern,
+		ParameterExceptionFieldCookieMatchPattern,
+		ParameterExceptionFieldMapMatchScope,
+		ParameterExceptionFieldOversizeHandling,
 	}
 }
 

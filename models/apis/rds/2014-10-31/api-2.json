@@ -363,7 +363,8 @@
         {"shape":"AuthorizationNotFoundFault"},
         {"shape":"KMSKeyNotAccessibleFault"},
         {"shape":"DomainNotFoundFault"},
-        {"shape":"BackupPolicyNotFoundFault"}
+        {"shape":"BackupPolicyNotFoundFault"},
+        {"shape":"NetworkTypeNotSupported"}
       ]
     },
     "CreateDBInstanceReadReplica":{
@@ -396,7 +397,8 @@
         {"shape":"InvalidDBSubnetGroupFault"},
         {"shape":"StorageTypeNotSupportedFault"},
         {"shape":"KMSKeyNotAccessibleFault"},
-        {"shape":"DomainNotFoundFault"}
+        {"shape":"DomainNotFoundFault"},
+        {"shape":"NetworkTypeNotSupported"}
       ]
     },
     "CreateDBParameterGroup":{
@@ -1600,7 +1602,8 @@
         {"shape":"DomainNotFoundFault"},
         {"shape":"BackupPolicyNotFoundFault"},
         {"shape":"KMSKeyNotAccessibleFault"},
-        {"shape":"InvalidDBClusterStateFault"}
+        {"shape":"InvalidDBClusterStateFault"},
+        {"shape":"NetworkTypeNotSupported"}
       ]
     },
     "ModifyDBParameterGroup":{
@@ -2111,7 +2114,8 @@
         {"shape":"DBSecurityGroupNotFoundFault"},
         {"shape":"DomainNotFoundFault"},
         {"shape":"DBParameterGroupNotFoundFault"},
-        {"shape":"BackupPolicyNotFoundFault"}
+        {"shape":"BackupPolicyNotFoundFault"},
+        {"shape":"NetworkTypeNotSupported"}
       ]
     },
     "RestoreDBInstanceFromS3":{
@@ -2142,7 +2146,8 @@
         {"shape":"StorageTypeNotSupportedFault"},
         {"shape":"AuthorizationNotFoundFault"},
         {"shape":"KMSKeyNotAccessibleFault"},
-        {"shape":"BackupPolicyNotFoundFault"}
+        {"shape":"BackupPolicyNotFoundFault"},
+        {"shape":"NetworkTypeNotSupported"}
       ]
     },
     "RestoreDBInstanceToPointInTime":{
@@ -2178,7 +2183,8 @@
         {"shape":"DomainNotFoundFault"},
         {"shape":"BackupPolicyNotFoundFault"},
         {"shape":"DBParameterGroupNotFoundFault"},
-        {"shape":"DBInstanceAutomatedBackupNotFoundFault"}
+        {"shape":"DBInstanceAutomatedBackupNotFoundFault"},
+        {"shape":"NetworkTypeNotSupported"}
       ]
     },
     "RevokeDBSecurityGroupIngress":{
@@ -3025,7 +3031,8 @@
         "MaxAllocatedStorage":{"shape":"IntegerOptional"},
         "EnableCustomerOwnedIp":{"shape":"BooleanOptional"},
         "CustomIamInstanceProfile":{"shape":"String"},
-        "BackupTarget":{"shape":"String"}
+        "BackupTarget":{"shape":"String"},
+        "NetworkType":{"shape":"String"}
       }
     },
     "CreateDBInstanceReadReplicaMessage":{
@@ -3067,7 +3074,8 @@
         "DomainIAMRoleName":{"shape":"String"},
         "ReplicaMode":{"shape":"ReplicaMode"},
         "MaxAllocatedStorage":{"shape":"IntegerOptional"},
-        "CustomIamInstanceProfile":{"shape":"String"}
+        "CustomIamInstanceProfile":{"shape":"String"},
+        "NetworkType":{"shape":"String"}
       }
     },
     "CreateDBInstanceReadReplicaResult":{
@@ -3909,7 +3917,8 @@
         "AutomationMode":{"shape":"AutomationMode"},
         "ResumeFullAutomationModeTime":{"shape":"TStamp"},
         "CustomIamInstanceProfile":{"shape":"String"},
-        "BackupTarget":{"shape":"String"}
+        "BackupTarget":{"shape":"String"},
+        "NetworkType":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -4599,7 +4608,8 @@
         "VpcId":{"shape":"String"},
         "SubnetGroupStatus":{"shape":"String"},
         "Subnets":{"shape":"SubnetList"},
-        "DBSubnetGroupArn":{"shape":"String"}
+        "DBSubnetGroupArn":{"shape":"String"},
+        "SupportedNetworkTypes":{"shape":"StringList"}
       },
       "wrapper":true
     },
@@ -6388,7 +6398,8 @@
         "EnableCustomerOwnedIp":{"shape":"BooleanOptional"},
         "AwsBackupRecoveryPointArn":{"shape":"AwsBackupRecoveryPointArn"},
         "AutomationMode":{"shape":"AutomationMode"},
-        "ResumeFullAutomationModeMinutes":{"shape":"IntegerOptional"}
+        "ResumeFullAutomationModeMinutes":{"shape":"IntegerOptional"},
+        "NetworkType":{"shape":"String"}
       }
     },
     "ModifyDBInstanceResult":{
@@ -6562,6 +6573,17 @@
       "members":{
         "OptionGroup":{"shape":"OptionGroup"}
       }
+    },
+    "NetworkTypeNotSupported":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"NetworkTypeNotSupported",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
     },
     "Option":{
       "type":"structure",
@@ -6824,7 +6846,8 @@
         "OutpostCapable":{"shape":"Boolean"},
         "SupportedActivityStreamModes":{"shape":"ActivityStreamModeList"},
         "SupportsGlobalDatabases":{"shape":"Boolean"},
-        "SupportsClusters":{"shape":"Boolean"}
+        "SupportsClusters":{"shape":"Boolean"},
+        "SupportedNetworkTypes":{"shape":"StringList"}
       },
       "wrapper":true
     },
@@ -7505,7 +7528,8 @@
         "DeletionProtection":{"shape":"BooleanOptional"},
         "EnableCustomerOwnedIp":{"shape":"BooleanOptional"},
         "CustomIamInstanceProfile":{"shape":"String"},
-        "BackupTarget":{"shape":"String"}
+        "BackupTarget":{"shape":"String"},
+        "NetworkType":{"shape":"String"}
       }
     },
     "RestoreDBInstanceFromDBSnapshotResult":{
@@ -7569,7 +7593,8 @@
         "ProcessorFeatures":{"shape":"ProcessorFeatureList"},
         "UseDefaultProcessorFeatures":{"shape":"BooleanOptional"},
         "DeletionProtection":{"shape":"BooleanOptional"},
-        "MaxAllocatedStorage":{"shape":"IntegerOptional"}
+        "MaxAllocatedStorage":{"shape":"IntegerOptional"},
+        "NetworkType":{"shape":"String"}
       }
     },
     "RestoreDBInstanceFromS3Result":{
@@ -7617,7 +7642,8 @@
         "SourceDBInstanceAutomatedBackupsArn":{"shape":"String"},
         "EnableCustomerOwnedIp":{"shape":"BooleanOptional"},
         "CustomIamInstanceProfile":{"shape":"String"},
-        "BackupTarget":{"shape":"String"}
+        "BackupTarget":{"shape":"String"},
+        "NetworkType":{"shape":"String"}
       }
     },
     "RestoreDBInstanceToPointInTimeResult":{

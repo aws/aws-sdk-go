@@ -8972,9 +8972,22 @@ type DolbyVision struct {
 	// MaxCLL and MaxFALL properies.
 	L6Mode *string `locationName:"l6Mode" type:"string" enum:"DolbyVisionLevel6Mode"`
 
-	// In the current MediaConvert implementation, the Dolby Vision profile is always
-	// 5 (PROFILE_5). Therefore, all of your inputs must contain Dolby Vision frame
-	// interleaved data.
+	// Required when you set Dolby Vision Profile (Profile) to Profile 8.1 (PROFILE_8_1).
+	// When you set Content mapping (Mapping) to None (HDR10_NOMAP), content mapping
+	// is not applied to the HDR10-compatible signal. Depending on the source peak
+	// nit level, clipping might occur on HDR devices without Dolby Vision. When
+	// you set Content mapping to Static (HDR10_1000), the transcoder creates a
+	// 1,000 nits peak HDR10-compatible signal by applying static content mapping
+	// to the source. This mode is speed-optimized for PQ10 sources with metadata
+	// that is created from analysis. For graded Dolby Vision content, be aware
+	// that creative intent might not be guaranteed with extreme 1,000 nits trims.
+	Mapping *string `locationName:"mapping" type:"string" enum:"DolbyVisionMapping"`
+
+	// Required when you use Dolby Vision (DolbyVision) processing. Set Profile
+	// (DolbyVisionProfile) to Profile 5 (Profile_5) to only include frame-interleaved
+	// Dolby Vision metadata in your output. Set Profile to Profile 8.1 (Profile_8_1)
+	// to include both frame-interleaved Dolby Vision metadata and HDR10 metadata
+	// in your output.
 	Profile *string `locationName:"profile" type:"string" enum:"DolbyVisionProfile"`
 }
 
@@ -9005,6 +9018,12 @@ func (s *DolbyVision) SetL6Metadata(v *DolbyVisionLevel6Metadata) *DolbyVision {
 // SetL6Mode sets the L6Mode field's value.
 func (s *DolbyVision) SetL6Mode(v string) *DolbyVision {
 	s.L6Mode = &v
+	return s
+}
+
+// SetMapping sets the Mapping field's value.
+func (s *DolbyVision) SetMapping(v string) *DolbyVision {
+	s.Mapping = &v
 	return s
 }
 
@@ -14409,6 +14428,13 @@ type Input struct {
 	// For more information about timecodes, see https://docs.aws.amazon.com/console/mediaconvert/timecode.
 	TimecodeStart *string `locationName:"timecodeStart" min:"11" type:"string"`
 
+	// Use this setting if you do not have a video input or if you want to add black
+	// video frames before, or after, other inputs. When you include Video generator,
+	// MediaConvert creates a video input with black frames and without an audio
+	// track. You can specify a value for Video generator, or you can specify an
+	// Input file, but you cannot specify both.
+	VideoGenerator *InputVideoGenerator `locationName:"videoGenerator" type:"structure"`
+
 	// Input video selectors contain the video settings for the input. Each of your
 	// inputs can have up to one video selector.
 	VideoSelector *VideoSelector `locationName:"videoSelector" type:"structure"`
@@ -14485,6 +14511,11 @@ func (s *Input) Validate() error {
 	if s.Position != nil {
 		if err := s.Position.Validate(); err != nil {
 			invalidParams.AddNested("Position", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.VideoGenerator != nil {
+		if err := s.VideoGenerator.Validate(); err != nil {
+			invalidParams.AddNested("VideoGenerator", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.VideoSelector != nil {
@@ -14616,6 +14647,12 @@ func (s *Input) SetTimecodeSource(v string) *Input {
 // SetTimecodeStart sets the TimecodeStart field's value.
 func (s *Input) SetTimecodeStart(v string) *Input {
 	s.TimecodeStart = &v
+	return s
+}
+
+// SetVideoGenerator sets the VideoGenerator field's value.
+func (s *Input) SetVideoGenerator(v *InputVideoGenerator) *Input {
+	s.VideoGenerator = v
 	return s
 }
 
@@ -15085,6 +15122,57 @@ func (s *InputTemplate) SetTimecodeStart(v string) *InputTemplate {
 // SetVideoSelector sets the VideoSelector field's value.
 func (s *InputTemplate) SetVideoSelector(v *VideoSelector) *InputTemplate {
 	s.VideoSelector = v
+	return s
+}
+
+// Use this setting if you do not have a video input or if you want to add black
+// video frames before, or after, other inputs. When you include Video generator,
+// MediaConvert creates a video input with black frames and without an audio
+// track. You can specify a value for Video generator, or you can specify an
+// Input file, but you cannot specify both.
+type InputVideoGenerator struct {
+	_ struct{} `type:"structure"`
+
+	// Specify an integer value for Black video duration from 50 to 86400000 to
+	// generate a black video input for that many milliseconds. Required when you
+	// include Video generator.
+	Duration *int64 `locationName:"duration" min:"50" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InputVideoGenerator) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InputVideoGenerator) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputVideoGenerator) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputVideoGenerator"}
+	if s.Duration != nil && *s.Duration < 50 {
+		invalidParams.Add(request.NewErrParamMinValue("Duration", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDuration sets the Duration field's value.
+func (s *InputVideoGenerator) SetDuration(v int64) *InputVideoGenerator {
+	s.Duration = &v
 	return s
 }
 
@@ -24367,6 +24455,16 @@ type VideoSelector struct {
 	// For more information about MediaConvert HDR jobs, see https://docs.aws.amazon.com/console/mediaconvert/hdr.
 	Hdr10Metadata *Hdr10Metadata `locationName:"hdr10Metadata" type:"structure"`
 
+	// Use this setting if your input has video and audio durations that don't align,
+	// and your output or player has strict alignment requirements. Examples: Input
+	// audio track has a delayed start. Input video track ends before audio ends.
+	// When you set Pad video (padVideo) to Black (BLACK), MediaConvert generates
+	// black video frames so that output video and audio durations match. Black
+	// video frames are added at the beginning or end, depending on your input.
+	// To keep the default behavior and not generate black video, set Pad video
+	// to Disabled (DISABLED) or leave blank.
+	PadVideo *string `locationName:"padVideo" type:"string" enum:"PadVideo"`
+
 	// Use PID (Pid) to select specific video data from an input file. Specify this
 	// value as an integer; the system automatically converts it to the hexidecimal
 	// value. For example, 257 selects PID 0x101. A PID, or packet identifier, is
@@ -24462,6 +24560,12 @@ func (s *VideoSelector) SetEmbeddedTimecodeOverride(v string) *VideoSelector {
 // SetHdr10Metadata sets the Hdr10Metadata field's value.
 func (s *VideoSelector) SetHdr10Metadata(v *Hdr10Metadata) *VideoSelector {
 	s.Hdr10Metadata = v
+	return s
+}
+
+// SetPadVideo sets the PadVideo field's value.
+func (s *VideoSelector) SetPadVideo(v string) *VideoSelector {
+	s.PadVideo = &v
 	return s
 }
 
@@ -28665,18 +28769,49 @@ func DolbyVisionLevel6Mode_Values() []string {
 	}
 }
 
-// In the current MediaConvert implementation, the Dolby Vision profile is always
-// 5 (PROFILE_5). Therefore, all of your inputs must contain Dolby Vision frame
-// interleaved data.
+// Required when you set Dolby Vision Profile (Profile) to Profile 8.1 (PROFILE_8_1).
+// When you set Content mapping (Mapping) to None (HDR10_NOMAP), content mapping
+// is not applied to the HDR10-compatible signal. Depending on the source peak
+// nit level, clipping might occur on HDR devices without Dolby Vision. When
+// you set Content mapping to Static (HDR10_1000), the transcoder creates a
+// 1,000 nits peak HDR10-compatible signal by applying static content mapping
+// to the source. This mode is speed-optimized for PQ10 sources with metadata
+// that is created from analysis. For graded Dolby Vision content, be aware
+// that creative intent might not be guaranteed with extreme 1,000 nits trims.
+const (
+	// DolbyVisionMappingHdr10Nomap is a DolbyVisionMapping enum value
+	DolbyVisionMappingHdr10Nomap = "HDR10_NOMAP"
+
+	// DolbyVisionMappingHdr101000 is a DolbyVisionMapping enum value
+	DolbyVisionMappingHdr101000 = "HDR10_1000"
+)
+
+// DolbyVisionMapping_Values returns all elements of the DolbyVisionMapping enum
+func DolbyVisionMapping_Values() []string {
+	return []string{
+		DolbyVisionMappingHdr10Nomap,
+		DolbyVisionMappingHdr101000,
+	}
+}
+
+// Required when you use Dolby Vision (DolbyVision) processing. Set Profile
+// (DolbyVisionProfile) to Profile 5 (Profile_5) to only include frame-interleaved
+// Dolby Vision metadata in your output. Set Profile to Profile 8.1 (Profile_8_1)
+// to include both frame-interleaved Dolby Vision metadata and HDR10 metadata
+// in your output.
 const (
 	// DolbyVisionProfileProfile5 is a DolbyVisionProfile enum value
 	DolbyVisionProfileProfile5 = "PROFILE_5"
+
+	// DolbyVisionProfileProfile81 is a DolbyVisionProfile enum value
+	DolbyVisionProfileProfile81 = "PROFILE_8_1"
 )
 
 // DolbyVisionProfile_Values returns all elements of the DolbyVisionProfile enum
 func DolbyVisionProfile_Values() []string {
 	return []string{
 		DolbyVisionProfileProfile5,
+		DolbyVisionProfileProfile81,
 	}
 }
 
@@ -34478,6 +34613,30 @@ func OutputSdt_Values() []string {
 		OutputSdtSdtFollowIfPresent,
 		OutputSdtSdtManual,
 		OutputSdtSdtNone,
+	}
+}
+
+// Use this setting if your input has video and audio durations that don't align,
+// and your output or player has strict alignment requirements. Examples: Input
+// audio track has a delayed start. Input video track ends before audio ends.
+// When you set Pad video (padVideo) to Black (BLACK), MediaConvert generates
+// black video frames so that output video and audio durations match. Black
+// video frames are added at the beginning or end, depending on your input.
+// To keep the default behavior and not generate black video, set Pad video
+// to Disabled (DISABLED) or leave blank.
+const (
+	// PadVideoDisabled is a PadVideo enum value
+	PadVideoDisabled = "DISABLED"
+
+	// PadVideoBlack is a PadVideo enum value
+	PadVideoBlack = "BLACK"
+)
+
+// PadVideo_Values returns all elements of the PadVideo enum
+func PadVideo_Values() []string {
+	return []string{
+		PadVideoDisabled,
+		PadVideoBlack,
 	}
 }
 

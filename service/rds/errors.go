@@ -626,6 +626,13 @@ const (
 	// An error occurred accessing an Amazon Web Services KMS key.
 	ErrCodeKMSKeyNotAccessibleFault = "KMSKeyNotAccessibleFault"
 
+	// ErrCodeNetworkTypeNotSupported for service response error code
+	// "NetworkTypeNotSupported".
+	//
+	// The network type is invalid for the DB instance. Valid nework type values
+	// are IPV4 and DUAL.
+	ErrCodeNetworkTypeNotSupported = "NetworkTypeNotSupported"
+
 	// ErrCodeOptionGroupAlreadyExistsFault for service response error code
 	// "OptionGroupAlreadyExistsFault".
 	//

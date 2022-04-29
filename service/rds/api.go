@@ -1973,6 +1973,10 @@ func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceInput) (req *reques
 //
 //   * ErrCodeBackupPolicyNotFoundFault "BackupPolicyNotFoundFault"
 //
+//   * ErrCodeNetworkTypeNotSupported "NetworkTypeNotSupported"
+//   The network type is invalid for the DB instance. Valid nework type values
+//   are IPV4 and DUAL.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateDBInstance
 func (c *RDS) CreateDBInstance(input *CreateDBInstanceInput) (*CreateDBInstanceOutput, error) {
 	req, out := c.CreateDBInstanceRequest(input)
@@ -2125,6 +2129,10 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 //
 //   * ErrCodeDomainNotFoundFault "DomainNotFoundFault"
 //   Domain doesn't refer to an existing Active Directory domain.
+//
+//   * ErrCodeNetworkTypeNotSupported "NetworkTypeNotSupported"
+//   The network type is invalid for the DB instance. Valid nework type values
+//   are IPV4 and DUAL.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateDBInstanceReadReplica
 func (c *RDS) CreateDBInstanceReadReplica(input *CreateDBInstanceReadReplicaInput) (*CreateDBInstanceReadReplicaOutput, error) {
@@ -10852,6 +10860,10 @@ func (c *RDS) ModifyDBInstanceRequest(input *ModifyDBInstanceInput) (req *reques
 //   * ErrCodeInvalidDBClusterStateFault "InvalidDBClusterStateFault"
 //   The requested operation can't be performed while the cluster is in this state.
 //
+//   * ErrCodeNetworkTypeNotSupported "NetworkTypeNotSupported"
+//   The network type is invalid for the DB instance. Valid nework type values
+//   are IPV4 and DUAL.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBInstance
 func (c *RDS) ModifyDBInstance(input *ModifyDBInstanceInput) (*ModifyDBInstanceOutput, error) {
 	req, out := c.ModifyDBInstanceRequest(input)
@@ -13608,6 +13620,10 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFro
 //
 //   * ErrCodeBackupPolicyNotFoundFault "BackupPolicyNotFoundFault"
 //
+//   * ErrCodeNetworkTypeNotSupported "NetworkTypeNotSupported"
+//   The network type is invalid for the DB instance. Valid nework type values
+//   are IPV4 and DUAL.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RestoreDBInstanceFromDBSnapshot
 func (c *RDS) RestoreDBInstanceFromDBSnapshot(input *RestoreDBInstanceFromDBSnapshotInput) (*RestoreDBInstanceFromDBSnapshotOutput, error) {
 	req, out := c.RestoreDBInstanceFromDBSnapshotRequest(input)
@@ -13752,6 +13768,10 @@ func (c *RDS) RestoreDBInstanceFromS3Request(input *RestoreDBInstanceFromS3Input
 //   An error occurred accessing an Amazon Web Services KMS key.
 //
 //   * ErrCodeBackupPolicyNotFoundFault "BackupPolicyNotFoundFault"
+//
+//   * ErrCodeNetworkTypeNotSupported "NetworkTypeNotSupported"
+//   The network type is invalid for the DB instance. Valid nework type values
+//   are IPV4 and DUAL.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RestoreDBInstanceFromS3
 func (c *RDS) RestoreDBInstanceFromS3(input *RestoreDBInstanceFromS3Input) (*RestoreDBInstanceFromS3Output, error) {
@@ -13917,6 +13937,10 @@ func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPo
 //
 //   * ErrCodeDBInstanceAutomatedBackupNotFoundFault "DBInstanceAutomatedBackupNotFound"
 //   No automated backup for this DB instance was found.
+//
+//   * ErrCodeNetworkTypeNotSupported "NetworkTypeNotSupported"
+//   The network type is invalid for the DB instance. Valid nework type values
+//   are IPV4 and DUAL.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RestoreDBInstanceToPointInTime
 func (c *RDS) RestoreDBInstanceToPointInTime(input *RestoreDBInstanceToPointInTimeInput) (*RestoreDBInstanceToPointInTimeOutput, error) {
@@ -20103,7 +20127,7 @@ type CreateDBInstanceInput struct {
 	//
 	// Amazon RDS Custom for SQL Server
 	//
-	// See RDS Custom for SQL Server general requirements (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-reqs-limits.html#custom-reqs-limits.reqsMS)
+	// See RDS Custom for SQL Server general requirements (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-reqs-limits-MS.html)
 	// in the Amazon RDS User Guide.
 	//
 	// MariaDB
@@ -20267,6 +20291,22 @@ type CreateDBInstanceInput struct {
 	//
 	// This parameter doesn't apply to RDS Custom.
 	NcharCharacterSetName *string `type:"string"`
+
+	// The network type of the DB instance.
+	//
+	// Valid values:
+	//
+	//    * IPV4
+	//
+	//    * DUAL
+	//
+	// The network type is determined by the DBSubnetGroup specified for the DB
+	// instance. A DBSubnetGroup can support only the IPv4 protocol or the IPv4
+	// and the IPv6 protocols (DUAL).
+	//
+	// For more information, see Working with a DB instance in a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html)
+	// in the Amazon RDS User Guide.
+	NetworkType *string `type:"string"`
 
 	// A value that indicates that the DB instance should be associated with the
 	// specified option group.
@@ -20726,6 +20766,12 @@ func (s *CreateDBInstanceInput) SetNcharCharacterSetName(v string) *CreateDBInst
 	return s
 }
 
+// SetNetworkType sets the NetworkType field's value.
+func (s *CreateDBInstanceInput) SetNetworkType(v string) *CreateDBInstanceInput {
+	s.NetworkType = &v
+	return s
+}
+
 // SetOptionGroupName sets the OptionGroupName field's value.
 func (s *CreateDBInstanceInput) SetOptionGroupName(v string) *CreateDBInstanceInput {
 	s.OptionGroupName = &v
@@ -21078,6 +21124,22 @@ type CreateDBInstanceReadReplicaInput struct {
 	//
 	// This setting doesn't apply to RDS Custom.
 	MultiAZ *bool `type:"boolean"`
+
+	// The network type of the DB instance.
+	//
+	// Valid values:
+	//
+	//    * IPV4
+	//
+	//    * DUAL
+	//
+	// The network type is determined by the DBSubnetGroup specified for read replica.
+	// A DBSubnetGroup can support only the IPv4 protocol or the IPv4 and the IPv6
+	// protocols (DUAL).
+	//
+	// For more information, see Working with a DB instance in a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html)
+	// in the Amazon RDS User Guide.
+	NetworkType *string `type:"string"`
 
 	// The option group the DB instance is associated with. If omitted, the option
 	// group associated with the source instance is used.
@@ -21438,6 +21500,12 @@ func (s *CreateDBInstanceReadReplicaInput) SetMonitoringRoleArn(v string) *Creat
 // SetMultiAZ sets the MultiAZ field's value.
 func (s *CreateDBInstanceReadReplicaInput) SetMultiAZ(v bool) *CreateDBInstanceReadReplicaInput {
 	s.MultiAZ = &v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetNetworkType(v string) *CreateDBInstanceReadReplicaInput {
+	s.NetworkType = &v
 	return s
 }
 
@@ -24983,6 +25051,23 @@ type DBInstance struct {
 	// NCHAR, NCLOB, or NVARCHAR2.
 	NcharCharacterSetName *string `type:"string"`
 
+	// The network type of the DB instance.
+	//
+	// Valid values:
+	//
+	//    * IPV4
+	//
+	//    * DUAL
+	//
+	// The network type is determined by the DBSubnetGroup specified for the DB
+	// instance. A DBSubnetGroup can support only the IPv4 protocol or the IPv4
+	// and the IPv6 protocols (DUAL).
+	//
+	// For more information, see Working with a DB instance in a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html)
+	// in the Amazon RDS User Guide and Working with a DB instance in a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html)
+	// in the Amazon Aurora User Guide.
+	NetworkType *string `type:"string"`
+
 	// Provides the list of option group memberships for this DB instance.
 	OptionGroupMemberships []*OptionGroupMembership `locationNameList:"OptionGroupMembership" type:"list"`
 
@@ -25421,6 +25506,12 @@ func (s *DBInstance) SetMultiAZ(v bool) *DBInstance {
 // SetNcharCharacterSetName sets the NcharCharacterSetName field's value.
 func (s *DBInstance) SetNcharCharacterSetName(v string) *DBInstance {
 	s.NcharCharacterSetName = &v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *DBInstance) SetNetworkType(v string) *DBInstance {
+	s.NetworkType = &v
 	return s
 }
 
@@ -27288,6 +27379,21 @@ type DBSubnetGroup struct {
 	// Contains a list of Subnet elements.
 	Subnets []*Subnet `locationNameList:"Subnet" type:"list"`
 
+	// The network type of the DB subnet group.
+	//
+	// Valid values:
+	//
+	//    * IPV4
+	//
+	//    * DUAL
+	//
+	// A DBSubnetGroup can support only the IPv4 protocol or the IPv4 and the IPv6
+	// protocols (DUAL).
+	//
+	// For more information, see Working with a DB instance in a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html)
+	// in the Amazon RDS User Guide.
+	SupportedNetworkTypes []*string `type:"list"`
+
 	// Provides the VpcId of the DB subnet group.
 	VpcId *string `type:"string"`
 }
@@ -27337,6 +27443,12 @@ func (s *DBSubnetGroup) SetSubnetGroupStatus(v string) *DBSubnetGroup {
 // SetSubnets sets the Subnets field's value.
 func (s *DBSubnetGroup) SetSubnets(v []*Subnet) *DBSubnetGroup {
 	s.Subnets = v
+	return s
+}
+
+// SetSupportedNetworkTypes sets the SupportedNetworkTypes field's value.
+func (s *DBSubnetGroup) SetSupportedNetworkTypes(v []*string) *DBSubnetGroup {
+	s.SupportedNetworkTypes = v
 	return s
 }
 
@@ -38903,6 +39015,22 @@ type ModifyDBInstanceInput struct {
 	// This setting doesn't apply to RDS Custom.
 	MultiAZ *bool `type:"boolean"`
 
+	// The network type of the DB instance.
+	//
+	// Valid values:
+	//
+	//    * IPV4
+	//
+	//    * DUAL
+	//
+	// The network type is determined by the DBSubnetGroup specified for the DB
+	// instance. A DBSubnetGroup can support only the IPv4 protocol or the IPv4
+	// and the IPv6 protocols (DUAL).
+	//
+	// For more information, see Working with a DB instance in a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html)
+	// in the Amazon RDS User Guide.
+	NetworkType *string `type:"string"`
+
 	// The new DB instance identifier for the DB instance when renaming a DB instance.
 	// When you change the DB instance identifier, an instance reboot occurs immediately
 	// if you enable ApplyImmediately, or will occur during the next maintenance
@@ -39337,6 +39465,12 @@ func (s *ModifyDBInstanceInput) SetMonitoringRoleArn(v string) *ModifyDBInstance
 // SetMultiAZ sets the MultiAZ field's value.
 func (s *ModifyDBInstanceInput) SetMultiAZ(v bool) *ModifyDBInstanceInput {
 	s.MultiAZ = &v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *ModifyDBInstanceInput) SetNetworkType(v string) *ModifyDBInstanceInput {
+	s.NetworkType = &v
 	return s
 }
 
@@ -41525,6 +41659,15 @@ type OrderableDBInstanceOption struct {
 	// A list of the supported DB engine modes.
 	SupportedEngineModes []*string `type:"list"`
 
+	// The network types supported by the DB instance (IPV4 or DUAL).
+	//
+	// A DB instance can support only the IPv4 protocol or the IPv4 and the IPv6
+	// protocols (DUAL).
+	//
+	// For more information, see Working with a DB instance in a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html)
+	// in the Amazon RDS User Guide.
+	SupportedNetworkTypes []*string `type:"list"`
+
 	// Whether DB instances can be configured as a Multi-AZ DB cluster.
 	//
 	// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
@@ -41692,6 +41835,12 @@ func (s *OrderableDBInstanceOption) SetSupportedActivityStreamModes(v []*string)
 // SetSupportedEngineModes sets the SupportedEngineModes field's value.
 func (s *OrderableDBInstanceOption) SetSupportedEngineModes(v []*string) *OrderableDBInstanceOption {
 	s.SupportedEngineModes = v
+	return s
+}
+
+// SetSupportedNetworkTypes sets the SupportedNetworkTypes field's value.
+func (s *OrderableDBInstanceOption) SetSupportedNetworkTypes(v []*string) *OrderableDBInstanceOption {
+	s.SupportedNetworkTypes = v
 	return s
 }
 
@@ -46008,6 +46157,22 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// is a Multi-AZ deployment.
 	MultiAZ *bool `type:"boolean"`
 
+	// The network type of the DB instance.
+	//
+	// Valid values:
+	//
+	//    * IPV4
+	//
+	//    * DUAL
+	//
+	// The network type is determined by the DBSubnetGroup specified for the DB
+	// instance. A DBSubnetGroup can support only the IPv4 protocol or the IPv4
+	// and the IPv6 protocols (DUAL).
+	//
+	// For more information, see Working with a DB instance in a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html)
+	// in the Amazon RDS User Guide.
+	NetworkType *string `type:"string"`
+
 	// The name of the option group to be used for the restored DB instance.
 	//
 	// Permanent options, such as the TDE option for Oracle Advanced Security TDE,
@@ -46238,6 +46403,12 @@ func (s *RestoreDBInstanceFromDBSnapshotInput) SetLicenseModel(v string) *Restor
 // SetMultiAZ sets the MultiAZ field's value.
 func (s *RestoreDBInstanceFromDBSnapshotInput) SetMultiAZ(v bool) *RestoreDBInstanceFromDBSnapshotInput {
 	s.MultiAZ = &v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetNetworkType(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.NetworkType = &v
 	return s
 }
 
@@ -46539,6 +46710,22 @@ type RestoreDBInstanceFromS3Input struct {
 	// If the DB instance is a Multi-AZ deployment, you can't set the AvailabilityZone
 	// parameter.
 	MultiAZ *bool `type:"boolean"`
+
+	// The network type of the DB instance.
+	//
+	// Valid values:
+	//
+	//    * IPV4
+	//
+	//    * DUAL
+	//
+	// The network type is determined by the DBSubnetGroup specified for the DB
+	// instance. A DBSubnetGroup can support only the IPv4 protocol or the IPv4
+	// and the IPv6 protocols (DUAL).
+	//
+	// For more information, see Working with a DB instance in a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html)
+	// in the Amazon RDS User Guide.
+	NetworkType *string `type:"string"`
 
 	// The name of the option group to associate with this DB instance. If this
 	// argument is omitted, the default option group for the specified engine is
@@ -46879,6 +47066,12 @@ func (s *RestoreDBInstanceFromS3Input) SetMonitoringRoleArn(v string) *RestoreDB
 // SetMultiAZ sets the MultiAZ field's value.
 func (s *RestoreDBInstanceFromS3Input) SetMultiAZ(v bool) *RestoreDBInstanceFromS3Input {
 	s.MultiAZ = &v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *RestoreDBInstanceFromS3Input) SetNetworkType(v string) *RestoreDBInstanceFromS3Input {
+	s.NetworkType = &v
 	return s
 }
 
@@ -47249,6 +47442,22 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// is a Multi-AZ deployment.
 	MultiAZ *bool `type:"boolean"`
 
+	// The network type of the DB instance.
+	//
+	// Valid values:
+	//
+	//    * IPV4
+	//
+	//    * DUAL
+	//
+	// The network type is determined by the DBSubnetGroup specified for the DB
+	// instance. A DBSubnetGroup can support only the IPv4 protocol or the IPv4
+	// and the IPv6 protocols (DUAL).
+	//
+	// For more information, see Working with a DB instance in a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html)
+	// in the Amazon RDS User Guide.
+	NetworkType *string `type:"string"`
+
 	// The name of the option group to be used for the restored DB instance.
 	//
 	// Permanent options, such as the TDE option for Oracle Advanced Security TDE,
@@ -47519,6 +47728,12 @@ func (s *RestoreDBInstanceToPointInTimeInput) SetMaxAllocatedStorage(v int64) *R
 // SetMultiAZ sets the MultiAZ field's value.
 func (s *RestoreDBInstanceToPointInTimeInput) SetMultiAZ(v bool) *RestoreDBInstanceToPointInTimeInput {
 	s.MultiAZ = &v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetNetworkType(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.NetworkType = &v
 	return s
 }
 

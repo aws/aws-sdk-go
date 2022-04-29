@@ -560,6 +560,8 @@ func ExampleRDS_CreateDBInstance_shared00() {
 				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
 			case rds.ErrCodeBackupPolicyNotFoundFault:
 				fmt.Println(rds.ErrCodeBackupPolicyNotFoundFault, aerr.Error())
+			case rds.ErrCodeNetworkTypeNotSupported:
+				fmt.Println(rds.ErrCodeNetworkTypeNotSupported, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -637,6 +639,8 @@ func ExampleRDS_CreateDBInstanceReadReplica_shared00() {
 				fmt.Println(rds.ErrCodeKMSKeyNotAccessibleFault, aerr.Error())
 			case rds.ErrCodeDomainNotFoundFault:
 				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
+			case rds.ErrCodeNetworkTypeNotSupported:
+				fmt.Println(rds.ErrCodeNetworkTypeNotSupported, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2340,6 +2344,8 @@ func ExampleRDS_ModifyDBInstance_shared00() {
 				fmt.Println(rds.ErrCodeKMSKeyNotAccessibleFault, aerr.Error())
 			case rds.ErrCodeInvalidDBClusterStateFault:
 				fmt.Println(rds.ErrCodeInvalidDBClusterStateFault, aerr.Error())
+			case rds.ErrCodeNetworkTypeNotSupported:
+				fmt.Println(rds.ErrCodeNetworkTypeNotSupported, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2979,6 +2985,8 @@ func ExampleRDS_RestoreDBInstanceFromDBSnapshot_shared00() {
 				fmt.Println(rds.ErrCodeDBParameterGroupNotFoundFault, aerr.Error())
 			case rds.ErrCodeBackupPolicyNotFoundFault:
 				fmt.Println(rds.ErrCodeBackupPolicyNotFoundFault, aerr.Error())
+			case rds.ErrCodeNetworkTypeNotSupported:
+				fmt.Println(rds.ErrCodeNetworkTypeNotSupported, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -3053,6 +3061,8 @@ func ExampleRDS_RestoreDBInstanceToPointInTime_shared00() {
 				fmt.Println(rds.ErrCodeDBParameterGroupNotFoundFault, aerr.Error())
 			case rds.ErrCodeDBInstanceAutomatedBackupNotFoundFault:
 				fmt.Println(rds.ErrCodeDBInstanceAutomatedBackupNotFoundFault, aerr.Error())
+			case rds.ErrCodeNetworkTypeNotSupported:
+				fmt.Println(rds.ErrCodeNetworkTypeNotSupported, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

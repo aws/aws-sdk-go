@@ -9304,6 +9304,7 @@
         "Parameters":{"shape":"AutomationParameterMap"},
         "TargetParameterName":{"shape":"AutomationParameterKey"},
         "Targets":{"shape":"Targets"},
+        "TargetMaps":{"shape":"TargetMaps"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "MaxErrors":{"shape":"MaxErrors"},
         "TargetLocations":{

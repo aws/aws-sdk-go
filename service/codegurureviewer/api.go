@@ -1958,7 +1958,7 @@ func (s *CodeCommitRepository) SetName(v string) *CodeCommitRepository {
 type CodeReview struct {
 	_ struct{} `type:"structure"`
 
-	// They types of analysis performed during a repository analysis or a pull request
+	// The types of analysis performed during a repository analysis or a pull request
 	// review. You can specify either Security, CodeQuality, or both.
 	AnalysisTypes []*string `type:"list" enum:"AnalysisType"`
 
@@ -1970,6 +1970,11 @@ type CodeReview struct {
 	// The Amazon Resource Name (ARN) of the CodeReview (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReview.html)
 	// object.
 	CodeReviewArn *string `min:"1" type:"string"`
+
+	// The state of the aws-codeguru-reviewer.yml configuration file that allows
+	// the configuration of the CodeGuru Reviewer analysis. The file either exists,
+	// doesn't exist, or exists with errors at the root directory of your repository.
+	ConfigFileState *string `type:"string" enum:"ConfigFileState"`
 
 	// The time, in milliseconds since the epoch, when the code review was created.
 	CreatedTimeStamp *time.Time `type:"timestamp"`
@@ -2055,6 +2060,12 @@ func (s *CodeReview) SetAssociationArn(v string) *CodeReview {
 // SetCodeReviewArn sets the CodeReviewArn field's value.
 func (s *CodeReview) SetCodeReviewArn(v string) *CodeReview {
 	s.CodeReviewArn = &v
+	return s
+}
+
+// SetConfigFileState sets the ConfigFileState field's value.
+func (s *CodeReview) SetConfigFileState(v string) *CodeReview {
+	s.ConfigFileState = &v
 	return s
 }
 
@@ -3920,10 +3931,17 @@ type Metrics struct {
 	// Total number of recommendations found in the code review.
 	FindingsCount *int64 `type:"long"`
 
-	// MeteredLinesOfCode is the number of lines of code in the repository where
-	// the code review happened. This does not include non-code lines such as comments
-	// and blank lines.
+	// MeteredLinesOfCodeCount is the number of lines of code in the repository
+	// where the code review happened. This does not include non-code lines such
+	// as comments and blank lines.
 	MeteredLinesOfCodeCount *int64 `type:"long"`
+
+	// SuppressedLinesOfCodeCount is the number of lines of code in the repository
+	// where the code review happened that CodeGuru Reviewer did not analyze. The
+	// lines suppressed in the analysis is based on the excludeFiles variable in
+	// the aws-codeguru-reviewer.yml file. This number does not include non-code
+	// lines such as comments and blank lines.
+	SuppressedLinesOfCodeCount *int64 `type:"long"`
 }
 
 // String returns the string representation.
@@ -3956,6 +3974,12 @@ func (s *Metrics) SetMeteredLinesOfCodeCount(v int64) *Metrics {
 	return s
 }
 
+// SetSuppressedLinesOfCodeCount sets the SuppressedLinesOfCodeCount field's value.
+func (s *Metrics) SetSuppressedLinesOfCodeCount(v int64) *Metrics {
+	s.SuppressedLinesOfCodeCount = &v
+	return s
+}
+
 // Information about metrics summaries.
 type MetricsSummary struct {
 	_ struct{} `type:"structure"`
@@ -3975,6 +3999,21 @@ type MetricsSummary struct {
 	// files (5 * 500 = 2,500 lines), the new file (200 lines) and the 25 changed
 	// lines of code for a total of 2,725 lines of code.
 	MeteredLinesOfCodeCount *int64 `type:"long"`
+
+	// Lines of code suppressed in the code review based on the excludeFiles element
+	// in the aws-codeguru-reviewer.yml file. For full repository analyses, this
+	// number includes all lines of code in the files that are suppressed. For pull
+	// requests, this number only includes the changed lines of code that are suppressed.
+	// In both cases, this number does not include non-code lines such as comments
+	// and import statements. For example, if you initiate a full repository analysis
+	// on a repository containing 5 files, each file with 100 lines of code, and
+	// 2 files are listed as excluded in the aws-codeguru-reviewer.yml file, then
+	// SuppressedLinesOfCodeCount returns 200 (2 * 100) as the total number of lines
+	// of code suppressed. However, if you submit a pull request for the same repository,
+	// then SuppressedLinesOfCodeCount only includes the lines in the 2 files that
+	// changed. If only 1 of the 2 files changed in the pull request, then SuppressedLinesOfCodeCount
+	// returns 100 (1 * 100) as the total number of lines of code suppressed.
+	SuppressedLinesOfCodeCount *int64 `type:"long"`
 }
 
 // String returns the string representation.
@@ -4004,6 +4043,12 @@ func (s *MetricsSummary) SetFindingsCount(v int64) *MetricsSummary {
 // SetMeteredLinesOfCodeCount sets the MeteredLinesOfCodeCount field's value.
 func (s *MetricsSummary) SetMeteredLinesOfCodeCount(v int64) *MetricsSummary {
 	s.MeteredLinesOfCodeCount = &v
+	return s
+}
+
+// SetSuppressedLinesOfCodeCount sets the SuppressedLinesOfCodeCount field's value.
+func (s *MetricsSummary) SetSuppressedLinesOfCodeCount(v int64) *MetricsSummary {
+	s.SuppressedLinesOfCodeCount = &v
 	return s
 }
 
@@ -5889,6 +5934,26 @@ func AnalysisType_Values() []string {
 	return []string{
 		AnalysisTypeSecurity,
 		AnalysisTypeCodeQuality,
+	}
+}
+
+const (
+	// ConfigFileStatePresent is a ConfigFileState enum value
+	ConfigFileStatePresent = "Present"
+
+	// ConfigFileStateAbsent is a ConfigFileState enum value
+	ConfigFileStateAbsent = "Absent"
+
+	// ConfigFileStatePresentWithErrors is a ConfigFileState enum value
+	ConfigFileStatePresentWithErrors = "PresentWithErrors"
+)
+
+// ConfigFileState_Values returns all elements of the ConfigFileState enum
+func ConfigFileState_Values() []string {
+	return []string{
+		ConfigFileStatePresent,
+		ConfigFileStateAbsent,
+		ConfigFileStatePresentWithErrors,
 	}
 }
 

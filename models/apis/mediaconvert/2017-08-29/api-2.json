@@ -3412,6 +3412,10 @@
           "shape": "DolbyVisionLevel6Mode",
           "locationName": "l6Mode"
         },
+        "Mapping": {
+          "shape": "DolbyVisionMapping",
+          "locationName": "mapping"
+        },
         "Profile": {
           "shape": "DolbyVisionProfile",
           "locationName": "profile"
@@ -3439,10 +3443,18 @@
         "SPECIFY"
       ]
     },
+    "DolbyVisionMapping": {
+      "type": "string",
+      "enum": [
+        "HDR10_NOMAP",
+        "HDR10_1000"
+      ]
+    },
     "DolbyVisionProfile": {
       "type": "string",
       "enum": [
-        "PROFILE_5"
+        "PROFILE_5",
+        "PROFILE_8_1"
       ]
     },
     "DropFrameTimecode": {
@@ -5865,6 +5877,10 @@
           "shape": "__stringMin11Max11Pattern01D20305D205D",
           "locationName": "timecodeStart"
         },
+        "VideoGenerator": {
+          "shape": "InputVideoGenerator",
+          "locationName": "videoGenerator"
+        },
         "VideoSelector": {
           "shape": "VideoSelector",
           "locationName": "videoSelector"
@@ -6050,6 +6066,15 @@
         "ZEROBASED",
         "SPECIFIEDSTART"
       ]
+    },
+    "InputVideoGenerator": {
+      "type": "structure",
+      "members": {
+        "Duration": {
+          "shape": "__integerMin50Max86400000",
+          "locationName": "duration"
+        }
+      }
     },
     "InsertableImage": {
       "type": "structure",
@@ -8385,6 +8410,13 @@
         }
       }
     },
+    "PadVideo": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "BLACK"
+      ]
+    },
     "PartnerWatermarking": {
       "type": "structure",
       "members": {
@@ -9684,6 +9716,10 @@
           "shape": "Hdr10Metadata",
           "locationName": "hdr10Metadata"
         },
+        "PadVideo": {
+          "shape": "PadVideo",
+          "locationName": "padVideo"
+        },
         "Pid": {
           "shape": "__integerMin1Max2147483647",
           "locationName": "pid"
@@ -10734,6 +10770,11 @@
       "type": "integer",
       "min": 4,
       "max": 12
+    },
+    "__integerMin50Max86400000": {
+      "type": "integer",
+      "min": 50,
+      "max": 86400000
     },
     "__integerMin6000Max1024000": {
       "type": "integer",
