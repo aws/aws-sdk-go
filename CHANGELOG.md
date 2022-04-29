@@ -1,3 +1,16 @@
+Release v1.44.4 (2022-04-29)
+===
+
+### Service Client Updates
+* `service/codeguru-reviewer`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK nows supports creation of Dolby Vision profile 8.1, the ability to generate black frames of video, and introduces audio-only DASH and CMAF support.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Feature - Adds support for Internet Protocol Version 6 (IPv6) on RDS database instances.
+* `service/ssm`: Updates service API and documentation
+  * Update the StartChangeRequestExecution, adding TargetMaps to the Runbook parameter
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.44.3 (2022-04-28)
 ===
 

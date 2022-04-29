@@ -128,7 +128,8 @@
         {"shape":"WAFTagOperationException"},
         {"shape":"WAFTagOperationInternalErrorException"},
         {"shape":"WAFSubscriptionNotFoundException"},
-        {"shape":"WAFInvalidOperationException"}
+        {"shape":"WAFInvalidOperationException"},
+        {"shape":"WAFConfigurationWarningException"}
       ]
     },
     "DeleteFirewallManagerRuleGroups":{
@@ -777,7 +778,8 @@
         {"shape":"WAFLimitsExceededException"},
         {"shape":"WAFUnavailableEntityException"},
         {"shape":"WAFSubscriptionNotFoundException"},
-        {"shape":"WAFInvalidOperationException"}
+        {"shape":"WAFInvalidOperationException"},
+        {"shape":"WAFConfigurationWarningException"}
       ]
     },
     "UpdateWebACL":{
@@ -799,7 +801,8 @@
         {"shape":"WAFUnavailableEntityException"},
         {"shape":"WAFSubscriptionNotFoundException"},
         {"shape":"WAFInvalidOperationException"},
-        {"shape":"WAFExpiredManagedRuleGroupVersionException"}
+        {"shape":"WAFExpiredManagedRuleGroupVersionException"},
+        {"shape":"WAFConfigurationWarningException"}
       ]
     }
   },
@@ -870,6 +873,7 @@
     "Body":{
       "type":"structure",
       "members":{
+        "OversizeHandling":{"shape":"OversizeHandling"}
       }
     },
     "BodyParsingFallbackBehavior":{
@@ -963,6 +967,33 @@
     "ConsumedCapacity":{
       "type":"long",
       "min":0
+    },
+    "CookieMatchPattern":{
+      "type":"structure",
+      "members":{
+        "All":{"shape":"All"},
+        "IncludedCookies":{"shape":"CookieNames"},
+        "ExcludedCookies":{"shape":"CookieNames"}
+      }
+    },
+    "CookieNames":{
+      "type":"list",
+      "member":{"shape":"SingleCookieName"},
+      "max":199,
+      "min":1
+    },
+    "Cookies":{
+      "type":"structure",
+      "required":[
+        "MatchPattern",
+        "MatchScope",
+        "OversizeHandling"
+      ],
+      "members":{
+        "MatchPattern":{"shape":"CookieMatchPattern"},
+        "MatchScope":{"shape":"MapMatchScope"},
+        "OversizeHandling":{"shape":"OversizeHandling"}
+      }
     },
     "CountAction":{
       "type":"structure",
@@ -1222,7 +1253,8 @@
         "EH",
         "YE",
         "ZM",
-        "ZW"
+        "ZW",
+        "XK"
       ]
     },
     "CountryCodes":{
@@ -1615,7 +1647,9 @@
         "QueryString":{"shape":"QueryString"},
         "Body":{"shape":"Body"},
         "Method":{"shape":"Method"},
-        "JsonBody":{"shape":"JsonBody"}
+        "JsonBody":{"shape":"JsonBody"},
+        "Headers":{"shape":"Headers"},
+        "Cookies":{"shape":"Cookies"}
       }
     },
     "FieldToMatchData":{
@@ -1958,8 +1992,35 @@
       }
     },
     "HTTPVersion":{"type":"string"},
+    "HeaderMatchPattern":{
+      "type":"structure",
+      "members":{
+        "All":{"shape":"All"},
+        "IncludedHeaders":{"shape":"HeaderNames"},
+        "ExcludedHeaders":{"shape":"HeaderNames"}
+      }
+    },
     "HeaderName":{"type":"string"},
+    "HeaderNames":{
+      "type":"list",
+      "member":{"shape":"FieldToMatchData"},
+      "max":199,
+      "min":1
+    },
     "HeaderValue":{"type":"string"},
+    "Headers":{
+      "type":"structure",
+      "required":[
+        "MatchPattern",
+        "MatchScope",
+        "OversizeHandling"
+      ],
+      "members":{
+        "MatchPattern":{"shape":"HeaderMatchPattern"},
+        "MatchScope":{"shape":"MapMatchScope"},
+        "OversizeHandling":{"shape":"OversizeHandling"}
+      }
+    },
     "IPAddress":{
       "type":"string",
       "max":50,
@@ -2047,7 +2108,8 @@
       "members":{
         "MatchPattern":{"shape":"JsonMatchPattern"},
         "MatchScope":{"shape":"JsonMatchScope"},
-        "InvalidFallbackBehavior":{"shape":"BodyParsingFallbackBehavior"}
+        "InvalidFallbackBehavior":{"shape":"BodyParsingFallbackBehavior"},
+        "OversizeHandling":{"shape":"OversizeHandling"}
       }
     },
     "JsonMatchPattern":{
@@ -2463,6 +2525,14 @@
         "ExpiryTimestamp":{"shape":"Timestamp"}
       }
     },
+    "MapMatchScope":{
+      "type":"string",
+      "enum":[
+        "ALL",
+        "KEY",
+        "VALUE"
+      ]
+    },
     "Method":{
       "type":"structure",
       "members":{
@@ -2515,6 +2585,14 @@
         "Count":{"shape":"CountAction"},
         "None":{"shape":"NoneAction"}
       }
+    },
+    "OversizeHandling":{
+      "type":"string",
+      "enum":[
+        "CONTINUE",
+        "MATCH",
+        "NO_MATCH"
+      ]
     },
     "PaginationLimit":{
       "type":"integer",
@@ -2582,7 +2660,11 @@
         "ASSOCIABLE_RESOURCE",
         "LOG_DESTINATION",
         "MANAGED_RULE_GROUP_CONFIG",
-        "PAYLOAD_TYPE"
+        "PAYLOAD_TYPE",
+        "HEADER_MATCH_PATTERN",
+        "COOKIE_MATCH_PATTERN",
+        "MAP_MATCH_SCOPE",
+        "OVERSIZE_HANDLING"
       ]
     },
     "ParameterExceptionParameter":{
@@ -2968,6 +3050,12 @@
       ]
     },
     "SearchString":{"type":"blob"},
+    "SingleCookieName":{
+      "type":"string",
+      "max":60,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
     "SingleHeader":{
       "type":"structure",
       "required":["Name"],
@@ -3358,6 +3446,13 @@
       }
     },
     "WAFAssociatedItemException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "WAFConfigurationWarningException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"ErrorMessage"}

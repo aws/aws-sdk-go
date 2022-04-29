@@ -13,7 +13,28 @@ const (
 	//
 	// WAF couldn’t perform the operation because your resource is being used
 	// by another resource or it’s associated with another resource.
+	//
+	// For DeleteWebACL, you will only get this exception if the web ACL is still
+	// associated with a regional resource. Deleting a web ACL that is still associated
+	// with an Amazon CloudFront distribution won't get this exception.
 	ErrCodeWAFAssociatedItemException = "WAFAssociatedItemException"
+
+	// ErrCodeWAFConfigurationWarningException for service response error code
+	// "WAFConfigurationWarningException".
+	//
+	// The operation failed because you are inspecting the web request body, headers,
+	// or cookies without specifying how to handle oversize components. Rules that
+	// inspect the body must either provide an OversizeHandling configuration or
+	// they must be preceded by a SizeConstraintStatement that blocks the body content
+	// from being too large. Rules that inspect the headers or cookies must provide
+	// an OversizeHandling configuration.
+	//
+	// Provide the handling configuration and retry your operation.
+	//
+	// Alternately, you can suppress this warning by adding the following tag to
+	// the resource that you provide to this operation: Tag (key:WAF:OversizeFieldsHandlingConstraintOptOut,
+	// value:true).
+	ErrCodeWAFConfigurationWarningException = "WAFConfigurationWarningException"
 
 	// ErrCodeWAFDuplicateItemException for service response error code
 	// "WAFDuplicateItemException".
@@ -153,18 +174,21 @@ const (
 	// "WAFTagOperationInternalErrorException".
 	//
 	// WAF couldn’t perform your tagging operation because of an internal error.
-	// Retry your request.
+	// Retry ybjectNoteWebRequestComponentour request.
 	ErrCodeWAFTagOperationInternalErrorException = "WAFTagOperationInternalErrorException"
 
 	// ErrCodeWAFUnavailableEntityException for service response error code
 	// "WAFUnavailableEntityException".
 	//
-	// WAF couldn’t retrieve the resource that you requested. Retry your request.
+	// WAF couldn’t retrieve a resource that you specified for this operation.
+	// Verify the resources that you are specifying in your request parameters and
+	// then retry the operation.
 	ErrCodeWAFUnavailableEntityException = "WAFUnavailableEntityException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"WAFAssociatedItemException":                 newErrorWAFAssociatedItemException,
+	"WAFConfigurationWarningException":           newErrorWAFConfigurationWarningException,
 	"WAFDuplicateItemException":                  newErrorWAFDuplicateItemException,
 	"WAFExpiredManagedRuleGroupVersionException": newErrorWAFExpiredManagedRuleGroupVersionException,
 	"WAFInternalErrorException":                  newErrorWAFInternalErrorException,

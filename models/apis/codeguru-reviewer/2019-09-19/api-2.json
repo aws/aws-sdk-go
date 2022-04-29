@@ -348,7 +348,8 @@
         "SourceCodeType":{"shape":"SourceCodeType"},
         "AssociationArn":{"shape":"AssociationArn"},
         "Metrics":{"shape":"Metrics"},
-        "AnalysisTypes":{"shape":"AnalysisTypes"}
+        "AnalysisTypes":{"shape":"AnalysisTypes"},
+        "ConfigFileState":{"shape":"ConfigFileState"}
       }
     },
     "CodeReviewName":{
@@ -398,6 +399,14 @@
       "type":"string",
       "max":64,
       "min":6
+    },
+    "ConfigFileState":{
+      "type":"string",
+      "enum":[
+        "Present",
+        "Absent",
+        "PresentWithErrors"
+      ]
     },
     "ConflictException":{
       "type":"structure",
@@ -590,6 +599,7 @@
       "pattern":"[a-zA-Z0-9-]+"
     },
     "LineNumber":{"type":"integer"},
+    "LinesOfCodeCount":{"type":"long"},
     "ListCodeReviewsMaxResults":{
       "type":"integer",
       "max":100,
@@ -779,18 +789,19 @@
       "max":100,
       "min":1
     },
-    "MeteredLinesOfCodeCount":{"type":"long"},
     "Metrics":{
       "type":"structure",
       "members":{
-        "MeteredLinesOfCodeCount":{"shape":"MeteredLinesOfCodeCount"},
+        "MeteredLinesOfCodeCount":{"shape":"LinesOfCodeCount"},
+        "SuppressedLinesOfCodeCount":{"shape":"LinesOfCodeCount"},
         "FindingsCount":{"shape":"FindingsCount"}
       }
     },
     "MetricsSummary":{
       "type":"structure",
       "members":{
-        "MeteredLinesOfCodeCount":{"shape":"MeteredLinesOfCodeCount"},
+        "MeteredLinesOfCodeCount":{"shape":"LinesOfCodeCount"},
+        "SuppressedLinesOfCodeCount":{"shape":"LinesOfCodeCount"},
         "FindingsCount":{"shape":"FindingsCount"}
       }
     },
