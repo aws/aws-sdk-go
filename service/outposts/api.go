@@ -859,6 +859,12 @@ func (c *Outposts) GetOutpostInstanceTypesRequest(input *GetOutpostInstanceTypes
 		Name:       opGetOutpostInstanceTypes,
 		HTTPMethod: "GET",
 		HTTPPath:   "/outposts/{OutpostId}/instanceTypes",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -872,7 +878,7 @@ func (c *Outposts) GetOutpostInstanceTypesRequest(input *GetOutpostInstanceTypes
 
 // GetOutpostInstanceTypes API operation for AWS Outposts.
 //
-// Lists the instance types for the specified Outpost.
+// Gets the instance types for the specified Outpost.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -914,6 +920,58 @@ func (c *Outposts) GetOutpostInstanceTypesWithContext(ctx aws.Context, input *Ge
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// GetOutpostInstanceTypesPages iterates over the pages of a GetOutpostInstanceTypes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetOutpostInstanceTypes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetOutpostInstanceTypes operation.
+//    pageNum := 0
+//    err := client.GetOutpostInstanceTypesPages(params,
+//        func(page *outposts.GetOutpostInstanceTypesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Outposts) GetOutpostInstanceTypesPages(input *GetOutpostInstanceTypesInput, fn func(*GetOutpostInstanceTypesOutput, bool) bool) error {
+	return c.GetOutpostInstanceTypesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetOutpostInstanceTypesPagesWithContext same as GetOutpostInstanceTypesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) GetOutpostInstanceTypesPagesWithContext(ctx aws.Context, input *GetOutpostInstanceTypesInput, fn func(*GetOutpostInstanceTypesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetOutpostInstanceTypesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetOutpostInstanceTypesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetOutpostInstanceTypesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opGetSite = "GetSite"
@@ -1092,6 +1150,154 @@ func (c *Outposts) GetSiteAddressWithContext(ctx aws.Context, input *GetSiteAddr
 	return out, req.Send()
 }
 
+const opListAssets = "ListAssets"
+
+// ListAssetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAssets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAssets for more information on using the ListAssets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAssetsRequest method.
+//    req, resp := client.ListAssetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/ListAssets
+func (c *Outposts) ListAssetsRequest(input *ListAssetsInput) (req *request.Request, output *ListAssetsOutput) {
+	op := &request.Operation{
+		Name:       opListAssets,
+		HTTPMethod: "GET",
+		HTTPPath:   "/outposts/{OutpostId}/assets",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAssetsInput{}
+	}
+
+	output = &ListAssetsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAssets API operation for AWS Outposts.
+//
+// Lists the hardware assets in an Outpost. If you are using Dedicated Hosts
+// on Amazon Web Services Outposts, you can filter your request by host ID to
+// return a list of hardware assets that allocate resources for Dedicated Hosts.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation ListAssets for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   A parameter is not valid.
+//
+//   * AccessDeniedException
+//   You do not have permission to perform this operation.
+//
+//   * NotFoundException
+//   The specified request is not valid.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/ListAssets
+func (c *Outposts) ListAssets(input *ListAssetsInput) (*ListAssetsOutput, error) {
+	req, out := c.ListAssetsRequest(input)
+	return out, req.Send()
+}
+
+// ListAssetsWithContext is the same as ListAssets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAssets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) ListAssetsWithContext(ctx aws.Context, input *ListAssetsInput, opts ...request.Option) (*ListAssetsOutput, error) {
+	req, out := c.ListAssetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAssetsPages iterates over the pages of a ListAssets operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAssets method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAssets operation.
+//    pageNum := 0
+//    err := client.ListAssetsPages(params,
+//        func(page *outposts.ListAssetsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Outposts) ListAssetsPages(input *ListAssetsInput, fn func(*ListAssetsOutput, bool) bool) error {
+	return c.ListAssetsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAssetsPagesWithContext same as ListAssetsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) ListAssetsPagesWithContext(ctx aws.Context, input *ListAssetsInput, fn func(*ListAssetsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAssetsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAssetsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAssetsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListCatalogItems = "ListCatalogItems"
 
 // ListCatalogItemsRequest generates a "aws/request.Request" representing the
@@ -1142,9 +1348,9 @@ func (c *Outposts) ListCatalogItemsRequest(input *ListCatalogItemsInput) (req *r
 
 // ListCatalogItems API operation for AWS Outposts.
 //
-// Use to create a list of every item in the catalog. Add filters to your request
-// to return a more specific list of results. Use filters to match an item class,
-// storage option, or EC2 family.
+// Lists the items in the catalog. Add filters to your request to return a more
+// specific list of results. Use filters to match an item class, storage option,
+// or EC2 family.
 //
 // If you specify multiple filters, the filters are joined with an AND, and
 // the request returns only results that match all of the specified filters.
@@ -1290,9 +1496,8 @@ func (c *Outposts) ListOrdersRequest(input *ListOrdersInput) (req *request.Reque
 
 // ListOrders API operation for AWS Outposts.
 //
-// Create a list of the Outpost orders for your Amazon Web Services account.
-// You can filter your request by Outpost to return a more specific list of
-// results.
+// Lists the Outpost orders for your Amazon Web Services account. You can filter
+// your request by Outpost to return a more specific list of results.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1438,10 +1643,9 @@ func (c *Outposts) ListOutpostsRequest(input *ListOutpostsInput) (req *request.R
 
 // ListOutposts API operation for AWS Outposts.
 //
-// Create a list of the Outposts for your Amazon Web Services account. Add filters
-// to your request to return a more specific list of results. Use filters to
-// match an Outpost lifecycle status, Availability Zone (us-east-1a), and AZ
-// ID (use1-az1).
+// Lists the Outposts for your Amazon Web Services account. Add filters to your
+// request to return a more specific list of results. Use filters to match an
+// Outpost lifecycle status, Availability Zone (us-east-1a), and AZ ID (use1-az1).
 //
 // If you specify multiple filters, the filters are joined with an AND, and
 // the request returns only results that match all of the specified filters.
@@ -1587,10 +1791,10 @@ func (c *Outposts) ListSitesRequest(input *ListSitesInput) (req *request.Request
 
 // ListSites API operation for AWS Outposts.
 //
-// Create a list of the Outpost sites for your Amazon Web Services account.
-// Add operating address filters to your request to return a more specific list
-// of results. Use filters to match site city, country code, or state/region
-// of the operating address.
+// Lists the Outpost sites for your Amazon Web Services account. Add operating
+// address filters to your request to return a more specific list of results.
+// Use filters to match site city, country code, or state/region of the operating
+// address.
 //
 // If you specify multiple filters, the filters are joined with an AND, and
 // the request returns only results that match all of the specified filters.
@@ -2564,6 +2768,65 @@ func (s *Address) SetStateOrRegion(v string) *Address {
 	return s
 }
 
+// Information about hardware assets.
+type AssetInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the asset.
+	AssetId *string `min:"1" type:"string"`
+
+	// The type of the asset.
+	AssetType *string `type:"string" enum:"AssetType"`
+
+	// Information about compute hardware assets.
+	ComputeAttributes *ComputeAttributes `type:"structure"`
+
+	// The rack ID of the asset.
+	RackId *string `min:"5" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetInfo) GoString() string {
+	return s.String()
+}
+
+// SetAssetId sets the AssetId field's value.
+func (s *AssetInfo) SetAssetId(v string) *AssetInfo {
+	s.AssetId = &v
+	return s
+}
+
+// SetAssetType sets the AssetType field's value.
+func (s *AssetInfo) SetAssetType(v string) *AssetInfo {
+	s.AssetType = &v
+	return s
+}
+
+// SetComputeAttributes sets the ComputeAttributes field's value.
+func (s *AssetInfo) SetComputeAttributes(v *ComputeAttributes) *AssetInfo {
+	s.ComputeAttributes = v
+	return s
+}
+
+// SetRackId sets the RackId field's value.
+func (s *AssetInfo) SetRackId(v string) *AssetInfo {
+	s.RackId = &v
+	return s
+}
+
 type CancelOrderInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -2718,6 +2981,38 @@ func (s *CatalogItem) SetSupportedUplinkGbps(v []*int64) *CatalogItem {
 // SetWeightLbs sets the WeightLbs field's value.
 func (s *CatalogItem) SetWeightLbs(v int64) *CatalogItem {
 	s.WeightLbs = &v
+	return s
+}
+
+// Information about compute hardware assets.
+type ComputeAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// The host ID of any Dedicated Hosts on the asset.
+	HostId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComputeAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComputeAttributes) GoString() string {
+	return s.String()
+}
+
+// SetHostId sets the HostId field's value.
+func (s *ComputeAttributes) SetHostId(v string) *ComputeAttributes {
+	s.HostId = &v
 	return s
 }
 
@@ -4196,6 +4491,132 @@ func (s *LineItemRequest) SetCatalogItemId(v string) *LineItemRequest {
 // SetQuantity sets the Quantity field's value.
 func (s *LineItemRequest) SetQuantity(v int64) *LineItemRequest {
 	s.Quantity = &v
+	return s
+}
+
+type ListAssetsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A filter for the host ID of Dedicated Hosts on the Outpost.
+	//
+	// Filter values are case sensitive. If you specify multiple values for a filter,
+	// the values are joined with an OR, and the request returns all results that
+	// match any of the specified values.
+	HostIdFilter []*string `location:"querystring" locationName:"HostIdFilter" type:"list"`
+
+	// The maximum page size.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// The pagination token.
+	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
+
+	// The ID or the Amazon Resource Name (ARN) of the Outpost.
+	//
+	// OutpostIdentifier is a required field
+	OutpostIdentifier *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAssetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAssetsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.OutpostIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutpostIdentifier"))
+	}
+	if s.OutpostIdentifier != nil && len(*s.OutpostIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutpostIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHostIdFilter sets the HostIdFilter field's value.
+func (s *ListAssetsInput) SetHostIdFilter(v []*string) *ListAssetsInput {
+	s.HostIdFilter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAssetsInput) SetMaxResults(v int64) *ListAssetsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAssetsInput) SetNextToken(v string) *ListAssetsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOutpostIdentifier sets the OutpostIdentifier field's value.
+func (s *ListAssetsInput) SetOutpostIdentifier(v string) *ListAssetsInput {
+	s.OutpostIdentifier = &v
+	return s
+}
+
+type ListAssetsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about hardware assets.
+	Assets []*AssetInfo `type:"list"`
+
+	// The pagination token.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssets sets the Assets field's value.
+func (s *ListAssetsOutput) SetAssets(v []*AssetInfo) *ListAssetsOutput {
+	s.Assets = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAssetsOutput) SetNextToken(v string) *ListAssetsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -6313,6 +6734,18 @@ func AddressType_Values() []string {
 	return []string{
 		AddressTypeShippingAddress,
 		AddressTypeOperatingAddress,
+	}
+}
+
+const (
+	// AssetTypeCompute is a AssetType enum value
+	AssetTypeCompute = "COMPUTE"
+)
+
+// AssetType_Values returns all elements of the AssetType enum
+func AssetType_Values() []string {
+	return []string{
+		AssetTypeCompute,
 	}
 }
 

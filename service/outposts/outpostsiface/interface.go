@@ -100,6 +100,9 @@ type OutpostsAPI interface {
 	GetOutpostInstanceTypesWithContext(aws.Context, *outposts.GetOutpostInstanceTypesInput, ...request.Option) (*outposts.GetOutpostInstanceTypesOutput, error)
 	GetOutpostInstanceTypesRequest(*outposts.GetOutpostInstanceTypesInput) (*request.Request, *outposts.GetOutpostInstanceTypesOutput)
 
+	GetOutpostInstanceTypesPages(*outposts.GetOutpostInstanceTypesInput, func(*outposts.GetOutpostInstanceTypesOutput, bool) bool) error
+	GetOutpostInstanceTypesPagesWithContext(aws.Context, *outposts.GetOutpostInstanceTypesInput, func(*outposts.GetOutpostInstanceTypesOutput, bool) bool, ...request.Option) error
+
 	GetSite(*outposts.GetSiteInput) (*outposts.GetSiteOutput, error)
 	GetSiteWithContext(aws.Context, *outposts.GetSiteInput, ...request.Option) (*outposts.GetSiteOutput, error)
 	GetSiteRequest(*outposts.GetSiteInput) (*request.Request, *outposts.GetSiteOutput)
@@ -107,6 +110,13 @@ type OutpostsAPI interface {
 	GetSiteAddress(*outposts.GetSiteAddressInput) (*outposts.GetSiteAddressOutput, error)
 	GetSiteAddressWithContext(aws.Context, *outposts.GetSiteAddressInput, ...request.Option) (*outposts.GetSiteAddressOutput, error)
 	GetSiteAddressRequest(*outposts.GetSiteAddressInput) (*request.Request, *outposts.GetSiteAddressOutput)
+
+	ListAssets(*outposts.ListAssetsInput) (*outposts.ListAssetsOutput, error)
+	ListAssetsWithContext(aws.Context, *outposts.ListAssetsInput, ...request.Option) (*outposts.ListAssetsOutput, error)
+	ListAssetsRequest(*outposts.ListAssetsInput) (*request.Request, *outposts.ListAssetsOutput)
+
+	ListAssetsPages(*outposts.ListAssetsInput, func(*outposts.ListAssetsOutput, bool) bool) error
+	ListAssetsPagesWithContext(aws.Context, *outposts.ListAssetsInput, func(*outposts.ListAssetsOutput, bool) bool, ...request.Option) error
 
 	ListCatalogItems(*outposts.ListCatalogItemsInput) (*outposts.ListCatalogItemsOutput, error)
 	ListCatalogItemsWithContext(aws.Context, *outposts.ListCatalogItemsInput, ...request.Option) (*outposts.ListCatalogItemsOutput, error)
