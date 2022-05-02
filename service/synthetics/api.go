@@ -162,12 +162,12 @@ func (c *Synthetics) DeleteCanaryRequest(input *DeleteCanaryInput) (req *request
 //
 // Permanently deletes the specified canary.
 //
-// When you delete a canary, resources used and created by the canary are not
-// automatically deleted. After you delete a canary that you do not intend to
-// use again, you should also delete the following:
+// If you specify DeleteLambda to true, CloudWatch Synthetics also deletes the
+// Lambda functions and layers that are used by the canary.
 //
-//    * The Lambda functions and layers used by this canary. These have the
-//    prefix cwsyn-MyCanaryName .
+// Other esources used and created by the canary are not automatically deleted.
+// After you delete a canary that you do not intend to use again, you should
+// also delete the following:
 //
 //    * The CloudWatch alarms created for this canary. These alarms have a name
 //    of Synthetics-SharpDrop-Alarm-MyCanaryName .
@@ -2900,6 +2900,12 @@ func (s *CreateCanaryOutput) SetCanary(v *Canary) *CreateCanaryOutput {
 type DeleteCanaryInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// Specifies whether to also delete the Lambda functions and layers used by
+	// this canary. The default is false.
+	//
+	// Type: Boolean
+	DeleteLambda *bool `location:"querystring" locationName:"deleteLambda" type:"boolean"`
+
 	// The name of the canary that you want to delete. To find the names of your
 	// canaries, use DescribeCanaries (https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_DescribeCanaries.html).
 	//
@@ -2939,6 +2945,12 @@ func (s *DeleteCanaryInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDeleteLambda sets the DeleteLambda field's value.
+func (s *DeleteCanaryInput) SetDeleteLambda(v bool) *DeleteCanaryInput {
+	s.DeleteLambda = &v
+	return s
 }
 
 // SetName sets the Name field's value.
@@ -4865,12 +4877,56 @@ func CanaryState_Values() []string {
 const (
 	// CanaryStateReasonCodeInvalidPermissions is a CanaryStateReasonCode enum value
 	CanaryStateReasonCodeInvalidPermissions = "INVALID_PERMISSIONS"
+
+	// CanaryStateReasonCodeCreatePending is a CanaryStateReasonCode enum value
+	CanaryStateReasonCodeCreatePending = "CREATE_PENDING"
+
+	// CanaryStateReasonCodeCreateInProgress is a CanaryStateReasonCode enum value
+	CanaryStateReasonCodeCreateInProgress = "CREATE_IN_PROGRESS"
+
+	// CanaryStateReasonCodeCreateFailed is a CanaryStateReasonCode enum value
+	CanaryStateReasonCodeCreateFailed = "CREATE_FAILED"
+
+	// CanaryStateReasonCodeUpdatePending is a CanaryStateReasonCode enum value
+	CanaryStateReasonCodeUpdatePending = "UPDATE_PENDING"
+
+	// CanaryStateReasonCodeUpdateInProgress is a CanaryStateReasonCode enum value
+	CanaryStateReasonCodeUpdateInProgress = "UPDATE_IN_PROGRESS"
+
+	// CanaryStateReasonCodeUpdateComplete is a CanaryStateReasonCode enum value
+	CanaryStateReasonCodeUpdateComplete = "UPDATE_COMPLETE"
+
+	// CanaryStateReasonCodeRollbackComplete is a CanaryStateReasonCode enum value
+	CanaryStateReasonCodeRollbackComplete = "ROLLBACK_COMPLETE"
+
+	// CanaryStateReasonCodeRollbackFailed is a CanaryStateReasonCode enum value
+	CanaryStateReasonCodeRollbackFailed = "ROLLBACK_FAILED"
+
+	// CanaryStateReasonCodeDeleteInProgress is a CanaryStateReasonCode enum value
+	CanaryStateReasonCodeDeleteInProgress = "DELETE_IN_PROGRESS"
+
+	// CanaryStateReasonCodeDeleteFailed is a CanaryStateReasonCode enum value
+	CanaryStateReasonCodeDeleteFailed = "DELETE_FAILED"
+
+	// CanaryStateReasonCodeSyncDeleteInProgress is a CanaryStateReasonCode enum value
+	CanaryStateReasonCodeSyncDeleteInProgress = "SYNC_DELETE_IN_PROGRESS"
 )
 
 // CanaryStateReasonCode_Values returns all elements of the CanaryStateReasonCode enum
 func CanaryStateReasonCode_Values() []string {
 	return []string{
 		CanaryStateReasonCodeInvalidPermissions,
+		CanaryStateReasonCodeCreatePending,
+		CanaryStateReasonCodeCreateInProgress,
+		CanaryStateReasonCodeCreateFailed,
+		CanaryStateReasonCodeUpdatePending,
+		CanaryStateReasonCodeUpdateInProgress,
+		CanaryStateReasonCodeUpdateComplete,
+		CanaryStateReasonCodeRollbackComplete,
+		CanaryStateReasonCodeRollbackFailed,
+		CanaryStateReasonCodeDeleteInProgress,
+		CanaryStateReasonCodeDeleteFailed,
+		CanaryStateReasonCodeSyncDeleteInProgress,
 	}
 }
 

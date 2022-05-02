@@ -405,10 +405,21 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -425,6 +436,11 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -883,8 +899,42 @@ func (c *Organizations) CloseAccountRequest(input *CloseAccountInput) (req *requ
 
 // CloseAccount API operation for AWS Organizations.
 //
-// Closes an Amazon Web Services account that is now a part of an Organizations,
-// either created within the organization, or invited to join the organization.
+// Closes an Amazon Web Services member account within an organization. You
+// can't close the management account with this API. This is an asynchronous
+// request that Amazon Web Services performs in the background. Because CloseAccount
+// operates asynchronously, it can return a successful completion message even
+// though account closure might still be in progress. You need to wait a few
+// minutes before the account is fully closed. To check the status of the request,
+// do one of the following:
+//
+//    * Use the AccountId that you sent in the CloseAccount request to provide
+//    as a parameter to the DescribeAccount operation. While the close account
+//    request is in progress, Account status will indicate PENDING_CLOSURE.
+//    When the close account request completes, the status will change to SUSPENDED.
+//
+//    * Check the CloudTrail log for the CloseAccountResult event that gets
+//    published after the account closes successfully. For information on using
+//    CloudTrail with Organizations, see Logging and monitoring in Organizations
+//    (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_security_incident-response.html#orgs_cloudtrail-integration)
+//    in the Organizations User Guide.
+//
+//    * You can only close 10% of active member accounts within a rolling 30
+//    day period. This quota is not bound by a calendar month, but starts when
+//    you close an account. Within 30 days of that initial account closure,
+//    you can't exceed the 10% account closure limit.
+//
+//    * To reinstate a closed account, contact Amazon Web Services Support within
+//    the 90-day grace period while the account is in SUSPENDED status.
+//
+//    * If the Amazon Web Services account you attempt to close is linked to
+//    an Amazon Web Services GovCloud (US) account, the CloseAccount request
+//    will close both accounts. To learn important pre-closure details, see
+//    Closing an Amazon Web Services GovCloud (US) account (https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/Closing-govcloud-account.html)
+//    in the Amazon Web Services GovCloud User Guide.
+//
+// For more information about closing accounts, see Closing an Amazon Web Services
+// account (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_close.html)
+// in the Organizations User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -964,10 +1014,21 @@ func (c *Organizations) CloseAccountRequest(input *CloseAccountInput) (req *requ
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -984,6 +1045,11 @@ func (c *Organizations) CloseAccountRequest(input *CloseAccountInput) (req *requ
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -1359,10 +1425,21 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -1379,6 +1456,11 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -1803,10 +1885,21 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -1823,6 +1916,11 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -2151,10 +2249,21 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -2171,6 +2280,11 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -2493,10 +2607,21 @@ func (c *Organizations) CreateOrganizationalUnitRequest(input *CreateOrganizatio
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -2513,6 +2638,11 @@ func (c *Organizations) CreateOrganizationalUnitRequest(input *CreateOrganizatio
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -2833,10 +2963,21 @@ func (c *Organizations) CreatePolicyRequest(input *CreatePolicyInput) (req *requ
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -2853,6 +2994,11 @@ func (c *Organizations) CreatePolicyRequest(input *CreatePolicyInput) (req *requ
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -3975,10 +4121,21 @@ func (c *Organizations) DeregisterDelegatedAdministratorRequest(input *Deregiste
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -3995,6 +4152,11 @@ func (c *Organizations) DeregisterDelegatedAdministratorRequest(input *Deregiste
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -4687,10 +4849,21 @@ func (c *Organizations) DescribeEffectivePolicyRequest(input *DescribeEffectiveP
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -4707,6 +4880,11 @@ func (c *Organizations) DescribeEffectivePolicyRequest(input *DescribeEffectiveP
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -5710,10 +5888,21 @@ func (c *Organizations) DetachPolicyRequest(input *DetachPolicyInput) (req *requ
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -5730,6 +5919,11 @@ func (c *Organizations) DetachPolicyRequest(input *DetachPolicyInput) (req *requ
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -6107,10 +6301,21 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -6127,6 +6332,11 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -6450,10 +6660,21 @@ func (c *Organizations) DisablePolicyTypeRequest(input *DisablePolicyTypeInput) 
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -6470,6 +6691,11 @@ func (c *Organizations) DisablePolicyTypeRequest(input *DisablePolicyTypeInput) 
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -6812,10 +7038,21 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -6832,6 +7069,11 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -7408,10 +7650,21 @@ func (c *Organizations) EnablePolicyTypeRequest(input *EnablePolicyTypeInput) (r
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -7428,6 +7681,11 @@ func (c *Organizations) EnablePolicyTypeRequest(input *EnablePolicyTypeInput) (r
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -7833,10 +8091,21 @@ func (c *Organizations) InviteAccountToOrganizationRequest(input *InviteAccountT
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -7853,6 +8122,11 @@ func (c *Organizations) InviteAccountToOrganizationRequest(input *InviteAccountT
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -8214,10 +8488,21 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -8234,6 +8519,11 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -8558,10 +8848,21 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationRequest(input *ListAW
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -8578,6 +8879,11 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationRequest(input *ListAW
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -9939,10 +10245,21 @@ func (c *Organizations) ListDelegatedAdministratorsRequest(input *ListDelegatedA
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -9959,6 +10276,11 @@ func (c *Organizations) ListDelegatedAdministratorsRequest(input *ListDelegatedA
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -10335,10 +10657,21 @@ func (c *Organizations) ListDelegatedServicesForAccountRequest(input *ListDelega
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -10355,6 +10688,11 @@ func (c *Organizations) ListDelegatedServicesForAccountRequest(input *ListDelega
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -13189,10 +13527,21 @@ func (c *Organizations) RegisterDelegatedAdministratorRequest(input *RegisterDel
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -13209,6 +13558,11 @@ func (c *Organizations) RegisterDelegatedAdministratorRequest(input *RegisterDel
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -13557,10 +13911,21 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -13577,6 +13942,11 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -13903,10 +14273,21 @@ func (c *Organizations) TagResourceRequest(input *TagResourceInput) (req *reques
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -13923,6 +14304,11 @@ func (c *Organizations) TagResourceRequest(input *TagResourceInput) (req *reques
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -14244,10 +14630,21 @@ func (c *Organizations) UntagResourceRequest(input *UntagResourceInput) (req *re
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -14264,6 +14661,11 @@ func (c *Organizations) UntagResourceRequest(input *UntagResourceInput) (req *re
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -14764,10 +15166,21 @@ func (c *Organizations) UpdatePolicyRequest(input *UpdatePolicyInput) (req *requ
 //      for an Amazon Web Services service integrated with Organizations. You
 //      can designate only a member account as a delegated administrator.
 //
+//      * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//      account. To close the management account for the organization, you must
+//      first either remove or close all member accounts in the organization.
+//      Follow standard account closure process using root credentials.​
+//
 //      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //      an account that is registered as a delegated administrator for a service
 //      integrated with your organization. To complete this operation, you must
 //      first deregister this account as a delegated administrator.
+//
+//      * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//      for the past 30 days.
+//
+//      * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//      of accounts that you can close at a time. ​
 //
 //      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //      organization in the specified region, you must enable all features mode.
@@ -14784,6 +15197,11 @@ func (c *Organizations) UpdatePolicyRequest(input *UpdatePolicyInput) (req *requ
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
+//
+//      * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//      supported payment method is associated with the account. Amazon Web Services
+//      does not support cards issued by financial institutions in Russia or Belarus.
+//      For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //      in this organization, you first must migrate the organization's management
@@ -16318,10 +16736,21 @@ func (s *ConflictException) RequestID() string {
 //    for an Amazon Web Services service integrated with Organizations. You
 //    can designate only a member account as a delegated administrator.
 //
+//    * CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//    account. To close the management account for the organization, you must
+//    first either remove or close all member accounts in the organization.
+//    Follow standard account closure process using root credentials.​
+//
 //    * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
 //    an account that is registered as a delegated administrator for a service
 //    integrated with your organization. To complete this operation, you must
 //    first deregister this account as a delegated administrator.
+//
+//    * CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//    for the past 30 days.
+//
+//    * CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//    of accounts that you can close at a time. ​
 //
 //    * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
 //    organization in the specified region, you must enable all features mode.
@@ -16338,6 +16767,11 @@ func (s *ConflictException) RequestID() string {
 //
 //    * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //    handshakes that you can send in one day.
+//
+//    * INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//    supported payment method is associated with the account. Amazon Web Services
+//    does not support cards issued by financial institutions in Russia or Belarus.
+//    For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
 //
 //    * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 //    in this organization, you first must migrate the organization's management
@@ -16749,6 +17183,12 @@ type CreateAccountStatus struct {
 	//    * INVALID_EMAIL: The account could not be created because the email address
 	//    you provided is not valid.
 	//
+	//    * INVALID_PAYMENT_INSTRUMENT: The Amazon Web Services account that owns
+	//    your organization does not have a supported payment method associated
+	//    with the account. Amazon Web Services does not support cards issued by
+	//    financial institutions in Russia or Belarus. For more information, see
+	//    Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
+	//
 	//    * INTERNAL_FAILURE: The account could not be created because of an internal
 	//    failure. Try again later. If the problem persists, contact Amazon Web
 	//    Services Customer Support.
@@ -16921,6 +17361,9 @@ type CreateGovCloudAccountInput struct {
 	_ struct{} `type:"structure"`
 
 	// The friendly name of the member account.
+	//
+	// The account name can consist of only the characters [a-z],[A-Z],[0-9], hyphen
+	// (-), or dot (.) You can't separate characters with a dash (–).
 	//
 	// AccountName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateGovCloudAccountInput's
@@ -25481,6 +25924,9 @@ const (
 
 	// ConstraintViolationExceptionReasonServiceAccessNotEnabled is a ConstraintViolationExceptionReason enum value
 	ConstraintViolationExceptionReasonServiceAccessNotEnabled = "SERVICE_ACCESS_NOT_ENABLED"
+
+	// ConstraintViolationExceptionReasonInvalidPaymentInstrument is a ConstraintViolationExceptionReason enum value
+	ConstraintViolationExceptionReasonInvalidPaymentInstrument = "INVALID_PAYMENT_INSTRUMENT"
 )
 
 // ConstraintViolationExceptionReason_Values returns all elements of the ConstraintViolationExceptionReason enum
@@ -25518,6 +25964,7 @@ func ConstraintViolationExceptionReason_Values() []string {
 		ConstraintViolationExceptionReasonCloseAccountQuotaExceeded,
 		ConstraintViolationExceptionReasonCloseAccountRequestsLimitExceeded,
 		ConstraintViolationExceptionReasonServiceAccessNotEnabled,
+		ConstraintViolationExceptionReasonInvalidPaymentInstrument,
 	}
 }
 
@@ -25560,6 +26007,9 @@ const (
 
 	// CreateAccountFailureReasonMissingPaymentInstrument is a CreateAccountFailureReason enum value
 	CreateAccountFailureReasonMissingPaymentInstrument = "MISSING_PAYMENT_INSTRUMENT"
+
+	// CreateAccountFailureReasonInvalidPaymentInstrument is a CreateAccountFailureReason enum value
+	CreateAccountFailureReasonInvalidPaymentInstrument = "INVALID_PAYMENT_INSTRUMENT"
 )
 
 // CreateAccountFailureReason_Values returns all elements of the CreateAccountFailureReason enum
@@ -25578,6 +26028,7 @@ func CreateAccountFailureReason_Values() []string {
 		CreateAccountFailureReasonInvalidIdentityForBusinessValidation,
 		CreateAccountFailureReasonUnknownBusinessValidation,
 		CreateAccountFailureReasonMissingPaymentInstrument,
+		CreateAccountFailureReasonInvalidPaymentInstrument,
 	}
 }
 

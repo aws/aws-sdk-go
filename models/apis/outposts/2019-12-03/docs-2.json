@@ -11,13 +11,14 @@
     "GetCatalogItem": "<p>Gets information about a catalog item.</p>",
     "GetOrder": "<p>Gets an order.</p>",
     "GetOutpost": "<p>Gets information about the specified Outpost.</p>",
-    "GetOutpostInstanceTypes": "<p>Lists the instance types for the specified Outpost.</p>",
+    "GetOutpostInstanceTypes": "<p>Gets the instance types for the specified Outpost.</p>",
     "GetSite": "<p> Gets information about the specified Outpost site. </p>",
     "GetSiteAddress": "<p> Gets the site address. </p>",
-    "ListCatalogItems": "<p>Use to create a list of every item in the catalog. Add filters to your request to return a more specific list of results. Use filters to match an item class, storage option, or EC2 family. </p> <p>If you specify multiple filters, the filters are joined with an <code>AND</code>, and the request returns only results that match all of the specified filters.</p>",
-    "ListOrders": "<p>Create a list of the Outpost orders for your Amazon Web Services account. You can filter your request by Outpost to return a more specific list of results. </p>",
-    "ListOutposts": "<p>Create a list of the Outposts for your Amazon Web Services account. Add filters to your request to return a more specific list of results. Use filters to match an Outpost lifecycle status, Availability Zone (<code>us-east-1a</code>), and AZ ID (<code>use1-az1</code>). </p> <p>If you specify multiple filters, the filters are joined with an <code>AND</code>, and the request returns only results that match all of the specified filters.</p>",
-    "ListSites": "<p>Create a list of the Outpost sites for your Amazon Web Services account. Add operating address filters to your request to return a more specific list of results. Use filters to match site city, country code, or state/region of the operating address. </p> <p>If you specify multiple filters, the filters are joined with an <code>AND</code>, and the request returns only results that match all of the specified filters.</p>",
+    "ListAssets": "<p> Lists the hardware assets in an Outpost. If you are using Dedicated Hosts on Amazon Web Services Outposts, you can filter your request by host ID to return a list of hardware assets that allocate resources for Dedicated Hosts. </p>",
+    "ListCatalogItems": "<p>Lists the items in the catalog. Add filters to your request to return a more specific list of results. Use filters to match an item class, storage option, or EC2 family. </p> <p>If you specify multiple filters, the filters are joined with an <code>AND</code>, and the request returns only results that match all of the specified filters.</p>",
+    "ListOrders": "<p>Lists the Outpost orders for your Amazon Web Services account. You can filter your request by Outpost to return a more specific list of results. </p>",
+    "ListOutposts": "<p>Lists the Outposts for your Amazon Web Services account. Add filters to your request to return a more specific list of results. Use filters to match an Outpost lifecycle status, Availability Zone (<code>us-east-1a</code>), and AZ ID (<code>use1-az1</code>). </p> <p>If you specify multiple filters, the filters are joined with an <code>AND</code>, and the request returns only results that match all of the specified filters.</p>",
+    "ListSites": "<p>Lists the Outpost sites for your Amazon Web Services account. Add operating address filters to your request to return a more specific list of results. Use filters to match site city, country code, or state/region of the operating address. </p> <p>If you specify multiple filters, the filters are joined with an <code>AND</code>, and the request returns only results that match all of the specified filters.</p>",
     "ListTagsForResource": "<p>Lists the tags for the specified resource.</p>",
     "TagResource": "<p>Adds tags to the specified resource.</p>",
     "UntagResource": "<p>Removes tags from the specified resource.</p>",
@@ -81,6 +82,30 @@
         "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>"
+      }
+    },
+    "AssetId": {
+      "base": null,
+      "refs": {
+        "AssetInfo$AssetId": "<p> The ID of the asset. </p>"
+      }
+    },
+    "AssetInfo": {
+      "base": "<p> Information about hardware assets. </p>",
+      "refs": {
+        "AssetListDefinition$member": null
+      }
+    },
+    "AssetListDefinition": {
+      "base": null,
+      "refs": {
+        "ListAssetsOutput$Assets": "<p> Information about hardware assets. </p>"
+      }
+    },
+    "AssetType": {
+      "base": null,
+      "refs": {
+        "AssetInfo$AssetType": "<p> The type of the asset. </p>"
       }
     },
     "AvailabilityZone": {
@@ -176,6 +201,12 @@
       "base": null,
       "refs": {
         "ListSitesInput$OperatingAddressCityFilter": "<p> A filter for the city of the Outpost site. </p> <p>Filter values are case sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values.</p>"
+      }
+    },
+    "ComputeAttributes": {
+      "base": "<p> Information about compute hardware assets. </p>",
+      "refs": {
+        "AssetInfo$ComputeAttributes": "<p> Information about compute hardware assets. </p>"
       }
     },
     "ConflictException": {
@@ -368,6 +399,19 @@
       "refs": {
       }
     },
+    "HostId": {
+      "base": null,
+      "refs": {
+        "ComputeAttributes$HostId": "<p> The host ID of any Dedicated Hosts on the asset. </p>",
+        "HostIdList$member": null
+      }
+    },
+    "HostIdList": {
+      "base": null,
+      "refs": {
+        "ListAssetsInput$HostIdFilter": "<p> A filter for the host ID of Dedicated Hosts on the Outpost. </p> <p>Filter values are case sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values.</p>"
+      }
+    },
     "ISO8601Timestamp": {
       "base": null,
       "refs": {
@@ -464,6 +508,16 @@
         "OrderSummary$LineItemCountsByStatus": "<p> The status of all line items in the order. </p>"
       }
     },
+    "ListAssetsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAssetsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListCatalogItemsInput": {
       "base": null,
       "refs": {
@@ -518,6 +572,7 @@
       "base": "<p>The maximum page size.</p>",
       "refs": {
         "GetOutpostInstanceTypesInput$MaxResults": null,
+        "ListAssetsInput$MaxResults": null,
         "ListCatalogItemsInput$MaxResults": null,
         "ListOrdersInput$MaxResults": null,
         "ListOutpostsInput$MaxResults": null,
@@ -642,6 +697,7 @@
       "base": null,
       "refs": {
         "CreateOrderInput$OutpostIdentifier": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>",
+        "ListAssetsInput$OutpostIdentifier": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>",
         "ListOrdersInput$OutpostIdentifierFilter": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>"
       }
     },
@@ -710,6 +766,12 @@
       "base": null,
       "refs": {
         "EC2Capacity$Quantity": "<p> The quantity of the EC2 capacity. </p>"
+      }
+    },
+    "RackId": {
+      "base": null,
+      "refs": {
+        "AssetInfo$RackId": "<p> The rack ID of the asset. </p>"
       }
     },
     "RackPhysicalProperties": {
@@ -893,6 +955,8 @@
       "refs": {
         "GetOutpostInstanceTypesInput$NextToken": null,
         "GetOutpostInstanceTypesOutput$NextToken": null,
+        "ListAssetsInput$NextToken": null,
+        "ListAssetsOutput$NextToken": null,
         "ListCatalogItemsInput$NextToken": null,
         "ListCatalogItemsOutput$NextToken": null,
         "ListOrdersInput$NextToken": null,

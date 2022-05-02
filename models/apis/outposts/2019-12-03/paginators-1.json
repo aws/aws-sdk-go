@@ -1,5 +1,15 @@
 {
   "pagination": {
+    "GetOutpostInstanceTypes": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
+    "ListAssets": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "ListCatalogItems": {
       "input_token": "NextToken",
       "output_token": "NextToken",

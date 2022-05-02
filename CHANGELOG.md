@@ -1,3 +1,12 @@
+Release v1.44.5 (2022-05-02)
+===
+
+### Service Client Updates
+* `service/organizations`: Updates service API and documentation
+  * This release adds the INVALID_PAYMENT_INSTRUMENT as a fail reason and an error message.
+* `service/outposts`: Updates service API, documentation, and paginators
+* `service/synthetics`: Updates service API and documentation
+
 Release v1.44.4 (2022-04-29)
 ===
 
