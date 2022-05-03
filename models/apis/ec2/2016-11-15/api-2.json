@@ -5294,7 +5294,8 @@
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
         },
-        "HostRecovery":{"shape":"HostRecovery"}
+        "HostRecovery":{"shape":"HostRecovery"},
+        "OutpostArn":{"shape":"String"}
       }
     },
     "AllocateHostsResult":{
@@ -20919,6 +20920,10 @@
         "MemberOfServiceLinkedResourceGroup":{
           "shape":"Boolean",
           "locationName":"memberOfServiceLinkedResourceGroup"
+        },
+        "OutpostArn":{
+          "shape":"String",
+          "locationName":"outpostArn"
         }
       }
     },

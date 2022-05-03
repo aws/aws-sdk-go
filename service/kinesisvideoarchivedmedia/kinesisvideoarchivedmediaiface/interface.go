@@ -72,6 +72,13 @@ type KinesisVideoArchivedMediaAPI interface {
 	GetHLSStreamingSessionURLWithContext(aws.Context, *kinesisvideoarchivedmedia.GetHLSStreamingSessionURLInput, ...request.Option) (*kinesisvideoarchivedmedia.GetHLSStreamingSessionURLOutput, error)
 	GetHLSStreamingSessionURLRequest(*kinesisvideoarchivedmedia.GetHLSStreamingSessionURLInput) (*request.Request, *kinesisvideoarchivedmedia.GetHLSStreamingSessionURLOutput)
 
+	GetImages(*kinesisvideoarchivedmedia.GetImagesInput) (*kinesisvideoarchivedmedia.GetImagesOutput, error)
+	GetImagesWithContext(aws.Context, *kinesisvideoarchivedmedia.GetImagesInput, ...request.Option) (*kinesisvideoarchivedmedia.GetImagesOutput, error)
+	GetImagesRequest(*kinesisvideoarchivedmedia.GetImagesInput) (*request.Request, *kinesisvideoarchivedmedia.GetImagesOutput)
+
+	GetImagesPages(*kinesisvideoarchivedmedia.GetImagesInput, func(*kinesisvideoarchivedmedia.GetImagesOutput, bool) bool) error
+	GetImagesPagesWithContext(aws.Context, *kinesisvideoarchivedmedia.GetImagesInput, func(*kinesisvideoarchivedmedia.GetImagesOutput, bool) bool, ...request.Option) error
+
 	GetMediaForFragmentList(*kinesisvideoarchivedmedia.GetMediaForFragmentListInput) (*kinesisvideoarchivedmedia.GetMediaForFragmentListOutput, error)
 	GetMediaForFragmentListWithContext(aws.Context, *kinesisvideoarchivedmedia.GetMediaForFragmentListInput, ...request.Option) (*kinesisvideoarchivedmedia.GetMediaForFragmentListOutput, error)
 	GetMediaForFragmentListRequest(*kinesisvideoarchivedmedia.GetMediaForFragmentListInput) (*request.Request, *kinesisvideoarchivedmedia.GetMediaForFragmentListOutput)

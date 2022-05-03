@@ -3660,6 +3660,25 @@
         "AUC"
       ]
     },
+    "AutoMLMetricExtendedEnum":{
+      "type":"string",
+      "enum":[
+        "Accuracy",
+        "MSE",
+        "F1",
+        "F1macro",
+        "AUC",
+        "RMSE",
+        "MAE",
+        "R2",
+        "BalancedAccuracy",
+        "Precision",
+        "PrecisionMacro",
+        "Recall",
+        "RecallMacro",
+        "LogLoss"
+      ]
+    },
     "AutoMLNameContains":{
       "type":"string",
       "max":63,
@@ -11433,7 +11452,8 @@
       "members":{
         "MetricName":{"shape":"AutoMLMetricEnum"},
         "Value":{"shape":"Float"},
-        "Set":{"shape":"MetricSetSource"}
+        "Set":{"shape":"MetricSetSource"},
+        "StandardMetricName":{"shape":"AutoMLMetricExtendedEnum"}
       }
     },
     "MetricDefinition":{
@@ -13888,6 +13908,8 @@
     "RSessionAppSettings":{
       "type":"structure",
       "members":{
+        "DefaultResourceSpec":{"shape":"ResourceSpec"},
+        "CustomImages":{"shape":"CustomImages"}
       }
     },
     "RStudioServerProAccessStatus":{
