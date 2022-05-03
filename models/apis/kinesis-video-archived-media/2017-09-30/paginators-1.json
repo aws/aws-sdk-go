@@ -1,5 +1,11 @@
 {
   "pagination": {
+    "GetImages": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Images"
+    },
     "ListFragments": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

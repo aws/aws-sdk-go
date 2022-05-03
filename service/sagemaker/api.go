@@ -70961,6 +70961,9 @@ type MetricDatum struct {
 	// The dataset split from which the AutoML job produced the metric.
 	Set *string `type:"string" enum:"MetricSetSource"`
 
+	// The name of the standard metric.
+	StandardMetricName *string `type:"string" enum:"AutoMLMetricExtendedEnum"`
+
 	// The value of the metric.
 	Value *float64 `type:"float"`
 }
@@ -70992,6 +70995,12 @@ func (s *MetricDatum) SetMetricName(v string) *MetricDatum {
 // SetSet sets the Set field's value.
 func (s *MetricDatum) SetSet(v string) *MetricDatum {
 	s.Set = &v
+	return s
+}
+
+// SetStandardMetricName sets the StandardMetricName field's value.
+func (s *MetricDatum) SetStandardMetricName(v string) *MetricDatum {
+	s.StandardMetricName = &v
 	return s
 }
 
@@ -81020,6 +81029,14 @@ func (s *QueryLineageOutput) SetVertices(v []*Vertex) *QueryLineageOutput {
 // A collection of settings that apply to an RSessionGateway app.
 type RSessionAppSettings struct {
 	_ struct{} `type:"structure"`
+
+	// A list of custom SageMaker images that are configured to run as a RSession
+	// app.
+	CustomImages []*CustomImage `type:"list"`
+
+	// Specifies the ARN's of a SageMaker image and SageMaker image version, and
+	// the instance type that the version runs on.
+	DefaultResourceSpec *ResourceSpec `type:"structure"`
 }
 
 // String returns the string representation.
@@ -81038,6 +81055,38 @@ func (s RSessionAppSettings) String() string {
 // value will be replaced with "sensitive".
 func (s RSessionAppSettings) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RSessionAppSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RSessionAppSettings"}
+	if s.CustomImages != nil {
+		for i, v := range s.CustomImages {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomImages", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomImages sets the CustomImages field's value.
+func (s *RSessionAppSettings) SetCustomImages(v []*CustomImage) *RSessionAppSettings {
+	s.CustomImages = v
+	return s
+}
+
+// SetDefaultResourceSpec sets the DefaultResourceSpec field's value.
+func (s *RSessionAppSettings) SetDefaultResourceSpec(v *ResourceSpec) *RSessionAppSettings {
+	s.DefaultResourceSpec = v
+	return s
 }
 
 // A collection of settings that configure user interaction with the RStudioServerPro
@@ -93020,6 +93069,11 @@ func (s *UserSettings) Validate() error {
 			invalidParams.AddNested("KernelGatewayAppSettings", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RSessionAppSettings != nil {
+		if err := s.RSessionAppSettings.Validate(); err != nil {
+			invalidParams.AddNested("RSessionAppSettings", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -94187,6 +94241,70 @@ func AutoMLMetricEnum_Values() []string {
 		AutoMLMetricEnumF1,
 		AutoMLMetricEnumF1macro,
 		AutoMLMetricEnumAuc,
+	}
+}
+
+const (
+	// AutoMLMetricExtendedEnumAccuracy is a AutoMLMetricExtendedEnum enum value
+	AutoMLMetricExtendedEnumAccuracy = "Accuracy"
+
+	// AutoMLMetricExtendedEnumMse is a AutoMLMetricExtendedEnum enum value
+	AutoMLMetricExtendedEnumMse = "MSE"
+
+	// AutoMLMetricExtendedEnumF1 is a AutoMLMetricExtendedEnum enum value
+	AutoMLMetricExtendedEnumF1 = "F1"
+
+	// AutoMLMetricExtendedEnumF1macro is a AutoMLMetricExtendedEnum enum value
+	AutoMLMetricExtendedEnumF1macro = "F1macro"
+
+	// AutoMLMetricExtendedEnumAuc is a AutoMLMetricExtendedEnum enum value
+	AutoMLMetricExtendedEnumAuc = "AUC"
+
+	// AutoMLMetricExtendedEnumRmse is a AutoMLMetricExtendedEnum enum value
+	AutoMLMetricExtendedEnumRmse = "RMSE"
+
+	// AutoMLMetricExtendedEnumMae is a AutoMLMetricExtendedEnum enum value
+	AutoMLMetricExtendedEnumMae = "MAE"
+
+	// AutoMLMetricExtendedEnumR2 is a AutoMLMetricExtendedEnum enum value
+	AutoMLMetricExtendedEnumR2 = "R2"
+
+	// AutoMLMetricExtendedEnumBalancedAccuracy is a AutoMLMetricExtendedEnum enum value
+	AutoMLMetricExtendedEnumBalancedAccuracy = "BalancedAccuracy"
+
+	// AutoMLMetricExtendedEnumPrecision is a AutoMLMetricExtendedEnum enum value
+	AutoMLMetricExtendedEnumPrecision = "Precision"
+
+	// AutoMLMetricExtendedEnumPrecisionMacro is a AutoMLMetricExtendedEnum enum value
+	AutoMLMetricExtendedEnumPrecisionMacro = "PrecisionMacro"
+
+	// AutoMLMetricExtendedEnumRecall is a AutoMLMetricExtendedEnum enum value
+	AutoMLMetricExtendedEnumRecall = "Recall"
+
+	// AutoMLMetricExtendedEnumRecallMacro is a AutoMLMetricExtendedEnum enum value
+	AutoMLMetricExtendedEnumRecallMacro = "RecallMacro"
+
+	// AutoMLMetricExtendedEnumLogLoss is a AutoMLMetricExtendedEnum enum value
+	AutoMLMetricExtendedEnumLogLoss = "LogLoss"
+)
+
+// AutoMLMetricExtendedEnum_Values returns all elements of the AutoMLMetricExtendedEnum enum
+func AutoMLMetricExtendedEnum_Values() []string {
+	return []string{
+		AutoMLMetricExtendedEnumAccuracy,
+		AutoMLMetricExtendedEnumMse,
+		AutoMLMetricExtendedEnumF1,
+		AutoMLMetricExtendedEnumF1macro,
+		AutoMLMetricExtendedEnumAuc,
+		AutoMLMetricExtendedEnumRmse,
+		AutoMLMetricExtendedEnumMae,
+		AutoMLMetricExtendedEnumR2,
+		AutoMLMetricExtendedEnumBalancedAccuracy,
+		AutoMLMetricExtendedEnumPrecision,
+		AutoMLMetricExtendedEnumPrecisionMacro,
+		AutoMLMetricExtendedEnumRecall,
+		AutoMLMetricExtendedEnumRecallMacro,
+		AutoMLMetricExtendedEnumLogLoss,
 	}
 }
 

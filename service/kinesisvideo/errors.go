@@ -18,7 +18,7 @@ const (
 	// "AccountChannelLimitExceededException".
 	//
 	// You have reached the maximum limit of active signaling channels for this
-	// AWS account in this region.
+	// Amazon Web Services account in this region.
 	ErrCodeAccountChannelLimitExceededException = "AccountChannelLimitExceededException"
 
 	// ErrCodeAccountStreamLimitExceededException for service response error code
@@ -58,6 +58,12 @@ const (
 	// The format of the StreamARN is invalid.
 	ErrCodeInvalidResourceFormatException = "InvalidResourceFormatException"
 
+	// ErrCodeNoDataRetentionException for service response error code
+	// "NoDataRetentionException".
+	//
+	// The Stream data retention in hours is equal to zero.
+	ErrCodeNoDataRetentionException = "NoDataRetentionException"
+
 	// ErrCodeNotAuthorizedException for service response error code
 	// "NotAuthorizedException".
 	//
@@ -67,7 +73,13 @@ const (
 	// ErrCodeResourceInUseException for service response error code
 	// "ResourceInUseException".
 	//
-	// The signaling channel is currently not available for this operation.
+	// The resource is currently not available for this operation. New resources
+	// cannot be created with the same name as existing resources. Also, resources
+	// cannot be updated or deleted unless they are in an ACTIVE state.
+	//
+	// If this exception is returned, do not use it to determine whether the requested
+	// resource already exists. Instead, it is recommended you use the resource-specific
+	// describe API, for example, DescribeStream for video streams.
 	ErrCodeResourceInUseException = "ResourceInUseException"
 
 	// ErrCodeResourceNotFoundException for service response error code
@@ -80,7 +92,7 @@ const (
 	// "TagsPerResourceExceededLimitException".
 	//
 	// You have exceeded the limit of tags that you can associate with the resource.
-	// Kinesis video streams support up to 50 tags.
+	// A Kinesis video stream can support up to 50 tags.
 	ErrCodeTagsPerResourceExceededLimitException = "TagsPerResourceExceededLimitException"
 
 	// ErrCodeVersionMismatchException for service response error code
@@ -101,6 +113,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidArgumentException":              newErrorInvalidArgumentException,
 	"InvalidDeviceException":                newErrorInvalidDeviceException,
 	"InvalidResourceFormatException":        newErrorInvalidResourceFormatException,
+	"NoDataRetentionException":              newErrorNoDataRetentionException,
 	"NotAuthorizedException":                newErrorNotAuthorizedException,
 	"ResourceInUseException":                newErrorResourceInUseException,
 	"ResourceNotFoundException":             newErrorResourceNotFoundException,

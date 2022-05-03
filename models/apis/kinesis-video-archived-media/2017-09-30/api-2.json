@@ -69,6 +69,21 @@
         {"shape":"InvalidCodecPrivateDataException"}
       ]
     },
+    "GetImages":{
+      "name":"GetImages",
+      "http":{
+        "method":"POST",
+        "requestUri":"/getImages"
+      },
+      "input":{"shape":"GetImagesInput"},
+      "output":{"shape":"GetImagesOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ClientLimitExceededException"},
+        {"shape":"NotAuthorizedException"}
+      ]
+    },
     "GetMediaForFragmentList":{
       "name":"GetMediaForFragmentList",
       "http":{
@@ -206,6 +221,30 @@
       "max":43200,
       "min":300
     },
+    "Format":{
+      "type":"string",
+      "enum":[
+        "JPEG",
+        "PNG"
+      ]
+    },
+    "FormatConfig":{
+      "type":"map",
+      "key":{"shape":"FormatConfigKey"},
+      "value":{"shape":"FormatConfigValue"},
+      "max":1,
+      "min":1
+    },
+    "FormatConfigKey":{
+      "type":"string",
+      "enum":["JPEGQuality"]
+    },
+    "FormatConfigValue":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"^[a-zA-Z_0-9]+"
+    },
     "Fragment":{
       "type":"structure",
       "members":{
@@ -310,6 +349,42 @@
         "HLSStreamingSessionURL":{"shape":"HLSStreamingSessionURL"}
       }
     },
+    "GetImagesInput":{
+      "type":"structure",
+      "required":[
+        "ImageSelectorType",
+        "StartTimestamp",
+        "EndTimestamp",
+        "SamplingInterval",
+        "Format"
+      ],
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"},
+        "ImageSelectorType":{"shape":"ImageSelectorType"},
+        "StartTimestamp":{"shape":"Timestamp"},
+        "EndTimestamp":{"shape":"Timestamp"},
+        "SamplingInterval":{"shape":"SamplingInterval"},
+        "Format":{"shape":"Format"},
+        "FormatConfig":{"shape":"FormatConfig"},
+        "WidthPixels":{"shape":"WidthPixels"},
+        "HeightPixels":{"shape":"HeightPixels"},
+        "MaxResults":{"shape":"GetImagesMaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "GetImagesMaxResults":{
+      "type":"long",
+      "max":100,
+      "min":1
+    },
+    "GetImagesOutput":{
+      "type":"structure",
+      "members":{
+        "Images":{"shape":"Images"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "GetMediaForFragmentListInput":{
       "type":"structure",
       "required":["Fragments"],
@@ -380,6 +455,42 @@
         "StartTimestamp":{"shape":"Timestamp"},
         "EndTimestamp":{"shape":"Timestamp"}
       }
+    },
+    "HeightPixels":{
+      "type":"integer",
+      "max":2160,
+      "min":1
+    },
+    "Image":{
+      "type":"structure",
+      "members":{
+        "TimeStamp":{"shape":"Timestamp"},
+        "Error":{"shape":"ImageError"},
+        "ImageContent":{"shape":"ImageContent"}
+      }
+    },
+    "ImageContent":{
+      "type":"string",
+      "max":6291456,
+      "min":1
+    },
+    "ImageError":{
+      "type":"string",
+      "enum":[
+        "NO_MEDIA",
+        "MEDIA_ERROR"
+      ]
+    },
+    "ImageSelectorType":{
+      "type":"string",
+      "enum":[
+        "PRODUCER_TIMESTAMP",
+        "SERVER_TIMESTAMP"
+      ]
+    },
+    "Images":{
+      "type":"list",
+      "member":{"shape":"Image"}
     },
     "InvalidArgumentException":{
       "type":"structure",
@@ -476,6 +587,11 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "SamplingInterval":{
+      "type":"integer",
+      "max":20000,
+      "min":3000
+    },
     "StreamName":{
       "type":"string",
       "max":256,
@@ -501,6 +617,11 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "WidthPixels":{
+      "type":"integer",
+      "max":3840,
+      "min":1
     }
   }
 }

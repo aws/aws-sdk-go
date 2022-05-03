@@ -76,6 +76,14 @@ type KinesisVideoAPI interface {
 	DeleteStreamWithContext(aws.Context, *kinesisvideo.DeleteStreamInput, ...request.Option) (*kinesisvideo.DeleteStreamOutput, error)
 	DeleteStreamRequest(*kinesisvideo.DeleteStreamInput) (*request.Request, *kinesisvideo.DeleteStreamOutput)
 
+	DescribeImageGenerationConfiguration(*kinesisvideo.DescribeImageGenerationConfigurationInput) (*kinesisvideo.DescribeImageGenerationConfigurationOutput, error)
+	DescribeImageGenerationConfigurationWithContext(aws.Context, *kinesisvideo.DescribeImageGenerationConfigurationInput, ...request.Option) (*kinesisvideo.DescribeImageGenerationConfigurationOutput, error)
+	DescribeImageGenerationConfigurationRequest(*kinesisvideo.DescribeImageGenerationConfigurationInput) (*request.Request, *kinesisvideo.DescribeImageGenerationConfigurationOutput)
+
+	DescribeNotificationConfiguration(*kinesisvideo.DescribeNotificationConfigurationInput) (*kinesisvideo.DescribeNotificationConfigurationOutput, error)
+	DescribeNotificationConfigurationWithContext(aws.Context, *kinesisvideo.DescribeNotificationConfigurationInput, ...request.Option) (*kinesisvideo.DescribeNotificationConfigurationOutput, error)
+	DescribeNotificationConfigurationRequest(*kinesisvideo.DescribeNotificationConfigurationInput) (*request.Request, *kinesisvideo.DescribeNotificationConfigurationOutput)
+
 	DescribeSignalingChannel(*kinesisvideo.DescribeSignalingChannelInput) (*kinesisvideo.DescribeSignalingChannelOutput, error)
 	DescribeSignalingChannelWithContext(aws.Context, *kinesisvideo.DescribeSignalingChannelInput, ...request.Option) (*kinesisvideo.DescribeSignalingChannelOutput, error)
 	DescribeSignalingChannelRequest(*kinesisvideo.DescribeSignalingChannelInput) (*request.Request, *kinesisvideo.DescribeSignalingChannelOutput)
@@ -133,6 +141,14 @@ type KinesisVideoAPI interface {
 	UpdateDataRetention(*kinesisvideo.UpdateDataRetentionInput) (*kinesisvideo.UpdateDataRetentionOutput, error)
 	UpdateDataRetentionWithContext(aws.Context, *kinesisvideo.UpdateDataRetentionInput, ...request.Option) (*kinesisvideo.UpdateDataRetentionOutput, error)
 	UpdateDataRetentionRequest(*kinesisvideo.UpdateDataRetentionInput) (*request.Request, *kinesisvideo.UpdateDataRetentionOutput)
+
+	UpdateImageGenerationConfiguration(*kinesisvideo.UpdateImageGenerationConfigurationInput) (*kinesisvideo.UpdateImageGenerationConfigurationOutput, error)
+	UpdateImageGenerationConfigurationWithContext(aws.Context, *kinesisvideo.UpdateImageGenerationConfigurationInput, ...request.Option) (*kinesisvideo.UpdateImageGenerationConfigurationOutput, error)
+	UpdateImageGenerationConfigurationRequest(*kinesisvideo.UpdateImageGenerationConfigurationInput) (*request.Request, *kinesisvideo.UpdateImageGenerationConfigurationOutput)
+
+	UpdateNotificationConfiguration(*kinesisvideo.UpdateNotificationConfigurationInput) (*kinesisvideo.UpdateNotificationConfigurationOutput, error)
+	UpdateNotificationConfigurationWithContext(aws.Context, *kinesisvideo.UpdateNotificationConfigurationInput, ...request.Option) (*kinesisvideo.UpdateNotificationConfigurationOutput, error)
+	UpdateNotificationConfigurationRequest(*kinesisvideo.UpdateNotificationConfigurationInput) (*request.Request, *kinesisvideo.UpdateNotificationConfigurationOutput)
 
 	UpdateSignalingChannel(*kinesisvideo.UpdateSignalingChannelInput) (*kinesisvideo.UpdateSignalingChannelOutput, error)
 	UpdateSignalingChannelWithContext(aws.Context, *kinesisvideo.UpdateSignalingChannelInput, ...request.Option) (*kinesisvideo.UpdateSignalingChannelOutput, error)

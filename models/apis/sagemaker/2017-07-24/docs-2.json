@@ -1003,6 +1003,12 @@
         "MetricDatum$MetricName": "<p>The name of the metric.</p>"
       }
     },
+    "AutoMLMetricExtendedEnum": {
+      "base": null,
+      "refs": {
+        "MetricDatum$StandardMetricName": "<p>The name of the standard metric.</p>"
+      }
+    },
     "AutoMLNameContains": {
       "base": null,
       "refs": {
@@ -2317,7 +2323,8 @@
     "CustomImages": {
       "base": null,
       "refs": {
-        "KernelGatewayAppSettings$CustomImages": "<p>A list of custom SageMaker images that are configured to run as a KernelGateway app.</p>"
+        "KernelGatewayAppSettings$CustomImages": "<p>A list of custom SageMaker images that are configured to run as a KernelGateway app.</p>",
+        "RSessionAppSettings$CustomImages": "<p>A list of custom SageMaker images that are configured to run as a RSession app.</p>"
       }
     },
     "CustomerMetadataKey": {
@@ -9216,6 +9223,7 @@
         "DescribeAppResponse$ResourceSpec": "<p>The instance type and the Amazon Resource Name (ARN) of the SageMaker image created on the instance.</p>",
         "JupyterServerAppSettings$DefaultResourceSpec": "<p>The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the JupyterServer app. If you use the <code>LifecycleConfigArns</code> parameter, then this parameter is also required.</p>",
         "KernelGatewayAppSettings$DefaultResourceSpec": "<p>The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the KernelGateway app.</p> <note> <p>The Amazon SageMaker Studio UI does not use the default instance type value set here. The default instance type set here is used when Apps are created using the Amazon Web Services Command Line Interface or Amazon Web Services CloudFormation and the instance type parameter value is not passed.</p> </note>",
+        "RSessionAppSettings$DefaultResourceSpec": null,
         "RStudioServerProDomainSettings$DefaultResourceSpec": null,
         "RStudioServerProDomainSettingsForUpdate$DefaultResourceSpec": null,
         "TensorBoardAppSettings$DefaultResourceSpec": "<p>The default instance type and the Amazon Resource Name (ARN) of the SageMaker image created on the instance.</p>"
