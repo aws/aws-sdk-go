@@ -518,6 +518,12 @@ const (
 	// Manager or you might not have permission to perform the operation.
 	ErrCodeInvalidTarget = "InvalidTarget"
 
+	// ErrCodeInvalidTargetMaps for service response error code
+	// "InvalidTargetMaps".
+	//
+	// TargetMap parameter isn't valid.
+	ErrCodeInvalidTargetMaps = "InvalidTargetMaps"
+
 	// ErrCodeInvalidTypeNameException for service response error code
 	// "InvalidTypeNameException".
 	//
@@ -938,6 +944,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidRole":                                    newErrorInvalidRole,
 	"InvalidSchedule":                                newErrorInvalidSchedule,
 	"InvalidTarget":                                  newErrorInvalidTarget,
+	"InvalidTargetMaps":                              newErrorInvalidTargetMaps,
 	"InvalidTypeNameException":                       newErrorInvalidTypeNameException,
 	"InvalidUpdate":                                  newErrorInvalidUpdate,
 	"InvocationDoesNotExist":                         newErrorInvocationDoesNotExist,

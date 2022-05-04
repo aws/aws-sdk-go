@@ -70,6 +70,18 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "RotateTunnelAccessToken":{
+      "name":"RotateTunnelAccessToken",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RotateTunnelAccessTokenRequest"},
+      "output":{"shape":"RotateTunnelAccessTokenResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -104,6 +116,14 @@
     "ClientAccessToken":{
       "type":"string",
       "sensitive":true
+    },
+    "ClientMode":{
+      "type":"string",
+      "enum":[
+        "SOURCE",
+        "DESTINATION",
+        "ALL"
+      ]
     },
     "CloseTunnelRequest":{
       "type":"structure",
@@ -234,6 +254,26 @@
         "message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "RotateTunnelAccessTokenRequest":{
+      "type":"structure",
+      "required":[
+        "tunnelId",
+        "clientMode"
+      ],
+      "members":{
+        "tunnelId":{"shape":"TunnelId"},
+        "clientMode":{"shape":"ClientMode"},
+        "destinationConfig":{"shape":"DestinationConfig"}
+      }
+    },
+    "RotateTunnelAccessTokenResponse":{
+      "type":"structure",
+      "members":{
+        "tunnelArn":{"shape":"TunnelArn"},
+        "sourceAccessToken":{"shape":"ClientAccessToken"},
+        "destinationAccessToken":{"shape":"ClientAccessToken"}
+      }
     },
     "Service":{
       "type":"string",

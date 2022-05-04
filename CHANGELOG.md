@@ -1,3 +1,14 @@
+Release v1.44.7 (2022-05-04)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service API, documentation, and paginators
+* `service/iotsecuretunneling`: Updates service API and documentation
+* `service/lightsail`: Updates service documentation
+  * Documentation updates for Lightsail
+* `service/ssm`: Updates service API and documentation
+  * This release adds the TargetMaps parameter in SSM State Manager API.
+
 Release v1.44.6 (2022-05-03)
 ===
 

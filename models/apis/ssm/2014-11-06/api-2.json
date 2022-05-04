@@ -105,7 +105,8 @@
         {"shape":"InvalidOutputLocation"},
         {"shape":"InvalidParameters"},
         {"shape":"InvalidTarget"},
-        {"shape":"InvalidSchedule"}
+        {"shape":"InvalidSchedule"},
+        {"shape":"InvalidTargetMaps"}
       ]
     },
     "CreateAssociationBatch":{
@@ -127,7 +128,8 @@
         {"shape":"UnsupportedPlatformType"},
         {"shape":"InvalidOutputLocation"},
         {"shape":"InvalidTarget"},
-        {"shape":"InvalidSchedule"}
+        {"shape":"InvalidSchedule"},
+        {"shape":"InvalidTargetMaps"}
       ]
     },
     "CreateDocument":{
@@ -1798,7 +1800,8 @@
         {"shape":"InvalidDocument"},
         {"shape":"InvalidTarget"},
         {"shape":"InvalidAssociationVersion"},
-        {"shape":"AssociationVersionLimitExceeded"}
+        {"shape":"AssociationVersionLimitExceeded"},
+        {"shape":"InvalidTargetMaps"}
       ]
     },
     "UpdateAssociationStatus":{
@@ -2141,6 +2144,10 @@
         "ScheduleOffset":{
           "shape":"ScheduleOffset",
           "box":true
+        },
+        "TargetMaps":{
+          "shape":"TargetMaps",
+          "box":true
         }
       }
     },
@@ -2189,6 +2196,10 @@
         "TargetLocations":{"shape":"TargetLocations"},
         "ScheduleOffset":{
           "shape":"ScheduleOffset",
+          "box":true
+        },
+        "TargetMaps":{
+          "shape":"TargetMaps",
           "box":true
         }
       }
@@ -2451,6 +2462,10 @@
         "TargetLocations":{"shape":"TargetLocations"},
         "ScheduleOffset":{
           "shape":"ScheduleOffset",
+          "box":true
+        },
+        "TargetMaps":{
+          "shape":"TargetMaps",
           "box":true
         }
       }
@@ -3322,6 +3337,10 @@
         "ScheduleOffset":{
           "shape":"ScheduleOffset",
           "box":true
+        },
+        "TargetMaps":{
+          "shape":"TargetMaps",
+          "box":true
         }
       }
     },
@@ -3354,6 +3373,10 @@
         "TargetLocations":{"shape":"TargetLocations"},
         "ScheduleOffset":{
           "shape":"ScheduleOffset",
+          "box":true
+        },
+        "TargetMaps":{
+          "shape":"TargetMaps",
           "box":true
         }
       }
@@ -6065,6 +6088,13 @@
       "exception":true
     },
     "InvalidTarget":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "InvalidTargetMaps":{
       "type":"structure",
       "members":{
         "Message":{"shape":"String"}
@@ -10154,6 +10184,10 @@
         "TargetLocations":{"shape":"TargetLocations"},
         "ScheduleOffset":{
           "shape":"ScheduleOffset",
+          "box":true
+        },
+        "TargetMaps":{
+          "shape":"TargetMaps",
           "box":true
         }
       }

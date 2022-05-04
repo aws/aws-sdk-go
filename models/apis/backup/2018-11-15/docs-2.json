@@ -496,7 +496,7 @@
     "ControlScope": {
       "base": "<p>A framework consists of one or more controls. Each control has its own control scope. The control scope can include one or more resource types, a combination of a tag key and value, or a combination of one resource type and one resource ID. If no scope is specified, evaluations for the rule are triggered when any resource in your recording group changes in configuration.</p> <note> <p>To set a control scope that includes all of a particular resource, leave the <code>ControlScope</code> empty or do not pass it when calling <code>CreateFramework</code>.</p> </note>",
       "refs": {
-        "FrameworkControl$ControlScope": "<p>The scope of a control. The control scope defines what the control will evaluate. Three examples of control scopes are: a specific backup plan, all backup plans with a specific tag, or all backup plans. For more information, see <code>ControlScope</code>.</p>"
+        "FrameworkControl$ControlScope": "<p>The scope of a control. The control scope defines what the control will evaluate. Three examples of control scopes are: a specific backup plan, all backup plans with a specific tag, or all backup plans. For more information, see <a href=\"aws-backup/latest/devguide/API_ControlScope.html\"> <code>ControlScope</code>.</a> </p>"
       }
     },
     "CopyAction": {
@@ -1874,14 +1874,20 @@
         "GetBackupSelectionOutput$CreationDate": "<p>The date and time a backup selection is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "ListBackupJobsInput$ByCreatedBefore": "<p>Returns only backup jobs that were created before the specified date.</p>",
         "ListBackupJobsInput$ByCreatedAfter": "<p>Returns only backup jobs that were created after the specified date.</p>",
+        "ListBackupJobsInput$ByCompleteAfter": "<p>Returns only backup jobs completed after a date expressed in Unix format and Coordinated Universal Time (UTC).</p>",
+        "ListBackupJobsInput$ByCompleteBefore": "<p>Returns only backup jobs completed before a date expressed in Unix format and Coordinated Universal Time (UTC).</p>",
         "ListCopyJobsInput$ByCreatedBefore": "<p>Returns only copy jobs that were created before the specified date.</p>",
         "ListCopyJobsInput$ByCreatedAfter": "<p>Returns only copy jobs that were created after the specified date.</p>",
+        "ListCopyJobsInput$ByCompleteBefore": "<p>Returns only copy jobs completed before a date expressed in Unix format and Coordinated Universal Time (UTC).</p>",
+        "ListCopyJobsInput$ByCompleteAfter": "<p>Returns only copy jobs completed after a date expressed in Unix format and Coordinated Universal Time (UTC).</p>",
         "ListRecoveryPointsByBackupVaultInput$ByCreatedBefore": "<p>Returns only recovery points that were created before the specified timestamp.</p>",
         "ListRecoveryPointsByBackupVaultInput$ByCreatedAfter": "<p>Returns only recovery points that were created after the specified timestamp.</p>",
         "ListReportJobsInput$ByCreationBefore": "<p>Returns only report jobs that were created before the date and time specified in Unix format and Coordinated Universal Time (UTC). For example, the value 1516925490 represents Friday, January 26, 2018 12:11:30 AM.</p>",
         "ListReportJobsInput$ByCreationAfter": "<p>Returns only report jobs that were created after the date and time specified in Unix format and Coordinated Universal Time (UTC). For example, the value 1516925490 represents Friday, January 26, 2018 12:11:30 AM.</p>",
         "ListRestoreJobsInput$ByCreatedBefore": "<p>Returns only restore jobs that were created before the specified date.</p>",
         "ListRestoreJobsInput$ByCreatedAfter": "<p>Returns only restore jobs that were created after the specified date.</p>",
+        "ListRestoreJobsInput$ByCompleteBefore": "<p>Returns only copy jobs completed before a date expressed in Unix format and Coordinated Universal Time (UTC).</p>",
+        "ListRestoreJobsInput$ByCompleteAfter": "<p>Returns only copy jobs completed after a date expressed in Unix format and Coordinated Universal Time (UTC).</p>",
         "ProtectedResource$LastBackupTime": "<p>The date and time a resource was last backed up, in Unix format and Coordinated Universal Time (UTC). The value of <code>LastBackupTime</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "RecoveryPointByBackupVault$CreationDate": "<p>The date and time a recovery point is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "RecoveryPointByBackupVault$CompletionDate": "<p>The date and time a job to restore a recovery point is completed, in Unix format and Coordinated Universal Time (UTC). The value of <code>CompletionDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",

@@ -11041,8 +11041,8 @@ func (c *Lightsail) GetLoadBalancerTlsPoliciesRequest(input *GetLoadBalancerTlsP
 // Returns a list of TLS security policies that you can apply to Lightsail load
 // balancers.
 //
-// For more information about load balancer TLS security policies, see Load
-// balancer TLS security policies (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configure-load-balancer-tls-security-policy)
+// For more information about load balancer TLS security policies, see Configuring
+// TLS security policies on your Amazon Lightsail load balancers (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configure-load-balancer-tls-security-policy)
 // in the Amazon Lightsail Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -23450,8 +23450,8 @@ type CreateLoadBalancerInput struct {
 	// Use the GetLoadBalancerTlsPolicies (https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetLoadBalancerTlsPolicies.html)
 	// action to get a list of TLS policy names that you can specify.
 	//
-	// For more information about load balancer TLS policies, see Load balancer
-	// TLS security policies (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configure-load-balancer-tls-security-policy)
+	// For more information about load balancer TLS policies, see Configuring TLS
+	// security policies on your Amazon Lightsail load balancers (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configure-load-balancer-tls-security-policy)
 	// in the Amazon Lightsail Developer Guide.
 	TlsPolicyName *string `locationName:"tlsPolicyName" type:"string"`
 }
@@ -36442,12 +36442,6 @@ type LoadBalancer struct {
 	TlsCertificateSummaries []*LoadBalancerTlsCertificateSummary `locationName:"tlsCertificateSummaries" type:"list"`
 
 	// The name of the TLS security policy for the load balancer.
-	//
-	// The following TLS security policy names are possible:
-	//
-	//    * TLS-2016-08
-	//
-	//    * TLS-FS-Res-1-2-2019-08
 	TlsPolicyName *string `locationName:"tlsPolicyName" type:"string"`
 }
 
@@ -37140,8 +37134,8 @@ func (s *LoadBalancerTlsCertificateSummary) SetName(v string) *LoadBalancerTlsCe
 // Describes the TLS security policies that are available for Lightsail load
 // balancers.
 //
-// For more information about load balancer TLS security policies, see Load
-// balancer TLS security policies (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configure-load-balancer-tls-security-policy)
+// For more information about load balancer TLS security policies, see Configuring
+// TLS security policies on your Amazon Lightsail load balancers (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configure-load-balancer-tls-security-policy)
 // in the Amazon Lightsail Developer Guide.
 type LoadBalancerTlsPolicy struct {
 	_ struct{} `type:"structure"`
@@ -37158,29 +37152,9 @@ type LoadBalancerTlsPolicy struct {
 	IsDefault *bool `locationName:"isDefault" type:"boolean"`
 
 	// The name of the TLS security policy.
-	//
-	// The following TLS security policy names are possible:
-	//
-	//    * TLS-2016-08
-	//
-	//    * TLS-FS-Res-1-2-2019-08
-	//
-	// You can specify either of these values for the tlsSecurityPolicyName request
-	// parameter in the CreateLoadBalancer (https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_CreateLoadBalancer.html)
-	// action, and the attributeValue request parameter in the UpdateLoadBalancerAttribute
-	// (https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_UpdateLoadBalancerAttribute.html)
-	// action.
 	Name *string `locationName:"name" type:"string"`
 
 	// The protocols used in a given TLS security policy.
-	//
-	// The following protocols are possible:
-	//
-	//    * Protocol-TLSv1
-	//
-	//    * Protocol-TLSv1.1
-	//
-	//    * Protocol-TLSv1.2
 	Protocols []*string `locationName:"protocols" type:"list"`
 }
 
@@ -42346,18 +42320,21 @@ type UpdateLoadBalancerAttributeInput struct {
 	//    the target (for example, /weather/us/wa/seattle).
 	//
 	//    * If you specify SessionStickinessEnabled for the attributeName request
-	//    parameter, then the attributeValue request parameter must be true or false.
+	//    parameter, then the attributeValue request parameter must be true to activate
+	//    session stickiness or false to deactivate session stickiness.
 	//
 	//    * If you specify SessionStickiness_LB_CookieDurationSeconds for the attributeName
 	//    request parameter, then the attributeValue request parameter must be an
 	//    interger that represents the cookie duration in seconds.
 	//
 	//    * If you specify HttpsRedirectionEnabled for the attributeName request
-	//    parameter, then the attributeValue request parameter must be true or false.
+	//    parameter, then the attributeValue request parameter must be true to activate
+	//    HTTP to HTTPS redirection or false to deactivate HTTP to HTTPS redirection.
 	//
 	//    * If you specify TlsPolicyName for the attributeName request parameter,
-	//    then the attributeValue request parameter must be TLS version 1.0, 1.1,
-	//    and 1.2 or TLS version 1.2.
+	//    then the attributeValue request parameter must be the name of the TLS
+	//    policy. Use the GetLoadBalancerTlsPolicies (https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetLoadBalancerTlsPolicies.html)
+	//    action to get a list of TLS policy names that you can specify.
 	//
 	// AttributeValue is a required field
 	AttributeValue *string `locationName:"attributeValue" min:"1" type:"string" required:"true"`

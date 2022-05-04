@@ -2286,6 +2286,16 @@
           "shape":"AccountId",
           "location":"querystring",
           "locationName":"accountId"
+        },
+        "ByCompleteAfter":{
+          "shape":"timestamp",
+          "location":"querystring",
+          "locationName":"completeAfter"
+        },
+        "ByCompleteBefore":{
+          "shape":"timestamp",
+          "location":"querystring",
+          "locationName":"completeBefore"
         }
       }
     },
@@ -2470,6 +2480,16 @@
           "shape":"AccountId",
           "location":"querystring",
           "locationName":"accountId"
+        },
+        "ByCompleteBefore":{
+          "shape":"timestamp",
+          "location":"querystring",
+          "locationName":"completeBefore"
+        },
+        "ByCompleteAfter":{
+          "shape":"timestamp",
+          "location":"querystring",
+          "locationName":"completeAfter"
         }
       }
     },
@@ -2705,6 +2725,16 @@
           "shape":"RestoreJobStatus",
           "location":"querystring",
           "locationName":"status"
+        },
+        "ByCompleteBefore":{
+          "shape":"timestamp",
+          "location":"querystring",
+          "locationName":"completeBefore"
+        },
+        "ByCompleteAfter":{
+          "shape":"timestamp",
+          "location":"querystring",
+          "locationName":"completeAfter"
         }
       }
     },

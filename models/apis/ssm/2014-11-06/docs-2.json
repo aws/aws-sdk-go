@@ -3457,6 +3457,11 @@
       "refs": {
       }
     },
+    "InvalidTargetMaps": {
+      "base": "<p>TargetMap parameter isn't valid.</p>",
+      "refs": {
+      }
+    },
     "InvalidTypeNameException": {
       "base": "<p>The parameter type name isn't valid.</p>",
       "refs": {
@@ -7499,6 +7504,7 @@
         "InvalidRole$Message": null,
         "InvalidSchedule$Message": null,
         "InvalidTarget$Message": null,
+        "InvalidTargetMaps$Message": null,
         "InvalidTypeNameException$Message": null,
         "InvalidUpdate$Message": null,
         "ItemContentMismatchException$Message": null,
@@ -7714,10 +7720,16 @@
     "TargetMaps": {
       "base": null,
       "refs": {
+        "Association$TargetMaps": "<p>A key-value mapping of document parameters to target resources. Both Targets and TargetMaps can't be specified together.</p>",
+        "AssociationDescription$TargetMaps": "<p>A key-value mapping of document parameters to target resources. Both Targets and TargetMaps can't be specified together.</p>",
+        "AssociationVersionInfo$TargetMaps": "<p>A key-value mapping of document parameters to target resources. Both Targets and TargetMaps can't be specified together.</p>",
         "AutomationExecution$TargetMaps": "<p>The specified key-value mapping of document parameters to target resources.</p>",
         "AutomationExecutionMetadata$TargetMaps": "<p>The specified key-value mapping of document parameters to target resources.</p>",
+        "CreateAssociationBatchRequestEntry$TargetMaps": "<p>A key-value mapping of document parameters to target resources. Both Targets and TargetMaps can't be specified together.</p>",
+        "CreateAssociationRequest$TargetMaps": "<p>A key-value mapping of document parameters to target resources. Both Targets and TargetMaps can't be specified together.</p>",
         "Runbook$TargetMaps": "<p>A key-value mapping of runbook parameters to target resources. Both Targets and TargetMaps can't be specified together.</p>",
-        "StartAutomationExecutionRequest$TargetMaps": "<p>A key-value mapping of document parameters to target resources. Both Targets and TargetMaps can't be specified together.</p>"
+        "StartAutomationExecutionRequest$TargetMaps": "<p>A key-value mapping of document parameters to target resources. Both Targets and TargetMaps can't be specified together.</p>",
+        "UpdateAssociationRequest$TargetMaps": "<p>A key-value mapping of document parameters to target resources. Both Targets and TargetMaps can't be specified together.</p>"
       }
     },
     "TargetNotConnected": {
