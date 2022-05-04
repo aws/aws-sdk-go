@@ -638,6 +638,9 @@ func (c *SSM) CreateAssociationRequest(input *CreateAssociationInput) (req *requ
 //   * InvalidSchedule
 //   The schedule is invalid. Verify your cron or rate expression and try again.
 //
+//   * InvalidTargetMaps
+//   TargetMap parameter isn't valid.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/CreateAssociation
 func (c *SSM) CreateAssociation(input *CreateAssociationInput) (*CreateAssociationOutput, error) {
 	req, out := c.CreateAssociationRequest(input)
@@ -770,6 +773,9 @@ func (c *SSM) CreateAssociationBatchRequest(input *CreateAssociationBatchInput) 
 //
 //   * InvalidSchedule
 //   The schedule is invalid. Verify your cron or rate expression and try again.
+//
+//   * InvalidTargetMaps
+//   TargetMap parameter isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/CreateAssociationBatch
 func (c *SSM) CreateAssociationBatch(input *CreateAssociationBatchInput) (*CreateAssociationBatchOutput, error) {
@@ -14273,6 +14279,9 @@ func (c *SSM) UpdateAssociationRequest(input *UpdateAssociationInput) (req *requ
 //   You have reached the maximum number versions allowed for an association.
 //   Each association has a limit of 1,000 versions.
 //
+//   * InvalidTargetMaps
+//   TargetMap parameter isn't valid.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/UpdateAssociation
 func (c *SSM) UpdateAssociation(input *UpdateAssociationInput) (*UpdateAssociationOutput, error) {
 	req, out := c.UpdateAssociationRequest(input)
@@ -16201,6 +16210,10 @@ type Association struct {
 	// Number of days to wait after the scheduled day to run an association.
 	ScheduleOffset *int64 `min:"1" type:"integer"`
 
+	// A key-value mapping of document parameters to target resources. Both Targets
+	// and TargetMaps can't be specified together.
+	TargetMaps []map[string][]*string `type:"list"`
+
 	// The managed nodes targeted by the request to create an association. You can
 	// target all managed nodes in an Amazon Web Services account by specifying
 	// the InstanceIds key with a value of *.
@@ -16282,6 +16295,12 @@ func (s *Association) SetScheduleExpression(v string) *Association {
 // SetScheduleOffset sets the ScheduleOffset field's value.
 func (s *Association) SetScheduleOffset(v int64) *Association {
 	s.ScheduleOffset = &v
+	return s
+}
+
+// SetTargetMaps sets the TargetMaps field's value.
+func (s *Association) SetTargetMaps(v []map[string][]*string) *Association {
+	s.TargetMaps = v
 	return s
 }
 
@@ -16476,6 +16495,10 @@ type AssociationDescription struct {
 	// where you want to run the association.
 	TargetLocations []*TargetLocation `min:"1" type:"list"`
 
+	// A key-value mapping of document parameters to target resources. Both Targets
+	// and TargetMaps can't be specified together.
+	TargetMaps []map[string][]*string `type:"list"`
+
 	// The managed nodes targeted by the request.
 	Targets []*Target `type:"list"`
 }
@@ -16639,6 +16662,12 @@ func (s *AssociationDescription) SetSyncCompliance(v string) *AssociationDescrip
 // SetTargetLocations sets the TargetLocations field's value.
 func (s *AssociationDescription) SetTargetLocations(v []*TargetLocation) *AssociationDescription {
 	s.TargetLocations = v
+	return s
+}
+
+// SetTargetMaps sets the TargetMaps field's value.
+func (s *AssociationDescription) SetTargetMaps(v []map[string][]*string) *AssociationDescription {
+	s.TargetMaps = v
 	return s
 }
 
@@ -17489,6 +17518,10 @@ type AssociationVersionInfo struct {
 	// created.
 	TargetLocations []*TargetLocation `min:"1" type:"list"`
 
+	// A key-value mapping of document parameters to target resources. Both Targets
+	// and TargetMaps can't be specified together.
+	TargetMaps []map[string][]*string `type:"list"`
+
 	// The targets specified for the association when the association version was
 	// created.
 	Targets []*Target `type:"list"`
@@ -17611,6 +17644,12 @@ func (s *AssociationVersionInfo) SetSyncCompliance(v string) *AssociationVersion
 // SetTargetLocations sets the TargetLocations field's value.
 func (s *AssociationVersionInfo) SetTargetLocations(v []*TargetLocation) *AssociationVersionInfo {
 	s.TargetLocations = v
+	return s
+}
+
+// SetTargetMaps sets the TargetMaps field's value.
+func (s *AssociationVersionInfo) SetTargetMaps(v []map[string][]*string) *AssociationVersionInfo {
+	s.TargetMaps = v
 	return s
 }
 
@@ -21056,6 +21095,10 @@ type CreateAssociationBatchRequestEntry struct {
 	// accounts.
 	TargetLocations []*TargetLocation `min:"1" type:"list"`
 
+	// A key-value mapping of document parameters to target resources. Both Targets
+	// and TargetMaps can't be specified together.
+	TargetMaps []map[string][]*string `type:"list"`
+
 	// The managed nodes targeted by the request.
 	Targets []*Target `type:"list"`
 }
@@ -21230,6 +21273,12 @@ func (s *CreateAssociationBatchRequestEntry) SetTargetLocations(v []*TargetLocat
 	return s
 }
 
+// SetTargetMaps sets the TargetMaps field's value.
+func (s *CreateAssociationBatchRequestEntry) SetTargetMaps(v []map[string][]*string) *CreateAssociationBatchRequestEntry {
+	s.TargetMaps = v
+	return s
+}
+
 // SetTargets sets the Targets field's value.
 func (s *CreateAssociationBatchRequestEntry) SetTargets(v []*Target) *CreateAssociationBatchRequestEntry {
 	s.Targets = v
@@ -21378,6 +21427,10 @@ type CreateAssociationInput struct {
 	// Services accounts where you want to run the association. Use this action
 	// to create an association in multiple Regions and multiple accounts.
 	TargetLocations []*TargetLocation `min:"1" type:"list"`
+
+	// A key-value mapping of document parameters to target resources. Both Targets
+	// and TargetMaps can't be specified together.
+	TargetMaps []map[string][]*string `type:"list"`
 
 	// The targets for the association. You can target managed nodes by using tags,
 	// Amazon Web Services resource groups, all managed nodes in an Amazon Web Services
@@ -21556,6 +21609,12 @@ func (s *CreateAssociationInput) SetSyncCompliance(v string) *CreateAssociationI
 // SetTargetLocations sets the TargetLocations field's value.
 func (s *CreateAssociationInput) SetTargetLocations(v []*TargetLocation) *CreateAssociationInput {
 	s.TargetLocations = v
+	return s
+}
+
+// SetTargetMaps sets the TargetMaps field's value.
+func (s *CreateAssociationInput) SetTargetMaps(v []map[string][]*string) *CreateAssociationInput {
+	s.TargetMaps = v
 	return s
 }
 
@@ -38584,6 +38643,70 @@ func (s *InvalidTarget) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// TargetMap parameter isn't valid.
+type InvalidTargetMaps struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidTargetMaps) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidTargetMaps) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidTargetMaps(v protocol.ResponseMetadata) error {
+	return &InvalidTargetMaps{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidTargetMaps) Code() string {
+	return "InvalidTargetMaps"
+}
+
+// Message returns the exception's message.
+func (s *InvalidTargetMaps) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidTargetMaps) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidTargetMaps) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidTargetMaps) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidTargetMaps) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The parameter type name isn't valid.
 type InvalidTypeNameException struct {
 	_            struct{}                  `type:"structure"`
@@ -55271,6 +55394,10 @@ type UpdateAssociationInput struct {
 	// to update an association in multiple Regions and multiple accounts.
 	TargetLocations []*TargetLocation `min:"1" type:"list"`
 
+	// A key-value mapping of document parameters to target resources. Both Targets
+	// and TargetMaps can't be specified together.
+	TargetMaps []map[string][]*string `type:"list"`
+
 	// The targets of the association.
 	Targets []*Target `type:"list"`
 }
@@ -55448,6 +55575,12 @@ func (s *UpdateAssociationInput) SetSyncCompliance(v string) *UpdateAssociationI
 // SetTargetLocations sets the TargetLocations field's value.
 func (s *UpdateAssociationInput) SetTargetLocations(v []*TargetLocation) *UpdateAssociationInput {
 	s.TargetLocations = v
+	return s
+}
+
+// SetTargetMaps sets the TargetMaps field's value.
+func (s *UpdateAssociationInput) SetTargetMaps(v []map[string][]*string) *UpdateAssociationInput {
+	s.TargetMaps = v
 	return s
 }
 

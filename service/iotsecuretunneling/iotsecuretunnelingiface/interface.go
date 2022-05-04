@@ -83,6 +83,10 @@ type IoTSecureTunnelingAPI interface {
 	OpenTunnelWithContext(aws.Context, *iotsecuretunneling.OpenTunnelInput, ...request.Option) (*iotsecuretunneling.OpenTunnelOutput, error)
 	OpenTunnelRequest(*iotsecuretunneling.OpenTunnelInput) (*request.Request, *iotsecuretunneling.OpenTunnelOutput)
 
+	RotateTunnelAccessToken(*iotsecuretunneling.RotateTunnelAccessTokenInput) (*iotsecuretunneling.RotateTunnelAccessTokenOutput, error)
+	RotateTunnelAccessTokenWithContext(aws.Context, *iotsecuretunneling.RotateTunnelAccessTokenInput, ...request.Option) (*iotsecuretunneling.RotateTunnelAccessTokenOutput, error)
+	RotateTunnelAccessTokenRequest(*iotsecuretunneling.RotateTunnelAccessTokenInput) (*request.Request, *iotsecuretunneling.RotateTunnelAccessTokenOutput)
+
 	TagResource(*iotsecuretunneling.TagResourceInput) (*iotsecuretunneling.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *iotsecuretunneling.TagResourceInput, ...request.Option) (*iotsecuretunneling.TagResourceOutput, error)
 	TagResourceRequest(*iotsecuretunneling.TagResourceInput) (*request.Request, *iotsecuretunneling.TagResourceOutput)

@@ -11254,7 +11254,7 @@ type FrameworkControl struct {
 	// The scope of a control. The control scope defines what the control will evaluate.
 	// Three examples of control scopes are: a specific backup plan, all backup
 	// plans with a specific tag, or all backup plans. For more information, see
-	// ControlScope.
+	// ControlScope. (aws-backup/latest/devguide/API_ControlScope.html)
 	ControlScope *ControlScope `type:"structure"`
 }
 
@@ -12800,6 +12800,14 @@ type ListBackupJobsInput struct {
 	// They consist of lowercase letters, numbers, and hyphens.
 	ByBackupVaultName *string `location:"querystring" locationName:"backupVaultName" type:"string"`
 
+	// Returns only backup jobs completed after a date expressed in Unix format
+	// and Coordinated Universal Time (UTC).
+	ByCompleteAfter *time.Time `location:"querystring" locationName:"completeAfter" type:"timestamp"`
+
+	// Returns only backup jobs completed before a date expressed in Unix format
+	// and Coordinated Universal Time (UTC).
+	ByCompleteBefore *time.Time `location:"querystring" locationName:"completeBefore" type:"timestamp"`
+
 	// Returns only backup jobs that were created after the specified date.
 	ByCreatedAfter *time.Time `location:"querystring" locationName:"createdAfter" type:"timestamp"`
 
@@ -12890,6 +12898,18 @@ func (s *ListBackupJobsInput) SetByAccountId(v string) *ListBackupJobsInput {
 // SetByBackupVaultName sets the ByBackupVaultName field's value.
 func (s *ListBackupJobsInput) SetByBackupVaultName(v string) *ListBackupJobsInput {
 	s.ByBackupVaultName = &v
+	return s
+}
+
+// SetByCompleteAfter sets the ByCompleteAfter field's value.
+func (s *ListBackupJobsInput) SetByCompleteAfter(v time.Time) *ListBackupJobsInput {
+	s.ByCompleteAfter = &v
+	return s
+}
+
+// SetByCompleteBefore sets the ByCompleteBefore field's value.
+func (s *ListBackupJobsInput) SetByCompleteBefore(v time.Time) *ListBackupJobsInput {
+	s.ByCompleteBefore = &v
 	return s
 }
 
@@ -13530,6 +13550,14 @@ type ListCopyJobsInput struct {
 	// the specified account ID.
 	ByAccountId *string `location:"querystring" locationName:"accountId" type:"string"`
 
+	// Returns only copy jobs completed after a date expressed in Unix format and
+	// Coordinated Universal Time (UTC).
+	ByCompleteAfter *time.Time `location:"querystring" locationName:"completeAfter" type:"timestamp"`
+
+	// Returns only copy jobs completed before a date expressed in Unix format and
+	// Coordinated Universal Time (UTC).
+	ByCompleteBefore *time.Time `location:"querystring" locationName:"completeBefore" type:"timestamp"`
+
 	// Returns only copy jobs that were created after the specified date.
 	ByCreatedAfter *time.Time `location:"querystring" locationName:"createdAfter" type:"timestamp"`
 
@@ -13618,6 +13646,18 @@ func (s *ListCopyJobsInput) Validate() error {
 // SetByAccountId sets the ByAccountId field's value.
 func (s *ListCopyJobsInput) SetByAccountId(v string) *ListCopyJobsInput {
 	s.ByAccountId = &v
+	return s
+}
+
+// SetByCompleteAfter sets the ByCompleteAfter field's value.
+func (s *ListCopyJobsInput) SetByCompleteAfter(v time.Time) *ListCopyJobsInput {
+	s.ByCompleteAfter = &v
+	return s
+}
+
+// SetByCompleteBefore sets the ByCompleteBefore field's value.
+func (s *ListCopyJobsInput) SetByCompleteBefore(v time.Time) *ListCopyJobsInput {
+	s.ByCompleteBefore = &v
 	return s
 }
 
@@ -14450,6 +14490,14 @@ type ListRestoreJobsInput struct {
 	// with the specified account ID.
 	ByAccountId *string `location:"querystring" locationName:"accountId" type:"string"`
 
+	// Returns only copy jobs completed after a date expressed in Unix format and
+	// Coordinated Universal Time (UTC).
+	ByCompleteAfter *time.Time `location:"querystring" locationName:"completeAfter" type:"timestamp"`
+
+	// Returns only copy jobs completed before a date expressed in Unix format and
+	// Coordinated Universal Time (UTC).
+	ByCompleteBefore *time.Time `location:"querystring" locationName:"completeBefore" type:"timestamp"`
+
 	// Returns only restore jobs that were created after the specified date.
 	ByCreatedAfter *time.Time `location:"querystring" locationName:"createdAfter" type:"timestamp"`
 
@@ -14503,6 +14551,18 @@ func (s *ListRestoreJobsInput) Validate() error {
 // SetByAccountId sets the ByAccountId field's value.
 func (s *ListRestoreJobsInput) SetByAccountId(v string) *ListRestoreJobsInput {
 	s.ByAccountId = &v
+	return s
+}
+
+// SetByCompleteAfter sets the ByCompleteAfter field's value.
+func (s *ListRestoreJobsInput) SetByCompleteAfter(v time.Time) *ListRestoreJobsInput {
+	s.ByCompleteAfter = &v
+	return s
+}
+
+// SetByCompleteBefore sets the ByCompleteBefore field's value.
+func (s *ListRestoreJobsInput) SetByCompleteBefore(v time.Time) *ListRestoreJobsInput {
+	s.ByCompleteBefore = &v
 	return s
 }
 

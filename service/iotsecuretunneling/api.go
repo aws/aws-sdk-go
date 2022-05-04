@@ -62,6 +62,9 @@ func (c *IoTSecureTunneling) CloseTunnelRequest(input *CloseTunnelInput) (req *r
 // is received, we close the WebSocket connections between the client and proxy
 // server so no data can be transmitted.
 //
+// Requires permission to access the CloseTunnel (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -140,6 +143,9 @@ func (c *IoTSecureTunneling) DescribeTunnelRequest(input *DescribeTunnelInput) (
 // DescribeTunnel API operation for AWS IoT Secure Tunneling.
 //
 // Gets information about a tunnel identified by the unique tunnel id.
+//
+// Requires permission to access the DescribeTunnel (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -303,8 +309,12 @@ func (c *IoTSecureTunneling) ListTunnelsRequest(input *ListTunnelsInput) (req *r
 
 // ListTunnels API operation for AWS IoT Secure Tunneling.
 //
-// List all tunnels for an AWS account. Tunnels are listed by creation time
-// in descending order, newer tunnels will be listed before older tunnels.
+// List all tunnels for an Amazon Web Services account. Tunnels are listed by
+// creation time in descending order, newer tunnels will be listed before older
+// tunnels.
+//
+// Requires permission to access the ListTunnels (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -431,7 +441,10 @@ func (c *IoTSecureTunneling) OpenTunnelRequest(input *OpenTunnelInput) (req *req
 // OpenTunnel API operation for AWS IoT Secure Tunneling.
 //
 // Creates a new tunnel, and returns two client access tokens for clients to
-// use to connect to the AWS IoT Secure Tunneling proxy server.
+// use to connect to the IoT Secure Tunneling proxy server.
+//
+// Requires permission to access the OpenTunnel (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -461,6 +474,94 @@ func (c *IoTSecureTunneling) OpenTunnel(input *OpenTunnelInput) (*OpenTunnelOutp
 // for more information on using Contexts.
 func (c *IoTSecureTunneling) OpenTunnelWithContext(ctx aws.Context, input *OpenTunnelInput, opts ...request.Option) (*OpenTunnelOutput, error) {
 	req, out := c.OpenTunnelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRotateTunnelAccessToken = "RotateTunnelAccessToken"
+
+// RotateTunnelAccessTokenRequest generates a "aws/request.Request" representing the
+// client's request for the RotateTunnelAccessToken operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RotateTunnelAccessToken for more information on using the RotateTunnelAccessToken
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RotateTunnelAccessTokenRequest method.
+//    req, resp := client.RotateTunnelAccessTokenRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsecuretunneling-2018-10-05/RotateTunnelAccessToken
+func (c *IoTSecureTunneling) RotateTunnelAccessTokenRequest(input *RotateTunnelAccessTokenInput) (req *request.Request, output *RotateTunnelAccessTokenOutput) {
+	op := &request.Operation{
+		Name:       opRotateTunnelAccessToken,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RotateTunnelAccessTokenInput{}
+	}
+
+	output = &RotateTunnelAccessTokenOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RotateTunnelAccessToken API operation for AWS IoT Secure Tunneling.
+//
+// Revokes the current client access token (CAT) and returns new CAT for clients
+// to use when reconnecting to secure tunneling to access the same tunnel.
+//
+// Requires permission to access the RotateTunnelAccessToken (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
+// Rotating the CAT doesn't extend the tunnel duration. For example, say the
+// tunnel duration is 12 hours and the tunnel has already been open for 4 hours.
+// When you rotate the access tokens, the new tokens that are generated can
+// only be used for the remaining 8 hours.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Secure Tunneling's
+// API operation RotateTunnelAccessToken for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   Thrown when an operation is attempted on a resource that does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsecuretunneling-2018-10-05/RotateTunnelAccessToken
+func (c *IoTSecureTunneling) RotateTunnelAccessToken(input *RotateTunnelAccessTokenInput) (*RotateTunnelAccessTokenOutput, error) {
+	req, out := c.RotateTunnelAccessTokenRequest(input)
+	return out, req.Send()
+}
+
+// RotateTunnelAccessTokenWithContext is the same as RotateTunnelAccessToken with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RotateTunnelAccessToken for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSecureTunneling) RotateTunnelAccessTokenWithContext(ctx aws.Context, input *RotateTunnelAccessTokenInput, opts ...request.Option) (*RotateTunnelAccessTokenOutput, error) {
+	req, out := c.RotateTunnelAccessTokenRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -629,7 +730,7 @@ func (c *IoTSecureTunneling) UntagResourceWithContext(ctx aws.Context, input *Un
 type CloseTunnelInput struct {
 	_ struct{} `type:"structure"`
 
-	// When set to true, AWS IoT Secure Tunneling deletes the tunnel data immediately.
+	// When set to true, IoT Secure Tunneling deletes the tunnel data immediately.
 	Delete *bool `locationName:"delete" type:"boolean"`
 
 	// The ID of the tunnel to close.
@@ -825,11 +926,10 @@ func (s *DescribeTunnelOutput) SetTunnel(v *Tunnel) *DescribeTunnelOutput {
 type DestinationConfig struct {
 	_ struct{} `type:"structure"`
 
-	// A list of service names that identity the target application. The AWS IoT
-	// client running on the destination device reads this value and uses it to
-	// look up a port or an IP address and a port. The AWS IoT client instantiates
-	// the local proxy which uses this information to connect to the destination
-	// application.
+	// A list of service names that identify the target application. The IoT client
+	// running on the destination device reads this value and uses it to look up
+	// a port or an IP address and a port. The IoT client instantiates the local
+	// proxy, which uses this information to connect to the destination application.
 	//
 	// Services is a required field
 	Services []*string `locationName:"services" min:"1" type:"list" required:"true"`
@@ -1037,7 +1137,8 @@ type ListTunnelsInput struct {
 	// The maximum number of results to return at once.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token to retrieve the next set of results.
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The name of the IoT thing associated with the destination device.
@@ -1099,10 +1200,11 @@ func (s *ListTunnelsInput) SetThingName(v string) *ListTunnelsInput {
 type ListTunnelsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token to used to retrieve the next set of results.
+	// The token to use to get the next set of results, or null if there are no
+	// additional results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// A short description of the tunnels in an AWS account.
+	// A short description of the tunnels in an Amazon Web Services account.
 	TunnelSummaries []*TunnelSummary `locationName:"tunnelSummaries" type:"list"`
 }
 
@@ -1230,7 +1332,7 @@ func (s *OpenTunnelInput) SetTimeoutConfig(v *TimeoutConfig) *OpenTunnelInput {
 type OpenTunnelOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The access token the destination local proxy uses to connect to AWS IoT Secure
+	// The access token the destination local proxy uses to connect to IoT Secure
 	// Tunneling.
 	//
 	// DestinationAccessToken is a sensitive parameter and its value will be
@@ -1238,15 +1340,14 @@ type OpenTunnelOutput struct {
 	// String and GoString methods.
 	DestinationAccessToken *string `locationName:"destinationAccessToken" type:"string" sensitive:"true"`
 
-	// The access token the source local proxy uses to connect to AWS IoT Secure
-	// Tunneling.
+	// The access token the source local proxy uses to connect to IoT Secure Tunneling.
 	//
 	// SourceAccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by OpenTunnelOutput's
 	// String and GoString methods.
 	SourceAccessToken *string `locationName:"sourceAccessToken" type:"string" sensitive:"true"`
 
-	// The Amazon Resource Name for the tunnel. The tunnel ARN format is arn:aws:tunnel:<region>:<account-id>:tunnel/<tunnel-id>
+	// The Amazon Resource Name for the tunnel.
 	TunnelArn *string `locationName:"tunnelArn" min:"1" type:"string"`
 
 	// A unique alpha-numeric tunnel ID.
@@ -1357,6 +1458,140 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type RotateTunnelAccessTokenInput struct {
+	_ struct{} `type:"structure"`
+
+	// The mode of the client that will use the client token, which can be either
+	// the source or destination, or both source and destination.
+	//
+	// ClientMode is a required field
+	ClientMode *string `locationName:"clientMode" type:"string" required:"true" enum:"ClientMode"`
+
+	// The destination configuration.
+	DestinationConfig *DestinationConfig `locationName:"destinationConfig" type:"structure"`
+
+	// The tunnel for which you want to rotate the access tokens.
+	//
+	// TunnelId is a required field
+	TunnelId *string `locationName:"tunnelId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RotateTunnelAccessTokenInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RotateTunnelAccessTokenInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RotateTunnelAccessTokenInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RotateTunnelAccessTokenInput"}
+	if s.ClientMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientMode"))
+	}
+	if s.TunnelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TunnelId"))
+	}
+	if s.DestinationConfig != nil {
+		if err := s.DestinationConfig.Validate(); err != nil {
+			invalidParams.AddNested("DestinationConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientMode sets the ClientMode field's value.
+func (s *RotateTunnelAccessTokenInput) SetClientMode(v string) *RotateTunnelAccessTokenInput {
+	s.ClientMode = &v
+	return s
+}
+
+// SetDestinationConfig sets the DestinationConfig field's value.
+func (s *RotateTunnelAccessTokenInput) SetDestinationConfig(v *DestinationConfig) *RotateTunnelAccessTokenInput {
+	s.DestinationConfig = v
+	return s
+}
+
+// SetTunnelId sets the TunnelId field's value.
+func (s *RotateTunnelAccessTokenInput) SetTunnelId(v string) *RotateTunnelAccessTokenInput {
+	s.TunnelId = &v
+	return s
+}
+
+type RotateTunnelAccessTokenOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The client access token that the destination local proxy uses to connect
+	// to IoT Secure Tunneling.
+	//
+	// DestinationAccessToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RotateTunnelAccessTokenOutput's
+	// String and GoString methods.
+	DestinationAccessToken *string `locationName:"destinationAccessToken" type:"string" sensitive:"true"`
+
+	// The client access token that the source local proxy uses to connect to IoT
+	// Secure Tunneling.
+	//
+	// SourceAccessToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RotateTunnelAccessTokenOutput's
+	// String and GoString methods.
+	SourceAccessToken *string `locationName:"sourceAccessToken" type:"string" sensitive:"true"`
+
+	// The Amazon Resource Name for the tunnel.
+	TunnelArn *string `locationName:"tunnelArn" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RotateTunnelAccessTokenOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RotateTunnelAccessTokenOutput) GoString() string {
+	return s.String()
+}
+
+// SetDestinationAccessToken sets the DestinationAccessToken field's value.
+func (s *RotateTunnelAccessTokenOutput) SetDestinationAccessToken(v string) *RotateTunnelAccessTokenOutput {
+	s.DestinationAccessToken = &v
+	return s
+}
+
+// SetSourceAccessToken sets the SourceAccessToken field's value.
+func (s *RotateTunnelAccessTokenOutput) SetSourceAccessToken(v string) *RotateTunnelAccessTokenOutput {
+	s.SourceAccessToken = &v
+	return s
+}
+
+// SetTunnelArn sets the TunnelArn field's value.
+func (s *RotateTunnelAccessTokenOutput) SetTunnelArn(v string) *RotateTunnelAccessTokenOutput {
+	s.TunnelArn = &v
+	return s
 }
 
 // An arbitary key/value pair used to add searchable metadata to secure tunnel
@@ -1602,7 +1837,7 @@ type Tunnel struct {
 	// Timeout configuration for the tunnel.
 	TimeoutConfig *TimeoutConfig `locationName:"timeoutConfig" type:"structure"`
 
-	// The Amazon Resource Name (ARN) of a tunnel. The tunnel ARN format is arn:aws:tunnel:<region>:<account-id>:tunnel/<tunnel-id>
+	// The Amazon Resource Name (ARN) of a tunnel.
 	TunnelArn *string `locationName:"tunnelArn" min:"1" type:"string"`
 
 	// A unique alpha-numeric ID that identifies a tunnel.
@@ -1709,7 +1944,7 @@ type TunnelSummary struct {
 	// The status of a tunnel. Valid values are: Open and Closed.
 	Status *string `locationName:"status" type:"string" enum:"TunnelStatus"`
 
-	// The Amazon Resource Name of the tunnel. The tunnel ARN format is arn:aws:tunnel:<region>:<account-id>:tunnel/<tunnel-id>
+	// The Amazon Resource Name of the tunnel.
 	TunnelArn *string `locationName:"tunnelArn" min:"1" type:"string"`
 
 	// The unique alpha-numeric identifier for the tunnel.
@@ -1853,6 +2088,26 @@ func (s UntagResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
+}
+
+const (
+	// ClientModeSource is a ClientMode enum value
+	ClientModeSource = "SOURCE"
+
+	// ClientModeDestination is a ClientMode enum value
+	ClientModeDestination = "DESTINATION"
+
+	// ClientModeAll is a ClientMode enum value
+	ClientModeAll = "ALL"
+)
+
+// ClientMode_Values returns all elements of the ClientMode enum
+func ClientMode_Values() []string {
+	return []string{
+		ClientModeSource,
+		ClientModeDestination,
+		ClientModeAll,
+	}
 }
 
 const (
