@@ -226,9 +226,15 @@ type KendraAPI interface {
 	ListFaqsWithContext(aws.Context, *kendra.ListFaqsInput, ...request.Option) (*kendra.ListFaqsOutput, error)
 	ListFaqsRequest(*kendra.ListFaqsInput) (*request.Request, *kendra.ListFaqsOutput)
 
+	ListFaqsPages(*kendra.ListFaqsInput, func(*kendra.ListFaqsOutput, bool) bool) error
+	ListFaqsPagesWithContext(aws.Context, *kendra.ListFaqsInput, func(*kendra.ListFaqsOutput, bool) bool, ...request.Option) error
+
 	ListGroupsOlderThanOrderingId(*kendra.ListGroupsOlderThanOrderingIdInput) (*kendra.ListGroupsOlderThanOrderingIdOutput, error)
 	ListGroupsOlderThanOrderingIdWithContext(aws.Context, *kendra.ListGroupsOlderThanOrderingIdInput, ...request.Option) (*kendra.ListGroupsOlderThanOrderingIdOutput, error)
 	ListGroupsOlderThanOrderingIdRequest(*kendra.ListGroupsOlderThanOrderingIdInput) (*request.Request, *kendra.ListGroupsOlderThanOrderingIdOutput)
+
+	ListGroupsOlderThanOrderingIdPages(*kendra.ListGroupsOlderThanOrderingIdInput, func(*kendra.ListGroupsOlderThanOrderingIdOutput, bool) bool) error
+	ListGroupsOlderThanOrderingIdPagesWithContext(aws.Context, *kendra.ListGroupsOlderThanOrderingIdInput, func(*kendra.ListGroupsOlderThanOrderingIdOutput, bool) bool, ...request.Option) error
 
 	ListIndices(*kendra.ListIndicesInput) (*kendra.ListIndicesOutput, error)
 	ListIndicesWithContext(aws.Context, *kendra.ListIndicesInput, ...request.Option) (*kendra.ListIndicesOutput, error)
@@ -241,6 +247,9 @@ type KendraAPI interface {
 	ListQuerySuggestionsBlockListsWithContext(aws.Context, *kendra.ListQuerySuggestionsBlockListsInput, ...request.Option) (*kendra.ListQuerySuggestionsBlockListsOutput, error)
 	ListQuerySuggestionsBlockListsRequest(*kendra.ListQuerySuggestionsBlockListsInput) (*request.Request, *kendra.ListQuerySuggestionsBlockListsOutput)
 
+	ListQuerySuggestionsBlockListsPages(*kendra.ListQuerySuggestionsBlockListsInput, func(*kendra.ListQuerySuggestionsBlockListsOutput, bool) bool) error
+	ListQuerySuggestionsBlockListsPagesWithContext(aws.Context, *kendra.ListQuerySuggestionsBlockListsInput, func(*kendra.ListQuerySuggestionsBlockListsOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*kendra.ListTagsForResourceInput) (*kendra.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *kendra.ListTagsForResourceInput, ...request.Option) (*kendra.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*kendra.ListTagsForResourceInput) (*request.Request, *kendra.ListTagsForResourceOutput)
@@ -248,6 +257,9 @@ type KendraAPI interface {
 	ListThesauri(*kendra.ListThesauriInput) (*kendra.ListThesauriOutput, error)
 	ListThesauriWithContext(aws.Context, *kendra.ListThesauriInput, ...request.Option) (*kendra.ListThesauriOutput, error)
 	ListThesauriRequest(*kendra.ListThesauriInput) (*request.Request, *kendra.ListThesauriOutput)
+
+	ListThesauriPages(*kendra.ListThesauriInput, func(*kendra.ListThesauriOutput, bool) bool) error
+	ListThesauriPagesWithContext(aws.Context, *kendra.ListThesauriInput, func(*kendra.ListThesauriOutput, bool) bool, ...request.Option) error
 
 	PutPrincipalMapping(*kendra.PutPrincipalMappingInput) (*kendra.PutPrincipalMappingOutput, error)
 	PutPrincipalMappingWithContext(aws.Context, *kendra.PutPrincipalMappingInput, ...request.Option) (*kendra.PutPrincipalMappingOutput, error)

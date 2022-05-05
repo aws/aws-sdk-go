@@ -2357,7 +2357,8 @@
       "type":"structure",
       "members":{
         "DocumentAttributeValue":{"shape":"DocumentAttributeValue"},
-        "Count":{"shape":"Integer"}
+        "Count":{"shape":"Integer"},
+        "FacetResults":{"shape":"FacetResultList"}
       }
     },
     "DocumentAttributeValueCountPairList":{
@@ -2653,7 +2654,9 @@
     "Facet":{
       "type":"structure",
       "members":{
-        "DocumentAttributeKey":{"shape":"DocumentAttributeKey"}
+        "DocumentAttributeKey":{"shape":"DocumentAttributeKey"},
+        "Facets":{"shape":"FacetList"},
+        "MaxResults":{"shape":"TopDocumentAttributeValueCountPairsSize"}
       }
     },
     "FacetList":{
@@ -4595,6 +4598,11 @@
       "max":100000,
       "min":1,
       "pattern":"^\\P{C}*$"
+    },
+    "TopDocumentAttributeValueCountPairsSize":{
+      "type":"integer",
+      "max":5000,
+      "min":0
     },
     "UntagResourceRequest":{
       "type":"structure",

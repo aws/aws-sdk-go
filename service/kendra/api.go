@@ -3699,6 +3699,12 @@ func (c *Kendra) ListFaqsRequest(input *ListFaqsInput) (req *request.Request, ou
 		Name:       opListFaqs,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3754,6 +3760,58 @@ func (c *Kendra) ListFaqsWithContext(ctx aws.Context, input *ListFaqsInput, opts
 	return out, req.Send()
 }
 
+// ListFaqsPages iterates over the pages of a ListFaqs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFaqs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFaqs operation.
+//    pageNum := 0
+//    err := client.ListFaqsPages(params,
+//        func(page *kendra.ListFaqsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Kendra) ListFaqsPages(input *ListFaqsInput, fn func(*ListFaqsOutput, bool) bool) error {
+	return c.ListFaqsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFaqsPagesWithContext same as ListFaqsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) ListFaqsPagesWithContext(ctx aws.Context, input *ListFaqsInput, fn func(*ListFaqsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFaqsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFaqsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFaqsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListGroupsOlderThanOrderingId = "ListGroupsOlderThanOrderingId"
 
 // ListGroupsOlderThanOrderingIdRequest generates a "aws/request.Request" representing the
@@ -3785,6 +3843,12 @@ func (c *Kendra) ListGroupsOlderThanOrderingIdRequest(input *ListGroupsOlderThan
 		Name:       opListGroupsOlderThanOrderingId,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3844,6 +3908,58 @@ func (c *Kendra) ListGroupsOlderThanOrderingIdWithContext(ctx aws.Context, input
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListGroupsOlderThanOrderingIdPages iterates over the pages of a ListGroupsOlderThanOrderingId operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListGroupsOlderThanOrderingId method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListGroupsOlderThanOrderingId operation.
+//    pageNum := 0
+//    err := client.ListGroupsOlderThanOrderingIdPages(params,
+//        func(page *kendra.ListGroupsOlderThanOrderingIdOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Kendra) ListGroupsOlderThanOrderingIdPages(input *ListGroupsOlderThanOrderingIdInput, fn func(*ListGroupsOlderThanOrderingIdOutput, bool) bool) error {
+	return c.ListGroupsOlderThanOrderingIdPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListGroupsOlderThanOrderingIdPagesWithContext same as ListGroupsOlderThanOrderingIdPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) ListGroupsOlderThanOrderingIdPagesWithContext(ctx aws.Context, input *ListGroupsOlderThanOrderingIdInput, fn func(*ListGroupsOlderThanOrderingIdOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListGroupsOlderThanOrderingIdInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListGroupsOlderThanOrderingIdRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListGroupsOlderThanOrderingIdOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListIndices = "ListIndices"
@@ -4019,6 +4135,12 @@ func (c *Kendra) ListQuerySuggestionsBlockListsRequest(input *ListQuerySuggestio
 		Name:       opListQuerySuggestionsBlockLists,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4078,6 +4200,58 @@ func (c *Kendra) ListQuerySuggestionsBlockListsWithContext(ctx aws.Context, inpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListQuerySuggestionsBlockListsPages iterates over the pages of a ListQuerySuggestionsBlockLists operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListQuerySuggestionsBlockLists method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListQuerySuggestionsBlockLists operation.
+//    pageNum := 0
+//    err := client.ListQuerySuggestionsBlockListsPages(params,
+//        func(page *kendra.ListQuerySuggestionsBlockListsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Kendra) ListQuerySuggestionsBlockListsPages(input *ListQuerySuggestionsBlockListsInput, fn func(*ListQuerySuggestionsBlockListsOutput, bool) bool) error {
+	return c.ListQuerySuggestionsBlockListsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListQuerySuggestionsBlockListsPagesWithContext same as ListQuerySuggestionsBlockListsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) ListQuerySuggestionsBlockListsPagesWithContext(ctx aws.Context, input *ListQuerySuggestionsBlockListsInput, fn func(*ListQuerySuggestionsBlockListsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListQuerySuggestionsBlockListsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListQuerySuggestionsBlockListsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListQuerySuggestionsBlockListsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -4198,6 +4372,12 @@ func (c *Kendra) ListThesauriRequest(input *ListThesauriInput) (req *request.Req
 		Name:       opListThesauri,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4251,6 +4431,58 @@ func (c *Kendra) ListThesauriWithContext(ctx aws.Context, input *ListThesauriInp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListThesauriPages iterates over the pages of a ListThesauri operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListThesauri method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListThesauri operation.
+//    pageNum := 0
+//    err := client.ListThesauriPages(params,
+//        func(page *kendra.ListThesauriOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Kendra) ListThesauriPages(input *ListThesauriInput, fn func(*ListThesauriOutput, bool) bool) error {
+	return c.ListThesauriPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListThesauriPagesWithContext same as ListThesauriPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) ListThesauriPagesWithContext(ctx aws.Context, input *ListThesauriInput, fn func(*ListThesauriOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListThesauriInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListThesauriRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListThesauriOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opPutPrincipalMapping = "PutPrincipalMapping"
@@ -13475,10 +13707,8 @@ func (s *Document) SetTitle(v string) *Document {
 	return s
 }
 
-// A custom attribute value assigned to a document.
-//
-// For more information on how to create custom document attributes, see Custom
-// Attributes (https://docs.aws.amazon.com/kendra/latest/dg/custom-attributes.html).
+// A document attribute or metadata field. To create custom document attributes,
+// see Custom attributes (https://docs.aws.amazon.com/kendra/latest/dg/custom-attributes.html).
 type DocumentAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -13740,8 +13970,8 @@ func (s *DocumentAttributeTarget) SetTargetDocumentAttributeValueDeletion(v bool
 	return s
 }
 
-// The value of a custom document attribute. You can only provide one value
-// for a custom attribute.
+// The value of a document attribute. You can only provide one value for a document
+// attribute.
 type DocumentAttributeValue struct {
 	_ struct{} `type:"structure"`
 
@@ -13827,8 +14057,20 @@ type DocumentAttributeValueCountPair struct {
 	// the key.
 	Count *int64 `type:"integer"`
 
-	// The value of the attribute. For example, "HR."
+	// The value of the attribute. For example, "HR".
 	DocumentAttributeValue *DocumentAttributeValue `type:"structure"`
+
+	// Contains the results of a document attribute that is a nested facet. A FacetResult
+	// contains the counts for each facet nested within a facet.
+	//
+	// For example, the document attribute or facet "Department" includes a value
+	// called "Engineering". In addition, the document attribute or facet "SubDepartment"
+	// includes the values "Frontend" and "Backend" for documents assigned to "Engineering".
+	// You can display nested facets in the search results so that documents can
+	// be searched not only by department but also by a sub department within a
+	// department. The counts for documents that belong to "Frontend" and "Backend"
+	// within "Engineering" are returned for a query.
+	FacetResults []*FacetResult `type:"list"`
 }
 
 // String returns the string representation.
@@ -13858,6 +14100,12 @@ func (s *DocumentAttributeValueCountPair) SetCount(v int64) *DocumentAttributeVa
 // SetDocumentAttributeValue sets the DocumentAttributeValue field's value.
 func (s *DocumentAttributeValueCountPair) SetDocumentAttributeValue(v *DocumentAttributeValue) *DocumentAttributeValueCountPair {
 	s.DocumentAttributeValue = v
+	return s
+}
+
+// SetFacetResults sets the FacetResults field's value.
+func (s *DocumentAttributeValueCountPair) SetFacetResults(v []*FacetResult) *DocumentAttributeValueCountPair {
+	s.FacetResults = v
 	return s
 }
 
@@ -14618,12 +14866,38 @@ func (s *ExperiencesSummary) SetStatus(v string) *ExperiencesSummary {
 	return s
 }
 
-// Information about a document attribute
+// Information about a document attribute. You can use document attributes as
+// facets.
+//
+// For example, the document attribute or facet "Department" includes the values
+// "HR", "Engineering", and "Accounting". You can display these values in the
+// search results so that documents can be searched by department.
+//
+// You can display up to 10 facet values per facet for a query. If you want
+// to increase this limit, contact Support (http://aws.amazon.com/contact-us/).
 type Facet struct {
 	_ struct{} `type:"structure"`
 
 	// The unique key for the document attribute.
 	DocumentAttributeKey *string `min:"1" type:"string"`
+
+	// An array of document attributes that are nested facets within a facet.
+	//
+	// For example, the document attribute or facet "Department" includes a value
+	// called "Engineering". In addition, the document attribute or facet "SubDepartment"
+	// includes the values "Frontend" and "Backend" for documents assigned to "Engineering".
+	// You can display nested facets in the search results so that documents can
+	// be searched not only by department but also by a sub department within a
+	// department. This helps your users further narrow their search.
+	//
+	// You can only have one nested facet within a facet. If you want to increase
+	// this limit, contact Support (http://aws.amazon.com/contact-us/).
+	Facets []*Facet `type:"list"`
+
+	// Maximum number of facet values per facet. The default is 10. You can use
+	// this to limit the number of facet values to less than 10. If you want to
+	// increase the default, contact Support (http://aws.amazon.com/contact-us/).
+	MaxResults *int64 `type:"integer"`
 }
 
 // String returns the string representation.
@@ -14650,6 +14924,16 @@ func (s *Facet) Validate() error {
 	if s.DocumentAttributeKey != nil && len(*s.DocumentAttributeKey) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DocumentAttributeKey", 1))
 	}
+	if s.Facets != nil {
+		for i, v := range s.Facets {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Facets", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -14660,6 +14944,18 @@ func (s *Facet) Validate() error {
 // SetDocumentAttributeKey sets the DocumentAttributeKey field's value.
 func (s *Facet) SetDocumentAttributeKey(v string) *Facet {
 	s.DocumentAttributeKey = &v
+	return s
+}
+
+// SetFacets sets the Facets field's value.
+func (s *Facet) SetFacets(v []*Facet) *Facet {
+	s.Facets = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *Facet) SetMaxResults(v int64) *Facet {
+	s.MaxResults = &v
 	return s
 }
 
@@ -18573,8 +18869,7 @@ type QueryInput struct {
 	DocumentRelevanceOverrideConfigurations []*DocumentRelevanceConfiguration `type:"list"`
 
 	// An array of documents attributes. Amazon Kendra returns a count for each
-	// attribute key specified. You can use this information to help narrow the
-	// search for your user.
+	// attribute key specified. This helps your users narrow their search.
 	Facets []*Facet `type:"list"`
 
 	// The unique identifier of the index to search. The identifier is returned
@@ -18599,9 +18894,9 @@ type QueryInput struct {
 	// The text to search for.
 	QueryText *string `min:"1" type:"string"`
 
-	// An array of document attributes to include in the response. No other document
-	// attributes are included in the response. By default all document attributes
-	// are included in the response.
+	// An array of document attributes to include in the response. You can limit
+	// the response to include certain document attributes. By default all document
+	// attributes are included in the response.
 	RequestedDocumentAttributes []*string `min:"1" type:"list"`
 
 	// Provides information that determines how the results of the query are sorted.
@@ -18882,8 +19177,8 @@ type QueryResultItem struct {
 	// One or more additional attributes associated with the query result.
 	AdditionalAttributes []*AdditionalResultAttribute `type:"list"`
 
-	// An array of document attributes for the document that the query result maps
-	// to. For example, the document author (Author) or the source URI (SourceUri)
+	// An array of document attributes assigned to a document in the search results.
+	// For example, the document author (_author) or the source URI (_source_uri)
 	// of the document.
 	DocumentAttributes []*DocumentAttribute `type:"list"`
 
@@ -19089,22 +19384,26 @@ func (s *QuerySuggestionsBlockListSummary) SetUpdatedAt(v time.Time) *QuerySugge
 type QuipConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// A list of field mappings to apply when indexing Quip attachments.
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of Quip attachments to Amazon Kendra index field names. To create custom
+	// fields, use the UpdateIndex API before you map to Quip fields. For more information,
+	// see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Quip field names must exist in your Quip custom metadata.
 	AttachmentFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 
-	// Specify whether to crawl attachments in your Quip data source. You can specify
-	// one or more of these options.
+	// Specify whether to crawl attachments in Quip. You can specify one or more
+	// of these options.
 	CrawlAttachments *bool `type:"boolean"`
 
-	// Specify whether to crawl chat rooms in your Quip data source. You can specify
-	// one or more of these options.
+	// Specify whether to crawl chat rooms in Quip. You can specify one or more
+	// of these options.
 	CrawlChatRooms *bool `type:"boolean"`
 
-	// Specify whether to crawl file comments in your Quip data source. You can
-	// specify one or more of these options.
+	// Specify whether to crawl file comments in Quip. You can specify one or more
+	// of these options.
 	CrawlFileComments *bool `type:"boolean"`
 
-	// The configuration information to connect to your Quip data source domain.
+	// The Quip site domain.
 	//
 	// Domain is a required field
 	Domain *string `min:"1" type:"string" required:"true"`
@@ -19126,30 +19425,32 @@ type QuipConfiguration struct {
 	// takes precedence, and the file isn't included in the index.
 	InclusionPatterns []*string `type:"list"`
 
-	// A list of field mappings to apply when indexing Quip messages.
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of Quip messages to Amazon Kendra index field names. To create custom
+	// fields, use the UpdateIndex API before you map to Quip fields. For more information,
+	// see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Quip field names must exist in your Quip custom metadata.
 	MessageFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 
 	// The Amazon Resource Name (ARN) of an Secrets Manager secret that contains
-	// the key-value pairs that are required to connect to your Quip file system.
-	// Windows is currently the only supported type. The secret must contain a JSON
-	// structure with the following keys:
+	// the key-value pairs that are required to connect to your Quip. The secret
+	// must contain a JSON structure with the following keys:
 	//
-	//    * username—The Active Directory user name, along with the Domain Name
-	//    System (DNS) domain name. For example, user@corp.example.com. The Active
-	//    Directory user account must have read and mounting access to the Quip
-	//    file system for Windows.
-	//
-	//    * password—The password of the Active Directory user account with read
-	//    and mounting access to the Quip Windows file system.
+	//    * accessToken—The token created in Quip. For more information, see Authentication
+	//    for a Quip data source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-slack.html#quip-authentication).
 	//
 	// SecretArn is a required field
 	SecretArn *string `min:"1" type:"string" required:"true"`
 
-	// A list of field mappings to apply when indexing Quip threads.
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of Quip threads to Amazon Kendra index field names. To create custom
+	// fields, use the UpdateIndex API before you map to Quip fields. For more information,
+	// see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Quip field names must exist in your Quip custom metadata.
 	ThreadFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 
-	// Configuration information for connecting to an Amazon Virtual Private Cloud
-	// (VPC) for your Quip. Your Quip instance must reside inside your VPC.
+	// Configuration information for an Amazon Virtual Private Cloud (VPC) to connect
+	// to your Quip. For more information, see Configuring a VPC (https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html).
 	VpcConfiguration *DataSourceVpcConfiguration `type:"structure"`
 }
 

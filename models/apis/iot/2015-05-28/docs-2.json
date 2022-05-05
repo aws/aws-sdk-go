@@ -1311,6 +1311,13 @@
         "CreateAuthorizerRequest$signingDisabled": "<p>Specifies whether IoT validates the token signature in an authorization request.</p>"
       }
     },
+    "BooleanWrapperObject": {
+      "base": null,
+      "refs": {
+        "Job$isConcurrent": null,
+        "JobSummary$isConcurrent": null
+      }
+    },
     "Bucket": {
       "base": "<p>A count of documents that meets a specific aggregation criteria.</p>",
       "refs": {
