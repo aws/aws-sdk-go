@@ -4,146 +4,18 @@
 package endpoints
 
 import (
-	"regexp"
 	"testing"
 )
 
+// ***************************************************************************
+// All endpoint metadata is sourced from the testdata/endpoints.json file at
+// test startup. Not the live endpoints model file. Update the testdata file
+// for the tests to use the latest live model.
+// ***************************************************************************
+
 func TestEndpointFor_STSRegionalFlag(t *testing.T) {
-
-	// mock STS regional endpoints model
-	mockSTSModelPartition := partition{
-		ID:        "aws",
-		Name:      "AWS Standard",
-		DNSSuffix: "amazonaws.com",
-		RegionRegex: regionRegex{
-			Regexp: func() *regexp.Regexp {
-				reg, _ := regexp.Compile("^(us|eu|ap|sa|ca|me)\\-\\w+\\-\\d+$")
-				return reg
-			}(),
-		},
-		Defaults: endpointDefaults{
-			{}: {
-				Hostname:          "{service}.{region}.{dnsSuffix}",
-				Protocols:         []string{"https"},
-				SignatureVersions: []string{"v4"},
-			},
-		},
-		Regions: regions{
-			"ap-east-1": region{
-				Description: "Asia Pacific (Hong Kong)",
-			},
-			"ap-northeast-1": region{
-				Description: "Asia Pacific (Tokyo)",
-			},
-			"ap-northeast-2": region{
-				Description: "Asia Pacific (Seoul)",
-			},
-			"ap-south-1": region{
-				Description: "Asia Pacific (Mumbai)",
-			},
-			"ap-southeast-1": region{
-				Description: "Asia Pacific (Singapore)",
-			},
-			"ap-southeast-2": region{
-				Description: "Asia Pacific (Sydney)",
-			},
-			"ca-central-1": region{
-				Description: "Canada (Central)",
-			},
-			"eu-central-1": region{
-				Description: "EU (Frankfurt)",
-			},
-			"eu-north-1": region{
-				Description: "EU (Stockholm)",
-			},
-			"eu-west-1": region{
-				Description: "EU (Ireland)",
-			},
-			"eu-west-2": region{
-				Description: "EU (London)",
-			},
-			"eu-west-3": region{
-				Description: "EU (Paris)",
-			},
-			"me-south-1": region{
-				Description: "Middle East (Bahrain)",
-			},
-			"sa-east-1": region{
-				Description: "South America (Sao Paulo)",
-			},
-			"us-east-1": region{
-				Description: "US East (N. Virginia)",
-			},
-			"us-east-2": region{
-				Description: "US East (Ohio)",
-			},
-			"us-west-1": region{
-				Description: "US West (N. California)",
-			},
-			"us-west-2": region{
-				Description: "US West (Oregon)",
-			},
-		},
-		Services: services{
-			"sts": service{
-				PartitionEndpoint: "aws-global",
-				Defaults:          endpointDefaults{},
-				Endpoints: serviceEndpoints{
-					{Region: "ap-east-1"}:      {},
-					{Region: "ap-northeast-1"}: endpoint{},
-					{Region: "ap-northeast-2"}: endpoint{},
-					{Region: "ap-south-1"}:     endpoint{},
-					{Region: "ap-southeast-1"}: endpoint{},
-					{Region: "ap-southeast-2"}: endpoint{},
-					{Region: "aws-global"}: endpoint{
-						Hostname: "sts.amazonaws.com",
-						CredentialScope: credentialScope{
-							Region: "us-east-1",
-						},
-					},
-					{Region: "ca-central-1"}: endpoint{},
-					{Region: "eu-central-1"}: endpoint{},
-					{Region: "eu-north-1"}:   endpoint{},
-					{Region: "eu-west-1"}:    endpoint{},
-					{Region: "eu-west-2"}:    endpoint{},
-					{Region: "eu-west-3"}:    endpoint{},
-					{Region: "me-south-1"}:   endpoint{},
-					{Region: "sa-east-1"}:    endpoint{},
-					{Region: "us-east-1"}:    endpoint{},
-					{Region: "us-east-1-fips"}: endpoint{
-						Hostname: "sts-fips.us-east-1.amazonaws.com",
-						CredentialScope: credentialScope{
-							Region: "us-east-1",
-						},
-					},
-					{Region: "us-east-2"}: endpoint{},
-					{Region: "us-east-2-fips"}: endpoint{
-						Hostname: "sts-fips.us-east-2.amazonaws.com",
-						CredentialScope: credentialScope{
-							Region: "us-east-2",
-						},
-					},
-					{Region: "us-west-1"}: endpoint{},
-					{Region: "us-west-1-fips"}: endpoint{
-						Hostname: "sts-fips.us-west-1.amazonaws.com",
-						CredentialScope: credentialScope{
-							Region: "us-west-1",
-						},
-					},
-					{Region: "us-west-2"}: endpoint{},
-					{Region: "us-west-2-fips"}: endpoint{
-						Hostname: "sts-fips.us-west-2.amazonaws.com",
-						CredentialScope: credentialScope{
-							Region: "us-west-2",
-						},
-					},
-				},
-			},
-		},
-	}
-
-	// resolver for mock STS regional endpoints model
-	resolver := mockSTSModelPartition
+	// resolver for STS regional endpoints model
+	var resolver Resolver = AwsPartition()
 
 	cases := map[string]struct {
 		service, region                                     string
@@ -495,155 +367,8 @@ func TestEndpointFor_STSRegionalFlag(t *testing.T) {
 }
 
 func TestEndpointFor_S3UsEast1RegionalFlag(t *testing.T) {
-
-	// mock S3 regional endpoints model
-	mockS3ModelPartition := partition{
-		ID:        "aws",
-		Name:      "AWS Standard",
-		DNSSuffix: "amazonaws.com",
-		RegionRegex: regionRegex{
-			Regexp: func() *regexp.Regexp {
-				reg, _ := regexp.Compile("^(us|eu|ap|sa|ca|me)\\-\\w+\\-\\d+$")
-				return reg
-			}(),
-		},
-		Defaults: endpointDefaults{
-			{}: {
-				Hostname:          "{service}.{region}.{dnsSuffix}",
-				Protocols:         []string{"https"},
-				SignatureVersions: []string{"v4"},
-			},
-		},
-		Regions: regions{
-			"ap-east-1": region{
-				Description: "Asia Pacific (Hong Kong)",
-			},
-			"ap-northeast-1": region{
-				Description: "Asia Pacific (Tokyo)",
-			},
-			"ap-northeast-2": region{
-				Description: "Asia Pacific (Seoul)",
-			},
-			"ap-south-1": region{
-				Description: "Asia Pacific (Mumbai)",
-			},
-			"ap-southeast-1": region{
-				Description: "Asia Pacific (Singapore)",
-			},
-			"ap-southeast-2": region{
-				Description: "Asia Pacific (Sydney)",
-			},
-			"ca-central-1": region{
-				Description: "Canada (Central)",
-			},
-			"eu-central-1": region{
-				Description: "EU (Frankfurt)",
-			},
-			"eu-north-1": region{
-				Description: "EU (Stockholm)",
-			},
-			"eu-west-1": region{
-				Description: "EU (Ireland)",
-			},
-			"eu-west-2": region{
-				Description: "EU (London)",
-			},
-			"eu-west-3": region{
-				Description: "EU (Paris)",
-			},
-			"me-south-1": region{
-				Description: "Middle East (Bahrain)",
-			},
-			"sa-east-1": region{
-				Description: "South America (Sao Paulo)",
-			},
-			"us-east-1": region{
-				Description: "US East (N. Virginia)",
-			},
-			"us-east-2": region{
-				Description: "US East (Ohio)",
-			},
-			"us-west-1": region{
-				Description: "US West (N. California)",
-			},
-			"us-west-2": region{
-				Description: "US West (Oregon)",
-			},
-		},
-		Services: services{
-			"s3": service{
-				PartitionEndpoint: "aws-global",
-				IsRegionalized:    boxedTrue,
-				Defaults: endpointDefaults{
-					{}: {
-						Protocols:         []string{"http", "https"},
-						SignatureVersions: []string{"s3v4"},
-					},
-				},
-				Endpoints: serviceEndpoints{
-					{Region: "ap-east-1"}: endpoint{},
-					{Region: "ap-northeast-1"}: endpoint{
-						Hostname:          "s3.ap-northeast-1.amazonaws.com",
-						SignatureVersions: []string{"s3", "s3v4"},
-					},
-					{Region: "ap-northeast-2"}: endpoint{},
-					{Region: "ap-northeast-3"}: endpoint{},
-					{Region: "ap-south-1"}:     endpoint{},
-					{Region: "ap-southeast-1"}: endpoint{
-						Hostname:          "s3.ap-southeast-1.amazonaws.com",
-						SignatureVersions: []string{"s3", "s3v4"},
-					},
-					{Region: "ap-southeast-2"}: endpoint{
-						Hostname:          "s3.ap-southeast-2.amazonaws.com",
-						SignatureVersions: []string{"s3", "s3v4"},
-					},
-					{Region: "aws-global"}: endpoint{
-						Hostname: "s3.amazonaws.com",
-						CredentialScope: credentialScope{
-							Region: "us-east-1",
-						},
-					},
-					{Region: "ca-central-1"}: endpoint{},
-					{Region: "eu-central-1"}: endpoint{},
-					{Region: "eu-north-1"}:   endpoint{},
-					{Region: "eu-west-1"}: endpoint{
-						Hostname:          "s3.eu-west-1.amazonaws.com",
-						SignatureVersions: []string{"s3", "s3v4"},
-					},
-					{Region: "eu-west-2"}:  endpoint{},
-					{Region: "eu-west-3"}:  endpoint{},
-					{Region: "me-south-1"}: endpoint{},
-					{Region: "s3-external-1"}: endpoint{
-						Hostname:          "s3-external-1.amazonaws.com",
-						SignatureVersions: []string{"s3", "s3v4"},
-						CredentialScope: credentialScope{
-							Region: "us-east-1",
-						},
-					},
-					{Region: "sa-east-1"}: endpoint{
-						Hostname:          "s3.sa-east-1.amazonaws.com",
-						SignatureVersions: []string{"s3", "s3v4"},
-					},
-					{Region: "us-east-1"}: endpoint{
-						Hostname:          "s3.us-east-1.amazonaws.com",
-						SignatureVersions: []string{"s3", "s3v4"},
-					},
-					{Region: "us-east-2"}: endpoint{},
-					{Region: "us-west-1"}: endpoint{
-						Hostname:          "s3.us-west-1.amazonaws.com",
-						SignatureVersions: []string{"s3", "s3v4"},
-					},
-					{Region: "us-west-2"}: endpoint{
-						Hostname:          "s3.us-west-2.amazonaws.com",
-						SignatureVersions: []string{"s3", "s3v4"},
-					},
-				},
-			},
-		},
-	}
-
-	// resolver for mock S3 regional endpoints model
-	resolver := mockS3ModelPartition
+	// resolver for STS regional endpoints model
+	var resolver Resolver = AwsPartition()
 
 	cases := map[string]struct {
 		service, region     string
@@ -706,42 +431,8 @@ func TestEndpointFor_S3UsEast1RegionalFlag(t *testing.T) {
 }
 
 func TestSTSRegionalEndpoint_CNPartition(t *testing.T) {
-	mockSTSCNPartition := partition{
-		ID:        "aws-cn",
-		Name:      "AWS China",
-		DNSSuffix: "amazonaws.com.cn",
-		RegionRegex: regionRegex{
-			Regexp: func() *regexp.Regexp {
-				reg, _ := regexp.Compile("^cn\\-\\w+\\-\\d+$")
-				return reg
-			}(),
-		},
-		Defaults: endpointDefaults{
-			{}: {
-				Hostname:          "{service}.{region}.{dnsSuffix}",
-				Protocols:         []string{"https"},
-				SignatureVersions: []string{"v4"},
-			},
-		},
-		Regions: regions{
-			"cn-north-1": region{
-				Description: "China (Beijing)",
-			},
-			"cn-northwest-1": region{
-				Description: "China (Ningxia)",
-			},
-		},
-		Services: services{
-			"sts": service{
-				Endpoints: serviceEndpoints{
-					{Region: "cn-north-1"}:     endpoint{},
-					{Region: "cn-northwest-1"}: endpoint{},
-				},
-			},
-		},
-	}
-
-	resolver := mockSTSCNPartition
+	// resolver for STS regional endpoints model
+	var resolver Resolver = AwsCnPartition()
 
 	cases := map[string]struct {
 		service, region                                     string
@@ -794,5 +485,4 @@ func TestSTSRegionalEndpoint_CNPartition(t *testing.T) {
 			}
 		})
 	}
-
 }
