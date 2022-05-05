@@ -5,6 +5,12 @@ package endpoints
 
 import "testing"
 
+// ***************************************************************************
+// All endpoint metadata is sourced from the testdata/endpoints.json file at
+// test startup. Not the live endpoints model file. Update the testdata file
+// for the tests to use the latest live model.
+// ***************************************************************************
+
 func TestEnumDefaultPartitions(t *testing.T) {
 	resolver := DefaultResolver()
 	enum, ok := resolver.(EnumPartitions)
