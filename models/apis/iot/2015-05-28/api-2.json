@@ -217,7 +217,8 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ServiceUnavailableException"}
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "CancelJobExecution":{
@@ -4767,6 +4768,7 @@
     },
     "Boolean":{"type":"boolean"},
     "BooleanKey":{"type":"boolean"},
+    "BooleanWrapperObject":{"type":"boolean"},
     "Bucket":{
       "type":"structure",
       "members":{
@@ -8504,7 +8506,8 @@
         "namespaceId":{"shape":"NamespaceId"},
         "jobTemplateArn":{"shape":"JobTemplateArn"},
         "jobExecutionsRetryConfig":{"shape":"JobExecutionsRetryConfig"},
-        "documentParameters":{"shape":"ParameterMap"}
+        "documentParameters":{"shape":"ParameterMap"},
+        "isConcurrent":{"shape":"BooleanWrapperObject"}
       }
     },
     "JobArn":{"type":"string"},
@@ -8652,7 +8655,8 @@
         "status":{"shape":"JobStatus"},
         "createdAt":{"shape":"DateType"},
         "lastUpdatedAt":{"shape":"DateType"},
-        "completedAt":{"shape":"DateType"}
+        "completedAt":{"shape":"DateType"},
+        "isConcurrent":{"shape":"BooleanWrapperObject"}
       }
     },
     "JobSummaryList":{

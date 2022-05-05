@@ -1241,6 +1241,9 @@ func (c *IoT) CancelJobRequest(input *CancelJobInput) (req *request.Request, out
 //   * ServiceUnavailableException
 //   The service is temporarily unavailable.
 //
+//   * LimitExceededException
+//   A limit has been exceeded.
+//
 func (c *IoT) CancelJob(input *CancelJobInput) (*CancelJobOutput, error) {
 	req, out := c.CancelJobRequest(input)
 	return out, req.Send()
@@ -46847,6 +46850,8 @@ type Job struct {
 	// to true.
 	ForceCanceled *bool `locationName:"forceCanceled" type:"boolean"`
 
+	IsConcurrent *bool `locationName:"isConcurrent" type:"boolean"`
+
 	// An ARN identifying the job with format "arn:aws:iot:region:account:job/jobId".
 	JobArn *string `locationName:"jobArn" type:"string"`
 
@@ -46964,6 +46969,12 @@ func (s *Job) SetDocumentParameters(v map[string]*string) *Job {
 // SetForceCanceled sets the ForceCanceled field's value.
 func (s *Job) SetForceCanceled(v bool) *Job {
 	s.ForceCanceled = &v
+	return s
+}
+
+// SetIsConcurrent sets the IsConcurrent field's value.
+func (s *Job) SetIsConcurrent(v bool) *Job {
+	s.IsConcurrent = &v
 	return s
 }
 
@@ -47618,6 +47629,8 @@ type JobSummary struct {
 	// The time, in seconds since the epoch, when the job was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
+	IsConcurrent *bool `locationName:"isConcurrent" type:"boolean"`
+
 	// The job ARN.
 	JobArn *string `locationName:"jobArn" type:"string"`
 
@@ -47669,6 +47682,12 @@ func (s *JobSummary) SetCompletedAt(v time.Time) *JobSummary {
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *JobSummary) SetCreatedAt(v time.Time) *JobSummary {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetIsConcurrent sets the IsConcurrent field's value.
+func (s *JobSummary) SetIsConcurrent(v bool) *JobSummary {
+	s.IsConcurrent = &v
 	return s
 }
 

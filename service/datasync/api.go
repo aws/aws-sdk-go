@@ -8275,6 +8275,8 @@ type InvalidRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	DatasyncErrorCode *string `locationName:"datasyncErrorCode" type:"string"`
+
 	ErrorCode *string `locationName:"errorCode" type:"string"`
 
 	Message_ *string `locationName:"message" type:"string"`
@@ -9153,7 +9155,7 @@ type Options struct {
 	// file was written to) before the PREPARING phase. This option is required
 	// for cases when you need to run the same task more than one time.
 	//
-	// Default value: PRESERVE.
+	// Default Value: PRESERVE
 	//
 	// PRESERVE: Preserve original Mtime (recommended)
 	//
@@ -9163,6 +9165,13 @@ type Options struct {
 	//
 	// If Mtime is set to NONE, Atime must also be set to NONE.
 	Mtime *string `type:"string" enum:"Mtime"`
+
+	// Specifies whether object tags are maintained when transferring between object
+	// storage systems. If you want your DataSync task to ignore object tags, specify
+	// the NONE value.
+	//
+	// Default Value: PRESERVE
+	ObjectTags *string `type:"string" enum:"ObjectTags"`
 
 	// A value that determines whether files at the destination should be overwritten
 	// or preserved when copying files. If set to NEVER a destination file will
@@ -9302,8 +9311,8 @@ type Options struct {
 	//
 	// POINT_IN_TIME_CONSISTENT: Scan the entire source and entire destination at
 	// the end of the transfer to verify that source and destination are fully synchronized.
-	// This option isn't supported when transferring to S3 Glacier or S3 Glacier
-	// Deep Archive storage classes.
+	// This option isn't supported when transferring to S3 Glacier Flexible Retrieval
+	// or S3 Glacier Deep Archive storage classes.
 	//
 	// NONE: No additional verification is done at the end of the transfer, but
 	// all data transmissions are integrity-checked with checksum verification during
@@ -9369,6 +9378,12 @@ func (s *Options) SetLogLevel(v string) *Options {
 // SetMtime sets the Mtime field's value.
 func (s *Options) SetMtime(v string) *Options {
 	s.Mtime = &v
+	return s
+}
+
+// SetObjectTags sets the ObjectTags field's value.
+func (s *Options) SetObjectTags(v string) *Options {
+	s.ObjectTags = &v
 	return s
 }
 
@@ -11568,6 +11583,22 @@ func ObjectStorageServerProtocol_Values() []string {
 	return []string{
 		ObjectStorageServerProtocolHttps,
 		ObjectStorageServerProtocolHttp,
+	}
+}
+
+const (
+	// ObjectTagsPreserve is a ObjectTags enum value
+	ObjectTagsPreserve = "PRESERVE"
+
+	// ObjectTagsNone is a ObjectTags enum value
+	ObjectTagsNone = "NONE"
+)
+
+// ObjectTags_Values returns all elements of the ObjectTags enum
+func ObjectTags_Values() []string {
+	return []string{
+		ObjectTagsPreserve,
+		ObjectTagsNone,
 	}
 }
 

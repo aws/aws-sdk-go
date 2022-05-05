@@ -1,3 +1,15 @@
+Release v1.44.8 (2022-05-05)
+===
+
+### Service Client Updates
+* `service/datasync`: Updates service API and documentation
+* `service/ec2`: Updates service API
+  * Amazon EC2 I4i instances are powered by 3rd generation Intel Xeon Scalable processors and feature up to 30 TB of local AWS Nitro SSD storage
+* `service/iot`: Updates service API and documentation
+  * AWS IoT Jobs now allows you to create up to 100,000 active continuous and snapshot jobs by using concurrency control.
+* `service/kendra`: Updates service API, documentation, and paginators
+  * AWS Kendra now supports hierarchical facets for a query. For more information, see https://docs.aws.amazon.com/kendra/latest/dg/filtering.html
+
 Release v1.44.7 (2022-05-04)
 ===
 

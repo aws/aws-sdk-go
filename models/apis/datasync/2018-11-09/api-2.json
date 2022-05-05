@@ -1372,7 +1372,8 @@
       "type":"structure",
       "members":{
         "message":{"shape":"string"},
-        "errorCode":{"shape":"string"}
+        "errorCode":{"shape":"string"},
+        "datasyncErrorCode":{"shape":"string"}
       },
       "exception":true
     },
@@ -1604,6 +1605,13 @@
         "HTTP"
       ]
     },
+    "ObjectTags":{
+      "type":"string",
+      "enum":[
+        "PRESERVE",
+        "NONE"
+      ]
+    },
     "OnPremConfig":{
       "type":"structure",
       "required":["AgentArns"],
@@ -1642,7 +1650,8 @@
         "TaskQueueing":{"shape":"TaskQueueing"},
         "LogLevel":{"shape":"LogLevel"},
         "TransferMode":{"shape":"TransferMode"},
-        "SecurityDescriptorCopyFlags":{"shape":"SmbSecurityDescriptorCopyFlags"}
+        "SecurityDescriptorCopyFlags":{"shape":"SmbSecurityDescriptorCopyFlags"},
+        "ObjectTags":{"shape":"ObjectTags"}
       }
     },
     "OutputTagList":{
