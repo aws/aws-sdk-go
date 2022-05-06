@@ -258,7 +258,7 @@
     "Profile" : {
       "base" : null,
       "refs" : {
-        "DashPackage$Profile" : "The Dynamic Adaptive Streaming over HTTP (DASH) profile type.  When set to \"HBBTV_1_5\", HbbTV 1.5 compliant output is enabled."
+        "DashPackage$Profile" : "The Dynamic Adaptive Streaming over HTTP (DASH) profile type.  When set to \"HBBTV_1_5\", HbbTV 1.5 compliant output is enabled. When set to \"DVB-DASH_2014\", DVB-DASH 2014 compliant output is enabled."
       }
     },
     "S3Destination" : {
@@ -451,7 +451,7 @@
         "CmafEncryption$ConstantInitializationVector" : "An optional 128-bit, 16-byte hex value represented by a 32-character string, used in conjunction with the key for encrypting blocks. If you don't specify a value, then MediaPackage creates the constant initialization vector (IV).",
         "CmafPackage$SegmentPrefix" : "An optional custom string that is prepended to the name of each segment. If not specified, it defaults to the ChannelId.",
         "CmafPackageCreateOrUpdateParameters$SegmentPrefix" : "An optional custom string that is prepended to the name of each segment. If not specified, it defaults to the ChannelId.",
-        "DashPackage$UtcTimingUri" : "Specifies the value attribute of the UTCTiming field when utcTiming is set to HTTP-ISO or HTTP-HEAD",
+        "DashPackage$UtcTimingUri" : "Specifies the value attribute of the UTCTiming field when utcTiming is set to HTTP-ISO, HTTP-HEAD or HTTP-XSDATE",
         "EgressAccessLogs$LogGroupName" : "Customize the log group name.",
         "HarvestJob$Arn" : "The Amazon Resource Name (ARN) assigned to the HarvestJob.\n",
         "HarvestJob$ChannelId" : "The ID of the Channel that the HarvestJob will harvest from.\n",

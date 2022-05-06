@@ -3006,7 +3006,8 @@
         "SnapshotScheduleIdentifier":{"shape":"String"},
         "AvailabilityZoneRelocation":{"shape":"BooleanOptional"},
         "AquaConfigurationStatus":{"shape":"AquaConfigurationStatus"},
-        "DefaultIamRoleArn":{"shape":"String"}
+        "DefaultIamRoleArn":{"shape":"String"},
+        "LoadSampleData":{"shape":"String"}
       }
     },
     "CreateClusterParameterGroupMessage":{

@@ -383,6 +383,9 @@ func (c *LocationService) BatchEvaluateGeofencesRequest(input *BatchEvaluateGeof
 // Geofence evaluation uses the given device position. It does not account for
 // the optional Accuracy of a DevicePositionUpdate.
 //
+// The DeviceID is used as a string to represent the device. You do not need
+// to have a Tracker associated with the DeviceID.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3619,7 +3622,7 @@ func (c *LocationService) ListGeofencesRequest(input *ListGeofencesInput) (req *
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
-			LimitToken:      "",
+			LimitToken:      "MaxResults",
 			TruncationToken: "",
 		},
 	}
@@ -7025,8 +7028,9 @@ type CalculateRouteInput struct {
 	// Valid Values: false | true
 	DepartNow *bool `type:"boolean"`
 
-	// The start position for the route. Defined in WGS 84 (https://earth-info.nga.mil/GandG/wgs84/index.html)
-	// format: [longitude, latitude].
+	// The start position for the route. Defined in World Geodetic System (WGS 84)
+	// (https://earth-info.nga.mil/index.php?dir=wgs84&action=wgs84) format: [longitude,
+	// latitude].
 	//
 	//    * For example, [-123.115, 49.285]
 	//
@@ -7054,8 +7058,9 @@ type CalculateRouteInput struct {
 	//    format: YYYY-MM-DDThh:mm:ss.sssZ. For example, 2020–07-2T12:15:20.000Z+01:00
 	DepartureTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// The finish position for the route. Defined in WGS 84 (https://earth-info.nga.mil/GandG/wgs84/index.html)
-	// format: [longitude, latitude].
+	// The finish position for the route. Defined in World Geodetic System (WGS
+	// 84) (https://earth-info.nga.mil/index.php?dir=wgs84&action=wgs84) format:
+	// [longitude, latitude].
 	//
 	//    * For example, [-122.339, 47.615]
 	//
@@ -12260,6 +12265,11 @@ type ListGeofencesInput struct {
 	// CollectionName is a required field
 	CollectionName *string `location:"uri" locationName:"CollectionName" min:"1" type:"string" required:"true"`
 
+	// An optional limit for the number of geofences returned in a single call.
+	//
+	// Default value: 100
+	MaxResults *int64 `min:"1" type:"integer"`
+
 	// The pagination token specifying which page of results to return in the response.
 	// If no token is provided, the default page is the first page.
 	//
@@ -12294,6 +12304,9 @@ func (s *ListGeofencesInput) Validate() error {
 	if s.CollectionName != nil && len(*s.CollectionName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("CollectionName", 1))
 	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
 	if s.NextToken != nil && len(*s.NextToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
 	}
@@ -12307,6 +12320,12 @@ func (s *ListGeofencesInput) Validate() error {
 // SetCollectionName sets the CollectionName field's value.
 func (s *ListGeofencesInput) SetCollectionName(v string) *ListGeofencesInput {
 	s.CollectionName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListGeofencesInput) SetMaxResults(v int64) *ListGeofencesInput {
+	s.MaxResults = &v
 	return s
 }
 
@@ -13460,6 +13479,9 @@ func (s *MapConfiguration) SetStyle(v string) *MapConfiguration {
 
 // Contains details about addresses or points of interest that match the search
 // criteria.
+//
+// Not all details are included with all responses. Some details may only be
+// returned by specific data partners.
 type Place struct {
 	_ struct{} `type:"structure"`
 
@@ -14180,10 +14202,19 @@ type SearchPlaceIndexForPositionInput struct {
 	// BCP 47 (https://tools.ietf.org/search/bcp47) language tag, for example, en
 	// for English.
 	//
-	// This setting affects the languages used in the results. It does not change
-	// which results are returned. If the language is not specified, or not supported
-	// for a particular result, the partner automatically chooses a language for
-	// the result.
+	// This setting affects the languages used in the results, but not the results
+	// themselves. If no language is specified, or not supported for a particular
+	// result, the partner automatically chooses a language for the result.
+	//
+	// For an example, we'll use the Greek language. You search for a location around
+	// Athens, Greece, with the language parameter set to en. The city in the results
+	// will most likely be returned as Athens.
+	//
+	// If you set the language parameter to el, for Greek, then the city in the
+	// results will more likely be returned as Αθήνα.
+	//
+	// If the data provider does not have a value for Greek, the result will be
+	// in a language that the provider does support.
 	Language *string `min:"2" type:"string"`
 
 	// An optional parameter. The maximum number of results returned per request.
@@ -14462,12 +14493,19 @@ type SearchPlaceIndexForSuggestionsInput struct {
 	// BCP 47 (https://tools.ietf.org/search/bcp47) language tag, for example, en
 	// for English.
 	//
-	// This setting affects the languages used in the results. It does not change
-	// which results are returned. If the language is not specified, or not supported
-	// for a particular result, the partner automatically chooses a language for
-	// the result.
+	// This setting affects the languages used in the results. If no language is
+	// specified, or not supported for a particular result, the partner automatically
+	// chooses a language for the result.
 	//
-	// Used only when the partner selected is Here.
+	// For an example, we'll use the Greek language. You search for Athens, Gr to
+	// get suggestions with the language parameter set to en. The results found
+	// will most likely be returned as Athens, Greece.
+	//
+	// If you set the language parameter to el, for Greek, then the result found
+	// will more likely be returned as Αθήνα, Ελλάδα.
+	//
+	// If the data provider does not have a value for Greek, the result will be
+	// in a language that the provider does support.
 	Language *string `min:"2" type:"string"`
 
 	// An optional parameter. The maximum number of results returned per request.
@@ -14808,10 +14846,19 @@ type SearchPlaceIndexForTextInput struct {
 	// BCP 47 (https://tools.ietf.org/search/bcp47) language tag, for example, en
 	// for English.
 	//
-	// This setting affects the languages used in the results. It does not change
-	// which results are returned. If the language is not specified, or not supported
-	// for a particular result, the partner automatically chooses a language for
-	// the result.
+	// This setting affects the languages used in the results, but not the results
+	// themselves. If no language is specified, or not supported for a particular
+	// result, the partner automatically chooses a language for the result.
+	//
+	// For an example, we'll use the Greek language. You search for Athens, Greece,
+	// with the language parameter set to en. The result found will most likely
+	// be returned as Athens.
+	//
+	// If you set the language parameter to el, for Greek, then the result found
+	// will more likely be returned as Αθήνα.
+	//
+	// If the data provider does not have a value for Greek, the result will be
+	// in a language that the provider does support.
 	Language *string `min:"2" type:"string"`
 
 	// An optional parameter. The maximum number of results returned per request.
@@ -14932,6 +14979,9 @@ type SearchPlaceIndexForTextOutput struct {
 
 	// A list of Places matching the input text. Each result contains additional
 	// information about the specific point of interest.
+	//
+	// Not all response properties are included with all responses. Some properties
+	// may only be returned by specific data partners.
 	//
 	// Results is a required field
 	Results []*SearchForTextResult `type:"list" required:"true"`

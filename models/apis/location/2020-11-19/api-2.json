@@ -2543,8 +2543,15 @@
           "location":"uri",
           "locationName":"CollectionName"
         },
+        "MaxResults":{"shape":"ListGeofencesRequestMaxResultsInteger"},
         "NextToken":{"shape":"Token"}
       }
+    },
+    "ListGeofencesRequestMaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
     },
     "ListGeofencesResponse":{
       "type":"structure",
@@ -3103,7 +3110,7 @@
         },
         "Language":{"shape":"LanguageTag"},
         "MaxResults":{"shape":"SearchPlaceIndexForSuggestionsRequestMaxResultsInteger"},
-        "Text":{"shape":"SyntheticSearchPlaceIndexForSuggestionsRequestString"}
+        "Text":{"shape":"SearchPlaceIndexForSuggestionsRequestTextString"}
       }
     },
     "SearchPlaceIndexForSuggestionsRequestMaxResultsInteger":{
@@ -3111,6 +3118,12 @@
       "box":true,
       "max":15,
       "min":1
+    },
+    "SearchPlaceIndexForSuggestionsRequestTextString":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "sensitive":true
     },
     "SearchPlaceIndexForSuggestionsResponse":{
       "type":"structure",
@@ -3136,7 +3149,7 @@
         "FilterCountries":{"shape":"CountryCodeList"},
         "Language":{"shape":"LanguageTag"},
         "MaxResults":{"shape":"Integer"},
-        "Text":{"shape":"SyntheticSearchPlaceIndexForSuggestionsSummaryString"}
+        "Text":{"shape":"SensitiveString"}
       }
     },
     "SearchPlaceIndexForTextRequest":{
@@ -3156,8 +3169,14 @@
         },
         "Language":{"shape":"LanguageTag"},
         "MaxResults":{"shape":"PlaceIndexSearchResultLimit"},
-        "Text":{"shape":"SyntheticSearchPlaceIndexForTextRequestString"}
+        "Text":{"shape":"SearchPlaceIndexForTextRequestTextString"}
       }
+    },
+    "SearchPlaceIndexForTextRequestTextString":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "sensitive":true
     },
     "SearchPlaceIndexForTextResponse":{
       "type":"structure",
@@ -3184,8 +3203,12 @@
         "Language":{"shape":"LanguageTag"},
         "MaxResults":{"shape":"PlaceIndexSearchResultLimit"},
         "ResultBBox":{"shape":"BoundingBox"},
-        "Text":{"shape":"SyntheticSearchPlaceIndexForTextSummaryString"}
+        "Text":{"shape":"SensitiveString"}
       }
+    },
+    "SensitiveString":{
+      "type":"string",
+      "sensitive":true
     },
     "ServiceQuotaExceededException":{
       "type":"structure",
@@ -3238,26 +3261,6 @@
       "member":{"shape":"Step"}
     },
     "String":{"type":"string"},
-    "SyntheticSearchPlaceIndexForSuggestionsRequestString":{
-      "type":"string",
-      "max":200,
-      "min":1,
-      "sensitive":true
-    },
-    "SyntheticSearchPlaceIndexForSuggestionsSummaryString":{
-      "type":"string",
-      "sensitive":true
-    },
-    "SyntheticSearchPlaceIndexForTextRequestString":{
-      "type":"string",
-      "max":200,
-      "min":1,
-      "sensitive":true
-    },
-    "SyntheticSearchPlaceIndexForTextSummaryString":{
-      "type":"string",
-      "sensitive":true
-    },
     "TagKey":{
       "type":"string",
       "max":128,

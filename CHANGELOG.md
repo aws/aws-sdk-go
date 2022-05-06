@@ -1,3 +1,18 @@
+Release v1.44.9 (2022-05-06)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * Add new state values for IPAMs, IPAM Scopes, and IPAM Pools.
+* `service/location`: Updates service API, documentation, and paginators
+* `service/mediapackage`: Updates service API and documentation
+  * This release adds Dvb Dash 2014 as an available profile option for Dash Origin Endpoints.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Various documentation improvements.
+* `service/redshift`: Updates service API and documentation
+  * Introduces new field 'LoadSampleData' in CreateCluster operation. Customers can now specify 'LoadSampleData' option during creation of a cluster, which results in loading of sample data in the cluster that is created.
+* `service/securityhub`: Updates service documentation
+
 Release v1.44.8 (2022-05-05)
 ===
 

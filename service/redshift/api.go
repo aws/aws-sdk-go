@@ -440,7 +440,7 @@ func (c *Redshift) AuthorizeDataShareRequest(input *AuthorizeDataShareInput) (re
 //
 // From a data producer account, authorizes the sharing of a datashare with
 // one or more consumer accounts or managing entities. To authorize a datashare
-// for a data consumer, the producer account must have the correct access privileges.
+// for a data consumer, the producer account must have the correct access permissions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2678,7 +2678,8 @@ func (c *Redshift) DeauthorizeDataShareRequest(input *DeauthorizeDataShareInput)
 
 // DeauthorizeDataShare API operation for Amazon Redshift.
 //
-// From the producer account, removes authorization from the specified datashare.
+// From a datashare producer account, removes authorization from the specified
+// datashare.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9266,7 +9267,7 @@ func (c *Redshift) DisassociateDataShareConsumerRequest(input *DisassociateDataS
 
 // DisassociateDataShareConsumer API operation for Amazon Redshift.
 //
-// From a consumer account, remove association for the specified datashare.
+// From a datashare consumer account, remove association for the specified datashare.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9582,7 +9583,7 @@ func (c *Redshift) GetClusterCredentialsRequest(input *GetClusterCredentialsInpu
 // action with access to the listed dbgroups.
 //
 // In addition, if the AutoCreate parameter is set to True, then the policy
-// must include the redshift:CreateClusterUser privilege.
+// must include the redshift:CreateClusterUser permission.
 //
 // If the DbName parameter is specified, the IAM policy must allow access to
 // the resource dbname for the specified database name.
@@ -11768,7 +11769,7 @@ func (c *Redshift) RejectDataShareRequest(input *RejectDataShareInput) (req *req
 
 // RejectDataShare API operation for Amazon Redshift.
 //
-// From the consumer account, rejects the specified datashare.
+// From a datashare consumer account, rejects the specified datashare.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13329,7 +13330,7 @@ type AssociateDataShareConsumerOutput struct {
 	// format.
 	DataShareArn *string `type:"string"`
 
-	// A value that specifies when the datashare has an association between a producer
+	// A value that specifies when the datashare has an association between producer
 	// and data consumers.
 	DataShareAssociations []*DataShareAssociation `type:"list"`
 
@@ -13646,7 +13647,7 @@ type AuthorizeDataShareOutput struct {
 	// format.
 	DataShareArn *string `type:"string"`
 
-	// A value that specifies when the datashare has an association between a producer
+	// A value that specifies when the datashare has an association between producer
 	// and data consumers.
 	DataShareAssociations []*DataShareAssociation `type:"list"`
 
@@ -16233,6 +16234,9 @@ type CreateClusterInput struct {
 	// to use to encrypt data in the cluster.
 	KmsKeyId *string `type:"string"`
 
+	// A flag that specifies whether to load sample data once the cluster is created.
+	LoadSampleData *string `type:"string"`
+
 	// An optional parameter for the name of the maintenance track for the cluster.
 	// If you don't provide a maintenance track name, the cluster is assigned to
 	// the current track.
@@ -16511,6 +16515,12 @@ func (s *CreateClusterInput) SetIamRoles(v []*string) *CreateClusterInput {
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *CreateClusterInput) SetKmsKeyId(v string) *CreateClusterInput {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetLoadSampleData sets the LoadSampleData field's value.
+func (s *CreateClusterInput) SetLoadSampleData(v string) *CreateClusterInput {
+	s.LoadSampleData = &v
 	return s
 }
 
@@ -18620,7 +18630,7 @@ type DataShare struct {
 	// format.
 	DataShareArn *string `type:"string"`
 
-	// A value that specifies when the datashare has an association between a producer
+	// A value that specifies when the datashare has an association between producer
 	// and data consumers.
 	DataShareAssociations []*DataShareAssociation `type:"list"`
 
@@ -18903,7 +18913,7 @@ type DeauthorizeDataShareOutput struct {
 	// format.
 	DataShareArn *string `type:"string"`
 
-	// A value that specifies when the datashare has an association between a producer
+	// A value that specifies when the datashare has an association between producer
 	// and data consumers.
 	DataShareAssociations []*DataShareAssociation `type:"list"`
 
@@ -25365,7 +25375,7 @@ type DisassociateDataShareConsumerOutput struct {
 	// format.
 	DataShareArn *string `type:"string"`
 
-	// A value that specifies when the datashare has an association between a producer
+	// A value that specifies when the datashare has an association between producer
 	// and data consumers.
 	DataShareAssociations []*DataShareAssociation `type:"list"`
 
@@ -26541,7 +26551,7 @@ type GetClusterCredentialsOutput struct {
 
 	// A database user name that is authorized to log on to the database DbName
 	// using the password DbPassword. If the specified DbUser exists in the database,
-	// the new user name has the same database privileges as the the user named
+	// the new user name has the same database permissions as the the user named
 	// in DbUser. By default, the user is added to PUBLIC. If the DbGroups parameter
 	// is specifed, DbUser is added to the listed groups for any sessions created
 	// using these credentials.
@@ -30498,7 +30508,7 @@ type RejectDataShareOutput struct {
 	// format.
 	DataShareArn *string `type:"string"`
 
-	// A value that specifies when the datashare has an association between a producer
+	// A value that specifies when the datashare has an association between producer
 	// and data consumers.
 	DataShareAssociations []*DataShareAssociation `type:"list"`
 

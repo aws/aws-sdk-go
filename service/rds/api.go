@@ -19715,13 +19715,6 @@ type CreateDBInstanceInput struct {
 	// Constraint: The AvailabilityZone parameter can't be specified if the DB instance
 	// is a Multi-AZ deployment. The specified Availability Zone must be in the
 	// same Amazon Web Services Region as the current endpoint.
-	//
-	// If you're creating a DB instance in an RDS on VMware environment, specify
-	// the identifier of the custom Availability Zone to create the DB instance
-	// in.
-	//
-	// For more information about RDS on VMware, see the RDS on VMware User Guide.
-	// (https://docs.aws.amazon.com/AmazonRDS/latest/RDSonVMwareUserGuide/rds-on-vmware.html)
 	AvailabilityZone *string `type:"string"`
 
 	// The number of days for which automated backups are retained. Setting this
