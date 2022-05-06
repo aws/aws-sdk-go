@@ -3149,7 +3149,8 @@ type DashPackage struct {
 	PeriodTriggers []*string `locationName:"periodTriggers" type:"list" enum:"__PeriodTriggersElement"`
 
 	// The Dynamic Adaptive Streaming over HTTP (DASH) profile type. When set to
-	// "HBBTV_1_5", HbbTV 1.5 compliant output is enabled.
+	// "HBBTV_1_5", HbbTV 1.5 compliant output is enabled. When set to "DVB-DASH_2014",
+	// DVB-DASH 2014 compliant output is enabled.
 	Profile *string `locationName:"profile" type:"string" enum:"Profile"`
 
 	// Duration (in seconds) of each segment. Actual segments will berounded to
@@ -3175,7 +3176,7 @@ type DashPackage struct {
 	UtcTiming *string `locationName:"utcTiming" type:"string" enum:"UtcTiming"`
 
 	// Specifies the value attribute of the UTCTiming field when utcTiming is set
-	// to HTTP-ISO or HTTP-HEAD
+	// to HTTP-ISO, HTTP-HEAD or HTTP-XSDATE
 	UtcTimingUri *string `locationName:"utcTimingUri" type:"string"`
 }
 
@@ -7125,6 +7126,9 @@ const (
 
 	// ProfileHybridcast is a Profile enum value
 	ProfileHybridcast = "HYBRIDCAST"
+
+	// ProfileDvbDash2014 is a Profile enum value
+	ProfileDvbDash2014 = "DVB_DASH_2014"
 )
 
 // Profile_Values returns all elements of the Profile enum
@@ -7133,6 +7137,7 @@ func Profile_Values() []string {
 		ProfileNone,
 		ProfileHbbtv15,
 		ProfileHybridcast,
+		ProfileDvbDash2014,
 	}
 }
 
@@ -7205,6 +7210,9 @@ const (
 
 	// UtcTimingHttpIso is a UtcTiming enum value
 	UtcTimingHttpIso = "HTTP-ISO"
+
+	// UtcTimingHttpXsdate is a UtcTiming enum value
+	UtcTimingHttpXsdate = "HTTP-XSDATE"
 )
 
 // UtcTiming_Values returns all elements of the UtcTiming enum
@@ -7213,6 +7221,7 @@ func UtcTiming_Values() []string {
 		UtcTimingNone,
 		UtcTimingHttpHead,
 		UtcTimingHttpIso,
+		UtcTimingHttpXsdate,
 	}
 }
 

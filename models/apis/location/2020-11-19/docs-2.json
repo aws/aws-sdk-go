@@ -5,7 +5,7 @@
     "AssociateTrackerConsumer": "<p>Creates an association between a geofence collection and a tracker resource. This allows the tracker resource to communicate location data to the linked geofence collection. </p> <p>You can associate up to five geofence collections to each tracker resource.</p> <note> <p>Currently not supported — Cross-account configurations, such as creating associations between a tracker resource in one account and a geofence collection in another account.</p> </note>",
     "BatchDeleteDevicePositionHistory": "<p>Deletes the position history of one or more devices from a tracker resource.</p>",
     "BatchDeleteGeofence": "<p>Deletes a batch of geofences from a geofence collection.</p> <note> <p>This operation deletes the resource permanently.</p> </note>",
-    "BatchEvaluateGeofences": "<p>Evaluates device positions against the geofence geometries from a given geofence collection.</p> <p>This operation always returns an empty response because geofences are asynchronously evaluated. The evaluation determines if the device has entered or exited a geofenced area, and then publishes one of the following events to Amazon EventBridge:</p> <ul> <li> <p> <code>ENTER</code> if Amazon Location determines that the tracked device has entered a geofenced area.</p> </li> <li> <p> <code>EXIT</code> if Amazon Location determines that the tracked device has exited a geofenced area.</p> </li> </ul> <note> <p>The last geofence that a device was observed within is tracked for 30 days after the most recent device position update.</p> </note> <note> <p>Geofence evaluation uses the given device position. It does not account for the optional <code>Accuracy</code> of a <code>DevicePositionUpdate</code>.</p> </note>",
+    "BatchEvaluateGeofences": "<p>Evaluates device positions against the geofence geometries from a given geofence collection.</p> <p>This operation always returns an empty response because geofences are asynchronously evaluated. The evaluation determines if the device has entered or exited a geofenced area, and then publishes one of the following events to Amazon EventBridge:</p> <ul> <li> <p> <code>ENTER</code> if Amazon Location determines that the tracked device has entered a geofenced area.</p> </li> <li> <p> <code>EXIT</code> if Amazon Location determines that the tracked device has exited a geofenced area.</p> </li> </ul> <note> <p>The last geofence that a device was observed within is tracked for 30 days after the most recent device position update.</p> </note> <note> <p>Geofence evaluation uses the given device position. It does not account for the optional <code>Accuracy</code> of a <code>DevicePositionUpdate</code>.</p> </note> <note> <p>The <code>DeviceID</code> is used as a string to represent the device. You do not need to have a <code>Tracker</code> associated with the <code>DeviceID</code>.</p> </note>",
     "BatchGetDevicePosition": "<p>Lists the latest device positions for requested devices.</p>",
     "BatchPutGeofence": "<p>A batch request for storing geofence geometries into a given geofence collection, or updates the geometry of an existing geofence if a geofence ID is included in the request.</p>",
     "BatchUpdateDevicePosition": "<p>Uploads position update data for one or more devices to a tracker resource. Amazon Location uses the data when it reports the last known device position and position history. Amazon Location retains location data for 30 days.</p> <note> <p>Position updates are handled based on the <code>PositionFiltering</code> property of the tracker. When <code>PositionFiltering</code> is set to <code>TimeBased</code>, updates are evaluated against linked geofence collections, and location data is stored at a maximum of one position per 30 second interval. If your update frequency is more often than every 30 seconds, only one update per 30 seconds is stored for each unique device ID.</p> <p>When <code>PositionFiltering</code> is set to <code>DistanceBased</code> filtering, location data is stored and evaluated against linked geofence collections only if the device has moved more than 30 m (98.4 ft).</p> <p>When <code>PositionFiltering</code> is set to <code>AccuracyBased</code> filtering, location data is stored and evaluated against linked geofence collections only if the device has moved more than the measured accuracy. For example, if two consecutive updates from a device have a horizontal accuracy of 5 m and 10 m, the second update is neither stored or evaluated if the device has moved less than 15 m. If <code>PositionFiltering</code> is set to <code>AccuracyBased</code> filtering, Amazon Location uses the default value <code>{ \"Horizontal\": 0}</code> when accuracy is not provided on a <code>DevicePositionUpdate</code>.</p> </note>",
@@ -847,11 +847,11 @@
     "LanguageTag": {
       "base": null,
       "refs": {
-        "SearchPlaceIndexForPositionRequest$Language": "<p>The preferred language used to return results. The value must be a valid <a href=\"https://tools.ietf.org/search/bcp47\">BCP 47</a> language tag, for example, <code>en</code> for English.</p> <p>This setting affects the languages used in the results. It does not change which results are returned. If the language is not specified, or not supported for a particular result, the partner automatically chooses a language for the result.</p>",
+        "SearchPlaceIndexForPositionRequest$Language": "<p>The preferred language used to return results. The value must be a valid <a href=\"https://tools.ietf.org/search/bcp47\">BCP 47</a> language tag, for example, <code>en</code> for English.</p> <p>This setting affects the languages used in the results, but not the results themselves. If no language is specified, or not supported for a particular result, the partner automatically chooses a language for the result.</p> <p>For an example, we'll use the Greek language. You search for a location around Athens, Greece, with the <code>language</code> parameter set to <code>en</code>. The <code>city</code> in the results will most likely be returned as <code>Athens</code>.</p> <p>If you set the <code>language</code> parameter to <code>el</code>, for Greek, then the <code>city</code> in the results will more likely be returned as <code>Αθήνα</code>.</p> <p>If the data provider does not have a value for Greek, the result will be in a language that the provider does support.</p>",
         "SearchPlaceIndexForPositionSummary$Language": "<p>The preferred language used to return results. Matches the language in the request. The value is a valid <a href=\"https://tools.ietf.org/search/bcp47\">BCP 47</a> language tag, for example, <code>en</code> for English.</p>",
-        "SearchPlaceIndexForSuggestionsRequest$Language": "<p>The preferred language used to return results. The value must be a valid <a href=\"https://tools.ietf.org/search/bcp47\">BCP 47</a> language tag, for example, <code>en</code> for English.</p> <p>This setting affects the languages used in the results. It does not change which results are returned. If the language is not specified, or not supported for a particular result, the partner automatically chooses a language for the result.</p> <p>Used only when the partner selected is Here.</p>",
+        "SearchPlaceIndexForSuggestionsRequest$Language": "<p>The preferred language used to return results. The value must be a valid <a href=\"https://tools.ietf.org/search/bcp47\">BCP 47</a> language tag, for example, <code>en</code> for English.</p> <p>This setting affects the languages used in the results. If no language is specified, or not supported for a particular result, the partner automatically chooses a language for the result.</p> <p>For an example, we'll use the Greek language. You search for <code>Athens, Gr</code> to get suggestions with the <code>language</code> parameter set to <code>en</code>. The results found will most likely be returned as <code>Athens, Greece</code>.</p> <p>If you set the <code>language</code> parameter to <code>el</code>, for Greek, then the result found will more likely be returned as <code>Αθήνα, Ελλάδα</code>.</p> <p>If the data provider does not have a value for Greek, the result will be in a language that the provider does support.</p>",
         "SearchPlaceIndexForSuggestionsSummary$Language": "<p>The preferred language used to return results. Matches the language in the request. The value is a valid <a href=\"https://tools.ietf.org/search/bcp47\">BCP 47</a> language tag, for example, <code>en</code> for English.</p>",
-        "SearchPlaceIndexForTextRequest$Language": "<p>The preferred language used to return results. The value must be a valid <a href=\"https://tools.ietf.org/search/bcp47\">BCP 47</a> language tag, for example, <code>en</code> for English.</p> <p>This setting affects the languages used in the results. It does not change which results are returned. If the language is not specified, or not supported for a particular result, the partner automatically chooses a language for the result.</p>",
+        "SearchPlaceIndexForTextRequest$Language": "<p>The preferred language used to return results. The value must be a valid <a href=\"https://tools.ietf.org/search/bcp47\">BCP 47</a> language tag, for example, <code>en</code> for English.</p> <p>This setting affects the languages used in the results, but not the results themselves. If no language is specified, or not supported for a particular result, the partner automatically chooses a language for the result.</p> <p>For an example, we'll use the Greek language. You search for <code>Athens, Greece</code>, with the <code>language</code> parameter set to <code>en</code>. The result found will most likely be returned as <code>Athens</code>.</p> <p>If you set the <code>language</code> parameter to <code>el</code>, for Greek, then the result found will more likely be returned as <code>Αθήνα</code>.</p> <p>If the data provider does not have a value for Greek, the result will be in a language that the provider does support.</p>",
         "SearchPlaceIndexForTextSummary$Language": "<p>The preferred language used to return results. Matches the language in the request. The value is a valid <a href=\"https://tools.ietf.org/search/bcp47\">BCP 47</a> language tag, for example, <code>en</code> for English.</p>"
       }
     },
@@ -974,6 +974,12 @@
     "ListGeofencesRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "ListGeofencesRequestMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListGeofencesRequest$MaxResults": "<p>An optional limit for the number of geofences returned in a single call. </p> <p>Default value: <code>100</code> </p>"
       }
     },
     "ListGeofencesResponse": {
@@ -1133,7 +1139,7 @@
       }
     },
     "Place": {
-      "base": "<p>Contains details about addresses or points of interest that match the search criteria.</p>",
+      "base": "<p>Contains details about addresses or points of interest that match the search criteria.</p> <p>Not all details are included with all responses. Some details may only be returned by specific data partners.</p>",
       "refs": {
         "SearchForPositionResult$Place": "<p>Details about the search result, such as its address and position.</p>",
         "SearchForTextResult$Place": "<p>Details about the search result, such as its address and position.</p>"
@@ -1161,8 +1167,8 @@
         "CalculateRouteMatrixRequestDestinationPositionsList$member": null,
         "CalculateRouteMatrixResponseSnappedDeparturePositionsList$member": null,
         "CalculateRouteMatrixResponseSnappedDestinationPositionsList$member": null,
-        "CalculateRouteRequest$DeparturePosition": "<p>The start position for the route. Defined in <a href=\"https://earth-info.nga.mil/GandG/wgs84/index.html\">WGS 84</a> format: <code>[longitude, latitude]</code>.</p> <ul> <li> <p>For example, <code>[-123.115, 49.285]</code> </p> </li> </ul> <note> <p>If you specify a departure that's not located on a road, Amazon Location <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html\">moves the position to the nearest road</a>. If Esri is the provider for your route calculator, specifying a route that is longer than 400 km returns a <code>400 RoutesValidationException</code> error.</p> </note> <p>Valid Values: <code>[-180 to 180,-90 to 90]</code> </p>",
-        "CalculateRouteRequest$DestinationPosition": "<p>The finish position for the route. Defined in <a href=\"https://earth-info.nga.mil/GandG/wgs84/index.html\">WGS 84</a> format: <code>[longitude, latitude]</code>.</p> <ul> <li> <p> For example, <code>[-122.339, 47.615]</code> </p> </li> </ul> <note> <p>If you specify a destination that's not located on a road, Amazon Location <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html\">moves the position to the nearest road</a>. </p> </note> <p>Valid Values: <code>[-180 to 180,-90 to 90]</code> </p>",
+        "CalculateRouteRequest$DeparturePosition": "<p>The start position for the route. Defined in <a href=\"https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84\">World Geodetic System (WGS 84)</a> format: <code>[longitude, latitude]</code>.</p> <ul> <li> <p>For example, <code>[-123.115, 49.285]</code> </p> </li> </ul> <note> <p>If you specify a departure that's not located on a road, Amazon Location <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html\">moves the position to the nearest road</a>. If Esri is the provider for your route calculator, specifying a route that is longer than 400 km returns a <code>400 RoutesValidationException</code> error.</p> </note> <p>Valid Values: <code>[-180 to 180,-90 to 90]</code> </p>",
+        "CalculateRouteRequest$DestinationPosition": "<p>The finish position for the route. Defined in <a href=\"https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84\">World Geodetic System (WGS 84)</a> format: <code>[longitude, latitude]</code>.</p> <ul> <li> <p> For example, <code>[-122.339, 47.615]</code> </p> </li> </ul> <note> <p>If you specify a destination that's not located on a road, Amazon Location <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html\">moves the position to the nearest road</a>. </p> </note> <p>Valid Values: <code>[-180 to 180,-90 to 90]</code> </p>",
         "CalculateRouteRequestWaypointPositionsList$member": null,
         "DevicePosition$Position": "<p>The last known device position.</p>",
         "DevicePositionUpdate$Position": "<p>The latest device position defined in <a href=\"https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84\">WGS 84</a> format: <code>[X or longitude, Y or latitude]</code>.</p>",
@@ -1447,7 +1453,7 @@
     "SearchForTextResultList": {
       "base": null,
       "refs": {
-        "SearchPlaceIndexForTextResponse$Results": "<p>A list of Places matching the input text. Each result contains additional information about the specific point of interest. </p>"
+        "SearchPlaceIndexForTextResponse$Results": "<p>A list of Places matching the input text. Each result contains additional information about the specific point of interest. </p> <p>Not all response properties are included with all responses. Some properties may only be returned by specific data partners.</p>"
       }
     },
     "SearchForTextResultRelevanceDouble": {
@@ -1483,6 +1489,12 @@
         "SearchPlaceIndexForSuggestionsRequest$MaxResults": "<p>An optional parameter. The maximum number of results returned per request. </p> <p>The default: <code>5</code> </p>"
       }
     },
+    "SearchPlaceIndexForSuggestionsRequestTextString": {
+      "base": null,
+      "refs": {
+        "SearchPlaceIndexForSuggestionsRequest$Text": "<p>The free-form partial text to use to generate place suggestions. For example, <code>eiffel tow</code>.</p>"
+      }
+    },
     "SearchPlaceIndexForSuggestionsResponse": {
       "base": null,
       "refs": {
@@ -1499,6 +1511,12 @@
       "refs": {
       }
     },
+    "SearchPlaceIndexForTextRequestTextString": {
+      "base": null,
+      "refs": {
+        "SearchPlaceIndexForTextRequest$Text": "<p>The address, name, city, or region to be used in the search in free-form text format. For example, <code>123 Any Street</code>.</p>"
+      }
+    },
     "SearchPlaceIndexForTextResponse": {
       "base": null,
       "refs": {
@@ -1508,6 +1526,13 @@
       "base": "<p>A summary of the request sent by using <code>SearchPlaceIndexForText</code>.</p>",
       "refs": {
         "SearchPlaceIndexForTextResponse$Summary": "<p>Contains a summary of the request. Echoes the input values for <code>BiasPosition</code>, <code>FilterBBox</code>, <code>FilterCountries</code>, <code>Language</code>, <code>MaxResults</code>, and <code>Text</code>. Also includes the <code>DataSource</code> of the place index and the bounding box, <code>ResultBBox</code>, which surrounds the search results. </p>"
+      }
+    },
+    "SensitiveString": {
+      "base": null,
+      "refs": {
+        "SearchPlaceIndexForSuggestionsSummary$Text": "<p>The free-form partial text input specified in the request.</p>",
+        "SearchPlaceIndexForTextSummary$Text": "<p>The search text specified in the request.</p>"
       }
     },
     "ServiceQuotaExceededException": {
@@ -1599,30 +1624,6 @@
         "ValidationException$Message": null,
         "ValidationExceptionField$Message": "<p>A message with the reason for the validation exception error.</p>",
         "ValidationExceptionField$Name": "<p>The field name where the invalid entry was detected.</p>"
-      }
-    },
-    "SyntheticSearchPlaceIndexForSuggestionsRequestString": {
-      "base": null,
-      "refs": {
-        "SearchPlaceIndexForSuggestionsRequest$Text": "<p>The free-form partial text to use to generate place suggestions. For example, <code>eiffel tow</code>.</p>"
-      }
-    },
-    "SyntheticSearchPlaceIndexForSuggestionsSummaryString": {
-      "base": null,
-      "refs": {
-        "SearchPlaceIndexForSuggestionsSummary$Text": "<p>The free-form partial text input specified in the request.</p>"
-      }
-    },
-    "SyntheticSearchPlaceIndexForTextRequestString": {
-      "base": null,
-      "refs": {
-        "SearchPlaceIndexForTextRequest$Text": "<p>The address, name, city, or region to be used in the search in free-form text format. For example, <code>123 Any Street</code>.</p>"
-      }
-    },
-    "SyntheticSearchPlaceIndexForTextSummaryString": {
-      "base": null,
-      "refs": {
-        "SearchPlaceIndexForTextSummary$Text": "<p>The search text specified in the request.</p>"
       }
     },
     "TagKey": {

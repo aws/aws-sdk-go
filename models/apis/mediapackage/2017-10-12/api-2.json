@@ -2164,7 +2164,8 @@
       "enum": [
         "NONE",
         "HBBTV_1_5",
-        "HYBRIDCAST"
+        "HYBRIDCAST",
+        "DVB_DASH_2014"
       ],
       "type": "string"
     },
@@ -2643,7 +2644,8 @@
       "enum": [
         "NONE",
         "HTTP-HEAD",
-        "HTTP-ISO"
+        "HTTP-ISO",
+        "HTTP-XSDATE"
       ],
       "type": "string"
     },
