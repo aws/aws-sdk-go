@@ -1287,6 +1287,7 @@
     "GetExperimentResultsResponse":{
       "type":"structure",
       "members":{
+        "details":{"shape":"String"},
         "reports":{"shape":"ExperimentReportList"},
         "resultsData":{"shape":"ExperimentResultsDataList"},
         "timestamps":{"shape":"TimestampList"}

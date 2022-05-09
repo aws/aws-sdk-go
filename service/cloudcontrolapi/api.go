@@ -71,11 +71,11 @@ func (c *CloudControlApi) CancelResourceRequestRequest(input *CancelResourceRequ
 // API operation CancelResourceRequest for usage and error information.
 //
 // Returned Error Types:
-//   * RequestTokenNotFoundException
-//   A resource operation with the specified request token can't be found.
-//
 //   * ConcurrentModificationException
 //   The resource is currently being modified by another operation.
+//
+//   * RequestTokenNotFoundException
+//   A resource operation with the specified request token can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudcontrol-2021-09-30/CancelResourceRequest
 func (c *CloudControlApi) CancelResourceRequest(input *CancelResourceRequestInput) (*CancelResourceRequestOutput, error) {
@@ -159,8 +159,71 @@ func (c *CloudControlApi) CreateResourceRequest(input *CreateResourceInput) (req
 // API operation CreateResource for usage and error information.
 //
 // Returned Error Types:
+//   * AlreadyExistsException
+//   The resource with the name requested already exists.
+//
+//   * HandlerInternalFailureException
+//   The resource handler has returned that an unexpected error occurred within
+//   the resource handler.
+//
+//   * GeneralServiceException
+//   The resource handler has returned that the downstream service generated an
+//   error that doesn't map to any other handler error code.
+//
+//   * NotUpdatableException
+//   One or more properties included in this resource operation are defined as
+//   create-only, and therefore can't be updated.
+//
+//   * TypeNotFoundException
+//   The specified extension doesn't exist in the CloudFormation registry.
+//
 //   * ConcurrentOperationException
 //   Another resource operation is currently being performed on this resource.
+//
+//   * InvalidRequestException
+//   The resource handler has returned that invalid input from the user has generated
+//   a generic exception.
+//
+//   * PrivateTypeException
+//   Cloud Control API hasn't received a valid response from the resource handler,
+//   due to a configuration error. This includes issues such as the resource handler
+//   returning an invalid response, or timing out.
+//
+//   * ResourceNotFoundException
+//   A resource with the specified identifier can't be found.
+//
+//   * NetworkFailureException
+//   The resource handler has returned that the request couldn't be completed
+//   due to networking issues, such as a failure to receive a response from the
+//   server.
+//
+//   * UnsupportedActionException
+//   The specified resource doesn't support this resource operation.
+//
+//   * NotStabilizedException
+//   The resource handler has returned that the downstream resource failed to
+//   complete all of its ready-state checks.
+//
+//   * ServiceInternalErrorException
+//   The resource handler has returned that the downstream service returned an
+//   internal error, typically with a 5XX HTTP status code.
+//
+//   * HandlerFailureException
+//   The resource handler has failed without a returning a more specific error
+//   code. This can include timeouts.
+//
+//   * ServiceLimitExceededException
+//   The resource handler has returned that a non-transient resource limit was
+//   reached on the service side.
+//
+//   * InvalidCredentialsException
+//   The resource handler has returned that the credentials provided by the user
+//   are invalid.
+//
+//   * ResourceConflictException
+//   The resource is temporarily unavailable to be acted upon. For example, if
+//   the resource is currently undergoing an operation and can't be acted upon
+//   until that operation is finished.
 //
 //   * ClientTokenConflictException
 //   The specified client token has already been used in another resource request.
@@ -168,71 +231,8 @@ func (c *CloudControlApi) CreateResourceRequest(input *CreateResourceInput) (req
 //   It's best practice for client tokens to be unique for each resource operation
 //   request. However, client token expire after 36 hours.
 //
-//   * UnsupportedActionException
-//   The specified resource doesn't support this resource operation.
-//
-//   * TypeNotFoundException
-//   The specified extension doesn't exist in the CloudFormation registry.
-//
-//   * AlreadyExistsException
-//   The resource with the name requested already exists.
-//
-//   * GeneralServiceException
-//   The resource handler has returned that the downstream service generated an
-//   error that doesn't map to any other handler error code.
-//
-//   * HandlerInternalFailureException
-//   The resource handler has returned that an unexpected error occurred within
-//   the resource handler.
-//
-//   * InvalidCredentialsException
-//   The resource handler has returned that the credentials provided by the user
-//   are invalid.
-//
-//   * InvalidRequestException
-//   The resource handler has returned that invalid input from the user has generated
-//   a generic exception.
-//
-//   * NetworkFailureException
-//   The resource handler has returned that the request couldn't be completed
-//   due to networking issues, such as a failure to receive a response from the
-//   server.
-//
-//   * ResourceNotFoundException
-//   A resource with the specified identifier can't be found.
-//
-//   * NotStabilizedException
-//   The resource handler has returned that the downstream resource failed to
-//   complete all of its ready-state checks.
-//
-//   * NotUpdatableException
-//   One or more properties included in this resource operation are defined as
-//   create-only, and therefore can't be updated.
-//
-//   * ResourceConflictException
-//   The resource is temporarily unavailable to be acted upon. For example, if
-//   the resource is currently undergoing an operation and can't be acted upon
-//   until that operation is finished.
-//
-//   * ServiceInternalErrorException
-//   The resource handler has returned that the downstream service returned an
-//   internal error, typically with a 5XX HTTP status code.
-//
-//   * ServiceLimitExceededException
-//   The resource handler has returned that a non-transient resource limit was
-//   reached on the service side.
-//
 //   * ThrottlingException
 //   The request was denied due to request throttling.
-//
-//   * PrivateTypeException
-//   Cloud Control API hasn't received a valid response from the resource handler,
-//   due to a configuration error. This includes issues such as the resource handler
-//   returning an invalid response, or timing out.
-//
-//   * HandlerFailureException
-//   The resource handler has failed without a returning a more specific error
-//   code. This can include timeouts.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudcontrol-2021-09-30/CreateResource
 func (c *CloudControlApi) CreateResource(input *CreateResourceInput) (*CreateResourceOutput, error) {
@@ -315,8 +315,71 @@ func (c *CloudControlApi) DeleteResourceRequest(input *DeleteResourceInput) (req
 // API operation DeleteResource for usage and error information.
 //
 // Returned Error Types:
+//   * AlreadyExistsException
+//   The resource with the name requested already exists.
+//
+//   * HandlerInternalFailureException
+//   The resource handler has returned that an unexpected error occurred within
+//   the resource handler.
+//
+//   * GeneralServiceException
+//   The resource handler has returned that the downstream service generated an
+//   error that doesn't map to any other handler error code.
+//
+//   * NotUpdatableException
+//   One or more properties included in this resource operation are defined as
+//   create-only, and therefore can't be updated.
+//
+//   * TypeNotFoundException
+//   The specified extension doesn't exist in the CloudFormation registry.
+//
 //   * ConcurrentOperationException
 //   Another resource operation is currently being performed on this resource.
+//
+//   * InvalidRequestException
+//   The resource handler has returned that invalid input from the user has generated
+//   a generic exception.
+//
+//   * PrivateTypeException
+//   Cloud Control API hasn't received a valid response from the resource handler,
+//   due to a configuration error. This includes issues such as the resource handler
+//   returning an invalid response, or timing out.
+//
+//   * ResourceNotFoundException
+//   A resource with the specified identifier can't be found.
+//
+//   * NetworkFailureException
+//   The resource handler has returned that the request couldn't be completed
+//   due to networking issues, such as a failure to receive a response from the
+//   server.
+//
+//   * UnsupportedActionException
+//   The specified resource doesn't support this resource operation.
+//
+//   * NotStabilizedException
+//   The resource handler has returned that the downstream resource failed to
+//   complete all of its ready-state checks.
+//
+//   * ServiceInternalErrorException
+//   The resource handler has returned that the downstream service returned an
+//   internal error, typically with a 5XX HTTP status code.
+//
+//   * HandlerFailureException
+//   The resource handler has failed without a returning a more specific error
+//   code. This can include timeouts.
+//
+//   * ServiceLimitExceededException
+//   The resource handler has returned that a non-transient resource limit was
+//   reached on the service side.
+//
+//   * InvalidCredentialsException
+//   The resource handler has returned that the credentials provided by the user
+//   are invalid.
+//
+//   * ResourceConflictException
+//   The resource is temporarily unavailable to be acted upon. For example, if
+//   the resource is currently undergoing an operation and can't be acted upon
+//   until that operation is finished.
 //
 //   * ClientTokenConflictException
 //   The specified client token has already been used in another resource request.
@@ -324,71 +387,8 @@ func (c *CloudControlApi) DeleteResourceRequest(input *DeleteResourceInput) (req
 //   It's best practice for client tokens to be unique for each resource operation
 //   request. However, client token expire after 36 hours.
 //
-//   * UnsupportedActionException
-//   The specified resource doesn't support this resource operation.
-//
-//   * TypeNotFoundException
-//   The specified extension doesn't exist in the CloudFormation registry.
-//
-//   * AlreadyExistsException
-//   The resource with the name requested already exists.
-//
-//   * GeneralServiceException
-//   The resource handler has returned that the downstream service generated an
-//   error that doesn't map to any other handler error code.
-//
-//   * HandlerInternalFailureException
-//   The resource handler has returned that an unexpected error occurred within
-//   the resource handler.
-//
-//   * InvalidCredentialsException
-//   The resource handler has returned that the credentials provided by the user
-//   are invalid.
-//
-//   * InvalidRequestException
-//   The resource handler has returned that invalid input from the user has generated
-//   a generic exception.
-//
-//   * NetworkFailureException
-//   The resource handler has returned that the request couldn't be completed
-//   due to networking issues, such as a failure to receive a response from the
-//   server.
-//
-//   * ResourceNotFoundException
-//   A resource with the specified identifier can't be found.
-//
-//   * NotStabilizedException
-//   The resource handler has returned that the downstream resource failed to
-//   complete all of its ready-state checks.
-//
-//   * NotUpdatableException
-//   One or more properties included in this resource operation are defined as
-//   create-only, and therefore can't be updated.
-//
-//   * ResourceConflictException
-//   The resource is temporarily unavailable to be acted upon. For example, if
-//   the resource is currently undergoing an operation and can't be acted upon
-//   until that operation is finished.
-//
-//   * ServiceInternalErrorException
-//   The resource handler has returned that the downstream service returned an
-//   internal error, typically with a 5XX HTTP status code.
-//
-//   * ServiceLimitExceededException
-//   The resource handler has returned that a non-transient resource limit was
-//   reached on the service side.
-//
 //   * ThrottlingException
 //   The request was denied due to request throttling.
-//
-//   * PrivateTypeException
-//   Cloud Control API hasn't received a valid response from the resource handler,
-//   due to a configuration error. This includes issues such as the resource handler
-//   returning an invalid response, or timing out.
-//
-//   * HandlerFailureException
-//   The resource handler has failed without a returning a more specific error
-//   code. This can include timeouts.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudcontrol-2021-09-30/DeleteResource
 func (c *CloudControlApi) DeleteResource(input *DeleteResourceInput) (*DeleteResourceOutput, error) {
@@ -471,71 +471,71 @@ func (c *CloudControlApi) GetResourceRequest(input *GetResourceInput) (req *requ
 // API operation GetResource for usage and error information.
 //
 // Returned Error Types:
-//   * UnsupportedActionException
-//   The specified resource doesn't support this resource operation.
-//
-//   * TypeNotFoundException
-//   The specified extension doesn't exist in the CloudFormation registry.
-//
 //   * AlreadyExistsException
 //   The resource with the name requested already exists.
-//
-//   * GeneralServiceException
-//   The resource handler has returned that the downstream service generated an
-//   error that doesn't map to any other handler error code.
 //
 //   * HandlerInternalFailureException
 //   The resource handler has returned that an unexpected error occurred within
 //   the resource handler.
 //
-//   * InvalidCredentialsException
-//   The resource handler has returned that the credentials provided by the user
-//   are invalid.
-//
-//   * InvalidRequestException
-//   The resource handler has returned that invalid input from the user has generated
-//   a generic exception.
-//
-//   * NetworkFailureException
-//   The resource handler has returned that the request couldn't be completed
-//   due to networking issues, such as a failure to receive a response from the
-//   server.
-//
-//   * ResourceNotFoundException
-//   A resource with the specified identifier can't be found.
-//
-//   * NotStabilizedException
-//   The resource handler has returned that the downstream resource failed to
-//   complete all of its ready-state checks.
+//   * GeneralServiceException
+//   The resource handler has returned that the downstream service generated an
+//   error that doesn't map to any other handler error code.
 //
 //   * NotUpdatableException
 //   One or more properties included in this resource operation are defined as
 //   create-only, and therefore can't be updated.
 //
-//   * ResourceConflictException
-//   The resource is temporarily unavailable to be acted upon. For example, if
-//   the resource is currently undergoing an operation and can't be acted upon
-//   until that operation is finished.
+//   * TypeNotFoundException
+//   The specified extension doesn't exist in the CloudFormation registry.
 //
-//   * ServiceInternalErrorException
-//   The resource handler has returned that the downstream service returned an
-//   internal error, typically with a 5XX HTTP status code.
-//
-//   * ServiceLimitExceededException
-//   The resource handler has returned that a non-transient resource limit was
-//   reached on the service side.
-//
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   * InvalidRequestException
+//   The resource handler has returned that invalid input from the user has generated
+//   a generic exception.
 //
 //   * PrivateTypeException
 //   Cloud Control API hasn't received a valid response from the resource handler,
 //   due to a configuration error. This includes issues such as the resource handler
 //   returning an invalid response, or timing out.
 //
+//   * ResourceNotFoundException
+//   A resource with the specified identifier can't be found.
+//
+//   * NetworkFailureException
+//   The resource handler has returned that the request couldn't be completed
+//   due to networking issues, such as a failure to receive a response from the
+//   server.
+//
+//   * UnsupportedActionException
+//   The specified resource doesn't support this resource operation.
+//
+//   * NotStabilizedException
+//   The resource handler has returned that the downstream resource failed to
+//   complete all of its ready-state checks.
+//
+//   * ServiceInternalErrorException
+//   The resource handler has returned that the downstream service returned an
+//   internal error, typically with a 5XX HTTP status code.
+//
 //   * HandlerFailureException
 //   The resource handler has failed without a returning a more specific error
 //   code. This can include timeouts.
+//
+//   * ServiceLimitExceededException
+//   The resource handler has returned that a non-transient resource limit was
+//   reached on the service side.
+//
+//   * InvalidCredentialsException
+//   The resource handler has returned that the credentials provided by the user
+//   are invalid.
+//
+//   * ResourceConflictException
+//   The resource is temporarily unavailable to be acted upon. For example, if
+//   the resource is currently undergoing an operation and can't be acted upon
+//   until that operation is finished.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudcontrol-2021-09-30/GetResource
 func (c *CloudControlApi) GetResource(input *GetResourceInput) (*GetResourceOutput, error) {
@@ -843,71 +843,71 @@ func (c *CloudControlApi) ListResourcesRequest(input *ListResourcesInput) (req *
 // API operation ListResources for usage and error information.
 //
 // Returned Error Types:
-//   * UnsupportedActionException
-//   The specified resource doesn't support this resource operation.
-//
-//   * TypeNotFoundException
-//   The specified extension doesn't exist in the CloudFormation registry.
-//
 //   * AlreadyExistsException
 //   The resource with the name requested already exists.
-//
-//   * GeneralServiceException
-//   The resource handler has returned that the downstream service generated an
-//   error that doesn't map to any other handler error code.
 //
 //   * HandlerInternalFailureException
 //   The resource handler has returned that an unexpected error occurred within
 //   the resource handler.
 //
-//   * InvalidCredentialsException
-//   The resource handler has returned that the credentials provided by the user
-//   are invalid.
-//
-//   * InvalidRequestException
-//   The resource handler has returned that invalid input from the user has generated
-//   a generic exception.
-//
-//   * NetworkFailureException
-//   The resource handler has returned that the request couldn't be completed
-//   due to networking issues, such as a failure to receive a response from the
-//   server.
-//
-//   * ResourceNotFoundException
-//   A resource with the specified identifier can't be found.
-//
-//   * NotStabilizedException
-//   The resource handler has returned that the downstream resource failed to
-//   complete all of its ready-state checks.
+//   * GeneralServiceException
+//   The resource handler has returned that the downstream service generated an
+//   error that doesn't map to any other handler error code.
 //
 //   * NotUpdatableException
 //   One or more properties included in this resource operation are defined as
 //   create-only, and therefore can't be updated.
 //
-//   * ResourceConflictException
-//   The resource is temporarily unavailable to be acted upon. For example, if
-//   the resource is currently undergoing an operation and can't be acted upon
-//   until that operation is finished.
+//   * TypeNotFoundException
+//   The specified extension doesn't exist in the CloudFormation registry.
 //
-//   * ServiceInternalErrorException
-//   The resource handler has returned that the downstream service returned an
-//   internal error, typically with a 5XX HTTP status code.
-//
-//   * ServiceLimitExceededException
-//   The resource handler has returned that a non-transient resource limit was
-//   reached on the service side.
-//
-//   * ThrottlingException
-//   The request was denied due to request throttling.
+//   * InvalidRequestException
+//   The resource handler has returned that invalid input from the user has generated
+//   a generic exception.
 //
 //   * PrivateTypeException
 //   Cloud Control API hasn't received a valid response from the resource handler,
 //   due to a configuration error. This includes issues such as the resource handler
 //   returning an invalid response, or timing out.
 //
+//   * ResourceNotFoundException
+//   A resource with the specified identifier can't be found.
+//
+//   * NetworkFailureException
+//   The resource handler has returned that the request couldn't be completed
+//   due to networking issues, such as a failure to receive a response from the
+//   server.
+//
+//   * UnsupportedActionException
+//   The specified resource doesn't support this resource operation.
+//
+//   * NotStabilizedException
+//   The resource handler has returned that the downstream resource failed to
+//   complete all of its ready-state checks.
+//
+//   * ServiceInternalErrorException
+//   The resource handler has returned that the downstream service returned an
+//   internal error, typically with a 5XX HTTP status code.
+//
 //   * HandlerFailureException
 //   The resource handler has failed without a returning a more specific error
 //   code. This can include timeouts.
+//
+//   * ServiceLimitExceededException
+//   The resource handler has returned that a non-transient resource limit was
+//   reached on the service side.
+//
+//   * InvalidCredentialsException
+//   The resource handler has returned that the credentials provided by the user
+//   are invalid.
+//
+//   * ResourceConflictException
+//   The resource is temporarily unavailable to be acted upon. For example, if
+//   the resource is currently undergoing an operation and can't be acted upon
+//   until that operation is finished.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudcontrol-2021-09-30/ListResources
 func (c *CloudControlApi) ListResources(input *ListResourcesInput) (*ListResourcesOutput, error) {
@@ -1055,8 +1055,71 @@ func (c *CloudControlApi) UpdateResourceRequest(input *UpdateResourceInput) (req
 // API operation UpdateResource for usage and error information.
 //
 // Returned Error Types:
+//   * AlreadyExistsException
+//   The resource with the name requested already exists.
+//
+//   * HandlerInternalFailureException
+//   The resource handler has returned that an unexpected error occurred within
+//   the resource handler.
+//
+//   * GeneralServiceException
+//   The resource handler has returned that the downstream service generated an
+//   error that doesn't map to any other handler error code.
+//
+//   * NotUpdatableException
+//   One or more properties included in this resource operation are defined as
+//   create-only, and therefore can't be updated.
+//
+//   * TypeNotFoundException
+//   The specified extension doesn't exist in the CloudFormation registry.
+//
 //   * ConcurrentOperationException
 //   Another resource operation is currently being performed on this resource.
+//
+//   * InvalidRequestException
+//   The resource handler has returned that invalid input from the user has generated
+//   a generic exception.
+//
+//   * PrivateTypeException
+//   Cloud Control API hasn't received a valid response from the resource handler,
+//   due to a configuration error. This includes issues such as the resource handler
+//   returning an invalid response, or timing out.
+//
+//   * ResourceNotFoundException
+//   A resource with the specified identifier can't be found.
+//
+//   * NetworkFailureException
+//   The resource handler has returned that the request couldn't be completed
+//   due to networking issues, such as a failure to receive a response from the
+//   server.
+//
+//   * UnsupportedActionException
+//   The specified resource doesn't support this resource operation.
+//
+//   * NotStabilizedException
+//   The resource handler has returned that the downstream resource failed to
+//   complete all of its ready-state checks.
+//
+//   * ServiceInternalErrorException
+//   The resource handler has returned that the downstream service returned an
+//   internal error, typically with a 5XX HTTP status code.
+//
+//   * HandlerFailureException
+//   The resource handler has failed without a returning a more specific error
+//   code. This can include timeouts.
+//
+//   * ServiceLimitExceededException
+//   The resource handler has returned that a non-transient resource limit was
+//   reached on the service side.
+//
+//   * InvalidCredentialsException
+//   The resource handler has returned that the credentials provided by the user
+//   are invalid.
+//
+//   * ResourceConflictException
+//   The resource is temporarily unavailable to be acted upon. For example, if
+//   the resource is currently undergoing an operation and can't be acted upon
+//   until that operation is finished.
 //
 //   * ClientTokenConflictException
 //   The specified client token has already been used in another resource request.
@@ -1064,71 +1127,8 @@ func (c *CloudControlApi) UpdateResourceRequest(input *UpdateResourceInput) (req
 //   It's best practice for client tokens to be unique for each resource operation
 //   request. However, client token expire after 36 hours.
 //
-//   * UnsupportedActionException
-//   The specified resource doesn't support this resource operation.
-//
-//   * TypeNotFoundException
-//   The specified extension doesn't exist in the CloudFormation registry.
-//
-//   * AlreadyExistsException
-//   The resource with the name requested already exists.
-//
-//   * GeneralServiceException
-//   The resource handler has returned that the downstream service generated an
-//   error that doesn't map to any other handler error code.
-//
-//   * HandlerInternalFailureException
-//   The resource handler has returned that an unexpected error occurred within
-//   the resource handler.
-//
-//   * InvalidCredentialsException
-//   The resource handler has returned that the credentials provided by the user
-//   are invalid.
-//
-//   * InvalidRequestException
-//   The resource handler has returned that invalid input from the user has generated
-//   a generic exception.
-//
-//   * NetworkFailureException
-//   The resource handler has returned that the request couldn't be completed
-//   due to networking issues, such as a failure to receive a response from the
-//   server.
-//
-//   * ResourceNotFoundException
-//   A resource with the specified identifier can't be found.
-//
-//   * NotStabilizedException
-//   The resource handler has returned that the downstream resource failed to
-//   complete all of its ready-state checks.
-//
-//   * NotUpdatableException
-//   One or more properties included in this resource operation are defined as
-//   create-only, and therefore can't be updated.
-//
-//   * ResourceConflictException
-//   The resource is temporarily unavailable to be acted upon. For example, if
-//   the resource is currently undergoing an operation and can't be acted upon
-//   until that operation is finished.
-//
-//   * ServiceInternalErrorException
-//   The resource handler has returned that the downstream service returned an
-//   internal error, typically with a 5XX HTTP status code.
-//
-//   * ServiceLimitExceededException
-//   The resource handler has returned that a non-transient resource limit was
-//   reached on the service side.
-//
 //   * ThrottlingException
 //   The request was denied due to request throttling.
-//
-//   * PrivateTypeException
-//   Cloud Control API hasn't received a valid response from the resource handler,
-//   due to a configuration error. This includes issues such as the resource handler
-//   returning an invalid response, or timing out.
-//
-//   * HandlerFailureException
-//   The resource handler has failed without a returning a more specific error
-//   code. This can include timeouts.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudcontrol-2021-09-30/UpdateResource
 func (c *CloudControlApi) UpdateResource(input *UpdateResourceInput) (*UpdateResourceOutput, error) {
@@ -1519,19 +1519,14 @@ type CreateResourceInput struct {
 	//
 	// Cloud Control API currently supports JSON as a structured data format.
 	//
-	// Specify the desired state as one of the following:
-	//
-	//    * A JSON blob
-	//
-	//    * A local path containing the desired state in JSON data format
-	//
-	// For more information, see Composing the desired state of the resource (https://docs.aws.amazon.com/cloudcontrolapi/latest/userguide/resource-operations-create.html#resource-operations-create-desiredstate)
-	// in the Amazon Web Services Cloud Control API User Guide.
-	//
-	// For more information about the properties of a specific resource, refer to
-	// the related topic for the resource in the Resource and property types reference
-	// (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
-	// in the CloudFormation Users Guide.
+	//    <p>Specify the desired state as one of the following:</p> <ul> <li> <p>A
+	//    JSON blob</p> </li> <li> <p>A local path containing the desired state
+	//    in JSON data format</p> </li> </ul> <p>For more information, see <a href="https://docs.aws.amazon.com/cloudcontrolapi/latest/userguide/resource-operations-create.html#resource-operations-create-desiredstate">Composing
+	//    the desired state of the resource</a> in the <i>Amazon Web Services Cloud
+	//    Control API User Guide</i>.</p> <p>For more information about the properties
+	//    of a specific resource, refer to the related topic for the resource in
+	//    the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">Resource
+	//    and property types reference</a> in the <i>CloudFormation Users Guide</i>.</p>
 	//
 	// DesiredState is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateResourceInput's

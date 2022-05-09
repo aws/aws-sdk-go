@@ -1,3 +1,11 @@
+Release v1.44.10 (2022-05-09)
+===
+
+### Service Client Updates
+* `service/cloudcontrol`: Updates service API, documentation, waiters, and paginators
+* `service/evidently`: Updates service API and documentation
+* `service/ssm-contacts`: Updates service documentation and examples
+
 Release v1.44.9 (2022-05-06)
 ===
 

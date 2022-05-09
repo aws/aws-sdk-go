@@ -23,8 +23,8 @@
       "input":{"shape":"CancelResourceRequestInput"},
       "output":{"shape":"CancelResourceRequestOutput"},
       "errors":[
-        {"shape":"RequestTokenNotFoundException"},
-        {"shape":"ConcurrentModificationException"}
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"RequestTokenNotFoundException"}
       ],
       "idempotent":true
     },
@@ -37,25 +37,25 @@
       "input":{"shape":"CreateResourceInput"},
       "output":{"shape":"CreateResourceOutput"},
       "errors":[
-        {"shape":"ConcurrentOperationException"},
-        {"shape":"ClientTokenConflictException"},
-        {"shape":"UnsupportedActionException"},
-        {"shape":"TypeNotFoundException"},
         {"shape":"AlreadyExistsException"},
-        {"shape":"GeneralServiceException"},
         {"shape":"HandlerInternalFailureException"},
-        {"shape":"InvalidCredentialsException"},
-        {"shape":"InvalidRequestException"},
-        {"shape":"NetworkFailureException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"NotStabilizedException"},
+        {"shape":"GeneralServiceException"},
         {"shape":"NotUpdatableException"},
-        {"shape":"ResourceConflictException"},
-        {"shape":"ServiceInternalErrorException"},
-        {"shape":"ServiceLimitExceededException"},
-        {"shape":"ThrottlingException"},
+        {"shape":"TypeNotFoundException"},
+        {"shape":"ConcurrentOperationException"},
+        {"shape":"InvalidRequestException"},
         {"shape":"PrivateTypeException"},
-        {"shape":"HandlerFailureException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NetworkFailureException"},
+        {"shape":"UnsupportedActionException"},
+        {"shape":"NotStabilizedException"},
+        {"shape":"ServiceInternalErrorException"},
+        {"shape":"HandlerFailureException"},
+        {"shape":"ServiceLimitExceededException"},
+        {"shape":"InvalidCredentialsException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"ClientTokenConflictException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "DeleteResource":{
@@ -67,25 +67,25 @@
       "input":{"shape":"DeleteResourceInput"},
       "output":{"shape":"DeleteResourceOutput"},
       "errors":[
-        {"shape":"ConcurrentOperationException"},
-        {"shape":"ClientTokenConflictException"},
-        {"shape":"UnsupportedActionException"},
-        {"shape":"TypeNotFoundException"},
         {"shape":"AlreadyExistsException"},
-        {"shape":"GeneralServiceException"},
         {"shape":"HandlerInternalFailureException"},
-        {"shape":"InvalidCredentialsException"},
-        {"shape":"InvalidRequestException"},
-        {"shape":"NetworkFailureException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"NotStabilizedException"},
+        {"shape":"GeneralServiceException"},
         {"shape":"NotUpdatableException"},
-        {"shape":"ResourceConflictException"},
-        {"shape":"ServiceInternalErrorException"},
-        {"shape":"ServiceLimitExceededException"},
-        {"shape":"ThrottlingException"},
+        {"shape":"TypeNotFoundException"},
+        {"shape":"ConcurrentOperationException"},
+        {"shape":"InvalidRequestException"},
         {"shape":"PrivateTypeException"},
-        {"shape":"HandlerFailureException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NetworkFailureException"},
+        {"shape":"UnsupportedActionException"},
+        {"shape":"NotStabilizedException"},
+        {"shape":"ServiceInternalErrorException"},
+        {"shape":"HandlerFailureException"},
+        {"shape":"ServiceLimitExceededException"},
+        {"shape":"InvalidCredentialsException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"ClientTokenConflictException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "GetResource":{
@@ -97,23 +97,23 @@
       "input":{"shape":"GetResourceInput"},
       "output":{"shape":"GetResourceOutput"},
       "errors":[
-        {"shape":"UnsupportedActionException"},
-        {"shape":"TypeNotFoundException"},
         {"shape":"AlreadyExistsException"},
-        {"shape":"GeneralServiceException"},
         {"shape":"HandlerInternalFailureException"},
-        {"shape":"InvalidCredentialsException"},
-        {"shape":"InvalidRequestException"},
-        {"shape":"NetworkFailureException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"NotStabilizedException"},
+        {"shape":"GeneralServiceException"},
         {"shape":"NotUpdatableException"},
-        {"shape":"ResourceConflictException"},
-        {"shape":"ServiceInternalErrorException"},
-        {"shape":"ServiceLimitExceededException"},
-        {"shape":"ThrottlingException"},
+        {"shape":"TypeNotFoundException"},
+        {"shape":"InvalidRequestException"},
         {"shape":"PrivateTypeException"},
-        {"shape":"HandlerFailureException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NetworkFailureException"},
+        {"shape":"UnsupportedActionException"},
+        {"shape":"NotStabilizedException"},
+        {"shape":"ServiceInternalErrorException"},
+        {"shape":"HandlerFailureException"},
+        {"shape":"ServiceLimitExceededException"},
+        {"shape":"InvalidCredentialsException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "GetResourceRequestStatus":{
@@ -146,23 +146,23 @@
       "input":{"shape":"ListResourcesInput"},
       "output":{"shape":"ListResourcesOutput"},
       "errors":[
-        {"shape":"UnsupportedActionException"},
-        {"shape":"TypeNotFoundException"},
         {"shape":"AlreadyExistsException"},
-        {"shape":"GeneralServiceException"},
         {"shape":"HandlerInternalFailureException"},
-        {"shape":"InvalidCredentialsException"},
-        {"shape":"InvalidRequestException"},
-        {"shape":"NetworkFailureException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"NotStabilizedException"},
+        {"shape":"GeneralServiceException"},
         {"shape":"NotUpdatableException"},
-        {"shape":"ResourceConflictException"},
-        {"shape":"ServiceInternalErrorException"},
-        {"shape":"ServiceLimitExceededException"},
-        {"shape":"ThrottlingException"},
+        {"shape":"TypeNotFoundException"},
+        {"shape":"InvalidRequestException"},
         {"shape":"PrivateTypeException"},
-        {"shape":"HandlerFailureException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NetworkFailureException"},
+        {"shape":"UnsupportedActionException"},
+        {"shape":"NotStabilizedException"},
+        {"shape":"ServiceInternalErrorException"},
+        {"shape":"HandlerFailureException"},
+        {"shape":"ServiceLimitExceededException"},
+        {"shape":"InvalidCredentialsException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "UpdateResource":{
@@ -174,25 +174,25 @@
       "input":{"shape":"UpdateResourceInput"},
       "output":{"shape":"UpdateResourceOutput"},
       "errors":[
-        {"shape":"ConcurrentOperationException"},
-        {"shape":"ClientTokenConflictException"},
-        {"shape":"UnsupportedActionException"},
-        {"shape":"TypeNotFoundException"},
         {"shape":"AlreadyExistsException"},
-        {"shape":"GeneralServiceException"},
         {"shape":"HandlerInternalFailureException"},
-        {"shape":"InvalidCredentialsException"},
-        {"shape":"InvalidRequestException"},
-        {"shape":"NetworkFailureException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"NotStabilizedException"},
+        {"shape":"GeneralServiceException"},
         {"shape":"NotUpdatableException"},
-        {"shape":"ResourceConflictException"},
-        {"shape":"ServiceInternalErrorException"},
-        {"shape":"ServiceLimitExceededException"},
-        {"shape":"ThrottlingException"},
+        {"shape":"TypeNotFoundException"},
+        {"shape":"ConcurrentOperationException"},
+        {"shape":"InvalidRequestException"},
         {"shape":"PrivateTypeException"},
-        {"shape":"HandlerFailureException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NetworkFailureException"},
+        {"shape":"UnsupportedActionException"},
+        {"shape":"NotStabilizedException"},
+        {"shape":"ServiceInternalErrorException"},
+        {"shape":"HandlerFailureException"},
+        {"shape":"ServiceLimitExceededException"},
+        {"shape":"InvalidCredentialsException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"ClientTokenConflictException"},
+        {"shape":"ThrottlingException"}
       ]
     }
   },
@@ -235,7 +235,8 @@
       "members":{
         "Message":{"shape":"ErrorMessage"}
       },
-      "exception":true
+      "exception":true,
+      "fault":true
     },
     "ConcurrentOperationException":{
       "type":"structure",
@@ -293,7 +294,8 @@
     "ErrorMessage":{
       "type":"string",
       "max":1024,
-      "min":1
+      "min":1,
+      "pattern":".+"
     },
     "GeneralServiceException":{
       "type":"structure",
@@ -360,14 +362,16 @@
       "members":{
         "Message":{"shape":"ErrorMessage"}
       },
-      "exception":true
+      "exception":true,
+      "fault":true
     },
     "HandlerInternalFailureException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"ErrorMessage"}
       },
-      "exception":true
+      "exception":true,
+      "fault":true
     },
     "HandlerNextToken":{
       "type":"string",
@@ -432,6 +436,7 @@
     },
     "MaxResults":{
       "type":"integer",
+      "box":true,
       "max":100,
       "min":1
     },
@@ -440,7 +445,8 @@
       "members":{
         "Message":{"shape":"ErrorMessage"}
       },
-      "exception":true
+      "exception":true,
+      "fault":true
     },
     "NextToken":{
       "type":"string",
@@ -493,6 +499,7 @@
       "type":"string",
       "max":65536,
       "min":1,
+      "pattern":"[\\s\\S]*",
       "sensitive":true
     },
     "PrivateTypeException":{
@@ -519,8 +526,9 @@
     },
     "Properties":{
       "type":"string",
-      "max":16384,
+      "max":65536,
       "min":1,
+      "pattern":"[\\s\\S]*",
       "sensitive":true
     },
     "RequestToken":{
@@ -583,7 +591,8 @@
       "members":{
         "Message":{"shape":"ErrorMessage"}
       },
-      "exception":true
+      "exception":true,
+      "fault":true
     },
     "ServiceLimitExceededException":{
       "type":"structure",
@@ -594,7 +603,9 @@
     },
     "StatusMessage":{
       "type":"string",
-      "max":1024
+      "max":1024,
+      "min":0,
+      "pattern":"[\\s\\S]*"
     },
     "ThrottlingException":{
       "type":"structure",
