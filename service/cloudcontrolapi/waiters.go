@@ -28,7 +28,7 @@ func (c *CloudControlApi) WaitUntilResourceRequestSuccess(input *GetResourceRequ
 func (c *CloudControlApi) WaitUntilResourceRequestSuccessWithContext(ctx aws.Context, input *GetResourceRequestStatusInput, opts ...request.WaiterOption) error {
 	w := request.Waiter{
 		Name:        "WaitUntilResourceRequestSuccess",
-		MaxAttempts: 720,
+		MaxAttempts: 24,
 		Delay:       request.ConstantWaiterDelay(5 * time.Second),
 		Acceptors: []request.WaiterAcceptor{
 			{

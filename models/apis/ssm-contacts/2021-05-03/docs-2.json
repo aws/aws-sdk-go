@@ -21,7 +21,7 @@
     "ListPagesByContact": "<p>Lists the engagements to a contact's contact channels.</p>",
     "ListPagesByEngagement": "<p>Lists the engagements to contact channels that occurred by engaging a contact.</p>",
     "ListTagsForResource": "<p>Lists the tags of an escalation plan or contact.</p>",
-    "PutContactPolicy": "<p>Adds a resource to the specified contact or escalation plan.</p>",
+    "PutContactPolicy": "<p>Adds a resource policy to the specified contact or escalation plan. The resource policy is used to share the contact or escalation plan using Resource Access Manager (RAM). For more information about cross-account sharing, see <a href=\"https://docs.aws.amazon.com/incident-manager/latest/userguide/xa.html\">Setting up cross-account functionality</a>.</p>",
     "SendActivationCode": "<p>Sends an activation code to a contact channel. The contact can use this code to activate the contact channel in the console or with the <code>ActivateChannel</code> operation. Incident Manager can't engage a contact channel until it has been activated.</p>",
     "StartEngagement": "<p>Starts an engagement to a contact or escalation plan. The engagement engages each contact specified in the incident.</p>",
     "StopEngagement": "<p>Stops an engagement before it finishes the final stage of the escalation plan or engagement plan. Further contacts aren't engaged.</p>",

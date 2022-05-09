@@ -2192,7 +2192,10 @@ func (c *SSMContacts) PutContactPolicyRequest(input *PutContactPolicyInput) (req
 
 // PutContactPolicy API operation for AWS Systems Manager Incident Manager Contacts.
 //
-// Adds a resource to the specified contact or escalation plan.
+// Adds a resource policy to the specified contact or escalation plan. The resource
+// policy is used to share the contact or escalation plan using Resource Access
+// Manager (RAM). For more information about cross-account sharing, see Setting
+// up cross-account functionality (https://docs.aws.amazon.com/incident-manager/latest/userguide/xa.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

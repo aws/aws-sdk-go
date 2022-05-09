@@ -136,7 +136,7 @@
           "PublicContent": "Testing engagements",
           "PublicSubject": "test",
           "Sender": "tester",
-          "StartTime": "$2021-05-18T18:25:41.151000+00:00",
+          "StartTime": "2021-05-18T18:25:41.151000+00:00",
           "Subject": "test"
         },
         "comments": {

@@ -1139,7 +1139,12 @@ func (c *CloudWatchEvidently) GetExperimentResultsRequest(input *GetExperimentRe
 
 // GetExperimentResults API operation for Amazon CloudWatch Evidently.
 //
-// Retrieves the results of a running or completed experiment.
+// Retrieves the results of a running or completed experiment. No results are
+// available until there have been 100 events for each variation and at least
+// 10 minutes have passed since the start of the experiment.
+//
+// Experiment results are available up to 63 days after the start of the experiment.
+// They are not available after that because of CloudWatch data retention policies.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5925,7 +5930,8 @@ type GetExperimentResultsInput struct {
 	// value is mean, which uses the mean of the collected values as the statistic.
 	BaseStat *string `locationName:"baseStat" type:"string" enum:"ExperimentBaseStat"`
 
-	// The date and time that the experiment ended, if it is completed.
+	// The date and time that the experiment ended, if it is completed. This must
+	// be no longer than 30 days after the experiment start time.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
 	// The name of the experiment to retrieve the results of.
@@ -6101,6 +6107,11 @@ func (s *GetExperimentResultsInput) SetTreatmentNames(v []*string) *GetExperimen
 type GetExperimentResultsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// If the experiment doesn't yet have enough events to provide valid results,
+	// this field is returned with the message Not enough events to generate results.
+	// If there are enough events to provide valid results, this field is not returned.
+	Details *string `locationName:"details" type:"string"`
+
 	// An array of structures that include the reports that you requested.
 	Reports []*ExperimentReport `locationName:"reports" type:"list"`
 
@@ -6128,6 +6139,12 @@ func (s GetExperimentResultsOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetExperimentResultsOutput) GoString() string {
 	return s.String()
+}
+
+// SetDetails sets the Details field's value.
+func (s *GetExperimentResultsOutput) SetDetails(v string) *GetExperimentResultsOutput {
+	s.Details = &v
+	return s
 }
 
 // SetReports sets the Reports field's value.
@@ -8998,7 +9015,8 @@ func (s *ServiceUnavailableException) RequestID() string {
 type StartExperimentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The date and time to end the experiment.
+	// The date and time to end the experiment. This must be no more than 30 days
+	// after the experiment starts.
 	//
 	// AnalysisCompleteTime is a required field
 	AnalysisCompleteTime *time.Time `locationName:"analysisCompleteTime" type:"timestamp" required:"true"`
