@@ -77,7 +77,7 @@ const (
 	// ErrCodeResourcePropagationDelayException for service response error code
 	// "ResourcePropagationDelayException".
 	//
-	// Required resources (such as Service Linked Roles) were created and are still
+	// Required resources (such as service-linked roles) were created and are still
 	// propagating. Retry later.
 	ErrCodeResourcePropagationDelayException = "ResourcePropagationDelayException"
 

@@ -375,6 +375,7 @@
     "GetGroupsForCapacityReservation": "<p>Lists the resource groups to which a Capacity Reservation has been added.</p>",
     "GetHostReservationPurchasePreview": "<p>Preview a reservation purchase with configurations that match those of your Dedicated Host. You must have active Dedicated Hosts in your account before you purchase a reservation.</p> <p>This is a preview of the <a>PurchaseHostReservation</a> action and does not result in the offering being purchased.</p>",
     "GetInstanceTypesFromInstanceRequirements": "<p>Returns a list of instance types with the specified instance attributes. You can use the response to preview the instance types without launching instances. Note that the response does not consider capacity.</p> <p>When you specify multiple parameters, you get instance types that satisfy all of the specified parameters. If you specify multiple values for a parameter, you get instance types that satisfy any of the specified values.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-attribute-based-instance-type-selection.html#spotfleet-get-instance-types-from-instance-requirements\">Preview instance types with specified attributes</a>, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html\">Attribute-based instance type selection for EC2 Fleet</a>, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-attribute-based-instance-type-selection.html\">Attribute-based instance type selection for Spot Fleet</a>, and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html\">Spot placement score</a> in the <i>Amazon EC2 User Guide</i>, and <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-instance-type-requirements.html\">Creating an Auto Scaling group using attribute-based instance type selection</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
+    "GetInstanceUefiData": "<p>A binary representation of the UEFI variable store. Only non-volatile variables are stored. This is a base64 encoded and zlib compressed binary value that must be properly encoded.</p> <p>When you use <a href=\"https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html\">register-image</a> to create an AMI, you can create an exact copy of your variable store by passing the UEFI data in the <code>UefiData</code> parameter. You can modify the UEFI data by using the <a href=\"https://github.com/awslabs/python-uefivars\">python-uefivars tool</a> on GitHub. You can use the tool to convert the UEFI data into a human-readable format (JSON), which you can inspect and modify, and then convert back into the binary format to use with register-image.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/uefi-secure-boot.html\">UEFI Secure Boot</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "GetIpamAddressHistory": "<p>Retrieve historical information about a CIDR within an IPAM scope. For more information, see <a href=\"/vpc/latest/ipam/view-history-cidr-ipam.html\">View the history of IP addresses</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>",
     "GetIpamPoolAllocations": "<p>Get a list of all the CIDR allocations in an IPAM pool.</p>",
     "GetIpamPoolCidrs": "<p>Get the CIDRs provisioned to an IPAM pool.</p>",
@@ -1386,6 +1387,8 @@
         "ImageAttribute$RamdiskId": "<p>The RAM disk ID.</p>",
         "ImageAttribute$SriovNetSupport": "<p>Indicates whether enhanced networking with the Intel 82599 Virtual Function interface is enabled.</p>",
         "ImageAttribute$BootMode": "<p>The boot mode.</p>",
+        "ImageAttribute$TpmSupport": "<p>If the image is configured for NitroTPM support, the value is <code>v2.0</code>.</p>",
+        "ImageAttribute$UefiData": "<p>Base64 representation of the non-volatile UEFI variable store. To retrieve the UEFI data, use the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetInstanceUefiData\">GetInstanceUefiData</a> command. You can inspect and modify the UEFI data by using the <a href=\"https://github.com/awslabs/python-uefivars\">python-uefivars tool</a> on GitHub. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/uefi-secure-boot.html\">UEFI Secure Boot</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "ImageAttribute$LastLaunchedTime": "<p>The date and time, in <a href=\"http://www.iso.org/iso/iso8601\">ISO 8601 date-time format</a>, when the AMI was last used to launch an EC2 instance. When the AMI is used, there is a 24-hour delay before that usage is reported.</p> <note> <p> <code>lastLaunchedTime</code> data is available starting April 2017.</p> </note>",
         "InstanceAttribute$InstanceInitiatedShutdownBehavior": "<p>Indicates whether an instance stops or terminates when you initiate shutdown from the instance (using the operating system command for system shutdown).</p>",
         "InstanceAttribute$InstanceType": "<p>The instance type.</p>",
@@ -2077,6 +2080,7 @@
         "GetFlowLogsIntegrationTemplateRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetGroupsForCapacityReservationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetInstanceTypesFromInstanceRequirementsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "GetInstanceUefiDataRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetIpamAddressHistoryRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetIpamPoolAllocationsRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetIpamPoolCidrsRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -8563,6 +8567,16 @@
       "refs": {
       }
     },
+    "GetInstanceUefiDataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetInstanceUefiDataResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetIpamAddressHistoryRequest": {
       "base": null,
       "refs": {
@@ -9711,6 +9725,8 @@
         "DetachVolumeRequest$InstanceId": "<p>The ID of the instance. If you are detaching a Multi-Attach enabled volume, you must specify an instance ID.</p>",
         "GetConsoleOutputRequest$InstanceId": "<p>The ID of the instance.</p>",
         "GetConsoleScreenshotRequest$InstanceId": "<p>The ID of the instance.</p>",
+        "GetInstanceUefiDataRequest$InstanceId": "<p>The ID of the instance from which to retrieve the UEFI data.</p>",
+        "GetInstanceUefiDataResult$InstanceId": "<p>The ID of the instance from which to retrieve the UEFI data.</p>",
         "GetLaunchTemplateDataRequest$InstanceId": "<p>The ID of the instance.</p>",
         "GetPasswordDataRequest$InstanceId": "<p>The ID of the Windows instance.</p>",
         "InstanceCreditSpecificationRequest$InstanceId": "<p>The ID of the instance.</p>",
@@ -17097,6 +17113,7 @@
         "GetHostReservationPurchasePreviewResult$TotalUpfrontPrice": "<p>The potential total upfront price. This is billed immediately.</p>",
         "GetInstanceTypesFromInstanceRequirementsRequest$NextToken": "<p>The token for the next set of results.</p>",
         "GetInstanceTypesFromInstanceRequirementsResult$NextToken": "<p>The token for the next set of results.</p>",
+        "GetInstanceUefiDataResult$UefiData": "<p>Base64 representation of the non-volatile UEFI variable store.</p>",
         "GetIpamAddressHistoryRequest$Cidr": "<p>The CIDR you want the history of. The CIDR can be an IPv4 or IPv6 IP address range. If you enter a /16 IPv4 CIDR, you will get records that match it exactly. You will not get records for any subnets within the /16 CIDR.</p>",
         "GetIpamAddressHistoryRequest$VpcId": "<p>The ID of the VPC you want your history records filtered by.</p>",
         "GetIpamResourceCidrsRequest$ResourceId": "<p>The ID of the resource.</p>",
@@ -17253,6 +17270,7 @@
         "Instance$PlatformDetails": "<p>The platform details value for the instance. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/billing-info-fields.html\">AMI billing information fields</a> in the <i>Amazon EC2 User Guide</i>.</p>",
         "Instance$UsageOperation": "<p>The usage operation value for the instance. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/billing-info-fields.html\">AMI billing information fields</a> in the <i>Amazon EC2 User Guide</i>.</p>",
         "Instance$Ipv6Address": "<p>The IPv6 address assigned to the instance.</p>",
+        "Instance$TpmSupport": "<p>If the instance is configured for NitroTPM support, the value is <code>v2.0</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitrotpm.html\">NitroTPM</a> in the <i>Amazon EC2 User Guide</i>.</p>",
         "InstanceAttribute$InstanceId": "<p>The ID of the instance.</p>",
         "InstanceBlockDeviceMapping$DeviceName": "<p>The device name (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p>",
         "InstanceBlockDeviceMappingSpecification$DeviceName": "<p>The device name (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p>",
@@ -18173,6 +18191,12 @@
         "Explanation$Protocols": "<p>The protocols.</p>"
       }
     },
+    "StringType": {
+      "base": null,
+      "refs": {
+        "RegisterImageRequest$UefiData": "<p>Base64 representation of the non-volatile UEFI variable store. To retrieve the UEFI data, use the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetInstanceUefiData\">GetInstanceUefiData</a> command. You can inspect and modify the UEFI data by using the <a href=\"https://github.com/awslabs/python-uefivars\">python-uefivars tool</a> on GitHub. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/uefi-secure-boot.html\">UEFI Secure Boot</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
+      }
+    },
     "Subnet": {
       "base": "<p>Describes a subnet.</p>",
       "refs": {
@@ -18735,6 +18759,13 @@
       "base": "<p>The minimum and maximum amount of total local storage, in GB.</p>",
       "refs": {
         "InstanceRequirementsRequest$TotalLocalStorageGB": "<p>The minimum and maximum amount of total local storage, in GB.</p> <p>Default: No minimum or maximum limits</p>"
+      }
+    },
+    "TpmSupportValues": {
+      "base": null,
+      "refs": {
+        "Image$TpmSupport": "<p>If the image is configured for NitroTPM support, the value is <code>v2.0</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitrotpm.html\">NitroTPM</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+        "RegisterImageRequest$TpmSupport": "<p>Set to <code>v2.0</code> to enable Trusted Platform Module (TPM) support. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitrotpm.html\">NitroTPM</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
       }
     },
     "TrafficDirection": {

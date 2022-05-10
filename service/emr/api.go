@@ -6452,6 +6452,11 @@ type Cluster struct {
 	// the actual billing rate.
 	NormalizedInstanceHours *int64 `type:"integer"`
 
+	// The Amazon Linux release specified in a cluster launch RunJobFlow request.
+	// If no Amazon Linux release was specified, the default Amazon Linux release
+	// is shown in the response.
+	OSReleaseLabel *string `type:"string"`
+
 	// The Amazon Resource Name (ARN) of the Outpost where the cluster is launched.
 	OutpostArn *string `type:"string"`
 
@@ -6639,6 +6644,12 @@ func (s *Cluster) SetName(v string) *Cluster {
 // SetNormalizedInstanceHours sets the NormalizedInstanceHours field's value.
 func (s *Cluster) SetNormalizedInstanceHours(v int64) *Cluster {
 	s.NormalizedInstanceHours = &v
+	return s
+}
+
+// SetOSReleaseLabel sets the OSReleaseLabel field's value.
+func (s *Cluster) SetOSReleaseLabel(v string) *Cluster {
+	s.OSReleaseLabel = &v
 	return s
 }
 
@@ -8213,6 +8224,12 @@ type DescribeReleaseLabelOutput struct {
 	// the name of the application. Version is the concise version of the application.
 	Applications []*SimplifiedApplication `type:"list"`
 
+	// The list of available Amazon Linux release versions for an Amazon EMR release.
+	// Contains a Label field that is formatted as shown in Amazon Linux 2 Release
+	// Notes (https://docs.aws.amazon.com/AL2/latest/relnotes/relnotes-al2.html).
+	// For example, 2.0.20220218.1 (https://docs.aws.amazon.com/AL2/latest/relnotes/relnotes-20220218.html).
+	AvailableOSReleases []*OSRelease `type:"list"`
+
 	// The pagination token. Reserved for future use. Currently set to null.
 	NextToken *string `type:"string"`
 
@@ -8241,6 +8258,12 @@ func (s DescribeReleaseLabelOutput) GoString() string {
 // SetApplications sets the Applications field's value.
 func (s *DescribeReleaseLabelOutput) SetApplications(v []*SimplifiedApplication) *DescribeReleaseLabelOutput {
 	s.Applications = v
+	return s
+}
+
+// SetAvailableOSReleases sets the AvailableOSReleases field's value.
+func (s *DescribeReleaseLabelOutput) SetAvailableOSReleases(v []*OSRelease) *DescribeReleaseLabelOutput {
+	s.AvailableOSReleases = v
 	return s
 }
 
@@ -10804,6 +10827,9 @@ type InstanceGroupModifyConfig struct {
 	// InstanceGroupId is a required field
 	InstanceGroupId *string `type:"string" required:"true"`
 
+	// Type of reconfiguration requested. Valid values are MERGE and OVERWRITE.
+	ReconfigurationType *string `type:"string" enum:"ReconfigurationType"`
+
 	// Policy for customizing shrink operations.
 	ShrinkPolicy *ShrinkPolicy `type:"structure"`
 }
@@ -10860,6 +10886,12 @@ func (s *InstanceGroupModifyConfig) SetInstanceCount(v int64) *InstanceGroupModi
 // SetInstanceGroupId sets the InstanceGroupId field's value.
 func (s *InstanceGroupModifyConfig) SetInstanceGroupId(v string) *InstanceGroupModifyConfig {
 	s.InstanceGroupId = &v
+	return s
+}
+
+// SetReconfigurationType sets the ReconfigurationType field's value.
+func (s *InstanceGroupModifyConfig) SetReconfigurationType(v string) *InstanceGroupModifyConfig {
+	s.ReconfigurationType = &v
 	return s
 }
 
@@ -14237,6 +14269,40 @@ func (s *NotebookExecutionSummary) SetStatus(v string) *NotebookExecutionSummary
 	return s
 }
 
+// The Amazon Linux release specified for a cluster in the RunJobFlow request.
+type OSRelease struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Linux release specified for a cluster in the RunJobFlow request.
+	// The format is as shown in Amazon Linux 2 Release Notes (https://docs.aws.amazon.com/AL2/latest/relnotes/relnotes-20220218.html).
+	// For example, 2.0.20220218.1.
+	Label *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OSRelease) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OSRelease) GoString() string {
+	return s.String()
+}
+
+// SetLabel sets the Label field's value.
+func (s *OSRelease) SetLabel(v string) *OSRelease {
+	s.Label = &v
+	return s
+}
+
 // Describes the strategy for using unused Capacity Reservations for fulfilling
 // On-Demand capacity.
 type OnDemandCapacityReservationOptions struct {
@@ -15406,6 +15472,11 @@ type RunJobFlowInput struct {
 	//    * "ganglia" - launch the cluster with the Ganglia Monitoring System installed.
 	NewSupportedProducts []*SupportedProductConfig `type:"list"`
 
+	// Specifies a particular Amazon Linux release for all nodes in a cluster launch
+	// RunJobFlow request. If a release is not specified, Amazon EMR uses the latest
+	// validated Amazon Linux release for cluster launch.
+	OSReleaseLabel *string `type:"string"`
+
 	// The specified placement group configuration for an Amazon EMR cluster.
 	PlacementGroupConfigs []*PlacementGroupConfig `type:"list"`
 
@@ -15667,6 +15738,12 @@ func (s *RunJobFlowInput) SetName(v string) *RunJobFlowInput {
 // SetNewSupportedProducts sets the NewSupportedProducts field's value.
 func (s *RunJobFlowInput) SetNewSupportedProducts(v []*SupportedProductConfig) *RunJobFlowInput {
 	s.NewSupportedProducts = v
+	return s
+}
+
+// SetOSReleaseLabel sets the OSReleaseLabel field's value.
+func (s *RunJobFlowInput) SetOSReleaseLabel(v string) *RunJobFlowInput {
+	s.OSReleaseLabel = &v
 	return s
 }
 
@@ -18989,6 +19066,22 @@ func PlacementGroupStrategy_Values() []string {
 		PlacementGroupStrategyPartition,
 		PlacementGroupStrategyCluster,
 		PlacementGroupStrategyNone,
+	}
+}
+
+const (
+	// ReconfigurationTypeOverwrite is a ReconfigurationType enum value
+	ReconfigurationTypeOverwrite = "OVERWRITE"
+
+	// ReconfigurationTypeMerge is a ReconfigurationType enum value
+	ReconfigurationTypeMerge = "MERGE"
+)
+
+// ReconfigurationType_Values returns all elements of the ReconfigurationType enum
+func ReconfigurationType_Values() []string {
+	return []string{
+		ReconfigurationTypeOverwrite,
+		ReconfigurationTypeMerge,
 	}
 }
 

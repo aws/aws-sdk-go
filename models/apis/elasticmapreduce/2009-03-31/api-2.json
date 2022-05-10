@@ -947,7 +947,8 @@
         "ClusterArn":{"shape":"ArnType"},
         "OutpostArn":{"shape":"OptionalArnType"},
         "StepConcurrencyLevel":{"shape":"Integer"},
-        "PlacementGroups":{"shape":"PlacementGroupConfigList"}
+        "PlacementGroups":{"shape":"PlacementGroupConfigList"},
+        "OSReleaseLabel":{"shape":"String"}
       }
     },
     "ClusterId":{"type":"string"},
@@ -1233,7 +1234,8 @@
       "members":{
         "ReleaseLabel":{"shape":"String"},
         "Applications":{"shape":"SimplifiedApplicationList"},
-        "NextToken":{"shape":"String"}
+        "NextToken":{"shape":"String"},
+        "AvailableOSReleases":{"shape":"OSReleaseList"}
       }
     },
     "DescribeSecurityConfigurationInput":{
@@ -1685,6 +1687,7 @@
         "InstanceCount":{"shape":"Integer"},
         "EC2InstanceIdsToTerminate":{"shape":"EC2InstanceIdsToTerminateList"},
         "ShrinkPolicy":{"shape":"ShrinkPolicy"},
+        "ReconfigurationType":{"shape":"ReconfigurationType"},
         "Configurations":{"shape":"ConfigurationList"}
       }
     },
@@ -2305,6 +2308,16 @@
       "type":"list",
       "member":{"shape":"NotebookExecutionSummary"}
     },
+    "OSRelease":{
+      "type":"structure",
+      "members":{
+        "Label":{"shape":"String"}
+      }
+    },
+    "OSReleaseList":{
+      "type":"list",
+      "member":{"shape":"OSRelease"}
+    },
     "OnDemandCapacityReservationOptions":{
       "type":"structure",
       "members":{
@@ -2449,6 +2462,13 @@
       "members":{
       }
     },
+    "ReconfigurationType":{
+      "type":"string",
+      "enum":[
+        "OVERWRITE",
+        "MERGE"
+      ]
+    },
     "ReleaseLabelFilter":{
       "type":"structure",
       "members":{
@@ -2554,7 +2574,8 @@
         "StepConcurrencyLevel":{"shape":"Integer"},
         "ManagedScalingPolicy":{"shape":"ManagedScalingPolicy"},
         "PlacementGroupConfigs":{"shape":"PlacementGroupConfigList"},
-        "AutoTerminationPolicy":{"shape":"AutoTerminationPolicy"}
+        "AutoTerminationPolicy":{"shape":"AutoTerminationPolicy"},
+        "OSReleaseLabel":{"shape":"XmlStringMaxLen256"}
       }
     },
     "RunJobFlowOutput":{
