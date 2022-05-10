@@ -1888,7 +1888,7 @@ func (c *EKS) DescribeUpdateRequest(input *DescribeUpdateInput) (req *request.Re
 // DescribeUpdate API operation for Amazon Elastic Kubernetes Service.
 //
 // Returns descriptive information about an update against your Amazon EKS cluster
-// or associated managed node group.
+// or associated managed node group or Amazon EKS add-on.
 //
 // When the status of the update is Succeeded, the update is complete. If an
 // update fails, the status is Failed, and an error detail explains the reason
@@ -3145,7 +3145,7 @@ func (c *EKS) RegisterClusterRequest(input *RegisterClusterInput) (req *request.
 //   The specified resource is in use.
 //
 //   * ResourcePropagationDelayException
-//   Required resources (such as Service Linked Roles) were created and are still
+//   Required resources (such as service-linked roles) were created and are still
 //   propagating. Retry later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/RegisterCluster
@@ -5661,7 +5661,7 @@ type CreateNodegroupInput struct {
 	// through an IAM instance profile and associated policies. Before you can launch
 	// nodes and register them into a cluster, you must create an IAM role for those
 	// nodes to use when they are launched. For more information, see Amazon EKS
-	// node IAM role (https://docs.aws.amazon.com/eks/latest/userguide/worker_node_IAM_role.html)
+	// node IAM role (https://docs.aws.amazon.com/eks/latest/userguide/create-node-role.html)
 	// in the Amazon EKS User Guide . If you specify launchTemplate, then don't
 	// specify IamInstanceProfile (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_IamInstanceProfile.html)
 	// in your launch template, or the node group deployment will fail. For more
@@ -5715,7 +5715,8 @@ type CreateNodegroupInput struct {
 	// with the node group, such as the Amazon EC2 instances or subnets.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
-	// The Kubernetes taints to be applied to the nodes in the node group.
+	// The Kubernetes taints to be applied to the nodes in the node group. For more
+	// information, see Node taints on managed node groups (https://docs.aws.amazon.com/eks/latest/userguide/node-taints-managed-node-groups.html).
 	Taints []*Taint `locationName:"taints" type:"list"`
 
 	// The node group update configuration.
@@ -7002,6 +7003,7 @@ type DescribeUpdateInput struct {
 
 	// The name of the add-on. The name must match one of the names returned by
 	// ListAddons (https://docs.aws.amazon.com/eks/latest/APIReference/API_ListAddons.html).
+	// This parameter is required if the update is an add-on update.
 	AddonName *string `location:"querystring" locationName:"addonName" type:"string"`
 
 	// The name of the Amazon EKS cluster associated with the update.
@@ -7009,7 +7011,8 @@ type DescribeUpdateInput struct {
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" type:"string" required:"true"`
 
-	// The name of the Amazon EKS node group associated with the update.
+	// The name of the Amazon EKS node group associated with the update. This parameter
+	// is required if the update is a node group update.
 	NodegroupName *string `location:"querystring" locationName:"nodegroupName" type:"string"`
 
 	// The ID of the update to describe.
@@ -7527,7 +7530,8 @@ type IdentityProviderConfig struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The type of the identity provider configuration.
+	// The type of the identity provider configuration. The only type available
+	// is oidc.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true"`
@@ -7877,20 +7881,20 @@ func (s *Issue) SetResourceIds(v []*string) *Issue {
 type KubernetesNetworkConfigRequest struct {
 	_ struct{} `type:"structure"`
 
-	// Specify which IP version is used to assign Kubernetes Pod and Service IP
-	// addresses. If you don't specify a value, ipv4 is used by default. You can
-	// only specify an IP family when you create a cluster and can't change this
-	// value once the cluster is created. If you specify ipv6, the VPC and subnets
-	// that you specify for cluster creation must have both IPv4 and IPv6 CIDR blocks
-	// assigned to them.
+	// Specify which IP family is used to assign Kubernetes pod and service IP addresses.
+	// If you don't specify a value, ipv4 is used by default. You can only specify
+	// an IP family when you create a cluster and can't change this value once the
+	// cluster is created. If you specify ipv6, the VPC and subnets that you specify
+	// for cluster creation must have both IPv4 and IPv6 CIDR blocks assigned to
+	// them. You can't specify ipv6 for clusters in China Regions.
 	//
-	// You can only specify ipv6 for 1.21 and later clusters that use version 1.10.0
+	// You can only specify ipv6 for 1.21 and later clusters that use version 1.10.1
 	// or later of the Amazon VPC CNI add-on. If you specify ipv6, then ensure that
-	// your VPC meets the requirements and that you're familiar with the considerations
-	// listed in Assigning IPv6 addresses to Pods and Services (https://docs.aws.amazon.com/eks/latest/userguide/cni-ipv6.html)
-	// in the Amazon EKS User Guide. If you specify ipv6, Kubernetes assigns Service
-	// and Pod addresses from the unique local address range (fc00::/7). You can't
-	// specify a custom IPv6 CIDR block.
+	// your VPC meets the requirements listed in the considerations listed in Assigning
+	// IPv6 addresses to pods and services (https://docs.aws.amazon.com/eks/latest/userguide/cni-ipv6.html)
+	// in the Amazon EKS User Guide. Kubernetes assigns services IPv6 addresses
+	// from the unique local address range (fc00::/7). You can't specify a custom
+	// IPv6 CIDR block. Pod addresses are assigned from the subnet's IPv6 CIDR.
 	IpFamily *string `locationName:"ipFamily" type:"string" enum:"IpFamily"`
 
 	// Don't specify a value if you select ipv6 for ipFamily. The CIDR block to
@@ -7948,13 +7952,13 @@ func (s *KubernetesNetworkConfigRequest) SetServiceIpv4Cidr(v string) *Kubernete
 type KubernetesNetworkConfigResponse struct {
 	_ struct{} `type:"structure"`
 
-	// The IP family used to assign Kubernetes Pod and Service IP addresses. The
+	// The IP family used to assign Kubernetes pod and service IP addresses. The
 	// IP family is always ipv4, unless you have a 1.21 or later cluster running
-	// version 1.10.0 or later of the Amazon VPC CNI add-on and specified ipv6 when
+	// version 1.10.1 or later of the Amazon VPC CNI add-on and specified ipv6 when
 	// you created the cluster.
 	IpFamily *string `locationName:"ipFamily" type:"string" enum:"IpFamily"`
 
-	// The CIDR block that Kubernetes Pod and Service IP addresses are assigned
+	// The CIDR block that Kubernetes pod and service IP addresses are assigned
 	// from. Kubernetes assigns addresses from an IPv4 CIDR block assigned to a
 	// subnet that the node is in. If you didn't specify a CIDR block when you created
 	// the cluster, then Kubernetes assigns addresses from either the 10.100.0.0/16
@@ -7962,11 +7966,12 @@ type KubernetesNetworkConfigResponse struct {
 	// when the cluster was created and it can't be changed.
 	ServiceIpv4Cidr *string `locationName:"serviceIpv4Cidr" type:"string"`
 
-	// The CIDR block that Kubernetes Pod and Service IP addresses are assigned
-	// from if you created a 1.21 or later cluster with version 1.10.0 or later
+	// The CIDR block that Kubernetes pod and service IP addresses are assigned
+	// from if you created a 1.21 or later cluster with version 1.10.1 or later
 	// of the Amazon VPC CNI add-on and specified ipv6 for ipFamily when you created
-	// the cluster. Kubernetes assigns addresses from the unique local address range
-	// (fc00::/7).
+	// the cluster. Kubernetes assigns service addresses from the unique local address
+	// range (fc00::/7) because you can't specify a custom IPv6 CIDR block when
+	// you create the cluster.
 	ServiceIpv6Cidr *string `locationName:"serviceIpv6Cidr" type:"string"`
 }
 
@@ -9076,7 +9081,8 @@ type Nodegroup struct {
 	// The Kubernetes taints to be applied to the nodes in the node group when they
 	// are created. Effect is one of No_Schedule, Prefer_No_Schedule, or No_Execute.
 	// Kubernetes taints can be used together with tolerations to control how workloads
-	// are scheduled to your nodes.
+	// are scheduled to your nodes. For more information, see Node taints on managed
+	// node groups (https://docs.aws.amazon.com/eks/latest/userguide/node-taints-managed-node-groups.html).
 	Taints []*Taint `locationName:"taints" type:"list"`
 
 	// The node group update configuration.
@@ -10278,7 +10284,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Required resources (such as Service Linked Roles) were created and are still
+// Required resources (such as service-linked roles) were created and are still
 // propagating. Retry later.
 type ResourcePropagationDelayException struct {
 	_            struct{}                  `type:"structure"`
@@ -10568,7 +10574,8 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// A property that allows a node to repel a set of pods.
+// A property that allows a node to repel a set of pods. For more information,
+// see Node taints on managed node groups (https://docs.aws.amazon.com/eks/latest/userguide/node-taints-managed-node-groups.html).
 type Taint struct {
 	_ struct{} `type:"structure"`
 
@@ -11311,7 +11318,8 @@ type UpdateNodegroupConfigInput struct {
 	ScalingConfig *NodegroupScalingConfig `locationName:"scalingConfig" type:"structure"`
 
 	// The Kubernetes taints to be applied to the nodes in the node group after
-	// the update.
+	// the update. For more information, see Node taints on managed node groups
+	// (https://docs.aws.amazon.com/eks/latest/userguide/node-taints-managed-node-groups.html).
 	Taints *UpdateTaintsPayload `locationName:"taints" type:"structure"`
 
 	// The node group update configuration.
@@ -11651,7 +11659,8 @@ func (s *UpdateParam) SetValue(v string) *UpdateParam {
 	return s
 }
 
-// An object representing the details of an update to a taints payload.
+// An object representing the details of an update to a taints payload. For
+// more information, see Node taints on managed node groups (https://docs.aws.amazon.com/eks/latest/userguide/node-taints-managed-node-groups.html).
 type UpdateTaintsPayload struct {
 	_ struct{} `type:"structure"`
 
@@ -11948,6 +11957,12 @@ const (
 
 	// AMITypesBottlerocketX8664 is a AMITypes enum value
 	AMITypesBottlerocketX8664 = "BOTTLEROCKET_x86_64"
+
+	// AMITypesBottlerocketArm64Nvidia is a AMITypes enum value
+	AMITypesBottlerocketArm64Nvidia = "BOTTLEROCKET_ARM_64_NVIDIA"
+
+	// AMITypesBottlerocketX8664Nvidia is a AMITypes enum value
+	AMITypesBottlerocketX8664Nvidia = "BOTTLEROCKET_x86_64_NVIDIA"
 )
 
 // AMITypes_Values returns all elements of the AMITypes enum
@@ -11959,6 +11974,8 @@ func AMITypes_Values() []string {
 		AMITypesCustom,
 		AMITypesBottlerocketArm64,
 		AMITypesBottlerocketX8664,
+		AMITypesBottlerocketArm64Nvidia,
+		AMITypesBottlerocketX8664Nvidia,
 	}
 }
 

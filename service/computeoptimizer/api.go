@@ -2480,6 +2480,8 @@ type DeleteRecommendationPreferencesInput struct {
 	// are part of Auto Scaling groups. The AutoScalingGroup option encompasses
 	// only instances that are part of an Auto Scaling group.
 	//
+	// The valid values for this parameter are Ec2Instance and AutoScalingGroup.
+	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
 
@@ -4915,6 +4917,8 @@ type GetRecommendationPreferencesInput struct {
 	// are part of Auto Scaling groups. The AutoScalingGroup option encompasses
 	// only instances that are part of an Auto Scaling group.
 	//
+	// The valid values for this parameter are Ec2Instance and AutoScalingGroup.
+	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
 
@@ -6542,6 +6546,8 @@ type PutRecommendationPreferencesInput struct {
 	// The Ec2Instance option encompasses standalone instances and instances that
 	// are part of Auto Scaling groups. The AutoScalingGroup option encompasses
 	// only instances that are part of an Auto Scaling group.
+	//
+	// The valid values for this parameter are Ec2Instance and AutoScalingGroup.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`

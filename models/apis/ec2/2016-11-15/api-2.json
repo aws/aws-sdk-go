@@ -3333,6 +3333,15 @@
       "input":{"shape":"GetInstanceTypesFromInstanceRequirementsRequest"},
       "output":{"shape":"GetInstanceTypesFromInstanceRequirementsResult"}
     },
+    "GetInstanceUefiData":{
+      "name":"GetInstanceUefiData",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetInstanceUefiDataRequest"},
+      "output":{"shape":"GetInstanceUefiDataResult"}
+    },
     "GetIpamAddressHistory":{
       "name":"GetIpamAddressHistory",
       "http":{
@@ -20099,6 +20108,27 @@
         }
       }
     },
+    "GetInstanceUefiDataRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetInstanceUefiDataResult":{
+      "type":"structure",
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "locationName":"instanceId"
+        },
+        "UefiData":{
+          "shape":"String",
+          "locationName":"uefiData"
+        }
+      }
+    },
     "GetIpamAddressHistoryRequest":{
       "type":"structure",
       "required":[
@@ -21391,6 +21421,10 @@
           "shape":"BootModeValues",
           "locationName":"bootMode"
         },
+        "TpmSupport":{
+          "shape":"TpmSupportValues",
+          "locationName":"tpmSupport"
+        },
         "DeprecationTime":{
           "shape":"String",
           "locationName":"deprecationTime"
@@ -21436,6 +21470,14 @@
           "shape":"AttributeValue",
           "locationName":"bootMode"
         },
+        "TpmSupport":{
+          "shape":"AttributeValue",
+          "locationName":"tpmSupport"
+        },
+        "UefiData":{
+          "shape":"AttributeValue",
+          "locationName":"uefiData"
+        },
         "LastLaunchedTime":{
           "shape":"AttributeValue",
           "locationName":"lastLaunchedTime"
@@ -21453,6 +21495,8 @@
         "blockDeviceMapping",
         "sriovNetSupport",
         "bootMode",
+        "tpmSupport",
+        "uefiData",
         "lastLaunchedTime"
       ]
     },
@@ -22371,6 +22415,10 @@
         "Ipv6Address":{
           "shape":"String",
           "locationName":"ipv6Address"
+        },
+        "TpmSupport":{
+          "shape":"String",
+          "locationName":"tpmSupport"
         },
         "MaintenanceOptions":{
           "shape":"InstanceMaintenanceOptions",
@@ -31307,7 +31355,9 @@
           "shape":"String",
           "locationName":"virtualizationType"
         },
-        "BootMode":{"shape":"BootModeValues"}
+        "BootMode":{"shape":"BootModeValues"},
+        "TpmSupport":{"shape":"TpmSupportValues"},
+        "UefiData":{"shape":"StringType"}
       }
     },
     "RegisterImageResult":{
@@ -35820,6 +35870,11 @@
         "locationName":"item"
       }
     },
+    "StringType":{
+      "type":"string",
+      "max":64000,
+      "min":0
+    },
     "Subnet":{
       "type":"structure",
       "members":{
@@ -36477,6 +36532,10 @@
         "Min":{"shape":"Double"},
         "Max":{"shape":"Double"}
       }
+    },
+    "TpmSupportValues":{
+      "type":"string",
+      "enum":["v2.0"]
     },
     "TrafficDirection":{
       "type":"string",

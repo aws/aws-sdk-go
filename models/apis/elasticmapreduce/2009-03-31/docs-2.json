@@ -1408,6 +1408,18 @@
         "ListNotebookExecutionsOutput$NotebookExecutions": "<p>A list of notebook executions.</p>"
       }
     },
+    "OSRelease": {
+      "base": "<p>The Amazon Linux release specified for a cluster in the RunJobFlow request.</p>",
+      "refs": {
+        "OSReleaseList$member": null
+      }
+    },
+    "OSReleaseList": {
+      "base": null,
+      "refs": {
+        "DescribeReleaseLabelOutput$AvailableOSReleases": "<p>The list of available Amazon Linux release versions for an Amazon EMR release. Contains a Label field that is formatted as shown in <a href=\"https://docs.aws.amazon.com/AL2/latest/relnotes/relnotes-al2.html\"> <i>Amazon Linux 2 Release Notes</i> </a>. For example, <a href=\"https://docs.aws.amazon.com/AL2/latest/relnotes/relnotes-20220218.html\">2.0.20220218.1</a>.</p>"
+      }
+    },
     "OnDemandCapacityReservationOptions": {
       "base": "<p>Describes the strategy for using unused Capacity Reservations for fulfilling On-Demand capacity.</p>",
       "refs": {
@@ -1528,6 +1540,12 @@
     "PutManagedScalingPolicyOutput": {
       "base": null,
       "refs": {
+      }
+    },
+    "ReconfigurationType": {
+      "base": null,
+      "refs": {
+        "InstanceGroupModifyConfig$ReconfigurationType": "<p>Type of reconfiguration requested. Valid values are MERGE and OVERWRITE.</p>"
       }
     },
     "ReleaseLabelFilter": {
@@ -1890,6 +1908,7 @@
         "Cluster$ReleaseLabel": "<p>The Amazon EMR release label, which determines the version of open-source application packages installed on the cluster. Release labels are in the form <code>emr-x.x.x</code>, where x.x.x is an Amazon EMR release version such as <code>emr-5.14.0</code>. For more information about Amazon EMR release versions and included application versions and features, see <a href=\"https://docs.aws.amazon.com/emr/latest/ReleaseGuide/\">https://docs.aws.amazon.com/emr/latest/ReleaseGuide/</a>. The release label applies only to Amazon EMR releases version 4.0 and later. Earlier versions use <code>AmiVersion</code>.</p>",
         "Cluster$ServiceRole": "<p>The IAM role that Amazon EMR assumes in order to access Amazon Web Services resources on your behalf.</p>",
         "Cluster$MasterPublicDnsName": "<p>The DNS name of the master node. If the cluster is on a private subnet, this is the private DNS name. On a public subnet, this is the public DNS name.</p>",
+        "Cluster$OSReleaseLabel": "<p>The Amazon Linux release specified in a cluster launch RunJobFlow request. If no Amazon Linux release was specified, the default Amazon Linux release is shown in the response.</p>",
         "ClusterStateChangeReason$Message": "<p>The descriptive message for the state change reason.</p>",
         "ClusterSummary$Name": "<p>The name of the cluster.</p>",
         "Command$Name": "<p>The name of the command.</p>",
@@ -1931,6 +1950,7 @@
         "MetricDimension$Key": "<p>The dimension name.</p>",
         "MetricDimension$Value": "<p>The dimension value.</p>",
         "ModifyClusterInput$ClusterId": "<p>The unique identifier of the cluster.</p>",
+        "OSRelease$Label": "<p>The Amazon Linux release specified for a cluster in the RunJobFlow request. The format is as shown in <a href=\"https://docs.aws.amazon.com/AL2/latest/relnotes/relnotes-20220218.html\"> <i>Amazon Linux 2 Release Notes</i> </a>. For example, 2.0.20220218.1.</p>",
         "ReleaseLabelFilter$Prefix": "<p>Optional release label version prefix filter. For example, <code>emr-5</code>.</p>",
         "ReleaseLabelFilter$Application": "<p>Optional release label application filter. For example, <code>spark@2.1.0</code>.</p>",
         "ScalingRule$Name": "<p>The name used to identify an automatic scaling rule. Rule names must be unique within a scaling policy.</p>",
@@ -2219,6 +2239,7 @@
         "RunJobFlowInput$AmiVersion": "<p>Applies only to Amazon EMR AMI versions 3.x and 2.x. For Amazon EMR releases 4.0 and later, <code>ReleaseLabel</code> is used. To specify a custom AMI, use <code>CustomAmiID</code>.</p>",
         "RunJobFlowInput$ReleaseLabel": "<p>The Amazon EMR release label, which determines the version of open-source application packages installed on the cluster. Release labels are in the form <code>emr-x.x.x</code>, where x.x.x is an Amazon EMR release version such as <code>emr-5.14.0</code>. For more information about Amazon EMR release versions and included application versions and features, see <a href=\"https://docs.aws.amazon.com/emr/latest/ReleaseGuide/\">https://docs.aws.amazon.com/emr/latest/ReleaseGuide/</a>. The release label applies only to Amazon EMR releases version 4.0 and later. Earlier versions use <code>AmiVersion</code>.</p>",
         "RunJobFlowInput$CustomAmiId": "<p>Available only in Amazon EMR version 5.7.0 and later. The ID of a custom Amazon EBS-backed Linux AMI. If specified, Amazon EMR uses this AMI when it launches cluster EC2 instances. For more information about custom AMIs in Amazon EMR, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-custom-ami.html\">Using a Custom AMI</a> in the <i>Amazon EMR Management Guide</i>. If omitted, the cluster uses the base Linux AMI for the <code>ReleaseLabel</code> specified. For Amazon EMR versions 2.x and 3.x, use <code>AmiVersion</code> instead.</p> <p>For information about creating a custom AMI, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html\">Creating an Amazon EBS-Backed Linux AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide for Linux Instances</i>. For information about finding an AMI ID, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html\">Finding a Linux AMI</a>. </p>",
+        "RunJobFlowInput$OSReleaseLabel": "<p>Specifies a particular Amazon Linux release for all nodes in a cluster launch RunJobFlow request. If a release is not specified, Amazon EMR uses the latest validated Amazon Linux release for cluster launch.</p>",
         "RunJobFlowOutput$JobFlowId": "<p>A unique identifier for the job flow.</p>",
         "SecurityGroupsList$member": null,
         "SessionMappingDetail$StudioId": "<p>The ID of the Amazon EMR Studio.</p>",

@@ -1,3 +1,15 @@
+Release v1.44.11 (2022-05-10)
+===
+
+### Service Client Updates
+* `service/compute-optimizer`: Updates service documentation
+* `service/ec2`: Updates service API and documentation
+  * Added support for using NitroTPM and UEFI Secure Boot on EC2 instances.
+* `service/eks`: Updates service API and documentation
+* `service/elasticmapreduce`: Updates service API and documentation
+  * This release updates the Amazon EMR ModifyInstanceGroups API to support "MERGE" type cluster reconfiguration. Also, added the ability to specify a particular Amazon Linux release for all nodes in a cluster launch request.
+* `service/migration-hub-refactor-spaces`: Updates service documentation
+
 Release v1.44.10 (2022-05-09)
 ===
 
