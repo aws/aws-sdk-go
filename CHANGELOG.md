@@ -1,3 +1,12 @@
+Release v1.44.12 (2022-05-11)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release updates AWS PrivateLink APIs to support IPv6 for PrivateLink Services and Endpoints of type 'Interface'.
+* `service/secretsmanager`: Updates service documentation and examples
+  * Doc only update for Secrets Manager that fixes several customer-reported issues.
+
 Release v1.44.11 (2022-05-10)
 ===
 

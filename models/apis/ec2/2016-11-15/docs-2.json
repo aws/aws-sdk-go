@@ -2409,7 +2409,7 @@
         "Vpc$IsDefault": "<p>Indicates whether the VPC is the default VPC.</p>",
         "VpcClassicLink$ClassicLinkEnabled": "<p>Indicates whether the VPC is enabled for ClassicLink.</p>",
         "VpcEndpoint$PrivateDnsEnabled": "<p>(Interface endpoint) Indicates whether the VPC is associated with a private hosted zone.</p>",
-        "VpcEndpoint$RequesterManaged": "<p>Indicates whether the VPC endpoint is being managed by its service.</p>",
+        "VpcEndpoint$RequesterManaged": "<p>Indicates whether the endpoint is being managed by its service.</p>",
         "VpcPeeringConnectionOptionsDescription$AllowDnsResolutionFromRemoteVpc": "<p>Indicates whether a local VPC can resolve public DNS hostnames to private IP addresses when queried from instances in a peer VPC.</p>",
         "VpcPeeringConnectionOptionsDescription$AllowEgressFromLocalClassicLinkToRemoteVpc": "<p>Indicates whether a local ClassicLink connection can communicate with the peer VPC over the VPC peering connection.</p>",
         "VpcPeeringConnectionOptionsDescription$AllowEgressFromLocalVpcToRemoteClassicLink": "<p>Indicates whether a local VPC can communicate with a ClassicLink connection in the peer VPC over the VPC peering connection.</p>",
@@ -7145,6 +7145,26 @@
         "ServiceDetail$PrivateDnsNameVerificationState": "<p>The verification state of the VPC endpoint service.</p> <p>Consumers of the endpoint service cannot use the private name when the state is not <code>verified</code>.</p>"
       }
     },
+    "DnsOptions": {
+      "base": "<p>Describes the DNS options for an endpoint.</p>",
+      "refs": {
+        "VpcEndpoint$DnsOptions": "<p>The DNS options for the endpoint.</p>"
+      }
+    },
+    "DnsOptionsSpecification": {
+      "base": "<p>Describes the DNS options for an endpoint.</p>",
+      "refs": {
+        "CreateVpcEndpointRequest$DnsOptions": "<p>The DNS options for the endpoint.</p>",
+        "ModifyVpcEndpointRequest$DnsOptions": "<p>The DNS options for the endpoint.</p>"
+      }
+    },
+    "DnsRecordIpType": {
+      "base": null,
+      "refs": {
+        "DnsOptions$DnsRecordIpType": "<p>The DNS records created for the endpoint.</p>",
+        "DnsOptionsSpecification$DnsRecordIpType": "<p>The DNS records created for the endpoint.</p>"
+      }
+    },
     "DnsServersOptionsModifyStructure": {
       "base": "<p>Information about the DNS server to be used.</p>",
       "refs": {
@@ -8010,11 +8030,11 @@
         "DescribeVolumesRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>attachment.attach-time</code> - The time stamp when the attachment initiated.</p> </li> <li> <p> <code>attachment.delete-on-termination</code> - Whether the volume is deleted on instance termination.</p> </li> <li> <p> <code>attachment.device</code> - The device name specified in the block device mapping (for example, <code>/dev/sda1</code>).</p> </li> <li> <p> <code>attachment.instance-id</code> - The ID of the instance the volume is attached to.</p> </li> <li> <p> <code>attachment.status</code> - The attachment state (<code>attaching</code> | <code>attached</code> | <code>detaching</code>).</p> </li> <li> <p> <code>availability-zone</code> - The Availability Zone in which the volume was created.</p> </li> <li> <p> <code>create-time</code> - The time stamp when the volume was created.</p> </li> <li> <p> <code>encrypted</code> - Indicates whether the volume is encrypted (<code>true</code> | <code>false</code>)</p> </li> <li> <p> <code>multi-attach-enabled</code> - Indicates whether the volume is enabled for Multi-Attach (<code>true</code> | <code>false</code>)</p> </li> <li> <p> <code>fast-restored</code> - Indicates whether the volume was created from a snapshot that is enabled for fast snapshot restore (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>size</code> - The size of the volume, in GiB.</p> </li> <li> <p> <code>snapshot-id</code> - The snapshot from which the volume was created.</p> </li> <li> <p> <code>status</code> - The state of the volume (<code>creating</code> | <code>available</code> | <code>in-use</code> | <code>deleting</code> | <code>deleted</code> | <code>error</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>volume-id</code> - The volume ID.</p> </li> <li> <p> <code>volume-type</code> - The Amazon EBS volume type (<code>gp2</code> | <code>gp3</code> | <code>io1</code> | <code>io2</code> | <code>st1</code> | <code>sc1</code>| <code>standard</code>)</p> </li> </ul>",
         "DescribeVpcClassicLinkRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>is-classic-link-enabled</code> - Whether the VPC is enabled for ClassicLink (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
         "DescribeVpcEndpointConnectionNotificationsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>connection-notification-arn</code> - The ARN of the SNS topic for the notification.</p> </li> <li> <p> <code>connection-notification-id</code> - The ID of the notification.</p> </li> <li> <p> <code>connection-notification-state</code> - The state of the notification (<code>Enabled</code> | <code>Disabled</code>).</p> </li> <li> <p> <code>connection-notification-type</code> - The type of notification (<code>Topic</code>).</p> </li> <li> <p> <code>service-id</code> - The ID of the endpoint service.</p> </li> <li> <p> <code>vpc-endpoint-id</code> - The ID of the VPC endpoint.</p> </li> </ul>",
-        "DescribeVpcEndpointConnectionsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>service-id</code> - The ID of the service.</p> </li> <li> <p> <code>vpc-endpoint-owner</code> - The ID of the Amazon Web Services account ID that owns the endpoint.</p> </li> <li> <p> <code>vpc-endpoint-state</code> - The state of the endpoint (<code>pendingAcceptance</code> | <code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code> | <code>rejected</code> | <code>failed</code>).</p> </li> <li> <p> <code>vpc-endpoint-id</code> - The ID of the endpoint.</p> </li> </ul>",
-        "DescribeVpcEndpointServiceConfigurationsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>service-name</code> - The name of the service.</p> </li> <li> <p> <code>service-id</code> - The ID of the service.</p> </li> <li> <p> <code>service-state</code> - The state of the service (<code>Pending</code> | <code>Available</code> | <code>Deleting</code> | <code>Deleted</code> | <code>Failed</code>). </p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
+        "DescribeVpcEndpointConnectionsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>ip-address-type</code> - The IP address type (<code>ipv4</code> | <code>ipv6</code>).</p> </li> <li> <p> <code>service-id</code> - The ID of the service.</p> </li> <li> <p> <code>vpc-endpoint-owner</code> - The ID of the Amazon Web Services account ID that owns the endpoint.</p> </li> <li> <p> <code>vpc-endpoint-state</code> - The state of the endpoint (<code>pendingAcceptance</code> | <code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code> | <code>rejected</code> | <code>failed</code>).</p> </li> <li> <p> <code>vpc-endpoint-id</code> - The ID of the endpoint.</p> </li> </ul>",
+        "DescribeVpcEndpointServiceConfigurationsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>service-name</code> - The name of the service.</p> </li> <li> <p> <code>service-id</code> - The ID of the service.</p> </li> <li> <p> <code>service-state</code> - The state of the service (<code>Pending</code> | <code>Available</code> | <code>Deleting</code> | <code>Deleted</code> | <code>Failed</code>). </p> </li> <li> <p> <code>supported-ip-address-types</code> - The IP address type (<code>ipv4</code> | <code>ipv6</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
         "DescribeVpcEndpointServicePermissionsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>principal</code> - The ARN of the principal.</p> </li> <li> <p> <code>principal-type</code> - The principal type (<code>All</code> | <code>Service</code> | <code>OrganizationUnit</code> | <code>Account</code> | <code>User</code> | <code>Role</code>).</p> </li> </ul>",
-        "DescribeVpcEndpointServicesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>service-name</code> - The name of the service.</p> </li> <li> <p> <code>service-type</code> - The type of service (<code>Interface</code> | <code>Gateway</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
-        "DescribeVpcEndpointsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>service-name</code> - The name of the service.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC in which the endpoint resides.</p> </li> <li> <p> <code>vpc-endpoint-id</code> - The ID of the endpoint.</p> </li> <li> <p> <code>vpc-endpoint-state</code> - The state of the endpoint (<code>pendingAcceptance</code> | <code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code> | <code>rejected</code> | <code>failed</code>).</p> </li> <li> <p> <code>vpc-endpoint-type</code> - The type of VPC endpoint (<code>Interface</code> | <code>Gateway</code> | <code>GatewayLoadBalancer</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
+        "DescribeVpcEndpointServicesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>service-name</code> - The name of the service.</p> </li> <li> <p> <code>service-type</code> - The type of service (<code>Interface</code> | <code>Gateway</code>).</p> </li> <li> <p> <code>supported-ip-address-types</code> - The IP address type (<code>ipv4</code> | <code>ipv6</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
+        "DescribeVpcEndpointsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>ip-address-type</code> - The IP address type (<code>ipv4</code> | <code>ipv6</code>).</p> </li> <li> <p> <code>service-name</code> - The name of the service.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC in which the endpoint resides.</p> </li> <li> <p> <code>vpc-endpoint-id</code> - The ID of the endpoint.</p> </li> <li> <p> <code>vpc-endpoint-state</code> - The state of the endpoint (<code>pendingAcceptance</code> | <code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code> | <code>rejected</code> | <code>failed</code>).</p> </li> <li> <p> <code>vpc-endpoint-type</code> - The type of VPC endpoint (<code>Interface</code> | <code>Gateway</code> | <code>GatewayLoadBalancer</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
         "DescribeVpcPeeringConnectionsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>accepter-vpc-info.cidr-block</code> - The IPv4 CIDR block of the accepter VPC.</p> </li> <li> <p> <code>accepter-vpc-info.owner-id</code> - The ID of the Amazon Web Services account that owns the accepter VPC.</p> </li> <li> <p> <code>accepter-vpc-info.vpc-id</code> - The ID of the accepter VPC.</p> </li> <li> <p> <code>expiration-time</code> - The expiration date and time for the VPC peering connection.</p> </li> <li> <p> <code>requester-vpc-info.cidr-block</code> - The IPv4 CIDR block of the requester's VPC.</p> </li> <li> <p> <code>requester-vpc-info.owner-id</code> - The ID of the Amazon Web Services account that owns the requester VPC.</p> </li> <li> <p> <code>requester-vpc-info.vpc-id</code> - The ID of the requester VPC.</p> </li> <li> <p> <code>status-code</code> - The status of the VPC peering connection (<code>pending-acceptance</code> | <code>failed</code> | <code>expired</code> | <code>provisioning</code> | <code>active</code> | <code>deleting</code> | <code>deleted</code> | <code>rejected</code>).</p> </li> <li> <p> <code>status-message</code> - A message that provides more information about the status of the VPC peering connection, if applicable.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>vpc-peering-connection-id</code> - The ID of the VPC peering connection.</p> </li> </ul>",
         "DescribeVpcsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>cidr</code> - The primary IPv4 CIDR block of the VPC. The CIDR block you specify must exactly match the VPC's CIDR block for information to be returned for the VPC. Must contain the slash followed by one or two digits (for example, <code>/28</code>).</p> </li> <li> <p> <code>cidr-block-association.cidr-block</code> - An IPv4 CIDR block associated with the VPC.</p> </li> <li> <p> <code>cidr-block-association.association-id</code> - The association ID for an IPv4 CIDR block associated with the VPC.</p> </li> <li> <p> <code>cidr-block-association.state</code> - The state of an IPv4 CIDR block associated with the VPC.</p> </li> <li> <p> <code>dhcp-options-id</code> - The ID of a set of DHCP options.</p> </li> <li> <p> <code>ipv6-cidr-block-association.ipv6-cidr-block</code> - An IPv6 CIDR block associated with the VPC.</p> </li> <li> <p> <code>ipv6-cidr-block-association.ipv6-pool</code> - The ID of the IPv6 address pool from which the IPv6 CIDR block is allocated.</p> </li> <li> <p> <code>ipv6-cidr-block-association.association-id</code> - The association ID for an IPv6 CIDR block associated with the VPC.</p> </li> <li> <p> <code>ipv6-cidr-block-association.state</code> - The state of an IPv6 CIDR block associated with the VPC.</p> </li> <li> <p> <code>is-default</code> - Indicates whether the VPC is the default VPC.</p> </li> <li> <p> <code>owner-id</code> - The ID of the Amazon Web Services account that owns the VPC.</p> </li> <li> <p> <code>state</code> - The state of the VPC (<code>pending</code> | <code>available</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC.</p> </li> </ul>",
         "DescribeVpnConnectionsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>customer-gateway-configuration</code> - The configuration information for the customer gateway.</p> </li> <li> <p> <code>customer-gateway-id</code> - The ID of a customer gateway associated with the VPN connection.</p> </li> <li> <p> <code>state</code> - The state of the VPN connection (<code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code>).</p> </li> <li> <p> <code>option.static-routes-only</code> - Indicates whether the connection has static routes only. Used for devices that do not support Border Gateway Protocol (BGP).</p> </li> <li> <p> <code>route.destination-cidr-block</code> - The destination CIDR block. This corresponds to the subnet used in a customer data center.</p> </li> <li> <p> <code>bgp-asn</code> - The BGP Autonomous System Number (ASN) associated with a BGP device.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>type</code> - The type of VPN connection. Currently the only supported type is <code>ipsec.1</code>.</p> </li> <li> <p> <code>vpn-connection-id</code> - The ID of the VPN connection.</p> </li> <li> <p> <code>vpn-gateway-id</code> - The ID of a virtual private gateway associated with the VPN connection.</p> </li> <li> <p> <code>transit-gateway-id</code> - The ID of a transit gateway associated with the VPN connection.</p> </li> </ul>",
@@ -10661,6 +10681,15 @@
         "Explanation$Addresses": "<p>The IPv4 addresses, in CIDR notation.</p>"
       }
     },
+    "IpAddressType": {
+      "base": null,
+      "refs": {
+        "CreateVpcEndpointRequest$IpAddressType": "<p>The IP address type for the endpoint.</p>",
+        "ModifyVpcEndpointRequest$IpAddressType": "<p>The IP address type for the endpoint.</p>",
+        "VpcEndpoint$IpAddressType": "<p>The IP address type for the endpoint.</p>",
+        "VpcEndpointConnection$IpAddressType": "<p>The IP address type for the endpoint.</p>"
+      }
+    },
     "IpPermission": {
       "base": "<p>Describes a set of permissions for a security group rule.</p>",
       "refs": {
@@ -11307,7 +11336,7 @@
     "LastError": {
       "base": "<p>The last error that occurred for a VPC endpoint.</p>",
       "refs": {
-        "VpcEndpoint$LastError": "<p>The last error that occurred for VPC endpoint.</p>"
+        "VpcEndpoint$LastError": "<p>The last error that occurred for endpoint.</p>"
       }
     },
     "LaunchPermission": {
@@ -12352,7 +12381,7 @@
         "StoreImageTaskResult$TaskStartTime": "<p>The time the task started.</p>",
         "VolumeStatusEvent$NotAfter": "<p>The latest end time of the event.</p>",
         "VolumeStatusEvent$NotBefore": "<p>The earliest start time of the event.</p>",
-        "VpcEndpoint$CreationTimestamp": "<p>The date and time that the VPC endpoint was created.</p>",
+        "VpcEndpoint$CreationTimestamp": "<p>The date and time that the endpoint was created.</p>",
         "VpcEndpointConnection$CreationTimestamp": "<p>The date and time that the VPC endpoint was created.</p>"
       }
     },
@@ -15820,6 +15849,12 @@
         "DescribeVpcEndpointServiceConfigurationsResult$ServiceConfigurations": "<p>Information about one or more services.</p>"
       }
     },
+    "ServiceConnectivityType": {
+      "base": null,
+      "refs": {
+        "SupportedIpAddressTypes$member": null
+      }
+    },
     "ServiceDetail": {
       "base": "<p>Describes a VPC endpoint service.</p>",
       "refs": {
@@ -16270,7 +16305,7 @@
     "State": {
       "base": null,
       "refs": {
-        "VpcEndpoint$State": "<p>The state of the VPC endpoint.</p>",
+        "VpcEndpoint$State": "<p>The state of the endpoint.</p>",
         "VpcEndpointConnection$VpcEndpointState": "<p>The state of the VPC endpoint.</p>"
       }
     },
@@ -18134,11 +18169,11 @@
         "VpcCidrBlockAssociation$CidrBlock": "<p>The IPv4 CIDR block.</p>",
         "VpcCidrBlockState$StatusMessage": "<p>A message about the status of the CIDR block, if applicable.</p>",
         "VpcClassicLink$VpcId": "<p>The ID of the VPC.</p>",
-        "VpcEndpoint$VpcEndpointId": "<p>The ID of the VPC endpoint.</p>",
+        "VpcEndpoint$VpcEndpointId": "<p>The ID of the endpoint.</p>",
         "VpcEndpoint$VpcId": "<p>The ID of the VPC to which the endpoint is associated.</p>",
         "VpcEndpoint$ServiceName": "<p>The name of the service to which the endpoint is associated.</p>",
         "VpcEndpoint$PolicyDocument": "<p>The policy document associated with the endpoint, if applicable.</p>",
-        "VpcEndpoint$OwnerId": "<p>The ID of the Amazon Web Services account that owns the VPC endpoint.</p>",
+        "VpcEndpoint$OwnerId": "<p>The ID of the Amazon Web Services account that owns the endpoint.</p>",
         "VpcEndpointConnection$ServiceId": "<p>The ID of the service to which the endpoint is connected.</p>",
         "VpcEndpointConnection$VpcEndpointId": "<p>The ID of the VPC endpoint.</p>",
         "VpcEndpointConnection$VpcEndpointOwner": "<p>The ID of the Amazon Web Services account that owns the VPC endpoint.</p>",
@@ -18358,6 +18393,13 @@
         "InstanceStatusSummary$Status": "<p>The status.</p>"
       }
     },
+    "SupportedIpAddressTypes": {
+      "base": null,
+      "refs": {
+        "ServiceConfiguration$SupportedIpAddressTypes": "<p>The supported IP address types.</p>",
+        "ServiceDetail$SupportedIpAddressTypes": "<p>The supported IP address types.</p>"
+      }
+    },
     "Tag": {
       "base": "<p>Describes a tag.</p>",
       "refs": {
@@ -18473,7 +18515,7 @@
         "Volume$Tags": "<p>Any tags assigned to the volume.</p>",
         "Vpc$Tags": "<p>Any tags assigned to the VPC.</p>",
         "VpcClassicLink$Tags": "<p>Any tags assigned to the VPC.</p>",
-        "VpcEndpoint$Tags": "<p>Any tags assigned to the VPC endpoint.</p>",
+        "VpcEndpoint$Tags": "<p>Any tags assigned to the endpoint.</p>",
         "VpcPeeringConnection$Tags": "<p>Any tags assigned to the resource.</p>",
         "VpnConnection$Tags": "<p>Any tags assigned to the VPN connection.</p>",
         "VpnGateway$Tags": "<p>Any tags assigned to the virtual private gateway.</p>"
@@ -19861,6 +19903,7 @@
         "CreateVpcEndpointConnectionNotificationRequest$ConnectionEvents": "<p>One or more endpoint events for which to receive notifications. Valid values are <code>Accept</code>, <code>Connect</code>, <code>Delete</code>, and <code>Reject</code>.</p>",
         "CreateVpcEndpointServiceConfigurationRequest$NetworkLoadBalancerArns": "<p>The Amazon Resource Names (ARNs) of one or more Network Load Balancers for your service.</p>",
         "CreateVpcEndpointServiceConfigurationRequest$GatewayLoadBalancerArns": "<p>The Amazon Resource Names (ARNs) of one or more Gateway Load Balancers.</p>",
+        "CreateVpcEndpointServiceConfigurationRequest$SupportedIpAddressTypes": "<p>The supported IP address types. The possible values are <code>ipv4</code> and <code>ipv6</code>.</p>",
         "DescribeClientVpnTargetNetworksRequest$AssociationIds": "<p>The IDs of the target network associations.</p>",
         "DescribeIpamPoolsRequest$IpamPoolIds": "<p>The IDs of the IPAM pools you would like information on.</p>",
         "DescribeIpamScopesRequest$IpamScopeIds": "<p>The IDs of the scopes you want information on.</p>",
@@ -19878,6 +19921,8 @@
         "ModifyVpcEndpointServiceConfigurationRequest$RemoveNetworkLoadBalancerArns": "<p>The Amazon Resource Names (ARNs) of Network Load Balancers to remove from your service configuration.</p>",
         "ModifyVpcEndpointServiceConfigurationRequest$AddGatewayLoadBalancerArns": "<p>The Amazon Resource Names (ARNs) of Gateway Load Balancers to add to your service configuration.</p>",
         "ModifyVpcEndpointServiceConfigurationRequest$RemoveGatewayLoadBalancerArns": "<p>The Amazon Resource Names (ARNs) of Gateway Load Balancers to remove from your service configuration.</p>",
+        "ModifyVpcEndpointServiceConfigurationRequest$AddSupportedIpAddressTypes": "<p>The IP address types to add to your service configuration.</p>",
+        "ModifyVpcEndpointServiceConfigurationRequest$RemoveSupportedIpAddressTypes": "<p>The IP address types to remove from your service configuration.</p>",
         "ModifyVpcEndpointServicePermissionsRequest$AddAllowedPrincipals": "<p>The Amazon Resource Names (ARN) of one or more principals. Permissions are granted to the principals in this list. To grant permissions to all principals, specify an asterisk (*).</p>",
         "ModifyVpcEndpointServicePermissionsRequest$RemoveAllowedPrincipals": "<p>The Amazon Resource Names (ARN) of one or more principals. Permissions are revoked for principals in this list.</p>",
         "NewDhcpConfiguration$Values": null,
@@ -19915,7 +19960,7 @@
         "TransitGatewayOptions$TransitGatewayCidrBlocks": "<p>The transit gateway CIDR blocks.</p>",
         "TransitGatewayVpcAttachment$SubnetIds": "<p>The IDs of the subnets.</p>",
         "VpcEndpoint$RouteTableIds": "<p>(Gateway endpoint) One or more route tables associated with the endpoint.</p>",
-        "VpcEndpoint$SubnetIds": "<p>(Interface endpoint) One or more subnets in which the endpoint is located.</p>",
+        "VpcEndpoint$SubnetIds": "<p>(Interface endpoint) The subnets for the endpoint.</p>",
         "VpcEndpoint$NetworkInterfaceIds": "<p>(Interface endpoint) One or more network interfaces for the endpoint.</p>",
         "VpcEndpointConnection$NetworkLoadBalancerArns": "<p>The Amazon Resource Names (ARNs) of the network load balancers for the service.</p>",
         "VpcEndpointConnection$GatewayLoadBalancerArns": "<p>The Amazon Resource Names (ARNs) of the Gateway Load Balancers for the service.</p>"
