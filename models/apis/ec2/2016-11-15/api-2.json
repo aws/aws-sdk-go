@@ -10149,15 +10149,15 @@
         "ReservationType"
       ],
       "members":{
-        "TagSpecifications":{
-          "shape":"TagSpecificationList",
-          "locationName":"TagSpecification"
-        },
         "SubnetId":{"shape":"SubnetId"},
         "Cidr":{"shape":"String"},
         "ReservationType":{"shape":"SubnetCidrReservationType"},
         "Description":{"shape":"String"},
-        "DryRun":{"shape":"Boolean"}
+        "DryRun":{"shape":"Boolean"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
       }
     },
     "CreateSubnetCidrReservationResult":{
@@ -10707,6 +10707,8 @@
           "shape":"VpcEndpointSecurityGroupIdList",
           "locationName":"SecurityGroupId"
         },
+        "IpAddressType":{"shape":"IpAddressType"},
+        "DnsOptions":{"shape":"DnsOptionsSpecification"},
         "ClientToken":{"shape":"String"},
         "PrivateDnsEnabled":{"shape":"Boolean"},
         "TagSpecifications":{
@@ -10741,6 +10743,10 @@
         "GatewayLoadBalancerArns":{
           "shape":"ValueStringList",
           "locationName":"GatewayLoadBalancerArn"
+        },
+        "SupportedIpAddressTypes":{
+          "shape":"ValueStringList",
+          "locationName":"SupportedIpAddressType"
         },
         "ClientToken":{"shape":"String"},
         "TagSpecifications":{
@@ -17539,6 +17545,30 @@
         "pendingVerification",
         "verified",
         "failed"
+      ]
+    },
+    "DnsOptions":{
+      "type":"structure",
+      "members":{
+        "DnsRecordIpType":{
+          "shape":"DnsRecordIpType",
+          "locationName":"dnsRecordIpType"
+        }
+      }
+    },
+    "DnsOptionsSpecification":{
+      "type":"structure",
+      "members":{
+        "DnsRecordIpType":{"shape":"DnsRecordIpType"}
+      }
+    },
+    "DnsRecordIpType":{
+      "type":"string",
+      "enum":[
+        "ipv4",
+        "dualstack",
+        "ipv6",
+        "service-defined"
       ]
     },
     "DnsServersOptionsModifyStructure":{
@@ -24500,6 +24530,14 @@
         "locationName":"item"
       }
     },
+    "IpAddressType":{
+      "type":"string",
+      "enum":[
+        "ipv4",
+        "dualstack",
+        "ipv6"
+      ]
+    },
     "IpPermission":{
       "type":"structure",
       "members":{
@@ -28316,6 +28354,8 @@
           "shape":"VpcEndpointSecurityGroupIdList",
           "locationName":"RemoveSecurityGroupId"
         },
+        "IpAddressType":{"shape":"IpAddressType"},
+        "DnsOptions":{"shape":"DnsOptionsSpecification"},
         "PrivateDnsEnabled":{"shape":"Boolean"}
       }
     },
@@ -28352,6 +28392,14 @@
         "RemoveGatewayLoadBalancerArns":{
           "shape":"ValueStringList",
           "locationName":"RemoveGatewayLoadBalancerArn"
+        },
+        "AddSupportedIpAddressTypes":{
+          "shape":"ValueStringList",
+          "locationName":"AddSupportedIpAddressType"
+        },
+        "RemoveSupportedIpAddressTypes":{
+          "shape":"ValueStringList",
+          "locationName":"RemoveSupportedIpAddressType"
         }
       }
     },
@@ -34415,6 +34463,10 @@
           "shape":"ValueStringList",
           "locationName":"gatewayLoadBalancerArnSet"
         },
+        "SupportedIpAddressTypes":{
+          "shape":"SupportedIpAddressTypes",
+          "locationName":"supportedIpAddressTypeSet"
+        },
         "BaseEndpointDnsNames":{
           "shape":"ValueStringList",
           "locationName":"baseEndpointDnsNameSet"
@@ -34443,6 +34495,13 @@
         "shape":"ServiceConfiguration",
         "locationName":"item"
       }
+    },
+    "ServiceConnectivityType":{
+      "type":"string",
+      "enum":[
+        "ipv4",
+        "ipv6"
+      ]
     },
     "ServiceDetail":{
       "type":"structure",
@@ -34502,6 +34561,10 @@
         "PrivateDnsNameVerificationState":{
           "shape":"DnsNameState",
           "locationName":"privateDnsNameVerificationState"
+        },
+        "SupportedIpAddressTypes":{
+          "shape":"SupportedIpAddressTypes",
+          "locationName":"supportedIpAddressTypeSet"
         }
       }
     },
@@ -36144,6 +36207,15 @@
         "not-applicable",
         "initializing"
       ]
+    },
+    "SupportedIpAddressTypes":{
+      "type":"list",
+      "member":{
+        "shape":"ServiceConnectivityType",
+        "locationName":"item"
+      },
+      "max":2,
+      "min":0
     },
     "Tag":{
       "type":"structure",
@@ -39227,6 +39299,14 @@
           "shape":"GroupIdentifierSet",
           "locationName":"groupSet"
         },
+        "IpAddressType":{
+          "shape":"IpAddressType",
+          "locationName":"ipAddressType"
+        },
+        "DnsOptions":{
+          "shape":"DnsOptions",
+          "locationName":"dnsOptions"
+        },
         "PrivateDnsEnabled":{
           "shape":"Boolean",
           "locationName":"privateDnsEnabled"
@@ -39295,6 +39375,10 @@
         "GatewayLoadBalancerArns":{
           "shape":"ValueStringList",
           "locationName":"gatewayLoadBalancerArnSet"
+        },
+        "IpAddressType":{
+          "shape":"IpAddressType",
+          "locationName":"ipAddressType"
         }
       }
     },

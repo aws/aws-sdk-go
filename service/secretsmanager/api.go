@@ -60,14 +60,15 @@ func (c *SecretsManager) CancelRotateSecretRequest(input *CancelRotateSecretInpu
 // Turns off automatic rotation, and if a rotation is currently in progress,
 // cancels the rotation.
 //
-// To turn on automatic rotation again, call RotateSecret.
-//
 // If you cancel a rotation in progress, it can leave the VersionStage labels
-// in an unexpected state. Depending on the step of the rotation in progress,
-// you might need to remove the staging label AWSPENDING from the partially
-// created version, specified by the VersionId response value. We recommend
-// you also evaluate the partially rotated new version to see if it should be
-// deleted. You can delete a version by removing all staging labels from it.
+// in an unexpected state. You might need to remove the staging label AWSPENDING
+// from the partially created version. You also need to determine whether to
+// roll back to the previous version of the secret by moving the staging label
+// AWSCURRENT to the version that has AWSPENDING. To determine which version
+// has a specific staging label, call ListSecretVersionIds. Then use UpdateSecretVersionStage
+// to change staging labels. For more information, see How rotation works (https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_how.html).
+//
+// To turn on automatic rotation again, call RotateSecret.
 //
 // Required permissions: secretsmanager:CancelRotateSecret. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
@@ -429,8 +430,19 @@ func (c *SecretsManager) DeleteSecretRequest(input *DeleteSecretInput) (req *req
 // DeletionDate stamp to the secret that specifies the end of the recovery window.
 // At the end of the recovery window, Secrets Manager deletes the secret permanently.
 //
-// For information about deleting a secret in the console, see https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_delete-secret.html
-// (https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_delete-secret.html).
+// You can't delete a primary secret that is replicated to other Regions. You
+// must first delete the replicas using RemoveRegionsFromReplication, and then
+// delete the primary secret. When you delete a replica, it is deleted immediately.
+//
+// You can't directly delete a version of a secret. Instead, you remove all
+// staging labels from the version using UpdateSecretVersionStage. This marks
+// the version as deprecated, and then Secrets Manager can automatically delete
+// the version in the background.
+//
+// To determine whether an application still uses a secret, you can create an
+// Amazon CloudWatch alarm to alert you to any attempts to access a secret during
+// the recovery window. For more information, see Monitor secrets scheduled
+// for deletion (https://docs.aws.amazon.com/secretsmanager/latest/userguide/monitoring_cloudwatch_deleted-secrets.html).
 //
 // Secrets Manager performs the permanent secret deletion at the end of the
 // waiting period as a background task with low priority. There is no guarantee
@@ -440,9 +452,9 @@ func (c *SecretsManager) DeleteSecretRequest(input *DeleteSecretInput) (req *req
 // At any time before recovery window ends, you can use RestoreSecret to remove
 // the DeletionDate and cancel the deletion of the secret.
 //
-// In a secret scheduled for deletion, you cannot access the encrypted secret
-// value. To access that information, first cancel the deletion with RestoreSecret
-// and then retrieve the information.
+// When a secret is scheduled for deletion, you cannot retrieve the secret value.
+// You must first cancel the deletion with RestoreSecret and then you can retrieve
+// the secret.
 //
 // Required permissions: secretsmanager:DeleteSecret. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
@@ -950,11 +962,11 @@ func (c *SecretsManager) ListSecretVersionIdsRequest(input *ListSecretVersionIds
 
 // ListSecretVersionIds API operation for AWS Secrets Manager.
 //
-// Lists the versions for a secret.
+// Lists the versions of a secret. Secrets Manager uses staging labels to indicate
+// the different versions of a secret. For more information, see Secrets Manager
+// concepts: Versions (https://docs.aws.amazon.com/secretsmanager/latest/userguide/getting-started.html#term_version).
 //
 // To list the secrets in the account, use ListSecrets.
-//
-// To get the secret value from SecretString or SecretBinary, call GetSecretValue.
 //
 // Required permissions: secretsmanager:ListSecretVersionIds. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
@@ -1112,8 +1124,8 @@ func (c *SecretsManager) ListSecretsRequest(input *ListSecretsInput) (req *reque
 //
 // To get the secret value from SecretString or SecretBinary, call GetSecretValue.
 //
-// For information about finding secrets in the console, see Enhanced search
-// capabilities for secrets in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_search-secret.html).
+// For information about finding secrets in the console, see Find secrets in
+// Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_search-secret.html).
 //
 // Required permissions: secretsmanager:ListSecrets. For more information, see
 // IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)

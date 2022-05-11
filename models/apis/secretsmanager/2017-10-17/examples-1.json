@@ -384,9 +384,9 @@
           "SecretId": "MyTestDatabaseSecret"
         },
         "output": {
-          "SecretARN": "arn:aws:secretsmanager:us-west-2:123456789012:secret:MyTestDatabaseSecret-a1b2c3",
-          "SecretName": "MyTestDatabaseSecret",
-          "SecretVersionId": "EXAMPLE2-90ab-cdef-fedc-ba987SECRET2"
+          "ARN": "arn:aws:secretsmanager:us-west-2:123456789012:secret:MyTestDatabaseSecret-a1b2c3",
+          "Name": "MyTestDatabaseSecret",
+          "VersionId": "EXAMPLE2-90ab-cdef-fedc-ba987SECRET2"
         },
         "comments": {
           "input": {
