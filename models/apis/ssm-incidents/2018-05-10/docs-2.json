@@ -21,7 +21,7 @@
     "ListResponsePlans": "<p>Lists all response plans in your account.</p>",
     "ListTagsForResource": "<p>Lists the tags that are attached to the specified response plan.</p>",
     "ListTimelineEvents": "<p>Lists timeline events for the specified incident record.</p>",
-    "PutResourcePolicy": "<p>Adds a resource policy to the specified response plan.</p>",
+    "PutResourcePolicy": "<p>Adds a resource policy to the specified response plan. The resource policy is used to share the response plan using Resource Access Manager (RAM). For more information about cross-account sharing, see <a href=\"https://docs.aws.amazon.com/incident-manager/latest/userguide/xa.html\">Setting up cross-account functionality</a>.</p>",
     "StartIncident": "<p>Used to start an incident from CloudWatch alarms, EventBridge events, or manually. </p>",
     "TagResource": "<p>Adds a tag to a response plan.</p>",
     "UntagResource": "<p>Removes a tag from a resource.</p>",
@@ -266,6 +266,24 @@
       "refs": {
       }
     },
+    "DynamicSsmParameterValue": {
+      "base": "<p>The dynamic SSM parameter value.</p>",
+      "refs": {
+        "DynamicSsmParameters$value": null
+      }
+    },
+    "DynamicSsmParameters": {
+      "base": null,
+      "refs": {
+        "SsmAutomation$dynamicParameters": "<p>The key-value pair to resolve dynamic parameter values when processing a Systems Manager Automation runbook.</p>"
+      }
+    },
+    "DynamicSsmParametersKeyString": {
+      "base": null,
+      "refs": {
+        "DynamicSsmParameters$key": null
+      }
+    },
     "EmptyChatChannel": {
       "base": "<p>Used to remove the chat channel from an incident record or response plan.</p>",
       "refs": {
@@ -283,7 +301,7 @@
     "EventData": {
       "base": null,
       "refs": {
-        "CreateTimelineEventInput$eventData": "<p>A short description of the event as a valid JSON string. There is no other schema imposed.</p>",
+        "CreateTimelineEventInput$eventData": "<p>A short description of the event.</p>",
         "TimelineEvent$eventData": "<p>A short description of the event.</p>",
         "UpdateTimelineEventInput$eventData": "<p>A short description of the event.</p>"
       }
@@ -486,7 +504,7 @@
     "ItemType": {
       "base": null,
       "refs": {
-        "ItemIdentifier$type": "<p>The type of related item. Incident Manager supports the following types:</p> <ul> <li> <p> <code>ANALYSIS</code> </p> </li> <li> <p> <code>INCIDENT</code> </p> </li> <li> <p> <code>METRIC</code> </p> </li> <li> <p> <code>PARENT</code> </p> </li> <li> <p> <code>ATTACHMENT</code> </p> </li> <li> <p> <code>OTHER</code> </p> </li> </ul>"
+        "ItemIdentifier$type": "<p>The type of related item. </p>"
       }
     },
     "ItemValue": {
@@ -788,7 +806,7 @@
     "ServicePrincipal": {
       "base": null,
       "refs": {
-        "IncidentRecordSource$invokedBy": "<p>The principal the assumed the role specified of the <code>createdBy</code>.</p>"
+        "IncidentRecordSource$invokedBy": "<p>The service principal that assumed the role specified in <code>createdBy</code>. If no service principal assumed the role this will be left blank.</p>"
       }
     },
     "ServiceQuotaExceededException": {
@@ -1101,6 +1119,12 @@
     "ValidationException": {
       "base": "<p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>",
       "refs": {
+      }
+    },
+    "VariableType": {
+      "base": null,
+      "refs": {
+        "DynamicSsmParameterValue$variable": "<p>Variable dynamic parameters. A parameter value is determined when an incident is created.</p>"
       }
     }
   }

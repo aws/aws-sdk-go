@@ -7389,8 +7389,14 @@ func (c *Lightsail) GetBundlesRequest(input *GetBundlesInput) (req *request.Requ
 
 // GetBundles API operation for Amazon Lightsail.
 //
-// Returns the list of bundles that are available for purchase. A bundle describes
-// the specs for your virtual private server (or instance).
+// Returns the bundles that you can apply to an Amazon Lightsail instance when
+// you create it.
+//
+// A bundle describes the specifications of an instance, such as the monthly
+// cost, amount of memory, the number of vCPUs, amount of storage space, and
+// monthly network data transfer quota.
+//
+// Bundles are referred to as instance plans in the Lightsail console.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -28256,7 +28262,8 @@ func (s *GetAutoSnapshotsOutput) SetResourceType(v string) *GetAutoSnapshotsOutp
 type GetBlueprintsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A Boolean value indicating whether to include inactive results in your request.
+	// A Boolean value that indicates whether to include inactive (unavailable)
+	// blueprints in the response of your request.
 	IncludeInactive *bool `locationName:"includeInactive" type:"boolean"`
 
 	// The token to advance to the next page of results from your request.
@@ -28427,7 +28434,7 @@ type GetBucketBundlesInput struct {
 	_ struct{} `type:"structure"`
 
 	// A Boolean value that indicates whether to include inactive (unavailable)
-	// bundles in the response.
+	// bundles in the response of your request.
 	IncludeInactive *bool `locationName:"includeInactive" type:"boolean"`
 }
 
@@ -28837,8 +28844,8 @@ func (s *GetBucketsOutput) SetNextPageToken(v string) *GetBucketsOutput {
 type GetBundlesInput struct {
 	_ struct{} `type:"structure"`
 
-	// A Boolean value that indicates whether to include inactive bundle results
-	// in your request.
+	// A Boolean value that indicates whether to include inactive (unavailable)
+	// bundles in the response of your request.
 	IncludeInactive *bool `locationName:"includeInactive" type:"boolean"`
 
 	// The token to advance to the next page of results from your request.
@@ -32938,6 +32945,10 @@ func (s *GetRelationalDatabaseBlueprintsOutput) SetNextPageToken(v string) *GetR
 type GetRelationalDatabaseBundlesInput struct {
 	_ struct{} `type:"structure"`
 
+	// A Boolean value that indicates whether to include inactive (unavailable)
+	// bundles in the response of your request.
+	IncludeInactive *bool `locationName:"includeInactive" type:"boolean"`
+
 	// The token to advance to the next page of results from your request.
 	//
 	// To get a page token, perform an initial GetRelationalDatabaseBundles request.
@@ -32962,6 +32973,12 @@ func (s GetRelationalDatabaseBundlesInput) String() string {
 // value will be replaced with "sensitive".
 func (s GetRelationalDatabaseBundlesInput) GoString() string {
 	return s.String()
+}
+
+// SetIncludeInactive sets the IncludeInactive field's value.
+func (s *GetRelationalDatabaseBundlesInput) SetIncludeInactive(v bool) *GetRelationalDatabaseBundlesInput {
+	s.IncludeInactive = &v
+	return s
 }
 
 // SetPageToken sets the PageToken field's value.

@@ -1702,7 +1702,8 @@
         "FsxConfiguration":{"shape":"FsxConfiguration"},
         "SlackConfiguration":{"shape":"SlackConfiguration"},
         "BoxConfiguration":{"shape":"BoxConfiguration"},
-        "QuipConfiguration":{"shape":"QuipConfiguration"}
+        "QuipConfiguration":{"shape":"QuipConfiguration"},
+        "JiraConfiguration":{"shape":"JiraConfiguration"}
       }
     },
     "DataSourceDateFieldFormat":{
@@ -1877,7 +1878,8 @@
         "FSX",
         "SLACK",
         "BOX",
-        "QUIP"
+        "QUIP",
+        "JIRA"
       ]
     },
     "DataSourceVpcConfiguration":{
@@ -3085,11 +3087,63 @@
       },
       "exception":true
     },
+    "IssueSubEntity":{
+      "type":"string",
+      "enum":[
+        "COMMENTS",
+        "ATTACHMENTS",
+        "WORKLOGS"
+      ]
+    },
+    "IssueSubEntityFilter":{
+      "type":"list",
+      "member":{"shape":"IssueSubEntity"},
+      "max":3,
+      "min":0
+    },
+    "IssueType":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "Issuer":{
       "type":"string",
       "max":65,
       "min":1,
       "pattern":"^\\P{C}*$"
+    },
+    "JiraAccountUrl":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^https:\\/\\/[a-zA-Z0-9_\\-\\.]+(\\.atlassian\\.net\\/)$"
+    },
+    "JiraConfiguration":{
+      "type":"structure",
+      "required":[
+        "JiraAccountUrl",
+        "SecretArn"
+      ],
+      "members":{
+        "JiraAccountUrl":{"shape":"JiraAccountUrl"},
+        "SecretArn":{"shape":"SecretArn"},
+        "UseChangeLog":{"shape":"Boolean"},
+        "Project":{"shape":"Project"},
+        "IssueType":{"shape":"IssueType"},
+        "Status":{"shape":"JiraStatus"},
+        "IssueSubEntityFilter":{"shape":"IssueSubEntityFilter"},
+        "AttachmentFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "CommentFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "IssueFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "ProjectFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "WorkLogFieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "InclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "ExclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "VpcConfiguration":{"shape":"DataSourceVpcConfiguration"}
+      }
+    },
+    "JiraStatus":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "JsonTokenTypeConfiguration":{
       "type":"structure",
@@ -3598,6 +3652,10 @@
       ]
     },
     "PrivateChannelFilter":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "Project":{
       "type":"list",
       "member":{"shape":"String"}
     },

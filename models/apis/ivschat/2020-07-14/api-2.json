@@ -74,6 +74,7 @@
       "errors":[
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"PendingVerification"},
         {"shape":"ValidationException"}
       ]
     },
@@ -197,6 +198,7 @@
       "errors":[
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"PendingVerification"},
         {"shape":"ValidationException"}
       ]
     }

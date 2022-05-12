@@ -8152,7 +8152,7 @@ type CreateEventSourceMappingInput struct {
 	//
 	//    * Amazon Kinesis - Default 100. Max 10,000.
 	//
-	//    * Amazon DynamoDB Streams - Default 100. Max 1,000.
+	//    * Amazon DynamoDB Streams - Default 100. Max 10,000.
 	//
 	//    * Amazon Simple Queue Service - Default 10. For standard queues the max
 	//    is 10,000. For FIFO queues the max is 10.
@@ -10620,8 +10620,8 @@ type EventSourceMappingConfiguration struct {
 	// The ARN of the Lambda function.
 	FunctionArn *string `type:"string"`
 
-	// (Streams only) A list of current response type enums applied to the event
-	// source mapping.
+	// (Streams and Amazon SQS) A list of current response type enums applied to
+	// the event source mapping.
 	FunctionResponseTypes []*string `type:"list" enum:"FunctionResponseType"`
 
 	// The date that the event source mapping was last updated or that its state
@@ -18987,7 +18987,7 @@ type UpdateEventSourceMappingInput struct {
 	//
 	//    * Amazon Kinesis - Default 100. Max 10,000.
 	//
-	//    * Amazon DynamoDB Streams - Default 100. Max 1,000.
+	//    * Amazon DynamoDB Streams - Default 100. Max 10,000.
 	//
 	//    * Amazon Simple Queue Service - Default 10. For standard queues the max
 	//    is 10,000. For FIFO queues the max is 10.
@@ -20369,6 +20369,9 @@ const (
 	// RuntimeNodejs14X is a Runtime enum value
 	RuntimeNodejs14X = "nodejs14.x"
 
+	// RuntimeNodejs16X is a Runtime enum value
+	RuntimeNodejs16X = "nodejs16.x"
+
 	// RuntimeJava8 is a Runtime enum value
 	RuntimeJava8 = "java8"
 
@@ -20437,6 +20440,7 @@ func Runtime_Values() []string {
 		RuntimeNodejs10X,
 		RuntimeNodejs12X,
 		RuntimeNodejs14X,
+		RuntimeNodejs16X,
 		RuntimeJava8,
 		RuntimeJava8Al2,
 		RuntimeJava11,

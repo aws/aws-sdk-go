@@ -6875,7 +6875,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 //
 //    * AddDatasetData
 //
-//    * CreateSnapshot
+//    * CreateDataView
 //
 //    * EditDatasetMetadata
 //

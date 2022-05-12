@@ -10343,7 +10343,8 @@
         "ClientToken":{
           "shape":"String",
           "idempotencyToken":true
-        }
+        },
+        "GatewayLoadBalancerEndpointId":{"shape":"VpcEndpointId"}
       }
     },
     "CreateTrafficMirrorTargetResult":{
@@ -36870,6 +36871,10 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "GatewayLoadBalancerEndpointId":{
+          "shape":"String",
+          "locationName":"gatewayLoadBalancerEndpointId"
         }
       }
     },
@@ -36892,7 +36897,8 @@
       "type":"string",
       "enum":[
         "network-interface",
-        "network-load-balancer"
+        "network-load-balancer",
+        "gateway-load-balancer-endpoint"
       ]
     },
     "TrafficMirroringMaxResults":{

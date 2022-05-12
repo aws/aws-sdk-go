@@ -3235,6 +3235,12 @@ type CreateOutpostInput struct {
 
 	// The ID or the Amazon Resource Name (ARN) of the site.
 	//
+	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
+	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
+	// To address backwards compatibility, the parameter names OutpostID or SiteID
+	// remain in use. Despite the parameter name, you can make the request with
+	// an ARN.
+	//
 	// SiteId is a required field
 	SiteId *string `min:"1" type:"string" required:"true"`
 
@@ -3532,6 +3538,12 @@ type DeleteOutpostInput struct {
 
 	// The ID or the Amazon Resource Name (ARN) of the Outpost.
 	//
+	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
+	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
+	// To address backwards compatibility, the parameter names OutpostID or SiteID
+	// remain in use. Despite the parameter name, you can make the request with
+	// an ARN.
+	//
 	// OutpostId is a required field
 	OutpostId *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
 }
@@ -3602,6 +3614,12 @@ type DeleteSiteInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID or the Amazon Resource Name (ARN) of the site.
+	//
+	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
+	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
+	// To address backwards compatibility, the parameter names OutpostID or SiteID
+	// remain in use. Despite the parameter name, you can make the request with
+	// an ARN.
 	//
 	// SiteId is a required field
 	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
@@ -3884,6 +3902,12 @@ type GetOutpostInput struct {
 
 	// The ID or the Amazon Resource Name (ARN) of the Outpost.
 	//
+	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
+	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
+	// To address backwards compatibility, the parameter names OutpostID or SiteID
+	// remain in use. Despite the parameter name, you can make the request with
+	// an ARN.
+	//
 	// OutpostId is a required field
 	OutpostId *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
 }
@@ -3938,6 +3962,12 @@ type GetOutpostInstanceTypesInput struct {
 	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
 
 	// The ID or the Amazon Resource Name (ARN) of the Outpost.
+	//
+	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
+	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
+	// To address backwards compatibility, the parameter names OutpostID or SiteID
+	// remain in use. Despite the parameter name, you can make the request with
+	// an ARN.
 	//
 	// OutpostId is a required field
 	OutpostId *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
@@ -4014,6 +4044,12 @@ type GetOutpostInstanceTypesOutput struct {
 	OutpostArn *string `min:"1" type:"string"`
 
 	// The ID of the Outpost.
+	//
+	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
+	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
+	// To address backwards compatibility, the parameter names OutpostID or SiteID
+	// remain in use. Despite the parameter name, you can make the request with
+	// an ARN.
 	OutpostId *string `min:"1" type:"string"`
 }
 
@@ -4099,6 +4135,12 @@ type GetSiteAddressInput struct {
 	AddressType *string `location:"querystring" locationName:"AddressType" type:"string" required:"true" enum:"AddressType"`
 
 	// The ID or the Amazon Resource Name (ARN) of the site.
+	//
+	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
+	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
+	// To address backwards compatibility, the parameter names OutpostID or SiteID
+	// remain in use. Despite the parameter name, you can make the request with
+	// an ARN.
 	//
 	// SiteId is a required field
 	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
@@ -4206,6 +4248,12 @@ type GetSiteInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID or the Amazon Resource Name (ARN) of the site.
+	//
+	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
+	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
+	// To address backwards compatibility, the parameter names OutpostID or SiteID
+	// remain in use. Despite the parameter name, you can make the request with
+	// an ARN.
 	//
 	// SiteId is a required field
 	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
@@ -6103,6 +6151,12 @@ type UpdateOutpostInput struct {
 
 	// The ID or the Amazon Resource Name (ARN) of the Outpost.
 	//
+	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
+	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
+	// To address backwards compatibility, the parameter names OutpostID or SiteID
+	// remain in use. Despite the parameter name, you can make the request with
+	// an ARN.
+	//
 	// OutpostId is a required field
 	OutpostId *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
 
@@ -6216,6 +6270,12 @@ type UpdateSiteAddressInput struct {
 	AddressType *string `type:"string" required:"true" enum:"AddressType"`
 
 	// The ID or the Amazon Resource Name (ARN) of the site.
+	//
+	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
+	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
+	// To address backwards compatibility, the parameter names OutpostID or SiteID
+	// remain in use. Despite the parameter name, you can make the request with
+	// an ARN.
 	//
 	// SiteId is a required field
 	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
@@ -6337,6 +6397,12 @@ type UpdateSiteInput struct {
 	Notes *string `min:"1" type:"string"`
 
 	// The ID or the Amazon Resource Name (ARN) of the site.
+	//
+	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
+	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
+	// To address backwards compatibility, the parameter names OutpostID or SiteID
+	// remain in use. Despite the parameter name, you can make the request with
+	// an ARN.
 	//
 	// SiteId is a required field
 	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
@@ -6510,6 +6576,12 @@ type UpdateSiteRackPhysicalPropertiesInput struct {
 	PowerPhase *string `type:"string" enum:"PowerPhase"`
 
 	// The ID or the Amazon Resource Name (ARN) of the site.
+	//
+	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
+	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
+	// To address backwards compatibility, the parameter names OutpostID or SiteID
+	// remain in use. Despite the parameter name, you can make the request with
+	// an ARN.
 	//
 	// SiteId is a required field
 	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`

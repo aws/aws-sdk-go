@@ -2173,7 +2173,10 @@ func (c *SSMIncidents) PutResourcePolicyRequest(input *PutResourcePolicyInput) (
 
 // PutResourcePolicy API operation for AWS Systems Manager Incident Manager.
 //
-// Adds a resource policy to the specified response plan.
+// Adds a resource policy to the specified response plan. The resource policy
+// is used to share the response plan using Resource Access Manager (RAM). For
+// more information about cross-account sharing, see Setting up cross-account
+// functionality (https://docs.aws.amazon.com/incident-manager/latest/userguide/xa.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2874,6 +2877,9 @@ func (c *SSMIncidents) UpdateReplicationSetRequest(input *UpdateReplicationSetIn
 //   * ValidationException
 //   The input fails to satisfy the constraints specified by an Amazon Web Services
 //   service.
+//
+//   * ConflictException
+//   Updating or deleting a resource causes an inconsistent state.
 //
 //   * InternalServerException
 //   The request processing has failed because of an unknown error, exception
@@ -3795,8 +3801,7 @@ type CreateTimelineEventInput struct {
 	// A token ensuring that the action is called only once with the specified details.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// A short description of the event as a valid JSON string. There is no other
-	// schema imposed.
+	// A short description of the event.
 	//
 	// EventData is a required field
 	EventData *string `locationName:"eventData" type:"string" required:"true"`
@@ -4349,6 +4354,39 @@ func (s DeleteTimelineEventOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DeleteTimelineEventOutput) GoString() string {
 	return s.String()
+}
+
+// The dynamic SSM parameter value.
+type DynamicSsmParameterValue struct {
+	_ struct{} `type:"structure"`
+
+	// Variable dynamic parameters. A parameter value is determined when an incident
+	// is created.
+	Variable *string `locationName:"variable" type:"string" enum:"VariableType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DynamicSsmParameterValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DynamicSsmParameterValue) GoString() string {
+	return s.String()
+}
+
+// SetVariable sets the Variable field's value.
+func (s *DynamicSsmParameterValue) SetVariable(v string) *DynamicSsmParameterValue {
+	s.Variable = &v
+	return s
 }
 
 // Used to remove the chat channel from an incident record or response plan.
@@ -5193,7 +5231,8 @@ type IncidentRecordSource struct {
 	// CreatedBy is a required field
 	CreatedBy *string `locationName:"createdBy" type:"string" required:"true"`
 
-	// The principal the assumed the role specified of the createdBy.
+	// The service principal that assumed the role specified in createdBy. If no
+	// service principal assumed the role this will be left blank.
 	InvokedBy *string `locationName:"invokedBy" type:"string"`
 
 	// The resource that caused the incident to be created.
@@ -5511,19 +5550,7 @@ func (s *InternalServerException) RequestID() string {
 type ItemIdentifier struct {
 	_ struct{} `type:"structure"`
 
-	// The type of related item. Incident Manager supports the following types:
-	//
-	//    * ANALYSIS
-	//
-	//    * INCIDENT
-	//
-	//    * METRIC
-	//
-	//    * PARENT
-	//
-	//    * ATTACHMENT
-	//
-	//    * OTHER
+	// The type of related item.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"ItemType"`
@@ -7042,6 +7069,10 @@ type SsmAutomation struct {
 	// The automation document's version to use when running.
 	DocumentVersion *string `locationName:"documentVersion" type:"string"`
 
+	// The key-value pair to resolve dynamic parameter values when processing a
+	// Systems Manager Automation runbook.
+	DynamicParameters map[string]*DynamicSsmParameterValue `locationName:"dynamicParameters" min:"1" type:"map"`
+
 	// The key-value pair parameters to use when running the automation document.
 	Parameters map[string][]*string `locationName:"parameters" min:"1" type:"map"`
 
@@ -7080,6 +7111,9 @@ func (s *SsmAutomation) Validate() error {
 	if s.DocumentName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DocumentName"))
 	}
+	if s.DynamicParameters != nil && len(s.DynamicParameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DynamicParameters", 1))
+	}
 	if s.Parameters != nil && len(s.Parameters) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Parameters", 1))
 	}
@@ -7102,6 +7136,12 @@ func (s *SsmAutomation) SetDocumentName(v string) *SsmAutomation {
 // SetDocumentVersion sets the DocumentVersion field's value.
 func (s *SsmAutomation) SetDocumentVersion(v string) *SsmAutomation {
 	s.DocumentVersion = &v
+	return s
+}
+
+// SetDynamicParameters sets the DynamicParameters field's value.
+func (s *SsmAutomation) SetDynamicParameters(v map[string]*DynamicSsmParameterValue) *SsmAutomation {
+	s.DynamicParameters = v
 	return s
 }
 
@@ -8643,6 +8683,9 @@ const (
 
 	// ItemTypeAutomation is a ItemType enum value
 	ItemTypeAutomation = "AUTOMATION"
+
+	// ItemTypeInvolvedResource is a ItemType enum value
+	ItemTypeInvolvedResource = "INVOLVED_RESOURCE"
 )
 
 // ItemType_Values returns all elements of the ItemType enum
@@ -8655,6 +8698,7 @@ func ItemType_Values() []string {
 		ItemTypeAttachment,
 		ItemTypeOther,
 		ItemTypeAutomation,
+		ItemTypeInvolvedResource,
 	}
 }
 
@@ -8791,5 +8835,21 @@ const (
 func TimelineEventSort_Values() []string {
 	return []string{
 		TimelineEventSortEventTime,
+	}
+}
+
+const (
+	// VariableTypeIncidentRecordArn is a VariableType enum value
+	VariableTypeIncidentRecordArn = "INCIDENT_RECORD_ARN"
+
+	// VariableTypeInvolvedResources is a VariableType enum value
+	VariableTypeInvolvedResources = "INVOLVED_RESOURCES"
+)
+
+// VariableType_Values returns all elements of the VariableType enum
+func VariableType_Values() []string {
+	return []string{
+		VariableTypeIncidentRecordArn,
+		VariableTypeInvolvedResources,
 	}
 }

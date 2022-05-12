@@ -1,3 +1,26 @@
+Release v1.44.13 (2022-05-12)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release introduces a target type Gateway Load Balancer Endpoint for mirrored traffic. Customers can now specify GatewayLoadBalancerEndpoint option during the creation of a traffic mirror target.
+* `service/finspace-data`: Updates service documentation
+* `service/iot`: Updates service documentation
+  * Documentation update for China region ListMetricValues for IoT
+* `service/ivschat`: Updates service API and documentation
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now provides a data source connector for Jira. For more information, see https://docs.aws.amazon.com/kendra/latest/dg/data-source-jira.html
+* `service/lambda`: Updates service API and documentation
+  * Lambda releases NodeJs 16 managed runtime to be available in all commercial regions.
+* `service/lightsail`: Updates service API and documentation
+  * This release adds support to include inactive database bundles in the response of the GetRelationalDatabaseBundles request.
+* `service/outposts`: Updates service documentation
+* `service/ssm-incidents`: Updates service API and documentation
+* `service/transfer`: Updates service documentation
+  * AWS Transfer Family now accepts ECDSA keys for server host keys
+* `service/workspaces`: Updates service API
+  * Increased the character limit of the login message from 600 to 850 characters.
+
 Release v1.44.12 (2022-05-11)
 ===
 

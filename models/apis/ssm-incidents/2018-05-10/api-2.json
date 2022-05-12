@@ -479,6 +479,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -787,6 +788,25 @@
       "type":"structure",
       "members":{
       }
+    },
+    "DynamicSsmParameterValue":{
+      "type":"structure",
+      "members":{
+        "variable":{"shape":"VariableType"}
+      },
+      "union":true
+    },
+    "DynamicSsmParameters":{
+      "type":"map",
+      "key":{"shape":"DynamicSsmParametersKeyString"},
+      "value":{"shape":"DynamicSsmParameterValue"},
+      "max":200,
+      "min":1
+    },
+    "DynamicSsmParametersKeyString":{
+      "type":"string",
+      "max":50,
+      "min":1
     },
     "EmptyChatChannel":{
       "type":"structure",
@@ -1112,7 +1132,8 @@
         "PARENT",
         "ATTACHMENT",
         "OTHER",
-        "AUTOMATION"
+        "AUTOMATION",
+        "INVOLVED_RESOURCE"
       ]
     },
     "ItemValue":{
@@ -1528,6 +1549,7 @@
       "members":{
         "documentName":{"shape":"SsmAutomationDocumentNameString"},
         "documentVersion":{"shape":"SsmAutomationDocumentVersionString"},
+        "dynamicParameters":{"shape":"DynamicSsmParameters"},
         "parameters":{"shape":"SsmParameters"},
         "roleArn":{"shape":"RoleArn"},
         "targetAccount":{"shape":"SsmTargetAccount"}
@@ -1546,7 +1568,7 @@
       "type":"string",
       "max":2048,
       "min":0,
-      "pattern":"^arn:[-\\w+=/,.@]+:ssm-contacts:[-\\w+=/,.@]*:[0-9]+:([\\w+=/,.@:-]+)*$"
+      "pattern":"^arn:aws(-cn|-us-gov)?:ssm-contacts:[a-z0-9-]*:([0-9]{12}):contact/[a-z0-9_-]+$"
     },
     "SsmParameterValues":{
       "type":"list",
@@ -1906,6 +1928,13 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "VariableType":{
+      "type":"string",
+      "enum":[
+        "INCIDENT_RECORD_ARN",
+        "INVOLVED_RESOURCES"
+      ]
     }
   }
 }
