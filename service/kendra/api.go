@@ -10153,6 +10153,9 @@ type DataSourceConfiguration struct {
 	// data source.
 	GoogleDriveConfiguration *GoogleDriveConfiguration `type:"structure"`
 
+	// Provides the configuration information to connect to Jira as your data source.
+	JiraConfiguration *JiraConfiguration `type:"structure"`
+
 	// Provides the configuration information to connect to Microsoft OneDrive as
 	// your data source.
 	OneDriveConfiguration *OneDriveConfiguration `type:"structure"`
@@ -10231,6 +10234,11 @@ func (s *DataSourceConfiguration) Validate() error {
 	if s.GoogleDriveConfiguration != nil {
 		if err := s.GoogleDriveConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("GoogleDriveConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.JiraConfiguration != nil {
+		if err := s.JiraConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("JiraConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.OneDriveConfiguration != nil {
@@ -10312,6 +10320,12 @@ func (s *DataSourceConfiguration) SetFsxConfiguration(v *FsxConfiguration) *Data
 // SetGoogleDriveConfiguration sets the GoogleDriveConfiguration field's value.
 func (s *DataSourceConfiguration) SetGoogleDriveConfiguration(v *GoogleDriveConfiguration) *DataSourceConfiguration {
 	s.GoogleDriveConfiguration = v
+	return s
+}
+
+// SetJiraConfiguration sets the JiraConfiguration field's value.
+func (s *DataSourceConfiguration) SetJiraConfiguration(v *JiraConfiguration) *DataSourceConfiguration {
+	s.JiraConfiguration = v
 	return s
 }
 
@@ -16577,6 +16591,303 @@ func (s *InvalidRequestException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type JiraConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of Jira attachments to Amazon Kendra index field names. To create custom
+	// fields, use the UpdateIndex API before you map to Jira fields. For more information,
+	// see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Jira data source field names must exist in your Jira custom metadata.
+	AttachmentFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of Jira comments to Amazon Kendra index field names. To create custom
+	// fields, use the UpdateIndex API before you map to Jira fields. For more information,
+	// see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Jira data source field names must exist in your Jira custom metadata.
+	CommentFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// A list of regular expression patterns to exclude certain file paths, file
+	// names, and file types in your Jira data source. Files that match the patterns
+	// are excluded from the index. Files that don’t match the patterns are included
+	// in the index. If a file matches both an inclusion pattern and an exclusion
+	// pattern, the exclusion pattern takes precedence and the file isn't included
+	// in the index.
+	ExclusionPatterns []*string `type:"list"`
+
+	// A list of regular expression patterns to include certain file paths, file
+	// names, and file types in your Jira data source. Files that match the patterns
+	// are included in the index. Files that don't match the patterns are excluded
+	// from the index. If a file matches both an inclusion pattern and an exclusion
+	// pattern, the exclusion pattern takes precedence and the file isn't included
+	// in the index.
+	InclusionPatterns []*string `type:"list"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of Jira issues to Amazon Kendra index field names. To create custom
+	// fields, use the UpdateIndex API before you map to Jira fields. For more information,
+	// see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Jira data source field names must exist in your Jira custom metadata.
+	IssueFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// Specify whether to crawl comments, attachments, and work logs. You can specify
+	// one or more of these options.
+	IssueSubEntityFilter []*string `type:"list" enum:"IssueSubEntity"`
+
+	// Specify which issue types to crawl in your Jira data source. You can specify
+	// one or more of these options to crawl.
+	IssueType []*string `type:"list"`
+
+	// The URL of the Jira account. For example, company.attlassian.net or https://jira.company.com.
+	// You can find your Jira account URL in the URL of your profile page for Jira
+	// desktop.
+	//
+	// JiraAccountUrl is a required field
+	JiraAccountUrl *string `min:"1" type:"string" required:"true"`
+
+	// Specify which projects to crawl in your Jira data source. You can specify
+	// one or more Jira project IDs.
+	Project []*string `type:"list"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of Jira projects to Amazon Kendra index field names. To create custom
+	// fields, use the UpdateIndex API before you map to Jira fields. For more information,
+	// see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Jira data source field names must exist in your Jira custom metadata.
+	ProjectFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// The Amazon Resource Name (ARN) of an Secrets Manager secret that contains
+	// the key-value pairs required to connect to your Jira data source. The secret
+	// must contain a JSON structure with the following keys:
+	//
+	//    * jira-id—The Active Directory user name, along with the Domain Name
+	//    System (DNS) domain name. For example, user@corp.example.com.
+	//
+	//    * jiraCredentials—The password of the Jira account user.
+	//
+	// SecretArn is a required field
+	SecretArn *string `min:"1" type:"string" required:"true"`
+
+	// Specify which statuses to crawl in your Jira data source. You can specify
+	// one or more of these options to crawl.
+	Status []*string `type:"list"`
+
+	// Specify to use the change log option to update your index.
+	UseChangeLog *bool `type:"boolean"`
+
+	// Configuration information for an Amazon Virtual Private Cloud to connect
+	// to your Jira. Your Jira account must reside inside your VPC.
+	VpcConfiguration *DataSourceVpcConfiguration `type:"structure"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map attributes or field
+	// names of Jira work logs to Amazon Kendra index field names. To create custom
+	// fields, use the UpdateIndex API before you map to Jira fields. For more information,
+	// see Mapping data source fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Jira data source field names must exist in your Jira custom metadata.
+	WorkLogFieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JiraConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JiraConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JiraConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JiraConfiguration"}
+	if s.AttachmentFieldMappings != nil && len(s.AttachmentFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttachmentFieldMappings", 1))
+	}
+	if s.CommentFieldMappings != nil && len(s.CommentFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CommentFieldMappings", 1))
+	}
+	if s.IssueFieldMappings != nil && len(s.IssueFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IssueFieldMappings", 1))
+	}
+	if s.JiraAccountUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("JiraAccountUrl"))
+	}
+	if s.JiraAccountUrl != nil && len(*s.JiraAccountUrl) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JiraAccountUrl", 1))
+	}
+	if s.ProjectFieldMappings != nil && len(s.ProjectFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectFieldMappings", 1))
+	}
+	if s.SecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretArn"))
+	}
+	if s.SecretArn != nil && len(*s.SecretArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretArn", 1))
+	}
+	if s.WorkLogFieldMappings != nil && len(s.WorkLogFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkLogFieldMappings", 1))
+	}
+	if s.AttachmentFieldMappings != nil {
+		for i, v := range s.AttachmentFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AttachmentFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.CommentFieldMappings != nil {
+		for i, v := range s.CommentFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CommentFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.IssueFieldMappings != nil {
+		for i, v := range s.IssueFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "IssueFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ProjectFieldMappings != nil {
+		for i, v := range s.ProjectFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ProjectFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.VpcConfiguration != nil {
+		if err := s.VpcConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.WorkLogFieldMappings != nil {
+		for i, v := range s.WorkLogFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "WorkLogFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttachmentFieldMappings sets the AttachmentFieldMappings field's value.
+func (s *JiraConfiguration) SetAttachmentFieldMappings(v []*DataSourceToIndexFieldMapping) *JiraConfiguration {
+	s.AttachmentFieldMappings = v
+	return s
+}
+
+// SetCommentFieldMappings sets the CommentFieldMappings field's value.
+func (s *JiraConfiguration) SetCommentFieldMappings(v []*DataSourceToIndexFieldMapping) *JiraConfiguration {
+	s.CommentFieldMappings = v
+	return s
+}
+
+// SetExclusionPatterns sets the ExclusionPatterns field's value.
+func (s *JiraConfiguration) SetExclusionPatterns(v []*string) *JiraConfiguration {
+	s.ExclusionPatterns = v
+	return s
+}
+
+// SetInclusionPatterns sets the InclusionPatterns field's value.
+func (s *JiraConfiguration) SetInclusionPatterns(v []*string) *JiraConfiguration {
+	s.InclusionPatterns = v
+	return s
+}
+
+// SetIssueFieldMappings sets the IssueFieldMappings field's value.
+func (s *JiraConfiguration) SetIssueFieldMappings(v []*DataSourceToIndexFieldMapping) *JiraConfiguration {
+	s.IssueFieldMappings = v
+	return s
+}
+
+// SetIssueSubEntityFilter sets the IssueSubEntityFilter field's value.
+func (s *JiraConfiguration) SetIssueSubEntityFilter(v []*string) *JiraConfiguration {
+	s.IssueSubEntityFilter = v
+	return s
+}
+
+// SetIssueType sets the IssueType field's value.
+func (s *JiraConfiguration) SetIssueType(v []*string) *JiraConfiguration {
+	s.IssueType = v
+	return s
+}
+
+// SetJiraAccountUrl sets the JiraAccountUrl field's value.
+func (s *JiraConfiguration) SetJiraAccountUrl(v string) *JiraConfiguration {
+	s.JiraAccountUrl = &v
+	return s
+}
+
+// SetProject sets the Project field's value.
+func (s *JiraConfiguration) SetProject(v []*string) *JiraConfiguration {
+	s.Project = v
+	return s
+}
+
+// SetProjectFieldMappings sets the ProjectFieldMappings field's value.
+func (s *JiraConfiguration) SetProjectFieldMappings(v []*DataSourceToIndexFieldMapping) *JiraConfiguration {
+	s.ProjectFieldMappings = v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *JiraConfiguration) SetSecretArn(v string) *JiraConfiguration {
+	s.SecretArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *JiraConfiguration) SetStatus(v []*string) *JiraConfiguration {
+	s.Status = v
+	return s
+}
+
+// SetUseChangeLog sets the UseChangeLog field's value.
+func (s *JiraConfiguration) SetUseChangeLog(v bool) *JiraConfiguration {
+	s.UseChangeLog = &v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *JiraConfiguration) SetVpcConfiguration(v *DataSourceVpcConfiguration) *JiraConfiguration {
+	s.VpcConfiguration = v
+	return s
+}
+
+// SetWorkLogFieldMappings sets the WorkLogFieldMappings field's value.
+func (s *JiraConfiguration) SetWorkLogFieldMappings(v []*DataSourceToIndexFieldMapping) *JiraConfiguration {
+	s.WorkLogFieldMappings = v
+	return s
 }
 
 // Provides the configuration information for the JSON token type.
@@ -25643,6 +25954,9 @@ const (
 
 	// DataSourceTypeQuip is a DataSourceType enum value
 	DataSourceTypeQuip = "QUIP"
+
+	// DataSourceTypeJira is a DataSourceType enum value
+	DataSourceTypeJira = "JIRA"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -25663,6 +25977,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeSlack,
 		DataSourceTypeBox,
 		DataSourceTypeQuip,
+		DataSourceTypeJira,
 	}
 }
 
@@ -25967,6 +26282,26 @@ func Interval_Values() []string {
 		IntervalTwoWeeksAgo,
 		IntervalOneMonthAgo,
 		IntervalTwoMonthsAgo,
+	}
+}
+
+const (
+	// IssueSubEntityComments is a IssueSubEntity enum value
+	IssueSubEntityComments = "COMMENTS"
+
+	// IssueSubEntityAttachments is a IssueSubEntity enum value
+	IssueSubEntityAttachments = "ATTACHMENTS"
+
+	// IssueSubEntityWorklogs is a IssueSubEntity enum value
+	IssueSubEntityWorklogs = "WORKLOGS"
+)
+
+// IssueSubEntity_Values returns all elements of the IssueSubEntity enum
+func IssueSubEntity_Values() []string {
+	return []string{
+		IssueSubEntityComments,
+		IssueSubEntityAttachments,
+		IssueSubEntityWorklogs,
 	}
 }
 

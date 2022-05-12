@@ -337,6 +337,8 @@ func (c *Ivschat) DeleteRoomRequest(input *DeleteRoomInput) (req *request.Reques
 //
 //   * ResourceNotFoundException
 //
+//   * PendingVerification
+//
 //   * ValidationException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ivschat-2020-07-14/DeleteRoom
@@ -1063,6 +1065,8 @@ func (c *Ivschat) UpdateRoomRequest(input *UpdateRoomInput) (req *request.Reques
 //
 //   * ResourceNotFoundException
 //
+//   * PendingVerification
+//
 //   * ValidationException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ivschat-2020-07-14/UpdateRoom
@@ -1381,8 +1385,8 @@ type CreateRoomInput struct {
 	// not number of bytes. Default: 500.
 	MaximumMessageLength *int64 `locationName:"maximumMessageLength" min:"1" type:"integer"`
 
-	// Maximum number of messages per second that a client can send to the room.
-	// Default: 10.
+	// Maximum number of messages per second that can be sent to the room (by all
+	// clients). Default: 10.
 	MaximumMessageRatePerSecond *int64 `locationName:"maximumMessageRatePerSecond" min:"1" type:"integer"`
 
 	// Configuration information for optional review of messages.
@@ -1477,8 +1481,8 @@ type CreateRoomOutput struct {
 	// Maximum number of characters in a single message, from the request.
 	MaximumMessageLength *int64 `locationName:"maximumMessageLength" min:"1" type:"integer"`
 
-	// Maximum number of messages per second that a client can send to the room,
-	// from the request.
+	// Maximum number of messages per second that can be sent to the room (by all
+	// clients), from the request.
 	MaximumMessageRatePerSecond *int64 `locationName:"maximumMessageRatePerSecond" min:"1" type:"integer"`
 
 	// Configuration information for optional review of messages.
@@ -1920,8 +1924,8 @@ type GetRoomOutput struct {
 	// not number of bytes. Default: 500.
 	MaximumMessageLength *int64 `locationName:"maximumMessageLength" min:"1" type:"integer"`
 
-	// Maximum number of messages per second that a client can send to the room.
-	// Default: 10.
+	// Maximum number of messages per second that can be sent to the room (by all
+	// clients). Default: 10.
 	MaximumMessageRatePerSecond *int64 `locationName:"maximumMessageRatePerSecond" min:"1" type:"integer"`
 
 	// Configuration information for optional review of messages.
@@ -2975,8 +2979,8 @@ type UpdateRoomInput struct {
 	// count, not number of bytes. Default: 500.
 	MaximumMessageLength *int64 `locationName:"maximumMessageLength" min:"1" type:"integer"`
 
-	// The maximum number of messages per second that a client can send to the room.
-	// Default: 10.
+	// Maximum number of messages per second that can be sent to the room (by all
+	// clients). Default: 10.
 	MaximumMessageRatePerSecond *int64 `locationName:"maximumMessageRatePerSecond" min:"1" type:"integer"`
 
 	// Configuration information for optional review of messages. Specify an empty
@@ -3074,8 +3078,8 @@ type UpdateRoomOutput struct {
 	// Maximum number of characters in a single message, from the request.
 	MaximumMessageLength *int64 `locationName:"maximumMessageLength" min:"1" type:"integer"`
 
-	// Maximum number of messages per second that a client can send to the room,
-	// from the request.
+	// Maximum number of messages per second that can be sent to the room (by all
+	// clients), from the request.
 	MaximumMessageRatePerSecond *int64 `locationName:"maximumMessageRatePerSecond" min:"1" type:"integer"`
 
 	// Configuration information for optional review of messages.

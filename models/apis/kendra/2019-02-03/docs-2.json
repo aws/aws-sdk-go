@@ -259,6 +259,7 @@
         "DocumentAttributeTarget$TargetDocumentAttributeValueDeletion": "<p> <code>TRUE</code> to delete the existing target value for your specified target attribute key. You cannot create a target value and set this to <code>TRUE</code>. To create a target value (<code>TargetDocumentAttributeValue</code>), set this to <code>FALSE</code>.</p>",
         "Highlight$TopAnswer": "<p>Indicates whether the response is the best response. True if this is the best response; otherwise, false.</p>",
         "InlineCustomDocumentEnrichmentConfiguration$DocumentContentDeletion": "<p> <code>TRUE</code> to delete content if the condition used for the target attribute is met.</p>",
+        "JiraConfiguration$UseChangeLog": "<p>Specify to use the change log option to update your index.</p>",
         "OneDriveConfiguration$DisableLocalGroups": "<p>A Boolean value that specifies whether local groups are disabled (<code>True</code>) or enabled (<code>False</code>). </p>",
         "QuipConfiguration$CrawlFileComments": "<p>Specify whether to crawl file comments in Quip. You can specify one or more of these options.</p>",
         "QuipConfiguration$CrawlChatRooms": "<p>Specify whether to crawl chat rooms in Quip. You can specify one or more of these options.</p>",
@@ -678,6 +679,8 @@
         "FsxConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain files in your Amazon FSx file system. Files that match the patterns are excluded from the index. Files that don't match the patterns are included in the index. If a file matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
         "GoogleDriveConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain items in your Google Drive, including shared drives and users' My Drives. Items that match the patterns are included in the index. Items that don't match the patterns are excluded from the index. If an item matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the item isn't included in the index.</p>",
         "GoogleDriveConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain items in your Google Drive, including shared drives and users' My Drives. Items that match the patterns are excluded from the index. Items that don't match the patterns are included in the index. If an item matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the item isn't included in the index.</p>",
+        "JiraConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain file paths, file names, and file types in your Jira data source. Files that match the patterns are included in the index. Files that don't match the patterns are excluded from the index. If a file matches both an inclusion pattern and an exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
+        "JiraConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain file paths, file names, and file types in your Jira data source. Files that match the patterns are excluded from the index. Files that don’t match the patterns are included in the index. If a file matches both an inclusion pattern and an exclusion pattern, the exclusion pattern takes precedence and the file isn't included in the index.</p>",
         "OneDriveConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain documents in your OneDrive. Documents that match the patterns are included in the index. Documents that don't match the patterns are excluded from the index. If a document matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the document isn't included in the index.</p> <p>The pattern is applied to the file name.</p>",
         "OneDriveConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain documents in your OneDrive. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an inclusion and exclusion pattern, the exclusion pattern takes precedence and the document isn't included in the index.</p> <p>The pattern is applied to the file name.</p>",
         "QuipConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain files in your Quip file system. Files that match the patterns are included in the index. Files that don't match the patterns are excluded from the index. If a file matches both an inclusion pattern and an exclusion pattern, the exclusion pattern takes precedence, and the file isn't included in the index.</p>",
@@ -788,6 +791,11 @@
         "ColumnConfiguration$FieldMappings": "<p>An array of objects that map database column names to the corresponding fields in an index. You must first create the fields in the index using the <code>UpdateIndex</code> API.</p>",
         "FsxConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Amazon FSx data source attributes or field names to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Amazon FSx fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Amazon FSx data source field names must exist in your Amazon FSx custom metadata.</p>",
         "GoogleDriveConfiguration$FieldMappings": "<p>Maps Google Drive data source attributes or field names to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Google Drive fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Google Drive data source field names must exist in your Google Drive custom metadata.</p>",
+        "JiraConfiguration$AttachmentFieldMappings": "<p>A list of DataSourceToIndexFieldMapping objects that map attributes or field names of Jira attachments to Amazon Kendra index field names. To create custom fields, use the UpdateIndex API before you map to Jira fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\"> Mapping data source fields</a>. The Jira data source field names must exist in your Jira custom metadata.</p>",
+        "JiraConfiguration$CommentFieldMappings": "<p>A list of DataSourceToIndexFieldMapping objects that map attributes or field names of Jira comments to Amazon Kendra index field names. To create custom fields, use the UpdateIndex API before you map to Jira fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\"> Mapping data source fields</a>. The Jira data source field names must exist in your Jira custom metadata.</p>",
+        "JiraConfiguration$IssueFieldMappings": "<p>A list of DataSourceToIndexFieldMapping objects that map attributes or field names of Jira issues to Amazon Kendra index field names. To create custom fields, use the UpdateIndex API before you map to Jira fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\"> Mapping data source fields</a>. The Jira data source field names must exist in your Jira custom metadata.</p>",
+        "JiraConfiguration$ProjectFieldMappings": "<p>A list of DataSourceToIndexFieldMapping objects that map attributes or field names of Jira projects to Amazon Kendra index field names. To create custom fields, use the UpdateIndex API before you map to Jira fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\"> Mapping data source fields</a>. The Jira data source field names must exist in your Jira custom metadata.</p>",
+        "JiraConfiguration$WorkLogFieldMappings": "<p>A list of DataSourceToIndexFieldMapping objects that map attributes or field names of Jira work logs to Amazon Kendra index field names. To create custom fields, use the UpdateIndex API before you map to Jira fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\"> Mapping data source fields</a>. The Jira data source field names must exist in your Jira custom metadata.</p>",
         "OneDriveConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map OneDrive data source attributes or field names to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to OneDrive fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The OneDrive data source field names must exist in your OneDrive custom metadata.</p>",
         "QuipConfiguration$ThreadFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of Quip threads to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Quip fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Quip field names must exist in your Quip custom metadata.</p>",
         "QuipConfiguration$MessageFieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or field names of Quip messages to Amazon Kendra index field names. To create custom fields, use the <code>UpdateIndex</code> API before you map to Quip fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping data source fields</a>. The Quip field names must exist in your Quip custom metadata.</p>",
@@ -819,6 +827,7 @@
         "ConfluenceConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Confluence. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "DatabaseConfiguration$VpcConfiguration": null,
         "FsxConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Amazon FSx. Your Amazon FSx instance must reside inside your VPC.</p>",
+        "JiraConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Jira. Your Jira account must reside inside your VPC.</p>",
         "QuipConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud (VPC) to connect to your Quip. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>",
         "SharePointConfiguration$VpcConfiguration": null,
         "SlackConfiguration$VpcConfiguration": "<p>Configuration information for an Amazon Virtual Private Cloud to connect to your Slack. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/vpc-configuration.html\">Configuring a VPC</a>.</p>"
@@ -1879,10 +1888,46 @@
       "refs": {
       }
     },
+    "IssueSubEntity": {
+      "base": null,
+      "refs": {
+        "IssueSubEntityFilter$member": null
+      }
+    },
+    "IssueSubEntityFilter": {
+      "base": null,
+      "refs": {
+        "JiraConfiguration$IssueSubEntityFilter": "<p>Specify whether to crawl comments, attachments, and work logs. You can specify one or more of these options.</p>"
+      }
+    },
+    "IssueType": {
+      "base": null,
+      "refs": {
+        "JiraConfiguration$IssueType": "<p>Specify which issue types to crawl in your Jira data source. You can specify one or more of these options to crawl.</p>"
+      }
+    },
     "Issuer": {
       "base": null,
       "refs": {
         "JwtTokenTypeConfiguration$Issuer": "<p>The issuer of the token.</p>"
+      }
+    },
+    "JiraAccountUrl": {
+      "base": null,
+      "refs": {
+        "JiraConfiguration$JiraAccountUrl": "<p>The URL of the Jira account. For example, company.attlassian.net or https://jira.company.com. You can find your Jira account URL in the URL of your profile page for Jira desktop.</p>"
+      }
+    },
+    "JiraConfiguration": {
+      "base": null,
+      "refs": {
+        "DataSourceConfiguration$JiraConfiguration": "<p>Provides the configuration information to connect to Jira as your data source.</p>"
+      }
+    },
+    "JiraStatus": {
+      "base": null,
+      "refs": {
+        "JiraConfiguration$Status": "<p>Specify which statuses to crawl in your Jira data source. You can specify one or more of these options to crawl.</p>"
       }
     },
     "JsonTokenTypeConfiguration": {
@@ -2354,6 +2399,12 @@
         "SlackConfiguration$PrivateChannelFilter": "<p>The list of private channel names from your Slack workspace team. You use this if you want to index specific private channels, not all private channels. You can also use regular expression patterns to filter private channels.</p>"
       }
     },
+    "Project": {
+      "base": null,
+      "refs": {
+        "JiraConfiguration$Project": "<p>Specify which projects to crawl in your Jira data source. You can specify one or more Jira project IDs.</p>"
+      }
+    },
     "ProxyConfiguration": {
       "base": "<p>Provides the configuration information for a web proxy to connect to website hosts.</p>",
       "refs": {
@@ -2732,6 +2783,7 @@
         "ConnectionConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in Secrets Manager. The credentials should be a user/password pair. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-database.html\">Using a Database Data Source</a>. For more information about Secrets Manager, see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is Secrets Manager</a> in the <i> Secrets Manager </i> user guide.</p>",
         "FsxConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Amazon FSx file system. Windows is currently the only supported type. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username—The Active Directory user name, along with the Domain Name System (DNS) domain name. For example, <i>user@corp.example.com</i>. The Active Directory user account must have read and mounting access to the Amazon FSx file system for Windows.</p> </li> <li> <p>password—The password of the Active Directory user account with read and mounting access to the Amazon FSx Windows file system.</p> </li> </ul>",
         "GoogleDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of a Secrets Managersecret that contains the credentials required to connect to Google Drive. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-google-drive.html\">Using a Google Workspace Drive data source</a>.</p>",
+        "JiraConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Jira data source. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>jira-id—The Active Directory user name, along with the Domain Name System (DNS) domain name. For example, <i>user@corp.example.com</i>.</p> </li> <li> <p>jiraCredentials—The password of the Jira account user.</p> </li> </ul>",
         "OneDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Managersecret that contains the user name and password to connect to OneDrive. The user namd should be the application ID for the OneDrive application, and the password is the application key for the OneDrive application.</p>",
         "ProxyConfiguration$Credentials": "<p>Your secret ARN, which you can create in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">Secrets Manager</a> </p> <p>The credentials are optional. You use a secret if web proxy credentials are required to connect to a website host. Amazon Kendra currently support basic authentication to connect to a web proxy server. The secret stores your credentials.</p>",
         "QuipConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs that are required to connect to your Quip. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>accessToken—The token created in Quip. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-slack.html#quip-authentication\">Authentication for a Quip data source</a>.</p> </li> </ul>",
@@ -2975,9 +3027,12 @@
         "DataSourceSyncJob$ExecutionId": "<p>A unique identifier for the synchronization job.</p>",
         "DataSourceSyncJob$DataSourceErrorCode": "<p>If the reason that the synchronization failed is due to an error with the underlying data source, this field contains a code that identifies the error.</p>",
         "DocumentAttributeStringListValue$member": null,
+        "IssueType$member": null,
+        "JiraStatus$member": null,
         "JsonTokenTypeConfiguration$UserNameAttributeField": "<p>The user name attribute field.</p>",
         "JsonTokenTypeConfiguration$GroupAttributeField": "<p>The group attribute field.</p>",
         "PrivateChannelFilter$member": null,
+        "Project$member": null,
         "PublicChannelFilter$member": null,
         "SnapshotsDataHeaderFields$member": null,
         "SnapshotsDataRecord$member": null,

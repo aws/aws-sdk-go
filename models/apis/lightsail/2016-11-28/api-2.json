@@ -5482,7 +5482,8 @@
     "GetRelationalDatabaseBundlesRequest":{
       "type":"structure",
       "members":{
-        "pageToken":{"shape":"string"}
+        "pageToken":{"shape":"string"},
+        "includeInactive":{"shape":"boolean"}
       }
     },
     "GetRelationalDatabaseBundlesResult":{

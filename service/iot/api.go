@@ -32427,7 +32427,12 @@ type CreateJobInput struct {
 	// The job document. Required if you don't specify a value for documentSource.
 	Document *string `locationName:"document" type:"string"`
 
-	// Parameters of a managed template that you can specify to create the job document.
+	// Parameters of an Amazon Web Services managed template that you can specify
+	// to create the job document.
+	//
+	// documentParameters can only be used when creating jobs from Amazon Web Services
+	// managed templates. This parameter can't be used with custom job templates
+	// or to create jobs from them.
 	DocumentParameters map[string]*string `locationName:"documentParameters" type:"map"`
 
 	// An S3 link to the job document. Required if you don't specify a value for
@@ -32483,6 +32488,10 @@ type CreateJobInput struct {
 	// in a target. For example, a job will run on a thing when the thing is added
 	// to a target group, even after the job was completed by all things originally
 	// in the group.
+	//
+	// We recommend that you use continuous jobs instead of snapshot jobs for dynamic
+	// thing group targets. By using continuous jobs, devices that join the group
+	// receive the job execution even after the job has been created.
 	TargetSelection *string `locationName:"targetSelection" type:"string" enum:"TargetSelection"`
 
 	// A list of things and thing groups to which the job should be sent.
@@ -35468,13 +35477,21 @@ type CustomCodeSigning struct {
 	// The certificate chain.
 	CertificateChain *CodeSigningCertificateChain `locationName:"certificateChain" type:"structure"`
 
-	// The hash algorithm used to code sign the file.
+	// The hash algorithm used to code sign the file. You can use a string as the
+	// algorithm name if the target over-the-air (OTA) update devices are able to
+	// verify the signature that was generated using the same signature algorithm.
+	// For example, FreeRTOS uses SHA256 or SHA1, so you can pass either of them
+	// based on which was used for generating the signature.
 	HashAlgorithm *string `locationName:"hashAlgorithm" type:"string"`
 
 	// The signature for the file.
 	Signature *CodeSigningSignature `locationName:"signature" type:"structure"`
 
-	// The signature algorithm used to code sign the file.
+	// The signature algorithm used to code sign the file. You can use a string
+	// as the algorithm name if the target over-the-air (OTA) update devices are
+	// able to verify the signature that was generated using the same signature
+	// algorithm. For example, FreeRTOS uses ECDSA or RSA, so you can pass either
+	// of them based on which was used for generating the signature.
 	SignatureAlgorithm *string `locationName:"signatureAlgorithm" type:"string"`
 }
 
@@ -40513,6 +40530,10 @@ type DescribeManagedJobTemplateOutput struct {
 
 	// A map of key-value pairs that you can use as guidance to specify the inputs
 	// for creating a job from a managed template.
+	//
+	// documentParameters can only be used when creating jobs from Amazon Web Services
+	// managed templates. This parameter can't be used with custom job templates
+	// or to create jobs from them.
 	DocumentParameters []*DocumentParameter `locationName:"documentParameters" type:"list"`
 
 	// A list of environments that are supported with the managed job template.
@@ -42905,6 +42926,10 @@ func (s DisableTopicRuleOutput) GoString() string {
 // in a managed template job document schema. You can use the description of
 // each key as a guidance to specify the inputs during runtime when creating
 // a job.
+//
+// documentParameters can only be used when creating jobs from Amazon Web Services
+// managed templates. This parameter can't be used with custom job templates
+// or to create jobs from them.
 type DocumentParameter struct {
 	_ struct{} `type:"structure"`
 
@@ -46844,6 +46869,10 @@ type Job struct {
 	// A key-value map that pairs the patterns that need to be replaced in a managed
 	// template job document schema. You can use the description of each key as
 	// a guidance to specify the inputs during runtime when creating a job.
+	//
+	// documentParameters can only be used when creating jobs from Amazon Web Services
+	// managed templates. This parameter can't be used with custom job templates
+	// or to create jobs from them.
 	DocumentParameters map[string]*string `locationName:"documentParameters" type:"map"`
 
 	// Will be true if the job was canceled with the optional force parameter set
@@ -46900,6 +46929,10 @@ type Job struct {
 	// in a target. For example, a job will run on a device when the thing representing
 	// the device is added to a target group, even after the job was completed by
 	// all things originally in the group.
+	//
+	// We recommend that you use continuous jobs instead of snapshot jobs for dynamic
+	// thing group targets. By using continuous jobs, devices that join the group
+	// receive the job execution even after the job has been created.
 	TargetSelection *string `locationName:"targetSelection" type:"string" enum:"TargetSelection"`
 
 	// A list of IoT things and thing groups to which the job should be sent.
@@ -47649,6 +47682,10 @@ type JobSummary struct {
 	// in a target. For example, a job will run on a thing when the thing is added
 	// to a target group, even after the job was completed by all things originally
 	// in the group.
+	//
+	// We recommend that you use continuous jobs instead of snapshot jobs for dynamic
+	// thing group targets. By using continuous jobs, devices that join the group
+	// receive the job execution even after the job has been created.
 	TargetSelection *string `locationName:"targetSelection" type:"string" enum:"TargetSelection"`
 
 	// The ID of the thing group.
@@ -50811,6 +50848,10 @@ type ListJobsInput struct {
 	// in a target. For example, a job will run on a thing when the thing is added
 	// to a target group, even after the job was completed by all things originally
 	// in the group.
+	//
+	// We recommend that you use continuous jobs instead of snapshot jobs for dynamic
+	// thing group targets. By using continuous jobs, devices that join the group
+	// receive the job execution even after the job has been created.
 	TargetSelection *string `location:"querystring" locationName:"targetSelection" type:"string" enum:"TargetSelection"`
 
 	// A filter that limits the returned jobs to those for the specified group.
