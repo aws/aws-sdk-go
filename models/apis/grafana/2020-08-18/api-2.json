@@ -48,6 +48,25 @@
       ],
       "idempotent":true
     },
+    "CreateWorkspaceApiKey":{
+      "name":"CreateWorkspaceApiKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/workspaces/{workspaceId}/apikeys",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateWorkspaceApiKeyRequest"},
+      "output":{"shape":"CreateWorkspaceApiKeyResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
     "DeleteWorkspace":{
       "name":"DeleteWorkspace",
       "http":{
@@ -66,6 +85,24 @@
         {"shape":"InternalServerException"}
       ],
       "idempotent":true
+    },
+    "DeleteWorkspaceApiKey":{
+      "name":"DeleteWorkspaceApiKey",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/workspaces/{workspaceId}/apikeys/{keyName}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteWorkspaceApiKeyRequest"},
+      "output":{"shape":"DeleteWorkspaceApiKeyResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
     },
     "DescribeWorkspace":{
       "name":"DescribeWorkspace",
@@ -285,6 +322,15 @@
       "type":"list",
       "member":{"shape":"AllowedOrganization"}
     },
+    "ApiKeyName":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "ApiKeyToken":{
+      "type":"string",
+      "sensitive":true
+    },
     "AssertionAttribute":{
       "type":"string",
       "max":256,
@@ -387,6 +433,44 @@
       },
       "exception":true
     },
+    "CreateWorkspaceApiKeyRequest":{
+      "type":"structure",
+      "required":[
+        "keyName",
+        "keyRole",
+        "secondsToLive",
+        "workspaceId"
+      ],
+      "members":{
+        "keyName":{"shape":"ApiKeyName"},
+        "keyRole":{"shape":"String"},
+        "secondsToLive":{"shape":"CreateWorkspaceApiKeyRequestSecondsToLiveInteger"},
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "CreateWorkspaceApiKeyRequestSecondsToLiveInteger":{
+      "type":"integer",
+      "box":true,
+      "max":2592000,
+      "min":1
+    },
+    "CreateWorkspaceApiKeyResponse":{
+      "type":"structure",
+      "required":[
+        "key",
+        "keyName",
+        "workspaceId"
+      ],
+      "members":{
+        "key":{"shape":"ApiKeyToken"},
+        "keyName":{"shape":"ApiKeyName"},
+        "workspaceId":{"shape":"WorkspaceId"}
+      }
+    },
     "CreateWorkspaceRequest":{
       "type":"structure",
       "required":[
@@ -436,6 +520,36 @@
     "DataSourceTypesList":{
       "type":"list",
       "member":{"shape":"DataSourceType"}
+    },
+    "DeleteWorkspaceApiKeyRequest":{
+      "type":"structure",
+      "required":[
+        "keyName",
+        "workspaceId"
+      ],
+      "members":{
+        "keyName":{
+          "shape":"ApiKeyName",
+          "location":"uri",
+          "locationName":"keyName"
+        },
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "DeleteWorkspaceApiKeyResponse":{
+      "type":"structure",
+      "required":[
+        "keyName",
+        "workspaceId"
+      ],
+      "members":{
+        "keyName":{"shape":"ApiKeyName"},
+        "workspaceId":{"shape":"WorkspaceId"}
+      }
     },
     "DeleteWorkspaceRequest":{
       "type":"structure",
@@ -741,7 +855,8 @@
       "type":"string",
       "enum":[
         "ADMIN",
-        "EDITOR"
+        "EDITOR",
+        "VIEWER"
       ]
     },
     "RoleValue":{

@@ -205,6 +205,106 @@ func (c *ManagedGrafana) CreateWorkspaceWithContext(ctx aws.Context, input *Crea
 	return out, req.Send()
 }
 
+const opCreateWorkspaceApiKey = "CreateWorkspaceApiKey"
+
+// CreateWorkspaceApiKeyRequest generates a "aws/request.Request" representing the
+// client's request for the CreateWorkspaceApiKey operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateWorkspaceApiKey for more information on using the CreateWorkspaceApiKey
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateWorkspaceApiKeyRequest method.
+//    req, resp := client.CreateWorkspaceApiKeyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/CreateWorkspaceApiKey
+func (c *ManagedGrafana) CreateWorkspaceApiKeyRequest(input *CreateWorkspaceApiKeyInput) (req *request.Request, output *CreateWorkspaceApiKeyOutput) {
+	op := &request.Operation{
+		Name:       opCreateWorkspaceApiKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/workspaces/{workspaceId}/apikeys",
+	}
+
+	if input == nil {
+		input = &CreateWorkspaceApiKeyInput{}
+	}
+
+	output = &CreateWorkspaceApiKeyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateWorkspaceApiKey API operation for Amazon Managed Grafana.
+//
+// Creates an API key for the workspace. This key can be used to authenticate
+// requests sent to the workspace's HTTP API. See https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html
+// (https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html)
+// for available APIs and example requests.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Managed Grafana's
+// API operation CreateWorkspaceApiKey for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The request references a resource that does not exist.
+//
+//   * ThrottlingException
+//   The request was denied because of request throttling. Retry the request.
+//
+//   * ConflictException
+//   A resource was in an inconsistent state during an update or a deletion.
+//
+//   * ValidationException
+//   The value of a parameter in the request caused an error.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InternalServerException
+//   Unexpected error while processing the request. Retry the request.
+//
+//   * ServiceQuotaExceededException
+//   The request would cause a service quota to be exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/CreateWorkspaceApiKey
+func (c *ManagedGrafana) CreateWorkspaceApiKey(input *CreateWorkspaceApiKeyInput) (*CreateWorkspaceApiKeyOutput, error) {
+	req, out := c.CreateWorkspaceApiKeyRequest(input)
+	return out, req.Send()
+}
+
+// CreateWorkspaceApiKeyWithContext is the same as CreateWorkspaceApiKey with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateWorkspaceApiKey for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedGrafana) CreateWorkspaceApiKeyWithContext(ctx aws.Context, input *CreateWorkspaceApiKeyInput, opts ...request.Option) (*CreateWorkspaceApiKeyOutput, error) {
+	req, out := c.CreateWorkspaceApiKeyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteWorkspace = "DeleteWorkspace"
 
 // DeleteWorkspaceRequest generates a "aws/request.Request" representing the
@@ -294,6 +394,100 @@ func (c *ManagedGrafana) DeleteWorkspace(input *DeleteWorkspaceInput) (*DeleteWo
 // for more information on using Contexts.
 func (c *ManagedGrafana) DeleteWorkspaceWithContext(ctx aws.Context, input *DeleteWorkspaceInput, opts ...request.Option) (*DeleteWorkspaceOutput, error) {
 	req, out := c.DeleteWorkspaceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteWorkspaceApiKey = "DeleteWorkspaceApiKey"
+
+// DeleteWorkspaceApiKeyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteWorkspaceApiKey operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteWorkspaceApiKey for more information on using the DeleteWorkspaceApiKey
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteWorkspaceApiKeyRequest method.
+//    req, resp := client.DeleteWorkspaceApiKeyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/DeleteWorkspaceApiKey
+func (c *ManagedGrafana) DeleteWorkspaceApiKeyRequest(input *DeleteWorkspaceApiKeyInput) (req *request.Request, output *DeleteWorkspaceApiKeyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteWorkspaceApiKey,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/workspaces/{workspaceId}/apikeys/{keyName}",
+	}
+
+	if input == nil {
+		input = &DeleteWorkspaceApiKeyInput{}
+	}
+
+	output = &DeleteWorkspaceApiKeyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteWorkspaceApiKey API operation for Amazon Managed Grafana.
+//
+// Deletes an API key for a workspace.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Managed Grafana's
+// API operation DeleteWorkspaceApiKey for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The request references a resource that does not exist.
+//
+//   * ThrottlingException
+//   The request was denied because of request throttling. Retry the request.
+//
+//   * ConflictException
+//   A resource was in an inconsistent state during an update or a deletion.
+//
+//   * ValidationException
+//   The value of a parameter in the request caused an error.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InternalServerException
+//   Unexpected error while processing the request. Retry the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/DeleteWorkspaceApiKey
+func (c *ManagedGrafana) DeleteWorkspaceApiKey(input *DeleteWorkspaceApiKeyInput) (*DeleteWorkspaceApiKeyOutput, error) {
+	req, out := c.DeleteWorkspaceApiKeyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteWorkspaceApiKeyWithContext is the same as DeleteWorkspaceApiKey with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteWorkspaceApiKey for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedGrafana) DeleteWorkspaceApiKeyWithContext(ctx aws.Context, input *DeleteWorkspaceApiKeyInput, opts ...request.Option) (*DeleteWorkspaceApiKeyOutput, error) {
+	req, out := c.DeleteWorkspaceApiKeyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1933,6 +2127,167 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type CreateWorkspaceApiKeyInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the name of the key to create. Key names must be unique to the
+	// workspace.
+	//
+	// KeyName is a required field
+	KeyName *string `locationName:"keyName" min:"1" type:"string" required:"true"`
+
+	// Specifies the permission level of the key.
+	//
+	// Valid Values: VIEWER | EDITOR | ADMIN
+	//
+	// KeyRole is a required field
+	KeyRole *string `locationName:"keyRole" type:"string" required:"true"`
+
+	// Specifies the time in seconds until the key expires. Keys can be valid for
+	// up to 30 days.
+	//
+	// SecondsToLive is a required field
+	SecondsToLive *int64 `locationName:"secondsToLive" min:"1" type:"integer" required:"true"`
+
+	// The ID of the workspace in which to create an API key.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `location:"uri" locationName:"workspaceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWorkspaceApiKeyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWorkspaceApiKeyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateWorkspaceApiKeyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateWorkspaceApiKeyInput"}
+	if s.KeyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeyName"))
+	}
+	if s.KeyName != nil && len(*s.KeyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KeyName", 1))
+	}
+	if s.KeyRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeyRole"))
+	}
+	if s.SecondsToLive == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecondsToLive"))
+	}
+	if s.SecondsToLive != nil && *s.SecondsToLive < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("SecondsToLive", 1))
+	}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *CreateWorkspaceApiKeyInput) SetKeyName(v string) *CreateWorkspaceApiKeyInput {
+	s.KeyName = &v
+	return s
+}
+
+// SetKeyRole sets the KeyRole field's value.
+func (s *CreateWorkspaceApiKeyInput) SetKeyRole(v string) *CreateWorkspaceApiKeyInput {
+	s.KeyRole = &v
+	return s
+}
+
+// SetSecondsToLive sets the SecondsToLive field's value.
+func (s *CreateWorkspaceApiKeyInput) SetSecondsToLive(v int64) *CreateWorkspaceApiKeyInput {
+	s.SecondsToLive = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *CreateWorkspaceApiKeyInput) SetWorkspaceId(v string) *CreateWorkspaceApiKeyInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+type CreateWorkspaceApiKeyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The key token that was created. Use this value as a bearer token to authenticate
+	// HTTP requests to the workspace.
+	//
+	// Key is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateWorkspaceApiKeyOutput's
+	// String and GoString methods.
+	//
+	// Key is a required field
+	Key *string `locationName:"key" type:"string" required:"true" sensitive:"true"`
+
+	// The name of the key that was created.
+	//
+	// KeyName is a required field
+	KeyName *string `locationName:"keyName" min:"1" type:"string" required:"true"`
+
+	// The ID of the workspace that the key is valid for.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `locationName:"workspaceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWorkspaceApiKeyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWorkspaceApiKeyOutput) GoString() string {
+	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *CreateWorkspaceApiKeyOutput) SetKey(v string) *CreateWorkspaceApiKeyOutput {
+	s.Key = &v
+	return s
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *CreateWorkspaceApiKeyOutput) SetKeyName(v string) *CreateWorkspaceApiKeyOutput {
+	s.KeyName = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *CreateWorkspaceApiKeyOutput) SetWorkspaceId(v string) *CreateWorkspaceApiKeyOutput {
+	s.WorkspaceId = &v
+	return s
+}
+
 type CreateWorkspaceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2196,6 +2551,116 @@ func (s CreateWorkspaceOutput) GoString() string {
 // SetWorkspace sets the Workspace field's value.
 func (s *CreateWorkspaceOutput) SetWorkspace(v *WorkspaceDescription) *CreateWorkspaceOutput {
 	s.Workspace = v
+	return s
+}
+
+type DeleteWorkspaceApiKeyInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the API key to delete.
+	//
+	// KeyName is a required field
+	KeyName *string `location:"uri" locationName:"keyName" min:"1" type:"string" required:"true"`
+
+	// The ID of the workspace to delete.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `location:"uri" locationName:"workspaceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWorkspaceApiKeyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWorkspaceApiKeyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteWorkspaceApiKeyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteWorkspaceApiKeyInput"}
+	if s.KeyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeyName"))
+	}
+	if s.KeyName != nil && len(*s.KeyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KeyName", 1))
+	}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *DeleteWorkspaceApiKeyInput) SetKeyName(v string) *DeleteWorkspaceApiKeyInput {
+	s.KeyName = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *DeleteWorkspaceApiKeyInput) SetWorkspaceId(v string) *DeleteWorkspaceApiKeyInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+type DeleteWorkspaceApiKeyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the API key that was deleted.
+	//
+	// KeyName is a required field
+	KeyName *string `locationName:"keyName" min:"1" type:"string" required:"true"`
+
+	// The ID of the workspace where the key was deleted.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `locationName:"workspaceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWorkspaceApiKeyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWorkspaceApiKeyOutput) GoString() string {
+	return s.String()
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *DeleteWorkspaceApiKeyOutput) SetKeyName(v string) *DeleteWorkspaceApiKeyOutput {
+	s.KeyName = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *DeleteWorkspaceApiKeyOutput) SetWorkspaceId(v string) *DeleteWorkspaceApiKeyOutput {
+	s.WorkspaceId = &v
 	return s
 }
 
@@ -4976,6 +5441,9 @@ const (
 
 	// RoleEditor is a Role enum value
 	RoleEditor = "EDITOR"
+
+	// RoleViewer is a Role enum value
+	RoleViewer = "VIEWER"
 )
 
 // Role_Values returns all elements of the Role enum
@@ -4983,6 +5451,7 @@ func Role_Values() []string {
 	return []string{
 		RoleAdmin,
 		RoleEditor,
+		RoleViewer,
 	}
 }
 
