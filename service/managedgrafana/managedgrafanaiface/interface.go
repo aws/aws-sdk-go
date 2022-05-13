@@ -68,9 +68,17 @@ type ManagedGrafanaAPI interface {
 	CreateWorkspaceWithContext(aws.Context, *managedgrafana.CreateWorkspaceInput, ...request.Option) (*managedgrafana.CreateWorkspaceOutput, error)
 	CreateWorkspaceRequest(*managedgrafana.CreateWorkspaceInput) (*request.Request, *managedgrafana.CreateWorkspaceOutput)
 
+	CreateWorkspaceApiKey(*managedgrafana.CreateWorkspaceApiKeyInput) (*managedgrafana.CreateWorkspaceApiKeyOutput, error)
+	CreateWorkspaceApiKeyWithContext(aws.Context, *managedgrafana.CreateWorkspaceApiKeyInput, ...request.Option) (*managedgrafana.CreateWorkspaceApiKeyOutput, error)
+	CreateWorkspaceApiKeyRequest(*managedgrafana.CreateWorkspaceApiKeyInput) (*request.Request, *managedgrafana.CreateWorkspaceApiKeyOutput)
+
 	DeleteWorkspace(*managedgrafana.DeleteWorkspaceInput) (*managedgrafana.DeleteWorkspaceOutput, error)
 	DeleteWorkspaceWithContext(aws.Context, *managedgrafana.DeleteWorkspaceInput, ...request.Option) (*managedgrafana.DeleteWorkspaceOutput, error)
 	DeleteWorkspaceRequest(*managedgrafana.DeleteWorkspaceInput) (*request.Request, *managedgrafana.DeleteWorkspaceOutput)
+
+	DeleteWorkspaceApiKey(*managedgrafana.DeleteWorkspaceApiKeyInput) (*managedgrafana.DeleteWorkspaceApiKeyOutput, error)
+	DeleteWorkspaceApiKeyWithContext(aws.Context, *managedgrafana.DeleteWorkspaceApiKeyInput, ...request.Option) (*managedgrafana.DeleteWorkspaceApiKeyOutput, error)
+	DeleteWorkspaceApiKeyRequest(*managedgrafana.DeleteWorkspaceApiKeyInput) (*request.Request, *managedgrafana.DeleteWorkspaceApiKeyOutput)
 
 	DescribeWorkspace(*managedgrafana.DescribeWorkspaceInput) (*managedgrafana.DescribeWorkspaceOutput, error)
 	DescribeWorkspaceWithContext(aws.Context, *managedgrafana.DescribeWorkspaceInput, ...request.Option) (*managedgrafana.DescribeWorkspaceOutput, error)

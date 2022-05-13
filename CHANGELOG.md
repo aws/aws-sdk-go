@@ -1,3 +1,9 @@
+Release v1.44.14 (2022-05-13)
+===
+
+### Service Client Updates
+* `service/grafana`: Updates service API and documentation
+
 Release v1.44.13 (2022-05-12)
 ===
 
