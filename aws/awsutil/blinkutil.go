@@ -35,6 +35,10 @@ var (
 )
 
 func resolveParameter(parent string, parameter string, shape reflect.Value) interface{} {
+	if parameter == "" {
+		return nil
+	}
+
 	// AssumeRolePolicyDocument comes as a string. we MUST NOT modify it
 	// This may apply to other objects that AWS expects to receive as a JSON-string
 	// reference: https://docs.aws.amazon.com/sdk-for-go/api/service/iam/#CreateRoleInput
@@ -282,7 +286,7 @@ func getSlices(parameter string) []string {
 
 func unpackSlice(parent string, parameter string, shape reflect.Value) []interface{} {
 	shapeKind := getSliceKind(shape)
-	if shapeKind == reflect.Invalid {
+	if shapeKind == reflect.Invalid || parameter == "" {
 		return nil
 	}
 
