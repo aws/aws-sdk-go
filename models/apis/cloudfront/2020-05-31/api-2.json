@@ -388,7 +388,8 @@
         {"shape":"InvalidArgument"},
         {"shape":"ResponseHeadersPolicyAlreadyExists"},
         {"shape":"TooManyResponseHeadersPolicies"},
-        {"shape":"TooManyCustomHeadersInResponseHeadersPolicy"}
+        {"shape":"TooManyCustomHeadersInResponseHeadersPolicy"},
+        {"shape":"TooLongCSPInResponseHeadersPolicy"}
       ]
     },
     "CreateStreamingDistribution":{
@@ -1596,7 +1597,8 @@
         {"shape":"NoSuchResponseHeadersPolicy"},
         {"shape":"PreconditionFailed"},
         {"shape":"ResponseHeadersPolicyAlreadyExists"},
-        {"shape":"TooManyCustomHeadersInResponseHeadersPolicy"}
+        {"shape":"TooManyCustomHeadersInResponseHeadersPolicy"},
+        {"shape":"TooLongCSPInResponseHeadersPolicy"}
       ]
     },
     "UpdateStreamingDistribution":{
@@ -6428,6 +6430,14 @@
         "FunctionErrorMessage":{"shape":"sensitiveStringType"},
         "FunctionOutput":{"shape":"sensitiveStringType"}
       }
+    },
+    "TooLongCSPInResponseHeadersPolicy":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
     },
     "TooManyCacheBehaviors":{
       "type":"structure",

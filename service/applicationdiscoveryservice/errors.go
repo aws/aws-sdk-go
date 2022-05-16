@@ -11,8 +11,8 @@ const (
 	// ErrCodeAuthorizationErrorException for service response error code
 	// "AuthorizationErrorException".
 	//
-	// The AWS user account does not have permission to perform the action. Check
-	// the IAM policy associated with this account.
+	// The Amazon Web Services user account does not have permission to perform
+	// the action. Check the IAM policy associated with this account.
 	ErrCodeAuthorizationErrorException = "AuthorizationErrorException"
 
 	// ErrCodeConflictErrorException for service response error code

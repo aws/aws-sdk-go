@@ -752,6 +752,12 @@
       "type":"list",
       "member":{"shape":"AlarmRecommendation"}
     },
+    "AlarmReferenceIdList":{
+      "type":"list",
+      "member":{"shape":"String500"},
+      "max":200,
+      "min":1
+    },
     "AlarmType":{
       "type":"string",
       "enum":[
@@ -771,6 +777,7 @@
       ],
       "members":{
         "appArn":{"shape":"Arn"},
+        "assessmentSchedule":{"shape":"AppAssessmentScheduleType"},
         "complianceStatus":{"shape":"AppComplianceStatusType"},
         "creationTime":{"shape":"TimeStamp"},
         "description":{"shape":"EntityDescription"},
@@ -804,9 +811,17 @@
         "message":{"shape":"String500"},
         "policy":{"shape":"ResiliencyPolicy"},
         "resiliencyScore":{"shape":"ResiliencyScore"},
+        "resourceErrorsDetails":{"shape":"ResourceErrorsDetails"},
         "startTime":{"shape":"TimeStamp"},
         "tags":{"shape":"TagMap"}
       }
+    },
+    "AppAssessmentScheduleType":{
+      "type":"string",
+      "enum":[
+        "Disabled",
+        "Daily"
+      ]
     },
     "AppAssessmentSummary":{
       "type":"structure",
@@ -884,6 +899,7 @@
       ],
       "members":{
         "appArn":{"shape":"Arn"},
+        "assessmentSchedule":{"shape":"AppAssessmentScheduleType"},
         "complianceStatus":{"shape":"AppComplianceStatusType"},
         "creationTime":{"shape":"TimeStamp"},
         "description":{"shape":"EntityDescription"},
@@ -897,7 +913,7 @@
     },
     "AppTemplateBody":{
       "type":"string",
-      "max":5000,
+      "max":51200,
       "min":0,
       "pattern":"^[\\w\\s:,-\\.'{}\\[\\]:\"]+$"
     },
@@ -1062,6 +1078,7 @@
       "type":"structure",
       "required":["name"],
       "members":{
+        "assessmentSchedule":{"shape":"AppAssessmentScheduleType"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
@@ -1409,6 +1426,11 @@
       "type":"string",
       "pattern":"^\\S{1,50}$"
     },
+    "ErrorMessage":{
+      "type":"string",
+      "max":500,
+      "min":0
+    },
     "EstimatedCostTier":{
       "type":"string",
       "enum":[
@@ -1441,13 +1463,11 @@
     },
     "ImportResourcesToDraftAppVersionRequest":{
       "type":"structure",
-      "required":[
-        "appArn",
-        "sourceArns"
-      ],
+      "required":["appArn"],
       "members":{
         "appArn":{"shape":"Arn"},
-        "sourceArns":{"shape":"ArnList"}
+        "sourceArns":{"shape":"ArnList"},
+        "terraformSources":{"shape":"TerraformSourceList"}
       }
     },
     "ImportResourcesToDraftAppVersionResponse":{
@@ -1455,14 +1475,14 @@
       "required":[
         "appArn",
         "appVersion",
-        "sourceArns",
         "status"
       ],
       "members":{
         "appArn":{"shape":"Arn"},
         "appVersion":{"shape":"EntityVersion"},
         "sourceArns":{"shape":"ArnList"},
-        "status":{"shape":"ResourceImportStatusType"}
+        "status":{"shape":"ResourceImportStatusType"},
+        "terraformSources":{"shape":"TerraformSourceList"}
       }
     },
     "InternalServerException":{
@@ -1857,7 +1877,8 @@
       "members":{
         "identifier":{"shape":"String255"},
         "logicalStackName":{"shape":"String255"},
-        "resourceGroupName":{"shape":"EntityName"}
+        "resourceGroupName":{"shape":"EntityName"},
+        "terraformSourceName":{"shape":"String255"}
       }
     },
     "MaxResults":{
@@ -2039,7 +2060,8 @@
         "appRegistryAppNames":{"shape":"EntityNameList"},
         "logicalStackNames":{"shape":"String255List"},
         "resourceGroupNames":{"shape":"EntityNameList"},
-        "resourceNames":{"shape":"EntityNameList"}
+        "resourceNames":{"shape":"EntityNameList"},
+        "terraformSourceNames":{"shape":"String255List"}
       }
     },
     "RemoveDraftAppVersionResourceMappingsResponse":{
@@ -2128,6 +2150,25 @@
         "status":{"shape":"ResourceResolutionStatusType"}
       }
     },
+    "ResourceError":{
+      "type":"structure",
+      "members":{
+        "logicalResourceId":{"shape":"String255"},
+        "physicalResourceId":{"shape":"String255"},
+        "reason":{"shape":"ErrorMessage"}
+      }
+    },
+    "ResourceErrorList":{
+      "type":"list",
+      "member":{"shape":"ResourceError"}
+    },
+    "ResourceErrorsDetails":{
+      "type":"structure",
+      "members":{
+        "hasMoreErrors":{"shape":"BooleanOptional"},
+        "resourceErrors":{"shape":"ResourceErrorList"}
+      }
+    },
     "ResourceId":{
       "type":"string",
       "pattern":".*"
@@ -2153,7 +2194,8 @@
         "mappingType":{"shape":"ResourceMappingType"},
         "physicalResourceId":{"shape":"PhysicalResourceId"},
         "resourceGroupName":{"shape":"EntityName"},
-        "resourceName":{"shape":"EntityName"}
+        "resourceName":{"shape":"EntityName"},
+        "terraformSourceName":{"shape":"String255"}
       }
     },
     "ResourceMappingList":{
@@ -2166,7 +2208,8 @@
         "CfnStack",
         "Resource",
         "AppRegistryApp",
-        "ResourceGroup"
+        "ResourceGroup",
+        "Terraform"
       ]
     },
     "ResourceNotFoundException":{
@@ -2205,6 +2248,12 @@
         "bucket":{"shape":"String500"},
         "prefix":{"shape":"String500"}
       }
+    },
+    "S3Url":{
+      "type":"string",
+      "max":2000,
+      "min":0,
+      "pattern":"^((https://([^/]+)\\.s3((-|\\.)[^/]+)?\\.amazonaws\\.com(.cn)?)|(s3://([^/]+)))/\\S{1,2000}$"
     },
     "Seconds":{
       "type":"integer",
@@ -2299,7 +2348,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^(?!aws:).+$"
+      "pattern":"^(?!aws:)[^\\x00-\\x1f\\x22]+$"
     },
     "TagKeyList":{
       "type":"list",
@@ -2339,7 +2388,8 @@
     "TagValue":{
       "type":"string",
       "max":256,
-      "min":0
+      "min":0,
+      "pattern":"^[^\\x00-\\x1f\\x22]*$"
     },
     "TemplateFormat":{
       "type":"string",
@@ -2348,11 +2398,23 @@
         "CfnJson"
       ]
     },
+    "TerraformSource":{
+      "type":"structure",
+      "required":["s3StateFileUrl"],
+      "members":{
+        "s3StateFileUrl":{"shape":"S3Url"}
+      }
+    },
+    "TerraformSourceList":{
+      "type":"list",
+      "member":{"shape":"TerraformSource"}
+    },
     "TestRecommendation":{
       "type":"structure",
       "required":["referenceId"],
       "members":{
         "appComponentName":{"shape":"EntityId"},
+        "dependsOnAlarms":{"shape":"AlarmReferenceIdList"},
         "description":{"shape":"String500"},
         "intent":{"shape":"EntityDescription"},
         "items":{"shape":"RecommendationItemList"},
@@ -2444,6 +2506,7 @@
       "required":["appArn"],
       "members":{
         "appArn":{"shape":"Arn"},
+        "assessmentSchedule":{"shape":"AppAssessmentScheduleType"},
         "clearResiliencyPolicyArn":{"shape":"BooleanOptional"},
         "description":{"shape":"EntityDescription"},
         "policyArn":{"shape":"Arn"}

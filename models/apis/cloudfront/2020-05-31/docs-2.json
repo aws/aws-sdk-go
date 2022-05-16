@@ -2709,6 +2709,11 @@
         "TestFunctionResult$TestResult": "<p>An object that represents the result of running the function with the provided event object.</p>"
       }
     },
+    "TooLongCSPInResponseHeadersPolicy": {
+      "base": "<p>The length of the <code>Content-Security-Policy</code> header value in the response headers policy exceeds the maximum.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "refs": {
+      }
+    },
     "TooManyCacheBehaviors": {
       "base": "<p>You cannot create more cache behaviors for the distribution.</p>",
       "refs": {
@@ -3690,6 +3695,7 @@
         "TestFunctionRequest$Name": "<p>The name of the function that you are testing.</p>",
         "TestFunctionRequest$IfMatch": "<p>The current version (<code>ETag</code> value) of the function that you are testing, which you can get using <code>DescribeFunction</code>.</p>",
         "TestResult$ComputeUtilization": "<p>The amount of time that the function took to run as a percentage of the maximum allowed time. For example, a compute utilization of 35 means that the function completed in 35% of the maximum allowed time.</p>",
+        "TooLongCSPInResponseHeadersPolicy$Message": null,
         "TooManyCacheBehaviors$Message": null,
         "TooManyCachePolicies$Message": null,
         "TooManyCertificates$Message": null,

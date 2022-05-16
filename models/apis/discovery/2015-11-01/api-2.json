@@ -443,7 +443,12 @@
       "type":"list",
       "member":{"shape":"AgentConfigurationStatus"}
     },
-    "AgentId":{"type":"string"},
+    "AgentId":{
+      "type":"string",
+      "max":20,
+      "min":10,
+      "pattern":"\\S+"
+    },
     "AgentIds":{
       "type":"list",
       "member":{"shape":"AgentId"}
@@ -489,10 +494,24 @@
       "type":"list",
       "member":{"shape":"AgentInfo"}
     },
-    "ApplicationId":{"type":"string"},
+    "ApplicationDescription":{
+      "type":"string",
+      "max":1000,
+      "pattern":"(^$|[\\s\\S]*\\S[\\s\\S]*)"
+    },
+    "ApplicationId":{
+      "type":"string",
+      "max":200,
+      "pattern":"\\S+"
+    },
     "ApplicationIdsList":{
       "type":"list",
       "member":{"shape":"ApplicationId"}
+    },
+    "ApplicationName":{
+      "type":"string",
+      "max":127,
+      "pattern":"[\\s\\S]*\\S[\\s\\S]*"
     },
     "AssociateConfigurationItemsToApplicationRequest":{
       "type":"structure",
@@ -561,13 +580,21 @@
       "max":100,
       "min":1
     },
-    "Condition":{"type":"string"},
+    "Condition":{
+      "type":"string",
+      "max":200,
+      "pattern":"\\S+"
+    },
     "Configuration":{
       "type":"map",
       "key":{"shape":"String"},
       "value":{"shape":"String"}
     },
-    "ConfigurationId":{"type":"string"},
+    "ConfigurationId":{
+      "type":"string",
+      "max":200,
+      "pattern":"\\S*"
+    },
     "ConfigurationIdList":{
       "type":"list",
       "member":{"shape":"ConfigurationId"}
@@ -600,7 +627,11 @@
       "member":{"shape":"Configuration"}
     },
     "ConfigurationsDownloadUrl":{"type":"string"},
-    "ConfigurationsExportId":{"type":"string"},
+    "ConfigurationsExportId":{
+      "type":"string",
+      "max":200,
+      "pattern":"\\S*"
+    },
     "ConflictErrorException":{
       "type":"structure",
       "members":{
@@ -645,8 +676,8 @@
       "type":"structure",
       "required":["name"],
       "members":{
-        "name":{"shape":"String"},
-        "description":{"shape":"String"}
+        "name":{"shape":"ApplicationName"},
+        "description":{"shape":"ApplicationDescription"}
       }
     },
     "CreateApplicationResponse":{
@@ -711,6 +742,27 @@
         "unhealthyConnectors":{"shape":"Integer"},
         "totalConnectors":{"shape":"Integer"},
         "unknownConnectors":{"shape":"Integer"}
+      }
+    },
+    "CustomerMeCollectorInfo":{
+      "type":"structure",
+      "required":[
+        "activeMeCollectors",
+        "healthyMeCollectors",
+        "denyListedMeCollectors",
+        "shutdownMeCollectors",
+        "unhealthyMeCollectors",
+        "totalMeCollectors",
+        "unknownMeCollectors"
+      ],
+      "members":{
+        "activeMeCollectors":{"shape":"Integer"},
+        "healthyMeCollectors":{"shape":"Integer"},
+        "denyListedMeCollectors":{"shape":"Integer"},
+        "shutdownMeCollectors":{"shape":"Integer"},
+        "unhealthyMeCollectors":{"shape":"Integer"},
+        "totalMeCollectors":{"shape":"Integer"},
+        "unknownMeCollectors":{"shape":"Integer"}
       }
     },
     "DataSource":{
@@ -977,8 +1029,16 @@
         "condition":{"shape":"Condition"}
       }
     },
-    "FilterName":{"type":"string"},
-    "FilterValue":{"type":"string"},
+    "FilterName":{
+      "type":"string",
+      "max":1000,
+      "pattern":"[\\s\\S]*\\S[\\s\\S]*"
+    },
+    "FilterValue":{
+      "type":"string",
+      "max":1000,
+      "pattern":"(^$|[\\s\\S]*\\S[\\s\\S]*)"
+    },
     "FilterValues":{
       "type":"list",
       "member":{"shape":"FilterValue"}
@@ -1000,7 +1060,8 @@
         "serversMappedToApplications":{"shape":"Long"},
         "serversMappedtoTags":{"shape":"Long"},
         "agentSummary":{"shape":"CustomerAgentInfo"},
-        "connectorSummary":{"shape":"CustomerConnectorInfo"}
+        "connectorSummary":{"shape":"CustomerConnectorInfo"},
+        "meCollectorSummary":{"shape":"CustomerMeCollectorInfo"}
       }
     },
     "HomeRegionNotSetException":{
@@ -1070,7 +1131,11 @@
       "max":100,
       "min":1
     },
-    "ImportTaskIdentifier":{"type":"string"},
+    "ImportTaskIdentifier":{
+      "type":"string",
+      "max":200,
+      "pattern":"\\S*"
+    },
     "ImportTaskList":{
       "type":"list",
       "member":{"shape":"ImportTask"}
@@ -1078,12 +1143,14 @@
     "ImportTaskName":{
       "type":"string",
       "max":100,
-      "min":1
+      "min":1,
+      "pattern":"[\\s\\S]*\\S[\\s\\S]*"
     },
     "ImportURL":{
       "type":"string",
       "max":4000,
-      "min":1
+      "min":1,
+      "pattern":"\\S+:\\/\\/\\S+\\/[\\s\\S]*\\S[\\s\\S]*"
     },
     "Integer":{"type":"integer"},
     "InvalidParameterException":{
@@ -1171,9 +1238,14 @@
       "type":"structure",
       "required":["fieldName"],
       "members":{
-        "fieldName":{"shape":"String"},
+        "fieldName":{"shape":"OrderByElementFieldName"},
         "sortOrder":{"shape":"orderString"}
       }
+    },
+    "OrderByElementFieldName":{
+      "type":"string",
+      "max":1000,
+      "pattern":"[\\s\\S]*\\S[\\s\\S]*"
     },
     "OrderByList":{
       "type":"list",
@@ -1299,11 +1371,16 @@
         "agentsConfigurationStatus":{"shape":"AgentConfigurationStatusList"}
       }
     },
-    "String":{"type":"string"},
+    "String":{
+      "type":"string",
+      "max":10000,
+      "pattern":"[\\s\\S]*"
+    },
     "StringMax255":{
       "type":"string",
       "max":255,
-      "min":1
+      "min":1,
+      "pattern":"[\\s\\S]*\\S[\\s\\S]*"
     },
     "Tag":{
       "type":"structure",
@@ -1349,8 +1426,8 @@
       "required":["configurationId"],
       "members":{
         "configurationId":{"shape":"ApplicationId"},
-        "name":{"shape":"String"},
-        "description":{"shape":"String"}
+        "name":{"shape":"ApplicationName"},
+        "description":{"shape":"ApplicationDescription"}
       }
     },
     "UpdateApplicationResponse":{

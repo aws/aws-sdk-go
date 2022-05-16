@@ -499,6 +499,16 @@ const (
 	// The CloudFront function failed.
 	ErrCodeTestFunctionFailed = "TestFunctionFailed"
 
+	// ErrCodeTooLongCSPInResponseHeadersPolicy for service response error code
+	// "TooLongCSPInResponseHeadersPolicy".
+	//
+	// The length of the Content-Security-Policy header value in the response headers
+	// policy exceeds the maximum.
+	//
+	// For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+	// (formerly known as limits) in the Amazon CloudFront Developer Guide.
+	ErrCodeTooLongCSPInResponseHeadersPolicy = "TooLongCSPInResponseHeadersPolicy"
+
 	// ErrCodeTooManyCacheBehaviors for service response error code
 	// "TooManyCacheBehaviors".
 	//
