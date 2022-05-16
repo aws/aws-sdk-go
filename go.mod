@@ -8,6 +8,7 @@ require (
 	github.com/sirupsen/logrus v1.8.1
 	github.com/stretchr/testify v1.5.1
 	golang.org/x/net v0.0.0-20201110031124-69a78807bb2b
+	golang.org/x/sys v0.0.0-20220513210249-45d2b4557a2a // indirect
 )
 
 go 1.11
