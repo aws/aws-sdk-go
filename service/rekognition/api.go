@@ -575,8 +575,8 @@ func (c *Rekognition) CreateProjectVersionRequest(input *CreateProjectVersionInp
 // For more information, see Creating training and test dataset in the Amazon
 // Rekognition Custom Labels Developer Guide.
 //
-// You can train a modelin a project that doesn't have associated datasets by
-// specifying manifest files in the TrainingData and TestingData fields.
+// You can train a model in a project that doesn't have associated datasets
+// by specifying manifest files in the TrainingData and TestingData fields.
 //
 // If you open the console after training a model with manifest files, Amazon
 // Rekognition Custom Labels creates the datasets for you using the most recent

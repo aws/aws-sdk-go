@@ -1,3 +1,20 @@
+Release v1.44.15 (2022-05-16)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service API and documentation
+  * Introduced a new error (TooLongCSPInResponseHeadersPolicy) that is returned when the value of the Content-Security-Policy header in a response headers policy exceeds the maximum allowed length.
+* `service/discovery`: Updates service API and documentation
+  * Add Migration Evaluator Collector details to the GetDiscoverySummary API response
+* `service/rekognition`: Updates service documentation
+  * Documentation updates for Amazon Rekognition.
+* `service/resiliencehub`: Updates service API and documentation
+* `service/servicecatalog`: Updates service documentation
+  * Updated the descriptions for the ListAcceptedPortfolioShares API description and the PortfolioShareType parameters.
+* `service/sts`: Updates service documentation
+  * Documentation updates for AWS Security Token Service.
+* `service/workspaces-web`: Updates service API and documentation
+
 Release v1.44.14 (2022-05-13)
 ===
 

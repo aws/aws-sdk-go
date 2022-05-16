@@ -1964,6 +1964,13 @@ func (c *CloudFront) CreateResponseHeadersPolicyRequest(input *CreateResponseHea
 //   For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //   (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
+//   * ErrCodeTooLongCSPInResponseHeadersPolicy "TooLongCSPInResponseHeadersPolicy"
+//   The length of the Content-Security-Policy header value in the response headers
+//   policy exceeds the maximum.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateResponseHeadersPolicy
 func (c *CloudFront) CreateResponseHeadersPolicy(input *CreateResponseHeadersPolicyInput) (*CreateResponseHeadersPolicyOutput, error) {
 	req, out := c.CreateResponseHeadersPolicyRequest(input)
@@ -9534,6 +9541,13 @@ func (c *CloudFront) UpdateResponseHeadersPolicyRequest(input *UpdateResponseHea
 //
 //   * ErrCodeTooManyCustomHeadersInResponseHeadersPolicy "TooManyCustomHeadersInResponseHeadersPolicy"
 //   The number of custom headers in the response headers policy exceeds the maximum.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   * ErrCodeTooLongCSPInResponseHeadersPolicy "TooLongCSPInResponseHeadersPolicy"
+//   The length of the Content-Security-Policy header value in the response headers
+//   policy exceeds the maximum.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //   (formerly known as limits) in the Amazon CloudFront Developer Guide.

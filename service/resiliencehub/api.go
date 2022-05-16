@@ -4700,8 +4700,8 @@ type AddDraftAppVersionResourceMappingsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -4777,8 +4777,8 @@ type AddDraftAppVersionResourceMappingsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -4943,12 +4943,15 @@ type App struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
+
+	// Assessment execution schedule with 'Daily' or 'Disabled' values.
+	AssessmentSchedule *string `locationName:"assessmentSchedule" type:"string" enum:"AppAssessmentScheduleType"`
 
 	// The current status of compliance for the resiliency policy.
 	ComplianceStatus *string `locationName:"complianceStatus" type:"string" enum:"AppComplianceStatusType"`
@@ -4973,8 +4976,8 @@ type App struct {
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the resiliency policy. The format for this
-	// ARN is: arn:partition:dcps:region:account:resiliency-policy/policy-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	PolicyArn *string `locationName:"policyArn" type:"string"`
 
@@ -5014,6 +5017,12 @@ func (s App) GoString() string {
 // SetAppArn sets the AppArn field's value.
 func (s *App) SetAppArn(v string) *App {
 	s.AppArn = &v
+	return s
+}
+
+// SetAssessmentSchedule sets the AssessmentSchedule field's value.
+func (s *App) SetAssessmentSchedule(v string) *App {
+	s.AssessmentSchedule = &v
 	return s
 }
 
@@ -5082,8 +5091,8 @@ type AppAssessment struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	AppArn *string `locationName:"appArn" type:"string"`
 
@@ -5091,8 +5100,8 @@ type AppAssessment struct {
 	AppVersion *string `locationName:"appVersion" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:dcps:region:account:app-assessment/app-id. For more information
-	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
+	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AssessmentArn is a required field
@@ -5131,6 +5140,10 @@ type AppAssessment struct {
 
 	// The current resiliency score for the application.
 	ResiliencyScore *ResiliencyScore `locationName:"resiliencyScore" type:"structure"`
+
+	// A resource error object containing a list of errors retrieving an application's
+	// resources.
+	ResourceErrorsDetails *ResourceErrorsDetails `locationName:"resourceErrorsDetails" type:"structure"`
 
 	// The starting time for the action.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
@@ -5240,6 +5253,12 @@ func (s *AppAssessment) SetResiliencyScore(v *ResiliencyScore) *AppAssessment {
 	return s
 }
 
+// SetResourceErrorsDetails sets the ResourceErrorsDetails field's value.
+func (s *AppAssessment) SetResourceErrorsDetails(v *ResourceErrorsDetails) *AppAssessment {
+	s.ResourceErrorsDetails = v
+	return s
+}
+
 // SetStartTime sets the StartTime field's value.
 func (s *AppAssessment) SetStartTime(v time.Time) *AppAssessment {
 	s.StartTime = &v
@@ -5257,8 +5276,8 @@ type AppAssessmentSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	AppArn *string `locationName:"appArn" type:"string"`
 
@@ -5266,8 +5285,8 @@ type AppAssessmentSummary struct {
 	AppVersion *string `locationName:"appVersion" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:dcps:region:account:app-assessment/app-id. For more information
-	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
+	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AssessmentArn is a required field
@@ -5521,12 +5540,15 @@ type AppSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
+
+	// Assessment execution schedule with 'Daily' or 'Disabled' values.
+	AssessmentSchedule *string `locationName:"assessmentSchedule" type:"string" enum:"AppAssessmentScheduleType"`
 
 	// The current status of compliance for the resiliency policy.
 	ComplianceStatus *string `locationName:"complianceStatus" type:"string" enum:"AppComplianceStatusType"`
@@ -5569,6 +5591,12 @@ func (s AppSummary) GoString() string {
 // SetAppArn sets the AppArn field's value.
 func (s *AppSummary) SetAppArn(v string) *AppSummary {
 	s.AppArn = &v
+	return s
+}
+
+// SetAssessmentSchedule sets the AssessmentSchedule field's value.
+func (s *AppSummary) SetAssessmentSchedule(v string) *AppSummary {
+	s.AssessmentSchedule = &v
 	return s
 }
 
@@ -5947,6 +5975,9 @@ func (s *Cost) SetFrequency(v string) *Cost {
 type CreateAppInput struct {
 	_ struct{} `type:"structure"`
 
+	// Assessment execution schedule with 'Daily' or 'Disabled' values.
+	AssessmentSchedule *string `locationName:"assessmentSchedule" type:"string" enum:"AppAssessmentScheduleType"`
+
 	// Used for an idempotency token. A client token is a unique, case-sensitive
 	// string of up to 64 ASCII characters. You should not reuse the same client
 	// token for other API requests.
@@ -5961,8 +5992,8 @@ type CreateAppInput struct {
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the resiliency policy. The format for this
-	// ARN is: arn:partition:dcps:region:account:resiliency-policy/policy-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	PolicyArn *string `locationName:"policyArn" type:"string"`
 
@@ -6010,6 +6041,12 @@ func (s *CreateAppInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAssessmentSchedule sets the AssessmentSchedule field's value.
+func (s *CreateAppInput) SetAssessmentSchedule(v string) *CreateAppInput {
+	s.AssessmentSchedule = &v
+	return s
 }
 
 // SetClientToken sets the ClientToken field's value.
@@ -6080,8 +6117,8 @@ type CreateRecommendationTemplateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:dcps:region:account:app-assessment/app-id. For more information
-	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
+	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AssessmentArn is a required field
@@ -6439,8 +6476,8 @@ type DeleteAppAssessmentInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:dcps:region:account:app-assessment/app-id. For more information
-	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
+	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AssessmentArn is a required field
@@ -6502,8 +6539,8 @@ type DeleteAppAssessmentOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:dcps:region:account:app-assessment/app-id. For more information
-	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
+	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AssessmentArn is a required field
@@ -6549,8 +6586,8 @@ type DeleteAppInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -6621,8 +6658,8 @@ type DeleteAppOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -6766,8 +6803,8 @@ type DeleteResiliencyPolicyInput struct {
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The Amazon Resource Name (ARN) of the resiliency policy. The format for this
-	// ARN is: arn:partition:dcps:region:account:resiliency-policy/policy-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// PolicyArn is a required field
@@ -6824,8 +6861,8 @@ type DeleteResiliencyPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the resiliency policy. The format for this
-	// ARN is: arn:partition:dcps:region:account:resiliency-policy/policy-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// PolicyArn is a required field
@@ -6860,8 +6897,8 @@ type DescribeAppAssessmentInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:dcps:region:account:app-assessment/app-id. For more information
-	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
+	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AssessmentArn is a required field
@@ -6944,8 +6981,8 @@ type DescribeAppInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -7027,8 +7064,8 @@ type DescribeAppVersionResourcesResolutionStatusInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -7102,8 +7139,8 @@ type DescribeAppVersionResourcesResolutionStatusOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -7180,8 +7217,8 @@ type DescribeAppVersionTemplateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -7243,8 +7280,8 @@ type DescribeAppVersionTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -7301,8 +7338,8 @@ type DescribeDraftAppVersionResourcesImportStatusInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -7350,8 +7387,8 @@ type DescribeDraftAppVersionResourcesImportStatusOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -7428,8 +7465,8 @@ type DescribeResiliencyPolicyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the resiliency policy. The format for this
-	// ARN is: arn:partition:dcps:region:account:resiliency-policy/policy-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// PolicyArn is a required field
@@ -7689,17 +7726,18 @@ type ImportResourcesToDraftAppVersionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
 
 	// The Amazon Resource Names (ARNs) for the resources that you want to import.
-	//
-	// SourceArns is a required field
-	SourceArns []*string `locationName:"sourceArns" type:"list" required:"true"`
+	SourceArns []*string `locationName:"sourceArns" type:"list"`
+
+	// A list of terraform file s3 URLs you need to import.
+	TerraformSources []*TerraformSource `locationName:"terraformSources" type:"list"`
 }
 
 // String returns the string representation.
@@ -7726,8 +7764,15 @@ func (s *ImportResourcesToDraftAppVersionInput) Validate() error {
 	if s.AppArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("AppArn"))
 	}
-	if s.SourceArns == nil {
-		invalidParams.Add(request.NewErrParamRequired("SourceArns"))
+	if s.TerraformSources != nil {
+		for i, v := range s.TerraformSources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TerraformSources", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7748,12 +7793,18 @@ func (s *ImportResourcesToDraftAppVersionInput) SetSourceArns(v []*string) *Impo
 	return s
 }
 
+// SetTerraformSources sets the TerraformSources field's value.
+func (s *ImportResourcesToDraftAppVersionInput) SetTerraformSources(v []*TerraformSource) *ImportResourcesToDraftAppVersionInput {
+	s.TerraformSources = v
+	return s
+}
+
 type ImportResourcesToDraftAppVersionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -7765,14 +7816,15 @@ type ImportResourcesToDraftAppVersionOutput struct {
 	AppVersion *string `locationName:"appVersion" type:"string" required:"true"`
 
 	// The Amazon Resource Names (ARNs) for the resources that you imported.
-	//
-	// SourceArns is a required field
-	SourceArns []*string `locationName:"sourceArns" type:"list" required:"true"`
+	SourceArns []*string `locationName:"sourceArns" type:"list"`
 
 	// The status of the action.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"ResourceImportStatusType"`
+
+	// A list of terraform file s3 URLs you need to import.
+	TerraformSources []*TerraformSource `locationName:"terraformSources" type:"list"`
 }
 
 // String returns the string representation.
@@ -7814,6 +7866,12 @@ func (s *ImportResourcesToDraftAppVersionOutput) SetSourceArns(v []*string) *Imp
 // SetStatus sets the Status field's value.
 func (s *ImportResourcesToDraftAppVersionOutput) SetStatus(v string) *ImportResourcesToDraftAppVersionOutput {
 	s.Status = &v
+	return s
+}
+
+// SetTerraformSources sets the TerraformSources field's value.
+func (s *ImportResourcesToDraftAppVersionOutput) SetTerraformSources(v []*TerraformSource) *ImportResourcesToDraftAppVersionOutput {
+	s.TerraformSources = v
 	return s
 }
 
@@ -7886,8 +7944,8 @@ type ListAlarmRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:dcps:region:account:app-assessment/app-id. For more information
-	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
+	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AssessmentArn is a required field
@@ -8003,8 +8061,8 @@ type ListAppAssessmentsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	AppArn *string `location:"querystring" locationName:"appArn" type:"string"`
 
@@ -8164,8 +8222,8 @@ type ListAppComponentCompliancesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:dcps:region:account:app-assessment/app-id. For more information
-	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
+	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AssessmentArn is a required field
@@ -8280,8 +8338,8 @@ type ListAppComponentRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:dcps:region:account:app-assessment/app-id. For more information
-	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
+	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AssessmentArn is a required field
@@ -8396,8 +8454,8 @@ type ListAppVersionResourceMappingsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -8528,8 +8586,8 @@ type ListAppVersionResourcesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -8679,8 +8737,8 @@ type ListAppVersionsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -8793,8 +8851,8 @@ type ListAppsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	AppArn *string `location:"querystring" locationName:"appArn" type:"string"`
 
@@ -8911,8 +8969,8 @@ type ListRecommendationTemplatesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:dcps:region:account:app-assessment/app-id. For more information
-	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
+	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AssessmentArn is a required field
@@ -9169,8 +9227,8 @@ type ListSopRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:dcps:region:account:app-assessment/app-id. For more information
-	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
+	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AssessmentArn is a required field
@@ -9467,8 +9525,8 @@ type ListTestRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:dcps:region:account:app-assessment/app-id. For more information
-	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
+	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AssessmentArn is a required field
@@ -9581,8 +9639,8 @@ type ListUnsupportedAppVersionResourcesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -9742,6 +9800,9 @@ type LogicalResourceId struct {
 
 	// The name of the resource group that this resource belongs to.
 	ResourceGroupName *string `locationName:"resourceGroupName" type:"string"`
+
+	// The name of the Terraform S3 state file this resource belongs to.
+	TerraformSourceName *string `locationName:"terraformSourceName" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -9777,6 +9838,12 @@ func (s *LogicalResourceId) SetLogicalStackName(v string) *LogicalResourceId {
 // SetResourceGroupName sets the ResourceGroupName field's value.
 func (s *LogicalResourceId) SetResourceGroupName(v string) *LogicalResourceId {
 	s.ResourceGroupName = &v
+	return s
+}
+
+// SetTerraformSourceName sets the TerraformSourceName field's value.
+func (s *LogicalResourceId) SetTerraformSourceName(v string) *LogicalResourceId {
+	s.TerraformSourceName = &v
 	return s
 }
 
@@ -9950,8 +10017,8 @@ type PublishAppVersionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -9999,8 +10066,8 @@ type PublishAppVersionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -10044,8 +10111,8 @@ type PutDraftAppVersionTemplateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -10107,8 +10174,8 @@ type PutDraftAppVersionTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	AppArn *string `locationName:"appArn" type:"string"`
 
@@ -10284,14 +10351,14 @@ type RecommendationTemplate struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	AppArn *string `locationName:"appArn" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the assessment. The format for this ARN
-	// is: arn:partition:dcps:region:account:app-assessment/app-id. For more information
-	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app-assessment/app-id. For
+	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AssessmentArn is a required field
@@ -10475,8 +10542,8 @@ type RemoveDraftAppVersionResourceMappingsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -10493,6 +10560,8 @@ type RemoveDraftAppVersionResourceMappingsInput struct {
 
 	// The names of the resources to remove from the resource mappings.
 	ResourceNames []*string `locationName:"resourceNames" type:"list"`
+
+	TerraformSourceNames []*string `locationName:"terraformSourceNames" type:"list"`
 }
 
 // String returns the string representation.
@@ -10556,12 +10625,18 @@ func (s *RemoveDraftAppVersionResourceMappingsInput) SetResourceNames(v []*strin
 	return s
 }
 
+// SetTerraformSourceNames sets the TerraformSourceNames field's value.
+func (s *RemoveDraftAppVersionResourceMappingsInput) SetTerraformSourceNames(v []*string) *RemoveDraftAppVersionResourceMappingsInput {
+	s.TerraformSourceNames = v
+	return s
+}
+
 type RemoveDraftAppVersionResourceMappingsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	AppArn *string `locationName:"appArn" type:"string"`
 
@@ -10617,8 +10692,8 @@ type ResiliencyPolicy struct {
 	Policy map[string]*FailurePolicy `locationName:"policy" type:"map"`
 
 	// The Amazon Resource Name (ARN) of the resiliency policy. The format for this
-	// ARN is: arn:partition:dcps:region:account:resiliency-policy/policy-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	PolicyArn *string `locationName:"policyArn" type:"string"`
 
@@ -10763,8 +10838,8 @@ type ResolveAppVersionResourcesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -10826,8 +10901,8 @@ type ResolveAppVersionResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -10891,6 +10966,98 @@ func (s *ResolveAppVersionResourcesOutput) SetStatus(v string) *ResolveAppVersio
 	return s
 }
 
+// Defines application resource errors.
+type ResourceError struct {
+	_ struct{} `type:"structure"`
+
+	// This is the identifier of the resource.
+	LogicalResourceId *string `locationName:"logicalResourceId" min:"1" type:"string"`
+
+	// This is the identifier of the physical resource.
+	PhysicalResourceId *string `locationName:"physicalResourceId" min:"1" type:"string"`
+
+	// This is the error message.
+	Reason *string `locationName:"reason" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceError) GoString() string {
+	return s.String()
+}
+
+// SetLogicalResourceId sets the LogicalResourceId field's value.
+func (s *ResourceError) SetLogicalResourceId(v string) *ResourceError {
+	s.LogicalResourceId = &v
+	return s
+}
+
+// SetPhysicalResourceId sets the PhysicalResourceId field's value.
+func (s *ResourceError) SetPhysicalResourceId(v string) *ResourceError {
+	s.PhysicalResourceId = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *ResourceError) SetReason(v string) *ResourceError {
+	s.Reason = &v
+	return s
+}
+
+// A list of errors retrieving an application's resources.
+type ResourceErrorsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// This indicates if there are more errors not listed in the resourceErrors
+	// list.
+	HasMoreErrors *bool `locationName:"hasMoreErrors" type:"boolean"`
+
+	// A list of errors retrieving an application's resources.
+	ResourceErrors []*ResourceError `locationName:"resourceErrors" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceErrorsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceErrorsDetails) GoString() string {
+	return s.String()
+}
+
+// SetHasMoreErrors sets the HasMoreErrors field's value.
+func (s *ResourceErrorsDetails) SetHasMoreErrors(v bool) *ResourceErrorsDetails {
+	s.HasMoreErrors = &v
+	return s
+}
+
+// SetResourceErrors sets the ResourceErrors field's value.
+func (s *ResourceErrorsDetails) SetResourceErrors(v []*ResourceError) *ResourceErrorsDetails {
+	s.ResourceErrors = v
+	return s
+}
+
 // Defines a resource mapping.
 type ResourceMapping struct {
 	_ struct{} `type:"structure"`
@@ -10936,6 +11103,9 @@ type ResourceMapping struct {
 
 	// The name of the resource this resource is mapped to.
 	ResourceName *string `locationName:"resourceName" type:"string"`
+
+	// The short name of the Terraform source.
+	TerraformSourceName *string `locationName:"terraformSourceName" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -10967,6 +11137,9 @@ func (s *ResourceMapping) Validate() error {
 	}
 	if s.PhysicalResourceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("PhysicalResourceId"))
+	}
+	if s.TerraformSourceName != nil && len(*s.TerraformSourceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TerraformSourceName", 1))
 	}
 	if s.PhysicalResourceId != nil {
 		if err := s.PhysicalResourceId.Validate(); err != nil {
@@ -11013,6 +11186,12 @@ func (s *ResourceMapping) SetResourceGroupName(v string) *ResourceMapping {
 // SetResourceName sets the ResourceName field's value.
 func (s *ResourceMapping) SetResourceName(v string) *ResourceMapping {
 	s.ResourceName = &v
+	return s
+}
+
+// SetTerraformSourceName sets the TerraformSourceName field's value.
+func (s *ResourceMapping) SetTerraformSourceName(v string) *ResourceMapping {
+	s.TerraformSourceName = &v
 	return s
 }
 
@@ -11298,8 +11477,8 @@ type StartAppAssessmentInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
@@ -11527,12 +11706,63 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// The Terraform s3 state file you need to import.
+type TerraformSource struct {
+	_ struct{} `type:"structure"`
+
+	// The Terraform s3 state file you need to import.
+	//
+	// S3StateFileUrl is a required field
+	S3StateFileUrl *string `locationName:"s3StateFileUrl" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TerraformSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TerraformSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TerraformSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TerraformSource"}
+	if s.S3StateFileUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3StateFileUrl"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3StateFileUrl sets the S3StateFileUrl field's value.
+func (s *TerraformSource) SetS3StateFileUrl(v string) *TerraformSource {
+	s.S3StateFileUrl = &v
+	return s
+}
+
 // Defines a test recommendation.
 type TestRecommendation struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the application component.
 	AppComponentName *string `locationName:"appComponentName" type:"string"`
+
+	// A list of recommended alarms that are used in the test and must be exported
+	// before or with the test.
+	DependsOnAlarms []*string `locationName:"dependsOnAlarms" min:"1" type:"list"`
 
 	// The description for the test recommendation.
 	Description *string `locationName:"description" min:"1" type:"string"`
@@ -11585,6 +11815,12 @@ func (s TestRecommendation) GoString() string {
 // SetAppComponentName sets the AppComponentName field's value.
 func (s *TestRecommendation) SetAppComponentName(v string) *TestRecommendation {
 	s.AppComponentName = &v
+	return s
+}
+
+// SetDependsOnAlarms sets the DependsOnAlarms field's value.
+func (s *TestRecommendation) SetDependsOnAlarms(v []*string) *TestRecommendation {
+	s.DependsOnAlarms = v
 	return s
 }
 
@@ -11861,12 +12097,15 @@ type UpdateAppInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the application. The format for this ARN
-	// is: arn:partition:dcps:region:account:app/app-id. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// is: arn:partition:resiliencehub:region:account:app/app-id. For more information
+	// about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// AppArn is a required field
 	AppArn *string `locationName:"appArn" type:"string" required:"true"`
+
+	// Assessment execution schedule with 'Daily' or 'Disabled' values.
+	AssessmentSchedule *string `locationName:"assessmentSchedule" type:"string" enum:"AppAssessmentScheduleType"`
 
 	// Specifies if the resiliency policy ARN should be cleared.
 	ClearResiliencyPolicyArn *bool `locationName:"clearResiliencyPolicyArn" type:"boolean"`
@@ -11875,8 +12114,8 @@ type UpdateAppInput struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the resiliency policy. The format for this
-	// ARN is: arn:partition:dcps:region:account:resiliency-policy/policy-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	PolicyArn *string `locationName:"policyArn" type:"string"`
 }
@@ -11915,6 +12154,12 @@ func (s *UpdateAppInput) Validate() error {
 // SetAppArn sets the AppArn field's value.
 func (s *UpdateAppInput) SetAppArn(v string) *UpdateAppInput {
 	s.AppArn = &v
+	return s
+}
+
+// SetAssessmentSchedule sets the AssessmentSchedule field's value.
+func (s *UpdateAppInput) SetAssessmentSchedule(v string) *UpdateAppInput {
+	s.AssessmentSchedule = &v
 	return s
 }
 
@@ -11982,8 +12227,8 @@ type UpdateResiliencyPolicyInput struct {
 	Policy map[string]*FailurePolicy `locationName:"policy" type:"map"`
 
 	// The Amazon Resource Name (ARN) of the resiliency policy. The format for this
-	// ARN is: arn:partition:dcps:region:account:resiliency-policy/policy-id. For
-	// more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// ARN is: arn:partition:resiliencehub:region:account:resiliency-policy/policy-id.
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	//
 	// PolicyArn is a required field
@@ -12200,6 +12445,22 @@ func AlarmType_Values() []string {
 		AlarmTypeCanary,
 		AlarmTypeLogs,
 		AlarmTypeEvent,
+	}
+}
+
+const (
+	// AppAssessmentScheduleTypeDisabled is a AppAssessmentScheduleType enum value
+	AppAssessmentScheduleTypeDisabled = "Disabled"
+
+	// AppAssessmentScheduleTypeDaily is a AppAssessmentScheduleType enum value
+	AppAssessmentScheduleTypeDaily = "Daily"
+)
+
+// AppAssessmentScheduleType_Values returns all elements of the AppAssessmentScheduleType enum
+func AppAssessmentScheduleType_Values() []string {
+	return []string{
+		AppAssessmentScheduleTypeDisabled,
+		AppAssessmentScheduleTypeDaily,
 	}
 }
 
@@ -12591,6 +12852,9 @@ const (
 
 	// ResourceMappingTypeResourceGroup is a ResourceMappingType enum value
 	ResourceMappingTypeResourceGroup = "ResourceGroup"
+
+	// ResourceMappingTypeTerraform is a ResourceMappingType enum value
+	ResourceMappingTypeTerraform = "Terraform"
 )
 
 // ResourceMappingType_Values returns all elements of the ResourceMappingType enum
@@ -12600,6 +12864,7 @@ func ResourceMappingType_Values() []string {
 		ResourceMappingTypeResource,
 		ResourceMappingTypeAppRegistryApp,
 		ResourceMappingTypeResourceGroup,
+		ResourceMappingTypeTerraform,
 	}
 }
 

@@ -552,6 +552,9 @@ func (c *WorkSpacesWeb) CreateIdentityProviderRequest(input *CreateIdentityProvi
 //   * ThrottlingException
 //   There is a throttling error.
 //
+//   * ServiceQuotaExceededException
+//   The service quota has been exceeded.
+//
 //   * ValidationException
 //   There is a validation error.
 //
@@ -4983,7 +4986,11 @@ type BrowserSettings struct {
 
 	// A JSON string containing Chrome Enterprise policies that will be applied
 	// to all streaming sessions.
-	BrowserPolicy *string `locationName:"browserPolicy" min:"2" type:"string"`
+	//
+	// BrowserPolicy is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by BrowserSettings's
+	// String and GoString methods.
+	BrowserPolicy *string `locationName:"browserPolicy" min:"2" type:"string" sensitive:"true"`
 
 	// The ARN of the browser settings.
 	//
@@ -5284,8 +5291,12 @@ type CreateBrowserSettingsInput struct {
 	// A JSON string containing Chrome Enterprise policies that will be applied
 	// to all streaming sessions.
 	//
+	// BrowserPolicy is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateBrowserSettingsInput's
+	// String and GoString methods.
+	//
 	// BrowserPolicy is a required field
-	BrowserPolicy *string `locationName:"browserPolicy" min:"2" type:"string" required:"true"`
+	BrowserPolicy *string `locationName:"browserPolicy" min:"2" type:"string" required:"true" sensitive:"true"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request. Idempotency ensures that an API request completes only once.
@@ -5446,15 +5457,24 @@ type CreateIdentityProviderInput struct {
 	//    discovery URL specified by oidc_issuer key jwks_uri if not available from
 	//    discovery URL specified by oidc_issuer key
 	//
-	//    * For SAML providers: MetadataFile OR MetadataURL IDPSignout optional
+	//    * For SAML providers: MetadataFile OR MetadataURL IDPSignout (boolean)
+	//    optional
+	//
+	// IdentityProviderDetails is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateIdentityProviderInput's
+	// String and GoString methods.
 	//
 	// IdentityProviderDetails is a required field
-	IdentityProviderDetails map[string]*string `locationName:"identityProviderDetails" type:"map" required:"true"`
+	IdentityProviderDetails map[string]*string `locationName:"identityProviderDetails" type:"map" required:"true" sensitive:"true"`
 
 	// The identity provider name.
 	//
+	// IdentityProviderName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateIdentityProviderInput's
+	// String and GoString methods.
+	//
 	// IdentityProviderName is a required field
-	IdentityProviderName *string `locationName:"identityProviderName" min:"1" type:"string" required:"true"`
+	IdentityProviderName *string `locationName:"identityProviderName" min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The identity provider type.
 	//
@@ -5757,7 +5777,11 @@ type CreatePortalInput struct {
 
 	// The name of the web portal. This is not visible to users who log into the
 	// web portal.
-	DisplayName *string `locationName:"displayName" min:"1" type:"string"`
+	//
+	// DisplayName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreatePortalInput's
+	// String and GoString methods.
+	DisplayName *string `locationName:"displayName" min:"1" type:"string" sensitive:"true"`
 
 	// The tags to add to the web portal. A tag is a key-value pair.
 	Tags []*Tag `locationName:"tags" type:"list"`
@@ -6021,11 +6045,18 @@ type CreateUserSettingsInput struct {
 	// CopyAllowed is a required field
 	CopyAllowed *string `locationName:"copyAllowed" type:"string" required:"true" enum:"EnabledType"`
 
+	// The amount of time that a streaming session remains active after users disconnect.
+	DisconnectTimeoutInMinutes *int64 `locationName:"disconnectTimeoutInMinutes" min:"1" type:"integer"`
+
 	// Specifies whether the user can download files from the streaming session
 	// to the local device.
 	//
 	// DownloadAllowed is a required field
 	DownloadAllowed *string `locationName:"downloadAllowed" type:"string" required:"true" enum:"EnabledType"`
+
+	// The amount of time that users can be idle (inactive) before they are disconnected
+	// from their streaming session and the disconnect timeout interval begins.
+	IdleDisconnectTimeoutInMinutes *int64 `locationName:"idleDisconnectTimeoutInMinutes" type:"integer"`
 
 	// Specifies whether the user can paste text from the local device to the streaming
 	// session.
@@ -6075,6 +6106,9 @@ func (s *CreateUserSettingsInput) Validate() error {
 	if s.CopyAllowed == nil {
 		invalidParams.Add(request.NewErrParamRequired("CopyAllowed"))
 	}
+	if s.DisconnectTimeoutInMinutes != nil && *s.DisconnectTimeoutInMinutes < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DisconnectTimeoutInMinutes", 1))
+	}
 	if s.DownloadAllowed == nil {
 		invalidParams.Add(request.NewErrParamRequired("DownloadAllowed"))
 	}
@@ -6116,9 +6150,21 @@ func (s *CreateUserSettingsInput) SetCopyAllowed(v string) *CreateUserSettingsIn
 	return s
 }
 
+// SetDisconnectTimeoutInMinutes sets the DisconnectTimeoutInMinutes field's value.
+func (s *CreateUserSettingsInput) SetDisconnectTimeoutInMinutes(v int64) *CreateUserSettingsInput {
+	s.DisconnectTimeoutInMinutes = &v
+	return s
+}
+
 // SetDownloadAllowed sets the DownloadAllowed field's value.
 func (s *CreateUserSettingsInput) SetDownloadAllowed(v string) *CreateUserSettingsInput {
 	s.DownloadAllowed = &v
+	return s
+}
+
+// SetIdleDisconnectTimeoutInMinutes sets the IdleDisconnectTimeoutInMinutes field's value.
+func (s *CreateUserSettingsInput) SetIdleDisconnectTimeoutInMinutes(v int64) *CreateUserSettingsInput {
+	s.IdleDisconnectTimeoutInMinutes = &v
 	return s
 }
 
@@ -7592,10 +7638,18 @@ type IdentityProvider struct {
 	//    discovery URL specified by oidc_issuer key
 	//
 	//    * For SAML providers: MetadataFile OR MetadataURL IDPSignout optional
-	IdentityProviderDetails map[string]*string `locationName:"identityProviderDetails" type:"map"`
+	//
+	// IdentityProviderDetails is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IdentityProvider's
+	// String and GoString methods.
+	IdentityProviderDetails map[string]*string `locationName:"identityProviderDetails" type:"map" sensitive:"true"`
 
 	// The identity provider name.
-	IdentityProviderName *string `locationName:"identityProviderName" min:"1" type:"string"`
+	//
+	// IdentityProviderName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IdentityProvider's
+	// String and GoString methods.
+	IdentityProviderName *string `locationName:"identityProviderName" min:"1" type:"string" sensitive:"true"`
 
 	// The identity provider type.
 	IdentityProviderType *string `locationName:"identityProviderType" type:"string" enum:"IdentityProviderType"`
@@ -7651,7 +7705,11 @@ type IdentityProviderSummary struct {
 	IdentityProviderArn *string `locationName:"identityProviderArn" min:"20" type:"string"`
 
 	// The identity provider name.
-	IdentityProviderName *string `locationName:"identityProviderName" min:"1" type:"string"`
+	//
+	// IdentityProviderName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IdentityProviderSummary's
+	// String and GoString methods.
+	IdentityProviderName *string `locationName:"identityProviderName" min:"1" type:"string" sensitive:"true"`
 
 	// The identity provider type.
 	IdentityProviderType *string `locationName:"identityProviderType" type:"string" enum:"IdentityProviderType"`
@@ -8685,7 +8743,11 @@ type Portal struct {
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
 
 	// The name of the web portal.
-	DisplayName *string `locationName:"displayName" min:"1" type:"string"`
+	//
+	// DisplayName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Portal's
+	// String and GoString methods.
+	DisplayName *string `locationName:"displayName" min:"1" type:"string" sensitive:"true"`
 
 	// The ARN of the network settings that is associated with the web portal.
 	NetworkSettingsArn *string `locationName:"networkSettingsArn" min:"20" type:"string"`
@@ -8817,7 +8879,11 @@ type PortalSummary struct {
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
 
 	// The name of the web portal.
-	DisplayName *string `locationName:"displayName" min:"1" type:"string"`
+	//
+	// DisplayName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PortalSummary's
+	// String and GoString methods.
+	DisplayName *string `locationName:"displayName" min:"1" type:"string" sensitive:"true"`
 
 	// The ARN of the network settings that is associated with the web portal.
 	NetworkSettingsArn *string `locationName:"networkSettingsArn" min:"20" type:"string"`
@@ -9074,17 +9140,25 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 
 // The tag.
 type Tag struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The key of the tag.
 	//
+	// Key is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Tag's
+	// String and GoString methods.
+	//
 	// Key is a required field
-	Key *string `min:"1" type:"string" required:"true"`
+	Key *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The value of the tag
 	//
+	// Value is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Tag's
+	// String and GoString methods.
+	//
 	// Value is a required field
-	Value *string `type:"string" required:"true"`
+	Value *string `type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -9558,7 +9632,11 @@ type UpdateBrowserSettingsInput struct {
 
 	// A JSON string containing Chrome Enterprise policies that will be applied
 	// to all streaming sessions.
-	BrowserPolicy *string `locationName:"browserPolicy" min:"2" type:"string"`
+	//
+	// BrowserPolicy is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateBrowserSettingsInput's
+	// String and GoString methods.
+	BrowserPolicy *string `locationName:"browserPolicy" min:"2" type:"string" sensitive:"true"`
 
 	// The ARN of the browser settings.
 	//
@@ -9685,11 +9763,36 @@ type UpdateIdentityProviderInput struct {
 	// IdentityProviderArn is a required field
 	IdentityProviderArn *string `location:"uri" locationName:"identityProviderArn" min:"20" type:"string" required:"true"`
 
-	// The details of the identity provider.
-	IdentityProviderDetails map[string]*string `locationName:"identityProviderDetails" type:"map"`
+	// The details of the identity provider. The following list describes the provider
+	// detail keys for each identity provider type.
+	//
+	//    * For Google and Login with Amazon: client_id client_secret authorize_scopes
+	//
+	//    * For Facebook: client_id client_secret authorize_scopes api_version
+	//
+	//    * For Sign in with Apple: client_id team_id key_id private_key authorize_scopes
+	//
+	//    * For OIDC providers: client_id client_secret attributes_request_method
+	//    oidc_issuer authorize_scopes authorize_url if not available from discovery
+	//    URL specified by oidc_issuer key token_url if not available from discovery
+	//    URL specified by oidc_issuer key attributes_url if not available from
+	//    discovery URL specified by oidc_issuer key jwks_uri if not available from
+	//    discovery URL specified by oidc_issuer key
+	//
+	//    * For SAML providers: MetadataFile OR MetadataURL IDPSignout (boolean)
+	//    optional
+	//
+	// IdentityProviderDetails is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateIdentityProviderInput's
+	// String and GoString methods.
+	IdentityProviderDetails map[string]*string `locationName:"identityProviderDetails" type:"map" sensitive:"true"`
 
 	// The name of the identity provider.
-	IdentityProviderName *string `locationName:"identityProviderName" min:"1" type:"string"`
+	//
+	// IdentityProviderName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateIdentityProviderInput's
+	// String and GoString methods.
+	IdentityProviderName *string `locationName:"identityProviderName" min:"1" type:"string" sensitive:"true"`
 
 	// The type of the identity provider.
 	IdentityProviderType *string `locationName:"identityProviderType" type:"string" enum:"IdentityProviderType"`
@@ -9943,7 +10046,11 @@ type UpdatePortalInput struct {
 
 	// The name of the web portal. This is not visible to users who log into the
 	// web portal.
-	DisplayName *string `locationName:"displayName" min:"1" type:"string"`
+	//
+	// DisplayName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdatePortalInput's
+	// String and GoString methods.
+	DisplayName *string `locationName:"displayName" min:"1" type:"string" sensitive:"true"`
 
 	// The ARN of the web portal.
 	//
@@ -10167,9 +10274,16 @@ type UpdateUserSettingsInput struct {
 	// local device.
 	CopyAllowed *string `locationName:"copyAllowed" type:"string" enum:"EnabledType"`
 
+	// The amount of time that a streaming session remains active after users disconnect.
+	DisconnectTimeoutInMinutes *int64 `locationName:"disconnectTimeoutInMinutes" min:"1" type:"integer"`
+
 	// Specifies whether the user can download files from the streaming session
 	// to the local device.
 	DownloadAllowed *string `locationName:"downloadAllowed" type:"string" enum:"EnabledType"`
+
+	// The amount of time that users can be idle (inactive) before they are disconnected
+	// from their streaming session and the disconnect timeout interval begins.
+	IdleDisconnectTimeoutInMinutes *int64 `locationName:"idleDisconnectTimeoutInMinutes" type:"integer"`
 
 	// Specifies whether the user can paste text from the local device to the streaming
 	// session.
@@ -10212,6 +10326,9 @@ func (s *UpdateUserSettingsInput) Validate() error {
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
 	}
+	if s.DisconnectTimeoutInMinutes != nil && *s.DisconnectTimeoutInMinutes < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DisconnectTimeoutInMinutes", 1))
+	}
 	if s.UserSettingsArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserSettingsArn"))
 	}
@@ -10237,9 +10354,21 @@ func (s *UpdateUserSettingsInput) SetCopyAllowed(v string) *UpdateUserSettingsIn
 	return s
 }
 
+// SetDisconnectTimeoutInMinutes sets the DisconnectTimeoutInMinutes field's value.
+func (s *UpdateUserSettingsInput) SetDisconnectTimeoutInMinutes(v int64) *UpdateUserSettingsInput {
+	s.DisconnectTimeoutInMinutes = &v
+	return s
+}
+
 // SetDownloadAllowed sets the DownloadAllowed field's value.
 func (s *UpdateUserSettingsInput) SetDownloadAllowed(v string) *UpdateUserSettingsInput {
 	s.DownloadAllowed = &v
+	return s
+}
+
+// SetIdleDisconnectTimeoutInMinutes sets the IdleDisconnectTimeoutInMinutes field's value.
+func (s *UpdateUserSettingsInput) SetIdleDisconnectTimeoutInMinutes(v int64) *UpdateUserSettingsInput {
+	s.IdleDisconnectTimeoutInMinutes = &v
 	return s
 }
 
@@ -10313,9 +10442,16 @@ type UserSettings struct {
 	// local device.
 	CopyAllowed *string `locationName:"copyAllowed" type:"string" enum:"EnabledType"`
 
+	// The amount of time that a streaming session remains active after users disconnect.
+	DisconnectTimeoutInMinutes *int64 `locationName:"disconnectTimeoutInMinutes" min:"1" type:"integer"`
+
 	// Specifies whether the user can download files from the streaming session
 	// to the local device.
 	DownloadAllowed *string `locationName:"downloadAllowed" type:"string" enum:"EnabledType"`
+
+	// The amount of time that users can be idle (inactive) before they are disconnected
+	// from their streaming session and the disconnect timeout interval begins.
+	IdleDisconnectTimeoutInMinutes *int64 `locationName:"idleDisconnectTimeoutInMinutes" type:"integer"`
 
 	// Specifies whether the user can paste text from the local device to the streaming
 	// session.
@@ -10364,9 +10500,21 @@ func (s *UserSettings) SetCopyAllowed(v string) *UserSettings {
 	return s
 }
 
+// SetDisconnectTimeoutInMinutes sets the DisconnectTimeoutInMinutes field's value.
+func (s *UserSettings) SetDisconnectTimeoutInMinutes(v int64) *UserSettings {
+	s.DisconnectTimeoutInMinutes = &v
+	return s
+}
+
 // SetDownloadAllowed sets the DownloadAllowed field's value.
 func (s *UserSettings) SetDownloadAllowed(v string) *UserSettings {
 	s.DownloadAllowed = &v
+	return s
+}
+
+// SetIdleDisconnectTimeoutInMinutes sets the IdleDisconnectTimeoutInMinutes field's value.
+func (s *UserSettings) SetIdleDisconnectTimeoutInMinutes(v int64) *UserSettings {
+	s.IdleDisconnectTimeoutInMinutes = &v
 	return s
 }
 
@@ -10402,9 +10550,16 @@ type UserSettingsSummary struct {
 	// local device.
 	CopyAllowed *string `locationName:"copyAllowed" type:"string" enum:"EnabledType"`
 
+	// The amount of time that a streaming session remains active after users disconnect.
+	DisconnectTimeoutInMinutes *int64 `locationName:"disconnectTimeoutInMinutes" min:"1" type:"integer"`
+
 	// Specifies whether the user can download files from the streaming session
 	// to the local device.
 	DownloadAllowed *string `locationName:"downloadAllowed" type:"string" enum:"EnabledType"`
+
+	// The amount of time that users can be idle (inactive) before they are disconnected
+	// from their streaming session and the disconnect timeout interval begins.
+	IdleDisconnectTimeoutInMinutes *int64 `locationName:"idleDisconnectTimeoutInMinutes" type:"integer"`
 
 	// Specifies whether the user can paste text from the local device to the streaming
 	// session.
@@ -10445,9 +10600,21 @@ func (s *UserSettingsSummary) SetCopyAllowed(v string) *UserSettingsSummary {
 	return s
 }
 
+// SetDisconnectTimeoutInMinutes sets the DisconnectTimeoutInMinutes field's value.
+func (s *UserSettingsSummary) SetDisconnectTimeoutInMinutes(v int64) *UserSettingsSummary {
+	s.DisconnectTimeoutInMinutes = &v
+	return s
+}
+
 // SetDownloadAllowed sets the DownloadAllowed field's value.
 func (s *UserSettingsSummary) SetDownloadAllowed(v string) *UserSettingsSummary {
 	s.DownloadAllowed = &v
+	return s
+}
+
+// SetIdleDisconnectTimeoutInMinutes sets the IdleDisconnectTimeoutInMinutes field's value.
+func (s *UserSettingsSummary) SetIdleDisconnectTimeoutInMinutes(v int64) *UserSettingsSummary {
+	s.IdleDisconnectTimeoutInMinutes = &v
 	return s
 }
 

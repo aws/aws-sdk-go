@@ -69,8 +69,8 @@ func (c *ApplicationDiscoveryService) AssociateConfigurationItemsToApplicationRe
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -154,12 +154,12 @@ func (c *ApplicationDiscoveryService) BatchDeleteImportDataRequest(input *BatchD
 // Deletes one or more import tasks, each identified by their import ID. Each
 // import task has a number of records that can identify servers or applications.
 //
-// AWS Application Discovery Service has built-in matching logic that will identify
-// when discovered servers match existing entries that you've previously discovered,
-// the information for the already-existing discovered server is updated. When
-// you delete an import task that contains records that were used to match,
-// the information in those matched records that comes from the deleted records
-// will also be deleted.
+// Amazon Web Services Application Discovery Service has built-in matching logic
+// that will identify when discovered servers match existing entries that you've
+// previously discovered, the information for the already-existing discovered
+// server is updated. When you delete an import task that contains records that
+// were used to match, the information in those matched records that comes from
+// the deleted records will also be deleted.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -170,8 +170,8 @@ func (c *ApplicationDiscoveryService) BatchDeleteImportDataRequest(input *BatchD
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -263,8 +263,8 @@ func (c *ApplicationDiscoveryService) CreateApplicationRequest(input *CreateAppl
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -350,6 +350,8 @@ func (c *ApplicationDiscoveryService) CreateTagsRequest(input *CreateTagsInput) 
 // help you categorize IT assets. This API accepts a list of multiple configuration
 // items.
 //
+// Do not store sensitive information (like personal data) in tags.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -359,8 +361,8 @@ func (c *ApplicationDiscoveryService) CreateTagsRequest(input *CreateTagsInput) 
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * ResourceNotFoundException
 //   The specified configuration ID was not located. Verify the configuration
@@ -458,8 +460,8 @@ func (c *ApplicationDiscoveryService) DeleteApplicationsRequest(input *DeleteApp
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -553,8 +555,8 @@ func (c *ApplicationDiscoveryService) DeleteTagsRequest(input *DeleteTagsInput) 
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * ResourceNotFoundException
 //   The specified configuration ID was not located. Verify the configuration
@@ -652,8 +654,8 @@ func (c *ApplicationDiscoveryService) DescribeAgentsRequest(input *DescribeAgent
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -753,7 +755,7 @@ func (c *ApplicationDiscoveryService) DescribeConfigurationsRequest(input *Descr
 //
 // For a complete list of outputs for each asset type, see Using the DescribeConfigurations
 // Action (https://docs.aws.amazon.com/application-discovery/latest/userguide/discovery-api-queries.html#DescribeConfigurations)
-// in the AWS Application Discovery Service User Guide.
+// in the Amazon Web Services Application Discovery Service User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -764,8 +766,8 @@ func (c *ApplicationDiscoveryService) DescribeConfigurationsRequest(input *Descr
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -865,8 +867,8 @@ func (c *ApplicationDiscoveryService) DescribeContinuousExportsRequest(input *De
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -1011,7 +1013,7 @@ func (c *ApplicationDiscoveryService) DescribeExportConfigurationsRequest(input 
 
 // DescribeExportConfigurations API operation for AWS Application Discovery Service.
 //
-// DescribeExportConfigurations is deprecated. Use DescribeImportTasks (https://docs.aws.amazon.com/application-discovery/latest/APIReference/API_DescribeExportTasks.html),
+// DescribeExportConfigurations is deprecated. Use DescribeExportTasks (https://docs.aws.amazon.com/application-discovery/latest/APIReference/API_DescribeExportTasks.html),
 // instead.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1023,8 +1025,8 @@ func (c *ApplicationDiscoveryService) DescribeExportConfigurationsRequest(input 
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * ResourceNotFoundException
 //   The specified configuration ID was not located. Verify the configuration
@@ -1125,8 +1127,8 @@ func (c *ApplicationDiscoveryService) DescribeExportTasksRequest(input *Describe
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -1225,8 +1227,8 @@ func (c *ApplicationDiscoveryService) DescribeImportTasksRequest(input *Describe
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -1382,8 +1384,8 @@ func (c *ApplicationDiscoveryService) DescribeTagsRequest(input *DescribeTagsInp
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * ResourceNotFoundException
 //   The specified configuration ID was not located. Verify the configuration
@@ -1480,8 +1482,8 @@ func (c *ApplicationDiscoveryService) DisassociateConfigurationItemsFromApplicat
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -1584,8 +1586,8 @@ func (c *ApplicationDiscoveryService) ExportConfigurationsRequest(input *ExportC
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -1687,8 +1689,8 @@ func (c *ApplicationDiscoveryService) GetDiscoverySummaryRequest(input *GetDisco
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -1782,8 +1784,8 @@ func (c *ApplicationDiscoveryService) ListConfigurationsRequest(input *ListConfi
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * ResourceNotFoundException
 //   The specified configuration ID was not located. Verify the configuration
@@ -1880,8 +1882,8 @@ func (c *ApplicationDiscoveryService) ListServerNeighborsRequest(input *ListServ
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -1975,8 +1977,8 @@ func (c *ApplicationDiscoveryService) StartContinuousExportRequest(input *StartC
 //   * ConflictErrorException
 //
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -2078,8 +2080,8 @@ func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIdsRequest(input
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -2169,8 +2171,9 @@ func (c *ApplicationDiscoveryService) StartExportTaskRequest(input *StartExportT
 // to five concurrently running exports.
 //
 // If you do not include an agentIds filter, summary data is exported that includes
-// both AWS Agentless Discovery Connector data and summary data from AWS Discovery
-// Agents. Export of summary data is limited to two exports per day.
+// both Amazon Web Services Agentless Discovery Connector data and summary data
+// from Amazon Web Services Discovery Agents. Export of summary data is limited
+// to two exports per day.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2181,8 +2184,8 @@ func (c *ApplicationDiscoveryService) StartExportTaskRequest(input *StartExportT
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -2267,34 +2270,35 @@ func (c *ApplicationDiscoveryService) StartImportTaskRequest(input *StartImportT
 // StartImportTask API operation for AWS Application Discovery Service.
 //
 // Starts an import task, which allows you to import details of your on-premises
-// environment directly into AWS Migration Hub without having to use the Application
-// Discovery Service (ADS) tools such as the Discovery Connector or Discovery
-// Agent. This gives you the option to perform migration assessment and planning
-// directly from your imported data, including the ability to group your devices
-// as applications and track their migration status.
+// environment directly into Amazon Web Services Migration Hub without having
+// to use the Application Discovery Service (ADS) tools such as the Discovery
+// Connector or Discovery Agent. This gives you the option to perform migration
+// assessment and planning directly from your imported data, including the ability
+// to group your devices as applications and track their migration status.
 //
 // To start an import request, do this:
 //
 // Download the specially formatted comma separated value (CSV) import template,
-// which you can find here: https://s3-us-west-2.amazonaws.com/templates-7cffcf56-bd96-4b1c-b45b-a5b42f282e46/import_template.csv
-// (https://s3-us-west-2.amazonaws.com/templates-7cffcf56-bd96-4b1c-b45b-a5b42f282e46/import_template.csv).
+// which you can find here: https://s3.us-west-2.amazonaws.com/templates-7cffcf56-bd96-4b1c-b45b-a5b42f282e46/import_template.csv
+// (https://s3.us-west-2.amazonaws.com/templates-7cffcf56-bd96-4b1c-b45b-a5b42f282e46/import_template.csv).
 //
 // Fill out the template with your server and application data.
 //
 // Upload your import file to an Amazon S3 bucket, and make a note of it's Object
 // URL. Your import file must be in the CSV format.
 //
-// Use the console or the StartImportTask command with the AWS CLI or one of
-// the AWS SDKs to import the records from your file.
+// Use the console or the StartImportTask command with the Amazon Web Services
+// CLI or one of the Amazon Web Services SDKs to import the records from your
+// file.
 //
 // For more information, including step-by-step procedures, see Migration Hub
 // Import (https://docs.aws.amazon.com/application-discovery/latest/userguide/discovery-import.html)
-// in the AWS Application Discovery Service User Guide.
+// in the Amazon Web Services Application Discovery Service User Guide.
 //
 // There are limits to the number of import tasks you can create (and delete)
-// in an AWS account. For more information, see AWS Application Discovery Service
-// Limits (https://docs.aws.amazon.com/application-discovery/latest/userguide/ads_service_limits.html)
-// in the AWS Application Discovery Service User Guide.
+// in an Amazon Web Services account. For more information, see Amazon Web Services
+// Application Discovery Service Limits (https://docs.aws.amazon.com/application-discovery/latest/userguide/ads_service_limits.html)
+// in the Amazon Web Services Application Discovery Service User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2312,8 +2316,8 @@ func (c *ApplicationDiscoveryService) StartImportTaskRequest(input *StartImportT
 //   and try again.
 //
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -2405,8 +2409,8 @@ func (c *ApplicationDiscoveryService) StopContinuousExportRequest(input *StopCon
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -2512,8 +2516,8 @@ func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIdsRequest(input 
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -2606,8 +2610,8 @@ func (c *ApplicationDiscoveryService) UpdateApplicationRequest(input *UpdateAppl
 //
 // Returned Error Types:
 //   * AuthorizationErrorException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
@@ -2698,15 +2702,15 @@ func (s *AgentConfigurationStatus) SetOperationSucceeded(v bool) *AgentConfigura
 	return s
 }
 
-// Information about agents or connectors associated with the user’s AWS account.
-// Information includes agent or connector IDs, IP addresses, media access control
-// (MAC) addresses, agent or connector health, hostname where the agent or connector
-// resides, and agent version for each agent.
+// Information about agents or connectors associated with the user’s Amazon
+// Web Services account. Information includes agent or connector IDs, IP addresses,
+// media access control (MAC) addresses, agent or connector health, hostname
+// where the agent or connector resides, and agent version for each agent.
 type AgentInfo struct {
 	_ struct{} `type:"structure"`
 
 	// The agent or connector ID.
-	AgentId *string `locationName:"agentId" type:"string"`
+	AgentId *string `locationName:"agentId" min:"10" type:"string"`
 
 	// Network details about the host where the agent or connector resides.
 	AgentNetworkInfoList []*AgentNetworkInfo `locationName:"agentNetworkInfoList" type:"list"`
@@ -2938,8 +2942,8 @@ func (s AssociateConfigurationItemsToApplicationOutput) GoString() string {
 	return s.String()
 }
 
-// The AWS user account does not have permission to perform the action. Check
-// the IAM policy associated with this account.
+// The Amazon Web Services user account does not have permission to perform
+// the action. Check the IAM policy associated with this account.
 type AuthorizationErrorException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3317,8 +3321,9 @@ type ContinuousExportDescription struct {
 	// can have the following values:
 	//
 	//    * ACCESS_DENIED - You don’t have permission to start Data Exploration
-	//    in Amazon Athena. Contact your AWS administrator for help. For more information,
-	//    see Setting Up AWS Application Discovery Service (http://docs.aws.amazon.com/application-discovery/latest/userguide/setting-up.html)
+	//    in Amazon Athena. Contact your Amazon Web Services administrator for help.
+	//    For more information, see Setting Up Amazon Web Services Application Discovery
+	//    Service (http://docs.aws.amazon.com/application-discovery/latest/userguide/setting-up.html)
 	//    in the Application Discovery Service User Guide.
 	//
 	//    * DELIVERY_STREAM_LIMIT_FAILURE - You reached the limit for Amazon Kinesis
@@ -3340,12 +3345,32 @@ type ContinuousExportDescription struct {
 	//
 	//    * INTERNAL_FAILURE - The Data Exploration feature is in an error state
 	//    because of an internal failure. Try again later. If this problem persists,
-	//    contact AWS Support.
+	//    contact Amazon Web Services Support.
+	//
+	//    * LAKE_FORMATION_ACCESS_DENIED - You don't have sufficient lake formation
+	//    permissions to start continuous export. For more information, see Upgrading
+	//    Amazon Web Services Glue Data Permissions to the Amazon Web Services Lake
+	//    Formation Model (http://docs.aws.amazon.com/lake-formation/latest/dg/upgrade-glue-lake-formation.html)
+	//    in the Amazon Web Services Lake Formation Developer Guide. You can use
+	//    one of the following two ways to resolve this issue. If you don’t want
+	//    to use the Lake Formation permission model, you can change the default
+	//    Data Catalog settings to use only Amazon Web Services Identity and Access
+	//    Management (IAM) access control for new databases. For more information,
+	//    see Change Data Catalog Settings (https://docs.aws.amazon.com/lake-formation/latest/dg/getting-started-setup.html#setup-change-cat-settings)
+	//    in the Lake Formation Developer Guide. You can give the service-linked
+	//    IAM roles AWSServiceRoleForApplicationDiscoveryServiceContinuousExport
+	//    and AWSApplicationDiscoveryServiceFirehose the required Lake Formation
+	//    permissions. For more information, see Granting Database Permissions (https://docs.aws.amazon.com/lake-formation/latest/dg/granting-database-permissions.html)
+	//    in the Lake Formation Developer Guide. AWSServiceRoleForApplicationDiscoveryServiceContinuousExport
+	//    - Grant database creator permissions, which gives the role database creation
+	//    ability and implicit permissions for any created tables. For more information,
+	//    see Implicit Lake Formation Permissions (https://docs.aws.amazon.com/lake-formation/latest/dg/implicit-permissions.html)
+	//    in the Lake Formation Developer Guide. AWSApplicationDiscoveryServiceFirehose
+	//    - Grant describe permissions for all tables in the database.
 	//
 	//    * S3_BUCKET_LIMIT_FAILURE - You reached the limit for Amazon S3 buckets.
-	//    Reduce the number of Amazon S3 buckets or request a limit increase and
-	//    try again. For more information, see Bucket Restrictions and Limitations
-	//    (http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html)
+	//    Reduce the number of S3 buckets or request a limit increase and try again.
+	//    For more information, see Bucket Restrictions and Limitations (http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html)
 	//    in the Amazon Simple Storage Service Developer Guide.
 	//
 	//    * S3_NOT_SIGNED_UP - Your account is not signed up for the Amazon S3 service.
@@ -3804,6 +3829,106 @@ func (s *CustomerConnectorInfo) SetUnknownConnectors(v int64) *CustomerConnector
 	return s
 }
 
+// The inventory data for installed Migration Evaluator collectors.
+type CustomerMeCollectorInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The number of active Migration Evaluator collectors.
+	//
+	// ActiveMeCollectors is a required field
+	ActiveMeCollectors *int64 `locationName:"activeMeCollectors" type:"integer" required:"true"`
+
+	// The number of deny-listed Migration Evaluator collectors.
+	//
+	// DenyListedMeCollectors is a required field
+	DenyListedMeCollectors *int64 `locationName:"denyListedMeCollectors" type:"integer" required:"true"`
+
+	// The number of healthy Migration Evaluator collectors.
+	//
+	// HealthyMeCollectors is a required field
+	HealthyMeCollectors *int64 `locationName:"healthyMeCollectors" type:"integer" required:"true"`
+
+	// The number of Migration Evaluator collectors with SHUTDOWN status.
+	//
+	// ShutdownMeCollectors is a required field
+	ShutdownMeCollectors *int64 `locationName:"shutdownMeCollectors" type:"integer" required:"true"`
+
+	// The total number of Migration Evaluator collectors.
+	//
+	// TotalMeCollectors is a required field
+	TotalMeCollectors *int64 `locationName:"totalMeCollectors" type:"integer" required:"true"`
+
+	// The number of unhealthy Migration Evaluator collectors.
+	//
+	// UnhealthyMeCollectors is a required field
+	UnhealthyMeCollectors *int64 `locationName:"unhealthyMeCollectors" type:"integer" required:"true"`
+
+	// The number of unknown Migration Evaluator collectors.
+	//
+	// UnknownMeCollectors is a required field
+	UnknownMeCollectors *int64 `locationName:"unknownMeCollectors" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomerMeCollectorInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomerMeCollectorInfo) GoString() string {
+	return s.String()
+}
+
+// SetActiveMeCollectors sets the ActiveMeCollectors field's value.
+func (s *CustomerMeCollectorInfo) SetActiveMeCollectors(v int64) *CustomerMeCollectorInfo {
+	s.ActiveMeCollectors = &v
+	return s
+}
+
+// SetDenyListedMeCollectors sets the DenyListedMeCollectors field's value.
+func (s *CustomerMeCollectorInfo) SetDenyListedMeCollectors(v int64) *CustomerMeCollectorInfo {
+	s.DenyListedMeCollectors = &v
+	return s
+}
+
+// SetHealthyMeCollectors sets the HealthyMeCollectors field's value.
+func (s *CustomerMeCollectorInfo) SetHealthyMeCollectors(v int64) *CustomerMeCollectorInfo {
+	s.HealthyMeCollectors = &v
+	return s
+}
+
+// SetShutdownMeCollectors sets the ShutdownMeCollectors field's value.
+func (s *CustomerMeCollectorInfo) SetShutdownMeCollectors(v int64) *CustomerMeCollectorInfo {
+	s.ShutdownMeCollectors = &v
+	return s
+}
+
+// SetTotalMeCollectors sets the TotalMeCollectors field's value.
+func (s *CustomerMeCollectorInfo) SetTotalMeCollectors(v int64) *CustomerMeCollectorInfo {
+	s.TotalMeCollectors = &v
+	return s
+}
+
+// SetUnhealthyMeCollectors sets the UnhealthyMeCollectors field's value.
+func (s *CustomerMeCollectorInfo) SetUnhealthyMeCollectors(v int64) *CustomerMeCollectorInfo {
+	s.UnhealthyMeCollectors = &v
+	return s
+}
+
+// SetUnknownMeCollectors sets the UnknownMeCollectors field's value.
+func (s *CustomerMeCollectorInfo) SetUnknownMeCollectors(v int64) *CustomerMeCollectorInfo {
+	s.UnknownMeCollectors = &v
+	return s
+}
+
 type DeleteApplicationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3967,7 +4092,7 @@ type DescribeAgentsInput struct {
 
 	// The agent or the Connector IDs for which you want information. If you specify
 	// no IDs, the system returns information about all agents/Connectors associated
-	// with your AWS user account.
+	// with your Amazon Web Services user account.
 	AgentIds []*string `locationName:"agentIds" type:"list"`
 
 	// You can filter the request using various logical operators and a key-value
@@ -4871,14 +4996,14 @@ type ExportFilter struct {
 	// Condition is a required field
 	Condition *string `locationName:"condition" type:"string" required:"true"`
 
-	// A single ExportFilter name. Supported filters: agentId.
+	// A single ExportFilter name. Supported filters: agentIds.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// A single agentId for a Discovery Agent. An agentId can be found using the
-	// DescribeAgents (http://docs.aws.amazon.com/application-discovery/latest/APIReference/API_DescribeExportTasks.html)
-	// action. Typically an ADS agentId is in the form o-0123456789abcdef0.
+	// A single agent ID for a Discovery Agent. An agent ID can be found using the
+	// DescribeAgents (http://docs.aws.amazon.com/application-discovery/latest/APIReference/API_DescribeAgents.html)
+	// action. Typically an ADS agent ID is in the form o-0123456789abcdef0.
 	//
 	// Values is a required field
 	Values []*string `locationName:"values" type:"list" required:"true"`
@@ -5053,7 +5178,7 @@ func (s *ExportInfo) SetStatusMessage(v string) *ExportInfo {
 //
 // For more information about filters, see Querying Discovered Configuration
 // Items (https://docs.aws.amazon.com/application-discovery/latest/userguide/discovery-api-queries.html)
-// in the AWS Application Discovery Service User Guide.
+// in the Amazon Web Services Application Discovery Service User Guide.
 type Filter struct {
 	_ struct{} `type:"structure"`
 
@@ -5168,6 +5293,10 @@ type GetDiscoverySummaryOutput struct {
 	// Details about discovered connectors, including connector status and health.
 	ConnectorSummary *CustomerConnectorInfo `locationName:"connectorSummary" type:"structure"`
 
+	// Details about Migration Evaluator collectors, including collector status
+	// and health.
+	MeCollectorSummary *CustomerMeCollectorInfo `locationName:"meCollectorSummary" type:"structure"`
+
 	// The number of servers discovered.
 	Servers *int64 `locationName:"servers" type:"long"`
 
@@ -5211,6 +5340,12 @@ func (s *GetDiscoverySummaryOutput) SetApplications(v int64) *GetDiscoverySummar
 // SetConnectorSummary sets the ConnectorSummary field's value.
 func (s *GetDiscoverySummaryOutput) SetConnectorSummary(v *CustomerConnectorInfo) *GetDiscoverySummaryOutput {
 	s.ConnectorSummary = v
+	return s
+}
+
+// SetMeCollectorSummary sets the MeCollectorSummary field's value.
+func (s *GetDiscoverySummaryOutput) SetMeCollectorSummary(v *CustomerMeCollectorInfo) *GetDiscoverySummaryOutput {
+	s.MeCollectorSummary = v
 	return s
 }
 
@@ -5343,7 +5478,7 @@ type ImportTask struct {
 	ImportRequestTime *time.Time `locationName:"importRequestTime" type:"timestamp"`
 
 	// The unique ID for a specific import task. These IDs aren't globally unique,
-	// but they are unique within an AWS account.
+	// but they are unique within an Amazon Web Services account.
 	ImportTaskId *string `locationName:"importTaskId" type:"string"`
 
 	// The URL for your import file that you've uploaded to Amazon S3.
@@ -5667,7 +5802,7 @@ type ListConfigurationsInput struct {
 	//
 	// For a complete list of filter options and guidance about using them with
 	// this action, see Using the ListConfigurations Action (https://docs.aws.amazon.com/application-discovery/latest/userguide/discovery-api-queries.html#ListConfigurations)
-	// in the AWS Application Discovery Service User Guide.
+	// in the Amazon Web Services Application Discovery Service User Guide.
 	Filters []*Filter `locationName:"filters" type:"list"`
 
 	// The total number of items to return. The maximum value is 100.
@@ -5682,7 +5817,7 @@ type ListConfigurationsInput struct {
 	// Certain filter criteria return output that can be sorted in ascending or
 	// descending order. For a list of output characteristics for each filter, see
 	// Using the ListConfigurations Action (https://docs.aws.amazon.com/application-discovery/latest/userguide/discovery-api-queries.html#ListConfigurations)
-	// in the AWS Application Discovery Service User Guide.
+	// in the Amazon Web Services Application Discovery Service User Guide.
 	OrderBy []*OrderByElement `locationName:"orderBy" type:"list"`
 }
 
@@ -6440,11 +6575,12 @@ type StartDataCollectionByAgentIdsInput struct {
 
 	// The IDs of the agents or connectors from which to start collecting data.
 	// If you send a request to an agent/connector ID that you do not have permission
-	// to contact, according to your AWS account, the service does not throw an
-	// exception. Instead, it returns the error in the Description field. If you
-	// send a request to multiple agents/connectors and you do not have permission
-	// to contact some of those agents/connectors, the system does not throw an
-	// exception. Instead, the system shows Failed in the Description field.
+	// to contact, according to your Amazon Web Services account, the service does
+	// not throw an exception. Instead, it returns the error in the Description
+	// field. If you send a request to multiple agents/connectors and you do not
+	// have permission to contact some of those agents/connectors, the system does
+	// not throw an exception. Instead, the system shows Failed in the Description
+	// field.
 	//
 	// AgentIds is a required field
 	AgentIds []*string `locationName:"agentIds" type:"list" required:"true"`
@@ -6652,7 +6788,8 @@ type StartImportTaskInput struct {
 
 	// The URL for your import file that you've uploaded to Amazon S3.
 	//
-	// If you're using the AWS CLI, this URL is structured as follows: s3://BucketName/ImportFileName.CSV
+	// If you're using the Amazon Web Services CLI, this URL is structured as follows:
+	// s3://BucketName/ImportFileName.CSV
 	//
 	// ImportUrl is a required field
 	ImportUrl *string `locationName:"importUrl" min:"1" type:"string" required:"true"`
@@ -6927,6 +7064,8 @@ func (s *StopDataCollectionByAgentIdsOutput) SetAgentsConfigurationStatus(v []*A
 }
 
 // Metadata that help you categorize IT assets.
+//
+// Do not store sensitive information (like personal data) in tags.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
