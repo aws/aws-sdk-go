@@ -42,7 +42,8 @@ func resolveParameter(parent string, parameter string, shape reflect.Value) inte
 	// AssumeRolePolicyDocument comes as a string. we MUST NOT modify it
 	// This may apply to other objects that AWS expects to receive as a JSON-string
 	// reference: https://docs.aws.amazon.com/sdk-for-go/api/service/iam/#CreateRoleInput
-	if strings.Contains(parameter, "Statement") {
+	if strings.Contains(parameter, "Statement") ||
+		parent == "QueryString" {
 		return parameter
 	}
 
