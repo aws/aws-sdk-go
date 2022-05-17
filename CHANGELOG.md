@@ -1,3 +1,12 @@
+Release v1.44.16 (2022-05-17)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API and documentation
+  * This release adds a new optional parameter called codeGenNodeConfiguration to CRUD job APIs that allows users to manage visual jobs via APIs. The updated CreateJob and UpdateJob will create jobs that can be viewed in Glue Studio as a visual graph. GetJob can be used to get codeGenNodeConfiguration.
+* `service/kms`: Updates service documentation
+  * Add HMAC best practice tip, annual rotation of AWS managed keys.
+
 Release v1.44.15 (2022-05-16)
 ===
 
