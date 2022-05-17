@@ -404,13 +404,20 @@ func TestBatchDeleteError(t *testing.T) {
 
 type mockS3Client struct {
 	*s3.S3
-	index         int
-	objects       []*s3.ListObjectsOutput
-	deleteObjects func(*s3.DeleteObjectsInput) (*s3.DeleteObjectsOutput, error)
+	index            int
+	objects          []*s3.ListObjectsOutput
+	versionedObjects []*s3.ListObjectVersionsOutput
+	deleteObjects    func(*s3.DeleteObjectsInput) (*s3.DeleteObjectsOutput, error)
 }
 
 func (client *mockS3Client) ListObjects(input *s3.ListObjectsInput) (*s3.ListObjectsOutput, error) {
 	object := client.objects[client.index]
+	client.index++
+	return object, nil
+}
+
+func (client *mockS3Client) ListObjectVersions(input *s3.ListObjectVersionsInput) (*s3.ListObjectVersionsOutput, error) {
+	object := client.versionedObjects[client.index]
 	client.index++
 	return object, nil
 }
@@ -526,6 +533,99 @@ func TestBatchDeleteList(t *testing.T) {
 
 	if count != len(objects) {
 		t.Errorf("Expected %d, but received %d", len(objects), count)
+	}
+}
+
+func TestBatchDeleteListVersioned(t *testing.T) {
+	count := 0
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusNoContent)
+		count++
+	}))
+	defer server.Close()
+
+	versionedObjects := []*s3.ListObjectVersionsOutput{
+		{
+			Name: aws.String("bucket"),
+			Versions: []*s3.ObjectVersion{
+				{
+					Key:       aws.String("1"),
+					IsLatest:  aws.Bool(false),
+					VersionId: aws.String("version-1"),
+				},
+				{
+					Key:       aws.String("1"),
+					IsLatest:  aws.Bool(true),
+					VersionId: aws.String("version-2"),
+				},
+			},
+			NextKeyMarker: aws.String("marker"),
+			IsTruncated:   aws.Bool(true),
+		},
+		{
+			Name: aws.String("bucket"),
+			Versions: []*s3.ObjectVersion{
+				{
+					Key:       aws.String("2"),
+					IsLatest:  aws.Bool(true),
+					VersionId: aws.String("version-1"),
+				},
+			},
+			NextKeyMarker: aws.String("marker"),
+			IsTruncated:   aws.Bool(true),
+		},
+		{
+			Name: aws.String("bucket"),
+			Versions: []*s3.ObjectVersion{
+				{
+					Key:       aws.String("3"),
+					IsLatest:  aws.Bool(true),
+					VersionId: aws.String("version-1"),
+				},
+			},
+			IsTruncated: aws.Bool(false),
+		},
+	}
+
+	svc := &mockS3Client{S3: buildS3SvcClient(server.URL), versionedObjects: versionedObjects}
+	batcher := BatchDelete{
+		Client:    svc,
+		BatchSize: 1,
+	}
+
+	input := &s3.ListObjectVersionsInput{
+		Bucket: aws.String("bucket"),
+	}
+	iter := &DeleteVersionedListIterator{
+		Bucket: input.Bucket,
+		Paginator: request.Pagination{
+			NewRequest: func() (*request.Request, error) {
+				var inCpy *s3.ListObjectVersionsInput
+				if input != nil {
+					tmp := *input
+					inCpy = &tmp
+				}
+				req, _ := svc.ListObjectVersionsRequest(inCpy)
+				req.Handlers.Clear()
+				output, _ := svc.ListObjectVersions(inCpy)
+				req.Data = output
+				return req, nil
+			},
+		},
+	}
+
+	if err := batcher.Delete(aws.BackgroundContext(), iter); err != nil {
+		t.Error(err)
+	}
+
+	versionedObjectsCount := 0
+	for _, obj := range versionedObjects {
+		versionedObjectsCount += len(obj.Versions)
+	}
+
+	if count != versionedObjectsCount {
+		t.Errorf("Expected %d, but received %d", versionedObjectsCount, count)
 	}
 }
 

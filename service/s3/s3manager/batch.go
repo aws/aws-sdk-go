@@ -192,6 +192,91 @@ func (iter *DeleteListIterator) DeleteObject() BatchDeleteObject {
 	}
 }
 
+// DeleteVersionedListIterator is an alternative iterator for the BatchDelete client. This will
+// iterate through a list of versioned objects and delete the objects.
+//
+// Example:
+//	iter := &s3manager.DeleteVersionedListIterator{
+//		Client: svc,
+//		Input: &s3.ListObjectVersionsInput{
+//			Bucket:  aws.String("bucket"),
+//			MaxKeys: aws.Int64(5),
+//		},
+//		Paginator: request.Pagination{
+//			NewRequest: func() (*request.Request, error) {
+//				var inCpy *ListObjectsInput
+//				if input != nil {
+//					tmp := *input
+//					inCpy = &tmp
+//				}
+//				req, _ := c.ListObjectVersionsRequest(inCpy)
+//				return req, nil
+//			},
+//		},
+//	}
+//
+//	batcher := s3manager.NewBatchDeleteWithClient(svc)
+//	if err := batcher.Delete(aws.BackgroundContext(), iter); err != nil {
+//		return err
+//	}
+type DeleteVersionedListIterator struct {
+	Bucket         *string
+	Paginator      request.Pagination
+	objectVersions []*s3.ObjectVersion
+}
+
+// NewDeleteVersionedListIterator will return a new DeleteListIterator for versioned buckets.
+func NewDeleteVersionedListIterator(svc s3iface.S3API, input *s3.ListObjectVersionsInput, opts ...func(*DeleteVersionedListIterator)) BatchDeleteIterator {
+	iter := &DeleteVersionedListIterator{
+		Bucket: input.Bucket,
+		Paginator: request.Pagination{
+			NewRequest: func() (*request.Request, error) {
+				var inCpy *s3.ListObjectVersionsInput
+				if input != nil {
+					tmp := *input
+					inCpy = &tmp
+				}
+				req, _ := svc.ListObjectVersionsRequest(inCpy)
+				return req, nil
+			},
+		},
+	}
+
+	for _, opt := range opts {
+		opt(iter)
+	}
+	return iter
+}
+
+// Next will use the S3API client to iterate through a list of versioned objects.
+func (iter *DeleteVersionedListIterator) Next() bool {
+	if len(iter.objectVersions) > 0 {
+		iter.objectVersions = iter.objectVersions[1:]
+	}
+
+	if len(iter.objectVersions) == 0 && iter.Paginator.Next() {
+		iter.objectVersions = iter.Paginator.Page().(*s3.ListObjectVersionsOutput).Versions
+	}
+
+	return len(iter.objectVersions) > 0
+}
+
+// Err will return the last known error from Next.
+func (iter *DeleteVersionedListIterator) Err() error {
+	return iter.Paginator.Err()
+}
+
+// DeleteObject will return the specified version of object to be deleted.
+func (iter *DeleteVersionedListIterator) DeleteObject() BatchDeleteObject {
+	return BatchDeleteObject{
+		Object: &s3.DeleteObjectInput{
+			Bucket:    iter.Bucket,
+			Key:       iter.objectVersions[0].Key,
+			VersionId: iter.objectVersions[0].VersionId,
+		},
+	}
+}
+
 // BatchDelete will use the s3 package's service client to perform a batch
 // delete.
 type BatchDelete struct {
