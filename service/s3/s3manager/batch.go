@@ -204,7 +204,7 @@ func (iter *DeleteListIterator) DeleteObject() BatchDeleteObject {
 //		},
 //		Paginator: request.Pagination{
 //			NewRequest: func() (*request.Request, error) {
-//				var inCpy *ListObjectsInput
+//				var inCpy *ListObjectVersionsInput
 //				if input != nil {
 //					tmp := *input
 //					inCpy = &tmp
