@@ -542,6 +542,10 @@ type QuickSightAPI interface {
 	UpdateIpRestrictionWithContext(aws.Context, *quicksight.UpdateIpRestrictionInput, ...request.Option) (*quicksight.UpdateIpRestrictionOutput, error)
 	UpdateIpRestrictionRequest(*quicksight.UpdateIpRestrictionInput) (*request.Request, *quicksight.UpdateIpRestrictionOutput)
 
+	UpdatePublicSharingSettings(*quicksight.UpdatePublicSharingSettingsInput) (*quicksight.UpdatePublicSharingSettingsOutput, error)
+	UpdatePublicSharingSettingsWithContext(aws.Context, *quicksight.UpdatePublicSharingSettingsInput, ...request.Option) (*quicksight.UpdatePublicSharingSettingsOutput, error)
+	UpdatePublicSharingSettingsRequest(*quicksight.UpdatePublicSharingSettingsInput) (*request.Request, *quicksight.UpdatePublicSharingSettingsOutput)
+
 	UpdateTemplate(*quicksight.UpdateTemplateInput) (*quicksight.UpdateTemplateOutput, error)
 	UpdateTemplateWithContext(aws.Context, *quicksight.UpdateTemplateInput, ...request.Option) (*quicksight.UpdateTemplateOutput, error)
 	UpdateTemplateRequest(*quicksight.UpdateTemplateInput) (*request.Request, *quicksight.UpdateTemplateOutput)

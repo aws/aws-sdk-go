@@ -102,7 +102,7 @@ func (c *AppMesh) CreateGatewayRouteRequest(input *CreateGatewayRouteInput) (req
 //   * LimitExceededException
 //   You have exceeded a service limit for your account. For more information,
 //   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateGatewayRoute
 func (c *AppMesh) CreateGatewayRoute(input *CreateGatewayRouteInput) (*CreateGatewayRouteOutput, error) {
@@ -216,7 +216,7 @@ func (c *AppMesh) CreateMeshRequest(input *CreateMeshInput) (req *request.Reques
 //   * LimitExceededException
 //   You have exceeded a service limit for your account. For more information,
 //   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateMesh
 func (c *AppMesh) CreateMesh(input *CreateMeshInput) (*CreateMeshOutput, error) {
@@ -328,7 +328,7 @@ func (c *AppMesh) CreateRouteRequest(input *CreateRouteInput) (req *request.Requ
 //   * LimitExceededException
 //   You have exceeded a service limit for your account. For more information,
 //   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateRoute
 func (c *AppMesh) CreateRoute(input *CreateRouteInput) (*CreateRouteOutput, error) {
@@ -443,7 +443,7 @@ func (c *AppMesh) CreateVirtualGatewayRequest(input *CreateVirtualGatewayInput) 
 //   * LimitExceededException
 //   You have exceeded a service limit for your account. For more information,
 //   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateVirtualGateway
 func (c *AppMesh) CreateVirtualGateway(input *CreateVirtualGatewayInput) (*CreateVirtualGatewayOutput, error) {
@@ -538,7 +538,7 @@ func (c *AppMesh) CreateVirtualNodeRequest(input *CreateVirtualNodeInput) (req *
 // For more information about virtual nodes, see Virtual nodes (https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_nodes.html).
 // You must be using 1.15.0 or later of the Envoy image when setting these variables.
 // For more information aboutApp Mesh Envoy variables, see Envoy image (https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html)
-// in the AWS App Mesh User Guide.
+// in the App Mesh User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -577,7 +577,7 @@ func (c *AppMesh) CreateVirtualNodeRequest(input *CreateVirtualNodeInput) (req *
 //   * LimitExceededException
 //   You have exceeded a service limit for your account. For more information,
 //   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateVirtualNode
 func (c *AppMesh) CreateVirtualNode(input *CreateVirtualNodeInput) (*CreateVirtualNodeOutput, error) {
@@ -692,7 +692,7 @@ func (c *AppMesh) CreateVirtualRouterRequest(input *CreateVirtualRouterInput) (r
 //   * LimitExceededException
 //   You have exceeded a service limit for your account. For more information,
 //   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateVirtualRouter
 func (c *AppMesh) CreateVirtualRouter(input *CreateVirtualRouterInput) (*CreateVirtualRouterOutput, error) {
@@ -807,7 +807,7 @@ func (c *AppMesh) CreateVirtualServiceRequest(input *CreateVirtualServiceInput) 
 //   * LimitExceededException
 //   You have exceeded a service limit for your account. For more information,
 //   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/CreateVirtualService
 func (c *AppMesh) CreateVirtualService(input *CreateVirtualServiceInput) (*CreateVirtualServiceOutput, error) {
@@ -3756,7 +3756,7 @@ func (c *AppMesh) UpdateGatewayRouteRequest(input *UpdateGatewayRouteInput) (req
 //   * LimitExceededException
 //   You have exceeded a service limit for your account. For more information,
 //   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateGatewayRoute
 func (c *AppMesh) UpdateGatewayRoute(input *UpdateGatewayRouteInput) (*UpdateGatewayRouteOutput, error) {
@@ -3965,7 +3965,7 @@ func (c *AppMesh) UpdateRouteRequest(input *UpdateRouteInput) (req *request.Requ
 //   * LimitExceededException
 //   You have exceeded a service limit for your account. For more information,
 //   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateRoute
 func (c *AppMesh) UpdateRoute(input *UpdateRouteInput) (*UpdateRouteOutput, error) {
@@ -4072,7 +4072,7 @@ func (c *AppMesh) UpdateVirtualGatewayRequest(input *UpdateVirtualGatewayInput) 
 //   * LimitExceededException
 //   You have exceeded a service limit for your account. For more information,
 //   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateVirtualGateway
 func (c *AppMesh) UpdateVirtualGateway(input *UpdateVirtualGatewayInput) (*UpdateVirtualGatewayOutput, error) {
@@ -4179,7 +4179,7 @@ func (c *AppMesh) UpdateVirtualNodeRequest(input *UpdateVirtualNodeInput) (req *
 //   * LimitExceededException
 //   You have exceeded a service limit for your account. For more information,
 //   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateVirtualNode
 func (c *AppMesh) UpdateVirtualNode(input *UpdateVirtualNodeInput) (*UpdateVirtualNodeOutput, error) {
@@ -4286,7 +4286,7 @@ func (c *AppMesh) UpdateVirtualRouterRequest(input *UpdateVirtualRouterInput) (r
 //   * LimitExceededException
 //   You have exceeded a service limit for your account. For more information,
 //   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateVirtualRouter
 func (c *AppMesh) UpdateVirtualRouter(input *UpdateVirtualRouterInput) (*UpdateVirtualRouterOutput, error) {
@@ -4393,7 +4393,7 @@ func (c *AppMesh) UpdateVirtualServiceRequest(input *UpdateVirtualServiceInput) 
 //   * LimitExceededException
 //   You have exceeded a service limit for your account. For more information,
 //   see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-//   in the AWS App Mesh User Guide.
+//   in the App Mesh User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appmesh-2019-01-25/UpdateVirtualService
 func (c *AppMesh) UpdateVirtualService(input *UpdateVirtualServiceInput) (*UpdateVirtualServiceOutput, error) {
@@ -4467,7 +4467,7 @@ func (s *AccessLog) SetFile(v *FileAccessLog) *AccessLog {
 // An object that represents the Cloud Map attribute information for your virtual
 // node.
 //
-// AWS Cloud Map is not available in the eu-south-1 Region.
+// Cloud Map is not available in the eu-south-1 Region.
 type AwsCloudMapInstanceAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -4549,6 +4549,9 @@ type AwsCloudMapServiceDiscovery struct {
 	// will be returned.
 	Attributes []*AwsCloudMapInstanceAttribute `locationName:"attributes" type:"list"`
 
+	// The IP version to use to control traffic within the mesh.
+	IpPreference *string `locationName:"ipPreference" type:"string" enum:"IpPreference"`
+
 	// The name of the Cloud Map namespace to use.
 	//
 	// NamespaceName is a required field
@@ -4613,6 +4616,12 @@ func (s *AwsCloudMapServiceDiscovery) Validate() error {
 // SetAttributes sets the Attributes field's value.
 func (s *AwsCloudMapServiceDiscovery) SetAttributes(v []*AwsCloudMapInstanceAttribute) *AwsCloudMapServiceDiscovery {
 	s.Attributes = v
+	return s
+}
+
+// SetIpPreference sets the IpPreference field's value.
+func (s *AwsCloudMapServiceDiscovery) SetIpPreference(v string) *AwsCloudMapServiceDiscovery {
+	s.IpPreference = &v
 	return s
 }
 
@@ -5067,10 +5076,11 @@ type CreateGatewayRouteInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then the account that you specify must share the mesh with your
-	// account before you can create the resource in the service mesh. For more
-	// information about mesh sharing, see Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then the account that you specify must share
+	// the mesh with your account before you can create the resource in the service
+	// mesh. For more information about mesh sharing, see Working with shared meshes
+	// (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The gateway route specification to apply.
@@ -5374,10 +5384,11 @@ type CreateRouteInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then the account that you specify must share the mesh with your
-	// account before you can create the resource in the service mesh. For more
-	// information about mesh sharing, see Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then the account that you specify must share
+	// the mesh with your account before you can create the resource in the service
+	// mesh. For more information about mesh sharing, see Working with shared meshes
+	// (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name to use for the route.
@@ -5558,10 +5569,11 @@ type CreateVirtualGatewayInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then the account that you specify must share the mesh with your
-	// account before you can create the resource in the service mesh. For more
-	// information about mesh sharing, see Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then the account that you specify must share
+	// the mesh with your account before you can create the resource in the service
+	// mesh. For more information about mesh sharing, see Working with shared meshes
+	// (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The virtual gateway specification to apply.
@@ -5723,10 +5735,11 @@ type CreateVirtualNodeInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then the account that you specify must share the mesh with your
-	// account before you can create the resource in the service mesh. For more
-	// information about mesh sharing, see Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then the account that you specify must share
+	// the mesh with your account before you can create the resource in the service
+	// mesh. For more information about mesh sharing, see Working with shared meshes
+	// (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The virtual node specification to apply.
@@ -5888,10 +5901,11 @@ type CreateVirtualRouterInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then the account that you specify must share the mesh with your
-	// account before you can create the resource in the service mesh. For more
-	// information about mesh sharing, see Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then the account that you specify must share
+	// the mesh with your account before you can create the resource in the service
+	// mesh. For more information about mesh sharing, see Working with shared meshes
+	// (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The virtual router specification to apply.
@@ -6053,10 +6067,11 @@ type CreateVirtualServiceInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then the account that you specify must share the mesh with your
-	// account before you can create the resource in the service mesh. For more
-	// information about mesh sharing, see Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then the account that you specify must share
+	// the mesh with your account before you can create the resource in the service
+	// mesh. For more information about mesh sharing, see Working with shared meshes
+	// (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The virtual service specification to apply.
@@ -6216,10 +6231,10 @@ type DeleteGatewayRouteInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual gateway to delete the route from.
@@ -6424,10 +6439,10 @@ type DeleteRouteInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the route to delete.
@@ -6555,10 +6570,10 @@ type DeleteVirtualGatewayInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual gateway to delete.
@@ -6670,10 +6685,10 @@ type DeleteVirtualNodeInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual node to delete.
@@ -6784,10 +6799,10 @@ type DeleteVirtualRouterInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual router to delete.
@@ -6898,10 +6913,10 @@ type DeleteVirtualServiceInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual service to delete.
@@ -7017,10 +7032,10 @@ type DescribeGatewayRouteInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual gateway that the gateway route is associated with.
@@ -7143,10 +7158,10 @@ type DescribeMeshInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 }
 
@@ -7240,10 +7255,10 @@ type DescribeRouteInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the route to describe.
@@ -7371,10 +7386,10 @@ type DescribeVirtualGatewayInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual gateway to describe.
@@ -7485,10 +7500,10 @@ type DescribeVirtualNodeInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual node to describe.
@@ -7599,10 +7614,10 @@ type DescribeVirtualRouterInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual router to describe.
@@ -7713,10 +7728,10 @@ type DescribeVirtualServiceInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the virtual service to describe.
@@ -7829,6 +7844,9 @@ type DnsServiceDiscovery struct {
 	// Hostname is a required field
 	Hostname *string `locationName:"hostname" type:"string" required:"true"`
 
+	// The IP version to use to control traffic within the mesh.
+	IpPreference *string `locationName:"ipPreference" type:"string" enum:"IpPreference"`
+
 	// Specifies the DNS response type for the virtual node.
 	ResponseType *string `locationName:"responseType" type:"string" enum:"DnsResponseType"`
 }
@@ -7867,6 +7885,12 @@ func (s *DnsServiceDiscovery) Validate() error {
 // SetHostname sets the Hostname field's value.
 func (s *DnsServiceDiscovery) SetHostname(v string) *DnsServiceDiscovery {
 	s.Hostname = &v
+	return s
+}
+
+// SetIpPreference sets the IpPreference field's value.
+func (s *DnsServiceDiscovery) SetIpPreference(v string) *DnsServiceDiscovery {
+	s.IpPreference = &v
 	return s
 }
 
@@ -7978,8 +8002,8 @@ type FileAccessLog struct {
 	// as Amazon CloudWatch Logs. You can also specify a path in the Envoy container's
 	// file system to write the files to disk.
 	//
-	// The Envoy process must have write permissions to the path that you specify
-	// here. Otherwise, Envoy fails to bootstrap properly.
+	//    <note> <p>The Envoy process must have write permissions to the path that
+	//    you specify here. Otherwise, Envoy fails to bootstrap properly.</p> </note>
 	//
 	// Path is a required field
 	Path *string `locationName:"path" min:"1" type:"string" required:"true"`
@@ -8296,18 +8320,18 @@ type GatewayRouteRef struct {
 	// MeshName is a required field
 	MeshName *string `locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// MeshOwner is a required field
 	MeshOwner *string `locationName:"meshOwner" min:"12" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the resource owner. If the account ID is not your
-	// own, then it's the ID of the mesh owner or of another account that the mesh
-	// is shared with. For more information about mesh sharing, see Working with
-	// shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the resource owner. If the account
+	// ID is not your own, then it's the ID of the mesh owner or of another account
+	// that the mesh is shared with. For more information about mesh sharing, see
+	// Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" min:"12" type:"string" required:"true"`
@@ -11020,7 +11044,7 @@ func (s *InternalServerErrorException) RequestID() string {
 
 // You have exceeded a service limit for your account. For more information,
 // see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
-// in the AWS App Mesh User Guide.
+// in the App Mesh User Guide.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -11101,10 +11125,10 @@ type ListGatewayRoutesInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The nextToken value returned from a previous paginated ListGatewayRoutes
@@ -11368,10 +11392,10 @@ type ListRoutesInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The nextToken value returned from a previous paginated ListRoutes request
@@ -11646,10 +11670,10 @@ type ListVirtualGatewaysInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The nextToken value returned from a previous paginated ListVirtualGateways
@@ -11785,10 +11809,10 @@ type ListVirtualNodesInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The nextToken value returned from a previous paginated ListVirtualNodes request
@@ -11924,10 +11948,10 @@ type ListVirtualRoutersInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The nextToken value returned from a previous paginated ListVirtualRouters
@@ -12063,10 +12087,10 @@ type ListVirtualServicesInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The nextToken value returned from a previous paginated ListVirtualServices
@@ -12451,7 +12475,7 @@ func (s *ListenerTls) SetValidation(v *ListenerTlsValidationContext) *ListenerTl
 	return s
 }
 
-// An object that represents an AWS Certicate Manager (ACM) certificate.
+// An object that represents an Certificate Manager certificate.
 type ListenerTlsAcmCertificate struct {
 	_ struct{} `type:"structure"`
 
@@ -12504,7 +12528,7 @@ func (s *ListenerTlsAcmCertificate) SetCertificateArn(v string) *ListenerTlsAcmC
 type ListenerTlsCertificate struct {
 	_ struct{} `type:"structure"`
 
-	// A reference to an object that represents an AWS Certicate Manager (ACM) certificate.
+	// A reference to an object that represents an Certificate Manager certificate.
 	Acm *ListenerTlsAcmCertificate `locationName:"acm" type:"structure"`
 
 	// A reference to an object that represents a local file certificate.
@@ -13033,18 +13057,18 @@ type MeshRef struct {
 	// MeshName is a required field
 	MeshName *string `locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// MeshOwner is a required field
 	MeshOwner *string `locationName:"meshOwner" min:"12" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the resource owner. If the account ID is not your
-	// own, then it's the ID of the mesh owner or of another account that the mesh
-	// is shared with. For more information about mesh sharing, see Working with
-	// shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the resource owner. If the account
+	// ID is not your own, then it's the ID of the mesh owner or of another account
+	// that the mesh is shared with. For more information about mesh sharing, see
+	// Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" min:"12" type:"string" required:"true"`
@@ -13116,12 +13140,49 @@ func (s *MeshRef) SetVersion(v int64) *MeshRef {
 	return s
 }
 
+// An object that represents the service discovery information for a service
+// mesh.
+type MeshServiceDiscovery struct {
+	_ struct{} `type:"structure"`
+
+	// The IP version to use to control traffic within the mesh.
+	IpPreference *string `locationName:"ipPreference" type:"string" enum:"IpPreference"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MeshServiceDiscovery) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MeshServiceDiscovery) GoString() string {
+	return s.String()
+}
+
+// SetIpPreference sets the IpPreference field's value.
+func (s *MeshServiceDiscovery) SetIpPreference(v string) *MeshServiceDiscovery {
+	s.IpPreference = &v
+	return s
+}
+
 // An object that represents the specification of a service mesh.
 type MeshSpec struct {
 	_ struct{} `type:"structure"`
 
 	// The egress filter rules for the service mesh.
 	EgressFilter *EgressFilter `locationName:"egressFilter" type:"structure"`
+
+	// An object that represents the service discovery information for a service
+	// mesh.
+	ServiceDiscovery *MeshServiceDiscovery `locationName:"serviceDiscovery" type:"structure"`
 }
 
 // String returns the string representation.
@@ -13160,6 +13221,12 @@ func (s *MeshSpec) Validate() error {
 // SetEgressFilter sets the EgressFilter field's value.
 func (s *MeshSpec) SetEgressFilter(v *EgressFilter) *MeshSpec {
 	s.EgressFilter = v
+	return s
+}
+
+// SetServiceDiscovery sets the ServiceDiscovery field's value.
+func (s *MeshSpec) SetServiceDiscovery(v *MeshServiceDiscovery) *MeshSpec {
+	s.ServiceDiscovery = v
 	return s
 }
 
@@ -13532,18 +13599,18 @@ type ResourceMetadata struct {
 	// LastUpdatedAt is a required field
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// MeshOwner is a required field
 	MeshOwner *string `locationName:"meshOwner" min:"12" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the resource owner. If the account ID is not your
-	// own, then it's the ID of the mesh owner or of another account that the mesh
-	// is shared with. For more information about mesh sharing, see Working with
-	// shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the resource owner. If the account
+	// ID is not your own, then it's the ID of the mesh owner or of another account
+	// that the mesh is shared with. For more information about mesh sharing, see
+	// Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" min:"12" type:"string" required:"true"`
@@ -13733,18 +13800,18 @@ type RouteRef struct {
 	// MeshName is a required field
 	MeshName *string `locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// MeshOwner is a required field
 	MeshOwner *string `locationName:"meshOwner" min:"12" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the resource owner. If the account ID is not your
-	// own, then it's the ID of the mesh owner or of another account that the mesh
-	// is shared with. For more information about mesh sharing, see Working with
-	// shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the resource owner. If the account
+	// ID is not your own, then it's the ID of the mesh owner or of another account
+	// that the mesh is shared with. For more information about mesh sharing, see
+	// Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" min:"12" type:"string" required:"true"`
@@ -15048,10 +15115,10 @@ type UpdateGatewayRouteInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The new gateway route specification to apply. This overwrites the existing
@@ -15310,10 +15377,10 @@ type UpdateRouteInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The name of the route to update.
@@ -15470,10 +15537,10 @@ type UpdateVirtualGatewayInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The new virtual gateway specification to apply. This overwrites the existing
@@ -15614,10 +15681,10 @@ type UpdateVirtualNodeInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The new virtual node specification to apply. This overwrites the existing
@@ -15758,10 +15825,10 @@ type UpdateVirtualRouterInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The new virtual router specification to apply. This overwrites the existing
@@ -15902,10 +15969,10 @@ type UpdateVirtualServiceInput struct {
 	// MeshName is a required field
 	MeshName *string `location:"uri" locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	MeshOwner *string `location:"querystring" locationName:"meshOwner" min:"12" type:"string"`
 
 	// The new virtual service specification to apply. This overwrites the existing
@@ -17547,18 +17614,18 @@ type VirtualGatewayRef struct {
 	// MeshName is a required field
 	MeshName *string `locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// MeshOwner is a required field
 	MeshOwner *string `locationName:"meshOwner" min:"12" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the resource owner. If the account ID is not your
-	// own, then it's the ID of the mesh owner or of another account that the mesh
-	// is shared with. For more information about mesh sharing, see Working with
-	// shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the resource owner. If the account
+	// ID is not your own, then it's the ID of the mesh owner or of another account
+	// that the mesh is shared with. For more information about mesh sharing, see
+	// Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" min:"12" type:"string" required:"true"`
@@ -18426,18 +18493,18 @@ type VirtualNodeRef struct {
 	// MeshName is a required field
 	MeshName *string `locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// MeshOwner is a required field
 	MeshOwner *string `locationName:"meshOwner" min:"12" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the resource owner. If the account ID is not your
-	// own, then it's the ID of the mesh owner or of another account that the mesh
-	// is shared with. For more information about mesh sharing, see Working with
-	// shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the resource owner. If the account
+	// ID is not your own, then it's the ID of the mesh owner or of another account
+	// that the mesh is shared with. For more information about mesh sharing, see
+	// Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" min:"12" type:"string" required:"true"`
@@ -18925,18 +18992,18 @@ type VirtualRouterRef struct {
 	// MeshName is a required field
 	MeshName *string `locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// MeshOwner is a required field
 	MeshOwner *string `locationName:"meshOwner" min:"12" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the resource owner. If the account ID is not your
-	// own, then it's the ID of the mesh owner or of another account that the mesh
-	// is shared with. For more information about mesh sharing, see Working with
-	// shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the resource owner. If the account
+	// ID is not your own, then it's the ID of the mesh owner or of another account
+	// that the mesh is shared with. For more information about mesh sharing, see
+	// Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" min:"12" type:"string" required:"true"`
@@ -19075,7 +19142,7 @@ type VirtualRouterSpec struct {
 
 	// The listeners that the virtual router is expected to receive inbound traffic
 	// from. You can specify one listener.
-	Listeners []*VirtualRouterListener `locationName:"listeners" min:"1" type:"list"`
+	Listeners []*VirtualRouterListener `locationName:"listeners" type:"list"`
 }
 
 // String returns the string representation.
@@ -19099,9 +19166,6 @@ func (s VirtualRouterSpec) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *VirtualRouterSpec) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "VirtualRouterSpec"}
-	if s.Listeners != nil && len(s.Listeners) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Listeners", 1))
-	}
 	if s.Listeners != nil {
 		for i, v := range s.Listeners {
 			if v == nil {
@@ -19383,18 +19447,18 @@ type VirtualServiceRef struct {
 	// MeshName is a required field
 	MeshName *string `locationName:"meshName" min:"1" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the service mesh owner. If the account ID is not
-	// your own, then it's the ID of the account that shared the mesh with your
-	// account. For more information about mesh sharing, see Working with shared
-	// meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the service mesh owner. If the
+	// account ID is not your own, then it's the ID of the account that shared the
+	// mesh with your account. For more information about mesh sharing, see Working
+	// with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// MeshOwner is a required field
 	MeshOwner *string `locationName:"meshOwner" min:"12" type:"string" required:"true"`
 
-	// The AWS IAM account ID of the resource owner. If the account ID is not your
-	// own, then it's the ID of the mesh owner or of another account that the mesh
-	// is shared with. For more information about mesh sharing, see Working with
-	// shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+	// The Amazon Web Services IAM account ID of the resource owner. If the account
+	// ID is not your own, then it's the ID of the mesh owner or of another account
+	// that the mesh is shared with. For more information about mesh sharing, see
+	// Working with shared meshes (https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" min:"12" type:"string" required:"true"`
@@ -19796,6 +19860,30 @@ func HttpScheme_Values() []string {
 	return []string{
 		HttpSchemeHttp,
 		HttpSchemeHttps,
+	}
+}
+
+const (
+	// IpPreferenceIpv6Preferred is a IpPreference enum value
+	IpPreferenceIpv6Preferred = "IPv6_PREFERRED"
+
+	// IpPreferenceIpv4Preferred is a IpPreference enum value
+	IpPreferenceIpv4Preferred = "IPv4_PREFERRED"
+
+	// IpPreferenceIpv4Only is a IpPreference enum value
+	IpPreferenceIpv4Only = "IPv4_ONLY"
+
+	// IpPreferenceIpv6Only is a IpPreference enum value
+	IpPreferenceIpv6Only = "IPv6_ONLY"
+)
+
+// IpPreference_Values returns all elements of the IpPreference enum
+func IpPreference_Values() []string {
+	return []string{
+		IpPreferenceIpv6Preferred,
+		IpPreferenceIpv4Preferred,
+		IpPreferenceIpv4Only,
+		IpPreferenceIpv6Only,
 	}
 }
 

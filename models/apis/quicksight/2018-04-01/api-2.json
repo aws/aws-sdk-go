@@ -1956,6 +1956,23 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "UpdatePublicSharingSettings":{
+      "name":"UpdatePublicSharingSettings",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/accounts/{AwsAccountId}/public-sharing-settings"
+      },
+      "input":{"shape":"UpdatePublicSharingSettingsRequest"},
+      "output":{"shape":"UpdatePublicSharingSettingsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnsupportedPricingPlanException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "UpdateTemplate":{
       "name":"UpdateTemplate",
       "http":{
@@ -2105,7 +2122,8 @@
         "AccountName":{"shape":"String"},
         "Edition":{"shape":"Edition"},
         "DefaultNamespace":{"shape":"Namespace"},
-        "NotificationEmail":{"shape":"String"}
+        "NotificationEmail":{"shape":"String"},
+        "PublicSharingEnabled":{"shape":"Boolean"}
       }
     },
     "ActionList":{
@@ -8797,6 +8815,28 @@
       "type":"list",
       "member":{"shape":"ResourcePermission"},
       "max":2
+    },
+    "UpdatePublicSharingSettingsRequest":{
+      "type":"structure",
+      "required":["AwsAccountId"],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "PublicSharingEnabled":{"shape":"Boolean"}
+      }
+    },
+    "UpdatePublicSharingSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
     },
     "UpdateResourcePermissionList":{
       "type":"list",
