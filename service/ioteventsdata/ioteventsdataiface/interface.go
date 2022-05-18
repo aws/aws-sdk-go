@@ -64,6 +64,10 @@ type IoTEventsDataAPI interface {
 	BatchAcknowledgeAlarmWithContext(aws.Context, *ioteventsdata.BatchAcknowledgeAlarmInput, ...request.Option) (*ioteventsdata.BatchAcknowledgeAlarmOutput, error)
 	BatchAcknowledgeAlarmRequest(*ioteventsdata.BatchAcknowledgeAlarmInput) (*request.Request, *ioteventsdata.BatchAcknowledgeAlarmOutput)
 
+	BatchDeleteDetector(*ioteventsdata.BatchDeleteDetectorInput) (*ioteventsdata.BatchDeleteDetectorOutput, error)
+	BatchDeleteDetectorWithContext(aws.Context, *ioteventsdata.BatchDeleteDetectorInput, ...request.Option) (*ioteventsdata.BatchDeleteDetectorOutput, error)
+	BatchDeleteDetectorRequest(*ioteventsdata.BatchDeleteDetectorInput) (*request.Request, *ioteventsdata.BatchDeleteDetectorOutput)
+
 	BatchDisableAlarm(*ioteventsdata.BatchDisableAlarmInput) (*ioteventsdata.BatchDisableAlarmOutput, error)
 	BatchDisableAlarmWithContext(aws.Context, *ioteventsdata.BatchDisableAlarmInput, ...request.Option) (*ioteventsdata.BatchDisableAlarmOutput, error)
 	BatchDisableAlarmRequest(*ioteventsdata.BatchDisableAlarmInput) (*request.Request, *ioteventsdata.BatchDisableAlarmOutput)

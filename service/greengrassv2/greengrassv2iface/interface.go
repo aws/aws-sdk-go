@@ -92,6 +92,10 @@ type GreengrassV2API interface {
 	DeleteCoreDeviceWithContext(aws.Context, *greengrassv2.DeleteCoreDeviceInput, ...request.Option) (*greengrassv2.DeleteCoreDeviceOutput, error)
 	DeleteCoreDeviceRequest(*greengrassv2.DeleteCoreDeviceInput) (*request.Request, *greengrassv2.DeleteCoreDeviceOutput)
 
+	DeleteDeployment(*greengrassv2.DeleteDeploymentInput) (*greengrassv2.DeleteDeploymentOutput, error)
+	DeleteDeploymentWithContext(aws.Context, *greengrassv2.DeleteDeploymentInput, ...request.Option) (*greengrassv2.DeleteDeploymentOutput, error)
+	DeleteDeploymentRequest(*greengrassv2.DeleteDeploymentInput) (*request.Request, *greengrassv2.DeleteDeploymentOutput)
+
 	DescribeComponent(*greengrassv2.DescribeComponentInput) (*greengrassv2.DescribeComponentOutput, error)
 	DescribeComponentWithContext(aws.Context, *greengrassv2.DescribeComponentInput, ...request.Option) (*greengrassv2.DescribeComponentOutput, error)
 	DescribeComponentRequest(*greengrassv2.DescribeComponentInput) (*request.Request, *greengrassv2.DescribeComponentOutput)

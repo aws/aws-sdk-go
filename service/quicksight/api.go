@@ -6248,8 +6248,8 @@ func (c *QuickSight) GenerateEmbedUrlForAnonymousUserRequest(input *GenerateEmbe
 //
 //    * The URL validity period should not be confused with the actual session
 //    lifetime that can be customized using the SessionLifetimeInMinutes (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GenerateEmbedUrlForAnonymousUser.html#QS-GenerateEmbedUrlForAnonymousUser-request-SessionLifetimeInMinutes)
-//    parameter. The resulting user session is valid for 15 minutes (default)
-//    to 10 hours (maximum).
+//    parameter. The resulting user session is valid for 15 minutes (minimum)
+//    to 10 hours (maximum). The default session duration is 10 hours.
 //
 //    * You are charged only when the URL is used or there is interaction with
 //    Amazon QuickSight.
@@ -6387,8 +6387,8 @@ func (c *QuickSight) GenerateEmbedUrlForRegisteredUserRequest(input *GenerateEmb
 //
 //    * The URL validity period should not be confused with the actual session
 //    lifetime that can be customized using the SessionLifetimeInMinutes (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GenerateEmbedUrlForRegisteredUser.html#QS-GenerateEmbedUrlForRegisteredUser-request-SessionLifetimeInMinutes)
-//    parameter. The resulting user session is valid for 15 minutes (default)
-//    to 10 hours (maximum).
+//    parameter. The resulting user session is valid for 15 minutes (minimum)
+//    to 10 hours (maximum). The default session duration is 10 hours.
 //
 //    * You are charged only when the URL is used or there is interaction with
 //    Amazon QuickSight.
@@ -12215,6 +12215,120 @@ func (c *QuickSight) UpdateIpRestrictionWithContext(ctx aws.Context, input *Upda
 	return out, req.Send()
 }
 
+const opUpdatePublicSharingSettings = "UpdatePublicSharingSettings"
+
+// UpdatePublicSharingSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePublicSharingSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePublicSharingSettings for more information on using the UpdatePublicSharingSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdatePublicSharingSettingsRequest method.
+//    req, resp := client.UpdatePublicSharingSettingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdatePublicSharingSettings
+func (c *QuickSight) UpdatePublicSharingSettingsRequest(input *UpdatePublicSharingSettingsInput) (req *request.Request, output *UpdatePublicSharingSettingsOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePublicSharingSettings,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/accounts/{AwsAccountId}/public-sharing-settings",
+	}
+
+	if input == nil {
+		input = &UpdatePublicSharingSettingsInput{}
+	}
+
+	output = &UpdatePublicSharingSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdatePublicSharingSettings API operation for Amazon QuickSight.
+//
+// Use the UpdatePublicSharingSettings operation to enable or disable the public
+// sharing settings of an Amazon QuickSight dashboard.
+//
+// To use this operation, enable session capacity pricing on your Amazon QuickSight
+// account.
+//
+// Before you can enable public sharing on your account, you need to allow public
+// sharing permissions to an administrative user in the IAM console. For more
+// information on using IAM with Amazon QuickSight, see Using Amazon QuickSight
+// with IAM (https://docs.aws.amazon.com/quicksight/latest/user/security_iam_service-with-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation UpdatePublicSharingSettings for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * UnsupportedPricingPlanException
+//   This error indicates that you are calling an embedding operation in Amazon
+//   QuickSight without the required pricing plan on your Amazon Web Services
+//   account. Before you can use embedding for anonymous users, a QuickSight administrator
+//   needs to add capacity pricing to Amazon QuickSight. You can do this on the
+//   Manage Amazon QuickSight page.
+//
+//   After capacity pricing is added, you can use the GetDashboardEmbedUrl (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GetDashboardEmbedUrl.html)
+//   API operation with the --identity-type ANONYMOUS option.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdatePublicSharingSettings
+func (c *QuickSight) UpdatePublicSharingSettings(input *UpdatePublicSharingSettingsInput) (*UpdatePublicSharingSettingsOutput, error) {
+	req, out := c.UpdatePublicSharingSettingsRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePublicSharingSettingsWithContext is the same as UpdatePublicSharingSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePublicSharingSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) UpdatePublicSharingSettingsWithContext(ctx aws.Context, input *UpdatePublicSharingSettingsInput, opts ...request.Option) (*UpdatePublicSharingSettingsOutput, error) {
+	req, out := c.UpdatePublicSharingSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateTemplate = "UpdateTemplate"
 
 // UpdateTemplateRequest generates a "aws/request.Request" representing the
@@ -13068,6 +13182,11 @@ type AccountSettings struct {
 
 	// The main notification email for your Amazon QuickSight subscription.
 	NotificationEmail *string `type:"string"`
+
+	// A boolean that indicates whether or not public sharing is enabled on an Amazon
+	// QuickSight account. For more information about enabling public sharing, see
+	// UpdatePublicSharingSettings (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdatePublicSharingSettings.html).
+	PublicSharingEnabled *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -13109,6 +13228,12 @@ func (s *AccountSettings) SetEdition(v string) *AccountSettings {
 // SetNotificationEmail sets the NotificationEmail field's value.
 func (s *AccountSettings) SetNotificationEmail(v string) *AccountSettings {
 	s.NotificationEmail = &v
+	return s
+}
+
+// SetPublicSharingEnabled sets the PublicSharingEnabled field's value.
+func (s *AccountSettings) SetPublicSharingEnabled(v bool) *AccountSettings {
+	s.PublicSharingEnabled = &v
 	return s
 }
 
@@ -26601,7 +26726,8 @@ type GenerateEmbedUrlForAnonymousUserInput struct {
 	// The Amazon Resource Names for the Amazon QuickSight resources that the user
 	// is authorized to access during the lifetime of the session. If you choose
 	// Dashboard embedding experience, pass the list of dashboard ARNs in the account
-	// that you want the user to be able to view.
+	// that you want the user to be able to view. Currently, you can pass up to
+	// 25 dashboard ARNs in each API call.
 	//
 	// AuthorizedResourceArns is a required field
 	AuthorizedResourceArns []*string `type:"list" required:"true"`
@@ -41160,6 +41286,106 @@ func (s *UpdateIpRestrictionOutput) SetRequestId(v string) *UpdateIpRestrictionO
 
 // SetStatus sets the Status field's value.
 func (s *UpdateIpRestrictionOutput) SetStatus(v int64) *UpdateIpRestrictionOutput {
+	s.Status = &v
+	return s
+}
+
+type UpdatePublicSharingSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID associated with your Amazon QuickSight
+	// subscription.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// A boolean that indicates whether or not public sharing is enabled on a Amazon
+	// QuickSight account.
+	PublicSharingEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePublicSharingSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePublicSharingSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePublicSharingSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePublicSharingSettingsInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdatePublicSharingSettingsInput) SetAwsAccountId(v string) *UpdatePublicSharingSettingsInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetPublicSharingEnabled sets the PublicSharingEnabled field's value.
+func (s *UpdatePublicSharingSettingsInput) SetPublicSharingEnabled(v bool) *UpdatePublicSharingSettingsInput {
+	s.PublicSharingEnabled = &v
+	return s
+}
+
+type UpdatePublicSharingSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePublicSharingSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePublicSharingSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdatePublicSharingSettingsOutput) SetRequestId(v string) *UpdatePublicSharingSettingsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdatePublicSharingSettingsOutput) SetStatus(v int64) *UpdatePublicSharingSettingsOutput {
 	s.Status = &v
 	return s
 }

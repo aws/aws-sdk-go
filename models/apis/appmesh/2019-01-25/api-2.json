@@ -809,6 +809,7 @@
       ],
       "members":{
         "attributes":{"shape":"AwsCloudMapInstanceAttributes"},
+        "ipPreference":{"shape":"IpPreference"},
         "namespaceName":{"shape":"AwsCloudMapName"},
         "serviceName":{"shape":"AwsCloudMapName"}
       }
@@ -1602,6 +1603,7 @@
       "required":["hostname"],
       "members":{
         "hostname":{"shape":"Hostname"},
+        "ipPreference":{"shape":"IpPreference"},
         "responseType":{"shape":"DnsResponseType"}
       }
     },
@@ -2189,6 +2191,15 @@
       "fault":true,
       "retryable":{"throttling":false}
     },
+    "IpPreference":{
+      "type":"string",
+      "enum":[
+        "IPv6_PREFERRED",
+        "IPv4_PREFERRED",
+        "IPv4_ONLY",
+        "IPv6_ONLY"
+      ]
+    },
     "LimitExceededException":{
       "type":"structure",
       "members":{
@@ -2608,9 +2619,7 @@
     },
     "Listeners":{
       "type":"list",
-      "member":{"shape":"Listener"},
-      "max":1,
-      "min":0
+      "member":{"shape":"Listener"}
     },
     "Logging":{
       "type":"structure",
@@ -2690,10 +2699,17 @@
         "version":{"shape":"Long"}
       }
     },
+    "MeshServiceDiscovery":{
+      "type":"structure",
+      "members":{
+        "ipPreference":{"shape":"IpPreference"}
+      }
+    },
     "MeshSpec":{
       "type":"structure",
       "members":{
-        "egressFilter":{"shape":"EgressFilter"}
+        "egressFilter":{"shape":"EgressFilter"},
+        "serviceDiscovery":{"shape":"MeshServiceDiscovery"}
       }
     },
     "MeshStatus":{
@@ -3620,9 +3636,7 @@
     },
     "VirtualGatewayListeners":{
       "type":"list",
-      "member":{"shape":"VirtualGatewayListener"},
-      "max":1,
-      "min":0
+      "member":{"shape":"VirtualGatewayListener"}
     },
     "VirtualGatewayLogging":{
       "type":"structure",
@@ -3883,9 +3897,7 @@
     },
     "VirtualRouterListeners":{
       "type":"list",
-      "member":{"shape":"VirtualRouterListener"},
-      "max":1,
-      "min":1
+      "member":{"shape":"VirtualRouterListener"}
     },
     "VirtualRouterRef":{
       "type":"structure",

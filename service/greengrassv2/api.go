@@ -471,7 +471,8 @@ func (c *GreengrassV2) CreateComponentVersionRequest(input *CreateComponentVersi
 //    to migrate Lambda functions from IoT Greengrass V1 to IoT Greengrass V2.
 //    This function only accepts Lambda functions that use the following runtimes:
 //    Python 2.7 – python2.7 Python 3.7 – python3.7 Python 3.8 – python3.8
-//    Java 8 – java8 Node.js 10 – nodejs10.x Node.js 12 – nodejs12.x To
+//    Python 3.9 – python3.9 Java 8 – java8 Java 11 – java11 Node.js 10
+//    – nodejs10.x Node.js 12 – nodejs12.x Node.js 14 – nodejs14.x To
 //    create a component from a Lambda function, specify lambdaFunction when
 //    you call this operation. IoT Greengrass currently supports Lambda functions
 //    on only Linux core devices.
@@ -619,6 +620,10 @@ func (c *GreengrassV2) CreateDeploymentRequest(input *CreateDeploymentInput) (re
 //
 //   * InternalServerException
 //   IoT Greengrass can't process your request right now. Try again later.
+//
+//   * ConflictException
+//   Your request has conflicting operations. This can occur if you're trying
+//   to perform more than one operation on the same resource at the same time.
 //
 //   * RequestAlreadyInProgressException
 //   The request is already in progress. This exception occurs when you use a
@@ -849,6 +854,111 @@ func (c *GreengrassV2) DeleteCoreDevice(input *DeleteCoreDeviceInput) (*DeleteCo
 // for more information on using Contexts.
 func (c *GreengrassV2) DeleteCoreDeviceWithContext(ctx aws.Context, input *DeleteCoreDeviceInput, opts ...request.Option) (*DeleteCoreDeviceOutput, error) {
 	req, out := c.DeleteCoreDeviceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteDeployment = "DeleteDeployment"
+
+// DeleteDeploymentRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDeployment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDeployment for more information on using the DeleteDeployment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteDeploymentRequest method.
+//    req, resp := client.DeleteDeploymentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/DeleteDeployment
+func (c *GreengrassV2) DeleteDeploymentRequest(input *DeleteDeploymentInput) (req *request.Request, output *DeleteDeploymentOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDeployment,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/greengrass/v2/deployments/{deploymentId}",
+	}
+
+	if input == nil {
+		input = &DeleteDeploymentInput{}
+	}
+
+	output = &DeleteDeploymentOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteDeployment API operation for AWS IoT Greengrass V2.
+//
+// Deletes a deployment. To delete an active deployment, you must first cancel
+// it. For more information, see CancelDeployment (https://docs.aws.amazon.com/iot/latest/apireference/API_CancelDeployment.html).
+//
+// Deleting a deployment doesn't affect core devices that run that deployment,
+// because core devices store the deployment's configuration on the device.
+// Additionally, core devices can roll back to a previous deployment that has
+// been deleted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Greengrass V2's
+// API operation DeleteDeployment for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The requested resource can't be found.
+//
+//   * ValidationException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters.
+//
+//   * AccessDeniedException
+//   You don't have permission to perform the action.
+//
+//   * InternalServerException
+//   IoT Greengrass can't process your request right now. Try again later.
+//
+//   * ConflictException
+//   Your request has conflicting operations. This can occur if you're trying
+//   to perform more than one operation on the same resource at the same time.
+//
+//   * ThrottlingException
+//   Your request exceeded a request rate quota. For example, you might have exceeded
+//   the amount of times that you can retrieve device or deployment status per
+//   second.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/DeleteDeployment
+func (c *GreengrassV2) DeleteDeployment(input *DeleteDeploymentInput) (*DeleteDeploymentOutput, error) {
+	req, out := c.DeleteDeploymentRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDeploymentWithContext is the same as DeleteDeployment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDeployment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GreengrassV2) DeleteDeploymentWithContext(ctx aws.Context, input *DeleteDeploymentInput, opts ...request.Option) (*DeleteDeploymentOutput, error) {
+	req, out := c.DeleteDeploymentRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1171,9 +1281,9 @@ func (c *GreengrassV2) GetComponentVersionArtifactRequest(input *GetComponentVer
 
 // GetComponentVersionArtifact API operation for AWS IoT Greengrass V2.
 //
-// Gets the pre-signed URL to download a public component artifact. Core devices
-// call this operation to identify the URL that they can use to download an
-// artifact to install.
+// Gets the pre-signed URL to download a public or a Lambda component artifact.
+// Core devices call this operation to identify the URL that they can use to
+// download an artifact to install.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1359,6 +1469,24 @@ func (c *GreengrassV2) GetCoreDeviceRequest(input *GetCoreDeviceInput) (req *req
 // GetCoreDevice API operation for AWS IoT Greengrass V2.
 //
 // Retrieves metadata for a Greengrass core device.
+//
+// IoT Greengrass relies on individual devices to send status updates to the
+// Amazon Web Services Cloud. If the IoT Greengrass Core software isn't running
+// on the device, or if device isn't connected to the Amazon Web Services Cloud,
+// then the reported status of that device might not reflect its current status.
+// The status timestamp indicates when the device status was last updated.
+//
+// Core devices send status updates at the following times:
+//
+//    * When the IoT Greengrass Core software starts
+//
+//    * When the core device receives a deployment from the Amazon Web Services
+//    Cloud
+//
+//    * When the status of any component on the core device becomes BROKEN
+//
+//    * At a regular interval that you can configure (https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-nucleus-component.html#greengrass-nucleus-component-configuration-fss),
+//    which defaults to 24 hours
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1961,6 +2089,9 @@ func (c *GreengrassV2) ListComponentsRequest(input *ListComponentsInput) (req *r
 //   * AccessDeniedException
 //   You don't have permission to perform the action.
 //
+//   * ResourceNotFoundException
+//   The requested resource can't be found.
+//
 //   * ThrottlingException
 //   Your request exceeded a request rate quota. For example, you might have exceeded
 //   the amount of times that you can retrieve device or deployment status per
@@ -2094,6 +2225,24 @@ func (c *GreengrassV2) ListCoreDevicesRequest(input *ListCoreDevicesInput) (req 
 // ListCoreDevices API operation for AWS IoT Greengrass V2.
 //
 // Retrieves a paginated list of Greengrass core devices.
+//
+// IoT Greengrass relies on individual devices to send status updates to the
+// Amazon Web Services Cloud. If the IoT Greengrass Core software isn't running
+// on the device, or if device isn't connected to the Amazon Web Services Cloud,
+// then the reported status of that device might not reflect its current status.
+// The status timestamp indicates when the device status was last updated.
+//
+// Core devices send status updates at the following times:
+//
+//    * When the IoT Greengrass Core software starts
+//
+//    * When the core device receives a deployment from the Amazon Web Services
+//    Cloud
+//
+//    * When the status of any component on the core device becomes BROKEN
+//
+//    * At a regular interval that you can configure (https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-nucleus-component.html#greengrass-nucleus-component-configuration-fss),
+//    which defaults to 24 hours
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2545,7 +2694,26 @@ func (c *GreengrassV2) ListInstalledComponentsRequest(input *ListInstalledCompon
 // ListInstalledComponents API operation for AWS IoT Greengrass V2.
 //
 // Retrieves a paginated list of the components that a Greengrass core device
-// runs.
+// runs. This list doesn't include components that are deployed from local deployments
+// or components that are deployed as dependencies of other components.
+//
+// IoT Greengrass relies on individual devices to send status updates to the
+// Amazon Web Services Cloud. If the IoT Greengrass Core software isn't running
+// on the device, or if device isn't connected to the Amazon Web Services Cloud,
+// then the reported status of that device might not reflect its current status.
+// The status timestamp indicates when the device status was last updated.
+//
+// Core devices send status updates at the following times:
+//
+//    * When the IoT Greengrass Core software starts
+//
+//    * When the core device receives a deployment from the Amazon Web Services
+//    Cloud
+//
+//    * When the status of any component on the core device becomes BROKEN
+//
+//    * At a regular interval that you can configure (https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-nucleus-component.html#greengrass-nucleus-component-configuration-fss),
+//    which defaults to 24 hours
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2814,6 +2982,10 @@ func (c *GreengrassV2) ResolveComponentCandidatesRequest(input *ResolveComponent
 //   * ResourceNotFoundException
 //   The requested resource can't be found.
 //
+//   * ConflictException
+//   Your request has conflicting operations. This can occur if you're trying
+//   to perform more than one operation on the same resource at the same time.
+//
 //   * ThrottlingException
 //   Your request exceeded a request rate quota. For example, you might have exceeded
 //   the amount of times that you can retrieve device or deployment status per
@@ -2821,10 +2993,6 @@ func (c *GreengrassV2) ResolveComponentCandidatesRequest(input *ResolveComponent
 //
 //   * InternalServerException
 //   IoT Greengrass can't process your request right now. Try again later.
-//
-//   * ConflictException
-//   Your request has conflicting operations. This can occur if you're trying
-//   to perform more than one operation on the same resource at the same time.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/ResolveComponentCandidates
 func (c *GreengrassV2) ResolveComponentCandidates(input *ResolveComponentCandidatesInput) (*ResolveComponentCandidatesOutput, error) {
@@ -3480,7 +3648,7 @@ type BatchAssociateClientDeviceWithCoreDeviceOutput struct {
 
 	// The list of any errors for the entries in the request. Each error entry contains
 	// the name of the IoT thing that failed to associate.
-	ErrorEntries []*AssociateClientDeviceWithCoreDeviceErrorEntry `locationName:"errorEntries" min:"1" type:"list"`
+	ErrorEntries []*AssociateClientDeviceWithCoreDeviceErrorEntry `locationName:"errorEntries" type:"list"`
 }
 
 // String returns the string representation.
@@ -3583,7 +3751,7 @@ type BatchDisassociateClientDeviceFromCoreDeviceOutput struct {
 
 	// The list of any errors for the entries in the request. Each error entry contains
 	// the name of the IoT thing that failed to disassociate.
-	ErrorEntries []*DisassociateClientDeviceFromCoreDeviceErrorEntry `locationName:"errorEntries" min:"1" type:"list"`
+	ErrorEntries []*DisassociateClientDeviceFromCoreDeviceErrorEntry `locationName:"errorEntries" type:"list"`
 }
 
 // String returns the string representation.
@@ -3690,22 +3858,42 @@ func (s *CancelDeploymentOutput) SetMessage(v string) *CancelDeploymentOutput {
 	return s
 }
 
-// Contains the status of a component in the IoT Greengrass service.
+// Contains the status of a component version in the IoT Greengrass service.
 type CloudComponentStatus struct {
 	_ struct{} `type:"structure"`
 
-	// The state of the component.
+	// The state of the component version.
 	ComponentState *string `locationName:"componentState" type:"string" enum:"CloudComponentState"`
 
-	// A dictionary of errors that communicate why the component is in an error
-	// state. For example, if IoT Greengrass can't access an artifact for the component,
-	// then errors contains the artifact's URI as a key, and the error message as
-	// the value for that key.
+	// A dictionary of errors that communicate why the component version is in an
+	// error state. For example, if IoT Greengrass can't access an artifact for
+	// the component version, then errors contains the artifact's URI as a key,
+	// and the error message as the value for that key.
 	Errors map[string]*string `locationName:"errors" type:"map"`
 
 	// A message that communicates details, such as errors, about the status of
-	// the component.
+	// the component version.
 	Message *string `locationName:"message" min:"1" type:"string"`
+
+	// The vendor guidance state for the component version. This state indicates
+	// whether the component version has any issues that you should consider before
+	// you deploy it. The vendor guidance state can be:
+	//
+	//    * ACTIVE – This component version is available and recommended for use.
+	//
+	//    * DISCONTINUED – This component version has been discontinued by its
+	//    publisher. You can deploy this component version, but we recommend that
+	//    you use a different version of this component.
+	//
+	//    * DELETED – This component version has been deleted by its publisher,
+	//    so you can't deploy it. If you have any existing deployments that specify
+	//    this component version, those deployments will fail.
+	VendorGuidance *string `locationName:"vendorGuidance" type:"string" enum:"VendorGuidance"`
+
+	// A message that communicates details about the vendor guidance state of the
+	// component version. This message communicates why a component version is discontinued
+	// or deleted.
+	VendorGuidanceMessage *string `locationName:"vendorGuidanceMessage" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -3741,6 +3929,18 @@ func (s *CloudComponentStatus) SetErrors(v map[string]*string) *CloudComponentSt
 // SetMessage sets the Message field's value.
 func (s *CloudComponentStatus) SetMessage(v string) *CloudComponentStatus {
 	s.Message = &v
+	return s
+}
+
+// SetVendorGuidance sets the VendorGuidance field's value.
+func (s *CloudComponentStatus) SetVendorGuidance(v string) *CloudComponentStatus {
+	s.VendorGuidance = &v
+	return s
+}
+
+// SetVendorGuidanceMessage sets the VendorGuidanceMessage field's value.
+func (s *CloudComponentStatus) SetVendorGuidanceMessage(v string) *CloudComponentStatus {
+	s.VendorGuidanceMessage = &v
 	return s
 }
 
@@ -5061,6 +5261,77 @@ func (s DeleteCoreDeviceOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteDeploymentInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the deployment.
+	//
+	// DeploymentId is a required field
+	DeploymentId *string `location:"uri" locationName:"deploymentId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDeploymentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDeploymentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDeploymentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDeploymentInput"}
+	if s.DeploymentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeploymentId"))
+	}
+	if s.DeploymentId != nil && len(*s.DeploymentId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeploymentId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeploymentId sets the DeploymentId field's value.
+func (s *DeleteDeploymentInput) SetDeploymentId(v string) *DeleteDeploymentInput {
+	s.DeploymentId = &v
+	return s
+}
+
+type DeleteDeploymentOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDeploymentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDeploymentOutput) GoString() string {
+	return s.String()
+}
+
 // Contains information about a deployment.
 type Deployment struct {
 	_ struct{} `type:"structure"`
@@ -5949,7 +6220,8 @@ type GetComponentVersionArtifactInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of the component version. Specify the ARN of a public component version.
+	// of the component version. Specify the ARN of a public or a Lambda component
+	// version.
 	//
 	// Arn is a required field
 	Arn *string `location:"uri" locationName:"arn" type:"string" required:"true"`
@@ -7896,7 +8168,7 @@ type ListComponentVersionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of the component version.
+	// of the component.
 	//
 	// Arn is a required field
 	Arn *string `location:"uri" locationName:"arn" type:"string" required:"true"`
@@ -8131,7 +8403,9 @@ type ListCoreDevicesInput struct {
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// of the IoT thing group by which to filter. If you specify this parameter,
-	// the list includes only core devices that are members of this thing group.
+	// the list includes only core devices that have successfully deployed a deployment
+	// that targets the thing group. When you remove a core device from a thing
+	// group, the list continues to include that core device.
 	ThingGroupArn *string `location:"querystring" locationName:"thingGroupArn" type:"string"`
 }
 
@@ -8725,14 +8999,10 @@ type ResolveComponentCandidatesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The list of components to resolve.
-	//
-	// ComponentCandidates is a required field
-	ComponentCandidates []*ComponentCandidate `locationName:"componentCandidates" type:"list" required:"true"`
+	ComponentCandidates []*ComponentCandidate `locationName:"componentCandidates" type:"list"`
 
 	// The platform to use to resolve compatible components.
-	//
-	// Platform is a required field
-	Platform *ComponentPlatform `locationName:"platform" type:"structure" required:"true"`
+	Platform *ComponentPlatform `locationName:"platform" type:"structure"`
 }
 
 // String returns the string representation.
@@ -8756,12 +9026,6 @@ func (s ResolveComponentCandidatesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ResolveComponentCandidatesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ResolveComponentCandidatesInput"}
-	if s.ComponentCandidates == nil {
-		invalidParams.Add(request.NewErrParamRequired("ComponentCandidates"))
-	}
-	if s.Platform == nil {
-		invalidParams.Add(request.NewErrParamRequired("Platform"))
-	}
 	if s.ComponentCandidates != nil {
 		for i, v := range s.ComponentCandidates {
 			if v == nil {
@@ -8844,9 +9108,29 @@ type ResolvedComponentVersion struct {
 	// The version of the component.
 	ComponentVersion *string `locationName:"componentVersion" min:"1" type:"string"`
 
+	// A message that communicates details about the vendor guidance state of the
+	// component version. This message communicates why a component version is discontinued
+	// or deleted.
+	Message *string `locationName:"message" min:"1" type:"string"`
+
 	// The recipe of the component version.
 	// Recipe is automatically base64 encoded/decoded by the SDK.
 	Recipe []byte `locationName:"recipe" type:"blob"`
+
+	// The vendor guidance state for the component version. This state indicates
+	// whether the component version has any issues that you should consider before
+	// you deploy it. The vendor guidance state can be:
+	//
+	//    * ACTIVE – This component version is available and recommended for use.
+	//
+	//    * DISCONTINUED – This component version has been discontinued by its
+	//    publisher. You can deploy this component version, but we recommend that
+	//    you use a different version of this component.
+	//
+	//    * DELETED – This component version has been deleted by its publisher,
+	//    so you can't deploy it. If you have any existing deployments that specify
+	//    this component version, those deployments will fail.
+	VendorGuidance *string `locationName:"vendorGuidance" type:"string" enum:"VendorGuidance"`
 }
 
 // String returns the string representation.
@@ -8885,9 +9169,21 @@ func (s *ResolvedComponentVersion) SetComponentVersion(v string) *ResolvedCompon
 	return s
 }
 
+// SetMessage sets the Message field's value.
+func (s *ResolvedComponentVersion) SetMessage(v string) *ResolvedComponentVersion {
+	s.Message = &v
+	return s
+}
+
 // SetRecipe sets the Recipe field's value.
 func (s *ResolvedComponentVersion) SetRecipe(v []byte) *ResolvedComponentVersion {
 	s.Recipe = v
+	return s
+}
+
+// SetVendorGuidance sets the VendorGuidance field's value.
+func (s *ResolvedComponentVersion) SetVendorGuidance(v string) *ResolvedComponentVersion {
+	s.VendorGuidance = &v
 	return s
 }
 
@@ -9936,5 +10232,25 @@ func ValidationExceptionReason_Values() []string {
 		ValidationExceptionReasonCannotParse,
 		ValidationExceptionReasonFieldValidationFailed,
 		ValidationExceptionReasonOther,
+	}
+}
+
+const (
+	// VendorGuidanceActive is a VendorGuidance enum value
+	VendorGuidanceActive = "ACTIVE"
+
+	// VendorGuidanceDiscontinued is a VendorGuidance enum value
+	VendorGuidanceDiscontinued = "DISCONTINUED"
+
+	// VendorGuidanceDeleted is a VendorGuidance enum value
+	VendorGuidanceDeleted = "DELETED"
+)
+
+// VendorGuidance_Values returns all elements of the VendorGuidance enum
+func VendorGuidance_Values() []string {
+	return []string{
+		VendorGuidanceActive,
+		VendorGuidanceDiscontinued,
+		VendorGuidanceDeleted,
 	}
 }

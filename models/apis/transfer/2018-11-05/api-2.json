@@ -1479,7 +1479,8 @@
       "type":"structure",
       "members":{
         "PassiveIp":{"shape":"PassiveIp"},
-        "TlsSessionResumptionMode":{"shape":"TlsSessionResumptionMode"}
+        "TlsSessionResumptionMode":{"shape":"TlsSessionResumptionMode"},
+        "SetStatOption":{"shape":"SetStatOption"}
       }
     },
     "Protocols":{
@@ -1674,6 +1675,13 @@
       "max":32,
       "min":3,
       "pattern":"^[\\w-]*$"
+    },
+    "SetStatOption":{
+      "type":"string",
+      "enum":[
+        "DEFAULT",
+        "ENABLE_NO_OP"
+      ]
     },
     "SourceFileLocation":{
       "type":"string",

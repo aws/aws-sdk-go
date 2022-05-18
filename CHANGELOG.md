@@ -1,3 +1,17 @@
+Release v1.44.17 (2022-05-18)
+===
+
+### Service Client Updates
+* `service/appmesh`: Updates service API and documentation
+* `service/batch`: Updates service documentation
+  * Documentation updates for AWS Batch.
+* `service/greengrassv2`: Updates service API and documentation
+* `service/iotevents-data`: Updates service API and documentation
+* `service/quicksight`: Updates service API and documentation
+  * API UpdatePublicSharingSettings enables IAM admins to enable/disable account level setting for public access of dashboards. When enabled, owners/co-owners for dashboards can enable public access on their dashboards. These dashboards can only be accessed through share link or embedding.
+* `service/transfer`: Updates service API and documentation
+  * AWS Transfer Family now supports SetStat server configuration option, which provides the ability to ignore SetStat command issued by file transfer clients, enabling customers to upload files without any errors.
+
 Release v1.44.16 (2022-05-17)
 ===
 
