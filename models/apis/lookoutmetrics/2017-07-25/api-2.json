@@ -1696,7 +1696,8 @@
       ],
       "members":{
         "RoleArn":{"shape":"Arn"},
-        "SnsTopicArn":{"shape":"Arn"}
+        "SnsTopicArn":{"shape":"Arn"},
+        "SnsFormat":{"shape":"SnsFormat"}
       }
     },
     "SampleDataS3SourceConfig":{
@@ -1753,6 +1754,14 @@
       },
       "error":{"httpStatusCode":402},
       "exception":true
+    },
+    "SnsFormat":{
+      "type":"string",
+      "enum":[
+        "LONG_TEXT",
+        "SHORT_TEXT",
+        "JSON"
+      ]
     },
     "StringAttributeValue":{"type":"string"},
     "StringListAttributeValue":{

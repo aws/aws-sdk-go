@@ -10475,6 +10475,14 @@ var awsPartition = partition{
 			},
 		},
 		"health": service{
+			PartitionEndpoint: "aws-global",
+			IsRegionalized:    boxedFalse,
+			Defaults: endpointDefaults{
+				defaultKey{}: endpoint{
+					SSLCommonName: "health.us-east-1.amazonaws.com",
+					Protocols:     []string{"https"},
+				},
+			},
 			Endpoints: serviceEndpoints{
 				endpointKey{
 					Region: "fips-us-east-2",
@@ -29300,6 +29308,13 @@ var awsisoPartition = partition{
 			Endpoints: serviceEndpoints{
 				endpointKey{
 					Region: "us-iso-east-1",
+				}: endpoint{},
+			},
+		},
+		"appconfigdata": service{
+			Endpoints: serviceEndpoints{
+				endpointKey{
+					Region: "us-iso-west-1",
 				}: endpoint{},
 			},
 		},

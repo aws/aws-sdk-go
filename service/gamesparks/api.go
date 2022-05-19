@@ -4130,6 +4130,47 @@ func (s DeleteStageOutput) GoString() string {
 	return s.String()
 }
 
+// The result of the deployment.
+type DeploymentResult struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the deployment result.
+	Message *string `type:"string"`
+
+	// The type of deployment result.
+	ResultCode *string `type:"string" enum:"ResultCode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeploymentResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeploymentResult) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *DeploymentResult) SetMessage(v string) *DeploymentResult {
+	s.Message = &v
+	return s
+}
+
+// SetResultCode sets the ResultCode field's value.
+func (s *DeploymentResult) SetResultCode(v string) *DeploymentResult {
+	s.ResultCode = &v
+	return s
+}
+
 type DisconnectPlayerInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -7295,6 +7336,9 @@ type StageDeploymentDetails struct {
 	// The identifier of the deployment.
 	DeploymentId *string `min:"1" type:"string"`
 
+	// The result of the deployment.
+	DeploymentResult *DeploymentResult `type:"structure"`
+
 	// The state of the deployment.
 	DeploymentState *string `type:"string" enum:"DeploymentState"`
 
@@ -7341,6 +7385,12 @@ func (s *StageDeploymentDetails) SetDeploymentId(v string) *StageDeploymentDetai
 	return s
 }
 
+// SetDeploymentResult sets the DeploymentResult field's value.
+func (s *StageDeploymentDetails) SetDeploymentResult(v *DeploymentResult) *StageDeploymentDetails {
+	s.DeploymentResult = v
+	return s
+}
+
 // SetDeploymentState sets the DeploymentState field's value.
 func (s *StageDeploymentDetails) SetDeploymentState(v string) *StageDeploymentDetails {
 	s.DeploymentState = &v
@@ -7368,6 +7418,9 @@ type StageDeploymentSummary struct {
 
 	// The identifier of the deployment.
 	DeploymentId *string `min:"1" type:"string"`
+
+	// The result of the deployment.
+	DeploymentResult *DeploymentResult `type:"structure"`
 
 	// The state of the deployment.
 	DeploymentState *string `type:"string" enum:"DeploymentState"`
@@ -7406,6 +7459,12 @@ func (s *StageDeploymentSummary) SetDeploymentAction(v string) *StageDeploymentS
 // SetDeploymentId sets the DeploymentId field's value.
 func (s *StageDeploymentSummary) SetDeploymentId(v string) *StageDeploymentSummary {
 	s.DeploymentId = &v
+	return s
+}
+
+// SetDeploymentResult sets the DeploymentResult field's value.
+func (s *StageDeploymentSummary) SetDeploymentResult(v *DeploymentResult) *StageDeploymentSummary {
+	s.DeploymentResult = v
 	return s
 }
 
@@ -8681,6 +8740,26 @@ func Operation_Values() []string {
 		OperationAdd,
 		OperationRemove,
 		OperationReplace,
+	}
+}
+
+const (
+	// ResultCodeSuccess is a ResultCode enum value
+	ResultCodeSuccess = "SUCCESS"
+
+	// ResultCodeInvalidRoleFailure is a ResultCode enum value
+	ResultCodeInvalidRoleFailure = "INVALID_ROLE_FAILURE"
+
+	// ResultCodeUnspecifiedFailure is a ResultCode enum value
+	ResultCodeUnspecifiedFailure = "UNSPECIFIED_FAILURE"
+)
+
+// ResultCode_Values returns all elements of the ResultCode enum
+func ResultCode_Values() []string {
+	return []string{
+		ResultCodeSuccess,
+		ResultCodeInvalidRoleFailure,
+		ResultCodeUnspecifiedFailure,
 	}
 }
 

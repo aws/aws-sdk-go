@@ -1190,6 +1190,12 @@
       "refs": {
       }
     },
+    "SnsFormat": {
+      "base": null,
+      "refs": {
+        "SNSConfiguration$SnsFormat": "<p>The text format for alerts.</p>"
+      }
+    },
     "StringAttributeValue": {
       "base": null,
       "refs": {
