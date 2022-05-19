@@ -1261,6 +1261,17 @@
       "pattern": "^\\S(.*\\S)?$",
       "type": "string"
     },
+    "DeploymentResult": {
+      "members": {
+        "Message": {
+          "shape": "Message"
+        },
+        "ResultCode": {
+          "shape": "ResultCode"
+        }
+      },
+      "type": "structure"
+    },
     "DeploymentState": {
       "enum": [
         "PENDING",
@@ -2156,6 +2167,9 @@
       "min": 1,
       "type": "integer"
     },
+    "Message": {
+      "type": "string"
+    },
     "NextToken": {
       "max": 1024,
       "min": 1,
@@ -2205,6 +2219,14 @@
         }
       },
       "type": "structure"
+    },
+    "ResultCode": {
+      "enum": [
+        "SUCCESS",
+        "INVALID_ROLE_FAILURE",
+        "UNSPECIFIED_FAILURE"
+      ],
+      "type": "string"
     },
     "RoleARN": {
       "max": 2048,
@@ -2358,6 +2380,9 @@
         "DeploymentId": {
           "shape": "DeploymentId"
         },
+        "DeploymentResult": {
+          "shape": "DeploymentResult"
+        },
         "DeploymentState": {
           "shape": "DeploymentState"
         },
@@ -2383,6 +2408,9 @@
         },
         "DeploymentId": {
           "shape": "DeploymentId"
+        },
+        "DeploymentResult": {
+          "shape": "DeploymentResult"
         },
         "DeploymentState": {
           "shape": "DeploymentState"

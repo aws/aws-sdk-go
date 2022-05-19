@@ -1,3 +1,10 @@
+Release v1.44.18 (2022-05-19)
+===
+
+### Service Client Updates
+* `service/gamesparks`: Updates service API and documentation
+* `service/lookoutmetrics`: Updates service API and documentation
+
 Release v1.44.17 (2022-05-18)
 ===
 

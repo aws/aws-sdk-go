@@ -8671,6 +8671,9 @@ type SNSConfiguration struct {
 	// RoleArn is a required field
 	RoleArn *string `type:"string" required:"true"`
 
+	// The text format for alerts.
+	SnsFormat *string `type:"string" enum:"SnsFormat"`
+
 	// The ARN of the target SNS topic.
 	//
 	// SnsTopicArn is a required field
@@ -8714,6 +8717,12 @@ func (s *SNSConfiguration) Validate() error {
 // SetRoleArn sets the RoleArn field's value.
 func (s *SNSConfiguration) SetRoleArn(v string) *SNSConfiguration {
 	s.RoleArn = &v
+	return s
+}
+
+// SetSnsFormat sets the SnsFormat field's value.
+func (s *SNSConfiguration) SetSnsFormat(v string) *SNSConfiguration {
+	s.SnsFormat = &v
 	return s
 }
 
@@ -9980,6 +9989,26 @@ func RelationshipType_Values() []string {
 	return []string{
 		RelationshipTypeCauseOfInputAnomalyGroup,
 		RelationshipTypeEffectOfInputAnomalyGroup,
+	}
+}
+
+const (
+	// SnsFormatLongText is a SnsFormat enum value
+	SnsFormatLongText = "LONG_TEXT"
+
+	// SnsFormatShortText is a SnsFormat enum value
+	SnsFormatShortText = "SHORT_TEXT"
+
+	// SnsFormatJson is a SnsFormat enum value
+	SnsFormatJson = "JSON"
+)
+
+// SnsFormat_Values returns all elements of the SnsFormat enum
+func SnsFormat_Values() []string {
+	return []string{
+		SnsFormatLongText,
+		SnsFormatShortText,
+		SnsFormatJson,
 	}
 }
 

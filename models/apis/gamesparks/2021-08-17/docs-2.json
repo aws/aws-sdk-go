@@ -179,6 +179,13 @@
         "StageDeploymentSummary$DeploymentId": "<p>The identifier of the deployment.</p>"
       }
     },
+    "DeploymentResult": {
+      "base": "<p>The result of the deployment.</p>",
+      "refs": {
+        "StageDeploymentDetails$DeploymentResult": "<p>The result of the deployment.</p>",
+        "StageDeploymentSummary$DeploymentResult": "<p>The result of the deployment.</p>"
+      }
+    },
     "DeploymentState": {
       "base": null,
       "refs": {
@@ -639,6 +646,12 @@
         "ListStagesRequest$MaxResults": "<p>The maximum number of results to return.</p> <p> Use this parameter with NextToken to get results as a set of sequential pages. </p>"
       }
     },
+    "Message": {
+      "base": null,
+      "refs": {
+        "DeploymentResult$Message": "<p>Details about the deployment result.</p>"
+      }
+    },
     "NextToken": {
       "base": null,
       "refs": {
@@ -694,6 +707,12 @@
     "ResourceNotFoundException": {
       "base": "<p>The resource specified in the request does not exist.</p>",
       "refs": {
+      }
+    },
+    "ResultCode": {
+      "base": null,
+      "refs": {
+        "DeploymentResult$ResultCode": "<p>The type of deployment result.</p>"
       }
     },
     "RoleARN": {
