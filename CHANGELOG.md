@@ -1,3 +1,11 @@
+Release v1.44.19 (2022-05-20)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API and documentation
+* `service/logs`: Updates service documentation
+  * Doc-only update to publish the new valid values for log retention
+
 Release v1.44.18 (2022-05-19)
 ===
 

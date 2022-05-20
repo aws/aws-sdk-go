@@ -52,7 +52,7 @@ const (
 	// ErrCodeOperationAbortedException for service response error code
 	// "OperationAbortedException".
 	//
-	// Multiple requests to update the same resource were in conflict.
+	// Multiple concurrent requests to update the same resource were in conflict.
 	ErrCodeOperationAbortedException = "OperationAbortedException"
 
 	// ErrCodeResourceAlreadyExistsException for service response error code
