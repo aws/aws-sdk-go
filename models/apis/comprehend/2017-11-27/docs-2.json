@@ -10,16 +10,16 @@
     "ClassifyDocument": "<p>Creates a new document classification request to analyze a single document in real-time, using a previously created and trained custom model and an endpoint.</p>",
     "ContainsPiiEntities": "<p>Analyzes input text for the presence of personally identifiable information (PII) and returns the labels of identified PII entity types such as name, address, bank account number, or phone number.</p>",
     "CreateDocumentClassifier": "<p>Creates a new document classifier that you can use to categorize documents. To create a classifier, you provide a set of training documents that labeled with the categories that you want to use. After the classifier is trained you can use it to categorize a set of labeled documents into the categories. For more information, see <a>how-document-classification</a>.</p>",
-    "CreateEndpoint": "<p>Creates a model-specific endpoint for synchronous inference for a previously trained custom model </p>",
+    "CreateEndpoint": "<p>Creates a model-specific endpoint for synchronous inference for a previously trained custom model For information about endpoints, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html\">Managing endpoints</a>.</p>",
     "CreateEntityRecognizer": "<p>Creates an entity recognizer using submitted files. After your <code>CreateEntityRecognizer</code> request is submitted, you can check job status using the API. </p>",
     "DeleteDocumentClassifier": "<p>Deletes a previously created document classifier</p> <p>Only those classifiers that are in terminated states (IN_ERROR, TRAINED) will be deleted. If an active inference job is using the model, a <code>ResourceInUseException</code> will be returned.</p> <p>This is an asynchronous action that puts the classifier into a DELETING state, and it is then removed by a background job. Once removed, the classifier disappears from your account and is no longer available for use. </p>",
-    "DeleteEndpoint": "<p>Deletes a model-specific endpoint for a previously-trained custom model. All endpoints must be deleted in order for the model to be deleted.</p>",
+    "DeleteEndpoint": "<p>Deletes a model-specific endpoint for a previously-trained custom model. All endpoints must be deleted in order for the model to be deleted. For information about endpoints, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html\">Managing endpoints</a>.</p>",
     "DeleteEntityRecognizer": "<p>Deletes an entity recognizer.</p> <p>Only those recognizers that are in terminated states (IN_ERROR, TRAINED) will be deleted. If an active inference job is using the model, a <code>ResourceInUseException</code> will be returned.</p> <p>This is an asynchronous action that puts the recognizer into a DELETING state, and it is then removed by a background job. Once removed, the recognizer disappears from your account and is no longer available for use. </p>",
     "DeleteResourcePolicy": "<p>Deletes a resource-based policy that is attached to a custom model.</p>",
     "DescribeDocumentClassificationJob": "<p>Gets the properties associated with a document classification job. Use this operation to get the status of a classification job.</p>",
     "DescribeDocumentClassifier": "<p>Gets the properties associated with a document classifier.</p>",
     "DescribeDominantLanguageDetectionJob": "<p>Gets the properties associated with a dominant language detection job. Use this operation to get the status of a detection job.</p>",
-    "DescribeEndpoint": "<p>Gets the properties associated with a specific endpoint. Use this operation to get the status of an endpoint.</p>",
+    "DescribeEndpoint": "<p>Gets the properties associated with a specific endpoint. Use this operation to get the status of an endpoint. For information about endpoints, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html\">Managing endpoints</a>.</p>",
     "DescribeEntitiesDetectionJob": "<p>Gets the properties associated with an entities detection job. Use this operation to get the status of a detection job.</p>",
     "DescribeEntityRecognizer": "<p>Provides details about an entity recognizer including status, S3 buckets containing training data, recognizer metadata, metrics, and so on.</p>",
     "DescribeEventsDetectionJob": "<p>Gets the status and details of an events detection job.</p>",
@@ -40,7 +40,7 @@
     "ListDocumentClassifierSummaries": "<p>Gets a list of summaries of the document classifiers that you have created</p>",
     "ListDocumentClassifiers": "<p>Gets a list of the document classifiers that you have created.</p>",
     "ListDominantLanguageDetectionJobs": "<p>Gets a list of the dominant language detection jobs that you have submitted.</p>",
-    "ListEndpoints": "<p>Gets a list of all existing endpoints that you've created.</p>",
+    "ListEndpoints": "<p>Gets a list of all existing endpoints that you've created. For information about endpoints, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html\">Managing endpoints</a>.</p>",
     "ListEntitiesDetectionJobs": "<p>Gets a list of the entity detection jobs that you have submitted.</p>",
     "ListEntityRecognizerSummaries": "<p>Gets a list of summaries for the entity recognizers that you have created.</p>",
     "ListEntityRecognizers": "<p>Gets a list of the properties of all entity recognizers that you created, including recognizers currently in training. Allows you to filter the list of recognizers based on criteria such as status and submission time. This call returns up to 500 entity recognizers in the list, with a default number of 100 recognizers in the list.</p> <p>The results of this list are not in any particular order. Please get the list and sort locally if needed.</p>",
@@ -66,13 +66,13 @@
     "StopEventsDetectionJob": "<p>Stops an events detection job in progress.</p>",
     "StopKeyPhrasesDetectionJob": "<p>Stops a key phrases detection job in progress.</p> <p>If the job state is <code>IN_PROGRESS</code> the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the job completes before it can be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is stopped and put into the <code>STOPPED</code> state.</p> <p>If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns a 400 Internal Request Exception. </p> <p>When a job is stopped, any documents already processed are written to the output location.</p>",
     "StopPiiEntitiesDetectionJob": "<p>Stops a PII entities detection job in progress.</p>",
-    "StopSentimentDetectionJob": "<p>Stops a sentiment detection job in progress.</p> <p>If the job state is <code>IN_PROGRESS</code> the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the job completes before it can be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is be stopped and put into the <code>STOPPED</code> state.</p> <p>If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns a 400 Internal Request Exception. </p> <p>When a job is stopped, any documents already processed are written to the output location.</p>",
-    "StopTargetedSentimentDetectionJob": "<p>Stops a targeted sentiment detection job in progress.</p> <p>If the job state is <code>IN_PROGRESS</code> the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the job completes before it can be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is be stopped and put into the <code>STOPPED</code> state.</p> <p>If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns a 400 Internal Request Exception. </p> <p>When a job is stopped, any documents already processed are written to the output location.</p>",
+    "StopSentimentDetectionJob": "<p>Stops a sentiment detection job in progress.</p> <p>If the job state is <code>IN_PROGRESS</code>, the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the job completes before it can be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is be stopped and put into the <code>STOPPED</code> state.</p> <p>If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns a 400 Internal Request Exception. </p> <p>When a job is stopped, any documents already processed are written to the output location.</p>",
+    "StopTargetedSentimentDetectionJob": "<p>Stops a targeted sentiment detection job in progress.</p> <p>If the job state is <code>IN_PROGRESS</code>, the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the job completes before it can be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is be stopped and put into the <code>STOPPED</code> state.</p> <p>If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns a 400 Internal Request Exception. </p> <p>When a job is stopped, any documents already processed are written to the output location.</p>",
     "StopTrainingDocumentClassifier": "<p>Stops a document classifier training job while in progress.</p> <p>If the training job state is <code>TRAINING</code>, the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the training job completes before it can be stopped, it is put into the <code>TRAINED</code>; otherwise the training job is stopped and put into the <code>STOPPED</code> state and the service sends back an HTTP 200 response with an empty HTTP body. </p>",
     "StopTrainingEntityRecognizer": "<p>Stops an entity recognizer training job while in progress.</p> <p>If the training job state is <code>TRAINING</code>, the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the training job completes before it can be stopped, it is put into the <code>TRAINED</code>; otherwise the training job is stopped and putted into the <code>STOPPED</code> state and the service sends back an HTTP 200 response with an empty HTTP body.</p>",
     "TagResource": "<p>Associates a specific tag with an Amazon Comprehend resource. A tag is a key-value pair that adds as a metadata to a resource used by Amazon Comprehend. For example, a tag with \"Sales\" as the key might be added to a resource to indicate its use by the sales department. </p>",
     "UntagResource": "<p>Removes a specific tag associated with an Amazon Comprehend resource. </p>",
-    "UpdateEndpoint": "<p>Updates information about the specified endpoint.</p>"
+    "UpdateEndpoint": "<p>Updates information about the specified endpoint. For information about endpoints, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html\">Managing endpoints</a>.</p>"
   },
   "shapes": {
     "AnyLengthString": {
@@ -390,7 +390,7 @@
       "refs": {
         "BatchDetectDominantLanguageRequest$TextList": "<p>A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document should contain at least 20 characters and must contain fewer than 5,000 bytes of UTF-8 encoded characters.</p>",
         "BatchDetectEntitiesRequest$TextList": "<p>A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document must contain fewer than 5,000 bytes of UTF-8 encoded characters.</p>",
-        "BatchDetectKeyPhrasesRequest$TextList": "<p>A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>",
+        "BatchDetectKeyPhrasesRequest$TextList": "<p>A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document must contain fewer than 5,000 bytes of UTF-8 encoded characters.</p>",
         "BatchDetectSentimentRequest$TextList": "<p>A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>",
         "BatchDetectSyntaxRequest$TextList": "<p>A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>"
       }
@@ -678,7 +678,7 @@
     "DocumentClassifierEndpointArn": {
       "base": null,
       "refs": {
-        "ClassifyDocumentRequest$EndpointArn": "<p>The Amazon Resource Number (ARN) of the endpoint.</p>"
+        "ClassifyDocumentRequest$EndpointArn": "<p>The Amazon Resource Number (ARN) of the endpoint. For information about endpoints, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html\">Managing endpoints</a>.</p>"
       }
     },
     "DocumentClassifierFilter": {
@@ -688,7 +688,7 @@
       }
     },
     "DocumentClassifierInputDataConfig": {
-      "base": "<p>The input properties for training a document classifier. </p> <p>For more information on how the input file is formatted, see <a>how-document-classification-training-data</a>. </p>",
+      "base": "<p>The input properties for training a document classifier. </p> <p>For more information on how the input file is formatted, see <a>prep-classifier-data</a>. </p>",
       "refs": {
         "CreateDocumentClassifierRequest$InputDataConfig": "<p>Specifies the format and location of the input data for the job.</p>",
         "DocumentClassifierProperties$InputDataConfig": "<p>The input data configuration that you supplied when you created the document classifier for training.</p>"
@@ -814,7 +814,7 @@
       }
     },
     "EndpointProperties": {
-      "base": "<p>Specifies information about the specified endpoint.</p>",
+      "base": "<p>Specifies information about the specified endpoint. For information about endpoints, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html\">Managing endpoints</a>.</p>",
       "refs": {
         "DescribeEndpointResponse$EndpointProperties": "<p>Describes information associated with the specific endpoint.</p>",
         "EndpointPropertiesList$member": null
@@ -904,7 +904,7 @@
     "EntityRecognizerEndpointArn": {
       "base": null,
       "refs": {
-        "DetectEntitiesRequest$EndpointArn": "<p>The Amazon Resource Name of an endpoint that is associated with a custom entity recognition model. Provide an endpoint if you want to detect entities by using your own custom model instead of the default model that is used by Amazon Comprehend.</p> <p>If you specify an endpoint, Amazon Comprehend uses the language of your custom model, and it ignores any language code that you provide in your request.</p>"
+        "DetectEntitiesRequest$EndpointArn": "<p>The Amazon Resource Name of an endpoint that is associated with a custom entity recognition model. Provide an endpoint if you want to detect entities by using your own custom model instead of the default model that is used by Amazon Comprehend.</p> <p>If you specify an endpoint, Amazon Comprehend uses the language of your custom model, and it ignores any language code that you provide in your request.</p> <p>For information about endpoints, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html\">Managing endpoints</a>.</p>"
       }
     },
     "EntityRecognizerEntityList": {
@@ -1367,12 +1367,12 @@
         "BatchDetectEntitiesRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>",
         "BatchDetectKeyPhrasesRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>",
         "BatchDetectSentimentRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>",
-        "ContainsPiiEntitiesRequest$LanguageCode": "<p>The language of the input documents.</p>",
+        "ContainsPiiEntitiesRequest$LanguageCode": "<p>The language of the input documents. Currently, English is the only valid language.</p>",
         "CreateDocumentClassifierRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the following languages supported by Amazon Comprehend: German (\"de\"), English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), or Portuguese (\"pt\"). All documents must be in the same language.</p>",
         "CreateEntityRecognizerRequest$LanguageCode": "<p> You can specify any of the following languages supported by Amazon Comprehend: English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), German (\"de\"), or Portuguese (\"pt\"). All documents must be in the same language.</p>",
         "DetectEntitiesRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p> <p>If your request includes the endpoint for a custom entity recognition model, Amazon Comprehend uses the language of your custom model, and it ignores any language code that you specify here.</p>",
         "DetectKeyPhrasesRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>",
-        "DetectPiiEntitiesRequest$LanguageCode": "<p>The language of the input documents.</p>",
+        "DetectPiiEntitiesRequest$LanguageCode": "<p>The language of the input documents. Currently, English is the only valid language.</p>",
         "DetectSentimentRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>",
         "DocumentClassifierProperties$LanguageCode": "<p>The language code for the language of the documents that the classifier was trained on.</p>",
         "EntitiesDetectionJobProperties$LanguageCode": "<p>The language code of the input documents.</p>",
@@ -1384,9 +1384,9 @@
         "StartEntitiesDetectionJobRequest$LanguageCode": "<p>The language of the input documents. All documents must be in the same language. You can specify any of the languages supported by Amazon Comprehend. If custom entities recognition is used, this parameter is ignored and the language used for training the model is used instead.</p>",
         "StartEventsDetectionJobRequest$LanguageCode": "<p>The language code of the input documents.</p>",
         "StartKeyPhrasesDetectionJobRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>",
-        "StartPiiEntitiesDetectionJobRequest$LanguageCode": "<p>The language of the input documents.</p>",
+        "StartPiiEntitiesDetectionJobRequest$LanguageCode": "<p>The language of the input documents. Currently, English is the only valid language.</p>",
         "StartSentimentDetectionJobRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>",
-        "StartTargetedSentimentDetectionJobRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>",
+        "StartTargetedSentimentDetectionJobRequest$LanguageCode": "<p>The language of the input documents. Currently, English is the only valid language.</p>",
         "TargetedSentimentDetectionJobProperties$LanguageCode": "<p>The language code of the input documents.</p>"
       }
     },
@@ -2374,8 +2374,8 @@
       "refs": {
         "CreateDocumentClassifierRequest$VpcConfig": "<p>Configuration parameters for an optional private Virtual Private Cloud (VPC) containing the resources you are using for your custom classifier. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
         "CreateEntityRecognizerRequest$VpcConfig": "<p>Configuration parameters for an optional private Virtual Private Cloud (VPC) containing the resources you are using for your custom entity recognizer. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
-        "DocumentClassificationJobProperties$VpcConfig": "<p> Configuration parameters for a private Virtual Private Cloud (VPC) containing the resources you are using for your document classification job. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
-        "DocumentClassifierProperties$VpcConfig": "<p> Configuration parameters for a private Virtual Private Cloud (VPC) containing the resources you are using for your custom classifier. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
+        "DocumentClassificationJobProperties$VpcConfig": "<p> Configuration parameters for a private Virtual Private Cloud (VPC) containing the resources you are using for your document classification job. For more information, see <a href=\"https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
+        "DocumentClassifierProperties$VpcConfig": "<p> Configuration parameters for a private Virtual Private Cloud (VPC) containing the resources you are using for your custom classifier. For more information, see <a href=\"https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
         "DominantLanguageDetectionJobProperties$VpcConfig": "<p> Configuration parameters for a private Virtual Private Cloud (VPC) containing the resources you are using for your dominant language detection job. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
         "EntitiesDetectionJobProperties$VpcConfig": "<p> Configuration parameters for a private Virtual Private Cloud (VPC) containing the resources you are using for your entity detection job. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
         "EntityRecognizerProperties$VpcConfig": "<p> Configuration parameters for a private Virtual Private Cloud (VPC) containing the resources you are using for your custom entity recognizer. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",

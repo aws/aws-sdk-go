@@ -1503,6 +1503,7 @@
     "CustomerInputStringList":{
       "type":"list",
       "member":{"shape":"CustomerInputString"},
+      "min":1,
       "sensitive":true
     },
     "DeleteDocumentClassifierRequest":{
@@ -2935,7 +2936,21 @@
         "AWS_SECRET_KEY",
         "IP_ADDRESS",
         "MAC_ADDRESS",
-        "ALL"
+        "ALL",
+        "LICENSE_PLATE",
+        "VEHICLE_IDENTIFICATION_NUMBER",
+        "UK_NATIONAL_INSURANCE_NUMBER",
+        "CA_SOCIAL_INSURANCE_NUMBER",
+        "US_INDIVIDUAL_TAX_IDENTIFICATION_NUMBER",
+        "UK_UNIQUE_TAXPAYER_REFERENCE_NUMBER",
+        "IN_PERMANENT_ACCOUNT_NUMBER",
+        "IN_NREGA",
+        "INTERNATIONAL_BANK_ACCOUNT_NUMBER",
+        "SWIFT_CODE",
+        "UK_NATIONAL_HEALTH_SERVICE_NUMBER",
+        "CA_HEALTH_NUMBER",
+        "IN_AADHAAR",
+        "IN_VOTER_NUMBER"
       ]
     },
     "PiiOutputDataConfig":{

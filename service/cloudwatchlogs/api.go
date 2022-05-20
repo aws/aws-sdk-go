@@ -91,7 +91,7 @@ func (c *CloudWatchLogs) AssociateKmsKeyRequest(input *AssociateKmsKeyInput) (re
 //   The specified resource does not exist.
 //
 //   * OperationAbortedException
-//   Multiple requests to update the same resource were in conflict.
+//   Multiple concurrent requests to update the same resource were in conflict.
 //
 //   * ServiceUnavailableException
 //   The service cannot complete the request.
@@ -258,6 +258,12 @@ func (c *CloudWatchLogs) CreateExportTaskRequest(input *CreateExportTaskInput) (
 // you must use credentials that have permission to write to the S3 bucket that
 // you specify as the destination.
 //
+// Exporting log data to Amazon S3 buckets that are encrypted by KMS is not
+// supported. Exporting log data to Amazon S3 buckets that have S3 Object Lock
+// enabled with a retention period is not supported.
+//
+// Exporting to S3 buckets that are encrypted with AES-256 is supported.
+//
 // This is an asynchronous call. If all the required information is provided,
 // this operation initiates an export task and responds with the ID of the task.
 // After the task has started, you can use DescribeExportTasks (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeExportTasks.html)
@@ -269,8 +275,8 @@ func (c *CloudWatchLogs) CreateExportTaskRequest(input *CreateExportTaskInput) (
 // same S3 bucket. To separate out log data for each export task, you can specify
 // a prefix to be used as the Amazon S3 key prefix for all exported objects.
 //
-// Exporting to S3 buckets that are encrypted with AES-256 is supported. Exporting
-// to S3 buckets encrypted with SSE-KMS is not supported.
+// Time-based sorting on chunks of log data inside an exported file is not guaranteed.
+// You can sort the exported log fild data by using Linux utilities.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -287,7 +293,7 @@ func (c *CloudWatchLogs) CreateExportTaskRequest(input *CreateExportTaskInput) (
 //   You have reached the maximum number of resources that can be created.
 //
 //   * OperationAbortedException
-//   Multiple requests to update the same resource were in conflict.
+//   Multiple concurrent requests to update the same resource were in conflict.
 //
 //   * ServiceUnavailableException
 //   The service cannot complete the request.
@@ -413,7 +419,7 @@ func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req 
 //   You have reached the maximum number of resources that can be created.
 //
 //   * OperationAbortedException
-//   Multiple requests to update the same resource were in conflict.
+//   Multiple concurrent requests to update the same resource were in conflict.
 //
 //   * ServiceUnavailableException
 //   The service cannot complete the request.
@@ -607,7 +613,7 @@ func (c *CloudWatchLogs) DeleteDestinationRequest(input *DeleteDestinationInput)
 //   The specified resource does not exist.
 //
 //   * OperationAbortedException
-//   Multiple requests to update the same resource were in conflict.
+//   Multiple concurrent requests to update the same resource were in conflict.
 //
 //   * ServiceUnavailableException
 //   The service cannot complete the request.
@@ -697,7 +703,7 @@ func (c *CloudWatchLogs) DeleteLogGroupRequest(input *DeleteLogGroupInput) (req 
 //   The specified resource does not exist.
 //
 //   * OperationAbortedException
-//   Multiple requests to update the same resource were in conflict.
+//   Multiple concurrent requests to update the same resource were in conflict.
 //
 //   * ServiceUnavailableException
 //   The service cannot complete the request.
@@ -787,7 +793,7 @@ func (c *CloudWatchLogs) DeleteLogStreamRequest(input *DeleteLogStreamInput) (re
 //   The specified resource does not exist.
 //
 //   * OperationAbortedException
-//   Multiple requests to update the same resource were in conflict.
+//   Multiple concurrent requests to update the same resource were in conflict.
 //
 //   * ServiceUnavailableException
 //   The service cannot complete the request.
@@ -876,7 +882,7 @@ func (c *CloudWatchLogs) DeleteMetricFilterRequest(input *DeleteMetricFilterInpu
 //   The specified resource does not exist.
 //
 //   * OperationAbortedException
-//   Multiple requests to update the same resource were in conflict.
+//   Multiple concurrent requests to update the same resource were in conflict.
 //
 //   * ServiceUnavailableException
 //   The service cannot complete the request.
@@ -1146,7 +1152,7 @@ func (c *CloudWatchLogs) DeleteRetentionPolicyRequest(input *DeleteRetentionPoli
 //   The specified resource does not exist.
 //
 //   * OperationAbortedException
-//   Multiple requests to update the same resource were in conflict.
+//   Multiple concurrent requests to update the same resource were in conflict.
 //
 //   * ServiceUnavailableException
 //   The service cannot complete the request.
@@ -1235,7 +1241,7 @@ func (c *CloudWatchLogs) DeleteSubscriptionFilterRequest(input *DeleteSubscripti
 //   The specified resource does not exist.
 //
 //   * OperationAbortedException
-//   Multiple requests to update the same resource were in conflict.
+//   Multiple concurrent requests to update the same resource were in conflict.
 //
 //   * ServiceUnavailableException
 //   The service cannot complete the request.
@@ -2403,7 +2409,7 @@ func (c *CloudWatchLogs) DisassociateKmsKeyRequest(input *DisassociateKmsKeyInpu
 //   The specified resource does not exist.
 //
 //   * OperationAbortedException
-//   Multiple requests to update the same resource were in conflict.
+//   Multiple concurrent requests to update the same resource were in conflict.
 //
 //   * ServiceUnavailableException
 //   The service cannot complete the request.
@@ -3181,7 +3187,7 @@ func (c *CloudWatchLogs) PutDestinationRequest(input *PutDestinationInput) (req 
 //   A parameter is specified incorrectly.
 //
 //   * OperationAbortedException
-//   Multiple requests to update the same resource were in conflict.
+//   Multiple concurrent requests to update the same resource were in conflict.
 //
 //   * ServiceUnavailableException
 //   The service cannot complete the request.
@@ -3275,7 +3281,7 @@ func (c *CloudWatchLogs) PutDestinationPolicyRequest(input *PutDestinationPolicy
 //   A parameter is specified incorrectly.
 //
 //   * OperationAbortedException
-//   Multiple requests to update the same resource were in conflict.
+//   Multiple concurrent requests to update the same resource were in conflict.
 //
 //   * ServiceUnavailableException
 //   The service cannot complete the request.
@@ -3517,7 +3523,7 @@ func (c *CloudWatchLogs) PutMetricFilterRequest(input *PutMetricFilterInput) (re
 //   The specified resource does not exist.
 //
 //   * OperationAbortedException
-//   Multiple requests to update the same resource were in conflict.
+//   Multiple concurrent requests to update the same resource were in conflict.
 //
 //   * LimitExceededException
 //   You have reached the maximum number of resources that can be created.
@@ -3798,7 +3804,7 @@ func (c *CloudWatchLogs) PutRetentionPolicyRequest(input *PutRetentionPolicyInpu
 //   The specified resource does not exist.
 //
 //   * OperationAbortedException
-//   Multiple requests to update the same resource were in conflict.
+//   Multiple concurrent requests to update the same resource were in conflict.
 //
 //   * ServiceUnavailableException
 //   The service cannot complete the request.
@@ -3913,7 +3919,7 @@ func (c *CloudWatchLogs) PutSubscriptionFilterRequest(input *PutSubscriptionFilt
 //   The specified resource does not exist.
 //
 //   * OperationAbortedException
-//   Multiple requests to update the same resource were in conflict.
+//   Multiple concurrent requests to update the same resource were in conflict.
 //
 //   * LimitExceededException
 //   You have reached the maximum number of resources that can be created.
@@ -4589,9 +4595,9 @@ type CreateExportTaskInput struct {
 	// The name of the export task.
 	TaskName *string `locationName:"taskName" min:"1" type:"string"`
 
-	// The end time of the range for the request, expreswatchlogsdocused as the
-	// number of milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a timestamp
-	// later than this time are not exported.
+	// The end time of the range for the request, expressed as the number of milliseconds
+	// after Jan 1, 1970 00:00:00 UTC. Events with a timestamp later than this time
+	// are not exported.
 	//
 	// To is a required field
 	To *int64 `locationName:"to" type:"long" required:"true"`
@@ -5893,7 +5899,7 @@ type DescribeLogGroupsOutput struct {
 
 	// The log groups.
 	//
-	// If the retentionInDays value if not included for a log group, then that log
+	// If the retentionInDays value is not included for a log group, then that log
 	// group is set to have its events never expire.
 	LogGroups []*LogGroup `locationName:"logGroups" type:"list"`
 
@@ -8215,7 +8221,7 @@ type LogGroup struct {
 
 	// The number of days to retain the log events in the specified log group. Possible
 	// values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731,
-	// 1827, and 3653.
+	// 1827, 2192, 2557, 2922, 3288, and 3653.
 	//
 	// To set a log group to never have log events expire, use DeleteRetentionPolicy
 	// (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DeleteRetentionPolicy.html).
@@ -8752,7 +8758,7 @@ func (s *MetricTransformation) SetUnit(v string) *MetricTransformation {
 	return s
 }
 
-// Multiple requests to update the same resource were in conflict.
+// Multiple concurrent requests to update the same resource were in conflict.
 type OperationAbortedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -9612,7 +9618,7 @@ type PutRetentionPolicyInput struct {
 
 	// The number of days to retain the log events in the specified log group. Possible
 	// values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731,
-	// 1827, and 3653.
+	// 1827, 2192, 2557, 2922, 3288, and 3653.
 	//
 	// To set a log group to never have log events expire, use DeleteRetentionPolicy
 	// (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DeleteRetentionPolicy.html).

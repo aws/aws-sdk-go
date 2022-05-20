@@ -823,7 +823,8 @@ func (c *Comprehend) CreateEndpointRequest(input *CreateEndpointInput) (req *req
 // CreateEndpoint API operation for Amazon Comprehend.
 //
 // Creates a model-specific endpoint for synchronous inference for a previously
-// trained custom model
+// trained custom model For information about endpoints, see Managing endpoints
+// (https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1145,7 +1146,8 @@ func (c *Comprehend) DeleteEndpointRequest(input *DeleteEndpointInput) (req *req
 // DeleteEndpoint API operation for Amazon Comprehend.
 //
 // Deletes a model-specific endpoint for a previously-trained custom model.
-// All endpoints must be deleted in order for the model to be deleted.
+// All endpoints must be deleted in order for the model to be deleted. For information
+// about endpoints, see Managing endpoints (https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1699,7 +1701,8 @@ func (c *Comprehend) DescribeEndpointRequest(input *DescribeEndpointInput) (req 
 // DescribeEndpoint API operation for Amazon Comprehend.
 //
 // Gets the properties associated with a specific endpoint. Use this operation
-// to get the status of an endpoint.
+// to get the status of an endpoint. For information about endpoints, see Managing
+// endpoints (https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3830,7 +3833,8 @@ func (c *Comprehend) ListEndpointsRequest(input *ListEndpointsInput) (req *reque
 
 // ListEndpoints API operation for Amazon Comprehend.
 //
-// Gets a list of all existing endpoints that you've created.
+// Gets a list of all existing endpoints that you've created. For information
+// about endpoints, see Managing endpoints (https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6683,7 +6687,7 @@ func (c *Comprehend) StopSentimentDetectionJobRequest(input *StopSentimentDetect
 //
 // Stops a sentiment detection job in progress.
 //
-// If the job state is IN_PROGRESS the job is marked for termination and put
+// If the job state is IN_PROGRESS, the job is marked for termination and put
 // into the STOP_REQUESTED state. If the job completes before it can be stopped,
 // it is put into the COMPLETED state; otherwise the job is be stopped and put
 // into the STOPPED state.
@@ -6779,7 +6783,7 @@ func (c *Comprehend) StopTargetedSentimentDetectionJobRequest(input *StopTargete
 //
 // Stops a targeted sentiment detection job in progress.
 //
-// If the job state is IN_PROGRESS the job is marked for termination and put
+// If the job state is IN_PROGRESS, the job is marked for termination and put
 // into the STOP_REQUESTED state. If the job completes before it can be stopped,
 // it is put into the COMPLETED state; otherwise the job is be stopped and put
 // into the STOPPED state.
@@ -7260,7 +7264,8 @@ func (c *Comprehend) UpdateEndpointRequest(input *UpdateEndpointInput) (req *req
 
 // UpdateEndpoint API operation for Amazon Comprehend.
 //
-// Updates information about the specified endpoint.
+// Updates information about the specified endpoint. For information about endpoints,
+// see Managing endpoints (https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7455,7 +7460,7 @@ type BatchDetectDominantLanguageInput struct {
 	// String and GoString methods.
 	//
 	// TextList is a required field
-	TextList []*string `type:"list" required:"true" sensitive:"true"`
+	TextList []*string `min:"1" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -7481,6 +7486,9 @@ func (s *BatchDetectDominantLanguageInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "BatchDetectDominantLanguageInput"}
 	if s.TextList == nil {
 		invalidParams.Add(request.NewErrParamRequired("TextList"))
+	}
+	if s.TextList != nil && len(s.TextList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TextList", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7606,7 +7614,7 @@ type BatchDetectEntitiesInput struct {
 	// String and GoString methods.
 	//
 	// TextList is a required field
-	TextList []*string `type:"list" required:"true" sensitive:"true"`
+	TextList []*string `min:"1" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -7635,6 +7643,9 @@ func (s *BatchDetectEntitiesInput) Validate() error {
 	}
 	if s.TextList == nil {
 		invalidParams.Add(request.NewErrParamRequired("TextList"))
+	}
+	if s.TextList != nil && len(s.TextList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TextList", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7757,7 +7768,7 @@ type BatchDetectKeyPhrasesInput struct {
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
 	// A list containing the text of the input documents. The list can contain a
-	// maximum of 25 documents. Each document must contain fewer that 5,000 bytes
+	// maximum of 25 documents. Each document must contain fewer than 5,000 bytes
 	// of UTF-8 encoded characters.
 	//
 	// TextList is a sensitive parameter and its value will be
@@ -7765,7 +7776,7 @@ type BatchDetectKeyPhrasesInput struct {
 	// String and GoString methods.
 	//
 	// TextList is a required field
-	TextList []*string `type:"list" required:"true" sensitive:"true"`
+	TextList []*string `min:"1" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -7794,6 +7805,9 @@ func (s *BatchDetectKeyPhrasesInput) Validate() error {
 	}
 	if s.TextList == nil {
 		invalidParams.Add(request.NewErrParamRequired("TextList"))
+	}
+	if s.TextList != nil && len(s.TextList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TextList", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7924,7 +7938,7 @@ type BatchDetectSentimentInput struct {
 	// String and GoString methods.
 	//
 	// TextList is a required field
-	TextList []*string `type:"list" required:"true" sensitive:"true"`
+	TextList []*string `min:"1" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -7953,6 +7967,9 @@ func (s *BatchDetectSentimentInput) Validate() error {
 	}
 	if s.TextList == nil {
 		invalidParams.Add(request.NewErrParamRequired("TextList"))
+	}
+	if s.TextList != nil && len(s.TextList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TextList", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8095,7 +8112,7 @@ type BatchDetectSyntaxInput struct {
 	// String and GoString methods.
 	//
 	// TextList is a required field
-	TextList []*string `type:"list" required:"true" sensitive:"true"`
+	TextList []*string `min:"1" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8124,6 +8141,9 @@ func (s *BatchDetectSyntaxInput) Validate() error {
 	}
 	if s.TextList == nil {
 		invalidParams.Add(request.NewErrParamRequired("TextList"))
+	}
+	if s.TextList != nil && len(s.TextList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TextList", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8536,7 +8556,8 @@ func (s *ClassifierMetadata) SetNumberOfTrainedDocuments(v int64) *ClassifierMet
 type ClassifyDocumentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Number (ARN) of the endpoint.
+	// The Amazon Resource Number (ARN) of the endpoint. For information about endpoints,
+	// see Managing endpoints (https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html).
 	//
 	// EndpointArn is a required field
 	EndpointArn *string `type:"string" required:"true"`
@@ -8715,7 +8736,8 @@ func (s *ConcurrentModificationException) RequestID() string {
 type ContainsPiiEntitiesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The language of the input documents.
+	// The language of the input documents. Currently, English is the only valid
+	// language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -10950,6 +10972,8 @@ type DetectEntitiesInput struct {
 	//
 	// If you specify an endpoint, Amazon Comprehend uses the language of your custom
 	// model, and it ignores any language code that you provide in your request.
+	//
+	// For information about endpoints, see Managing endpoints (https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html).
 	EndpointArn *string `type:"string"`
 
 	// The language of the input documents. You can specify any of the primary languages
@@ -11167,7 +11191,8 @@ func (s *DetectKeyPhrasesOutput) SetKeyPhrases(v []*KeyPhrase) *DetectKeyPhrases
 type DetectPiiEntitiesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The language of the input documents.
+	// The language of the input documents. Currently, English is the only valid
+	// language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -11656,7 +11681,7 @@ type DocumentClassificationJobProperties struct {
 
 	// Configuration parameters for a private Virtual Private Cloud (VPC) containing
 	// the resources you are using for your document classification job. For more
-	// information, see Amazon VPC (https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html).
+	// information, see Amazon VPC (https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html).
 	VpcConfig *VpcConfig `type:"structure"`
 }
 
@@ -11823,7 +11848,7 @@ func (s *DocumentClassifierFilter) SetSubmitTimeBefore(v time.Time) *DocumentCla
 
 // The input properties for training a document classifier.
 //
-// For more information on how the input file is formatted, see how-document-classification-training-data.
+// For more information on how the input file is formatted, see prep-classifier-data.
 type DocumentClassifierInputDataConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -12096,7 +12121,7 @@ type DocumentClassifierProperties struct {
 
 	// Configuration parameters for a private Virtual Private Cloud (VPC) containing
 	// the resources you are using for your custom classifier. For more information,
-	// see Amazon VPC (https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html).
+	// see Amazon VPC (https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html).
 	VpcConfig *VpcConfig `type:"structure"`
 }
 
@@ -12752,7 +12777,8 @@ func (s *EndpointFilter) SetStatus(v string) *EndpointFilter {
 	return s
 }
 
-// Specifies information about the specified endpoint.
+// Specifies information about the specified endpoint. For information about
+// endpoints, see Managing endpoints (https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html).
 type EndpointProperties struct {
 	_ struct{} `type:"structure"`
 
@@ -19362,7 +19388,8 @@ type StartPiiEntitiesDetectionJobInput struct {
 	// The identifier of the job.
 	JobName *string `min:"1" type:"string"`
 
-	// The language of the input documents.
+	// The language of the input documents. Currently, English is the only valid
+	// language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -19853,8 +19880,8 @@ type StartTargetedSentimentDetectionJobInput struct {
 	// The identifier of the job.
 	JobName *string `min:"1" type:"string"`
 
-	// The language of the input documents. You can specify any of the primary languages
-	// supported by Amazon Comprehend. All documents must be in the same language.
+	// The language of the input documents. Currently, English is the only valid
+	// language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -22912,6 +22939,48 @@ const (
 
 	// PiiEntityTypeAll is a PiiEntityType enum value
 	PiiEntityTypeAll = "ALL"
+
+	// PiiEntityTypeLicensePlate is a PiiEntityType enum value
+	PiiEntityTypeLicensePlate = "LICENSE_PLATE"
+
+	// PiiEntityTypeVehicleIdentificationNumber is a PiiEntityType enum value
+	PiiEntityTypeVehicleIdentificationNumber = "VEHICLE_IDENTIFICATION_NUMBER"
+
+	// PiiEntityTypeUkNationalInsuranceNumber is a PiiEntityType enum value
+	PiiEntityTypeUkNationalInsuranceNumber = "UK_NATIONAL_INSURANCE_NUMBER"
+
+	// PiiEntityTypeCaSocialInsuranceNumber is a PiiEntityType enum value
+	PiiEntityTypeCaSocialInsuranceNumber = "CA_SOCIAL_INSURANCE_NUMBER"
+
+	// PiiEntityTypeUsIndividualTaxIdentificationNumber is a PiiEntityType enum value
+	PiiEntityTypeUsIndividualTaxIdentificationNumber = "US_INDIVIDUAL_TAX_IDENTIFICATION_NUMBER"
+
+	// PiiEntityTypeUkUniqueTaxpayerReferenceNumber is a PiiEntityType enum value
+	PiiEntityTypeUkUniqueTaxpayerReferenceNumber = "UK_UNIQUE_TAXPAYER_REFERENCE_NUMBER"
+
+	// PiiEntityTypeInPermanentAccountNumber is a PiiEntityType enum value
+	PiiEntityTypeInPermanentAccountNumber = "IN_PERMANENT_ACCOUNT_NUMBER"
+
+	// PiiEntityTypeInNrega is a PiiEntityType enum value
+	PiiEntityTypeInNrega = "IN_NREGA"
+
+	// PiiEntityTypeInternationalBankAccountNumber is a PiiEntityType enum value
+	PiiEntityTypeInternationalBankAccountNumber = "INTERNATIONAL_BANK_ACCOUNT_NUMBER"
+
+	// PiiEntityTypeSwiftCode is a PiiEntityType enum value
+	PiiEntityTypeSwiftCode = "SWIFT_CODE"
+
+	// PiiEntityTypeUkNationalHealthServiceNumber is a PiiEntityType enum value
+	PiiEntityTypeUkNationalHealthServiceNumber = "UK_NATIONAL_HEALTH_SERVICE_NUMBER"
+
+	// PiiEntityTypeCaHealthNumber is a PiiEntityType enum value
+	PiiEntityTypeCaHealthNumber = "CA_HEALTH_NUMBER"
+
+	// PiiEntityTypeInAadhaar is a PiiEntityType enum value
+	PiiEntityTypeInAadhaar = "IN_AADHAAR"
+
+	// PiiEntityTypeInVoterNumber is a PiiEntityType enum value
+	PiiEntityTypeInVoterNumber = "IN_VOTER_NUMBER"
 )
 
 // PiiEntityType_Values returns all elements of the PiiEntityType enum
@@ -22940,6 +23009,20 @@ func PiiEntityType_Values() []string {
 		PiiEntityTypeIpAddress,
 		PiiEntityTypeMacAddress,
 		PiiEntityTypeAll,
+		PiiEntityTypeLicensePlate,
+		PiiEntityTypeVehicleIdentificationNumber,
+		PiiEntityTypeUkNationalInsuranceNumber,
+		PiiEntityTypeCaSocialInsuranceNumber,
+		PiiEntityTypeUsIndividualTaxIdentificationNumber,
+		PiiEntityTypeUkUniqueTaxpayerReferenceNumber,
+		PiiEntityTypeInPermanentAccountNumber,
+		PiiEntityTypeInNrega,
+		PiiEntityTypeInternationalBankAccountNumber,
+		PiiEntityTypeSwiftCode,
+		PiiEntityTypeUkNationalHealthServiceNumber,
+		PiiEntityTypeCaHealthNumber,
+		PiiEntityTypeInAadhaar,
+		PiiEntityTypeInVoterNumber,
 	}
 }
 
