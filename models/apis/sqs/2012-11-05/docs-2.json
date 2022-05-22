@@ -507,7 +507,7 @@
         "ListDeadLetterSourceQueuesRequest$QueueUrl": "<p>The URL of a dead-letter queue.</p> <p>Queue URLs and names are case-sensitive.</p>",
         "ListQueueTagsRequest$QueueUrl": "<p>The URL of the queue.</p>",
         "ListQueuesRequest$QueueNamePrefix": "<p>A string to use for filtering the list results. Only those queues whose name begins with the specified string are returned.</p> <p>Queue URLs and names are case-sensitive.</p>",
-        "Message$MessageId": "<p>A unique identifier for the message. A <code>MessageId</code>is considered unique across all Amazon Web Services accounts for an extended period of time.</p>",
+        "Message$MessageId": "<p>A unique identifier for the message. A <code>MessageId</code> is considered unique across all Amazon Web Services accounts for an extended period of time.</p>",
         "Message$ReceiptHandle": "<p>An identifier associated with the act of receiving the message. A new receipt handle is returned every time you receive a message. When deleting a message, you provide the last received receipt handle to delete the message.</p>",
         "Message$MD5OfBody": "<p>An MD5 digest of the non-URL-encoded message body string.</p>",
         "Message$Body": "<p>The message's contents (not URL-encoded).</p>",
