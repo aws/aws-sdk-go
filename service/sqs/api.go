@@ -3913,7 +3913,7 @@ type Message struct {
 	// in the Amazon SQS Developer Guide.
 	MessageAttributes map[string]*MessageAttributeValue `locationName:"MessageAttribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
 
-	// A unique identifier for the message. A MessageIdis considered unique across
+	// A unique identifier for the message. A MessageId is considered unique across
 	// all Amazon Web Services accounts for an extended period of time.
 	MessageId *string `type:"string"`
 
