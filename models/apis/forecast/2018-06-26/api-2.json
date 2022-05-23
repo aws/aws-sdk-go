@@ -139,6 +139,22 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "CreateMonitor":{
+      "name":"CreateMonitor",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateMonitorRequest"},
+      "output":{"shape":"CreateMonitorResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "CreatePredictor":{
       "name":"CreatePredictor",
       "http":{
@@ -262,6 +278,20 @@
         "requestUri":"/"
       },
       "input":{"shape":"DeleteForecastExportJobRequest"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteMonitor":{
+      "name":"DeleteMonitor",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteMonitorRequest"},
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"},
@@ -423,6 +453,20 @@
       ],
       "idempotent":true
     },
+    "DescribeMonitor":{
+      "name":"DescribeMonitor",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeMonitorRequest"},
+      "output":{"shape":"DescribeMonitorResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
     "DescribePredictor":{
       "name":"DescribePredictor",
       "http":{
@@ -562,6 +606,35 @@
       ],
       "idempotent":true
     },
+    "ListMonitorEvaluations":{
+      "name":"ListMonitorEvaluations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListMonitorEvaluationsRequest"},
+      "output":{"shape":"ListMonitorEvaluationsResponse"},
+      "errors":[
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
+    "ListMonitors":{
+      "name":"ListMonitors",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListMonitorsRequest"},
+      "output":{"shape":"ListMonitorsResponse"},
+      "errors":[
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidInputException"}
+      ],
+      "idempotent":true
+    },
     "ListPredictorBacktestExportJobs":{
       "name":"ListPredictorBacktestExportJobs",
       "http":{
@@ -602,6 +675,21 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidInputException"}
       ]
+    },
+    "ResumeResource":{
+      "name":"ResumeResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ResumeResourceRequest"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
+      ],
+      "idempotent":true
     },
     "StopResource":{
       "name":"StopResource",
@@ -718,6 +806,23 @@
         "AccuracyOptimized"
       ]
     },
+    "Baseline":{
+      "type":"structure",
+      "members":{
+        "PredictorBaseline":{"shape":"PredictorBaseline"}
+      }
+    },
+    "BaselineMetric":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"Name"},
+        "Value":{"shape":"Double"}
+      }
+    },
+    "BaselineMetrics":{
+      "type":"list",
+      "member":{"shape":"BaselineMetric"}
+    },
     "Boolean":{"type":"boolean"},
     "CategoricalParameterRange":{
       "type":"structure",
@@ -775,7 +880,8 @@
         "ReferencePredictorArn":{"shape":"Arn"},
         "OptimizationMetric":{"shape":"OptimizationMetric"},
         "ExplainPredictor":{"shape":"Boolean"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "MonitorConfig":{"shape":"MonitorConfig"}
       }
     },
     "CreateAutoPredictorResponse":{
@@ -933,6 +1039,24 @@
       "type":"structure",
       "members":{
         "ForecastArn":{"shape":"Arn"}
+      }
+    },
+    "CreateMonitorRequest":{
+      "type":"structure",
+      "required":[
+        "MonitorName",
+        "ResourceArn"
+      ],
+      "members":{
+        "MonitorName":{"shape":"Name"},
+        "ResourceArn":{"shape":"Arn"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "CreateMonitorResponse":{
+      "type":"structure",
+      "members":{
+        "MonitorArn":{"shape":"Arn"}
       }
     },
     "CreatePredictorBacktestExportJobRequest":{
@@ -1111,6 +1235,13 @@
         "ForecastArn":{"shape":"Arn"}
       }
     },
+    "DeleteMonitorRequest":{
+      "type":"structure",
+      "required":["MonitorArn"],
+      "members":{
+        "MonitorArn":{"shape":"Arn"}
+      }
+    },
     "DeletePredictorBacktestExportJobRequest":{
       "type":"structure",
       "required":["PredictorBacktestExportJobArn"],
@@ -1158,7 +1289,8 @@
         "CreationTime":{"shape":"Timestamp"},
         "LastModificationTime":{"shape":"Timestamp"},
         "OptimizationMetric":{"shape":"OptimizationMetric"},
-        "ExplainabilityInfo":{"shape":"ExplainabilityInfo"}
+        "ExplainabilityInfo":{"shape":"ExplainabilityInfo"},
+        "MonitorInfo":{"shape":"MonitorInfo"}
       }
     },
     "DescribeDatasetGroupRequest":{
@@ -1317,6 +1449,29 @@
         "LastModificationTime":{"shape":"Timestamp"}
       }
     },
+    "DescribeMonitorRequest":{
+      "type":"structure",
+      "required":["MonitorArn"],
+      "members":{
+        "MonitorArn":{"shape":"Arn"}
+      }
+    },
+    "DescribeMonitorResponse":{
+      "type":"structure",
+      "members":{
+        "MonitorName":{"shape":"Name"},
+        "MonitorArn":{"shape":"Arn"},
+        "ResourceArn":{"shape":"Arn"},
+        "Status":{"shape":"Status"},
+        "LastEvaluationTime":{"shape":"Timestamp"},
+        "LastEvaluationState":{"shape":"EvaluationState"},
+        "Baseline":{"shape":"Baseline"},
+        "Message":{"shape":"Message"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModificationTime":{"shape":"Timestamp"},
+        "EstimatedEvaluationTimeRemainingInMinutes":{"shape":"Long"}
+      }
+    },
     "DescribePredictorBacktestExportJobRequest":{
       "type":"structure",
       "required":["PredictorBacktestExportJobArn"],
@@ -1373,6 +1528,10 @@
         "OptimizationMetric":{"shape":"OptimizationMetric"}
       }
     },
+    "Detail":{
+      "type":"string",
+      "max":256
+    },
     "Domain":{
       "type":"string",
       "enum":[
@@ -1425,6 +1584,10 @@
         "AlgorithmArn":{"shape":"Arn"},
         "TestWindows":{"shape":"TestWindows"}
       }
+    },
+    "EvaluationState":{
+      "type":"string",
+      "max":256
     },
     "EvaluationType":{
       "type":"string",
@@ -1804,6 +1967,38 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListMonitorEvaluationsRequest":{
+      "type":"structure",
+      "required":["MonitorArn"],
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "MonitorArn":{"shape":"Arn"},
+        "Filters":{"shape":"Filters"}
+      }
+    },
+    "ListMonitorEvaluationsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "PredictorMonitorEvaluations":{"shape":"PredictorMonitorEvaluations"}
+      }
+    },
+    "ListMonitorsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "Filters":{"shape":"Filters"}
+      }
+    },
+    "ListMonitorsResponse":{
+      "type":"structure",
+      "members":{
+        "Monitors":{"shape":"Monitors"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListPredictorBacktestExportJobsRequest":{
       "type":"structure",
       "members":{
@@ -1859,6 +2054,21 @@
       "min":1
     },
     "Message":{"type":"string"},
+    "MetricName":{
+      "type":"string",
+      "max":256
+    },
+    "MetricResult":{
+      "type":"structure",
+      "members":{
+        "MetricName":{"shape":"MetricName"},
+        "MetricValue":{"shape":"Double"}
+      }
+    },
+    "MetricResults":{
+      "type":"list",
+      "member":{"shape":"MetricResult"}
+    },
     "Metrics":{
       "type":"structure",
       "members":{
@@ -1871,6 +2081,43 @@
         "ErrorMetrics":{"shape":"ErrorMetrics"},
         "AverageWeightedQuantileLoss":{"shape":"Double"}
       }
+    },
+    "MonitorConfig":{
+      "type":"structure",
+      "required":["MonitorName"],
+      "members":{
+        "MonitorName":{"shape":"Name"}
+      }
+    },
+    "MonitorDataSource":{
+      "type":"structure",
+      "members":{
+        "DatasetImportJobArn":{"shape":"Arn"},
+        "ForecastArn":{"shape":"Arn"},
+        "PredictorArn":{"shape":"Arn"}
+      }
+    },
+    "MonitorInfo":{
+      "type":"structure",
+      "members":{
+        "MonitorArn":{"shape":"Arn"},
+        "Status":{"shape":"Status"}
+      }
+    },
+    "MonitorSummary":{
+      "type":"structure",
+      "members":{
+        "MonitorArn":{"shape":"Arn"},
+        "MonitorName":{"shape":"Name"},
+        "ResourceArn":{"shape":"Arn"},
+        "Status":{"shape":"Status"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModificationTime":{"shape":"Timestamp"}
+      }
+    },
+    "Monitors":{
+      "type":"list",
+      "member":{"shape":"MonitorSummary"}
     },
     "Name":{
       "type":"string",
@@ -1928,9 +2175,22 @@
       "type":"list",
       "member":{"shape":"PredictorBacktestExportJobSummary"}
     },
+    "PredictorBaseline":{
+      "type":"structure",
+      "members":{
+        "BaselineMetrics":{"shape":"BaselineMetrics"}
+      }
+    },
     "PredictorEvaluationResults":{
       "type":"list",
       "member":{"shape":"EvaluationResult"}
+    },
+    "PredictorEvent":{
+      "type":"structure",
+      "members":{
+        "Detail":{"shape":"Detail"},
+        "Datetime":{"shape":"Timestamp"}
+      }
     },
     "PredictorExecution":{
       "type":"structure",
@@ -1950,6 +2210,26 @@
       "member":{"shape":"PredictorExecution"},
       "max":5,
       "min":1
+    },
+    "PredictorMonitorEvaluation":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{"shape":"Arn"},
+        "MonitorArn":{"shape":"Arn"},
+        "EvaluationTime":{"shape":"Timestamp"},
+        "EvaluationState":{"shape":"EvaluationState"},
+        "WindowStartDatetime":{"shape":"Timestamp"},
+        "WindowEndDatetime":{"shape":"Timestamp"},
+        "PredictorEvent":{"shape":"PredictorEvent"},
+        "MonitorDataSource":{"shape":"MonitorDataSource"},
+        "MetricResults":{"shape":"MetricResults"},
+        "NumItemsEvaluated":{"shape":"Long"},
+        "Message":{"shape":"Message"}
+      }
+    },
+    "PredictorMonitorEvaluations":{
+      "type":"list",
+      "member":{"shape":"PredictorMonitorEvaluation"}
     },
     "PredictorSummary":{
       "type":"structure",
@@ -1996,6 +2276,13 @@
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "ResumeResourceRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"Arn"}
+      }
     },
     "S3Config":{
       "type":"structure",

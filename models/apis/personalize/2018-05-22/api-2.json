@@ -180,6 +180,7 @@
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"LimitExceededException"},
+        {"shape":"ResourceInUseException"},
         {"shape":"TooManyTagsException"}
       ],
       "idempotent":true
@@ -2450,7 +2451,8 @@
         "lastUpdatedDateTime":{"shape":"Date"},
         "status":{"shape":"Status"},
         "failureReason":{"shape":"FailureReason"},
-        "latestRecommenderUpdate":{"shape":"RecommenderUpdateSummary"}
+        "latestRecommenderUpdate":{"shape":"RecommenderUpdateSummary"},
+        "modelMetrics":{"shape":"Metrics"}
       }
     },
     "RecommenderConfig":{

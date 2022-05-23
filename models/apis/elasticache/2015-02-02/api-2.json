@@ -1957,7 +1957,8 @@
         "OutpostMode":{"shape":"OutpostMode"},
         "PreferredOutpostArn":{"shape":"String"},
         "PreferredOutpostArns":{"shape":"PreferredOutpostArnList"},
-        "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationRequestList"}
+        "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationRequestList"},
+        "TransitEncryptionEnabled":{"shape":"BooleanOptional"}
       }
     },
     "CreateCacheClusterResult":{
