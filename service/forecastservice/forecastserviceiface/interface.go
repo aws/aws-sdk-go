@@ -92,6 +92,10 @@ type ForecastServiceAPI interface {
 	CreateForecastExportJobWithContext(aws.Context, *forecastservice.CreateForecastExportJobInput, ...request.Option) (*forecastservice.CreateForecastExportJobOutput, error)
 	CreateForecastExportJobRequest(*forecastservice.CreateForecastExportJobInput) (*request.Request, *forecastservice.CreateForecastExportJobOutput)
 
+	CreateMonitor(*forecastservice.CreateMonitorInput) (*forecastservice.CreateMonitorOutput, error)
+	CreateMonitorWithContext(aws.Context, *forecastservice.CreateMonitorInput, ...request.Option) (*forecastservice.CreateMonitorOutput, error)
+	CreateMonitorRequest(*forecastservice.CreateMonitorInput) (*request.Request, *forecastservice.CreateMonitorOutput)
+
 	CreatePredictor(*forecastservice.CreatePredictorInput) (*forecastservice.CreatePredictorOutput, error)
 	CreatePredictorWithContext(aws.Context, *forecastservice.CreatePredictorInput, ...request.Option) (*forecastservice.CreatePredictorOutput, error)
 	CreatePredictorRequest(*forecastservice.CreatePredictorInput) (*request.Request, *forecastservice.CreatePredictorOutput)
@@ -127,6 +131,10 @@ type ForecastServiceAPI interface {
 	DeleteForecastExportJob(*forecastservice.DeleteForecastExportJobInput) (*forecastservice.DeleteForecastExportJobOutput, error)
 	DeleteForecastExportJobWithContext(aws.Context, *forecastservice.DeleteForecastExportJobInput, ...request.Option) (*forecastservice.DeleteForecastExportJobOutput, error)
 	DeleteForecastExportJobRequest(*forecastservice.DeleteForecastExportJobInput) (*request.Request, *forecastservice.DeleteForecastExportJobOutput)
+
+	DeleteMonitor(*forecastservice.DeleteMonitorInput) (*forecastservice.DeleteMonitorOutput, error)
+	DeleteMonitorWithContext(aws.Context, *forecastservice.DeleteMonitorInput, ...request.Option) (*forecastservice.DeleteMonitorOutput, error)
+	DeleteMonitorRequest(*forecastservice.DeleteMonitorInput) (*request.Request, *forecastservice.DeleteMonitorOutput)
 
 	DeletePredictor(*forecastservice.DeletePredictorInput) (*forecastservice.DeletePredictorOutput, error)
 	DeletePredictorWithContext(aws.Context, *forecastservice.DeletePredictorInput, ...request.Option) (*forecastservice.DeletePredictorOutput, error)
@@ -172,6 +180,10 @@ type ForecastServiceAPI interface {
 	DescribeForecastExportJobWithContext(aws.Context, *forecastservice.DescribeForecastExportJobInput, ...request.Option) (*forecastservice.DescribeForecastExportJobOutput, error)
 	DescribeForecastExportJobRequest(*forecastservice.DescribeForecastExportJobInput) (*request.Request, *forecastservice.DescribeForecastExportJobOutput)
 
+	DescribeMonitor(*forecastservice.DescribeMonitorInput) (*forecastservice.DescribeMonitorOutput, error)
+	DescribeMonitorWithContext(aws.Context, *forecastservice.DescribeMonitorInput, ...request.Option) (*forecastservice.DescribeMonitorOutput, error)
+	DescribeMonitorRequest(*forecastservice.DescribeMonitorInput) (*request.Request, *forecastservice.DescribeMonitorOutput)
+
 	DescribePredictor(*forecastservice.DescribePredictorInput) (*forecastservice.DescribePredictorOutput, error)
 	DescribePredictorWithContext(aws.Context, *forecastservice.DescribePredictorInput, ...request.Option) (*forecastservice.DescribePredictorOutput, error)
 	DescribePredictorRequest(*forecastservice.DescribePredictorInput) (*request.Request, *forecastservice.DescribePredictorOutput)
@@ -209,9 +221,15 @@ type ForecastServiceAPI interface {
 	ListExplainabilitiesWithContext(aws.Context, *forecastservice.ListExplainabilitiesInput, ...request.Option) (*forecastservice.ListExplainabilitiesOutput, error)
 	ListExplainabilitiesRequest(*forecastservice.ListExplainabilitiesInput) (*request.Request, *forecastservice.ListExplainabilitiesOutput)
 
+	ListExplainabilitiesPages(*forecastservice.ListExplainabilitiesInput, func(*forecastservice.ListExplainabilitiesOutput, bool) bool) error
+	ListExplainabilitiesPagesWithContext(aws.Context, *forecastservice.ListExplainabilitiesInput, func(*forecastservice.ListExplainabilitiesOutput, bool) bool, ...request.Option) error
+
 	ListExplainabilityExports(*forecastservice.ListExplainabilityExportsInput) (*forecastservice.ListExplainabilityExportsOutput, error)
 	ListExplainabilityExportsWithContext(aws.Context, *forecastservice.ListExplainabilityExportsInput, ...request.Option) (*forecastservice.ListExplainabilityExportsOutput, error)
 	ListExplainabilityExportsRequest(*forecastservice.ListExplainabilityExportsInput) (*request.Request, *forecastservice.ListExplainabilityExportsOutput)
+
+	ListExplainabilityExportsPages(*forecastservice.ListExplainabilityExportsInput, func(*forecastservice.ListExplainabilityExportsOutput, bool) bool) error
+	ListExplainabilityExportsPagesWithContext(aws.Context, *forecastservice.ListExplainabilityExportsInput, func(*forecastservice.ListExplainabilityExportsOutput, bool) bool, ...request.Option) error
 
 	ListForecastExportJobs(*forecastservice.ListForecastExportJobsInput) (*forecastservice.ListForecastExportJobsOutput, error)
 	ListForecastExportJobsWithContext(aws.Context, *forecastservice.ListForecastExportJobsInput, ...request.Option) (*forecastservice.ListForecastExportJobsOutput, error)
@@ -226,6 +244,20 @@ type ForecastServiceAPI interface {
 
 	ListForecastsPages(*forecastservice.ListForecastsInput, func(*forecastservice.ListForecastsOutput, bool) bool) error
 	ListForecastsPagesWithContext(aws.Context, *forecastservice.ListForecastsInput, func(*forecastservice.ListForecastsOutput, bool) bool, ...request.Option) error
+
+	ListMonitorEvaluations(*forecastservice.ListMonitorEvaluationsInput) (*forecastservice.ListMonitorEvaluationsOutput, error)
+	ListMonitorEvaluationsWithContext(aws.Context, *forecastservice.ListMonitorEvaluationsInput, ...request.Option) (*forecastservice.ListMonitorEvaluationsOutput, error)
+	ListMonitorEvaluationsRequest(*forecastservice.ListMonitorEvaluationsInput) (*request.Request, *forecastservice.ListMonitorEvaluationsOutput)
+
+	ListMonitorEvaluationsPages(*forecastservice.ListMonitorEvaluationsInput, func(*forecastservice.ListMonitorEvaluationsOutput, bool) bool) error
+	ListMonitorEvaluationsPagesWithContext(aws.Context, *forecastservice.ListMonitorEvaluationsInput, func(*forecastservice.ListMonitorEvaluationsOutput, bool) bool, ...request.Option) error
+
+	ListMonitors(*forecastservice.ListMonitorsInput) (*forecastservice.ListMonitorsOutput, error)
+	ListMonitorsWithContext(aws.Context, *forecastservice.ListMonitorsInput, ...request.Option) (*forecastservice.ListMonitorsOutput, error)
+	ListMonitorsRequest(*forecastservice.ListMonitorsInput) (*request.Request, *forecastservice.ListMonitorsOutput)
+
+	ListMonitorsPages(*forecastservice.ListMonitorsInput, func(*forecastservice.ListMonitorsOutput, bool) bool) error
+	ListMonitorsPagesWithContext(aws.Context, *forecastservice.ListMonitorsInput, func(*forecastservice.ListMonitorsOutput, bool) bool, ...request.Option) error
 
 	ListPredictorBacktestExportJobs(*forecastservice.ListPredictorBacktestExportJobsInput) (*forecastservice.ListPredictorBacktestExportJobsOutput, error)
 	ListPredictorBacktestExportJobsWithContext(aws.Context, *forecastservice.ListPredictorBacktestExportJobsInput, ...request.Option) (*forecastservice.ListPredictorBacktestExportJobsOutput, error)
@@ -244,6 +276,10 @@ type ForecastServiceAPI interface {
 	ListTagsForResource(*forecastservice.ListTagsForResourceInput) (*forecastservice.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *forecastservice.ListTagsForResourceInput, ...request.Option) (*forecastservice.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*forecastservice.ListTagsForResourceInput) (*request.Request, *forecastservice.ListTagsForResourceOutput)
+
+	ResumeResource(*forecastservice.ResumeResourceInput) (*forecastservice.ResumeResourceOutput, error)
+	ResumeResourceWithContext(aws.Context, *forecastservice.ResumeResourceInput, ...request.Option) (*forecastservice.ResumeResourceOutput, error)
+	ResumeResourceRequest(*forecastservice.ResumeResourceInput) (*request.Request, *forecastservice.ResumeResourceOutput)
 
 	StopResource(*forecastservice.StopResourceInput) (*forecastservice.StopResourceOutput, error)
 	StopResourceWithContext(aws.Context, *forecastservice.StopResourceInput, ...request.Option) (*forecastservice.StopResourceOutput, error)

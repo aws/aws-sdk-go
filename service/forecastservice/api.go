@@ -75,7 +75,8 @@ func (c *ForecastService) CreateAutoPredictorRequest(input *CreateAutoPredictorI
 //    * ForecastFrequency - The granularity of your forecasts (hourly, daily,
 //    weekly, etc).
 //
-//    * ForecastHorizon - The number of time steps being forecasted.
+//    * ForecastHorizon - The number of time-steps that the model predicts.
+//    The forecast horizon is also called the prediction length.
 //
 // When creating a new predictor, do not specify a value for ReferencePredictorArn.
 //
@@ -198,15 +199,17 @@ func (c *ForecastService) CreateDatasetRequest(input *CreateDatasetInput) (req *
 //
 // After creating a dataset, you import your training data into it and add the
 // dataset to a dataset group. You use the dataset group to create a predictor.
-// For more information, see howitworks-datasets-groups.
+// For more information, see Importing datasets (https://docs.aws.amazon.com/forecast/latest/dg/howitworks-datasets-groups.html).
 //
-// To get a list of all your datasets, use the ListDatasets operation.
+// To get a list of all your datasets, use the ListDatasets (https://docs.aws.amazon.com/forecast/latest/dg/API_ListDatasets.html)
+// operation.
 //
 // For example Forecast datasets, see the Amazon Forecast Sample GitHub repository
 // (https://github.com/aws-samples/amazon-forecast-samples).
 //
 // The Status of a dataset must be ACTIVE before you can import training data.
-// Use the DescribeDataset operation to get the status.
+// Use the DescribeDataset (https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDataset.html)
+// operation to get the status.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -294,15 +297,18 @@ func (c *ForecastService) CreateDatasetGroupRequest(input *CreateDatasetGroupInp
 //
 // Creates a dataset group, which holds a collection of related datasets. You
 // can add datasets to the dataset group when you create the dataset group,
-// or later by using the UpdateDatasetGroup operation.
+// or later by using the UpdateDatasetGroup (https://docs.aws.amazon.com/forecast/latest/dg/API_UpdateDatasetGroup.html)
+// operation.
 //
 // After creating a dataset group and adding datasets, you use the dataset group
-// when you create a predictor. For more information, see howitworks-datasets-groups.
+// when you create a predictor. For more information, see Dataset groups (https://docs.aws.amazon.com/forecast/latest/dg/howitworks-datasets-groups.html).
 //
-// To get a list of all your datasets groups, use the ListDatasetGroups operation.
+// To get a list of all your datasets groups, use the ListDatasetGroups (https://docs.aws.amazon.com/forecast/latest/dg/API_ListDatasetGroups.html)
+// operation.
 //
 // The Status of a dataset group must be ACTIVE before you can use the dataset
 // group to create a predictor. To get the status, use the DescribeDatasetGroup
+// (https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html)
 // operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -401,10 +407,11 @@ func (c *ForecastService) CreateDatasetImportJobRequest(input *CreateDatasetImpo
 // S3) bucket and the Amazon Resource Name (ARN) of the dataset that you want
 // to import the data to.
 //
-// You must specify a DataSource object that includes an AWS Identity and Access
-// Management (IAM) role that Amazon Forecast can assume to access the data,
-// as Amazon Forecast makes a copy of your data and processes it in an internal
-// AWS system. For more information, see aws-forecast-iam-roles.
+// You must specify a DataSource (https://docs.aws.amazon.com/forecast/latest/dg/API_DataSource.html)
+// object that includes an AWS Identity and Access Management (IAM) role that
+// Amazon Forecast can assume to access the data, as Amazon Forecast makes a
+// copy of your data and processes it in an internal AWS system. For more information,
+// see Set up permissions (https://docs.aws.amazon.com/forecast/latest/dg/aws-forecast-iam-roles.html).
 //
 // The training data must be in CSV format. The delimiter must be a comma (,).
 //
@@ -419,7 +426,8 @@ func (c *ForecastService) CreateDatasetImportJobRequest(input *CreateDatasetImpo
 // import.
 //
 // To get a list of all your dataset import jobs, filtered by specified criteria,
-// use the ListDatasetImportJobs operation.
+// use the ListDatasetImportJobs (https://docs.aws.amazon.com/forecast/latest/dg/API_ListDatasetImportJobs.html)
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -960,6 +968,101 @@ func (c *ForecastService) CreateForecastExportJobWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opCreateMonitor = "CreateMonitor"
+
+// CreateMonitorRequest generates a "aws/request.Request" representing the
+// client's request for the CreateMonitor operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateMonitor for more information on using the CreateMonitor
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateMonitorRequest method.
+//    req, resp := client.CreateMonitorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/forecast-2018-06-26/CreateMonitor
+func (c *ForecastService) CreateMonitorRequest(input *CreateMonitorInput) (req *request.Request, output *CreateMonitorOutput) {
+	op := &request.Operation{
+		Name:       opCreateMonitor,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateMonitorInput{}
+	}
+
+	output = &CreateMonitorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateMonitor API operation for Amazon Forecast Service.
+//
+// Creates a predictor monitor resource for an existing auto predictor. Predictor
+// monitoring allows you to see how your predictor's performance changes over
+// time. For more information, see Predictor Monitoring (https://docs.aws.amazon.com/forecast/latest/dg/predictor-monitoring.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Forecast Service's
+// API operation CreateMonitor for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   We can't process the request because it includes an invalid value or a value
+//   that exceeds the valid range.
+//
+//   * ResourceAlreadyExistsException
+//   There is already a resource with this name. Try again with a different name.
+//
+//   * ResourceNotFoundException
+//   We can't find a resource with that Amazon Resource Name (ARN). Check the
+//   ARN and try again.
+//
+//   * ResourceInUseException
+//   The specified resource is in use.
+//
+//   * LimitExceededException
+//   The limit on the number of resources per account has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/forecast-2018-06-26/CreateMonitor
+func (c *ForecastService) CreateMonitor(input *CreateMonitorInput) (*CreateMonitorOutput, error) {
+	req, out := c.CreateMonitorRequest(input)
+	return out, req.Send()
+}
+
+// CreateMonitorWithContext is the same as CreateMonitor with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateMonitor for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ForecastService) CreateMonitorWithContext(ctx aws.Context, input *CreateMonitorInput, opts ...request.Option) (*CreateMonitorOutput, error) {
+	req, out := c.CreateMonitorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreatePredictor = "CreatePredictor"
 
 // CreatePredictorRequest generates a "aws/request.Request" representing the
@@ -1260,12 +1363,15 @@ func (c *ForecastService) DeleteDatasetRequest(input *DeleteDatasetInput) (req *
 // DeleteDataset API operation for Amazon Forecast Service.
 //
 // Deletes an Amazon Forecast dataset that was created using the CreateDataset
-// operation. You can only delete datasets that have a status of ACTIVE or CREATE_FAILED.
-// To get the status use the DescribeDataset operation.
+// (https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDataset.html) operation.
+// You can only delete datasets that have a status of ACTIVE or CREATE_FAILED.
+// To get the status use the DescribeDataset (https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDataset.html)
+// operation.
 //
 // Forecast does not automatically update any dataset groups that contain the
-// deleted dataset. In order to update the dataset group, use the operation,
-// omitting the deleted dataset's ARN.
+// deleted dataset. In order to update the dataset group, use the UpdateDatasetGroup
+// (https://docs.aws.amazon.com/forecast/latest/dg/API_UpdateDatasetGroup.html)
+// operation, omitting the deleted dataset's ARN.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1353,9 +1459,11 @@ func (c *ForecastService) DeleteDatasetGroupRequest(input *DeleteDatasetGroupInp
 
 // DeleteDatasetGroup API operation for Amazon Forecast Service.
 //
-// Deletes a dataset group created using the CreateDatasetGroup operation. You
-// can only delete dataset groups that have a status of ACTIVE, CREATE_FAILED,
-// or UPDATE_FAILED. To get the status, use the DescribeDatasetGroup operation.
+// Deletes a dataset group created using the CreateDatasetGroup (https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDatasetGroup.html)
+// operation. You can only delete dataset groups that have a status of ACTIVE,
+// CREATE_FAILED, or UPDATE_FAILED. To get the status, use the DescribeDatasetGroup
+// (https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html)
+// operation.
 //
 // This operation deletes only the dataset group, not the datasets in the group.
 //
@@ -1445,9 +1553,11 @@ func (c *ForecastService) DeleteDatasetImportJobRequest(input *DeleteDatasetImpo
 
 // DeleteDatasetImportJob API operation for Amazon Forecast Service.
 //
-// Deletes a dataset import job created using the CreateDatasetImportJob operation.
-// You can delete only dataset import jobs that have a status of ACTIVE or CREATE_FAILED.
-// To get the status, use the DescribeDatasetImportJob operation.
+// Deletes a dataset import job created using the CreateDatasetImportJob (https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDatasetImportJob.html)
+// operation. You can delete only dataset import jobs that have a status of
+// ACTIVE or CREATE_FAILED. To get the status, use the DescribeDatasetImportJob
+// (https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetImportJob.html)
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1847,6 +1957,95 @@ func (c *ForecastService) DeleteForecastExportJob(input *DeleteForecastExportJob
 // for more information on using Contexts.
 func (c *ForecastService) DeleteForecastExportJobWithContext(ctx aws.Context, input *DeleteForecastExportJobInput, opts ...request.Option) (*DeleteForecastExportJobOutput, error) {
 	req, out := c.DeleteForecastExportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteMonitor = "DeleteMonitor"
+
+// DeleteMonitorRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteMonitor operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteMonitor for more information on using the DeleteMonitor
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteMonitorRequest method.
+//    req, resp := client.DeleteMonitorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/forecast-2018-06-26/DeleteMonitor
+func (c *ForecastService) DeleteMonitorRequest(input *DeleteMonitorInput) (req *request.Request, output *DeleteMonitorOutput) {
+	op := &request.Operation{
+		Name:       opDeleteMonitor,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteMonitorInput{}
+	}
+
+	output = &DeleteMonitorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteMonitor API operation for Amazon Forecast Service.
+//
+// Deletes a monitor resource. You can only delete a monitor resource with a
+// status of ACTIVE, ACTIVE_STOPPED, CREATE_FAILED, or CREATE_STOPPED.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Forecast Service's
+// API operation DeleteMonitor for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   We can't process the request because it includes an invalid value or a value
+//   that exceeds the valid range.
+//
+//   * ResourceNotFoundException
+//   We can't find a resource with that Amazon Resource Name (ARN). Check the
+//   ARN and try again.
+//
+//   * ResourceInUseException
+//   The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/forecast-2018-06-26/DeleteMonitor
+func (c *ForecastService) DeleteMonitor(input *DeleteMonitorInput) (*DeleteMonitorOutput, error) {
+	req, out := c.DeleteMonitorRequest(input)
+	return out, req.Send()
+}
+
+// DeleteMonitorWithContext is the same as DeleteMonitor with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteMonitor for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ForecastService) DeleteMonitorWithContext(ctx aws.Context, input *DeleteMonitorInput, opts ...request.Option) (*DeleteMonitorOutput, error) {
+	req, out := c.DeleteMonitorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2266,7 +2465,8 @@ func (c *ForecastService) DescribeDatasetRequest(input *DescribeDatasetInput) (r
 
 // DescribeDataset API operation for Amazon Forecast Service.
 //
-// Describes an Amazon Forecast dataset created using the CreateDataset operation.
+// Describes an Amazon Forecast dataset created using the CreateDataset (https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDataset.html)
+// operation.
 //
 // In addition to listing the parameters specified in the CreateDataset request,
 // this operation includes the following dataset properties:
@@ -2359,7 +2559,8 @@ func (c *ForecastService) DescribeDatasetGroupRequest(input *DescribeDatasetGrou
 
 // DescribeDatasetGroup API operation for Amazon Forecast Service.
 //
-// Describes a dataset group created using the CreateDatasetGroup operation.
+// Describes a dataset group created using the CreateDatasetGroup (https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDatasetGroup.html)
+// operation.
 //
 // In addition to listing the parameters provided in the CreateDatasetGroup
 // request, this operation includes the following properties:
@@ -2454,7 +2655,8 @@ func (c *ForecastService) DescribeDatasetImportJobRequest(input *DescribeDataset
 
 // DescribeDatasetImportJob API operation for Amazon Forecast Service.
 //
-// Describes a dataset import job created using the CreateDatasetImportJob operation.
+// Describes a dataset import job created using the CreateDatasetImportJob (https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDatasetImportJob.html)
+// operation.
 //
 // In addition to listing the parameters provided in the CreateDatasetImportJob
 // request, this operation includes the following properties:
@@ -2872,6 +3074,105 @@ func (c *ForecastService) DescribeForecastExportJobWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opDescribeMonitor = "DescribeMonitor"
+
+// DescribeMonitorRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeMonitor operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeMonitor for more information on using the DescribeMonitor
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeMonitorRequest method.
+//    req, resp := client.DescribeMonitorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/forecast-2018-06-26/DescribeMonitor
+func (c *ForecastService) DescribeMonitorRequest(input *DescribeMonitorInput) (req *request.Request, output *DescribeMonitorOutput) {
+	op := &request.Operation{
+		Name:       opDescribeMonitor,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeMonitorInput{}
+	}
+
+	output = &DescribeMonitorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeMonitor API operation for Amazon Forecast Service.
+//
+// Describes a monitor resource. In addition to listing the properties provided
+// in the CreateMonitor request, this operation lists the following properties:
+//
+//    * Baseline
+//
+//    * CreationTime
+//
+//    * LastEvaluationTime
+//
+//    * LastEvaluationState
+//
+//    * LastModificationTime
+//
+//    * Message
+//
+//    * Status
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Forecast Service's
+// API operation DescribeMonitor for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   We can't process the request because it includes an invalid value or a value
+//   that exceeds the valid range.
+//
+//   * ResourceNotFoundException
+//   We can't find a resource with that Amazon Resource Name (ARN). Check the
+//   ARN and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/forecast-2018-06-26/DescribeMonitor
+func (c *ForecastService) DescribeMonitor(input *DescribeMonitorInput) (*DescribeMonitorOutput, error) {
+	req, out := c.DescribeMonitorRequest(input)
+	return out, req.Send()
+}
+
+// DescribeMonitorWithContext is the same as DescribeMonitor with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeMonitor for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ForecastService) DescribeMonitorWithContext(ctx aws.Context, input *DescribeMonitorInput, opts ...request.Option) (*DescribeMonitorOutput, error) {
+	req, out := c.DescribeMonitorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribePredictor = "DescribePredictor"
 
 // DescribePredictorRequest generates a "aws/request.Request" representing the
@@ -3228,10 +3529,11 @@ func (c *ForecastService) ListDatasetGroupsRequest(input *ListDatasetGroupsInput
 
 // ListDatasetGroups API operation for Amazon Forecast Service.
 //
-// Returns a list of dataset groups created using the CreateDatasetGroup operation.
-// For each dataset group, this operation returns a summary of its properties,
-// including its Amazon Resource Name (ARN). You can retrieve the complete set
-// of properties by using the dataset group ARN with the DescribeDatasetGroup
+// Returns a list of dataset groups created using the CreateDatasetGroup (https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDatasetGroup.html)
+// operation. For each dataset group, this operation returns a summary of its
+// properties, including its Amazon Resource Name (ARN). You can retrieve the
+// complete set of properties by using the dataset group ARN with the DescribeDatasetGroup
+// (https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html)
 // operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3370,10 +3672,12 @@ func (c *ForecastService) ListDatasetImportJobsRequest(input *ListDatasetImportJ
 // ListDatasetImportJobs API operation for Amazon Forecast Service.
 //
 // Returns a list of dataset import jobs created using the CreateDatasetImportJob
+// (https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDatasetImportJob.html)
 // operation. For each import job, this operation returns a summary of its properties,
 // including its Amazon Resource Name (ARN). You can retrieve the complete set
-// of properties by using the ARN with the DescribeDatasetImportJob operation.
-// You can filter the list by providing an array of Filter objects.
+// of properties by using the ARN with the DescribeDatasetImportJob (https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetImportJob.html)
+// operation. You can filter the list by providing an array of Filter (https://docs.aws.amazon.com/forecast/latest/dg/API_Filter.html)
+// objects.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3514,10 +3818,11 @@ func (c *ForecastService) ListDatasetsRequest(input *ListDatasetsInput) (req *re
 
 // ListDatasets API operation for Amazon Forecast Service.
 //
-// Returns a list of datasets created using the CreateDataset operation. For
-// each dataset, a summary of its properties, including its Amazon Resource
-// Name (ARN), is returned. To retrieve the complete set of properties, use
-// the ARN with the DescribeDataset operation.
+// Returns a list of datasets created using the CreateDataset (https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDataset.html)
+// operation. For each dataset, a summary of its properties, including its Amazon
+// Resource Name (ARN), is returned. To retrieve the complete set of properties,
+// use the ARN with the DescribeDataset (https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDataset.html)
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3635,6 +3940,12 @@ func (c *ForecastService) ListExplainabilitiesRequest(input *ListExplainabilitie
 		Name:       opListExplainabilities,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3692,6 +4003,58 @@ func (c *ForecastService) ListExplainabilitiesWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+// ListExplainabilitiesPages iterates over the pages of a ListExplainabilities operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListExplainabilities method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListExplainabilities operation.
+//    pageNum := 0
+//    err := client.ListExplainabilitiesPages(params,
+//        func(page *forecastservice.ListExplainabilitiesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ForecastService) ListExplainabilitiesPages(input *ListExplainabilitiesInput, fn func(*ListExplainabilitiesOutput, bool) bool) error {
+	return c.ListExplainabilitiesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListExplainabilitiesPagesWithContext same as ListExplainabilitiesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ForecastService) ListExplainabilitiesPagesWithContext(ctx aws.Context, input *ListExplainabilitiesInput, fn func(*ListExplainabilitiesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListExplainabilitiesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListExplainabilitiesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListExplainabilitiesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListExplainabilityExports = "ListExplainabilityExports"
 
 // ListExplainabilityExportsRequest generates a "aws/request.Request" representing the
@@ -3723,6 +4086,12 @@ func (c *ForecastService) ListExplainabilityExportsRequest(input *ListExplainabi
 		Name:       opListExplainabilityExports,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3778,6 +4147,58 @@ func (c *ForecastService) ListExplainabilityExportsWithContext(ctx aws.Context, 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListExplainabilityExportsPages iterates over the pages of a ListExplainabilityExports operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListExplainabilityExports method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListExplainabilityExports operation.
+//    pageNum := 0
+//    err := client.ListExplainabilityExportsPages(params,
+//        func(page *forecastservice.ListExplainabilityExportsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ForecastService) ListExplainabilityExportsPages(input *ListExplainabilityExportsInput, fn func(*ListExplainabilityExportsOutput, bool) bool) error {
+	return c.ListExplainabilityExportsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListExplainabilityExportsPagesWithContext same as ListExplainabilityExportsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ForecastService) ListExplainabilityExportsPagesWithContext(ctx aws.Context, input *ListExplainabilityExportsInput, fn func(*ListExplainabilityExportsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListExplainabilityExportsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListExplainabilityExportsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListExplainabilityExportsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListForecastExportJobs = "ListForecastExportJobs"
@@ -4063,6 +4484,301 @@ func (c *ForecastService) ListForecastsPagesWithContext(ctx aws.Context, input *
 
 	for p.Next() {
 		if !fn(p.Page().(*ListForecastsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListMonitorEvaluations = "ListMonitorEvaluations"
+
+// ListMonitorEvaluationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListMonitorEvaluations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMonitorEvaluations for more information on using the ListMonitorEvaluations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListMonitorEvaluationsRequest method.
+//    req, resp := client.ListMonitorEvaluationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/forecast-2018-06-26/ListMonitorEvaluations
+func (c *ForecastService) ListMonitorEvaluationsRequest(input *ListMonitorEvaluationsInput) (req *request.Request, output *ListMonitorEvaluationsOutput) {
+	op := &request.Operation{
+		Name:       opListMonitorEvaluations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMonitorEvaluationsInput{}
+	}
+
+	output = &ListMonitorEvaluationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMonitorEvaluations API operation for Amazon Forecast Service.
+//
+// Returns a list of the monitoring evaluation results and predictor events
+// collected by the monitor resource during different windows of time.
+//
+// For information about monitoring see Viewing Monitoring Results (https://docs.aws.amazon.com/forecast/latest/dg/predictor-monitoring-results.html).
+// For more information about retrieving monitoring results see Viewing Monitoring
+// Results (https://docs.aws.amazon.com/forecast/latest/dg/predictor-monitoring-results.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Forecast Service's
+// API operation ListMonitorEvaluations for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidNextTokenException
+//   The token is not valid. Tokens expire after 24 hours.
+//
+//   * InvalidInputException
+//   We can't process the request because it includes an invalid value or a value
+//   that exceeds the valid range.
+//
+//   * ResourceNotFoundException
+//   We can't find a resource with that Amazon Resource Name (ARN). Check the
+//   ARN and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/forecast-2018-06-26/ListMonitorEvaluations
+func (c *ForecastService) ListMonitorEvaluations(input *ListMonitorEvaluationsInput) (*ListMonitorEvaluationsOutput, error) {
+	req, out := c.ListMonitorEvaluationsRequest(input)
+	return out, req.Send()
+}
+
+// ListMonitorEvaluationsWithContext is the same as ListMonitorEvaluations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMonitorEvaluations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ForecastService) ListMonitorEvaluationsWithContext(ctx aws.Context, input *ListMonitorEvaluationsInput, opts ...request.Option) (*ListMonitorEvaluationsOutput, error) {
+	req, out := c.ListMonitorEvaluationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMonitorEvaluationsPages iterates over the pages of a ListMonitorEvaluations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMonitorEvaluations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListMonitorEvaluations operation.
+//    pageNum := 0
+//    err := client.ListMonitorEvaluationsPages(params,
+//        func(page *forecastservice.ListMonitorEvaluationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ForecastService) ListMonitorEvaluationsPages(input *ListMonitorEvaluationsInput, fn func(*ListMonitorEvaluationsOutput, bool) bool) error {
+	return c.ListMonitorEvaluationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMonitorEvaluationsPagesWithContext same as ListMonitorEvaluationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ForecastService) ListMonitorEvaluationsPagesWithContext(ctx aws.Context, input *ListMonitorEvaluationsInput, fn func(*ListMonitorEvaluationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMonitorEvaluationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMonitorEvaluationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMonitorEvaluationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListMonitors = "ListMonitors"
+
+// ListMonitorsRequest generates a "aws/request.Request" representing the
+// client's request for the ListMonitors operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMonitors for more information on using the ListMonitors
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListMonitorsRequest method.
+//    req, resp := client.ListMonitorsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/forecast-2018-06-26/ListMonitors
+func (c *ForecastService) ListMonitorsRequest(input *ListMonitorsInput) (req *request.Request, output *ListMonitorsOutput) {
+	op := &request.Operation{
+		Name:       opListMonitors,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMonitorsInput{}
+	}
+
+	output = &ListMonitorsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMonitors API operation for Amazon Forecast Service.
+//
+// Returns a list of monitors created with the CreateMonitor operation and CreateAutoPredictor
+// operation. For each monitor resource, this operation returns of a summary
+// of its properties, including its Amazon Resource Name (ARN). You can retrieve
+// a complete set of properties of a monitor resource by specify the monitor's
+// ARN in the DescribeMonitor operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Forecast Service's
+// API operation ListMonitors for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidNextTokenException
+//   The token is not valid. Tokens expire after 24 hours.
+//
+//   * InvalidInputException
+//   We can't process the request because it includes an invalid value or a value
+//   that exceeds the valid range.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/forecast-2018-06-26/ListMonitors
+func (c *ForecastService) ListMonitors(input *ListMonitorsInput) (*ListMonitorsOutput, error) {
+	req, out := c.ListMonitorsRequest(input)
+	return out, req.Send()
+}
+
+// ListMonitorsWithContext is the same as ListMonitors with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMonitors for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ForecastService) ListMonitorsWithContext(ctx aws.Context, input *ListMonitorsInput, opts ...request.Option) (*ListMonitorsOutput, error) {
+	req, out := c.ListMonitorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMonitorsPages iterates over the pages of a ListMonitors operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMonitors method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListMonitors operation.
+//    pageNum := 0
+//    err := client.ListMonitorsPages(params,
+//        func(page *forecastservice.ListMonitorsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ForecastService) ListMonitorsPages(input *ListMonitorsInput, fn func(*ListMonitorsOutput, bool) bool) error {
+	return c.ListMonitorsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMonitorsPagesWithContext same as ListMonitorsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ForecastService) ListMonitorsPagesWithContext(ctx aws.Context, input *ListMonitorsInput, fn func(*ListMonitorsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMonitorsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMonitorsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMonitorsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -4447,6 +5163,97 @@ func (c *ForecastService) ListTagsForResourceWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opResumeResource = "ResumeResource"
+
+// ResumeResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ResumeResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ResumeResource for more information on using the ResumeResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ResumeResourceRequest method.
+//    req, resp := client.ResumeResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/forecast-2018-06-26/ResumeResource
+func (c *ForecastService) ResumeResourceRequest(input *ResumeResourceInput) (req *request.Request, output *ResumeResourceOutput) {
+	op := &request.Operation{
+		Name:       opResumeResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ResumeResourceInput{}
+	}
+
+	output = &ResumeResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// ResumeResource API operation for Amazon Forecast Service.
+//
+// Resumes a stopped monitor resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Forecast Service's
+// API operation ResumeResource for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   We can't process the request because it includes an invalid value or a value
+//   that exceeds the valid range.
+//
+//   * LimitExceededException
+//   The limit on the number of resources per account has been exceeded.
+//
+//   * ResourceNotFoundException
+//   We can't find a resource with that Amazon Resource Name (ARN). Check the
+//   ARN and try again.
+//
+//   * ResourceInUseException
+//   The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/forecast-2018-06-26/ResumeResource
+func (c *ForecastService) ResumeResource(input *ResumeResourceInput) (*ResumeResourceOutput, error) {
+	req, out := c.ResumeResourceRequest(input)
+	return out, req.Send()
+}
+
+// ResumeResourceWithContext is the same as ResumeResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ResumeResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ForecastService) ResumeResourceWithContext(ctx aws.Context, input *ResumeResourceInput, opts ...request.Option) (*ResumeResourceOutput, error) {
+	req, out := c.ResumeResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStopResource = "StopResource"
 
 // StopResourceRequest generates a "aws/request.Request" representing the
@@ -4779,8 +5586,8 @@ func (c *ForecastService) UpdateDatasetGroupRequest(input *UpdateDatasetGroupInp
 // Replaces the datasets in a dataset group with the specified datasets.
 //
 // The Status of the dataset group must be ACTIVE before you can use the dataset
-// group to create a predictor. Use the DescribeDatasetGroup operation to get
-// the status.
+// group to create a predictor. Use the DescribeDatasetGroup (https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html)
+// operation to get the status.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4846,6 +5653,8 @@ type AdditionalDataset struct {
 	// Weather Index
 	//
 	// To enable the Weather Index, do not specify a value for Configuration.
+	//
+	// Holidays
 	//
 	// Holidays
 	//
@@ -5145,6 +5954,83 @@ func (s *AttributeConfig) SetTransformations(v map[string]*string) *AttributeCon
 	return s
 }
 
+// Metrics you can use as a baseline for comparison purposes. Use these metrics
+// when you interpret monitoring results for an auto predictor.
+type Baseline struct {
+	_ struct{} `type:"structure"`
+
+	// The initial accuracy metrics (https://docs.aws.amazon.com/forecast/latest/dg/metrics.html)
+	// for the predictor you are monitoring. Use these metrics as a baseline for
+	// comparison purposes as you use your predictor and the metrics change.
+	PredictorBaseline *PredictorBaseline `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Baseline) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Baseline) GoString() string {
+	return s.String()
+}
+
+// SetPredictorBaseline sets the PredictorBaseline field's value.
+func (s *Baseline) SetPredictorBaseline(v *PredictorBaseline) *Baseline {
+	s.PredictorBaseline = v
+	return s
+}
+
+// An individual metric that you can use for comparison as you evaluate your
+// monitoring results.
+type BaselineMetric struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the metric.
+	Name *string `min:"1" type:"string"`
+
+	// The value for the metric.
+	Value *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BaselineMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BaselineMetric) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *BaselineMetric) SetName(v string) *BaselineMetric {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *BaselineMetric) SetValue(v float64) *BaselineMetric {
+	s.Value = &v
+	return s
+}
+
 // Specifies a categorical hyperparameter and it's range of tunable values.
 // This object is part of the ParameterRanges object.
 type CategoricalParameterRange struct {
@@ -5368,12 +6254,28 @@ type CreateAutoPredictorInput struct {
 
 	// The number of time-steps that the model predicts. The forecast horizon is
 	// also called the prediction length.
+	//
+	// The maximum forecast horizon is the lesser of 500 time-steps or 1/4 of the
+	// TARGET_TIME_SERIES dataset length. If you are retraining an existing AutoPredictor,
+	// then the maximum forecast horizon is the lesser of 500 time-steps or 1/3
+	// of the TARGET_TIME_SERIES dataset length.
+	//
+	// If you are upgrading to an AutoPredictor or retraining an existing AutoPredictor,
+	// you cannot update the forecast horizon parameter. You can meet this requirement
+	// by providing longer time-series in the dataset.
 	ForecastHorizon *int64 `type:"integer"`
 
 	// The forecast types used to train a predictor. You can specify up to five
 	// forecast types. Forecast types can be quantiles from 0.01 to 0.99, by increments
 	// of 0.01 or higher. You can also specify the mean forecast with mean.
 	ForecastTypes []*string `min:"1" type:"list"`
+
+	// The configuration details for predictor monitoring. Provide a name for the
+	// monitor resource to enable predictor monitoring.
+	//
+	// Predictor monitoring allows you to see how your predictor's performance changes
+	// over time. For more information, see Predictor Monitoring (https://docs.aws.amazon.com/forecast/latest/dg/predictor-monitoring.html).
+	MonitorConfig *MonitorConfig `type:"structure"`
 
 	// The accuracy metric used to optimize the predictor.
 	OptimizationMetric *string `type:"string" enum:"OptimizationMetric"`
@@ -5467,6 +6369,11 @@ func (s *CreateAutoPredictorInput) Validate() error {
 			invalidParams.AddNested("EncryptionConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.MonitorConfig != nil {
+		if err := s.MonitorConfig.Validate(); err != nil {
+			invalidParams.AddNested("MonitorConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -5523,6 +6430,12 @@ func (s *CreateAutoPredictorInput) SetForecastHorizon(v int64) *CreateAutoPredic
 // SetForecastTypes sets the ForecastTypes field's value.
 func (s *CreateAutoPredictorInput) SetForecastTypes(v []*string) *CreateAutoPredictorInput {
 	s.ForecastTypes = v
+	return s
+}
+
+// SetMonitorConfig sets the MonitorConfig field's value.
+func (s *CreateAutoPredictorInput) SetMonitorConfig(v *MonitorConfig) *CreateAutoPredictorInput {
+	s.MonitorConfig = v
 	return s
 }
 
@@ -5595,13 +6508,14 @@ type CreateDatasetGroupInput struct {
 
 	// The domain associated with the dataset group. When you add a dataset to a
 	// dataset group, this value and the value specified for the Domain parameter
-	// of the CreateDataset operation must match.
+	// of the CreateDataset (https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDataset.html)
+	// operation must match.
 	//
 	// The Domain and DatasetType that you choose determine the fields that must
 	// be present in training data that you import to a dataset. For example, if
 	// you choose the RETAIL domain and TARGET_TIME_SERIES as the DatasetType, Amazon
 	// Forecast requires that item_id, timestamp, and demand fields are present
-	// in your data. For more information, see howitworks-datasets-groups.
+	// in your data. For more information, see Dataset groups (https://docs.aws.amazon.com/forecast/latest/dg/howitworks-datasets-groups.html).
 	//
 	// Domain is a required field
 	Domain *string `type:"string" required:"true" enum:"Domain"`
@@ -5750,7 +6664,8 @@ type CreateDatasetImportJobInput struct {
 	// If encryption is used, DataSource must include an AWS Key Management Service
 	// (KMS) key and the IAM role must allow Amazon Forecast permission to access
 	// the key. The KMS key and IAM role must match those specified in the EncryptionConfig
-	// parameter of the CreateDataset operation.
+	// parameter of the CreateDataset (https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDataset.html)
+	// operation.
 	//
 	// DataSource is a required field
 	DataSource *DataSource `type:"structure" required:"true"`
@@ -5993,13 +6908,14 @@ type CreateDatasetInput struct {
 
 	// The domain associated with the dataset. When you add a dataset to a dataset
 	// group, this value and the value specified for the Domain parameter of the
-	// CreateDatasetGroup operation must match.
+	// CreateDatasetGroup (https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDatasetGroup.html)
+	// operation must match.
 	//
 	// The Domain and DatasetType that you choose determine the fields that must
 	// be present in the training data that you import to the dataset. For example,
 	// if you choose the RETAIL domain and TARGET_TIME_SERIES as the DatasetType,
 	// Amazon Forecast requires item_id, timestamp, and demand fields to be present
-	// in your data. For more information, see howitworks-datasets-groups.
+	// in your data. For more information, see Importing datasets (https://docs.aws.amazon.com/forecast/latest/dg/howitworks-datasets-groups.html).
 	//
 	// Domain is a required field
 	Domain *string `type:"string" required:"true" enum:"Domain"`
@@ -6011,7 +6927,8 @@ type CreateDatasetInput struct {
 	// The schema for the dataset. The schema attributes and their order must match
 	// the fields in your data. The dataset Domain and DatasetType that you choose
 	// determine the minimum required fields in your training data. For information
-	// about the required fields for a specific dataset domain and type, see howitworks-domains-ds-types.
+	// about the required fields for a specific dataset domain and type, see Dataset
+	// Domains and Dataset Types (https://docs.aws.amazon.com/forecast/latest/dg/howitworks-domains-ds-types.html).
 	//
 	// Schema is a required field
 	Schema *Schema `type:"structure" required:"true"`
@@ -6354,7 +7271,7 @@ type CreateExplainabilityInput struct {
 	// Management Service (KMS) key.
 	DataSource *DataSource `type:"structure"`
 
-	// Create an Expainability visualization that is viewable within the AWS console.
+	// Create an Explainability visualization that is viewable within the AWS console.
 	EnableVisualization *bool `type:"boolean"`
 
 	// If TimePointGranularity is set to SPECIFIC, define the last time point for
@@ -6746,7 +7663,10 @@ type CreateForecastInput struct {
 	// specify up to 5 quantiles per forecast. Accepted values include 0.01 to 0.99
 	// (increments of .01 only) and mean. The mean forecast is different from the
 	// median (0.50) when the distribution is not symmetric (for example, Beta and
-	// Negative Binomial). The default value is ["0.1", "0.5", "0.9"].
+	// Negative Binomial).
+	//
+	// The default quantiles are the quantiles you specified during predictor creation.
+	// If you didn't specify quantiles, the default values are ["0.1", "0.5", "0.9"].
 	ForecastTypes []*string `min:"1" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the predictor to use to generate the forecast.
@@ -6888,6 +7808,120 @@ func (s CreateForecastOutput) GoString() string {
 // SetForecastArn sets the ForecastArn field's value.
 func (s *CreateForecastOutput) SetForecastArn(v string) *CreateForecastOutput {
 	s.ForecastArn = &v
+	return s
+}
+
+type CreateMonitorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the monitor resource.
+	//
+	// MonitorName is a required field
+	MonitorName *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the predictor to monitor.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+
+	// A list of tags (https://docs.aws.amazon.com/forecast/latest/dg/tagging-forecast-resources.html)
+	// to apply to the monitor resource.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMonitorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMonitorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMonitorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMonitorInput"}
+	if s.MonitorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MonitorName"))
+	}
+	if s.MonitorName != nil && len(*s.MonitorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MonitorName", 1))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMonitorName sets the MonitorName field's value.
+func (s *CreateMonitorInput) SetMonitorName(v string) *CreateMonitorInput {
+	s.MonitorName = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *CreateMonitorInput) SetResourceArn(v string) *CreateMonitorInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateMonitorInput) SetTags(v []*Tag) *CreateMonitorInput {
+	s.Tags = v
+	return s
+}
+
+type CreateMonitorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the monitor resource.
+	MonitorArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMonitorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMonitorOutput) GoString() string {
+	return s.String()
+}
+
+// SetMonitorArn sets the MonitorArn field's value.
+func (s *CreateMonitorOutput) SetMonitorArn(v string) *CreateMonitorOutput {
+	s.MonitorArn = &v
 	return s
 }
 
@@ -7608,7 +8642,9 @@ func (s *DataSource) SetS3Config(v *S3Config) *DataSource {
 }
 
 // Provides a summary of the dataset group properties used in the ListDatasetGroups
+// (https://docs.aws.amazon.com/forecast/latest/dg/API_ListDatasetGroups.html)
 // operation. To get the complete set of properties, call the DescribeDatasetGroup
+// (https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html)
 // operation, and provide the DatasetGroupArn.
 type DatasetGroupSummary struct {
 	_ struct{} `type:"structure"`
@@ -7623,6 +8659,7 @@ type DatasetGroupSummary struct {
 	DatasetGroupName *string `min:"1" type:"string"`
 
 	// When the dataset group was created or last updated from a call to the UpdateDatasetGroup
+	// (https://docs.aws.amazon.com/forecast/latest/dg/API_UpdateDatasetGroup.html)
 	// operation. While the dataset group is being updated, LastModificationTime
 	// is the current time of the ListDatasetGroups call.
 	LastModificationTime *time.Time `type:"timestamp"`
@@ -7671,7 +8708,9 @@ func (s *DatasetGroupSummary) SetLastModificationTime(v time.Time) *DatasetGroup
 }
 
 // Provides a summary of the dataset import job properties used in the ListDatasetImportJobs
+// (https://docs.aws.amazon.com/forecast/latest/dg/API_ListDatasetImportJobs.html)
 // operation. To get the complete set of properties, call the DescribeDatasetImportJob
+// (https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetImportJob.html)
 // operation, and provide the DatasetImportJobArn.
 type DatasetImportJobSummary struct {
 	_ struct{} `type:"structure"`
@@ -7782,9 +8821,10 @@ func (s *DatasetImportJobSummary) SetStatus(v string) *DatasetImportJobSummary {
 	return s
 }
 
-// Provides a summary of the dataset properties used in the ListDatasets operation.
-// To get the complete set of properties, call the DescribeDataset operation,
-// and provide the DatasetArn.
+// Provides a summary of the dataset properties used in the ListDatasets (https://docs.aws.amazon.com/forecast/latest/dg/API_ListDatasets.html)
+// operation. To get the complete set of properties, call the DescribeDataset
+// (https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDataset.html)
+// operation, and provide the DatasetArn.
 type DatasetSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -7805,8 +8845,9 @@ type DatasetSummary struct {
 
 	// When you create a dataset, LastModificationTime is the same as CreationTime.
 	// While data is being imported to the dataset, LastModificationTime is the
-	// current time of the ListDatasets call. After a CreateDatasetImportJob operation
-	// has finished, LastModificationTime is when the import job completed or failed.
+	// current time of the ListDatasets call. After a CreateDatasetImportJob (https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDatasetImportJob.html)
+	// operation has finished, LastModificationTime is when the import job completed
+	// or failed.
 	LastModificationTime *time.Time `type:"timestamp"`
 }
 
@@ -8340,6 +9381,74 @@ func (s DeleteForecastOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteMonitorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the monitor resource to delete.
+	//
+	// MonitorArn is a required field
+	MonitorArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMonitorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMonitorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteMonitorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteMonitorInput"}
+	if s.MonitorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("MonitorArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMonitorArn sets the MonitorArn field's value.
+func (s *DeleteMonitorInput) SetMonitorArn(v string) *DeleteMonitorInput {
+	s.MonitorArn = &v
+	return s
+}
+
+type DeleteMonitorOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMonitorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMonitorOutput) GoString() string {
+	return s.String()
+}
+
 type DeletePredictorBacktestExportJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8652,6 +9761,9 @@ type DescribeAutoPredictorOutput struct {
 	// In the event of an error, a message detailing the cause of the error.
 	Message *string `type:"string"`
 
+	// A object with the Amazon Resource Name (ARN) and status of the monitor resource.
+	MonitorInfo *MonitorInfo `type:"structure"`
+
 	// The accuracy metric used to optimize the predictor.
 	OptimizationMetric *string `type:"string" enum:"OptimizationMetric"`
 
@@ -8767,6 +9879,12 @@ func (s *DescribeAutoPredictorOutput) SetMessage(v string) *DescribeAutoPredicto
 	return s
 }
 
+// SetMonitorInfo sets the MonitorInfo field's value.
+func (s *DescribeAutoPredictorOutput) SetMonitorInfo(v *MonitorInfo) *DescribeAutoPredictorOutput {
+	s.MonitorInfo = v
+	return s
+}
+
 // SetOptimizationMetric sets the OptimizationMetric field's value.
 func (s *DescribeAutoPredictorOutput) SetOptimizationMetric(v string) *DescribeAutoPredictorOutput {
 	s.OptimizationMetric = &v
@@ -8863,6 +9981,7 @@ type DescribeDatasetGroupOutput struct {
 	Domain *string `type:"string" enum:"Domain"`
 
 	// When the dataset group was created or last updated from a call to the UpdateDatasetGroup
+	// (https://docs.aws.amazon.com/forecast/latest/dg/API_UpdateDatasetGroup.html)
 	// operation. While the dataset group is being updated, LastModificationTime
 	// is the current time of the DescribeDatasetGroup call.
 	LastModificationTime *time.Time `type:"timestamp"`
@@ -8877,7 +9996,8 @@ type DescribeDatasetGroupOutput struct {
 	//
 	//    * UPDATE_PENDING, UPDATE_IN_PROGRESS, UPDATE_FAILED
 	//
-	// The UPDATE states apply when you call the UpdateDatasetGroup operation.
+	// The UPDATE states apply when you call the UpdateDatasetGroup (https://docs.aws.amazon.com/forecast/latest/dg/API_UpdateDatasetGroup.html)
+	// operation.
 	//
 	// The Status of the dataset group must be ACTIVE before you can use the dataset
 	// group to create a predictor.
@@ -9257,6 +10377,7 @@ type DescribeDatasetOutput struct {
 	// When you create a dataset, LastModificationTime is the same as CreationTime.
 	// While data is being imported to the dataset, LastModificationTime is the
 	// current time of the DescribeDataset call. After a CreateDatasetImportJob
+	// (https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDatasetImportJob.html)
 	// operation has finished, LastModificationTime is when the import job completed
 	// or failed.
 	LastModificationTime *time.Time `type:"timestamp"`
@@ -9276,9 +10397,10 @@ type DescribeDatasetOutput struct {
 	//    * UPDATE_PENDING, UPDATE_IN_PROGRESS, UPDATE_FAILED
 	//
 	// The UPDATE states apply while data is imported to the dataset from a call
-	// to the CreateDatasetImportJob operation and reflect the status of the dataset
-	// import job. For example, when the import job status is CREATE_IN_PROGRESS,
-	// the status of the dataset is UPDATE_IN_PROGRESS.
+	// to the CreateDatasetImportJob (https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDatasetImportJob.html)
+	// operation and reflect the status of the dataset import job. For example,
+	// when the import job status is CREATE_IN_PROGRESS, the status of the dataset
+	// is UPDATE_IN_PROGRESS.
 	//
 	// The Status of the dataset must be ACTIVE before you can import training data.
 	Status *string `type:"string"`
@@ -10080,6 +11202,175 @@ func (s *DescribeForecastOutput) SetPredictorArn(v string) *DescribeForecastOutp
 
 // SetStatus sets the Status field's value.
 func (s *DescribeForecastOutput) SetStatus(v string) *DescribeForecastOutput {
+	s.Status = &v
+	return s
+}
+
+type DescribeMonitorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the monitor resource to describe.
+	//
+	// MonitorArn is a required field
+	MonitorArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMonitorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMonitorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeMonitorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeMonitorInput"}
+	if s.MonitorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("MonitorArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMonitorArn sets the MonitorArn field's value.
+func (s *DescribeMonitorInput) SetMonitorArn(v string) *DescribeMonitorInput {
+	s.MonitorArn = &v
+	return s
+}
+
+type DescribeMonitorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Metrics you can use as a baseline for comparison purposes. Use these values
+	// you interpret monitoring results for an auto predictor.
+	Baseline *Baseline `type:"structure"`
+
+	// The timestamp for when the monitor resource was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The estimated number of minutes remaining before the monitor resource finishes
+	// its current evaluation.
+	EstimatedEvaluationTimeRemainingInMinutes *int64 `type:"long"`
+
+	// The state of the monitor's latest evaluation.
+	LastEvaluationState *string `type:"string"`
+
+	// The timestamp of the latest evaluation completed by the monitor.
+	LastEvaluationTime *time.Time `type:"timestamp"`
+
+	// The timestamp of the latest modification to the monitor.
+	LastModificationTime *time.Time `type:"timestamp"`
+
+	// An error message, if any, for the monitor.
+	Message *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the monitor resource described.
+	MonitorArn *string `type:"string"`
+
+	// The name of the monitor.
+	MonitorName *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the auto predictor being monitored.
+	ResourceArn *string `type:"string"`
+
+	// The status of the monitor resource.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMonitorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMonitorOutput) GoString() string {
+	return s.String()
+}
+
+// SetBaseline sets the Baseline field's value.
+func (s *DescribeMonitorOutput) SetBaseline(v *Baseline) *DescribeMonitorOutput {
+	s.Baseline = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeMonitorOutput) SetCreationTime(v time.Time) *DescribeMonitorOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetEstimatedEvaluationTimeRemainingInMinutes sets the EstimatedEvaluationTimeRemainingInMinutes field's value.
+func (s *DescribeMonitorOutput) SetEstimatedEvaluationTimeRemainingInMinutes(v int64) *DescribeMonitorOutput {
+	s.EstimatedEvaluationTimeRemainingInMinutes = &v
+	return s
+}
+
+// SetLastEvaluationState sets the LastEvaluationState field's value.
+func (s *DescribeMonitorOutput) SetLastEvaluationState(v string) *DescribeMonitorOutput {
+	s.LastEvaluationState = &v
+	return s
+}
+
+// SetLastEvaluationTime sets the LastEvaluationTime field's value.
+func (s *DescribeMonitorOutput) SetLastEvaluationTime(v time.Time) *DescribeMonitorOutput {
+	s.LastEvaluationTime = &v
+	return s
+}
+
+// SetLastModificationTime sets the LastModificationTime field's value.
+func (s *DescribeMonitorOutput) SetLastModificationTime(v time.Time) *DescribeMonitorOutput {
+	s.LastModificationTime = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *DescribeMonitorOutput) SetMessage(v string) *DescribeMonitorOutput {
+	s.Message = &v
+	return s
+}
+
+// SetMonitorArn sets the MonitorArn field's value.
+func (s *DescribeMonitorOutput) SetMonitorArn(v string) *DescribeMonitorOutput {
+	s.MonitorArn = &v
+	return s
+}
+
+// SetMonitorName sets the MonitorName field's value.
+func (s *DescribeMonitorOutput) SetMonitorName(v string) *DescribeMonitorOutput {
+	s.MonitorName = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DescribeMonitorOutput) SetResourceArn(v string) *DescribeMonitorOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeMonitorOutput) SetStatus(v string) *DescribeMonitorOutput {
 	s.Status = &v
 	return s
 }
@@ -13232,6 +14523,295 @@ func (s *ListForecastsOutput) SetNextToken(v string) *ListForecastsOutput {
 	return s
 }
 
+type ListMonitorEvaluationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of filters. For each filter, provide a condition and a match statement.
+	// The condition is either IS or IS_NOT, which specifies whether to include
+	// or exclude the resources that match the statement from the list. The match
+	// statement consists of a key and a value.
+	//
+	// Filter properties
+	//
+	//    * Condition - The condition to apply. Valid values are IS and IS_NOT.
+	//
+	//    * Key - The name of the parameter to filter on. The only valid value is
+	//    EvaluationState.
+	//
+	//    * Value - The value to match. Valid values are only SUCCESS or FAILURE.
+	//
+	// For example, to list only successful monitor evaluations, you would specify:
+	//
+	// "Filters": [ { "Condition": "IS", "Key": "EvaluationState", "Value": "SUCCESS"
+	// } ]
+	Filters []*Filter `type:"list"`
+
+	// The maximum number of monitoring results to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the monitor resource to get results from.
+	//
+	// MonitorArn is a required field
+	MonitorArn *string `type:"string" required:"true"`
+
+	// If the result of the previous request was truncated, the response includes
+	// a NextToken. To retrieve the next set of results, use the token in the next
+	// request. Tokens expire after 24 hours.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitorEvaluationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitorEvaluationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMonitorEvaluationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMonitorEvaluationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.MonitorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("MonitorArn"))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListMonitorEvaluationsInput) SetFilters(v []*Filter) *ListMonitorEvaluationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMonitorEvaluationsInput) SetMaxResults(v int64) *ListMonitorEvaluationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMonitorArn sets the MonitorArn field's value.
+func (s *ListMonitorEvaluationsInput) SetMonitorArn(v string) *ListMonitorEvaluationsInput {
+	s.MonitorArn = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMonitorEvaluationsInput) SetNextToken(v string) *ListMonitorEvaluationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMonitorEvaluationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the response is truncated, Amazon Forecast returns this token. To retrieve
+	// the next set of results, use the token in the next request. Tokens expire
+	// after 24 hours.
+	NextToken *string `min:"1" type:"string"`
+
+	// The monitoring results and predictor events collected by the monitor resource
+	// during different windows of time.
+	//
+	// For information about monitoring see Viewing Monitoring Results (https://docs.aws.amazon.com/forecast/latest/dg/predictor-monitoring-results.html).
+	// For more information about retrieving monitoring results see Viewing Monitoring
+	// Results (https://docs.aws.amazon.com/forecast/latest/dg/predictor-monitoring-results.html).
+	PredictorMonitorEvaluations []*PredictorMonitorEvaluation `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitorEvaluationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitorEvaluationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMonitorEvaluationsOutput) SetNextToken(v string) *ListMonitorEvaluationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPredictorMonitorEvaluations sets the PredictorMonitorEvaluations field's value.
+func (s *ListMonitorEvaluationsOutput) SetPredictorMonitorEvaluations(v []*PredictorMonitorEvaluation) *ListMonitorEvaluationsOutput {
+	s.PredictorMonitorEvaluations = v
+	return s
+}
+
+type ListMonitorsInput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of filters. For each filter, provide a condition and a match statement.
+	// The condition is either IS or IS_NOT, which specifies whether to include
+	// or exclude the resources that match the statement from the list. The match
+	// statement consists of a key and a value.
+	//
+	// Filter properties
+	//
+	//    * Condition - The condition to apply. Valid values are IS and IS_NOT.
+	//
+	//    * Key - The name of the parameter to filter on. The only valid value is
+	//    Status.
+	//
+	//    * Value - The value to match.
+	//
+	// For example, to list all monitors who's status is ACTIVE, you would specify:
+	//
+	// "Filters": [ { "Condition": "IS", "Key": "Status", "Value": "ACTIVE" } ]
+	Filters []*Filter `type:"list"`
+
+	// The maximum number of monitors to include in the response.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If the result of the previous request was truncated, the response includes
+	// a NextToken. To retrieve the next set of results, use the token in the next
+	// request. Tokens expire after 24 hours.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitorsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitorsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMonitorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMonitorsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListMonitorsInput) SetFilters(v []*Filter) *ListMonitorsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMonitorsInput) SetMaxResults(v int64) *ListMonitorsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMonitorsInput) SetNextToken(v string) *ListMonitorsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMonitorsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of objects that summarize each monitor's properties.
+	Monitors []*MonitorSummary `type:"list"`
+
+	// If the response is truncated, Amazon Forecast returns this token. To retrieve
+	// the next set of results, use the token in the next request.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitorsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMonitorsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMonitors sets the Monitors field's value.
+func (s *ListMonitorsOutput) SetMonitors(v []*MonitorSummary) *ListMonitorsOutput {
+	s.Monitors = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMonitorsOutput) SetNextToken(v string) *ListMonitorsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListPredictorBacktestExportJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13580,6 +15160,52 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
+// An individual metric Forecast calculated when monitoring predictor usage.
+// You can compare the value for this metric to the metric's value in the Baseline
+// to see how your predictor's performance is changing.
+//
+// For more information about metrics generated by Forecast see Evaluating Predictor
+// Accuracy (https://docs.aws.amazon.com/forecast/latest/dg/metrics.html)
+type MetricResult struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the metric.
+	MetricName *string `type:"string"`
+
+	// The value for the metric.
+	MetricValue *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricResult) GoString() string {
+	return s.String()
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *MetricResult) SetMetricName(v string) *MetricResult {
+	s.MetricName = &v
+	return s
+}
+
+// SetMetricValue sets the MetricValue field's value.
+func (s *MetricResult) SetMetricValue(v float64) *MetricResult {
+	s.MetricValue = &v
+	return s
+}
+
 // Provides metrics that are used to evaluate the performance of a predictor.
 // This object is part of the WindowSummary object.
 type Metrics struct {
@@ -13643,6 +15269,257 @@ func (s *Metrics) SetRMSE(v float64) *Metrics {
 // SetWeightedQuantileLosses sets the WeightedQuantileLosses field's value.
 func (s *Metrics) SetWeightedQuantileLosses(v []*WeightedQuantileLoss) *Metrics {
 	s.WeightedQuantileLosses = v
+	return s
+}
+
+// The configuration details for the predictor monitor.
+type MonitorConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the monitor resource.
+	//
+	// MonitorName is a required field
+	MonitorName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitorConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitorConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MonitorConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MonitorConfig"}
+	if s.MonitorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MonitorName"))
+	}
+	if s.MonitorName != nil && len(*s.MonitorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MonitorName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMonitorName sets the MonitorName field's value.
+func (s *MonitorConfig) SetMonitorName(v string) *MonitorConfig {
+	s.MonitorName = &v
+	return s
+}
+
+// The source of the data the monitor used during the evaluation.
+type MonitorDataSource struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset import job used to import the
+	// data that initiated the monitor evaluation.
+	DatasetImportJobArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the forecast the monitor used during the
+	// evaluation.
+	ForecastArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the predictor resource you are monitoring.
+	PredictorArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitorDataSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitorDataSource) GoString() string {
+	return s.String()
+}
+
+// SetDatasetImportJobArn sets the DatasetImportJobArn field's value.
+func (s *MonitorDataSource) SetDatasetImportJobArn(v string) *MonitorDataSource {
+	s.DatasetImportJobArn = &v
+	return s
+}
+
+// SetForecastArn sets the ForecastArn field's value.
+func (s *MonitorDataSource) SetForecastArn(v string) *MonitorDataSource {
+	s.ForecastArn = &v
+	return s
+}
+
+// SetPredictorArn sets the PredictorArn field's value.
+func (s *MonitorDataSource) SetPredictorArn(v string) *MonitorDataSource {
+	s.PredictorArn = &v
+	return s
+}
+
+// Provides information about the monitor resource.
+type MonitorInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the monitor resource.
+	MonitorArn *string `type:"string"`
+
+	// The status of the monitor. States include:
+	//
+	//    * ACTIVE
+	//
+	//    * ACTIVE_STOPPING, ACTIVE_STOPPED
+	//
+	//    * UPDATE_IN_PROGRESS
+	//
+	//    * CREATE_PENDING, CREATE_IN_PROGRESS, CREATE_FAILED
+	//
+	//    * DELETE_PENDING, DELETE_IN_PROGRESS, DELETE_FAILED
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitorInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitorInfo) GoString() string {
+	return s.String()
+}
+
+// SetMonitorArn sets the MonitorArn field's value.
+func (s *MonitorInfo) SetMonitorArn(v string) *MonitorInfo {
+	s.MonitorArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *MonitorInfo) SetStatus(v string) *MonitorInfo {
+	s.Status = &v
+	return s
+}
+
+// Provides a summary of the monitor properties used in the ListMonitors operation.
+// To get a complete set of properties, call the DescribeMonitor operation,
+// and provide the listed MonitorArn.
+type MonitorSummary struct {
+	_ struct{} `type:"structure"`
+
+	// When the monitor resource was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The last time the monitor resource was modified. The timestamp depends on
+	// the status of the job:
+	//
+	//    * CREATE_PENDING - The CreationTime.
+	//
+	//    * CREATE_IN_PROGRESS - The current timestamp.
+	//
+	//    * STOPPED - When the resource stopped.
+	//
+	//    * ACTIVE or CREATE_FAILED - When the monitor creation finished or failed.
+	LastModificationTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the monitor resource.
+	MonitorArn *string `type:"string"`
+
+	// The name of the monitor resource.
+	MonitorName *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the predictor being monitored.
+	ResourceArn *string `type:"string"`
+
+	// The status of the monitor. States include:
+	//
+	//    * ACTIVE
+	//
+	//    * ACTIVE_STOPPING, ACTIVE_STOPPED
+	//
+	//    * UPDATE_IN_PROGRESS
+	//
+	//    * CREATE_PENDING, CREATE_IN_PROGRESS, CREATE_FAILED
+	//
+	//    * DELETE_PENDING, DELETE_IN_PROGRESS, DELETE_FAILED
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitorSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitorSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *MonitorSummary) SetCreationTime(v time.Time) *MonitorSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLastModificationTime sets the LastModificationTime field's value.
+func (s *MonitorSummary) SetLastModificationTime(v time.Time) *MonitorSummary {
+	s.LastModificationTime = &v
+	return s
+}
+
+// SetMonitorArn sets the MonitorArn field's value.
+func (s *MonitorSummary) SetMonitorArn(v string) *MonitorSummary {
+	s.MonitorArn = &v
+	return s
+}
+
+// SetMonitorName sets the MonitorName field's value.
+func (s *MonitorSummary) SetMonitorName(v string) *MonitorSummary {
+	s.MonitorName = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *MonitorSummary) SetResourceArn(v string) *MonitorSummary {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *MonitorSummary) SetStatus(v string) *MonitorSummary {
+	s.Status = &v
 	return s
 }
 
@@ -13858,6 +15735,85 @@ func (s *PredictorBacktestExportJobSummary) SetStatus(v string) *PredictorBackte
 	return s
 }
 
+// Metrics you can use as a baseline for comparison purposes. Use these metrics
+// when you interpret monitoring results for an auto predictor.
+type PredictorBaseline struct {
+	_ struct{} `type:"structure"`
+
+	// The initial accuracy metrics (https://docs.aws.amazon.com/forecast/latest/dg/metrics.html)
+	// for the predictor. Use these metrics as a baseline for comparison purposes
+	// as you use your predictor and the metrics change.
+	BaselineMetrics []*BaselineMetric `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PredictorBaseline) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PredictorBaseline) GoString() string {
+	return s.String()
+}
+
+// SetBaselineMetrics sets the BaselineMetrics field's value.
+func (s *PredictorBaseline) SetBaselineMetrics(v []*BaselineMetric) *PredictorBaseline {
+	s.BaselineMetrics = v
+	return s
+}
+
+// Provides details about a predictor event, such as a retraining.
+type PredictorEvent struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp for when the event occurred.
+	Datetime *time.Time `type:"timestamp"`
+
+	// The type of event. For example, Retrain. A retraining event denotes the timepoint
+	// when a predictor was retrained. Any monitor results from before the Datetime
+	// are from the previous predictor. Any new metrics are for the newly retrained
+	// predictor.
+	Detail *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PredictorEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PredictorEvent) GoString() string {
+	return s.String()
+}
+
+// SetDatetime sets the Datetime field's value.
+func (s *PredictorEvent) SetDatetime(v time.Time) *PredictorEvent {
+	s.Datetime = &v
+	return s
+}
+
+// SetDetail sets the Detail field's value.
+func (s *PredictorEvent) SetDetail(v string) *PredictorEvent {
+	s.Detail = &v
+	return s
+}
+
 // The algorithm used to perform a backtest and the status of those tests.
 type PredictorExecution struct {
 	_ struct{} `type:"structure"`
@@ -13934,6 +15890,130 @@ func (s PredictorExecutionDetails) GoString() string {
 // SetPredictorExecutions sets the PredictorExecutions field's value.
 func (s *PredictorExecutionDetails) SetPredictorExecutions(v []*PredictorExecution) *PredictorExecutionDetails {
 	s.PredictorExecutions = v
+	return s
+}
+
+// Describes the results of a monitor evaluation.
+type PredictorMonitorEvaluation struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the monitor evaluation. The state can be SUCCESS or FAILURE.
+	EvaluationState *string `type:"string"`
+
+	// The timestamp that indicates when the monitor evaluation was started.
+	EvaluationTime *time.Time `type:"timestamp"`
+
+	// Information about any errors that may have occurred during the monitor evaluation.
+	Message *string `type:"string"`
+
+	// A list of metrics Forecast calculated when monitoring a predictor. You can
+	// compare the value for each metric in the list to the metric's value in the
+	// Baseline to see how your predictor's performance is changing.
+	MetricResults []*MetricResult `type:"list"`
+
+	MonitorArn *string `type:"string"`
+
+	// The source of the data the monitor resource used during the evaluation.
+	MonitorDataSource *MonitorDataSource `type:"structure"`
+
+	// The number of items considered during the evaluation.
+	NumItemsEvaluated *int64 `type:"long"`
+
+	// Provides details about a predictor event, such as a retraining.
+	PredictorEvent *PredictorEvent `type:"structure"`
+
+	ResourceArn *string `type:"string"`
+
+	// The timestamp that indicates the end of the window that is used for monitor
+	// evaluation.
+	WindowEndDatetime *time.Time `type:"timestamp"`
+
+	// The timestamp that indicates the start of the window that is used for monitor
+	// evaluation.
+	WindowStartDatetime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PredictorMonitorEvaluation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PredictorMonitorEvaluation) GoString() string {
+	return s.String()
+}
+
+// SetEvaluationState sets the EvaluationState field's value.
+func (s *PredictorMonitorEvaluation) SetEvaluationState(v string) *PredictorMonitorEvaluation {
+	s.EvaluationState = &v
+	return s
+}
+
+// SetEvaluationTime sets the EvaluationTime field's value.
+func (s *PredictorMonitorEvaluation) SetEvaluationTime(v time.Time) *PredictorMonitorEvaluation {
+	s.EvaluationTime = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *PredictorMonitorEvaluation) SetMessage(v string) *PredictorMonitorEvaluation {
+	s.Message = &v
+	return s
+}
+
+// SetMetricResults sets the MetricResults field's value.
+func (s *PredictorMonitorEvaluation) SetMetricResults(v []*MetricResult) *PredictorMonitorEvaluation {
+	s.MetricResults = v
+	return s
+}
+
+// SetMonitorArn sets the MonitorArn field's value.
+func (s *PredictorMonitorEvaluation) SetMonitorArn(v string) *PredictorMonitorEvaluation {
+	s.MonitorArn = &v
+	return s
+}
+
+// SetMonitorDataSource sets the MonitorDataSource field's value.
+func (s *PredictorMonitorEvaluation) SetMonitorDataSource(v *MonitorDataSource) *PredictorMonitorEvaluation {
+	s.MonitorDataSource = v
+	return s
+}
+
+// SetNumItemsEvaluated sets the NumItemsEvaluated field's value.
+func (s *PredictorMonitorEvaluation) SetNumItemsEvaluated(v int64) *PredictorMonitorEvaluation {
+	s.NumItemsEvaluated = &v
+	return s
+}
+
+// SetPredictorEvent sets the PredictorEvent field's value.
+func (s *PredictorMonitorEvaluation) SetPredictorEvent(v *PredictorEvent) *PredictorMonitorEvaluation {
+	s.PredictorEvent = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *PredictorMonitorEvaluation) SetResourceArn(v string) *PredictorMonitorEvaluation {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetWindowEndDatetime sets the WindowEndDatetime field's value.
+func (s *PredictorMonitorEvaluation) SetWindowEndDatetime(v time.Time) *PredictorMonitorEvaluation {
+	s.WindowEndDatetime = &v
+	return s
+}
+
+// SetWindowStartDatetime sets the WindowStartDatetime field's value.
+func (s *PredictorMonitorEvaluation) SetWindowStartDatetime(v time.Time) *PredictorMonitorEvaluation {
+	s.WindowStartDatetime = &v
 	return s
 }
 
@@ -14302,6 +16382,74 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type ResumeResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the monitor resource to resume.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResumeResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResumeResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResumeResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResumeResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ResumeResourceInput) SetResourceArn(v string) *ResumeResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ResumeResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResumeResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResumeResourceOutput) GoString() string {
+	return s.String()
+}
+
 // The path to the file(s) in an Amazon Simple Storage Service (Amazon S3) bucket,
 // and an AWS Identity and Access Management (IAM) role that Amazon Forecast
 // can assume to access the file(s). Optionally, includes an AWS Key Management
@@ -14441,8 +16589,8 @@ func (s *Schema) SetAttributes(v []*SchemaAttribute) *Schema {
 }
 
 // An attribute of a schema, which defines a dataset field. A schema attribute
-// is required for every field in a dataset. The Schema object contains an array
-// of SchemaAttribute objects.
+// is required for every field in a dataset. The Schema (https://docs.aws.amazon.com/forecast/latest/dg/API_Schema.html)
+// object contains an array of SchemaAttribute objects.
 type SchemaAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -14450,6 +16598,9 @@ type SchemaAttribute struct {
 	AttributeName *string `min:"1" type:"string"`
 
 	// The data type of the field.
+	//
+	// For a related time series dataset, other than date, item_id, and forecast
+	// dimensions attributes, all attributes should be of numerical type (integer/float).
 	AttributeType *string `type:"string" enum:"AttributeType"`
 }
 
@@ -14497,7 +16648,8 @@ func (s *SchemaAttribute) SetAttributeType(v string) *SchemaAttribute {
 }
 
 // Provides statistics for each data field imported into to an Amazon Forecast
-// dataset with the CreateDatasetImportJob operation.
+// dataset with the CreateDatasetImportJob (https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDatasetImportJob.html)
+// operation.
 type Statistics struct {
 	_ struct{} `type:"structure"`
 

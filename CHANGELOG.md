@@ -1,3 +1,12 @@
+Release v1.44.20 (2022-05-23)
+===
+
+### Service Client Updates
+* `service/elasticache`: Updates service API and documentation
+  * Added support for encryption in transit for Memcached clusters. Customers can now launch Memcached cluster with encryption in transit enabled when using Memcached version 1.6.12 or later.
+* `service/forecast`: Updates service API, documentation, and paginators
+* `service/personalize`: Updates service API and documentation
+
 Release v1.44.19 (2022-05-20)
 ===
 

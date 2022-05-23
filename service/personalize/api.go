@@ -1134,6 +1134,9 @@ func (c *Personalize) CreateRecommenderRequest(input *CreateRecommenderInput) (r
 //
 //    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
+//    * STOP PENDING > STOP IN_PROGRESS > INACTIVE > START PENDING > START IN_PROGRESS
+//    > ACTIVE
+//
 //    * DELETE PENDING > DELETE IN_PROGRESS
 //
 // To get the recommender status, call DescribeRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecommender.html).
@@ -1170,6 +1173,9 @@ func (c *Personalize) CreateRecommenderRequest(input *CreateRecommenderInput) (r
 //
 //   * LimitExceededException
 //   The limit on the number of requests per second has been exceeded.
+//
+//   * ResourceInUseException
+//   The specified resource is in use.
 //
 //   * TooManyTagsException
 //   You have exceeded the maximum number of tags you can apply to this resource.
@@ -3350,10 +3356,15 @@ func (c *Personalize) DescribeRecommenderRequest(input *DescribeRecommenderInput
 //
 //    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
+//    * STOP PENDING > STOP IN_PROGRESS > INACTIVE > START PENDING > START IN_PROGRESS
+//    > ACTIVE
+//
 //    * DELETE PENDING > DELETE IN_PROGRESS
 //
 // When the status is CREATE FAILED, the response includes the failureReason
 // key, which describes why.
+//
+// The modelMetrics key is null when the recommender is being created or deleted.
 //
 // For more information on recommenders, see CreateRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateRecommender.html).
 //
@@ -13384,7 +13395,8 @@ func (s *GetSolutionMetricsInput) SetSolutionVersionArn(v string) *GetSolutionMe
 type GetSolutionMetricsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The metrics for the solution version.
+	// The metrics for the solution version. For more information, see Evaluating
+	// a solution version with metrics (https://docs.aws.amazon.com/personalize/latest/dg/working-with-training-metrics.html).
 	Metrics map[string]*float64 `locationName:"metrics" type:"map"`
 
 	// The same solution version ARN as specified in the request.
@@ -15717,6 +15729,10 @@ type Recommender struct {
 	// Provides a summary of the latest updates to the recommender.
 	LatestRecommenderUpdate *RecommenderUpdateSummary `locationName:"latestRecommenderUpdate" type:"structure"`
 
+	// Provides evaluation metrics that help you determine the performance of a
+	// recommender. For more information, see Evaluating a recommender (https://docs.aws.amazon.com/personalize/latest/dg/evaluating-recommenders.html).
+	ModelMetrics map[string]*float64 `locationName:"modelMetrics" type:"map"`
+
 	// The name of the recommender.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
@@ -15735,6 +15751,9 @@ type Recommender struct {
 	// A recommender can be in one of the following states:
 	//
 	//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+	//
+	//    * STOP PENDING > STOP IN_PROGRESS > INACTIVE > START PENDING > START IN_PROGRESS
+	//    > ACTIVE
 	//
 	//    * DELETE PENDING > DELETE IN_PROGRESS
 	Status *string `locationName:"status" type:"string"`
@@ -15785,6 +15804,12 @@ func (s *Recommender) SetLastUpdatedDateTime(v time.Time) *Recommender {
 // SetLatestRecommenderUpdate sets the LatestRecommenderUpdate field's value.
 func (s *Recommender) SetLatestRecommenderUpdate(v *RecommenderUpdateSummary) *Recommender {
 	s.LatestRecommenderUpdate = v
+	return s
+}
+
+// SetModelMetrics sets the ModelMetrics field's value.
+func (s *Recommender) SetModelMetrics(v map[string]*float64) *Recommender {
+	s.ModelMetrics = v
 	return s
 }
 
@@ -15909,6 +15934,9 @@ type RecommenderSummary struct {
 	//
 	//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 	//
+	//    * STOP PENDING > STOP IN_PROGRESS > INACTIVE > START PENDING > START IN_PROGRESS
+	//    > ACTIVE
+	//
 	//    * DELETE PENDING > DELETE IN_PROGRESS
 	Status *string `locationName:"status" type:"string"`
 }
@@ -16002,6 +16030,9 @@ type RecommenderUpdateSummary struct {
 	// A recommender can be in one of the following states:
 	//
 	//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+	//
+	//    * STOP PENDING > STOP IN_PROGRESS > INACTIVE > START PENDING > START IN_PROGRESS
+	//    > ACTIVE
 	//
 	//    * DELETE PENDING > DELETE IN_PROGRESS
 	Status *string `locationName:"status" type:"string"`
