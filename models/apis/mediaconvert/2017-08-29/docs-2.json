@@ -162,6 +162,12 @@
         "AudioCodecSettings$AiffSettings": "Required when you set (Codec) under (AudioDescriptions)>(CodecSettings) to the value AIFF."
       }
     },
+    "AllowedRenditionSize": {
+      "base": "Use Allowed renditions to specify a list of possible resolutions in your ABR stack. * MediaConvert will create an ABR stack exclusively from the list of resolutions that you specify. * Some resolutions in the Allowed renditions list may not be included, however you can force a resolution to be included by setting Required to ENABLED. * You must specify at least one resolution that is greater than or equal to any resolutions that you specify in Min top rendition size or Min bottom rendition size. * If you specify Allowed renditions, you must not specify a separate rule for Force include renditions.",
+      "refs": {
+        "__listOfAllowedRenditionSize$member": null
+      }
+    },
     "AlphaBehavior": {
       "base": "Ignore this setting unless this input is a QuickTime animation with an alpha channel. Use this setting to create separate Key and Fill outputs. In each output, specify which part of the input MediaConvert uses. Leave this setting at the default value DISCARD to delete the alpha channel and preserve the video. Set it to REMAP_TO_LUMA to delete the video and map the alpha channel to the luma channel of your outputs.",
       "refs": {
@@ -298,6 +304,12 @@
         "AudioDescription$AudioTypeControl": "When set to FOLLOW_INPUT, if the input contains an ISO 639 audio_type, then that value is passed through to the output. If the input contains no ISO 639 audio_type, the value in Audio Type is included in the output. Otherwise the value in Audio Type is included in the output. Note that this field and audioType are both ignored if audioDescriptionBroadcasterMix is set to BROADCASTER_MIXED_AD."
       }
     },
+    "AutomatedAbrRule": {
+      "base": "Specify one or more Automated ABR rule types. Note: Force include and Allowed renditions are mutually exclusive.",
+      "refs": {
+        "__listOfAutomatedAbrRule$member": null
+      }
+    },
     "AutomatedAbrSettings": {
       "base": "Use automated ABR to have MediaConvert set up the renditions in your ABR package for you automatically, based on characteristics of your input video. This feature optimizes video quality while minimizing the overall size of your ABR package.",
       "refs": {
@@ -335,7 +347,7 @@
       }
     },
     "Av1QvbrSettings": {
-      "base": "Settings for quality-defined variable bitrate encoding with the H.265 codec. Use these settings only when you set QVBR for Rate control mode (RateControlMode).",
+      "base": "Settings for quality-defined variable bitrate encoding with the AV1 codec. Use these settings only when you set QVBR for Rate control mode (RateControlMode).",
       "refs": {
         "Av1Settings$QvbrSettings": "Settings for quality-defined variable bitrate encoding with the H.265 codec. Use these settings only when you set QVBR for Rate control mode (RateControlMode)."
       }
@@ -720,9 +732,9 @@
       }
     },
     "CmfcKlvMetadata": {
-      "base": "Applies to CMAF outputs. Use this setting to specify whether the service inserts the KLV metadata from the input in this output.",
+      "base": "To include key-length-value metadata in this output: Set KLV metadata insertion to Passthrough. MediaConvert reads KLV metadata present in your input and writes each instance to a separate event message box in the output, according to MISB ST1910.1. To exclude this KLV metadata: Set KLV metadata insertion to None or leave blank.",
       "refs": {
-        "CmfcSettings$KlvMetadata": "Applies to CMAF outputs. Use this setting to specify whether the service inserts the KLV metadata from the input in this output."
+        "CmfcSettings$KlvMetadata": "To include key-length-value metadata in this output: Set KLV metadata insertion to Passthrough. MediaConvert reads KLV metadata present in your input and writes each instance to a separate event message box in the output, according to MISB ST1910.1. To exclude this KLV metadata: Set KLV metadata insertion to None or leave blank."
       }
     },
     "CmfcScte35Esam": {
@@ -1041,7 +1053,7 @@
       }
     },
     "DolbyVision": {
-      "base": "With AWS Elemental MediaConvert, you can create profile 5 Dolby Vision outputs from MXF and IMF sources that contain mastering information as frame-interleaved Dolby Vision metadata.",
+      "base": "With AWS Elemental MediaConvert, you can create profile 5 or 8.1 Dolby Vision outputs from MXF and IMF sources.",
       "refs": {
         "VideoPreprocessor$DolbyVision": "Enable Dolby Vision feature to produce Dolby Vision compatible video output."
       }
@@ -1059,15 +1071,15 @@
       }
     },
     "DolbyVisionMapping": {
-      "base": "Required when you set Dolby Vision Profile (Profile) to Profile 8.1 (PROFILE_8_1). When you set Content mapping (Mapping) to None (HDR10_NOMAP), content mapping is not applied to the HDR10-compatible signal. Depending on the source peak nit level, clipping might occur on HDR devices without Dolby Vision. When you set Content mapping to Static (HDR10_1000), the transcoder creates a 1,000 nits peak HDR10-compatible signal by applying static content mapping to the source. This mode is speed-optimized for PQ10 sources with metadata that is created from analysis. For graded Dolby Vision content, be aware that creative intent might not be guaranteed with extreme 1,000 nits trims.",
+      "base": "Required when you set Dolby Vision Profile to Profile 8.1. When you set Content mapping to None, content mapping is not applied to the HDR10-compatible signal. Depending on the source peak nit level, clipping might occur on HDR devices without Dolby Vision. When you set Content mapping to HDR10 1000, the transcoder creates a 1,000 nits peak HDR10-compatible signal by applying static content mapping to the source. This mode is speed-optimized for PQ10 sources with metadata that is created from analysis. For graded Dolby Vision content, be aware that creative intent might not be guaranteed with extreme 1,000 nits trims.",
       "refs": {
-        "DolbyVision$Mapping": "Required when you set Dolby Vision Profile (Profile) to Profile 8.1 (PROFILE_8_1). When you set Content mapping (Mapping) to None (HDR10_NOMAP), content mapping is not applied to the HDR10-compatible signal. Depending on the source peak nit level, clipping might occur on HDR devices without Dolby Vision. When you set Content mapping to Static (HDR10_1000), the transcoder creates a 1,000 nits peak HDR10-compatible signal by applying static content mapping to the source. This mode is speed-optimized for PQ10 sources with metadata that is created from analysis. For graded Dolby Vision content, be aware that creative intent might not be guaranteed with extreme 1,000 nits trims."
+        "DolbyVision$Mapping": "Required when you set Dolby Vision Profile to Profile 8.1. When you set Content mapping to None, content mapping is not applied to the HDR10-compatible signal. Depending on the source peak nit level, clipping might occur on HDR devices without Dolby Vision. When you set Content mapping to HDR10 1000, the transcoder creates a 1,000 nits peak HDR10-compatible signal by applying static content mapping to the source. This mode is speed-optimized for PQ10 sources with metadata that is created from analysis. For graded Dolby Vision content, be aware that creative intent might not be guaranteed with extreme 1,000 nits trims."
       }
     },
     "DolbyVisionProfile": {
-      "base": "Required when you use Dolby Vision (DolbyVision) processing. Set Profile (DolbyVisionProfile) to Profile 5 (Profile_5) to only include frame-interleaved Dolby Vision metadata in your output. Set Profile to Profile 8.1 (Profile_8_1) to include both frame-interleaved Dolby Vision metadata and HDR10 metadata in your output.",
+      "base": "Required when you use Dolby Vision processing. Set Profile to Profile 5 to only include frame-interleaved Dolby Vision metadata in your output. Set Profile to Profile 8.1 to include both frame-interleaved Dolby Vision metadata and HDR10 metadata in your output.",
       "refs": {
-        "DolbyVision$Profile": "Required when you use Dolby Vision (DolbyVision) processing. Set Profile (DolbyVisionProfile) to Profile 5 (Profile_5) to only include frame-interleaved Dolby Vision metadata in your output. Set Profile to Profile 8.1 (Profile_8_1) to include both frame-interleaved Dolby Vision metadata and HDR10 metadata in your output."
+        "DolbyVision$Profile": "Required when you use Dolby Vision processing. Set Profile to Profile 5 to only include frame-interleaved Dolby Vision metadata in your output. Set Profile to Profile 8.1 to include both frame-interleaved Dolby Vision metadata and HDR10 metadata in your output."
       }
     },
     "DropFrameTimecode": {
@@ -1443,6 +1455,12 @@
       "refs": {
       }
     },
+    "ForceIncludeRenditionSize": {
+      "base": "Use Force include renditions to specify one or more resolutions to include your ABR stack. * (Recommended) To optimize automated ABR, specify as few resolutions as possible. * (Required) The number of resolutions that you specify must be equal to, or less than, the Max renditions setting. * If you specify a Min top rendition size rule, specify at least one resolution that is equal to, or greater than, Min top rendition size. * If you specify a Min bottom rendition size rule, only specify resolutions that are equal to, or greater than, Min bottom rendition size. * If you specify a Force include renditions rule, do not specify a separate rule for Allowed renditions. * Note: The ABR stack may include other resolutions that you do not specify here, depending on the Max renditions setting.",
+      "refs": {
+        "__listOfForceIncludeRenditionSize$member": null
+      }
+    },
     "FrameCaptureSettings": {
       "base": "Required when you set (Codec) under (VideoDescription)>(CodecSettings) to the value FRAME_CAPTURE.",
       "refs": {
@@ -1584,7 +1602,7 @@
       }
     },
     "H264QvbrSettings": {
-      "base": "Settings for quality-defined variable bitrate encoding with the H.265 codec. Use these settings only when you set QVBR for Rate control mode (RateControlMode).",
+      "base": "Settings for quality-defined variable bitrate encoding with the H.264 codec. Use these settings only when you set QVBR for Rate control mode (RateControlMode).",
       "refs": {
         "H264Settings$QvbrSettings": "Settings for quality-defined variable bitrate encoding with the H.265 codec. Use these settings only when you set QVBR for Rate control mode (RateControlMode)."
       }
@@ -2049,9 +2067,9 @@
       }
     },
     "ImscAccessibilitySubs": {
-      "base": "Set Accessibility subtitles (Accessibility) to Enabled (ENABLED) if the ISMC or WebVTT captions track is intended to provide accessibility for people who are deaf or hard of hearing. When you enable this feature, MediaConvert adds the following attributes under EXT-X-MEDIA in the HLS or CMAF manifest for this track: CHARACTERISTICS=\"public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound\" and AUTOSELECT=\"YES\". Keep the default value, Disabled (DISABLED), if the captions track is not intended to provide such accessibility. MediaConvert will not add the above attributes.",
+      "base": "Set Accessibility subtitles to Enabled if the ISMC or WebVTT captions track is intended to provide accessibility for people who are deaf or hard of hearing. When you enable this feature, MediaConvert adds the following attributes under EXT-X-MEDIA in the HLS or CMAF manifest for this track: CHARACTERISTICS=\"public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound\" and AUTOSELECT=\"YES\". Keep the default value, Disabled, if the captions track is not intended to provide such accessibility. MediaConvert will not add the above attributes.",
       "refs": {
-        "ImscDestinationSettings$Accessibility": "Set Accessibility subtitles (Accessibility) to Enabled (ENABLED) if the ISMC or WebVTT captions track is intended to provide accessibility for people who are deaf or hard of hearing. When you enable this feature, MediaConvert adds the following attributes under EXT-X-MEDIA in the HLS or CMAF manifest for this track: CHARACTERISTICS=\"public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound\" and AUTOSELECT=\"YES\". Keep the default value, Disabled (DISABLED), if the captions track is not intended to provide such accessibility. MediaConvert will not add the above attributes."
+        "ImscDestinationSettings$Accessibility": "Set Accessibility subtitles to Enabled if the ISMC or WebVTT captions track is intended to provide accessibility for people who are deaf or hard of hearing. When you enable this feature, MediaConvert adds the following attributes under EXT-X-MEDIA in the HLS or CMAF manifest for this track: CHARACTERISTICS=\"public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound\" and AUTOSELECT=\"YES\". Keep the default value, Disabled, if the captions track is not intended to provide such accessibility. MediaConvert will not add the above attributes."
       }
     },
     "ImscDestinationSettings": {
@@ -2345,9 +2363,9 @@
       }
     },
     "M2tsKlvMetadata": {
-      "base": "Applies to MPEG-TS outputs. Use this setting to specify whether the service inserts the KLV metadata from the input in this output.",
+      "base": "To include key-length-value metadata in this output: Set KLV metadata insertion to Passthrough. MediaConvert reads KLV metadata present in your input and passes it through to the output transport stream. To exclude this KLV metadata: Set KLV metadata insertion to None or leave blank.",
       "refs": {
-        "M2tsSettings$KlvMetadata": "Applies to MPEG-TS outputs. Use this setting to specify whether the service inserts the KLV metadata from the input in this output."
+        "M2tsSettings$KlvMetadata": "To include key-length-value metadata in this output: Set KLV metadata insertion to Passthrough. MediaConvert reads KLV metadata present in your input and passes it through to the output transport stream. To exclude this KLV metadata: Set KLV metadata insertion to None or leave blank."
       }
     },
     "M2tsNielsenId3": {
@@ -2432,6 +2450,18 @@
       "base": "These settings relate to the MPEG-2 transport stream (MPEG2-TS) container for the MPEG2-TS segments in your HLS outputs.",
       "refs": {
         "ContainerSettings$M3u8Settings": "These settings relate to the MPEG-2 transport stream (MPEG2-TS) container for the MPEG2-TS segments in your HLS outputs."
+      }
+    },
+    "MinBottomRenditionSize": {
+      "base": "Use Min bottom rendition size to specify a minimum size for the lowest resolution in your ABR stack. * The lowest resolution in your ABR stack will be equal to or greater than the value that you enter. For example: If you specify 640x360 the lowest resolution in your ABR stack will be equal to or greater than to 640x360. * If you specify a Min top rendition size rule, the value that you specify for Min bottom rendition size must be less than, or equal to, Min top rendition size.",
+      "refs": {
+        "AutomatedAbrRule$MinBottomRenditionSize": "Use Min bottom rendition size to specify a minimum size for the lowest resolution in your ABR stack. * The lowest resolution in your ABR stack will be equal to or greater than the value that you enter. For example: If you specify 640x360 the lowest resolution in your ABR stack will be equal to or greater than to 640x360. * If you specify a Min top rendition size rule, the value that you specify for Min bottom rendition size must be less than, or equal to, Min top rendition size."
+      }
+    },
+    "MinTopRenditionSize": {
+      "base": "Use Min top rendition size to specify a minimum size for the highest resolution in your ABR stack. * The highest resolution in your ABR stack will be equal to or greater than the value that you enter. For example: If you specify 1280x720 the highest resolution in your ABR stack will be equal to or greater than 1280x720. * If you specify a value for Max resolution, the value that you specify for Min top rendition size must be less than, or equal to, Max resolution.",
+      "refs": {
+        "AutomatedAbrRule$MinTopRenditionSize": "Use Min top rendition size to specify a minimum size for the highest resolution in your ABR stack. * The highest resolution in your ABR stack will be equal to or greater than the value that you enter. For example: If you specify 1280x720 the highest resolution in your ABR stack will be equal to or greater than 1280x720. * If you specify a value for Max resolution, the value that you specify for Min top rendition size must be less than, or equal to, Max resolution."
       }
     },
     "MotionImageInserter": {
@@ -2562,9 +2592,9 @@
       }
     },
     "MpdKlvMetadata": {
-      "base": "Applies to DASH ISO outputs. Use this setting to specify whether the service inserts the KLV metadata from the input in this output.",
+      "base": "To include key-length-value metadata in this output: Set KLV metadata insertion to Passthrough. MediaConvert reads KLV metadata present in your input and writes each instance to a separate event message box in the output, according to MISB ST1910.1. To exclude this KLV metadata: Set KLV metadata insertion to None or leave blank.",
       "refs": {
-        "MpdSettings$KlvMetadata": "Applies to DASH ISO outputs. Use this setting to specify whether the service inserts the KLV metadata from the input in this output."
+        "MpdSettings$KlvMetadata": "To include key-length-value metadata in this output: Set KLV metadata insertion to Passthrough. MediaConvert reads KLV metadata present in your input and writes each instance to a separate event message box in the output, according to MISB ST1910.1. To exclude this KLV metadata: Set KLV metadata insertion to None or leave blank."
       }
     },
     "MpdScte35Esam": {
@@ -3105,6 +3135,12 @@
         "ReservationPlanSettings$RenewalType": "Specifies whether the term of your reserved queue pricing plan is automatically extended (AUTO_RENEW) or expires (EXPIRE) at the end of the term. When your term is auto renewed, you extend your commitment by 12 months from the auto renew date. You can cancel this commitment."
       }
     },
+    "RequiredFlag": {
+      "base": "Set to ENABLED to force a rendition to be included.",
+      "refs": {
+        "AllowedRenditionSize$Required": "Set to ENABLED to force a rendition to be included."
+      }
+    },
     "ReservationPlan": {
       "base": "Details about the pricing plan for your reserved queue. Required for reserved queues and not applicable to on-demand queues.",
       "refs": {
@@ -3134,6 +3170,12 @@
       "base": "Use Respond to AFD (RespondToAfd) to specify how the service changes the video itself in response to AFD values in the input. * Choose Respond to clip the input video frame according to the AFD value, input display aspect ratio, and output display aspect ratio. * Choose Passthrough to include the input AFD values. Do not choose this when AfdSignaling is set to (NONE). A preferred implementation of this workflow is to set RespondToAfd to (NONE) and set AfdSignaling to (AUTO). * Choose None to remove all input AFD values from this output.",
       "refs": {
         "VideoDescription$RespondToAfd": "Use Respond to AFD (RespondToAfd) to specify how the service changes the video itself in response to AFD values in the input. * Choose Respond to clip the input video frame according to the AFD value, input display aspect ratio, and output display aspect ratio. * Choose Passthrough to include the input AFD values. Do not choose this when AfdSignaling is set to (NONE). A preferred implementation of this workflow is to set RespondToAfd to (NONE) and set AfdSignaling to (AUTO). * Choose None to remove all input AFD values from this output."
+      }
+    },
+    "RuleType": {
+      "base": "Use Min top rendition size to specify a minimum size for the highest resolution in your ABR stack. * The highest resolution in your ABR stack will be equal to or greater than the value that you enter. For example: If you specify 1280x720 the highest resolution in your ABR stack will be equal to or greater than 1280x720. * If you specify a value for Max resolution, the value that you specify for Min top rendition size must be less than, or equal to, Max resolution. Use Min bottom rendition size to specify a minimum size for the lowest resolution in your ABR stack. * The lowest resolution in your ABR stack will be equal to or greater than the value that you enter. For example: If you specify 640x360 the lowest resolution in your ABR stack will be equal to or greater than to 640x360. * If you specify a Min top rendition size rule, the value that you specify for Min bottom rendition size must be less than, or equal to, Min top rendition size. Use Force include renditions to specify one or more resolutions to include your ABR stack. * (Recommended) To optimize automated ABR, specify as few resolutions as possible. * (Required) The number of resolutions that you specify must be equal to, or less than, the Max renditions setting. * If you specify a Min top rendition size rule, specify at least one resolution that is equal to, or greater than, Min top rendition size. * If you specify a Min bottom rendition size rule, only specify resolutions that are equal to, or greater than, Min bottom rendition size. * If you specify a Force include renditions rule, do not specify a separate rule for Allowed renditions. * Note: The ABR stack may include other resolutions that you do not specify here, depending on the Max renditions setting. Use Allowed renditions to specify a list of possible resolutions in your ABR stack. * (Required) The number of resolutions that you specify must be equal to, or greater than, the Max renditions setting. * MediaConvert will create an ABR stack exclusively from the list of resolutions that you specify. * Some resolutions in the Allowed renditions list may not be included, however you can force a resolution to be included by setting Required to ENABLED. * You must specify at least one resolution that is greater than or equal to any resolutions that you specify in Min top rendition size or Min bottom rendition size. * If you specify Allowed renditions, you must not specify a separate rule for Force include renditions.",
+      "refs": {
+        "AutomatedAbrRule$Type": "Use Min top rendition size to specify a minimum size for the highest resolution in your ABR stack. * The highest resolution in your ABR stack will be equal to or greater than the value that you enter. For example: If you specify 1280x720 the highest resolution in your ABR stack will be equal to or greater than 1280x720. * If you specify a value for Max resolution, the value that you specify for Min top rendition size must be less than, or equal to, Max resolution. Use Min bottom rendition size to specify a minimum size for the lowest resolution in your ABR stack. * The lowest resolution in your ABR stack will be equal to or greater than the value that you enter. For example: If you specify 640x360 the lowest resolution in your ABR stack will be equal to or greater than to 640x360. * If you specify a Min top rendition size rule, the value that you specify for Min bottom rendition size must be less than, or equal to, Min top rendition size. Use Force include renditions to specify one or more resolutions to include your ABR stack. * (Recommended) To optimize automated ABR, specify as few resolutions as possible. * (Required) The number of resolutions that you specify must be equal to, or less than, the Max renditions setting. * If you specify a Min top rendition size rule, specify at least one resolution that is equal to, or greater than, Min top rendition size. * If you specify a Min bottom rendition size rule, only specify resolutions that are equal to, or greater than, Min bottom rendition size. * If you specify a Force include renditions rule, do not specify a separate rule for Allowed renditions. * Note: The ABR stack may include other resolutions that you do not specify here, depending on the Max renditions setting. Use Allowed renditions to specify a list of possible resolutions in your ABR stack. * (Required) The number of resolutions that you specify must be equal to, or greater than, the Max renditions setting. * MediaConvert will create an ABR stack exclusively from the list of resolutions that you specify. * Some resolutions in the Allowed renditions list may not be included, however you can force a resolution to be included by setting Required to ENABLED. * You must specify at least one resolution that is greater than or equal to any resolutions that you specify in Min top rendition size or Min bottom rendition size. * If you specify Allowed renditions, you must not specify a separate rule for Force include renditions."
       }
     },
     "S3DestinationAccessControl": {
@@ -3578,9 +3620,9 @@
       }
     },
     "WebvttAccessibilitySubs": {
-      "base": "Set Accessibility subtitles (Accessibility) to Enabled (ENABLED) if the ISMC or WebVTT captions track is intended to provide accessibility for people who are deaf or hard of hearing. When you enable this feature, MediaConvert adds the following attributes under EXT-X-MEDIA in the HLS or CMAF manifest for this track: CHARACTERISTICS=\"public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound\" and AUTOSELECT=\"YES\". Keep the default value, Disabled (DISABLED), if the captions track is not intended to provide such accessibility. MediaConvert will not add the above attributes.",
+      "base": "Set Accessibility subtitles to Enabled if the ISMC or WebVTT captions track is intended to provide accessibility for people who are deaf or hard of hearing. When you enable this feature, MediaConvert adds the following attributes under EXT-X-MEDIA in the HLS or CMAF manifest for this track: CHARACTERISTICS=\"public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound\" and AUTOSELECT=\"YES\". Keep the default value, Disabled, if the captions track is not intended to provide such accessibility. MediaConvert will not add the above attributes.",
       "refs": {
-        "WebvttDestinationSettings$Accessibility": "Set Accessibility subtitles (Accessibility) to Enabled (ENABLED) if the ISMC or WebVTT captions track is intended to provide accessibility for people who are deaf or hard of hearing. When you enable this feature, MediaConvert adds the following attributes under EXT-X-MEDIA in the HLS or CMAF manifest for this track: CHARACTERISTICS=\"public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound\" and AUTOSELECT=\"YES\". Keep the default value, Disabled (DISABLED), if the captions track is not intended to provide such accessibility. MediaConvert will not add the above attributes."
+        "WebvttDestinationSettings$Accessibility": "Set Accessibility subtitles to Enabled if the ISMC or WebVTT captions track is intended to provide accessibility for people who are deaf or hard of hearing. When you enable this feature, MediaConvert adds the following attributes under EXT-X-MEDIA in the HLS or CMAF manifest for this track: CHARACTERISTICS=\"public.accessibility.describes-spoken-dialog,public.accessibility.describes-music-and-sound\" and AUTOSELECT=\"YES\". Keep the default value, Disabled, if the captions track is not intended to provide such accessibility. MediaConvert will not add the above attributes."
       }
     },
     "WebvttDestinationSettings": {
@@ -4430,7 +4472,7 @@
         "M2tsSettings$PmtPid": "Specify the packet identifier (PID) for the program map table (PMT) itself. Default is 480.",
         "M2tsSettings$PrivateMetadataPid": "Specify the packet identifier (PID) of the private metadata stream. Default is 503.",
         "M2tsSettings$Scte35Pid": "Specify the packet identifier (PID) of the SCTE-35 stream in the transport stream.",
-        "M2tsSettings$TimedMetadataPid": "Specify the packet identifier (PID) for timed metadata in this output. Default is 502.",
+        "M2tsSettings$TimedMetadataPid": "Packet Identifier (PID) of the ID3 metadata stream in the transport stream.",
         "M2tsSettings$VideoPid": "Specify the packet identifier (PID) of the elementary video stream in the transport stream.",
         "M3u8Settings$PcrPid": "Packet Identifier (PID) of the Program Clock Reference (PCR) in the transport stream. When no value is given, the encoder will assign the same value as the Video PID.",
         "M3u8Settings$PmtPid": "Packet Identifier (PID) for the Program Map Table (PMT) in the transport stream.",
@@ -4444,6 +4486,14 @@
     "__integerMin32Max8192": {
       "base": null,
       "refs": {
+        "AllowedRenditionSize$Height": "Use Height to define the video resolution height, in pixels, for this rule.",
+        "AllowedRenditionSize$Width": "Use Width to define the video resolution width, in pixels, for this rule.",
+        "ForceIncludeRenditionSize$Height": "Use Height to define the video resolution height, in pixels, for this rule.",
+        "ForceIncludeRenditionSize$Width": "Use Width to define the video resolution width, in pixels, for this rule.",
+        "MinBottomRenditionSize$Height": "Use Height to define the video resolution height, in pixels, for this rule.",
+        "MinBottomRenditionSize$Width": "Use Width to define the video resolution width, in pixels, for this rule.",
+        "MinTopRenditionSize$Height": "Use Height to define the video resolution height, in pixels, for this rule.",
+        "MinTopRenditionSize$Width": "Use Width to define the video resolution width, in pixels, for this rule.",
         "VideoDescription$Height": "Use the Height (Height) setting to define the video resolution height for this output. Specify in pixels. If you don't provide a value here, the service will use the input height.",
         "VideoDescription$Width": "Use Width (Width) to define the video resolution width, in pixels, for this output. If you don't provide a value here, the service will use the input width."
       }
@@ -4603,11 +4653,23 @@
         "AudioNormalizationSettings$CorrectionGateLevel": "Content measuring above this level will be corrected to the target level. Content measuring below this level will not be corrected."
       }
     },
+    "__listOfAllowedRenditionSize": {
+      "base": null,
+      "refs": {
+        "AutomatedAbrRule$AllowedRenditions": "When customer adds the allowed renditions rule for auto ABR ladder, they are required to add at leat one rendition to allowedRenditions list"
+      }
+    },
     "__listOfAudioDescription": {
       "base": null,
       "refs": {
         "Output$AudioDescriptions": "(AudioDescriptions) contains groups of audio encoding settings organized by audio codec. Include one instance of (AudioDescriptions) per output. (AudioDescriptions) can contain multiple groups of encoding settings.",
         "PresetSettings$AudioDescriptions": "(AudioDescriptions) contains groups of audio encoding settings organized by audio codec. Include one instance of (AudioDescriptions) per output. (AudioDescriptions) can contain multiple groups of encoding settings."
+      }
+    },
+    "__listOfAutomatedAbrRule": {
+      "base": null,
+      "refs": {
+        "AutomatedAbrSettings$Rules": "Optional. Use Automated ABR rules to specify restrictions for the rendition sizes MediaConvert will create in your ABR stack. You can use these rules if your ABR workflow has specific rendition size requirements, but you still want MediaConvert to optimize for video quality and overall file size."
       }
     },
     "__listOfCaptionDescription": {
@@ -4638,6 +4700,12 @@
       "base": null,
       "refs": {
         "DescribeEndpointsResponse$Endpoints": "List of endpoints"
+      }
+    },
+    "__listOfForceIncludeRenditionSize": {
+      "base": null,
+      "refs": {
+        "AutomatedAbrRule$ForceIncludeRenditions": "When customer adds the force include renditions rule for auto ABR ladder, they are required to add at leat one rendition to forceIncludeRenditions list"
       }
     },
     "__listOfHlsAdMarkers": {

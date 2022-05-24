@@ -1,3 +1,15 @@
+Release v1.44.21 (2022-05-24)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Stop Protection feature enables customers to protect their instances from accidental stop actions.
+* `service/ivschat`: Updates service documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for rules that constrain Automatic-ABR rendition selection when generating ABR package ladders.
+* `service/networkmanager`: Updates service API and documentation
+
 Release v1.44.20 (2022-05-23)
 ===
 

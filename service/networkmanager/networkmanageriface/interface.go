@@ -353,6 +353,10 @@ type NetworkManagerAPI interface {
 	ListCoreNetworksPages(*networkmanager.ListCoreNetworksInput, func(*networkmanager.ListCoreNetworksOutput, bool) bool) error
 	ListCoreNetworksPagesWithContext(aws.Context, *networkmanager.ListCoreNetworksInput, func(*networkmanager.ListCoreNetworksOutput, bool) bool, ...request.Option) error
 
+	ListOrganizationServiceAccessStatus(*networkmanager.ListOrganizationServiceAccessStatusInput) (*networkmanager.ListOrganizationServiceAccessStatusOutput, error)
+	ListOrganizationServiceAccessStatusWithContext(aws.Context, *networkmanager.ListOrganizationServiceAccessStatusInput, ...request.Option) (*networkmanager.ListOrganizationServiceAccessStatusOutput, error)
+	ListOrganizationServiceAccessStatusRequest(*networkmanager.ListOrganizationServiceAccessStatusInput) (*request.Request, *networkmanager.ListOrganizationServiceAccessStatusOutput)
+
 	ListTagsForResource(*networkmanager.ListTagsForResourceInput) (*networkmanager.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *networkmanager.ListTagsForResourceInput, ...request.Option) (*networkmanager.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*networkmanager.ListTagsForResourceInput) (*request.Request, *networkmanager.ListTagsForResourceOutput)
@@ -376,6 +380,10 @@ type NetworkManagerAPI interface {
 	RestoreCoreNetworkPolicyVersion(*networkmanager.RestoreCoreNetworkPolicyVersionInput) (*networkmanager.RestoreCoreNetworkPolicyVersionOutput, error)
 	RestoreCoreNetworkPolicyVersionWithContext(aws.Context, *networkmanager.RestoreCoreNetworkPolicyVersionInput, ...request.Option) (*networkmanager.RestoreCoreNetworkPolicyVersionOutput, error)
 	RestoreCoreNetworkPolicyVersionRequest(*networkmanager.RestoreCoreNetworkPolicyVersionInput) (*request.Request, *networkmanager.RestoreCoreNetworkPolicyVersionOutput)
+
+	StartOrganizationServiceAccessUpdate(*networkmanager.StartOrganizationServiceAccessUpdateInput) (*networkmanager.StartOrganizationServiceAccessUpdateOutput, error)
+	StartOrganizationServiceAccessUpdateWithContext(aws.Context, *networkmanager.StartOrganizationServiceAccessUpdateInput, ...request.Option) (*networkmanager.StartOrganizationServiceAccessUpdateOutput, error)
+	StartOrganizationServiceAccessUpdateRequest(*networkmanager.StartOrganizationServiceAccessUpdateInput) (*request.Request, *networkmanager.StartOrganizationServiceAccessUpdateOutput)
 
 	StartRouteAnalysis(*networkmanager.StartRouteAnalysisInput) (*networkmanager.StartRouteAnalysisOutput, error)
 	StartRouteAnalysisWithContext(aws.Context, *networkmanager.StartRouteAnalysisInput, ...request.Option) (*networkmanager.StartRouteAnalysisOutput, error)

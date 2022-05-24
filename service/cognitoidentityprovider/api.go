@@ -749,13 +749,13 @@ func (c *CognitoIdentityProvider) AdminDisableProviderForUserRequest(input *Admi
 // AdminDisableProviderForUser API operation for Amazon Cognito Identity Provider.
 //
 // Prevents the user from signing in with the specified external (SAML or social)
-// identity provider. If the user that you want to deactivate is a Amazon Cognito
-// user pools native username + password user, they can't use their password
-// to sign in. If the user to deactivate is a linked external identity provider
-// (IdP) user, any link between that user and an existing user is removed. When
-// the external user signs in again, and the user is no longer attached to the
-// previously linked DestinationUser, the user must create a new user account.
-// See AdminLinkProviderForUser (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html).
+// identity provider (IdP). If the user that you want to deactivate is a Amazon
+// Cognito user pools native username + password user, they can't use their
+// password to sign in. If the user to deactivate is a linked external IdP user,
+// any link between that user and an existing user is removed. When the external
+// user signs in again, and the user is no longer attached to the previously
+// linked DestinationUser, the user must create a new user account. See AdminLinkProviderForUser
+// (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html).
 //
 // This action is enabled only for admin access and requires developer credentials.
 //
@@ -766,9 +766,9 @@ func (c *CognitoIdentityProvider) AdminDisableProviderForUserRequest(input *Admi
 // be Cognito and the ProviderAttributeName must be Cognito_Subject. The ProviderAttributeValue
 // must be the name that is used in the user pool for the user.
 //
-// The ProviderAttributeName must always be Cognito_Subject for social identity
-// providers. The ProviderAttributeValue must always be the exact subject that
-// was used when the user was originally linked as a source user.
+// The ProviderAttributeName must always be Cognito_Subject for social IdPs.
+// The ProviderAttributeValue must always be the exact subject that was used
+// when the user was originally linked as a source user.
 //
 // For de-linking a SAML identity, there are two scenarios. If the linked identity
 // has not yet been used to sign in, the ProviderAttributeName and ProviderAttributeValue
@@ -807,9 +807,10 @@ func (c *CognitoIdentityProvider) AdminDisableProviderForUserRequest(input *Admi
 //
 //   * AliasExistsException
 //   This exception is thrown when a user tries to confirm the account with an
-//   email or phone number that has already been supplied as an alias from a different
-//   account. This exception tells user that an account with this email or phone
-//   already exists.
+//   email address or phone number that has already been supplied as an alias
+//   from a different account. This exception indicates that an account with this
+//   email address or phone already exists in a user pool that you've configured
+//   to use email address or phone number as a sign-in alias.
 //
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
@@ -1536,22 +1537,22 @@ func (c *CognitoIdentityProvider) AdminLinkProviderForUserRequest(input *AdminLi
 // AdminLinkProviderForUser API operation for Amazon Cognito Identity Provider.
 //
 // Links an existing user account in a user pool (DestinationUser) to an identity
-// from an external identity provider (SourceUser) based on a specified attribute
-// name and value from the external identity provider. This allows you to create
-// a link from the existing user account to an external federated user identity
-// that has not yet been used to sign in. You can then use the federated user
-// identity to sign in as the existing user account.
+// from an external IdP (SourceUser) based on a specified attribute name and
+// value from the external IdP. This allows you to create a link from the existing
+// user account to an external federated user identity that has not yet been
+// used to sign in. You can then use the federated user identity to sign in
+// as the existing user account.
 //
 // For example, if there is an existing user with a username and password, this
 // API links that user to a federated user identity. When the user signs in
 // with a federated user identity, they sign in as the existing user account.
 //
-// The maximum number of federated identities linked to a user is 5.
+// The maximum number of federated identities linked to a user is five.
 //
 // Because this API allows a user with an external federated identity to sign
 // in as an existing user in the user pool, it is critical that it only be used
-// with external identity providers and provider attributes that have been trusted
-// by the application owner.
+// with external IdPs and provider attributes that have been trusted by the
+// application owner.
 //
 // This action is administrative and requires developer credentials.
 //
@@ -1583,9 +1584,10 @@ func (c *CognitoIdentityProvider) AdminLinkProviderForUserRequest(input *AdminLi
 //
 //   * AliasExistsException
 //   This exception is thrown when a user tries to confirm the account with an
-//   email or phone number that has already been supplied as an alias from a different
-//   account. This exception tells user that an account with this email or phone
-//   already exists.
+//   email address or phone number that has already been supplied as an alias
+//   from a different account. This exception indicates that an account with this
+//   email address or phone already exists in a user pool that you've configured
+//   to use email address or phone number as a sign-in alias.
 //
 //   * LimitExceededException
 //   This exception is thrown when a user exceeds the limit for a requested Amazon
@@ -2423,9 +2425,10 @@ func (c *CognitoIdentityProvider) AdminRespondToAuthChallengeRequest(input *Admi
 //
 //   * AliasExistsException
 //   This exception is thrown when a user tries to confirm the account with an
-//   email or phone number that has already been supplied as an alias from a different
-//   account. This exception tells user that an account with this email or phone
-//   already exists.
+//   email address or phone number that has already been supplied as an alias
+//   from a different account. This exception indicates that an account with this
+//   email address or phone already exists in a user pool that you've configured
+//   to use email address or phone number as a sign-in alias.
 //
 //   * PasswordResetRequiredException
 //   This exception is thrown when a password reset is required.
@@ -3086,9 +3089,10 @@ func (c *CognitoIdentityProvider) AdminUpdateUserAttributesRequest(input *AdminU
 //
 //   * AliasExistsException
 //   This exception is thrown when a user tries to confirm the account with an
-//   email or phone number that has already been supplied as an alias from a different
-//   account. This exception tells user that an account with this email or phone
-//   already exists.
+//   email address or phone number that has already been supplied as an alias
+//   from a different account. This exception indicates that an account with this
+//   email address or phone already exists in a user pool that you've configured
+//   to use email address or phone number as a sign-in alias.
 //
 //   * TooManyRequestsException
 //   This exception is thrown when the user has made too many requests for a given
@@ -3184,10 +3188,12 @@ func (c *CognitoIdentityProvider) AdminUserGlobalSignOutRequest(input *AdminUser
 
 // AdminUserGlobalSignOut API operation for Amazon Cognito Identity Provider.
 //
-// Signs out users from all devices, as an administrator. It also invalidates
-// all refresh tokens issued to a user. The user's current access and Id tokens
-// remain valid until their expiry. Access and Id tokens expire one hour after
-// they're issued.
+// Signs out a user from all devices. You must sign AdminUserGlobalSignOut requests
+// with Amazon Web Services credentials. It also invalidates all refresh tokens
+// that Amazon Cognito has issued to a user. The user's current access and ID
+// tokens remain valid until they expire. By default, access and ID tokens expire
+// one hour after they're issued. A user can still use a hosted UI cookie to
+// retrieve new tokens for the duration of the cookie validity period of 1 hour.
 //
 // Calling this action requires developer credentials.
 //
@@ -3755,8 +3761,7 @@ func (c *CognitoIdentityProvider) ConfirmSignUpRequest(input *ConfirmSignUpInput
 
 // ConfirmSignUp API operation for Amazon Cognito Identity Provider.
 //
-// Confirms registration of a user and handles the existing alias from a previous
-// user.
+// Confirms registration of a new user.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3802,9 +3807,10 @@ func (c *CognitoIdentityProvider) ConfirmSignUpRequest(input *ConfirmSignUpInput
 //
 //   * AliasExistsException
 //   This exception is thrown when a user tries to confirm the account with an
-//   email or phone number that has already been supplied as an alias from a different
-//   account. This exception tells user that an account with this email or phone
-//   already exists.
+//   email address or phone number that has already been supplied as an alias
+//   from a different account. This exception indicates that an account with this
+//   email address or phone already exists in a user pool that you've configured
+//   to use email address or phone number as a sign-in alias.
 //
 //   * TooManyRequestsException
 //   This exception is thrown when the user has made too many requests for a given
@@ -3990,7 +3996,7 @@ func (c *CognitoIdentityProvider) CreateIdentityProviderRequest(input *CreateIde
 
 // CreateIdentityProvider API operation for Amazon Cognito Identity Provider.
 //
-// Creates an identity provider for a user pool.
+// Creates an IdP for a user pool.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4720,7 +4726,7 @@ func (c *CognitoIdentityProvider) DeleteIdentityProviderRequest(input *DeleteIde
 
 // DeleteIdentityProvider API operation for Amazon Cognito Identity Provider.
 //
-// Deletes an identity provider for a user pool.
+// Deletes an IdP for a user pool.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5407,7 +5413,7 @@ func (c *CognitoIdentityProvider) DescribeIdentityProviderRequest(input *Describ
 
 // DescribeIdentityProvider API operation for Amazon Cognito Identity Provider.
 //
-// Gets information about a specific identity provider.
+// Gets information about a specific IdP.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6630,7 +6636,7 @@ func (c *CognitoIdentityProvider) GetIdentityProviderByIdentifierRequest(input *
 
 // GetIdentityProviderByIdentifier API operation for Amazon Cognito Identity Provider.
 //
-// Gets the specified identity provider.
+// Gets the specified IdP.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7014,7 +7020,9 @@ func (c *CognitoIdentityProvider) GetUserAttributeVerificationCodeRequest(input 
 
 // GetUserAttributeVerificationCode API operation for Amazon Cognito Identity Provider.
 //
-// Gets the user attribute verification code for the specified attribute name.
+// Generates a user attribute verification code for the specified attribute
+// name. Sends a message to a user with a code that they must return in a VerifyUserAttribute
+// request.
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
@@ -7264,8 +7272,11 @@ func (c *CognitoIdentityProvider) GlobalSignOutRequest(input *GlobalSignOutInput
 // GlobalSignOut API operation for Amazon Cognito Identity Provider.
 //
 // Signs out users from all devices. It also invalidates all refresh tokens
-// issued to a user. The user's current access and ID tokens remain valid until
-// their expiry. Access and Id tokens expire one hour after they're issued.
+// that Amazon Cognito has issued to a user. The user's current access and ID
+// tokens remain valid until their expiry. By default, access and ID tokens
+// expire one hour after Amazon Cognito issues them. A user can still use a
+// hosted UI cookie to retrieve new tokens for the duration of the cookie validity
+// period of 1 hour.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7366,7 +7377,9 @@ func (c *CognitoIdentityProvider) InitiateAuthRequest(input *InitiateAuthInput) 
 
 // InitiateAuth API operation for Amazon Cognito Identity Provider.
 //
-// Initiates the authentication flow.
+// Initiates sign-in for a user in the Amazon Cognito user directory. You can't
+// sign in a user with a federated IdP with InitiateAuth. For more information,
+// see Adding user pool sign-in through a third party (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-identity-federation.html).
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
@@ -7512,7 +7525,8 @@ func (c *CognitoIdentityProvider) ListDevicesRequest(input *ListDevicesInput) (r
 
 // ListDevices API operation for Amazon Cognito Identity Provider.
 //
-// Lists the devices.
+// Lists the sign-in devices that Amazon Cognito has registered to the current
+// user.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7778,7 +7792,7 @@ func (c *CognitoIdentityProvider) ListIdentityProvidersRequest(input *ListIdenti
 
 // ListIdentityProviders API operation for Amazon Cognito Identity Provider.
 //
-// Lists information about all identity providers for a user pool.
+// Lists information about all IdPs for a user pool.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9120,9 +9134,10 @@ func (c *CognitoIdentityProvider) RespondToAuthChallengeRequest(input *RespondTo
 //
 //   * AliasExistsException
 //   This exception is thrown when a user tries to confirm the account with an
-//   email or phone number that has already been supplied as an alias from a different
-//   account. This exception tells user that an account with this email or phone
-//   already exists.
+//   email address or phone number that has already been supplied as an alias
+//   from a different account. This exception indicates that an account with this
+//   email address or phone already exists in a user pool that you've configured
+//   to use email address or phone number as a sign-in alias.
 //
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
@@ -10704,7 +10719,7 @@ func (c *CognitoIdentityProvider) UpdateIdentityProviderRequest(input *UpdateIde
 
 // UpdateIdentityProvider API operation for Amazon Cognito Identity Provider.
 //
-// Updates identity provider information for a user pool.
+// Updates IdP information for a user pool.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10962,9 +10977,10 @@ func (c *CognitoIdentityProvider) UpdateUserAttributesRequest(input *UpdateUserA
 //
 //   * AliasExistsException
 //   This exception is thrown when a user tries to confirm the account with an
-//   email or phone number that has already been supplied as an alias from a different
-//   account. This exception tells user that an account with this email or phone
-//   already exists.
+//   email address or phone number that has already been supplied as an alias
+//   from a different account. This exception indicates that an account with this
+//   email address or phone already exists in a user pool that you've configured
+//   to use email address or phone number as a sign-in alias.
 //
 //   * InvalidSmsRoleAccessPolicyException
 //   This exception is returned when the role provided for SMS configuration doesn't
@@ -11561,6 +11577,11 @@ func (c *CognitoIdentityProvider) VerifyUserAttributeRequest(input *VerifyUserAt
 //
 // Verifies the specified user attributes in the user pool.
 //
+// If your user pool requires verification before Amazon Cognito updates the
+// attribute value, VerifyUserAttribute updates the affected attribute to its
+// pending value. For more information, see UserAttributeUpdateSettingsType
+// (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UserAttributeUpdateSettingsType.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -11606,6 +11627,13 @@ func (c *CognitoIdentityProvider) VerifyUserAttributeRequest(input *VerifyUserAt
 //
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+//   * AliasExistsException
+//   This exception is thrown when a user tries to confirm the account with an
+//   email address or phone number that has already been supplied as an alias
+//   from a different account. This exception indicates that an account with this
+//   email address or phone already exists in a user pool that you've configured
+//   to use email address or phone number as a sign-in alias.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/VerifyUserAttribute
 func (c *CognitoIdentityProvider) VerifyUserAttribute(input *VerifyUserAttributeInput) (*VerifyUserAttributeOutput, error) {
@@ -11689,7 +11717,7 @@ type AccountTakeoverActionType struct {
 	_ struct{} `type:"structure"`
 
 	// The action to take in response to the account takeover action. Valid values
-	// are:
+	// are as follows:
 	//
 	//    * BLOCK Choosing this action will block the request.
 	//
@@ -12250,10 +12278,10 @@ type AdminCreateUserConfigType struct {
 	// See also Customizing User Invitation Messages (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-message-customizations.html#cognito-user-pool-settings-user-invitation-message-customization).
 	InviteMessageTemplate *MessageTemplateType `type:"structure"`
 
-	// The user account expiration limit, in days, after which the account is no
-	// longer usable. To reset the account after that time limit, you must call
-	// AdminCreateUser again, specifying "RESEND" for the MessageAction parameter.
-	// The default value for this parameter is 7.
+	// The user account expiration limit, in days, after which a new account that
+	// hasn't signed in is no longer usable. To reset the account after that time
+	// limit, you must call AdminCreateUser again, specifying "RESEND" for the MessageAction
+	// parameter. The default value for this parameter is 7.
 	//
 	// If you set a value for TemporaryPasswordValidityDays in PasswordPolicy, that
 	// value will be used, and UnusedAccountValidityDays will be no longer be an
@@ -13784,8 +13812,16 @@ type AdminInitiateAuthOutput struct {
 	//    and PASSWORD directly. An app client must be enabled to use this flow.
 	//
 	//    * NEW_PASSWORD_REQUIRED: For users who are required to change their passwords
-	//    after successful first login. This challenge should be passed with NEW_PASSWORD
-	//    and any other required attributes.
+	//    after successful first login. Respond to this challenge with NEW_PASSWORD
+	//    and any required attributes that Amazon Cognito returned in the requiredAttributes
+	//    parameter. You can also set values for attributes that aren't required
+	//    by your user pool and that your app client can write. For more information,
+	//    see AdminRespondToAuthChallenge (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminRespondToAuthChallenge.html).
+	//    In a NEW_PASSWORD_REQUIRED challenge response, you can't modify a required
+	//    attribute that already has a value. In AdminRespondToAuthChallenge, set
+	//    a value for any keys that Amazon Cognito returned in the requiredAttributes
+	//    parameter, then use the AdminUpdateUserAttributes API operation to modify
+	//    the value of any additional attributes.
 	//
 	//    * MFA_SETUP: For users who are required to set up an MFA factor before
 	//    they can sign in. The MFA types activated for the user pool will be listed
@@ -13864,11 +13900,11 @@ type AdminLinkProviderForUserInput struct {
 	_ struct{} `type:"structure"`
 
 	// The existing user in the user pool that you want to assign to the external
-	// identity provider user account. This user can be a native (Username + Password)
-	// Amazon Cognito user pools user or a federated user (for example, a SAML or
-	// Facebook user). If the user doesn't exist, Amazon Cognito generates an exception.
-	// Amazon Cognito returns this user when the new user (with the linked identity
-	// provider attribute) signs in.
+	// IdP user account. This user can be a native (Username + Password) Amazon
+	// Cognito user pools user or a federated user (for example, a SAML or Facebook
+	// user). If the user doesn't exist, Amazon Cognito generates an exception.
+	// Amazon Cognito returns this user when the new user (with the linked IdP attribute)
+	// signs in.
 	//
 	// For a native username + password user, the ProviderAttributeValue for the
 	// DestinationUser should be the username in the user pool. For a federated
@@ -13884,26 +13920,24 @@ type AdminLinkProviderForUserInput struct {
 	// DestinationUser is a required field
 	DestinationUser *ProviderUserIdentifierType `type:"structure" required:"true"`
 
-	// An external identity provider account for a user who doesn't exist yet in
-	// the user pool. This user must be a federated user (for example, a SAML or
-	// Facebook user), not another native user.
+	// An external IdP account for a user who doesn't exist yet in the user pool.
+	// This user must be a federated user (for example, a SAML or Facebook user),
+	// not another native user.
 	//
-	// If the SourceUser is using a federated social identity provider, such as
-	// Facebook, Google, or Login with Amazon, you must set the ProviderAttributeName
-	// to Cognito_Subject. For social identity providers, the ProviderName will
-	// be Facebook, Google, or LoginWithAmazon, and Amazon Cognito will automatically
-	// parse the Facebook, Google, and Login with Amazon tokens for id, sub, and
-	// user_id, respectively. The ProviderAttributeValue for the user must be the
-	// same value as the id, sub, or user_id value found in the social identity
-	// provider token.
+	// If the SourceUser is using a federated social IdP, such as Facebook, Google,
+	// or Login with Amazon, you must set the ProviderAttributeName to Cognito_Subject.
+	// For social IdPs, the ProviderName will be Facebook, Google, or LoginWithAmazon,
+	// and Amazon Cognito will automatically parse the Facebook, Google, and Login
+	// with Amazon tokens for id, sub, and user_id, respectively. The ProviderAttributeValue
+	// for the user must be the same value as the id, sub, or user_id value found
+	// in the social IdP token.
 	//
 	// For SAML, the ProviderAttributeName can be any value that matches a claim
 	// in the SAML assertion. If you want to link SAML users based on the subject
 	// of the SAML assertion, you should map the subject to a claim through the
-	// SAML identity provider and submit that claim name as the ProviderAttributeName.
-	// If you set ProviderAttributeName to Cognito_Subject, Amazon Cognito will
-	// automatically parse the default unique identifier found in the subject from
-	// the SAML token.
+	// SAML IdP and submit that claim name as the ProviderAttributeName. If you
+	// set ProviderAttributeName to Cognito_Subject, Amazon Cognito will automatically
+	// parse the default unique identifier found in the subject from the SAML token.
 	//
 	// SourceUser is a required field
 	SourceUser *ProviderUserIdentifierType `type:"structure" required:"true"`
@@ -14666,8 +14700,16 @@ type AdminRespondToAuthChallengeInput struct {
 	//    * ADMIN_NO_SRP_AUTH: PASSWORD, USERNAME, SECRET_HASH (if app client is
 	//    configured with client secret).
 	//
-	//    * NEW_PASSWORD_REQUIRED: NEW_PASSWORD, any other required attributes,
-	//    USERNAME, SECRET_HASH (if app client is configured with client secret).
+	//    * NEW_PASSWORD_REQUIRED: NEW_PASSWORD, USERNAME, SECRET_HASH (if app client
+	//    is configured with client secret). To set any required attributes that
+	//    Amazon Cognito returned as requiredAttributes in the AdminInitiateAuth
+	//    response, add a userAttributes.attributename parameter. This parameter
+	//    can also set values for writable attributes that aren't required by your
+	//    user pool. In a NEW_PASSWORD_REQUIRED challenge response, you can't modify
+	//    a required attribute that already has a value. In AdminRespondToAuthChallenge,
+	//    set a value for any keys that Amazon Cognito returned in the requiredAttributes
+	//    parameter, then use the AdminUpdateUserAttributes API operation to modify
+	//    the value of any additional attributes.
 	//
 	//    * MFA_SETUP requires USERNAME, plus you must use the session value returned
 	//    by VerifySoftwareToken in the Session parameter.
@@ -15547,6 +15589,19 @@ type AdminUpdateUserAttributesInput struct {
 	// For custom attributes, you must prepend the custom: prefix to the attribute
 	// name.
 	//
+	// If your user pool requires verification before Amazon Cognito updates an
+	// attribute value that you specify in this request, Amazon Cognito doesn’t
+	// immediately update the value of that attribute. After your user receives
+	// and responds to a verification message to verify the new value, Amazon Cognito
+	// updates the attribute value. Your user can sign in and receive messages with
+	// the original attribute value until they verify the new value.
+	//
+	// To update the value of an attribute that requires verification in the same
+	// API request, include the email_verified or phone_number_verified attribute,
+	// with a value of true. If you set the email_verified or phone_number_verified
+	// value for an email or phone_number attribute that requires verification to
+	// true, Amazon Cognito doesn’t send a verification message to your user.
+	//
 	// UserAttributes is a required field
 	UserAttributes []*AttributeType `type:"list" required:"true"`
 
@@ -15761,9 +15816,10 @@ func (s AdminUserGlobalSignOutOutput) GoString() string {
 }
 
 // This exception is thrown when a user tries to confirm the account with an
-// email or phone number that has already been supplied as an alias from a different
-// account. This exception tells user that an account with this email or phone
-// already exists.
+// email address or phone number that has already been supplied as an alias
+// from a different account. This exception indicates that an account with this
+// email address or phone already exists in a user pool that you've configured
+// to use email address or phone number as a sign-in alias.
 type AliasExistsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -15828,8 +15884,8 @@ func (s *AliasExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The Amazon Pinpoint analytics configuration for collecting metrics for a
-// user pool.
+// The Amazon Pinpoint analytics configuration necessary to collect metrics
+// for a user pool.
 //
 // In Regions where Amazon Pinpointisn't available, user pools only support
 // sending events to Amazon Pinpoint projects in us-east-1. In Regions where
@@ -15840,8 +15896,8 @@ type AnalyticsConfigurationType struct {
 
 	// The Amazon Resource Name (ARN) of an Amazon Pinpoint project. You can use
 	// the Amazon Pinpoint project to integrate with the chosen user pool Client.
-	// Amazon Cognito publishes events to the Amazon Pinpointproject declared by
-	// the app ARN.
+	// Amazon Cognito publishes events to the Amazon Pinpoint project that the app
+	// ARN declares.
 	ApplicationArn *string `min:"20" type:"string"`
 
 	// The application ID for an Amazon Pinpoint application.
@@ -15854,8 +15910,8 @@ type AnalyticsConfigurationType struct {
 	// Cognito to publish events to Amazon Pinpoint analytics.
 	RoleArn *string `min:"20" type:"string"`
 
-	// If UserDataShared is true, Amazon Cognito will include user data in the events
-	// it publishes to Amazon Pinpoint analytics.
+	// If UserDataShared is true, Amazon Cognito includes user data in the events
+	// that it publishes to Amazon Pinpoint analytics.
 	UserDataShared *bool `type:"boolean"`
 }
 
@@ -15926,11 +15982,10 @@ func (s *AnalyticsConfigurationType) SetUserDataShared(v bool) *AnalyticsConfigu
 // An Amazon Pinpoint analytics endpoint.
 //
 // An endpoint uniquely identifies a mobile device, email address, or phone
-// number that can receive messages from Amazon Pinpoint analytics.
-//
-// Amazon Cognito user pools only support sending events to Amazon Pinpoint
-// projects in the US East (N. Virginia) us-east-1 Region, regardless of the
-// Region where the user pool resides.
+// number that can receive messages from Amazon Pinpoint analytics. For more
+// information about Amazon Web Services Regions that can contain Amazon Pinpoint
+// resources for use with Amazon Cognito user pools, see Using Amazon Pinpoint
+// analytics with Amazon Cognito user pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-pinpoint-integration.html).
 type AnalyticsMetadataType struct {
 	_ struct{} `type:"structure"`
 
@@ -15965,7 +16020,8 @@ func (s *AnalyticsMetadataType) SetAnalyticsEndpointId(v string) *AnalyticsMetad
 type AssociateSoftwareTokenInput struct {
 	_ struct{} `type:"structure"`
 
-	// The access token.
+	// A valid access token that Amazon Cognito issued to the user whose software
+	// token you want to generate.
 	//
 	// AccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AssociateSoftwareTokenInput's
@@ -16233,7 +16289,8 @@ func (s *AuthEventType) SetEventType(v string) *AuthEventType {
 type AuthenticationResultType struct {
 	_ struct{} `type:"structure"`
 
-	// The access token.
+	// A valid access token that Amazon Cognito issued to the user who you want
+	// to authenticate.
 	//
 	// AccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AuthenticationResultType's
@@ -16363,7 +16420,8 @@ func (s *ChallengeResponseType) SetChallengeResponse(v string) *ChallengeRespons
 type ChangePasswordInput struct {
 	_ struct{} `type:"structure"`
 
-	// The access token.
+	// A valid access token that Amazon Cognito issued to the user whose password
+	// you want to change.
 	//
 	// AccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ChangePasswordInput's
@@ -16469,17 +16527,19 @@ func (s ChangePasswordOutput) GoString() string {
 	return s.String()
 }
 
-// The code delivery details being returned from the server.
+// The delivery details for an email or SMS message that Amazon Cognito sent
+// for authentication or verification.
 type CodeDeliveryDetailsType struct {
 	_ struct{} `type:"structure"`
 
-	// The attribute name.
+	// The name of the attribute that Amazon Cognito verifies with the code.
 	AttributeName *string `min:"1" type:"string"`
 
-	// The delivery medium (email message or phone number).
+	// The method that Amazon Cognito used to send the code.
 	DeliveryMedium *string `type:"string" enum:"DeliveryMediumType"`
 
-	// The destination for the code delivery details.
+	// The email address or phone number destination where Amazon Cognito sent the
+	// code.
 	Destination *string `type:"string"`
 }
 
@@ -16828,7 +16888,8 @@ func (s *ConcurrentModificationException) RequestID() string {
 type ConfirmDeviceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The access token.
+	// A valid access token that Amazon Cognito issued to the user whose device
+	// you want to confirm.
 	//
 	// AccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ConfirmDeviceInput's
@@ -17472,7 +17533,7 @@ type CreateGroupInput struct {
 	// A non-negative integer value that specifies the precedence of this group
 	// relative to the other groups that a user can belong to in the user pool.
 	// Zero is the highest precedence value. Groups with lower Precedence values
-	// take precedence over groups with higher ornull Precedence values. If a user
+	// take precedence over groups with higher or null Precedence values. If a user
 	// belongs to two or more groups, it is the group with the lowest precedence
 	// value whose role ARN is given in the user's tokens for the cognito:roles
 	// and cognito:preferred_role claims.
@@ -17483,7 +17544,7 @@ type CreateGroupInput struct {
 	// in tokens for users in each group. If the two groups have different role
 	// ARNs, the cognito:preferred_role claim isn't set in users' tokens.
 	//
-	// The default Precedence value is null.
+	// The default Precedence value is null. The maximum Precedence value is 2^31-1.
 	Precedence *int64 `type:"integer"`
 
 	// The role Amazon Resource Name (ARN) for the group.
@@ -17602,15 +17663,14 @@ func (s *CreateGroupOutput) SetGroup(v *GroupType) *CreateGroupOutput {
 type CreateIdentityProviderInput struct {
 	_ struct{} `type:"structure"`
 
-	// A mapping of identity provider attributes to standard and custom user pool
-	// attributes.
+	// A mapping of IdP attributes to standard and custom user pool attributes.
 	AttributeMapping map[string]*string `type:"map"`
 
-	// A list of identity provider identifiers.
+	// A list of IdP identifiers.
 	IdpIdentifiers []*string `type:"list"`
 
-	// The identity provider details. The following list describes the provider
-	// detail keys for each identity provider type.
+	// The IdP details. The following list describes the provider detail keys for
+	// each IdP type.
 	//
 	//    * For Google and Login with Amazon: client_id client_secret authorize_scopes
 	//
@@ -17619,24 +17679,22 @@ type CreateIdentityProviderInput struct {
 	//    * For Sign in with Apple: client_id team_id key_id private_key authorize_scopes
 	//
 	//    * For OpenID Connect (OIDC) providers: client_id client_secret attributes_request_method
-	//    oidc_issuer authorize_scopes authorize_url if not available from discovery
-	//    URL specified by oidc_issuer key token_url if not available from discovery
-	//    URL specified by oidc_issuer key attributes_url if not available from
-	//    discovery URL specified by oidc_issuer key jwks_uri if not available from
-	//    discovery URL specified by oidc_issuer key attributes_url_add_attributes
-	//    a read-only property that is set automatically
+	//    oidc_issuer authorize_scopes The following keys are only present if Amazon
+	//    Cognito didn't discover them at the oidc_issuer URL. authorize_url token_url
+	//    attributes_url jwks_uri Amazon Cognito sets the value of the following
+	//    keys automatically. They are read-only. attributes_url_add_attributes
 	//
-	//    * For SAML providers: MetadataFile OR MetadataURL IDPSignout (optional)
+	//    * For SAML providers: MetadataFile or MetadataURL IDPSignout optional
 	//
 	// ProviderDetails is a required field
 	ProviderDetails map[string]*string `type:"map" required:"true"`
 
-	// The identity provider name.
+	// The IdP name.
 	//
 	// ProviderName is a required field
-	ProviderName *string `min:"1" type:"string" required:"true"`
+	ProviderName *string `min:"3" type:"string" required:"true"`
 
-	// The identity provider type.
+	// The IdP type.
 	//
 	// ProviderType is a required field
 	ProviderType *string `type:"string" required:"true" enum:"IdentityProviderTypeType"`
@@ -17674,8 +17732,8 @@ func (s *CreateIdentityProviderInput) Validate() error {
 	if s.ProviderName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProviderName"))
 	}
-	if s.ProviderName != nil && len(*s.ProviderName) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("ProviderName", 1))
+	if s.ProviderName != nil && len(*s.ProviderName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("ProviderName", 3))
 	}
 	if s.ProviderType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProviderType"))
@@ -17732,7 +17790,7 @@ func (s *CreateIdentityProviderInput) SetUserPoolId(v string) *CreateIdentityPro
 type CreateIdentityProviderOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The newly created identity provider object.
+	// The newly created IdP object.
 	//
 	// IdentityProvider is a required field
 	IdentityProvider *IdentityProviderType `type:"structure" required:"true"`
@@ -18020,31 +18078,41 @@ func (s *CreateUserImportJobOutput) SetUserImportJob(v *UserImportJobType) *Crea
 type CreateUserPoolClientInput struct {
 	_ struct{} `type:"structure"`
 
-	// The time limit, between 5 minutes and 1 day, after which the access token
-	// is no longer valid and can't be used. If you supply a TokenValidityUnits
-	// value, you will override the default time unit.
+	// The access token time limit. After this limit expires, your user can't use
+	// their access token. To specify the time unit for AccessTokenValidity as seconds,
+	// minutes, hours, or days, set a TokenValidityUnits value in your API request.
+	//
+	// For example, when you set AccessTokenValidity to 10 and TokenValidityUnits
+	// to hours, your user can authorize access with their access token for 10 hours.
+	//
+	// The default time unit for AccessTokenValidity in an API request is hours.
+	// Valid range is displayed below in seconds.
 	AccessTokenValidity *int64 `min:"1" type:"integer"`
 
 	// The allowed OAuth flows.
 	//
-	// Set to code to initiate a code grant flow, which provides an authorization
-	// code as the response. This code can be exchanged for access tokens with the
-	// token endpoint.
+	// code
 	//
-	// Set to implicit to specify that the client should get the access token (and,
-	// optionally, ID token, based on scopes) directly.
+	// Use a code grant flow, which provides an authorization code as the response.
+	// This code can be exchanged for access tokens with the /oauth2/token endpoint.
 	//
-	// Set to client_credentials to specify that the client should get the access
-	// token (and, optionally, ID token, based on scopes) from the token endpoint
-	// using a combination of client and client_secret.
+	// implicit
+	//
+	// Issue the access token (and, optionally, ID token, based on scopes) directly
+	// to your user.
+	//
+	// client_credentials
+	//
+	// Issue the access token from the /oauth2/token endpoint directly to a non-person
+	// user using a combination of the client ID and client secret.
 	AllowedOAuthFlows []*string `type:"list" enum:"OAuthFlowType"`
 
 	// Set to true if the client is allowed to follow the OAuth protocol when interacting
 	// with Amazon Cognito user pools.
 	AllowedOAuthFlowsUserPoolClient *bool `type:"boolean"`
 
-	// The allowed OAuth scopes. Possible values provided by OAuth are: phone, email,
-	// openid, and profile. Possible values provided by Amazon Web Services are:
+	// The allowed OAuth scopes. Possible values provided by OAuth are phone, email,
+	// openid, and profile. Possible values provided by Amazon Web Services are
 	// aws.cognito.signin.user.admin. Custom scopes created in Resource Servers
 	// are also supported.
 	AllowedOAuthScopes []*string `type:"list"`
@@ -18059,7 +18127,7 @@ type CreateUserPoolClientInput struct {
 	// same Region.
 	AnalyticsConfiguration *AnalyticsConfigurationType `type:"structure"`
 
-	// A list of allowed redirect (callback) URLs for the identity providers.
+	// A list of allowed redirect (callback) URLs for the IdPs.
 	//
 	// A redirect URI must:
 	//
@@ -18130,18 +18198,28 @@ type CreateUserPoolClientInput struct {
 	//    * ALLOW_USER_SRP_AUTH: Enable SRP-based authentication.
 	//
 	//    * ALLOW_REFRESH_TOKEN_AUTH: Enable authflow to refresh tokens.
+	//
+	// If you don't specify a value for ExplicitAuthFlows, your app client activates
+	// the ALLOW_USER_SRP_AUTH and ALLOW_CUSTOM_AUTH authentication flows.
 	ExplicitAuthFlows []*string `type:"list" enum:"ExplicitAuthFlowsType"`
 
 	// Boolean to specify whether you want to generate a secret for the user pool
 	// client being created.
 	GenerateSecret *bool `type:"boolean"`
 
-	// The time limit, between 5 minutes and 1 day, after which the access token
-	// is no longer valid and can't be used. If you supply a TokenValidityUnits
-	// value, you will override the default time unit.
+	// The ID token time limit. After this limit expires, your user can't use their
+	// ID token. To specify the time unit for IdTokenValidity as seconds, minutes,
+	// hours, or days, set a TokenValidityUnits value in your API request.
+	//
+	// For example, when you set IdTokenValidity as 10 and TokenValidityUnits as
+	// hours, your user can authenticate their session with their ID token for 10
+	// hours.
+	//
+	// The default time unit for AccessTokenValidity in an API request is hours.
+	// Valid range is displayed below in seconds.
 	IdTokenValidity *int64 `min:"1" type:"integer"`
 
-	// A list of allowed logout URLs for the identity providers.
+	// A list of allowed logout URLs for the IdPs.
 	LogoutURLs []*string `type:"list"`
 
 	// Errors and responses that you want Amazon Cognito APIs to return during authentication,
@@ -18164,16 +18242,28 @@ type CreateUserPoolClientInput struct {
 	// The read attributes.
 	ReadAttributes []*string `type:"list"`
 
-	// The time limit, in days, after which the refresh token is no longer valid
-	// and can't be used.
+	// The refresh token time limit. After this limit expires, your user can't use
+	// their refresh token. To specify the time unit for RefreshTokenValidity as
+	// seconds, minutes, hours, or days, set a TokenValidityUnits value in your
+	// API request.
+	//
+	// For example, when you set RefreshTokenValidity as 10 and TokenValidityUnits
+	// as days, your user can refresh their session and retrieve new access and
+	// ID tokens for 10 days.
+	//
+	// The default time unit for RefreshTokenValidity in an API request is days.
+	// You can't set RefreshTokenValidity to 0. If you do, Amazon Cognito overrides
+	// the value with the default value of 30 days. Valid range is displayed below
+	// in seconds.
 	RefreshTokenValidity *int64 `type:"integer"`
 
-	// A list of provider names for the identity providers that are supported on
-	// this client. The following are supported: COGNITO, Facebook, Google and LoginWithAmazon.
+	// A list of provider names for the IdPs that this client supports. The following
+	// are supported: COGNITO, Facebook, Google LoginWithAmazon, and the names of
+	// your own SAML and OIDC providers.
 	SupportedIdentityProviders []*string `type:"list"`
 
-	// The units in which the validity times are represented. Default for RefreshToken
-	// is days, and default for ID and access tokens are hours.
+	// The units in which the validity times are represented. The default unit for
+	// RefreshToken is days, and default for ID and access tokens are hours.
 	TokenValidityUnits *TokenValidityUnitsType `type:"structure"`
 
 	// The user pool ID for the user pool where you want to create a user pool client.
@@ -18183,13 +18273,13 @@ type CreateUserPoolClientInput struct {
 
 	// The user pool attributes that the app client can write to.
 	//
-	// If your app client allows users to sign in through an identity provider,
-	// this array must include all attributes that you have mapped to identity provider
-	// attributes. Amazon Cognito updates mapped attributes when users sign in to
-	// your application through an identity provider. If your app client does not
-	// have write access to a mapped attribute, Amazon Cognito throws an error when
-	// it tries to update the attribute. For more information, see Specifying Identity
-	// Provider Attribute Mappings for Your user pool (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html).
+	// If your app client allows users to sign in through an IdP, this array must
+	// include all attributes that you have mapped to IdP attributes. Amazon Cognito
+	// updates mapped attributes when users sign in to your application through
+	// an IdP. If your app client does not have write access to a mapped attribute,
+	// Amazon Cognito throws an error when it tries to update the attribute. For
+	// more information, see Specifying IdP Attribute Mappings for Your user pool
+	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html).
 	WriteAttributes []*string `type:"list"`
 }
 
@@ -18603,6 +18693,9 @@ type CreateUserPoolInput struct {
 	// A string representing the SMS verification message.
 	SmsVerificationMessage *string `min:"6" type:"string"`
 
+	// The settings for updates to user attributes.
+	UserAttributeUpdateSettings *UserAttributeUpdateSettingsType `type:"structure"`
+
 	// Enables advanced security risk detection. Set the key AdvancedSecurityMode
 	// to the value "AUDIT".
 	UserPoolAddOns *UserPoolAddOnsType `type:"structure"`
@@ -18824,6 +18917,12 @@ func (s *CreateUserPoolInput) SetSmsConfiguration(v *SmsConfigurationType) *Crea
 // SetSmsVerificationMessage sets the SmsVerificationMessage field's value.
 func (s *CreateUserPoolInput) SetSmsVerificationMessage(v string) *CreateUserPoolInput {
 	s.SmsVerificationMessage = &v
+	return s
+}
+
+// SetUserAttributeUpdateSettings sets the UserAttributeUpdateSettings field's value.
+func (s *CreateUserPoolInput) SetUserAttributeUpdateSettings(v *UserAttributeUpdateSettingsType) *CreateUserPoolInput {
+	s.UserAttributeUpdateSettings = v
 	return s
 }
 
@@ -19167,7 +19266,7 @@ func (s DeleteGroupOutput) GoString() string {
 type DeleteIdentityProviderInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identity provider name.
+	// The IdP name.
 	//
 	// ProviderName is a required field
 	ProviderName *string `min:"1" type:"string" required:"true"`
@@ -19344,7 +19443,8 @@ func (s DeleteResourceServerOutput) GoString() string {
 type DeleteUserAttributesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The access token used in the request to delete user attributes.
+	// A valid access token that Amazon Cognito issued to the user whose attributes
+	// you want to delete.
 	//
 	// AccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DeleteUserAttributesInput's
@@ -19435,7 +19535,8 @@ func (s DeleteUserAttributesOutput) GoString() string {
 type DeleteUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// The access token from a request to delete a user.
+	// A valid access token that Amazon Cognito issued to the user whose user profile
+	// you want to delete.
 	//
 	// AccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DeleteUserInput's
@@ -19762,7 +19863,7 @@ func (s DeleteUserPoolOutput) GoString() string {
 type DescribeIdentityProviderInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identity provider name.
+	// The IdP name.
 	//
 	// ProviderName is a required field
 	ProviderName *string `min:"1" type:"string" required:"true"`
@@ -19828,7 +19929,7 @@ func (s *DescribeIdentityProviderInput) SetUserPoolId(v string) *DescribeIdentit
 type DescribeIdentityProviderOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The identity provider that was deleted.
+	// The IdP that was deleted.
 	//
 	// IdentityProvider is a required field
 	IdentityProvider *IdentityProviderType `type:"structure" required:"true"`
@@ -20481,7 +20582,7 @@ type DeviceSecretVerifierConfigType struct {
 	// The password verifier.
 	PasswordVerifier *string `type:"string"`
 
-	// The salt.
+	// The salt (https://en.wikipedia.org/wiki/Salt_(cryptography))
 	Salt *string `type:"string"`
 }
 
@@ -20798,26 +20899,6 @@ type EmailConfigurationType struct {
 	// the FROM address, provide the Amazon Resource Name (ARN) of an Amazon SES
 	// verified email address for the SourceArn parameter.
 	//
-	// If EmailSendingAccount is COGNITO_DEFAULT, you can't use the following parameters:
-	//
-	//    * EmailVerificationMessage
-	//
-	//    * EmailVerificationSubject
-	//
-	//    * InviteMessageTemplate.EmailMessage
-	//
-	//    * InviteMessageTemplate.EmailSubject
-	//
-	//    * VerificationMessageTemplate.EmailMessage
-	//
-	//    * VerificationMessageTemplate.EmailMessageByLink
-	//
-	//    * VerificationMessageTemplate.EmailSubject,
-	//
-	//    * VerificationMessageTemplate.EmailSubjectByLink
-	//
-	// DEVELOPER EmailSendingAccount is required.
-	//
 	// DEVELOPER
 	//
 	// When Amazon Cognito emails your users, it uses your Amazon SES configuration.
@@ -20826,8 +20907,8 @@ type EmailConfigurationType struct {
 	// same limits that apply to your Amazon SES verified email address in your
 	// Amazon Web Services account.
 	//
-	// If you use this option, you must provide the ARN of an Amazon SES verified
-	// email address for the SourceArn parameter.
+	// If you use this option, provide the ARN of an Amazon SES verified email address
+	// for the SourceArn parameter.
 	//
 	// Before Amazon Cognito can email your users, it requires additional permissions
 	// to call Amazon SES on your behalf. When you update your user pool with this
@@ -21237,7 +21318,8 @@ func (s *ExpiredCodeException) RequestID() string {
 type ForgetDeviceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The access token for the forgotten device request.
+	// A valid access token that Amazon Cognito issued to the user whose registered
+	// device you want to forget.
 	//
 	// AccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ForgetDeviceInput's
@@ -21322,8 +21404,8 @@ func (s ForgetDeviceOutput) GoString() string {
 type ForgotPasswordInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Pinpoint analytics metadata for collecting metrics for ForgotPassword
-	// calls.
+	// The Amazon Pinpoint analytics metadata that contributes to your metrics for
+	// ForgotPassword calls.
 	AnalyticsMetadata *AnalyticsMetadataType `type:"structure"`
 
 	// The ID of the client associated with the user pool.
@@ -21469,7 +21551,7 @@ func (s *ForgotPasswordInput) SetUsername(v string) *ForgotPasswordInput {
 	return s
 }
 
-// Respresents the response from the server regarding the request to reset a
+// Represents the response from the server regarding the request to reset a
 // password.
 type ForgotPasswordOutput struct {
 	_ struct{} `type:"structure"`
@@ -21600,7 +21682,8 @@ func (s *GetCSVHeaderOutput) SetUserPoolId(v string) *GetCSVHeaderOutput {
 type GetDeviceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The access token.
+	// A valid access token that Amazon Cognito issued to the user whose device
+	// information you want to request.
 	//
 	// AccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetDeviceInput's
@@ -21793,7 +21876,7 @@ func (s *GetGroupOutput) SetGroup(v *GroupType) *GetGroupOutput {
 type GetIdentityProviderByIdentifierInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identity provider ID.
+	// The IdP identifier.
 	//
 	// IdpIdentifier is a required field
 	IdpIdentifier *string `min:"1" type:"string" required:"true"`
@@ -21859,7 +21942,7 @@ func (s *GetIdentityProviderByIdentifierInput) SetUserPoolId(v string) *GetIdent
 type GetIdentityProviderByIdentifierOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The identity provider object.
+	// The IdP object.
 	//
 	// IdentityProvider is a required field
 	IdentityProvider *IdentityProviderType `type:"structure" required:"true"`
@@ -22073,8 +22156,8 @@ func (s *GetUICustomizationOutput) SetUICustomization(v *UICustomizationType) *G
 type GetUserAttributeVerificationCodeInput struct {
 	_ struct{} `type:"structure"`
 
-	// The access token returned by the server response to get the user attribute
-	// verification code.
+	// A non-expired access token for the user whose attribute verification code
+	// you want to generate.
 	//
 	// AccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetUserAttributeVerificationCodeInput's
@@ -22214,8 +22297,7 @@ func (s *GetUserAttributeVerificationCodeOutput) SetCodeDeliveryDetails(v *CodeD
 type GetUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// The access token returned by the server response to get information about
-	// the user.
+	// A non-expired access token for the user whose information you want to query.
 	//
 	// AccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetUserInput's
@@ -22455,7 +22537,8 @@ func (s *GetUserPoolMfaConfigOutput) SetSoftwareTokenMfaConfiguration(v *Softwar
 type GlobalSignOutInput struct {
 	_ struct{} `type:"structure"`
 
-	// The access token.
+	// A valid access token that Amazon Cognito issued to the user who you want
+	// to sign out.
 	//
 	// AccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GlobalSignOutInput's
@@ -22731,47 +22814,46 @@ func (s *HttpHeader) SetHeaderValue(v string) *HttpHeader {
 	return s
 }
 
-// A container for information about an identity provider.
+// A container for information about an IdP.
 type IdentityProviderType struct {
 	_ struct{} `type:"structure"`
 
-	// A mapping of identity provider attributes to standard and custom user pool
-	// attributes.
+	// A mapping of IdP attributes to standard and custom user pool attributes.
 	AttributeMapping map[string]*string `type:"map"`
 
-	// The date the identity provider was created.
+	// The date the IdP was created.
 	CreationDate *time.Time `type:"timestamp"`
 
-	// A list of identity provider identifiers.
+	// A list of IdP identifiers.
 	IdpIdentifiers []*string `type:"list"`
 
-	// The date the identity provider was last modified.
+	// The date the IdP was last modified.
 	LastModifiedDate *time.Time `type:"timestamp"`
 
-	// The identity provider details. The following list describes the provider
-	// detail keys for each identity provider type.
+	// The IdP details. The following list describes the provider detail keys for
+	// each IdP type.
 	//
 	//    * For Google and Login with Amazon: client_id client_secret authorize_scopes
 	//
 	//    * For Facebook: client_id client_secret authorize_scopes api_version
 	//
-	//    * For Sign in with Apple: client_id team_id key_id private_key authorize_scopes
+	//    * For Sign in with Apple: client_id team_id key_id private_key You can
+	//    submit a private_key when you add or update an IdP. Describe operations
+	//    don't return the private key. authorize_scopes
 	//
 	//    * For OIDC providers: client_id client_secret attributes_request_method
-	//    oidc_issuer authorize_scopes authorize_url if not available from discovery
-	//    URL specified by oidc_issuer key token_url if not available from discovery
-	//    URL specified by oidc_issuer key attributes_url if not available from
-	//    discovery URL specified by oidc_issuer key jwks_uri if not available from
-	//    discovery URL specified by oidc_issuer key attributes_url_add_attributes
-	//    a read-only property that is set automatically
+	//    oidc_issuer authorize_scopes The following keys are only present if Amazon
+	//    Cognito didn't discover them at the oidc_issuer URL. authorize_url token_url
+	//    attributes_url jwks_uri Amazon Cognito sets the value of the following
+	//    keys automatically. They are read-only. attributes_url_add_attributes
 	//
-	//    * For SAML providers: MetadataFile or MetadataURL IDPSignOut optional
+	//    * For SAML providers: MetadataFile or MetadataURL IDPSignout optional
 	ProviderDetails map[string]*string `type:"map"`
 
-	// The identity provider name.
+	// The IdP name.
 	ProviderName *string `min:"1" type:"string"`
 
-	// The identity provider type.
+	// The IdP type.
 	ProviderType *string `type:"string" enum:"IdentityProviderTypeType"`
 
 	// The user pool ID.
@@ -22848,8 +22930,8 @@ func (s *IdentityProviderType) SetUserPoolId(v string) *IdentityProviderType {
 type InitiateAuthInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Pinpoint analytics metadata for collecting metrics for InitiateAuth
-	// calls.
+	// The Amazon Pinpoint analytics metadata that contributes to your metrics for
+	// InitiateAuth calls.
 	AnalyticsMetadata *AnalyticsMetadataType `type:"structure"`
 
 	// The authentication flow for this call to run. The API action will depend
@@ -22873,9 +22955,9 @@ type InitiateAuthInput struct {
 	//
 	//    * CUSTOM_AUTH: Custom authentication flow.
 	//
-	//    * USER_PASSWORD_AUTH: Non-SRP authentication flow; USERNAME and PASSWORD
+	//    * USER_PASSWORD_AUTH: Non-SRP authentication flow; user name and password
 	//    are passed directly. If a user migration Lambda trigger is set, this flow
-	//    will invoke the user migration Lambda if it doesn't find the USERNAME
+	//    will invoke the user migration Lambda if it doesn't find the user name
 	//    in the user pool.
 	//
 	// ADMIN_NO_SRP_AUTH isn't a valid value.
@@ -23082,8 +23164,16 @@ type InitiateAuthOutput struct {
 	//    only.
 	//
 	//    * NEW_PASSWORD_REQUIRED: For users who are required to change their passwords
-	//    after successful first login. This challenge should be passed with NEW_PASSWORD
-	//    and any other required attributes.
+	//    after successful first login. Respond to this challenge with NEW_PASSWORD
+	//    and any required attributes that Amazon Cognito returned in the requiredAttributes
+	//    parameter. You can also set values for attributes that aren't required
+	//    by your user pool and that your app client can write. For more information,
+	//    see RespondToAuthChallenge (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RespondToAuthChallenge.html).
+	//    In a NEW_PASSWORD_REQUIRED challenge response, you can't modify a required
+	//    attribute that already has a value. In RespondToAuthChallenge, set a value
+	//    for any keys that Amazon Cognito returned in the requiredAttributes parameter,
+	//    then use the UpdateUserAttributes API operation to modify the value of
+	//    any additional attributes.
 	//
 	//    * MFA_SETUP: For users who are required to setup an MFA factor before
 	//    they can sign in. The MFA types activated for the user pool will be listed
@@ -23289,7 +23379,7 @@ type InvalidLambdaResponseException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// The message returned when Amazon Cognito hrows an invalid Lambda response
+	// The message returned when Amazon Cognito throws an invalid Lambda response
 	// exception.
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -24013,7 +24103,8 @@ func (s *LimitExceededException) RequestID() string {
 type ListDevicesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The access tokens for the request to list devices.
+	// A valid access token that Amazon Cognito issued to the user whose list of
+	// devices you want to view.
 	//
 	// AccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ListDevicesInput's
@@ -24237,7 +24328,7 @@ func (s *ListGroupsOutput) SetNextToken(v string) *ListGroupsOutput {
 type ListIdentityProvidersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of identity providers to return.
+	// The maximum number of IdPs to return.
 	MaxResults *int64 `type:"integer"`
 
 	// A pagination token.
@@ -24310,7 +24401,7 @@ type ListIdentityProvidersOutput struct {
 	// A pagination token.
 	NextToken *string `min:"1" type:"string"`
 
-	// A list of identity provider objects.
+	// A list of IdP objects.
 	//
 	// Providers is a required field
 	Providers []*ProviderDescription `type:"list" required:"true"`
@@ -24980,8 +25071,8 @@ func (s *ListUsersInGroupInput) SetUserPoolId(v string) *ListUsersInGroupInput {
 type ListUsersInGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An identifier that was returned from the previous call to this operation,
-	// which can be used to return the next set of items in the list.
+	// An identifier that you can use in a later request to return the next set
+	// of items in the list.
 	NextToken *string `min:"1" type:"string"`
 
 	// The users returned in the request to list users.
@@ -25067,7 +25158,7 @@ type ListUsersInput struct {
 	// Custom attributes aren't searchable.
 	//
 	// You can also list users with a client-side filter. The server-side filter
-	// matches no more than 1 attribute. For an advanced search, use a client-side
+	// matches no more than one attribute. For an advanced search, use a client-side
 	// filter with the --query parameter of the list-users action in the CLI. When
 	// you use a client-side filter, ListUsers returns a paginated list of zero
 	// or more users. You can receive multiple pages in a row with zero results.
@@ -25768,7 +25859,8 @@ type PasswordPolicyType struct {
 	// their password.
 	//
 	// When you set TemporaryPasswordValidityDays for a user pool, you can no longer
-	// set the deprecated UnusedAccountValidityDays value for that user pool.
+	// set a value for the legacy UnusedAccountValidityDays parameter in that user
+	// pool.
 	TemporaryPasswordValidityDays *int64 `type:"integer"`
 }
 
@@ -25969,7 +26061,7 @@ func (s *PreconditionNotMetException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A container for identity provider details.
+// A container for IdP details.
 type ProviderDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -25979,10 +26071,10 @@ type ProviderDescription struct {
 	// The date the provider was last modified.
 	LastModifiedDate *time.Time `type:"timestamp"`
 
-	// The identity provider name.
+	// The IdP name.
 	ProviderName *string `min:"1" type:"string"`
 
-	// The identity provider type.
+	// The IdP type.
 	ProviderType *string `type:"string" enum:"IdentityProviderTypeType"`
 }
 
@@ -26028,7 +26120,7 @@ func (s *ProviderDescription) SetProviderType(v string) *ProviderDescription {
 	return s
 }
 
-// A container for information about an identity provider for a user pool.
+// A container for information about an IdP for a user pool.
 type ProviderUserIdentifierType struct {
 	_ struct{} `type:"structure"`
 
@@ -26160,8 +26252,8 @@ func (s *RecoveryOptionType) SetPriority(v int64) *RecoveryOptionType {
 type ResendConfirmationCodeInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Pinpoint analytics metadata for collecting metrics for ResendConfirmationCode
-	// calls.
+	// The Amazon Pinpoint analytics metadata that contributes to your metrics for
+	// ResendConfirmationCode calls.
 	AnalyticsMetadata *AnalyticsMetadataType `type:"structure"`
 
 	// The ID of the client associated with the user pool.
@@ -26538,8 +26630,8 @@ func (s *ResourceServerType) SetUserPoolId(v string) *ResourceServerType {
 type RespondToAuthChallengeInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Pinpoint analytics metadata for collecting metrics for RespondToAuthChallenge
-	// calls.
+	// The Amazon Pinpoint analytics metadata that contributes to your metrics for
+	// RespondToAuthChallenge calls.
 	AnalyticsMetadata *AnalyticsMetadataType `type:"structure"`
 
 	// The challenge name. For more information, see InitiateAuth (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_InitiateAuth.html).
@@ -26558,11 +26650,19 @@ type RespondToAuthChallengeInput struct {
 	//    * SMS_MFA: SMS_MFA_CODE, USERNAME.
 	//
 	//    * PASSWORD_VERIFIER: PASSWORD_CLAIM_SIGNATURE, PASSWORD_CLAIM_SECRET_BLOCK,
-	//    TIMESTAMP, USERNAME. PASSWORD_VERIFIER requires DEVICE_KEY when signing
+	//    TIMESTAMP, USERNAME. PASSWORD_VERIFIER requires DEVICE_KEY when you sign
 	//    in with a remembered device.
 	//
-	//    * NEW_PASSWORD_REQUIRED: NEW_PASSWORD, any other required attributes,
-	//    USERNAME.
+	//    * NEW_PASSWORD_REQUIRED: NEW_PASSWORD, USERNAME, SECRET_HASH (if app client
+	//    is configured with client secret). To set any required attributes that
+	//    Amazon Cognito returned as requiredAttributes in the InitiateAuth response,
+	//    add a userAttributes.attributename parameter. This parameter can also
+	//    set values for writable attributes that aren't required by your user pool.
+	//    In a NEW_PASSWORD_REQUIRED challenge response, you can't modify a required
+	//    attribute that already has a value. In RespondToAuthChallenge, set a value
+	//    for any keys that Amazon Cognito returned in the requiredAttributes parameter,
+	//    then use the UpdateUserAttributes API operation to modify the value of
+	//    any additional attributes.
 	//
 	//    * SOFTWARE_TOKEN_MFA: USERNAME and SOFTWARE_TOKEN_MFA_CODE are required
 	//    attributes.
@@ -27081,12 +27181,12 @@ type SchemaAttributeType struct {
 
 	// Specifies whether the value of the attribute can be changed.
 	//
-	// For any user pool attribute that is mapped to an identity provider attribute,
-	// you must set this parameter to true. Amazon Cognito updates mapped attributes
-	// when users sign in to your application through an identity provider. If an
-	// attribute is immutable, Amazon Cognito throws an error when it attempts to
-	// update the attribute. For more information, see Specifying Identity Provider
-	// Attribute Mappings for Your User Pool (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html).
+	// For any user pool attribute that is mapped to an IdP attribute, you must
+	// set this parameter to true. Amazon Cognito updates mapped attributes when
+	// users sign in to your application through an IdP. If an attribute is immutable,
+	// Amazon Cognito throws an error when it attempts to update the attribute.
+	// For more information, see Specifying Identity Provider Attribute Mappings
+	// for Your User Pool (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html).
 	Mutable *bool `type:"boolean"`
 
 	// A schema attribute of the name type.
@@ -27502,7 +27602,8 @@ func (s *SetUICustomizationOutput) SetUICustomization(v *UICustomizationType) *S
 type SetUserMFAPreferenceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The access token for the user.
+	// A valid access token that Amazon Cognito issued to the user whose MFA preference
+	// you want to set.
 	//
 	// AccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SetUserMFAPreferenceInput's
@@ -27740,7 +27841,8 @@ func (s *SetUserPoolMfaConfigOutput) SetSoftwareTokenMfaConfiguration(v *Softwar
 type SetUserSettingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The access token for the set user settings request.
+	// A valid access token that Amazon Cognito issued to the user whose user settings
+	// you want to configure.
 	//
 	// AccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SetUserSettingsInput's
@@ -27839,8 +27941,8 @@ func (s SetUserSettingsOutput) GoString() string {
 type SignUpInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Pinpoint analytics metadata for collecting metrics for SignUp
-	// calls.
+	// The Amazon Pinpoint analytics metadata that contributes to your metrics for
+	// SignUp calls.
 	AnalyticsMetadata *AnalyticsMetadataType `type:"structure"`
 
 	// The ID of the client associated with the user pool.
@@ -28734,8 +28836,8 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// The data type for TokenValidityUnits that specifics the time measurements
-// for token validity.
+// The data type TokenValidityUnits specifies the time units you use when you
+// set the duration of ID, access, and refresh tokens.
 type TokenValidityUnitsType struct {
 	_ struct{} `type:"structure"`
 
@@ -29633,7 +29735,8 @@ func (s UpdateAuthEventFeedbackOutput) GoString() string {
 type UpdateDeviceStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The access token.
+	// A valid access token that Amazon Cognito issued to the user whose device
+	// status you want to update.
 	//
 	// AccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateDeviceStatusInput's
@@ -29861,16 +29964,16 @@ func (s *UpdateGroupOutput) SetGroup(v *GroupType) *UpdateGroupOutput {
 type UpdateIdentityProviderInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identity provider attribute mapping to be changed.
+	// The IdP attribute mapping to be changed.
 	AttributeMapping map[string]*string `type:"map"`
 
-	// A list of identity provider identifiers.
+	// A list of IdP identifiers.
 	IdpIdentifiers []*string `type:"list"`
 
-	// The identity provider details to be updated, such as MetadataURL and MetadataFile.
+	// The IdP details to be updated, such as MetadataURL and MetadataFile.
 	ProviderDetails map[string]*string `type:"map"`
 
-	// The identity provider name.
+	// The IdP name.
 	//
 	// ProviderName is a required field
 	ProviderName *string `min:"1" type:"string" required:"true"`
@@ -29954,7 +30057,7 @@ func (s *UpdateIdentityProviderInput) SetUserPoolId(v string) *UpdateIdentityPro
 type UpdateIdentityProviderOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The identity provider object.
+	// The IdP object.
 	//
 	// IdentityProvider is a required field
 	IdentityProvider *IdentityProviderType `type:"structure" required:"true"`
@@ -30123,7 +30226,8 @@ func (s *UpdateResourceServerOutput) SetResourceServer(v *ResourceServerType) *U
 type UpdateUserAttributesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The access token for the request to update user attributes.
+	// A valid access token that Amazon Cognito issued to the user whose user attributes
+	// you want to update.
 	//
 	// AccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateUserAttributesInput's
@@ -30166,6 +30270,13 @@ type UpdateUserAttributesInput struct {
 	//
 	// For custom attributes, you must prepend the custom: prefix to the attribute
 	// name.
+	//
+	// If you have set an attribute to require verification before Amazon Cognito
+	// updates its value, this request doesn’t immediately update the value of
+	// that attribute. After your user receives and responds to a verification message
+	// to verify the new value, Amazon Cognito updates the attribute value. Your
+	// user can sign in and receive messages with the original attribute value until
+	// they verify the new value.
 	//
 	// UserAttributes is a required field
 	UserAttributes []*AttributeType `type:"list" required:"true"`
@@ -30270,36 +30381,47 @@ func (s *UpdateUserAttributesOutput) SetCodeDeliveryDetailsList(v []*CodeDeliver
 type UpdateUserPoolClientInput struct {
 	_ struct{} `type:"structure"`
 
-	// The time limit after which the access token is no longer valid and can't
-	// be used.
+	// The access token time limit. After this limit expires, your user can't use
+	// their access token. To specify the time unit for AccessTokenValidity as seconds,
+	// minutes, hours, or days, set a TokenValidityUnits value in your API request.
+	//
+	// For example, when you set AccessTokenValidity to 10 and TokenValidityUnits
+	// to hours, your user can authorize access with their access token for 10 hours.
+	//
+	// The default time unit for AccessTokenValidity in an API request is hours.
+	// Valid range is displayed below in seconds.
 	AccessTokenValidity *int64 `min:"1" type:"integer"`
 
 	// The allowed OAuth flows.
 	//
-	// Set to code to initiate a code grant flow, which provides an authorization
-	// code as the response. This code can be exchanged for access tokens with the
-	// token endpoint.
+	// code
 	//
-	// Set to implicit to specify that the client should get the access token (and,
-	// optionally, ID token, based on scopes) directly.
+	// Use a code grant flow, which provides an authorization code as the response.
+	// This code can be exchanged for access tokens with the /oauth2/token endpoint.
 	//
-	// Set to client_credentials to specify that the client should get the access
-	// token (and, optionally, ID token, based on scopes) from the token endpoint
-	// using a combination of client and client_secret.
+	// implicit
+	//
+	// Issue the access token (and, optionally, ID token, based on scopes) directly
+	// to your user.
+	//
+	// client_credentials
+	//
+	// Issue the access token from the /oauth2/token endpoint directly to a non-person
+	// user using a combination of the client ID and client secret.
 	AllowedOAuthFlows []*string `type:"list" enum:"OAuthFlowType"`
 
 	// Set to true if the client is allowed to follow the OAuth protocol when interacting
 	// with Amazon Cognito user pools.
 	AllowedOAuthFlowsUserPoolClient *bool `type:"boolean"`
 
-	// The allowed OAuth scopes. Possible values provided by OAuth are: phone, email,
-	// openid, and profile. Possible values provided by Amazon Web Services are:
+	// The allowed OAuth scopes. Possible values provided by OAuth are phone, email,
+	// openid, and profile. Possible values provided by Amazon Web Services are
 	// aws.cognito.signin.user.admin. Custom scopes created in Resource Servers
 	// are also supported.
 	AllowedOAuthScopes []*string `type:"list"`
 
-	// The Amazon Pinpoint analytics configuration for collecting metrics for this
-	// user pool.
+	// The Amazon Pinpoint analytics configuration necessary to collect metrics
+	// for this user pool.
 	//
 	// In Amazon Web Services Regions where Amazon Pinpoint isn't available, user
 	// pools only support sending events to Amazon Pinpoint projects in us-east-1.
@@ -30307,7 +30429,7 @@ type UpdateUserPoolClientInput struct {
 	// events to Amazon Pinpoint projects within that same Region.
 	AnalyticsConfiguration *AnalyticsConfigurationType `type:"structure"`
 
-	// A list of allowed redirect (callback) URLs for the identity providers.
+	// A list of allowed redirect (callback) URLs for the IdPs.
 	//
 	// A redirect URI must:
 	//
@@ -30383,10 +30505,19 @@ type UpdateUserPoolClientInput struct {
 	//    * ALLOW_REFRESH_TOKEN_AUTH: Enable authflow to refresh tokens.
 	ExplicitAuthFlows []*string `type:"list" enum:"ExplicitAuthFlowsType"`
 
-	// The time limit after which the ID token is no longer valid and can't be used.
+	// The ID token time limit. After this limit expires, your user can't use their
+	// ID token. To specify the time unit for IdTokenValidity as seconds, minutes,
+	// hours, or days, set a TokenValidityUnits value in your API request.
+	//
+	// For example, when you set IdTokenValidity as 10 and TokenValidityUnits as
+	// hours, your user can authenticate their session with their ID token for 10
+	// hours.
+	//
+	// The default time unit for AccessTokenValidity in an API request is hours.
+	// Valid range is displayed below in seconds.
 	IdTokenValidity *int64 `min:"1" type:"integer"`
 
-	// A list of allowed logout URLs for the identity providers.
+	// A list of allowed logout URLs for the IdPs.
 	LogoutURLs []*string `type:"list"`
 
 	// Errors and responses that you want Amazon Cognito APIs to return during authentication,
@@ -30409,16 +30540,28 @@ type UpdateUserPoolClientInput struct {
 	// The read-only attributes of the user pool.
 	ReadAttributes []*string `type:"list"`
 
-	// The time limit, in days, after which the refresh token is no longer valid
-	// and can't be used.
+	// The refresh token time limit. After this limit expires, your user can't use
+	// their refresh token. To specify the time unit for RefreshTokenValidity as
+	// seconds, minutes, hours, or days, set a TokenValidityUnits value in your
+	// API request.
+	//
+	// For example, when you set RefreshTokenValidity as 10 and TokenValidityUnits
+	// as days, your user can refresh their session and retrieve new access and
+	// ID tokens for 10 days.
+	//
+	// The default time unit for RefreshTokenValidity in an API request is days.
+	// You can't set RefreshTokenValidity to 0. If you do, Amazon Cognito overrides
+	// the value with the default value of 30 days. Valid range is displayed below
+	// in seconds.
 	RefreshTokenValidity *int64 `type:"integer"`
 
-	// A list of provider names for the identity providers that are supported on
-	// this client.
+	// A list of provider names for the IdPs that this client supports. The following
+	// are supported: COGNITO, Facebook, Google LoginWithAmazon, and the names of
+	// your own SAML and OIDC providers.
 	SupportedIdentityProviders []*string `type:"list"`
 
-	// The units in which the validity times are represented. Default for RefreshToken
-	// is days, and default for ID and access tokens is hours.
+	// The units in which the validity times are represented. The default unit for
+	// RefreshToken is days, and the default for ID and access tokens is hours.
 	TokenValidityUnits *TokenValidityUnitsType `type:"structure"`
 
 	// The user pool ID for the user pool where you want to update the user pool
@@ -30807,7 +30950,7 @@ type UpdateUserPoolInput struct {
 	// pool.
 	LambdaConfig *LambdaConfigType `type:"structure"`
 
-	// Can be one of the following values:
+	// Possible values include:
 	//
 	//    * OFF - MFA tokens aren't required and can't be specified during user
 	//    registration.
@@ -30836,6 +30979,9 @@ type UpdateUserPoolInput struct {
 
 	// A container with information about the SMS verification message.
 	SmsVerificationMessage *string `min:"6" type:"string"`
+
+	// The settings for updates to user attributes.
+	UserAttributeUpdateSettings *UserAttributeUpdateSettingsType `type:"structure"`
 
 	// Enables advanced security risk detection. Set the key AdvancedSecurityMode
 	// to the value "AUDIT".
@@ -31019,6 +31165,12 @@ func (s *UpdateUserPoolInput) SetSmsVerificationMessage(v string) *UpdateUserPoo
 	return s
 }
 
+// SetUserAttributeUpdateSettings sets the UserAttributeUpdateSettings field's value.
+func (s *UpdateUserPoolInput) SetUserAttributeUpdateSettings(v *UserAttributeUpdateSettingsType) *UpdateUserPoolInput {
+	s.UserAttributeUpdateSettings = v
+	return s
+}
+
 // SetUserPoolAddOns sets the UserPoolAddOns field's value.
 func (s *UpdateUserPoolInput) SetUserPoolAddOns(v *UserPoolAddOnsType) *UpdateUserPoolInput {
 	s.UserPoolAddOns = v
@@ -31067,9 +31219,58 @@ func (s UpdateUserPoolOutput) GoString() string {
 	return s.String()
 }
 
-// Contextual data, such as the user's device fingerprint, IP address, or location,
-// used for evaluating the risk of an unexpected event by Amazon Cognito advanced
-// security.
+// The settings for updates to user attributes.
+type UserAttributeUpdateSettingsType struct {
+	_ struct{} `type:"structure"`
+
+	// Requires that your user verifies their email address, phone number, or both
+	// before Amazon Cognito updates the value of that attribute. When you update
+	// a user attribute that has this option activated, Amazon Cognito sends a verification
+	// message to the new phone number or email address. Amazon Cognito doesn’t
+	// change the value of the attribute until your user responds to the verification
+	// message and confirms the new value.
+	//
+	// You can verify an updated email address or phone number with a VerifyUserAttribute
+	// (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerifyUserAttribute.html)
+	// API request. You can also call the UpdateUserAttributes (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserAttributes.html)
+	// or AdminUpdateUserAttributes (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminUpdateUserAttributes.html)
+	// API and set email_verified or phone_number_verified to true.
+	//
+	// When AttributesRequireVerificationBeforeUpdate is false, your user pool doesn't
+	// require that your users verify attribute changes before Amazon Cognito updates
+	// them. In a user pool where AttributesRequireVerificationBeforeUpdate is false,
+	// API operations that change attribute values can immediately update a user’s
+	// email or phone_number attribute.
+	AttributesRequireVerificationBeforeUpdate []*string `type:"list" enum:"VerifiedAttributeType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserAttributeUpdateSettingsType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserAttributeUpdateSettingsType) GoString() string {
+	return s.String()
+}
+
+// SetAttributesRequireVerificationBeforeUpdate sets the AttributesRequireVerificationBeforeUpdate field's value.
+func (s *UserAttributeUpdateSettingsType) SetAttributesRequireVerificationBeforeUpdate(v []*string) *UserAttributeUpdateSettingsType {
+	s.AttributesRequireVerificationBeforeUpdate = v
+	return s
+}
+
+// Information that your app generates about a user's AdminInitiateAuth or AdminRespondToAuthChallenge
+// session. Amazon Cognito advanced security features calculate risk levels
+// for user sessions based on this context data.
 type UserContextDataType struct {
 	_ struct{} `type:"structure"`
 
@@ -31699,32 +31900,43 @@ func (s *UserPoolClientDescription) SetUserPoolId(v string) *UserPoolClientDescr
 type UserPoolClientType struct {
 	_ struct{} `type:"structure"`
 
-	// The time limit, specified by tokenValidityUnits, defaulting to hours, after
-	// which the access token is no longer valid and can't be used.
+	// The access token time limit. After this limit expires, your user can't use
+	// their access token. To specify the time unit for AccessTokenValidity as seconds,
+	// minutes, hours, or days, set a TokenValidityUnits value in your API request.
+	//
+	// For example, when you set AccessTokenValidity to 10 and TokenValidityUnits
+	// to hours, your user can authorize access with their access token for 10 hours.
+	//
+	// The default time unit for AccessTokenValidity in an API request is hours.
+	// Valid range is displayed below in seconds.
 	AccessTokenValidity *int64 `min:"1" type:"integer"`
 
 	// The allowed OAuth flows.
 	//
-	// Set to code to initiate a code grant flow, which provides an authorization
-	// code as the response. This code can be exchanged for access tokens with the
-	// token endpoint.
+	// code
 	//
-	// Set to implicit to specify that the client should get the access token (and,
-	// optionally, ID token, based on scopes) directly.
+	// Use a code grant flow, which provides an authorization code as the response.
+	// This code can be exchanged for access tokens with the /oauth2/token endpoint.
 	//
-	// Set to client_credentials to specify that the client should get the access
-	// token (and, optionally, ID token, based on scopes) from the token endpoint
-	// using a combination of client and client_secret.
+	// implicit
+	//
+	// Issue the access token (and, optionally, ID token, based on scopes) directly
+	// to your user.
+	//
+	// client_credentials
+	//
+	// Issue the access token from the /oauth2/token endpoint directly to a non-person
+	// user using a combination of the client ID and client secret.
 	AllowedOAuthFlows []*string `type:"list" enum:"OAuthFlowType"`
 
 	// Set to true if the client is allowed to follow the OAuth protocol when interacting
 	// with Amazon Cognito user pools.
 	AllowedOAuthFlowsUserPoolClient *bool `type:"boolean"`
 
-	// The allowed OAuth scopes. Possible values provided by OAuth are: phone, email,
-	// openid, and profile. Possible values provided by Amazon Web Services are:
-	// aws.cognito.signin.user.admin. Custom scopes created in Resource Servers
-	// are also supported.
+	// The OAuth scopes that your app client supports. Possible values that OAuth
+	// provides are phone, email, openid, and profile. Possible values that Amazon
+	// Web Services provides are aws.cognito.signin.user.admin. Amazon Cognito also
+	// supports custom scopes that you create in Resource Servers.
 	AllowedOAuthScopes []*string `type:"list"`
 
 	// The Amazon Pinpoint analytics configuration for the user pool client.
@@ -31734,7 +31946,7 @@ type UserPoolClientType struct {
 	// Region where the user pool resides.
 	AnalyticsConfiguration *AnalyticsConfigurationType `type:"structure"`
 
-	// A list of allowed redirect (callback) URLs for the identity providers.
+	// A list of allowed redirect (callback) URLs for the IdPs.
 	//
 	// A redirect URI must:
 	//
@@ -31819,14 +32031,22 @@ type UserPoolClientType struct {
 	//    * ALLOW_REFRESH_TOKEN_AUTH: Enable authflow to refresh tokens.
 	ExplicitAuthFlows []*string `type:"list" enum:"ExplicitAuthFlowsType"`
 
-	// The time limit specified by tokenValidityUnits, defaulting to hours, after
-	// which the refresh token is no longer valid and can't be used.
+	// The ID token time limit. After this limit expires, your user can't use their
+	// ID token. To specify the time unit for IdTokenValidity as seconds, minutes,
+	// hours, or days, set a TokenValidityUnits value in your API request.
+	//
+	// For example, when you set IdTokenValidity as 10 and TokenValidityUnits as
+	// hours, your user can authenticate their session with their ID token for 10
+	// hours.
+	//
+	// The default time unit for AccessTokenValidity in an API request is hours.
+	// Valid range is displayed below in seconds.
 	IdTokenValidity *int64 `min:"1" type:"integer"`
 
 	// The date the user pool client was last modified.
 	LastModifiedDate *time.Time `type:"timestamp"`
 
-	// A list of allowed logout URLs for the identity providers.
+	// A list of allowed logout URLs for the IdPs.
 	LogoutURLs []*string `type:"list"`
 
 	// Errors and responses that you want Amazon Cognito APIs to return during authentication,
@@ -31842,23 +32062,35 @@ type UserPoolClientType struct {
 	//
 	//    * ENABLED - This prevents user existence-related errors.
 	//
-	//    * LEGACY - This represents the old behavior of Cognito where user existence
-	//    related errors aren't prevented.
+	//    * LEGACY - This represents the old behavior of Amazon Cognito where user
+	//    existence related errors aren't prevented.
 	PreventUserExistenceErrors *string `type:"string" enum:"PreventUserExistenceErrorTypes"`
 
 	// The Read-only attributes.
 	ReadAttributes []*string `type:"list"`
 
-	// The time limit, in days, after which the refresh token is no longer valid
-	// and can't be used.
+	// The refresh token time limit. After this limit expires, your user can't use
+	// their refresh token. To specify the time unit for RefreshTokenValidity as
+	// seconds, minutes, hours, or days, set a TokenValidityUnits value in your
+	// API request.
+	//
+	// For example, when you set RefreshTokenValidity as 10 and TokenValidityUnits
+	// as days, your user can refresh their session and retrieve new access and
+	// ID tokens for 10 days.
+	//
+	// The default time unit for RefreshTokenValidity in an API request is days.
+	// You can't set RefreshTokenValidity to 0. If you do, Amazon Cognito overrides
+	// the value with the default value of 30 days. Valid range is displayed below
+	// in seconds.
 	RefreshTokenValidity *int64 `type:"integer"`
 
-	// A list of provider names for the identity providers that are supported on
-	// this client.
+	// A list of provider names for the IdPs that this client supports. The following
+	// are supported: COGNITO, Facebook, Google LoginWithAmazon, and the names of
+	// your own SAML and OIDC providers.
 	SupportedIdentityProviders []*string `type:"list"`
 
-	// The time units used to specify the token validity times of their respective
-	// token.
+	// The time units used to specify the token validity times of each token type:
+	// ID, access, and refresh.
 	TokenValidityUnits *TokenValidityUnitsType `type:"structure"`
 
 	// The user pool ID for the user pool client.
@@ -32338,6 +32570,9 @@ type UserPoolType struct {
 	// The status of a user pool.
 	Status *string `type:"string" enum:"StatusType"`
 
+	// The settings for updates to user attributes.
+	UserAttributeUpdateSettings *UserAttributeUpdateSettingsType `type:"structure"`
+
 	// The user pool add-ons.
 	UserPoolAddOns *UserPoolAddOnsType `type:"structure"`
 
@@ -32534,6 +32769,12 @@ func (s *UserPoolType) SetStatus(v string) *UserPoolType {
 	return s
 }
 
+// SetUserAttributeUpdateSettings sets the UserAttributeUpdateSettings field's value.
+func (s *UserPoolType) SetUserAttributeUpdateSettings(v *UserAttributeUpdateSettingsType) *UserPoolType {
+	s.UserAttributeUpdateSettings = v
+	return s
+}
+
 // SetUserPoolAddOns sets the UserPoolAddOns field's value.
 func (s *UserPoolType) SetUserPoolAddOns(v *UserPoolAddOnsType) *UserPoolType {
 	s.UserPoolAddOns = v
@@ -32564,7 +32805,7 @@ func (s *UserPoolType) SetVerificationMessageTemplate(v *VerificationMessageTemp
 	return s
 }
 
-// The user type.
+// A user profile in a Amazon Cognito user pool.
 type UserType struct {
 	_ struct{} `type:"structure"`
 
@@ -32588,6 +32829,8 @@ type UserType struct {
 	//    * UNCONFIRMED - User has been created but not confirmed.
 	//
 	//    * CONFIRMED - User has been confirmed.
+	//
+	//    * EXTERNAL_PROVIDER - User signed in with a third-party IdP.
 	//
 	//    * ARCHIVED - User is no longer active.
 	//
@@ -32673,7 +32916,7 @@ func (s *UserType) SetUsername(v string) *UserType {
 type UsernameConfigurationType struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether username case sensitivity will be applied for all users
+	// Specifies whether user name case sensitivity will be applied for all users
 	// in the user pool through Amazon Cognito APIs.
 	//
 	// Valid values include:
@@ -32805,28 +33048,38 @@ type VerificationMessageTemplateType struct {
 	// The default email option.
 	DefaultEmailOption *string `type:"string" enum:"DefaultEmailOptionType"`
 
-	// The email message template. EmailMessage is allowed only if EmailSendingAccount
+	// The template for email messages that Amazon Cognito sends to your users.
+	// You can set an EmailMessage template only if the value of EmailSendingAccount
 	// (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
-	// is DEVELOPER.
+	// is DEVELOPER. When your EmailSendingAccount (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
+	// is DEVELOPER, your user pool sends email messages with your own Amazon SES
+	// configuration.
 	EmailMessage *string `min:"6" type:"string"`
 
-	// The email message template for sending a confirmation link to the user. EmailMessageByLink
-	// is allowed only if EmailSendingAccount (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
-	// is DEVELOPER.
+	// The email message template for sending a confirmation link to the user. You
+	// can set an EmailMessageByLink template only if the value of EmailSendingAccount
+	// (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
+	// is DEVELOPER. When your EmailSendingAccount (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
+	// is DEVELOPER, your user pool sends email messages with your own Amazon SES
+	// configuration.
 	EmailMessageByLink *string `min:"6" type:"string"`
 
-	// The subject line for the email message template. EmailSubject is allowed
-	// only if EmailSendingAccount (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
-	// is DEVELOPER.
+	// The subject line for the email message template. You can set an EmailSubject
+	// template only if the value of EmailSendingAccount (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
+	// is DEVELOPER. When your EmailSendingAccount (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
+	// is DEVELOPER, your user pool sends email messages with your own Amazon SES
+	// configuration.
 	EmailSubject *string `min:"1" type:"string"`
 
 	// The subject line for the email message template for sending a confirmation
-	// link to the user. EmailSubjectByLink is allowed only EmailSendingAccount
-	// (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
-	// is DEVELOPER.
+	// link to the user. You can set an EmailSubjectByLink template only if the
+	// value of EmailSendingAccount (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
+	// is DEVELOPER. When your EmailSendingAccount (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
+	// is DEVELOPER, your user pool sends email messages with your own Amazon SES
+	// configuration.
 	EmailSubjectByLink *string `min:"1" type:"string"`
 
-	// The SMS message template.
+	// The template for SMS messages that Amazon Cognito sends to your users.
 	SmsMessage *string `min:"6" type:"string"`
 }
 
@@ -32912,7 +33165,8 @@ func (s *VerificationMessageTemplateType) SetSmsMessage(v string) *VerificationM
 type VerifySoftwareTokenInput struct {
 	_ struct{} `type:"structure"`
 
-	// The access token.
+	// A valid access token that Amazon Cognito issued to the user whose software
+	// token you want to verify.
 	//
 	// AccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by VerifySoftwareTokenInput's
@@ -33039,7 +33293,8 @@ func (s *VerifySoftwareTokenOutput) SetStatus(v string) *VerifySoftwareTokenOutp
 type VerifyUserAttributeInput struct {
 	_ struct{} `type:"structure"`
 
-	// The access token of the request to verify user attributes.
+	// A valid access token that Amazon Cognito issued to the user whose user attributes
+	// you want to verify.
 	//
 	// AccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by VerifyUserAttributeInput's

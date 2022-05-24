@@ -1,21 +1,21 @@
 {
   "version": "2.0",
-  "service": "<p>Transit Gateway Network Manager (Network Manager) enables you to create a global network, in which you can monitor your Amazon Web Services and on-premises networks that are built around transit gateways.</p>",
+  "service": "<p>Amazon Web Services enables you to centrally manage your Amazon Web Services Cloud WAN core network and your Transit Gateway network across Amazon Web Services accounts, Regions, and on-premises locations.</p>",
   "operations": {
     "AcceptAttachment": "<p>Accepts a core network attachment request. </p> <p>Once the attachment request is accepted by a core network owner, the attachment is created and connected to a core network.</p>",
     "AssociateConnectPeer": "<p>Associates a core network Connect peer with a device and optionally, with a link. </p> <p>If you specify a link, it must be associated with the specified device. You can only associate core network Connect peers that have been created on a core network Connect attachment on a core network. </p>",
-    "AssociateCustomerGateway": "<p>Associates a customer gateway with a device and optionally, with a link. If you specify a link, it must be associated with the specified device. </p> <p>You can only associate customer gateways that are connected to a VPN attachment on a transit gateway. The transit gateway must be registered in your global network. When you register a transit gateway, customer gateways that are connected to the transit gateway are automatically included in the global network. To list customer gateways that are connected to a transit gateway, use the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpnConnections.html\">DescribeVpnConnections</a> EC2 API and filter by <code>transit-gateway-id</code>.</p> <p>You cannot associate a customer gateway with more than one device and link. </p>",
+    "AssociateCustomerGateway": "<p>Associates a customer gateway with a device and optionally, with a link. If you specify a link, it must be associated with the specified device. </p> <p>You can only associate customer gateways that are connected to a VPN attachment on a transit gateway or core network registered in your global network. When you register a transit gateway or core network, customer gateways that are connected to the transit gateway are automatically included in the global network. To list customer gateways that are connected to a transit gateway, use the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpnConnections.html\">DescribeVpnConnections</a> EC2 API and filter by <code>transit-gateway-id</code>.</p> <p>You cannot associate a customer gateway with more than one device and link. </p>",
     "AssociateLink": "<p>Associates a link to a device. A device can be associated to multiple links and a link can be associated to multiple devices. The device and link must be in the same global network and the same site.</p>",
     "AssociateTransitGatewayConnectPeer": "<p>Associates a transit gateway Connect peer with a device, and optionally, with a link. If you specify a link, it must be associated with the specified device. </p> <p>You can only associate transit gateway Connect peers that have been created on a transit gateway that's registered in your global network.</p> <p>You cannot associate a transit gateway Connect peer with more than one device and link. </p>",
     "CreateConnectAttachment": "<p>Creates a core network Connect attachment from a specified core network attachment. </p> <p>A core network Connect attachment is a GRE-based tunnel attachment that you can use to establish a connection between a core network and an appliance. A core network Connect attachment uses an existing VPC attachment as the underlying transport mechanism.</p>",
-    "CreateConnectPeer": "<p>Creates a core network connect peer for a specified core network connect attachment between a core network and an appliance. The peer address and transit gateway address must be the same IP address family (IPv4 or IPv6).</p>",
+    "CreateConnectPeer": "<p>Creates a core network Connect peer for a specified core network connect attachment between a core network and an appliance. The peer address and transit gateway address must be the same IP address family (IPv4 or IPv6).</p>",
     "CreateConnection": "<p>Creates a connection between two devices. The devices can be a physical or virtual appliance that connects to a third-party appliance in a VPC, or a physical appliance that connects to another physical appliance in an on-premises network.</p>",
     "CreateCoreNetwork": "<p>Creates a core network as part of your global network, and optionally, with a core network policy.</p>",
     "CreateDevice": "<p>Creates a new device in a global network. If you specify both a site ID and a location, the location of the site is used for visualization in the Network Manager console.</p>",
     "CreateGlobalNetwork": "<p>Creates a new, empty global network.</p>",
     "CreateLink": "<p>Creates a new link for a specified site.</p>",
     "CreateSite": "<p>Creates a new site in a global network.</p>",
-    "CreateSiteToSiteVpnAttachment": "<p>Creates a site-to-site VPN attachment on an edge location of a core network.</p>",
+    "CreateSiteToSiteVpnAttachment": "<p>Creates an Amazon Web Services site-to-site VPN attachment on an edge location of a core network.</p>",
     "CreateVpcAttachment": "<p>Creates a VPC attachment on an edge location of a core network.</p>",
     "DeleteAttachment": "<p>Deletes an attachment. Supports all attachment types.</p>",
     "DeleteConnectPeer": "<p>Deletes a Connect peer.</p>",
@@ -23,7 +23,7 @@
     "DeleteCoreNetwork": "<p>Deletes a core network along with all core network policies. This can only be done if there are no attachments on a core network.</p>",
     "DeleteCoreNetworkPolicyVersion": "<p>Deletes a policy version from a core network. You can't delete the current LIVE policy.</p>",
     "DeleteDevice": "<p>Deletes an existing device. You must first disassociate the device from any links and customer gateways.</p>",
-    "DeleteGlobalNetwork": "<p>Deletes an existing global network. You must first delete all global network objects (devices, links, and sites) and deregister all transit gateways.</p>",
+    "DeleteGlobalNetwork": "<p>Deletes an existing global network. You must first delete all global network objects (devices, links, and sites), deregister all transit gateways, and delete any core networks.</p>",
     "DeleteLink": "<p>Deletes an existing link. You must first disassociate the link from any devices and customer gateways.</p>",
     "DeleteResourcePolicy": "<p>Deletes a resource policy for the specified resource. This revokes the access of the principals specified in the resource policy.</p>",
     "DeleteSite": "<p>Deletes an existing site. The site cannot be associated with any device or link.</p>",
@@ -38,7 +38,7 @@
     "GetConnectPeer": "<p>Returns information about a core network Connect peer.</p>",
     "GetConnectPeerAssociations": "<p>Returns information about a core network Connect peer associations.</p>",
     "GetConnections": "<p>Gets information about one or more of your connections in a global network.</p>",
-    "GetCoreNetwork": "<p>Returns information about a core network. By default it returns the LIVE policy.</p>",
+    "GetCoreNetwork": "<p>Returns information about the LIVE policy for a core network.</p>",
     "GetCoreNetworkChangeSet": "<p>Returns a change set between the LIVE core network policy and a submitted policy.</p>",
     "GetCoreNetworkPolicy": "<p>Gets details about a core network policy. You can get details about your current live policy or any previous policy version.</p>",
     "GetCustomerGatewayAssociations": "<p>Gets the association information for customer gateways that are associated with devices and links in your global network.</p>",
@@ -61,12 +61,14 @@
     "ListConnectPeers": "<p>Returns a list of core network Connect peers.</p>",
     "ListCoreNetworkPolicyVersions": "<p>Returns a list of core network policy versions.</p>",
     "ListCoreNetworks": "<p>Returns a list of owned and shared core networks.</p>",
+    "ListOrganizationServiceAccessStatus": null,
     "ListTagsForResource": "<p>Lists the tags for a specified resource.</p>",
     "PutCoreNetworkPolicy": "<p>Creates a new, immutable version of a core network policy. A subsequent change set is created showing the differences between the LIVE policy and the submitted policy.</p>",
     "PutResourcePolicy": "<p>Creates or updates a resource policy.</p>",
     "RegisterTransitGateway": "<p>Registers a transit gateway in your global network. The transit gateway can be in any Amazon Web Services Region, but it must be owned by the same Amazon Web Services account that owns the global network. You cannot register a transit gateway in more than one global network.</p>",
     "RejectAttachment": "<p>Rejects a core network attachment request.</p>",
     "RestoreCoreNetworkPolicyVersion": "<p>Restores a previous policy version as a new, immutable version of a core network policy. A subsequent change set is created showing the differences between the LIVE policy and restored policy.</p>",
+    "StartOrganizationServiceAccessUpdate": null,
     "StartRouteAnalysis": "<p>Starts analyzing the routing path between the specified source and destination. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/tgw/route-analyzer.html\">Route Analyzer</a>.</p>",
     "TagResource": "<p>Tags a specified resource.</p>",
     "UntagResource": "<p>Removes tags from a specified resource.</p>",
@@ -114,6 +116,30 @@
     "AccessDeniedException": {
       "base": "<p>You do not have sufficient access to perform this action.</p>",
       "refs": {
+      }
+    },
+    "AccountId": {
+      "base": null,
+      "refs": {
+        "AccountStatus$AccountId": null
+      }
+    },
+    "AccountStatus": {
+      "base": null,
+      "refs": {
+        "AccountStatusList$member": null
+      }
+    },
+    "AccountStatusList": {
+      "base": null,
+      "refs": {
+        "OrganizationStatus$AccountStatusList": null
+      }
+    },
+    "Action": {
+      "base": null,
+      "refs": {
+        "StartOrganizationServiceAccessUpdateRequest$Action": null
       }
     },
     "AssociateConnectPeerRequest": {
@@ -1385,7 +1411,7 @@
       }
     },
     "GlobalNetwork": {
-      "base": "<p>Describes a global network. This is a single private network acting as a high-level container for your network objects, including an Amazon Web Services-manged Core Network.</p>",
+      "base": "<p>Describes a global network. This is a single private network acting as a high-level container for your network objects, including an Amazon Web Services-managed Core Network.</p>",
       "refs": {
         "CreateGlobalNetworkResponse$GlobalNetwork": "<p>Information about the global network object.</p>",
         "DeleteGlobalNetworkResponse$GlobalNetwork": "<p>Information about the global network.</p>",
@@ -1633,6 +1659,16 @@
       "refs": {
       }
     },
+    "ListOrganizationServiceAccessStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListOrganizationServiceAccessStatusResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTagsForResourceRequest": {
       "base": null,
       "refs": {
@@ -1685,7 +1721,8 @@
         "ListAttachmentsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "ListConnectPeersRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "ListCoreNetworkPolicyVersionsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
-        "ListCoreNetworksRequest$MaxResults": "<p>The maximum number of results to return.</p>"
+        "ListCoreNetworksRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "ListOrganizationServiceAccessStatusRequest$MaxResults": null
       }
     },
     "NetworkResource": {
@@ -1802,7 +1839,28 @@
         "ListCoreNetworkPolicyVersionsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "ListCoreNetworkPolicyVersionsResponse$NextToken": "<p>The token for the next page of results.</p>",
         "ListCoreNetworksRequest$NextToken": "<p>The token for the next page of results.</p>",
-        "ListCoreNetworksResponse$NextToken": "<p>The token for the next page of results.</p>"
+        "ListCoreNetworksResponse$NextToken": "<p>The token for the next page of results.</p>",
+        "ListOrganizationServiceAccessStatusRequest$NextToken": null,
+        "ListOrganizationServiceAccessStatusResponse$NextToken": null
+      }
+    },
+    "OrganizationAwsServiceAccessStatus": {
+      "base": null,
+      "refs": {
+        "OrganizationStatus$OrganizationAwsServiceAccessStatus": null
+      }
+    },
+    "OrganizationId": {
+      "base": null,
+      "refs": {
+        "OrganizationStatus$OrganizationId": null
+      }
+    },
+    "OrganizationStatus": {
+      "base": null,
+      "refs": {
+        "ListOrganizationServiceAccessStatusResponse$OrganizationStatus": null,
+        "StartOrganizationServiceAccessUpdateResponse$OrganizationStatus": null
       }
     },
     "PathComponent": {
@@ -2039,6 +2097,13 @@
         "GetNetworkRoutesRequest$Types": "<p>The route types.</p>"
       }
     },
+    "SLRDeploymentStatus": {
+      "base": null,
+      "refs": {
+        "AccountStatus$SLRDeploymentStatus": null,
+        "OrganizationStatus$SLRDeploymentStatus": null
+      }
+    },
     "ServerSideString": {
       "base": null,
       "refs": {
@@ -2124,6 +2189,16 @@
       "refs": {
         "CreateSiteToSiteVpnAttachmentResponse$SiteToSiteVpnAttachment": "<p>Details about a site-to-site VPN attachment.</p>",
         "GetSiteToSiteVpnAttachmentResponse$SiteToSiteVpnAttachment": "<p>Describes the site-to-site attachment.</p>"
+      }
+    },
+    "StartOrganizationServiceAccessUpdateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartOrganizationServiceAccessUpdateResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "StartRouteAnalysisRequest": {
