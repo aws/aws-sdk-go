@@ -2281,10 +2281,11 @@ type MessageReviewHandler struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the fallback behavior (whether the message is allowed or denied)
-	// if the handler does not return a valid response, encounters an error or times
-	// out. If allowed, the message is delivered with returned content to all users
-	// connected to the room. If denied, the message is not delivered to any user.
-	// Default: ALLOW.
+	// if the handler does not return a valid response, encounters an error, or
+	// times out. (For the timeout period, see Service Quotas (https://docs.aws.amazon.com/ivs/latest/userguide/service-quotas.html).)
+	// If allowed, the message is delivered with returned content to all users connected
+	// to the room. If denied, the message is not delivered to any user. Default:
+	// ALLOW.
 	FallbackResult *string `locationName:"fallbackResult" type:"string" enum:"FallbackResult"`
 
 	// Identifier of the message review handler. Currently this must be an ARN of

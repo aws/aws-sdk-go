@@ -22523,6 +22523,10 @@
         "UserData":{
           "shape":"AttributeValue",
           "locationName":"userData"
+        },
+        "DisableApiStop":{
+          "shape":"AttributeBooleanValue",
+          "locationName":"disableApiStop"
         }
       }
     },
@@ -22543,7 +22547,8 @@
         "ebsOptimized",
         "sriovNetSupport",
         "enaSupport",
-        "enclaveOptions"
+        "enclaveOptions",
+        "disableApiStop"
       ]
     },
     "InstanceAutoRecoveryState":{
@@ -27562,7 +27567,8 @@
         "Value":{
           "shape":"String",
           "locationName":"value"
-        }
+        },
+        "DisableApiStop":{"shape":"AttributeBooleanValue"}
       }
     },
     "ModifyInstanceCapacityReservationAttributesRequest":{
@@ -32086,7 +32092,8 @@
         "EnclaveOptions":{"shape":"LaunchTemplateEnclaveOptionsRequest"},
         "InstanceRequirements":{"shape":"InstanceRequirementsRequest"},
         "PrivateDnsNameOptions":{"shape":"LaunchTemplatePrivateDnsNameOptionsRequest"},
-        "MaintenanceOptions":{"shape":"LaunchTemplateInstanceMaintenanceOptionsRequest"}
+        "MaintenanceOptions":{"shape":"LaunchTemplateInstanceMaintenanceOptionsRequest"},
+        "DisableApiStop":{"shape":"Boolean"}
       }
     },
     "RequestSpotFleetRequest":{
@@ -33121,6 +33128,10 @@
         "MaintenanceOptions":{
           "shape":"LaunchTemplateInstanceMaintenanceOptions",
           "locationName":"maintenanceOptions"
+        },
+        "DisableApiStop":{
+          "shape":"Boolean",
+          "locationName":"disableApiStop"
         }
       }
     },
@@ -33727,7 +33738,8 @@
         "MetadataOptions":{"shape":"InstanceMetadataOptionsRequest"},
         "EnclaveOptions":{"shape":"EnclaveOptionsRequest"},
         "PrivateDnsNameOptions":{"shape":"PrivateDnsNameOptionsRequest"},
-        "MaintenanceOptions":{"shape":"InstanceMaintenanceOptionsRequest"}
+        "MaintenanceOptions":{"shape":"InstanceMaintenanceOptionsRequest"},
+        "DisableApiStop":{"shape":"Boolean"}
       }
     },
     "RunInstancesUserData":{

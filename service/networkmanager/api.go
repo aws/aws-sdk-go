@@ -262,8 +262,8 @@ func (c *NetworkManager) AssociateCustomerGatewayRequest(input *AssociateCustome
 // If you specify a link, it must be associated with the specified device.
 //
 // You can only associate customer gateways that are connected to a VPN attachment
-// on a transit gateway. The transit gateway must be registered in your global
-// network. When you register a transit gateway, customer gateways that are
+// on a transit gateway or core network registered in your global network. When
+// you register a transit gateway or core network, customer gateways that are
 // connected to the transit gateway are automatically included in the global
 // network. To list customer gateways that are connected to a transit gateway,
 // use the DescribeVpnConnections (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpnConnections.html)
@@ -673,7 +673,7 @@ func (c *NetworkManager) CreateConnectPeerRequest(input *CreateConnectPeerInput)
 
 // CreateConnectPeer API operation for AWS Network Manager.
 //
-// Creates a core network connect peer for a specified core network connect
+// Creates a core network Connect peer for a specified core network connect
 // attachment between a core network and an appliance. The peer address and
 // transit gateway address must be the same IP address family (IPv4 or IPv6).
 //
@@ -1358,7 +1358,8 @@ func (c *NetworkManager) CreateSiteToSiteVpnAttachmentRequest(input *CreateSiteT
 
 // CreateSiteToSiteVpnAttachment API operation for AWS Network Manager.
 //
-// Creates a site-to-site VPN attachment on an edge location of a core network.
+// Creates an Amazon Web Services site-to-site VPN attachment on an edge location
+// of a core network.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2122,7 +2123,8 @@ func (c *NetworkManager) DeleteGlobalNetworkRequest(input *DeleteGlobalNetworkIn
 // DeleteGlobalNetwork API operation for AWS Network Manager.
 //
 // Deletes an existing global network. You must first delete all global network
-// objects (devices, links, and sites) and deregister all transit gateways.
+// objects (devices, links, and sites), deregister all transit gateways, and
+// delete any core networks.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3714,8 +3716,7 @@ func (c *NetworkManager) GetCoreNetworkRequest(input *GetCoreNetworkInput) (req 
 
 // GetCoreNetwork API operation for AWS Network Manager.
 //
-// Returns information about a core network. By default it returns the LIVE
-// policy.
+// Returns information about the LIVE policy for a core network.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6698,6 +6699,78 @@ func (c *NetworkManager) ListCoreNetworksPagesWithContext(ctx aws.Context, input
 	return p.Err()
 }
 
+const opListOrganizationServiceAccessStatus = "ListOrganizationServiceAccessStatus"
+
+// ListOrganizationServiceAccessStatusRequest generates a "aws/request.Request" representing the
+// client's request for the ListOrganizationServiceAccessStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListOrganizationServiceAccessStatus for more information on using the ListOrganizationServiceAccessStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListOrganizationServiceAccessStatusRequest method.
+//    req, resp := client.ListOrganizationServiceAccessStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/ListOrganizationServiceAccessStatus
+func (c *NetworkManager) ListOrganizationServiceAccessStatusRequest(input *ListOrganizationServiceAccessStatusInput) (req *request.Request, output *ListOrganizationServiceAccessStatusOutput) {
+	op := &request.Operation{
+		Name:       opListOrganizationServiceAccessStatus,
+		HTTPMethod: "GET",
+		HTTPPath:   "/organizations/service-access",
+	}
+
+	if input == nil {
+		input = &ListOrganizationServiceAccessStatusInput{}
+	}
+
+	output = &ListOrganizationServiceAccessStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListOrganizationServiceAccessStatus API operation for AWS Network Manager.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Network Manager's
+// API operation ListOrganizationServiceAccessStatus for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/ListOrganizationServiceAccessStatus
+func (c *NetworkManager) ListOrganizationServiceAccessStatus(input *ListOrganizationServiceAccessStatusInput) (*ListOrganizationServiceAccessStatusOutput, error) {
+	req, out := c.ListOrganizationServiceAccessStatusRequest(input)
+	return out, req.Send()
+}
+
+// ListOrganizationServiceAccessStatusWithContext is the same as ListOrganizationServiceAccessStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListOrganizationServiceAccessStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkManager) ListOrganizationServiceAccessStatusWithContext(ctx aws.Context, input *ListOrganizationServiceAccessStatusInput, opts ...request.Option) (*ListOrganizationServiceAccessStatusOutput, error) {
+	req, out := c.ListOrganizationServiceAccessStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -7270,6 +7343,99 @@ func (c *NetworkManager) RestoreCoreNetworkPolicyVersion(input *RestoreCoreNetwo
 // for more information on using Contexts.
 func (c *NetworkManager) RestoreCoreNetworkPolicyVersionWithContext(ctx aws.Context, input *RestoreCoreNetworkPolicyVersionInput, opts ...request.Option) (*RestoreCoreNetworkPolicyVersionOutput, error) {
 	req, out := c.RestoreCoreNetworkPolicyVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartOrganizationServiceAccessUpdate = "StartOrganizationServiceAccessUpdate"
+
+// StartOrganizationServiceAccessUpdateRequest generates a "aws/request.Request" representing the
+// client's request for the StartOrganizationServiceAccessUpdate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartOrganizationServiceAccessUpdate for more information on using the StartOrganizationServiceAccessUpdate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartOrganizationServiceAccessUpdateRequest method.
+//    req, resp := client.StartOrganizationServiceAccessUpdateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/StartOrganizationServiceAccessUpdate
+func (c *NetworkManager) StartOrganizationServiceAccessUpdateRequest(input *StartOrganizationServiceAccessUpdateInput) (req *request.Request, output *StartOrganizationServiceAccessUpdateOutput) {
+	op := &request.Operation{
+		Name:       opStartOrganizationServiceAccessUpdate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/organizations/service-access",
+	}
+
+	if input == nil {
+		input = &StartOrganizationServiceAccessUpdateInput{}
+	}
+
+	output = &StartOrganizationServiceAccessUpdateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartOrganizationServiceAccessUpdate API operation for AWS Network Manager.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Network Manager's
+// API operation StartOrganizationServiceAccessUpdate for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input fails to satisfy the constraints.
+//
+//   * ServiceQuotaExceededException
+//   A service limit was exceeded.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ConflictException
+//   There was a conflict processing the request. Updating or deleting the resource
+//   can cause an inconsistent state.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * InternalServerException
+//   The request has failed due to an internal error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/StartOrganizationServiceAccessUpdate
+func (c *NetworkManager) StartOrganizationServiceAccessUpdate(input *StartOrganizationServiceAccessUpdateInput) (*StartOrganizationServiceAccessUpdateOutput, error) {
+	req, out := c.StartOrganizationServiceAccessUpdateRequest(input)
+	return out, req.Send()
+}
+
+// StartOrganizationServiceAccessUpdateWithContext is the same as StartOrganizationServiceAccessUpdate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartOrganizationServiceAccessUpdate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkManager) StartOrganizationServiceAccessUpdateWithContext(ctx aws.Context, input *StartOrganizationServiceAccessUpdateInput, opts ...request.Option) (*StartOrganizationServiceAccessUpdateOutput, error) {
+	req, out := c.StartOrganizationServiceAccessUpdateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8518,6 +8684,44 @@ func (s *AccessDeniedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type AccountStatus struct {
+	_ struct{} `type:"structure"`
+
+	AccountId *string `type:"string"`
+
+	SLRDeploymentStatus *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountStatus) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *AccountStatus) SetAccountId(v string) *AccountStatus {
+	s.AccountId = &v
+	return s
+}
+
+// SetSLRDeploymentStatus sets the SLRDeploymentStatus field's value.
+func (s *AccountStatus) SetSLRDeploymentStatus(v string) *AccountStatus {
+	s.SLRDeploymentStatus = &v
+	return s
 }
 
 type AssociateConnectPeerInput struct {
@@ -16689,7 +16893,7 @@ func (s *GetVpcAttachmentOutput) SetVpcAttachment(v *VpcAttachment) *GetVpcAttac
 }
 
 // Describes a global network. This is a single private network acting as a
-// high-level container for your network objects, including an Amazon Web Services-manged
+// high-level container for your network objects, including an Amazon Web Services-managed
 // Core Network.
 type GlobalNetwork struct {
 	_ struct{} `type:"structure"`
@@ -17461,6 +17665,95 @@ func (s *ListCoreNetworksOutput) SetNextToken(v string) *ListCoreNetworksOutput 
 	return s
 }
 
+type ListOrganizationServiceAccessStatusInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOrganizationServiceAccessStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOrganizationServiceAccessStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListOrganizationServiceAccessStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListOrganizationServiceAccessStatusInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListOrganizationServiceAccessStatusInput) SetMaxResults(v int64) *ListOrganizationServiceAccessStatusInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOrganizationServiceAccessStatusInput) SetNextToken(v string) *ListOrganizationServiceAccessStatusInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListOrganizationServiceAccessStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	NextToken *string `type:"string"`
+
+	OrganizationStatus *OrganizationStatus `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOrganizationServiceAccessStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOrganizationServiceAccessStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOrganizationServiceAccessStatusOutput) SetNextToken(v string) *ListOrganizationServiceAccessStatusOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOrganizationStatus sets the OrganizationStatus field's value.
+func (s *ListOrganizationServiceAccessStatusOutput) SetOrganizationStatus(v *OrganizationStatus) *ListOrganizationServiceAccessStatusOutput {
+	s.OrganizationStatus = v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -18111,6 +18404,60 @@ func (s *NetworkTelemetry) SetResourceId(v string) *NetworkTelemetry {
 // SetResourceType sets the ResourceType field's value.
 func (s *NetworkTelemetry) SetResourceType(v string) *NetworkTelemetry {
 	s.ResourceType = &v
+	return s
+}
+
+type OrganizationStatus struct {
+	_ struct{} `type:"structure"`
+
+	AccountStatusList []*AccountStatus `type:"list"`
+
+	OrganizationAwsServiceAccessStatus *string `type:"string"`
+
+	OrganizationId *string `type:"string"`
+
+	SLRDeploymentStatus *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrganizationStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrganizationStatus) GoString() string {
+	return s.String()
+}
+
+// SetAccountStatusList sets the AccountStatusList field's value.
+func (s *OrganizationStatus) SetAccountStatusList(v []*AccountStatus) *OrganizationStatus {
+	s.AccountStatusList = v
+	return s
+}
+
+// SetOrganizationAwsServiceAccessStatus sets the OrganizationAwsServiceAccessStatus field's value.
+func (s *OrganizationStatus) SetOrganizationAwsServiceAccessStatus(v string) *OrganizationStatus {
+	s.OrganizationAwsServiceAccessStatus = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *OrganizationStatus) SetOrganizationId(v string) *OrganizationStatus {
+	s.OrganizationId = &v
+	return s
+}
+
+// SetSLRDeploymentStatus sets the SLRDeploymentStatus field's value.
+func (s *OrganizationStatus) SetSLRDeploymentStatus(v string) *OrganizationStatus {
+	s.SLRDeploymentStatus = &v
 	return s
 }
 
@@ -19427,6 +19774,80 @@ func (s *SiteToSiteVpnAttachment) SetAttachment(v *Attachment) *SiteToSiteVpnAtt
 // SetVpnConnectionArn sets the VpnConnectionArn field's value.
 func (s *SiteToSiteVpnAttachment) SetVpnConnectionArn(v string) *SiteToSiteVpnAttachment {
 	s.VpnConnectionArn = &v
+	return s
+}
+
+type StartOrganizationServiceAccessUpdateInput struct {
+	_ struct{} `type:"structure"`
+
+	// Action is a required field
+	Action *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartOrganizationServiceAccessUpdateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartOrganizationServiceAccessUpdateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartOrganizationServiceAccessUpdateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartOrganizationServiceAccessUpdateInput"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *StartOrganizationServiceAccessUpdateInput) SetAction(v string) *StartOrganizationServiceAccessUpdateInput {
+	s.Action = &v
+	return s
+}
+
+type StartOrganizationServiceAccessUpdateOutput struct {
+	_ struct{} `type:"structure"`
+
+	OrganizationStatus *OrganizationStatus `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartOrganizationServiceAccessUpdateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartOrganizationServiceAccessUpdateOutput) GoString() string {
+	return s.String()
+}
+
+// SetOrganizationStatus sets the OrganizationStatus field's value.
+func (s *StartOrganizationServiceAccessUpdateOutput) SetOrganizationStatus(v *OrganizationStatus) *StartOrganizationServiceAccessUpdateOutput {
+	s.OrganizationStatus = v
 	return s
 }
 

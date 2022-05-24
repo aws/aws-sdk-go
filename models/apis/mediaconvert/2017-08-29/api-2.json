@@ -1226,6 +1226,23 @@
         }
       }
     },
+    "AllowedRenditionSize": {
+      "type": "structure",
+      "members": {
+        "Height": {
+          "shape": "__integerMin32Max8192",
+          "locationName": "height"
+        },
+        "Required": {
+          "shape": "RequiredFlag",
+          "locationName": "required"
+        },
+        "Width": {
+          "shape": "__integerMin32Max8192",
+          "locationName": "width"
+        }
+      }
+    },
     "AlphaBehavior": {
       "type": "string",
       "enum": [
@@ -1578,6 +1595,31 @@
         "USE_CONFIGURED"
       ]
     },
+    "AutomatedAbrRule": {
+      "type": "structure",
+      "members": {
+        "AllowedRenditions": {
+          "shape": "__listOfAllowedRenditionSize",
+          "locationName": "allowedRenditions"
+        },
+        "ForceIncludeRenditions": {
+          "shape": "__listOfForceIncludeRenditionSize",
+          "locationName": "forceIncludeRenditions"
+        },
+        "MinBottomRenditionSize": {
+          "shape": "MinBottomRenditionSize",
+          "locationName": "minBottomRenditionSize"
+        },
+        "MinTopRenditionSize": {
+          "shape": "MinTopRenditionSize",
+          "locationName": "minTopRenditionSize"
+        },
+        "Type": {
+          "shape": "RuleType",
+          "locationName": "type"
+        }
+      }
+    },
     "AutomatedAbrSettings": {
       "type": "structure",
       "members": {
@@ -1592,6 +1634,10 @@
         "MinAbrBitrate": {
           "shape": "__integerMin100000Max100000000",
           "locationName": "minAbrBitrate"
+        },
+        "Rules": {
+          "shape": "__listOfAutomatedAbrRule",
+          "locationName": "rules"
         }
       }
     },
@@ -4300,6 +4346,19 @@
       "exception": true,
       "error": {
         "httpStatusCode": 403
+      }
+    },
+    "ForceIncludeRenditionSize": {
+      "type": "structure",
+      "members": {
+        "Height": {
+          "shape": "__integerMin32Max8192",
+          "locationName": "height"
+        },
+        "Width": {
+          "shape": "__integerMin32Max8192",
+          "locationName": "width"
+        }
       }
     },
     "FrameCaptureSettings": {
@@ -7291,6 +7350,32 @@
         }
       }
     },
+    "MinBottomRenditionSize": {
+      "type": "structure",
+      "members": {
+        "Height": {
+          "shape": "__integerMin32Max8192",
+          "locationName": "height"
+        },
+        "Width": {
+          "shape": "__integerMin32Max8192",
+          "locationName": "width"
+        }
+      }
+    },
+    "MinTopRenditionSize": {
+      "type": "structure",
+      "members": {
+        "Height": {
+          "shape": "__integerMin32Max8192",
+          "locationName": "height"
+        },
+        "Width": {
+          "shape": "__integerMin32Max8192",
+          "locationName": "width"
+        }
+      }
+    },
     "MotionImageInserter": {
       "type": "structure",
       "members": {
@@ -8797,6 +8882,13 @@
         "EXPIRE"
       ]
     },
+    "RequiredFlag": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "ReservationPlan": {
       "type": "structure",
       "members": {
@@ -8874,6 +8966,15 @@
         "NONE",
         "RESPOND",
         "PASSTHROUGH"
+      ]
+    },
+    "RuleType": {
+      "type": "string",
+      "enum": [
+        "MIN_TOP_RENDITION_SIZE",
+        "MIN_BOTTOM_RENDITION_SIZE",
+        "FORCE_INCLUDE_RENDITIONS",
+        "ALLOWED_RENDITIONS"
       ]
     },
     "S3DestinationAccessControl": {
@@ -10861,10 +10962,22 @@
       "min": -70,
       "max": 0
     },
+    "__listOfAllowedRenditionSize": {
+      "type": "list",
+      "member": {
+        "shape": "AllowedRenditionSize"
+      }
+    },
     "__listOfAudioDescription": {
       "type": "list",
       "member": {
         "shape": "AudioDescription"
+      }
+    },
+    "__listOfAutomatedAbrRule": {
+      "type": "list",
+      "member": {
+        "shape": "AutomatedAbrRule"
       }
     },
     "__listOfCaptionDescription": {
@@ -10895,6 +11008,12 @@
       "type": "list",
       "member": {
         "shape": "Endpoint"
+      }
+    },
+    "__listOfForceIncludeRenditionSize": {
+      "type": "list",
+      "member": {
+        "shape": "ForceIncludeRenditionSize"
       }
     },
     "__listOfHlsAdMarkers": {

@@ -3,9 +3,9 @@
 // Package networkmanager provides the client and types for making API
 // requests to AWS Network Manager.
 //
-// Transit Gateway Network Manager (Network Manager) enables you to create a
-// global network, in which you can monitor your Amazon Web Services and on-premises
-// networks that are built around transit gateways.
+// Amazon Web Services enables you to centrally manage your Amazon Web Services
+// Cloud WAN core network and your Transit Gateway network across Amazon Web
+// Services accounts, Regions, and on-premises locations.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05 for more information on this service.
 //

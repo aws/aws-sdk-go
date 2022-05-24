@@ -1900,7 +1900,8 @@
         {"shape":"PasswordResetRequiredException"},
         {"shape":"UserNotFoundException"},
         {"shape":"UserNotConfirmedException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"AliasExistsException"}
       ],
       "authtype":"none"
     }
@@ -2573,6 +2574,10 @@
       "max":2048,
       "sensitive":true
     },
+    "AttributesRequireVerificationBeforeUpdateType":{
+      "type":"list",
+      "member":{"shape":"VerifiedAttributeType"}
+    },
     "AuthEventType":{
       "type":"structure",
       "members":{
@@ -3037,6 +3042,7 @@
         "VerificationMessageTemplate":{"shape":"VerificationMessageTemplateType"},
         "SmsAuthenticationMessage":{"shape":"SmsVerificationMessageType"},
         "MfaConfiguration":{"shape":"UserPoolMfaType"},
+        "UserAttributeUpdateSettings":{"shape":"UserAttributeUpdateSettingsType"},
         "DeviceConfiguration":{"shape":"DeviceConfigurationType"},
         "EmailConfiguration":{"shape":"EmailConfigurationType"},
         "SmsConfiguration":{"shape":"SmsConfigurationType"},
@@ -4335,7 +4341,7 @@
     "ProviderNameTypeV1":{
       "type":"string",
       "max":32,
-      "min":1,
+      "min":3,
       "pattern":"[^_][\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}][^_]+"
     },
     "ProviderUserIdentifierType":{
@@ -5193,6 +5199,7 @@
         "EmailVerificationSubject":{"shape":"EmailVerificationSubjectType"},
         "VerificationMessageTemplate":{"shape":"VerificationMessageTemplateType"},
         "SmsAuthenticationMessage":{"shape":"SmsVerificationMessageType"},
+        "UserAttributeUpdateSettings":{"shape":"UserAttributeUpdateSettingsType"},
         "MfaConfiguration":{"shape":"UserPoolMfaType"},
         "DeviceConfiguration":{"shape":"DeviceConfigurationType"},
         "EmailConfiguration":{"shape":"EmailConfigurationType"},
@@ -5206,6 +5213,12 @@
     "UpdateUserPoolResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UserAttributeUpdateSettingsType":{
+      "type":"structure",
+      "members":{
+        "AttributesRequireVerificationBeforeUpdate":{"shape":"AttributesRequireVerificationBeforeUpdateType"}
       }
     },
     "UserContextDataType":{
@@ -5432,6 +5445,7 @@
         "EmailVerificationSubject":{"shape":"EmailVerificationSubjectType"},
         "VerificationMessageTemplate":{"shape":"VerificationMessageTemplateType"},
         "SmsAuthenticationMessage":{"shape":"SmsVerificationMessageType"},
+        "UserAttributeUpdateSettings":{"shape":"UserAttributeUpdateSettingsType"},
         "MfaConfiguration":{"shape":"UserPoolMfaType"},
         "DeviceConfiguration":{"shape":"DeviceConfigurationType"},
         "EstimatedNumberOfUsers":{"shape":"IntegerType"},
