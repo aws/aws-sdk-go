@@ -57,8 +57,6 @@ func (c *APIGateway) CreateApiKeyRequest(input *CreateApiKeyInput) (req *request
 //
 // Create an ApiKey resource.
 //
-// AWS CLI (https://docs.aws.amazon.com/cli/latest/reference/apigateway/create-api-key.html)
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -152,8 +150,6 @@ func (c *APIGateway) CreateAuthorizerRequest(input *CreateAuthorizerInput) (req 
 // CreateAuthorizer API operation for Amazon API Gateway.
 //
 // Adds a new Authorizer resource to an existing RestApi resource.
-//
-// AWS CLI (https://docs.aws.amazon.com/cli/latest/reference/apigateway/create-authorizer.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -440,6 +436,8 @@ func (c *APIGateway) CreateDocumentationPartRequest(input *CreateDocumentationPa
 
 // CreateDocumentationPart API operation for Amazon API Gateway.
 //
+// Creates a documentation part.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -531,6 +529,8 @@ func (c *APIGateway) CreateDocumentationVersionRequest(input *CreateDocumentatio
 }
 
 // CreateDocumentationVersion API operation for Amazon API Gateway.
+//
+// Creates a documentation version
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -809,7 +809,7 @@ func (c *APIGateway) CreateRequestValidatorRequest(input *CreateRequestValidator
 
 // CreateRequestValidator API operation for Amazon API Gateway.
 //
-// Creates a ReqeustValidator of a given RestApi.
+// Creates a RequestValidator of a given RestApi.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1561,8 +1561,6 @@ func (c *APIGateway) DeleteAuthorizerRequest(input *DeleteAuthorizerInput) (req 
 //
 // Deletes an existing Authorizer resource.
 //
-// AWS CLI (https://docs.aws.amazon.com/cli/latest/reference/apigateway/delete-authorizer.html)
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1933,6 +1931,8 @@ func (c *APIGateway) DeleteDocumentationPartRequest(input *DeleteDocumentationPa
 
 // DeleteDocumentationPart API operation for Amazon API Gateway.
 //
+// Deletes a documentation part
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2022,6 +2022,8 @@ func (c *APIGateway) DeleteDocumentationVersionRequest(input *DeleteDocumentatio
 }
 
 // DeleteDocumentationVersion API operation for Amazon API Gateway.
+//
+// Deletes a documentation version.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4003,8 +4005,6 @@ func (c *APIGateway) GetAuthorizerRequest(input *GetAuthorizerInput) (req *reque
 //
 // Describe an existing Authorizer resource.
 //
-// AWS CLI (https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-authorizer.html)
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4091,8 +4091,6 @@ func (c *APIGateway) GetAuthorizersRequest(input *GetAuthorizersInput) (req *req
 // GetAuthorizers API operation for Amazon API Gateway.
 //
 // Describe an existing Authorizers resource.
-//
-// AWS CLI (https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-authorizers.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4883,6 +4881,8 @@ func (c *APIGateway) GetDocumentationPartRequest(input *GetDocumentationPartInpu
 
 // GetDocumentationPart API operation for Amazon API Gateway.
 //
+// Gets a documentation part.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4967,6 +4967,8 @@ func (c *APIGateway) GetDocumentationPartsRequest(input *GetDocumentationPartsIn
 }
 
 // GetDocumentationParts API operation for Amazon API Gateway.
+//
+// Gets documentation parts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5053,6 +5055,8 @@ func (c *APIGateway) GetDocumentationVersionRequest(input *GetDocumentationVersi
 
 // GetDocumentationVersion API operation for Amazon API Gateway.
 //
+// Gets a documentation version.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5133,6 +5137,8 @@ func (c *APIGateway) GetDocumentationVersionsRequest(input *GetDocumentationVers
 }
 
 // GetDocumentationVersions API operation for Amazon API Gateway.
+//
+// Gets documentation versions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7111,6 +7117,8 @@ func (c *APIGateway) GetSdkTypeRequest(input *GetSdkTypeInput) (req *request.Req
 
 // GetSdkType API operation for Amazon API Gateway.
 //
+// Gets an SDK type.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7195,6 +7203,8 @@ func (c *APIGateway) GetSdkTypesRequest(input *GetSdkTypesInput) (req *request.R
 }
 
 // GetSdkTypes API operation for Amazon API Gateway.
+//
+// Gets SDK types
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8492,6 +8502,8 @@ func (c *APIGateway) ImportDocumentationPartsRequest(input *ImportDocumentationP
 
 // ImportDocumentationParts API operation for Amazon API Gateway.
 //
+// Imports documentation parts
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -9345,9 +9357,6 @@ func (c *APIGateway) TestInvokeAuthorizerRequest(input *TestInvokeAuthorizerInpu
 // Simulate the execution of an Authorizer in your RestApi with headers, parameters,
 // and an incoming request body.
 //
-// Use Lambda Function as Authorizer (https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html)
-// Use Cognito User Pool as Authorizer (https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html)
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -9433,7 +9442,7 @@ func (c *APIGateway) TestInvokeMethodRequest(input *TestInvokeMethodInput) (req 
 
 // TestInvokeMethod API operation for Amazon API Gateway.
 //
-// Simulate the execution of a Method in your RestApi with headers, parameters,
+// Simulate the invocation of a Method in your RestApi with headers, parameters,
 // and an incoming request body.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9805,8 +9814,6 @@ func (c *APIGateway) UpdateAuthorizerRequest(input *UpdateAuthorizerInput) (req 
 // UpdateAuthorizer API operation for Amazon API Gateway.
 //
 // Updates an existing Authorizer resource.
-//
-// AWS CLI (https://docs.aws.amazon.com/cli/latest/reference/apigateway/update-authorizer.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10186,6 +10193,8 @@ func (c *APIGateway) UpdateDocumentationPartRequest(input *UpdateDocumentationPa
 
 // UpdateDocumentationPart API operation for Amazon API Gateway.
 //
+// Updates a documentation part.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -10277,6 +10286,8 @@ func (c *APIGateway) UpdateDocumentationVersionRequest(input *UpdateDocumentatio
 }
 
 // UpdateDocumentationVersion API operation for Amazon API Gateway.
+//
+// Updates a documentation version.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11650,8 +11661,7 @@ type AccessLogSettings struct {
 	DestinationArn *string `locationName:"destinationArn" type:"string"`
 
 	// A single line format of the access logs of data, as specified by selected
-	// $context variables (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html#context-variable-reference).
-	// The format must include at least $context.requestId.
+	// $context variables. The format must include at least $context.requestId.
 	Format *string `locationName:"format" type:"string"`
 }
 
@@ -11686,42 +11696,6 @@ func (s *AccessLogSettings) SetFormat(v string) *AccessLogSettings {
 }
 
 // Represents an AWS account that is associated with API Gateway.
-//
-// To view the account info, call GET on this resource.
-//
-// Error Codes
-//
-// The following exception may be thrown when the request fails.
-//
-//    * UnauthorizedException
-//
-//    * NotFoundException
-//
-//    * TooManyRequestsException
-//
-// For detailed error code information, including the corresponding HTTP Status
-// Codes, see API Gateway Error Codes (https://docs.aws.amazon.com/apigateway/api-reference/handling-errors/#api-error-codes)
-//
-// Example: Get the information about an account.
-//
-// Request
-//  GET /account HTTP/1.1 Content-Type: application/json Host: apigateway.us-east-1.amazonaws.com
-//  X-Amz-Date: 20160531T184618Z Authorization: AWS4-HMAC-SHA256 Credential={access_key_ID}/us-east-1/apigateway/aws4_request,
-//  SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}
-// Response
-//
-// The successful response returns a 200 OK status code and a payload similar
-// to the following:
-//  { "_links": { "curies": { "href": "https://docs.aws.amazon.com/apigateway/latest/developerguide/account-apigateway-{rel}.html",
-//  "name": "account", "templated": true }, "self": { "href": "/account" },
-//  "account:update": { "href": "/account" } }, "cloudwatchRoleArn": "arn:aws:iam::123456789012:role/apigAwsProxyRole",
-//  "throttleSettings": { "rateLimit": 500, "burstLimit": 1000 } }
-// In addition to making the REST API call directly, you can use the AWS CLI
-// and an AWS SDK to access this resource.
-//
-// API Gateway Limits (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-limits.html)
-// Developer Guide (https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html),
-// AWS CLI (https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-account.html)
 type Account struct {
 	_ struct{} `type:"structure"`
 
@@ -11785,8 +11759,6 @@ func (s *Account) SetThrottleSettings(v *ThrottleSettings) *Account {
 // that require an API key. API keys can be mapped to any Stage on any RestApi,
 // which indicates that the callers with the API key can make requests to that
 // stage.
-//
-// Use API Keys (https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-api-keys.html)
 type ApiKey struct {
 	_ struct{} `type:"structure"`
 
@@ -11953,9 +11925,6 @@ func (s *ApiStage) SetThrottle(v map[string]*ThrottleSettings) *ApiStage {
 
 // Represents an authorization layer for methods. If enabled on a method, API
 // Gateway will activate the authorizer when a client calls the method.
-//
-// Use Lambda Function as Authorizer (https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html)
-// Use Cognito User Pool as Authorizer (https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html)
 type Authorizer struct {
 	_ struct{} `type:"structure"`
 
@@ -11988,25 +11957,23 @@ type Authorizer struct {
 	// The identifier for the authorizer resource.
 	Id *string `locationName:"id" type:"string"`
 
-	// The identity source for which authorization is requested.
-	//    * For a TOKEN or COGNITO_USER_POOLS authorizer, this is required and specifies
-	//    the request header mapping expression for the custom header holding the
-	//    authorization token submitted by the client. For example, if the token
-	//    header name is Auth, the header mapping expression is method.request.header.Auth.
-	//
-	//    * For the REQUEST authorizer, this is required when authorization caching
-	//    is enabled. The value is a comma-separated string of one or more mapping
-	//    expressions of the specified request parameters. For example, if an Auth
-	//    header, a Name query string parameter are defined as identity sources,
-	//    this value is method.request.header.Auth, method.request.querystring.Name.
-	//    These parameters will be used to derive the authorization caching key
-	//    and to perform runtime validation of the REQUEST authorizer by verifying
-	//    all of the identity-related request parameters are present, not null and
-	//    non-empty. Only when this is true does the authorizer invoke the authorizer
-	//    Lambda function, otherwise, it returns a 401 Unauthorized response without
-	//    calling the Lambda function. The valid value is a string of comma-separated
-	//    mapping expressions of the specified request parameters. When the authorization
-	//    caching is not enabled, this property is optional.
+	// The identity source for which authorization is requested. For a TOKEN or
+	// COGNITO_USER_POOLS authorizer, this is required and specifies the request
+	// header mapping expression for the custom header holding the authorization
+	// token submitted by the client. For example, if the token header name is Auth,
+	// the header mapping expression is method.request.header.Auth. For the REQUEST
+	// authorizer, this is required when authorization caching is enabled. The value
+	// is a comma-separated string of one or more mapping expressions of the specified
+	// request parameters. For example, if an Auth header, a Name query string parameter
+	// are defined as identity sources, this value is method.request.header.Auth,
+	// method.request.querystring.Name. These parameters will be used to derive
+	// the authorization caching key and to perform runtime validation of the REQUEST
+	// authorizer by verifying all of the identity-related request parameters are
+	// present, not null and non-empty. Only when this is true does the authorizer
+	// invoke the authorizer Lambda function, otherwise, it returns a 401 Unauthorized
+	// response without calling the Lambda function. The valid value is a string
+	// of comma-separated mapping expressions of the specified request parameters.
+	// When the authorization caching is not enabled, this property is optional.
 	IdentitySource *string `locationName:"identitySource" type:"string"`
 
 	// A validation expression for the incoming identity token. For TOKEN authorizers,
@@ -12018,7 +11985,7 @@ type Authorizer struct {
 	// not apply to the REQUEST authorizer.
 	IdentityValidationExpression *string `locationName:"identityValidationExpression" type:"string"`
 
-	// [Required] The name of the authorizer.
+	// The name of the authorizer.
 	Name *string `locationName:"name" type:"string"`
 
 	// A list of the Amazon Cognito user pool ARNs for the COGNITO_USER_POOLS authorizer.
@@ -12178,11 +12145,6 @@ func (s *BadRequestException) RequestID() string {
 
 // Represents the base path that callers of the API must provide as part of
 // the URL after the domain name.
-//
-// A custom domain name plus a BasePathMapping specification identifies a deployed
-// RestApi in a given stage of the owner Account.
-//
-// Use Custom Domain Names (https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html)
 type BasePathMapping struct {
 	_ struct{} `type:"structure"`
 
@@ -12297,12 +12259,6 @@ func (s *CanarySettings) SetUseStageCache(v bool) *CanarySettings {
 
 // Represents a client certificate used to configure client-side SSL authentication
 // while sending requests to the integration endpoint.
-//
-// Client certificates are used to authenticate an API by the backend server.
-// To authenticate an API client (or user), use IAM roles and policies, a custom
-// Authorizer or an Amazon Cognito user pool.
-//
-// Use Client-Side Certificate (https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-client-side-ssl-authentication.html)
 type ClientCertificate struct {
 	_ struct{} `type:"structure"`
 
@@ -12575,25 +12531,23 @@ type CreateAuthorizerInput struct {
 	// is usually of the form /2015-03-31/functions/[FunctionARN]/invocations.
 	AuthorizerUri *string `locationName:"authorizerUri" type:"string"`
 
-	// The identity source for which authorization is requested.
-	//    * For a TOKEN or COGNITO_USER_POOLS authorizer, this is required and specifies
-	//    the request header mapping expression for the custom header holding the
-	//    authorization token submitted by the client. For example, if the token
-	//    header name is Auth, the header mapping expression is method.request.header.Auth.
-	//
-	//    * For the REQUEST authorizer, this is required when authorization caching
-	//    is enabled. The value is a comma-separated string of one or more mapping
-	//    expressions of the specified request parameters. For example, if an Auth
-	//    header, a Name query string parameter are defined as identity sources,
-	//    this value is method.request.header.Auth, method.request.querystring.Name.
-	//    These parameters will be used to derive the authorization caching key
-	//    and to perform runtime validation of the REQUEST authorizer by verifying
-	//    all of the identity-related request parameters are present, not null and
-	//    non-empty. Only when this is true does the authorizer invoke the authorizer
-	//    Lambda function, otherwise, it returns a 401 Unauthorized response without
-	//    calling the Lambda function. The valid value is a string of comma-separated
-	//    mapping expressions of the specified request parameters. When the authorization
-	//    caching is not enabled, this property is optional.
+	// The identity source for which authorization is requested. For a TOKEN or
+	// COGNITO_USER_POOLS authorizer, this is required and specifies the request
+	// header mapping expression for the custom header holding the authorization
+	// token submitted by the client. For example, if the token header name is Auth,
+	// the header mapping expression is method.request.header.Auth. For the REQUEST
+	// authorizer, this is required when authorization caching is enabled. The value
+	// is a comma-separated string of one or more mapping expressions of the specified
+	// request parameters. For example, if an Auth header, a Name query string parameter
+	// are defined as identity sources, this value is method.request.header.Auth,
+	// method.request.querystring.Name. These parameters will be used to derive
+	// the authorization caching key and to perform runtime validation of the REQUEST
+	// authorizer by verifying all of the identity-related request parameters are
+	// present, not null and non-empty. Only when this is true does the authorizer
+	// invoke the authorizer Lambda function, otherwise, it returns a 401 Unauthorized
+	// response without calling the Lambda function. The valid value is a string
+	// of comma-separated mapping expressions of the specified request parameters.
+	// When the authorization caching is not enabled, this property is optional.
 	IdentitySource *string `locationName:"identitySource" type:"string"`
 
 	// A validation expression for the incoming identity token. For TOKEN authorizers,
@@ -12605,7 +12559,7 @@ type CreateAuthorizerInput struct {
 	// not apply to the REQUEST authorizer.
 	IdentityValidationExpression *string `locationName:"identityValidationExpression" type:"string"`
 
-	// [Required] The name of the authorizer.
+	// The name of the authorizer.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
@@ -12615,15 +12569,15 @@ type CreateAuthorizerInput struct {
 	// For a TOKEN or REQUEST authorizer, this is not defined.
 	ProviderARNs []*string `locationName:"providerARNs" type:"list"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	// [Required] The authorizer type. Valid values are TOKEN for a Lambda function
-	// using a single authorization token submitted in a custom header, REQUEST
-	// for a Lambda function using incoming request parameters, and COGNITO_USER_POOLS
-	// for using an Amazon Cognito user pool.
+	// The authorizer type. Valid values are TOKEN for a Lambda function using a
+	// single authorization token submitted in a custom header, REQUEST for a Lambda
+	// function using incoming request parameters, and COGNITO_USER_POOLS for using
+	// an Amazon Cognito user pool.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"AuthorizerType"`
@@ -12739,12 +12693,12 @@ type CreateBasePathMappingInput struct {
 	// a base path name after the domain name.
 	BasePath *string `locationName:"basePath" type:"string"`
 
-	// [Required] The domain name of the BasePathMapping resource to create.
+	// The domain name of the BasePathMapping resource to create.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `locationName:"restApiId" type:"string" required:"true"`
@@ -12834,7 +12788,7 @@ type CreateDeploymentInput struct {
 	// The description for the Deployment resource to create.
 	Description *string `locationName:"description" type:"string"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -12946,20 +12900,20 @@ func (s *CreateDeploymentInput) SetVariables(v map[string]*string) *CreateDeploy
 type CreateDocumentationPartInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Required] The location of the targeted API entity of the to-be-created documentation
+	// The location of the targeted API entity of the to-be-created documentation
 	// part.
 	//
 	// Location is a required field
 	Location *DocumentationPartLocation `locationName:"location" type:"structure" required:"true"`
 
-	// [Required] The new documentation content map of the targeted API entity.
-	// Enclosed key-value pairs are API-specific, but only OpenAPI-compliant key-value
-	// pairs can be exported and, hence, published.
+	// The new documentation content map of the targeted API entity. Enclosed key-value
+	// pairs are API-specific, but only OpenAPI-compliant key-value pairs can be
+	// exported and, hence, published.
 	//
 	// Properties is a required field
 	Properties *string `locationName:"properties" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -13035,12 +12989,12 @@ type CreateDocumentationVersionInput struct {
 	// A description about the new documentation snapshot.
 	Description *string `locationName:"description" type:"string"`
 
-	// [Required] The version identifier of the new snapshot.
+	// The version identifier of the new snapshot.
 	//
 	// DocumentationVersion is a required field
 	DocumentationVersion *string `locationName:"documentationVersion" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -13140,7 +13094,7 @@ type CreateDomainNameInput struct {
 	// key.
 	CertificatePrivateKey *string `locationName:"certificatePrivateKey" type:"string"`
 
-	// [Required] The name of the DomainName resource.
+	// The name of the DomainName resource.
 	//
 	// DomainName is a required field
 	DomainName *string `locationName:"domainName" type:"string" required:"true"`
@@ -13149,9 +13103,10 @@ type CreateDomainNameInput struct {
 	// of the domain name.
 	EndpointConfiguration *EndpointConfiguration `locationName:"endpointConfiguration" type:"structure"`
 
-	// If specified, API Gateway performs two-way authentication between the client
+	// The mutual TLS authentication configuration for a custom domain name. If
+	// specified, API Gateway performs two-way authentication between the client
 	// and the server. Clients must present a trusted certificate to access your
-	// custom domain name.
+	// API.
 	MutualTlsAuthentication *MutualTlsAuthenticationInput `locationName:"mutualTlsAuthentication" type:"structure"`
 
 	// The ARN of the public certificate issued by ACM to validate ownership of
@@ -13291,7 +13246,7 @@ func (s *CreateDomainNameInput) SetTags(v map[string]*string) *CreateDomainNameI
 type CreateModelInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Required] The content-type for the model.
+	// The content-type for the model.
 	//
 	// ContentType is a required field
 	ContentType *string `locationName:"contentType" type:"string" required:"true"`
@@ -13299,18 +13254,18 @@ type CreateModelInput struct {
 	// The description of the model.
 	Description *string `locationName:"description" type:"string"`
 
-	// [Required] The name of the model. Must be alphanumeric.
+	// The name of the model. Must be alphanumeric.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// [Required] The RestApi identifier under which the Model will be created.
+	// The RestApi identifier under which the Model will be created.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The schema for the model. For application/json models, this should be JSON
-	// schema draft 4 (https://tools.ietf.org/html/draft-zyp-json-schema-04) model.
+	// schema draft 4 model.
 	Schema *string `locationName:"schema" type:"string"`
 }
 
@@ -13391,7 +13346,7 @@ type CreateRequestValidatorInput struct {
 	// The name of the to-be-created RequestValidator.
 	Name *string `locationName:"name" type:"string"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -13467,7 +13422,7 @@ func (s *CreateRequestValidatorInput) SetValidateRequestParameters(v bool) *Crea
 type CreateResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Required] The parent resource's identifier.
+	// The parent resource's identifier.
 	//
 	// ParentId is a required field
 	ParentId *string `location:"uri" locationName:"parent_id" type:"string" required:"true"`
@@ -13477,7 +13432,7 @@ type CreateResourceInput struct {
 	// PathPart is a required field
 	PathPart *string `locationName:"pathPart" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -13549,11 +13504,9 @@ type CreateRestApiInput struct {
 	_ struct{} `type:"structure"`
 
 	// The source of the API key for metering requests according to a usage plan.
-	// Valid values are:
-	//    * HEADER to read the API key from the X-API-Key header of a request.
-	//
-	//    * AUTHORIZER to read the API key from the UsageIdentifierKey from a custom
-	//    authorizer.
+	// Valid values are: >HEADER to read the API key from the X-API-Key header of
+	// a request. AUTHORIZER to read the API key from the UsageIdentifierKey from
+	// a custom authorizer.
 	ApiKeySource *string `locationName:"apiKeySource" type:"string" enum:"ApiKeySourceType"`
 
 	// The list of binary media types supported by the RestApi. By default, the
@@ -13569,7 +13522,7 @@ type CreateRestApiInput struct {
 	// Specifies whether clients can invoke your API by using the default execute-api
 	// endpoint. By default, clients can invoke your API with the default https://{api_id}.execute-api.{region}.amazonaws.com
 	// endpoint. To require that clients use a custom domain name to invoke your
-	// API, disable the default endpoint.
+	// API, disable the default endpoint
 	DisableExecuteApiEndpoint *bool `locationName:"disableExecuteApiEndpoint" type:"boolean"`
 
 	// The endpoint configuration of this RestApi showing the endpoint types of
@@ -13583,7 +13536,7 @@ type CreateRestApiInput struct {
 	// Setting it to zero allows compression for any payload size.
 	MinimumCompressionSize *int64 `locationName:"minimumCompressionSize" type:"integer"`
 
-	// [Required] The name of the RestApi.
+	// The name of the RestApi.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
@@ -13711,7 +13664,7 @@ type CreateStageInput struct {
 	// The canary deployment settings of this stage.
 	CanarySettings *CanarySettings `locationName:"canarySettings" type:"structure"`
 
-	// [Required] The identifier of the Deployment resource for the Stage resource.
+	// The identifier of the Deployment resource for the Stage resource.
 	//
 	// DeploymentId is a required field
 	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
@@ -13722,14 +13675,13 @@ type CreateStageInput struct {
 	// The version of the associated API documentation.
 	DocumentationVersion *string `locationName:"documentationVersion" type:"string"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	// [Required] The name for the Stage resource. Stage names can only contain
-	// alphanumeric characters, hyphens, and underscores. Maximum length is 128
-	// characters.
+	// The name for the Stage resource. Stage names can only contain alphanumeric
+	// characters, hyphens, and underscores. Maximum length is 128 characters.
 	//
 	// StageName is a required field
 	StageName *string `locationName:"stageName" type:"string" required:"true"`
@@ -13866,7 +13818,7 @@ type CreateUsagePlanInput struct {
 	// The description of the usage plan.
 	Description *string `locationName:"description" type:"string"`
 
-	// [Required] The name of the usage plan.
+	// The name of the usage plan.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
@@ -13955,18 +13907,18 @@ func (s *CreateUsagePlanInput) SetThrottle(v *ThrottleSettings) *CreateUsagePlan
 type CreateUsagePlanKeyInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Required] The identifier of a UsagePlanKey resource for a plan customer.
+	// The identifier of a UsagePlanKey resource for a plan customer.
 	//
 	// KeyId is a required field
 	KeyId *string `locationName:"keyId" type:"string" required:"true"`
 
-	// [Required] The type of a UsagePlanKey resource for a plan customer.
+	// The type of a UsagePlanKey resource for a plan customer.
 	//
 	// KeyType is a required field
 	KeyType *string `locationName:"keyType" type:"string" required:"true"`
 
-	// [Required] The Id of the UsagePlan resource representing the usage plan containing
-	// the to-be-created UsagePlanKey resource representing a plan customer.
+	// The Id of the UsagePlan resource representing the usage plan containing the
+	// to-be-created UsagePlanKey resource representing a plan customer.
 	//
 	// UsagePlanId is a required field
 	UsagePlanId *string `location:"uri" locationName:"usageplanId" type:"string" required:"true"`
@@ -14040,7 +13992,7 @@ type CreateVpcLinkInput struct {
 	// The description of the VPC link.
 	Description *string `locationName:"description" type:"string"`
 
-	// [Required] The name used to label and identify the VPC link.
+	// The name used to label and identify the VPC link.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
@@ -14050,9 +14002,9 @@ type CreateVpcLinkInput struct {
 	// tag value can be up to 256 characters.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// [Required] The ARN of the network load balancer of the VPC targeted by the
-	// VPC link. The network load balancer must be owned by the same AWS account
-	// of the API owner.
+	// The ARN of the network load balancer of the VPC targeted by the VPC link.
+	// The network load balancer must be owned by the same AWS account of the API
+	// owner.
 	//
 	// TargetArns is a required field
 	TargetArns []*string `locationName:"targetArns" type:"list" required:"true"`
@@ -14120,7 +14072,7 @@ func (s *CreateVpcLinkInput) SetTargetArns(v []*string) *CreateVpcLinkInput {
 type DeleteApiKeyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The identifier of the ApiKey resource to be deleted.
+	// The identifier of the ApiKey resource to be deleted.
 	//
 	// ApiKey is a required field
 	ApiKey *string `location:"uri" locationName:"api_Key" type:"string" required:"true"`
@@ -14192,12 +14144,12 @@ func (s DeleteApiKeyOutput) GoString() string {
 type DeleteAuthorizerInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The identifier of the Authorizer resource.
+	// The identifier of the Authorizer resource.
 	//
 	// AuthorizerId is a required field
 	AuthorizerId *string `location:"uri" locationName:"authorizer_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -14281,14 +14233,14 @@ func (s DeleteAuthorizerOutput) GoString() string {
 type DeleteBasePathMappingInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The base path name of the BasePathMapping resource to delete.
+	// The base path name of the BasePathMapping resource to delete.
 	//
 	// To specify an empty base path, set this parameter to '(none)'.
 	//
 	// BasePath is a required field
 	BasePath *string `location:"uri" locationName:"base_path" type:"string" required:"true"`
 
-	// [Required] The domain name of the BasePathMapping resource to delete.
+	// The domain name of the BasePathMapping resource to delete.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
@@ -14372,7 +14324,7 @@ func (s DeleteBasePathMappingOutput) GoString() string {
 type DeleteClientCertificateInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The identifier of the ClientCertificate resource to be deleted.
+	// The identifier of the ClientCertificate resource to be deleted.
 	//
 	// ClientCertificateId is a required field
 	ClientCertificateId *string `location:"uri" locationName:"clientcertificate_id" type:"string" required:"true"`
@@ -14444,12 +14396,12 @@ func (s DeleteClientCertificateOutput) GoString() string {
 type DeleteDeploymentInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The identifier of the Deployment resource to delete.
+	// The identifier of the Deployment resource to delete.
 	//
 	// DeploymentId is a required field
 	DeploymentId *string `location:"uri" locationName:"deployment_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -14533,12 +14485,12 @@ func (s DeleteDeploymentOutput) GoString() string {
 type DeleteDocumentationPartInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The identifier of the to-be-deleted documentation part.
+	// The identifier of the to-be-deleted documentation part.
 	//
 	// DocumentationPartId is a required field
 	DocumentationPartId *string `location:"uri" locationName:"part_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -14622,12 +14574,12 @@ func (s DeleteDocumentationPartOutput) GoString() string {
 type DeleteDocumentationVersionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The version identifier of a to-be-deleted documentation snapshot.
+	// The version identifier of a to-be-deleted documentation snapshot.
 	//
 	// DocumentationVersion is a required field
 	DocumentationVersion *string `location:"uri" locationName:"doc_version" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -14711,7 +14663,7 @@ func (s DeleteDocumentationVersionOutput) GoString() string {
 type DeleteDomainNameInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The name of the DomainName resource to be deleted.
+	// The name of the DomainName resource to be deleted.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
@@ -14784,13 +14736,12 @@ func (s DeleteDomainNameOutput) GoString() string {
 type DeleteGatewayResponseInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required]
 	// The response type of the associated GatewayResponse.
 	//
 	// ResponseType is a required field
 	ResponseType *string `location:"uri" locationName:"response_type" type:"string" required:"true" enum:"GatewayResponseType"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -14874,17 +14825,17 @@ func (s DeleteGatewayResponseOutput) GoString() string {
 type DeleteIntegrationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] Specifies a delete integration request's HTTP method.
+	// Specifies a delete integration request's HTTP method.
 	//
 	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
-	// [Required] Specifies a delete integration request's resource identifier.
+	// Specifies a delete integration request's resource identifier.
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -14980,22 +14931,22 @@ func (s DeleteIntegrationOutput) GoString() string {
 type DeleteIntegrationResponseInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] Specifies a delete integration response request's HTTP method.
+	// Specifies a delete integration response request's HTTP method.
 	//
 	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
-	// [Required] Specifies a delete integration response request's resource identifier.
+	// Specifies a delete integration response request's resource identifier.
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	// [Required] Specifies a delete integration response request's status code.
+	// Specifies a delete integration response request's status code.
 	//
 	// StatusCode is a required field
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
@@ -15103,17 +15054,17 @@ func (s DeleteIntegrationResponseOutput) GoString() string {
 type DeleteMethodInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The HTTP verb of the Method resource.
+	// The HTTP verb of the Method resource.
 	//
 	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
-	// [Required] The Resource identifier for the Method resource.
+	// The Resource identifier for the Method resource.
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -15209,22 +15160,22 @@ func (s DeleteMethodOutput) GoString() string {
 type DeleteMethodResponseInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The HTTP verb of the Method resource.
+	// The HTTP verb of the Method resource.
 	//
 	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
-	// [Required] The Resource identifier for the MethodResponse resource.
+	// The Resource identifier for the MethodResponse resource.
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	// [Required] The status code identifier for the MethodResponse resource.
+	// The status code identifier for the MethodResponse resource.
 	//
 	// StatusCode is a required field
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
@@ -15332,12 +15283,12 @@ func (s DeleteMethodResponseOutput) GoString() string {
 type DeleteModelInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The name of the model to delete.
+	// The name of the model to delete.
 	//
 	// ModelName is a required field
 	ModelName *string `location:"uri" locationName:"model_name" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -15421,12 +15372,12 @@ func (s DeleteModelOutput) GoString() string {
 type DeleteRequestValidatorInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The identifier of the RequestValidator to be deleted.
+	// The identifier of the RequestValidator to be deleted.
 	//
 	// RequestValidatorId is a required field
 	RequestValidatorId *string `location:"uri" locationName:"requestvalidator_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -15510,12 +15461,12 @@ func (s DeleteRequestValidatorOutput) GoString() string {
 type DeleteResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The identifier of the Resource resource.
+	// The identifier of the Resource resource.
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -15599,7 +15550,7 @@ func (s DeleteResourceOutput) GoString() string {
 type DeleteRestApiInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -15671,12 +15622,12 @@ func (s DeleteRestApiOutput) GoString() string {
 type DeleteStageInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	// [Required] The name of the Stage resource to delete.
+	// The name of the Stage resource to delete.
 	//
 	// StageName is a required field
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
@@ -15760,7 +15711,7 @@ func (s DeleteStageOutput) GoString() string {
 type DeleteUsagePlanInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The Id of the to-be-deleted usage plan.
+	// The Id of the to-be-deleted usage plan.
 	//
 	// UsagePlanId is a required field
 	UsagePlanId *string `location:"uri" locationName:"usageplanId" type:"string" required:"true"`
@@ -15811,13 +15762,13 @@ func (s *DeleteUsagePlanInput) SetUsagePlanId(v string) *DeleteUsagePlanInput {
 type DeleteUsagePlanKeyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The Id of the UsagePlanKey resource to be deleted.
+	// The Id of the UsagePlanKey resource to be deleted.
 	//
 	// KeyId is a required field
 	KeyId *string `location:"uri" locationName:"keyId" type:"string" required:"true"`
 
-	// [Required] The Id of the UsagePlan resource representing the usage plan containing
-	// the to-be-deleted UsagePlanKey resource representing a plan customer.
+	// The Id of the UsagePlan resource representing the usage plan containing the
+	// to-be-deleted UsagePlanKey resource representing a plan customer.
 	//
 	// UsagePlanId is a required field
 	UsagePlanId *string `location:"uri" locationName:"usageplanId" type:"string" required:"true"`
@@ -15923,8 +15874,8 @@ func (s DeleteUsagePlanOutput) GoString() string {
 type DeleteVpcLinkInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The identifier of the VpcLink. It is used in an Integration to
-	// reference this VpcLink.
+	// The identifier of the VpcLink. It is used in an Integration to reference
+	// this VpcLink.
 	//
 	// VpcLinkId is a required field
 	VpcLinkId *string `location:"uri" locationName:"vpclink_id" type:"string" required:"true"`
@@ -15995,13 +15946,6 @@ func (s DeleteVpcLinkOutput) GoString() string {
 // An immutable representation of a RestApi resource that can be called by users
 // using Stages. A deployment must be associated with a Stage for it to be callable
 // over the Internet.
-//
-// To create a deployment, call POST on the Deployments resource of a RestApi.
-// To view, update, or delete a deployment, call GET, PATCH, or DELETE on the
-// specified deployment resource (/restapis/{restapi_id}/deployments/{deployment_id}).
-//
-// RestApi, Deployments, Stage, AWS CLI (https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-deployment.html),
-// AWS SDKs (https://aws.amazon.com/tools/)
 type Deployment struct {
 	_ struct{} `type:"structure"`
 
@@ -16116,21 +16060,6 @@ func (s *DeploymentCanarySettings) SetUseStageCache(v bool) *DeploymentCanarySet
 }
 
 // A documentation part for a targeted API entity.
-//
-// A documentation part consists of a content map (properties) and a target
-// (location). The target specifies an API entity to which the documentation
-// content applies. The supported API entity types are API, AUTHORIZER, MODEL,
-// RESOURCE, METHOD, PATH_PARAMETER, QUERY_PARAMETER, REQUEST_HEADER, REQUEST_BODY,
-// RESPONSE, RESPONSE_HEADER, and RESPONSE_BODY. Valid location fields depend
-// on the API entity type. All valid fields are not required.
-//
-// The content map is a JSON string of API-specific key-value pairs. Although
-// an API can use any shape for the content map, only the OpenAPI-compliant
-// documentation fields will be injected into the associated API entity definition
-// in the exported OpenAPI definition file.
-//
-// Documenting an API (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-documenting-api.html),
-// DocumentationParts
 type DocumentationPart struct {
 	_ struct{} `type:"structure"`
 
@@ -16226,11 +16155,11 @@ type DocumentationPartLocation struct {
 	// of the parent entity exactly.
 	StatusCode *string `locationName:"statusCode" type:"string"`
 
-	// [Required] The type of API entity to which the documentation content applies.
-	// Valid values are API, AUTHORIZER, MODEL, RESOURCE, METHOD, PATH_PARAMETER,
-	// QUERY_PARAMETER, REQUEST_HEADER, REQUEST_BODY, RESPONSE, RESPONSE_HEADER,
-	// and RESPONSE_BODY. Content inheritance does not apply to any entity of the
-	// API, AUTHORIZER, METHOD, MODEL, REQUEST_BODY, or RESOURCE type.
+	// The type of API entity to which the documentation content applies. Valid
+	// values are API, AUTHORIZER, MODEL, RESOURCE, METHOD, PATH_PARAMETER, QUERY_PARAMETER,
+	// REQUEST_HEADER, REQUEST_BODY, RESPONSE, RESPONSE_HEADER, and RESPONSE_BODY.
+	// Content inheritance does not apply to any entity of the API, AUTHORIZER,
+	// METHOD, MODEL, REQUEST_BODY, or RESOURCE type.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"DocumentationPartType"`
@@ -16298,13 +16227,6 @@ func (s *DocumentationPartLocation) SetType(v string) *DocumentationPartLocation
 }
 
 // A snapshot of the documentation of an API.
-//
-// Publishing API documentation involves creating a documentation version associated
-// with an API stage and exporting the versioned documentation to an external
-// (e.g., OpenAPI) file.
-//
-// Documenting an API (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-documenting-api.html),
-// DocumentationPart, DocumentationVersions
 type DocumentationVersion struct {
 	_ struct{} `type:"structure"`
 
@@ -16355,17 +16277,6 @@ func (s *DocumentationVersion) SetVersion(v string) *DocumentationVersion {
 }
 
 // Represents a custom domain name as a user-friendly host name of an API (RestApi).
-//
-// When you deploy an API, API Gateway creates a default host name for the API.
-// This default API host name is of the {restapi-id}.execute-api.{region}.amazonaws.com
-// format. With the default host name, you can access the API's root resource
-// with the URL of https://{restapi-id}.execute-api.{region}.amazonaws.com/{stage}/.
-// When you set up a custom domain name of apis.example.com for this API, you
-// can then access the same resource using the URL of the https://apis.examples.com/myApi,
-// where myApi is the base path mapping (BasePathMapping) of your API under
-// the custom domain name.
-//
-// Set a Custom Host Name for an API (https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html)
 type DomainName struct {
 	_ struct{} `type:"structure"`
 
@@ -16386,22 +16297,22 @@ type DomainName struct {
 	// custom domain name for an edge-optimized endpoint. You set up this association
 	// when adding a DNS record pointing the custom domain name to this distribution
 	// name. For more information about CloudFront distributions, see the Amazon
-	// CloudFront documentation (https://aws.amazon.com/documentation/cloudfront/).
+	// CloudFront documentation.
 	DistributionDomainName *string `locationName:"distributionDomainName" type:"string"`
 
 	// The region-agnostic Amazon Route 53 Hosted Zone ID of the edge-optimized
 	// endpoint. The valid value is Z2FDTNDATAQYW2 for all the regions. For more
-	// information, see Set up a Regional Custom Domain Name (https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-regional-api-custom-domain-create.html)
-	// and AWS Regions and Endpoints for API Gateway (https://docs.aws.amazon.com/general/latest/gr/rande.html#apigateway_region).
+	// information, see Set up a Regional Custom Domain Name and AWS Regions and
+	// Endpoints for API Gateway.
 	DistributionHostedZoneId *string `locationName:"distributionHostedZoneId" type:"string"`
 
 	// The custom domain name as an API host name, for example, my-api.example.com.
 	DomainName *string `locationName:"domainName" type:"string"`
 
-	// The status of the DomainName migration. The valid values are AVAILABLE, UPDATING,
-	// PENDING_CERTIFICATE_REIMPORT, and PENDING_OWNERSHIP_VERIFICATION. If the
-	// status is UPDATING, the domain cannot be modified further until the existing
-	// operation is complete. If it is AVAILABLE, the domain can be updated.
+	// The status of the DomainName migration. The valid values are AVAILABLE and
+	// UPDATING. If the status is UPDATING, the domain cannot be modified further
+	// until the existing operation is complete. If it is AVAILABLE, the domain
+	// can be updated.
 	DomainNameStatus *string `locationName:"domainNameStatus" type:"string" enum:"DomainNameStatus"`
 
 	// An optional text message containing detailed information about status of
@@ -16438,8 +16349,8 @@ type DomainName struct {
 	RegionalDomainName *string `locationName:"regionalDomainName" type:"string"`
 
 	// The region-specific Amazon Route 53 Hosted Zone ID of the regional endpoint.
-	// For more information, see Set up a Regional Custom Domain Name (https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-regional-api-custom-domain-create.html)
-	// and AWS Regions and Endpoints for API Gateway (https://docs.aws.amazon.com/general/latest/gr/rande.html#apigateway_region).
+	// For more information, see Set up a Regional Custom Domain Name and AWS Regions
+	// and Endpoints for API Gateway.
 	RegionalHostedZoneId *string `locationName:"regionalHostedZoneId" type:"string"`
 
 	// The Transport Layer Security (TLS) version + cipher suite for this DomainName.
@@ -16709,12 +16620,12 @@ func (s FlushStageAuthorizersCacheOutput) GoString() string {
 type FlushStageCacheInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	// [Required] The name of the stage to flush its cache.
+	// The name of the stage to flush its cache.
 	//
 	// StageName is a required field
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
@@ -16864,7 +16775,7 @@ func (s GetAccountInput) GoString() string {
 type GetApiKeyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The identifier of the ApiKey resource.
+	// The identifier of the ApiKey resource.
 	//
 	// ApiKey is a required field
 	ApiKey *string `location:"uri" locationName:"api_Key" type:"string" required:"true"`
@@ -16992,8 +16903,6 @@ func (s *GetApiKeysInput) SetPosition(v string) *GetApiKeysInput {
 }
 
 // Represents a collection of API keys as represented by an ApiKeys resource.
-//
-// Use API Keys (https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-api-keys.html)
 type GetApiKeysOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -17047,12 +16956,12 @@ func (s *GetApiKeysOutput) SetWarnings(v []*string) *GetApiKeysOutput {
 type GetAuthorizerInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The identifier of the Authorizer resource.
+	// The identifier of the Authorizer resource.
 	//
 	// AuthorizerId is a required field
 	AuthorizerId *string `location:"uri" locationName:"authorizer_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -17121,7 +17030,7 @@ type GetAuthorizersInput struct {
 	// The current pagination position in the paged result set.
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -17180,9 +17089,6 @@ func (s *GetAuthorizersInput) SetRestApiId(v string) *GetAuthorizersInput {
 }
 
 // Represents a collection of Authorizer resources.
-//
-// Use Lambda Function as Authorizer (https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html)
-// Use Cognito User Pool as Authorizer (https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html)
 type GetAuthorizersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -17226,15 +17132,15 @@ func (s *GetAuthorizersOutput) SetPosition(v string) *GetAuthorizersOutput {
 type GetBasePathMappingInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The base path name that callers of the API must provide as part
-	// of the URL after the domain name. This value must be unique for all of the
-	// mappings across a single API. Specify '(none)' if you do not want callers
-	// to specify any base path name after the domain name.
+	// The base path name that callers of the API must provide as part of the URL
+	// after the domain name. This value must be unique for all of the mappings
+	// across a single API. Specify '(none)' if you do not want callers to specify
+	// any base path name after the domain name.
 	//
 	// BasePath is a required field
 	BasePath *string `location:"uri" locationName:"base_path" type:"string" required:"true"`
 
-	// [Required] The domain name of the BasePathMapping resource to be described.
+	// The domain name of the BasePathMapping resource to be described.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
@@ -17296,7 +17202,7 @@ func (s *GetBasePathMappingInput) SetDomainName(v string) *GetBasePathMappingInp
 type GetBasePathMappingsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The domain name of a BasePathMapping resource.
+	// The domain name of a BasePathMapping resource.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
@@ -17362,8 +17268,6 @@ func (s *GetBasePathMappingsInput) SetPosition(v string) *GetBasePathMappingsInp
 }
 
 // Represents a collection of BasePathMapping resources.
-//
-// Use Custom Domain Names (https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html)
 type GetBasePathMappingsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -17407,7 +17311,7 @@ func (s *GetBasePathMappingsOutput) SetPosition(v string) *GetBasePathMappingsOu
 type GetClientCertificateInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The identifier of the ClientCertificate resource to be described.
+	// The identifier of the ClientCertificate resource to be described.
 	//
 	// ClientCertificateId is a required field
 	ClientCertificateId *string `location:"uri" locationName:"clientcertificate_id" type:"string" required:"true"`
@@ -17496,8 +17400,6 @@ func (s *GetClientCertificatesInput) SetPosition(v string) *GetClientCertificate
 }
 
 // Represents a collection of ClientCertificate resources.
-//
-// Use Client-Side Certificate (https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-client-side-ssl-authentication.html)
 type GetClientCertificatesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -17541,7 +17443,7 @@ func (s *GetClientCertificatesOutput) SetPosition(v string) *GetClientCertificat
 type GetDeploymentInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The identifier of the Deployment resource to get information about.
+	// The identifier of the Deployment resource to get information about.
 	//
 	// DeploymentId is a required field
 	DeploymentId *string `location:"uri" locationName:"deployment_id" type:"string" required:"true"`
@@ -17555,7 +17457,7 @@ type GetDeploymentInput struct {
 	// list containing only the "apisummary" string. For example, GET /restapis/{restapi_id}/deployments/{deployment_id}?embed=apisummary.
 	Embed []*string `location:"querystring" locationName:"embed" type:"list"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -17630,7 +17532,7 @@ type GetDeploymentsInput struct {
 	// The current pagination position in the paged result set.
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -17692,14 +17594,6 @@ func (s *GetDeploymentsInput) SetRestApiId(v string) *GetDeploymentsInput {
 // your existing deployments, and links that guide you on how to interact with
 // your collection. The collection offers a paginated view of the contained
 // deployments.
-//
-// To create a new deployment of a RestApi, make a POST request against this
-// resource. To view, update, or delete an existing deployment, make a GET,
-// PATCH, or DELETE request, respectively, on a specified Deployment resource.
-//
-// Deploying an API (https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-deploy-api.html),
-// AWS CLI (https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-deployment.html),
-// AWS SDKs (https://aws.amazon.com/tools/)
 type GetDeploymentsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -17743,12 +17637,12 @@ func (s *GetDeploymentsOutput) SetPosition(v string) *GetDeploymentsOutput {
 type GetDocumentationPartInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// DocumentationPartId is a required field
 	DocumentationPartId *string `location:"uri" locationName:"part_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -17829,7 +17723,7 @@ type GetDocumentationPartsInput struct {
 	// The current pagination position in the paged result set.
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -17915,9 +17809,6 @@ func (s *GetDocumentationPartsInput) SetType(v string) *GetDocumentationPartsInp
 }
 
 // The collection of documentation parts of an API.
-//
-// Documenting an API (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-documenting-api.html),
-// DocumentationPart
 type GetDocumentationPartsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -17961,12 +17852,12 @@ func (s *GetDocumentationPartsOutput) SetPosition(v string) *GetDocumentationPar
 type GetDocumentationVersionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The version identifier of the to-be-retrieved documentation snapshot.
+	// The version identifier of the to-be-retrieved documentation snapshot.
 	//
 	// DocumentationVersion is a required field
 	DocumentationVersion *string `location:"uri" locationName:"doc_version" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -18035,7 +17926,7 @@ type GetDocumentationVersionsInput struct {
 	// The current pagination position in the paged result set.
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -18094,12 +17985,6 @@ func (s *GetDocumentationVersionsInput) SetRestApiId(v string) *GetDocumentation
 }
 
 // The collection of documentation snapshots of an API.
-//
-// Use the DocumentationVersions to manage documentation snapshots associated
-// with various API stages.
-//
-// Documenting an API (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-documenting-api.html),
-// DocumentationPart, DocumentationVersion
 type GetDocumentationVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -18143,7 +18028,7 @@ func (s *GetDocumentationVersionsOutput) SetPosition(v string) *GetDocumentation
 type GetDomainNameInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The name of the DomainName resource.
+	// The name of the DomainName resource.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
@@ -18232,8 +18117,6 @@ func (s *GetDomainNamesInput) SetPosition(v string) *GetDomainNamesInput {
 }
 
 // Represents a collection of DomainName resources.
-//
-// Use Client-Side Certificate (https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html)
 type GetDomainNamesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -18282,8 +18165,8 @@ type GetExportInput struct {
 	// should be specified in the Accept header for direct API requests.
 	Accepts *string `location:"header" locationName:"Accept" type:"string"`
 
-	// [Required] The type of export. Acceptable values are 'oas30' for OpenAPI
-	// 3.0.x and 'swagger' for Swagger/OpenAPI 2.0.
+	// The type of export. Acceptable values are 'oas30' for OpenAPI 3.0.x and 'swagger'
+	// for Swagger/OpenAPI 2.0.
 	//
 	// ExportType is a required field
 	ExportType *string `location:"uri" locationName:"export_type" type:"string" required:"true"`
@@ -18297,12 +18180,12 @@ type GetExportInput struct {
 	// for import to the Postman tool
 	Parameters map[string]*string `location:"querystring" locationName:"parameters" type:"map"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	// [Required] The name of the Stage that will be exported.
+	// The name of the Stage that will be exported.
 	//
 	// StageName is a required field
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
@@ -18439,13 +18322,12 @@ func (s *GetExportOutput) SetContentType(v string) *GetExportOutput {
 type GetGatewayResponseInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required]
 	// The response type of the associated GatewayResponse.
 	//
 	// ResponseType is a required field
 	ResponseType *string `location:"uri" locationName:"response_type" type:"string" required:"true" enum:"GatewayResponseType"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -18519,7 +18401,7 @@ type GetGatewayResponsesInput struct {
 	// collection does not support pagination and the position does not apply here.
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -18580,164 +18462,6 @@ func (s *GetGatewayResponsesInput) SetRestApiId(v string) *GetGatewayResponsesIn
 // The collection of the GatewayResponse instances of a RestApi as a responseType-to-GatewayResponse
 // object map of key-value pairs. As such, pagination is not supported for querying
 // this collection.
-//
-// For more information about valid gateway response types, see Gateway Response
-// Types Supported by API Gateway (https://docs.aws.amazon.com/apigateway/latest/developerguide/supported-gateway-response-types.html)
-//
-// Example: Get the collection of gateway responses of an API
-//
-// Request
-//
-// This example request shows how to retrieve the GatewayResponses collection
-// from an API.
-//  GET /restapis/o81lxisefl/gatewayresponses HTTP/1.1 Host: beta-apigateway.us-east-1.amazonaws.com
-//  Content-Type: application/json X-Amz-Date: 20170503T220604Z Authorization:
-//  AWS4-HMAC-SHA256 Credential={access-key-id}/20170503/us-east-1/apigateway/aws4_request,
-//  SignedHeaders=content-type;host;x-amz-date, Signature=59b42fe54a76a5de8adf2c67baa6d39206f8e9ad49a1d77ccc6a5da3103a398a
-//  Cache-Control: no-cache Postman-Token: 5637af27-dc29-fc5c-9dfe-0645d52cb515
-// Response
-//
-// The successful operation returns the 200 OK status code and a payload similar
-// to the following:
-//  { "_links": { "curies": { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-gatewayresponse-{rel}.html",
-//  "name": "gatewayresponse", "templated": true }, "self": { "href": "/restapis/o81lxisefl/gatewayresponses"
-//  }, "first": { "href": "/restapis/o81lxisefl/gatewayresponses" }, "gatewayresponse:by-type":
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}", "templated":
-//  true }, "item": [ { "href": "/restapis/o81lxisefl/gatewayresponses/INTEGRATION_FAILURE"
-//  }, { "href": "/restapis/o81lxisefl/gatewayresponses/RESOURCE_NOT_FOUND"
-//  }, { "href": "/restapis/o81lxisefl/gatewayresponses/REQUEST_TOO_LARGE" },
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/THROTTLED" }, { "href":
-//  "/restapis/o81lxisefl/gatewayresponses/UNSUPPORTED_MEDIA_TYPE" }, { "href":
-//  "/restapis/o81lxisefl/gatewayresponses/AUTHORIZER_CONFIGURATION_ERROR" },
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/DEFAULT_5XX" }, { "href":
-//  "/restapis/o81lxisefl/gatewayresponses/DEFAULT_4XX" }, { "href": "/restapis/o81lxisefl/gatewayresponses/BAD_REQUEST_PARAMETERS"
-//  }, { "href": "/restapis/o81lxisefl/gatewayresponses/BAD_REQUEST_BODY" },
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/EXPIRED_TOKEN" }, { "href":
-//  "/restapis/o81lxisefl/gatewayresponses/ACCESS_DENIED" }, { "href": "/restapis/o81lxisefl/gatewayresponses/INVALID_API_KEY"
-//  }, { "href": "/restapis/o81lxisefl/gatewayresponses/UNAUTHORIZED" }, { "href":
-//  "/restapis/o81lxisefl/gatewayresponses/API_CONFIGURATION_ERROR" }, { "href":
-//  "/restapis/o81lxisefl/gatewayresponses/QUOTA_EXCEEDED" }, { "href": "/restapis/o81lxisefl/gatewayresponses/INTEGRATION_TIMEOUT"
-//  }, { "href": "/restapis/o81lxisefl/gatewayresponses/MISSING_AUTHENTICATION_TOKEN"
-//  }, { "href": "/restapis/o81lxisefl/gatewayresponses/INVALID_SIGNATURE" },
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/AUTHORIZER_FAILURE" } ]
-//  }, "_embedded": { "item": [ { "_links": { "self": { "href": "/restapis/o81lxisefl/gatewayresponses/INTEGRATION_FAILURE"
-//  }, "gatewayresponse:put": { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}",
-//  "templated": true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/INTEGRATION_FAILURE"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "INTEGRATION_FAILURE", "statusCode": "504" }, { "_links": { "self": { "href":
-//  "/restapis/o81lxisefl/gatewayresponses/RESOURCE_NOT_FOUND" }, "gatewayresponse:put":
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}", "templated":
-//  true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/RESOURCE_NOT_FOUND"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "RESOURCE_NOT_FOUND", "statusCode": "404" }, { "_links": { "self": { "href":
-//  "/restapis/o81lxisefl/gatewayresponses/REQUEST_TOO_LARGE" }, "gatewayresponse:put":
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}", "templated":
-//  true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/REQUEST_TOO_LARGE"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "REQUEST_TOO_LARGE", "statusCode": "413" }, { "_links": { "self": { "href":
-//  "/restapis/o81lxisefl/gatewayresponses/THROTTLED" }, "gatewayresponse:put":
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}", "templated":
-//  true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/THROTTLED"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "THROTTLED", "statusCode": "429" }, { "_links": { "self": { "href": "/restapis/o81lxisefl/gatewayresponses/UNSUPPORTED_MEDIA_TYPE"
-//  }, "gatewayresponse:put": { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}",
-//  "templated": true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/UNSUPPORTED_MEDIA_TYPE"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "UNSUPPORTED_MEDIA_TYPE", "statusCode": "415" }, { "_links": { "self": {
-//  "href": "/restapis/o81lxisefl/gatewayresponses/AUTHORIZER_CONFIGURATION_ERROR"
-//  }, "gatewayresponse:put": { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}",
-//  "templated": true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/AUTHORIZER_CONFIGURATION_ERROR"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "AUTHORIZER_CONFIGURATION_ERROR", "statusCode": "500" }, { "_links": { "self":
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/DEFAULT_5XX" }, "gatewayresponse:put":
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}", "templated":
-//  true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/DEFAULT_5XX"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "DEFAULT_5XX" }, { "_links": { "self": { "href": "/restapis/o81lxisefl/gatewayresponses/DEFAULT_4XX"
-//  }, "gatewayresponse:put": { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}",
-//  "templated": true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/DEFAULT_4XX"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "DEFAULT_4XX" }, { "_links": { "self": { "href": "/restapis/o81lxisefl/gatewayresponses/BAD_REQUEST_PARAMETERS"
-//  }, "gatewayresponse:put": { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}",
-//  "templated": true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/BAD_REQUEST_PARAMETERS"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "BAD_REQUEST_PARAMETERS", "statusCode": "400" }, { "_links": { "self": {
-//  "href": "/restapis/o81lxisefl/gatewayresponses/BAD_REQUEST_BODY" }, "gatewayresponse:put":
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}", "templated":
-//  true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/BAD_REQUEST_BODY"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "BAD_REQUEST_BODY", "statusCode": "400" }, { "_links": { "self": { "href":
-//  "/restapis/o81lxisefl/gatewayresponses/EXPIRED_TOKEN" }, "gatewayresponse:put":
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}", "templated":
-//  true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/EXPIRED_TOKEN"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "EXPIRED_TOKEN", "statusCode": "403" }, { "_links": { "self": { "href":
-//  "/restapis/o81lxisefl/gatewayresponses/ACCESS_DENIED" }, "gatewayresponse:put":
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}", "templated":
-//  true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/ACCESS_DENIED"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "ACCESS_DENIED", "statusCode": "403" }, { "_links": { "self": { "href":
-//  "/restapis/o81lxisefl/gatewayresponses/INVALID_API_KEY" }, "gatewayresponse:put":
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}", "templated":
-//  true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/INVALID_API_KEY"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "INVALID_API_KEY", "statusCode": "403" }, { "_links": { "self": { "href":
-//  "/restapis/o81lxisefl/gatewayresponses/UNAUTHORIZED" }, "gatewayresponse:put":
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}", "templated":
-//  true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/UNAUTHORIZED"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "UNAUTHORIZED", "statusCode": "401" }, { "_links": { "self": { "href": "/restapis/o81lxisefl/gatewayresponses/API_CONFIGURATION_ERROR"
-//  }, "gatewayresponse:put": { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}",
-//  "templated": true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/API_CONFIGURATION_ERROR"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "API_CONFIGURATION_ERROR", "statusCode": "500" }, { "_links": { "self":
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/QUOTA_EXCEEDED" }, "gatewayresponse:put":
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}", "templated":
-//  true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/QUOTA_EXCEEDED"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "QUOTA_EXCEEDED", "statusCode": "429" }, { "_links": { "self": { "href":
-//  "/restapis/o81lxisefl/gatewayresponses/INTEGRATION_TIMEOUT" }, "gatewayresponse:put":
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}", "templated":
-//  true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/INTEGRATION_TIMEOUT"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "INTEGRATION_TIMEOUT", "statusCode": "504" }, { "_links": { "self": { "href":
-//  "/restapis/o81lxisefl/gatewayresponses/MISSING_AUTHENTICATION_TOKEN" },
-//  "gatewayresponse:put": { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}",
-//  "templated": true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/MISSING_AUTHENTICATION_TOKEN"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "MISSING_AUTHENTICATION_TOKEN", "statusCode": "403" }, { "_links": { "self":
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/INVALID_SIGNATURE" }, "gatewayresponse:put":
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}", "templated":
-//  true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/INVALID_SIGNATURE"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "INVALID_SIGNATURE", "statusCode": "403" }, { "_links": { "self": { "href":
-//  "/restapis/o81lxisefl/gatewayresponses/AUTHORIZER_FAILURE" }, "gatewayresponse:put":
-//  { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}", "templated":
-//  true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/AUTHORIZER_FAILURE"
-//  } }, "defaultResponse": true, "responseParameters": {}, "responseTemplates":
-//  { "application/json": "{\"message\":$context.error.messageString}" }, "responseType":
-//  "AUTHORIZER_FAILURE", "statusCode": "500" } ] } }
-//
-// Customize Gateway Responses (https://docs.aws.amazon.com/apigateway/latest/developerguide/customize-gateway-responses.html)
 type GetGatewayResponsesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -18781,17 +18505,17 @@ func (s *GetGatewayResponsesOutput) SetPosition(v string) *GetGatewayResponsesOu
 type GetIntegrationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] Specifies a get integration request's HTTP method.
+	// Specifies a get integration request's HTTP method.
 	//
 	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
-	// [Required] Specifies a get integration request's resource identifier
+	// Specifies a get integration request's resource identifier
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -18865,22 +18589,22 @@ func (s *GetIntegrationInput) SetRestApiId(v string) *GetIntegrationInput {
 type GetIntegrationResponseInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] Specifies a get integration response request's HTTP method.
+	// Specifies a get integration response request's HTTP method.
 	//
 	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
-	// [Required] Specifies a get integration response request's resource identifier.
+	// Specifies a get integration response request's resource identifier.
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	// [Required] Specifies a get integration response request's status code.
+	// Specifies a get integration response request's status code.
 	//
 	// StatusCode is a required field
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
@@ -18966,17 +18690,17 @@ func (s *GetIntegrationResponseInput) SetStatusCode(v string) *GetIntegrationRes
 type GetMethodInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] Specifies the method request's HTTP method type.
+	// Specifies the method request's HTTP method type.
 	//
 	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
-	// [Required] The Resource identifier for the Method resource.
+	// The Resource identifier for the Method resource.
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -19050,22 +18774,22 @@ func (s *GetMethodInput) SetRestApiId(v string) *GetMethodInput {
 type GetMethodResponseInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The HTTP verb of the Method resource.
+	// The HTTP verb of the Method resource.
 	//
 	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
-	// [Required] The Resource identifier for the MethodResponse resource.
+	// The Resource identifier for the MethodResponse resource.
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	// [Required] The status code for the MethodResponse resource.
+	// The status code for the MethodResponse resource.
 	//
 	// StatusCode is a required field
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
@@ -19156,12 +18880,12 @@ type GetModelInput struct {
 	// is false.
 	Flatten *bool `location:"querystring" locationName:"flatten" type:"boolean"`
 
-	// [Required] The name of the model as an identifier.
+	// The name of the model as an identifier.
 	//
 	// ModelName is a required field
 	ModelName *string `location:"uri" locationName:"model_name" type:"string" required:"true"`
 
-	// [Required] The RestApi identifier under which the Model exists.
+	// The RestApi identifier under which the Model exists.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -19229,12 +18953,12 @@ func (s *GetModelInput) SetRestApiId(v string) *GetModelInput {
 type GetModelTemplateInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The name of the model for which to generate a template.
+	// The name of the model for which to generate a template.
 	//
 	// ModelName is a required field
 	ModelName *string `location:"uri" locationName:"model_name" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -19293,13 +19017,11 @@ func (s *GetModelTemplateInput) SetRestApiId(v string) *GetModelTemplateInput {
 }
 
 // Represents a mapping template used to transform a payload.
-//
-// Mapping Templates (https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html#models-mappings-mappings)
 type GetModelTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Apache Velocity Template Language (VTL) (https://velocity.apache.org/engine/devel/vtl-reference.html)
-	// template content used for the template resource.
+	// The Apache Velocity Template Language (VTL) template content used for the
+	// template resource.
 	Value *string `locationName:"value" type:"string"`
 }
 
@@ -19338,7 +19060,7 @@ type GetModelsInput struct {
 	// The current pagination position in the paged result set.
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -19397,8 +19119,6 @@ func (s *GetModelsInput) SetRestApiId(v string) *GetModelsInput {
 }
 
 // Represents a collection of Model resources.
-//
-// Method, MethodResponse, Models and Mappings (https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html)
 type GetModelsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -19442,12 +19162,12 @@ func (s *GetModelsOutput) SetPosition(v string) *GetModelsOutput {
 type GetRequestValidatorInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The identifier of the RequestValidator to be retrieved.
+	// The identifier of the RequestValidator to be retrieved.
 	//
 	// RequestValidatorId is a required field
 	RequestValidatorId *string `location:"uri" locationName:"requestvalidator_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -19516,7 +19236,7 @@ type GetRequestValidatorsInput struct {
 	// The current pagination position in the paged result set.
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -19575,12 +19295,6 @@ func (s *GetRequestValidatorsInput) SetRestApiId(v string) *GetRequestValidators
 }
 
 // A collection of RequestValidator resources of a given RestApi.
-//
-// In OpenAPI, the RequestValidators of an API is defined by the x-amazon-apigateway-request-validators
-// (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-swagger-extensions.html#api-gateway-swagger-extensions-request-validators.html)
-// extension.
-//
-// Enable Basic Request Validation in API Gateway (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-method-request-validation.html)
 type GetRequestValidatorsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -19632,12 +19346,12 @@ type GetResourceInput struct {
 	// /restapis/{restapi_id}/resources/{resource_id}?embed=methods.
 	Embed []*string `location:"querystring" locationName:"embed" type:"list"`
 
-	// [Required] The identifier for the Resource resource.
+	// The identifier for the Resource resource.
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -19720,7 +19434,7 @@ type GetResourcesInput struct {
 	// The current pagination position in the paged result set.
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -19785,8 +19499,6 @@ func (s *GetResourcesInput) SetRestApiId(v string) *GetResourcesInput {
 }
 
 // Represents a collection of Resource resources.
-//
-// Create an API (https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
 type GetResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -19830,7 +19542,7 @@ func (s *GetResourcesOutput) SetPosition(v string) *GetResourcesOutput {
 type GetRestApiInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -19920,8 +19632,6 @@ func (s *GetRestApisInput) SetPosition(v string) *GetRestApisInput {
 
 // Contains references to your APIs and links that guide you in how to interact
 // with your collection. A collection offers a paginated view of your APIs.
-//
-// Create an API (https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
 type GetRestApisOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -19972,18 +19682,18 @@ type GetSdkInput struct {
 	// named serviceName and javaPackageName are required.
 	Parameters map[string]*string `location:"querystring" locationName:"parameters" type:"map"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	// [Required] The language for the generated SDK. Currently java, javascript,
-	// android, objectivec (for iOS), swift (for iOS), and ruby are supported.
+	// The language for the generated SDK. Currently java, javascript, android,
+	// objectivec (for iOS), swift (for iOS), and ruby are supported.
 	//
 	// SdkType is a required field
 	SdkType *string `location:"uri" locationName:"sdk_type" type:"string" required:"true"`
 
-	// [Required] The name of the Stage that the SDK will use.
+	// The name of the Stage that the SDK will use.
 	//
 	// StageName is a required field
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
@@ -20113,7 +19823,7 @@ func (s *GetSdkOutput) SetContentType(v string) *GetSdkOutput {
 type GetSdkTypeInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The identifier of the queried SdkType instance.
+	// The identifier of the queried SdkType instance.
 	//
 	// Id is a required field
 	Id *string `location:"uri" locationName:"sdktype_id" type:"string" required:"true"`
@@ -20245,12 +19955,12 @@ func (s *GetSdkTypesOutput) SetPosition(v string) *GetSdkTypesOutput {
 type GetStageInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	// [Required] The name of the Stage resource to get information about.
+	// The name of the Stage resource to get information about.
 	//
 	// StageName is a required field
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
@@ -20315,7 +20025,7 @@ type GetStagesInput struct {
 	// The stages' deployment identifiers.
 	DeploymentId *string `location:"querystring" locationName:"deploymentId" type:"string"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -20368,8 +20078,6 @@ func (s *GetStagesInput) SetRestApiId(v string) *GetStagesInput {
 }
 
 // A list of Stage resources that are associated with the ApiKey resource.
-//
-// Deploying API in Stages (https://docs.aws.amazon.com/apigateway/latest/developerguide/stages.html)
 type GetStagesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -20413,7 +20121,7 @@ type GetTagsInput struct {
 	// set.
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
-	// [Required] The ARN of a resource that can be tagged.
+	// The ARN of a resource that can be tagged.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource_arn" type:"string" required:"true"`
@@ -20508,7 +20216,7 @@ func (s *GetTagsOutput) SetTags(v map[string]*string) *GetTagsOutput {
 type GetUsageInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The ending date (e.g., 2016-12-31) of the usage data.
+	// The ending date (e.g., 2016-12-31) of the usage data.
 	//
 	// EndDate is a required field
 	EndDate *string `location:"querystring" locationName:"endDate" type:"string" required:"true"`
@@ -20523,12 +20231,12 @@ type GetUsageInput struct {
 	// The current pagination position in the paged result set.
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
-	// [Required] The starting date (e.g., 2016-01-01) of the usage data.
+	// The starting date (e.g., 2016-01-01) of the usage data.
 	//
 	// StartDate is a required field
 	StartDate *string `location:"querystring" locationName:"startDate" type:"string" required:"true"`
 
-	// [Required] The Id of the usage plan associated with the usage data.
+	// The Id of the usage plan associated with the usage data.
 	//
 	// UsagePlanId is a required field
 	UsagePlanId *string `location:"uri" locationName:"usageplanId" type:"string" required:"true"`
@@ -20614,7 +20322,7 @@ func (s *GetUsageInput) SetUsagePlanId(v string) *GetUsageInput {
 type GetUsagePlanInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The identifier of the UsagePlan resource to be retrieved.
+	// The identifier of the UsagePlan resource to be retrieved.
 	//
 	// UsagePlanId is a required field
 	UsagePlanId *string `location:"uri" locationName:"usageplanId" type:"string" required:"true"`
@@ -20664,14 +20372,14 @@ func (s *GetUsagePlanInput) SetUsagePlanId(v string) *GetUsagePlanInput {
 type GetUsagePlanKeyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The key Id of the to-be-retrieved UsagePlanKey resource representing
-	// a plan customer.
+	// The key Id of the to-be-retrieved UsagePlanKey resource representing a plan
+	// customer.
 	//
 	// KeyId is a required field
 	KeyId *string `location:"uri" locationName:"keyId" type:"string" required:"true"`
 
-	// [Required] The Id of the UsagePlan resource representing the usage plan containing
-	// the to-be-retrieved UsagePlanKey resource representing a plan customer.
+	// The Id of the UsagePlan resource representing the usage plan containing the
+	// to-be-retrieved UsagePlanKey resource representing a plan customer.
 	//
 	// UsagePlanId is a required field
 	UsagePlanId *string `location:"uri" locationName:"usageplanId" type:"string" required:"true"`
@@ -20744,8 +20452,8 @@ type GetUsagePlanKeysInput struct {
 	// The current pagination position in the paged result set.
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
-	// [Required] The Id of the UsagePlan resource representing the usage plan containing
-	// the to-be-retrieved UsagePlanKey resource representing a plan customer.
+	// The Id of the UsagePlan resource representing the usage plan containing the
+	// to-be-retrieved UsagePlanKey resource representing a plan customer.
 	//
 	// UsagePlanId is a required field
 	UsagePlanId *string `location:"uri" locationName:"usageplanId" type:"string" required:"true"`
@@ -20811,8 +20519,6 @@ func (s *GetUsagePlanKeysInput) SetUsagePlanId(v string) *GetUsagePlanKeysInput 
 
 // Represents the collection of usage plan keys added to usage plans for the
 // associated API keys and, possibly, other types of keys.
-//
-// Create and Use Usage Plans (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html)
 type GetUsagePlanKeysOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -20904,8 +20610,6 @@ func (s *GetUsagePlansInput) SetPosition(v string) *GetUsagePlansInput {
 }
 
 // Represents a collection of usage plans for an AWS account.
-//
-// Create and Use Usage Plans (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html)
 type GetUsagePlansOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -20949,8 +20653,8 @@ func (s *GetUsagePlansOutput) SetPosition(v string) *GetUsagePlansOutput {
 type GetVpcLinkInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The identifier of the VpcLink. It is used in an Integration to
-	// reference this VpcLink.
+	// The identifier of the VpcLink. It is used in an Integration to reference
+	// this VpcLink.
 	//
 	// VpcLinkId is a required field
 	VpcLinkId *string `location:"uri" locationName:"vpclink_id" type:"string" required:"true"`
@@ -21039,9 +20743,6 @@ func (s *GetVpcLinksInput) SetPosition(v string) *GetVpcLinksInput {
 }
 
 // The collection of VPC links under the caller's account in a region.
-//
-// Getting Started with Private Integrations (https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-with-private-integration.html),
-// Set up Private Integrations (https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-private-integration.html)
 type GetVpcLinksOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -21087,7 +20788,7 @@ type ImportApiKeysInput struct {
 	_ struct{} `type:"structure" payload:"Body"`
 
 	// The payload of the POST request to import API keys. For the payload format,
-	// see API Key File Format (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-key-file-format.html).
+	// see API Key File Format.
 	//
 	// Body is a required field
 	Body []byte `locationName:"body" type:"blob" required:"true"`
@@ -21200,8 +20901,8 @@ func (s *ImportApiKeysOutput) SetWarnings(v []*string) *ImportApiKeysOutput {
 type ImportDocumentationPartsInput struct {
 	_ struct{} `type:"structure" payload:"Body"`
 
-	// [Required] Raw byte array representing the to-be-imported documentation parts.
-	// To import from an OpenAPI file, this is a JSON object.
+	// Raw byte array representing the to-be-imported documentation parts. To import
+	// from an OpenAPI file, this is a JSON object.
 	//
 	// Body is a required field
 	Body []byte `locationName:"body" type:"blob" required:"true"`
@@ -21216,7 +20917,7 @@ type ImportDocumentationPartsInput struct {
 	// the existing one. The default value is MERGE.
 	Mode *string `location:"querystring" locationName:"mode" type:"string" enum:"PutMode"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -21284,13 +20985,6 @@ func (s *ImportDocumentationPartsInput) SetRestApiId(v string) *ImportDocumentat
 }
 
 // A collection of the imported DocumentationPart identifiers.
-//
-// This is used to return the result when documentation parts in an external
-// (e.g., OpenAPI) file are imported into API Gateway
-//
-// Documenting an API (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-documenting-api.html),
-// documentationpart:import (https://docs.aws.amazon.com/apigateway/api-reference/link-relation/documentationpart-import/),
-// DocumentationPart
 type ImportDocumentationPartsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -21336,9 +21030,9 @@ func (s *ImportDocumentationPartsOutput) SetWarnings(v []*string) *ImportDocumen
 type ImportRestApiInput struct {
 	_ struct{} `type:"structure" payload:"Body"`
 
-	// [Required] The POST request body containing external API definitions. Currently,
-	// only OpenAPI definition JSON/YAML files are supported. The maximum size of
-	// the API definition file is 6MB.
+	// The POST request body containing external API definitions. Currently, only
+	// OpenAPI definition JSON/YAML files are supported. The maximum size of the
+	// API definition file is 6MB.
 	//
 	// Body is a required field
 	Body []byte `locationName:"body" type:"blob" required:"true"`
@@ -21363,13 +21057,7 @@ type ImportRestApiInput struct {
 	// For example, the AWS CLI command to exclude documentation from the imported
 	// API is:
 	//
-	//    aws apigateway import-rest-api --parameters ignore=documentation --body
-	//    'file:///path/to/imported-api-body.json'
-	//
 	// The AWS CLI command to set the regional endpoint on the imported API is:
-	//
-	//    aws apigateway import-rest-api --parameters endpointConfigurationTypes=REGIONAL
-	//    --body 'file:///path/to/imported-api-body.json'
 	Parameters map[string]*string `location:"querystring" locationName:"parameters" type:"map"`
 }
 
@@ -21423,10 +21111,6 @@ func (s *ImportRestApiInput) SetParameters(v map[string]*string) *ImportRestApiI
 }
 
 // Represents an HTTP, HTTP_PROXY, AWS, AWS_PROXY, or Mock integration.
-//
-// In the API Gateway console, the built-in Lambda integration is an AWS integration.
-//
-// Creating an API (https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
 type Integration struct {
 	_ struct{} `type:"structure"`
 
@@ -21441,9 +21125,8 @@ type Integration struct {
 	// resources.
 	CacheNamespace *string `locationName:"cacheNamespace" type:"string"`
 
-	// The (id (https://docs.aws.amazon.com/apigateway/api-reference/resource/vpc-link/#id))
-	// of the VpcLink used for the integration when connectionType=VPC_LINK and
-	// undefined, otherwise.
+	// The ID of the VpcLink used for the integration when connectionType=VPC_LINK
+	// and undefined, otherwise.
 	ConnectionId *string `locationName:"connectionId" type:"string"`
 
 	// The type of the network connection to the integration endpoint. The valid
@@ -21454,12 +21137,6 @@ type Integration struct {
 
 	// Specifies how to handle request payload content type conversions. Supported
 	// values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:
-	//
-	//    * CONVERT_TO_BINARY: Converts a request payload from a Base64-encoded
-	//    string to the corresponding binary blob.
-	//
-	//    * CONVERT_TO_TEXT: Converts a request payload from a binary blob to a
-	//    Base64-encoded string.
 	//
 	// If this property is not defined, the request payload will be passed through
 	// from the method request to integration request without modification, provided
@@ -21477,51 +21154,25 @@ type Integration struct {
 	HttpMethod *string `locationName:"httpMethod" type:"string"`
 
 	// Specifies the integration's responses.
-	//
-	// Example: Get integration responses of a method
-	//
-	// Request
-	//   GET /restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200
-	//   HTTP/1.1 Content-Type: application/json Host: apigateway.us-east-1.amazonaws.com
-	//   X-Amz-Date: 20160607T191449Z Authorization: AWS4-HMAC-SHA256 Credential={access_key_ID}/20160607/us-east-1/apigateway/aws4_request,
-	//   SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}
-	// Response
-	//
-	// The successful response returns 200 OK status and a payload as follows:
-	//  { "_links": { "curies": { "href": "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
-	//  "name": "integrationresponse", "templated": true }, "self": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200",
-	//  "title": "200" }, "integrationresponse:delete": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200"
-	//  }, "integrationresponse:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200"
-	//  } }, "responseParameters": { "method.response.header.Content-Type": "'application/xml'"
-	//  }, "responseTemplates": { "application/json": "$util.urlDecode(\"%3CkinesisStreams%3E#foreach($stream
-	//  in $input.path('$.StreamNames'))%3Cstream%3E%3Cname%3E$stream%3C/name%3E%3C/stream%3E#end%3C/kinesisStreams%3E\")\n"
-	//  }, "statusCode": "200" }
-	//
-	// Creating an API (https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
 	IntegrationResponses map[string]*IntegrationResponse `locationName:"integrationResponses" type:"map"`
 
 	// Specifies how the method request body of an unmapped content type will be
 	// passed through the integration request to the back end without transformation.
 	// A content type is unmapped if no mapping template is defined in the integration
 	// or the content type does not match any of the mapped content types, as specified
-	// in requestTemplates. The valid value is one of the following:
-	//
-	//    * WHEN_NO_MATCH: passes the method request body through the integration
-	//    request to the back end without transformation when the method request
-	//    content type does not match any content type associated with the mapping
-	//    templates defined in the integration request.
-	//
-	//    * WHEN_NO_TEMPLATES: passes the method request body through the integration
-	//    request to the back end without transformation when no mapping template
-	//    is defined in the integration request. If a template is defined when this
-	//    option is selected, the method request of an unmapped content-type will
-	//    be rejected with an HTTP 415 Unsupported Media Type response.
-	//
-	//    * NEVER: rejects the method request with an HTTP 415 Unsupported Media
-	//    Type response when either the method request content type does not match
-	//    any content type associated with the mapping templates defined in the
-	//    integration request or no mapping template is defined in the integration
-	//    request.
+	// in requestTemplates. The valid value is one of the following: WHEN_NO_MATCH:
+	// passes the method request body through the integration request to the back
+	// end without transformation when the method request content type does not
+	// match any content type associated with the mapping templates defined in the
+	// integration request. WHEN_NO_TEMPLATES: passes the method request body through
+	// the integration request to the back end without transformation when no mapping
+	// template is defined in the integration request. If a template is defined
+	// when this option is selected, the method request of an unmapped content-type
+	// will be rejected with an HTTP 415 Unsupported Media Type response. NEVER:
+	// rejects the method request with an HTTP 415 Unsupported Media Type response
+	// when either the method request content type does not match any content type
+	// associated with the mapping templates defined in the integration request
+	// or no mapping template is defined in the integration request.
 	PassthroughBehavior *string `locationName:"passthroughBehavior" type:"string"`
 
 	// A key-value map specifying request parameters that are passed from the method
@@ -21548,26 +21199,6 @@ type Integration struct {
 
 	// Specifies an API method integration type. The valid value is one of the following:
 	//
-	//    * AWS: for integrating the API method request with an AWS service action,
-	//    including the Lambda function-invoking action. With the Lambda function-invoking
-	//    action, this is referred to as the Lambda custom integration. With any
-	//    other AWS service action, this is known as AWS integration.
-	//
-	//    * AWS_PROXY: for integrating the API method request with the Lambda function-invoking
-	//    action with the client request passed through as-is. This integration
-	//    is also referred to as the Lambda proxy integration.
-	//
-	//    * HTTP: for integrating the API method request with an HTTP endpoint,
-	//    including a private HTTP endpoint within a VPC. This integration is also
-	//    referred to as the HTTP custom integration.
-	//
-	//    * HTTP_PROXY: for integrating the API method request with an HTTP endpoint,
-	//    including a private HTTP endpoint within a VPC, with the client request
-	//    passed through as-is. This is also referred to as the HTTP proxy integration.
-	//
-	//    * MOCK: for integrating the API method request with API Gateway as a "loop-back"
-	//    endpoint without invoking any backend.
-	//
 	// For the HTTP and HTTP proxy integrations, each integration can specify a
 	// protocol (http/https), port and path. Standard 80 and 443 ports are supported
 	// as well as custom ports above 1024. An HTTP or HTTP proxy integration with
@@ -21577,25 +21208,24 @@ type Integration struct {
 
 	// Specifies Uniform Resource Identifier (URI) of the integration endpoint.
 	//
-	//    * For HTTP or HTTP_PROXY integrations, the URI must be a fully formed,
-	//    encoded HTTP(S) URL according to the RFC-3986 specification (https://en.wikipedia.org/wiki/Uniform_Resource_Identifier),
-	//    for either standard integration, where connectionType is not VPC_LINK,
-	//    or private integration, where connectionType is VPC_LINK. For a private
-	//    HTTP integration, the URI is not used for routing.
-	//
-	//    * For AWS or AWS_PROXY integrations, the URI is of the form arn:aws:apigateway:{region}:{subdomain.service|service}:path|action/{service_api}.
-	//    Here, {Region} is the API Gateway region (e.g., us-east-1); {service}
-	//    is the name of the integrated AWS service (e.g., s3); and {subdomain}
-	//    is a designated subdomain supported by certain AWS service for fast host-name
-	//    lookup. action can be used for an AWS service action-based API, using
-	//    an Action={name}&{p1}={v1}&p2={v2}... query string. The ensuing {service_api}
-	//    refers to a supported action {name} plus any required input parameters.
-	//    Alternatively, path can be used for an AWS service path-based API. The
-	//    ensuing service_api refers to the path to an AWS service resource, including
-	//    the region of the integrated AWS service, if applicable. For example,
-	//    for integration with the S3 API of GetObject (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html),
-	//    the uri can be either arn:aws:apigateway:us-west-2:s3:action/GetObject&Bucket={bucket}&Key={key}
-	//    or arn:aws:apigateway:us-west-2:s3:path/{bucket}/{key}
+	// For HTTP or HTTP_PROXY integrations, the URI must be a fully formed, encoded
+	// HTTP(S) URL according to the RFC-3986 specification, for either standard
+	// integration, where connectionType is not VPC_LINK, or private integration,
+	// where connectionType is VPC_LINK. For a private HTTP integration, the URI
+	// is not used for routing. For AWS or AWS_PROXY integrations, the URI is of
+	// the form arn:aws:apigateway:{region}:{subdomain.service|service}:path|action/{service_api}.
+	// Here, {Region} is the API Gateway region (e.g., us-east-1); {service} is
+	// the name of the integrated Amazon Web Services service (e.g., s3); and {subdomain}
+	// is a designated subdomain supported by certain Amazon Web Services service
+	// for fast host-name lookup. action can be used for an Amazon Web Services
+	// service action-based API, using an Action={name}&{p1}={v1}&p2={v2}... query
+	// string. The ensuing {service_api} refers to a supported action {name} plus
+	// any required input parameters. Alternatively, path can be used for an AWS
+	// service path-based API. The ensuing service_api refers to the path to an
+	// Amazon Web Services service resource, including the region of the integrated
+	// Amazon Web Services service, if applicable. For example, for integration
+	// with the S3 API of GetObject, the uri can be either arn:aws:apigateway:us-west-2:s3:action/GetObject&Bucket={bucket}&Key={key}
+	// or arn:aws:apigateway:us-west-2:s3:path/{bucket}/{key}
 	Uri *string `locationName:"uri" type:"string"`
 }
 
@@ -21710,19 +21340,11 @@ func (s *Integration) SetUri(v string) *Integration {
 // Represents an integration response. The status code must map to an existing
 // MethodResponse, and parameters and templates can be used to transform the
 // back-end response.
-//
-// Creating an API (https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
 type IntegrationResponse struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies how to handle response payload content type conversions. Supported
 	// values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:
-	//
-	//    * CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded
-	//    string to the corresponding binary blob.
-	//
-	//    * CONVERT_TO_TEXT: Converts a response payload from a binary blob to a
-	//    Base64-encoded string.
 	//
 	// If this property is not defined, the response payload will be passed through
 	// from the integration response to the method response without modification.
@@ -21884,66 +21506,6 @@ func (s *LimitExceededException) RequestID() string {
 // resource. On the other hand, a method response is represented by a MethodResponse
 // resource, whereas an integration response is represented by an IntegrationResponse
 // resource.
-//
-// Example: Retrive the GET method on a specified resource
-//
-// Request
-//
-// The following example request retrieves the information about the GET method
-// on an API resource (3kzxbg5sa2) of an API (fugvjdxtri).
-//  GET /restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET HTTP/1.1 Content-Type:
-//  application/json Host: apigateway.us-east-1.amazonaws.com X-Amz-Date: 20160603T210259Z
-//  Authorization: AWS4-HMAC-SHA256 Credential={access_key_ID}/20160603/us-east-1/apigateway/aws4_request,
-//  SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}
-// Response
-//
-// The successful response returns a 200 OK status code and a payload similar
-// to the following:
-//  { "_links": { "curies": [ { "href": "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html",
-//  "name": "integration", "templated": true }, { "href": "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
-//  "name": "integrationresponse", "templated": true }, { "href": "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-{rel}.html",
-//  "name": "method", "templated": true }, { "href": "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
-//  "name": "methodresponse", "templated": true } ], "self": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET",
-//  "name": "GET", "title": "GET" }, "integration:put": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
-//  }, "method:delete": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET"
-//  }, "method:integration": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
-//  }, "method:responses": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200",
-//  "name": "200", "title": "200" }, "method:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET"
-//  }, "methodresponse:put": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/{status_code}",
-//  "templated": true } }, "apiKeyRequired": true, "authorizationType": "NONE",
-//  "httpMethod": "GET", "_embedded": { "method:integration": { "_links": {
-//  "self": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
-//  }, "integration:delete": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
-//  }, "integration:responses": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200",
-//  "name": "200", "title": "200" }, "integration:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
-//  }, "integrationresponse:put": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/{status_code}",
-//  "templated": true } }, "cacheKeyParameters": [], "cacheNamespace": "3kzxbg5sa2",
-//  "credentials": "arn:aws:iam::123456789012:role/apigAwsProxyRole", "httpMethod":
-//  "POST", "passthroughBehavior": "WHEN_NO_MATCH", "requestParameters": { "integration.request.header.Content-Type":
-//  "'application/x-amz-json-1.1'" }, "requestTemplates": { "application/json":
-//  "{\n}" }, "type": "AWS", "uri": "arn:aws:apigateway:us-east-1:kinesis:action/ListStreams",
-//  "_embedded": { "integration:responses": { "_links": { "self": { "href":
-//  "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200",
-//  "name": "200", "title": "200" }, "integrationresponse:delete": { "href":
-//  "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200"
-//  }, "integrationresponse:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200"
-//  } }, "responseParameters": { "method.response.header.Content-Type": "'application/xml'"
-//  }, "responseTemplates": { "application/json": "$util.urlDecode(\"%3CkinesisStreams%3E%23foreach(%24stream%20in%20%24input.path(%27%24.StreamNames%27))%3Cstream%3E%3Cname%3E%24stream%3C%2Fname%3E%3C%2Fstream%3E%23end%3C%2FkinesisStreams%3E\")"
-//  }, "statusCode": "200" } } }, "method:responses": { "_links": { "self":
-//  { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200",
-//  "name": "200", "title": "200" }, "methodresponse:delete": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200"
-//  }, "methodresponse:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200"
-//  } }, "responseModels": { "application/json": "Empty" }, "responseParameters":
-//  { "method.response.header.Content-Type": false }, "statusCode": "200" }
-//  } }
-// In the example above, the response template for the 200 OK response maps
-// the JSON output from the ListStreams action in the back end to an XML output.
-// The mapping template is URL-encoded as %3CkinesisStreams%3E%23foreach(%24stream%20in%20%24input.path(%27%24.StreamNames%27))%3Cstream%3E%3Cname%3E%24stream%3C%2Fname%3E%3C%2Fstream%3E%23end%3C%2FkinesisStreams%3E
-// and the output is decoded using the $util.urlDecode() (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html#util-templat-reference)
-// helper function.
-//
-// MethodResponse, Integration, IntegrationResponse, Resource, Set up an API's
-// method (https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-method-settings.html)
 type Method struct {
 	_ struct{} `type:"structure"`
 
@@ -21976,77 +21538,9 @@ type Method struct {
 	// Gets the method's integration responsible for passing the client-submitted
 	// request to the back end and performing necessary transformations to make
 	// the request compliant with the back end.
-	//
-	// Example:
-	//
-	// Request
-	//   GET /restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration HTTP/1.1
-	//   Content-Type: application/json Host: apigateway.us-east-1.amazonaws.com
-	//   Content-Length: 117 X-Amz-Date: 20160613T213210Z Authorization: AWS4-HMAC-SHA256
-	//   Credential={access_key_ID}/20160613/us-east-1/apigateway/aws4_request,
-	//   SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}
-	// Response
-	//
-	// The successful response returns a 200 OK status code and a payload similar
-	// to the following:
-	//  { "_links": { "curies": [ { "href": "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html",
-	//  "name": "integration", "templated": true }, { "href": "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
-	//  "name": "integrationresponse", "templated": true } ], "self": { "href":
-	//  "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration" }, "integration:delete":
-	//  { "href": "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration"
-	//  }, "integration:responses": { "href": "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration/responses/200",
-	//  "name": "200", "title": "200" }, "integration:update": { "href": "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration"
-	//  }, "integrationresponse:put": { "href": "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration/responses/{status_code}",
-	//  "templated": true } }, "cacheKeyParameters": [], "cacheNamespace": "0cjtch",
-	//  "credentials": "arn:aws:iam::123456789012:role/apigAwsProxyRole", "httpMethod":
-	//  "POST", "passthroughBehavior": "WHEN_NO_MATCH", "requestTemplates": { "application/json":
-	//  "{\n \"a\": \"$input.params('operand1')\",\n \"b\": \"$input.params('operand2')\",
-	//  \n \"op\": \"$input.params('operator')\" \n}" }, "type": "AWS", "uri": "arn:aws:apigateway:us-west-2:lambda:path//2015-03-31/functions/arn:aws:lambda:us-west-2:123456789012:function:Calc/invocations",
-	//  "_embedded": { "integration:responses": { "_links": { "self": { "href":
-	//  "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration/responses/200",
-	//  "name": "200", "title": "200" }, "integrationresponse:delete": { "href":
-	//  "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration/responses/200"
-	//  }, "integrationresponse:update": { "href": "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration/responses/200"
-	//  } }, "responseParameters": { "method.response.header.operator": "integration.response.body.op",
-	//  "method.response.header.operand_2": "integration.response.body.b", "method.response.header.operand_1":
-	//  "integration.response.body.a" }, "responseTemplates": { "application/json":
-	//  "#set($res = $input.path('$'))\n{\n \"result\": \"$res.a, $res.b, $res.op
-	//  => $res.c\",\n \"a\" : \"$res.a\",\n \"b\" : \"$res.b\",\n \"op\" : \"$res.op\",\n
-	//  \"c\" : \"$res.c\"\n}" }, "selectionPattern": "", "statusCode": "200" }
-	//  } }
-	//
-	// AWS CLI (https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-integration.html)
 	MethodIntegration *Integration `locationName:"methodIntegration" type:"structure"`
 
 	// Gets a method response associated with a given HTTP status code.
-	//
-	// The collection of method responses are encapsulated in a key-value map, where
-	// the key is a response's HTTP status code and the value is a MethodResponse
-	// resource that specifies the response returned to the caller from the back
-	// end through the integration response.
-	//
-	// Example: Get a 200 OK response of a GET method
-	//
-	// Request
-	//   GET /restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200 HTTP/1.1
-	//   Content-Type: application/json Host: apigateway.us-east-1.amazonaws.com
-	//   Content-Length: 117 X-Amz-Date: 20160613T215008Z Authorization: AWS4-HMAC-SHA256
-	//   Credential={access_key_ID}/20160613/us-east-1/apigateway/aws4_request,
-	//   SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}
-	// Response
-	//
-	// The successful response returns a 200 OK status code and a payload similar
-	// to the following:
-	//  { "_links": { "curies": { "href": "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
-	//  "name": "methodresponse", "templated": true }, "self": { "href": "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200",
-	//  "title": "200" }, "methodresponse:delete": { "href": "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200"
-	//  }, "methodresponse:update": { "href": "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200"
-	//  } }, "responseModels": { "application/json": "Empty" }, "responseParameters":
-	//  { "method.response.header.operator": false, "method.response.header.operand_2":
-	//  false, "method.response.header.operand_1": false }, "statusCode": "200"
-	//  }
-	//
-	// AWS CLI (https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html)
 	MethodResponses map[string]*MethodResponse `locationName:"methodResponses" type:"map"`
 
 	// A human-friendly operation identifier for the method. For example, you can
@@ -22160,27 +21654,6 @@ func (s *Method) SetRequestValidatorId(v string) *Method {
 // Represents a method response of a given HTTP status code returned to the
 // client. The method response is passed from the back end through the associated
 // integration response that can be transformed using a mapping template.
-//
-// Example: A MethodResponse instance of an API
-//
-// Request
-//
-// The example request retrieves a MethodResponse of the 200 status code.
-//  GET /restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200
-//  HTTP/1.1 Content-Type: application/json Host: apigateway.us-east-1.amazonaws.com
-//  X-Amz-Date: 20160603T222952Z Authorization: AWS4-HMAC-SHA256 Credential={access_key_ID}/20160603/us-east-1/apigateway/aws4_request,
-//  SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}
-// Response
-//
-// The successful response returns 200 OK status and a payload as follows:
-//  { "_links": { "curies": { "href": "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
-//  "name": "methodresponse", "templated": true }, "self": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200",
-//  "title": "200" }, "methodresponse:delete": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200"
-//  }, "methodresponse:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200"
-//  } }, "responseModels": { "application/json": "Empty" }, "responseParameters":
-//  { "method.response.header.Content-Type": false }, "statusCode": "200" }
-//
-// Method, IntegrationResponse, Integration Creating an API (https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
 type MethodResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -22264,12 +21737,9 @@ type MethodSetting struct {
 	// the value is a Boolean.
 	CachingEnabled *bool `locationName:"cachingEnabled" type:"boolean"`
 
-	// Specifies whether full requests and responses are logged for this method,
-	// which affects the log entries pushed to Amazon CloudWatch Logs. This can
-	// be useful to troubleshoot APIs, but can result in logging sensitive data.
-	// We recommend that you don't enable this option for production APIs. The PATCH
-	// path for this setting is /{method_setting_key}/logging/dataTrace, and the
-	// value is a Boolean.
+	// Specifies whether data trace logging is enabled for this method, which affects
+	// the log entries pushed to Amazon CloudWatch Logs. The PATCH path for this
+	// setting is /{method_setting_key}/logging/dataTrace, and the value is a Boolean.
 	DataTraceEnabled *bool `locationName:"dataTraceEnabled" type:"boolean"`
 
 	// Specifies the logging level for this method, which affects the log entries
@@ -22426,16 +21896,6 @@ func (s *MethodSnapshot) SetAuthorizationType(v string) *MethodSnapshot {
 }
 
 // Represents the data structure of a method's request or response payload.
-//
-// A request model defines the data structure of the client-supplied request
-// payload. A response model defines the data structure of the response payload
-// returned by the back end. Although not required, models are useful for mapping
-// payloads between the front end and back end.
-//
-// A model is used for generating an API's SDK, validating the input request
-// body, and creating a skeletal mapping template.
-//
-// Method, MethodResponse, Models and Mappings (https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html)
 type Model struct {
 	_ struct{} `type:"structure"`
 
@@ -22452,11 +21912,10 @@ type Model struct {
 	Name *string `locationName:"name" type:"string"`
 
 	// The schema for the model. For application/json models, this should be JSON
-	// schema draft 4 (https://tools.ietf.org/html/draft-zyp-json-schema-04) model.
-	// Do not include "\*/" characters in the description of any properties because
-	// such "\*/" characters may be interpreted as the closing marker for comments
-	// in some languages, such as Java or JavaScript, causing the installation of
-	// your API's SDK generated by API Gateway to fail.
+	// schema draft 4 model. Do not include "\*/" characters in the description
+	// of any properties because such "\*/" characters may be interpreted as the
+	// closing marker for comments in some languages, such as Java or JavaScript,
+	// causing the installation of your API's SDK generated by API Gateway to fail.
 	Schema *string `locationName:"schema" type:"string"`
 }
 
@@ -22508,9 +21967,10 @@ func (s *Model) SetSchema(v string) *Model {
 	return s
 }
 
-// If specified, API Gateway performs two-way authentication between the client
+// The mutual TLS authentication configuration for a custom domain name. If
+// specified, API Gateway performs two-way authentication between the client
 // and the server. Clients must present a trusted certificate to access your
-// custom domain name.
+// API.
 type MutualTlsAuthentication struct {
 	_ struct{} `type:"structure"`
 
@@ -22569,14 +22029,15 @@ func (s *MutualTlsAuthentication) SetTruststoreWarnings(v []*string) *MutualTlsA
 	return s
 }
 
-// If specified, API Gateway performs two-way authentication between the client
+// The mutual TLS authentication configuration for a custom domain name. If
+// specified, API Gateway performs two-way authentication between the client
 // and the server. Clients must present a trusted certificate to access your
-// custom domain name.
+// API.
 type MutualTlsAuthenticationInput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon S3 resource ARN that specifies the truststore for mutual TLS authentication,
-	// for example, s3://bucket-name/key-name. The truststore can contain certificates
+	// An Amazon S3 URL that specifies the truststore for mutual TLS authentication,
+	// for example s3://bucket-name/key-name. The truststore can contain certificates
 	// from public or private certificate authorities. To update the truststore,
 	// upload a new version to S3, and then update your custom domain name to use
 	// the new version. To update the truststore, you must have permissions to access
@@ -22584,7 +22045,7 @@ type MutualTlsAuthenticationInput struct {
 	TruststoreUri *string `locationName:"truststoreUri" type:"string"`
 
 	// The version of the S3 object that contains your truststore. To specify a
-	// version, you must have versioning enabled for the S3 bucket.
+	// version, you must have versioning enabled for the S3 bucket
 	TruststoreVersion *string `locationName:"truststoreVersion" type:"string"`
 }
 
@@ -22682,9 +22143,8 @@ func (s *NotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A single patch operation to apply to the specified resource. Please refer
-// to http://tools.ietf.org/html/rfc6902#section-4 for an explanation of how
-// each operation is used.
+// For more information about supported patch operations, see Patch Operations
+// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 type PatchOperation struct {
 	_ struct{} `type:"structure"`
 
@@ -22699,23 +22159,23 @@ type PatchOperation struct {
 	// can be add, remove, replace or copy. Not all valid operations are supported
 	// for a given resource. Support of the operations depends on specific operational
 	// contexts. Attempts to apply an unsupported operation on a resource will return
-	// an error message.
+	// an error message..
 	Op *string `locationName:"op" type:"string" enum:"Op"`
 
-	// The op operation's target, as identified by a JSON Pointer (https://tools.ietf.org/html/draft-ietf-appsawg-json-pointer-08)
-	// value that references a location within the targeted resource. For example,
-	// if the target resource has an updateable property of {"name":"value"}, the
-	// path for this property is /name. If the name property value is a JSON object
-	// (e.g., {"name": {"child/name": "child-value"}}), the path for the child/name
-	// property will be /name/child~1name. Any slash ("/") character appearing in
-	// path names must be escaped with "~1", as shown in the example above. Each
-	// op operation can have only one path associated with it.
+	// The op operation's target, as identified by a JSON Pointer value that references
+	// a location within the targeted resource. For example, if the target resource
+	// has an updateable property of {"name":"value"}, the path for this property
+	// is /name. If the name property value is a JSON object (e.g., {"name": {"child/name":
+	// "child-value"}}), the path for the child/name property will be /name/child~1name.
+	// Any slash ("/") character appearing in path names must be escaped with "~1",
+	// as shown in the example above. Each op operation can have only one path associated
+	// with it.
 	Path *string `locationName:"path" type:"string"`
 
 	// The new target value of the update operation. It is applicable for the add
 	// or replace operation. When using AWS CLI to update a property of a JSON value,
 	// enclose the JSON object with a pair of single quotes in a Linux shell, e.g.,
-	// '{"a": ...}'. In a Windows shell, see Using JSON for Parameters (https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#cli-using-param-json).
+	// '{"a": ...}'.
 	Value *string `locationName:"value" type:"string"`
 }
 
@@ -22774,13 +22234,12 @@ type PutGatewayResponseInput struct {
 	// pairs.
 	ResponseTemplates map[string]*string `locationName:"responseTemplates" type:"map"`
 
-	// [Required]
-	// The response type of the associated GatewayResponse.
+	// The response type of the associated GatewayResponse
 	//
 	// ResponseType is a required field
 	ResponseType *string `location:"uri" locationName:"response_type" type:"string" required:"true" enum:"GatewayResponseType"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -22874,9 +22333,8 @@ type PutIntegrationInput struct {
 	// resources.
 	CacheNamespace *string `locationName:"cacheNamespace" type:"string"`
 
-	// The (id (https://docs.aws.amazon.com/apigateway/api-reference/resource/vpc-link/#id))
-	// of the VpcLink used for the integration when connectionType=VPC_LINK and
-	// undefined, otherwise.
+	// The ID of the VpcLink used for the integration. Specify this value only if
+	// you specify VPC_LINK as the connection type.
 	ConnectionId *string `locationName:"connectionId" type:"string"`
 
 	// The type of the network connection to the integration endpoint. The valid
@@ -22888,12 +22346,6 @@ type PutIntegrationInput struct {
 	// Specifies how to handle request payload content type conversions. Supported
 	// values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:
 	//
-	//    * CONVERT_TO_BINARY: Converts a request payload from a Base64-encoded
-	//    string to the corresponding binary blob.
-	//
-	//    * CONVERT_TO_TEXT: Converts a request payload from a binary blob to a
-	//    Base64-encoded string.
-	//
 	// If this property is not defined, the request payload will be passed through
 	// from the method request to integration request without modification, provided
 	// that the passthroughBehavior is configured to support payload pass-through.
@@ -22902,29 +22354,18 @@ type PutIntegrationInput struct {
 	// Specifies whether credentials are required for a put integration.
 	Credentials *string `locationName:"credentials" type:"string"`
 
-	// [Required] Specifies a put integration request's HTTP method.
+	// Specifies the HTTP method for the integration.
 	//
 	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
-	// Specifies a put integration HTTP method. When the integration type is HTTP
-	// or AWS, this field is required.
+	// The HTTP method for the integration.
 	IntegrationHttpMethod *string `locationName:"httpMethod" type:"string"`
 
 	// Specifies the pass-through behavior for incoming requests based on the Content-Type
 	// header in the request, and the available mapping templates specified as the
 	// requestTemplates property on the Integration resource. There are three valid
 	// values: WHEN_NO_MATCH, WHEN_NO_TEMPLATES, and NEVER.
-	//
-	//    * WHEN_NO_MATCH passes the request body for unmapped content types through
-	//    to the integration back end without transformation.
-	//
-	//    * NEVER rejects unmapped content types with an HTTP 415 'Unsupported Media
-	//    Type' response.
-	//
-	//    * WHEN_NO_TEMPLATES allows pass-through when the integration has NO content
-	//    types mapped to templates. However if there is at least one content type
-	//    defined, unmapped content types will be rejected with the same 415 response.
 	PassthroughBehavior *string `locationName:"passthroughBehavior" type:"string"`
 
 	// A key-value map specifying request parameters that are passed from the method
@@ -22942,12 +22383,12 @@ type PutIntegrationInput struct {
 	// value.
 	RequestTemplates map[string]*string `locationName:"requestTemplates" type:"map"`
 
-	// [Required] Specifies a put integration request's resource ID.
+	// Specifies a put integration request's resource ID.
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -22956,34 +22397,33 @@ type PutIntegrationInput struct {
 	// milliseconds or 29 seconds.
 	TimeoutInMillis *int64 `locationName:"timeoutInMillis" type:"integer"`
 
+	// Specifies the TLS configuration for an integration.
 	TlsConfig *TlsConfig `locationName:"tlsConfig" type:"structure"`
 
-	// [Required] Specifies a put integration input's type.
+	// Specifies a put integration input's type.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"IntegrationType"`
 
 	// Specifies Uniform Resource Identifier (URI) of the integration endpoint.
-	//
-	//    * For HTTP or HTTP_PROXY integrations, the URI must be a fully formed,
-	//    encoded HTTP(S) URL according to the RFC-3986 specification (https://en.wikipedia.org/wiki/Uniform_Resource_Identifier),
-	//    for either standard integration, where connectionType is not VPC_LINK,
-	//    or private integration, where connectionType is VPC_LINK. For a private
-	//    HTTP integration, the URI is not used for routing.
-	//
-	//    * For AWS or AWS_PROXY integrations, the URI is of the form arn:aws:apigateway:{region}:{subdomain.service|service}:path|action/{service_api}.
-	//    Here, {Region} is the API Gateway region (e.g., us-east-1); {service}
-	//    is the name of the integrated AWS service (e.g., s3); and {subdomain}
-	//    is a designated subdomain supported by certain AWS service for fast host-name
-	//    lookup. action can be used for an AWS service action-based API, using
-	//    an Action={name}&{p1}={v1}&p2={v2}... query string. The ensuing {service_api}
-	//    refers to a supported action {name} plus any required input parameters.
-	//    Alternatively, path can be used for an AWS service path-based API. The
-	//    ensuing service_api refers to the path to an AWS service resource, including
-	//    the region of the integrated AWS service, if applicable. For example,
-	//    for integration with the S3 API of GetObject (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html),
-	//    the uri can be either arn:aws:apigateway:us-west-2:s3:action/GetObject&Bucket={bucket}&Key={key}
-	//    or arn:aws:apigateway:us-west-2:s3:path/{bucket}/{key}
+	// For HTTP or HTTP_PROXY integrations, the URI must be a fully formed, encoded
+	// HTTP(S) URL according to the RFC-3986 specification, for either standard
+	// integration, where connectionType is not VPC_LINK, or private integration,
+	// where connectionType is VPC_LINK. For a private HTTP integration, the URI
+	// is not used for routing. For AWS or AWS_PROXY integrations, the URI is of
+	// the form arn:aws:apigateway:{region}:{subdomain.service|service}:path|action/{service_api}.
+	// Here, {Region} is the API Gateway region (e.g., us-east-1); {service} is
+	// the name of the integrated Amazon Web Services service (e.g., s3); and {subdomain}
+	// is a designated subdomain supported by certain Amazon Web Services service
+	// for fast host-name lookup. action can be used for an Amazon Web Services
+	// service action-based API, using an Action={name}&{p1}={v1}&p2={v2}... query
+	// string. The ensuing {service_api} refers to a supported action {name} plus
+	// any required input parameters. Alternatively, path can be used for an Amazon
+	// Web Services service path-based API. The ensuing service_api refers to the
+	// path to an Amazon Web Services service resource, including the region of
+	// the integrated Amazon Web Services service, if applicable. For example, for
+	// integration with the S3 API of GetObject, the uri can be either arn:aws:apigateway:us-west-2:s3:action/GetObject&Bucket={bucket}&Key={key}
+	// or arn:aws:apigateway:us-west-2:s3:path/{bucket}/{key}.
 	Uri *string `locationName:"uri" type:"string"`
 }
 
@@ -23145,22 +22585,16 @@ type PutIntegrationResponseInput struct {
 	// Specifies how to handle response payload content type conversions. Supported
 	// values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:
 	//
-	//    * CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded
-	//    string to the corresponding binary blob.
-	//
-	//    * CONVERT_TO_TEXT: Converts a response payload from a binary blob to a
-	//    Base64-encoded string.
-	//
 	// If this property is not defined, the response payload will be passed through
 	// from the integration response to the method response without modification.
 	ContentHandling *string `locationName:"contentHandling" type:"string" enum:"ContentHandlingStrategy"`
 
-	// [Required] Specifies a put integration response request's HTTP method.
+	// Specifies a put integration response request's HTTP method.
 	//
 	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
-	// [Required] Specifies a put integration response request's resource identifier.
+	// Specifies a put integration response request's resource identifier.
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
@@ -23180,7 +22614,7 @@ type PutIntegrationResponseInput struct {
 	// Specifies a put integration response's templates.
 	ResponseTemplates map[string]*string `locationName:"responseTemplates" type:"map"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -23188,8 +22622,8 @@ type PutIntegrationResponseInput struct {
 	// Specifies the selection pattern of a put integration response.
 	SelectionPattern *string `locationName:"selectionPattern" type:"string"`
 
-	// [Required] Specifies the status code that is used to map the integration
-	// response to an existing MethodResponse.
+	// Specifies the status code that is used to map the integration response to
+	// an existing MethodResponse.
 	//
 	// StatusCode is a required field
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
@@ -23312,9 +22746,9 @@ type PutMethodInput struct {
 	// token for authorization purposes.
 	AuthorizationScopes []*string `locationName:"authorizationScopes" type:"list"`
 
-	// [Required] The method's authorization type. Valid values are NONE for open
-	// access, AWS_IAM for using AWS IAM permissions, CUSTOM for using a custom
-	// authorizer, or COGNITO_USER_POOLS for using a Cognito user pool.
+	// The method's authorization type. Valid values are NONE for open access, AWS_IAM
+	// for using AWS IAM permissions, CUSTOM for using a custom authorizer, or COGNITO_USER_POOLS
+	// for using a Cognito user pool.
 	//
 	// AuthorizationType is a required field
 	AuthorizationType *string `locationName:"authorizationType" type:"string" required:"true"`
@@ -23324,7 +22758,7 @@ type PutMethodInput struct {
 	// API Gateway when you created the authorizer.
 	AuthorizerId *string `locationName:"authorizerId" type:"string"`
 
-	// [Required] Specifies the method request's HTTP method type.
+	// Specifies the method request's HTTP method type.
 	//
 	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
@@ -23352,12 +22786,12 @@ type PutMethodInput struct {
 	// The identifier of a RequestValidator for validating the method request.
 	RequestValidatorId *string `locationName:"requestValidatorId" type:"string"`
 
-	// [Required] The Resource identifier for the new Method resource.
+	// The Resource identifier for the new Method resource.
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -23482,12 +22916,12 @@ func (s *PutMethodInput) SetRestApiId(v string) *PutMethodInput {
 type PutMethodResponseInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Required] The HTTP verb of the Method resource.
+	// The HTTP verb of the Method resource.
 	//
 	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
-	// [Required] The Resource identifier for the Method resource.
+	// The Resource identifier for the Method resource.
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
@@ -23510,12 +22944,12 @@ type PutMethodResponseInput struct {
 	// where JSON-expression is a valid JSON expression without the $ prefix.)
 	ResponseParameters map[string]*bool `locationName:"responseParameters" type:"map"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	// [Required] The method response's status code.
+	// The method response's status code.
 	//
 	// StatusCode is a required field
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
@@ -23614,9 +23048,9 @@ func (s *PutMethodResponseInput) SetStatusCode(v string) *PutMethodResponseInput
 type PutRestApiInput struct {
 	_ struct{} `type:"structure" payload:"Body"`
 
-	// [Required] The PUT request body containing external API definitions. Currently,
-	// only OpenAPI definition JSON/YAML files are supported. The maximum size of
-	// the API definition file is 6MB.
+	// The PUT request body containing external API definitions. Currently, only
+	// OpenAPI definition JSON/YAML files are supported. The maximum size of the
+	// API definition file is 6MB.
 	//
 	// Body is a required field
 	Body []byte `locationName:"body" type:"blob" required:"true"`
@@ -23635,7 +23069,7 @@ type PutRestApiInput struct {
 	// ignore=documentation --body 'file:///path/to/imported-api-body.json'.
 	Parameters map[string]*string `location:"querystring" locationName:"parameters" type:"map"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -23715,8 +23149,8 @@ type QuotaSettings struct {
 	// The target maximum number of requests that can be made in a given time period.
 	Limit *int64 `locationName:"limit" type:"integer"`
 
-	// The day that a time period starts. For example, with a time period of WEEK,
-	// an offset of 0 starts on Sunday, and an offset of 1 starts on Monday.
+	// The number of requests subtracted from the given limit in the initial time
+	// period.
 	Offset *int64 `locationName:"offset" type:"integer"`
 
 	// The time period in which the limit applies. Valid values are "DAY", "WEEK"
@@ -23761,8 +23195,6 @@ func (s *QuotaSettings) SetPeriod(v string) *QuotaSettings {
 }
 
 // Represents an API resource.
-//
-// Create an API (https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
 type Resource struct {
 	_ struct{} `type:"structure"`
 
@@ -23779,61 +23211,6 @@ type Resource struct {
 	PathPart *string `locationName:"pathPart" type:"string"`
 
 	// Gets an API resource's method of a given HTTP verb.
-	//
-	// The resource methods are a map of methods indexed by methods' HTTP verbs
-	// enabled on the resource. This method map is included in the 200 OK response
-	// of the GET /restapis/{restapi_id}/resources/{resource_id} or GET /restapis/{restapi_id}/resources/{resource_id}?embed=methods
-	// request.
-	//
-	// Example: Get the GET method of an API resource
-	//
-	// Request
-	//  GET /restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET HTTP/1.1 Content-Type:
-	//  application/json Host: apigateway.us-east-1.amazonaws.com X-Amz-Date: 20170223T031827Z
-	//  Authorization: AWS4-HMAC-SHA256 Credential={access_key_ID}/20170223/us-east-1/apigateway/aws4_request,
-	//  SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}
-	// Response
-	//  { "_links": { "curies": [ { "href": "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html",
-	//  "name": "integration", "templated": true }, { "href": "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
-	//  "name": "integrationresponse", "templated": true }, { "href": "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-{rel}.html",
-	//  "name": "method", "templated": true }, { "href": "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
-	//  "name": "methodresponse", "templated": true } ], "self": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET",
-	//  "name": "GET", "title": "GET" }, "integration:put": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
-	//  }, "method:delete": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET"
-	//  }, "method:integration": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
-	//  }, "method:responses": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200",
-	//  "name": "200", "title": "200" }, "method:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET"
-	//  }, "methodresponse:put": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/{status_code}",
-	//  "templated": true } }, "apiKeyRequired": false, "authorizationType": "NONE",
-	//  "httpMethod": "GET", "_embedded": { "method:integration": { "_links": {
-	//  "self": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
-	//  }, "integration:delete": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
-	//  }, "integration:responses": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200",
-	//  "name": "200", "title": "200" }, "integration:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
-	//  }, "integrationresponse:put": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/{status_code}",
-	//  "templated": true } }, "cacheKeyParameters": [], "cacheNamespace": "3kzxbg5sa2",
-	//  "credentials": "arn:aws:iam::123456789012:role/apigAwsProxyRole", "httpMethod":
-	//  "POST", "passthroughBehavior": "WHEN_NO_MATCH", "requestParameters": { "integration.request.header.Content-Type":
-	//  "'application/x-amz-json-1.1'" }, "requestTemplates": { "application/json":
-	//  "{\n}" }, "type": "AWS", "uri": "arn:aws:apigateway:us-east-1:kinesis:action/ListStreams",
-	//  "_embedded": { "integration:responses": { "_links": { "self": { "href":
-	//  "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200",
-	//  "name": "200", "title": "200" }, "integrationresponse:delete": { "href":
-	//  "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200"
-	//  }, "integrationresponse:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200"
-	//  } }, "responseParameters": { "method.response.header.Content-Type": "'application/xml'"
-	//  }, "responseTemplates": { "application/json": "$util.urlDecode(\"%3CkinesisStreams%3E#foreach($stream
-	//  in $input.path('$.StreamNames'))%3Cstream%3E%3Cname%3E$stream%3C/name%3E%3C/stream%3E#end%3C/kinesisStreams%3E\")\n"
-	//  }, "statusCode": "200" } } }, "method:responses": { "_links": { "self":
-	//  { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200",
-	//  "name": "200", "title": "200" }, "methodresponse:delete": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200"
-	//  }, "methodresponse:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200"
-	//  } }, "responseModels": { "application/json": "Empty" }, "responseParameters":
-	//  { "method.response.header.Content-Type": false }, "statusCode": "200" }
-	//  } }
-	// If the OPTIONS is enabled on the resource, you can follow the example here
-	// to get that method. Just replace the GET of the last path segment in the
-	// request URL with OPTIONS.
 	ResourceMethods map[string]*Method `locationName:"resourceMethods" type:"map"`
 }
 
@@ -23886,17 +23263,13 @@ func (s *Resource) SetResourceMethods(v map[string]*Method) *Resource {
 }
 
 // Represents a REST API.
-//
-// Create an API (https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
 type RestApi struct {
 	_ struct{} `type:"structure"`
 
 	// The source of the API key for metering requests according to a usage plan.
-	// Valid values are:
-	//    * HEADER to read the API key from the X-API-Key header of a request.
-	//
-	//    * AUTHORIZER to read the API key from the UsageIdentifierKey from a custom
-	//    authorizer.
+	// Valid values are: >HEADER to read the API key from the X-API-Key header of
+	// a request. AUTHORIZER to read the API key from the UsageIdentifierKey from
+	// a custom authorizer.
 	ApiKeySource *string `locationName:"apiKeySource" type:"string" enum:"ApiKeySourceType"`
 
 	// The list of binary media types supported by the RestApi. By default, the
@@ -24241,8 +23614,6 @@ func (s *ServiceUnavailableException) RequestID() string {
 
 // Represents a unique identifier for a version of a deployed RestApi that is
 // callable by users.
-//
-// Deploy an API (https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-deploy-api.html)
 type Stage struct {
 	_ struct{} `type:"structure"`
 
@@ -24470,12 +23841,12 @@ func (s *StageKey) SetStageName(v string) *StageKey {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Required] The ARN of a resource that can be tagged.
+	// The ARN of a resource that can be tagged.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource_arn" type:"string" required:"true"`
 
-	// [Required] The key-value map of strings. The valid character set is [a-zA-Z+-=._:/].
+	// The key-value map of strings. The valid character set is [a-zA-Z+-=._:/].
 	// The tag key can be up to 128 characters and must not start with aws:. The
 	// tag value can be up to 256 characters.
 	//
@@ -24554,36 +23925,36 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// Make a request to simulate the execution of an Authorizer.
+// Make a request to simulate the invocation of an Authorizer.
 type TestInvokeAuthorizerInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Optional] A key-value map of additional context variables.
+	// A key-value map of additional context variables.
 	AdditionalContext map[string]*string `locationName:"additionalContext" type:"map"`
 
-	// [Required] Specifies a test invoke authorizer request's Authorizer ID.
+	// Specifies a test invoke authorizer request's Authorizer ID.
 	//
 	// AuthorizerId is a required field
 	AuthorizerId *string `location:"uri" locationName:"authorizer_id" type:"string" required:"true"`
 
-	// [Optional] The simulated request body of an incoming invocation request.
+	// The simulated request body of an incoming invocation request.
 	Body *string `locationName:"body" type:"string"`
 
-	// [Required] A key-value map of headers to simulate an incoming invocation
-	// request. This is where the incoming authorization token, or identity source,
-	// should be specified.
+	// A key-value map of headers to simulate an incoming invocation request. This
+	// is where the incoming authorization token, or identity source, should be
+	// specified.
 	Headers map[string]*string `locationName:"headers" type:"map"`
 
-	// [Optional] The headers as a map from string to list of values to simulate
-	// an incoming invocation request. This is where the incoming authorization
-	// token, or identity source, may be specified.
+	// The headers as a map from string to list of values to simulate an incoming
+	// invocation request. This is where the incoming authorization token, or identity
+	// source, may be specified.
 	MultiValueHeaders map[string][]*string `locationName:"multiValueHeaders" type:"map"`
 
-	// [Optional] The URI path, including query string, of the simulated invocation
-	// request. Use this to specify path parameters and query string parameters.
+	// The URI path, including query string, of the simulated invocation request.
+	// Use this to specify path parameters and query string parameters.
 	PathWithQueryString *string `locationName:"pathWithQueryString" type:"string"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -24685,11 +24056,11 @@ func (s *TestInvokeAuthorizerInput) SetStageVariables(v map[string]*string) *Tes
 type TestInvokeAuthorizerOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The authorization response.
 	Authorization map[string][]*string `locationName:"authorization" type:"map"`
 
-	// The open identity claims (https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims),
-	// with any supported custom attributes, returned from the Cognito Your User
-	// Pool configured for the API.
+	// The open identity claims, with any supported custom attributes, returned
+	// from the Cognito Your User Pool configured for the API.
 	Claims map[string]*string `locationName:"claims" type:"map"`
 
 	// The HTTP status code that the client would have received. Value is 0 if the
@@ -24769,7 +24140,7 @@ func (s *TestInvokeAuthorizerOutput) SetPrincipalId(v string) *TestInvokeAuthori
 	return s
 }
 
-// Make a request to simulate the execution of a Method.
+// Make a request to simulate the invocation of a Method.
 type TestInvokeMethodInput struct {
 	_ struct{} `type:"structure"`
 
@@ -24784,7 +24155,7 @@ type TestInvokeMethodInput struct {
 	// A key-value map of headers to simulate an incoming invocation request.
 	Headers map[string]*string `locationName:"headers" type:"map"`
 
-	// [Required] Specifies a test invoke method request's HTTP method.
+	// Specifies a test invoke method request's HTTP method.
 	//
 	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
@@ -24797,12 +24168,12 @@ type TestInvokeMethodInput struct {
 	// Use this to specify path parameters and query string parameters.
 	PathWithQueryString *string `locationName:"pathWithQueryString" type:"string"`
 
-	// [Required] Specifies a test invoke method request's resource ID.
+	// Specifies a test invoke method request's resource ID.
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -24913,8 +24284,6 @@ func (s *TestInvokeMethodInput) SetStageVariables(v map[string]*string) *TestInv
 }
 
 // Represents the response of the test invoke request in the HTTP method.
-//
-// Test API using the API Gateway console (https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-test-method.html#how-to-test-method-console)
 type TestInvokeMethodOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -25033,12 +24402,12 @@ func (s *ThrottleSettings) SetRateLimit(v float64) *ThrottleSettings {
 	return s
 }
 
+// Specifies the TLS configuration for an integration.
 type TlsConfig struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies whether or not API Gateway skips verification that the certificate
-	// for an integration endpoint is issued by a supported certificate authority
-	// (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-supported-certificate-authorities-for-http-endpoints.html).
+	// for an integration endpoint is issued by a supported certificate authority.
 	// This isn’t recommended, but it enables you to use certificates that are
 	// signed by private certificate authorities, or certificates that are self-signed.
 	// If enabled, API Gateway still performs basic certificate validation, which
@@ -25206,12 +24575,12 @@ func (s *UnauthorizedException) RequestID() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// [Required] The ARN of a resource that can be tagged.
+	// The ARN of a resource that can be tagged.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource_arn" type:"string" required:"true"`
 
-	// [Required] The Tag keys to delete.
+	// The Tag keys to delete.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
@@ -25292,8 +24661,8 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateAccountInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 }
 
@@ -25325,13 +24694,13 @@ func (s *UpdateAccountInput) SetPatchOperations(v []*PatchOperation) *UpdateAcco
 type UpdateApiKeyInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Required] The identifier of the ApiKey resource to be updated.
+	// The identifier of the ApiKey resource to be updated.
 	//
 	// ApiKey is a required field
 	ApiKey *string `location:"uri" locationName:"api_Key" type:"string" required:"true"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 }
 
@@ -25385,16 +24754,16 @@ func (s *UpdateApiKeyInput) SetPatchOperations(v []*PatchOperation) *UpdateApiKe
 type UpdateAuthorizerInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Required] The identifier of the Authorizer resource.
+	// The identifier of the Authorizer resource.
 	//
 	// AuthorizerId is a required field
 	AuthorizerId *string `location:"uri" locationName:"authorizer_id" type:"string" required:"true"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -25462,20 +24831,20 @@ func (s *UpdateAuthorizerInput) SetRestApiId(v string) *UpdateAuthorizerInput {
 type UpdateBasePathMappingInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Required] The base path of the BasePathMapping resource to change.
+	// The base path of the BasePathMapping resource to change.
 	//
 	// To specify an empty base path, set this parameter to '(none)'.
 	//
 	// BasePath is a required field
 	BasePath *string `location:"uri" locationName:"base_path" type:"string" required:"true"`
 
-	// [Required] The domain name of the BasePathMapping resource to change.
+	// The domain name of the BasePathMapping resource to change.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 }
 
@@ -25541,13 +24910,13 @@ func (s *UpdateBasePathMappingInput) SetPatchOperations(v []*PatchOperation) *Up
 type UpdateClientCertificateInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Required] The identifier of the ClientCertificate resource to be updated.
+	// The identifier of the ClientCertificate resource to be updated.
 	//
 	// ClientCertificateId is a required field
 	ClientCertificateId *string `location:"uri" locationName:"clientcertificate_id" type:"string" required:"true"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 }
 
@@ -25607,11 +24976,11 @@ type UpdateDeploymentInput struct {
 	// DeploymentId is a required field
 	DeploymentId *string `location:"uri" locationName:"deployment_id" type:"string" required:"true"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -25679,16 +25048,16 @@ func (s *UpdateDeploymentInput) SetRestApiId(v string) *UpdateDeploymentInput {
 type UpdateDocumentationPartInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Required] The identifier of the to-be-updated documentation part.
+	// The identifier of the to-be-updated documentation part.
 	//
 	// DocumentationPartId is a required field
 	DocumentationPartId *string `location:"uri" locationName:"part_id" type:"string" required:"true"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -25756,16 +25125,16 @@ func (s *UpdateDocumentationPartInput) SetRestApiId(v string) *UpdateDocumentati
 type UpdateDocumentationVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Required] The version identifier of the to-be-updated documentation version.
+	// The version identifier of the to-be-updated documentation version.
 	//
 	// DocumentationVersion is a required field
 	DocumentationVersion *string `location:"uri" locationName:"doc_version" type:"string" required:"true"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	// [Required] The string identifier of the associated RestApi..
+	// The string identifier of the associated RestApi..
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -25833,13 +25202,13 @@ func (s *UpdateDocumentationVersionInput) SetRestApiId(v string) *UpdateDocument
 type UpdateDomainNameInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Required] The name of the DomainName resource to be changed.
+	// The name of the DomainName resource to be changed.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 }
 
@@ -25893,17 +25262,16 @@ func (s *UpdateDomainNameInput) SetPatchOperations(v []*PatchOperation) *UpdateD
 type UpdateGatewayResponseInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	// [Required]
 	// The response type of the associated GatewayResponse.
 	//
 	// ResponseType is a required field
 	ResponseType *string `location:"uri" locationName:"response_type" type:"string" required:"true" enum:"GatewayResponseType"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -25969,43 +25337,6 @@ func (s *UpdateGatewayResponseInput) SetRestApiId(v string) *UpdateGatewayRespon
 
 // A gateway response of a given response type and status code, with optional
 // response parameters and mapping templates.
-//
-// For more information about valid gateway response types, see Gateway Response
-// Types Supported by API Gateway (https://docs.aws.amazon.com/apigateway/latest/developerguide/supported-gateway-response-types.html)
-//
-// Example: Get a Gateway Response of a given response type
-//
-// Request
-//
-// This example shows how to get a gateway response of the MISSING_AUTHENTICATION_TOKEN
-// type.
-//  GET /restapis/o81lxisefl/gatewayresponses/MISSING_AUTHENTICATION_TOKEN HTTP/1.1
-//  Host: beta-apigateway.us-east-1.amazonaws.com Content-Type: application/json
-//  X-Amz-Date: 20170503T202516Z Authorization: AWS4-HMAC-SHA256 Credential={access-key-id}/20170503/us-east-1/apigateway/aws4_request,
-//  SignedHeaders=content-type;host;x-amz-date, Signature=1b52460e3159c1a26cff29093855d50ea141c1c5b937528fecaf60f51129697a
-//  Cache-Control: no-cache Postman-Token: 3b2a1ce9-c848-2e26-2e2f-9c2caefbed45
-// The response type is specified as a URL path.
-//
-// Response
-//
-// The successful operation returns the 200 OK status code and a payload similar
-// to the following:
-//  { "_links": { "curies": { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-gatewayresponse-{rel}.html",
-//  "name": "gatewayresponse", "templated": true }, "self": { "href": "/restapis/o81lxisefl/gatewayresponses/MISSING_AUTHENTICATION_TOKEN"
-//  }, "gatewayresponse:delete": { "href": "/restapis/o81lxisefl/gatewayresponses/MISSING_AUTHENTICATION_TOKEN"
-//  }, "gatewayresponse:put": { "href": "/restapis/o81lxisefl/gatewayresponses/{response_type}",
-//  "templated": true }, "gatewayresponse:update": { "href": "/restapis/o81lxisefl/gatewayresponses/MISSING_AUTHENTICATION_TOKEN"
-//  } }, "defaultResponse": false, "responseParameters": { "gatewayresponse.header.x-request-path":
-//  "method.request.path.petId", "gatewayresponse.header.Access-Control-Allow-Origin":
-//  "'a.b.c'", "gatewayresponse.header.x-request-query": "method.request.querystring.q",
-//  "gatewayresponse.header.x-request-header": "method.request.header.Accept"
-//  }, "responseTemplates": { "application/json": "{\n \"message\": $context.error.messageString,\n
-//  \"type\": \"$context.error.responseType\",\n \"stage\": \"$context.stage\",\n
-//  \"resourcePath\": \"$context.resourcePath\",\n \"stageVariables.a\": \"$stageVariables.a\",\n
-//  \"statusCode\": \"'404'\"\n}" }, "responseType": "MISSING_AUTHENTICATION_TOKEN",
-//  "statusCode": "404" }
-//
-// Customize Gateway Responses (https://docs.aws.amazon.com/apigateway/latest/developerguide/customize-gateway-responses.html)
 type UpdateGatewayResponseOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -26081,21 +25412,21 @@ func (s *UpdateGatewayResponseOutput) SetStatusCode(v string) *UpdateGatewayResp
 type UpdateIntegrationInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Required] Represents an update integration request's HTTP method.
+	// Represents an update integration request's HTTP method.
 	//
 	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	// [Required] Represents an update integration request's resource identifier.
+	// Represents an update integration request's resource identifier.
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -26175,26 +25506,26 @@ func (s *UpdateIntegrationInput) SetRestApiId(v string) *UpdateIntegrationInput 
 type UpdateIntegrationResponseInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Required] Specifies an update integration response request's HTTP method.
+	// Specifies an update integration response request's HTTP method.
 	//
 	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	// [Required] Specifies an update integration response request's resource identifier.
+	// Specifies an update integration response request's resource identifier.
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	// [Required] Specifies an update integration response request's status code.
+	// Specifies an update integration response request's status code.
 	//
 	// StatusCode is a required field
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
@@ -26286,21 +25617,21 @@ func (s *UpdateIntegrationResponseInput) SetStatusCode(v string) *UpdateIntegrat
 type UpdateMethodInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Required] The HTTP verb of the Method resource.
+	// The HTTP verb of the Method resource.
 	//
 	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	// [Required] The Resource identifier for the Method resource.
+	// The Resource identifier for the Method resource.
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -26380,26 +25711,26 @@ func (s *UpdateMethodInput) SetRestApiId(v string) *UpdateMethodInput {
 type UpdateMethodResponseInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Required] The HTTP verb of the Method resource.
+	// The HTTP verb of the Method resource.
 	//
 	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	// [Required] The Resource identifier for the MethodResponse resource.
+	// The Resource identifier for the MethodResponse resource.
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	// [Required] The status code for the MethodResponse resource.
+	// The status code for the MethodResponse resource.
 	//
 	// StatusCode is a required field
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
@@ -26491,16 +25822,16 @@ func (s *UpdateMethodResponseInput) SetStatusCode(v string) *UpdateMethodRespons
 type UpdateModelInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Required] The name of the model to update.
+	// The name of the model to update.
 	//
 	// ModelName is a required field
 	ModelName *string `location:"uri" locationName:"model_name" type:"string" required:"true"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -26568,16 +25899,16 @@ func (s *UpdateModelInput) SetRestApiId(v string) *UpdateModelInput {
 type UpdateRequestValidatorInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	// [Required] The identifier of RequestValidator to be updated.
+	// The identifier of RequestValidator to be updated.
 	//
 	// RequestValidatorId is a required field
 	RequestValidatorId *string `location:"uri" locationName:"requestvalidator_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -26642,14 +25973,6 @@ func (s *UpdateRequestValidatorInput) SetRestApiId(v string) *UpdateRequestValid
 }
 
 // A set of validation rules for incoming Method requests.
-//
-// In OpenAPI, a RequestValidator of an API is defined by the x-amazon-apigateway-request-validators.requestValidator
-// (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-swagger-extensions.html#api-gateway-swagger-extensions-request-validators.requestValidator.html)
-// object. It the referenced using the x-amazon-apigateway-request-validator
-// (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-swagger-extensions.html#api-gateway-swagger-extensions-request-validator)
-// property.
-//
-// Enable Basic Request Validation in API Gateway (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-method-request-validation.html)
 type UpdateRequestValidatorOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -26714,16 +26037,16 @@ func (s *UpdateRequestValidatorOutput) SetValidateRequestParameters(v bool) *Upd
 type UpdateResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	// [Required] The identifier of the Resource resource.
+	// The identifier of the Resource resource.
 	//
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -26791,11 +26114,11 @@ func (s *UpdateResourceInput) SetRestApiId(v string) *UpdateResourceInput {
 type UpdateRestApiInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -26851,16 +26174,16 @@ func (s *UpdateRestApiInput) SetRestApiId(v string) *UpdateRestApiInput {
 type UpdateStageInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	// [Required] The string identifier of the associated RestApi.
+	// The string identifier of the associated RestApi.
 	//
 	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	// [Required] The name of the Stage resource to change information about.
+	// The name of the Stage resource to change information about.
 	//
 	// StageName is a required field
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
@@ -26929,17 +26252,17 @@ func (s *UpdateStageInput) SetStageName(v string) *UpdateStageInput {
 type UpdateUsageInput struct {
 	_ struct{} `type:"structure"`
 
-	// [Required] The identifier of the API key associated with the usage plan in
-	// which a temporary extension is granted to the remaining quota.
+	// The identifier of the API key associated with the usage plan in which a temporary
+	// extension is granted to the remaining quota.
 	//
 	// KeyId is a required field
 	KeyId *string `location:"uri" locationName:"keyId" type:"string" required:"true"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	// [Required] The Id of the usage plan associated with the usage data.
+	// The Id of the usage plan associated with the usage data.
 	//
 	// UsagePlanId is a required field
 	UsagePlanId *string `location:"uri" locationName:"usageplanId" type:"string" required:"true"`
@@ -27007,11 +26330,11 @@ func (s *UpdateUsageInput) SetUsagePlanId(v string) *UpdateUsageInput {
 type UpdateUsagePlanInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	// [Required] The Id of the to-be-updated usage plan.
+	// The Id of the to-be-updated usage plan.
 	//
 	// UsagePlanId is a required field
 	UsagePlanId *string `location:"uri" locationName:"usageplanId" type:"string" required:"true"`
@@ -27067,12 +26390,12 @@ func (s *UpdateUsagePlanInput) SetUsagePlanId(v string) *UpdateUsagePlanInput {
 type UpdateVpcLinkInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of update operations to be applied to the specified resource and in
-	// the order specified in this list.
+	// For more information about supported patch operations, see Patch Operations
+	// (https://docs.aws.amazon.com/apigateway/latest/api/patch-operations.html).
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	// [Required] The identifier of the VpcLink. It is used in an Integration to
-	// reference this VpcLink.
+	// The identifier of the VpcLink. It is used in an Integration to reference
+	// this VpcLink.
 	//
 	// VpcLinkId is a required field
 	VpcLinkId *string `location:"uri" locationName:"vpclink_id" type:"string" required:"true"`
@@ -27126,14 +26449,6 @@ func (s *UpdateVpcLinkInput) SetVpcLinkId(v string) *UpdateVpcLinkInput {
 
 // An API Gateway VPC link for a RestApi to access resources in an Amazon Virtual
 // Private Cloud (VPC).
-//
-// To enable access to a resource in an Amazon Virtual Private Cloud through
-// Amazon API Gateway, you, as an API developer, create a VpcLink resource targeted
-// for one or more network load balancers of the VPC and then integrate an API
-// method with a private integration that uses the VpcLink. The private integration
-// has an integration type of HTTP or HTTP_PROXY and has a connection type of
-// VPC_LINK. The integration uses the connectionId property to identify the
-// VpcLink used.
 type UpdateVpcLinkOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -27225,9 +26540,6 @@ func (s *UpdateVpcLinkOutput) SetTargetArns(v []*string) *UpdateVpcLinkOutput {
 }
 
 // Represents the usage data of a usage plan.
-//
-// Create and Use Usage Plans (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html),
-// Manage Usage in a Usage Plan (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-usage-plans-with-console.html#api-gateway-usage-plan-manage-usage)
 type Usage struct {
 	_ struct{} `type:"structure"`
 
@@ -27301,15 +26613,9 @@ func (s *Usage) SetUsagePlanId(v string) *Usage {
 // Represents a usage plan used to specify who can assess associated API stages.
 // Optionally, target request rate and quota limits can be set. In some cases
 // clients can exceed the targets that you set. Don’t rely on usage plans
-// to control costs. Consider using AWS Budgets (https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html)
-// to monitor costs and AWS WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html)
+// to control costs. Consider using Amazon Web Services Budgets (https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html)
+// to monitor costs and WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html)
 // to manage API requests.
-//
-// In a usage plan, you associate an API by specifying the API's Id and a stage
-// name of the specified API. You add plan customers by adding API keys to the
-// plan.
-//
-// Create and Use Usage Plans (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html)
 type UsagePlan struct {
 	_ struct{} `type:"structure"`
 
@@ -27335,7 +26641,7 @@ type UsagePlan struct {
 	// The collection of tags. Each tag element is associated with a given resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// Map containing method level throttling information for API stage in a usage
+	// A map containing method level throttling information for API stage in a usage
 	// plan.
 	Throttle *ThrottleSettings `locationName:"throttle" type:"structure"`
 }
@@ -27407,12 +26713,6 @@ func (s *UsagePlan) SetThrottle(v *ThrottleSettings) *UsagePlan {
 }
 
 // Represents a usage plan key to identify a plan customer.
-//
-// To associate an API stage with a selected API key in a usage plan, you must
-// create a UsagePlanKey resource to represent the selected ApiKey.
-//
-// "
-// Create and Use Usage Plans (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html)
 type UsagePlanKey struct {
 	_ struct{} `type:"structure"`
 

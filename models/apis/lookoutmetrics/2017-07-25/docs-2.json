@@ -213,7 +213,7 @@
     "AppFlowConfig": {
       "base": "<p>Details about an Amazon AppFlow flow datasource.</p>",
       "refs": {
-        "MetricSource$AppFlowConfig": "<p>An object containing information about the AppFlow configuration.</p>"
+        "MetricSource$AppFlowConfig": "<p>Details about an AppFlow datasource.</p>"
       }
     },
     "Arn": {
@@ -226,6 +226,7 @@
         "AlertSummary$AnomalyDetectorArn": "<p>The ARN of the detector to which the alert is attached.</p>",
         "AnomalyDetectorSummary$AnomalyDetectorArn": "<p>The ARN of the detector.</p>",
         "AppFlowConfig$RoleArn": "<p>An IAM role that gives Amazon Lookout for Metrics permission to access the flow.</p>",
+        "AthenaSourceConfig$RoleArn": "<p>An IAM role that gives Amazon Lookout for Metrics permission to access the data.</p>",
         "BackTestAnomalyDetectorRequest$AnomalyDetectorArn": "<p>The Amazon Resource Name (ARN) of the anomaly detector.</p>",
         "CloudWatchConfig$RoleArn": "<p>An IAM role that gives Amazon Lookout for Metrics permission to access data in Amazon CloudWatch.</p>",
         "CreateAlertRequest$AnomalyDetectorArn": "<p>The ARN of the detector to which the alert is attached.</p>",
@@ -271,6 +272,42 @@
         "UpdateMetricSetResponse$MetricSetArn": "<p>The ARN of the dataset.</p>"
       }
     },
+    "AthenaDataCatalog": {
+      "base": null,
+      "refs": {
+        "AthenaSourceConfig$DataCatalog": "<p>The database's data catalog.</p>"
+      }
+    },
+    "AthenaDatabaseName": {
+      "base": null,
+      "refs": {
+        "AthenaSourceConfig$DatabaseName": "<p>The database's name.</p>"
+      }
+    },
+    "AthenaS3ResultsPath": {
+      "base": null,
+      "refs": {
+        "AthenaSourceConfig$S3ResultsPath": "<p>The database's results path.</p>"
+      }
+    },
+    "AthenaSourceConfig": {
+      "base": "<p>Details about an Amazon Athena datasource.</p>",
+      "refs": {
+        "MetricSource$AthenaSourceConfig": "<p>Details about an Amazon Athena datasource.</p>"
+      }
+    },
+    "AthenaTableName": {
+      "base": null,
+      "refs": {
+        "AthenaSourceConfig$TableName": "<p>The database's table name.</p>"
+      }
+    },
+    "AthenaWorkGroupName": {
+      "base": null,
+      "refs": {
+        "AthenaSourceConfig$WorkGroupName": "<p>The database's work group name.</p>"
+      }
+    },
     "AttributeValue": {
       "base": "<p>An attribute value.</p>",
       "refs": {
@@ -299,6 +336,12 @@
       "refs": {
       }
     },
+    "BackTestConfiguration": {
+      "base": "<p>Settings for backtest mode.</p>",
+      "refs": {
+        "AthenaSourceConfig$BackTestConfiguration": "<p>Settings for backtest mode.</p>"
+      }
+    },
     "BinaryAttributeValue": {
       "base": null,
       "refs": {
@@ -316,6 +359,7 @@
       "base": null,
       "refs": {
         "AnomalyGroupTimeSeriesFeedback$IsAnomaly": "<p>Feedback on whether the metric is a legitimate anomaly.</p>",
+        "BackTestConfiguration$RunBackTestMode": "<p>Run a backtest instead of monitoring new data.</p>",
         "CsvFormatDescriptor$ContainsHeader": "<p>Whether or not the source CSV file contains a header.</p>",
         "TimeSeriesFeedback$IsAnomaly": "<p>Feedback on whether the metric is a legitimate anomaly.</p>"
       }
@@ -336,7 +380,7 @@
     "CloudWatchConfig": {
       "base": "<p>Details about an Amazon CloudWatch datasource.</p>",
       "refs": {
-        "MetricSource$CloudWatchConfig": "<p>An object containing information about the Amazon CloudWatch monitoring configuration.</p>"
+        "MetricSource$CloudWatchConfig": "<p>Details about an Amazon CloudWatch monitoring datasource.</p>"
       }
     },
     "ColumnName": {
@@ -960,7 +1004,7 @@
       }
     },
     "MetricSource": {
-      "base": "<p>Contains information about source data used to generate a metric.</p>",
+      "base": "<p>Contains information about source data used to generate metrics.</p>",
       "refs": {
         "CreateMetricSetRequest$MetricSource": "<p>Contains information about how the source data should be interpreted.</p>",
         "DescribeMetricSetResponse$MetricSource": "<p>Contains information about the dataset's source data.</p>",
@@ -1071,7 +1115,7 @@
     "RDSSourceConfig": {
       "base": "<p>Contains information about the Amazon Relational Database Service (RDS) configuration.</p>",
       "refs": {
-        "MetricSource$RDSSourceConfig": "<p>An object containing information about the Amazon Relational Database Service (RDS) configuration.</p>"
+        "MetricSource$RDSSourceConfig": "<p>Details about an Amazon Relational Database Service (RDS) datasource.</p>"
       }
     },
     "RedshiftClusterIdentifier": {
@@ -1089,7 +1133,7 @@
     "RedshiftSourceConfig": {
       "base": "<p>Provides information about the Amazon Redshift database configuration.</p>",
       "refs": {
-        "MetricSource$RedshiftSourceConfig": "<p>An object containing information about the Amazon Redshift database configuration.</p>"
+        "MetricSource$RedshiftSourceConfig": "<p>Details about an Amazon Redshift database datasource.</p>"
       }
     },
     "RelationshipType": {
@@ -1193,7 +1237,7 @@
     "SnsFormat": {
       "base": null,
       "refs": {
-        "SNSConfiguration$SnsFormat": "<p>The text format for alerts.</p>"
+        "SNSConfiguration$SnsFormat": "<p>The format of the SNS topic.</p>"
       }
     },
     "StringAttributeValue": {

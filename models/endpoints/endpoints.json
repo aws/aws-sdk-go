@@ -9083,6 +9083,7 @@
             },
             "hostname" : "portal.sso.ap-northeast-2.amazonaws.com"
           },
+          "ap-northeast-3" : { },
           "ap-south-1" : {
             "credentialScope" : {
               "region" : "ap-south-1"

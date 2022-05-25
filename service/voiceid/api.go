@@ -5631,6 +5631,10 @@ type Speaker struct {
 	// The service-generated identifier for the speaker.
 	GeneratedSpeakerId *string `min:"25" type:"string"`
 
+	// The timestamp when the speaker was last accessed for enrollment, re-enrollment
+	// or a successful authentication. This timestamp is accurate to one hour.
+	LastAccessedAt *time.Time `type:"timestamp"`
+
 	// The current status of the speaker.
 	Status *string `type:"string" enum:"SpeakerStatus"`
 
@@ -5677,6 +5681,12 @@ func (s *Speaker) SetDomainId(v string) *Speaker {
 // SetGeneratedSpeakerId sets the GeneratedSpeakerId field's value.
 func (s *Speaker) SetGeneratedSpeakerId(v string) *Speaker {
 	s.GeneratedSpeakerId = &v
+	return s
+}
+
+// SetLastAccessedAt sets the LastAccessedAt field's value.
+func (s *Speaker) SetLastAccessedAt(v time.Time) *Speaker {
+	s.LastAccessedAt = &v
 	return s
 }
 
@@ -5961,6 +5971,10 @@ type SpeakerSummary struct {
 	// The service-generated identifier for the speaker.
 	GeneratedSpeakerId *string `min:"25" type:"string"`
 
+	// The timestamp when the speaker was last accessed for enrollment, re-enrollment
+	// or a successful authentication. This timestamp is accurate to one hour.
+	LastAccessedAt *time.Time `type:"timestamp"`
+
 	// The current status of the speaker.
 	Status *string `type:"string" enum:"SpeakerStatus"`
 
@@ -6007,6 +6021,12 @@ func (s *SpeakerSummary) SetDomainId(v string) *SpeakerSummary {
 // SetGeneratedSpeakerId sets the GeneratedSpeakerId field's value.
 func (s *SpeakerSummary) SetGeneratedSpeakerId(v string) *SpeakerSummary {
 	s.GeneratedSpeakerId = &v
+	return s
+}
+
+// SetLastAccessedAt sets the LastAccessedAt field's value.
+func (s *SpeakerSummary) SetLastAccessedAt(v time.Time) *SpeakerSummary {
+	s.LastAccessedAt = &v
 	return s
 }
 
@@ -6930,6 +6950,9 @@ const (
 
 	// AuthenticationDecisionSpeakerIdNotProvided is a AuthenticationDecision enum value
 	AuthenticationDecisionSpeakerIdNotProvided = "SPEAKER_ID_NOT_PROVIDED"
+
+	// AuthenticationDecisionSpeakerExpired is a AuthenticationDecision enum value
+	AuthenticationDecisionSpeakerExpired = "SPEAKER_EXPIRED"
 )
 
 // AuthenticationDecision_Values returns all elements of the AuthenticationDecision enum
@@ -6941,6 +6964,7 @@ func AuthenticationDecision_Values() []string {
 		AuthenticationDecisionSpeakerNotEnrolled,
 		AuthenticationDecisionSpeakerOptedOut,
 		AuthenticationDecisionSpeakerIdNotProvided,
+		AuthenticationDecisionSpeakerExpired,
 	}
 }
 

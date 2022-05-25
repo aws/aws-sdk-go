@@ -4115,6 +4115,120 @@ func (s *AppFlowConfig) SetRoleArn(v string) *AppFlowConfig {
 	return s
 }
 
+// Details about an Amazon Athena datasource.
+type AthenaSourceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Settings for backtest mode.
+	BackTestConfiguration *BackTestConfiguration `type:"structure"`
+
+	// The database's data catalog.
+	DataCatalog *string `min:"1" type:"string"`
+
+	// The database's name.
+	DatabaseName *string `min:"1" type:"string"`
+
+	// An IAM role that gives Amazon Lookout for Metrics permission to access the
+	// data.
+	RoleArn *string `type:"string"`
+
+	// The database's results path.
+	S3ResultsPath *string `type:"string"`
+
+	// The database's table name.
+	TableName *string `min:"1" type:"string"`
+
+	// The database's work group name.
+	WorkGroupName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AthenaSourceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AthenaSourceConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AthenaSourceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AthenaSourceConfig"}
+	if s.DataCatalog != nil && len(*s.DataCatalog) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataCatalog", 1))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+	if s.WorkGroupName != nil && len(*s.WorkGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkGroupName", 1))
+	}
+	if s.BackTestConfiguration != nil {
+		if err := s.BackTestConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("BackTestConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBackTestConfiguration sets the BackTestConfiguration field's value.
+func (s *AthenaSourceConfig) SetBackTestConfiguration(v *BackTestConfiguration) *AthenaSourceConfig {
+	s.BackTestConfiguration = v
+	return s
+}
+
+// SetDataCatalog sets the DataCatalog field's value.
+func (s *AthenaSourceConfig) SetDataCatalog(v string) *AthenaSourceConfig {
+	s.DataCatalog = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *AthenaSourceConfig) SetDatabaseName(v string) *AthenaSourceConfig {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *AthenaSourceConfig) SetRoleArn(v string) *AthenaSourceConfig {
+	s.RoleArn = &v
+	return s
+}
+
+// SetS3ResultsPath sets the S3ResultsPath field's value.
+func (s *AthenaSourceConfig) SetS3ResultsPath(v string) *AthenaSourceConfig {
+	s.S3ResultsPath = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *AthenaSourceConfig) SetTableName(v string) *AthenaSourceConfig {
+	s.TableName = &v
+	return s
+}
+
+// SetWorkGroupName sets the WorkGroupName field's value.
+func (s *AthenaSourceConfig) SetWorkGroupName(v string) *AthenaSourceConfig {
+	s.WorkGroupName = &v
+	return s
+}
+
 // An attribute value.
 type AttributeValue struct {
 	_ struct{} `type:"structure"`
@@ -4362,6 +4476,53 @@ func (s BackTestAnomalyDetectorOutput) String() string {
 // value will be replaced with "sensitive".
 func (s BackTestAnomalyDetectorOutput) GoString() string {
 	return s.String()
+}
+
+// Settings for backtest mode.
+type BackTestConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Run a backtest instead of monitoring new data.
+	//
+	// RunBackTestMode is a required field
+	RunBackTestMode *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BackTestConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BackTestConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BackTestConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BackTestConfiguration"}
+	if s.RunBackTestMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("RunBackTestMode"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRunBackTestMode sets the RunBackTestMode field's value.
+func (s *BackTestConfiguration) SetRunBackTestMode(v bool) *BackTestConfiguration {
+	s.RunBackTestMode = &v
+	return s
 }
 
 // Details about an Amazon CloudWatch datasource.
@@ -8080,21 +8241,23 @@ func (s *MetricSetSummary) SetTags(v map[string]*string) *MetricSetSummary {
 	return s
 }
 
-// Contains information about source data used to generate a metric.
+// Contains information about source data used to generate metrics.
 type MetricSource struct {
 	_ struct{} `type:"structure"`
 
-	// An object containing information about the AppFlow configuration.
+	// Details about an AppFlow datasource.
 	AppFlowConfig *AppFlowConfig `type:"structure"`
 
-	// An object containing information about the Amazon CloudWatch monitoring configuration.
+	// Details about an Amazon Athena datasource.
+	AthenaSourceConfig *AthenaSourceConfig `type:"structure"`
+
+	// Details about an Amazon CloudWatch monitoring datasource.
 	CloudWatchConfig *CloudWatchConfig `type:"structure"`
 
-	// An object containing information about the Amazon Relational Database Service
-	// (RDS) configuration.
+	// Details about an Amazon Relational Database Service (RDS) datasource.
 	RDSSourceConfig *RDSSourceConfig `type:"structure"`
 
-	// An object containing information about the Amazon Redshift database configuration.
+	// Details about an Amazon Redshift database datasource.
 	RedshiftSourceConfig *RedshiftSourceConfig `type:"structure"`
 
 	// Contains information about the configuration of the S3 bucket that contains
@@ -8123,6 +8286,11 @@ func (s MetricSource) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *MetricSource) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "MetricSource"}
+	if s.AthenaSourceConfig != nil {
+		if err := s.AthenaSourceConfig.Validate(); err != nil {
+			invalidParams.AddNested("AthenaSourceConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RDSSourceConfig != nil {
 		if err := s.RDSSourceConfig.Validate(); err != nil {
 			invalidParams.AddNested("RDSSourceConfig", err.(request.ErrInvalidParams))
@@ -8148,6 +8316,12 @@ func (s *MetricSource) Validate() error {
 // SetAppFlowConfig sets the AppFlowConfig field's value.
 func (s *MetricSource) SetAppFlowConfig(v *AppFlowConfig) *MetricSource {
 	s.AppFlowConfig = v
+	return s
+}
+
+// SetAthenaSourceConfig sets the AthenaSourceConfig field's value.
+func (s *MetricSource) SetAthenaSourceConfig(v *AthenaSourceConfig) *MetricSource {
+	s.AthenaSourceConfig = v
 	return s
 }
 
@@ -8671,7 +8845,7 @@ type SNSConfiguration struct {
 	// RoleArn is a required field
 	RoleArn *string `type:"string" required:"true"`
 
-	// The text format for alerts.
+	// The format of the SNS topic.
 	SnsFormat *string `type:"string" enum:"SnsFormat"`
 
 	// The ARN of the target SNS topic.
@@ -9420,7 +9594,7 @@ type UpdateMetricSetInput struct {
 	// The dataset's interval.
 	MetricSetFrequency *string `type:"string" enum:"Frequency"`
 
-	// Contains information about source data used to generate a metric.
+	// Contains information about source data used to generate metrics.
 	MetricSource *MetricSource `type:"structure"`
 
 	// After an interval ends, the amount of seconds that the detector waits before

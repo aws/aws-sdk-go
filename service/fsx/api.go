@@ -4101,6 +4101,8 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //
 //    * DataCompressionType
 //
+//    * LustreRootSquashConfiguration
+//
 //    * StorageCapacity
 //
 //    * WeeklyMaintenanceStartTime
@@ -7307,6 +7309,11 @@ type CreateFileSystemLustreConfiguration struct {
 	//    * For PERSISTENT_2 SSD storage: 125, 250, 500, 1000 MB/s/TiB.
 	PerUnitStorageThroughput *int64 `min:"12" type:"integer"`
 
+	// The Lustre root squash configuration used when creating an Amazon FSx for
+	// Lustre file system. When enabled, root squash restricts root-level access
+	// from clients that try to access your file system as a root user.
+	RootSquashConfiguration *LustreRootSquashConfiguration `type:"structure"`
+
 	// (Optional) The preferred start time to perform weekly maintenance, formatted
 	// d:HH:MM in the UTC time zone, where d is the weekday number, from 1 through
 	// 7, beginning with Monday and ending with Sunday.
@@ -7355,6 +7362,11 @@ func (s *CreateFileSystemLustreConfiguration) Validate() error {
 	if s.LogConfiguration != nil {
 		if err := s.LogConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("LogConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RootSquashConfiguration != nil {
+		if err := s.RootSquashConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("RootSquashConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -7436,6 +7448,12 @@ func (s *CreateFileSystemLustreConfiguration) SetPerUnitStorageThroughput(v int6
 	return s
 }
 
+// SetRootSquashConfiguration sets the RootSquashConfiguration field's value.
+func (s *CreateFileSystemLustreConfiguration) SetRootSquashConfiguration(v *LustreRootSquashConfiguration) *CreateFileSystemLustreConfiguration {
+	s.RootSquashConfiguration = v
+	return s
+}
+
 // SetWeeklyMaintenanceStartTime sets the WeeklyMaintenanceStartTime field's value.
 func (s *CreateFileSystemLustreConfiguration) SetWeeklyMaintenanceStartTime(v string) *CreateFileSystemLustreConfiguration {
 	s.WeeklyMaintenanceStartTime = &v
@@ -7466,7 +7484,7 @@ type CreateFileSystemOntapConfiguration struct {
 	//    * SINGLE_AZ_1 - A file system configured for Single-AZ redundancy.
 	//
 	// For information about the use cases for Multi-AZ and Single-AZ deployments,
-	// refer to Choosing Multi-AZ or Single-AZ file system deployment (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/high-availability-multiAZ.html).
+	// refer to Choosing a file system deployment type (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/high-availability-AZ.html).
 	//
 	// DeploymentType is a required field
 	DeploymentType *string `type:"string" required:"true" enum:"OntapDeploymentType"`
@@ -14038,6 +14056,11 @@ type LustreFileSystemConfiguration struct {
 	//    * For PERSISTENT_2 SSD storage: 125, 250, 500, 1000.
 	PerUnitStorageThroughput *int64 `min:"12" type:"integer"`
 
+	// The Lustre root squash configuration for an Amazon FSx for Lustre file system.
+	// When enabled, root squash restricts root-level access from clients that try
+	// to access your file system as a root user.
+	RootSquashConfiguration *LustreRootSquashConfiguration `type:"structure"`
+
 	// The preferred start time to perform weekly maintenance, formatted d:HH:MM
 	// in the UTC time zone. Here, d is the weekday number, from 1 through 7, beginning
 	// with Monday and ending with Sunday.
@@ -14119,6 +14142,12 @@ func (s *LustreFileSystemConfiguration) SetMountName(v string) *LustreFileSystem
 // SetPerUnitStorageThroughput sets the PerUnitStorageThroughput field's value.
 func (s *LustreFileSystemConfiguration) SetPerUnitStorageThroughput(v int64) *LustreFileSystemConfiguration {
 	s.PerUnitStorageThroughput = &v
+	return s
+}
+
+// SetRootSquashConfiguration sets the RootSquashConfiguration field's value.
+func (s *LustreFileSystemConfiguration) SetRootSquashConfiguration(v *LustreRootSquashConfiguration) *LustreFileSystemConfiguration {
+	s.RootSquashConfiguration = v
 	return s
 }
 
@@ -14281,6 +14310,88 @@ func (s *LustreLogCreateConfiguration) SetDestination(v string) *LustreLogCreate
 // SetLevel sets the Level field's value.
 func (s *LustreLogCreateConfiguration) SetLevel(v string) *LustreLogCreateConfiguration {
 	s.Level = &v
+	return s
+}
+
+// The configuration for Lustre root squash used to restrict root-level access
+// from clients that try to access your FSx for Lustre file system as root.
+// Use the RootSquash parameter to enable root squash. To learn more about Lustre
+// root squash, see Lustre root squash (https://docs.aws.amazon.com/fsx/latest/LustreGuide/root-squash.html).
+//
+// You can also use the NoSquashNids parameter to provide an array of clients
+// who are not affected by the root squash setting. These clients will access
+// the file system as root, with unrestricted privileges.
+type LustreRootSquashConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// When root squash is enabled, you can optionally specify an array of NIDs
+	// of clients for which root squash does not apply. A client NID is a Lustre
+	// Network Identifier used to uniquely identify a client. You can specify the
+	// NID as either a single address or a range of addresses:
+	//
+	//    * A single address is described in standard Lustre NID format by specifying
+	//    the client’s IP address followed by the Lustre network ID (for example,
+	//    10.0.1.6@tcp).
+	//
+	//    * An address range is described using a dash to separate the range (for
+	//    example, 10.0.[2-10].[1-255]@tcp).
+	NoSquashNids []*string `type:"list"`
+
+	// You enable root squash by setting a user ID (UID) and group ID (GID) for
+	// the file system in the format UID:GID (for example, 365534:65534). The UID
+	// and GID values can range from 0 to 4294967294:
+	//
+	//    * A non-zero value for UID and GID enables root squash. The UID and GID
+	//    values can be different, but each must be a non-zero value.
+	//
+	//    * A value of 0 (zero) for UID and GID indicates root, and therefore disables
+	//    root squash.
+	//
+	// When root squash is enabled, the user ID and group ID of a root user accessing
+	// the file system are re-mapped to the UID and GID you provide.
+	RootSquash *string `min:"3" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LustreRootSquashConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LustreRootSquashConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LustreRootSquashConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LustreRootSquashConfiguration"}
+	if s.RootSquash != nil && len(*s.RootSquash) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("RootSquash", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNoSquashNids sets the NoSquashNids field's value.
+func (s *LustreRootSquashConfiguration) SetNoSquashNids(v []*string) *LustreRootSquashConfiguration {
+	s.NoSquashNids = v
+	return s
+}
+
+// SetRootSquash sets the RootSquash field's value.
+func (s *LustreRootSquashConfiguration) SetRootSquash(v string) *LustreRootSquashConfiguration {
+	s.RootSquash = &v
 	return s
 }
 
@@ -17741,6 +17852,11 @@ type UpdateFileSystemLustreConfiguration struct {
 	// Logs.
 	LogConfiguration *LustreLogCreateConfiguration `type:"structure"`
 
+	// The Lustre root squash configuration used when updating an Amazon FSx for
+	// Lustre file system. When enabled, root squash restricts root-level access
+	// from clients that try to access your file system as a root user.
+	RootSquashConfiguration *LustreRootSquashConfiguration `type:"structure"`
+
 	// (Optional) The preferred start time to perform weekly maintenance, formatted
 	// d:HH:MM in the UTC time zone. d is the weekday number, from 1 through 7,
 	// beginning with Monday and ending with Sunday.
@@ -17779,6 +17895,11 @@ func (s *UpdateFileSystemLustreConfiguration) Validate() error {
 			invalidParams.AddNested("LogConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RootSquashConfiguration != nil {
+		if err := s.RootSquashConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("RootSquashConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -17813,6 +17934,12 @@ func (s *UpdateFileSystemLustreConfiguration) SetDataCompressionType(v string) *
 // SetLogConfiguration sets the LogConfiguration field's value.
 func (s *UpdateFileSystemLustreConfiguration) SetLogConfiguration(v *LustreLogCreateConfiguration) *UpdateFileSystemLustreConfiguration {
 	s.LogConfiguration = v
+	return s
+}
+
+// SetRootSquashConfiguration sets the RootSquashConfiguration field's value.
+func (s *UpdateFileSystemLustreConfiguration) SetRootSquashConfiguration(v *LustreRootSquashConfiguration) *UpdateFileSystemLustreConfiguration {
+	s.RootSquashConfiguration = v
 	return s
 }
 

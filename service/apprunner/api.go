@@ -3811,6 +3811,8 @@ type CodeRepository struct {
 	_ struct{} `type:"structure"`
 
 	// Configuration for building and running the service from a source code repository.
+	//
+	// CodeConfiguration is required only for CreateService request.
 	CodeConfiguration *CodeConfiguration `type:"structure"`
 
 	// The location of the repository that contains the source code.
@@ -4678,6 +4680,8 @@ type CreateVpcConnectorInput struct {
 	// A list of IDs of subnets that App Runner should use when it associates your
 	// service with a custom Amazon VPC. Specify IDs of subnets of a single Amazon
 	// VPC. App Runner determines the Amazon VPC from the subnets you specify.
+	//
+	// App Runner currently only provides support for IPv4.
 	//
 	// Subnets is a required field
 	Subnets []*string `type:"list" required:"true"`
