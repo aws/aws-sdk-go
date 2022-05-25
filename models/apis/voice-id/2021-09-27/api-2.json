@@ -394,7 +394,8 @@
         "NOT_ENOUGH_SPEECH",
         "SPEAKER_NOT_ENROLLED",
         "SPEAKER_OPTED_OUT",
-        "SPEAKER_ID_NOT_PROVIDED"
+        "SPEAKER_ID_NOT_PROVIDED",
+        "SPEAKER_EXPIRED"
       ]
     },
     "AuthenticationResult":{
@@ -1067,6 +1068,7 @@
         "CustomerSpeakerId":{"shape":"CustomerSpeakerId"},
         "DomainId":{"shape":"DomainId"},
         "GeneratedSpeakerId":{"shape":"GeneratedSpeakerId"},
+        "LastAccessedAt":{"shape":"Timestamp"},
         "Status":{"shape":"SpeakerStatus"},
         "UpdatedAt":{"shape":"Timestamp"}
       }
@@ -1142,6 +1144,7 @@
         "CustomerSpeakerId":{"shape":"CustomerSpeakerId"},
         "DomainId":{"shape":"DomainId"},
         "GeneratedSpeakerId":{"shape":"GeneratedSpeakerId"},
+        "LastAccessedAt":{"shape":"Timestamp"},
         "Status":{"shape":"SpeakerStatus"},
         "UpdatedAt":{"shape":"Timestamp"}
       }

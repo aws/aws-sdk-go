@@ -4124,7 +4124,7 @@ func (c *SageMaker) CreateTransformJobRequest(input *CreateTransformJobInput) (r
 //    * ModelName - Identifies the model to use. ModelName must be the name
 //    of an existing Amazon SageMaker model in the same Amazon Web Services
 //    Region and Amazon Web Services account. For information on creating a
-//    model, see CreateModel.
+//    model, see CreateModel (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html).
 //
 //    * TransformInput - Describes the dataset to be transformed and the Amazon
 //    S3 location where it is stored.
@@ -26910,6 +26910,47 @@ func (s *AutoMLCandidate) SetObjectiveStatus(v string) *AutoMLCandidate {
 	return s
 }
 
+// Stores the config information for how a candidate is generated (optional).
+type AutoMLCandidateGenerationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A URL to the Amazon S3 data source containing selected features from the
+	// input data source to run an Autopilot job (optional). This file should be
+	// in json format as shown below:
+	//
+	// { "FeatureAttributeNames":["col1", "col2", ...] }.
+	//
+	// The key name FeatureAttributeNames is fixed. The values listed in ["col1",
+	// "col2", ...] is case sensitive and should be a list of strings containing
+	// unique values that are a subset of the column names in the input data. The
+	// list of columns provided must not include the target column.
+	FeatureSpecificationS3Uri *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoMLCandidateGenerationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoMLCandidateGenerationConfig) GoString() string {
+	return s.String()
+}
+
+// SetFeatureSpecificationS3Uri sets the FeatureSpecificationS3Uri field's value.
+func (s *AutoMLCandidateGenerationConfig) SetFeatureSpecificationS3Uri(v string) *AutoMLCandidateGenerationConfig {
+	s.FeatureSpecificationS3Uri = &v
+	return s
+}
+
 // Information about the steps for a candidate and what step it is working on.
 type AutoMLCandidateStep struct {
 	_ struct{} `type:"structure"`
@@ -26976,7 +27017,8 @@ type AutoMLChannel struct {
 
 	// The channel type (optional) is an enum string. The default value is training.
 	// Channels for training and validation must share the same ContentType and
-	// TargetAttributeName.
+	// TargetAttributeName. For information on specifying training and validation
+	// channel types, see How to specify training and validation datasets (https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-datasets-problem-types.html#autopilot-data-sources-training-or-validation).
 	ChannelType *string `type:"string" enum:"AutoMLChannelType"`
 
 	// You can use Gzip or None. The default value is None.
@@ -27189,8 +27231,8 @@ type AutoMLDataSplitConfig struct {
 
 	// The validation fraction (optional) is a float that specifies the portion
 	// of the training dataset to be used for validation. The default value is 0.2,
-	// and values can range from 0 to 1. We recommend setting this value to be less
-	// than 0.5.
+	// and values must be greater than 0 and less than 1. We recommend setting this
+	// value to be less than 0.5.
 	ValidationFraction *float64 `type:"float"`
 }
 
@@ -27341,6 +27383,9 @@ func (s *AutoMLJobCompletionCriteria) SetMaxRuntimePerTrainingJobInSeconds(v int
 type AutoMLJobConfig struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration for generating a candidate for an AutoML job (optional).
+	CandidateGenerationConfig *AutoMLCandidateGenerationConfig `type:"structure"`
+
 	// How long an AutoML job is allowed to run, or how many candidates a job is
 	// allowed to generate.
 	CompletionCriteria *AutoMLJobCompletionCriteria `type:"structure"`
@@ -27390,6 +27435,12 @@ func (s *AutoMLJobConfig) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCandidateGenerationConfig sets the CandidateGenerationConfig field's value.
+func (s *AutoMLJobConfig) SetCandidateGenerationConfig(v *AutoMLCandidateGenerationConfig) *AutoMLJobConfig {
+	s.CandidateGenerationConfig = v
+	return s
 }
 
 // SetCompletionCriteria sets the CompletionCriteria field's value.
@@ -28541,11 +28592,17 @@ func (s *CapacitySize) SetValue(v int64) *CapacitySize {
 	return s
 }
 
+// Configuration specifying how to treat different headers. If no headers are
+// specified SageMaker will by default base64 encode when capturing the data.
 type CaptureContentTypeHeader struct {
 	_ struct{} `type:"structure"`
 
+	// The list of all content type headers that SageMaker will treat as CSV and
+	// capture accordingly.
 	CsvContentTypes []*string `min:"1" type:"list"`
 
+	// The list of all content type headers that SageMaker will treat as JSON and
+	// capture accordingly.
 	JsonContentTypes []*string `min:"1" type:"list"`
 }
 
@@ -28595,9 +28652,12 @@ func (s *CaptureContentTypeHeader) SetJsonContentTypes(v []*string) *CaptureCont
 	return s
 }
 
+// Specifies data Model Monitor will capture.
 type CaptureOption struct {
 	_ struct{} `type:"structure"`
 
+	// Specify the boundary of data to capture.
+	//
 	// CaptureMode is a required field
 	CaptureMode *string `type:"string" required:"true" enum:"CaptureMode"`
 }
@@ -31031,7 +31091,7 @@ func (s *CreateArtifactOutput) SetArtifactArn(v string) *CreateArtifactOutput {
 type CreateAutoMLJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains CompletionCriteria and SecurityConfig settings for the AutoML job.
+	// A collection of settings used to configure an AutoML job.
 	AutoMLJobConfig *AutoMLJobConfig `type:"structure"`
 
 	// Identifies an Autopilot job. The name must be unique to your account and
@@ -31052,7 +31112,9 @@ type CreateAutoMLJobInput struct {
 
 	// An array of channel objects that describes the input data and its location.
 	// Each channel is a named input source. Similar to InputDataConfig supported
-	// by . Format(s) supported: CSV. Minimum of 500 rows.
+	// by . Format(s) supported: CSV, Parquet. A minimum of 500 rows is required
+	// for the training dataset. There is not a minimum number of rows required
+	// for the validation dataset.
 	//
 	// InputDataConfig is a required field
 	InputDataConfig []*AutoMLChannel `min:"1" type:"list" required:"true"`
@@ -31067,9 +31129,8 @@ type CreateAutoMLJobInput struct {
 	// OutputDataConfig is a required field
 	OutputDataConfig *AutoMLOutputDataConfig `type:"structure" required:"true"`
 
-	// Defines the type of supervised learning available for the candidates. Options
-	// include: BinaryClassification, MulticlassClassification, and Regression.
-	// For more information, see Amazon SageMaker Autopilot problem types and algorithm
+	// Defines the type of supervised learning available for the candidates. For
+	// more information, see Amazon SageMaker Autopilot problem types and algorithm
 	// support (https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-problem-types.html).
 	ProblemType *string `type:"string" enum:"ProblemType"`
 
@@ -32590,6 +32651,7 @@ type CreateEndpointConfigInput struct {
 	// (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpointAsync.html).
 	AsyncInferenceConfig *AsyncInferenceConfig `type:"structure"`
 
+	// Configuration to control how SageMaker captures inference data.
 	DataCaptureConfig *DataCaptureConfig `type:"structure"`
 
 	// The name of the endpoint configuration. You specify this name in a CreateEndpoint
@@ -35479,7 +35541,12 @@ type CreateModelPackageInput struct {
 	Tags []*Tag `type:"list"`
 
 	// The machine learning task your model package accomplishes. Common machine
-	// learning tasks include object detection and image classification.
+	// learning tasks include object detection and image classification. The following
+	// tasks are supported by Inference Recommender: "IMAGE_CLASSIFICATION" | "OBJECT_DETECTION"
+	// | "TEXT_GENERATION" |"IMAGE_SEGMENTATION" | "FILL_MASK" | "CLASSIFICATION"
+	// | "REGRESSION" | "OTHER".
+	//
+	// Specify "OTHER" if none of the tasks listed fit your use case.
 	Task *string `type:"string"`
 
 	// Specifies configurations for one or more transform jobs that SageMaker runs
@@ -39104,22 +39171,47 @@ func (s *CustomImage) SetImageVersionNumber(v int64) *CustomImage {
 	return s
 }
 
+// Configuration to control how SageMaker captures inference data.
 type DataCaptureConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Configuration specifying how to treat different headers. If no headers are
+	// specified SageMaker will by default base64 encode when capturing the data.
 	CaptureContentTypeHeader *CaptureContentTypeHeader `type:"structure"`
 
+	// Specifies data Model Monitor will capture. You can configure whether to collect
+	// only input, only output, or both
+	//
 	// CaptureOptions is a required field
 	CaptureOptions []*CaptureOption `min:"1" type:"list" required:"true"`
 
+	// The Amazon S3 location used to capture the data.
+	//
 	// DestinationS3Uri is a required field
 	DestinationS3Uri *string `type:"string" required:"true"`
 
+	// Whether data capture should be enabled or disabled (defaults to enabled).
 	EnableCapture *bool `type:"boolean"`
 
+	// The percentage of requests SageMaker will capture. A lower value is recommended
+	// for Endpoints with high traffic.
+	//
 	// InitialSamplingPercentage is a required field
 	InitialSamplingPercentage *int64 `type:"integer" required:"true"`
 
+	// The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service
+	// key that SageMaker uses to encrypt data on the storage volume attached to
+	// the ML compute instance that hosts the endpoint.
+	//
+	// The KmsKeyId can be any of the following formats:
+	//
+	//    * Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	//    * Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	//    * Alias name: alias/ExampleAlias
+	//
+	//    * Alias name ARN: arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias
 	KmsKeyId *string `type:"string"`
 }
 
@@ -39214,21 +39306,32 @@ func (s *DataCaptureConfig) SetKmsKeyId(v string) *DataCaptureConfig {
 	return s
 }
 
+// The currently active data capture configuration used by your Endpoint.
 type DataCaptureConfigSummary struct {
 	_ struct{} `type:"structure"`
 
+	// Whether data capture is currently functional.
+	//
 	// CaptureStatus is a required field
 	CaptureStatus *string `type:"string" required:"true" enum:"CaptureStatus"`
 
+	// The percentage of requests being captured by your Endpoint.
+	//
 	// CurrentSamplingPercentage is a required field
 	CurrentSamplingPercentage *int64 `type:"integer" required:"true"`
 
+	// The Amazon S3 location being used to capture the data.
+	//
 	// DestinationS3Uri is a required field
 	DestinationS3Uri *string `type:"string" required:"true"`
 
+	// Whether data capture is enabled or disabled.
+	//
 	// EnableCapture is a required field
 	EnableCapture *bool `type:"boolean" required:"true"`
 
+	// The KMS key being used to encrypt the data in Amazon S3.
+	//
 	// KmsKeyId is a required field
 	KmsKeyId *string `type:"string" required:"true"`
 }
@@ -46012,6 +46115,7 @@ type DescribeEndpointConfigOutput struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
+	// Configuration to control how SageMaker captures inference data.
 	DataCaptureConfig *DataCaptureConfig `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the endpoint configuration.
@@ -46154,6 +46258,7 @@ type DescribeEndpointOutput struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
+	// The currently active data capture configuration used by your Endpoint.
 	DataCaptureConfig *DataCaptureConfigSummary `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the endpoint.
@@ -54413,6 +54518,7 @@ type Endpoint struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
+	// The currently active data capture configuration used by your Endpoint.
 	DataCaptureConfig *DataCaptureConfigSummary `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the endpoint.
@@ -70962,6 +71068,9 @@ type MetricDatum struct {
 	Set *string `type:"string" enum:"MetricSetSource"`
 
 	// The name of the standard metric.
+	//
+	// For definitions of the standard metrics, see Autopilot candidate metrics
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-model-support-validation.html#autopilot-metrics).
 	StandardMetricName *string `type:"string" enum:"AutoMLMetricExtendedEnum"`
 
 	// The value of the metric.
@@ -88181,8 +88290,9 @@ type TransformOutput struct {
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// The KMS key policy must grant permission to the IAM role that you specify
-	// in your CreateModel request. For more information, see Using Key Policies
-	// in Amazon Web Services KMS (http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)
+	// in your CreateModel (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html)
+	// request. For more information, see Using Key Policies in Amazon Web Services
+	// KMS (https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)
 	// in the Amazon Web Services Key Management Service Developer Guide.
 	KmsKeyId *string `type:"string"`
 

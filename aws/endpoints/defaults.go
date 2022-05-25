@@ -15494,6 +15494,9 @@ var awsPartition = partition{
 					},
 				},
 				endpointKey{
+					Region: "ap-northeast-3",
+				}: endpoint{},
+				endpointKey{
 					Region: "ap-south-1",
 				}: endpoint{
 					Hostname: "portal.sso.ap-south-1.amazonaws.com",

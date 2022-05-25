@@ -1079,7 +1079,8 @@
         "CopyTagsToBackups":{"shape":"Flag"},
         "DriveCacheType":{"shape":"DriveCacheType"},
         "DataCompressionType":{"shape":"DataCompressionType"},
-        "LogConfiguration":{"shape":"LustreLogCreateConfiguration"}
+        "LogConfiguration":{"shape":"LustreLogCreateConfiguration"},
+        "RootSquashConfiguration":{"shape":"LustreRootSquashConfiguration"}
       }
     },
     "CreateFileSystemOntapConfiguration":{
@@ -2298,7 +2299,8 @@
         "CopyTagsToBackups":{"shape":"Flag"},
         "DriveCacheType":{"shape":"DriveCacheType"},
         "DataCompressionType":{"shape":"DataCompressionType"},
-        "LogConfiguration":{"shape":"LustreLogConfiguration"}
+        "LogConfiguration":{"shape":"LustreLogConfiguration"},
+        "RootSquashConfiguration":{"shape":"LustreRootSquashConfiguration"}
       }
     },
     "LustreFileSystemMountName":{
@@ -2321,6 +2323,30 @@
       "members":{
         "Level":{"shape":"LustreAccessAuditLogLevel"},
         "Destination":{"shape":"GeneralARN"}
+      }
+    },
+    "LustreNoSquashNid":{
+      "type":"string",
+      "max":43,
+      "min":11,
+      "pattern":"^([0-9\\[\\]\\-]*\\.){3}([0-9\\[\\]\\-]*)@tcp$"
+    },
+    "LustreNoSquashNids":{
+      "type":"list",
+      "member":{"shape":"LustreNoSquashNid"},
+      "max":64
+    },
+    "LustreRootSquash":{
+      "type":"string",
+      "max":21,
+      "min":3,
+      "pattern":"^([0-9]{1,10}):([0-9]{1,10})$"
+    },
+    "LustreRootSquashConfiguration":{
+      "type":"structure",
+      "members":{
+        "RootSquash":{"shape":"LustreRootSquash"},
+        "NoSquashNids":{"shape":"LustreNoSquashNids"}
       }
     },
     "MaxResults":{
@@ -3183,7 +3209,8 @@
         "AutomaticBackupRetentionDays":{"shape":"AutomaticBackupRetentionDays"},
         "AutoImportPolicy":{"shape":"AutoImportPolicyType"},
         "DataCompressionType":{"shape":"DataCompressionType"},
-        "LogConfiguration":{"shape":"LustreLogCreateConfiguration"}
+        "LogConfiguration":{"shape":"LustreLogCreateConfiguration"},
+        "RootSquashConfiguration":{"shape":"LustreRootSquashConfiguration"}
       }
     },
     "UpdateFileSystemOntapConfiguration":{

@@ -785,12 +785,14 @@
         "FraudsterRegistrationJobSummary$CreatedAt": "<p>A timestamp showing when the fraudster registration job is created. </p>",
         "FraudsterRegistrationJobSummary$EndedAt": "<p>A timestamp showing when the fraudster registration job ended.</p>",
         "Speaker$CreatedAt": "<p>A timestamp showing when the speaker is created. </p>",
+        "Speaker$LastAccessedAt": "<p>The timestamp when the speaker was last accessed for enrollment, re-enrollment or a successful authentication. This timestamp is accurate to one hour.</p>",
         "Speaker$UpdatedAt": "<p>A timestamp showing the speaker's last update.</p>",
         "SpeakerEnrollmentJob$CreatedAt": "<p>A timestamp showing the creation of the speaker enrollment job.</p>",
         "SpeakerEnrollmentJob$EndedAt": "<p>A timestamp showing when the speaker enrollment job ended. </p>",
         "SpeakerEnrollmentJobSummary$CreatedAt": "<p>A timestamp showing the creation time of the speaker enrollment job.</p>",
         "SpeakerEnrollmentJobSummary$EndedAt": "<p>A timestamp showing when the speaker enrollment job ended.</p>",
         "SpeakerSummary$CreatedAt": "<p>A timestamp showing the speaker's creation time. </p>",
+        "SpeakerSummary$LastAccessedAt": "<p>The timestamp when the speaker was last accessed for enrollment, re-enrollment or a successful authentication. This timestamp is accurate to one hour.</p>",
         "SpeakerSummary$UpdatedAt": "<p>A timestamp showing the speaker's last update.</p>"
       }
     },

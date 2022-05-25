@@ -1,3 +1,20 @@
+Release v1.44.22 (2022-05-25)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service documentation
+  * Documentation updates for Amazon API Gateway
+* `service/apprunner`: Updates service documentation
+* `service/cloudformation`: Updates service API and documentation
+  * Add a new parameter statusReason to DescribeStackSetOperation output for additional details
+* `service/fsx`: Updates service API and documentation
+* `service/lookoutmetrics`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Autopilot adds support for manually selecting features from the input dataset using the CreateAutoMLJob API.
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for Secrets Manager
+* `service/voice-id`: Updates service API, documentation, and paginators
+
 Release v1.44.21 (2022-05-24)
 ===
 

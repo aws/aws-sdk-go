@@ -3460,6 +3460,12 @@
         "CandidateProperties":{"shape":"CandidateProperties"}
       }
     },
+    "AutoMLCandidateGenerationConfig":{
+      "type":"structure",
+      "members":{
+        "FeatureSpecificationS3Uri":{"shape":"S3Uri"}
+      }
+    },
     "AutoMLCandidateStep":{
       "type":"structure",
       "required":[
@@ -3535,7 +3541,7 @@
     "AutoMLInputDataConfig":{
       "type":"list",
       "member":{"shape":"AutoMLChannel"},
-      "max":20,
+      "max":2,
       "min":1
     },
     "AutoMLJobArn":{
@@ -3564,7 +3570,8 @@
       "members":{
         "CompletionCriteria":{"shape":"AutoMLJobCompletionCriteria"},
         "SecurityConfig":{"shape":"AutoMLSecurityConfig"},
-        "DataSplitConfig":{"shape":"AutoMLDataSplitConfig"}
+        "DataSplitConfig":{"shape":"AutoMLDataSplitConfig"},
+        "CandidateGenerationConfig":{"shape":"AutoMLCandidateGenerationConfig"}
       }
     },
     "AutoMLJobName":{
