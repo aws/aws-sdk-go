@@ -43,7 +43,7 @@
     "ListExplainabilityExports": "<p>Returns a list of Explainability exports created using the <a>CreateExplainabilityExport</a> operation. This operation returns a summary for each Explainability export. You can filter the list using an array of <a>Filter</a> objects.</p> <p>To retrieve the complete set of properties for a particular Explainability export, use the ARN with the <a>DescribeExplainability</a> operation.</p>",
     "ListForecastExportJobs": "<p>Returns a list of forecast export jobs created using the <a>CreateForecastExportJob</a> operation. For each forecast export job, this operation returns a summary of its properties, including its Amazon Resource Name (ARN). To retrieve the complete set of properties, use the ARN with the <a>DescribeForecastExportJob</a> operation. You can filter the list using an array of <a>Filter</a> objects.</p>",
     "ListForecasts": "<p>Returns a list of forecasts created using the <a>CreateForecast</a> operation. For each forecast, this operation returns a summary of its properties, including its Amazon Resource Name (ARN). To retrieve the complete set of properties, specify the ARN with the <a>DescribeForecast</a> operation. You can filter the list using an array of <a>Filter</a> objects.</p>",
-    "ListMonitorEvaluations": "<p>Returns a list of the monitoring evaluation results and predictor events collected by the monitor resource during different windows of time.</p> <p>For information about monitoring see <a href=\"https://docs.aws.amazon.com/forecast/latest/dg/predictor-monitoring-results.html\">Viewing Monitoring Results</a>. For more information about retrieving monitoring results see <a href=\"https://docs.aws.amazon.com/forecast/latest/dg/predictor-monitoring-results.html\">Viewing Monitoring Results</a>.</p>",
+    "ListMonitorEvaluations": "<p>Returns a list of the monitoring evaluation results and predictor events collected by the monitor resource during different windows of time.</p> <p>For information about monitoring see <a>predictor-monitoring</a>. For more information about retrieving monitoring results see <a href=\"https://docs.aws.amazon.com/forecast/latest/dg/predictor-monitoring-results.html\">Viewing Monitoring Results</a>.</p>",
     "ListMonitors": "<p>Returns a list of monitors created with the <a>CreateMonitor</a> operation and <a>CreateAutoPredictor</a> operation. For each monitor resource, this operation returns of a summary of its properties, including its Amazon Resource Name (ARN). You can retrieve a complete set of properties of a monitor resource by specify the monitor's ARN in the <a>DescribeMonitor</a> operation.</p>",
     "ListPredictorBacktestExportJobs": "<p>Returns a list of predictor backtest export jobs created using the <a>CreatePredictorBacktestExportJob</a> operation. This operation returns a summary for each backtest export job. You can filter the list using an array of <a>Filter</a> objects.</p> <p>To retrieve the complete set of properties for a particular backtest export job, use the ARN with the <a>DescribePredictorBacktestExportJob</a> operation.</p>",
     "ListPredictors": "<p>Returns a list of predictors created using the <a>CreateAutoPredictor</a> or <a>CreatePredictor</a> operations. For each predictor, this operation returns a summary of its properties, including its Amazon Resource Name (ARN). </p> <p>You can retrieve the complete set of properties by using the ARN with the <a>DescribeAutoPredictor</a> and <a>DescribePredictor</a> operations. You can filter the list using an array of <a>Filter</a> objects.</p>",
@@ -157,8 +157,8 @@
         "MonitorSummary$ResourceArn": "<p>The Amazon Resource Name (ARN) of the predictor being monitored.</p>",
         "PredictorBacktestExportJobSummary$PredictorBacktestExportJobArn": "<p>The Amazon Resource Name (ARN) of the predictor backtest export job.</p>",
         "PredictorExecution$AlgorithmArn": "<p>The ARN of the algorithm used to test the predictor.</p>",
-        "PredictorMonitorEvaluation$ResourceArn": null,
-        "PredictorMonitorEvaluation$MonitorArn": null,
+        "PredictorMonitorEvaluation$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource to monitor.</p>",
+        "PredictorMonitorEvaluation$MonitorArn": "<p>The Amazon Resource Name (ARN) of the monitor resource.</p>",
         "PredictorSummary$PredictorArn": "<p>The ARN of the predictor.</p>",
         "PredictorSummary$DatasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group that contains the data used to train the predictor.</p>",
         "ReferencePredictorSummary$Arn": "<p>The ARN of the reference predictor.</p>",
@@ -454,6 +454,18 @@
       "base": null,
       "refs": {
         "ListDatasetsResponse$Datasets": "<p>An array of objects that summarize each dataset's properties.</p>"
+      }
+    },
+    "DayOfMonth": {
+      "base": null,
+      "refs": {
+        "TimeAlignmentBoundary$DayOfMonth": "<p>The day of the month to use for time alignment during aggregation.</p>"
+      }
+    },
+    "DayOfWeek": {
+      "base": null,
+      "refs": {
+        "TimeAlignmentBoundary$DayOfWeek": "<p>The day of week to use for time alignment during aggregation. The day must be in uppercase.</p>"
       }
     },
     "DeleteDatasetGroupRequest": {
@@ -915,6 +927,12 @@
       "refs": {
       }
     },
+    "Hour": {
+      "base": null,
+      "refs": {
+        "TimeAlignmentBoundary$Hour": "<p>The hour of day to use for time alignment during aggregation.</p>"
+      }
+    },
     "HyperParameterTuningJobConfig": {
       "base": "<p>Configuration information for a hyperparameter tuning job. You specify this object in the <a>CreatePredictor</a> request.</p> <p>A <i>hyperparameter</i> is a parameter that governs the model training process. You set hyperparameters before training starts, unlike model parameters, which are determined during training. The values of the hyperparameters effect which values are chosen for the model parameters.</p> <p>In a <i>hyperparameter tuning job</i>, Amazon Forecast chooses the set of hyperparameter values that optimize a specified metric. Forecast accomplishes this by running many training jobs over a range of hyperparameter values. The optimum set of values depends on the algorithm, the training data, and the specified metric objective.</p>",
       "refs": {
@@ -1209,6 +1227,12 @@
       "base": null,
       "refs": {
         "ListMonitorsResponse$Monitors": "<p>An array of objects that summarize each monitor's properties.</p>"
+      }
+    },
+    "Month": {
+      "base": null,
+      "refs": {
+        "TimeAlignmentBoundary$Month": "<p>The month to use for time alignment during aggregation. The month must be in uppercase.</p>"
       }
     },
     "Name": {
@@ -1595,6 +1619,13 @@
       "base": null,
       "refs": {
         "EvaluationResult$TestWindows": "<p>The array of test windows used for evaluating the algorithm. The <code>NumberOfBacktestWindows</code> from the <a>EvaluationParameters</a> object determines the number of windows in the array.</p>"
+      }
+    },
+    "TimeAlignmentBoundary": {
+      "base": "<p>The time boundary Forecast uses to align and aggregate your data to match your forecast frequency. Provide the unit of time and the time boundary as a key value pair. If you don't provide a time boundary, Forecast uses a set of <a href=\"https://docs.aws.amazon.com/forecast/latest/dg/data-aggregation.html#default-time-boundaries\">Default Time Boundaries</a>. </p> <p>For more information about aggregation, see <a href=\"https://docs.aws.amazon.com/forecast/latest/dg/data-aggregation.html\">Data Aggregation for Different Forecast Frequencies</a>. For more information setting a custom time boundary, see <a href=\"https://docs.aws.amazon.com/forecast/latest/dg/data-aggregation.html#specifying-time-boundary\">Specifying a Time Boundary</a>. </p>",
+      "refs": {
+        "CreateAutoPredictorRequest$TimeAlignmentBoundary": "<p>The time boundary Forecast uses to align and aggregate any data that doesn't align with your forecast frequency. Provide the unit of time and the time boundary as a key value pair. For more information on specifying a time boundary, see <a href=\"https://docs.aws.amazon.com/forecast/latest/dg/data-aggregation.html#specifying-time-boundary\">Specifying a Time Boundary</a>. If you don't provide a time boundary, Forecast uses a set of <a href=\"https://docs.aws.amazon.com/forecast/latest/dg/data-aggregation.html#default-time-boundaries\">Default Time Boundaries</a>.</p>",
+        "DescribeAutoPredictorResponse$TimeAlignmentBoundary": "<p>The time boundary Forecast uses when aggregating data.</p>"
       }
     },
     "TimePointGranularity": {

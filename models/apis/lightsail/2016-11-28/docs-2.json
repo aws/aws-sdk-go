@@ -758,6 +758,18 @@
         "ContainerServiceDeployment$state": "<p>The state of the deployment.</p> <p>A deployment can be in one of the following states:</p> <ul> <li> <p> <code>Activating</code> - The deployment is being created.</p> </li> <li> <p> <code>Active</code> - The deployment was successfully created, and it's currently running on the container service. The container service can have only one deployment in an active state at a time.</p> </li> <li> <p> <code>Inactive</code> - The deployment was previously successfully created, but it is not currently running on the container service.</p> </li> <li> <p> <code>Failed</code> - The deployment failed. Use the <code>GetContainerLog</code> action to view the log events for the containers in the deployment to try to determine the reason for the failure.</p> </li> </ul>"
       }
     },
+    "ContainerServiceECRImagePullerRole": {
+      "base": "<p>Describes the activation status of the role that you can use to grant an Amazon Lightsail container service access to Amazon Elastic Container Registry (Amazon ECR) private repositories.</p> <p>When activated, Lightsail creates an Identity and Access Management (IAM) role for the specified Lightsail container service. You can use the ARN of the role to create a trust relationship between your Lightsail container service and an Amazon ECR private repository in your Amazon Web Services account. This allows your container service to pull images from Amazon ECR private repositories. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-container-service-ecr-private-repo-access\">Configuring access to an Amazon ECR private repository for an Amazon Lightsail container service</a> in the <i>Amazon Lightsail Developer Guide</i>.</p>",
+      "refs": {
+        "PrivateRegistryAccess$ecrImagePullerRole": "<p>An object that describes the activation status of the role that you can use to grant a Lightsail container service access to Amazon ECR private repositories. If the role is activated, the Amazon Resource Name (ARN) of the role is also listed.</p>"
+      }
+    },
+    "ContainerServiceECRImagePullerRoleRequest": {
+      "base": "<p>Describes a request to activate or deactivate the role that you can use to grant an Amazon Lightsail container service access to Amazon Elastic Container Registry (Amazon ECR) private repositories.</p> <p>When activated, Lightsail creates an Identity and Access Management (IAM) role for the specified Lightsail container service. You can use the ARN of the role to create a trust relationship between your Lightsail container service and an Amazon ECR private repository in your Amazon Web Services account. This allows your container service to pull images from Amazon ECR private repositories. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-container-service-ecr-private-repo-access\">Configuring access to an Amazon ECR private repository for an Amazon Lightsail container service</a> in the <i>Amazon Lightsail Developer Guide</i>.</p>",
+      "refs": {
+        "PrivateRegistryAccessRequest$ecrImagePullerRole": "<p>An object to describe a request to activate or deactivate the role that you can use to grant an Amazon Lightsail container service access to Amazon Elastic Container Registry (Amazon ECR) private repositories.</p>"
+      }
+    },
     "ContainerServiceEndpoint": {
       "base": "<p>Describes the public endpoint configuration of a deployment of an Amazon Lightsail container service.</p>",
       "refs": {
@@ -3259,6 +3271,19 @@
         "InstancePortState$state": "<p>Specifies whether the instance port is <code>open</code> or <code>closed</code>.</p> <note> <p>The port state for Lightsail instances is always <code>open</code>.</p> </note>"
       }
     },
+    "PrivateRegistryAccess": {
+      "base": "<p>Describes the configuration for an Amazon Lightsail container service to access private container image repositories, such as Amazon Elastic Container Registry (Amazon ECR) private repositories.</p> <p>For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-container-service-ecr-private-repo-access\">Configuring access to an Amazon ECR private repository for an Amazon Lightsail container service</a> in the <i>Amazon Lightsail Developer Guide</i>.</p>",
+      "refs": {
+        "ContainerService$privateRegistryAccess": "<p>An object that describes the configuration for the container service to access private container image repositories, such as Amazon Elastic Container Registry (Amazon ECR) private repositories.</p> <p>For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-container-service-ecr-private-repo-access\">Configuring access to an Amazon ECR private repository for an Amazon Lightsail container service</a> in the <i>Amazon Lightsail Developer Guide</i>.</p>"
+      }
+    },
+    "PrivateRegistryAccessRequest": {
+      "base": "<p>Describes a request to configure an Amazon Lightsail container service to access private container image repositories, such as Amazon Elastic Container Registry (Amazon ECR) private repositories.</p> <p>For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-container-service-ecr-private-repo-access\">Configuring access to an Amazon ECR private repository for an Amazon Lightsail container service</a> in the <i>Amazon Lightsail Developer Guide</i>.</p>",
+      "refs": {
+        "CreateContainerServiceRequest$privateRegistryAccess": "<p>An object to describe the configuration for the container service to access private container image repositories, such as Amazon Elastic Container Registry (Amazon ECR) private repositories.</p> <p>For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-container-service-ecr-private-repo-access\">Configuring access to an Amazon ECR private repository for an Amazon Lightsail container service</a> in the <i>Amazon Lightsail Developer Guide</i>.</p>",
+        "UpdateContainerServiceRequest$privateRegistryAccess": "<p>An object to describe the configuration for the container service to access private container image repositories, such as Amazon Elastic Container Registry (Amazon ECR) private repositories.</p> <p>For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-container-service-ecr-private-repo-access\">Configuring access to an Amazon ECR private repository for an Amazon Lightsail container service</a> in the <i>Amazon Lightsail Developer Guide</i>.</p>"
+      }
+    },
     "PutAlarmRequest": {
       "base": null,
       "refs": {
@@ -4114,6 +4139,8 @@
         "BucketBundle$isActive": "<p>Indicates whether the bundle is active. Use for a new or existing bucket.</p>",
         "Bundle$isActive": "<p>A Boolean value indicating whether the bundle is active.</p>",
         "ContainerService$isDisabled": "<p>A Boolean value indicating whether the container service is disabled.</p>",
+        "ContainerServiceECRImagePullerRole$isActive": "<p>A Boolean value that indicates whether the role is activated.</p>",
+        "ContainerServiceECRImagePullerRoleRequest$isActive": "<p>A Boolean value that indicates whether to activate the role.</p>",
         "ContainerServicePower$isActive": "<p>A Boolean value indicating whether the power is active and can be specified for container services.</p>",
         "CopySnapshotRequest$useLatestRestorableAutoSnapshot": "<p>A Boolean value to indicate whether to use the latest available automatic snapshot of the specified source instance or disk.</p> <p>Constraints:</p> <ul> <li> <p>This parameter cannot be defined together with the <code>restore date</code> parameter. The <code>use latest restorable auto snapshot</code> and <code>restore date</code> parameters are mutually exclusive.</p> </li> <li> <p>Define this parameter only when copying an automatic snapshot as a manual snapshot. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-keeping-automatic-snapshots\">Amazon Lightsail Developer Guide</a>.</p> </li> </ul>",
         "CreateBucketRequest$enableObjectVersioning": "<p>A Boolean value that indicates whether to enable versioning of objects in the bucket.</p> <p>For more information about versioning, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-managing-bucket-object-versioning\">Enabling and suspending object versioning in a bucket in Amazon Lightsail</a> in the <i>Amazon Lightsail Developer Guide</i>.</p>",
@@ -4290,6 +4317,7 @@
         "ContainerService$principalArn": "<p>The principal ARN of the container service.</p> <p>The principal ARN can be used to create a trust relationship between your standard Amazon Web Services account and your Lightsail container service. This allows you to give your service permission to access resources in your standard Amazon Web Services account.</p>",
         "ContainerService$privateDomainName": "<p>The private domain name of the container service.</p> <p>The private domain name is accessible only by other resources within the default virtual private cloud (VPC) of your Lightsail account.</p>",
         "ContainerService$url": "<p>The publicly accessible URL of the container service.</p> <p>If no public endpoint is specified in the <code>currentDeployment</code>, this URL returns a 404 response.</p>",
+        "ContainerServiceECRImagePullerRole$principalArn": "<p>The Amazon Resource Name (ARN) of the role, if it is activated.</p>",
         "ContainerServiceEndpoint$containerName": "<p>The name of the container entry of the deployment that the endpoint configuration applies to.</p>",
         "ContainerServiceHealthCheckConfig$path": "<p>The path on the container on which to perform the health check. The default value is <code>/</code>.</p>",
         "ContainerServiceHealthCheckConfig$successCodes": "<p>The HTTP codes to use when checking for a successful response from a container. You can specify values between <code>200</code> and <code>499</code>. You can specify multiple values (for example, <code>200,202</code>) or a range of values (for example, <code>200-299</code>).</p>",

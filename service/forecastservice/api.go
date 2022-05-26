@@ -4544,9 +4544,8 @@ func (c *ForecastService) ListMonitorEvaluationsRequest(input *ListMonitorEvalua
 // Returns a list of the monitoring evaluation results and predictor events
 // collected by the monitor resource during different windows of time.
 //
-// For information about monitoring see Viewing Monitoring Results (https://docs.aws.amazon.com/forecast/latest/dg/predictor-monitoring-results.html).
-// For more information about retrieving monitoring results see Viewing Monitoring
-// Results (https://docs.aws.amazon.com/forecast/latest/dg/predictor-monitoring-results.html).
+// For information about monitoring see predictor-monitoring. For more information
+// about retrieving monitoring results see Viewing Monitoring Results (https://docs.aws.amazon.com/forecast/latest/dg/predictor-monitoring-results.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6321,6 +6320,14 @@ type CreateAutoPredictorInput struct {
 	//    do not count against your tags per resource limit. You cannot edit or
 	//    delete tag keys with this prefix.
 	Tags []*Tag `type:"list"`
+
+	// The time boundary Forecast uses to align and aggregate any data that doesn't
+	// align with your forecast frequency. Provide the unit of time and the time
+	// boundary as a key value pair. For more information on specifying a time boundary,
+	// see Specifying a Time Boundary (https://docs.aws.amazon.com/forecast/latest/dg/data-aggregation.html#specifying-time-boundary).
+	// If you don't provide a time boundary, Forecast uses a set of Default Time
+	// Boundaries (https://docs.aws.amazon.com/forecast/latest/dg/data-aggregation.html#default-time-boundaries).
+	TimeAlignmentBoundary *TimeAlignmentBoundary `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6382,6 +6389,11 @@ func (s *CreateAutoPredictorInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.TimeAlignmentBoundary != nil {
+		if err := s.TimeAlignmentBoundary.Validate(); err != nil {
+			invalidParams.AddNested("TimeAlignmentBoundary", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -6460,6 +6472,12 @@ func (s *CreateAutoPredictorInput) SetReferencePredictorArn(v string) *CreateAut
 // SetTags sets the Tags field's value.
 func (s *CreateAutoPredictorInput) SetTags(v []*Tag) *CreateAutoPredictorInput {
 	s.Tags = v
+	return s
+}
+
+// SetTimeAlignmentBoundary sets the TimeAlignmentBoundary field's value.
+func (s *CreateAutoPredictorInput) SetTimeAlignmentBoundary(v *TimeAlignmentBoundary) *CreateAutoPredictorInput {
+	s.TimeAlignmentBoundary = v
 	return s
 }
 
@@ -9787,6 +9805,9 @@ type DescribeAutoPredictorOutput struct {
 	//
 	//    * DELETE_PENDING, DELETE_IN_PROGRESS, DELETE_FAILED
 	Status *string `type:"string"`
+
+	// The time boundary Forecast uses when aggregating data.
+	TimeAlignmentBoundary *TimeAlignmentBoundary `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9912,6 +9933,12 @@ func (s *DescribeAutoPredictorOutput) SetReferencePredictorSummary(v *ReferenceP
 // SetStatus sets the Status field's value.
 func (s *DescribeAutoPredictorOutput) SetStatus(v string) *DescribeAutoPredictorOutput {
 	s.Status = &v
+	return s
+}
+
+// SetTimeAlignmentBoundary sets the TimeAlignmentBoundary field's value.
+func (s *DescribeAutoPredictorOutput) SetTimeAlignmentBoundary(v *TimeAlignmentBoundary) *DescribeAutoPredictorOutput {
+	s.TimeAlignmentBoundary = v
 	return s
 }
 
@@ -15911,6 +15938,7 @@ type PredictorMonitorEvaluation struct {
 	// Baseline to see how your predictor's performance is changing.
 	MetricResults []*MetricResult `type:"list"`
 
+	// The Amazon Resource Name (ARN) of the monitor resource.
 	MonitorArn *string `type:"string"`
 
 	// The source of the data the monitor resource used during the evaluation.
@@ -15922,6 +15950,7 @@ type PredictorMonitorEvaluation struct {
 	// Provides details about a predictor event, such as a retraining.
 	PredictorEvent *PredictorEvent `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the resource to monitor.
 	ResourceArn *string `type:"string"`
 
 	// The timestamp that indicates the end of the window that is used for monitor
@@ -17370,6 +17399,88 @@ func (s *TestWindowSummary) SetTestWindowStart(v time.Time) *TestWindowSummary {
 	return s
 }
 
+// The time boundary Forecast uses to align and aggregate your data to match
+// your forecast frequency. Provide the unit of time and the time boundary as
+// a key value pair. If you don't provide a time boundary, Forecast uses a set
+// of Default Time Boundaries (https://docs.aws.amazon.com/forecast/latest/dg/data-aggregation.html#default-time-boundaries).
+//
+// For more information about aggregation, see Data Aggregation for Different
+// Forecast Frequencies (https://docs.aws.amazon.com/forecast/latest/dg/data-aggregation.html).
+// For more information setting a custom time boundary, see Specifying a Time
+// Boundary (https://docs.aws.amazon.com/forecast/latest/dg/data-aggregation.html#specifying-time-boundary).
+type TimeAlignmentBoundary struct {
+	_ struct{} `type:"structure"`
+
+	// The day of the month to use for time alignment during aggregation.
+	DayOfMonth *int64 `min:"1" type:"integer"`
+
+	// The day of week to use for time alignment during aggregation. The day must
+	// be in uppercase.
+	DayOfWeek *string `type:"string" enum:"DayOfWeek"`
+
+	// The hour of day to use for time alignment during aggregation.
+	Hour *int64 `type:"integer"`
+
+	// The month to use for time alignment during aggregation. The month must be
+	// in uppercase.
+	Month *string `type:"string" enum:"Month"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeAlignmentBoundary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeAlignmentBoundary) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TimeAlignmentBoundary) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TimeAlignmentBoundary"}
+	if s.DayOfMonth != nil && *s.DayOfMonth < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DayOfMonth", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDayOfMonth sets the DayOfMonth field's value.
+func (s *TimeAlignmentBoundary) SetDayOfMonth(v int64) *TimeAlignmentBoundary {
+	s.DayOfMonth = &v
+	return s
+}
+
+// SetDayOfWeek sets the DayOfWeek field's value.
+func (s *TimeAlignmentBoundary) SetDayOfWeek(v string) *TimeAlignmentBoundary {
+	s.DayOfWeek = &v
+	return s
+}
+
+// SetHour sets the Hour field's value.
+func (s *TimeAlignmentBoundary) SetHour(v int64) *TimeAlignmentBoundary {
+	s.Hour = &v
+	return s
+}
+
+// SetMonth sets the Month field's value.
+func (s *TimeAlignmentBoundary) SetMonth(v string) *TimeAlignmentBoundary {
+	s.Month = &v
+	return s
+}
+
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17722,6 +17833,42 @@ func DatasetType_Values() []string {
 }
 
 const (
+	// DayOfWeekMonday is a DayOfWeek enum value
+	DayOfWeekMonday = "MONDAY"
+
+	// DayOfWeekTuesday is a DayOfWeek enum value
+	DayOfWeekTuesday = "TUESDAY"
+
+	// DayOfWeekWednesday is a DayOfWeek enum value
+	DayOfWeekWednesday = "WEDNESDAY"
+
+	// DayOfWeekThursday is a DayOfWeek enum value
+	DayOfWeekThursday = "THURSDAY"
+
+	// DayOfWeekFriday is a DayOfWeek enum value
+	DayOfWeekFriday = "FRIDAY"
+
+	// DayOfWeekSaturday is a DayOfWeek enum value
+	DayOfWeekSaturday = "SATURDAY"
+
+	// DayOfWeekSunday is a DayOfWeek enum value
+	DayOfWeekSunday = "SUNDAY"
+)
+
+// DayOfWeek_Values returns all elements of the DayOfWeek enum
+func DayOfWeek_Values() []string {
+	return []string{
+		DayOfWeekMonday,
+		DayOfWeekTuesday,
+		DayOfWeekWednesday,
+		DayOfWeekThursday,
+		DayOfWeekFriday,
+		DayOfWeekSaturday,
+		DayOfWeekSunday,
+	}
+}
+
+const (
 	// DomainRetail is a Domain enum value
 	DomainRetail = "RETAIL"
 
@@ -17798,6 +17945,62 @@ func FilterConditionString_Values() []string {
 	return []string{
 		FilterConditionStringIs,
 		FilterConditionStringIsNot,
+	}
+}
+
+const (
+	// MonthJanuary is a Month enum value
+	MonthJanuary = "JANUARY"
+
+	// MonthFebruary is a Month enum value
+	MonthFebruary = "FEBRUARY"
+
+	// MonthMarch is a Month enum value
+	MonthMarch = "MARCH"
+
+	// MonthApril is a Month enum value
+	MonthApril = "APRIL"
+
+	// MonthMay is a Month enum value
+	MonthMay = "MAY"
+
+	// MonthJune is a Month enum value
+	MonthJune = "JUNE"
+
+	// MonthJuly is a Month enum value
+	MonthJuly = "JULY"
+
+	// MonthAugust is a Month enum value
+	MonthAugust = "AUGUST"
+
+	// MonthSeptember is a Month enum value
+	MonthSeptember = "SEPTEMBER"
+
+	// MonthOctober is a Month enum value
+	MonthOctober = "OCTOBER"
+
+	// MonthNovember is a Month enum value
+	MonthNovember = "NOVEMBER"
+
+	// MonthDecember is a Month enum value
+	MonthDecember = "DECEMBER"
+)
+
+// Month_Values returns all elements of the Month enum
+func Month_Values() []string {
+	return []string{
+		MonthJanuary,
+		MonthFebruary,
+		MonthMarch,
+		MonthApril,
+		MonthMay,
+		MonthJune,
+		MonthJuly,
+		MonthAugust,
+		MonthSeptember,
+		MonthOctober,
+		MonthNovember,
+		MonthDecember,
 	}
 }
 

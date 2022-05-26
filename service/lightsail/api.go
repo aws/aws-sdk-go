@@ -19957,6 +19957,15 @@ type ContainerService struct {
 	// default virtual private cloud (VPC) of your Lightsail account.
 	PrivateDomainName *string `locationName:"privateDomainName" type:"string"`
 
+	// An object that describes the configuration for the container service to access
+	// private container image repositories, such as Amazon Elastic Container Registry
+	// (Amazon ECR) private repositories.
+	//
+	// For more information, see Configuring access to an Amazon ECR private repository
+	// for an Amazon Lightsail container service (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-container-service-ecr-private-repo-access)
+	// in the Amazon Lightsail Developer Guide.
+	PrivateRegistryAccess *PrivateRegistryAccess `locationName:"privateRegistryAccess" type:"structure"`
+
 	// The public domain name of the container service, such as example.com and
 	// www.example.com.
 	//
@@ -20105,6 +20114,12 @@ func (s *ContainerService) SetPrincipalArn(v string) *ContainerService {
 // SetPrivateDomainName sets the PrivateDomainName field's value.
 func (s *ContainerService) SetPrivateDomainName(v string) *ContainerService {
 	s.PrivateDomainName = &v
+	return s
+}
+
+// SetPrivateRegistryAccess sets the PrivateRegistryAccess field's value.
+func (s *ContainerService) SetPrivateRegistryAccess(v *PrivateRegistryAccess) *ContainerService {
+	s.PrivateRegistryAccess = v
 	return s
 }
 
@@ -20294,6 +20309,101 @@ func (s *ContainerServiceDeploymentRequest) SetContainers(v map[string]*Containe
 // SetPublicEndpoint sets the PublicEndpoint field's value.
 func (s *ContainerServiceDeploymentRequest) SetPublicEndpoint(v *EndpointRequest) *ContainerServiceDeploymentRequest {
 	s.PublicEndpoint = v
+	return s
+}
+
+// Describes the activation status of the role that you can use to grant an
+// Amazon Lightsail container service access to Amazon Elastic Container Registry
+// (Amazon ECR) private repositories.
+//
+// When activated, Lightsail creates an Identity and Access Management (IAM)
+// role for the specified Lightsail container service. You can use the ARN of
+// the role to create a trust relationship between your Lightsail container
+// service and an Amazon ECR private repository in your Amazon Web Services
+// account. This allows your container service to pull images from Amazon ECR
+// private repositories. For more information, see Configuring access to an
+// Amazon ECR private repository for an Amazon Lightsail container service (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-container-service-ecr-private-repo-access)
+// in the Amazon Lightsail Developer Guide.
+type ContainerServiceECRImagePullerRole struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean value that indicates whether the role is activated.
+	IsActive *bool `locationName:"isActive" type:"boolean"`
+
+	// The Amazon Resource Name (ARN) of the role, if it is activated.
+	PrincipalArn *string `locationName:"principalArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerServiceECRImagePullerRole) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerServiceECRImagePullerRole) GoString() string {
+	return s.String()
+}
+
+// SetIsActive sets the IsActive field's value.
+func (s *ContainerServiceECRImagePullerRole) SetIsActive(v bool) *ContainerServiceECRImagePullerRole {
+	s.IsActive = &v
+	return s
+}
+
+// SetPrincipalArn sets the PrincipalArn field's value.
+func (s *ContainerServiceECRImagePullerRole) SetPrincipalArn(v string) *ContainerServiceECRImagePullerRole {
+	s.PrincipalArn = &v
+	return s
+}
+
+// Describes a request to activate or deactivate the role that you can use to
+// grant an Amazon Lightsail container service access to Amazon Elastic Container
+// Registry (Amazon ECR) private repositories.
+//
+// When activated, Lightsail creates an Identity and Access Management (IAM)
+// role for the specified Lightsail container service. You can use the ARN of
+// the role to create a trust relationship between your Lightsail container
+// service and an Amazon ECR private repository in your Amazon Web Services
+// account. This allows your container service to pull images from Amazon ECR
+// private repositories. For more information, see Configuring access to an
+// Amazon ECR private repository for an Amazon Lightsail container service (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-container-service-ecr-private-repo-access)
+// in the Amazon Lightsail Developer Guide.
+type ContainerServiceECRImagePullerRoleRequest struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean value that indicates whether to activate the role.
+	IsActive *bool `locationName:"isActive" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerServiceECRImagePullerRoleRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerServiceECRImagePullerRoleRequest) GoString() string {
+	return s.String()
+}
+
+// SetIsActive sets the IsActive field's value.
+func (s *ContainerServiceECRImagePullerRoleRequest) SetIsActive(v bool) *ContainerServiceECRImagePullerRoleRequest {
+	s.IsActive = &v
 	return s
 }
 
@@ -21616,6 +21726,15 @@ type CreateContainerServiceInput struct {
 	// Power is a required field
 	Power *string `locationName:"power" type:"string" required:"true" enum:"ContainerServicePowerName"`
 
+	// An object to describe the configuration for the container service to access
+	// private container image repositories, such as Amazon Elastic Container Registry
+	// (Amazon ECR) private repositories.
+	//
+	// For more information, see Configuring access to an Amazon ECR private repository
+	// for an Amazon Lightsail container service (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-container-service-ecr-private-repo-access)
+	// in the Amazon Lightsail Developer Guide.
+	PrivateRegistryAccess *PrivateRegistryAccessRequest `locationName:"privateRegistryAccess" type:"structure"`
+
 	// The public domain names to use with the container service, such as example.com
 	// and www.example.com.
 	//
@@ -21735,6 +21854,12 @@ func (s *CreateContainerServiceInput) SetDeployment(v *ContainerServiceDeploymen
 // SetPower sets the Power field's value.
 func (s *CreateContainerServiceInput) SetPower(v string) *CreateContainerServiceInput {
 	s.Power = &v
+	return s
+}
+
+// SetPrivateRegistryAccess sets the PrivateRegistryAccess field's value.
+func (s *CreateContainerServiceInput) SetPrivateRegistryAccess(v *PrivateRegistryAccessRequest) *CreateContainerServiceInput {
+	s.PrivateRegistryAccess = v
 	return s
 }
 
@@ -38262,6 +38387,87 @@ func (s *PortInfo) SetToPort(v int64) *PortInfo {
 	return s
 }
 
+// Describes the configuration for an Amazon Lightsail container service to
+// access private container image repositories, such as Amazon Elastic Container
+// Registry (Amazon ECR) private repositories.
+//
+// For more information, see Configuring access to an Amazon ECR private repository
+// for an Amazon Lightsail container service (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-container-service-ecr-private-repo-access)
+// in the Amazon Lightsail Developer Guide.
+type PrivateRegistryAccess struct {
+	_ struct{} `type:"structure"`
+
+	// An object that describes the activation status of the role that you can use
+	// to grant a Lightsail container service access to Amazon ECR private repositories.
+	// If the role is activated, the Amazon Resource Name (ARN) of the role is also
+	// listed.
+	EcrImagePullerRole *ContainerServiceECRImagePullerRole `locationName:"ecrImagePullerRole" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivateRegistryAccess) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivateRegistryAccess) GoString() string {
+	return s.String()
+}
+
+// SetEcrImagePullerRole sets the EcrImagePullerRole field's value.
+func (s *PrivateRegistryAccess) SetEcrImagePullerRole(v *ContainerServiceECRImagePullerRole) *PrivateRegistryAccess {
+	s.EcrImagePullerRole = v
+	return s
+}
+
+// Describes a request to configure an Amazon Lightsail container service to
+// access private container image repositories, such as Amazon Elastic Container
+// Registry (Amazon ECR) private repositories.
+//
+// For more information, see Configuring access to an Amazon ECR private repository
+// for an Amazon Lightsail container service (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-container-service-ecr-private-repo-access)
+// in the Amazon Lightsail Developer Guide.
+type PrivateRegistryAccessRequest struct {
+	_ struct{} `type:"structure"`
+
+	// An object to describe a request to activate or deactivate the role that you
+	// can use to grant an Amazon Lightsail container service access to Amazon Elastic
+	// Container Registry (Amazon ECR) private repositories.
+	EcrImagePullerRole *ContainerServiceECRImagePullerRoleRequest `locationName:"ecrImagePullerRole" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivateRegistryAccessRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivateRegistryAccessRequest) GoString() string {
+	return s.String()
+}
+
+// SetEcrImagePullerRole sets the EcrImagePullerRole field's value.
+func (s *PrivateRegistryAccessRequest) SetEcrImagePullerRole(v *ContainerServiceECRImagePullerRoleRequest) *PrivateRegistryAccessRequest {
+	s.EcrImagePullerRole = v
+	return s
+}
+
 type PutAlarmInput struct {
 	_ struct{} `type:"structure"`
 
@@ -41883,6 +42089,15 @@ type UpdateContainerServiceInput struct {
 	// power option.
 	Power *string `locationName:"power" type:"string" enum:"ContainerServicePowerName"`
 
+	// An object to describe the configuration for the container service to access
+	// private container image repositories, such as Amazon Elastic Container Registry
+	// (Amazon ECR) private repositories.
+	//
+	// For more information, see Configuring access to an Amazon ECR private repository
+	// for an Amazon Lightsail container service (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-container-service-ecr-private-repo-access)
+	// in the Amazon Lightsail Developer Guide.
+	PrivateRegistryAccess *PrivateRegistryAccessRequest `locationName:"privateRegistryAccess" type:"structure"`
+
 	// The public domain names to use with the container service, such as example.com
 	// and www.example.com.
 	//
@@ -41962,6 +42177,12 @@ func (s *UpdateContainerServiceInput) SetIsDisabled(v bool) *UpdateContainerServ
 // SetPower sets the Power field's value.
 func (s *UpdateContainerServiceInput) SetPower(v string) *UpdateContainerServiceInput {
 	s.Power = &v
+	return s
+}
+
+// SetPrivateRegistryAccess sets the PrivateRegistryAccess field's value.
+func (s *UpdateContainerServiceInput) SetPrivateRegistryAccess(v *PrivateRegistryAccessRequest) *UpdateContainerServiceInput {
+	s.PrivateRegistryAccess = v
 	return s
 }
 
