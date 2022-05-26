@@ -881,7 +881,8 @@
         "OptimizationMetric":{"shape":"OptimizationMetric"},
         "ExplainPredictor":{"shape":"Boolean"},
         "Tags":{"shape":"Tags"},
-        "MonitorConfig":{"shape":"MonitorConfig"}
+        "MonitorConfig":{"shape":"MonitorConfig"},
+        "TimeAlignmentBoundary":{"shape":"TimeAlignmentBoundary"}
       }
     },
     "CreateAutoPredictorResponse":{
@@ -1186,6 +1187,23 @@
       "type":"list",
       "member":{"shape":"DatasetSummary"}
     },
+    "DayOfMonth":{
+      "type":"integer",
+      "max":28,
+      "min":1
+    },
+    "DayOfWeek":{
+      "type":"string",
+      "enum":[
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY"
+      ]
+    },
     "DeleteDatasetGroupRequest":{
       "type":"structure",
       "required":["DatasetGroupArn"],
@@ -1290,7 +1308,8 @@
         "LastModificationTime":{"shape":"Timestamp"},
         "OptimizationMetric":{"shape":"OptimizationMetric"},
         "ExplainabilityInfo":{"shape":"ExplainabilityInfo"},
-        "MonitorInfo":{"shape":"MonitorInfo"}
+        "MonitorInfo":{"shape":"MonitorInfo"},
+        "TimeAlignmentBoundary":{"shape":"TimeAlignmentBoundary"}
       }
     },
     "DescribeDatasetGroupRequest":{
@@ -1803,6 +1822,11 @@
         "OptimizationMetric":{"shape":"OptimizationMetric"}
       }
     },
+    "Hour":{
+      "type":"integer",
+      "max":23,
+      "min":0
+    },
     "HyperParameterTuningJobConfig":{
       "type":"structure",
       "members":{
@@ -2118,6 +2142,23 @@
     "Monitors":{
       "type":"list",
       "member":{"shape":"MonitorSummary"}
+    },
+    "Month":{
+      "type":"string",
+      "enum":[
+        "JANUARY",
+        "FEBRUARY",
+        "MARCH",
+        "APRIL",
+        "MAY",
+        "JUNE",
+        "JULY",
+        "AUGUST",
+        "SEPTEMBER",
+        "OCTOBER",
+        "NOVEMBER",
+        "DECEMBER"
+      ]
     },
     "Name":{
       "type":"string",
@@ -2456,6 +2497,15 @@
     "TestWindows":{
       "type":"list",
       "member":{"shape":"WindowSummary"}
+    },
+    "TimeAlignmentBoundary":{
+      "type":"structure",
+      "members":{
+        "Month":{"shape":"Month"},
+        "DayOfMonth":{"shape":"DayOfMonth"},
+        "DayOfWeek":{"shape":"DayOfWeek"},
+        "Hour":{"shape":"Hour"}
+      }
     },
     "TimePointGranularity":{
       "type":"string",

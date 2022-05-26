@@ -3396,7 +3396,8 @@
         "principalArn":{"shape":"string"},
         "privateDomainName":{"shape":"string"},
         "publicDomainNames":{"shape":"ContainerServicePublicDomains"},
-        "url":{"shape":"string"}
+        "url":{"shape":"string"},
+        "privateRegistryAccess":{"shape":"PrivateRegistryAccess"}
       }
     },
     "ContainerServiceDeployment":{
@@ -3428,6 +3429,19 @@
         "INACTIVE",
         "FAILED"
       ]
+    },
+    "ContainerServiceECRImagePullerRole":{
+      "type":"structure",
+      "members":{
+        "isActive":{"shape":"boolean"},
+        "principalArn":{"shape":"string"}
+      }
+    },
+    "ContainerServiceECRImagePullerRoleRequest":{
+      "type":"structure",
+      "members":{
+        "isActive":{"shape":"boolean"}
+      }
     },
     "ContainerServiceEndpoint":{
       "type":"structure",
@@ -3733,7 +3747,8 @@
         "scale":{"shape":"ContainerServiceScale"},
         "tags":{"shape":"TagList"},
         "publicDomainNames":{"shape":"ContainerServicePublicDomains"},
-        "deployment":{"shape":"ContainerServiceDeploymentRequest"}
+        "deployment":{"shape":"ContainerServiceDeploymentRequest"},
+        "privateRegistryAccess":{"shape":"PrivateRegistryAccessRequest"}
       }
     },
     "CreateContainerServiceResult":{
@@ -6705,6 +6720,18 @@
         "closed"
       ]
     },
+    "PrivateRegistryAccess":{
+      "type":"structure",
+      "members":{
+        "ecrImagePullerRole":{"shape":"ContainerServiceECRImagePullerRole"}
+      }
+    },
+    "PrivateRegistryAccessRequest":{
+      "type":"structure",
+      "members":{
+        "ecrImagePullerRole":{"shape":"ContainerServiceECRImagePullerRoleRequest"}
+      }
+    },
     "PutAlarmRequest":{
       "type":"structure",
       "required":[
@@ -7427,7 +7454,8 @@
         "power":{"shape":"ContainerServicePowerName"},
         "scale":{"shape":"ContainerServiceScale"},
         "isDisabled":{"shape":"boolean"},
-        "publicDomainNames":{"shape":"ContainerServicePublicDomains"}
+        "publicDomainNames":{"shape":"ContainerServicePublicDomains"},
+        "privateRegistryAccess":{"shape":"PrivateRegistryAccessRequest"}
       }
     },
     "UpdateContainerServiceResult":{

@@ -1,3 +1,25 @@
+Release v1.44.23 (2022-05-26)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * C7g instances, powered by the latest generation AWS Graviton3 processors, provide the best price performance in Amazon EC2 for compute-intensive workloads.
+* `service/emr-serverless`: Adds new service
+* `service/forecast`: Updates service API and documentation
+* `service/lightsail`: Updates service API and documentation
+  * Amazon Lightsail now supports the ability to configure a Lightsail Container Service to pull images from Amazon ECR private repositories in your account.
+
+### SDK Bugs
+* `service/cloudwatchevidently`: Introduces a breaking change for following parameters from a JSONValue to string type, because the SDKs JSONValue is not compatible with the service's request and response shapes.
+  * `EvaluateFeatureInput.EvaluationContext` 
+  * `EvaluateFeatureOutput.Details`
+  * `EvaluationRequest.EvaluationContext`
+  * `EvaluationResult.Details`
+  * `Event.Data`
+  * `ExperimentReport.Content`
+  * `MetricDefinition.EventPattern`
+  * `MetricDefinitionConfig.EventPattern`
+
 Release v1.44.22 (2022-05-25)
 ===
 
