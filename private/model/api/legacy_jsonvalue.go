@@ -32,56 +32,6 @@ var legacyJSONValueShapes = map[string]map[string]legacyJSONValues{
 			},
 		},
 	},
-	"cloudwatchevidently": map[string]legacyJSONValues{
-		"EvaluateFeatureRequest": legacyJSONValues{
-			Type: "structure",
-			StructMembers: map[string]struct{}{
-				"evaluationContext": struct{}{},
-			},
-		},
-		"EvaluateFeatureResponse": legacyJSONValues{
-			Type: "structure",
-			StructMembers: map[string]struct{}{
-				"details": struct{}{},
-			},
-		},
-		"EvaluationRequest": legacyJSONValues{
-			Type: "structure",
-			StructMembers: map[string]struct{}{
-				"evaluationContext": struct{}{},
-			},
-		},
-		"EvaluationResult": legacyJSONValues{
-			Type: "structure",
-			StructMembers: map[string]struct{}{
-				"details": struct{}{},
-			},
-		},
-		"Event": legacyJSONValues{
-			Type: "structure",
-			StructMembers: map[string]struct{}{
-				"data": struct{}{},
-			},
-		},
-		"ExperimentReport": legacyJSONValues{
-			Type: "structure",
-			StructMembers: map[string]struct{}{
-				"content": struct{}{},
-			},
-		},
-		"MetricDefinition": legacyJSONValues{
-			Type: "structure",
-			StructMembers: map[string]struct{}{
-				"eventPattern": struct{}{},
-			},
-		},
-		"MetricDefinitionConfig": legacyJSONValues{
-			Type: "structure",
-			StructMembers: map[string]struct{}{
-				"eventPattern": struct{}{},
-			},
-		},
-	},
 	"cloudwatchrum": map[string]legacyJSONValues{
 		"RumEvent": legacyJSONValues{
 			Type: "structure",
