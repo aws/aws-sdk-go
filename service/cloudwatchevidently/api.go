@@ -4669,7 +4669,7 @@ type EvaluateFeatureInput struct {
 
 	// A JSON block of attributes that you can optionally pass in. This JSON block
 	// is included in the evaluation events sent to Evidently from the user session.
-	EvaluationContext aws.JSONValue `locationName:"evaluationContext" type:"jsonvalue"`
+	EvaluationContext *string `locationName:"evaluationContext" type:"string"`
 
 	// The name of the feature being evaluated.
 	//
@@ -4735,8 +4735,8 @@ func (s *EvaluateFeatureInput) SetEntityId(v string) *EvaluateFeatureInput {
 }
 
 // SetEvaluationContext sets the EvaluationContext field's value.
-func (s *EvaluateFeatureInput) SetEvaluationContext(v aws.JSONValue) *EvaluateFeatureInput {
-	s.EvaluationContext = v
+func (s *EvaluateFeatureInput) SetEvaluationContext(v string) *EvaluateFeatureInput {
+	s.EvaluationContext = &v
 	return s
 }
 
@@ -4757,7 +4757,7 @@ type EvaluateFeatureOutput struct {
 
 	// If this user was assigned to a launch or experiment, this field lists the
 	// launch or experiment name.
-	Details aws.JSONValue `locationName:"details" type:"jsonvalue"`
+	Details *string `locationName:"details" type:"string"`
 
 	// Specifies the reason that the user session was assigned this variation. Possible
 	// values include DEFAULT, meaning the user was served the default variation;
@@ -4793,8 +4793,8 @@ func (s EvaluateFeatureOutput) GoString() string {
 }
 
 // SetDetails sets the Details field's value.
-func (s *EvaluateFeatureOutput) SetDetails(v aws.JSONValue) *EvaluateFeatureOutput {
-	s.Details = v
+func (s *EvaluateFeatureOutput) SetDetails(v string) *EvaluateFeatureOutput {
+	s.Details = &v
 	return s
 }
 
@@ -4828,7 +4828,7 @@ type EvaluationRequest struct {
 
 	// A JSON block of attributes that you can optionally pass in. This JSON block
 	// is included in the evaluation events sent to Evidently from the user session.
-	EvaluationContext aws.JSONValue `locationName:"evaluationContext" type:"jsonvalue"`
+	EvaluationContext *string `locationName:"evaluationContext" type:"string"`
 
 	// The name of the feature being evaluated.
 	//
@@ -4883,8 +4883,8 @@ func (s *EvaluationRequest) SetEntityId(v string) *EvaluationRequest {
 }
 
 // SetEvaluationContext sets the EvaluationContext field's value.
-func (s *EvaluationRequest) SetEvaluationContext(v aws.JSONValue) *EvaluationRequest {
-	s.EvaluationContext = v
+func (s *EvaluationRequest) SetEvaluationContext(v string) *EvaluationRequest {
+	s.EvaluationContext = &v
 	return s
 }
 
@@ -4901,7 +4901,7 @@ type EvaluationResult struct {
 
 	// If this user was assigned to a launch or experiment, this field lists the
 	// launch or experiment name.
-	Details aws.JSONValue `locationName:"details" type:"jsonvalue"`
+	Details *string `locationName:"details" type:"string"`
 
 	// An internal ID that represents a unique user session of the application.
 	//
@@ -4949,8 +4949,8 @@ func (s EvaluationResult) GoString() string {
 }
 
 // SetDetails sets the Details field's value.
-func (s *EvaluationResult) SetDetails(v aws.JSONValue) *EvaluationResult {
-	s.Details = v
+func (s *EvaluationResult) SetDetails(v string) *EvaluationResult {
+	s.Details = &v
 	return s
 }
 
@@ -5044,7 +5044,7 @@ type Event struct {
 	// The event data.
 	//
 	// Data is a required field
-	Data aws.JSONValue `locationName:"data" type:"jsonvalue" required:"true"`
+	Data *string `locationName:"data" type:"string" required:"true"`
 
 	// The timestamp of the event.
 	//
@@ -5098,8 +5098,8 @@ func (s *Event) Validate() error {
 }
 
 // SetData sets the Data field's value.
-func (s *Event) SetData(v aws.JSONValue) *Event {
-	s.Data = v
+func (s *Event) SetData(v string) *Event {
+	s.Data = &v
 	return s
 }
 
@@ -5367,7 +5367,7 @@ type ExperimentReport struct {
 	_ struct{} `type:"structure"`
 
 	// The content of the report.
-	Content aws.JSONValue `locationName:"content" type:"jsonvalue"`
+	Content *string `locationName:"content" type:"string"`
 
 	// The name of the metric that is analyzed in this experiment report.
 	MetricName *string `locationName:"metricName" min:"1" type:"string"`
@@ -5398,8 +5398,8 @@ func (s ExperimentReport) GoString() string {
 }
 
 // SetContent sets the Content field's value.
-func (s *ExperimentReport) SetContent(v aws.JSONValue) *ExperimentReport {
-	s.Content = v
+func (s *ExperimentReport) SetContent(v string) *ExperimentReport {
+	s.Content = &v
 	return s
 }
 
@@ -7436,7 +7436,7 @@ type MetricDefinition struct {
 	//
 	// For more information about EventBridge event patterns, see Amazon EventBridge
 	// event patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html).
-	EventPattern aws.JSONValue `locationName:"eventPattern" type:"jsonvalue"`
+	EventPattern *string `locationName:"eventPattern" type:"string"`
 
 	// The name of the metric.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -7473,8 +7473,8 @@ func (s *MetricDefinition) SetEntityIdKey(v string) *MetricDefinition {
 }
 
 // SetEventPattern sets the EventPattern field's value.
-func (s *MetricDefinition) SetEventPattern(v aws.JSONValue) *MetricDefinition {
-	s.EventPattern = v
+func (s *MetricDefinition) SetEventPattern(v string) *MetricDefinition {
+	s.EventPattern = &v
 	return s
 }
 
@@ -7511,7 +7511,7 @@ type MetricDefinitionConfig struct {
 	//
 	// For more information about EventBridge event patterns, see Amazon EventBridge
 	// event patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html).
-	EventPattern aws.JSONValue `locationName:"eventPattern" type:"jsonvalue"`
+	EventPattern *string `locationName:"eventPattern" type:"string"`
 
 	// A name for the metric.
 	//
@@ -7583,8 +7583,8 @@ func (s *MetricDefinitionConfig) SetEntityIdKey(v string) *MetricDefinitionConfi
 }
 
 // SetEventPattern sets the EventPattern field's value.
-func (s *MetricDefinitionConfig) SetEventPattern(v aws.JSONValue) *MetricDefinitionConfig {
-	s.EventPattern = v
+func (s *MetricDefinitionConfig) SetEventPattern(v string) *MetricDefinitionConfig {
+	s.EventPattern = &v
 	return s
 }
 
