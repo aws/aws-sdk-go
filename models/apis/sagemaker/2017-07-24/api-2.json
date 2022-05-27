@@ -3141,7 +3141,15 @@
         "ml.r5.8xlarge",
         "ml.r5.12xlarge",
         "ml.r5.16xlarge",
-        "ml.r5.24xlarge"
+        "ml.r5.24xlarge",
+        "ml.g5.xlarge",
+        "ml.g5.2xlarge",
+        "ml.g5.4xlarge",
+        "ml.g5.8xlarge",
+        "ml.g5.16xlarge",
+        "ml.g5.12xlarge",
+        "ml.g5.24xlarge",
+        "ml.g5.48xlarge"
       ]
     },
     "AppList":{
@@ -5268,7 +5276,8 @@
         "DefaultCodeRepository":{"shape":"CodeRepositoryNameOrUrl"},
         "AdditionalCodeRepositories":{"shape":"AdditionalCodeRepositoryNamesOrUrls"},
         "RootAccess":{"shape":"RootAccess"},
-        "PlatformIdentifier":{"shape":"PlatformIdentifier"}
+        "PlatformIdentifier":{"shape":"PlatformIdentifier"},
+        "InstanceMetadataServiceConfiguration":{"shape":"InstanceMetadataServiceConfiguration"}
       }
     },
     "CreateNotebookInstanceLifecycleConfigInput":{
@@ -7291,7 +7300,8 @@
         "DefaultCodeRepository":{"shape":"CodeRepositoryNameOrUrl"},
         "AdditionalCodeRepositories":{"shape":"AdditionalCodeRepositoryNamesOrUrls"},
         "RootAccess":{"shape":"RootAccess"},
-        "PlatformIdentifier":{"shape":"PlatformIdentifier"}
+        "PlatformIdentifier":{"shape":"PlatformIdentifier"},
+        "InstanceMetadataServiceConfiguration":{"shape":"InstanceMetadataServiceConfiguration"}
       }
     },
     "DescribePipelineDefinitionForExecutionRequest":{
@@ -9585,6 +9595,13 @@
       "member":{"shape":"TrainingInputMode"},
       "min":1
     },
+    "InstanceMetadataServiceConfiguration":{
+      "type":"structure",
+      "required":["MinimumInstanceMetadataServiceVersion"],
+      "members":{
+        "MinimumInstanceMetadataServiceVersion":{"shape":"MinimumInstanceMetadataServiceVersion"}
+      }
+    },
     "InstanceType":{
       "type":"string",
       "enum":[
@@ -11512,6 +11529,11 @@
         "ContentDigest":{"shape":"ContentDigest"},
         "S3Uri":{"shape":"S3Uri"}
       }
+    },
+    "MinimumInstanceMetadataServiceVersion":{
+      "type":"string",
+      "max":1,
+      "pattern":"1|2"
     },
     "ModelApprovalStatus":{
       "type":"string",
@@ -16318,7 +16340,8 @@
         "DisassociateAcceleratorTypes":{"shape":"DisassociateNotebookInstanceAcceleratorTypes"},
         "DisassociateDefaultCodeRepository":{"shape":"DisassociateDefaultCodeRepository"},
         "DisassociateAdditionalCodeRepositories":{"shape":"DisassociateAdditionalCodeRepositories"},
-        "RootAccess":{"shape":"RootAccess"}
+        "RootAccess":{"shape":"RootAccess"},
+        "InstanceMetadataServiceConfiguration":{"shape":"InstanceMetadataServiceConfiguration"}
       }
     },
     "UpdateNotebookInstanceLifecycleConfigInput":{

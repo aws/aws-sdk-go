@@ -248,7 +248,9 @@ func (c *DataSync) CreateLocationEfsRequest(input *CreateLocationEfsInput) (req 
 
 // CreateLocationEfs API operation for AWS DataSync.
 //
-// Creates an endpoint for an Amazon EFS file system.
+// Creates an endpoint for an Amazon EFS file system that DataSync can access
+// for a transfer. For more information, see Creating a location for Amazon
+// EFS (https://docs.aws.amazon.com/datasync/latest/userguide/create-efs-location.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1431,7 +1433,7 @@ func (c *DataSync) DescribeLocationEfsRequest(input *DescribeLocationEfsInput) (
 
 // DescribeLocationEfs API operation for AWS DataSync.
 //
-// Returns metadata, such as the path information about an Amazon EFS location.
+// Returns metadata about your DataSync location for an Amazon EFS file system.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4159,45 +4161,43 @@ func (s *CreateAgentOutput) SetAgentArn(v string) *CreateAgentOutput {
 type CreateLocationEfsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The subnet and security group that the Amazon EFS file system uses. The security
-	// group that you provide needs to be able to communicate with the security
-	// group on the mount target in the subnet specified.
-	//
-	// The exact relationship between security group M (of the mount target) and
-	// security group S (which you provide for DataSync to use at this stage) is
-	// as follows:
-	//
-	//    * Security group M (which you associate with the mount target) must allow
-	//    inbound access for the Transmission Control Protocol (TCP) on the NFS
-	//    port (2049) from security group S. You can enable inbound connections
-	//    either by IP address (CIDR range) or security group.
-	//
-	//    * Security group S (provided to DataSync to access EFS) should have a
-	//    rule that enables outbound connections to the NFS port on one of the file
-	//    system’s mount targets. You can enable outbound connections either by
-	//    IP address (CIDR range) or security group. For information about security
-	//    groups and mount targets, see Security Groups for Amazon EC2 Instances
-	//    and Mount Targets in the Amazon EFS User Guide.
+	// Specifies the Amazon Resource Name (ARN) of the access point that DataSync
+	// uses to access the Amazon EFS file system.
+	AccessPointArn *string `type:"string"`
+
+	// Specifies the subnet and security groups DataSync uses to access your Amazon
+	// EFS file system.
 	//
 	// Ec2Config is a required field
 	Ec2Config *Ec2Config `type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) for the Amazon EFS file system.
+	// Specifies the ARN for the Amazon EFS file system.
 	//
 	// EfsFilesystemArn is a required field
 	EfsFilesystemArn *string `type:"string" required:"true"`
 
-	// A subdirectory in the location’s path. This subdirectory in the EFS file
-	// system is used to read data from the EFS source location or write data to
-	// the EFS destination. By default, DataSync uses the root directory.
+	// Specifies an Identity and Access Management (IAM) role that DataSync assumes
+	// when mounting the Amazon EFS file system.
+	FileSystemAccessRoleArn *string `type:"string"`
+
+	// Specifies whether you want DataSync to use TLS encryption when transferring
+	// data to or from your Amazon EFS file system.
 	//
-	// Subdirectory must be specified with forward slashes. For example, /path/to/folder.
+	// If you specify an access point using AccessPointArn or an IAM role using
+	// FileSystemAccessRoleArn, you must set this parameter to TLS1_2.
+	InTransitEncryption *string `type:"string" enum:"EfsInTransitEncryption"`
+
+	// Specifies a mount path for your Amazon EFS file system. This is where DataSync
+	// reads or writes data (depending on if this is a source or destination location).
+	// By default, DataSync uses the root directory, but you can also include subdirectories.
+	//
+	// You must specify a value with forward slashes (for example, /path/to/folder).
 	Subdirectory *string `type:"string"`
 
-	// The key-value pair that represents a tag that you want to add to the resource.
-	// The value can be an empty string. This value helps you manage, filter, and
-	// search for your resources. We recommend that you create a name tag for your
-	// location.
+	// Specifies the key-value pair that represents a tag that you want to add to
+	// the resource. The value can be an empty string. This value helps you manage,
+	// filter, and search for your resources. We recommend that you create a name
+	// tag for your location.
 	Tags []*TagListEntry `type:"list"`
 }
 
@@ -4250,6 +4250,12 @@ func (s *CreateLocationEfsInput) Validate() error {
 	return nil
 }
 
+// SetAccessPointArn sets the AccessPointArn field's value.
+func (s *CreateLocationEfsInput) SetAccessPointArn(v string) *CreateLocationEfsInput {
+	s.AccessPointArn = &v
+	return s
+}
+
 // SetEc2Config sets the Ec2Config field's value.
 func (s *CreateLocationEfsInput) SetEc2Config(v *Ec2Config) *CreateLocationEfsInput {
 	s.Ec2Config = v
@@ -4259,6 +4265,18 @@ func (s *CreateLocationEfsInput) SetEc2Config(v *Ec2Config) *CreateLocationEfsIn
 // SetEfsFilesystemArn sets the EfsFilesystemArn field's value.
 func (s *CreateLocationEfsInput) SetEfsFilesystemArn(v string) *CreateLocationEfsInput {
 	s.EfsFilesystemArn = &v
+	return s
+}
+
+// SetFileSystemAccessRoleArn sets the FileSystemAccessRoleArn field's value.
+func (s *CreateLocationEfsInput) SetFileSystemAccessRoleArn(v string) *CreateLocationEfsInput {
+	s.FileSystemAccessRoleArn = &v
+	return s
+}
+
+// SetInTransitEncryption sets the InTransitEncryption field's value.
+func (s *CreateLocationEfsInput) SetInTransitEncryption(v string) *CreateLocationEfsInput {
+	s.InTransitEncryption = &v
 	return s
 }
 
@@ -4279,7 +4297,7 @@ type CreateLocationEfsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the Amazon EFS file system location that
-	// is created.
+	// you create.
 	LocationArn *string `type:"string"`
 }
 
@@ -6329,7 +6347,8 @@ func (s *DescribeAgentOutput) SetStatus(v string) *DescribeAgentOutput {
 type DescribeLocationEfsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the EFS location to describe.
+	// The Amazon Resource Name (ARN) of the Amazon EFS file system location that
+	// you want information about.
 	//
 	// LocationArn is a required field
 	LocationArn *string `type:"string" required:"true"`
@@ -6376,19 +6395,29 @@ func (s *DescribeLocationEfsInput) SetLocationArn(v string) *DescribeLocationEfs
 type DescribeLocationEfsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The time that the EFS location was created.
+	// The ARN of the access point that DataSync uses to access the Amazon EFS file
+	// system.
+	AccessPointArn *string `type:"string"`
+
+	// The time that the location was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The subnet that DataSync uses to access target EFS file system. The subnet
-	// must have at least one mount target for that file system. The security group
-	// that you provide needs to be able to communicate with the security group
-	// on the mount target in the subnet specified.
+	// The subnet and security groups that DataSync uses to access your Amazon EFS
+	// file system.
 	Ec2Config *Ec2Config `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the EFS location that was described.
+	// The Identity and Access Management (IAM) role that DataSync assumes when
+	// mounting the Amazon EFS file system.
+	FileSystemAccessRoleArn *string `type:"string"`
+
+	// Whether DataSync uses TLS encryption when transferring data to or from your
+	// Amazon EFS file system.
+	InTransitEncryption *string `type:"string" enum:"EfsInTransitEncryption"`
+
+	// The ARN of the Amazon EFS file system location.
 	LocationArn *string `type:"string"`
 
-	// The URL of the EFS location that was described.
+	// The URL of the Amazon EFS file system location.
 	LocationUri *string `type:"string"`
 }
 
@@ -6410,6 +6439,12 @@ func (s DescribeLocationEfsOutput) GoString() string {
 	return s.String()
 }
 
+// SetAccessPointArn sets the AccessPointArn field's value.
+func (s *DescribeLocationEfsOutput) SetAccessPointArn(v string) *DescribeLocationEfsOutput {
+	s.AccessPointArn = &v
+	return s
+}
+
 // SetCreationTime sets the CreationTime field's value.
 func (s *DescribeLocationEfsOutput) SetCreationTime(v time.Time) *DescribeLocationEfsOutput {
 	s.CreationTime = &v
@@ -6419,6 +6454,18 @@ func (s *DescribeLocationEfsOutput) SetCreationTime(v time.Time) *DescribeLocati
 // SetEc2Config sets the Ec2Config field's value.
 func (s *DescribeLocationEfsOutput) SetEc2Config(v *Ec2Config) *DescribeLocationEfsOutput {
 	s.Ec2Config = v
+	return s
+}
+
+// SetFileSystemAccessRoleArn sets the FileSystemAccessRoleArn field's value.
+func (s *DescribeLocationEfsOutput) SetFileSystemAccessRoleArn(v string) *DescribeLocationEfsOutput {
+	s.FileSystemAccessRoleArn = &v
+	return s
+}
+
+// SetInTransitEncryption sets the InTransitEncryption field's value.
+func (s *DescribeLocationEfsOutput) SetInTransitEncryption(v string) *DescribeLocationEfsOutput {
+	s.InTransitEncryption = &v
 	return s
 }
 
@@ -7952,20 +7999,29 @@ func (s *DescribeTaskOutput) SetTaskArn(v string) *DescribeTaskOutput {
 	return s
 }
 
-// The subnet that DataSync uses to access target EFS file system. The subnet
-// must have at least one mount target for that file system. The security group
-// that you provide needs to be able to communicate with the security group
-// on the mount target in the subnet specified.
+// The subnet and security groups that DataSync uses to access your Amazon EFS
+// file system.
 type Ec2Config struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Names (ARNs) of the security groups that are configured
-	// for the Amazon EC2 resource.
+	// Specifies the Amazon Resource Names (ARNs) of the security groups associated
+	// with an Amazon EFS file system's mount target.
 	//
 	// SecurityGroupArns is a required field
 	SecurityGroupArns []*string `min:"1" type:"list" required:"true"`
 
-	// The ARN of the subnet that DataSync uses to access the target EFS file system.
+	// Specifies the ARN of a subnet where DataSync creates the network interfaces
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/datasync-network.html#required-network-interfaces)
+	// for managing traffic during your transfer.
+	//
+	// The subnet must be located:
+	//
+	//    * In the same virtual private cloud (VPC) as the Amazon EFS file system.
+	//
+	//    * In the same Availability Zone as at least one mount target for the Amazon
+	//    EFS file system.
+	//
+	// You don't need to specify a subnet that includes a file system mount target.
 	//
 	// SubnetArn is a required field
 	SubnetArn *string `type:"string" required:"true"`
@@ -11367,6 +11423,22 @@ func Atime_Values() []string {
 	return []string{
 		AtimeNone,
 		AtimeBestEffort,
+	}
+}
+
+const (
+	// EfsInTransitEncryptionNone is a EfsInTransitEncryption enum value
+	EfsInTransitEncryptionNone = "NONE"
+
+	// EfsInTransitEncryptionTls12 is a EfsInTransitEncryption enum value
+	EfsInTransitEncryptionTls12 = "TLS1_2"
+)
+
+// EfsInTransitEncryption_Values returns all elements of the EfsInTransitEncryption enum
+func EfsInTransitEncryption_Values() []string {
+	return []string{
+		EfsInTransitEncryptionNone,
+		EfsInTransitEncryptionTls12,
 	}
 }
 

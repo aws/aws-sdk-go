@@ -24605,8 +24605,18 @@ type AlgorithmSpecification struct {
 
 	// The name of the algorithm resource to use for the training job. This must
 	// be an algorithm resource that you created or subscribe to on Amazon Web Services
-	// Marketplace. If you specify a value for this parameter, you can't specify
-	// a value for TrainingImage.
+	// Marketplace.
+	//
+	// You must specify either the algorithm name to the AlgorithmName parameter
+	// or the image URI of the algorithm container to the TrainingImage parameter.
+	//
+	// Note that the AlgorithmName parameter is mutually exclusive with the TrainingImage
+	// parameter. If you specify a value for the AlgorithmName parameter, you can't
+	// specify a value for TrainingImage, and vice versa.
+	//
+	// If you specify values for both parameters, the training job might break;
+	// if you don't specify any value for both parameters, the training job might
+	// raise a null error.
 	AlgorithmName *string `min:"1" type:"string"`
 
 	// To generate and save time-series metrics during training, set to true. The
@@ -24628,11 +24638,17 @@ type AlgorithmSpecification struct {
 	MetricDefinitions []*MetricDefinition `type:"list"`
 
 	// The registry path of the Docker image that contains the training algorithm.
-	// For information about docker registry paths for built-in algorithms, see
-	// Algorithms Provided by Amazon SageMaker: Common Parameters (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html).
-	// SageMaker supports both registry/repository[:tag] and registry/repository[@digest]
-	// image path formats. For more information, see Using Your Own Algorithms with
-	// Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html).
+	// For information about docker registry paths for SageMaker built-in algorithms,
+	// see Docker Registry Paths and Example Code (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html)
+	// in the Amazon SageMaker developer guide. SageMaker supports both registry/repository[:tag]
+	// and registry/repository[@digest] image path formats. For more information
+	// about using your custom training container, see Using Your Own Algorithms
+	// with Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html).
+	//
+	// You must specify either the algorithm name to the AlgorithmName parameter
+	// or the image URI of the algorithm container to the TrainingImage parameter.
+	//
+	// For more information, see the note in the AlgorithmName parameter description.
 	TrainingImage *string `type:"string"`
 
 	// The training input mode that the algorithm supports. For more information
@@ -36184,6 +36200,9 @@ type CreateNotebookInstanceInput struct {
 	// for the SubnetId parameter.
 	DirectInternetAccess *string `type:"string" enum:"DirectInternetAccess"`
 
+	// Information on the IMDS configuration of the notebook instance
+	InstanceMetadataServiceConfiguration *InstanceMetadataServiceConfiguration `type:"structure"`
+
 	// The type of ML compute instance to launch for the notebook instance.
 	//
 	// InstanceType is a required field
@@ -36289,6 +36308,11 @@ func (s *CreateNotebookInstanceInput) Validate() error {
 	if s.VolumeSizeInGB != nil && *s.VolumeSizeInGB < 5 {
 		invalidParams.Add(request.NewErrParamMinValue("VolumeSizeInGB", 5))
 	}
+	if s.InstanceMetadataServiceConfiguration != nil {
+		if err := s.InstanceMetadataServiceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("InstanceMetadataServiceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -36327,6 +36351,12 @@ func (s *CreateNotebookInstanceInput) SetDefaultCodeRepository(v string) *Create
 // SetDirectInternetAccess sets the DirectInternetAccess field's value.
 func (s *CreateNotebookInstanceInput) SetDirectInternetAccess(v string) *CreateNotebookInstanceInput {
 	s.DirectInternetAccess = &v
+	return s
+}
+
+// SetInstanceMetadataServiceConfiguration sets the InstanceMetadataServiceConfiguration field's value.
+func (s *CreateNotebookInstanceInput) SetInstanceMetadataServiceConfiguration(v *InstanceMetadataServiceConfiguration) *CreateNotebookInstanceInput {
+	s.InstanceMetadataServiceConfiguration = v
 	return s
 }
 
@@ -49906,6 +49936,9 @@ type DescribeNotebookInstanceOutput struct {
 	// If status is Failed, the reason it failed.
 	FailureReason *string `type:"string"`
 
+	// Information on the IMDS configuration of the notebook instance
+	InstanceMetadataServiceConfiguration *InstanceMetadataServiceConfiguration `type:"structure"`
+
 	// The type of ML compute instance running on the notebook instance.
 	InstanceType *string `type:"string" enum:"InstanceType"`
 
@@ -50015,6 +50048,12 @@ func (s *DescribeNotebookInstanceOutput) SetDirectInternetAccess(v string) *Desc
 // SetFailureReason sets the FailureReason field's value.
 func (s *DescribeNotebookInstanceOutput) SetFailureReason(v string) *DescribeNotebookInstanceOutput {
 	s.FailureReason = &v
+	return s
+}
+
+// SetInstanceMetadataServiceConfiguration sets the InstanceMetadataServiceConfiguration field's value.
+func (s *DescribeNotebookInstanceOutput) SetInstanceMetadataServiceConfiguration(v *InstanceMetadataServiceConfiguration) *DescribeNotebookInstanceOutput {
+	s.InstanceMetadataServiceConfiguration = v
 	return s
 }
 
@@ -60612,6 +60651,56 @@ func (s *InputConfig) SetFrameworkVersion(v string) *InputConfig {
 // SetS3Uri sets the S3Uri field's value.
 func (s *InputConfig) SetS3Uri(v string) *InputConfig {
 	s.S3Uri = &v
+	return s
+}
+
+// Information on the IMDS configuration of the notebook instance
+type InstanceMetadataServiceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the minimum IMDS version that the notebook instance supports. When
+	// passed as part of CreateNotebookInstance, if no value is selected, then it
+	// defaults to IMDSv1. This means that both IMDSv1 and IMDSv2 are supported.
+	// If passed as part of UpdateNotebookInstance, there is no default.
+	//
+	// MinimumInstanceMetadataServiceVersion is a required field
+	MinimumInstanceMetadataServiceVersion *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceMetadataServiceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceMetadataServiceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InstanceMetadataServiceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InstanceMetadataServiceConfiguration"}
+	if s.MinimumInstanceMetadataServiceVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("MinimumInstanceMetadataServiceVersion"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMinimumInstanceMetadataServiceVersion sets the MinimumInstanceMetadataServiceVersion field's value.
+func (s *InstanceMetadataServiceConfiguration) SetMinimumInstanceMetadataServiceVersion(v string) *InstanceMetadataServiceConfiguration {
+	s.MinimumInstanceMetadataServiceVersion = &v
 	return s
 }
 
@@ -91534,6 +91623,9 @@ type UpdateNotebookInstanceInput struct {
 	// instance when you call this method, it does not throw an error.
 	DisassociateLifecycleConfig *bool `type:"boolean"`
 
+	// Information on the IMDS configuration of the notebook instance
+	InstanceMetadataServiceConfiguration *InstanceMetadataServiceConfiguration `type:"structure"`
+
 	// The Amazon ML compute instance type.
 	InstanceType *string `type:"string" enum:"InstanceType"`
 
@@ -91605,6 +91697,11 @@ func (s *UpdateNotebookInstanceInput) Validate() error {
 	if s.VolumeSizeInGB != nil && *s.VolumeSizeInGB < 5 {
 		invalidParams.Add(request.NewErrParamMinValue("VolumeSizeInGB", 5))
 	}
+	if s.InstanceMetadataServiceConfiguration != nil {
+		if err := s.InstanceMetadataServiceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("InstanceMetadataServiceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -91651,6 +91748,12 @@ func (s *UpdateNotebookInstanceInput) SetDisassociateDefaultCodeRepository(v boo
 // SetDisassociateLifecycleConfig sets the DisassociateLifecycleConfig field's value.
 func (s *UpdateNotebookInstanceInput) SetDisassociateLifecycleConfig(v bool) *UpdateNotebookInstanceInput {
 	s.DisassociateLifecycleConfig = &v
+	return s
+}
+
+// SetInstanceMetadataServiceConfiguration sets the InstanceMetadataServiceConfiguration field's value.
+func (s *UpdateNotebookInstanceInput) SetInstanceMetadataServiceConfiguration(v *InstanceMetadataServiceConfiguration) *UpdateNotebookInstanceInput {
+	s.InstanceMetadataServiceConfiguration = v
 	return s
 }
 
@@ -93903,6 +94006,30 @@ const (
 
 	// AppInstanceTypeMlR524xlarge is a AppInstanceType enum value
 	AppInstanceTypeMlR524xlarge = "ml.r5.24xlarge"
+
+	// AppInstanceTypeMlG5Xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlG5Xlarge = "ml.g5.xlarge"
+
+	// AppInstanceTypeMlG52xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlG52xlarge = "ml.g5.2xlarge"
+
+	// AppInstanceTypeMlG54xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlG54xlarge = "ml.g5.4xlarge"
+
+	// AppInstanceTypeMlG58xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlG58xlarge = "ml.g5.8xlarge"
+
+	// AppInstanceTypeMlG516xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlG516xlarge = "ml.g5.16xlarge"
+
+	// AppInstanceTypeMlG512xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlG512xlarge = "ml.g5.12xlarge"
+
+	// AppInstanceTypeMlG524xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlG524xlarge = "ml.g5.24xlarge"
+
+	// AppInstanceTypeMlG548xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlG548xlarge = "ml.g5.48xlarge"
 )
 
 // AppInstanceType_Values returns all elements of the AppInstanceType enum
@@ -93957,6 +94084,14 @@ func AppInstanceType_Values() []string {
 		AppInstanceTypeMlR512xlarge,
 		AppInstanceTypeMlR516xlarge,
 		AppInstanceTypeMlR524xlarge,
+		AppInstanceTypeMlG5Xlarge,
+		AppInstanceTypeMlG52xlarge,
+		AppInstanceTypeMlG54xlarge,
+		AppInstanceTypeMlG58xlarge,
+		AppInstanceTypeMlG516xlarge,
+		AppInstanceTypeMlG512xlarge,
+		AppInstanceTypeMlG524xlarge,
+		AppInstanceTypeMlG548xlarge,
 	}
 }
 
