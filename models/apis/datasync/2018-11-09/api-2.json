@@ -648,7 +648,10 @@
         "Subdirectory":{"shape":"EfsSubdirectory"},
         "EfsFilesystemArn":{"shape":"EfsFilesystemArn"},
         "Ec2Config":{"shape":"Ec2Config"},
-        "Tags":{"shape":"InputTagList"}
+        "Tags":{"shape":"InputTagList"},
+        "AccessPointArn":{"shape":"EfsAccessPointArn"},
+        "FileSystemAccessRoleArn":{"shape":"IamRoleArn"},
+        "InTransitEncryption":{"shape":"EfsInTransitEncryption"}
       }
     },
     "CreateLocationEfsResponse":{
@@ -935,7 +938,10 @@
         "LocationArn":{"shape":"LocationArn"},
         "LocationUri":{"shape":"LocationUri"},
         "Ec2Config":{"shape":"Ec2Config"},
-        "CreationTime":{"shape":"Time"}
+        "CreationTime":{"shape":"Time"},
+        "AccessPointArn":{"shape":"EfsAccessPointArn"},
+        "FileSystemAccessRoleArn":{"shape":"IamRoleArn"},
+        "InTransitEncryption":{"shape":"EfsInTransitEncryption"}
       }
     },
     "DescribeLocationFsxLustreRequest":{
@@ -1173,10 +1179,22 @@
       "max":128,
       "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):ec2:[a-z\\-0-9]*:[0-9]{12}:subnet/.*$"
     },
+    "EfsAccessPointArn":{
+      "type":"string",
+      "max":128,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):elasticfilesystem:[a-z\\-0-9]+:[0-9]{12}:access-point/fsap-[0-9a-f]{8,40}$"
+    },
     "EfsFilesystemArn":{
       "type":"string",
       "max":128,
       "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):elasticfilesystem:[a-z\\-0-9]*:[0-9]{12}:file-system/fs-.*$"
+    },
+    "EfsInTransitEncryption":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "TLS1_2"
+      ]
     },
     "EfsSubdirectory":{
       "type":"string",

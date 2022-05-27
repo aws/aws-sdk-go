@@ -1,3 +1,13 @@
+Release v1.44.24 (2022-05-27)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/datasync`: Updates service API, documentation, and paginators
+* `service/emr-serverless`: Adds new service
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Notebook Instances now allows configuration of Instance Metadata Service version and Amazon SageMaker Studio now supports G5 instance types.
+
 Release v1.44.23 (2022-05-26)
 ===
 

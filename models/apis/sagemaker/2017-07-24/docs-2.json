@@ -391,7 +391,7 @@
     "AlgorithmImage": {
       "base": null,
       "refs": {
-        "AlgorithmSpecification$TrainingImage": "<p>The registry path of the Docker image that contains the training algorithm. For information about docker registry paths for built-in algorithms, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html\">Algorithms Provided by Amazon SageMaker: Common Parameters</a>. SageMaker supports both <code>registry/repository[:tag]</code> and <code>registry/repository[@digest]</code> image path formats. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html\">Using Your Own Algorithms with Amazon SageMaker</a>.</p>",
+        "AlgorithmSpecification$TrainingImage": "<p>The registry path of the Docker image that contains the training algorithm. For information about docker registry paths for SageMaker built-in algorithms, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html\">Docker Registry Paths and Example Code</a> in the <i>Amazon SageMaker developer guide</i>. SageMaker supports both <code>registry/repository[:tag]</code> and <code>registry/repository[@digest]</code> image path formats. For more information about using your custom training container, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html\">Using Your Own Algorithms with Amazon SageMaker</a>.</p> <note> <p>You must specify either the algorithm name to the <code>AlgorithmName</code> parameter or the image URI of the algorithm container to the <code>TrainingImage</code> parameter.</p> <p>For more information, see the note in the <code>AlgorithmName</code> parameter description.</p> </note>",
         "DebugRuleConfiguration$RuleEvaluatorImage": "<p>The Amazon Elastic Container (ECR) Image for the managed rule evaluation.</p>",
         "HyperParameterAlgorithmSpecification$TrainingImage": "<p> The registry path of the Docker image that contains the training algorithm. For information about Docker registry paths for built-in algorithms, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html\">Algorithms Provided by Amazon SageMaker: Common Parameters</a>. SageMaker supports both <code>registry/repository[:tag]</code> and <code>registry/repository[@digest]</code> image path formats. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html\">Using Your Own Algorithms with Amazon SageMaker</a>.</p>",
         "ProfilerRuleConfiguration$RuleEvaluatorImage": "<p>The Amazon Elastic Container (ECR) Image for the managed rule evaluation.</p>"
@@ -612,7 +612,7 @@
     "ArnOrName": {
       "base": null,
       "refs": {
-        "AlgorithmSpecification$AlgorithmName": "<p>The name of the algorithm resource to use for the training job. This must be an algorithm resource that you created or subscribe to on Amazon Web Services Marketplace. If you specify a value for this parameter, you can't specify a value for <code>TrainingImage</code>.</p>",
+        "AlgorithmSpecification$AlgorithmName": "<p>The name of the algorithm resource to use for the training job. This must be an algorithm resource that you created or subscribe to on Amazon Web Services Marketplace.</p> <note> <p>You must specify either the algorithm name to the <code>AlgorithmName</code> parameter or the image URI of the algorithm container to the <code>TrainingImage</code> parameter.</p> <p>Note that the <code>AlgorithmName</code> parameter is mutually exclusive with the <code>TrainingImage</code> parameter. If you specify a value for the <code>AlgorithmName</code> parameter, you can't specify a value for <code>TrainingImage</code>, and vice versa.</p> <p>If you specify values for both parameters, the training job might break; if you don't specify any value for both parameters, the training job might raise a <code>null</code> error.</p> </note>",
         "CreateModelPackageInput$ModelPackageGroupName": "<p>The name or Amazon Resource Name (ARN) of the model package group that this model version belongs to.</p> <p>This parameter is required for versioned models, and does not apply to unversioned models.</p>",
         "DeleteModelPackageGroupInput$ModelPackageGroupName": "<p>The name of the model group to delete.</p>",
         "DescribeAlgorithmInput$AlgorithmName": "<p>The name of the algorithm to describe.</p>",
@@ -5233,6 +5233,14 @@
         "ChannelSpecification$SupportedInputModes": "<p>The allowed input mode, either FILE or PIPE.</p> <p>In FILE mode, Amazon SageMaker copies the data from the input source onto the local Amazon Elastic Block Store (Amazon EBS) volumes before starting your training algorithm. This is the most commonly used input mode.</p> <p>In PIPE mode, Amazon SageMaker streams input data from the source directly to your algorithm without using the EBS volume.</p>"
       }
     },
+    "InstanceMetadataServiceConfiguration": {
+      "base": "<p>Information on the IMDS configuration of the notebook instance</p>",
+      "refs": {
+        "CreateNotebookInstanceInput$InstanceMetadataServiceConfiguration": "<p>Information on the IMDS configuration of the notebook instance</p>",
+        "DescribeNotebookInstanceOutput$InstanceMetadataServiceConfiguration": "<p>Information on the IMDS configuration of the notebook instance</p>",
+        "UpdateNotebookInstanceInput$InstanceMetadataServiceConfiguration": "<p>Information on the IMDS configuration of the notebook instance</p>"
+      }
+    },
     "InstanceType": {
       "base": null,
       "refs": {
@@ -6642,6 +6650,12 @@
         "ModelDataQuality$Constraints": "<p>Data quality constraints for a model.</p>",
         "ModelQuality$Statistics": "<p>Model quality statistics.</p>",
         "ModelQuality$Constraints": "<p>Model quality constraints.</p>"
+      }
+    },
+    "MinimumInstanceMetadataServiceVersion": {
+      "base": null,
+      "refs": {
+        "InstanceMetadataServiceConfiguration$MinimumInstanceMetadataServiceVersion": "<p>Indicates the minimum IMDS version that the notebook instance supports. When passed as part of <code>CreateNotebookInstance</code>, if no value is selected, then it defaults to IMDSv1. This means that both IMDSv1 and IMDSv2 are supported. If passed as part of <code>UpdateNotebookInstance</code>, there is no default.</p>"
       }
     },
     "ModelApprovalStatus": {

@@ -362,7 +362,7 @@
     },
     "AccessToken":{
       "type":"string",
-      "max":2048,
+      "max":4096,
       "pattern":"\\S+",
       "sensitive":true
     },
@@ -1582,6 +1582,11 @@
       "max":2048,
       "pattern":"[\\w!@#\\-.?,\\s]*"
     },
+    "FlowErrorDeactivationThreshold":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
     "FlowExecutionList":{
       "type":"list",
       "member":{"shape":"ExecutionRecord"}
@@ -1765,6 +1770,7 @@
       "error":{"httpStatusCode":500},
       "exception":true
     },
+    "JavaBoolean":{"type":"boolean"},
     "KMSArn":{
       "type":"string",
       "max":2048,
@@ -2282,7 +2288,7 @@
     },
     "RefreshToken":{
       "type":"string",
-      "max":1024,
+      "max":2048,
       "pattern":"\\S+"
     },
     "Region":{
@@ -2384,7 +2390,8 @@
       "members":{
         "fileType":{"shape":"FileType"},
         "prefixConfig":{"shape":"PrefixConfig"},
-        "aggregationConfig":{"shape":"AggregationConfig"}
+        "aggregationConfig":{"shape":"AggregationConfig"},
+        "preserveSourceDataTyping":{"shape":"JavaBoolean"}
       }
     },
     "S3SourceProperties":{
@@ -2573,7 +2580,11 @@
           "shape":"ScheduleOffset",
           "box":true
         },
-        "firstExecutionFrom":{"shape":"Date"}
+        "firstExecutionFrom":{"shape":"Date"},
+        "flowErrorDeactivationThreshold":{
+          "shape":"FlowErrorDeactivationThreshold",
+          "box":true
+        }
       }
     },
     "SchedulingFrequencyTypeList":{

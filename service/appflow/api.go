@@ -61,7 +61,8 @@ func (c *Appflow) CreateConnectorProfileRequest(input *CreateConnectorProfileInp
 // account. There is a soft quota of 100 connector profiles per Amazon Web Services
 // account. If you need more connector profiles than this quota allows, you
 // can submit a request to the Amazon AppFlow team through the Amazon AppFlow
-// support channel.
+// support channel. In each connector profile that you create, you can provide
+// the credentials and properties for only one connector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -534,7 +535,7 @@ func (c *Appflow) DescribeConnectorEntityRequest(input *DescribeConnectorEntityI
 // DescribeConnectorEntity API operation for Amazon Appflow.
 //
 // Provides details regarding the entity used with the connector, with a description
-// of the data model for each entity.
+// of the data model for each field in that entity.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10672,6 +10673,19 @@ type S3OutputFormatConfig struct {
 	// Amazon S3 bucket. You can name folders according to the flow frequency and
 	// date.
 	PrefixConfig *PrefixConfig `locationName:"prefixConfig" type:"structure"`
+
+	// If your file output format is Parquet, use this parameter to set whether
+	// Amazon AppFlow preserves the data types in your source data when it writes
+	// the output to Amazon S3.
+	//
+	//    * true: Amazon AppFlow preserves the data types when it writes to Amazon
+	//    S3. For example, an integer or 1 in your source data is still an integer
+	//    in your output.
+	//
+	//    * false: Amazon AppFlow converts all of the source data into strings when
+	//    it writes to Amazon S3. For example, an integer of 1 in your source data
+	//    becomes the string "1" in the output.
+	PreserveSourceDataTyping *bool `locationName:"preserveSourceDataTyping" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -10707,6 +10721,12 @@ func (s *S3OutputFormatConfig) SetFileType(v string) *S3OutputFormatConfig {
 // SetPrefixConfig sets the PrefixConfig field's value.
 func (s *S3OutputFormatConfig) SetPrefixConfig(v *PrefixConfig) *S3OutputFormatConfig {
 	s.PrefixConfig = v
+	return s
+}
+
+// SetPreserveSourceDataTyping sets the PreserveSourceDataTyping field's value.
+func (s *S3OutputFormatConfig) SetPreserveSourceDataTyping(v bool) *S3OutputFormatConfig {
+	s.PreserveSourceDataTyping = &v
 	return s
 }
 
@@ -11447,7 +11467,12 @@ type ScheduledTriggerProperties struct {
 	// the first flow run.
 	FirstExecutionFrom *time.Time `locationName:"firstExecutionFrom" type:"timestamp"`
 
-	// Specifies the scheduled end time for a schedule-triggered flow.
+	// Defines how many times a scheduled flow fails consecutively before Amazon
+	// AppFlow deactivates it.
+	FlowErrorDeactivationThreshold *int64 `locationName:"flowErrorDeactivationThreshold" min:"1" type:"integer"`
+
+	// The time at which the scheduled flow ends. The time is formatted as a timestamp
+	// that follows the ISO 8601 standard, such as 2022-04-27T13:00:00-07:00.
 	ScheduleEndTime *time.Time `locationName:"scheduleEndTime" type:"timestamp"`
 
 	// The scheduling expression that determines the rate at which the schedule
@@ -11460,11 +11485,18 @@ type ScheduledTriggerProperties struct {
 	// flow.
 	ScheduleOffset *int64 `locationName:"scheduleOffset" type:"long"`
 
-	// Specifies the scheduled start time for a schedule-triggered flow.
+	// The time at which the scheduled flow starts. The time is formatted as a timestamp
+	// that follows the ISO 8601 standard, such as 2022-04-26T13:00:00-07:00.
 	ScheduleStartTime *time.Time `locationName:"scheduleStartTime" type:"timestamp"`
 
-	// Specifies the time zone used when referring to the date and time of a scheduled-triggered
-	// flow, such as America/New_York.
+	// Specifies the time zone used when referring to the dates and times of a scheduled
+	// flow, such as America/New_York. This time zone is only a descriptive label.
+	// It doesn't affect how Amazon AppFlow interprets the timestamps that you specify
+	// to schedule the flow.
+	//
+	// If you want to schedule a flow by using times in a particular time zone,
+	// indicate the time zone as a UTC offset in your timestamps. For example, the
+	// UTC offsets for the America/New_York timezone are -04:00 EDT and -05:00 EST.
 	Timezone *string `locationName:"timezone" type:"string"`
 }
 
@@ -11489,6 +11521,9 @@ func (s ScheduledTriggerProperties) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ScheduledTriggerProperties) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ScheduledTriggerProperties"}
+	if s.FlowErrorDeactivationThreshold != nil && *s.FlowErrorDeactivationThreshold < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FlowErrorDeactivationThreshold", 1))
+	}
 	if s.ScheduleExpression == nil {
 		invalidParams.Add(request.NewErrParamRequired("ScheduleExpression"))
 	}
@@ -11508,6 +11543,12 @@ func (s *ScheduledTriggerProperties) SetDataPullMode(v string) *ScheduledTrigger
 // SetFirstExecutionFrom sets the FirstExecutionFrom field's value.
 func (s *ScheduledTriggerProperties) SetFirstExecutionFrom(v time.Time) *ScheduledTriggerProperties {
 	s.FirstExecutionFrom = &v
+	return s
+}
+
+// SetFlowErrorDeactivationThreshold sets the FlowErrorDeactivationThreshold field's value.
+func (s *ScheduledTriggerProperties) SetFlowErrorDeactivationThreshold(v int64) *ScheduledTriggerProperties {
+	s.FlowErrorDeactivationThreshold = &v
 	return s
 }
 
