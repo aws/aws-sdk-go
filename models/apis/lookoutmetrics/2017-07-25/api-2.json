@@ -815,7 +815,8 @@
     "CloudWatchConfig":{
       "type":"structure",
       "members":{
-        "RoleArn":{"shape":"Arn"}
+        "RoleArn":{"shape":"Arn"},
+        "BackTestConfiguration":{"shape":"BackTestConfiguration"}
       }
     },
     "ColumnName":{

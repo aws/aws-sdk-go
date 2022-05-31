@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Elastic Disaster Recovery Service.
 //    func myFunc(svc drsiface.DrsAPI) bool {
-//        // Make svc.CreateReplicationConfigurationTemplate request
+//        // Make svc.CreateExtendedSourceServer request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockDrsClient struct {
 //        drsiface.DrsAPI
 //    }
-//    func (m *mockDrsClient) CreateReplicationConfigurationTemplate(input *drs.CreateReplicationConfigurationTemplateInput) (*drs.CreateReplicationConfigurationTemplateOutput, error) {
+//    func (m *mockDrsClient) CreateExtendedSourceServer(input *drs.CreateExtendedSourceServerInput) (*drs.CreateExtendedSourceServerOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type DrsAPI interface {
+	CreateExtendedSourceServer(*drs.CreateExtendedSourceServerInput) (*drs.CreateExtendedSourceServerOutput, error)
+	CreateExtendedSourceServerWithContext(aws.Context, *drs.CreateExtendedSourceServerInput, ...request.Option) (*drs.CreateExtendedSourceServerOutput, error)
+	CreateExtendedSourceServerRequest(*drs.CreateExtendedSourceServerInput) (*request.Request, *drs.CreateExtendedSourceServerOutput)
+
 	CreateReplicationConfigurationTemplate(*drs.CreateReplicationConfigurationTemplateInput) (*drs.CreateReplicationConfigurationTemplateOutput, error)
 	CreateReplicationConfigurationTemplateWithContext(aws.Context, *drs.CreateReplicationConfigurationTemplateInput, ...request.Option) (*drs.CreateReplicationConfigurationTemplateOutput, error)
 	CreateReplicationConfigurationTemplateRequest(*drs.CreateReplicationConfigurationTemplateInput) (*request.Request, *drs.CreateReplicationConfigurationTemplateOutput)
@@ -145,6 +149,20 @@ type DrsAPI interface {
 	InitializeService(*drs.InitializeServiceInput) (*drs.InitializeServiceOutput, error)
 	InitializeServiceWithContext(aws.Context, *drs.InitializeServiceInput, ...request.Option) (*drs.InitializeServiceOutput, error)
 	InitializeServiceRequest(*drs.InitializeServiceInput) (*request.Request, *drs.InitializeServiceOutput)
+
+	ListExtensibleSourceServers(*drs.ListExtensibleSourceServersInput) (*drs.ListExtensibleSourceServersOutput, error)
+	ListExtensibleSourceServersWithContext(aws.Context, *drs.ListExtensibleSourceServersInput, ...request.Option) (*drs.ListExtensibleSourceServersOutput, error)
+	ListExtensibleSourceServersRequest(*drs.ListExtensibleSourceServersInput) (*request.Request, *drs.ListExtensibleSourceServersOutput)
+
+	ListExtensibleSourceServersPages(*drs.ListExtensibleSourceServersInput, func(*drs.ListExtensibleSourceServersOutput, bool) bool) error
+	ListExtensibleSourceServersPagesWithContext(aws.Context, *drs.ListExtensibleSourceServersInput, func(*drs.ListExtensibleSourceServersOutput, bool) bool, ...request.Option) error
+
+	ListStagingAccounts(*drs.ListStagingAccountsInput) (*drs.ListStagingAccountsOutput, error)
+	ListStagingAccountsWithContext(aws.Context, *drs.ListStagingAccountsInput, ...request.Option) (*drs.ListStagingAccountsOutput, error)
+	ListStagingAccountsRequest(*drs.ListStagingAccountsInput) (*request.Request, *drs.ListStagingAccountsOutput)
+
+	ListStagingAccountsPages(*drs.ListStagingAccountsInput, func(*drs.ListStagingAccountsOutput, bool) bool) error
+	ListStagingAccountsPagesWithContext(aws.Context, *drs.ListStagingAccountsInput, func(*drs.ListStagingAccountsOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*drs.ListTagsForResourceInput) (*drs.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *drs.ListTagsForResourceInput, ...request.Option) (*drs.ListTagsForResourceOutput, error)

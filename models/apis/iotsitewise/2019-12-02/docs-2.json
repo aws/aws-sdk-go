@@ -1187,18 +1187,23 @@
         "AssetModelCompositeModel$description": "<p>The description of the composite model.</p>",
         "AssetModelCompositeModelDefinition$description": "<p>The description of the composite model.</p>",
         "AssetModelSummary$description": "<p>The asset model description.</p>",
+        "AssetSummary$description": "<p>A description for the asset.</p>",
+        "AssociatedAssetsSummary$description": "<p>A description for the asset.</p>",
         "CreateAssetModelRequest$assetModelDescription": "<p>A description for the asset model.</p>",
+        "CreateAssetRequest$assetDescription": "<p>A description for the asset.</p>",
         "CreateDashboardRequest$dashboardDescription": "<p>A description for the dashboard.</p>",
         "CreatePortalRequest$portalDescription": "<p>A description for the portal.</p>",
         "CreateProjectRequest$projectDescription": "<p>A description for the project.</p>",
         "DashboardSummary$description": "<p>The dashboard's description.</p>",
         "DescribeAssetModelResponse$assetModelDescription": "<p>The asset model's description.</p>",
+        "DescribeAssetResponse$assetDescription": "<p>A description for the asset.</p>",
         "DescribeDashboardResponse$dashboardDescription": "<p>The dashboard's description.</p>",
         "DescribePortalResponse$portalDescription": "<p>The portal's description.</p>",
         "DescribeProjectResponse$projectDescription": "<p>The project's description.</p>",
         "PortalSummary$description": "<p>The portal's description.</p>",
         "ProjectSummary$description": "<p>The project's description.</p>",
         "UpdateAssetModelRequest$assetModelDescription": "<p>A description for the asset model.</p>",
+        "UpdateAssetRequest$assetDescription": "<p>A description for the asset.</p>",
         "UpdateDashboardRequest$dashboardDescription": "<p>A new description for the dashboard.</p>",
         "UpdatePortalRequest$portalDescription": "<p>A new description for the portal.</p>",
         "UpdateProjectRequest$projectDescription": "<p>A new description for the project.</p>"
@@ -2335,9 +2340,9 @@
     "StorageType": {
       "base": null,
       "refs": {
-        "DescribeStorageConfigurationResponse$storageType": "<p>The storage tier that you specified for your data. The <code>storageType</code> parameter can be one of the following values:</p> <ul> <li> <p> <code>SITEWISE_DEFAULT_STORAGE</code> – IoT SiteWise saves your data into the hot tier. The hot tier is a service-managed database.</p> </li> <li> <p> <code>MULTI_LAYER_STORAGE</code> – IoT SiteWise saves your data in both the cold tier and the cold tier. The cold tier is a customer-managed Amazon S3 bucket.</p> </li> </ul>",
-        "PutStorageConfigurationRequest$storageType": "<p>The storage tier that you specified for your data. The <code>storageType</code> parameter can be one of the following values:</p> <ul> <li> <p> <code>SITEWISE_DEFAULT_STORAGE</code> – IoT SiteWise saves your data into the hot tier. The hot tier is a service-managed database.</p> </li> <li> <p> <code>MULTI_LAYER_STORAGE</code> – IoT SiteWise saves your data in both the cold tier and the cold tier. The cold tier is a customer-managed Amazon S3 bucket.</p> </li> </ul>",
-        "PutStorageConfigurationResponse$storageType": "<p>The storage tier that you specified for your data. The <code>storageType</code> parameter can be one of the following values:</p> <ul> <li> <p> <code>SITEWISE_DEFAULT_STORAGE</code> – IoT SiteWise saves your data into the hot tier. The hot tier is a service-managed database.</p> </li> <li> <p> <code>MULTI_LAYER_STORAGE</code> – IoT SiteWise saves your data in both the cold tier and the cold tier. The cold tier is a customer-managed Amazon S3 bucket.</p> </li> </ul>"
+        "DescribeStorageConfigurationResponse$storageType": "<p>The storage tier that you specified for your data. The <code>storageType</code> parameter can be one of the following values:</p> <ul> <li> <p> <code>SITEWISE_DEFAULT_STORAGE</code> – IoT SiteWise saves your data into the hot tier. The hot tier is a service-managed database.</p> </li> <li> <p> <code>MULTI_LAYER_STORAGE</code> – IoT SiteWise saves your data in both the cold tier and the hot tier. The cold tier is a customer-managed Amazon S3 bucket.</p> </li> </ul>",
+        "PutStorageConfigurationRequest$storageType": "<p>The storage tier that you specified for your data. The <code>storageType</code> parameter can be one of the following values:</p> <ul> <li> <p> <code>SITEWISE_DEFAULT_STORAGE</code> – IoT SiteWise saves your data into the hot tier. The hot tier is a service-managed database.</p> </li> <li> <p> <code>MULTI_LAYER_STORAGE</code> – IoT SiteWise saves your data in both the cold tier and the hot tier. The cold tier is a customer-managed Amazon S3 bucket.</p> </li> </ul>",
+        "PutStorageConfigurationResponse$storageType": "<p>The storage tier that you specified for your data. The <code>storageType</code> parameter can be one of the following values:</p> <ul> <li> <p> <code>SITEWISE_DEFAULT_STORAGE</code> – IoT SiteWise saves your data into the hot tier. The hot tier is a service-managed database.</p> </li> <li> <p> <code>MULTI_LAYER_STORAGE</code> – IoT SiteWise saves your data in both the cold tier and the hot tier. The cold tier is a customer-managed Amazon S3 bucket.</p> </li> </ul>"
       }
     },
     "TagKey": {

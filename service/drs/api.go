@@ -12,6 +12,105 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opCreateExtendedSourceServer = "CreateExtendedSourceServer"
+
+// CreateExtendedSourceServerRequest generates a "aws/request.Request" representing the
+// client's request for the CreateExtendedSourceServer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateExtendedSourceServer for more information on using the CreateExtendedSourceServer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateExtendedSourceServerRequest method.
+//    req, resp := client.CreateExtendedSourceServerRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/CreateExtendedSourceServer
+func (c *Drs) CreateExtendedSourceServerRequest(input *CreateExtendedSourceServerInput) (req *request.Request, output *CreateExtendedSourceServerOutput) {
+	op := &request.Operation{
+		Name:       opCreateExtendedSourceServer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/CreateExtendedSourceServer",
+	}
+
+	if input == nil {
+		input = &CreateExtendedSourceServerInput{}
+	}
+
+	output = &CreateExtendedSourceServerOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateExtendedSourceServer API operation for Elastic Disaster Recovery Service.
+//
+// Create an extended source server in the target Account based on the source
+// server in staging account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Disaster Recovery Service's
+// API operation CreateExtendedSourceServer for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource for this operation was not found.
+//
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ServiceQuotaExceededException
+//   The request could not be completed because its exceeded the service quota.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by the AWS service.
+//
+//   * UninitializedAccountException
+//   The account performing the request has not been initialized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/CreateExtendedSourceServer
+func (c *Drs) CreateExtendedSourceServer(input *CreateExtendedSourceServerInput) (*CreateExtendedSourceServerOutput, error) {
+	req, out := c.CreateExtendedSourceServerRequest(input)
+	return out, req.Send()
+}
+
+// CreateExtendedSourceServerWithContext is the same as CreateExtendedSourceServer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateExtendedSourceServer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) CreateExtendedSourceServerWithContext(ctx aws.Context, input *CreateExtendedSourceServerInput, opts ...request.Option) (*CreateExtendedSourceServerOutput, error) {
+	req, out := c.CreateExtendedSourceServerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateReplicationConfigurationTemplate = "CreateReplicationConfigurationTemplate"
 
 // CreateReplicationConfigurationTemplateRequest generates a "aws/request.Request" representing the
@@ -77,7 +176,7 @@ func (c *Drs) CreateReplicationConfigurationTemplateRequest(input *CreateReplica
 //   The request was denied due to request throttling.
 //
 //   * AccessDeniedException
-//   TYou do not have sufficient access to perform this action.
+//   You do not have sufficient access to perform this action.
 //
 //   * ValidationException
 //   The input fails to satisfy the constraints specified by the AWS service.
@@ -270,7 +369,7 @@ func (c *Drs) DeleteRecoveryInstanceRequest(input *DeleteRecoveryInstanceInput) 
 //   The request was denied due to request throttling.
 //
 //   * AccessDeniedException
-//   TYou do not have sufficient access to perform this action.
+//   You do not have sufficient access to perform this action.
 //
 //   * UninitializedAccountException
 //   The account performing the request has not been initialized.
@@ -853,7 +952,7 @@ func (c *Drs) DescribeRecoveryInstancesRequest(input *DescribeRecoveryInstancesI
 //   The request was denied due to request throttling.
 //
 //   * AccessDeniedException
-//   TYou do not have sufficient access to perform this action.
+//   You do not have sufficient access to perform this action.
 //
 //   * UninitializedAccountException
 //   The account performing the request has not been initialized.
@@ -1000,7 +1099,7 @@ func (c *Drs) DescribeRecoverySnapshotsRequest(input *DescribeRecoverySnapshotsI
 //   The request was denied due to request throttling.
 //
 //   * AccessDeniedException
-//   TYou do not have sufficient access to perform this action.
+//   You do not have sufficient access to perform this action.
 //
 //   * ValidationException
 //   The input fails to satisfy the constraints specified by the AWS service.
@@ -1459,7 +1558,7 @@ func (c *Drs) DisconnectRecoveryInstanceRequest(input *DisconnectRecoveryInstanc
 //   The request was denied due to request throttling.
 //
 //   * AccessDeniedException
-//   TYou do not have sufficient access to perform this action.
+//   You do not have sufficient access to perform this action.
 //
 //   * UninitializedAccountException
 //   The account performing the request has not been initialized.
@@ -1833,6 +1932,9 @@ func (c *Drs) GetReplicationConfigurationRequest(input *GetReplicationConfigurat
 //   * ThrottlingException
 //   The request was denied due to request throttling.
 //
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
 //   * UninitializedAccountException
 //   The account performing the request has not been initialized.
 //
@@ -1921,7 +2023,7 @@ func (c *Drs) InitializeServiceRequest(input *InitializeServiceInput) (req *requ
 //   The request was denied due to request throttling.
 //
 //   * AccessDeniedException
-//   TYou do not have sufficient access to perform this action.
+//   You do not have sufficient access to perform this action.
 //
 //   * ValidationException
 //   The input fails to satisfy the constraints specified by the AWS service.
@@ -1946,6 +2048,309 @@ func (c *Drs) InitializeServiceWithContext(ctx aws.Context, input *InitializeSer
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListExtensibleSourceServers = "ListExtensibleSourceServers"
+
+// ListExtensibleSourceServersRequest generates a "aws/request.Request" representing the
+// client's request for the ListExtensibleSourceServers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListExtensibleSourceServers for more information on using the ListExtensibleSourceServers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListExtensibleSourceServersRequest method.
+//    req, resp := client.ListExtensibleSourceServersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/ListExtensibleSourceServers
+func (c *Drs) ListExtensibleSourceServersRequest(input *ListExtensibleSourceServersInput) (req *request.Request, output *ListExtensibleSourceServersOutput) {
+	op := &request.Operation{
+		Name:       opListExtensibleSourceServers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListExtensibleSourceServers",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListExtensibleSourceServersInput{}
+	}
+
+	output = &ListExtensibleSourceServersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListExtensibleSourceServers API operation for Elastic Disaster Recovery Service.
+//
+// Returns a list of source servers on a staging account that are extensible,
+// which means that: a. The source server is not already extended into this
+// Account. b. The source server on the Account we’re reading from is not
+// an extension of another source server.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Disaster Recovery Service's
+// API operation ListExtensibleSourceServers for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by the AWS service.
+//
+//   * UninitializedAccountException
+//   The account performing the request has not been initialized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/ListExtensibleSourceServers
+func (c *Drs) ListExtensibleSourceServers(input *ListExtensibleSourceServersInput) (*ListExtensibleSourceServersOutput, error) {
+	req, out := c.ListExtensibleSourceServersRequest(input)
+	return out, req.Send()
+}
+
+// ListExtensibleSourceServersWithContext is the same as ListExtensibleSourceServers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListExtensibleSourceServers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) ListExtensibleSourceServersWithContext(ctx aws.Context, input *ListExtensibleSourceServersInput, opts ...request.Option) (*ListExtensibleSourceServersOutput, error) {
+	req, out := c.ListExtensibleSourceServersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListExtensibleSourceServersPages iterates over the pages of a ListExtensibleSourceServers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListExtensibleSourceServers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListExtensibleSourceServers operation.
+//    pageNum := 0
+//    err := client.ListExtensibleSourceServersPages(params,
+//        func(page *drs.ListExtensibleSourceServersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Drs) ListExtensibleSourceServersPages(input *ListExtensibleSourceServersInput, fn func(*ListExtensibleSourceServersOutput, bool) bool) error {
+	return c.ListExtensibleSourceServersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListExtensibleSourceServersPagesWithContext same as ListExtensibleSourceServersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) ListExtensibleSourceServersPagesWithContext(ctx aws.Context, input *ListExtensibleSourceServersInput, fn func(*ListExtensibleSourceServersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListExtensibleSourceServersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListExtensibleSourceServersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListExtensibleSourceServersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListStagingAccounts = "ListStagingAccounts"
+
+// ListStagingAccountsRequest generates a "aws/request.Request" representing the
+// client's request for the ListStagingAccounts operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListStagingAccounts for more information on using the ListStagingAccounts
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListStagingAccountsRequest method.
+//    req, resp := client.ListStagingAccountsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/ListStagingAccounts
+func (c *Drs) ListStagingAccountsRequest(input *ListStagingAccountsInput) (req *request.Request, output *ListStagingAccountsOutput) {
+	op := &request.Operation{
+		Name:       opListStagingAccounts,
+		HTTPMethod: "GET",
+		HTTPPath:   "/ListStagingAccounts",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListStagingAccountsInput{}
+	}
+
+	output = &ListStagingAccountsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListStagingAccounts API operation for Elastic Disaster Recovery Service.
+//
+// Returns an array of staging accounts for existing extended source servers.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Disaster Recovery Service's
+// API operation ListStagingAccounts for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by the AWS service.
+//
+//   * UninitializedAccountException
+//   The account performing the request has not been initialized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/ListStagingAccounts
+func (c *Drs) ListStagingAccounts(input *ListStagingAccountsInput) (*ListStagingAccountsOutput, error) {
+	req, out := c.ListStagingAccountsRequest(input)
+	return out, req.Send()
+}
+
+// ListStagingAccountsWithContext is the same as ListStagingAccounts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListStagingAccounts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) ListStagingAccountsWithContext(ctx aws.Context, input *ListStagingAccountsInput, opts ...request.Option) (*ListStagingAccountsOutput, error) {
+	req, out := c.ListStagingAccountsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListStagingAccountsPages iterates over the pages of a ListStagingAccounts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListStagingAccounts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListStagingAccounts operation.
+//    pageNum := 0
+//    err := client.ListStagingAccountsPages(params,
+//        func(page *drs.ListStagingAccountsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Drs) ListStagingAccountsPages(input *ListStagingAccountsInput, fn func(*ListStagingAccountsOutput, bool) bool) error {
+	return c.ListStagingAccountsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListStagingAccountsPagesWithContext same as ListStagingAccountsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) ListStagingAccountsPagesWithContext(ctx aws.Context, input *ListStagingAccountsInput, fn func(*ListStagingAccountsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListStagingAccountsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListStagingAccountsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListStagingAccountsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -2013,7 +2418,7 @@ func (c *Drs) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 //   The request was denied due to request throttling.
 //
 //   * AccessDeniedException
-//   TYou do not have sufficient access to perform this action.
+//   You do not have sufficient access to perform this action.
 //
 //   * ValidationException
 //   The input fails to satisfy the constraints specified by the AWS service.
@@ -2488,7 +2893,7 @@ func (c *Drs) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 //   The request was denied due to request throttling.
 //
 //   * AccessDeniedException
-//   TYou do not have sufficient access to perform this action.
+//   You do not have sufficient access to perform this action.
 //
 //   * ValidationException
 //   The input fails to satisfy the constraints specified by the AWS service.
@@ -2677,7 +3082,7 @@ func (c *Drs) UntagResourceRequest(input *UntagResourceInput) (req *request.Requ
 //   The request was denied due to request throttling.
 //
 //   * AccessDeniedException
-//   TYou do not have sufficient access to perform this action.
+//   You do not have sufficient access to perform this action.
 //
 //   * ValidationException
 //   The input fails to satisfy the constraints specified by the AWS service.
@@ -2771,7 +3176,7 @@ func (c *Drs) UpdateFailbackReplicationConfigurationRequest(input *UpdateFailbac
 //   The request was denied due to request throttling.
 //
 //   * AccessDeniedException
-//   TYou do not have sufficient access to perform this action.
+//   You do not have sufficient access to perform this action.
 //
 //   * UninitializedAccountException
 //   The account performing the request has not been initialized.
@@ -2963,7 +3368,7 @@ func (c *Drs) UpdateReplicationConfigurationRequest(input *UpdateReplicationConf
 //   The request was denied due to request throttling.
 //
 //   * AccessDeniedException
-//   TYou do not have sufficient access to perform this action.
+//   You do not have sufficient access to perform this action.
 //
 //   * ValidationException
 //   The input fails to satisfy the constraints specified by the AWS service.
@@ -3058,7 +3463,7 @@ func (c *Drs) UpdateReplicationConfigurationTemplateRequest(input *UpdateReplica
 //   The request was denied due to request throttling.
 //
 //   * AccessDeniedException
-//   TYou do not have sufficient access to perform this action.
+//   You do not have sufficient access to perform this action.
 //
 //   * ValidationException
 //   The input fails to satisfy the constraints specified by the AWS service.
@@ -3088,7 +3493,7 @@ func (c *Drs) UpdateReplicationConfigurationTemplateWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
-// TYou do not have sufficient access to perform this action.
+// You do not have sufficient access to perform this action.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3152,6 +3557,38 @@ func (s *AccessDeniedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// AWS account.
+type Account struct {
+	_ struct{} `type:"structure"`
+
+	// Account ID of AWS account.
+	AccountID *string `locationName:"accountID" min:"12" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Account) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Account) GoString() string {
+	return s.String()
+}
+
+// SetAccountID sets the AccountID field's value.
+func (s *Account) SetAccountID(v string) *Account {
+	s.AccountID = &v
+	return s
 }
 
 // Information about a server's CPU.
@@ -3266,6 +3703,169 @@ func (s *ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Properties of a conversion job
+type ConversionProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of when the snapshot being converted was taken
+	DataTimestamp *string `locationName:"dataTimestamp" type:"string"`
+
+	// Whether the volume being converted uses UEFI or not
+	ForceUefi *bool `locationName:"forceUefi" type:"boolean"`
+
+	// The root volume name of a conversion job
+	RootVolumeName *string `locationName:"rootVolumeName" type:"string"`
+
+	// A mapping between the volumes being converted and the converted snapshot
+	// ids
+	VolumeToConversionMap map[string]map[string]*string `locationName:"volumeToConversionMap" type:"map"`
+
+	// A mapping between the volumes and their sizes
+	VolumeToVolumeSize map[string]*int64 `locationName:"volumeToVolumeSize" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConversionProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConversionProperties) GoString() string {
+	return s.String()
+}
+
+// SetDataTimestamp sets the DataTimestamp field's value.
+func (s *ConversionProperties) SetDataTimestamp(v string) *ConversionProperties {
+	s.DataTimestamp = &v
+	return s
+}
+
+// SetForceUefi sets the ForceUefi field's value.
+func (s *ConversionProperties) SetForceUefi(v bool) *ConversionProperties {
+	s.ForceUefi = &v
+	return s
+}
+
+// SetRootVolumeName sets the RootVolumeName field's value.
+func (s *ConversionProperties) SetRootVolumeName(v string) *ConversionProperties {
+	s.RootVolumeName = &v
+	return s
+}
+
+// SetVolumeToConversionMap sets the VolumeToConversionMap field's value.
+func (s *ConversionProperties) SetVolumeToConversionMap(v map[string]map[string]*string) *ConversionProperties {
+	s.VolumeToConversionMap = v
+	return s
+}
+
+// SetVolumeToVolumeSize sets the VolumeToVolumeSize field's value.
+func (s *ConversionProperties) SetVolumeToVolumeSize(v map[string]*int64) *ConversionProperties {
+	s.VolumeToVolumeSize = v
+	return s
+}
+
+type CreateExtendedSourceServerInput struct {
+	_ struct{} `type:"structure"`
+
+	// This defines the ARN of the source server in staging Account based on which
+	// you want to create an extended source server.
+	//
+	// SourceServerArn is a required field
+	SourceServerArn *string `locationName:"sourceServerArn" min:"20" type:"string" required:"true"`
+
+	// A list of tags associated with the extended source server.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateExtendedSourceServerInput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtendedSourceServerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtendedSourceServerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateExtendedSourceServerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateExtendedSourceServerInput"}
+	if s.SourceServerArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceServerArn"))
+	}
+	if s.SourceServerArn != nil && len(*s.SourceServerArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceServerArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceServerArn sets the SourceServerArn field's value.
+func (s *CreateExtendedSourceServerInput) SetSourceServerArn(v string) *CreateExtendedSourceServerInput {
+	s.SourceServerArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateExtendedSourceServerInput) SetTags(v map[string]*string) *CreateExtendedSourceServerInput {
+	s.Tags = v
+	return s
+}
+
+type CreateExtendedSourceServerOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Created extended source server.
+	SourceServer *SourceServer `locationName:"sourceServer" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtendedSourceServerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExtendedSourceServerOutput) GoString() string {
+	return s.String()
+}
+
+// SetSourceServer sets the SourceServer field's value.
+func (s *CreateExtendedSourceServerOutput) SetSourceServer(v *SourceServer) *CreateExtendedSourceServerOutput {
+	s.SourceServer = v
+	return s
 }
 
 type CreateReplicationConfigurationTemplateInput struct {
@@ -4371,9 +4971,7 @@ type DescribeJobsInput struct {
 	_ struct{} `type:"structure"`
 
 	// A set of filters by which to return Jobs.
-	//
-	// Filters is a required field
-	Filters *DescribeJobsRequestFilters `locationName:"filters" type:"structure" required:"true"`
+	Filters *DescribeJobsRequestFilters `locationName:"filters" type:"structure"`
 
 	// Maximum number of Jobs to retrieve.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
@@ -4403,9 +5001,6 @@ func (s DescribeJobsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeJobsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeJobsInput"}
-	if s.Filters == nil {
-		invalidParams.Add(request.NewErrParamRequired("Filters"))
-	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -4549,9 +5144,7 @@ type DescribeRecoveryInstancesInput struct {
 	_ struct{} `type:"structure"`
 
 	// A set of filters by which to return Recovery Instances.
-	//
-	// Filters is a required field
-	Filters *DescribeRecoveryInstancesRequestFilters `locationName:"filters" type:"structure" required:"true"`
+	Filters *DescribeRecoveryInstancesRequestFilters `locationName:"filters" type:"structure"`
 
 	// Maximum number of Recovery Instances to retrieve.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
@@ -4581,9 +5174,6 @@ func (s DescribeRecoveryInstancesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeRecoveryInstancesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeRecoveryInstancesInput"}
-	if s.Filters == nil {
-		invalidParams.Add(request.NewErrParamRequired("Filters"))
-	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -4896,9 +5486,7 @@ type DescribeReplicationConfigurationTemplatesInput struct {
 
 	// The IDs of the Replication Configuration Templates to retrieve. An empty
 	// list means all Replication Configuration Templates.
-	//
-	// ReplicationConfigurationTemplateIDs is a required field
-	ReplicationConfigurationTemplateIDs []*string `locationName:"replicationConfigurationTemplateIDs" type:"list" required:"true"`
+	ReplicationConfigurationTemplateIDs []*string `locationName:"replicationConfigurationTemplateIDs" type:"list"`
 }
 
 // String returns the string representation.
@@ -4924,9 +5512,6 @@ func (s *DescribeReplicationConfigurationTemplatesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeReplicationConfigurationTemplatesInput"}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
-	}
-	if s.ReplicationConfigurationTemplateIDs == nil {
-		invalidParams.Add(request.NewErrParamRequired("ReplicationConfigurationTemplateIDs"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4997,9 +5582,7 @@ type DescribeSourceServersInput struct {
 	_ struct{} `type:"structure"`
 
 	// A set of filters by which to return Source Servers.
-	//
-	// Filters is a required field
-	Filters *DescribeSourceServersRequestFilters `locationName:"filters" type:"structure" required:"true"`
+	Filters *DescribeSourceServersRequestFilters `locationName:"filters" type:"structure"`
 
 	// Maximum number of Source Servers to retrieve.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
@@ -5029,9 +5612,6 @@ func (s DescribeSourceServersInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeSourceServersInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeSourceServersInput"}
-	if s.Filters == nil {
-		invalidParams.Add(request.NewErrParamRequired("Filters"))
-	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -5111,6 +5691,10 @@ type DescribeSourceServersRequestFilters struct {
 	// An array of Source Servers IDs that should be returned. An empty array means
 	// all Source Servers.
 	SourceServerIDs []*string `locationName:"sourceServerIDs" type:"list"`
+
+	// An array of staging account IDs that extended source servers belong to. An
+	// empty array means all source servers will be shown.
+	StagingAccountIDs []*string `locationName:"stagingAccountIDs" type:"list"`
 }
 
 // String returns the string representation.
@@ -5140,6 +5724,12 @@ func (s *DescribeSourceServersRequestFilters) SetHardwareId(v string) *DescribeS
 // SetSourceServerIDs sets the SourceServerIDs field's value.
 func (s *DescribeSourceServersRequestFilters) SetSourceServerIDs(v []*string) *DescribeSourceServersRequestFilters {
 	s.SourceServerIDs = v
+	return s
+}
+
+// SetStagingAccountIDs sets the StagingAccountIDs field's value.
+func (s *DescribeSourceServersRequestFilters) SetStagingAccountIDs(v []*string) *DescribeSourceServersRequestFilters {
+	s.StagingAccountIDs = v
 	return s
 }
 
@@ -5287,6 +5877,9 @@ type DisconnectSourceServerOutput struct {
 	// The ID of the Source Server.
 	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string"`
 
+	// The staging area of the source server.
+	StagingArea *StagingArea `locationName:"stagingArea" type:"structure"`
+
 	// The tags associated with the Source Server.
 	//
 	// Tags is a sensitive parameter and its value will be
@@ -5352,6 +5945,12 @@ func (s *DisconnectSourceServerOutput) SetSourceProperties(v *SourceProperties) 
 // SetSourceServerID sets the SourceServerID field's value.
 func (s *DisconnectSourceServerOutput) SetSourceServerID(v string) *DisconnectSourceServerOutput {
 	s.SourceServerID = &v
+	return s
+}
+
+// SetStagingArea sets the StagingArea field's value.
+func (s *DisconnectSourceServerOutput) SetStagingArea(v *StagingArea) *DisconnectSourceServerOutput {
+	s.StagingArea = v
 	return s
 }
 
@@ -6218,6 +6817,9 @@ func (s *JobLog) SetLogDateTime(v string) *JobLog {
 type JobLogEventData struct {
 	_ struct{} `type:"structure"`
 
+	// Properties of a conversion job
+	ConversionProperties *ConversionProperties `locationName:"conversionProperties" type:"structure"`
+
 	// The ID of a conversion server.
 	ConversionServerID *string `locationName:"conversionServerID" type:"string"`
 
@@ -6247,6 +6849,12 @@ func (s JobLogEventData) String() string {
 // value will be replaced with "sensitive".
 func (s JobLogEventData) GoString() string {
 	return s.String()
+}
+
+// SetConversionProperties sets the ConversionProperties field's value.
+func (s *JobLogEventData) SetConversionProperties(v *ConversionProperties) *JobLogEventData {
+	s.ConversionProperties = v
+	return s
 }
 
 // SetConversionServerID sets the ConversionServerID field's value.
@@ -6455,6 +7063,209 @@ func (s *LifeCycleLastLaunchInitiated) SetJobID(v string) *LifeCycleLastLaunchIn
 // SetType sets the Type field's value.
 func (s *LifeCycleLastLaunchInitiated) SetType(v string) *LifeCycleLastLaunchInitiated {
 	s.Type = &v
+	return s
+}
+
+type ListExtensibleSourceServersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of extensible source servers to retrieve.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token of the next extensible source server to retrieve.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The Id of the staging Account to retrieve extensible source servers from.
+	//
+	// StagingAccountID is a required field
+	StagingAccountID *string `locationName:"stagingAccountID" min:"12" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensibleSourceServersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensibleSourceServersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListExtensibleSourceServersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListExtensibleSourceServersInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.StagingAccountID == nil {
+		invalidParams.Add(request.NewErrParamRequired("StagingAccountID"))
+	}
+	if s.StagingAccountID != nil && len(*s.StagingAccountID) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("StagingAccountID", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListExtensibleSourceServersInput) SetMaxResults(v int64) *ListExtensibleSourceServersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExtensibleSourceServersInput) SetNextToken(v string) *ListExtensibleSourceServersInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStagingAccountID sets the StagingAccountID field's value.
+func (s *ListExtensibleSourceServersInput) SetStagingAccountID(v string) *ListExtensibleSourceServersInput {
+	s.StagingAccountID = &v
+	return s
+}
+
+type ListExtensibleSourceServersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of source servers on a staging Account that are extensible.
+	Items []*StagingSourceServer `locationName:"items" type:"list"`
+
+	// The token of the next extensible source server to retrieve.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensibleSourceServersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExtensibleSourceServersOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListExtensibleSourceServersOutput) SetItems(v []*StagingSourceServer) *ListExtensibleSourceServersOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExtensibleSourceServersOutput) SetNextToken(v string) *ListExtensibleSourceServersOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListStagingAccountsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of staging Accounts to retrieve.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token of the next staging Account to retrieve.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStagingAccountsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStagingAccountsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListStagingAccountsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListStagingAccountsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListStagingAccountsInput) SetMaxResults(v int64) *ListStagingAccountsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStagingAccountsInput) SetNextToken(v string) *ListStagingAccountsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListStagingAccountsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of staging AWS Accounts.
+	Accounts []*Account `locationName:"accounts" type:"list"`
+
+	// The token of the next staging Account to retrieve.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStagingAccountsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStagingAccountsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccounts sets the Accounts field's value.
+func (s *ListStagingAccountsOutput) SetAccounts(v []*Account) *ListStagingAccountsOutput {
+	s.Accounts = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStagingAccountsOutput) SetNextToken(v string) *ListStagingAccountsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -7892,6 +8703,9 @@ type RetryDataReplicationOutput struct {
 	// The ID of the Source Server.
 	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string"`
 
+	// The staging area of the source server.
+	StagingArea *StagingArea `locationName:"stagingArea" type:"structure"`
+
 	// The tags associated with the Source Server.
 	//
 	// Tags is a sensitive parameter and its value will be
@@ -7957,6 +8771,12 @@ func (s *RetryDataReplicationOutput) SetSourceProperties(v *SourceProperties) *R
 // SetSourceServerID sets the SourceServerID field's value.
 func (s *RetryDataReplicationOutput) SetSourceServerID(v string) *RetryDataReplicationOutput {
 	s.SourceServerID = &v
+	return s
+}
+
+// SetStagingArea sets the StagingArea field's value.
+func (s *RetryDataReplicationOutput) SetStagingArea(v *StagingArea) *RetryDataReplicationOutput {
+	s.StagingArea = v
 	return s
 }
 
@@ -8164,6 +8984,9 @@ type SourceServer struct {
 	// The ID of the Source Server.
 	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string"`
 
+	// The staging area of the source server.
+	StagingArea *StagingArea `locationName:"stagingArea" type:"structure"`
+
 	// The tags associated with the Source Server.
 	//
 	// Tags is a sensitive parameter and its value will be
@@ -8232,8 +9055,135 @@ func (s *SourceServer) SetSourceServerID(v string) *SourceServer {
 	return s
 }
 
+// SetStagingArea sets the StagingArea field's value.
+func (s *SourceServer) SetStagingArea(v *StagingArea) *SourceServer {
+	s.StagingArea = v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *SourceServer) SetTags(v map[string]*string) *SourceServer {
+	s.Tags = v
+	return s
+}
+
+// Staging information related to source server.
+type StagingArea struct {
+	_ struct{} `type:"structure"`
+
+	// Shows an error message that occurred when DRS tried to access the staging
+	// source server. In this case StagingArea$status will have value EXTENSION_ERROR
+	ErrorMessage *string `locationName:"errorMessage" type:"string"`
+
+	// Account ID of the account to which source server belongs. If this source
+	// server is extended - shows Account ID of staging source server.
+	StagingAccountID *string `locationName:"stagingAccountID" min:"12" type:"string"`
+
+	// Arn of the staging source server if this source server is extended
+	StagingSourceServerArn *string `locationName:"stagingSourceServerArn" min:"20" type:"string"`
+
+	// Status of Source server extension. Possible values: (a) NOT_EXTENDED - This
+	// is a source server that is replicating in the current account. (b) EXTENDED
+	// - Source server is extended from a staging source server. In this case, the
+	// value of stagingSourceServerArn is pointing to the Arn of the source server
+	// in the staging account. (c) EXTENSION_ERROR - Some issue occurred when accessing
+	// staging source server. In this case, errorMessage field will contain an error
+	// message that explains what happened.
+	Status *string `locationName:"status" type:"string" enum:"ExtensionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StagingArea) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StagingArea) GoString() string {
+	return s.String()
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *StagingArea) SetErrorMessage(v string) *StagingArea {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetStagingAccountID sets the StagingAccountID field's value.
+func (s *StagingArea) SetStagingAccountID(v string) *StagingArea {
+	s.StagingAccountID = &v
+	return s
+}
+
+// SetStagingSourceServerArn sets the StagingSourceServerArn field's value.
+func (s *StagingArea) SetStagingSourceServerArn(v string) *StagingArea {
+	s.StagingSourceServerArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StagingArea) SetStatus(v string) *StagingArea {
+	s.Status = &v
+	return s
+}
+
+// Source server in staging account that extended source server connected to.
+type StagingSourceServer struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the source server.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
+	// Hostname of staging source server.
+	Hostname *string `locationName:"hostname" type:"string"`
+
+	// A list of tags associated with the staging source server.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StagingSourceServer's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StagingSourceServer) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StagingSourceServer) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *StagingSourceServer) SetArn(v string) *StagingSourceServer {
+	s.Arn = &v
+	return s
+}
+
+// SetHostname sets the Hostname field's value.
+func (s *StagingSourceServer) SetHostname(v string) *StagingSourceServer {
+	s.Hostname = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StagingSourceServer) SetTags(v map[string]*string) *StagingSourceServer {
 	s.Tags = v
 	return s
 }
@@ -10384,6 +11334,26 @@ func EC2InstanceState_Values() []string {
 }
 
 const (
+	// ExtensionStatusExtended is a ExtensionStatus enum value
+	ExtensionStatusExtended = "EXTENDED"
+
+	// ExtensionStatusExtensionError is a ExtensionStatus enum value
+	ExtensionStatusExtensionError = "EXTENSION_ERROR"
+
+	// ExtensionStatusNotExtended is a ExtensionStatus enum value
+	ExtensionStatusNotExtended = "NOT_EXTENDED"
+)
+
+// ExtensionStatus_Values returns all elements of the ExtensionStatus enum
+func ExtensionStatus_Values() []string {
+	return []string{
+		ExtensionStatusExtended,
+		ExtensionStatusExtensionError,
+		ExtensionStatusNotExtended,
+	}
+}
+
+const (
 	// FailbackReplicationErrorAgentNotSeen is a FailbackReplicationError enum value
 	FailbackReplicationErrorAgentNotSeen = "AGENT_NOT_SEEN"
 
@@ -10470,6 +11440,9 @@ const (
 
 	// InitiatedByTerminateRecoveryInstances is a InitiatedBy enum value
 	InitiatedByTerminateRecoveryInstances = "TERMINATE_RECOVERY_INSTANCES"
+
+	// InitiatedByTargetAccount is a InitiatedBy enum value
+	InitiatedByTargetAccount = "TARGET_ACCOUNT"
 )
 
 // InitiatedBy_Values returns all elements of the InitiatedBy enum
@@ -10480,6 +11453,7 @@ func InitiatedBy_Values() []string {
 		InitiatedByFailback,
 		InitiatedByDiagnostic,
 		InitiatedByTerminateRecoveryInstances,
+		InitiatedByTargetAccount,
 	}
 }
 
@@ -10585,6 +11559,9 @@ const (
 
 	// JobTypeTerminate is a JobType enum value
 	JobTypeTerminate = "TERMINATE"
+
+	// JobTypeCreateConvertedSnapshot is a JobType enum value
+	JobTypeCreateConvertedSnapshot = "CREATE_CONVERTED_SNAPSHOT"
 )
 
 // JobType_Values returns all elements of the JobType enum
@@ -10592,6 +11569,7 @@ func JobType_Values() []string {
 	return []string{
 		JobTypeLaunch,
 		JobTypeTerminate,
+		JobTypeCreateConvertedSnapshot,
 	}
 }
 

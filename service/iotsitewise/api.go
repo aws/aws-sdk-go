@@ -9531,6 +9531,9 @@ type AssetSummary struct {
 	// CreationDate is a required field
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" required:"true"`
 
+	// A description for the asset.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
 	// A list of asset hierarchies that each contain a hierarchyId. A hierarchy
 	// specifies allowed parent/child asset relationships.
 	//
@@ -9591,6 +9594,12 @@ func (s *AssetSummary) SetAssetModelId(v string) *AssetSummary {
 // SetCreationDate sets the CreationDate field's value.
 func (s *AssetSummary) SetCreationDate(v time.Time) *AssetSummary {
 	s.CreationDate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AssetSummary) SetDescription(v string) *AssetSummary {
+	s.Description = &v
 	return s
 }
 
@@ -9887,6 +9896,9 @@ type AssociatedAssetsSummary struct {
 	// CreationDate is a required field
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" required:"true"`
 
+	// A description for the asset.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
 	// A list of asset hierarchies that each contain a hierarchyId. A hierarchy
 	// specifies allowed parent/child asset relationships.
 	//
@@ -9947,6 +9959,12 @@ func (s *AssociatedAssetsSummary) SetAssetModelId(v string) *AssociatedAssetsSum
 // SetCreationDate sets the CreationDate field's value.
 func (s *AssociatedAssetsSummary) SetCreationDate(v time.Time) *AssociatedAssetsSummary {
 	s.CreationDate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AssociatedAssetsSummary) SetDescription(v string) *AssociatedAssetsSummary {
+	s.Description = &v
 	return s
 }
 
@@ -12332,6 +12350,9 @@ func (s *CreateAccessPolicyOutput) SetAccessPolicyId(v string) *CreateAccessPoli
 type CreateAssetInput struct {
 	_ struct{} `type:"structure"`
 
+	// A description for the asset.
+	AssetDescription *string `locationName:"assetDescription" min:"1" type:"string"`
+
 	// The ID of the asset model from which to create the asset.
 	//
 	// AssetModelId is a required field
@@ -12374,6 +12395,9 @@ func (s CreateAssetInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateAssetInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateAssetInput"}
+	if s.AssetDescription != nil && len(*s.AssetDescription) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetDescription", 1))
+	}
 	if s.AssetModelId == nil {
 		invalidParams.Add(request.NewErrParamRequired("AssetModelId"))
 	}
@@ -12397,6 +12421,12 @@ func (s *CreateAssetInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAssetDescription sets the AssetDescription field's value.
+func (s *CreateAssetInput) SetAssetDescription(v string) *CreateAssetInput {
+	s.AssetDescription = &v
+	return s
 }
 
 // SetAssetModelId sets the AssetModelId field's value.
@@ -14718,6 +14748,9 @@ type DescribeAssetOutput struct {
 	// AssetCreationDate is a required field
 	AssetCreationDate *time.Time `locationName:"assetCreationDate" type:"timestamp" required:"true"`
 
+	// A description for the asset.
+	AssetDescription *string `locationName:"assetDescription" min:"1" type:"string"`
+
 	// A list of asset hierarchies that each contain a hierarchyId. A hierarchy
 	// specifies allowed parent/child asset relationships.
 	//
@@ -14791,6 +14824,12 @@ func (s *DescribeAssetOutput) SetAssetCompositeModels(v []*AssetCompositeModel) 
 // SetAssetCreationDate sets the AssetCreationDate field's value.
 func (s *DescribeAssetOutput) SetAssetCreationDate(v time.Time) *DescribeAssetOutput {
 	s.AssetCreationDate = &v
+	return s
+}
+
+// SetAssetDescription sets the AssetDescription field's value.
+func (s *DescribeAssetOutput) SetAssetDescription(v string) *DescribeAssetOutput {
+	s.AssetDescription = &v
 	return s
 }
 
@@ -16018,8 +16057,7 @@ type DescribeStorageConfigurationOutput struct {
 	//    tier. The hot tier is a service-managed database.
 	//
 	//    * MULTI_LAYER_STORAGE – IoT SiteWise saves your data in both the cold
-	//    tier and the cold tier. The cold tier is a customer-managed Amazon S3
-	//    bucket.
+	//    tier and the hot tier. The cold tier is a customer-managed Amazon S3 bucket.
 	//
 	// StorageType is a required field
 	StorageType *string `locationName:"storageType" type:"string" required:"true" enum:"StorageType"`
@@ -21337,8 +21375,7 @@ type PutStorageConfigurationInput struct {
 	//    tier. The hot tier is a service-managed database.
 	//
 	//    * MULTI_LAYER_STORAGE – IoT SiteWise saves your data in both the cold
-	//    tier and the cold tier. The cold tier is a customer-managed Amazon S3
-	//    bucket.
+	//    tier and the hot tier. The cold tier is a customer-managed Amazon S3 bucket.
 	//
 	// StorageType is a required field
 	StorageType *string `locationName:"storageType" type:"string" required:"true" enum:"StorageType"`
@@ -21446,8 +21483,7 @@ type PutStorageConfigurationOutput struct {
 	//    tier. The hot tier is a service-managed database.
 	//
 	//    * MULTI_LAYER_STORAGE – IoT SiteWise saves your data in both the cold
-	//    tier and the cold tier. The cold tier is a customer-managed Amazon S3
-	//    bucket.
+	//    tier and the hot tier. The cold tier is a customer-managed Amazon S3 bucket.
 	//
 	// StorageType is a required field
 	StorageType *string `locationName:"storageType" type:"string" required:"true" enum:"StorageType"`
@@ -22793,6 +22829,9 @@ func (s UpdateAccessPolicyOutput) GoString() string {
 type UpdateAssetInput struct {
 	_ struct{} `type:"structure"`
 
+	// A description for the asset.
+	AssetDescription *string `locationName:"assetDescription" min:"1" type:"string"`
+
 	// The ID of the asset to update.
 	//
 	// AssetId is a required field
@@ -22830,6 +22869,9 @@ func (s UpdateAssetInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateAssetInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateAssetInput"}
+	if s.AssetDescription != nil && len(*s.AssetDescription) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetDescription", 1))
+	}
 	if s.AssetId == nil {
 		invalidParams.Add(request.NewErrParamRequired("AssetId"))
 	}
@@ -22850,6 +22892,12 @@ func (s *UpdateAssetInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAssetDescription sets the AssetDescription field's value.
+func (s *UpdateAssetInput) SetAssetDescription(v string) *UpdateAssetInput {
+	s.AssetDescription = &v
+	return s
 }
 
 // SetAssetId sets the AssetId field's value.

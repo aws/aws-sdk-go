@@ -339,7 +339,8 @@
     "BackTestConfiguration": {
       "base": "<p>Settings for backtest mode.</p>",
       "refs": {
-        "AthenaSourceConfig$BackTestConfiguration": "<p>Settings for backtest mode.</p>"
+        "AthenaSourceConfig$BackTestConfiguration": "<p>Settings for backtest mode.</p>",
+        "CloudWatchConfig$BackTestConfiguration": "<p>Settings for backtest mode.</p>"
       }
     },
     "BinaryAttributeValue": {

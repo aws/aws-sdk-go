@@ -2,6 +2,7 @@
   "version": "2.0",
   "service": "<p>AWS Elastic Disaster Recovery Service.</p>",
   "operations": {
+    "CreateExtendedSourceServer": "<p>Create an extended source server in the target Account based on the source server in staging account.</p>",
     "CreateReplicationConfigurationTemplate": "<p>Creates a new ReplicationConfigurationTemplate.</p>",
     "DeleteJob": "<p>Deletes a single Job by ID.</p>",
     "DeleteRecoveryInstance": "<p>Deletes a single Recovery Instance by ID. This deletes the Recovery Instance resource from Elastic Disaster Recovery. The Recovery Instance must be disconnected first in order to delete it.</p>",
@@ -19,6 +20,8 @@
     "GetLaunchConfiguration": "<p>Gets a LaunchConfiguration, filtered by Source Server IDs.</p>",
     "GetReplicationConfiguration": "<p>Gets a ReplicationConfiguration, filtered by Source Server ID.</p>",
     "InitializeService": "<p>Initialize Elastic Disaster Recovery.</p>",
+    "ListExtensibleSourceServers": "<p>Returns a list of source servers on a staging account that are extensible, which means that: a. The source server is not already extended into this Account. b. The source server on the Account we’re reading from is not an extension of another source server. </p>",
+    "ListStagingAccounts": "<p>Returns an array of staging accounts for existing extended source servers.</p>",
     "ListTagsForResource": "<p>List all tags for your Elastic Disaster Recovery resources.</p>",
     "RetryDataReplication": "<p>Causes the data replication initiation sequence to begin immediately upon next Handshake for the specified Source Server ID, regardless of when the previous initiation started. This command will work only if the Source Server is stalled or is in a DISCONNECTED or STOPPED state.</p>",
     "StartFailbackLaunch": "<p>Initiates a Job for launching the machine that is being failed back to from the specified Recovery Instance. This will run conversion on the failback client and will reboot your machine, thus completing the failback process.</p>",
@@ -44,6 +47,7 @@
         "ReplicationConfigurationTemplate$arn": "<p>The Replication Configuration Template ARN.</p>",
         "ReplicationConfigurationTemplate$ebsEncryptionKeyArn": "<p>The ARN of the EBS encryption key to be used during replication.</p>",
         "SourceServer$arn": "<p>The ARN of the Source Server.</p>",
+        "StagingArea$stagingSourceServerArn": "<p>Arn of the staging source server if this source server is extended</p>",
         "TagResourceRequest$resourceArn": "<p>ARN of the resource for which tags are to be added or updated.</p>",
         "UntagResourceRequest$resourceArn": "<p>ARN of the resource for which tags are to be removed.</p>",
         "UpdateReplicationConfigurationRequest$ebsEncryptionKeyArn": "<p>The ARN of the EBS encryption key to be used during replication.</p>",
@@ -52,13 +56,41 @@
       }
     },
     "AccessDeniedException": {
-      "base": "<p>TYou do not have sufficient access to perform this action.</p>",
+      "base": "<p>You do not have sufficient access to perform this action.</p>",
       "refs": {
+      }
+    },
+    "Account": {
+      "base": "<p>AWS account.</p>",
+      "refs": {
+        "Accounts$member": null
+      }
+    },
+    "AccountID": {
+      "base": null,
+      "refs": {
+        "Account$accountID": "<p>Account ID of AWS account.</p>",
+        "AccountIDs$member": null,
+        "ListExtensibleSourceServersRequest$stagingAccountID": "<p>The Id of the staging Account to retrieve extensible source servers from.</p>",
+        "StagingArea$stagingAccountID": "<p>Account ID of the account to which source server belongs. If this source server is extended - shows Account ID of staging source server.</p>"
+      }
+    },
+    "AccountIDs": {
+      "base": null,
+      "refs": {
+        "DescribeSourceServersRequestFilters$stagingAccountIDs": "<p>An array of staging account IDs that extended source servers belong to. An empty array means all source servers will be shown.</p>"
+      }
+    },
+    "Accounts": {
+      "base": null,
+      "refs": {
+        "ListStagingAccountsResponse$accounts": "<p>An array of staging AWS Accounts.</p>"
       }
     },
     "Boolean": {
       "base": null,
       "refs": {
+        "ConversionProperties$forceUefi": "<p>Whether the volume being converted uses UEFI or not</p>",
         "CreateReplicationConfigurationTemplateRequest$associateDefaultSecurityGroup": "<p>Whether to associate the default Elastic Disaster Recovery Security group with the Replication Configuration Template.</p>",
         "CreateReplicationConfigurationTemplateRequest$createPublicIP": "<p>Whether to create a Public IP for the Recovery Instance by default.</p>",
         "CreateReplicationConfigurationTemplateRequest$useDedicatedReplicationServer": "<p>Whether to use a dedicated Replication Server in the replication staging area.</p>",
@@ -108,6 +140,7 @@
         "RecoveryInstanceDisk$internalDeviceName": "<p>The internal device name of this disk. This is the name that is visible on the machine itself and not from the EC2 console.</p>",
         "RecoveryInstanceFailback$failbackClientID": "<p>The ID of the failback client that this Recovery Instance is associated with.</p>",
         "ReplicationConfigurationReplicatedDisk$deviceName": "<p>The name of the device.</p>",
+        "StagingSourceServer$hostname": "<p>Hostname of staging source server.</p>",
         "UpdateFailbackReplicationConfigurationRequest$name": "<p>The name of the Failback Replication Configuration.</p>"
       }
     },
@@ -122,11 +155,33 @@
       "refs": {
       }
     },
+    "ConversionMap": {
+      "base": null,
+      "refs": {
+        "VolumeToConversionMap$value": null
+      }
+    },
+    "ConversionProperties": {
+      "base": "<p>Properties of a conversion job</p>",
+      "refs": {
+        "JobLogEventData$conversionProperties": "<p>Properties of a conversion job</p>"
+      }
+    },
     "Cpus": {
       "base": null,
       "refs": {
         "RecoveryInstanceProperties$cpus": "<p>An array of CPUs.</p>",
         "SourceProperties$cpus": "<p>An array of CPUs.</p>"
+      }
+    },
+    "CreateExtendedSourceServerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateExtendedSourceServerResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "CreateReplicationConfigurationTemplateRequest": {
@@ -397,6 +452,12 @@
         "RecoveryInstanceDisk$ebsVolumeID": "<p>The EBS Volume ID of this disk.</p>"
       }
     },
+    "ExtensionStatus": {
+      "base": null,
+      "refs": {
+        "StagingArea$status": "<p>Status of Source server extension. Possible values: (a) NOT_EXTENDED - This is a source server that is replicating in the current account. (b) EXTENDED - Source server is extended from a staging source server. In this case, the value of stagingSourceServerArn is pointing to the Arn of the source server in the staging account. (c) EXTENSION_ERROR - Some issue occurred when accessing staging source server. In this case, errorMessage field will contain an error message that explains what happened.</p>"
+      }
+    },
     "FailbackReplicationError": {
       "base": null,
       "refs": {
@@ -569,6 +630,8 @@
         "ConflictException$message": null,
         "ConflictException$resourceId": "<p>The ID of the resource.</p>",
         "ConflictException$resourceType": "<p>The type of the resource.</p>",
+        "ConversionProperties$dataTimestamp": "<p>The timestamp of when the snapshot being converted was taken</p>",
+        "ConversionProperties$rootVolumeName": "<p>The root volume name of a conversion job</p>",
         "DataReplicationError$rawError": "<p>Error in data replication.</p>",
         "InternalServerException$message": null,
         "JobLogEventData$rawError": "<p>A string representing a job error.</p>",
@@ -583,6 +646,7 @@
         "ServiceQuotaExceededException$resourceId": "<p>The ID of the resource.</p>",
         "ServiceQuotaExceededException$resourceType": "<p>The type of the resource.</p>",
         "ServiceQuotaExceededException$serviceCode": "<p>Service code.</p>",
+        "StagingArea$errorMessage": "<p>Shows an error message that occurred when DRS tried to access the staging source server. In this case StagingArea$status will have value EXTENSION_ERROR</p>",
         "ThrottlingException$message": null,
         "ThrottlingException$quotaCode": "<p>Quota code.</p>",
         "ThrottlingException$retryAfterSeconds": "<p>The number of seconds after which the request should be safe to retry.</p>",
@@ -592,7 +656,9 @@
         "ValidationException$code": null,
         "ValidationException$message": null,
         "ValidationExceptionField$message": "<p>Validate exception field message.</p>",
-        "ValidationExceptionField$name": "<p>Validate exception field name.</p>"
+        "ValidationExceptionField$name": "<p>Validate exception field name.</p>",
+        "VolumeToConversionMap$key": null,
+        "VolumeToSizeMap$key": null
       }
     },
     "LastLaunchResult": {
@@ -650,6 +716,32 @@
         "LifeCycleLastLaunch$initiated": "<p>An object containing information regarding the initiation of the last launch of a Source Server.</p>"
       }
     },
+    "ListExtensibleSourceServersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListExtensibleSourceServersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListStagingAccountsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListStagingAccountsRequestMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListStagingAccountsRequest$maxResults": "<p>The maximum number of staging Accounts to retrieve.</p>"
+      }
+    },
+    "ListStagingAccountsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTagsForResourceRequest": {
       "base": null,
       "refs": {
@@ -658,6 +750,12 @@
     "ListTagsForResourceResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "MaxResultsReplicatingSourceServers": {
+      "base": null,
+      "refs": {
+        "ListExtensibleSourceServersRequest$maxResults": "<p>The maximum number of extensible source servers to retrieve.</p>"
       }
     },
     "NetworkInterface": {
@@ -716,7 +814,11 @@
         "DescribeReplicationConfigurationTemplatesRequest$nextToken": "<p>The token of the next Replication Configuration Template to retrieve.</p>",
         "DescribeReplicationConfigurationTemplatesResponse$nextToken": "<p>The token of the next Replication Configuration Template to retrieve.</p>",
         "DescribeSourceServersRequest$nextToken": "<p>The token of the next Source Server to retrieve.</p>",
-        "DescribeSourceServersResponse$nextToken": "<p>The token of the next Source Server to retrieve.</p>"
+        "DescribeSourceServersResponse$nextToken": "<p>The token of the next Source Server to retrieve.</p>",
+        "ListExtensibleSourceServersRequest$nextToken": "<p>The token of the next extensible source server to retrieve.</p>",
+        "ListExtensibleSourceServersResponse$nextToken": "<p>The token of the next extensible source server to retrieve.</p>",
+        "ListStagingAccountsRequest$nextToken": "<p>The token of the next staging Account to retrieve.</p>",
+        "ListStagingAccountsResponse$nextToken": "<p>The token of the next staging Account to retrieve.</p>"
       }
     },
     "ParticipatingServer": {
@@ -757,7 +859,8 @@
         "SourceProperties$ramBytes": "<p>The amount of RAM in bytes.</p>",
         "UpdateFailbackReplicationConfigurationRequest$bandwidthThrottling": "<p>Configure bandwidth throttling for the outbound data transfer rate of the Recovery Instance in Mbps.</p>",
         "UpdateReplicationConfigurationRequest$bandwidthThrottling": "<p>Configure bandwidth throttling for the outbound data transfer rate of the Source Server in Mbps.</p>",
-        "UpdateReplicationConfigurationTemplateRequest$bandwidthThrottling": "<p>Configure bandwidth throttling for the outbound data transfer rate of the Source Server in Mbps.</p>"
+        "UpdateReplicationConfigurationTemplateRequest$bandwidthThrottling": "<p>Configure bandwidth throttling for the outbound data transfer rate of the Source Server in Mbps.</p>",
+        "VolumeToSizeMap$value": null
       }
     },
     "RecoveryInstance": {
@@ -1034,7 +1137,15 @@
     "SourceServer": {
       "base": null,
       "refs": {
+        "CreateExtendedSourceServerResponse$sourceServer": "<p>Created extended source server.</p>",
         "SourceServersList$member": null
+      }
+    },
+    "SourceServerARN": {
+      "base": null,
+      "refs": {
+        "CreateExtendedSourceServerRequest$sourceServerArn": "<p>This defines the ARN of the source server in staging Account based on which you want to create an extended source server.</p>",
+        "StagingSourceServer$arn": "<p>The ARN of the source server.</p>"
       }
     },
     "SourceServerID": {
@@ -1070,6 +1181,24 @@
       "base": null,
       "refs": {
         "DescribeSourceServersResponse$items": "<p>An array of Source Servers.</p>"
+      }
+    },
+    "StagingArea": {
+      "base": "<p>Staging information related to source server.</p>",
+      "refs": {
+        "SourceServer$stagingArea": "<p>The staging area of the source server.</p>"
+      }
+    },
+    "StagingSourceServer": {
+      "base": "<p>Source server in staging account that extended source server connected to.</p>",
+      "refs": {
+        "StagingSourceServersList$member": null
+      }
+    },
+    "StagingSourceServersList": {
+      "base": null,
+      "refs": {
+        "ListExtensibleSourceServersResponse$items": "<p>A list of source servers on a staging Account that are extensible.</p>"
       }
     },
     "StartFailbackLaunchRequest": {
@@ -1165,6 +1294,7 @@
     "TagsMap": {
       "base": null,
       "refs": {
+        "CreateExtendedSourceServerRequest$tags": "<p>A list of tags associated with the extended source server.</p>",
         "CreateReplicationConfigurationTemplateRequest$stagingAreaTags": "<p>A set of tags to be associated with all resources created in the replication staging area: EC2 replication server, EBS volumes, EBS snapshots, etc.</p>",
         "CreateReplicationConfigurationTemplateRequest$tags": "<p>A set of tags to be associated with the Replication Configuration Template resource.</p>",
         "Job$tags": "<p>A list of tags associated with the Job.</p>",
@@ -1174,6 +1304,7 @@
         "ReplicationConfigurationTemplate$stagingAreaTags": "<p>A set of tags to be associated with all resources created in the replication staging area: EC2 replication server, EBS volumes, EBS snapshots, etc.</p>",
         "ReplicationConfigurationTemplate$tags": "<p>A set of tags to be associated with the Replication Configuration Template resource.</p>",
         "SourceServer$tags": "<p>The tags associated with the Source Server.</p>",
+        "StagingSourceServer$tags": "<p>A list of tags associated with the staging source server.</p>",
         "StartFailbackLaunchRequest$tags": "<p>The tags to be associated with the failback launch Job.</p>",
         "StartRecoveryRequest$tags": "<p>The tags to be associated with the Recovery Job.</p>",
         "TagResourceRequest$tags": "<p>Array of tags to be added or updated.</p>",
@@ -1256,9 +1387,23 @@
         "ValidationException$reason": "<p>Validation exception reason.</p>"
       }
     },
+    "VolumeToConversionMap": {
+      "base": null,
+      "refs": {
+        "ConversionProperties$volumeToConversionMap": "<p>A mapping between the volumes being converted and the converted snapshot ids</p>"
+      }
+    },
+    "VolumeToSizeMap": {
+      "base": null,
+      "refs": {
+        "ConversionProperties$volumeToVolumeSize": "<p>A mapping between the volumes and their sizes</p>"
+      }
+    },
     "ebsSnapshot": {
       "base": null,
       "refs": {
+        "ConversionMap$key": null,
+        "ConversionMap$value": null,
         "EbsSnapshotsList$member": null
       }
     }

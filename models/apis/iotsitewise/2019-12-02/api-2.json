@@ -1568,7 +1568,8 @@
         "creationDate":{"shape":"Timestamp"},
         "lastUpdateDate":{"shape":"Timestamp"},
         "status":{"shape":"AssetStatus"},
-        "hierarchies":{"shape":"AssetHierarchies"}
+        "hierarchies":{"shape":"AssetHierarchies"},
+        "description":{"shape":"Description"}
       }
     },
     "AssociateAssetsRequest":{
@@ -1645,7 +1646,8 @@
         "creationDate":{"shape":"Timestamp"},
         "lastUpdateDate":{"shape":"Timestamp"},
         "status":{"shape":"AssetStatus"},
-        "hierarchies":{"shape":"AssetHierarchies"}
+        "hierarchies":{"shape":"AssetHierarchies"},
+        "description":{"shape":"Description"}
       }
     },
     "Attribute":{
@@ -2282,7 +2284,8 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "assetDescription":{"shape":"Description"}
       }
     },
     "CreateAssetResponse":{
@@ -2770,7 +2773,8 @@
         "assetCompositeModels":{"shape":"AssetCompositeModels"},
         "assetCreationDate":{"shape":"Timestamp"},
         "assetLastUpdateDate":{"shape":"Timestamp"},
-        "assetStatus":{"shape":"AssetStatus"}
+        "assetStatus":{"shape":"AssetStatus"},
+        "assetDescription":{"shape":"Description"}
       }
     },
     "DescribeDashboardRequest":{
@@ -4760,7 +4764,8 @@
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
-        }
+        },
+        "assetDescription":{"shape":"Description"}
       }
     },
     "UpdateAssetResponse":{

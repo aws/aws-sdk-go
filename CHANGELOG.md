@@ -1,3 +1,15 @@
+Release v1.44.25 (2022-05-31)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API and documentation
+* `service/drs`: Updates service API, documentation, and paginators
+* `service/iotsitewise`: Updates service API and documentation
+* `service/lookoutmetrics`: Updates service API and documentation
+* `service/sagemaker`: Updates service API
+  * Amazon SageMaker Notebook Instances now support Jupyter Lab 3.
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.44.24 (2022-05-27)
 ===
 
