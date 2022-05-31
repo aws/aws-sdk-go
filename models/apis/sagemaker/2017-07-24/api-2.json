@@ -13140,7 +13140,7 @@
     "PlatformIdentifier":{
       "type":"string",
       "max":15,
-      "pattern":"^(notebook-al1-v1|notebook-al2-v1)$"
+      "pattern":"^(notebook-al1-v1|notebook-al2-v1|notebook-al2-v2)$"
     },
     "PolicyString":{
       "type":"string",

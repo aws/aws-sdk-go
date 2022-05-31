@@ -2999,7 +2999,8 @@
         "AllowedOAuthFlowsUserPoolClient":{"shape":"BooleanType"},
         "AnalyticsConfiguration":{"shape":"AnalyticsConfigurationType"},
         "PreventUserExistenceErrors":{"shape":"PreventUserExistenceErrorTypes"},
-        "EnableTokenRevocation":{"shape":"WrappedBooleanType"}
+        "EnableTokenRevocation":{"shape":"WrappedBooleanType"},
+        "EnablePropagateAdditionalUserContextData":{"shape":"WrappedBooleanType"}
       }
     },
     "CreateUserPoolClientResponse":{
@@ -5158,7 +5159,8 @@
         "AllowedOAuthFlowsUserPoolClient":{"shape":"BooleanType"},
         "AnalyticsConfiguration":{"shape":"AnalyticsConfigurationType"},
         "PreventUserExistenceErrors":{"shape":"PreventUserExistenceErrorTypes"},
-        "EnableTokenRevocation":{"shape":"WrappedBooleanType"}
+        "EnableTokenRevocation":{"shape":"WrappedBooleanType"},
+        "EnablePropagateAdditionalUserContextData":{"shape":"WrappedBooleanType"}
       }
     },
     "UpdateUserPoolClientResponse":{
@@ -5224,6 +5226,7 @@
     "UserContextDataType":{
       "type":"structure",
       "members":{
+        "IpAddress":{"shape":"StringType"},
         "EncodedData":{"shape":"StringType"}
       }
     },
@@ -5366,7 +5369,8 @@
         },
         "AnalyticsConfiguration":{"shape":"AnalyticsConfigurationType"},
         "PreventUserExistenceErrors":{"shape":"PreventUserExistenceErrorTypes"},
-        "EnableTokenRevocation":{"shape":"WrappedBooleanType"}
+        "EnableTokenRevocation":{"shape":"WrappedBooleanType"},
+        "EnablePropagateAdditionalUserContextData":{"shape":"WrappedBooleanType"}
       }
     },
     "UserPoolDescriptionType":{

@@ -939,6 +939,7 @@
         "LanguageModel":{"shape":"LanguageModel"}
       }
     },
+    "DurationInSeconds":{"type":"float"},
     "FailureReason":{"type":"string"},
     "GetCallAnalyticsCategoryRequest":{
       "type":"structure",
@@ -1139,6 +1140,17 @@
         "en-ZA",
         "en-NZ"
       ]
+    },
+    "LanguageCodeItem":{
+      "type":"structure",
+      "members":{
+        "LanguageCode":{"shape":"LanguageCode"},
+        "DurationInSeconds":{"shape":"DurationInSeconds"}
+      }
+    },
+    "LanguageCodeList":{
+      "type":"list",
+      "member":{"shape":"LanguageCodeItem"}
     },
     "LanguageIdSettings":{
       "type":"structure",
@@ -1627,8 +1639,7 @@
       "type":"structure",
       "required":[
         "CallAnalyticsJobName",
-        "Media",
-        "DataAccessRoleArn"
+        "Media"
       ],
       "members":{
         "CallAnalyticsJobName":{"shape":"CallAnalyticsJobName"},
@@ -1700,6 +1711,7 @@
         "JobExecutionSettings":{"shape":"JobExecutionSettings"},
         "ContentRedaction":{"shape":"ContentRedaction"},
         "IdentifyLanguage":{"shape":"Boolean"},
+        "IdentifyMultipleLanguages":{"shape":"Boolean"},
         "LanguageOptions":{"shape":"LanguageOptions"},
         "Subtitles":{"shape":"Subtitles"},
         "Tags":{"shape":"TagList"},
@@ -1858,8 +1870,10 @@
         "JobExecutionSettings":{"shape":"JobExecutionSettings"},
         "ContentRedaction":{"shape":"ContentRedaction"},
         "IdentifyLanguage":{"shape":"Boolean"},
+        "IdentifyMultipleLanguages":{"shape":"Boolean"},
         "LanguageOptions":{"shape":"LanguageOptions"},
         "IdentifiedLanguageScore":{"shape":"IdentifiedLanguageScore"},
+        "LanguageCodes":{"shape":"LanguageCodeList"},
         "Tags":{"shape":"TagList"},
         "Subtitles":{"shape":"SubtitlesOutput"},
         "LanguageIdSettings":{"shape":"LanguageIdSettingsMap"}
@@ -1898,7 +1912,9 @@
         "ContentRedaction":{"shape":"ContentRedaction"},
         "ModelSettings":{"shape":"ModelSettings"},
         "IdentifyLanguage":{"shape":"Boolean"},
-        "IdentifiedLanguageScore":{"shape":"IdentifiedLanguageScore"}
+        "IdentifyMultipleLanguages":{"shape":"Boolean"},
+        "IdentifiedLanguageScore":{"shape":"IdentifiedLanguageScore"},
+        "LanguageCodes":{"shape":"LanguageCodeList"}
       }
     },
     "Type":{

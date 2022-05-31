@@ -808,8 +808,8 @@ func (c *CognitoIdentityProvider) AdminDisableProviderForUserRequest(input *Admi
 //   * AliasExistsException
 //   This exception is thrown when a user tries to confirm the account with an
 //   email address or phone number that has already been supplied as an alias
-//   from a different account. This exception indicates that an account with this
-//   email address or phone already exists in a user pool that you've configured
+//   for a different user profile. This exception indicates that an account with
+//   this email address or phone already exists in a user pool that you've configured
 //   to use email address or phone number as a sign-in alias.
 //
 //   * InternalErrorException
@@ -1585,8 +1585,8 @@ func (c *CognitoIdentityProvider) AdminLinkProviderForUserRequest(input *AdminLi
 //   * AliasExistsException
 //   This exception is thrown when a user tries to confirm the account with an
 //   email address or phone number that has already been supplied as an alias
-//   from a different account. This exception indicates that an account with this
-//   email address or phone already exists in a user pool that you've configured
+//   for a different user profile. This exception indicates that an account with
+//   this email address or phone already exists in a user pool that you've configured
 //   to use email address or phone number as a sign-in alias.
 //
 //   * LimitExceededException
@@ -2426,8 +2426,8 @@ func (c *CognitoIdentityProvider) AdminRespondToAuthChallengeRequest(input *Admi
 //   * AliasExistsException
 //   This exception is thrown when a user tries to confirm the account with an
 //   email address or phone number that has already been supplied as an alias
-//   from a different account. This exception indicates that an account with this
-//   email address or phone already exists in a user pool that you've configured
+//   for a different user profile. This exception indicates that an account with
+//   this email address or phone already exists in a user pool that you've configured
 //   to use email address or phone number as a sign-in alias.
 //
 //   * PasswordResetRequiredException
@@ -3090,8 +3090,8 @@ func (c *CognitoIdentityProvider) AdminUpdateUserAttributesRequest(input *AdminU
 //   * AliasExistsException
 //   This exception is thrown when a user tries to confirm the account with an
 //   email address or phone number that has already been supplied as an alias
-//   from a different account. This exception indicates that an account with this
-//   email address or phone already exists in a user pool that you've configured
+//   for a different user profile. This exception indicates that an account with
+//   this email address or phone already exists in a user pool that you've configured
 //   to use email address or phone number as a sign-in alias.
 //
 //   * TooManyRequestsException
@@ -3292,15 +3292,23 @@ func (c *CognitoIdentityProvider) AssociateSoftwareTokenRequest(input *Associate
 
 // AssociateSoftwareToken API operation for Amazon Cognito Identity Provider.
 //
-// Returns a unique generated shared secret key code for the user account. The
-// request takes an access token or a session string, but not both.
+// Begins setup of time-based one-time password multi-factor authentication
+// (TOTP MFA) for a user, with a unique private key that Amazon Cognito generates
+// and returns in the API response. You can authorize an AssociateSoftwareToken
+// request with either the user's access token, or a session string from a challenge
+// response that you received from Amazon Cognito.
 //
-// Calling AssociateSoftwareToken immediately disassociates the existing software
-// token from the user account. If the user doesn't subsequently verify the
-// software token, their account is set up to authenticate without MFA. If MFA
-// config is set to Optional at the user pool level, the user can then log in
-// without MFA. However, if MFA is set to Required for the user pool, the user
-// is asked to set up a new software token MFA during sign-in.
+// Amazon Cognito disassociates an existing software token when you verify the
+// new token in a VerifySoftwareToken (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerifySoftwareToken.html)
+// API request. If you don't verify the software token and your user pool doesn't
+// require MFA, the user can then authenticate with user name and password credentials
+// alone. If your user pool requires TOTP MFA, Amazon Cognito generates an MFA_SETUP
+// or SOFTWARE_TOKEN_SETUP challenge each time your user signs. Complete setup
+// with AssociateSoftwareToken and VerifySoftwareToken.
+//
+// After you set up software token MFA for your user, Amazon Cognito generates
+// a SOFTWARE_TOKEN_MFA challenge when they authenticate. Respond to this challenge
+// with your user's TOTP.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3808,8 +3816,8 @@ func (c *CognitoIdentityProvider) ConfirmSignUpRequest(input *ConfirmSignUpInput
 //   * AliasExistsException
 //   This exception is thrown when a user tries to confirm the account with an
 //   email address or phone number that has already been supplied as an alias
-//   from a different account. This exception indicates that an account with this
-//   email address or phone already exists in a user pool that you've configured
+//   for a different user profile. This exception indicates that an account with
+//   this email address or phone already exists in a user pool that you've configured
 //   to use email address or phone number as a sign-in alias.
 //
 //   * TooManyRequestsException
@@ -9135,8 +9143,8 @@ func (c *CognitoIdentityProvider) RespondToAuthChallengeRequest(input *RespondTo
 //   * AliasExistsException
 //   This exception is thrown when a user tries to confirm the account with an
 //   email address or phone number that has already been supplied as an alias
-//   from a different account. This exception indicates that an account with this
-//   email address or phone already exists in a user pool that you've configured
+//   for a different user profile. This exception indicates that an account with
+//   this email address or phone already exists in a user pool that you've configured
 //   to use email address or phone number as a sign-in alias.
 //
 //   * InternalErrorException
@@ -10978,8 +10986,8 @@ func (c *CognitoIdentityProvider) UpdateUserAttributesRequest(input *UpdateUserA
 //   * AliasExistsException
 //   This exception is thrown when a user tries to confirm the account with an
 //   email address or phone number that has already been supplied as an alias
-//   from a different account. This exception indicates that an account with this
-//   email address or phone already exists in a user pool that you've configured
+//   for a different user profile. This exception indicates that an account with
+//   this email address or phone already exists in a user pool that you've configured
 //   to use email address or phone number as a sign-in alias.
 //
 //   * InvalidSmsRoleAccessPolicyException
@@ -11631,8 +11639,8 @@ func (c *CognitoIdentityProvider) VerifyUserAttributeRequest(input *VerifyUserAt
 //   * AliasExistsException
 //   This exception is thrown when a user tries to confirm the account with an
 //   email address or phone number that has already been supplied as an alias
-//   from a different account. This exception indicates that an account with this
-//   email address or phone already exists in a user pool that you've configured
+//   for a different user profile. This exception indicates that an account with
+//   this email address or phone already exists in a user pool that you've configured
 //   to use email address or phone number as a sign-in alias.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/VerifyUserAttribute
@@ -13669,9 +13677,10 @@ type AdminInitiateAuthInput struct {
 	//    sensitive information.
 	ClientMetadata map[string]*string `type:"map"`
 
-	// Contextual data such as the user's device fingerprint, IP address, or location
-	// used for evaluating the risk of an unexpected event by Amazon Cognito advanced
-	// security.
+	// Contextual data about your user session, such as the device fingerprint,
+	// IP address, or location. Amazon Cognito advanced security evaluates the risk
+	// of an authentication event based on the context that your app generates and
+	// passes to Amazon Cognito when it makes API requests.
 	ContextData *ContextDataType `type:"structure"`
 
 	// The ID of the Amazon Cognito user pool.
@@ -14778,9 +14787,10 @@ type AdminRespondToAuthChallengeInput struct {
 	//    sensitive information.
 	ClientMetadata map[string]*string `type:"map"`
 
-	// Contextual data such as the user's device fingerprint, IP address, or location
-	// used for evaluating the risk of an unexpected event by Amazon Cognito advanced
-	// security.
+	// Contextual data about your user session, such as the device fingerprint,
+	// IP address, or location. Amazon Cognito advanced security evaluates the risk
+	// of an authentication event based on the context that your app generates and
+	// passes to Amazon Cognito when it makes API requests.
 	ContextData *ContextDataType `type:"structure"`
 
 	// The session that should be passed both ways in challenge-response calls to
@@ -15817,8 +15827,8 @@ func (s AdminUserGlobalSignOutOutput) GoString() string {
 
 // This exception is thrown when a user tries to confirm the account with an
 // email address or phone number that has already been supplied as an alias
-// from a different account. This exception indicates that an account with this
-// email address or phone already exists in a user pool that you've configured
+// for a different user profile. This exception indicates that an account with
+// this email address or phone already exists in a user pool that you've configured
 // to use email address or phone number as a sign-in alias.
 type AliasExistsException struct {
 	_            struct{}                  `type:"structure"`
@@ -17076,9 +17086,10 @@ type ConfirmForgotPasswordInput struct {
 	// String and GoString methods.
 	SecretHash *string `min:"1" type:"string" sensitive:"true"`
 
-	// Contextual data such as the user's device fingerprint, IP address, or location
-	// used for evaluating the risk of an unexpected event by Amazon Cognito advanced
-	// security.
+	// Contextual data about your user session, such as the device fingerprint,
+	// IP address, or location. Amazon Cognito advanced security evaluates the risk
+	// of an authentication event based on the context that your app generates and
+	// passes to Amazon Cognito when it makes API requests.
 	UserContextData *UserContextDataType `type:"structure"`
 
 	// The user name of the user for whom you want to enter a code to retrieve a
@@ -17284,9 +17295,10 @@ type ConfirmSignUpInput struct {
 	// String and GoString methods.
 	SecretHash *string `min:"1" type:"string" sensitive:"true"`
 
-	// Contextual data such as the user's device fingerprint, IP address, or location
-	// used for evaluating the risk of an unexpected event by Amazon Cognito advanced
-	// security.
+	// Contextual data about your user session, such as the device fingerprint,
+	// IP address, or location. Amazon Cognito advanced security evaluates the risk
+	// of an authentication event based on the context that your app generates and
+	// passes to Amazon Cognito when it makes API requests.
 	UserContextData *UserContextDataType `type:"structure"`
 
 	// The user name of the user whose registration you want to confirm.
@@ -17424,8 +17436,9 @@ func (s ConfirmSignUpOutput) GoString() string {
 type ContextDataType struct {
 	_ struct{} `type:"structure"`
 
-	// Encoded data containing device fingerprinting details collected using the
-	// Amazon Cognito context data collection library.
+	// Encoded device-fingerprint details that your app collected with the Amazon
+	// Cognito context data collection library. For more information, see Adding
+	// user device and session data to API requests (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-adaptive-authentication.html#user-pool-settings-adaptive-authentication-device-fingerprint).
 	EncodedData *string `type:"string"`
 
 	// HttpHeaders received on your server in same order.
@@ -17433,7 +17446,7 @@ type ContextDataType struct {
 	// HttpHeaders is a required field
 	HttpHeaders []*HttpHeader `type:"list" required:"true"`
 
-	// Source IP address of your user.
+	// The source IP address of your user's device.
 	//
 	// IpAddress is a required field
 	IpAddress *string `type:"string" required:"true"`
@@ -18168,6 +18181,15 @@ type CreateUserPoolClientInput struct {
 	// App callback URLs such as myapp://example are also supported.
 	DefaultRedirectURI *string `min:"1" type:"string"`
 
+	// Activates the propagation of additional user context data. For more information
+	// about propagation of user context data, see Adding advanced security to a
+	// user pool (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-advanced-security.html).
+	// If you don’t include this parameter, you can't send device fingerprint
+	// information, including source IP address, to Amazon Cognito advanced security.
+	// You can only activate EnablePropagateAdditionalUserContextData in an app
+	// client that has a client secret.
+	EnablePropagateAdditionalUserContextData *bool `type:"boolean"`
+
 	// Activates or deactivates token revocation. For more information about revoking
 	// tokens, see RevokeToken (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html).
 	//
@@ -18382,6 +18404,12 @@ func (s *CreateUserPoolClientInput) SetClientName(v string) *CreateUserPoolClien
 // SetDefaultRedirectURI sets the DefaultRedirectURI field's value.
 func (s *CreateUserPoolClientInput) SetDefaultRedirectURI(v string) *CreateUserPoolClientInput {
 	s.DefaultRedirectURI = &v
+	return s
+}
+
+// SetEnablePropagateAdditionalUserContextData sets the EnablePropagateAdditionalUserContextData field's value.
+func (s *CreateUserPoolClientInput) SetEnablePropagateAdditionalUserContextData(v bool) *CreateUserPoolClientInput {
+	s.EnablePropagateAdditionalUserContextData = &v
 	return s
 }
 
@@ -18693,7 +18721,11 @@ type CreateUserPoolInput struct {
 	// A string representing the SMS verification message.
 	SmsVerificationMessage *string `min:"6" type:"string"`
 
-	// The settings for updates to user attributes.
+	// The settings for updates to user attributes. These settings include the property
+	// AttributesRequireVerificationBeforeUpdate, a user-pool setting that tells
+	// Amazon Cognito how to handle changes to the value of your users' email address
+	// and phone number attributes. For more information, see Verifying updates
+	// to to email addresses and phone numbers (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates).
 	UserAttributeUpdateSettings *UserAttributeUpdateSettingsType `type:"structure"`
 
 	// Enables advanced security risk detection. Set the key AdvancedSecurityMode
@@ -21089,7 +21121,7 @@ type EventContextDataType struct {
 	// The user's device name.
 	DeviceName *string `type:"string"`
 
-	// The user's IP address.
+	// The source IP address of your user's device.
 	IpAddress *string `type:"string"`
 
 	// The user's time zone.
@@ -21456,9 +21488,10 @@ type ForgotPasswordInput struct {
 	// String and GoString methods.
 	SecretHash *string `min:"1" type:"string" sensitive:"true"`
 
-	// Contextual data such as the user's device fingerprint, IP address, or location
-	// used for evaluating the risk of an unexpected event by Amazon Cognito advanced
-	// security.
+	// Contextual data about your user session, such as the device fingerprint,
+	// IP address, or location. Amazon Cognito advanced security evaluates the risk
+	// of an authentication event based on the context that your app generates and
+	// passes to Amazon Cognito when it makes API requests.
 	UserContextData *UserContextDataType `type:"structure"`
 
 	// The user name of the user for whom you want to enter a code to reset a forgotten
@@ -21551,8 +21584,7 @@ func (s *ForgotPasswordInput) SetUsername(v string) *ForgotPasswordInput {
 	return s
 }
 
-// Represents the response from the server regarding the request to reset a
-// password.
+// The response from Amazon Cognito to a request to reset a password.
 type ForgotPasswordOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -23048,9 +23080,10 @@ type InitiateAuthInput struct {
 	//    sensitive information.
 	ClientMetadata map[string]*string `type:"map"`
 
-	// Contextual data such as the user's device fingerprint, IP address, or location
-	// used for evaluating the risk of an unexpected event by Amazon Cognito advanced
-	// security.
+	// Contextual data about your user session, such as the device fingerprint,
+	// IP address, or location. Amazon Cognito advanced security evaluates the risk
+	// of an authentication event based on the context that your app generates and
+	// passes to Amazon Cognito when it makes API requests.
 	UserContextData *UserContextDataType `type:"structure"`
 }
 
@@ -26304,9 +26337,10 @@ type ResendConfirmationCodeInput struct {
 	// String and GoString methods.
 	SecretHash *string `min:"1" type:"string" sensitive:"true"`
 
-	// Contextual data such as the user's device fingerprint, IP address, or location
-	// used for evaluating the risk of an unexpected event by Amazon Cognito advanced
-	// security.
+	// Contextual data about your user session, such as the device fingerprint,
+	// IP address, or location. Amazon Cognito advanced security evaluates the risk
+	// of an authentication event based on the context that your app generates and
+	// passes to Amazon Cognito when it makes API requests.
 	UserContextData *UserContextDataType `type:"structure"`
 
 	// The username attribute of the user to whom you want to resend a confirmation
@@ -26724,9 +26758,10 @@ type RespondToAuthChallengeInput struct {
 	// RespondToAuthChallenge API call.
 	Session *string `min:"20" type:"string"`
 
-	// Contextual data such as the user's device fingerprint, IP address, or location
-	// used for evaluating the risk of an unexpected event by Amazon Cognito advanced
-	// security.
+	// Contextual data about your user session, such as the device fingerprint,
+	// IP address, or location. Amazon Cognito advanced security evaluates the risk
+	// of an authentication event based on the context that your app generates and
+	// passes to Amazon Cognito when it makes API requests.
 	UserContextData *UserContextDataType `type:"structure"`
 }
 
@@ -28008,9 +28043,10 @@ type SignUpInput struct {
 	// name.
 	UserAttributes []*AttributeType `type:"list"`
 
-	// Contextual data such as the user's device fingerprint, IP address, or location
-	// used for evaluating the risk of an unexpected event by Amazon Cognito advanced
-	// security.
+	// Contextual data about your user session, such as the device fingerprint,
+	// IP address, or location. Amazon Cognito advanced security evaluates the risk
+	// of an authentication event based on the context that your app generates and
+	// passes to Amazon Cognito when it makes API requests.
 	UserContextData *UserContextDataType `type:"structure"`
 
 	// The user name of the user you want to register.
@@ -28841,16 +28877,19 @@ func (s TagResourceOutput) GoString() string {
 type TokenValidityUnitsType struct {
 	_ struct{} `type:"structure"`
 
-	// A time unit in “seconds”, “minutes”, “hours”, or “days” for
-	// the value in AccessTokenValidity, defaulting to hours.
+	// A time unit of seconds, minutes, hours, or days for the value that you set
+	// in the AccessTokenValidity parameter. The default AccessTokenValidity time
+	// unit is hours.
 	AccessToken *string `type:"string" enum:"TimeUnitsType"`
 
-	// A time unit in “seconds”, “minutes”, “hours”, or “days” for
-	// the value in IdTokenValidity, defaulting to hours.
+	// A time unit of seconds, minutes, hours, or days for the value that you set
+	// in the IdTokenValidity parameter. The default IdTokenValidity time unit is
+	// hours.
 	IdToken *string `type:"string" enum:"TimeUnitsType"`
 
-	// A time unit in “seconds”, “minutes”, “hours”, or “days” for
-	// the value in RefreshTokenValidity, defaulting to days.
+	// A time unit of seconds, minutes, hours, or days for the value that you set
+	// in the RefreshTokenValidity parameter. The default RefreshTokenValidity time
+	// unit is days.
 	RefreshToken *string `type:"string" enum:"TimeUnitsType"`
 }
 
@@ -30477,6 +30516,15 @@ type UpdateUserPoolClientInput struct {
 	// App callback URLs such as myapp://example are also supported.
 	DefaultRedirectURI *string `min:"1" type:"string"`
 
+	// Activates the propagation of additional user context data. For more information
+	// about propagation of user context data, see Adding advanced security to a
+	// user pool (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-advanced-security.html).
+	// If you don’t include this parameter, you can't send device fingerprint
+	// information, including source IP address, to Amazon Cognito advanced security.
+	// You can only activate EnablePropagateAdditionalUserContextData in an app
+	// client that has a client secret.
+	EnablePropagateAdditionalUserContextData *bool `type:"boolean"`
+
 	// Activates or deactivates token revocation. For more information about revoking
 	// tokens, see RevokeToken (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html).
 	EnableTokenRevocation *bool `type:"boolean"`
@@ -30682,6 +30730,12 @@ func (s *UpdateUserPoolClientInput) SetClientName(v string) *UpdateUserPoolClien
 // SetDefaultRedirectURI sets the DefaultRedirectURI field's value.
 func (s *UpdateUserPoolClientInput) SetDefaultRedirectURI(v string) *UpdateUserPoolClientInput {
 	s.DefaultRedirectURI = &v
+	return s
+}
+
+// SetEnablePropagateAdditionalUserContextData sets the EnablePropagateAdditionalUserContextData field's value.
+func (s *UpdateUserPoolClientInput) SetEnablePropagateAdditionalUserContextData(v bool) *UpdateUserPoolClientInput {
+	s.EnablePropagateAdditionalUserContextData = &v
 	return s
 }
 
@@ -30980,7 +31034,11 @@ type UpdateUserPoolInput struct {
 	// A container with information about the SMS verification message.
 	SmsVerificationMessage *string `min:"6" type:"string"`
 
-	// The settings for updates to user attributes.
+	// The settings for updates to user attributes. These settings include the property
+	// AttributesRequireVerificationBeforeUpdate, a user-pool setting that tells
+	// Amazon Cognito how to handle changes to the value of your users' email address
+	// and phone number attributes. For more information, see Verifying updates
+	// to to email addresses and phone numbers (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates).
 	UserAttributeUpdateSettings *UserAttributeUpdateSettingsType `type:"structure"`
 
 	// Enables advanced security risk detection. Set the key AdvancedSecurityMode
@@ -31219,7 +31277,11 @@ func (s UpdateUserPoolOutput) GoString() string {
 	return s.String()
 }
 
-// The settings for updates to user attributes.
+// The settings for updates to user attributes. These settings include the property
+// AttributesRequireVerificationBeforeUpdate, a user-pool setting that tells
+// Amazon Cognito how to handle changes to the value of your users' email address
+// and phone number attributes. For more information, see Verifying updates
+// to to email addresses and phone numbers (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates).
 type UserAttributeUpdateSettingsType struct {
 	_ struct{} `type:"structure"`
 
@@ -31268,16 +31330,19 @@ func (s *UserAttributeUpdateSettingsType) SetAttributesRequireVerificationBefore
 	return s
 }
 
-// Information that your app generates about a user's AdminInitiateAuth or AdminRespondToAuthChallenge
-// session. Amazon Cognito advanced security features calculate risk levels
-// for user sessions based on this context data.
+// Contextual data, such as the user's device fingerprint, IP address, or location,
+// used for evaluating the risk of an unexpected event by Amazon Cognito advanced
+// security.
 type UserContextDataType struct {
 	_ struct{} `type:"structure"`
 
-	// Contextual data, such as the user's device fingerprint, IP address, or location,
-	// used for evaluating the risk of an unexpected event by Amazon Cognito advanced
-	// security.
+	// Encoded device-fingerprint details that your app collected with the Amazon
+	// Cognito context data collection library. For more information, see Adding
+	// user device and session data to API requests (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-adaptive-authentication.html#user-pool-settings-adaptive-authentication-device-fingerprint).
 	EncodedData *string `type:"string"`
+
+	// The source IP address of your user's device.
+	IpAddress *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -31301,6 +31366,12 @@ func (s UserContextDataType) GoString() string {
 // SetEncodedData sets the EncodedData field's value.
 func (s *UserContextDataType) SetEncodedData(v string) *UserContextDataType {
 	s.EncodedData = &v
+	return s
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *UserContextDataType) SetIpAddress(v string) *UserContextDataType {
+	s.IpAddress = &v
 	return s
 }
 
@@ -32002,6 +32073,24 @@ type UserPoolClientType struct {
 	// App callback URLs such as myapp://example are also supported.
 	DefaultRedirectURI *string `min:"1" type:"string"`
 
+	// When EnablePropagateAdditionalUserContextData is true, Amazon Cognito accepts
+	// an IpAddress value that you send in the UserContextData parameter. The UserContextData
+	// parameter sends information to Amazon Cognito advanced security for risk
+	// analysis. You can send UserContextData when you sign in Amazon Cognito native
+	// users with the InitiateAuth and RespondToAuthChallenge API operations.
+	//
+	// When EnablePropagateAdditionalUserContextData is false, you can't send your
+	// user's source IP address to Amazon Cognito advanced security with unauthenticated
+	// API operations. EnablePropagateAdditionalUserContextData doesn't affect whether
+	// you can send a source IP address in a ContextData parameter with the authenticated
+	// API operations AdminInitiateAuth and AdminRespondToAuthChallenge.
+	//
+	// You can only activate EnablePropagateAdditionalUserContextData in an app
+	// client that has a client secret. For more information about propagation of
+	// user context data, see Adding user device and session data to API requests
+	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-adaptive-authentication.html#user-pool-settings-adaptive-authentication-device-fingerprint).
+	EnablePropagateAdditionalUserContextData *bool `type:"boolean"`
+
 	// Indicates whether token revocation is activated for the user pool client.
 	// When you create a new user pool client, token revocation is activated by
 	// default. For more information about revoking tokens, see RevokeToken (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html).
@@ -32181,6 +32270,12 @@ func (s *UserPoolClientType) SetCreationDate(v time.Time) *UserPoolClientType {
 // SetDefaultRedirectURI sets the DefaultRedirectURI field's value.
 func (s *UserPoolClientType) SetDefaultRedirectURI(v string) *UserPoolClientType {
 	s.DefaultRedirectURI = &v
+	return s
+}
+
+// SetEnablePropagateAdditionalUserContextData sets the EnablePropagateAdditionalUserContextData field's value.
+func (s *UserPoolClientType) SetEnablePropagateAdditionalUserContextData(v bool) *UserPoolClientType {
+	s.EnablePropagateAdditionalUserContextData = &v
 	return s
 }
 
@@ -32570,7 +32665,11 @@ type UserPoolType struct {
 	// The status of a user pool.
 	Status *string `type:"string" enum:"StatusType"`
 
-	// The settings for updates to user attributes.
+	// The settings for updates to user attributes. These settings include the property
+	// AttributesRequireVerificationBeforeUpdate, a user-pool setting that tells
+	// Amazon Cognito how to handle changes to the value of your users' email address
+	// and phone number attributes. For more information, see Verifying updates
+	// to to email addresses and phone numbers (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates).
 	UserAttributeUpdateSettings *UserAttributeUpdateSettingsType `type:"structure"`
 
 	// The user pool add-ons.

@@ -13,8 +13,8 @@ const (
 	//
 	// This exception is thrown when a user tries to confirm the account with an
 	// email address or phone number that has already been supplied as an alias
-	// from a different account. This exception indicates that an account with this
-	// email address or phone already exists in a user pool that you've configured
+	// for a different user profile. This exception indicates that an account with
+	// this email address or phone already exists in a user pool that you've configured
 	// to use email address or phone number as a sign-in alias.
 	ErrCodeAliasExistsException = "AliasExistsException"
 

@@ -4529,6 +4529,9 @@ func (s *BackTestConfiguration) SetRunBackTestMode(v bool) *BackTestConfiguratio
 type CloudWatchConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Settings for backtest mode.
+	BackTestConfiguration *BackTestConfiguration `type:"structure"`
+
 	// An IAM role that gives Amazon Lookout for Metrics permission to access data
 	// in Amazon CloudWatch.
 	RoleArn *string `type:"string"`
@@ -4550,6 +4553,27 @@ func (s CloudWatchConfig) String() string {
 // value will be replaced with "sensitive".
 func (s CloudWatchConfig) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CloudWatchConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CloudWatchConfig"}
+	if s.BackTestConfiguration != nil {
+		if err := s.BackTestConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("BackTestConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBackTestConfiguration sets the BackTestConfiguration field's value.
+func (s *CloudWatchConfig) SetBackTestConfiguration(v *BackTestConfiguration) *CloudWatchConfig {
+	s.BackTestConfiguration = v
+	return s
 }
 
 // SetRoleArn sets the RoleArn field's value.
@@ -8289,6 +8313,11 @@ func (s *MetricSource) Validate() error {
 	if s.AthenaSourceConfig != nil {
 		if err := s.AthenaSourceConfig.Validate(); err != nil {
 			invalidParams.AddNested("AthenaSourceConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CloudWatchConfig != nil {
+		if err := s.CloudWatchConfig.Validate(); err != nil {
+			invalidParams.AddNested("CloudWatchConfig", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.RDSSourceConfig != nil {

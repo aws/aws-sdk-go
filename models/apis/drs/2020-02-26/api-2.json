@@ -13,6 +13,25 @@
     "uid":"drs-2020-02-26"
   },
   "operations":{
+    "CreateExtendedSourceServer":{
+      "name":"CreateExtendedSourceServer",
+      "http":{
+        "method":"POST",
+        "requestUri":"/CreateExtendedSourceServer",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateExtendedSourceServerRequest"},
+      "output":{"shape":"CreateExtendedSourceServerResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"UninitializedAccountException"}
+      ]
+    },
     "CreateReplicationConfigurationTemplate":{
       "name":"CreateReplicationConfigurationTemplate",
       "http":{
@@ -278,6 +297,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"UninitializedAccountException"}
       ]
     },
@@ -295,6 +315,40 @@
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"}
+      ]
+    },
+    "ListExtensibleSourceServers":{
+      "name":"ListExtensibleSourceServers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListExtensibleSourceServers",
+        "responseCode":200
+      },
+      "input":{"shape":"ListExtensibleSourceServersRequest"},
+      "output":{"shape":"ListExtensibleSourceServersResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"UninitializedAccountException"}
+      ]
+    },
+    "ListStagingAccounts":{
+      "name":"ListStagingAccounts",
+      "http":{
+        "method":"GET",
+        "requestUri":"/ListStagingAccounts",
+        "responseCode":200
+      },
+      "input":{"shape":"ListStagingAccountsRequest"},
+      "output":{"shape":"ListStagingAccountsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"UninitializedAccountException"}
       ]
     },
     "ListTagsForResource":{
@@ -525,6 +579,30 @@
       },
       "exception":true
     },
+    "Account":{
+      "type":"structure",
+      "members":{
+        "accountID":{"shape":"AccountID"}
+      }
+    },
+    "AccountID":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":"[0-9]{12,}"
+    },
+    "AccountIDs":{
+      "type":"list",
+      "member":{"shape":"AccountID"},
+      "max":200,
+      "min":0
+    },
+    "Accounts":{
+      "type":"list",
+      "member":{"shape":"Account"},
+      "max":50,
+      "min":0
+    },
     "Boolean":{
       "type":"boolean",
       "box":true
@@ -555,11 +633,40 @@
       },
       "exception":true
     },
+    "ConversionMap":{
+      "type":"map",
+      "key":{"shape":"ebsSnapshot"},
+      "value":{"shape":"ebsSnapshot"}
+    },
+    "ConversionProperties":{
+      "type":"structure",
+      "members":{
+        "dataTimestamp":{"shape":"LargeBoundedString"},
+        "forceUefi":{"shape":"Boolean"},
+        "rootVolumeName":{"shape":"LargeBoundedString"},
+        "volumeToConversionMap":{"shape":"VolumeToConversionMap"},
+        "volumeToVolumeSize":{"shape":"VolumeToSizeMap"}
+      }
+    },
     "Cpus":{
       "type":"list",
       "member":{"shape":"CPU"},
       "max":256,
       "min":0
+    },
+    "CreateExtendedSourceServerRequest":{
+      "type":"structure",
+      "required":["sourceServerArn"],
+      "members":{
+        "sourceServerArn":{"shape":"SourceServerARN"},
+        "tags":{"shape":"TagsMap"}
+      }
+    },
+    "CreateExtendedSourceServerResponse":{
+      "type":"structure",
+      "members":{
+        "sourceServer":{"shape":"SourceServer"}
+      }
     },
     "CreateReplicationConfigurationTemplateRequest":{
       "type":"structure",
@@ -768,7 +875,6 @@
     },
     "DescribeJobsRequest":{
       "type":"structure",
-      "required":["filters"],
       "members":{
         "filters":{"shape":"DescribeJobsRequestFilters"},
         "maxResults":{"shape":"StrictlyPositiveInteger"},
@@ -802,7 +908,6 @@
     },
     "DescribeRecoveryInstancesRequest":{
       "type":"structure",
-      "required":["filters"],
       "members":{
         "filters":{"shape":"DescribeRecoveryInstancesRequestFilters"},
         "maxResults":{"shape":"StrictlyPositiveInteger"},
@@ -850,7 +955,6 @@
     },
     "DescribeReplicationConfigurationTemplatesRequest":{
       "type":"structure",
-      "required":["replicationConfigurationTemplateIDs"],
       "members":{
         "maxResults":{"shape":"StrictlyPositiveInteger"},
         "nextToken":{"shape":"PaginationToken"},
@@ -866,7 +970,6 @@
     },
     "DescribeSourceServersRequest":{
       "type":"structure",
-      "required":["filters"],
       "members":{
         "filters":{"shape":"DescribeSourceServersRequestFilters"},
         "maxResults":{"shape":"StrictlyPositiveInteger"},
@@ -877,7 +980,8 @@
       "type":"structure",
       "members":{
         "hardwareId":{"shape":"BoundedString"},
-        "sourceServerIDs":{"shape":"DescribeSourceServersRequestFiltersIDs"}
+        "sourceServerIDs":{"shape":"DescribeSourceServersRequestFiltersIDs"},
+        "stagingAccountIDs":{"shape":"AccountIDs"}
       }
     },
     "DescribeSourceServersRequestFiltersIDs":{
@@ -952,6 +1056,14 @@
       "max":19,
       "min":10,
       "pattern":"^vol-([0-9a-fA-F]{8}|[0-9a-fA-F]{17})$"
+    },
+    "ExtensionStatus":{
+      "type":"string",
+      "enum":[
+        "EXTENDED",
+        "EXTENSION_ERROR",
+        "NOT_EXTENDED"
+      ]
     },
     "FailbackReplicationError":{
       "type":"string",
@@ -1044,7 +1156,8 @@
         "START_DRILL",
         "FAILBACK",
         "DIAGNOSTIC",
-        "TERMINATE_RECOVERY_INSTANCES"
+        "TERMINATE_RECOVERY_INSTANCES",
+        "TARGET_ACCOUNT"
       ]
     },
     "InternalServerException":{
@@ -1116,6 +1229,7 @@
     "JobLogEventData":{
       "type":"structure",
       "members":{
+        "conversionProperties":{"shape":"ConversionProperties"},
         "conversionServerID":{"shape":"EC2InstanceID"},
         "rawError":{"shape":"LargeBoundedString"},
         "sourceServerID":{"shape":"SourceServerID"},
@@ -1138,7 +1252,8 @@
       "type":"string",
       "enum":[
         "LAUNCH",
-        "TERMINATE"
+        "TERMINATE",
+        "CREATE_CONVERTED_SNAPSHOT"
       ]
     },
     "JobsList":{
@@ -1226,6 +1341,50 @@
         "type":{"shape":"LastLaunchType"}
       }
     },
+    "ListExtensibleSourceServersRequest":{
+      "type":"structure",
+      "required":["stagingAccountID"],
+      "members":{
+        "maxResults":{"shape":"MaxResultsReplicatingSourceServers"},
+        "nextToken":{"shape":"PaginationToken"},
+        "stagingAccountID":{"shape":"AccountID"}
+      }
+    },
+    "ListExtensibleSourceServersResponse":{
+      "type":"structure",
+      "members":{
+        "items":{"shape":"StagingSourceServersList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListStagingAccountsRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"ListStagingAccountsRequestMaxResultsInteger",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListStagingAccountsRequestMaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":50,
+      "min":1
+    },
+    "ListStagingAccountsResponse":{
+      "type":"structure",
+      "members":{
+        "accounts":{"shape":"Accounts"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["resourceArn"],
@@ -1242,6 +1401,11 @@
       "members":{
         "tags":{"shape":"TagsMap"}
       }
+    },
+    "MaxResultsReplicatingSourceServers":{
+      "type":"integer",
+      "max":300,
+      "min":1
     },
     "NetworkInterface":{
       "type":"structure",
@@ -1695,8 +1859,15 @@
         "recoveryInstanceId":{"shape":"RecoveryInstanceID"},
         "sourceProperties":{"shape":"SourceProperties"},
         "sourceServerID":{"shape":"SourceServerID"},
+        "stagingArea":{"shape":"StagingArea"},
         "tags":{"shape":"TagsMap"}
       }
+    },
+    "SourceServerARN":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:(?:[0-9a-zA-Z_-]+:){3}([0-9]{12,}):source-server/(s-[0-9a-zA-Z]{17})$"
     },
     "SourceServerID":{
       "type":"string",
@@ -1711,6 +1882,27 @@
     "SourceServersList":{
       "type":"list",
       "member":{"shape":"SourceServer"}
+    },
+    "StagingArea":{
+      "type":"structure",
+      "members":{
+        "errorMessage":{"shape":"LargeBoundedString"},
+        "stagingAccountID":{"shape":"AccountID"},
+        "stagingSourceServerArn":{"shape":"ARN"},
+        "status":{"shape":"ExtensionStatus"}
+      }
+    },
+    "StagingSourceServer":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"SourceServerARN"},
+        "hostname":{"shape":"BoundedString"},
+        "tags":{"shape":"TagsMap"}
+      }
+    },
+    "StagingSourceServersList":{
+      "type":"list",
+      "member":{"shape":"StagingSourceServer"}
     },
     "StartFailbackLaunchRequest":{
       "type":"structure",
@@ -1983,6 +2175,16 @@
         "fieldValidationFailed",
         "other"
       ]
+    },
+    "VolumeToConversionMap":{
+      "type":"map",
+      "key":{"shape":"LargeBoundedString"},
+      "value":{"shape":"ConversionMap"}
+    },
+    "VolumeToSizeMap":{
+      "type":"map",
+      "key":{"shape":"LargeBoundedString"},
+      "value":{"shape":"PositiveInteger"}
     },
     "ebsSnapshot":{
       "type":"string",
