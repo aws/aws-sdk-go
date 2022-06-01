@@ -450,6 +450,92 @@ func (c *BackupGateway) DisassociateGatewayFromServerWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+const opGetGateway = "GetGateway"
+
+// GetGatewayRequest generates a "aws/request.Request" representing the
+// client's request for the GetGateway operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetGateway for more information on using the GetGateway
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetGatewayRequest method.
+//    req, resp := client.GetGatewayRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/GetGateway
+func (c *BackupGateway) GetGatewayRequest(input *GetGatewayInput) (req *request.Request, output *GetGatewayOutput) {
+	op := &request.Operation{
+		Name:       opGetGateway,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetGatewayInput{}
+	}
+
+	output = &GetGatewayOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetGateway API operation for AWS Backup Gateway.
+//
+// By providing the ARN (Amazon Resource Name), this API returns the gateway.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup Gateway's
+// API operation GetGateway for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The operation did not succeed because a validation error occurred.
+//
+//   * InternalServerException
+//   The operation did not succeed because an internal error occurred. Try again
+//   later.
+//
+//   * ResourceNotFoundException
+//   A resource that is required for the action wasn't found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/GetGateway
+func (c *BackupGateway) GetGateway(input *GetGatewayInput) (*GetGatewayOutput, error) {
+	req, out := c.GetGatewayRequest(input)
+	return out, req.Send()
+}
+
+// GetGatewayWithContext is the same as GetGateway with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetGateway for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BackupGateway) GetGatewayWithContext(ctx aws.Context, input *GetGatewayInput, opts ...request.Option) (*GetGatewayOutput, error) {
+	req, out := c.GetGatewayRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opImportHypervisorConfiguration = "ImportHypervisorConfiguration"
 
 // ImportHypervisorConfigurationRequest generates a "aws/request.Request" representing the
@@ -1490,6 +1576,96 @@ func (c *BackupGateway) UpdateGatewayInformationWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opUpdateGatewaySoftwareNow = "UpdateGatewaySoftwareNow"
+
+// UpdateGatewaySoftwareNowRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateGatewaySoftwareNow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateGatewaySoftwareNow for more information on using the UpdateGatewaySoftwareNow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateGatewaySoftwareNowRequest method.
+//    req, resp := client.UpdateGatewaySoftwareNowRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/UpdateGatewaySoftwareNow
+func (c *BackupGateway) UpdateGatewaySoftwareNowRequest(input *UpdateGatewaySoftwareNowInput) (req *request.Request, output *UpdateGatewaySoftwareNowOutput) {
+	op := &request.Operation{
+		Name:       opUpdateGatewaySoftwareNow,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateGatewaySoftwareNowInput{}
+	}
+
+	output = &UpdateGatewaySoftwareNowOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateGatewaySoftwareNow API operation for AWS Backup Gateway.
+//
+// Updates the gateway virtual machine (VM) software. The request immediately
+// triggers the software update.
+//
+// When you make this request, you get a 200 OK success response immediately.
+// However, it might take some time for the update to complete.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup Gateway's
+// API operation UpdateGatewaySoftwareNow for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The operation did not succeed because a validation error occurred.
+//
+//   * InternalServerException
+//   The operation did not succeed because an internal error occurred. Try again
+//   later.
+//
+//   * ResourceNotFoundException
+//   A resource that is required for the action wasn't found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/UpdateGatewaySoftwareNow
+func (c *BackupGateway) UpdateGatewaySoftwareNow(input *UpdateGatewaySoftwareNowInput) (*UpdateGatewaySoftwareNowOutput, error) {
+	req, out := c.UpdateGatewaySoftwareNowRequest(input)
+	return out, req.Send()
+}
+
+// UpdateGatewaySoftwareNowWithContext is the same as UpdateGatewaySoftwareNow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateGatewaySoftwareNow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BackupGateway) UpdateGatewaySoftwareNowWithContext(ctx aws.Context, input *UpdateGatewaySoftwareNowInput, opts ...request.Option) (*UpdateGatewaySoftwareNowOutput, error) {
+	req, out := c.UpdateGatewaySoftwareNowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateHypervisor = "UpdateHypervisor"
 
 // UpdateHypervisorRequest generates a "aws/request.Request" representing the
@@ -2257,6 +2433,175 @@ func (s *Gateway) SetHypervisorId(v string) *Gateway {
 // SetLastSeenTime sets the LastSeenTime field's value.
 func (s *Gateway) SetLastSeenTime(v time.Time) *Gateway {
 	s.LastSeenTime = &v
+	return s
+}
+
+// The details of gateway.
+type GatewayDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
+	// to return a list of gateways for your account and Amazon Web Services Region.
+	GatewayArn *string `min:"50" type:"string"`
+
+	// The display name of the gateway.
+	GatewayDisplayName *string `min:"1" type:"string"`
+
+	// The type of the gateway type.
+	GatewayType *string `type:"string" enum:"GatewayType"`
+
+	// The hypervisor ID of the gateway.
+	HypervisorId *string `min:"1" type:"string"`
+
+	// Details showing the last time Backup gateway communicated with the cloud,
+	// in Unix format and UTC time.
+	LastSeenTime *time.Time `type:"timestamp"`
+
+	// Details showing the next update availability time of the gateway.
+	NextUpdateAvailabilityTime *time.Time `type:"timestamp"`
+
+	// The DNS name for the virtual private cloud (VPC) endpoint the gateway uses
+	// to connect to the cloud for backup gateway.
+	VpcEndpoint *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GatewayDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GatewayDetails) GoString() string {
+	return s.String()
+}
+
+// SetGatewayArn sets the GatewayArn field's value.
+func (s *GatewayDetails) SetGatewayArn(v string) *GatewayDetails {
+	s.GatewayArn = &v
+	return s
+}
+
+// SetGatewayDisplayName sets the GatewayDisplayName field's value.
+func (s *GatewayDetails) SetGatewayDisplayName(v string) *GatewayDetails {
+	s.GatewayDisplayName = &v
+	return s
+}
+
+// SetGatewayType sets the GatewayType field's value.
+func (s *GatewayDetails) SetGatewayType(v string) *GatewayDetails {
+	s.GatewayType = &v
+	return s
+}
+
+// SetHypervisorId sets the HypervisorId field's value.
+func (s *GatewayDetails) SetHypervisorId(v string) *GatewayDetails {
+	s.HypervisorId = &v
+	return s
+}
+
+// SetLastSeenTime sets the LastSeenTime field's value.
+func (s *GatewayDetails) SetLastSeenTime(v time.Time) *GatewayDetails {
+	s.LastSeenTime = &v
+	return s
+}
+
+// SetNextUpdateAvailabilityTime sets the NextUpdateAvailabilityTime field's value.
+func (s *GatewayDetails) SetNextUpdateAvailabilityTime(v time.Time) *GatewayDetails {
+	s.NextUpdateAvailabilityTime = &v
+	return s
+}
+
+// SetVpcEndpoint sets the VpcEndpoint field's value.
+func (s *GatewayDetails) SetVpcEndpoint(v string) *GatewayDetails {
+	s.VpcEndpoint = &v
+	return s
+}
+
+type GetGatewayInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the gateway.
+	//
+	// GatewayArn is a required field
+	GatewayArn *string `min:"50" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGatewayInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGatewayInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetGatewayInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetGatewayInput"}
+	if s.GatewayArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayArn"))
+	}
+	if s.GatewayArn != nil && len(*s.GatewayArn) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayArn", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGatewayArn sets the GatewayArn field's value.
+func (s *GetGatewayInput) SetGatewayArn(v string) *GetGatewayInput {
+	s.GatewayArn = &v
+	return s
+}
+
+type GetGatewayOutput struct {
+	_ struct{} `type:"structure"`
+
+	// By providing the ARN (Amazon Resource Name), this API returns the gateway.
+	Gateway *GatewayDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGatewayOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGatewayOutput) GoString() string {
+	return s.String()
+}
+
+// SetGateway sets the Gateway field's value.
+func (s *GetGatewayOutput) SetGateway(v *GatewayDetails) *GetGatewayOutput {
+	s.Gateway = v
 	return s
 }
 
@@ -3170,7 +3515,7 @@ type Tag struct {
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
-	// The key part of a value's key-value pair.
+	// The value part of a tag's key-value pair.
 	//
 	// Value is a required field
 	Value *string `type:"string" required:"true"`
@@ -3636,6 +3981,86 @@ func (s *UpdateGatewayInformationOutput) SetGatewayArn(v string) *UpdateGatewayI
 	return s
 }
 
+type UpdateGatewaySoftwareNowInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the gateway to be updated.
+	//
+	// GatewayArn is a required field
+	GatewayArn *string `min:"50" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGatewaySoftwareNowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGatewaySoftwareNowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateGatewaySoftwareNowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateGatewaySoftwareNowInput"}
+	if s.GatewayArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayArn"))
+	}
+	if s.GatewayArn != nil && len(*s.GatewayArn) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayArn", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGatewayArn sets the GatewayArn field's value.
+func (s *UpdateGatewaySoftwareNowInput) SetGatewayArn(v string) *UpdateGatewaySoftwareNowInput {
+	s.GatewayArn = &v
+	return s
+}
+
+type UpdateGatewaySoftwareNowOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the gateway you updated.
+	GatewayArn *string `min:"50" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGatewaySoftwareNowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGatewaySoftwareNowOutput) GoString() string {
+	return s.String()
+}
+
+// SetGatewayArn sets the GatewayArn field's value.
+func (s *UpdateGatewaySoftwareNowOutput) SetGatewayArn(v string) *UpdateGatewaySoftwareNowOutput {
+	s.GatewayArn = &v
+	return s
+}
+
 type UpdateHypervisorInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3647,6 +4072,9 @@ type UpdateHypervisorInput struct {
 	//
 	// HypervisorArn is a required field
 	HypervisorArn *string `min:"50" type:"string" required:"true"`
+
+	// The updated name for the hypervisor
+	Name *string `min:"1" type:"string"`
 
 	// The updated password for the hypervisor.
 	//
@@ -3693,6 +4121,9 @@ func (s *UpdateHypervisorInput) Validate() error {
 	if s.HypervisorArn != nil && len(*s.HypervisorArn) < 50 {
 		invalidParams.Add(request.NewErrParamMinLen("HypervisorArn", 50))
 	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
 	if s.Password != nil && len(*s.Password) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Password", 1))
 	}
@@ -3715,6 +4146,12 @@ func (s *UpdateHypervisorInput) SetHost(v string) *UpdateHypervisorInput {
 // SetHypervisorArn sets the HypervisorArn field's value.
 func (s *UpdateHypervisorInput) SetHypervisorArn(v string) *UpdateHypervisorInput {
 	s.HypervisorArn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateHypervisorInput) SetName(v string) *UpdateHypervisorInput {
+	s.Name = &v
 	return s
 }
 
@@ -3848,7 +4285,7 @@ type VirtualMachine struct {
 	// The path of the virtual machine.
 	Path *string `min:"1" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the virtual machine.
+	// The Amazon Resource Name (ARN) of the virtual machine. For example, arn:aws:backup-gateway:us-west-1:0000000000000:vm/vm-0000ABCDEFGIJKL.
 	ResourceArn *string `min:"50" type:"string"`
 }
 

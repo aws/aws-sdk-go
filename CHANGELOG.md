@@ -1,3 +1,13 @@
+Release v1.44.26 (2022-06-01)
+===
+
+### Service Client Updates
+* `service/backup-gateway`: Updates service API and documentation
+* `service/chime-sdk-meetings`: Updates service API and documentation
+* `service/forecast`: Updates service API and documentation
+* `service/route53`: Updates service API, documentation, and paginators
+  * Add new APIs to support Route 53 IP Based Routing
+
 Release v1.44.25 (2022-05-31)
 ===
 

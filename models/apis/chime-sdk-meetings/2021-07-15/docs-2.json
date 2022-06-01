@@ -3,6 +3,7 @@
   "service": "<p>The Amazon Chime SDK meetings APIs in this section allow software developers to create Amazon Chime SDK meetings, set the AWS Regions for meetings, create and manage users, and send and receive meeting notifications. For more information about the meeting APIs, see <a href=\"https://docs.aws.amazon.com/chime/latest/APIReference/API_Operations_Amazon_Chime_SDK_Meetings.html\">Amazon Chime SDK meetings</a>.</p>",
   "operations": {
     "BatchCreateAttendee": "<p>Creates up to 100 attendees for an active Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
+    "BatchUpdateAttendeeCapabilitiesExcept": "<p>Updates <code>AttendeeCapabilities</code> except the capabilities listed in an <code>ExcludedAttendeeIds</code> table.</p>",
     "CreateAttendee": "<p> Creates a new attendee for an active Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>. </p>",
     "CreateMeeting": "<p>Creates a new Amazon Chime SDK meeting in the specified media Region with no initial attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i>. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>. </p>",
     "CreateMeetingWithAttendees": "<p> Creates a new Amazon Chime SDK meeting in the specified media Region, with attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i>. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>. </p>",
@@ -12,7 +13,8 @@
     "GetMeeting": "<p>Gets the Amazon Chime SDK meeting details for the specified meeting ID. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
     "ListAttendees": "<p> Lists the attendees for the specified Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>. </p>",
     "StartMeetingTranscription": "<p>Starts transcription for the specified <code>meetingId</code>.</p>",
-    "StopMeetingTranscription": "<p>Stops transcription for the specified <code>meetingId</code>.</p>"
+    "StopMeetingTranscription": "<p>Stops transcription for the specified <code>meetingId</code>.</p>",
+    "UpdateAttendeeCapabilities": "<p>The capabilties that you want to update.</p>"
   },
   "shapes": {
     "Arn": {
@@ -28,7 +30,30 @@
       "refs": {
         "AttendeeList$member": null,
         "CreateAttendeeResponse$Attendee": "<p>The attendee information, including attendee ID and join token.</p>",
-        "GetAttendeeResponse$Attendee": "<p>The Amazon Chime SDK attendee information.</p>"
+        "GetAttendeeResponse$Attendee": "<p>The Amazon Chime SDK attendee information.</p>",
+        "UpdateAttendeeCapabilitiesResponse$Attendee": null
+      }
+    },
+    "AttendeeCapabilities": {
+      "base": "<p>The media capabilities of an attendee, including audio, video and content. </p>",
+      "refs": {
+        "Attendee$Capabilities": "<p>The capabilities (audio, video, or content) assigned to an attendee.</p>",
+        "BatchUpdateAttendeeCapabilitiesExceptRequest$Capabilities": "<p>The capabilities (<code>audio</code>, <code>video</code>, or <code>content</code>) that you want to update.</p>",
+        "CreateAttendeeRequest$Capabilities": "<p>The capabilities (<code>audio</code>, <code>video</code>, or <code>content</code>) that you want to grant an attendee. If you don't specify capabilities, all users have send and receive capabilities on all media channels by default.</p>",
+        "CreateAttendeeRequestItem$Capabilities": "<p>A list of one or more capabilities.</p>",
+        "UpdateAttendeeCapabilitiesRequest$Capabilities": "<p>The capabilties that you want to update.</p>"
+      }
+    },
+    "AttendeeIdItem": {
+      "base": "<p>A structure that contains one or more attendee IDs.</p>",
+      "refs": {
+        "AttendeeIdsList$member": null
+      }
+    },
+    "AttendeeIdsList": {
+      "base": null,
+      "refs": {
+        "BatchUpdateAttendeeCapabilitiesExceptRequest$ExcludedAttendeeIds": "<p>The <code>AttendeeIDs</code> that you want to exclude from one or more capabilities.</p>"
       }
     },
     "AttendeeList": {
@@ -67,6 +92,11 @@
       "refs": {
       }
     },
+    "BatchUpdateAttendeeCapabilitiesExceptRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Boolean": {
       "base": null,
       "refs": {
@@ -79,6 +109,11 @@
       "refs": {
         "CreateMeetingRequest$ClientRequestToken": "<p>The unique identifier for the client request. Use a different token for different meetings.</p>",
         "CreateMeetingWithAttendeesRequest$ClientRequestToken": "<p>The unique identifier for the client request. Use a different token for different meetings.</p>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p>Multiple instances of the same request have been made simultaneously.</p>",
+      "refs": {
       }
     },
     "CreateAttendeeError": {
@@ -207,7 +242,9 @@
       "base": null,
       "refs": {
         "Attendee$AttendeeId": "<p>The Amazon Chime SDK attendee ID.</p>",
+        "AttendeeIdItem$AttendeeId": "<p>A list of one or more attendee IDs.</p>",
         "BatchCreateAttendeeRequest$MeetingId": "<p>The Amazon Chime SDK ID of the meeting to which you're adding attendees.</p>",
+        "BatchUpdateAttendeeCapabilitiesExceptRequest$MeetingId": "<p>The ID of the meeting associated with the update request.</p>",
         "CreateAttendeeRequest$MeetingId": "<p>The unique ID of the meeting.</p>",
         "DeleteAttendeeRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "DeleteAttendeeRequest$AttendeeId": "<p>The Amazon Chime SDK attendee ID.</p>",
@@ -218,7 +255,9 @@
         "ListAttendeesRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "Meeting$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "StartMeetingTranscriptionRequest$MeetingId": "<p>The unique ID of the meeting being transcribed.</p>",
-        "StopMeetingTranscriptionRequest$MeetingId": "<p>The unique ID of the meeting for which you stop transcription.</p>"
+        "StopMeetingTranscriptionRequest$MeetingId": "<p>The unique ID of the meeting for which you stop transcription.</p>",
+        "UpdateAttendeeCapabilitiesRequest$MeetingId": "<p>The ID of the meeting associated with the update request.</p>",
+        "UpdateAttendeeCapabilitiesRequest$AttendeeId": "<p>The ID of the attendee associated with the update request.</p>"
       }
     },
     "JoinTokenString": {
@@ -240,6 +279,14 @@
     "ListAttendeesResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "MediaCapabilities": {
+      "base": null,
+      "refs": {
+        "AttendeeCapabilities$Audio": "<p>The audio capability assigned to an attendee.</p>",
+        "AttendeeCapabilities$Video": "<p>The video capability assigned to an attendee.</p>",
+        "AttendeeCapabilities$Content": "<p>The content capability assigned to an attendee.</p>"
       }
     },
     "MediaPlacement": {
@@ -311,7 +358,7 @@
       }
     },
     "ServiceFailureException": {
-      "base": "<p>The service encountered an unexpected error.</p>",
+      "base": "<p>The service is currently unavailable.</p>",
       "refs": {
       }
     },
@@ -336,6 +383,9 @@
         "BadRequestException$Code": null,
         "BadRequestException$Message": null,
         "BadRequestException$RequestId": "<p>The request id associated with the call responsible for the exception.</p>",
+        "ConflictException$Code": null,
+        "ConflictException$Message": null,
+        "ConflictException$RequestId": null,
         "CreateAttendeeError$ErrorCode": "<p>The error code.</p>",
         "CreateAttendeeError$ErrorMessage": "<p>The error message.</p>",
         "EngineTranscribeMedicalSettings$VocabularyName": "<p>The name of the vocabulary passed to Amazon Transcribe Medical.</p>",
@@ -359,7 +409,7 @@
         "MediaPlacement$EventIngestionUrl": "<p>The event ingestion URL.</p>",
         "NotFoundException$Code": null,
         "NotFoundException$Message": null,
-        "NotFoundException$RequestId": "<p>The request id associated with the call responsible for the exception.</p>",
+        "NotFoundException$RequestId": "<p>The request ID associated with the call responsible for the exception.</p>",
         "ServiceFailureException$Code": null,
         "ServiceFailureException$Message": null,
         "ServiceFailureException$RequestId": null,
@@ -378,7 +428,7 @@
       }
     },
     "ThrottlingException": {
-      "base": "<p>The number of customer requests exceeds the request rate limit.</p>",
+      "base": "<p>The number of requests exceeds the limit.</p>",
       "refs": {
       }
     },
@@ -480,6 +530,16 @@
     },
     "UnprocessableEntityException": {
       "base": "<p>The request was well-formed but was unable to be followed due to semantic errors.</p>",
+      "refs": {
+      }
+    },
+    "UpdateAttendeeCapabilitiesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAttendeeCapabilitiesResponse": {
+      "base": null,
       "refs": {
       }
     }

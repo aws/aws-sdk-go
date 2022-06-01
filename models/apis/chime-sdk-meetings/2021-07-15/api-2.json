@@ -31,6 +31,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "BatchUpdateAttendeeCapabilitiesExcept":{
+      "name":"BatchUpdateAttendeeCapabilitiesExcept",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/meetings/{MeetingId}/attendees/capabilities?operation=batch-update-except",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchUpdateAttendeeCapabilitiesExceptRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "CreateAttendee":{
       "name":"CreateAttendee",
       "http":{
@@ -216,6 +233,23 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
+    },
+    "UpdateAttendeeCapabilities":{
+      "name":"UpdateAttendeeCapabilities",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/meetings/{MeetingId}/attendees/{AttendeeId}/capabilities"
+      },
+      "input":{"shape":"UpdateAttendeeCapabilitiesRequest"},
+      "output":{"shape":"UpdateAttendeeCapabilitiesResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
     }
   },
   "shapes":{
@@ -231,8 +265,35 @@
       "members":{
         "ExternalUserId":{"shape":"ExternalUserId"},
         "AttendeeId":{"shape":"GuidString"},
-        "JoinToken":{"shape":"JoinTokenString"}
+        "JoinToken":{"shape":"JoinTokenString"},
+        "Capabilities":{"shape":"AttendeeCapabilities"}
       }
+    },
+    "AttendeeCapabilities":{
+      "type":"structure",
+      "required":[
+        "Audio",
+        "Video",
+        "Content"
+      ],
+      "members":{
+        "Audio":{"shape":"MediaCapabilities"},
+        "Video":{"shape":"MediaCapabilities"},
+        "Content":{"shape":"MediaCapabilities"}
+      }
+    },
+    "AttendeeIdItem":{
+      "type":"structure",
+      "required":["AttendeeId"],
+      "members":{
+        "AttendeeId":{"shape":"GuidString"}
+      }
+    },
+    "AttendeeIdsList":{
+      "type":"list",
+      "member":{"shape":"AttendeeIdItem"},
+      "max":250,
+      "min":1
     },
     "AttendeeList":{
       "type":"list",
@@ -280,6 +341,23 @@
         "Errors":{"shape":"BatchCreateAttendeeErrorList"}
       }
     },
+    "BatchUpdateAttendeeCapabilitiesExceptRequest":{
+      "type":"structure",
+      "required":[
+        "MeetingId",
+        "ExcludedAttendeeIds",
+        "Capabilities"
+      ],
+      "members":{
+        "MeetingId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"MeetingId"
+        },
+        "ExcludedAttendeeIds":{"shape":"AttendeeIdsList"},
+        "Capabilities":{"shape":"AttendeeCapabilities"}
+      }
+    },
     "Boolean":{"type":"boolean"},
     "ClientRequestToken":{
       "type":"string",
@@ -287,6 +365,16 @@
       "min":2,
       "pattern":"[-_a-zA-Z0-9]*",
       "sensitive":true
+    },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"String"},
+        "Message":{"shape":"String"},
+        "RequestId":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
     },
     "CreateAttendeeError":{
       "type":"structure",
@@ -308,14 +396,16 @@
           "location":"uri",
           "locationName":"MeetingId"
         },
-        "ExternalUserId":{"shape":"ExternalUserId"}
+        "ExternalUserId":{"shape":"ExternalUserId"},
+        "Capabilities":{"shape":"AttendeeCapabilities"}
       }
     },
     "CreateAttendeeRequestItem":{
       "type":"structure",
       "required":["ExternalUserId"],
       "members":{
-        "ExternalUserId":{"shape":"ExternalUserId"}
+        "ExternalUserId":{"shape":"ExternalUserId"},
+        "Capabilities":{"shape":"AttendeeCapabilities"}
       }
     },
     "CreateAttendeeRequestItemList":{
@@ -568,6 +658,15 @@
         "Attendees":{"shape":"AttendeeList"},
         "NextToken":{"shape":"String"}
       }
+    },
+    "MediaCapabilities":{
+      "type":"string",
+      "enum":[
+        "SendReceive",
+        "Send",
+        "Receive",
+        "None"
+      ]
     },
     "MediaPlacement":{
       "type":"structure",
@@ -848,6 +947,33 @@
       },
       "error":{"httpStatusCode":422},
       "exception":true
+    },
+    "UpdateAttendeeCapabilitiesRequest":{
+      "type":"structure",
+      "required":[
+        "MeetingId",
+        "AttendeeId",
+        "Capabilities"
+      ],
+      "members":{
+        "MeetingId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"MeetingId"
+        },
+        "AttendeeId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"AttendeeId"
+        },
+        "Capabilities":{"shape":"AttendeeCapabilities"}
+      }
+    },
+    "UpdateAttendeeCapabilitiesResponse":{
+      "type":"structure",
+      "members":{
+        "Attendee":{"shape":"Attendee"}
+      }
     }
   }
 }
