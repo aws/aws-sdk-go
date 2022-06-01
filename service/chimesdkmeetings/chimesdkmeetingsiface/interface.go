@@ -64,6 +64,10 @@ type ChimeSDKMeetingsAPI interface {
 	BatchCreateAttendeeWithContext(aws.Context, *chimesdkmeetings.BatchCreateAttendeeInput, ...request.Option) (*chimesdkmeetings.BatchCreateAttendeeOutput, error)
 	BatchCreateAttendeeRequest(*chimesdkmeetings.BatchCreateAttendeeInput) (*request.Request, *chimesdkmeetings.BatchCreateAttendeeOutput)
 
+	BatchUpdateAttendeeCapabilitiesExcept(*chimesdkmeetings.BatchUpdateAttendeeCapabilitiesExceptInput) (*chimesdkmeetings.BatchUpdateAttendeeCapabilitiesExceptOutput, error)
+	BatchUpdateAttendeeCapabilitiesExceptWithContext(aws.Context, *chimesdkmeetings.BatchUpdateAttendeeCapabilitiesExceptInput, ...request.Option) (*chimesdkmeetings.BatchUpdateAttendeeCapabilitiesExceptOutput, error)
+	BatchUpdateAttendeeCapabilitiesExceptRequest(*chimesdkmeetings.BatchUpdateAttendeeCapabilitiesExceptInput) (*request.Request, *chimesdkmeetings.BatchUpdateAttendeeCapabilitiesExceptOutput)
+
 	CreateAttendee(*chimesdkmeetings.CreateAttendeeInput) (*chimesdkmeetings.CreateAttendeeOutput, error)
 	CreateAttendeeWithContext(aws.Context, *chimesdkmeetings.CreateAttendeeInput, ...request.Option) (*chimesdkmeetings.CreateAttendeeOutput, error)
 	CreateAttendeeRequest(*chimesdkmeetings.CreateAttendeeInput) (*request.Request, *chimesdkmeetings.CreateAttendeeOutput)
@@ -106,6 +110,10 @@ type ChimeSDKMeetingsAPI interface {
 	StopMeetingTranscription(*chimesdkmeetings.StopMeetingTranscriptionInput) (*chimesdkmeetings.StopMeetingTranscriptionOutput, error)
 	StopMeetingTranscriptionWithContext(aws.Context, *chimesdkmeetings.StopMeetingTranscriptionInput, ...request.Option) (*chimesdkmeetings.StopMeetingTranscriptionOutput, error)
 	StopMeetingTranscriptionRequest(*chimesdkmeetings.StopMeetingTranscriptionInput) (*request.Request, *chimesdkmeetings.StopMeetingTranscriptionOutput)
+
+	UpdateAttendeeCapabilities(*chimesdkmeetings.UpdateAttendeeCapabilitiesInput) (*chimesdkmeetings.UpdateAttendeeCapabilitiesOutput, error)
+	UpdateAttendeeCapabilitiesWithContext(aws.Context, *chimesdkmeetings.UpdateAttendeeCapabilitiesInput, ...request.Option) (*chimesdkmeetings.UpdateAttendeeCapabilitiesOutput, error)
+	UpdateAttendeeCapabilitiesRequest(*chimesdkmeetings.UpdateAttendeeCapabilitiesInput) (*request.Request, *chimesdkmeetings.UpdateAttendeeCapabilitiesOutput)
 }
 
 var _ ChimeSDKMeetingsAPI = (*chimesdkmeetings.ChimeSDKMeetings)(nil)

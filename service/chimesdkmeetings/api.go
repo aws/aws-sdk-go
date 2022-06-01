@@ -91,10 +91,10 @@ func (c *ChimeSDKMeetings) BatchCreateAttendeeRequest(input *BatchCreateAttendee
 //   The service is currently unavailable.
 //
 //   * ServiceFailureException
-//   The service encountered an unexpected error.
+//   The service is currently unavailable.
 //
 //   * ThrottlingException
-//   The number of customer requests exceeds the request rate limit.
+//   The number of requests exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/BatchCreateAttendee
 func (c *ChimeSDKMeetings) BatchCreateAttendee(input *BatchCreateAttendeeInput) (*BatchCreateAttendeeOutput, error) {
@@ -113,6 +113,102 @@ func (c *ChimeSDKMeetings) BatchCreateAttendee(input *BatchCreateAttendeeInput) 
 // for more information on using Contexts.
 func (c *ChimeSDKMeetings) BatchCreateAttendeeWithContext(ctx aws.Context, input *BatchCreateAttendeeInput, opts ...request.Option) (*BatchCreateAttendeeOutput, error) {
 	req, out := c.BatchCreateAttendeeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opBatchUpdateAttendeeCapabilitiesExcept = "BatchUpdateAttendeeCapabilitiesExcept"
+
+// BatchUpdateAttendeeCapabilitiesExceptRequest generates a "aws/request.Request" representing the
+// client's request for the BatchUpdateAttendeeCapabilitiesExcept operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchUpdateAttendeeCapabilitiesExcept for more information on using the BatchUpdateAttendeeCapabilitiesExcept
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchUpdateAttendeeCapabilitiesExceptRequest method.
+//    req, resp := client.BatchUpdateAttendeeCapabilitiesExceptRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/BatchUpdateAttendeeCapabilitiesExcept
+func (c *ChimeSDKMeetings) BatchUpdateAttendeeCapabilitiesExceptRequest(input *BatchUpdateAttendeeCapabilitiesExceptInput) (req *request.Request, output *BatchUpdateAttendeeCapabilitiesExceptOutput) {
+	op := &request.Operation{
+		Name:       opBatchUpdateAttendeeCapabilitiesExcept,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/meetings/{MeetingId}/attendees/capabilities?operation=batch-update-except",
+	}
+
+	if input == nil {
+		input = &BatchUpdateAttendeeCapabilitiesExceptInput{}
+	}
+
+	output = &BatchUpdateAttendeeCapabilitiesExceptOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// BatchUpdateAttendeeCapabilitiesExcept API operation for Amazon Chime SDK Meetings.
+//
+// Updates AttendeeCapabilities except the capabilities listed in an ExcludedAttendeeIds
+// table.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Meetings's
+// API operation BatchUpdateAttendeeCapabilitiesExcept for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ConflictException
+//   Multiple instances of the same request have been made simultaneously.
+//
+//   * UnauthorizedException
+//   The user isn't authorized to request a resource.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/BatchUpdateAttendeeCapabilitiesExcept
+func (c *ChimeSDKMeetings) BatchUpdateAttendeeCapabilitiesExcept(input *BatchUpdateAttendeeCapabilitiesExceptInput) (*BatchUpdateAttendeeCapabilitiesExceptOutput, error) {
+	req, out := c.BatchUpdateAttendeeCapabilitiesExceptRequest(input)
+	return out, req.Send()
+}
+
+// BatchUpdateAttendeeCapabilitiesExceptWithContext is the same as BatchUpdateAttendeeCapabilitiesExcept with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchUpdateAttendeeCapabilitiesExcept for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMeetings) BatchUpdateAttendeeCapabilitiesExceptWithContext(ctx aws.Context, input *BatchUpdateAttendeeCapabilitiesExceptInput, opts ...request.Option) (*BatchUpdateAttendeeCapabilitiesExceptOutput, error) {
+	req, out := c.BatchUpdateAttendeeCapabilitiesExceptRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -197,10 +293,10 @@ func (c *ChimeSDKMeetings) CreateAttendeeRequest(input *CreateAttendeeInput) (re
 //   The service is currently unavailable.
 //
 //   * ServiceFailureException
-//   The service encountered an unexpected error.
+//   The service is currently unavailable.
 //
 //   * ThrottlingException
-//   The number of customer requests exceeds the request rate limit.
+//   The number of requests exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/CreateAttendee
 func (c *ChimeSDKMeetings) CreateAttendee(input *CreateAttendeeInput) (*CreateAttendeeOutput, error) {
@@ -293,10 +389,10 @@ func (c *ChimeSDKMeetings) CreateMeetingRequest(input *CreateMeetingInput) (req 
 //   The user isn't authorized to request a resource.
 //
 //   * ThrottlingException
-//   The number of customer requests exceeds the request rate limit.
+//   The number of requests exceeds the limit.
 //
 //   * ServiceFailureException
-//   The service encountered an unexpected error.
+//   The service is currently unavailable.
 //
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
@@ -395,10 +491,10 @@ func (c *ChimeSDKMeetings) CreateMeetingWithAttendeesRequest(input *CreateMeetin
 //   The user isn't authorized to request a resource.
 //
 //   * ThrottlingException
-//   The number of customer requests exceeds the request rate limit.
+//   The number of requests exceeds the limit.
 //
 //   * ServiceFailureException
-//   The service encountered an unexpected error.
+//   The service is currently unavailable.
 //
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
@@ -503,10 +599,10 @@ func (c *ChimeSDKMeetings) DeleteAttendeeRequest(input *DeleteAttendeeInput) (re
 //   The service is currently unavailable.
 //
 //   * ServiceFailureException
-//   The service encountered an unexpected error.
+//   The service is currently unavailable.
 //
 //   * ThrottlingException
-//   The number of customer requests exceeds the request rate limit.
+//   The number of requests exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/DeleteAttendee
 func (c *ChimeSDKMeetings) DeleteAttendee(input *DeleteAttendeeInput) (*DeleteAttendeeOutput, error) {
@@ -605,10 +701,10 @@ func (c *ChimeSDKMeetings) DeleteMeetingRequest(input *DeleteMeetingInput) (req 
 //   The service is currently unavailable.
 //
 //   * ServiceFailureException
-//   The service encountered an unexpected error.
+//   The service is currently unavailable.
 //
 //   * ThrottlingException
-//   The number of customer requests exceeds the request rate limit.
+//   The number of requests exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/DeleteMeeting
 func (c *ChimeSDKMeetings) DeleteMeeting(input *DeleteMeetingInput) (*DeleteMeetingOutput, error) {
@@ -705,10 +801,10 @@ func (c *ChimeSDKMeetings) GetAttendeeRequest(input *GetAttendeeInput) (req *req
 //   The service is currently unavailable.
 //
 //   * ServiceFailureException
-//   The service encountered an unexpected error.
+//   The service is currently unavailable.
 //
 //   * ThrottlingException
-//   The number of customer requests exceeds the request rate limit.
+//   The number of requests exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/GetAttendee
 func (c *ChimeSDKMeetings) GetAttendee(input *GetAttendeeInput) (*GetAttendeeOutput, error) {
@@ -805,10 +901,10 @@ func (c *ChimeSDKMeetings) GetMeetingRequest(input *GetMeetingInput) (req *reque
 //   The service is currently unavailable.
 //
 //   * ServiceFailureException
-//   The service encountered an unexpected error.
+//   The service is currently unavailable.
 //
 //   * ThrottlingException
-//   The number of customer requests exceeds the request rate limit.
+//   The number of requests exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/GetMeeting
 func (c *ChimeSDKMeetings) GetMeeting(input *GetMeetingInput) (*GetMeetingOutput, error) {
@@ -910,10 +1006,10 @@ func (c *ChimeSDKMeetings) ListAttendeesRequest(input *ListAttendeesInput) (req 
 //   The service is currently unavailable.
 //
 //   * ServiceFailureException
-//   The service encountered an unexpected error.
+//   The service is currently unavailable.
 //
 //   * ThrottlingException
-//   The number of customer requests exceeds the request rate limit.
+//   The number of requests exceeds the limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/ListAttendees
 func (c *ChimeSDKMeetings) ListAttendees(input *ListAttendeesInput) (*ListAttendeesOutput, error) {
@@ -1064,13 +1160,13 @@ func (c *ChimeSDKMeetings) StartMeetingTranscriptionRequest(input *StartMeetingT
 //   errors.
 //
 //   * ThrottlingException
-//   The number of customer requests exceeds the request rate limit.
+//   The number of requests exceeds the limit.
 //
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
 //   * ServiceFailureException
-//   The service encountered an unexpected error.
+//   The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/StartMeetingTranscription
 func (c *ChimeSDKMeetings) StartMeetingTranscription(input *StartMeetingTranscriptionInput) (*StartMeetingTranscriptionOutput, error) {
@@ -1166,13 +1262,13 @@ func (c *ChimeSDKMeetings) StopMeetingTranscriptionRequest(input *StopMeetingTra
 //   errors.
 //
 //   * ThrottlingException
-//   The number of customer requests exceeds the request rate limit.
+//   The number of requests exceeds the limit.
 //
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
 //   * ServiceFailureException
-//   The service encountered an unexpected error.
+//   The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/StopMeetingTranscription
 func (c *ChimeSDKMeetings) StopMeetingTranscription(input *StopMeetingTranscriptionInput) (*StopMeetingTranscriptionOutput, error) {
@@ -1196,6 +1292,100 @@ func (c *ChimeSDKMeetings) StopMeetingTranscriptionWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opUpdateAttendeeCapabilities = "UpdateAttendeeCapabilities"
+
+// UpdateAttendeeCapabilitiesRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAttendeeCapabilities operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAttendeeCapabilities for more information on using the UpdateAttendeeCapabilities
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateAttendeeCapabilitiesRequest method.
+//    req, resp := client.UpdateAttendeeCapabilitiesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/UpdateAttendeeCapabilities
+func (c *ChimeSDKMeetings) UpdateAttendeeCapabilitiesRequest(input *UpdateAttendeeCapabilitiesInput) (req *request.Request, output *UpdateAttendeeCapabilitiesOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAttendeeCapabilities,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/meetings/{MeetingId}/attendees/{AttendeeId}/capabilities",
+	}
+
+	if input == nil {
+		input = &UpdateAttendeeCapabilitiesInput{}
+	}
+
+	output = &UpdateAttendeeCapabilitiesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateAttendeeCapabilities API operation for Amazon Chime SDK Meetings.
+//
+// The capabilties that you want to update.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Meetings's
+// API operation UpdateAttendeeCapabilities for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ConflictException
+//   Multiple instances of the same request have been made simultaneously.
+//
+//   * UnauthorizedException
+//   The user isn't authorized to request a resource.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15/UpdateAttendeeCapabilities
+func (c *ChimeSDKMeetings) UpdateAttendeeCapabilities(input *UpdateAttendeeCapabilitiesInput) (*UpdateAttendeeCapabilitiesOutput, error) {
+	req, out := c.UpdateAttendeeCapabilitiesRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAttendeeCapabilitiesWithContext is the same as UpdateAttendeeCapabilities with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAttendeeCapabilities for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMeetings) UpdateAttendeeCapabilitiesWithContext(ctx aws.Context, input *UpdateAttendeeCapabilitiesInput, opts ...request.Option) (*UpdateAttendeeCapabilitiesOutput, error) {
+	req, out := c.UpdateAttendeeCapabilitiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // An Amazon Chime SDK meeting attendee. Includes a unique AttendeeId and JoinToken.
 // The JoinToken allows a client to authenticate and join as the specified attendee.
 // The JoinToken expires when the meeting ends, or when DeleteAttendee is called.
@@ -1209,6 +1399,9 @@ type Attendee struct {
 
 	// The Amazon Chime SDK attendee ID.
 	AttendeeId *string `type:"string"`
+
+	// The capabilities (audio, video, or content) assigned to an attendee.
+	Capabilities *AttendeeCapabilities `type:"structure"`
 
 	// The Amazon Chime SDK external user ID. An idempotency token. Links the attendee
 	// to an identity managed by a builder application.
@@ -1250,6 +1443,12 @@ func (s *Attendee) SetAttendeeId(v string) *Attendee {
 	return s
 }
 
+// SetCapabilities sets the Capabilities field's value.
+func (s *Attendee) SetCapabilities(v *AttendeeCapabilities) *Attendee {
+	s.Capabilities = v
+	return s
+}
+
 // SetExternalUserId sets the ExternalUserId field's value.
 func (s *Attendee) SetExternalUserId(v string) *Attendee {
 	s.ExternalUserId = &v
@@ -1259,6 +1458,128 @@ func (s *Attendee) SetExternalUserId(v string) *Attendee {
 // SetJoinToken sets the JoinToken field's value.
 func (s *Attendee) SetJoinToken(v string) *Attendee {
 	s.JoinToken = &v
+	return s
+}
+
+// The media capabilities of an attendee, including audio, video and content.
+type AttendeeCapabilities struct {
+	_ struct{} `type:"structure"`
+
+	// The audio capability assigned to an attendee.
+	//
+	// Audio is a required field
+	Audio *string `type:"string" required:"true" enum:"MediaCapabilities"`
+
+	// The content capability assigned to an attendee.
+	//
+	// Content is a required field
+	Content *string `type:"string" required:"true" enum:"MediaCapabilities"`
+
+	// The video capability assigned to an attendee.
+	//
+	// Video is a required field
+	Video *string `type:"string" required:"true" enum:"MediaCapabilities"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttendeeCapabilities) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttendeeCapabilities) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AttendeeCapabilities) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AttendeeCapabilities"}
+	if s.Audio == nil {
+		invalidParams.Add(request.NewErrParamRequired("Audio"))
+	}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.Video == nil {
+		invalidParams.Add(request.NewErrParamRequired("Video"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAudio sets the Audio field's value.
+func (s *AttendeeCapabilities) SetAudio(v string) *AttendeeCapabilities {
+	s.Audio = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *AttendeeCapabilities) SetContent(v string) *AttendeeCapabilities {
+	s.Content = &v
+	return s
+}
+
+// SetVideo sets the Video field's value.
+func (s *AttendeeCapabilities) SetVideo(v string) *AttendeeCapabilities {
+	s.Video = &v
+	return s
+}
+
+// A structure that contains one or more attendee IDs.
+type AttendeeIdItem struct {
+	_ struct{} `type:"structure"`
+
+	// A list of one or more attendee IDs.
+	//
+	// AttendeeId is a required field
+	AttendeeId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttendeeIdItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttendeeIdItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AttendeeIdItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AttendeeIdItem"}
+	if s.AttendeeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttendeeId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttendeeId sets the AttendeeId field's value.
+func (s *AttendeeIdItem) SetAttendeeId(v string) *AttendeeIdItem {
+	s.AttendeeId = &v
 	return s
 }
 
@@ -1481,6 +1802,191 @@ func (s *BatchCreateAttendeeOutput) SetErrors(v []*CreateAttendeeError) *BatchCr
 	return s
 }
 
+type BatchUpdateAttendeeCapabilitiesExceptInput struct {
+	_ struct{} `type:"structure"`
+
+	// The capabilities (audio, video, or content) that you want to update.
+	//
+	// Capabilities is a required field
+	Capabilities *AttendeeCapabilities `type:"structure" required:"true"`
+
+	// The AttendeeIDs that you want to exclude from one or more capabilities.
+	//
+	// ExcludedAttendeeIds is a required field
+	ExcludedAttendeeIds []*AttendeeIdItem `min:"1" type:"list" required:"true"`
+
+	// The ID of the meeting associated with the update request.
+	//
+	// MeetingId is a required field
+	MeetingId *string `location:"uri" locationName:"MeetingId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateAttendeeCapabilitiesExceptInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateAttendeeCapabilitiesExceptInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchUpdateAttendeeCapabilitiesExceptInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchUpdateAttendeeCapabilitiesExceptInput"}
+	if s.Capabilities == nil {
+		invalidParams.Add(request.NewErrParamRequired("Capabilities"))
+	}
+	if s.ExcludedAttendeeIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExcludedAttendeeIds"))
+	}
+	if s.ExcludedAttendeeIds != nil && len(s.ExcludedAttendeeIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExcludedAttendeeIds", 1))
+	}
+	if s.MeetingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeetingId"))
+	}
+	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
+	}
+	if s.Capabilities != nil {
+		if err := s.Capabilities.Validate(); err != nil {
+			invalidParams.AddNested("Capabilities", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ExcludedAttendeeIds != nil {
+		for i, v := range s.ExcludedAttendeeIds {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ExcludedAttendeeIds", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCapabilities sets the Capabilities field's value.
+func (s *BatchUpdateAttendeeCapabilitiesExceptInput) SetCapabilities(v *AttendeeCapabilities) *BatchUpdateAttendeeCapabilitiesExceptInput {
+	s.Capabilities = v
+	return s
+}
+
+// SetExcludedAttendeeIds sets the ExcludedAttendeeIds field's value.
+func (s *BatchUpdateAttendeeCapabilitiesExceptInput) SetExcludedAttendeeIds(v []*AttendeeIdItem) *BatchUpdateAttendeeCapabilitiesExceptInput {
+	s.ExcludedAttendeeIds = v
+	return s
+}
+
+// SetMeetingId sets the MeetingId field's value.
+func (s *BatchUpdateAttendeeCapabilitiesExceptInput) SetMeetingId(v string) *BatchUpdateAttendeeCapabilitiesExceptInput {
+	s.MeetingId = &v
+	return s
+}
+
+type BatchUpdateAttendeeCapabilitiesExceptOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateAttendeeCapabilitiesExceptOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateAttendeeCapabilitiesExceptOutput) GoString() string {
+	return s.String()
+}
+
+// Multiple instances of the same request have been made simultaneously.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	RequestId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The list of errors returned when errors are encountered during the BatchCreateAttendee
 // and CreateAttendee actions. This includes external user IDs, error codes,
 // and error messages.
@@ -1541,6 +2047,11 @@ func (s *CreateAttendeeError) SetExternalUserId(v string) *CreateAttendeeError {
 type CreateAttendeeInput struct {
 	_ struct{} `type:"structure"`
 
+	// The capabilities (audio, video, or content) that you want to grant an attendee.
+	// If you don't specify capabilities, all users have send and receive capabilities
+	// on all media channels by default.
+	Capabilities *AttendeeCapabilities `type:"structure"`
+
 	// The Amazon Chime SDK external user ID. An idempotency token. Links the attendee
 	// to an identity managed by a builder application.
 	//
@@ -1590,11 +2101,22 @@ func (s *CreateAttendeeInput) Validate() error {
 	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
 	}
+	if s.Capabilities != nil {
+		if err := s.Capabilities.Validate(); err != nil {
+			invalidParams.AddNested("Capabilities", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCapabilities sets the Capabilities field's value.
+func (s *CreateAttendeeInput) SetCapabilities(v *AttendeeCapabilities) *CreateAttendeeInput {
+	s.Capabilities = v
+	return s
 }
 
 // SetExternalUserId sets the ExternalUserId field's value.
@@ -1645,6 +2167,9 @@ func (s *CreateAttendeeOutput) SetAttendee(v *Attendee) *CreateAttendeeOutput {
 type CreateAttendeeRequestItem struct {
 	_ struct{} `type:"structure"`
 
+	// A list of one or more capabilities.
+	Capabilities *AttendeeCapabilities `type:"structure"`
+
 	// The Amazon Chime SDK external user ID. An idempotency token. Links the attendee
 	// to an identity managed by a builder application.
 	//
@@ -1683,11 +2208,22 @@ func (s *CreateAttendeeRequestItem) Validate() error {
 	if s.ExternalUserId != nil && len(*s.ExternalUserId) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("ExternalUserId", 2))
 	}
+	if s.Capabilities != nil {
+		if err := s.Capabilities.Validate(); err != nil {
+			invalidParams.AddNested("Capabilities", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCapabilities sets the Capabilities field's value.
+func (s *CreateAttendeeRequestItem) SetCapabilities(v *AttendeeCapabilities) *CreateAttendeeRequestItem {
+	s.Capabilities = v
+	return s
 }
 
 // SetExternalUserId sets the ExternalUserId field's value.
@@ -3209,7 +3745,7 @@ type NotFoundException struct {
 
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The request id associated with the call responsible for the exception.
+	// The request ID associated with the call responsible for the exception.
 	RequestId *string `type:"string"`
 }
 
@@ -3351,7 +3887,7 @@ func (s *NotificationsConfiguration) SetSqsQueueArn(v string) *NotificationsConf
 	return s
 }
 
-// The service encountered an unexpected error.
+// The service is currently unavailable.
 type ServiceFailureException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3653,7 +4189,7 @@ func (s StopMeetingTranscriptionOutput) GoString() string {
 	return s.String()
 }
 
-// The number of customer requests exceeds the request rate limit.
+// The number of requests exceeds the limit.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3920,6 +4456,153 @@ func (s *UnprocessableEntityException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *UnprocessableEntityException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type UpdateAttendeeCapabilitiesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the attendee associated with the update request.
+	//
+	// AttendeeId is a required field
+	AttendeeId *string `location:"uri" locationName:"AttendeeId" type:"string" required:"true"`
+
+	// The capabilties that you want to update.
+	//
+	// Capabilities is a required field
+	Capabilities *AttendeeCapabilities `type:"structure" required:"true"`
+
+	// The ID of the meeting associated with the update request.
+	//
+	// MeetingId is a required field
+	MeetingId *string `location:"uri" locationName:"MeetingId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAttendeeCapabilitiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAttendeeCapabilitiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAttendeeCapabilitiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAttendeeCapabilitiesInput"}
+	if s.AttendeeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttendeeId"))
+	}
+	if s.AttendeeId != nil && len(*s.AttendeeId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttendeeId", 1))
+	}
+	if s.Capabilities == nil {
+		invalidParams.Add(request.NewErrParamRequired("Capabilities"))
+	}
+	if s.MeetingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeetingId"))
+	}
+	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
+	}
+	if s.Capabilities != nil {
+		if err := s.Capabilities.Validate(); err != nil {
+			invalidParams.AddNested("Capabilities", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttendeeId sets the AttendeeId field's value.
+func (s *UpdateAttendeeCapabilitiesInput) SetAttendeeId(v string) *UpdateAttendeeCapabilitiesInput {
+	s.AttendeeId = &v
+	return s
+}
+
+// SetCapabilities sets the Capabilities field's value.
+func (s *UpdateAttendeeCapabilitiesInput) SetCapabilities(v *AttendeeCapabilities) *UpdateAttendeeCapabilitiesInput {
+	s.Capabilities = v
+	return s
+}
+
+// SetMeetingId sets the MeetingId field's value.
+func (s *UpdateAttendeeCapabilitiesInput) SetMeetingId(v string) *UpdateAttendeeCapabilitiesInput {
+	s.MeetingId = &v
+	return s
+}
+
+type UpdateAttendeeCapabilitiesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An Amazon Chime SDK meeting attendee. Includes a unique AttendeeId and JoinToken.
+	// The JoinToken allows a client to authenticate and join as the specified attendee.
+	// The JoinToken expires when the meeting ends, or when DeleteAttendee is called.
+	// After that, the attendee is unable to join the meeting.
+	//
+	// We recommend securely transferring each JoinToken from your server application
+	// to the client so that no other client has access to the token except for
+	// the one authorized to represent the attendee.
+	Attendee *Attendee `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAttendeeCapabilitiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAttendeeCapabilitiesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAttendee sets the Attendee field's value.
+func (s *UpdateAttendeeCapabilitiesOutput) SetAttendee(v *Attendee) *UpdateAttendeeCapabilitiesOutput {
+	s.Attendee = v
+	return s
+}
+
+const (
+	// MediaCapabilitiesSendReceive is a MediaCapabilities enum value
+	MediaCapabilitiesSendReceive = "SendReceive"
+
+	// MediaCapabilitiesSend is a MediaCapabilities enum value
+	MediaCapabilitiesSend = "Send"
+
+	// MediaCapabilitiesReceive is a MediaCapabilities enum value
+	MediaCapabilitiesReceive = "Receive"
+
+	// MediaCapabilitiesNone is a MediaCapabilities enum value
+	MediaCapabilitiesNone = "None"
+)
+
+// MediaCapabilities_Values returns all elements of the MediaCapabilities enum
+func MediaCapabilities_Values() []string {
+	return []string{
+		MediaCapabilitiesSendReceive,
+		MediaCapabilitiesSend,
+		MediaCapabilitiesReceive,
+		MediaCapabilitiesNone,
+	}
 }
 
 const (

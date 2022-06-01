@@ -80,6 +80,10 @@ type BackupGatewayAPI interface {
 	DisassociateGatewayFromServerWithContext(aws.Context, *backupgateway.DisassociateGatewayFromServerInput, ...request.Option) (*backupgateway.DisassociateGatewayFromServerOutput, error)
 	DisassociateGatewayFromServerRequest(*backupgateway.DisassociateGatewayFromServerInput) (*request.Request, *backupgateway.DisassociateGatewayFromServerOutput)
 
+	GetGateway(*backupgateway.GetGatewayInput) (*backupgateway.GetGatewayOutput, error)
+	GetGatewayWithContext(aws.Context, *backupgateway.GetGatewayInput, ...request.Option) (*backupgateway.GetGatewayOutput, error)
+	GetGatewayRequest(*backupgateway.GetGatewayInput) (*request.Request, *backupgateway.GetGatewayOutput)
+
 	ImportHypervisorConfiguration(*backupgateway.ImportHypervisorConfigurationInput) (*backupgateway.ImportHypervisorConfigurationOutput, error)
 	ImportHypervisorConfigurationWithContext(aws.Context, *backupgateway.ImportHypervisorConfigurationInput, ...request.Option) (*backupgateway.ImportHypervisorConfigurationOutput, error)
 	ImportHypervisorConfigurationRequest(*backupgateway.ImportHypervisorConfigurationInput) (*request.Request, *backupgateway.ImportHypervisorConfigurationOutput)
@@ -128,6 +132,10 @@ type BackupGatewayAPI interface {
 	UpdateGatewayInformation(*backupgateway.UpdateGatewayInformationInput) (*backupgateway.UpdateGatewayInformationOutput, error)
 	UpdateGatewayInformationWithContext(aws.Context, *backupgateway.UpdateGatewayInformationInput, ...request.Option) (*backupgateway.UpdateGatewayInformationOutput, error)
 	UpdateGatewayInformationRequest(*backupgateway.UpdateGatewayInformationInput) (*request.Request, *backupgateway.UpdateGatewayInformationOutput)
+
+	UpdateGatewaySoftwareNow(*backupgateway.UpdateGatewaySoftwareNowInput) (*backupgateway.UpdateGatewaySoftwareNowOutput, error)
+	UpdateGatewaySoftwareNowWithContext(aws.Context, *backupgateway.UpdateGatewaySoftwareNowInput, ...request.Option) (*backupgateway.UpdateGatewaySoftwareNowOutput, error)
+	UpdateGatewaySoftwareNowRequest(*backupgateway.UpdateGatewaySoftwareNowInput) (*request.Request, *backupgateway.UpdateGatewaySoftwareNowOutput)
 
 	UpdateHypervisor(*backupgateway.UpdateHypervisorInput) (*backupgateway.UpdateHypervisorOutput, error)
 	UpdateHypervisorWithContext(aws.Context, *backupgateway.UpdateHypervisorInput, ...request.Option) (*backupgateway.UpdateHypervisorOutput, error)

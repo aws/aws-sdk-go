@@ -14,6 +14,12 @@ const (
 	// The input parameters don't match the service's restrictions.
 	ErrCodeBadRequestException = "BadRequestException"
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// Multiple instances of the same request have been made simultaneously.
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeForbiddenException for service response error code
 	// "ForbiddenException".
 	//
@@ -35,7 +41,7 @@ const (
 	// ErrCodeServiceFailureException for service response error code
 	// "ServiceFailureException".
 	//
-	// The service encountered an unexpected error.
+	// The service is currently unavailable.
 	ErrCodeServiceFailureException = "ServiceFailureException"
 
 	// ErrCodeServiceUnavailableException for service response error code
@@ -47,7 +53,7 @@ const (
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
-	// The number of customer requests exceeds the request rate limit.
+	// The number of requests exceeds the limit.
 	ErrCodeThrottlingException = "ThrottlingException"
 
 	// ErrCodeUnauthorizedException for service response error code
@@ -66,6 +72,7 @@ const (
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"BadRequestException":          newErrorBadRequestException,
+	"ConflictException":            newErrorConflictException,
 	"ForbiddenException":           newErrorForbiddenException,
 	"LimitExceededException":       newErrorLimitExceededException,
 	"NotFoundException":            newErrorNotFoundException,

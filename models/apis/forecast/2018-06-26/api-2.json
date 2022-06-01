@@ -925,7 +925,8 @@
         "TimeZone":{"shape":"TimeZone"},
         "UseGeolocationForTimeZone":{"shape":"UseGeolocationForTimeZone"},
         "GeolocationFormat":{"shape":"GeolocationFormat"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "Format":{"shape":"Format"}
       }
     },
     "CreateDatasetImportJobResponse":{
@@ -969,7 +970,8 @@
         "ExplainabilityExportName":{"shape":"Name"},
         "ExplainabilityArn":{"shape":"Arn"},
         "Destination":{"shape":"DataDestination"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "Format":{"shape":"Format"}
       }
     },
     "CreateExplainabilityExportResponse":{
@@ -1014,7 +1016,8 @@
         "ForecastExportJobName":{"shape":"Name"},
         "ForecastArn":{"shape":"Arn"},
         "Destination":{"shape":"DataDestination"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "Format":{"shape":"Format"}
       }
     },
     "CreateForecastExportJobResponse":{
@@ -1033,7 +1036,8 @@
         "ForecastName":{"shape":"Name"},
         "PredictorArn":{"shape":"Arn"},
         "ForecastTypes":{"shape":"ForecastTypes"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "TimeSeriesSelector":{"shape":"TimeSeriesSelector"}
       }
     },
     "CreateForecastResponse":{
@@ -1071,7 +1075,8 @@
         "PredictorBacktestExportJobName":{"shape":"Name"},
         "PredictorArn":{"shape":"Arn"},
         "Destination":{"shape":"DataDestination"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "Format":{"shape":"Format"}
       }
     },
     "CreatePredictorBacktestExportJobResponse":{
@@ -1355,7 +1360,8 @@
         "Status":{"shape":"Status"},
         "Message":{"shape":"Message"},
         "CreationTime":{"shape":"Timestamp"},
-        "LastModificationTime":{"shape":"Timestamp"}
+        "LastModificationTime":{"shape":"Timestamp"},
+        "Format":{"shape":"Format"}
       }
     },
     "DescribeDatasetRequest":{
@@ -1397,7 +1403,8 @@
         "Message":{"shape":"Message"},
         "Status":{"shape":"Status"},
         "CreationTime":{"shape":"Timestamp"},
-        "LastModificationTime":{"shape":"Timestamp"}
+        "LastModificationTime":{"shape":"Timestamp"},
+        "Format":{"shape":"Format"}
       }
     },
     "DescribeExplainabilityRequest":{
@@ -1443,7 +1450,8 @@
         "Message":{"shape":"Message"},
         "Status":{"shape":"Status"},
         "CreationTime":{"shape":"Timestamp"},
-        "LastModificationTime":{"shape":"Timestamp"}
+        "LastModificationTime":{"shape":"Timestamp"},
+        "Format":{"shape":"Format"}
       }
     },
     "DescribeForecastRequest":{
@@ -1465,7 +1473,8 @@
         "Status":{"shape":"String"},
         "Message":{"shape":"ErrorMessage"},
         "CreationTime":{"shape":"Timestamp"},
-        "LastModificationTime":{"shape":"Timestamp"}
+        "LastModificationTime":{"shape":"Timestamp"},
+        "TimeSeriesSelector":{"shape":"TimeSeriesSelector"}
       }
     },
     "DescribeMonitorRequest":{
@@ -1508,7 +1517,8 @@
         "Message":{"shape":"Message"},
         "Status":{"shape":"Status"},
         "CreationTime":{"shape":"Timestamp"},
-        "LastModificationTime":{"shape":"Timestamp"}
+        "LastModificationTime":{"shape":"Timestamp"},
+        "Format":{"shape":"Format"}
       }
     },
     "DescribePredictorRequest":{
@@ -1794,6 +1804,11 @@
     "Forecasts":{
       "type":"list",
       "member":{"shape":"ForecastSummary"}
+    },
+    "Format":{
+      "type":"string",
+      "max":7,
+      "pattern":"^CSV|PARQUET$"
     },
     "Frequency":{
       "type":"string",
@@ -2520,6 +2535,20 @@
         "ALL",
         "SPECIFIC"
       ]
+    },
+    "TimeSeriesIdentifiers":{
+      "type":"structure",
+      "members":{
+        "DataSource":{"shape":"DataSource"},
+        "Schema":{"shape":"Schema"},
+        "Format":{"shape":"Format"}
+      }
+    },
+    "TimeSeriesSelector":{
+      "type":"structure",
+      "members":{
+        "TimeSeriesIdentifiers":{"shape":"TimeSeriesIdentifiers"}
+      }
     },
     "TimeZone":{
       "type":"string",

@@ -7,6 +7,7 @@
     "DeleteGateway": "<p>Deletes a backup gateway.</p>",
     "DeleteHypervisor": "<p>Deletes a hypervisor.</p>",
     "DisassociateGatewayFromServer": "<p>Disassociates a backup gateway from the specified server. After the disassociation process finishes, the gateway can no longer access the virtual machines on the server.</p>",
+    "GetGateway": "<p>By providing the ARN (Amazon Resource Name), this API returns the gateway.</p>",
     "ImportHypervisorConfiguration": "<p>Connect to a hypervisor by importing its configuration.</p>",
     "ListGateways": "<p>Lists backup gateways owned by an Amazon Web Services account in an Amazon Web Services Region. The returned list is ordered by gateway Amazon Resource Name (ARN).</p>",
     "ListHypervisors": "<p>Lists your hypervisors.</p>",
@@ -17,6 +18,7 @@
     "TestHypervisorConfiguration": "<p>Tests your hypervisor configuration to validate that backup gateway can connect with the hypervisor and its resources.</p>",
     "UntagResource": "<p>Removes tags from the resource.</p>",
     "UpdateGatewayInformation": "<p>Updates a gateway's name. Specify which gateway to update using the Amazon Resource Name (ARN) of the gateway in your request.</p>",
+    "UpdateGatewaySoftwareNow": "<p>Updates the gateway virtual machine (VM) software. The request immediately triggers the software update.</p> <note> <p>When you make this request, you get a <code>200 OK</code> success response immediately. However, it might take some time for the update to complete.</p> </note>",
     "UpdateHypervisor": "<p>Updates a hypervisor metadata, including its host, username, and password. Specify which hypervisor to update using the Amazon Resource Name (ARN) of the hypervisor in your request.</p>"
   },
   "shapes": {
@@ -115,24 +117,45 @@
         "DisassociateGatewayFromServerInput$GatewayArn": "<p>The Amazon Resource Name (ARN) of the gateway to disassociate.</p>",
         "DisassociateGatewayFromServerOutput$GatewayArn": "<p>The Amazon Resource Name (ARN) of the gateway you disassociated.</p>",
         "Gateway$GatewayArn": "<p>The Amazon Resource Name (ARN) of the gateway. Use the <code>ListGateways</code> operation to return a list of gateways for your account and Amazon Web Services Region.</p>",
+        "GatewayDetails$GatewayArn": "<p>The Amazon Resource Name (ARN) of the gateway. Use the <code>ListGateways</code> operation to return a list of gateways for your account and Amazon Web Services Region.</p>",
+        "GetGatewayInput$GatewayArn": "<p>The Amazon Resource Name (ARN) of the gateway.</p>",
         "PutMaintenanceStartTimeInput$GatewayArn": "<p>The Amazon Resource Name (ARN) for the gateway, used to specify its maintenance start time.</p>",
         "PutMaintenanceStartTimeOutput$GatewayArn": "<p>The Amazon Resource Name (ARN) of a gateway for which you set the maintenance start time.</p>",
         "TestHypervisorConfigurationInput$GatewayArn": "<p>The Amazon Resource Name (ARN) of the gateway to the hypervisor to test.</p>",
         "UpdateGatewayInformationInput$GatewayArn": "<p>The Amazon Resource Name (ARN) of the gateway to update.</p>",
-        "UpdateGatewayInformationOutput$GatewayArn": "<p>The Amazon Resource Name (ARN) of the gateway you updated.</p>"
+        "UpdateGatewayInformationOutput$GatewayArn": "<p>The Amazon Resource Name (ARN) of the gateway you updated.</p>",
+        "UpdateGatewaySoftwareNowInput$GatewayArn": "<p>The Amazon Resource Name (ARN) of the gateway to be updated.</p>",
+        "UpdateGatewaySoftwareNowOutput$GatewayArn": "<p>The Amazon Resource Name (ARN) of the gateway you updated.</p>"
+      }
+    },
+    "GatewayDetails": {
+      "base": "<p>The details of gateway.</p>",
+      "refs": {
+        "GetGatewayOutput$Gateway": "<p>By providing the ARN (Amazon Resource Name), this API returns the gateway.</p>"
       }
     },
     "GatewayType": {
       "base": null,
       "refs": {
         "CreateGatewayInput$GatewayType": "<p>The type of created gateway.</p>",
-        "Gateway$GatewayType": "<p>The type of the gateway.</p>"
+        "Gateway$GatewayType": "<p>The type of the gateway.</p>",
+        "GatewayDetails$GatewayType": "<p>The type of the gateway type.</p>"
       }
     },
     "Gateways": {
       "base": null,
       "refs": {
         "ListGatewaysOutput$Gateways": "<p>A list of your gateways.</p>"
+      }
+    },
+    "GetGatewayInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetGatewayOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "Host": {
@@ -159,7 +182,8 @@
     "HypervisorId": {
       "base": null,
       "refs": {
-        "Gateway$HypervisorId": "<p>The hypervisor ID of the gateway.</p>"
+        "Gateway$HypervisorId": "<p>The hypervisor ID of the gateway.</p>",
+        "GatewayDetails$HypervisorId": "<p>The hypervisor ID of the gateway.</p>"
       }
     },
     "HypervisorState": {
@@ -255,9 +279,11 @@
       "refs": {
         "CreateGatewayInput$GatewayDisplayName": "<p>The display name of the created gateway.</p>",
         "Gateway$GatewayDisplayName": "<p>The display name of the gateway.</p>",
+        "GatewayDetails$GatewayDisplayName": "<p>The display name of the gateway.</p>",
         "Hypervisor$Name": "<p>The name of the hypervisor.</p>",
         "ImportHypervisorConfigurationInput$Name": "<p>The name of the hypervisor.</p>",
         "UpdateGatewayInformationInput$GatewayDisplayName": "<p>The updated display name of the gateway.</p>",
+        "UpdateHypervisorInput$Name": "<p>The updated name for the hypervisor</p>",
         "VirtualMachine$HostName": "<p>The host name of the virtual machine.</p>",
         "VirtualMachine$Name": "<p>The name of the virtual machine.</p>"
       }
@@ -306,7 +332,7 @@
         "TagResourceOutput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource you tagged.</p>",
         "UntagResourceInput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource from which to remove tags.</p>",
         "UntagResourceOutput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource from which you removed tags.</p>",
-        "VirtualMachine$ResourceArn": "<p>The Amazon Resource Name (ARN) of the virtual machine.</p>"
+        "VirtualMachine$ResourceArn": "<p>The Amazon Resource Name (ARN) of the virtual machine. For example, <code>arn:aws:backup-gateway:us-west-1:0000000000000:vm/vm-0000ABCDEFGIJKL</code>.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -358,7 +384,7 @@
     "TagValue": {
       "base": null,
       "refs": {
-        "Tag$Value": "<p>The key part of a value's key-value pair.</p>"
+        "Tag$Value": "<p>The value part of a tag's key-value pair.</p>"
       }
     },
     "Tags": {
@@ -384,6 +410,8 @@
       "base": null,
       "refs": {
         "Gateway$LastSeenTime": "<p>The last time Backup gateway communicated with the gateway, in Unix format and UTC time.</p>",
+        "GatewayDetails$LastSeenTime": "<p>Details showing the last time Backup gateway communicated with the cloud, in Unix format and UTC time.</p>",
+        "GatewayDetails$NextUpdateAvailabilityTime": "<p>Details showing the next update availability time of the gateway.</p>",
         "VirtualMachine$LastBackupDate": "<p>The most recent date a virtual machine was backed up, in Unix format and UTC time.</p>"
       }
     },
@@ -403,6 +431,16 @@
       }
     },
     "UpdateGatewayInformationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateGatewaySoftwareNowInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateGatewaySoftwareNowOutput": {
       "base": null,
       "refs": {
       }
@@ -440,6 +478,12 @@
       "base": null,
       "refs": {
         "ListVirtualMachinesOutput$VirtualMachines": "<p>A list of your <code>VirtualMachine</code> objects, ordered by their Amazon Resource Names (ARNs).</p>"
+      }
+    },
+    "VpcEndpoint": {
+      "base": null,
+      "refs": {
+        "GatewayDetails$VpcEndpoint": "<p>The DNS name for the virtual private cloud (VPC) endpoint the gateway uses to connect to the cloud for backup gateway.</p>"
       }
     },
     "string": {
