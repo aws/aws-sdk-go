@@ -1,3 +1,15 @@
+Release v1.44.27 (2022-06-02)
+===
+
+### Service Client Updates
+* `service/application-insights`: Updates service API and documentation
+* `service/codeartifact`: Updates service documentation
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now provides a data source connector for GitHub. For more information, see https://docs.aws.amazon.com/kendra/latest/dg/data-source-github.html
+* `service/proton`: Updates service API, documentation, waiters, and paginators
+* `service/voice-id`: Updates service API and documentation
+
 Release v1.44.26 (2022-06-01)
 ===
 

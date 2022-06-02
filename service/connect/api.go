@@ -2081,6 +2081,99 @@ func (c *Connect) CreateSecurityProfileWithContext(ctx aws.Context, input *Creat
 	return out, req.Send()
 }
 
+const opCreateTaskTemplate = "CreateTaskTemplate"
+
+// CreateTaskTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the CreateTaskTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateTaskTemplate for more information on using the CreateTaskTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateTaskTemplateRequest method.
+//    req, resp := client.CreateTaskTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateTaskTemplate
+func (c *Connect) CreateTaskTemplateRequest(input *CreateTaskTemplateInput) (req *request.Request, output *CreateTaskTemplateOutput) {
+	op := &request.Operation{
+		Name:       opCreateTaskTemplate,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/instance/{InstanceId}/task/template",
+	}
+
+	if input == nil {
+		input = &CreateTaskTemplateInput{}
+	}
+
+	output = &CreateTaskTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateTaskTemplate API operation for Amazon Connect Service.
+//
+// Creates a new task template in the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateTaskTemplate for usage and error information.
+//
+// Returned Error Types:
+//   * PropertyValidationException
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * ServiceQuotaExceededException
+//   The service quota has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateTaskTemplate
+func (c *Connect) CreateTaskTemplate(input *CreateTaskTemplateInput) (*CreateTaskTemplateOutput, error) {
+	req, out := c.CreateTaskTemplateRequest(input)
+	return out, req.Send()
+}
+
+// CreateTaskTemplateWithContext is the same as CreateTaskTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateTaskTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateTaskTemplateWithContext(ctx aws.Context, input *CreateTaskTemplateInput, opts ...request.Option) (*CreateTaskTemplateOutput, error) {
+	req, out := c.CreateTaskTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateUseCase = "CreateUseCase"
 
 // CreateUseCaseRequest generates a "aws/request.Request" representing the
@@ -3125,6 +3218,98 @@ func (c *Connect) DeleteSecurityProfile(input *DeleteSecurityProfileInput) (*Del
 // for more information on using Contexts.
 func (c *Connect) DeleteSecurityProfileWithContext(ctx aws.Context, input *DeleteSecurityProfileInput, opts ...request.Option) (*DeleteSecurityProfileOutput, error) {
 	req, out := c.DeleteSecurityProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteTaskTemplate = "DeleteTaskTemplate"
+
+// DeleteTaskTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTaskTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteTaskTemplate for more information on using the DeleteTaskTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteTaskTemplateRequest method.
+//    req, resp := client.DeleteTaskTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteTaskTemplate
+func (c *Connect) DeleteTaskTemplateRequest(input *DeleteTaskTemplateInput) (req *request.Request, output *DeleteTaskTemplateOutput) {
+	op := &request.Operation{
+		Name:       opDeleteTaskTemplate,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/instance/{InstanceId}/task/template/{TaskTemplateId}",
+	}
+
+	if input == nil {
+		input = &DeleteTaskTemplateInput{}
+	}
+
+	output = &DeleteTaskTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteTaskTemplate API operation for Amazon Connect Service.
+//
+// Deletes the task template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteTaskTemplate for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteTaskTemplate
+func (c *Connect) DeleteTaskTemplate(input *DeleteTaskTemplateInput) (*DeleteTaskTemplateOutput, error) {
+	req, out := c.DeleteTaskTemplateRequest(input)
+	return out, req.Send()
+}
+
+// DeleteTaskTemplateWithContext is the same as DeleteTaskTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteTaskTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteTaskTemplateWithContext(ctx aws.Context, input *DeleteTaskTemplateInput, opts ...request.Option) (*DeleteTaskTemplateOutput, error) {
+	req, out := c.DeleteTaskTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6415,6 +6600,98 @@ func (c *Connect) GetMetricDataPagesWithContext(ctx aws.Context, input *GetMetri
 	}
 
 	return p.Err()
+}
+
+const opGetTaskTemplate = "GetTaskTemplate"
+
+// GetTaskTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the GetTaskTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetTaskTemplate for more information on using the GetTaskTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetTaskTemplateRequest method.
+//    req, resp := client.GetTaskTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetTaskTemplate
+func (c *Connect) GetTaskTemplateRequest(input *GetTaskTemplateInput) (req *request.Request, output *GetTaskTemplateOutput) {
+	op := &request.Operation{
+		Name:       opGetTaskTemplate,
+		HTTPMethod: "GET",
+		HTTPPath:   "/instance/{InstanceId}/task/template/{TaskTemplateId}",
+	}
+
+	if input == nil {
+		input = &GetTaskTemplateInput{}
+	}
+
+	output = &GetTaskTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetTaskTemplate API operation for Amazon Connect Service.
+//
+// Gets details about a specific task template in the specified Amazon Connect
+// instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation GetTaskTemplate for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetTaskTemplate
+func (c *Connect) GetTaskTemplate(input *GetTaskTemplateInput) (*GetTaskTemplateOutput, error) {
+	req, out := c.GetTaskTemplateRequest(input)
+	return out, req.Send()
+}
+
+// GetTaskTemplateWithContext is the same as GetTaskTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetTaskTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) GetTaskTemplateWithContext(ctx aws.Context, input *GetTaskTemplateInput, opts ...request.Option) (*GetTaskTemplateOutput, error) {
+	req, out := c.GetTaskTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListAgentStatuses = "ListAgentStatuses"
@@ -10295,6 +10572,155 @@ func (c *Connect) ListTagsForResourceWithContext(ctx aws.Context, input *ListTag
 	return out, req.Send()
 }
 
+const opListTaskTemplates = "ListTaskTemplates"
+
+// ListTaskTemplatesRequest generates a "aws/request.Request" representing the
+// client's request for the ListTaskTemplates operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTaskTemplates for more information on using the ListTaskTemplates
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTaskTemplatesRequest method.
+//    req, resp := client.ListTaskTemplatesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListTaskTemplates
+func (c *Connect) ListTaskTemplatesRequest(input *ListTaskTemplatesInput) (req *request.Request, output *ListTaskTemplatesOutput) {
+	op := &request.Operation{
+		Name:       opListTaskTemplates,
+		HTTPMethod: "GET",
+		HTTPPath:   "/instance/{InstanceId}/task/template",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTaskTemplatesInput{}
+	}
+
+	output = &ListTaskTemplatesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTaskTemplates API operation for Amazon Connect Service.
+//
+// Lists task templates for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListTaskTemplates for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListTaskTemplates
+func (c *Connect) ListTaskTemplates(input *ListTaskTemplatesInput) (*ListTaskTemplatesOutput, error) {
+	req, out := c.ListTaskTemplatesRequest(input)
+	return out, req.Send()
+}
+
+// ListTaskTemplatesWithContext is the same as ListTaskTemplates with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTaskTemplates for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListTaskTemplatesWithContext(ctx aws.Context, input *ListTaskTemplatesInput, opts ...request.Option) (*ListTaskTemplatesOutput, error) {
+	req, out := c.ListTaskTemplatesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTaskTemplatesPages iterates over the pages of a ListTaskTemplates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTaskTemplates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListTaskTemplates operation.
+//    pageNum := 0
+//    err := client.ListTaskTemplatesPages(params,
+//        func(page *connect.ListTaskTemplatesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListTaskTemplatesPages(input *ListTaskTemplatesInput, fn func(*ListTaskTemplatesOutput, bool) bool) error {
+	return c.ListTaskTemplatesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTaskTemplatesPagesWithContext same as ListTaskTemplatesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListTaskTemplatesPagesWithContext(ctx aws.Context, input *ListTaskTemplatesInput, fn func(*ListTaskTemplatesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTaskTemplatesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTaskTemplatesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTaskTemplatesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListUseCases = "ListUseCases"
 
 // ListUseCasesRequest generates a "aws/request.Request" representing the
@@ -12426,7 +12852,8 @@ func (c *Connect) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 // Adds the specified tags to the specified resource.
 //
 // The supported resource types are users, routing profiles, queues, quick connects,
-// contact flows, agent status, hours of operation, and phone number.
+// contact flows, agent status, hours of operation, phone number, security profiles,
+// and task templates.
 //
 // For sample policies that use tags, see Amazon Connect Identity-Based Policy
 // Examples (https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html)
@@ -12472,6 +12899,120 @@ func (c *Connect) TagResource(input *TagResourceInput) (*TagResourceOutput, erro
 // for more information on using Contexts.
 func (c *Connect) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
 	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTransferContact = "TransferContact"
+
+// TransferContactRequest generates a "aws/request.Request" representing the
+// client's request for the TransferContact operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TransferContact for more information on using the TransferContact
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TransferContactRequest method.
+//    req, resp := client.TransferContactRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/TransferContact
+func (c *Connect) TransferContactRequest(input *TransferContactInput) (req *request.Request, output *TransferContactOutput) {
+	op := &request.Operation{
+		Name:       opTransferContact,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact/transfer",
+	}
+
+	if input == nil {
+		input = &TransferContactInput{}
+	}
+
+	output = &TransferContactOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// TransferContact API operation for Amazon Connect Service.
+//
+// Transfers contacts from one agent or queue to another agent or queue at any
+// point after a contact is created. You can transfer a contact to another queue
+// by providing the contact flow which orchestrates the contact to the destination
+// queue. This gives you more control over contact handling and helps you adhere
+// to the service level agreement (SLA) guaranteed to your customers.
+//
+// Note the following requirements:
+//
+//    * Transfer is supported for only TASK contacts.
+//
+//    * Do not use both QueueId and UserId in the same call.
+//
+//    * The following contact flow types are supported: Inbound contact flow,
+//    Transfer to agent flow, and Transfer to queue flow.
+//
+//    * The TransferContact API can be called only on active contacts.
+//
+//    * A contact cannot be transferred more than 11 times.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation TransferContact for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * IdempotencyException
+//   An entity with the same name already exists.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ServiceQuotaExceededException
+//   The service quota has been exceeded.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/TransferContact
+func (c *Connect) TransferContact(input *TransferContactInput) (*TransferContactOutput, error) {
+	req, out := c.TransferContactRequest(input)
+	return out, req.Send()
+}
+
+// TransferContactWithContext is the same as TransferContact with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TransferContact for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) TransferContactWithContext(ctx aws.Context, input *TransferContactInput, opts ...request.Option) (*TransferContactOutput, error) {
+	req, out := c.TransferContactRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -14969,6 +15510,101 @@ func (c *Connect) UpdateSecurityProfileWithContext(ctx aws.Context, input *Updat
 	return out, req.Send()
 }
 
+const opUpdateTaskTemplate = "UpdateTaskTemplate"
+
+// UpdateTaskTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateTaskTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateTaskTemplate for more information on using the UpdateTaskTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateTaskTemplateRequest method.
+//    req, resp := client.UpdateTaskTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateTaskTemplate
+func (c *Connect) UpdateTaskTemplateRequest(input *UpdateTaskTemplateInput) (req *request.Request, output *UpdateTaskTemplateOutput) {
+	op := &request.Operation{
+		Name:       opUpdateTaskTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/instance/{InstanceId}/task/template/{TaskTemplateId}",
+	}
+
+	if input == nil {
+		input = &UpdateTaskTemplateInput{}
+	}
+
+	output = &UpdateTaskTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateTaskTemplate API operation for Amazon Connect Service.
+//
+// Updates details about a specific task template in the specified Amazon Connect
+// instance. This operation does not support partial updates. Instead it does
+// a full update of template content.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateTaskTemplate for usage and error information.
+//
+// Returned Error Types:
+//   * PropertyValidationException
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * ServiceQuotaExceededException
+//   The service quota has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateTaskTemplate
+func (c *Connect) UpdateTaskTemplate(input *UpdateTaskTemplateInput) (*UpdateTaskTemplateOutput, error) {
+	req, out := c.UpdateTaskTemplateRequest(input)
+	return out, req.Send()
+}
+
+// UpdateTaskTemplateWithContext is the same as UpdateTaskTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateTaskTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateTaskTemplateWithContext(ctx aws.Context, input *UpdateTaskTemplateInput, opts ...request.Option) (*UpdateTaskTemplateOutput, error) {
+	req, out := c.UpdateTaskTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateUserHierarchy = "UpdateUserHierarchy"
 
 // UpdateUserHierarchyRequest generates a "aws/request.Request" representing the
@@ -16928,18 +17564,18 @@ func (s *AssociateSecurityKeyOutput) SetAssociationId(v string) *AssociateSecuri
 	return s
 }
 
-// Information about the attachment reference if the referenceType is ATTACHMENT.
-// Otherwise, null.
+// Information about a reference when the referenceType is ATTACHMENT. Otherwise,
+// null.
 type AttachmentReference struct {
 	_ struct{} `type:"structure"`
 
 	// Identifier of the attachment reference.
 	Name *string `min:"1" type:"string"`
 
-	// Status of an attachment reference type.
+	// Status of the attachment reference type.
 	Status *string `type:"string" enum:"ReferenceStatus"`
 
-	// Contains the location path of the attachment reference.
+	// The location path of the attachment reference.
 	Value *string `type:"string"`
 }
 
@@ -19712,6 +20348,213 @@ func (s *CreateSecurityProfileOutput) SetSecurityProfileId(v string) *CreateSecu
 	return s
 }
 
+type CreateTaskTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// Constraints that are applicable to the fields listed.
+	Constraints *TaskTemplateConstraints `type:"structure"`
+
+	// The identifier of the flow that runs by default when a task is created by
+	// referencing this template.
+	ContactFlowId *string `type:"string"`
+
+	// The default values for fields when a task is created by referencing this
+	// template.
+	Defaults *TaskTemplateDefaults `type:"structure"`
+
+	// The description of the task template.
+	Description *string `min:"1" type:"string"`
+
+	// Fields that are part of the template.
+	//
+	// Fields is a required field
+	Fields []*TaskTemplateField `type:"list" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the task template.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Marks a template as ACTIVE or INACTIVE for a task to refer to it. Tasks can
+	// only be created from ACTIVE templates. If a template is marked as INACTIVE,
+	// then a task that refers to this template cannot be created.
+	Status *string `type:"string" enum:"TaskTemplateStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTaskTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTaskTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateTaskTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateTaskTemplateInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Fields == nil {
+		invalidParams.Add(request.NewErrParamRequired("Fields"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Constraints != nil {
+		if err := s.Constraints.Validate(); err != nil {
+			invalidParams.AddNested("Constraints", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Defaults != nil {
+		if err := s.Defaults.Validate(); err != nil {
+			invalidParams.AddNested("Defaults", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Fields != nil {
+		for i, v := range s.Fields {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Fields", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateTaskTemplateInput) SetClientToken(v string) *CreateTaskTemplateInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetConstraints sets the Constraints field's value.
+func (s *CreateTaskTemplateInput) SetConstraints(v *TaskTemplateConstraints) *CreateTaskTemplateInput {
+	s.Constraints = v
+	return s
+}
+
+// SetContactFlowId sets the ContactFlowId field's value.
+func (s *CreateTaskTemplateInput) SetContactFlowId(v string) *CreateTaskTemplateInput {
+	s.ContactFlowId = &v
+	return s
+}
+
+// SetDefaults sets the Defaults field's value.
+func (s *CreateTaskTemplateInput) SetDefaults(v *TaskTemplateDefaults) *CreateTaskTemplateInput {
+	s.Defaults = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateTaskTemplateInput) SetDescription(v string) *CreateTaskTemplateInput {
+	s.Description = &v
+	return s
+}
+
+// SetFields sets the Fields field's value.
+func (s *CreateTaskTemplateInput) SetFields(v []*TaskTemplateField) *CreateTaskTemplateInput {
+	s.Fields = v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateTaskTemplateInput) SetInstanceId(v string) *CreateTaskTemplateInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateTaskTemplateInput) SetName(v string) *CreateTaskTemplateInput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateTaskTemplateInput) SetStatus(v string) *CreateTaskTemplateInput {
+	s.Status = &v
+	return s
+}
+
+type CreateTaskTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the task template resource.
+	//
+	// Arn is a required field
+	Arn *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the task template resource.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTaskTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTaskTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateTaskTemplateOutput) SetArn(v string) *CreateTaskTemplateOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateTaskTemplateOutput) SetId(v string) *CreateTaskTemplateOutput {
+	s.Id = &v
+	return s
+}
+
 type CreateUseCaseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20571,6 +21414,48 @@ func (s *CurrentMetricResult) SetDimensions(v *Dimensions) *CurrentMetricResult 
 	return s
 }
 
+// Information about a reference when the referenceType is DATE. Otherwise,
+// null.
+type DateReference struct {
+	_ struct{} `type:"structure"`
+
+	// Identifier of the date reference.
+	Name *string `min:"1" type:"string"`
+
+	// A valid date.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DateReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DateReference) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *DateReference) SetName(v string) *DateReference {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *DateReference) SetValue(v string) *DateReference {
+	s.Value = &v
+	return s
+}
+
 // Contains information about a default vocabulary.
 type DefaultVocabulary struct {
 	_ struct{} `type:"structure"`
@@ -21243,6 +22128,95 @@ func (s DeleteSecurityProfileOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteSecurityProfileOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteTaskTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// A unique identifier for the task template.
+	//
+	// TaskTemplateId is a required field
+	TaskTemplateId *string `location:"uri" locationName:"TaskTemplateId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTaskTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTaskTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTaskTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTaskTemplateInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.TaskTemplateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskTemplateId"))
+	}
+	if s.TaskTemplateId != nil && len(*s.TaskTemplateId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskTemplateId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteTaskTemplateInput) SetInstanceId(v string) *DeleteTaskTemplateInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetTaskTemplateId sets the TaskTemplateId field's value.
+func (s *DeleteTaskTemplateInput) SetTaskTemplateId(v string) *DeleteTaskTemplateInput {
+	s.TaskTemplateId = &v
+	return s
+}
+
+type DeleteTaskTemplateOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTaskTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTaskTemplateOutput) GoString() string {
 	return s.String()
 }
 
@@ -24327,6 +25301,48 @@ func (s *DuplicateResourceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Information about a reference when the referenceType is EMAIL. Otherwise,
+// null.
+type EmailReference struct {
+	_ struct{} `type:"structure"`
+
+	// Identifier of the email reference.
+	Name *string `min:"1" type:"string"`
+
+	// A valid email address.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EmailReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EmailReference) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *EmailReference) SetName(v string) *EmailReference {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *EmailReference) SetValue(v string) *EmailReference {
+	s.Value = &v
+	return s
+}
+
 // The encryption configuration.
 type EncryptionConfig struct {
 	_ struct{} `type:"structure"`
@@ -25262,6 +26278,233 @@ func (s *GetMetricDataOutput) SetMetricResults(v []*HistoricalMetricResult) *Get
 // SetNextToken sets the NextToken field's value.
 func (s *GetMetricDataOutput) SetNextToken(v string) *GetMetricDataOutput {
 	s.NextToken = &v
+	return s
+}
+
+type GetTaskTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The system generated version of a task template that is associated with a
+	// task, when the task is created.
+	SnapshotVersion *string `location:"querystring" locationName:"snapshotVersion" type:"string"`
+
+	// A unique identifier for the task template.
+	//
+	// TaskTemplateId is a required field
+	TaskTemplateId *string `location:"uri" locationName:"TaskTemplateId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTaskTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTaskTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetTaskTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetTaskTemplateInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.TaskTemplateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskTemplateId"))
+	}
+	if s.TaskTemplateId != nil && len(*s.TaskTemplateId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskTemplateId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *GetTaskTemplateInput) SetInstanceId(v string) *GetTaskTemplateInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetSnapshotVersion sets the SnapshotVersion field's value.
+func (s *GetTaskTemplateInput) SetSnapshotVersion(v string) *GetTaskTemplateInput {
+	s.SnapshotVersion = &v
+	return s
+}
+
+// SetTaskTemplateId sets the TaskTemplateId field's value.
+func (s *GetTaskTemplateInput) SetTaskTemplateId(v string) *GetTaskTemplateInput {
+	s.TaskTemplateId = &v
+	return s
+}
+
+type GetTaskTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN).
+	//
+	// Arn is a required field
+	Arn *string `min:"1" type:"string" required:"true"`
+
+	// Constraints that are applicable to the fields listed.
+	Constraints *TaskTemplateConstraints `type:"structure"`
+
+	// The identifier of the flow that runs by default when a task is created by
+	// referencing this template.
+	ContactFlowId *string `type:"string"`
+
+	// The timestamp when the task template was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The default values for fields when a task is created by referencing this
+	// template.
+	Defaults *TaskTemplateDefaults `type:"structure"`
+
+	// The description of the task template.
+	Description *string `min:"1" type:"string"`
+
+	// Fields that are part of the template.
+	Fields []*TaskTemplateField `type:"list"`
+
+	// A unique identifier for the task template.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	InstanceId *string `min:"1" type:"string"`
+
+	// The timestamp when the task template was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The name of the task template.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Marks a template as ACTIVE or INACTIVE for a task to refer to it. Tasks can
+	// only be created from ACTIVE templates. If a template is marked as INACTIVE,
+	// then a task that refers to this template cannot be created.
+	Status *string `type:"string" enum:"TaskTemplateStatus"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTaskTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTaskTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetTaskTemplateOutput) SetArn(v string) *GetTaskTemplateOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetConstraints sets the Constraints field's value.
+func (s *GetTaskTemplateOutput) SetConstraints(v *TaskTemplateConstraints) *GetTaskTemplateOutput {
+	s.Constraints = v
+	return s
+}
+
+// SetContactFlowId sets the ContactFlowId field's value.
+func (s *GetTaskTemplateOutput) SetContactFlowId(v string) *GetTaskTemplateOutput {
+	s.ContactFlowId = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *GetTaskTemplateOutput) SetCreatedTime(v time.Time) *GetTaskTemplateOutput {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDefaults sets the Defaults field's value.
+func (s *GetTaskTemplateOutput) SetDefaults(v *TaskTemplateDefaults) *GetTaskTemplateOutput {
+	s.Defaults = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetTaskTemplateOutput) SetDescription(v string) *GetTaskTemplateOutput {
+	s.Description = &v
+	return s
+}
+
+// SetFields sets the Fields field's value.
+func (s *GetTaskTemplateOutput) SetFields(v []*TaskTemplateField) *GetTaskTemplateOutput {
+	s.Fields = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetTaskTemplateOutput) SetId(v string) *GetTaskTemplateOutput {
+	s.Id = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *GetTaskTemplateOutput) SetInstanceId(v string) *GetTaskTemplateOutput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *GetTaskTemplateOutput) SetLastModifiedTime(v time.Time) *GetTaskTemplateOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetTaskTemplateOutput) SetName(v string) *GetTaskTemplateOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetTaskTemplateOutput) SetStatus(v string) *GetTaskTemplateOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *GetTaskTemplateOutput) SetTags(v map[string]*string) *GetTaskTemplateOutput {
+	s.Tags = v
 	return s
 }
 
@@ -27054,6 +28297,53 @@ func (s *InvalidRequestException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// A field that is invisible to an agent.
+type InvisibleFieldInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Identifier of the invisible field.
+	Id *TaskTemplateFieldIdentifier `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvisibleFieldInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvisibleFieldInfo) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InvisibleFieldInfo) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InvisibleFieldInfo"}
+	if s.Id != nil {
+		if err := s.Id.Validate(); err != nil {
+			invalidParams.AddNested("Id", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *InvisibleFieldInfo) SetId(v *TaskTemplateFieldIdentifier) *InvisibleFieldInfo {
+	s.Id = v
+	return s
 }
 
 // Configuration information of a Kinesis Data Firehose delivery stream.
@@ -30589,6 +31879,148 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+type ListTaskTemplatesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	//
+	// It is not expected that you set this.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The name of the task template.
+	Name *string `location:"querystring" locationName:"name" min:"1" type:"string"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	//
+	// It is not expected that you set this because the value returned in the previous
+	// response is always null.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// Marks a template as ACTIVE or INACTIVE for a task to refer to it. Tasks can
+	// only be created from ACTIVE templates. If a template is marked as INACTIVE,
+	// then a task that refers to this template cannot be created.
+	Status *string `location:"querystring" locationName:"status" type:"string" enum:"TaskTemplateStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTaskTemplatesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTaskTemplatesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTaskTemplatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTaskTemplatesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListTaskTemplatesInput) SetInstanceId(v string) *ListTaskTemplatesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTaskTemplatesInput) SetMaxResults(v int64) *ListTaskTemplatesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ListTaskTemplatesInput) SetName(v string) *ListTaskTemplatesInput {
+	s.Name = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTaskTemplatesInput) SetNextToken(v string) *ListTaskTemplatesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListTaskTemplatesInput) SetStatus(v string) *ListTaskTemplatesInput {
+	s.Status = &v
+	return s
+}
+
+type ListTaskTemplatesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are additional results, this is the token for the next set of results.
+	//
+	// This is always returned as a null in the response.
+	NextToken *string `type:"string"`
+
+	// Provides details about a list of task templates belonging to an instance.
+	TaskTemplates []*TaskTemplateMetadata `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTaskTemplatesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTaskTemplatesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTaskTemplatesOutput) SetNextToken(v string) *ListTaskTemplatesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTaskTemplates sets the TaskTemplates field's value.
+func (s *ListTaskTemplatesOutput) SetTaskTemplates(v []*TaskTemplateMetadata) *ListTaskTemplatesOutput {
+	s.TaskTemplates = v
+	return s
+}
+
 // Provides summary information about the use cases for the specified integration
 // association.
 type ListUseCasesInput struct {
@@ -31015,6 +32447,48 @@ func (s *MediaConcurrency) SetConcurrency(v int64) *MediaConcurrency {
 	return s
 }
 
+// Information about a reference when the referenceType is NUMBER. Otherwise,
+// null.
+type NumberReference struct {
+	_ struct{} `type:"structure"`
+
+	// Identifier of the number reference.
+	Name *string `min:"1" type:"string"`
+
+	// A valid number.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NumberReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NumberReference) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *NumberReference) SetName(v string) *NumberReference {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *NumberReference) SetValue(v string) *NumberReference {
+	s.Value = &v
+	return s
+}
+
 // The outbound caller ID name, number, and outbound whisper flow.
 type OutboundCallerConfig struct {
 	_ struct{} `type:"structure"`
@@ -31428,6 +32902,127 @@ func (s *PromptSummary) SetId(v string) *PromptSummary {
 // SetName sets the Name field's value.
 func (s *PromptSummary) SetName(v string) *PromptSummary {
 	s.Name = &v
+	return s
+}
+
+type PropertyValidationException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	PropertyList []*PropertyValidationExceptionProperty `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PropertyValidationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PropertyValidationException) GoString() string {
+	return s.String()
+}
+
+func newErrorPropertyValidationException(v protocol.ResponseMetadata) error {
+	return &PropertyValidationException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *PropertyValidationException) Code() string {
+	return "PropertyValidationException"
+}
+
+// Message returns the exception's message.
+func (s *PropertyValidationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *PropertyValidationException) OrigErr() error {
+	return nil
+}
+
+func (s *PropertyValidationException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *PropertyValidationException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *PropertyValidationException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Contains information about why a property is not valid.
+type PropertyValidationExceptionProperty struct {
+	_ struct{} `type:"structure"`
+
+	// A message describing why the property is not valid.
+	//
+	// Message is a required field
+	Message *string `type:"string" required:"true"`
+
+	// The full property path.
+	//
+	// PropertyPath is a required field
+	PropertyPath *string `type:"string" required:"true"`
+
+	// Why the property is not valid.
+	//
+	// Reason is a required field
+	Reason *string `type:"string" required:"true" enum:"PropertyValidationExceptionReason"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PropertyValidationExceptionProperty) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PropertyValidationExceptionProperty) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *PropertyValidationExceptionProperty) SetMessage(v string) *PropertyValidationExceptionProperty {
+	s.Message = &v
+	return s
+}
+
+// SetPropertyPath sets the PropertyPath field's value.
+func (s *PropertyValidationExceptionProperty) SetPropertyPath(v string) *PropertyValidationExceptionProperty {
+	s.PropertyPath = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *PropertyValidationExceptionProperty) SetReason(v string) *PropertyValidationExceptionProperty {
+	s.Reason = &v
 	return s
 }
 
@@ -32071,12 +33666,59 @@ func (s *QuickConnectSummary) SetQuickConnectType(v string) *QuickConnectSummary
 	return s
 }
 
-// A link that an agent selects to complete a given task. You can have up to
-// 4,096 UTF-8 bytes across all references for a contact.
+// Indicates a field that is read-only to an agent.
+type ReadOnlyFieldInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Identifier of the read-only field.
+	Id *TaskTemplateFieldIdentifier `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReadOnlyFieldInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReadOnlyFieldInfo) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReadOnlyFieldInfo) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReadOnlyFieldInfo"}
+	if s.Id != nil {
+		if err := s.Id.Validate(); err != nil {
+			invalidParams.AddNested("Id", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *ReadOnlyFieldInfo) SetId(v *TaskTemplateFieldIdentifier) *ReadOnlyFieldInfo {
+	s.Id = v
+	return s
+}
+
+// Well-formed data on a contact, used by agents to complete a contact request.
+// You can have up to 4,096 UTF-8 bytes across all references for a contact.
 type Reference struct {
 	_ struct{} `type:"structure"`
 
-	// The type of the reference. Only URL type can be added or updated on a contact.
+	// The type of the reference.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"ReferenceType"`
@@ -32140,11 +33782,27 @@ func (s *Reference) SetValue(v string) *Reference {
 type ReferenceSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the attachment reference if the referenceType is ATTACHMENT.
-	// Otherwise, null.
+	// Information about the reference when the referenceType is ATTACHMENT. Otherwise,
+	// null.
 	Attachment *AttachmentReference `type:"structure"`
 
-	// Information about the URL reference if the referenceType is URL. Otherwise,
+	// Information about a reference when the referenceType is DATE. Otherwise,
+	// null.
+	Date *DateReference `type:"structure"`
+
+	// Information about a reference when the referenceType is EMAIL. Otherwise,
+	// null.
+	Email *EmailReference `type:"structure"`
+
+	// Information about a reference when the referenceType is NUMBER. Otherwise,
+	// null.
+	Number *NumberReference `type:"structure"`
+
+	// Information about a reference when the referenceType is STRING. Otherwise,
+	// null.
+	String_ *StringReference `locationName:"String" type:"structure"`
+
+	// Information about the reference when the referenceType is URL. Otherwise,
 	// null.
 	Url *UrlReference `type:"structure"`
 }
@@ -32170,6 +33828,30 @@ func (s ReferenceSummary) GoString() string {
 // SetAttachment sets the Attachment field's value.
 func (s *ReferenceSummary) SetAttachment(v *AttachmentReference) *ReferenceSummary {
 	s.Attachment = v
+	return s
+}
+
+// SetDate sets the Date field's value.
+func (s *ReferenceSummary) SetDate(v *DateReference) *ReferenceSummary {
+	s.Date = v
+	return s
+}
+
+// SetEmail sets the Email field's value.
+func (s *ReferenceSummary) SetEmail(v *EmailReference) *ReferenceSummary {
+	s.Email = v
+	return s
+}
+
+// SetNumber sets the Number field's value.
+func (s *ReferenceSummary) SetNumber(v *NumberReference) *ReferenceSummary {
+	s.Number = v
+	return s
+}
+
+// SetString_ sets the String_ field's value.
+func (s *ReferenceSummary) SetString_(v *StringReference) *ReferenceSummary {
+	s.String_ = v
 	return s
 }
 
@@ -32258,6 +33940,53 @@ func (s ReleasePhoneNumberOutput) String() string {
 // value will be replaced with "sensitive".
 func (s ReleasePhoneNumberOutput) GoString() string {
 	return s.String()
+}
+
+// Information about a required field.
+type RequiredFieldInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the field.
+	Id *TaskTemplateFieldIdentifier `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RequiredFieldInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RequiredFieldInfo) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RequiredFieldInfo) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RequiredFieldInfo"}
+	if s.Id != nil {
+		if err := s.Id.Validate(); err != nil {
+			invalidParams.AddNested("Id", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *RequiredFieldInfo) SetId(v *TaskTemplateFieldIdentifier) *RequiredFieldInfo {
+	s.Id = v
+	return s
 }
 
 // A resource already has that name.
@@ -34384,9 +36113,7 @@ type StartTaskContactInput struct {
 	// The ContactFlowId is the last part of the ARN, shown here in bold:
 	//
 	// arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/846ec553-a005-41c0-8341-xxxxxxxxxxxx
-	//
-	// ContactFlowId is a required field
-	ContactFlowId *string `type:"string" required:"true"`
+	ContactFlowId *string `type:"string"`
 
 	// A description of the task that is shown to an agent in the Contact Control
 	// Panel (CCP).
@@ -34407,6 +36134,9 @@ type StartTaskContactInput struct {
 	// The identifier of the previous chat, voice, or task contact.
 	PreviousContactId *string `min:"1" type:"string"`
 
+	// The identifier for the quick connect.
+	QuickConnectId *string `type:"string"`
+
 	// A formatted URL that is shown to an agent in the Contact Control Panel (CCP).
 	References map[string]*Reference `type:"map"`
 
@@ -34414,6 +36144,9 @@ type StartTaskContactInput struct {
 	// inbound contact flow. The scheduled time cannot be in the past. It must be
 	// within up to 6 days in future.
 	ScheduledTime *time.Time `type:"timestamp"`
+
+	// A unique identifier for the task template.
+	TaskTemplateId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -34437,9 +36170,6 @@ func (s StartTaskContactInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartTaskContactInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartTaskContactInput"}
-	if s.ContactFlowId == nil {
-		invalidParams.Add(request.NewErrParamRequired("ContactFlowId"))
-	}
 	if s.InstanceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
 	}
@@ -34451,6 +36181,9 @@ func (s *StartTaskContactInput) Validate() error {
 	}
 	if s.PreviousContactId != nil && len(*s.PreviousContactId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("PreviousContactId", 1))
+	}
+	if s.TaskTemplateId != nil && len(*s.TaskTemplateId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskTemplateId", 1))
 	}
 	if s.References != nil {
 		for i, v := range s.References {
@@ -34511,6 +36244,12 @@ func (s *StartTaskContactInput) SetPreviousContactId(v string) *StartTaskContact
 	return s
 }
 
+// SetQuickConnectId sets the QuickConnectId field's value.
+func (s *StartTaskContactInput) SetQuickConnectId(v string) *StartTaskContactInput {
+	s.QuickConnectId = &v
+	return s
+}
+
 // SetReferences sets the References field's value.
 func (s *StartTaskContactInput) SetReferences(v map[string]*Reference) *StartTaskContactInput {
 	s.References = v
@@ -34520,6 +36259,12 @@ func (s *StartTaskContactInput) SetReferences(v map[string]*Reference) *StartTas
 // SetScheduledTime sets the ScheduledTime field's value.
 func (s *StartTaskContactInput) SetScheduledTime(v time.Time) *StartTaskContactInput {
 	s.ScheduledTime = &v
+	return s
+}
+
+// SetTaskTemplateId sets the TaskTemplateId field's value.
+func (s *StartTaskContactInput) SetTaskTemplateId(v string) *StartTaskContactInput {
+	s.TaskTemplateId = &v
 	return s
 }
 
@@ -34908,6 +36653,48 @@ func (s *StringCondition) SetValue(v string) *StringCondition {
 	return s
 }
 
+// Information about a reference when the referenceType is STRING. Otherwise,
+// null.
+type StringReference struct {
+	_ struct{} `type:"structure"`
+
+	// Identifier of the string reference.
+	Name *string `min:"1" type:"string"`
+
+	// A valid string.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StringReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StringReference) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *StringReference) SetName(v string) *StringReference {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *StringReference) SetValue(v string) *StringReference {
+	s.Value = &v
+	return s
+}
+
 type SuspendContactRecordingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -35146,6 +36933,419 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Describes constraints that apply to the template fields.
+type TaskTemplateConstraints struct {
+	_ struct{} `type:"structure"`
+
+	// Lists the fields that are invisible to agents.
+	InvisibleFields []*InvisibleFieldInfo `type:"list"`
+
+	// Lists the fields that are read-only to agents, and cannot be edited.
+	ReadOnlyFields []*ReadOnlyFieldInfo `type:"list"`
+
+	// Lists the fields that are required to be filled by agents.
+	RequiredFields []*RequiredFieldInfo `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskTemplateConstraints) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskTemplateConstraints) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TaskTemplateConstraints) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TaskTemplateConstraints"}
+	if s.InvisibleFields != nil {
+		for i, v := range s.InvisibleFields {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InvisibleFields", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ReadOnlyFields != nil {
+		for i, v := range s.ReadOnlyFields {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ReadOnlyFields", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.RequiredFields != nil {
+		for i, v := range s.RequiredFields {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RequiredFields", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInvisibleFields sets the InvisibleFields field's value.
+func (s *TaskTemplateConstraints) SetInvisibleFields(v []*InvisibleFieldInfo) *TaskTemplateConstraints {
+	s.InvisibleFields = v
+	return s
+}
+
+// SetReadOnlyFields sets the ReadOnlyFields field's value.
+func (s *TaskTemplateConstraints) SetReadOnlyFields(v []*ReadOnlyFieldInfo) *TaskTemplateConstraints {
+	s.ReadOnlyFields = v
+	return s
+}
+
+// SetRequiredFields sets the RequiredFields field's value.
+func (s *TaskTemplateConstraints) SetRequiredFields(v []*RequiredFieldInfo) *TaskTemplateConstraints {
+	s.RequiredFields = v
+	return s
+}
+
+// Describes a default field and its corresponding value.
+type TaskTemplateDefaultFieldValue struct {
+	_ struct{} `type:"structure"`
+
+	// Default value for the field.
+	DefaultValue *string `type:"string"`
+
+	// Identifier of a field.
+	Id *TaskTemplateFieldIdentifier `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskTemplateDefaultFieldValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskTemplateDefaultFieldValue) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TaskTemplateDefaultFieldValue) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TaskTemplateDefaultFieldValue"}
+	if s.Id != nil {
+		if err := s.Id.Validate(); err != nil {
+			invalidParams.AddNested("Id", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultValue sets the DefaultValue field's value.
+func (s *TaskTemplateDefaultFieldValue) SetDefaultValue(v string) *TaskTemplateDefaultFieldValue {
+	s.DefaultValue = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *TaskTemplateDefaultFieldValue) SetId(v *TaskTemplateFieldIdentifier) *TaskTemplateDefaultFieldValue {
+	s.Id = v
+	return s
+}
+
+// Describes default values for fields on a template.
+type TaskTemplateDefaults struct {
+	_ struct{} `type:"structure"`
+
+	// Default value for the field.
+	DefaultFieldValues []*TaskTemplateDefaultFieldValue `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskTemplateDefaults) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskTemplateDefaults) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TaskTemplateDefaults) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TaskTemplateDefaults"}
+	if s.DefaultFieldValues != nil {
+		for i, v := range s.DefaultFieldValues {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DefaultFieldValues", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultFieldValues sets the DefaultFieldValues field's value.
+func (s *TaskTemplateDefaults) SetDefaultFieldValues(v []*TaskTemplateDefaultFieldValue) *TaskTemplateDefaults {
+	s.DefaultFieldValues = v
+	return s
+}
+
+// Describes a single task template field.
+type TaskTemplateField struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the field.
+	Description *string `min:"1" type:"string"`
+
+	// The unique identifier for the field.
+	//
+	// Id is a required field
+	Id *TaskTemplateFieldIdentifier `type:"structure" required:"true"`
+
+	// A list of options for a single select field.
+	SingleSelectOptions []*string `type:"list"`
+
+	// Indicates the type of field.
+	Type *string `type:"string" enum:"TaskTemplateFieldType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskTemplateField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskTemplateField) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TaskTemplateField) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TaskTemplateField"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil {
+		if err := s.Id.Validate(); err != nil {
+			invalidParams.AddNested("Id", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *TaskTemplateField) SetDescription(v string) *TaskTemplateField {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *TaskTemplateField) SetId(v *TaskTemplateFieldIdentifier) *TaskTemplateField {
+	s.Id = v
+	return s
+}
+
+// SetSingleSelectOptions sets the SingleSelectOptions field's value.
+func (s *TaskTemplateField) SetSingleSelectOptions(v []*string) *TaskTemplateField {
+	s.SingleSelectOptions = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *TaskTemplateField) SetType(v string) *TaskTemplateField {
+	s.Type = &v
+	return s
+}
+
+// The identifier of the task template field.
+type TaskTemplateFieldIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the task template field.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskTemplateFieldIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskTemplateFieldIdentifier) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TaskTemplateFieldIdentifier) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TaskTemplateFieldIdentifier"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *TaskTemplateFieldIdentifier) SetName(v string) *TaskTemplateFieldIdentifier {
+	s.Name = &v
+	return s
+}
+
+// Contains summary information about the task template.
+type TaskTemplateMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the task template.
+	Arn *string `min:"1" type:"string"`
+
+	// The timestamp when the task template was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The description of the task template.
+	Description *string `min:"1" type:"string"`
+
+	// A unique identifier for the task template.
+	Id *string `min:"1" type:"string"`
+
+	// The timestamp when the task template was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The name of the task template.
+	Name *string `min:"1" type:"string"`
+
+	// Marks a template as ACTIVE or INACTIVE for a task to refer to it. Tasks can
+	// only be created from ACTIVE templates. If a template is marked as INACTIVE,
+	// then a task that refers to this template cannot be created.
+	Status *string `type:"string" enum:"TaskTemplateStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskTemplateMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskTemplateMetadata) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *TaskTemplateMetadata) SetArn(v string) *TaskTemplateMetadata {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *TaskTemplateMetadata) SetCreatedTime(v time.Time) *TaskTemplateMetadata {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *TaskTemplateMetadata) SetDescription(v string) *TaskTemplateMetadata {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *TaskTemplateMetadata) SetId(v string) *TaskTemplateMetadata {
+	s.Id = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *TaskTemplateMetadata) SetLastModifiedTime(v time.Time) *TaskTemplateMetadata {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *TaskTemplateMetadata) SetName(v string) *TaskTemplateMetadata {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *TaskTemplateMetadata) SetStatus(v string) *TaskTemplateMetadata {
+	s.Status = &v
+	return s
+}
+
 // Contains information about the threshold for service level metrics.
 type Threshold struct {
 	_ struct{} `type:"structure"`
@@ -35249,6 +37449,158 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type TransferContactInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// The identifier of the contact flow.
+	//
+	// ContactFlowId is a required field
+	ContactFlowId *string `type:"string" required:"true"`
+
+	// The identifier of the contact in this instance of Amazon Connect
+	//
+	// ContactId is a required field
+	ContactId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier for the queue.
+	QueueId *string `type:"string"`
+
+	// The identifier for the user.
+	UserId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransferContactInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransferContactInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TransferContactInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TransferContactInput"}
+	if s.ContactFlowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowId"))
+	}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *TransferContactInput) SetClientToken(v string) *TransferContactInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetContactFlowId sets the ContactFlowId field's value.
+func (s *TransferContactInput) SetContactFlowId(v string) *TransferContactInput {
+	s.ContactFlowId = &v
+	return s
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *TransferContactInput) SetContactId(v string) *TransferContactInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *TransferContactInput) SetInstanceId(v string) *TransferContactInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetQueueId sets the QueueId field's value.
+func (s *TransferContactInput) SetQueueId(v string) *TransferContactInput {
+	s.QueueId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *TransferContactInput) SetUserId(v string) *TransferContactInput {
+	s.UserId = &v
+	return s
+}
+
+type TransferContactOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the contact.
+	ContactArn *string `type:"string"`
+
+	// The identifier of the contact in this instance of Amazon Connect
+	ContactId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransferContactOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransferContactOutput) GoString() string {
+	return s.String()
+}
+
+// SetContactArn sets the ContactArn field's value.
+func (s *TransferContactOutput) SetContactArn(v string) *TransferContactOutput {
+	s.ContactArn = &v
+	return s
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *TransferContactOutput) SetContactId(v string) *TransferContactOutput {
+	s.ContactId = &v
+	return s
 }
 
 type UntagResourceInput struct {
@@ -36165,7 +38517,7 @@ type UpdateContactInput struct {
 	// The name of the contact.
 	Name *string `type:"string"`
 
-	// A formatted URL that is shown to an agent in the Contact Control Panel (CCP).
+	// Well-formed data on contact, shown to agents on Contact Control Panel (CCP).
 	References map[string]*Reference `type:"map"`
 }
 
@@ -38155,6 +40507,301 @@ func (s UpdateSecurityProfileOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateSecurityProfileOutput) GoString() string {
 	return s.String()
+}
+
+type UpdateTaskTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// Constraints that are applicable to the fields listed.
+	Constraints *TaskTemplateConstraints `type:"structure"`
+
+	// The identifier of the flow that runs by default when a task is created by
+	// referencing this template.
+	ContactFlowId *string `type:"string"`
+
+	// The default values for fields when a task is created by referencing this
+	// template.
+	Defaults *TaskTemplateDefaults `type:"structure"`
+
+	// The description of the task template.
+	Description *string `min:"1" type:"string"`
+
+	// Fields that are part of the template.
+	Fields []*TaskTemplateField `type:"list"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the task template.
+	Name *string `min:"1" type:"string"`
+
+	// Marks a template as ACTIVE or INACTIVE for a task to refer to it. Tasks can
+	// only be created from ACTIVE templates. If a template is marked as INACTIVE,
+	// then a task that refers to this template cannot be created.
+	Status *string `type:"string" enum:"TaskTemplateStatus"`
+
+	// A unique identifier for the task template.
+	//
+	// TaskTemplateId is a required field
+	TaskTemplateId *string `location:"uri" locationName:"TaskTemplateId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTaskTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTaskTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTaskTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTaskTemplateInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.TaskTemplateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskTemplateId"))
+	}
+	if s.TaskTemplateId != nil && len(*s.TaskTemplateId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskTemplateId", 1))
+	}
+	if s.Constraints != nil {
+		if err := s.Constraints.Validate(); err != nil {
+			invalidParams.AddNested("Constraints", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Defaults != nil {
+		if err := s.Defaults.Validate(); err != nil {
+			invalidParams.AddNested("Defaults", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Fields != nil {
+		for i, v := range s.Fields {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Fields", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConstraints sets the Constraints field's value.
+func (s *UpdateTaskTemplateInput) SetConstraints(v *TaskTemplateConstraints) *UpdateTaskTemplateInput {
+	s.Constraints = v
+	return s
+}
+
+// SetContactFlowId sets the ContactFlowId field's value.
+func (s *UpdateTaskTemplateInput) SetContactFlowId(v string) *UpdateTaskTemplateInput {
+	s.ContactFlowId = &v
+	return s
+}
+
+// SetDefaults sets the Defaults field's value.
+func (s *UpdateTaskTemplateInput) SetDefaults(v *TaskTemplateDefaults) *UpdateTaskTemplateInput {
+	s.Defaults = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateTaskTemplateInput) SetDescription(v string) *UpdateTaskTemplateInput {
+	s.Description = &v
+	return s
+}
+
+// SetFields sets the Fields field's value.
+func (s *UpdateTaskTemplateInput) SetFields(v []*TaskTemplateField) *UpdateTaskTemplateInput {
+	s.Fields = v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateTaskTemplateInput) SetInstanceId(v string) *UpdateTaskTemplateInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateTaskTemplateInput) SetName(v string) *UpdateTaskTemplateInput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateTaskTemplateInput) SetStatus(v string) *UpdateTaskTemplateInput {
+	s.Status = &v
+	return s
+}
+
+// SetTaskTemplateId sets the TaskTemplateId field's value.
+func (s *UpdateTaskTemplateInput) SetTaskTemplateId(v string) *UpdateTaskTemplateInput {
+	s.TaskTemplateId = &v
+	return s
+}
+
+type UpdateTaskTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the task template resource.
+	Arn *string `min:"1" type:"string"`
+
+	// Constraints that are applicable to the fields listed.
+	Constraints *TaskTemplateConstraints `type:"structure"`
+
+	// The identifier of the flow that runs by default when a task is created by
+	// referencing this template.
+	ContactFlowId *string `type:"string"`
+
+	// The timestamp when the task template was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The default values for fields when a task is created by referencing this
+	// template.
+	Defaults *TaskTemplateDefaults `type:"structure"`
+
+	// The description of the task template.
+	Description *string `min:"1" type:"string"`
+
+	// Fields that are part of the template.
+	Fields []*TaskTemplateField `type:"list"`
+
+	// The identifier of the task template resource.
+	Id *string `min:"1" type:"string"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	InstanceId *string `min:"1" type:"string"`
+
+	// The timestamp when the task template was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The name of the task template.
+	Name *string `min:"1" type:"string"`
+
+	// Marks a template as ACTIVE or INACTIVE for a task to refer to it. Tasks can
+	// only be created from ACTIVE templates. If a template is marked as INACTIVE,
+	// then a task that refers to this template cannot be created.
+	Status *string `type:"string" enum:"TaskTemplateStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTaskTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTaskTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateTaskTemplateOutput) SetArn(v string) *UpdateTaskTemplateOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetConstraints sets the Constraints field's value.
+func (s *UpdateTaskTemplateOutput) SetConstraints(v *TaskTemplateConstraints) *UpdateTaskTemplateOutput {
+	s.Constraints = v
+	return s
+}
+
+// SetContactFlowId sets the ContactFlowId field's value.
+func (s *UpdateTaskTemplateOutput) SetContactFlowId(v string) *UpdateTaskTemplateOutput {
+	s.ContactFlowId = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *UpdateTaskTemplateOutput) SetCreatedTime(v time.Time) *UpdateTaskTemplateOutput {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDefaults sets the Defaults field's value.
+func (s *UpdateTaskTemplateOutput) SetDefaults(v *TaskTemplateDefaults) *UpdateTaskTemplateOutput {
+	s.Defaults = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateTaskTemplateOutput) SetDescription(v string) *UpdateTaskTemplateOutput {
+	s.Description = &v
+	return s
+}
+
+// SetFields sets the Fields field's value.
+func (s *UpdateTaskTemplateOutput) SetFields(v []*TaskTemplateField) *UpdateTaskTemplateOutput {
+	s.Fields = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateTaskTemplateOutput) SetId(v string) *UpdateTaskTemplateOutput {
+	s.Id = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateTaskTemplateOutput) SetInstanceId(v string) *UpdateTaskTemplateOutput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *UpdateTaskTemplateOutput) SetLastModifiedTime(v time.Time) *UpdateTaskTemplateOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateTaskTemplateOutput) SetName(v string) *UpdateTaskTemplateOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateTaskTemplateOutput) SetStatus(v string) *UpdateTaskTemplateOutput {
+	s.Status = &v
+	return s
 }
 
 type UpdateUserHierarchyGroupNameInput struct {
@@ -41512,6 +44159,38 @@ func PhoneType_Values() []string {
 }
 
 const (
+	// PropertyValidationExceptionReasonInvalidFormat is a PropertyValidationExceptionReason enum value
+	PropertyValidationExceptionReasonInvalidFormat = "INVALID_FORMAT"
+
+	// PropertyValidationExceptionReasonUniqueConstraintViolated is a PropertyValidationExceptionReason enum value
+	PropertyValidationExceptionReasonUniqueConstraintViolated = "UNIQUE_CONSTRAINT_VIOLATED"
+
+	// PropertyValidationExceptionReasonReferencedResourceNotFound is a PropertyValidationExceptionReason enum value
+	PropertyValidationExceptionReasonReferencedResourceNotFound = "REFERENCED_RESOURCE_NOT_FOUND"
+
+	// PropertyValidationExceptionReasonResourceNameAlreadyExists is a PropertyValidationExceptionReason enum value
+	PropertyValidationExceptionReasonResourceNameAlreadyExists = "RESOURCE_NAME_ALREADY_EXISTS"
+
+	// PropertyValidationExceptionReasonRequiredPropertyMissing is a PropertyValidationExceptionReason enum value
+	PropertyValidationExceptionReasonRequiredPropertyMissing = "REQUIRED_PROPERTY_MISSING"
+
+	// PropertyValidationExceptionReasonNotSupported is a PropertyValidationExceptionReason enum value
+	PropertyValidationExceptionReasonNotSupported = "NOT_SUPPORTED"
+)
+
+// PropertyValidationExceptionReason_Values returns all elements of the PropertyValidationExceptionReason enum
+func PropertyValidationExceptionReason_Values() []string {
+	return []string{
+		PropertyValidationExceptionReasonInvalidFormat,
+		PropertyValidationExceptionReasonUniqueConstraintViolated,
+		PropertyValidationExceptionReasonReferencedResourceNotFound,
+		PropertyValidationExceptionReasonResourceNameAlreadyExists,
+		PropertyValidationExceptionReasonRequiredPropertyMissing,
+		PropertyValidationExceptionReasonNotSupported,
+	}
+}
+
+const (
 	// QueueStatusEnabled is a QueueStatus enum value
 	QueueStatusEnabled = "ENABLED"
 
@@ -41585,6 +44264,18 @@ const (
 
 	// ReferenceTypeAttachment is a ReferenceType enum value
 	ReferenceTypeAttachment = "ATTACHMENT"
+
+	// ReferenceTypeNumber is a ReferenceType enum value
+	ReferenceTypeNumber = "NUMBER"
+
+	// ReferenceTypeString is a ReferenceType enum value
+	ReferenceTypeString = "STRING"
+
+	// ReferenceTypeDate is a ReferenceType enum value
+	ReferenceTypeDate = "DATE"
+
+	// ReferenceTypeEmail is a ReferenceType enum value
+	ReferenceTypeEmail = "EMAIL"
 )
 
 // ReferenceType_Values returns all elements of the ReferenceType enum
@@ -41592,6 +44283,10 @@ func ReferenceType_Values() []string {
 	return []string{
 		ReferenceTypeUrl,
 		ReferenceTypeAttachment,
+		ReferenceTypeNumber,
+		ReferenceTypeString,
+		ReferenceTypeDate,
+		ReferenceTypeEmail,
 	}
 }
 
@@ -41708,6 +44403,78 @@ func StringComparisonType_Values() []string {
 		StringComparisonTypeStartsWith,
 		StringComparisonTypeContains,
 		StringComparisonTypeExact,
+	}
+}
+
+const (
+	// TaskTemplateFieldTypeName is a TaskTemplateFieldType enum value
+	TaskTemplateFieldTypeName = "NAME"
+
+	// TaskTemplateFieldTypeDescription is a TaskTemplateFieldType enum value
+	TaskTemplateFieldTypeDescription = "DESCRIPTION"
+
+	// TaskTemplateFieldTypeScheduledTime is a TaskTemplateFieldType enum value
+	TaskTemplateFieldTypeScheduledTime = "SCHEDULED_TIME"
+
+	// TaskTemplateFieldTypeQuickConnect is a TaskTemplateFieldType enum value
+	TaskTemplateFieldTypeQuickConnect = "QUICK_CONNECT"
+
+	// TaskTemplateFieldTypeUrl is a TaskTemplateFieldType enum value
+	TaskTemplateFieldTypeUrl = "URL"
+
+	// TaskTemplateFieldTypeNumber is a TaskTemplateFieldType enum value
+	TaskTemplateFieldTypeNumber = "NUMBER"
+
+	// TaskTemplateFieldTypeText is a TaskTemplateFieldType enum value
+	TaskTemplateFieldTypeText = "TEXT"
+
+	// TaskTemplateFieldTypeTextArea is a TaskTemplateFieldType enum value
+	TaskTemplateFieldTypeTextArea = "TEXT_AREA"
+
+	// TaskTemplateFieldTypeDateTime is a TaskTemplateFieldType enum value
+	TaskTemplateFieldTypeDateTime = "DATE_TIME"
+
+	// TaskTemplateFieldTypeBoolean is a TaskTemplateFieldType enum value
+	TaskTemplateFieldTypeBoolean = "BOOLEAN"
+
+	// TaskTemplateFieldTypeSingleSelect is a TaskTemplateFieldType enum value
+	TaskTemplateFieldTypeSingleSelect = "SINGLE_SELECT"
+
+	// TaskTemplateFieldTypeEmail is a TaskTemplateFieldType enum value
+	TaskTemplateFieldTypeEmail = "EMAIL"
+)
+
+// TaskTemplateFieldType_Values returns all elements of the TaskTemplateFieldType enum
+func TaskTemplateFieldType_Values() []string {
+	return []string{
+		TaskTemplateFieldTypeName,
+		TaskTemplateFieldTypeDescription,
+		TaskTemplateFieldTypeScheduledTime,
+		TaskTemplateFieldTypeQuickConnect,
+		TaskTemplateFieldTypeUrl,
+		TaskTemplateFieldTypeNumber,
+		TaskTemplateFieldTypeText,
+		TaskTemplateFieldTypeTextArea,
+		TaskTemplateFieldTypeDateTime,
+		TaskTemplateFieldTypeBoolean,
+		TaskTemplateFieldTypeSingleSelect,
+		TaskTemplateFieldTypeEmail,
+	}
+}
+
+const (
+	// TaskTemplateStatusActive is a TaskTemplateStatus enum value
+	TaskTemplateStatusActive = "ACTIVE"
+
+	// TaskTemplateStatusInactive is a TaskTemplateStatus enum value
+	TaskTemplateStatusInactive = "INACTIVE"
+)
+
+// TaskTemplateStatus_Values returns all elements of the TaskTemplateStatus enum
+func TaskTemplateStatus_Values() []string {
+	return []string{
+		TaskTemplateStatusActive,
+		TaskTemplateStatusInactive,
 	}
 }
 

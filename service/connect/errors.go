@@ -86,6 +86,10 @@ const (
 	// The contact is not permitted.
 	ErrCodeOutboundContactNotPermittedException = "OutboundContactNotPermittedException"
 
+	// ErrCodePropertyValidationException for service response error code
+	// "PropertyValidationException".
+	ErrCodePropertyValidationException = "PropertyValidationException"
+
 	// ErrCodeResourceConflictException for service response error code
 	// "ResourceConflictException".
 	//
@@ -137,6 +141,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidRequestException":              newErrorInvalidRequestException,
 	"LimitExceededException":               newErrorLimitExceededException,
 	"OutboundContactNotPermittedException": newErrorOutboundContactNotPermittedException,
+	"PropertyValidationException":          newErrorPropertyValidationException,
 	"ResourceConflictException":            newErrorResourceConflictException,
 	"ResourceInUseException":               newErrorResourceInUseException,
 	"ResourceNotFoundException":            newErrorResourceNotFoundException,

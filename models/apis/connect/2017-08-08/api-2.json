@@ -375,6 +375,23 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "CreateTaskTemplate":{
+      "name":"CreateTaskTemplate",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/instance/{InstanceId}/task/template"
+      },
+      "input":{"shape":"CreateTaskTemplateRequest"},
+      "output":{"shape":"CreateTaskTemplateResponse"},
+      "errors":[
+        {"shape":"PropertyValidationException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "CreateUseCase":{
       "name":"CreateUseCase",
       "http":{
@@ -550,6 +567,22 @@
         {"shape":"InternalServiceException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceInUseException"}
+      ]
+    },
+    "DeleteTaskTemplate":{
+      "name":"DeleteTaskTemplate",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/instance/{InstanceId}/task/template/{TaskTemplateId}"
+      },
+      "input":{"shape":"DeleteTaskTemplateRequest"},
+      "output":{"shape":"DeleteTaskTemplateResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "DeleteUseCase":{
@@ -1083,6 +1116,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "GetTaskTemplate":{
+      "name":"GetTaskTemplate",
+      "http":{
+        "method":"GET",
+        "requestUri":"/instance/{InstanceId}/task/template/{TaskTemplateId}"
+      },
+      "input":{"shape":"GetTaskTemplateRequest"},
+      "output":{"shape":"GetTaskTemplateResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "ListAgentStatuses":{
       "name":"ListAgentStatuses",
       "http":{
@@ -1494,6 +1543,22 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "ListTaskTemplates":{
+      "name":"ListTaskTemplates",
+      "http":{
+        "method":"GET",
+        "requestUri":"/instance/{InstanceId}/task/template"
+      },
+      "input":{"shape":"ListTaskTemplatesRequest"},
+      "output":{"shape":"ListTaskTemplatesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "ListUseCases":{
       "name":"ListUseCases",
       "http":{
@@ -1789,6 +1854,24 @@
         {"shape":"InternalServiceException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "TransferContact":{
+      "name":"TransferContact",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contact/transfer"
+      },
+      "input":{"shape":"TransferContactRequest"},
+      "output":{"shape":"TransferContactResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"IdempotencyException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "UntagResource":{
@@ -2197,6 +2280,23 @@
         {"shape":"InvalidParameterException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "UpdateTaskTemplate":{
+      "name":"UpdateTaskTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/instance/{InstanceId}/task/template/{TaskTemplateId}"
+      },
+      "input":{"shape":"UpdateTaskTemplateRequest"},
+      "output":{"shape":"UpdateTaskTemplateResponse"},
+      "errors":[
+        {"shape":"PropertyValidationException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"InternalServiceException"}
       ]
     },
@@ -3253,6 +3353,43 @@
         "SecurityProfileArn":{"shape":"ARN"}
       }
     },
+    "CreateTaskTemplateRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "Name",
+        "Fields"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "Name":{"shape":"TaskTemplateName"},
+        "Description":{"shape":"TaskTemplateDescription"},
+        "ContactFlowId":{"shape":"ContactFlowId"},
+        "Constraints":{"shape":"TaskTemplateConstraints"},
+        "Defaults":{"shape":"TaskTemplateDefaults"},
+        "Status":{"shape":"TaskTemplateStatus"},
+        "Fields":{"shape":"TaskTemplateFields"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateTaskTemplateResponse":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Arn"
+      ],
+      "members":{
+        "Id":{"shape":"TaskTemplateId"},
+        "Arn":{"shape":"TaskTemplateArn"}
+      }
+    },
     "CreateUseCaseRequest":{
       "type":"structure",
       "required":[
@@ -3439,6 +3576,13 @@
       "type":"list",
       "member":{"shape":"CurrentMetric"}
     },
+    "DateReference":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"ReferenceKey"},
+        "Value":{"shape":"ReferenceValue"}
+      }
+    },
     "DefaultVocabulary":{
       "type":"structure",
       "required":[
@@ -3591,6 +3735,30 @@
           "location":"uri",
           "locationName":"SecurityProfileId"
         }
+      }
+    },
+    "DeleteTaskTemplateRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "TaskTemplateId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "TaskTemplateId":{
+          "shape":"TaskTemplateId",
+          "location":"uri",
+          "locationName":"TaskTemplateId"
+        }
+      }
+    },
+    "DeleteTaskTemplateResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeleteUseCaseRequest":{
@@ -4333,6 +4501,13 @@
       "exception":true
     },
     "Email":{"type":"string"},
+    "EmailReference":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"ReferenceKey"},
+        "Value":{"shape":"ReferenceValue"}
+      }
+    },
     "EncryptionConfig":{
       "type":"structure",
       "required":[
@@ -4469,6 +4644,53 @@
       "members":{
         "NextToken":{"shape":"NextToken"},
         "MetricResults":{"shape":"HistoricalMetricResults"}
+      }
+    },
+    "GetTaskTemplateRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "TaskTemplateId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "TaskTemplateId":{
+          "shape":"TaskTemplateId",
+          "location":"uri",
+          "locationName":"TaskTemplateId"
+        },
+        "SnapshotVersion":{
+          "shape":"SnapshotVersion",
+          "location":"querystring",
+          "locationName":"snapshotVersion"
+        }
+      }
+    },
+    "GetTaskTemplateResponse":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Arn",
+        "Name"
+      ],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "Id":{"shape":"TaskTemplateId"},
+        "Arn":{"shape":"TaskTemplateArn"},
+        "Name":{"shape":"TaskTemplateName"},
+        "Description":{"shape":"TaskTemplateDescription"},
+        "ContactFlowId":{"shape":"ContactFlowId"},
+        "Constraints":{"shape":"TaskTemplateConstraints"},
+        "Defaults":{"shape":"TaskTemplateDefaults"},
+        "Fields":{"shape":"TaskTemplateFields"},
+        "Status":{"shape":"TaskTemplateStatus"},
+        "LastModifiedTime":{"shape":"timestamp"},
+        "CreatedTime":{"shape":"timestamp"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "Grouping":{
@@ -4907,6 +5129,16 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "InvisibleFieldInfo":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"TaskTemplateFieldIdentifier"}
+      }
+    },
+    "InvisibleTaskTemplateFields":{
+      "type":"list",
+      "member":{"shape":"InvisibleFieldInfo"}
     },
     "KeyId":{
       "type":"string",
@@ -5812,6 +6044,45 @@
         "tags":{"shape":"TagMap"}
       }
     },
+    "ListTaskTemplatesRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "Status":{
+          "shape":"TaskTemplateStatus",
+          "location":"querystring",
+          "locationName":"status"
+        },
+        "Name":{
+          "shape":"TaskTemplateName",
+          "location":"querystring",
+          "locationName":"name"
+        }
+      }
+    },
+    "ListTaskTemplatesResponse":{
+      "type":"structure",
+      "members":{
+        "TaskTemplates":{"shape":"TaskTemplateList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListUseCasesRequest":{
       "type":"structure",
       "required":[
@@ -5968,6 +6239,13 @@
       "type":"string",
       "max":2500,
       "min":1
+    },
+    "NumberReference":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"ReferenceKey"},
+        "Value":{"shape":"ReferenceValue"}
+      }
     },
     "Origin":{
       "type":"string",
@@ -6402,6 +6680,44 @@
       "type":"list",
       "member":{"shape":"PromptSummary"}
     },
+    "PropertyValidationException":{
+      "type":"structure",
+      "required":["Message"],
+      "members":{
+        "Message":{"shape":"Message"},
+        "PropertyList":{"shape":"PropertyValidationExceptionPropertyList"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "PropertyValidationExceptionProperty":{
+      "type":"structure",
+      "required":[
+        "PropertyPath",
+        "Reason",
+        "Message"
+      ],
+      "members":{
+        "PropertyPath":{"shape":"String"},
+        "Reason":{"shape":"PropertyValidationExceptionReason"},
+        "Message":{"shape":"Message"}
+      }
+    },
+    "PropertyValidationExceptionPropertyList":{
+      "type":"list",
+      "member":{"shape":"PropertyValidationExceptionProperty"}
+    },
+    "PropertyValidationExceptionReason":{
+      "type":"string",
+      "enum":[
+        "INVALID_FORMAT",
+        "UNIQUE_CONSTRAINT_VIOLATED",
+        "REFERENCED_RESOURCE_NOT_FOUND",
+        "RESOURCE_NAME_ALREADY_EXISTS",
+        "REQUIRED_PROPERTY_MISSING",
+        "NOT_SUPPORTED"
+      ]
+    },
     "PutUserStatusRequest":{
       "type":"structure",
       "required":[
@@ -6587,6 +6903,16 @@
       "max":50,
       "min":1
     },
+    "ReadOnlyFieldInfo":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"TaskTemplateFieldIdentifier"}
+      }
+    },
+    "ReadOnlyTaskTemplateFields":{
+      "type":"list",
+      "member":{"shape":"ReadOnlyFieldInfo"}
+    },
     "Reference":{
       "type":"structure",
       "required":[
@@ -6614,7 +6940,11 @@
       "type":"structure",
       "members":{
         "Url":{"shape":"UrlReference"},
-        "Attachment":{"shape":"AttachmentReference"}
+        "Attachment":{"shape":"AttachmentReference"},
+        "String":{"shape":"StringReference"},
+        "Number":{"shape":"NumberReference"},
+        "Date":{"shape":"DateReference"},
+        "Email":{"shape":"EmailReference"}
       },
       "union":true
     },
@@ -6626,13 +6956,17 @@
       "type":"string",
       "enum":[
         "URL",
-        "ATTACHMENT"
+        "ATTACHMENT",
+        "NUMBER",
+        "STRING",
+        "DATE",
+        "EMAIL"
       ]
     },
     "ReferenceTypes":{
       "type":"list",
       "member":{"shape":"ReferenceType"},
-      "max":2
+      "max":6
     },
     "ReferenceValue":{
       "type":"string",
@@ -6655,6 +6989,16 @@
           "locationName":"clientToken"
         }
       }
+    },
+    "RequiredFieldInfo":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"TaskTemplateFieldIdentifier"}
+      }
+    },
+    "RequiredTaskTemplateFields":{
+      "type":"list",
+      "member":{"shape":"RequiredFieldInfo"}
     },
     "ResourceConflictException":{
       "type":"structure",
@@ -6957,6 +7301,11 @@
       "error":{"httpStatusCode":402},
       "exception":true
     },
+    "SingleSelectOptions":{
+      "type":"list",
+      "member":{"shape":"TaskTemplateSingleSelectOption"}
+    },
+    "SnapshotVersion":{"type":"string"},
     "SourceApplicationName":{
       "type":"string",
       "max":100,
@@ -7077,7 +7426,6 @@
       "type":"structure",
       "required":[
         "InstanceId",
-        "ContactFlowId",
         "Name"
       ],
       "members":{
@@ -7092,7 +7440,9 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
-        "ScheduledTime":{"shape":"Timestamp"}
+        "ScheduledTime":{"shape":"Timestamp"},
+        "TaskTemplateId":{"shape":"TaskTemplateId"},
+        "QuickConnectId":{"shape":"QuickConnectId"}
       }
     },
     "StartTaskContactResponse":{
@@ -7192,6 +7542,13 @@
         "ComparisonType":{"shape":"StringComparisonType"}
       }
     },
+    "StringReference":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"ReferenceKey"},
+        "Value":{"shape":"ReferenceValue"}
+      }
+    },
     "SupportedMessagingContentType":{
       "type":"string",
       "max":100,
@@ -7272,6 +7629,131 @@
       "type":"string",
       "max":256
     },
+    "TaskTemplateArn":{
+      "type":"string",
+      "max":500,
+      "min":1
+    },
+    "TaskTemplateConstraints":{
+      "type":"structure",
+      "members":{
+        "RequiredFields":{"shape":"RequiredTaskTemplateFields"},
+        "ReadOnlyFields":{"shape":"ReadOnlyTaskTemplateFields"},
+        "InvisibleFields":{"shape":"InvisibleTaskTemplateFields"}
+      }
+    },
+    "TaskTemplateDefaultFieldValue":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"TaskTemplateFieldIdentifier"},
+        "DefaultValue":{"shape":"TaskTemplateFieldValue"}
+      }
+    },
+    "TaskTemplateDefaultFieldValueList":{
+      "type":"list",
+      "member":{"shape":"TaskTemplateDefaultFieldValue"}
+    },
+    "TaskTemplateDefaults":{
+      "type":"structure",
+      "members":{
+        "DefaultFieldValues":{"shape":"TaskTemplateDefaultFieldValueList"}
+      }
+    },
+    "TaskTemplateDescription":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "TaskTemplateField":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"TaskTemplateFieldIdentifier"},
+        "Description":{"shape":"TaskTemplateFieldDescription"},
+        "Type":{"shape":"TaskTemplateFieldType"},
+        "SingleSelectOptions":{"shape":"SingleSelectOptions"}
+      }
+    },
+    "TaskTemplateFieldDescription":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "TaskTemplateFieldIdentifier":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"TaskTemplateFieldName"}
+      }
+    },
+    "TaskTemplateFieldName":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "TaskTemplateFieldType":{
+      "type":"string",
+      "enum":[
+        "NAME",
+        "DESCRIPTION",
+        "SCHEDULED_TIME",
+        "QUICK_CONNECT",
+        "URL",
+        "NUMBER",
+        "TEXT",
+        "TEXT_AREA",
+        "DATE_TIME",
+        "BOOLEAN",
+        "SINGLE_SELECT",
+        "EMAIL"
+      ]
+    },
+    "TaskTemplateFieldValue":{
+      "type":"string",
+      "max":4096,
+      "min":0
+    },
+    "TaskTemplateFields":{
+      "type":"list",
+      "member":{"shape":"TaskTemplateField"}
+    },
+    "TaskTemplateId":{
+      "type":"string",
+      "max":500,
+      "min":1
+    },
+    "TaskTemplateList":{
+      "type":"list",
+      "member":{"shape":"TaskTemplateMetadata"}
+    },
+    "TaskTemplateMetadata":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"TaskTemplateId"},
+        "Arn":{"shape":"TaskTemplateArn"},
+        "Name":{"shape":"TaskTemplateName"},
+        "Description":{"shape":"TaskTemplateDescription"},
+        "Status":{"shape":"TaskTemplateStatus"},
+        "LastModifiedTime":{"shape":"timestamp"},
+        "CreatedTime":{"shape":"timestamp"}
+      }
+    },
+    "TaskTemplateName":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "TaskTemplateSingleSelectOption":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "TaskTemplateStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "INACTIVE"
+      ]
+    },
     "Threshold":{
       "type":"structure",
       "members":{
@@ -7299,6 +7781,32 @@
         "GENERAL",
         "CAMPAIGN"
       ]
+    },
+    "TransferContactRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactId",
+        "ContactFlowId"
+      ],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "ContactId":{"shape":"ContactId"},
+        "QueueId":{"shape":"QueueId"},
+        "UserId":{"shape":"AgentResourceId"},
+        "ContactFlowId":{"shape":"ContactFlowId"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "TransferContactResponse":{
+      "type":"structure",
+      "members":{
+        "ContactId":{"shape":"ContactId"},
+        "ContactArn":{"shape":"ARN"}
+      }
     },
     "URI":{
       "type":"string",
@@ -7903,6 +8411,49 @@
           "location":"uri",
           "locationName":"InstanceId"
         }
+      }
+    },
+    "UpdateTaskTemplateRequest":{
+      "type":"structure",
+      "required":[
+        "TaskTemplateId",
+        "InstanceId"
+      ],
+      "members":{
+        "TaskTemplateId":{
+          "shape":"TaskTemplateId",
+          "location":"uri",
+          "locationName":"TaskTemplateId"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "Name":{"shape":"TaskTemplateName"},
+        "Description":{"shape":"TaskTemplateDescription"},
+        "ContactFlowId":{"shape":"ContactFlowId"},
+        "Constraints":{"shape":"TaskTemplateConstraints"},
+        "Defaults":{"shape":"TaskTemplateDefaults"},
+        "Status":{"shape":"TaskTemplateStatus"},
+        "Fields":{"shape":"TaskTemplateFields"}
+      }
+    },
+    "UpdateTaskTemplateResponse":{
+      "type":"structure",
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "Id":{"shape":"TaskTemplateId"},
+        "Arn":{"shape":"TaskTemplateArn"},
+        "Name":{"shape":"TaskTemplateName"},
+        "Description":{"shape":"TaskTemplateDescription"},
+        "ContactFlowId":{"shape":"ContactFlowId"},
+        "Constraints":{"shape":"TaskTemplateConstraints"},
+        "Defaults":{"shape":"TaskTemplateDefaults"},
+        "Fields":{"shape":"TaskTemplateFields"},
+        "Status":{"shape":"TaskTemplateStatus"},
+        "LastModifiedTime":{"shape":"timestamp"},
+        "CreatedTime":{"shape":"timestamp"}
       }
     },
     "UpdateUserHierarchyGroupNameRequest":{

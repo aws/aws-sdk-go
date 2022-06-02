@@ -159,6 +159,12 @@
       "output_token": "NextToken",
       "result_key": "SecurityProfileSummaryList"
     },
+    "ListTaskTemplates": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "TaskTemplates"
+    },
     "ListUseCases": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

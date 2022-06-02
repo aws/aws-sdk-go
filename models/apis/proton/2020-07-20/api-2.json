@@ -31,6 +31,23 @@
       ],
       "idempotent":true
     },
+    "CancelComponentDeployment":{
+      "name":"CancelComponentDeployment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelComponentDeploymentInput"},
+      "output":{"shape":"CancelComponentDeploymentOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CancelEnvironmentDeployment":{
       "name":"CancelEnvironmentDeployment",
       "http":{
@@ -81,6 +98,25 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
       ]
+    },
+    "CreateComponent":{
+      "name":"CreateComponent",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateComponentInput"},
+      "output":{"shape":"CreateComponentOutput"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
     },
     "CreateEnvironment":{
       "name":"CreateEnvironment",
@@ -244,6 +280,24 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
         {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteComponent":{
+      "name":"DeleteComponent",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteComponentInput"},
+      "output":{"shape":"DeleteComponentOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
       ],
       "idempotent":true
@@ -418,6 +472,22 @@
       },
       "input":{"shape":"GetAccountSettingsInput"},
       "output":{"shape":"GetAccountSettingsOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetComponent":{
+      "name":"GetComponent",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetComponentInput"},
+      "output":{"shape":"GetComponentOutput"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
@@ -615,6 +685,53 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListComponentOutputs":{
+      "name":"ListComponentOutputs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListComponentOutputsInput"},
+      "output":{"shape":"ListComponentOutputsOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListComponentProvisionedResources":{
+      "name":"ListComponentProvisionedResources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListComponentProvisionedResourcesInput"},
+      "output":{"shape":"ListComponentProvisionedResourcesOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListComponents":{
+      "name":"ListComponents",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListComponentsInput"},
+      "output":{"shape":"ListComponentsOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -973,6 +1090,24 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "UpdateComponent":{
+      "name":"UpdateComponent",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateComponentInput"},
+      "output":{"shape":"UpdateComponentOutput"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "UpdateEnvironment":{
       "name":"UpdateEnvironment",
       "http":{
@@ -1185,6 +1320,20 @@
       "type":"string",
       "pattern":"^\\d{12}$"
     },
+    "CancelComponentDeploymentInput":{
+      "type":"structure",
+      "required":["componentName"],
+      "members":{
+        "componentName":{"shape":"ResourceName"}
+      }
+    },
+    "CancelComponentDeploymentOutput":{
+      "type":"structure",
+      "required":["component"],
+      "members":{
+        "component":{"shape":"Component"}
+      }
+    },
     "CancelEnvironmentDeploymentInput":{
       "type":"structure",
       "required":["environmentName"],
@@ -1269,6 +1418,68 @@
       "type":"list",
       "member":{"shape":"CompatibleEnvironmentTemplate"}
     },
+    "Component":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "createdAt",
+        "deploymentStatus",
+        "environmentName",
+        "lastModifiedAt",
+        "name"
+      ],
+      "members":{
+        "arn":{"shape":"ComponentArn"},
+        "createdAt":{"shape":"Timestamp"},
+        "deploymentStatus":{"shape":"DeploymentStatus"},
+        "deploymentStatusMessage":{"shape":"StatusMessage"},
+        "description":{"shape":"Description"},
+        "environmentName":{"shape":"ResourceName"},
+        "lastDeploymentAttemptedAt":{"shape":"Timestamp"},
+        "lastDeploymentSucceededAt":{"shape":"Timestamp"},
+        "lastModifiedAt":{"shape":"Timestamp"},
+        "name":{"shape":"ResourceName"},
+        "serviceInstanceName":{"shape":"ResourceName"},
+        "serviceName":{"shape":"ResourceName"},
+        "serviceSpec":{"shape":"SpecContents"}
+      }
+    },
+    "ComponentArn":{"type":"string"},
+    "ComponentDeploymentUpdateType":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "CURRENT_VERSION"
+      ]
+    },
+    "ComponentSummary":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "createdAt",
+        "deploymentStatus",
+        "environmentName",
+        "lastModifiedAt",
+        "name"
+      ],
+      "members":{
+        "arn":{"shape":"ComponentArn"},
+        "createdAt":{"shape":"Timestamp"},
+        "deploymentStatus":{"shape":"DeploymentStatus"},
+        "deploymentStatusMessage":{"shape":"StatusMessage"},
+        "environmentName":{"shape":"ResourceName"},
+        "lastDeploymentAttemptedAt":{"shape":"Timestamp"},
+        "lastDeploymentSucceededAt":{"shape":"Timestamp"},
+        "lastModifiedAt":{"shape":"Timestamp"},
+        "name":{"shape":"ResourceName"},
+        "serviceInstanceName":{"shape":"ResourceName"},
+        "serviceName":{"shape":"ResourceName"}
+      }
+    },
+    "ComponentSummaryList":{
+      "type":"list",
+      "member":{"shape":"ComponentSummary"}
+    },
     "ConflictException":{
       "type":"structure",
       "required":["message"],
@@ -1276,6 +1487,32 @@
         "message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "CreateComponentInput":{
+      "type":"structure",
+      "required":[
+        "manifest",
+        "name",
+        "templateFile"
+      ],
+      "members":{
+        "description":{"shape":"Description"},
+        "environmentName":{"shape":"ResourceName"},
+        "manifest":{"shape":"TemplateManifestContents"},
+        "name":{"shape":"ResourceName"},
+        "serviceInstanceName":{"shape":"ResourceName"},
+        "serviceName":{"shape":"ResourceName"},
+        "serviceSpec":{"shape":"SpecContents"},
+        "tags":{"shape":"TagList"},
+        "templateFile":{"shape":"TemplateFileContents"}
+      }
+    },
+    "CreateComponentOutput":{
+      "type":"structure",
+      "required":["component"],
+      "members":{
+        "component":{"shape":"Component"}
+      }
     },
     "CreateEnvironmentAccountConnectionInput":{
       "type":"structure",
@@ -1289,6 +1526,7 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
+        "componentRoleArn":{"shape":"Arn"},
         "environmentName":{"shape":"ResourceName"},
         "managementAccountId":{"shape":"AwsAccountId"},
         "roleArn":{"shape":"Arn"},
@@ -1311,6 +1549,7 @@
         "templateName"
       ],
       "members":{
+        "componentRoleArn":{"shape":"Arn"},
         "description":{"shape":"Description"},
         "environmentAccountConnectionId":{"shape":"EnvironmentAccountConnectionId"},
         "name":{"shape":"ResourceName"},
@@ -1459,6 +1698,7 @@
         "description":{"shape":"Description"},
         "majorVersion":{"shape":"TemplateVersionPart"},
         "source":{"shape":"TemplateVersionSourceInput"},
+        "supportedComponentSources":{"shape":"ServiceTemplateSupportedComponentSourceInputList"},
         "tags":{"shape":"TagList"},
         "templateName":{"shape":"ResourceName"}
       }
@@ -1492,6 +1732,19 @@
       "type":"structure",
       "members":{
         "templateSyncConfig":{"shape":"TemplateSyncConfig"}
+      }
+    },
+    "DeleteComponentInput":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"ResourceName"}
+      }
+    },
+    "DeleteComponentOutput":{
+      "type":"structure",
+      "members":{
+        "component":{"shape":"Component"}
       }
     },
     "DeleteEnvironmentAccountConnectionInput":{
@@ -1689,6 +1942,7 @@
       ],
       "members":{
         "arn":{"shape":"EnvironmentArn"},
+        "componentRoleArn":{"shape":"Arn"},
         "createdAt":{"shape":"Timestamp"},
         "deploymentStatus":{"shape":"DeploymentStatus"},
         "deploymentStatusMessage":{"shape":"StatusMessage"},
@@ -1722,6 +1976,7 @@
       ],
       "members":{
         "arn":{"shape":"EnvironmentAccountConnectionArn"},
+        "componentRoleArn":{"shape":"Arn"},
         "environmentAccountId":{"shape":"AwsAccountId"},
         "environmentName":{"shape":"ResourceName"},
         "id":{"shape":"EnvironmentAccountConnectionId"},
@@ -1771,6 +2026,7 @@
       ],
       "members":{
         "arn":{"shape":"EnvironmentAccountConnectionArn"},
+        "componentRoleArn":{"shape":"Arn"},
         "environmentAccountId":{"shape":"AwsAccountId"},
         "environmentName":{"shape":"ResourceName"},
         "id":{"shape":"EnvironmentAccountConnectionId"},
@@ -1801,6 +2057,7 @@
       ],
       "members":{
         "arn":{"shape":"EnvironmentArn"},
+        "componentRoleArn":{"shape":"Arn"},
         "createdAt":{"shape":"Timestamp"},
         "deploymentStatus":{"shape":"DeploymentStatus"},
         "deploymentStatusMessage":{"shape":"StatusMessage"},
@@ -1953,6 +2210,19 @@
       "type":"structure",
       "members":{
         "accountSettings":{"shape":"AccountSettings"}
+      }
+    },
+    "GetComponentInput":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"ResourceName"}
+      }
+    },
+    "GetComponentOutput":{
+      "type":"structure",
+      "members":{
+        "component":{"shape":"Component"}
       }
     },
     "GetEnvironmentAccountConnectionInput":{
@@ -2173,6 +2443,56 @@
       "exception":true,
       "fault":true,
       "retryable":{"throttling":false}
+    },
+    "ListComponentOutputsInput":{
+      "type":"structure",
+      "required":["componentName"],
+      "members":{
+        "componentName":{"shape":"ResourceName"},
+        "nextToken":{"shape":"EmptyNextToken"}
+      }
+    },
+    "ListComponentOutputsOutput":{
+      "type":"structure",
+      "required":["outputs"],
+      "members":{
+        "nextToken":{"shape":"EmptyNextToken"},
+        "outputs":{"shape":"OutputsList"}
+      }
+    },
+    "ListComponentProvisionedResourcesInput":{
+      "type":"structure",
+      "required":["componentName"],
+      "members":{
+        "componentName":{"shape":"ResourceName"},
+        "nextToken":{"shape":"EmptyNextToken"}
+      }
+    },
+    "ListComponentProvisionedResourcesOutput":{
+      "type":"structure",
+      "required":["provisionedResources"],
+      "members":{
+        "nextToken":{"shape":"EmptyNextToken"},
+        "provisionedResources":{"shape":"ProvisionedResourceList"}
+      }
+    },
+    "ListComponentsInput":{
+      "type":"structure",
+      "members":{
+        "environmentName":{"shape":"ResourceName"},
+        "maxResults":{"shape":"MaxPageResults"},
+        "nextToken":{"shape":"NextToken"},
+        "serviceInstanceName":{"shape":"ResourceName"},
+        "serviceName":{"shape":"ResourceName"}
+      }
+    },
+    "ListComponentsOutput":{
+      "type":"structure",
+      "required":["components"],
+      "members":{
+        "components":{"shape":"ComponentSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
     },
     "ListEnvironmentAccountConnectionsInput":{
       "type":"structure",
@@ -2485,7 +2805,7 @@
         "outputs":{"shape":"NotifyResourceDeploymentStatusChangeInputOutputsList"},
         "resourceArn":{"shape":"Arn"},
         "status":{"shape":"ResourceDeploymentStatus"},
-        "statusMessage":{"shape":"SyntheticNotifyResourceDeploymentStatusChangeInputString"}
+        "statusMessage":{"shape":"NotifyResourceDeploymentStatusChangeInputStatusMessageString"}
       }
     },
     "NotifyResourceDeploymentStatusChangeInputOutputsList":{
@@ -2493,6 +2813,12 @@
       "member":{"shape":"Output"},
       "max":50,
       "min":0
+    },
+    "NotifyResourceDeploymentStatusChangeInputStatusMessageString":{
+      "type":"string",
+      "max":5000,
+      "min":0,
+      "sensitive":true
     },
     "NotifyResourceDeploymentStatusChangeOutput":{
       "type":"structure",
@@ -2728,6 +3054,12 @@
       "max":100,
       "min":1,
       "pattern":"^[0-9A-Za-z]+[0-9A-Za-z_\\-]*$"
+    },
+    "ResourceNameOrEmpty":{
+      "type":"string",
+      "max":100,
+      "min":0,
+      "pattern":"(^$)|^[0-9A-Za-z]+[0-9A-Za-z_\\-]*$"
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -3042,6 +3374,14 @@
       "type":"list",
       "member":{"shape":"ServiceTemplateSummary"}
     },
+    "ServiceTemplateSupportedComponentSourceInputList":{
+      "type":"list",
+      "member":{"shape":"ServiceTemplateSupportedComponentSourceType"}
+    },
+    "ServiceTemplateSupportedComponentSourceType":{
+      "type":"string",
+      "enum":["DIRECTLY_DEFINED"]
+    },
     "ServiceTemplateVersion":{
       "type":"structure",
       "required":[
@@ -3066,6 +3406,7 @@
         "schema":{"shape":"TemplateSchema"},
         "status":{"shape":"TemplateVersionStatus"},
         "statusMessage":{"shape":"StatusMessage"},
+        "supportedComponentSources":{"shape":"ServiceTemplateSupportedComponentSourceInputList"},
         "templateName":{"shape":"ResourceName"}
       }
     },
@@ -3118,12 +3459,6 @@
       "type":"string",
       "enum":["TEMPLATE_SYNC"]
     },
-    "SyntheticNotifyResourceDeploymentStatusChangeInputString":{
-      "type":"string",
-      "max":5000,
-      "min":0,
-      "sensitive":true
-    },
     "Tag":{
       "type":"structure",
       "required":[
@@ -3172,6 +3507,18 @@
       "type":"string",
       "max":256,
       "min":0
+    },
+    "TemplateFileContents":{
+      "type":"string",
+      "max":51200,
+      "min":1,
+      "sensitive":true
+    },
+    "TemplateManifestContents":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "sensitive":true
     },
     "TemplateSchema":{
       "type":"string",
@@ -3266,13 +3613,34 @@
         "accountSettings":{"shape":"AccountSettings"}
       }
     },
-    "UpdateEnvironmentAccountConnectionInput":{
+    "UpdateComponentInput":{
       "type":"structure",
       "required":[
-        "id",
-        "roleArn"
+        "deploymentType",
+        "name"
       ],
       "members":{
+        "deploymentType":{"shape":"ComponentDeploymentUpdateType"},
+        "description":{"shape":"Description"},
+        "name":{"shape":"ResourceName"},
+        "serviceInstanceName":{"shape":"ResourceNameOrEmpty"},
+        "serviceName":{"shape":"ResourceNameOrEmpty"},
+        "serviceSpec":{"shape":"SpecContents"},
+        "templateFile":{"shape":"TemplateFileContents"}
+      }
+    },
+    "UpdateComponentOutput":{
+      "type":"structure",
+      "required":["component"],
+      "members":{
+        "component":{"shape":"Component"}
+      }
+    },
+    "UpdateEnvironmentAccountConnectionInput":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "componentRoleArn":{"shape":"Arn"},
         "id":{"shape":"EnvironmentAccountConnectionId"},
         "roleArn":{"shape":"Arn"}
       }
@@ -3291,6 +3659,7 @@
         "name"
       ],
       "members":{
+        "componentRoleArn":{"shape":"Arn"},
         "deploymentType":{"shape":"DeploymentUpdateType"},
         "description":{"shape":"Description"},
         "environmentAccountConnectionId":{"shape":"EnvironmentAccountConnectionId"},
@@ -3437,6 +3806,7 @@
         "majorVersion":{"shape":"TemplateVersionPart"},
         "minorVersion":{"shape":"TemplateVersionPart"},
         "status":{"shape":"TemplateVersionStatus"},
+        "supportedComponentSources":{"shape":"ServiceTemplateSupportedComponentSourceInputList"},
         "templateName":{"shape":"ResourceName"}
       }
     },

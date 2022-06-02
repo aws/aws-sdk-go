@@ -78,8 +78,7 @@ func (c *CodeArtifact) AssociateExternalConnectionRequest(input *AssociateExtern
 //   The operation did not succeed because prerequisites are not met.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -182,8 +181,7 @@ func (c *CodeArtifact) CopyPackageVersionsRequest(input *CopyPackageVersionsInpu
 //   The operation did not succeed because prerequisites are not met.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -268,8 +266,8 @@ func (c *CodeArtifact) CreateDomainRequest(input *CreateDomainInput) (req *reque
 //
 // Creates a domain. CodeArtifact domains make it easier to manage multiple
 // repositories across an organization. You can use a domain to apply permissions
-// across many repositories owned by different AWS accounts. An asset is stored
-// only once in a domain, even if it's in multiple repositories.
+// across many repositories owned by different Amazon Web Services accounts.
+// An asset is stored only once in a domain, even if it's in multiple repositories.
 //
 // Although you can have multiple domains, we recommend a single production
 // domain that contains all published artifacts so that your development teams
@@ -291,8 +289,7 @@ func (c *CodeArtifact) CreateDomainRequest(input *CreateDomainInput) (req *reque
 //   The operation did not succeed because prerequisites are not met.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -392,8 +389,7 @@ func (c *CodeArtifact) CreateRepositoryRequest(input *CreateRepositoryInput) (re
 //   The operation did not succeed because prerequisites are not met.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -494,8 +490,7 @@ func (c *CodeArtifact) DeleteDomainRequest(input *DeleteDomainInput) (req *reque
 //   The operation did not succeed because prerequisites are not met.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ThrottlingException
 //   The operation did not succeed because too many requests are sent to the service.
@@ -587,8 +582,7 @@ func (c *CodeArtifact) DeleteDomainPermissionsPolicyRequest(input *DeleteDomainP
 //   The operation did not succeed because prerequisites are not met.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -689,8 +683,7 @@ func (c *CodeArtifact) DeletePackageVersionsRequest(input *DeletePackageVersions
 //   The operation did not succeed because prerequisites are not met.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -786,8 +779,7 @@ func (c *CodeArtifact) DeleteRepositoryRequest(input *DeleteRepositoryInput) (re
 //   The operation did not succeed because prerequisites are not met.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -871,8 +863,8 @@ func (c *CodeArtifact) DeleteRepositoryPermissionsPolicyRequest(input *DeleteRep
 // are removed. The effect of deleting a resource policy might not be immediate.
 //
 // Use DeleteRepositoryPermissionsPolicy with caution. After a policy is deleted,
-// AWS users, roles, and accounts lose permissions to perform the repository
-// actions granted by the deleted policy.
+// Amazon Web Services users, roles, and accounts lose permissions to perform
+// the repository actions granted by the deleted policy.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -889,8 +881,7 @@ func (c *CodeArtifact) DeleteRepositoryPermissionsPolicyRequest(input *DeleteRep
 //   The operation did not succeed because prerequisites are not met.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -984,8 +975,7 @@ func (c *CodeArtifact) DescribeDomainRequest(input *DescribeDomainInput) (req *r
 //   The operation did not succeed because of an unauthorized access attempt.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -1082,8 +1072,7 @@ func (c *CodeArtifact) DescribePackageVersionRequest(input *DescribePackageVersi
 //   The operation did not succeed because prerequisites are not met.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -1177,8 +1166,7 @@ func (c *CodeArtifact) DescribeRepositoryRequest(input *DescribeRepositoryInput)
 //   The operation did not succeed because of an unauthorized access attempt.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -1274,8 +1262,7 @@ func (c *CodeArtifact) DisassociateExternalConnectionRequest(input *Disassociate
 //   The operation did not succeed because prerequisites are not met.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -1385,8 +1372,7 @@ func (c *CodeArtifact) DisposePackageVersionsRequest(input *DisposePackageVersio
 //   The operation did not succeed because prerequisites are not met.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -1467,7 +1453,7 @@ func (c *CodeArtifact) GetAuthorizationTokenRequest(input *GetAuthorizationToken
 //
 // Generates a temporary authorization token for accessing repositories in the
 // domain. This API requires the codeartifact:GetAuthorizationToken and sts:GetServiceBearerToken
-// permissions. For more information about authorization tokens, see AWS CodeArtifact
+// permissions. For more information about authorization tokens, see CodeArtifact
 // authentication and tokens (https://docs.aws.amazon.com/codeartifact/latest/ug/tokens-authentication.html).
 //
 // CodeArtifact authorization tokens are valid for a period of 12 hours when
@@ -1499,8 +1485,7 @@ func (c *CodeArtifact) GetAuthorizationTokenRequest(input *GetAuthorizationToken
 //   The operation did not succeed because of an unauthorized access attempt.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -1584,7 +1569,7 @@ func (c *CodeArtifact) GetDomainPermissionsPolicyRequest(input *GetDomainPermiss
 // The policy is a resource-based policy, not an identity-based policy. For
 // more information, see Identity-based policies and resource-based policies
 // (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html)
-// in the AWS Identity and Access Management User Guide.
+// in the IAM User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1598,8 +1583,7 @@ func (c *CodeArtifact) GetDomainPermissionsPolicyRequest(input *GetDomainPermiss
 //   The operation did not succeed because of an unauthorized access attempt.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -1694,8 +1678,7 @@ func (c *CodeArtifact) GetPackageVersionAssetRequest(input *GetPackageVersionAss
 //   The operation did not succeed because of an unauthorized access attempt.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -1777,10 +1760,7 @@ func (c *CodeArtifact) GetPackageVersionReadmeRequest(input *GetPackageVersionRe
 
 // GetPackageVersionReadme API operation for CodeArtifact.
 //
-// Gets the readme file or descriptive text for a package version. For packages
-// that do not contain a readme file, CodeArtifact extracts a description from
-// a metadata file. For example, from the <description> element in the pom.xml
-// file of a Maven package.
+// Gets the readme file or descriptive text for a package version.
 //
 // The returned text might contain formatting. For example, it might contain
 // formatting for Markdown or reStructuredText.
@@ -1797,8 +1777,7 @@ func (c *CodeArtifact) GetPackageVersionReadmeRequest(input *GetPackageVersionRe
 //   The operation did not succeed because of an unauthorized access attempt.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -1880,11 +1859,13 @@ func (c *CodeArtifact) GetRepositoryEndpointRequest(input *GetRepositoryEndpoint
 // Returns the endpoint of a repository for a specific package format. A repository
 // has one endpoint for each package format:
 //
+//    * maven
+//
 //    * npm
 //
-//    * pypi
+//    * nuget
 //
-//    * maven
+//    * pypi
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1898,8 +1879,7 @@ func (c *CodeArtifact) GetRepositoryEndpointRequest(input *GetRepositoryEndpoint
 //   The operation did not succeed because of an unauthorized access attempt.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -1992,8 +1972,7 @@ func (c *CodeArtifact) GetRepositoryPermissionsPolicyRequest(input *GetRepositor
 //   The operation did not succeed because of an unauthorized access attempt.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -2079,8 +2058,9 @@ func (c *CodeArtifact) ListDomainsRequest(input *ListDomainsInput) (req *request
 // ListDomains API operation for CodeArtifact.
 //
 // Returns a list of DomainSummary (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionDescription.html)
-// objects for all domains owned by the AWS account that makes this call. Each
-// returned DomainSummary object contains information about a domain.
+// objects for all domains owned by the Amazon Web Services account that makes
+// this call. Each returned DomainSummary object contains information about
+// a domain.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2094,8 +2074,7 @@ func (c *CodeArtifact) ListDomainsRequest(input *ListDomainsInput) (req *request
 //   The operation did not succeed because of an unauthorized access attempt.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ThrottlingException
 //   The operation did not succeed because too many requests are sent to the service.
@@ -2243,8 +2222,7 @@ func (c *CodeArtifact) ListPackageVersionAssetsRequest(input *ListPackageVersion
 //   The operation did not succeed because of an unauthorized access attempt.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -2394,8 +2372,7 @@ func (c *CodeArtifact) ListPackageVersionDependenciesRequest(input *ListPackageV
 //   The operation did not succeed because of an unauthorized access attempt.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -2495,8 +2472,7 @@ func (c *CodeArtifact) ListPackageVersionsRequest(input *ListPackageVersionsInpu
 //   The operation did not succeed because of an unauthorized access attempt.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -2648,8 +2624,7 @@ func (c *CodeArtifact) ListPackagesRequest(input *ListPackagesInput) (req *reque
 //   The operation did not succeed because of an unauthorized access attempt.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -2788,7 +2763,7 @@ func (c *CodeArtifact) ListRepositoriesRequest(input *ListRepositoriesInput) (re
 //
 // Returns a list of RepositorySummary (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_RepositorySummary.html)
 // objects. Each RepositorySummary contains information about a repository in
-// the specified AWS account and that matches the input parameters.
+// the specified Amazon Web Services account and that matches the input parameters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2802,8 +2777,7 @@ func (c *CodeArtifact) ListRepositoriesRequest(input *ListRepositoriesInput) (re
 //   The operation did not succeed because of an unauthorized access attempt.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ThrottlingException
 //   The operation did not succeed because too many requests are sent to the service.
@@ -2952,8 +2926,7 @@ func (c *CodeArtifact) ListRepositoriesInDomainRequest(input *ListRepositoriesIn
 //   The operation did not succeed because of an unauthorized access attempt.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -3084,8 +3057,8 @@ func (c *CodeArtifact) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 
 // ListTagsForResource API operation for CodeArtifact.
 //
-// Gets information about AWS tags for a specified Amazon Resource Name (ARN)
-// in AWS CodeArtifact.
+// Gets information about Amazon Web Services tags for a specified Amazon Resource
+// Name (ARN) in CodeArtifact.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3197,8 +3170,7 @@ func (c *CodeArtifact) PutDomainPermissionsPolicyRequest(input *PutDomainPermiss
 //   The operation did not succeed because prerequisites are not met.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -3304,8 +3276,7 @@ func (c *CodeArtifact) PutRepositoryPermissionsPolicyRequest(input *PutRepositor
 //   The operation did not succeed because prerequisites are not met.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -3389,7 +3360,7 @@ func (c *CodeArtifact) TagResourceRequest(input *TagResourceInput) (req *request
 
 // TagResource API operation for CodeArtifact.
 //
-// Adds or updates tags for a resource in AWS CodeArtifact.
+// Adds or updates tags for a resource in CodeArtifact.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3484,7 +3455,7 @@ func (c *CodeArtifact) UntagResourceRequest(input *UntagResourceInput) (req *req
 
 // UntagResource API operation for CodeArtifact.
 //
-// Removes tags from a resource in AWS CodeArtifact.
+// Removes tags from a resource in CodeArtifact.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3574,7 +3545,10 @@ func (c *CodeArtifact) UpdatePackageVersionsStatusRequest(input *UpdatePackageVe
 
 // UpdatePackageVersionsStatus API operation for CodeArtifact.
 //
-// Updates the status of one or more versions of a package.
+// Updates the status of one or more versions of a package. Using UpdatePackageVersionsStatus,
+// you can update the status of package versions to Archived, Published, or
+// Unlisted. To set the status of a package version to Disposed, use DisposePackageVersions
+// (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DisposePackageVersions.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3591,8 +3565,7 @@ func (c *CodeArtifact) UpdatePackageVersionsStatusRequest(input *UpdatePackageVe
 //   The operation did not succeed because prerequisites are not met.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -3688,8 +3661,7 @@ func (c *CodeArtifact) UpdateRepositoryRequest(input *UpdateRepositoryInput) (re
 //   The operation did not succeed because prerequisites are not met.
 //
 //   * InternalServerException
-//   The operation did not succeed because of an error that occurred inside AWS
-//   CodeArtifact.
+//   The operation did not succeed because of an error that occurred inside CodeArtifact.
 //
 //   * ResourceNotFoundException
 //   The operation did not succeed because the resource requested is not found
@@ -3852,14 +3824,16 @@ type AssociateExternalConnectionInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
 	// The name of the external connection to add to the repository. The following
 	// values are supported:
 	//
 	//    * public:npmjs - for the npm public repository.
+	//
+	//    * public:nuget-org - for the NuGet Gallery.
 	//
 	//    * public:pypi - for the Python Package Index.
 	//
@@ -3991,7 +3965,7 @@ type ConflictException struct {
 	// The ID of the resource.
 	ResourceId *string `locationName:"resourceId" type:"string"`
 
-	// The type of AWS resource.
+	// The type of Amazon Web Services resource.
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 }
 
@@ -4070,18 +4044,11 @@ type CopyPackageVersionsInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
-	// The format of the package that is copied. The valid package types are:
-	//
-	//    * npm: A Node Package Manager (npm) package.
-	//
-	//    * pypi: A Python Package Index (PyPI) package.
-	//
-	//    * maven: A Maven package that contains compiled code in a distributable
-	//    format, such as a JAR file.
+	// The format of the package that is copied.
 	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
@@ -4309,10 +4276,10 @@ func (s *CopyPackageVersionsOutput) SetSuccessfulVersions(v map[string]*Successf
 type CreateDomainInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the domain to create. All domain names in an AWS Region that
-	// are in the same AWS account must be unique. The domain name is used as the
-	// prefix in DNS hostnames. Do not use sensitive information in a domain name
-	// because it is publicly discoverable.
+	// The name of the domain to create. All domain names in an Amazon Web Services
+	// Region that are in the same Amazon Web Services account must be unique. The
+	// domain name is used as the prefix in DNS hostnames. Do not use sensitive
+	// information in a domain name because it is publicly discoverable.
 	//
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
@@ -4322,14 +4289,14 @@ type CreateDomainInput struct {
 	// (ARN), a key alias, or a key alias ARN. To specify an encryptionKey, your
 	// IAM role must have kms:DescribeKey and kms:CreateGrant permissions on the
 	// encryption key that is used. For more information, see DescribeKey (https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestSyntax)
-	// in the AWS Key Management Service API Reference and AWS KMS API Permissions
-	// Reference (https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html)
-	// in the AWS Key Management Service Developer Guide.
+	// in the Key Management Service API Reference and Key Management Service API
+	// Permissions Reference (https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html)
+	// in the Key Management Service Developer Guide.
 	//
 	// CodeArtifact supports only symmetric CMKs. Do not associate an asymmetric
 	// CMK with your domain. For more information, see Using symmetric and asymmetric
 	// keys (https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html)
-	// in the AWS Key Management Service Developer Guide.
+	// in the Key Management Service Developer Guide.
 	EncryptionKey *string `locationName:"encryptionKey" min:"1" type:"string"`
 
 	// One or more tag key-value pairs for the domain.
@@ -4443,8 +4410,8 @@ type CreateRepositoryInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
 	// The name of the repository to create.
@@ -4457,7 +4424,7 @@ type CreateRepositoryInput struct {
 
 	// A list of upstream repositories to associate with the repository. The order
 	// of the upstream repositories in the list determines their priority order
-	// when AWS CodeArtifact looks for a requested package version. For more information,
+	// when CodeArtifact looks for a requested package version. For more information,
 	// see Working with upstream repositories (https://docs.aws.amazon.com/codeartifact/latest/ug/repos-upstream.html).
 	Upstreams []*UpstreamRepository `locationName:"upstreams" type:"list"`
 }
@@ -4600,8 +4567,8 @@ type DeleteDomainInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 }
 
@@ -4693,8 +4660,8 @@ type DeleteDomainPermissionsPolicyInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
 	// The current revision of the resource policy to be deleted. This revision
@@ -4800,30 +4767,14 @@ type DeletePackageVersionsInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
-	// The expected status of the package version to delete. Valid values are:
-	//
-	//    * Published
-	//
-	//    * Unfinished
-	//
-	//    * Unlisted
-	//
-	//    * Archived
-	//
-	//    * Disposed
+	// The expected status of the package version to delete.
 	ExpectedStatus *string `locationName:"expectedStatus" type:"string" enum:"PackageVersionStatus"`
 
-	// The format of the package versions to delete. The valid values are:
-	//
-	//    * npm
-	//
-	//    * pypi
-	//
-	//    * maven
+	// The format of the package versions to delete.
 	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
@@ -4980,7 +4931,8 @@ type DeletePackageVersionsOutput struct {
 	//    * SKIPPED
 	FailedVersions map[string]*PackageVersionError `locationName:"failedVersions" type:"map"`
 
-	// A list of the package versions that were successfully deleted.
+	// A list of the package versions that were successfully deleted. The status
+	// of every successful version will be Deleted.
 	SuccessfulVersions map[string]*SuccessfulPackageVersionInfo `locationName:"successfulVersions" type:"map"`
 }
 
@@ -5022,8 +4974,8 @@ type DeleteRepositoryInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
 	// The name of the repository to delete.
@@ -5133,8 +5085,8 @@ type DeleteRepositoryPermissionsPolicyInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
 	// The revision of the repository's resource policy to be deleted. This revision
@@ -5258,8 +5210,8 @@ type DescribeDomainInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 }
 
@@ -5353,18 +5305,11 @@ type DescribePackageVersionInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
-	// A format that specifies the type of the requested package version. The valid
-	// values are:
-	//
-	//    * npm
-	//
-	//    * pypi
-	//
-	//    * maven
+	// A format that specifies the type of the requested package version.
 	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
@@ -5541,8 +5486,8 @@ type DescribeRepositoryInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
 	// A string that specifies the name of the requested repository.
@@ -5652,8 +5597,8 @@ type DisassociateExternalConnectionInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
 	// The name of the external connection to be removed from the repository.
@@ -5776,31 +5721,14 @@ type DisposePackageVersionsInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
-	// The expected status of the package version to dispose. Valid values are:
-	//
-	//    * Published
-	//
-	//    * Unfinished
-	//
-	//    * Unlisted
-	//
-	//    * Archived
-	//
-	//    * Disposed
+	// The expected status of the package version to dispose.
 	ExpectedStatus *string `locationName:"expectedStatus" type:"string" enum:"PackageVersionStatus"`
 
 	// A format that specifies the type of package versions you want to dispose.
-	// The valid values are:
-	//
-	//    * npm
-	//
-	//    * pypi
-	//
-	//    * maven
 	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
@@ -6015,14 +5943,13 @@ type DomainDescription struct {
 	// A timestamp that represents the date and time the domain was created.
 	CreatedTime *time.Time `locationName:"createdTime" type:"timestamp"`
 
-	// The ARN of an AWS Key Management Service (AWS KMS) key associated with a
-	// domain.
+	// The ARN of an Key Management Service (KMS) key associated with a domain.
 	EncryptionKey *string `locationName:"encryptionKey" min:"1" type:"string"`
 
 	// The name of the domain.
 	Name *string `locationName:"name" min:"2" type:"string"`
 
-	// The AWS account ID that owns the domain.
+	// The Amazon Web Services account ID that owns the domain.
 	Owner *string `locationName:"owner" min:"12" type:"string"`
 
 	// The number of repositories in the domain.
@@ -6032,11 +5959,7 @@ type DomainDescription struct {
 	// package assets in the domain.
 	S3BucketArn *string `locationName:"s3BucketArn" min:"1" type:"string"`
 
-	// The current status of a domain. The valid values are
-	//
-	//    * Active
-	//
-	//    * Deleted
+	// The current status of a domain.
 	Status *string `locationName:"status" type:"string" enum:"DomainStatus"`
 }
 
@@ -6130,15 +6053,11 @@ type DomainSummary struct {
 	// The name of the domain.
 	Name *string `locationName:"name" min:"2" type:"string"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	Owner *string `locationName:"owner" min:"12" type:"string"`
 
-	// A string that contains the status of the domain. The valid values are:
-	//
-	//    * Active
-	//
-	//    * Deleted
+	// A string that contains the status of the domain.
 	Status *string `locationName:"status" type:"string" enum:"DomainStatus"`
 }
 
@@ -6204,8 +6123,8 @@ type GetAuthorizationTokenInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
 	// The time, in seconds, that the generated authorization token is valid. Valid
@@ -6318,8 +6237,8 @@ type GetDomainPermissionsPolicyInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 }
 
@@ -6417,18 +6336,12 @@ type GetPackageVersionAssetInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
 	// A format that specifies the type of the package version with the requested
-	// asset file. The valid values are:
-	//
-	//    * npm
-	//
-	//    * pypi
-	//
-	//    * maven
+	// asset file.
 	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
@@ -6654,18 +6567,15 @@ type GetPackageVersionReadmeInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
 	// A format that specifies the type of the package version with the requested
-	// readme file. The valid values are:
+	// readme file.
 	//
-	//    * npm
-	//
-	//    * pypi
-	//
-	//    * maven
+	// Although maven is listed as a valid value, CodeArtifact does not support
+	// displaying readme files for Maven packages.
 	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
@@ -6803,14 +6713,7 @@ func (s *GetPackageVersionReadmeInput) SetRepository(v string) *GetPackageVersio
 type GetPackageVersionReadmeOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The format of the package with the requested readme file. Valid format types
-	// are:
-	//
-	//    * npm
-	//
-	//    * pypi
-	//
-	//    * maven
+	// The format of the package with the requested readme file.
 	Format *string `locationName:"format" type:"string" enum:"PackageFormat"`
 
 	// The namespace of the package. The package component that specifies its namespace
@@ -6899,18 +6802,12 @@ type GetRepositoryEndpointInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain that
-	// contains the repository. It does not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain that contains the repository. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
 	// Returns which endpoint of a repository to return. A repository has one endpoint
-	// for each package format:
-	//
-	//    * npm
-	//
-	//    * pypi
-	//
-	//    * maven
+	// for each package format.
 	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
@@ -7031,8 +6928,8 @@ type GetRepositoryPermissionsPolicyInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
 	// The name of the repository whose associated resource policy is to be retrieved.
@@ -7133,8 +7030,7 @@ func (s *GetRepositoryPermissionsPolicyOutput) SetPolicy(v *ResourcePolicy) *Get
 	return s
 }
 
-// The operation did not succeed because of an error that occurred inside AWS
-// CodeArtifact.
+// The operation did not succeed because of an error that occurred inside CodeArtifact.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7347,19 +7243,11 @@ type ListPackageVersionAssetsInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
 	// The format of the package that contains the returned package version assets.
-	// The valid package types are:
-	//
-	//    * npm: A Node Package Manager (npm) package.
-	//
-	//    * pypi: A Python Package Index (PyPI) package.
-	//
-	//    * maven: A Maven package that contains compiled code in a distributable
-	//    format, such as a JAR file.
 	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
@@ -7623,19 +7511,11 @@ type ListPackageVersionDependenciesInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
-	// The format of the package with the requested dependencies. The valid package
-	// types are:
-	//
-	//    * npm: A Node Package Manager (npm) package.
-	//
-	//    * pypi: A Python Package Index (PyPI) package.
-	//
-	//    * maven: A Maven package that contains compiled code in a distributable
-	//    format, such as a JAR file.
+	// The format of the package with the requested dependencies.
 	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
@@ -7791,13 +7671,7 @@ type ListPackageVersionDependenciesOutput struct {
 	Dependencies []*PackageDependency `locationName:"dependencies" type:"list"`
 
 	// A format that specifies the type of the package that contains the returned
-	// dependencies. The valid values are:
-	//
-	//    * npm
-	//
-	//    * pypi
-	//
-	//    * maven
+	// dependencies.
 	Format *string `locationName:"format" type:"string" enum:"PackageFormat"`
 
 	// The namespace of the package. The package component that specifies its namespace
@@ -7894,18 +7768,11 @@ type ListPackageVersionsInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
-	// The format of the returned packages. The valid package types are:
-	//
-	//    * npm: A Node Package Manager (npm) package.
-	//
-	//    * pypi: A Python Package Index (PyPI) package.
-	//
-	//    * maven: A Maven package that contains compiled code in a distributable
-	//    format, such as a JAR file.
+	// The format of the returned packages.
 	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
@@ -7942,17 +7809,7 @@ type ListPackageVersionsInput struct {
 	SortBy *string `location:"querystring" locationName:"sortBy" type:"string" enum:"PackageVersionSortType"`
 
 	// A string that specifies the status of the package versions to include in
-	// the returned list. It can be one of the following:
-	//
-	//    * Published
-	//
-	//    * Unfinished
-	//
-	//    * Unlisted
-	//
-	//    * Archived
-	//
-	//    * Disposed
+	// the returned list.
 	Status *string `location:"querystring" locationName:"status" type:"string" enum:"PackageVersionStatus"`
 }
 
@@ -8089,13 +7946,7 @@ type ListPackageVersionsOutput struct {
 	//    the latest tag is not set, it's the most recently published package version.
 	DefaultDisplayVersion *string `locationName:"defaultDisplayVersion" min:"1" type:"string"`
 
-	// A format of the package. Valid package format values are:
-	//
-	//    * npm
-	//
-	//    * pypi
-	//
-	//    * maven
+	// A format of the package.
 	Format *string `locationName:"format" type:"string" enum:"PackageFormat"`
 
 	// The namespace of the package. The package component that specifies its namespace
@@ -8183,18 +8034,11 @@ type ListPackagesInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
-	// The format of the packages. The valid package types are:
-	//
-	//    * npm: A Node Package Manager (npm) package.
-	//
-	//    * pypi: A Python Package Index (PyPI) package.
-	//
-	//    * maven: A Maven package that contains compiled code in a distributable
-	//    format, such as a JAR file.
+	// The format of the packages.
 	Format *string `location:"querystring" locationName:"format" type:"string" enum:"PackageFormat"`
 
 	// The maximum number of results to return per page.
@@ -8373,7 +8217,7 @@ type ListRepositoriesInDomainInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Filter the list of repositories to only include those that are managed by
-	// the AWS account ID.
+	// the Amazon Web Services account ID.
 	AdministratorAccount *string `location:"querystring" locationName:"administrator-account" min:"12" type:"string"`
 
 	// The name of the domain that contains the returned list of repositories.
@@ -8381,8 +8225,8 @@ type ListRepositoriesInDomainInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
 	// The maximum number of results to return per page.
@@ -8790,13 +8634,7 @@ func (s *PackageDependency) SetVersionRequirement(v string) *PackageDependency {
 type PackageSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The format of the package. Valid values are:
-	//
-	//    * npm
-	//
-	//    * pypi
-	//
-	//    * maven
+	// The format of the package.
 	Format *string `locationName:"format" type:"string" enum:"PackageFormat"`
 
 	// The namespace of the package. The package component that specifies its namespace
@@ -8860,14 +8698,7 @@ type PackageVersionDescription struct {
 	// is @vue/ui.
 	DisplayName *string `locationName:"displayName" min:"1" type:"string"`
 
-	// The format of the package version. The valid package formats are:
-	//
-	//    * npm: A Node Package Manager (npm) package.
-	//
-	//    * pypi: A Python Package Index (PyPI) package.
-	//
-	//    * maven: A Maven package that contains compiled code in a distributable
-	//    format, such as a JAR file.
+	// The format of the package version.
 	Format *string `locationName:"format" type:"string" enum:"PackageFormat"`
 
 	// The homepage associated with the package.
@@ -8900,18 +8731,7 @@ type PackageVersionDescription struct {
 	// code used to build it.
 	SourceCodeRepository *string `locationName:"sourceCodeRepository" type:"string"`
 
-	// A string that contains the status of the package version. It can be one of
-	// the following:
-	//
-	//    * Published
-	//
-	//    * Unfinished
-	//
-	//    * Unlisted
-	//
-	//    * Archived
-	//
-	//    * Disposed
+	// A string that contains the status of the package version.
 	Status *string `locationName:"status" type:"string" enum:"PackageVersionStatus"`
 
 	// A summary of the package version. The summary is extracted from the package.
@@ -9078,16 +8898,6 @@ type PackageVersionSummary struct {
 	// A string that contains the status of the package version. It can be one of
 	// the following:
 	//
-	//    * Published
-	//
-	//    * Unfinished
-	//
-	//    * Unlisted
-	//
-	//    * Archived
-	//
-	//    * Disposed
-	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"PackageVersionStatus"`
 
@@ -9141,8 +8951,8 @@ type PutDomainPermissionsPolicyInput struct {
 	// Domain is a required field
 	Domain *string `locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `locationName:"domainOwner" min:"12" type:"string"`
 
 	// A valid displayable JSON Aspen policy string to be set as the access control
@@ -9267,8 +9077,8 @@ type PutRepositoryPermissionsPolicyInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
 	// A valid displayable JSON Aspen policy string to be set as the access control
@@ -9401,16 +9211,17 @@ func (s *PutRepositoryPermissionsPolicyOutput) SetPolicy(v *ResourcePolicy) *Put
 	return s
 }
 
-// The details of a repository stored in AWS CodeArtifact. A CodeArtifact repository
+// The details of a repository stored in CodeArtifact. A CodeArtifact repository
 // contains a set of package versions, each of which maps to a set of assets.
 // Repositories are polyglot—a single repository can contain packages of any
 // supported type. Each repository exposes endpoints for fetching and publishing
 // packages using tools like the npm CLI, the Maven CLI (mvn), and pip. You
-// can create up to 100 repositories per AWS account.
+// can create up to 100 repositories per Amazon Web Services account.
 type RepositoryDescription struct {
 	_ struct{} `type:"structure"`
 
-	// The 12-digit account number of the AWS account that manages the repository.
+	// The 12-digit account number of the Amazon Web Services account that manages
+	// the repository.
 	AdministratorAccount *string `locationName:"administratorAccount" min:"12" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the repository.
@@ -9422,8 +9233,8 @@ type RepositoryDescription struct {
 	// The name of the domain that contains the repository.
 	DomainName *string `locationName:"domainName" min:"2" type:"string"`
 
-	// The 12-digit account number of the AWS account that owns the domain that
-	// contains the repository. It does not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain that contains the repository. It does not include dashes or spaces.
 	DomainOwner *string `locationName:"domainOwner" min:"12" type:"string"`
 
 	// An array of external connections associated with the repository.
@@ -9434,7 +9245,7 @@ type RepositoryDescription struct {
 
 	// A list of upstream repositories to associate with the repository. The order
 	// of the upstream repositories in the list determines their priority order
-	// when AWS CodeArtifact looks for a requested package version. For more information,
+	// when CodeArtifact looks for a requested package version. For more information,
 	// see Working with upstream repositories (https://docs.aws.amazon.com/codeartifact/latest/ug/repos-upstream.html).
 	Upstreams []*UpstreamRepositoryInfo `locationName:"upstreams" type:"list"`
 }
@@ -9521,6 +9332,8 @@ type RepositoryExternalConnectionInfo struct {
 	//
 	//    * maven: A Maven package that contains compiled code in a distributable
 	//    format, such as a JAR file.
+	//
+	//    * nuget: A NuGet package.
 	PackageFormat *string `locationName:"packageFormat" type:"string" enum:"PackageFormat"`
 
 	// The status of the external connection of a repository. There is one valid
@@ -9570,7 +9383,7 @@ func (s *RepositoryExternalConnectionInfo) SetStatus(v string) *RepositoryExtern
 type RepositorySummary struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID that manages the repository.
+	// The Amazon Web Services account ID that manages the repository.
 	AdministratorAccount *string `locationName:"administratorAccount" min:"12" type:"string"`
 
 	// The ARN of the repository.
@@ -9582,8 +9395,8 @@ type RepositorySummary struct {
 	// The name of the domain that contains the repository.
 	DomainName *string `locationName:"domainName" min:"2" type:"string"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `locationName:"domainOwner" min:"12" type:"string"`
 
 	// The name of the repository.
@@ -9655,7 +9468,7 @@ type ResourceNotFoundException struct {
 	// The ID of the resource.
 	ResourceId *string `locationName:"resourceId" type:"string"`
 
-	// The type of AWS resource.
+	// The type of Amazon Web Services resource.
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 }
 
@@ -9715,8 +9528,8 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An AWS CodeArtifact resource policy that contains a resource ARN, document
-// details, and a revision.
+// An CodeArtifact resource policy that contains a resource ARN, document details,
+// and a revision.
 type ResourcePolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -9777,7 +9590,7 @@ type ServiceQuotaExceededException struct {
 	// The ID of the resource.
 	ResourceId *string `locationName:"resourceId" type:"string"`
 
-	// The type of AWS resource.
+	// The type of Amazon Web Services resource.
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 }
 
@@ -9844,17 +9657,7 @@ type SuccessfulPackageVersionInfo struct {
 	// The revision of a package version.
 	Revision *string `locationName:"revision" type:"string"`
 
-	// The status of a package version. Valid statuses are:
-	//
-	//    * Published
-	//
-	//    * Unfinished
-	//
-	//    * Unlisted
-	//
-	//    * Archived
-	//
-	//    * Disposed
+	// The status of a package version.
 	Status *string `locationName:"status" type:"string" enum:"PackageVersionStatus"`
 }
 
@@ -9889,7 +9692,7 @@ func (s *SuccessfulPackageVersionInfo) SetStatus(v string) *SuccessfulPackageVer
 }
 
 // A tag is a key-value pair that can be used to manage, search for, or filter
-// resources in AWS CodeArtifact.
+// resources in CodeArtifact.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -10211,8 +10014,8 @@ type UpdatePackageVersionsStatusInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
 	// The package version’s expected status before it is updated. If expectedStatus
@@ -10221,13 +10024,6 @@ type UpdatePackageVersionsStatusInput struct {
 	ExpectedStatus *string `locationName:"expectedStatus" type:"string" enum:"PackageVersionStatus"`
 
 	// A format that specifies the type of the package with the statuses to update.
-	// The valid values are:
-	//
-	//    * npm
-	//
-	//    * pypi
-	//
-	//    * maven
 	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
@@ -10445,8 +10241,8 @@ type UpdateRepositoryInput struct {
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
 
-	// The 12-digit account number of the AWS account that owns the domain. It does
-	// not include dashes or spaces.
+	// The 12-digit account number of the Amazon Web Services account that owns
+	// the domain. It does not include dashes or spaces.
 	DomainOwner *string `location:"querystring" locationName:"domain-owner" min:"12" type:"string"`
 
 	// The name of the repository to update.
@@ -10456,7 +10252,7 @@ type UpdateRepositoryInput struct {
 
 	// A list of upstream repositories to associate with the repository. The order
 	// of the upstream repositories in the list determines their priority order
-	// when AWS CodeArtifact looks for a requested package version. For more information,
+	// when CodeArtifact looks for a requested package version. For more information,
 	// see Working with upstream repositories (https://docs.aws.amazon.com/codeartifact/latest/ug/repos-upstream.html).
 	Upstreams []*UpstreamRepository `locationName:"upstreams" type:"list"`
 }
