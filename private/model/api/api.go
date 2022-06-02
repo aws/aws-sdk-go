@@ -136,25 +136,22 @@ func (a *API) StructName() string {
 		if len(name) == 0 {
 			panic("expect serviceId to be set, but was not")
 		}
-		if legacyName, ok := legacyStructNames[name]; ok {
-			name = legacyName
+		if legacyName, ok := legacyStructNames[strings.ToLower(name)]; ok {
+			// The legacy names come from service abbreviations or service full names,
+			// so we will want to apply the old procedure to them.
+			name = makeLikeServiceId(legacyName)
 		}
 	} else {
 		name = a.Metadata.ServiceAbbreviation
 		if len(name) == 0 {
 			name = a.Metadata.ServiceFullName
 		}
+		// If we aren't using the strictly modeled service id, then
+		// strip out prefix names not reflected in service client symbol names.
+		name = makeLikeServiceId(name)
 	}
 
 	name = strings.TrimSpace(name)
-
-	// Strip out prefix names not reflected in service client symbol names.
-	for _, prefix := range stripServiceNamePrefixes {
-		if strings.HasPrefix(name, prefix) {
-			name = name[len(prefix):]
-			break
-		}
-	}
 
 	// Replace all Non-letter/number values with space
 	runes := []rune(name)
@@ -1078,4 +1075,14 @@ func getDeprecatedMessage(msg string, name string) string {
 	}
 
 	return msg
+}
+
+func makeLikeServiceId(name string) string {
+	for _, prefix := range stripServiceNamePrefixes {
+		if strings.HasPrefix(name, prefix) {
+			name = name[len(prefix):]
+			break
+		}
+	}
+	return name
 }

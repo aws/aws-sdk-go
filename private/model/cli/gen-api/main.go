@@ -10,15 +10,14 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/aws/aws-sdk-go/private/model/api"
+	"github.com/aws/aws-sdk-go/private/util"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"runtime/debug"
 	"strings"
 	"sync"
-
-	"github.com/aws/aws-sdk-go/private/model/api"
-	"github.com/aws/aws-sdk-go/private/util"
 )
 
 func usage() {

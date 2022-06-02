@@ -70,6 +70,10 @@ func loadAPI(modelPath, baseImport string, opts ...func(*API)) (*API, error) {
 		BaseCrosslinkURL: "https://docs.aws.amazon.com",
 	}
 
+	for _, opt := range opts {
+		opt(a)
+	}
+
 	modelFile := filepath.Base(modelPath)
 	modelDir := filepath.Dir(modelPath)
 	err := attachModelFiles(modelDir,
@@ -82,10 +86,6 @@ func loadAPI(modelPath, baseImport string, opts ...func(*API)) (*API, error) {
 	)
 	if err != nil {
 		return nil, err
-	}
-
-	for _, opt := range opts {
-		opt(a)
 	}
 
 	if err = a.Setup(); err != nil {
