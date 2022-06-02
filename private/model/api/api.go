@@ -74,6 +74,9 @@ type API struct {
 	HasAccountIdWithARN bool `json:"-"`
 
 	WithGeneratedTypedErrors bool
+
+	// Set to true to strictly enforce usage of the serviceId for the package naming
+	StrictServiceId bool
 }
 
 // A Metadata is the metadata about an API's definition.
@@ -127,9 +130,20 @@ func (a *API) StructName() string {
 		return a.name
 	}
 
-	name := a.Metadata.ServiceAbbreviation
-	if len(name) == 0 {
-		name = a.Metadata.ServiceFullName
+	var name string
+	if a.StrictServiceId {
+		name = a.Metadata.ServiceID
+		if len(name) == 0 {
+			panic("expect serviceId to be set, but was not")
+		}
+		if legacyName, ok := legacyStructNames[name]; ok {
+			name = legacyName
+		}
+	} else {
+		name = a.Metadata.ServiceAbbreviation
+		if len(name) == 0 {
+			name = a.Metadata.ServiceFullName
+		}
 	}
 
 	name = strings.TrimSpace(name)

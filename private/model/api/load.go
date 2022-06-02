@@ -24,6 +24,9 @@ type Loader struct {
 	// Allows ignoring API models that are unsupported by the SDK without
 	// failing the load of other supported APIs.
 	IgnoreUnsupportedAPIs bool
+
+	// Set to true to strictly enforce usage of the serviceId for the package naming
+	StrictServiceId bool
 }
 
 // Load loads the API model files from disk returning the map of API package.
@@ -33,6 +36,7 @@ func (l Loader) Load(modelPaths []string) (APIs, error) {
 	for _, modelPath := range modelPaths {
 		a, err := loadAPI(modelPath, l.BaseImport, func(a *API) {
 			a.IgnoreUnsupportedAPIs = l.IgnoreUnsupportedAPIs
+			a.StrictServiceId = l.StrictServiceId
 		})
 		if err != nil {
 			return nil, fmt.Errorf("failed to load API, %v, %v", modelPath, err)
